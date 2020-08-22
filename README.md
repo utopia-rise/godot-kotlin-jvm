@@ -8,6 +8,6 @@
 
 2. In `godot/`, run the following commands:
    ```
-   ln -s ../../godot-jvm modules/jvm
+   ln -s ../godot-jvm modules/jvm
    scons -j8 platform=X11 # your platform
    ```
