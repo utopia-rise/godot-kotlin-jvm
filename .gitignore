@@ -1,0 +1,7 @@
+/cmake-build-debug
+/cmake-build-release
+/build
+/.idea
+
+*.o
+__pycache__
