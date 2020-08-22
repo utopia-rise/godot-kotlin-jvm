@@ -1,14 +1,6 @@
 #include "kotlin_language.h"
 #include "kotlin_script.h"
 
-KotlinLanguage::KotlinLanguage() {
-
-}
-
-KotlinLanguage::~KotlinLanguage() {
-
-}
-
 KotlinLanguage& KotlinLanguage::instance() {
     static KotlinLanguage instance;
     return instance;

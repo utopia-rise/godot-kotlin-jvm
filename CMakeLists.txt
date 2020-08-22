@@ -10,7 +10,7 @@ set(GODOT_ROOT_DIR ../godot/)
 # Get sources
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
 
-add_library(${PROJECT_NAME} SHARED register_types.cpp ${SOURCES})
+add_library(${PROJECT_NAME} SHARED register_types.cpp ${SOURCES} src/gd_kotlin.cpp src/gd_kotlin.h)
 target_include_directories(${PROJECT_NAME}
         PUBLIC ${GODOT_ROOT_DIR}
 )

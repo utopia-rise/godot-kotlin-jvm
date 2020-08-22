@@ -7,7 +7,7 @@ class KotlinScript : public Script {
 
 public:
     KotlinScript() = default;
-    ~KotlinScript() = default;
+    ~KotlinScript() override = default;
 
     bool can_instance() const override;
 

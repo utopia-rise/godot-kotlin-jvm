@@ -4,8 +4,8 @@
 
 class KotlinLanguage : public ScriptLanguage {
 public:
-    KotlinLanguage();
-    ~KotlinLanguage();
+    KotlinLanguage() = default;
+    ~KotlinLanguage() override = default;
     KotlinLanguage(const KotlinLanguage&) = delete;
     void operator=(const KotlinLanguage&) = delete;
 

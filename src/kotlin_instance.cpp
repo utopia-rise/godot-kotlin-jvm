@@ -1,14 +1,6 @@
 #include "kotlin_instance.h"
 #include "kotlin_language.h"
 
-KotlinInstance::KotlinInstance() {
-
-}
-
-KotlinInstance::~KotlinInstance() {
-
-}
-
 bool KotlinInstance::set(const StringName& p_name, const Variant& p_value) {
     return false;
 }

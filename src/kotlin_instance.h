@@ -4,8 +4,8 @@
 
 class KotlinInstance : public ScriptInstance {
 public:
-    KotlinInstance();
-    ~KotlinInstance();
+    KotlinInstance() = default;
+    ~KotlinInstance() override = default;
 
     bool set(const StringName& p_name, const Variant& p_value) override;
 
