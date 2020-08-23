@@ -122,6 +122,13 @@ void KotlinLanguage::get_reserved_words(List<String>* p_words) const {
 
             nullptr
     };
+
+    const char **w = _reserved_words;
+
+    while (*w) {
+        p_words->push_back(*w);
+        w++;
+    }
 }
 
 void KotlinLanguage::get_comment_delimiters(List<String>* p_delimiters) const {
