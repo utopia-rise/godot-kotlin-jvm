@@ -5,6 +5,7 @@
 #ifndef GODOT_LOADER_JVM_LOADER_H
 #define GODOT_LOADER_JVM_LOADER_H
 
+#include <core/ustring.h>
 #include "jvm.h"
 
 namespace jni {
@@ -16,6 +17,7 @@ namespace jni {
     private:
         static void *jvmLib;
         static void loadJvmLib();
+        static const char* getJvmLibPath();
     };
 }
 
