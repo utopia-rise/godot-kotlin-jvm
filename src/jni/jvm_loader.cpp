@@ -88,7 +88,7 @@ const char *jni::JvmLoader::getJvmLibPath() {
     String fileSeparator = {"\\"};
 #endif
 
-    String embeddedJrePath = "jre/";
+    String embeddedJrePath = {"jre/"};
 
     if (Engine::get_singleton()->is_editor_hint()) {
 
