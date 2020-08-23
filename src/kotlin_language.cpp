@@ -1,5 +1,6 @@
 #include "kotlin_language.h"
 #include "kotlin_script.h"
+#include "gd_kotlin.h"
 
 KotlinLanguage& KotlinLanguage::instance() {
     static KotlinLanguage instance;
@@ -11,7 +12,7 @@ String KotlinLanguage::get_name() const {
 }
 
 void KotlinLanguage::init() {
-
+    GDKotlin::getInstance().init();
 }
 
 String KotlinLanguage::get_type() const {
@@ -28,7 +29,7 @@ Error KotlinLanguage::execute_file(const String& p_path) {
 }
 
 void KotlinLanguage::finish() {
-
+    GDKotlin::getInstance().finish();
 }
 
 void KotlinLanguage::get_reserved_words(List<String>* p_words) const {

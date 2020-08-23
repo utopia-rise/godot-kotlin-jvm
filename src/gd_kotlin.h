@@ -4,9 +4,8 @@
 
 class GDKotlin {
 private:
-    GDKotlin();
+    GDKotlin() = default;
     ~GDKotlin() = default;
-    void initialize();
 
 public:
     GDKotlin(const GDKotlin&) = delete;
@@ -14,6 +13,9 @@ public:
     static GDKotlin& getInstance();
 
     GDKotlin& operator=(const GDKotlin&) = delete;
+
+    void init();
+    void finish();
 };
 
 

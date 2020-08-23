@@ -11,6 +11,11 @@ set(GODOT_ROOT_DIR ../godot/)
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
 
 add_library(${PROJECT_NAME} SHARED register_types.cpp ${SOURCES} src/gd_kotlin.cpp src/gd_kotlin.h)
+
+# JNI
+find_package(JNI REQUIRED)
+target_include_directories(${PROJECT_NAME} PUBLIC ${JNI_INCLUDE_DIRS})
+
 target_include_directories(${PROJECT_NAME}
         PUBLIC ${GODOT_ROOT_DIR}
 )
