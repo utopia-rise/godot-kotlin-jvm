@@ -1,8 +1,10 @@
 #include "jvm_loader.h"
 
 #ifdef __linux__
+
 #include <dlfcn.h>
 #include <core/engine.h>
+
 #elif __APPLE__
 #include "TargetConditionals.h"
 #ifdef TARGET_OS_MAC
@@ -57,9 +59,9 @@ jni::CreateJavaVM jni::JvmLoader::getCreateJvmFunction() {
         loadJvmLib();
     }
 #if defined __linux__ || defined TARGET_OS_MAC
-    return (CreateJavaVM) dlsym(jvmLib, "JNI_CreateJavaVM");
+    return reinterpret_cast<CreateJavaVM>(dlsym(jvmLib, "JNI_CreateJavaVM"));
 #elif defined _WIN32 || defined _WIN64
-    return (CreateJavaVM) GetProcAddress(jvmLib, "JNI_CreateJavaVM");
+    return reinterpret_cast<CreateJavaVM>(GetProcAddress(jvmLib, "JNI_CreateJavaVM"));
 #endif
 }
 
@@ -68,35 +70,30 @@ jni::GetCreatedJavaVMs jni::JvmLoader::getGetCreatedJavaVMsFunction() {
         loadJvmLib();
     }
 #if defined __linux__ || defined TARGET_OS_MAC
-    return (GetCreatedJavaVMs) dlsym(jvmLib, "JNI_GetCreatedJavaVMs");
+    return reinterpret_cast<GetCreatedJavaVMs>(dlsym(jvmLib, "JNI_GetCreatedJavaVMs"));
 #elif defined _WIN32 || defined _WIN64
-    return (GetCreatedJavaVMs) GetProcAddress(jvmLib, "JNI_GetCreatedJavaVMs");
+    return reinterpret_cast<GetCreatedJavaVMs>(GetProcAddress(jvmLib, "JNI_GetCreatedJavaVMs"));
 #endif
 }
 
 const char *jni::JvmLoader::getJvmLibPath() {
 #ifdef __linux__
-    const char *relativePath = "lib/server/libjvm.so";
-    const char *fileSeparator = "/";
+    String relativePath = "lib/server/libjvm.so";
+    String fileSeparator = "/";
 #elif TARGET_OS_MAC
-    const char* relativePath = "lib/server/libjvm.dylib";
-    const char* fileSeparator = "/";
+    String relativePath = "lib/server/libjvm.dylib";
+    String fileSeparator = "/";
 #elif defined _WIN32 || defined _WIN64
-    const char* relativePath = "bin\\server\\jvm.dll";
-    const char* fileSeparator = "\\";
+    String relativePath = "bin\\server\\jvm.dll";
+    String fileSeparator = "\\";
 #endif
 
-    String embeddedJrePath = String("jre/");
+    String embeddedJrePath = "jre/";
 
     if (Engine::get_singleton()->is_editor_hint()) {
 
-        String message = String("No embedded jvm found on path: ")
-                         + "jre"
-                         + fileSeparator
-                         + relativePath
-                         + "!";
-
-        String javaHome = String(getenv("JAVA_HOME"));
+        String message = "No embedded jvm found on path: jre" + fileSeparator + relativePath + "!" ;
+        String javaHome = getenv("JAVA_HOME");
 
         if (javaHome.empty()) {
             ERR_PRINT(message + " And JAVA_HOME is not defined! Exiting...")
