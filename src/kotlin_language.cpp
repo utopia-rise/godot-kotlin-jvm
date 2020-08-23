@@ -146,6 +146,8 @@ Ref<Script> KotlinLanguage::get_template(const String& p_class_name, const Strin
     String kotlinClassTemplate {
         "package " GODOT_KOTLIN_PACKAGE "\n"
         "\n"
+        "import godot.%BASE%"
+        "\n"
         "class %CLASS% : %BASE% {\n"
         "\n"
         "    // Declare member variables here. Examples:\n"
