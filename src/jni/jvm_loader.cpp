@@ -78,8 +78,8 @@ jni::GetCreatedJavaVMs jni::JvmLoader::getGetCreatedJavaVMsFunction() {
 
 const char *jni::JvmLoader::getJvmLibPath() {
 #ifdef __linux__
-    String relativePath {"lib/server/libjvm.so"};
-    String fileSeparator {"/"};
+    String relativePath{"lib/server/libjvm.so"};
+    String fileSeparator{"/"};
 #elif TARGET_OS_MAC
     String relativePath {"lib/server/libjvm.dylib"};
     String fileSeparator {"/"};
@@ -88,7 +88,7 @@ const char *jni::JvmLoader::getJvmLibPath() {
     String fileSeparator {"\\"};
 #endif
 
-    String embeddedJrePath {"jre/"};
+    String embeddedJrePath{"jre/"};
 
     if (Engine::get_singleton()->is_editor_hint()) {
 
