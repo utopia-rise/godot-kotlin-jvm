@@ -28,11 +28,14 @@ bool KotlinScript::has_source_code() const {
 }
 
 String KotlinScript::get_source_code() const {
-    return String();
+    return source;
 }
 
 void KotlinScript::set_source_code(const String& p_code) {
+    if (source == p_code) return;
+    source = p_code;
 
+    //TODO : deal with tool mode
 }
 
 Error KotlinScript::reload(bool p_keep_state) {

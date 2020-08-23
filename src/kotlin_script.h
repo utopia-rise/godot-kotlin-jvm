@@ -5,6 +5,9 @@
 class KotlinScript : public Script {
     GDCLASS(KotlinScript, Script);
 
+private:
+    String source;
+
 public:
     KotlinScript() = default;
     ~KotlinScript() override = default;

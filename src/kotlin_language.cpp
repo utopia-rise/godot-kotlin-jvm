@@ -1,6 +1,7 @@
 #include "kotlin_language.h"
 #include "kotlin_script.h"
 #include "gd_kotlin.h"
+#include "godotkotlin_defs.h"
 
 KotlinLanguage& KotlinLanguage::instance() {
     static KotlinLanguage instance;
@@ -132,33 +133,64 @@ void KotlinLanguage::get_reserved_words(List<String>* p_words) const {
 }
 
 void KotlinLanguage::get_comment_delimiters(List<String>* p_delimiters) const {
-
+    p_delimiters->push_back("//");
+    p_delimiters->push_back("/* */");
 }
 
 void KotlinLanguage::get_string_delimiters(List<String>* p_delimiters) const {
-
+    p_delimiters->push_back("' '");
+    p_delimiters->push_back("\" \"");
 }
 
 Ref<Script> KotlinLanguage::get_template(const String& p_class_name, const String& p_base_class_name) const {
-    return Ref<Script>();
+    String kotlinClassTemplate {
+        "package " GODOT_KOTLIN_PACKAGE "\n"
+        "\n"
+        "class %CLASS% : %BASE% {\n"
+        "\n"
+        "    // Declare member variables here. Examples:\n"
+        "    // val a = 2;\n"
+        "    // val b = \"text\";\n"
+        "\n"
+        "    // Called when the node enters the scene tree for the first time.\n"
+        "    override fun _ready() {\n"
+        "        \n"
+        "    }\n"
+        "\n"
+        "    // Called every frame. 'delta' is the elapsed time since the previous frame.\n"
+        "    override fun _process(float delta) {\n"
+        "        \n"
+        "    }\n"
+        "}\n"
+    };
+    kotlinClassTemplate.replace("%BASE%", p_base_class_name).replace("%CLASS%", p_class_name);
+    Ref<KotlinScript> script;
+    script.instance();
+    script->set_source_code(kotlinClassTemplate);
+    script->set_name(p_class_name);
+    return script;
 }
 
 void KotlinLanguage::make_template(const String& p_class_name, const String& p_base_class_name, Ref<Script>& p_script) {
-    ScriptLanguage::make_template(p_class_name, p_base_class_name, p_script);
+    p_script->set_source_code(
+            p_script->get_source_code()
+            .replace("%BASE%", p_base_class_name)
+            .replace("%CLASS%", p_class_name)
+            .replace("%TS%", GODOT_KOTLIN_IDENTATION)
+    );
 }
 
 bool KotlinLanguage::is_using_templates() {
     return true;
 }
 
-bool KotlinLanguage::validate(const String& p_script, int& r_line_error, int& r_col_error, String& r_test_error,
-                              const String& p_path, List<String>* r_functions, List<Warning>* r_warnings,
-                              Set<int>* r_safe_lines) const {
-    return false;
-}
-
 String KotlinLanguage::validate_path(const String& p_path) const {
-    return ScriptLanguage::validate_path(p_path);
+    List<String> keywords;
+    get_reserved_words(&keywords);
+    if (keywords.find(p_path.get_file().get_basename())) {
+        return TTR("Please don't use reserved keywords as file name.");
+    }
+    return "";
 }
 
 Script* KotlinLanguage::create_script() const {
