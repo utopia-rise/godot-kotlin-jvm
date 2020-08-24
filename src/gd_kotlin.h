@@ -1,6 +1,7 @@
 #ifndef GODOT_JVM_GD_KOTLIN_H
 #define GODOT_JVM_GD_KOTLIN_H
 #include "jni/jvm.h"
+#include "bootstrap.h"
 
 class GDKotlin {
 private:
@@ -8,6 +9,7 @@ private:
     ~GDKotlin() = default;
 
     jni::JObject class_loader;
+    Bootstrap* bootstrap;
 public:
     GDKotlin(const GDKotlin&) = delete;
 

@@ -4,6 +4,7 @@
 #include "jni/jvm.h"
 #include "core/os/os.h"
 #include "core/project_settings.h"
+#include "bootstrap.h"
 
 jni::JObject get_current_thread(jni::Env& env) {
     jni::JClass cls = env.find_class("java/lang/Thread");
@@ -47,6 +48,15 @@ GDKotlin& GDKotlin::getInstance() {
     return instance;
 }
 
+void load_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray classes) {
+    print_line("Classes loaded!");
+}
+
+void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray classes) {
+    print_line("Classes unloaded!");
+}
+
+
 void GDKotlin::init() {
     jni::InitArgs args;
     args.version = JNI_VERSION_1_8;
@@ -64,14 +74,16 @@ void GDKotlin::init() {
     jni::JClass bootstrap_cls = env.load_class("godot.runtime.Bootstrap", class_loader);
     jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");
     jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
-    jni::MethodId init_method = bootstrap_cls.get_method_id(env, "init", "(ZLjava/lang/String;)V");
-    jni::JObject project_path = env.new_string(project_settings->globalize_path("res://").utf8().get_data());
+    bootstrap = new Bootstrap(instance, class_loader);
+    bootstrap->register_hooks(env, load_classes_hook, unload_classes_hook);
     bool is_editor = Engine::get_singleton()->is_editor_hint();
-    instance.call_void_method(env, init_method, {is_editor, project_path});
+    String project_path = project_settings->globalize_path("res://");
+    bootstrap->init(env, is_editor, project_path);
 }
 
 void GDKotlin::finish() {
     auto& env = jni::Jvm::current_env();
+    delete bootstrap;
     class_loader.delete_global_ref(env);
     jni::Jvm::destroy();
     print_line("Jvm destroyed!");

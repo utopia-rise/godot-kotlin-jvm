@@ -44,7 +44,7 @@ class Bootstrap {
                 val events = watchKey.pollEvents()
                 if (events.isNotEmpty()) {
                     println("Changes detected, reloading classes ...")
-                    // unloadClasses(registry.classes.toTypedArray())
+                    unloadClasses(registry.classes.toTypedArray())
                     doInit(mainJarUrl)
                 }
             }, 3, 3, TimeUnit.SECONDS)
@@ -54,7 +54,7 @@ class Bootstrap {
     fun terminate() {
         executor?.shutdown()
         watchService?.close()
-        // unloadClasses(registry.classes.toTypedArray())
+        unloadClasses(registry.classes.toTypedArray())
     }
 
     /**
@@ -76,7 +76,7 @@ class Bootstrap {
                 Entry.Context(registry).init()
             }
             println("Loading classes: ${registry.classes.map { it.name }}")
-            // loadClasses(registry.classes.toTypedArray())
+            loadClasses(registry.classes.toTypedArray())
         } else {
             System.err.println("Unable to find Entry class, no classes will be loaded")
         }

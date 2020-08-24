@@ -82,8 +82,8 @@ namespace jni {
         return id;
     }
 
-    void JClass::register_natives(Env& env, std::vector<JNativeMethod> methods) {
-        env.env->RegisterNatives((jclass) obj, methods.data(), methods.size());
+    void JClass::register_natives(Env& env, Vector<JNativeMethod> methods) {
+        env.env->RegisterNatives((jclass) obj, methods.ptr(), methods.size());
         env.check_exceptions();
     }
 

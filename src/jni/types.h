@@ -2,8 +2,7 @@
 #define GODOT_LOADER_JOBJECT_H
 #include <jni.h>
 #include <initializer_list>
-#include <vector>
-
+#include "core/vector.h"
 
 namespace jni {
     // forward declare
@@ -74,7 +73,7 @@ namespace jni {
         MethodId get_method_id(Env& env, const char* name, const char* signature);
         MethodId get_static_method_id(Env& env, const char* name, const char* signature);
         FieldId get_static_field_id(Env& env, const char* name, const char* signature);
-        void register_natives(Env& env, std::vector<JNativeMethod> methods);
+        void register_natives(Env& env, Vector<JNativeMethod> methods);
 
         JObject call_static_object_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
         JObject get_static_object_field(Env& env, FieldId field);

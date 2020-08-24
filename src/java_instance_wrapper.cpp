@@ -47,7 +47,7 @@ jni::MethodId JavaInstanceWrapper::get_static_method_id(jni::Env& env, const cha
 JavaInstanceWrapper::ClassCache& JavaInstanceWrapper::get_class_cache(jni::Env& env) {
     if (!CLASS_CACHE.has(class_name)) {
         ClassCache class_cache;
-        class_cache.cls = env.load_class(reinterpret_cast<const char*>(class_name.c_str()), class_loader);
+        class_cache.cls = env.load_class(class_name.utf8().get_data(), class_loader);
         CLASS_CACHE[class_name] = class_cache;
     }
 
