@@ -17,6 +17,8 @@ namespace jni {
 
         JClass findClass(const char* name);
 
+        JClass load_class(const char* p_name, JObject p_class_loader);
+
         JObject newString(const char* str);
         std::string fromJString(jni::JString str);
 

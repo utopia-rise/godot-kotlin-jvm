@@ -8,9 +8,7 @@ import godot.runtime.ClassRegistry
 import godot.runtime.Entry
 import java.net.URL
 import java.net.URLClassLoader
-import java.nio.file.FileSystems
-import java.nio.file.Paths
-import java.nio.file.StandardWatchEventKinds
+import java.nio.file.*
 import java.util.*
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
@@ -25,15 +23,18 @@ class Bootstrap {
     private lateinit var classloader: URLClassLoader
     private lateinit var serviceLoader: ServiceLoader<Entry>
     private var executor: ScheduledExecutorService? = null
+    private var watchService: WatchService? = null;
 
     fun init(isEditor: Boolean, projectDir: String) {
-        val mainJarPath = Paths.get(projectDir, "build/libs/main.jar")
+        val libsDir = Paths.get(projectDir, "build/libs")
+        val mainJarPath = libsDir.resolve("main.jar")
         val mainJarUrl = mainJarPath.toUri().toURL()
         doInit(mainJarUrl)
 
         if (isEditor) {
-            val watchKey = mainJarPath.register(
-                FileSystems.getDefault().newWatchService(),
+            watchService = FileSystems.getDefault().newWatchService()
+            val watchKey = libsDir.register(
+                watchService,
                 StandardWatchEventKinds.ENTRY_CREATE,
                 StandardWatchEventKinds.ENTRY_DELETE,
                 StandardWatchEventKinds.ENTRY_MODIFY,
@@ -45,19 +46,21 @@ class Bootstrap {
                 thread
             }
 
-            executor!!.schedule({
+            executor!!.scheduleAtFixedRate({
                 val events = watchKey.pollEvents()
                 if (events.isNotEmpty()) {
-                    unloadClasses(registry.classes.toTypedArray())
+                    println("Changes detected, reloading classes ...")
+                    // unloadClasses(registry.classes.toTypedArray())
                     doInit(mainJarUrl)
                 }
-            }, 3, TimeUnit.SECONDS)
+            }, 3, 3, TimeUnit.SECONDS)
         }
     }
 
     fun terminate() {
         executor?.shutdown()
-        unloadClasses(registry.classes.toTypedArray())
+        watchService?.close()
+        // unloadClasses(registry.classes.toTypedArray())
     }
 
     /**
@@ -76,7 +79,8 @@ class Bootstrap {
 
         if (entry.isPresent) {
             entry.get().init(JvmContext(JvmKtVariantFactory, registry), JvmGlue)
-            loadClasses(registry.classes.toTypedArray())
+            println("Loading classes: ${registry.classes.map { it.name }}")
+            // loadClasses(registry.classes.toTypedArray())
         } else {
             System.err.println("Unable to find Entry class, no classes will be loaded")
         }

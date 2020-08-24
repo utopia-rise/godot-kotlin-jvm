@@ -64,6 +64,9 @@ namespace jni {
     class JClass : public JObject {
     public:
         explicit JClass(jclass cls) : JObject(cls) {}
+        JClass(const JClass&) = default;
+        JClass& operator=(const JClass&) = default;
+        JClass(): JClass(nullptr) {}
 
         JObject newInstance(Env& env, MethodId ctor, std::initializer_list<JValue> values = {});
         JObjectArray newObjectArray(Env& env, int size, JObject initial = {});

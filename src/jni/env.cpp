@@ -28,6 +28,18 @@ namespace jni {
         return JClass(cls);
     }
 
+    JClass Env::load_class(const char* p_name, JObject p_class_loader) {
+        static jmethodID loadClassMethodId;
+
+        if (loadClassMethodId == nullptr) {
+            auto cls = findClass("java/lang/ClassLoader");
+            loadClassMethodId = cls.getMethodId(*this, "loadClass", "(Ljava/lang/String;)Ljava/lang/Class;");
+        }
+        auto str = newString(p_name);
+        auto ret = p_class_loader.callObjectMethod(*this, loadClassMethodId, {str});
+        return JClass((jclass) ret.obj);
+    }
+
     JObject Env::newString(const char *str) {
         auto jstr = env->NewStringUTF(str);
         checkExceptions();
