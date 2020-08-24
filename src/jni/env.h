@@ -12,15 +12,15 @@ namespace jni {
         Env(const Env&) = delete;
         Env& operator=(const Env&) = delete;
 
-        void pushLocalFrame(int capacity);
-        void popLocalFrame();
+        void push_local_frame(int p_capacity);
+        void pop_local_frame();
 
-        JClass findClass(const char* name);
+        JClass find_class(const char* p_name);
 
         JClass load_class(const char* p_name, JObject p_class_loader);
 
-        JObject newString(const char* str);
-        std::string fromJString(jni::JString str);
+        JObject new_string(const char* p_str);
+        std::string from_jstring(jni::JString p_str);
 
         bool exceptionCheck();
         void exceptionDescribe();
@@ -28,10 +28,10 @@ namespace jni {
 
         void checkExceptions();
 
-        void* getDirectBufferAddress(const jni::JObject& buffer);
-        int getDirectBufferCapacity(const jni::JObject& buffer);
+        void* get_direct_buffer_address(const jni::JObject& p_buffer);
+        int get_direct_buffer_capacity(const jni::JObject& p_buffer);
 
-        bool isValid();
+        bool is_valid();
     private:
         JNIEnv* env;
 

@@ -57,7 +57,7 @@ namespace jni {
     }
 
     Env& Jvm::attach() {
-        if (Jvm::env != nullptr && Jvm::env->isValid()) {
+        if (Jvm::env != nullptr && Jvm::env->is_valid()) {
             return *Jvm::env;
         }
         JNIEnv* env;
