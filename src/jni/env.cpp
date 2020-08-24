@@ -5,8 +5,8 @@ namespace jni {
         this->env = env;
     }
 
-    void Env::push_local_frame(int p_capacity) {
-        auto result = env->PushLocalFrame(p_capacity);
+    void Env::push_local_frame(int capacity) {
+        auto result = env->PushLocalFrame(capacity);
         if (result != JNI_OK) {
             throw JniError("Failed to push local frame!");
         }
@@ -20,69 +20,69 @@ namespace jni {
         return env != nullptr;
     }
 
-    JClass Env::find_class(const char *p_name) {
-        auto cls = env->FindClass(p_name);
+    JClass Env::find_class(const char *name) {
+        auto cls = env->FindClass(name);
         if (cls == nullptr) {
-            throw ClassNotFoundError(p_name);
+            throw ClassNotFoundError(name);
         }
         return JClass(cls);
     }
 
-    JClass Env::load_class(const char* p_name, JObject p_class_loader) {
+    JClass Env::load_class(const char* name, JObject class_loader) {
         static jmethodID loadClassMethodId;
 
         if (loadClassMethodId == nullptr) {
             auto cls = find_class("java/lang/ClassLoader");
-            loadClassMethodId = cls.getMethodId(*this, "loadClass", "(Ljava/lang/String;)Ljava/lang/Class;");
+            loadClassMethodId = cls.get_method_id(*this, "loadClass", "(Ljava/lang/String;)Ljava/lang/Class;");
         }
-        auto str = new_string(p_name);
-        auto ret = p_class_loader.callObjectMethod(*this, loadClassMethodId, {str});
+        auto str = new_string(name);
+        auto ret = class_loader.call_object_method(*this, loadClassMethodId, {str});
         return JClass((jclass) ret.obj);
     }
 
-    JObject Env::new_string(const char *p_str) {
-        auto jstr = env->NewStringUTF(p_str);
-        checkExceptions();
+    JObject Env::new_string(const char *str) {
+        auto jstr = env->NewStringUTF(str);
+        check_exceptions();
         return JObject(jstr);
     }
 
-    bool Env::exceptionCheck() {
+    bool Env::exception_check() {
         return env->ExceptionCheck();
     }
 
-    void Env::exceptionDescribe() {
+    void Env::exception_describe() {
         env->ExceptionDescribe();
     }
 
-    void Env::exceptionClear() {
+    void Env::exception_clear() {
         env->ExceptionClear();
     }
 
-    void Env::checkExceptions() {
-        if (exceptionCheck()) {
-            exceptionDescribe();
-            exceptionClear();
+    void Env::check_exceptions() {
+        if (exception_check()) {
+            exception_describe();
+            exception_clear();
             throw JniError("An exception has occurred!");
         }
     }
 
-    void* Env::get_direct_buffer_address(const jni::JObject& p_buffer) {
-        auto res = env->GetDirectBufferAddress(p_buffer.obj);
-        checkExceptions();
+    void* Env::get_direct_buffer_address(const jni::JObject& buffer) {
+        auto res = env->GetDirectBufferAddress(buffer.obj);
+        check_exceptions();
         return res;
     }
 
-    int Env::get_direct_buffer_capacity(const JObject& p_buffer) {
-        auto capacity = env->GetDirectBufferCapacity(p_buffer.obj);
-        checkExceptions();
+    int Env::get_direct_buffer_capacity(const JObject& buffer) {
+        auto capacity = env->GetDirectBufferCapacity(buffer.obj);
+        check_exceptions();
         return capacity;
     }
 
-    std::string Env::from_jstring(jni::JString p_str) {
-        auto jstr = (jstring) p_str.obj;
+    std::string Env::from_jstring(jni::JString str) {
+        auto jstr = (jstring) str.obj;
         auto utfString = env->GetStringUTFChars(jstr, NULL);
         auto ret = std::string(utfString);
-        checkExceptions();
+        check_exceptions();
         env->ReleaseStringUTFChars(jstr, utfString);
         return ret;
     }

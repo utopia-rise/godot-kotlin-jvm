@@ -5,15 +5,15 @@ Map<String, JavaInstanceWrapper::ClassCache> JavaInstanceWrapper::CLASS_CACHE = 
 
 JavaInstanceWrapper::JavaInstanceWrapper(const char* p_class_name, jni::JObject p_wrapped,
                                          jni::JObject p_class_loader) : class_name(p_class_name) {
-    auto& env = jni::Jvm::currentEnv();
-    wrapped = p_wrapped.newGlobalRef(env);
-    class_loader = p_class_loader.newGlobalRef(env);
+    auto& env = jni::Jvm::current_env();
+    wrapped = p_wrapped.new_global_ref(env);
+    class_loader = p_class_loader.new_global_ref(env);
 }
 
 JavaInstanceWrapper::~JavaInstanceWrapper() {
-    auto& env = jni::Jvm::currentEnv();
-    wrapped.deleteGlobalRef(env);
-    class_loader.deleteGlobalRef(env);
+    auto& env = jni::Jvm::current_env();
+    wrapped.delete_global_ref(env);
+    class_loader.delete_global_ref(env);
 }
 
 jni::JClass& JavaInstanceWrapper::get_class(jni::Env& env) {
@@ -27,7 +27,7 @@ jni::MethodId JavaInstanceWrapper::get_method_id(jni::Env& env, const char* p_na
             .append(p_signature)
             .as_string();
     if (!class_cache.method_ids.has(key)) {
-        class_cache.method_ids[key] = class_cache.cls.getMethodId(env, p_name, p_signature);
+        class_cache.method_ids[key] = class_cache.cls.get_method_id(env, p_name, p_signature);
     }
     return class_cache.method_ids[key];
 }
@@ -39,7 +39,7 @@ jni::MethodId JavaInstanceWrapper::get_static_method_id(jni::Env& env, const cha
             .append(p_signature)
             .as_string();
     if (!class_cache.static_method_ids.has(key)) {
-        class_cache.static_method_ids[key] = class_cache.cls.getMethodId(env, p_name, p_signature);
+        class_cache.static_method_ids[key] = class_cache.cls.get_method_id(env, p_name, p_signature);
     }
     return class_cache.static_method_ids[key];
 }

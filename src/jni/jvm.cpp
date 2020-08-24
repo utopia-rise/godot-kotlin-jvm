@@ -8,7 +8,7 @@ namespace jni {
     int Jvm::version = 0;
 
     void Jvm::init(const InitArgs& initArgs) {
-        auto res = getExisting();
+        auto res = get_existing();
         if (res == nullptr) {
             res = create(initArgs);
         }
@@ -43,7 +43,7 @@ namespace jni {
         return vm;
     }
 
-    JavaVM* Jvm::getExisting() {
+    JavaVM* Jvm::get_existing() {
         JavaVM* buffer[1];
         int count;
         auto result = JvmLoader::getGetCreatedJavaVMsFunction()(buffer, 1, &count);
@@ -81,7 +81,7 @@ namespace jni {
         Jvm::env = nullptr;
     }
 
-    Env& Jvm::currentEnv() {
+    Env& Jvm::current_env() {
         return attach();
     }
 }

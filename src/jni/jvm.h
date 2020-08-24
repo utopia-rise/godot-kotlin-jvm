@@ -20,7 +20,7 @@ namespace jni {
         static Env& attach();
         static void detach();
 
-        static Env& currentEnv();
+        static Env& current_env();
 
     private:
         Jvm() = default;
@@ -29,7 +29,7 @@ namespace jni {
         static jint version;
 
         static JavaVM* create(const InitArgs&);
-        static JavaVM* getExisting();
+        static JavaVM* get_existing();
     };
 }
 

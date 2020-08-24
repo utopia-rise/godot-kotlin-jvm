@@ -22,18 +22,18 @@ namespace jni {
         JObject& operator=(const JObject&) = default;
         inline JObject() : JObject(nullptr) {}
 
-        JObject newGlobalRef(Env& env);
+        JObject new_global_ref(Env& env);
         template <class T>
-        __always_inline T newGlobalRef(Env& env) {
-            return {newGlobalRef(env).obj};
+        __always_inline T new_global_ref(Env& env) {
+            return {new_global_ref(env).obj};
         }
-        void deleteGlobalRef(Env& env);
+        void delete_global_ref(Env& p_env);
 
-        JObject callObjectMethod(Env& env, MethodId method, std::initializer_list<JValue> values = {});
-        jint callIntMethod(Env& env, MethodId method, std::initializer_list<JValue> values = {});
-        jlong callLongMethod(Env& env, MethodId method, std::initializer_list<JValue> values = {});
-        jboolean callBooleanMethod(Env& env, MethodId method, std::initializer_list<JValue> values = {});
-        void callVoidMethod(Env& env, MethodId method, std::initializer_list<JValue> values = {});
+        JObject call_object_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
+        jint call_int_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
+        jlong call_long_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
+        jboolean call_boolean_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
+        void call_void_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
 
         bool isNull ();
     };
@@ -68,16 +68,16 @@ namespace jni {
         JClass& operator=(const JClass&) = default;
         JClass(): JClass(nullptr) {}
 
-        JObject newInstance(Env& env, MethodId ctor, std::initializer_list<JValue> values = {});
-        JObjectArray newObjectArray(Env& env, int size, JObject initial = {});
-        MethodId getConstructorMethodId(Env& env, const char* signature);
-        MethodId getMethodId(Env& env, const char* name, const char* signature);
-        MethodId getStaticMethodId(Env& env, const char* name, const char* signature);
-        FieldId getStaticFieldId(Env& env, const char* name, const char* signature);
-        void registerNatives(Env& env, std::vector<JNativeMethod> methods);
+        JObject new_instance(Env& env, MethodId ctor, std::initializer_list<JValue> values = {});
+        JObjectArray new_object_array(Env& env, int size, JObject initial = {});
+        MethodId get_constructor_method_id(Env& env, const char* signature);
+        MethodId get_method_id(Env& env, const char* name, const char* signature);
+        MethodId get_static_method_id(Env& env, const char* name, const char* signature);
+        FieldId get_static_field_id(Env& env, const char* name, const char* signature);
+        void register_natives(Env& env, std::vector<JNativeMethod> methods);
 
-        JObject callStaticObjectMethod(Env& env, MethodId method, std::initializer_list<JValue> values = {});
-        JObject getStaticObjectField(Env& env, FieldId field);
+        JObject call_static_object_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
+        JObject get_static_object_field(Env& env, FieldId field);
     };
 
     class JValue {
