@@ -32,12 +32,16 @@ class ClassBuilderDsl<T: KtObject>(
     }
 }
 
-abstract class ClassRegistry {
+class ClassRegistry {
+    val classes = mutableListOf<KtClass<*>>()
+
     fun <T: KtObject> registerClass(name: String, superClass: String, cb: ClassBuilderDsl<T>.() -> Unit) {
         val builder = ClassBuilderDsl<T>(name, superClass)
         builder.cb()
         registerClass(builder.build())
     }
 
-    protected abstract fun<T: KtObject> registerClass(cls: KtClass<T>)
+    private fun <T : KtObject> registerClass(cls: KtClass<T>) {
+        classes.add(cls)
+    }
 }

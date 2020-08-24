@@ -18,7 +18,7 @@ val main by configurations.creating {
 
 dependencies {
     bootstrap(kotlin("stdlib"))
-    bootstrap("com.utopia-rise:godot-runtime-jvm:0.1.0")
+    bootstrap("com.utopia-rise:godot-library:0.1.0")
     compileOnly("com.utopia-rise:godot-library:0.1.0")
 }
 

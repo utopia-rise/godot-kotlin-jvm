@@ -1,40 +1,37 @@
 package godot.core
 
+class KtVariant {
+    constructor(value: Int) { TODO() }
+    constructor(value: Long) { TODO() }
+    constructor(value: Float) { TODO() }
+    constructor(value: Double) { TODO() }
+    constructor(value: Boolean) { TODO() }
+    constructor(value: String) { TODO() }
+    constructor(value: Vector2) { TODO() }
+    constructor(value: Rect2) { TODO() }
+    constructor(value: Vector3) { TODO() }
+    constructor(value: Transform2D) { TODO() }
+    constructor(value: Plane) { TODO() }
+    constructor(value: Quat) { TODO() }
+    constructor(value: AABB) { TODO() }
+    constructor(value: Basis) { TODO() }
+    constructor(value: Transform) { TODO() }
 
-interface KtVariantFactory {
-    fun create(value: Int): KtVariant
-    fun create(value: Long): KtVariant
-    fun create(value: Float): KtVariant
-    fun create(value: Double): KtVariant
-    fun create(value: Boolean): KtVariant
-    fun create(value: String): KtVariant
-    fun create(value: Vector2): KtVariant
-    fun create(value: Rect2): KtVariant
-    fun create(value: Vector3): KtVariant
-    fun create(value: Transform2D): KtVariant
-    fun create(value: Plane): KtVariant
-    fun create(value: Quat): KtVariant
-    fun create(value: AABB): KtVariant
-    fun create(value: Basis): KtVariant
-    fun create(value: Transform): KtVariant
-}
-
-interface KtVariant {
-    fun asInt(): Int
-    fun asLong(): Long
-    fun asFloat(): Float
-    fun asDouble(): Double
-    fun asBoolean(): Boolean
-    fun asString(): String
-    fun asVector2(): Vector2
-    fun asRect2(): Rect2
-    fun asVector3(): Vector3
-    fun asTransform2D(): Transform2D
-    fun asPlane(): Plane
-    fun asQuat(): Quat
-    fun asAABB(): AABB
-    fun asBasis(): Basis
-    fun asTransform(): Transform
+    fun asInt(): Int  { TODO() }
+    fun asLong(): Long  { TODO() }
+    fun asFloat(): Float  { TODO() }
+    fun asDouble(): Double  { TODO() }
+    fun asBoolean(): Boolean  { TODO() }
+    fun asString(): String { TODO() }
+    fun asVector2(): Vector2  { TODO() }
+    fun asRect2(): Rect2  { TODO() }
+    fun asVector3(): Vector3 { TODO() }
+    fun asTransform2D(): Transform2D { TODO() }
+    fun asPlane(): Plane { TODO() }
+    fun asQuat(): Quat { TODO() }
+    fun asAABB(): AABB { TODO() }
+    fun asBasis(): Basis { TODO() }
+    fun asTransform(): Transform { TODO() }
 
     enum class Type {
         NIL,

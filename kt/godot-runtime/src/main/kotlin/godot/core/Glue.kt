@@ -2,43 +2,25 @@ package godot.core
 
 import godot.util.VoidPtr
 
-interface Glue {
+object Godot {
     fun icall(
         className: String,
         functionName: String,
         expectedReturnType: KtVariant.Type,
         vararg args: KtVariant
-    ): KtVariant
-
-    fun invokeConstructor(
-        className: String
-    ): VoidPtr
-
-    fun isUserType(className: String): Boolean
-    fun setScript(rawPtr: VoidPtr, className: String)
-}
-
-object Godot : Glue {
-    lateinit var delegate: Glue
-
-    override fun icall(
-        className: String,
-        functionName: String,
-        expectedReturnType: KtVariant.Type,
-        vararg args: KtVariant
     ): KtVariant {
-        return delegate.icall(className, functionName, expectedReturnType, *args)
+        TODO()
     }
 
-    override fun invokeConstructor(className: String): VoidPtr {
-        return delegate.invokeConstructor(className)
+    fun invokeConstructor(className: String): VoidPtr {
+        TODO()
     }
 
-    override fun isUserType(className: String): Boolean {
-        return delegate.isUserType(className)
+    fun isUserType(className: String): Boolean {
+        TODO()
     }
 
-    override fun setScript(rawPtr: VoidPtr, className: String) {
-        return delegate.setScript(rawPtr, className)
+    fun setScript(rawPtr: VoidPtr, className: String) {
+        TODO()
     }
 }

@@ -61,7 +61,7 @@ void GDKotlin::init() {
     class_loader = create_class_loader(env, bootstrap_jar).new_global_ref(env);
     set_context_class_loader(env, current_thread, class_loader);
 
-    jni::JClass bootstrap_cls = env.load_class("godot.jvm.runtime.Bootstrap", class_loader);
+    jni::JClass bootstrap_cls = env.load_class("godot.runtime.Bootstrap", class_loader);
     jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");
     jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
     jni::MethodId init_method = bootstrap_cls.get_method_id(env, "init", "(ZLjava/lang/String;)V");

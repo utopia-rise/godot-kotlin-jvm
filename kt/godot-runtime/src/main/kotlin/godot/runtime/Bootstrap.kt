@@ -1,25 +1,19 @@
-package godot.jvm.runtime
+package godot.runtime
 
 import godot.core.KtClass
-import godot.core.KtVariantFactory
-import godot.jvm.core.JvmGlue
-import godot.jvm.core.JvmKtVariantFactory
-import godot.runtime.ClassRegistry
-import godot.runtime.Entry
 import java.net.URL
 import java.net.URLClassLoader
-import java.nio.file.*
+import java.nio.file.FileSystems
+import java.nio.file.Paths
+import java.nio.file.StandardWatchEventKinds
+import java.nio.file.WatchService
 import java.util.*
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
 
 class Bootstrap {
-    class JvmContext(override val variantFactory: KtVariantFactory,
-                     override val registry: ClassRegistry
-    ) : Entry.Context
-
-    private lateinit var registry: JvmClassRegistry
+    private lateinit var registry: ClassRegistry
     private lateinit var classloader: URLClassLoader
     private lateinit var serviceLoader: ServiceLoader<Entry>
     private var executor: ScheduledExecutorService? = null
@@ -71,14 +65,16 @@ class Bootstrap {
     }
 
     private fun doInit(mainJar: URL) {
-        registry = JvmClassRegistry()
+        registry = ClassRegistry()
         classloader = URLClassLoader(arrayOf(mainJar), this::class.java.classLoader)
         Thread.currentThread().contextClassLoader = classloader
         serviceLoader = ServiceLoader.load(Entry::class.java, classloader)
         val entry = serviceLoader.findFirst()
 
         if (entry.isPresent) {
-            entry.get().init(JvmContext(JvmKtVariantFactory, registry), JvmGlue)
+            with(entry.get()) {
+                Entry.Context(registry).init()
+            }
             println("Loading classes: ${registry.classes.map { it.name }}")
             // loadClasses(registry.classes.toTypedArray())
         } else {
