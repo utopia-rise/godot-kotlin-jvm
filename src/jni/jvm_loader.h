@@ -5,7 +5,6 @@
 #ifndef GODOT_LOADER_JVM_LOADER_H
 #define GODOT_LOADER_JVM_LOADER_H
 
-#include <core/ustring.h>
 #include "jvm.h"
 
 namespace jni {
@@ -13,6 +12,7 @@ namespace jni {
     public:
         static CreateJavaVM getCreateJvmFunction();
         static GetCreatedJavaVMs getGetCreatedJavaVMsFunction();
+        static void closeJvmLib();
 
     private:
         static void *jvmLib;

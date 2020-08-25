@@ -20,6 +20,7 @@ namespace jni {
     void Jvm::destroy() {
         vm->DetachCurrentThread();
         vm->DestroyJavaVM();
+        JvmLoader::closeJvmLib();
     }
 
     JavaVM* Jvm::create(const InitArgs& initArgs) {

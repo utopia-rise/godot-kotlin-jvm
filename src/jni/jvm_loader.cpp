@@ -1,79 +1,47 @@
 #include "jvm_loader.h"
 
-#ifdef __linux__
-
-#include <dlfcn.h>
 #include <core/engine.h>
-
-#elif __APPLE__
-#include "TargetConditionals.h"
-#ifdef TARGET_OS_MAC
-#include <dlfcn.h>
-#endif
-#elif defined _WIN32 || defined _WIN64
-#include <Windows.h>
-#endif
+#include <core/os/os.h>
 
 void *jni::JvmLoader::jvmLib = nullptr;
 
 void jni::JvmLoader::loadJvmLib() {
     const char *libPath = getJvmLibPath();
-#ifdef __linux__
-    jvmLib = dlopen(libPath, RTLD_NOW);
-    if (jvmLib == nullptr) {
-        ERR_PRINT("Failed to load libjvm.so!")
-        exit(1);
-    }
-#elif TARGET_OS_MAC
-    jvmLib = dlopen(libPath, RTLD_NOW);
-    if (jvmLib == nullptr) {
-        ERR_PRINT("Failed to load libjvm.dylib!")
-        exit(1);
-    }
-#elif defined _WIN32 || defined _WIN64
-    jvmLib = LoadLibrary(libPath);
-    DWORD lastErrorCode = GetLastError();
-    if (lastErrorCode == 126) {
-        // "The specified module could not be found."
-        // load vcruntime140.dll from the bundled JRE, then try again
-        WARN_PRINT("Failed to load jvm.dll. Trying to load vcruntime140.dll first ...")
 
-        HINSTANCE hinstVCR = LoadLibrary("jre\\bin\\vcruntime140.dll");
-        if (hinstVCR != nullptr) {
-            jvmLib = LoadLibrary(jvmDLLPath);
-            if (jvmLib == nullptr) {
-                ERR_PRINT("Failed to load jvm.dll.")
-                exit(1);
-            }
-        } else {
-            ERR_PRINT("Failed to load vcruntime140.dll.")
-            exit(1);
-        }
+    if (OS::get_singleton()->open_dynamic_library(libPath, jvmLib) != OK) {
+        ERR_PRINT(String("Failed to load the jvm dynamic library from path ") + libPath + "!")
+        exit(1);
     }
-    printf("Error: %d\n", lastErrorCode);
-#endif
+}
+
+void jni::JvmLoader::closeJvmLib() {
+    if (OS::get_singleton()->close_dynamic_library(jvmLib) != OK) {
+        ERR_PRINT("Failed to close the jvm dynamic library!")
+    }
 }
 
 jni::CreateJavaVM jni::JvmLoader::getCreateJvmFunction() {
     if (jvmLib == nullptr) {
         loadJvmLib();
     }
-#if defined __linux__ || defined TARGET_OS_MAC
-    return reinterpret_cast<CreateJavaVM>(dlsym(jvmLib, "JNI_CreateJavaVM"));
-#elif defined _WIN32 || defined _WIN64
-    return reinterpret_cast<CreateJavaVM>(GetProcAddress(jvmLib, "JNI_CreateJavaVM"));
-#endif
+    void *createJavaVMSymbolHandle;
+    if (OS::get_singleton()->get_dynamic_library_symbol_handle(jvmLib, "JNI_CreateJavaVM", createJavaVMSymbolHandle) != OK) {
+        ERR_PRINT("Failed to get JNI_CreateJavaVM symbol handle")
+        exit(1);
+    }
+    return reinterpret_cast<CreateJavaVM>(createJavaVMSymbolHandle);
 }
 
 jni::GetCreatedJavaVMs jni::JvmLoader::getGetCreatedJavaVMsFunction() {
     if (jvmLib == nullptr) {
         loadJvmLib();
     }
-#if defined __linux__ || defined TARGET_OS_MAC
-    return reinterpret_cast<GetCreatedJavaVMs>(dlsym(jvmLib, "JNI_GetCreatedJavaVMs"));
-#elif defined _WIN32 || defined _WIN64
-    return reinterpret_cast<GetCreatedJavaVMs>(GetProcAddress(jvmLib, "JNI_GetCreatedJavaVMs"));
-#endif
+    void *getCreatedJavaVMsSymbolHandle;
+    if (OS::get_singleton()->get_dynamic_library_symbol_handle(jvmLib, "JNI_GetCreatedJavaVMs", getCreatedJavaVMsSymbolHandle) != OK) {
+        ERR_PRINT("Failed to get JNI_GetCreatedJavaVMs symbol handle")
+        exit(1);
+    }
+    return reinterpret_cast<GetCreatedJavaVMs>(getCreatedJavaVMsSymbolHandle);
 }
 
 const char *jni::JvmLoader::getJvmLibPath() {
