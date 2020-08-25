@@ -116,6 +116,6 @@ void GDKotlin::unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes) 
 
 KtClass* GDKotlin::find_class(const String& p_script_path) {
     StringName class_name = p_script_path.trim_prefix(scripts_root).replace("/", ".");
-    ERR_FAIL_COND_V_MSG(classes.has(class_name), nullptr, vformat("Failed to find class for path: %s", p_script_path))
+    ERR_FAIL_COND_V_MSG(!classes.has(class_name), nullptr, vformat("Failed to find class for path: %s", p_script_path))
     return classes[class_name];
 }
