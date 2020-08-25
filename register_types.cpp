@@ -22,4 +22,6 @@ void unregister_jvm_types() {
     ScriptServer::unregister_language(&KotlinLanguage::get_instance());
     ResourceLoader::remove_resource_format_loader((resource_format_loader));
     ResourceSaver::remove_resource_format_saver(resource_format_saver);
+    resource_format_loader.unref();
+    resource_format_saver.unref();
 }

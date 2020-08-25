@@ -99,7 +99,6 @@ void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
         print_verbose(vformat("Loading class %s : %s", kt_class->name, kt_class->super_class));
         classes[kt_class->name] = kt_class;
     }
-
 }
 
 void GDKotlin::unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
