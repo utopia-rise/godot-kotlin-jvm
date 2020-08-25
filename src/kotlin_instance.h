@@ -7,8 +7,10 @@
 class KotlinInstance : public ScriptInstance {
 private:
     const jni::JObject &jObject;
+    Object *owner;
 public:
     explicit KotlinInstance(const jni::JObject &wrappedObject);
+    KotlinInstance(const jni::JObject &wrappedObject, Object *owner);
     ~KotlinInstance() override = default;
 
     bool set(const StringName& p_name, const Variant& p_value) override;
@@ -20,6 +22,8 @@ public:
     Variant::Type get_property_type(const StringName& p_name, bool* r_is_valid) const override;
 
     Object* get_owner() override;
+
+    void set_owner(Object *object);
 
     void get_property_state(List<Pair<StringName, Variant>>& state) override;
 
