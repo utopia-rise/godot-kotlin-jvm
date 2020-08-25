@@ -56,20 +56,17 @@ namespace jni {
         return nullptr;
     }
 
-    Env& Jvm::attach() {
-        if (Jvm::env != nullptr && Jvm::env->is_valid()) {
-            return *Jvm::env;
-        }
-        JNIEnv* env;
-        auto result = vm->GetEnv((void**) &env, version);
+    Env Jvm::attach() {
+        JNIEnv* r_env;
+        auto result = vm->GetEnv((void**) &r_env, version);
         if (result == JNI_EDETACHED) {
-            result = vm->AttachCurrentThread((void**) &env, nullptr);
+            result = vm->AttachCurrentThread((void**) &r_env, nullptr);
             if (result != JNI_OK) {
                 throw JniError("Failed to attach vm to current thread!");
             }
         }
-        Jvm::env = new Env(env);
-        return *Jvm::env;
+        Jvm::env = new Env(r_env);
+        return Env(r_env);
     }
 
     void Jvm::detach() {
@@ -81,7 +78,12 @@ namespace jni {
         Jvm::env = nullptr;
     }
 
-    Env& Jvm::current_env() {
+    Env Jvm::current_env() {
+        JNIEnv* r_env;
+        auto result = vm->GetEnv((void**) &r_env, version);
+        if (result == JNI_EDETACHED) {
+            throw JniError("Current thread is not attached!");
+        }
         return attach();
     }
 }

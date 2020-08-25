@@ -17,10 +17,10 @@ namespace jni {
         static void init(const InitArgs&);
         static void destroy();
 
-        static Env& attach();
+        static Env attach();
         static void detach();
 
-        static Env& current_env();
+        static Env current_env();
 
     private:
         Jvm() = default;

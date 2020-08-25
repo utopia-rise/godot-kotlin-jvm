@@ -10,8 +10,8 @@ namespace jni {
     public:
        explicit Env(JNIEnv*);
         // todo delete copy ctor and assignment?
-        Env(const Env&) = delete;
-        Env& operator=(const Env&) = delete;
+        Env(const Env&) = default;
+        Env& operator=(const Env&) = default;
 
         void push_local_frame(int capacity);
         void pop_local_frame();

@@ -51,7 +51,7 @@ class Bootstrap {
         }
     }
 
-    fun terminate() {
+    fun finish() {
         executor?.shutdown()
         watchService?.close()
         unloadClasses(registry.classes.toTypedArray())
@@ -75,7 +75,6 @@ class Bootstrap {
             with(entry.get()) {
                 Entry.Context(registry).init()
             }
-            println("Loading classes: ${registry.classes.map { it.name }}")
             loadClasses(registry.classes.toTypedArray())
         } else {
             System.err.println("Unable to find Entry class, no classes will be loaded")

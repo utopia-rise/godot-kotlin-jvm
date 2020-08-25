@@ -1,7 +1,7 @@
 #include "kt_class.h"
 
 KtClass::KtClass(jni::JObject p_wrapped, jni::JObject& p_class_loader) : JavaInstanceWrapper("godot.core.KtClass", p_wrapped, p_class_loader) {
-    auto& env = jni::Jvm::current_env();
+    auto env = jni::Jvm::current_env();
     name = get_name(env);
     super_class = get_super_class(env);
 }
@@ -13,14 +13,14 @@ KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_
     return new KtObject(j_kt_object, class_loader);;
 }
 
-String KtClass::get_name(jni::Env& env) {
+StringName KtClass::get_name(jni::Env& env) {
     auto getter =  get_method_id(env, "getName", "()Ljava/lang/String;");
     jni::JObject ret = wrapped.call_object_method(env, getter);
-    return String(env.from_jstring(jni::JString((jstring) ret.obj)));
+    return StringName(env.from_jstring(jni::JString((jstring) ret.obj)));
 }
 
-String KtClass::get_super_class(jni::Env& env) {
+StringName KtClass::get_super_class(jni::Env& env) {
     auto getter =  get_method_id(env, "getSuperClass", "()Ljava/lang/String;");
     jni::JObject ret = wrapped.call_object_method(env, getter);
-    return String(env.from_jstring(jni::JString((jstring) ret.obj)));
+    return StringName(env.from_jstring(jni::JString((jstring) ret.obj)));
 }

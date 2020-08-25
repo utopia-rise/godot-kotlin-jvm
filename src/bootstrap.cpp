@@ -30,3 +30,8 @@ void Bootstrap::init(jni::Env& p_env, bool p_is_editor, const String& p_project_
     jni::JObject str = p_env.new_string(p_project_path.utf8().get_data());
     wrapped.call_void_method(p_env, init_method, {p_is_editor, str});
 }
+
+void Bootstrap::finish(jni::Env& p_env) {
+    jni::MethodId finish_method = get_class(p_env).get_method_id(p_env, "finish", "()V");
+    wrapped.call_void_method(p_env, finish_method);
+}

@@ -13,6 +13,7 @@ public:
 
     void register_hooks(jni::Env& p_env, LoadClassesHook p_load_classes_hook, UnloadClassesHook p_unload_classes_hook);
     void init(jni::Env& env, bool p_is_editor, const String& p_project_dir);
+    void finish(jni::Env& p_env);
 };
 
 

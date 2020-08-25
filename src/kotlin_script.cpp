@@ -2,6 +2,11 @@
 
 #include "kotlin_language.h"
 #include "kotlin_instance.h"
+#include "gd_kotlin.h"
+
+KtClass* KotlinScript::get_kt_class() const {
+    return GDKotlin::getInstance().find_class(get_path());
+}
 
 bool KotlinScript::can_instance() const {
     return false;
@@ -12,6 +17,11 @@ Ref<Script> KotlinScript::get_base_script() const {
 }
 
 StringName KotlinScript::get_instance_base_type() const {
+    KtClass* cls = get_kt_class();
+    if (cls) {
+        return cls->super_class;
+    }
+    // not found
     return StringName();
 }
 

@@ -11,7 +11,8 @@ private:
     GDKotlin() = default;
     ~GDKotlin() = default;
 
-    Map<String, KtClass*> classes;
+    String scripts_root;
+    Map<StringName, KtClass*> classes;
 
     jni::JObject class_loader;
     Bootstrap* bootstrap;
@@ -25,8 +26,10 @@ public:
     void init();
     void finish();
 
-    void register_classes(jni::JObjectArray p_classes);
-    void unregister_classes(jni::JObjectArray p_classes);
+    void register_classes(jni::Env& p_env, jni::JObjectArray p_classes);
+    void unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes);
+
+    KtClass* find_class(const String& p_script_path);
 };
 
 

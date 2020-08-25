@@ -49,13 +49,13 @@ GDKotlin& GDKotlin::getInstance() {
 }
 
 void load_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
-    print_line("Classes loaded!");
-    GDKotlin::getInstance().register_classes(jni::JObjectArray(p_classes));
+    jni::Env env(p_env);
+    GDKotlin::getInstance().register_classes(env, jni::JObjectArray(p_classes));
 }
 
 void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
-    print_line("Classes unloaded!");
-    GDKotlin::getInstance().unregister_classes(jni::JObjectArray(p_classes));
+    jni::Env env(p_env);
+    GDKotlin::getInstance().unregister_classes(env, jni::JObjectArray(p_classes));
 }
 
 void GDKotlin::init() {
@@ -63,11 +63,12 @@ void GDKotlin::init() {
     args.version = JNI_VERSION_1_8;
     args.option("-Xcheck:jni");
     jni::Jvm::init(args);
-    print_line("Jvm started!");
+    print_line("Starting JVM ...");
     auto project_settings = ProjectSettings::get_singleton();
+    scripts_root = project_settings->globalize_path("res://src/main/kotlin");
     String bootstrap_jar = project_settings->globalize_path("res://build/libs/godot-bootstrap.jar");
     print_line(vformat("Loading bootstrap jar: %s", bootstrap_jar));
-    auto& env = jni::Jvm::current_env();
+    auto env = jni::Jvm::current_env();
     jni::JObject current_thread = get_current_thread(env);
     class_loader = create_class_loader(env, bootstrap_jar).new_global_ref(env);
     set_context_class_loader(env, current_thread, class_loader);
@@ -83,29 +84,38 @@ void GDKotlin::init() {
 }
 
 void GDKotlin::finish() {
-    auto& env = jni::Jvm::current_env();
+    auto env = jni::Jvm::current_env();
+    bootstrap->finish(env);
     delete bootstrap;
     class_loader.delete_global_ref(env);
     jni::Jvm::destroy();
-    print_line("Jvm destroyed!");
+    print_line("Shutting down JVM ...");
 }
 
-void GDKotlin::register_classes(jni::JObjectArray p_classes) {
-    auto& env = jni::Jvm::current_env();
-    for (auto i = 0; i < p_classes.length(env); i++) {
-        auto kt_class = new KtClass(p_classes.get(env, i), class_loader);
-        print_line(vformat("got class %s : %s", kt_class->name, kt_class->super_class));
+void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
+    print_line("Loading classes ...");
+    for (auto i = 0; i < p_classes.length(p_env); i++) {
+        auto kt_class = new KtClass(p_classes.get(p_env, i), class_loader);
+        print_verbose(vformat("Loading class %s : %s", kt_class->name, kt_class->super_class));
         classes[kt_class->name] = kt_class;
     }
 
 }
 
-void GDKotlin::unregister_classes(jni::JObjectArray p_classes) {
-    auto& env = jni::Jvm::current_env();
-    Map<String, KtClass*>::Element* kt_class = classes.front();
-    while (kt_class != nullptr) {
-        delete kt_class->value();
-        kt_class = kt_class->next();
+void GDKotlin::unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
+    print_line("Unloading classes ...");
+    Map<StringName, KtClass*>::Element* current = classes.front();
+    while (current != nullptr) {
+        KtClass* kt_class = current->value();
+        print_verbose(vformat("Unloading class %s : %s", kt_class->name, kt_class->super_class));
+        delete kt_class;
+        current = current->next();
     }
     classes.clear();
+}
+
+KtClass* GDKotlin::find_class(const String& p_script_path) {
+    StringName class_name = p_script_path.trim_prefix(scripts_root).replace("/", ".");
+    ERR_FAIL_COND_V_MSG(classes.has(class_name), nullptr, vformat("Failed to find class for path: %s", p_script_path))
+    return classes[class_name];
 }
