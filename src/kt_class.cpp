@@ -1,4 +1,4 @@
-#include "kt_class.h"
+#include <kt_class.h>
 
 KtClass::KtClass(jni::JObject p_wrapped, jni::JObject& p_class_loader) : JavaInstanceWrapper("godot.core.KtClass", p_wrapped, p_class_loader) {
     auto env = jni::Jvm::current_env();

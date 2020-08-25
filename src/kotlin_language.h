@@ -1,6 +1,6 @@
 #ifndef GODOT_JVM_KOTLIN_LANGUAGE_H
 #define GODOT_JVM_KOTLIN_LANGUAGE_H
-#include "core/script_language.h"
+#include <core/script_language.h>
 
 class KotlinLanguage : public ScriptLanguage {
 public:
