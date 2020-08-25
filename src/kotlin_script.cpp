@@ -26,7 +26,7 @@ StringName KotlinScript::get_instance_base_type() const {
 }
 
 ScriptInstance* KotlinScript::instance_create(Object* p_this) {
-    return memnew(KotlinInstance);
+    return new KotlinInstance(ktClass, p_this);
 }
 
 bool KotlinScript::instance_has(const Object* p_this) const {

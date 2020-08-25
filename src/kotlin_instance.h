@@ -1,11 +1,15 @@
 #ifndef GODOT_JVM_KOTLIN_INSTANCE_H
 #define GODOT_JVM_KOTLIN_INSTANCE_H
 #include "core/script_language.h"
+#include "kt_object.h"
+#include "kt_class.h"
 
 class KotlinInstance : public ScriptInstance {
+private:
+    KtObject *ktObject;
 public:
-    KotlinInstance() = default;
-    ~KotlinInstance() override = default;
+    KotlinInstance(KtClass *ktClass, Object *p_owner);
+    ~KotlinInstance() override;
 
     bool set(const StringName& p_name, const Variant& p_value) override;
 

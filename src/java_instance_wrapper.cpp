@@ -20,7 +20,7 @@ jni::JClass& JavaInstanceWrapper::get_class(jni::Env& env) {
     return get_class_cache(env).cls;
 }
 
-jni::MethodId JavaInstanceWrapper::get_method_id(jni::Env& env, const char* p_name, const char* p_signature) {
+jni::MethodId JavaInstanceWrapper::get_method_id(jni::Env& env, const char* p_name, const char* p_signature) const {
     auto& class_cache = get_class_cache(env);
     auto key = StringBuilder()
             .append(p_name)
@@ -44,7 +44,7 @@ jni::MethodId JavaInstanceWrapper::get_static_method_id(jni::Env& env, const cha
     return class_cache.static_method_ids[key];
 }
 
-JavaInstanceWrapper::ClassCache& JavaInstanceWrapper::get_class_cache(jni::Env& env) {
+JavaInstanceWrapper::ClassCache& JavaInstanceWrapper::get_class_cache(jni::Env& env) const{
     if (!CLASS_CACHE.has(class_name)) {
         ClassCache class_cache;
         class_cache.cls = env.load_class(class_name.utf8().get_data(), class_loader)
