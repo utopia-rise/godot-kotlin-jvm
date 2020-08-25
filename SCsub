@@ -10,6 +10,8 @@ java_include_dirs = [
 
 module_env = env.Clone()
 module_env.Append(CPPPATH=[java_include_dirs])
+module_env.Append(CXXFLAGS=['-lprotobuf'])
 module_env.add_source_files(module_env.modules_sources, "register_types.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/jni/*.cpp")
+module_env.add_source_files(module_env.modules_sources, "src/wire/*.pb.cc")
 module_env.add_source_files(module_env.modules_sources, "src/*.cpp")

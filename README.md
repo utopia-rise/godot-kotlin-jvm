@@ -16,3 +16,10 @@
    ln -s ../../godot-jvm modules/jvm
    scons -j8 platform=x11 # your platform
    ```
+
+
+# Protobuf
+
+https://github.com/protocolbuffers/protobuf/tree/master/src (install the java version, which already includes cpp)
+
+`./configure --disable-shared CXXFLAGS="-fPIC"`
