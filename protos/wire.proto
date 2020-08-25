@@ -1,0 +1,80 @@
+syntax = "proto3";
+package wire;
+option java_package = "godot.wire";
+
+message Vector2 {
+  float x = 1;
+  float y = 2;
+}
+
+message Rect2 {
+  Vector2 position = 1;
+  Vector2 size = 2;
+}
+
+message Vector3 {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+}
+
+message Transform2D {
+  Vector2 x = 1;
+  Vector2 y = 2;
+  Vector2 origin = 3;
+}
+
+message Plane {
+  Vector3 normal = 1;
+  float d = 2;
+}
+
+message Quat {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+  float w = 4;
+}
+
+message AABB {
+  Vector3 position = 1;
+  Vector3 size = 2;
+}
+
+message Basis {
+  Vector3 x = 1;
+  Vector3 y = 2;
+  Vector3 z = 3;
+}
+
+message Transform {
+  Basis basis = 1;
+  Vector3 origin = 2;
+}
+
+message Value {
+  oneof type {
+    int32 nil_value = 1;
+    bool bool_value = 2;
+    int64 long_value = 3;
+    double real_value = 4;
+    string string_value = 5;
+    Vector2 vector2_value = 6;
+    Rect2 rect2_value = 7;
+    Vector3 vector3_value = 8;
+    Transform2D transform2D_value = 9;
+    Plane plane_value = 10;
+    Quat quat_value = 11;
+    AABB aabb_value = 12;
+    Basis basis_value = 13;
+    Transform transform_value = 14;
+  }
+}
+
+message ReturnValue {
+  Value data = 1;
+}
+
+message FuncArgs {
+  repeated Value args = 1;
+}
