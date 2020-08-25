@@ -3,6 +3,7 @@
 #include <jni.h>
 #include "types.h"
 #include "exceptions.h"
+#include "core/ustring.h"
 
 namespace jni {
     class Env {
@@ -20,7 +21,7 @@ namespace jni {
         JClass load_class(const char* name, JObject class_loader);
 
         JObject new_string(const char* str);
-        std::string from_jstring(jni::JString str);
+        String from_jstring(jni::JString str);
 
         bool exception_check();
         void exception_describe();

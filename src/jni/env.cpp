@@ -78,10 +78,10 @@ namespace jni {
         return capacity;
     }
 
-    std::string Env::from_jstring(jni::JString str) {
+    String Env::from_jstring(jni::JString str) {
         auto jstr = (jstring) str.obj;
-        auto utfString = env->GetStringUTFChars(jstr, NULL);
-        auto ret = std::string(utfString);
+        auto utfString = env->GetStringUTFChars(jstr, nullptr);
+        auto ret = String(utfString);
         check_exceptions();
         env->ReleaseStringUTFChars(jstr, utfString);
         return ret;

@@ -48,14 +48,15 @@ GDKotlin& GDKotlin::getInstance() {
     return instance;
 }
 
-void load_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray classes) {
+void load_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
     print_line("Classes loaded!");
+    GDKotlin::getInstance().register_classes(jni::JObjectArray(p_classes));
 }
 
-void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray classes) {
+void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
     print_line("Classes unloaded!");
+    GDKotlin::getInstance().unregister_classes(jni::JObjectArray(p_classes));
 }
-
 
 void GDKotlin::init() {
     jni::InitArgs args;
@@ -87,4 +88,23 @@ void GDKotlin::finish() {
     class_loader.delete_global_ref(env);
     jni::Jvm::destroy();
     print_line("Jvm destroyed!");
+}
+
+void GDKotlin::register_classes(jni::JObjectArray p_classes) {
+    auto& env = jni::Jvm::current_env();
+    for (auto i = 0; i < p_classes.length(env); i++) {
+        auto kt_class = new KtClass(p_classes.get(env, i), class_loader);
+        print_line(vformat("got class %s : %s", kt_class->name, kt_class->super_class));
+        classes[kt_class->name] = kt_class;
+    }
+
+}
+
+void GDKotlin::unregister_classes(jni::JObjectArray p_classes) {
+    auto& env = jni::Jvm::current_env();
+    Map<String, KtClass*>::Element* kt_class = classes.front();
+    while (kt_class != nullptr) {
+        delete kt_class->value();
+        kt_class = kt_class->next();
+    }
 }
