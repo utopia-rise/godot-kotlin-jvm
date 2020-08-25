@@ -7,7 +7,7 @@ import godot.core.KtVariant
 class Entry : godot.runtime.Entry() {
     override fun Context.init() {
         with(registry) {
-            registerClass<Invocation>("Invocation", "Object") {
+            registerClass<Invocation>(Invocation::class.qualifiedName!!, "Object") {
                 constructor(KtConstructor0(::Invocation))
                 function(KtFunction1("int", Invocation::int, ::KtVariant, KtVariant::asInt))
                 function(KtFunction1("long", Invocation::long, ::KtVariant, KtVariant::asLong))
