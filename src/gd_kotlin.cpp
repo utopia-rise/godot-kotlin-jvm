@@ -43,19 +43,19 @@ void set_context_class_loader(jni::Env& env, jni::JObject thread, jni::JObject c
     thread.call_object_method(env, setContextClassLoaderMethod, {classLoader});
 }
 
-GDKotlin& GDKotlin::getInstance() {
+GDKotlin& GDKotlin::get_instance() {
     static GDKotlin instance;
     return instance;
 }
 
 void load_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
     jni::Env env(p_env);
-    GDKotlin::getInstance().register_classes(env, jni::JObjectArray(p_classes));
+    GDKotlin::get_instance().register_classes(env, jni::JObjectArray(p_classes));
 }
 
 void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
     jni::Env env(p_env);
-    GDKotlin::getInstance().unregister_classes(env, jni::JObjectArray(p_classes));
+    GDKotlin::get_instance().unregister_classes(env, jni::JObjectArray(p_classes));
 }
 
 void GDKotlin::init() {

@@ -11,15 +11,16 @@ private:
     GDKotlin() = default;
     ~GDKotlin() = default;
 
-    String scripts_root;
     Map<StringName, KtClass*> classes;
 
     jni::JObject class_loader;
     Bootstrap* bootstrap;
 public:
+    String scripts_root;
+
     GDKotlin(const GDKotlin&) = delete;
 
-    static GDKotlin& getInstance();
+    static GDKotlin& get_instance();
 
     GDKotlin& operator=(const GDKotlin&) = delete;
 

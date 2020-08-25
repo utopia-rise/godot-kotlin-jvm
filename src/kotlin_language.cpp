@@ -13,7 +13,7 @@ String KotlinLanguage::get_name() const {
 }
 
 void KotlinLanguage::init() {
-    GDKotlin::getInstance().init();
+    GDKotlin::get_instance().init();
 }
 
 String KotlinLanguage::get_type() const {
@@ -30,7 +30,7 @@ Error KotlinLanguage::execute_file(const String& p_path) {
 }
 
 void KotlinLanguage::finish() {
-    GDKotlin::getInstance().finish();
+    GDKotlin::get_instance().finish();
 }
 
 void KotlinLanguage::get_reserved_words(List<String>* p_words) const {
@@ -197,6 +197,9 @@ String KotlinLanguage::validate_path(const String& p_path) const {
     get_reserved_words(&keywords);
     if (keywords.find(p_path.get_file().get_basename())) {
         return TTR("Please don't use reserved keywords as file name.");
+    }
+    if (!p_path.begins_with(GDKotlin::get_instance().scripts_root)) {
+        return TTR("Kotlin classes must be placed at src/main/kotlin.");
     }
     return "";
 }

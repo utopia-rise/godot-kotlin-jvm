@@ -5,7 +5,7 @@
 #include "gd_kotlin.h"
 
 KtClass* KotlinScript::get_kt_class() const {
-    return GDKotlin::getInstance().find_class(get_path());
+    return GDKotlin::get_instance().find_class(get_path());
 }
 
 bool KotlinScript::can_instance() const {
