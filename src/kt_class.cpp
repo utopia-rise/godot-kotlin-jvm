@@ -6,11 +6,11 @@ KtClass::KtClass(jni::JObject p_wrapped, jni::JObject& p_class_loader) : JavaIns
     super_class = get_super_class(env);
 }
 
-KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_arg_count, Object* p_owner) const {
-    auto new_method = get_method_id(env, "new", "(J[Lgodot/core/KtVariant;)Lgodot/core/KtObject;");
+KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_arg_count, Object* p_owner) {
+    jni::MethodId new_method = get_method_id(env, "new", "(J[Lgodot/core/KtVariant;)Lgodot/core/KtObject;");
     // TODO: send args
-    auto j_kt_object = wrapped.call_object_method(env, new_method, {reinterpret_cast<long>(p_owner)});
-    return new KtObject(j_kt_object, class_loader);
+    jni::JObject j_kt_object = wrapped.call_object_method(env, new_method, {reinterpret_cast<long>(p_owner)});
+    return new KtObject(j_kt_object, class_loader, this);
 }
 
 StringName KtClass::get_name(jni::Env& env) {

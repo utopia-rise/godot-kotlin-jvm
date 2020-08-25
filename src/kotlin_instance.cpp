@@ -2,13 +2,8 @@
 #include "kotlin_language.h"
 #include "kt_class.h"
 
-KotlinInstance::KotlinInstance(KtClass *ktClass, Object *p_owner) :
-ktObject(ktClass->create_instance(jni::Jvm::current_env(), nullptr, 0, p_owner)) {
+KotlinInstance::KotlinInstance(const jni::JObject &wrappedObject) : jObject(wrappedObject) {
 
-}
-
-KotlinInstance::~KotlinInstance() {
-    delete ktObject;
 }
 
 bool KotlinInstance::set(const StringName& p_name, const Variant& p_value) {

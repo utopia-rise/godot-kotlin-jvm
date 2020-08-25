@@ -26,7 +26,8 @@ StringName KotlinScript::get_instance_base_type() const {
 }
 
 ScriptInstance* KotlinScript::instance_create(Object* p_this) {
-    return new KotlinInstance(ktClass, p_this);
+    const jni::JObject &object = ktClass->create_instance(jni::Jvm::current_env(), nullptr, 0, p_this)->get_wrapped();
+    return new KotlinInstance(object);
 }
 
 bool KotlinScript::instance_has(const Object* p_this) const {
