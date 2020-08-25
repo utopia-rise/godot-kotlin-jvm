@@ -3,7 +3,7 @@
 #include "gd_kotlin.h"
 #include "godotkotlin_defs.h"
 
-KotlinLanguage& KotlinLanguage::instance() {
+KotlinLanguage& KotlinLanguage::get_instance() {
     static KotlinLanguage instance;
     return instance;
 }
@@ -17,7 +17,7 @@ void KotlinLanguage::init() {
 }
 
 String KotlinLanguage::get_type() const {
-    return "KotlinLanguage";
+    return "KotlinScript";
 }
 
 String KotlinLanguage::get_extension() const {
@@ -325,7 +325,7 @@ void KotlinLanguage::reload_tool_script(const Ref<Script>& p_script, bool p_soft
 }
 
 void KotlinLanguage::get_recognized_extensions(List<String>* p_extensions) const {
-
+    p_extensions->push_back("kt");
 }
 
 void KotlinLanguage::get_public_functions(List<MethodInfo>* p_functions) const {

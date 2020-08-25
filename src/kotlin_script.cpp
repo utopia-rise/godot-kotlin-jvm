@@ -69,7 +69,7 @@ bool KotlinScript::is_valid() const {
 }
 
 ScriptLanguage* KotlinScript::get_language() const {
-    return &KotlinLanguage::instance();
+    return &KotlinLanguage::get_instance();
 }
 
 bool KotlinScript::has_script_signal(const StringName& p_signal) const {

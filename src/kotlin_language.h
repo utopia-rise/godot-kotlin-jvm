@@ -9,7 +9,7 @@ public:
     KotlinLanguage(const KotlinLanguage&) = delete;
     void operator=(const KotlinLanguage&) = delete;
 
-    static KotlinLanguage& instance();
+    static KotlinLanguage& get_instance();
 
     String get_name() const override;
 

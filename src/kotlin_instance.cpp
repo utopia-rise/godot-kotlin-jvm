@@ -98,5 +98,5 @@ MultiplayerAPI::RPCMode KotlinInstance::get_rset_mode(const StringName& p_variab
 }
 
 ScriptLanguage* KotlinInstance::get_language() {
-    return &KotlinLanguage::instance();
+    return &KotlinLanguage::get_instance();
 }
