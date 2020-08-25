@@ -107,4 +107,5 @@ void GDKotlin::unregister_classes(jni::JObjectArray p_classes) {
         delete kt_class->value();
         kt_class = kt_class->next();
     }
+    classes.clear();
 }
