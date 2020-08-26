@@ -41,6 +41,13 @@ namespace jni {
         friend class JArray;
         friend class JObjectArray;
     };
+
+    template <class T>
+    inline T JObject::new_global_ref(Env& env) {
+        auto ref = env.env->NewGlobalRef(obj);
+        env.check_exceptions();
+        return T{JObject(ref).obj};
+    }
 }
 
 

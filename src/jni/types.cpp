@@ -4,6 +4,42 @@
 
 namespace jni {
 
+    JValue::JValue(JObject& obj) {
+        value.l = obj.obj;
+    }
+
+    JValue::JValue(jint i) {
+        value.i = i;
+    }
+
+    JValue::JValue(jlong i) {
+        value.j = i;
+    }
+
+    JValue::JValue(jboolean b) {
+        value.z = b;
+    }
+
+    JValue::JValue(jfloat f) {
+        value.f = f;
+    }
+
+    JValue::JValue(jdouble d) {
+        value.d = d;
+    }
+
+    JValue::JValue(jbyte b) {
+        value.b = b;
+    }
+
+    JValue::JValue(jchar c) {
+        value.c = c;
+    }
+
+    JValue::JValue(jshort s) {
+        value.s = s;
+    }
+
     JObject::JObject(jobject obj) : obj(obj) {}
 
     void JObject::delete_global_ref(Env& p_env) {

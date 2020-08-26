@@ -2,12 +2,36 @@
 #define GODOT_LOADER_JOBJECT_H
 #include <jni.h>
 #include <initializer_list>
-#include "core/vector.h"
+#include <core/vector.h>
 
 namespace jni {
+
     // forward declare
     class Env;
-    class JValue;
+    class JObject;
+
+    class JValue {
+    public:
+        jvalue value;
+
+        JValue(JObject& obj);
+
+        JValue(jint i);
+
+        JValue(jlong i);
+
+        JValue(jboolean b);
+
+        JValue(jfloat f);
+
+        JValue(jdouble d);
+
+        JValue(jbyte b);
+
+        JValue(jchar c);
+
+        JValue(jshort s);
+    };
 
     typedef jmethodID MethodId;
     typedef jfieldID FieldId;
@@ -22,11 +46,7 @@ namespace jni {
         inline JObject() : JObject(nullptr) {}
 
         template <class T>
-        inline T new_global_ref(Env& env) {
-            auto ref = env.env->NewGlobalRef(obj);
-            env.check_exceptions();
-            return T{JObject(ref).obj};
-        }
+        inline T new_global_ref(Env& env);
         void delete_global_ref(Env& p_env);
 
         JObject call_object_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
@@ -79,47 +99,6 @@ namespace jni {
 
         JObject call_static_object_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
         JObject get_static_object_field(Env& env, FieldId field);
-    };
-
-    class JValue {
-    public:
-        jvalue value;
-
-        JValue(JObject& obj) {
-            value.l = obj.obj;
-        }
-
-        JValue(jint i) {
-            value.i = i;
-        }
-
-        JValue(jlong i) {
-            value.j = i;
-        }
-
-        JValue(jboolean b) {
-            value.z = b;
-        }
-
-        JValue(jfloat f) {
-            value.f = f;
-        }
-
-        JValue(jdouble d) {
-            value.d = d;
-        }
-
-        JValue(jbyte b) {
-            value.b = b;
-        }
-
-        JValue(jchar c) {
-            value.c = c;
-        }
-
-        JValue(jshort s) {
-            value.s = s;
-        }
     };
 
 #define unpack_args(args) \
