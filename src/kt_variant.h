@@ -10,6 +10,7 @@ private:
 public:
     KtVariant() = default;
     KtVariant(wire::Value value);
+    KtVariant(const Variant& variant);
     ~KtVariant() = default;
 
     const wire::Value& get_value() const;
