@@ -1,8 +1,8 @@
 #ifndef GODOT_JVM_KOTLIN_INSTANCE_H
 #define GODOT_JVM_KOTLIN_INSTANCE_H
 #include <core/script_language.h>
-#include <kt_object.h>
-#include <kt_class.h>
+#include "kt_object.h"
+#include "kt_class.h"
 
 class KotlinInstance : public ScriptInstance {
 private:

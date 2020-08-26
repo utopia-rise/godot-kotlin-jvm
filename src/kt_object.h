@@ -1,15 +1,15 @@
 #ifndef GODOT_JVM_KT_OBJECT_H
 #define GODOT_JVM_KT_OBJECT_H
 
-#include <jni/jvm.h>
-#include <java_instance_wrapper.h>
+#include "jni/jvm.h"
+#include "java_instance_wrapper.h"
 
 class KtObject : public JavaInstanceWrapper {
 
 private:
-    const jni::JObject *ktClass;
+    const jni::JObject ktClass;
 public:
-    KtObject(const jni::JObject &p_wrapped, const jni::JObject &p_class_loader, jni::JObject *p_ktClass);
+    KtObject(jni::JObject p_wrapped, jni::JObject p_class_loader, jni::JObject p_ktClass);
     ~KtObject() = default;
 
     const jni::JObject &get_wrapped() const;
