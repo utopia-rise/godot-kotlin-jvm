@@ -81,12 +81,22 @@ void GDKotlin::init() {
     bool is_editor = Engine::get_singleton()->is_editor_hint();
     String project_path = project_settings->globalize_path("res://");
     bootstrap->init(env, is_editor, project_path);
+
+    jni::JClass transfer_ctx_cls = env.load_class("godot.core.TransferContext", class_loader);
+    jni::FieldId transfer_ctx_instance_field = transfer_ctx_cls.get_static_field_id(env, "INSTANCE",
+                                                                                    "Lgodot/core/TransferContext;");
+    jni::JObject transfer_ctx_instance = transfer_ctx_cls.get_static_object_field(env, transfer_ctx_instance_field);
+    CRASH_COND_MSG(transfer_ctx_instance.isNull(), "Failed to retrieve TransferContext instance")
+    transfer_context = new TransferContext(transfer_ctx_instance, class_loader);
 }
 
 void GDKotlin::finish() {
     auto env = jni::Jvm::current_env();
+    delete transfer_context;
+    transfer_context = nullptr;
     bootstrap->finish(env);
     delete bootstrap;
+    bootstrap = nullptr;
     class_loader.delete_global_ref(env);
     jni::Jvm::destroy();
     print_line("Shutting down JVM ...");
