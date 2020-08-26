@@ -5,7 +5,7 @@
 namespace jni {
     JavaVM* Jvm::vm = nullptr;
     Env* Jvm::env = nullptr;
-    int Jvm::version = 0;
+    jint Jvm::version = 0;
 
     void Jvm::init(const InitArgs& initArgs) {
         auto res = get_existing();
@@ -46,7 +46,7 @@ namespace jni {
 
     JavaVM* Jvm::get_existing() {
         JavaVM* buffer[1];
-        int count;
+        jsize count;
         auto result = JvmLoader::getGetCreatedJavaVMsFunction()(buffer, 1, &count);
         if (result != JNI_OK) {
             throw JniError("Failed to retrieve existing vm!");

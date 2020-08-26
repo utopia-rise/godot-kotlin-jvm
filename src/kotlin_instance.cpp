@@ -1,5 +1,14 @@
 #include "kotlin_instance.h"
 #include "kotlin_language.h"
+#include "kt_class.h"
+
+KotlinInstance::KotlinInstance(KtObject *p_wrappedObject) : wrappedObject(p_wrappedObject), owner(nullptr) {
+
+}
+
+KotlinInstance::KotlinInstance(KtObject *wrappedObject, Object *owner) : KotlinInstance(wrappedObject) {
+    set_owner(owner);
+}
 
 bool KotlinInstance::set(const StringName& p_name, const Variant& p_value) {
     return false;
@@ -18,7 +27,11 @@ Variant::Type KotlinInstance::get_property_type(const StringName& p_name, bool* 
 }
 
 Object* KotlinInstance::get_owner() {
-    return ScriptInstance::get_owner();
+    return owner;
+}
+
+void KotlinInstance::set_owner(Object *object) {
+    owner = object;
 }
 
 void KotlinInstance::get_property_state(List<Pair<StringName, Variant>>& state) {

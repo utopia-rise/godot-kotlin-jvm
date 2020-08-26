@@ -1,10 +1,16 @@
 #ifndef GODOT_JVM_KOTLIN_INSTANCE_H
 #define GODOT_JVM_KOTLIN_INSTANCE_H
-#include "core/script_language.h"
+#include <core/script_language.h>
+#include "kt_object.h"
+#include "kt_class.h"
 
 class KotlinInstance : public ScriptInstance {
+private:
+    KtObject *wrappedObject;
+    Object *owner;
 public:
-    KotlinInstance() = default;
+    explicit KotlinInstance(KtObject *p_wrappedObject);
+    KotlinInstance(KtObject *wrappedObject, Object *owner);
     ~KotlinInstance() override = default;
 
     bool set(const StringName& p_name, const Variant& p_value) override;
@@ -16,6 +22,8 @@ public:
     Variant::Type get_property_type(const StringName& p_name, bool* r_is_valid) const override;
 
     Object* get_owner() override;
+
+    void set_owner(Object *object);
 
     void get_property_state(List<Pair<StringName, Variant>>& state) override;
 

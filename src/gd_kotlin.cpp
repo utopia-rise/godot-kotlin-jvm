@@ -70,7 +70,7 @@ void GDKotlin::init() {
     print_line(vformat("Loading bootstrap jar: %s", bootstrap_jar));
     auto env = jni::Jvm::current_env();
     jni::JObject current_thread = get_current_thread(env);
-    class_loader = create_class_loader(env, bootstrap_jar).new_global_ref(env);
+    class_loader = create_class_loader(env, bootstrap_jar).new_global_ref<jni::JObject>(env);
     set_context_class_loader(env, current_thread, class_loader);
 
     jni::JClass bootstrap_cls = env.load_class("godot.runtime.Bootstrap", class_loader);

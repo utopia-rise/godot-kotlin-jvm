@@ -18,7 +18,7 @@ TransferContext::SharedBuffer TransferContext::get_buffer(jni::Env& p_env) {
 
 bool TransferContext::ensure_capacity(jni::Env& p_env, int p_capacity) {
     jni::MethodId method = get_method_id(p_env, "ensureCapacity", "(I)Z");
-    return wrapped.call_boolean_method(p_env, method, {p_capacity});
+    return wrapped.call_boolean_method(p_env, method, {static_cast<jint>(p_capacity)});
 }
 
 void TransferContext::write_return_value(jni::Env& p_env, const TransferContext::SharedBuffer& p_buffer, const KtVariant& p_value) {

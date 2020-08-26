@@ -2,7 +2,7 @@
 #define GODOT_JVM_KTCLASS_H
 
 #include "jni/jvm.h"
-#include "core/reference.h"
+#include <core/reference.h>
 #include "java_instance_wrapper.h"
 #include "kt_object.h"
 
