@@ -46,7 +46,7 @@ namespace jni {
 
     JavaVM* Jvm::get_existing() {
         JavaVM* buffer[1];
-        int count;
+        jsize count;
         auto result = JvmLoader::getGetCreatedJavaVMsFunction()(buffer, 1, &count);
         if (result != JNI_OK) {
             throw JniError("Failed to retrieve existing vm!");
