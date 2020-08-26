@@ -85,6 +85,6 @@ namespace jni {
         if (result == JNI_EDETACHED) {
             throw JniError("Current thread is not attached!");
         }
-        return attach();
+        return Env(r_env);
     }
 }
