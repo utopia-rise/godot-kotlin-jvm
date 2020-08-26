@@ -9,7 +9,7 @@
 Ref<KtResourceFormatLoader> resource_format_loader;
 Ref<KtResourceFormatSaver> resource_format_saver;
 
-void register_jvm_types() {
+void register_kotlin_jvm_types() {
     ClassDB::register_class<KotlinScript>();
     ScriptServer::register_language(&KotlinLanguage::get_instance());
     resource_format_loader.instance();
@@ -18,7 +18,7 @@ void register_jvm_types() {
     ResourceSaver::add_resource_format_saver(resource_format_saver);
 }
 
-void unregister_jvm_types() {
+void unregister_kotlin_jvm_types() {
     ScriptServer::unregister_language(&KotlinLanguage::get_instance());
     ResourceLoader::remove_resource_format_loader((resource_format_loader));
     ResourceSaver::remove_resource_format_saver(resource_format_saver);
