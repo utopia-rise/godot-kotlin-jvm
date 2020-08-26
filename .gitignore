@@ -3,5 +3,6 @@
 /build
 **/.idea
 
+*.obj
 *.o
 __pycache__

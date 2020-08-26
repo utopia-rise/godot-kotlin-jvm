@@ -6,6 +6,7 @@ java_home = os.environ["JAVA_HOME"]
 java_include_dirs = [
     java_home + "/include",
     java_home + "/include/linux",
+    java_home + "/include/win32"
 ]
 
 # Link protobuf

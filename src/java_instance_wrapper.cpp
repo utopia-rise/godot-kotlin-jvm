@@ -6,8 +6,8 @@ Map<String, JavaInstanceWrapper::ClassCache> JavaInstanceWrapper::CLASS_CACHE = 
 JavaInstanceWrapper::JavaInstanceWrapper(const char* p_class_name, jni::JObject p_wrapped,
                                          jni::JObject p_class_loader) : class_name(p_class_name) {
     auto env = jni::Jvm::current_env();
-    wrapped = p_wrapped.new_global_ref(env);
-    class_loader = p_class_loader.new_global_ref(env);
+    wrapped = p_wrapped.new_global_ref<jni::JObject>(env);
+    class_loader = p_class_loader.new_global_ref<jni::JObject>(env);
 }
 
 JavaInstanceWrapper::~JavaInstanceWrapper() {

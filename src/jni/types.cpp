@@ -6,12 +6,6 @@ namespace jni {
 
     JObject::JObject(jobject obj) : obj(obj) {}
 
-    JObject JObject::new_global_ref(Env& env) {
-        auto ref = env.env->NewGlobalRef(obj);
-        env.check_exceptions();
-        return JObject(ref);
-    }
-
     void JObject::delete_global_ref(Env& p_env) {
         p_env.env->DeleteGlobalRef(obj);
         p_env.check_exceptions();

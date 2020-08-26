@@ -21,10 +21,11 @@ namespace jni {
         JObject& operator=(const JObject&) = default;
         inline JObject() : JObject(nullptr) {}
 
-        JObject new_global_ref(Env& env);
         template <class T>
-        __always_inline T new_global_ref(Env& env) {
-            return T{new_global_ref(env).obj};
+        inline T new_global_ref(Env& env) {
+            auto ref = env.env->NewGlobalRef(obj);
+            env.check_exceptions();
+            return T{JObject(ref).obj};
         }
         void delete_global_ref(Env& p_env);
 
