@@ -8,13 +8,16 @@ java_include_dirs = [
     java_home + "/include/linux",
     java_home + "/include/win32"
 ]
+protobuf_include_dir = [
+    "libprotobuf/include/"
+]
 
 # Link protobuf
 env.Append(LIBPATH="libprotobuf/lib")
 env.Append(LIBS=['protobuf'])
 
 module_env = env.Clone()
-module_env.Append(CPPPATH=[java_include_dirs])
+module_env.Append(CPPPATH=[java_include_dirs, protobuf_include_dir])
 module_env.add_source_files(module_env.modules_sources, "register_types.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/jni/*.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/wire/*.pb.cc")

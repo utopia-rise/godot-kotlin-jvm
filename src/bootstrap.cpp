@@ -1,5 +1,5 @@
 #include "bootstrap.h"
-#include "core/print_string.h"
+#include <core/print_string.h>
 
 Bootstrap::Bootstrap(jni::JObject p_wrapped, jni::JObject p_class_loader) : JavaInstanceWrapper(
         "godot.runtime.Bootstrap", p_wrapped, p_class_loader) {

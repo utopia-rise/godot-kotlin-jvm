@@ -5,7 +5,7 @@
 namespace jni {
     JavaVM* Jvm::vm = nullptr;
     Env* Jvm::env = nullptr;
-    int Jvm::version = 0;
+    jint Jvm::version = 0;
 
     void Jvm::init(const InitArgs& initArgs) {
         auto res = get_existing();
