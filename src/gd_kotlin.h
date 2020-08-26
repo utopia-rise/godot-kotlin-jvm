@@ -5,6 +5,7 @@
 #include "kt_class.h"
 #include "core/map.h"
 #include "core/ustring.h"
+#include "transfer_context.h"
 
 class GDKotlin {
 private:
@@ -17,6 +18,7 @@ private:
     Bootstrap* bootstrap;
 public:
     String scripts_root;
+    TransferContext* transfer_context;
 
     GDKotlin(const GDKotlin&) = delete;
 

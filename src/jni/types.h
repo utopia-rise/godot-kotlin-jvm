@@ -24,7 +24,7 @@ namespace jni {
         JObject new_global_ref(Env& env);
         template <class T>
         __always_inline T new_global_ref(Env& env) {
-            return {new_global_ref(env).obj};
+            return T{new_global_ref(env).obj};
         }
         void delete_global_ref(Env& p_env);
 
@@ -63,9 +63,10 @@ namespace jni {
     class JClass : public JObject {
     public:
         explicit JClass(jclass cls) : JObject(cls) {}
+        explicit JClass(jobject cls) : JObject(cls) {}
         JClass(const JClass&) = default;
         JClass& operator=(const JClass&) = default;
-        JClass(): JClass(nullptr) {}
+        JClass(): JClass((jclass) nullptr) {}
 
         JObject new_instance(Env& env, MethodId ctor, std::initializer_list<JValue> values = {});
         JObjectArray new_object_array(Env& env, int size, JObject initial = {});
