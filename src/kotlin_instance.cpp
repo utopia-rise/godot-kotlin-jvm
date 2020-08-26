@@ -2,11 +2,11 @@
 #include "kotlin_language.h"
 #include "kt_class.h"
 
-KotlinInstance::KotlinInstance(const jni::JObject &wrappedObject) : jObject(wrappedObject), owner(nullptr) {
+KotlinInstance::KotlinInstance(KtObject *p_wrappedObject) : wrappedObject(p_wrappedObject), owner(nullptr) {
 
 }
 
-KotlinInstance::KotlinInstance(const jni::JObject &wrappedObject, Object *owner) : KotlinInstance(wrappedObject) {
+KotlinInstance::KotlinInstance(KtObject *wrappedObject, Object *owner) : KotlinInstance(wrappedObject) {
     set_owner(owner);
 }
 

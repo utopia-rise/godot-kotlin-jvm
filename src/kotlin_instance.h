@@ -6,11 +6,11 @@
 
 class KotlinInstance : public ScriptInstance {
 private:
-    const jni::JObject &jObject;
+    KtObject *wrappedObject;
     Object *owner;
 public:
-    explicit KotlinInstance(const jni::JObject &wrappedObject);
-    KotlinInstance(const jni::JObject &wrappedObject, Object *owner);
+    explicit KotlinInstance(KtObject *p_wrappedObject);
+    KotlinInstance(KtObject *wrappedObject, Object *owner);
     ~KotlinInstance() override = default;
 
     bool set(const StringName& p_name, const Variant& p_value) override;
