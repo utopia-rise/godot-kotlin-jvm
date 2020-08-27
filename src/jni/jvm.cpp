@@ -24,8 +24,8 @@ namespace jni {
     }
 
     JavaVM* Jvm::create(const InitArgs& initArgs) {
-        auto nOptions = initArgs.options.size();
-        JavaVMOption options[nOptions];
+        size_t nOptions { initArgs.options.size() };
+        auto *options = new JavaVMOption[nOptions];
         JavaVMInitArgs args;
         args.version = initArgs.version;
         args.nOptions = nOptions;
@@ -41,6 +41,7 @@ namespace jni {
         if (result != JNI_OK) {
             throw JniError("Failed to create a new vm!");
         }
+        delete[] options;
         return vm;
     }
 

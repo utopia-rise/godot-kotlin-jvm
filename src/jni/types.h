@@ -55,7 +55,7 @@ namespace jni {
         jboolean call_boolean_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
         void call_void_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
 
-        bool isNull ();
+        bool isNull();
     };
 
     class JString : public JObject {
