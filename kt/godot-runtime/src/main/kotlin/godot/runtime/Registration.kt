@@ -20,10 +20,10 @@ class ClassBuilderDsl<T: KtObject>(
     }
 
     fun function(function: KtFunction<T, *>) {
-        require(!functions.containsKey(function.name)) {
-            "A method with ${function.name} already exists."
+        require(!functions.containsKey(function.functionInfo.name)) {
+            "A method with ${function.functionInfo.name} already exists."
         }
-        functions[function.name] = function
+        functions[function.functionInfo.name] = function
     }
 
     internal fun build(): KtClass<T> {
