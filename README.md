@@ -35,11 +35,7 @@ Each Issue has a Maintainer that is the "supervisor" for the general topic the i
 ## Setting up the project for local development
 1. Clone godot repo.
 
-2. In `godot/`, run the following commands:
-   ```
-   git submodule add git@github.com:utopia-rise/godot-jvm.git modules/kotlin_jvm
-   scons -j8 platform=x11 # your platform
-   ```
+2. In `godot/`, run the following command: `git submodule add git@github.com:utopia-rise/godot-jvm.git modules/kotlin_jvm`
 
 3. Setup Protobuf:  
     https://github.com/protocolbuffers/protobuf/tree/master/src (install the java version, which already includes cpp)
@@ -47,7 +43,9 @@ Each Issue has a Maintainer that is the "supervisor" for the general topic the i
     - `make`
     - `make install`
 
-4. Build sample
+4. Build the engine with our module: `scons -j8 platform=x11 # your platform`
+
+5. Build sample
     - navigate to `harness/tests`
     - `./gradlew build`
 
