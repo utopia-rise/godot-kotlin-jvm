@@ -42,20 +42,18 @@ Each Issue has a Maintainer that is the "supervisor" for the general topic the i
     - `./configure --disable-shared CXXFLAGS="-fPIC" --prefix=<repo-root>/libprotobuf`
     - `make`
     - `make install`
+    - Windows instructions
+      
+      0. Install CMake with chocolatey
+      1. Clone protobuf repo:
+      `https://github.com/protocolbuffers/protobuf/`
+      2. Mkdir and cd to `cmake/build/release`
+      3. Configure project with : ```
+      cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=<repo-root>/libprotobuf ../.. ```
+      4. Install with : `nmake install`
 
 4. Build the engine with our module: `scons -j8 platform=x11 # your platform`
 
 5. Build sample
     - navigate to `harness/tests`
     - `./gradlew build`
-
-
-## Windows instructions
-
-0. Install CMake with chocolatey
-1. Clone protobuf repo:
-`https://github.com/protocolbuffers/protobuf/`
-2. Mkdir and cd to `cmake/build/release`
-3. Configure project with : ```
-cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=<repo-root>/libprotobuf ../.. ```
-4. Install with : `nmake install`
