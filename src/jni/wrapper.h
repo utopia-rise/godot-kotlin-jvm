@@ -3,6 +3,11 @@
 
 #include "env.h"
 #include "types.h"
+#include "exceptions.h"
+#include "init_args.h"
+#include "jvm.h"
+#include "jvm_loader.h"
+#include "types.h"
 
 namespace jni {
 

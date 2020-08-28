@@ -13,8 +13,12 @@ protobuf_include_dir = [
 ]
 
 protobuf_lib_dir = Dir("libprotobuf/lib").path
-env.Append(LINKFLAGS="-L" + protobuf_lib_dir)
-env.Append(LIBS="protobuf")
+if env["platform"] == "windows":
+    env.Append(LINKFLAGS="-LIBPATH:" + protobuf_lib_dir)
+    env.Append(LINKFLAGS="-DEFAULTLIB:libprotobuf")
+else:
+    env.Append(LINKFLAGS="-L" + protobuf_lib_dir)
+    env.Append(LIBS="protobuf")
 
 module_env = env.Clone()
 module_env.Append(CPPPATH=[java_include_dirs, protobuf_include_dir])

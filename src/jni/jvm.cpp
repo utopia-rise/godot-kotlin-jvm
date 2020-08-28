@@ -38,10 +38,10 @@ namespace jni {
         JavaVM* vm;
         JNIEnv* env;
         auto result = JvmLoader::getCreateJvmFunction()(&vm, (void**) &env, (void*) &args);
+        delete[] options;
         if (result != JNI_OK) {
             throw JniError("Failed to create a new vm!");
         }
-        delete[] options;
         return vm;
     }
 
