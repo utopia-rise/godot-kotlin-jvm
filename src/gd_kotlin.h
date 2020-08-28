@@ -1,6 +1,6 @@
 #ifndef GODOT_JVM_GD_KOTLIN_H
 #define GODOT_JVM_GD_KOTLIN_H
-#include "jni/jvm.h"
+#include "jni/wrapper.h"
 #include "bootstrap.h"
 #include "kt_class.h"
 #include "core/map.h"

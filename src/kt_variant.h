@@ -13,6 +13,7 @@ public:
     KtVariant(const Variant& variant);
     ~KtVariant() = default;
 
+    static void initMethodArray();
     const wire::Value& get_value() const;
     Variant to_godot_variant() const;
 };

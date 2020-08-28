@@ -1,7 +1,7 @@
 #ifndef GODOT_JVM_KT_OBJECT_H
 #define GODOT_JVM_KT_OBJECT_H
 
-#include "jni/jvm.h"
+#include "jni/wrapper.h"
 #include "java_instance_wrapper.h"
 
 class KtObject : public JavaInstanceWrapper {

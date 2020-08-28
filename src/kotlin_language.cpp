@@ -166,7 +166,7 @@ Ref<Script> KotlinLanguage::get_template(const String& p_class_name, const Strin
         "    }\n"
         "}\n"
     };
-    kotlinClassTemplate.replace("%BASE%", p_base_class_name).replace("%CLASS%", p_class_name);
+    kotlinClassTemplate = kotlinClassTemplate.replace("%BASE%", p_base_class_name).replace("%CLASS%", p_class_name);
     Ref<KotlinScript> script;
     script.instance();
     script->set_source_code(kotlinClassTemplate);

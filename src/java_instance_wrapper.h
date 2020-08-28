@@ -1,6 +1,6 @@
 #ifndef GODOT_JVM_JAVA_CLASS_WRAPPER_H
 #define GODOT_JVM_JAVA_CLASS_WRAPPER_H
-#include "jni/jvm.h"
+#include "jni/wrapper.h"
 #include "core/ustring.h"
 #include "core/map.h"
 

@@ -1,7 +1,6 @@
 #include <core/print_string.h>
 #include <cassert>
 #include "gd_kotlin.h"
-#include "jni/jvm.h"
 #include "core/os/os.h"
 #include "core/project_settings.h"
 #include "bootstrap.h"
@@ -59,6 +58,9 @@ void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) 
 }
 
 void GDKotlin::init() {
+    // Initialize type mappings
+    KtVariant::initMethodArray();
+
     jni::InitArgs args;
     args.version = JNI_VERSION_1_8;
     args.option("-Xcheck:jni");
