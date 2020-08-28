@@ -15,6 +15,10 @@ static const int CONST_VARIANT_AABB = Variant::AABB;
 static const int CONST_VARIANT_BASIS = Variant::BASIS;
 static const int CONST_VARIANT_TRANSFORM = Variant::TRANSFORM;
 
+// must match the value order of godot_variant_type
+static void(*TO_KT_VARIANT_FROM[27 /* Variant::Type count */])(wire::Value&, const Variant&);
+static Variant(*TO_GODOT_VARIANT_FROM[27 /* KVariant::TypeCase count */])(const wire::Value&);
+
 KtVariant::KtVariant(wire::Value value) : value(value) {}
 
 void to_kvariant_fromNIL(wire::Value& des, const Variant& src) {

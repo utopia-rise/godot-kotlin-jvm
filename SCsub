@@ -14,8 +14,8 @@ protobuf_include_dir = [
 
 protobuf_lib_dir = Dir("libprotobuf/lib").path
 if env["platform"] == "windows":
-    env.Append(LINKFLAGS="-LIBPATH:" + protobuf_lib_dir)
-    env.Append(LINKFLAGS="-DEFAULTLIB:libprotobuf")
+    env.Append(LINKFLAGS="/LIBPATH:" + protobuf_lib_dir)
+    env.Append(LINKFLAGS="/DEFAULTLIB:libprotobuf")
 else:
     env.Append(LINKFLAGS="-L" + protobuf_lib_dir)
     env.Append(LIBS="protobuf")
