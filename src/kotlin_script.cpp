@@ -3,10 +3,6 @@
 #include "kotlin_instance.h"
 #include "gd_kotlin.h"
 
-KotlinScript::KotlinScript(): ktClass(GDKotlin::get_instance().find_class(get_path())) {
-
-}
-
 bool KotlinScript::can_instance() const {
     return false;
 }
@@ -102,4 +98,10 @@ void KotlinScript::get_script_method_list(List<MethodInfo>* p_list) const {
 
 void KotlinScript::get_script_property_list(List<PropertyInfo>* p_list) const {
 
+}
+
+void KotlinScript::set_path(const String& p_path, bool p_take_over) {
+    //TODO: Manage path change.
+    Resource::set_path(p_path, p_take_over);
+    ktClass = GDKotlin::get_instance().find_class(get_path());
 }

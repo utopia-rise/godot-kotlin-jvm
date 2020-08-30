@@ -11,7 +11,7 @@ private:
     KtClass *ktClass;
 
 public:
-    KotlinScript();
+    KotlinScript() = default;
     ~KotlinScript() override = default;
 
     bool can_instance() const override;
@@ -51,6 +51,8 @@ public:
     void get_script_method_list(List<MethodInfo>* p_list) const override;
 
     void get_script_property_list(List<PropertyInfo>* p_list) const override;
+
+    void set_path(const String &p_path, bool p_take_over = false) override;
 
 };
 

@@ -199,7 +199,7 @@ String KotlinLanguage::validate_path(const String& p_path) const {
     if (keywords.find(p_path.get_file().get_basename())) {
         return TTR("Please don't use reserved keywords as file name.");
     }
-    if (!ProjectSettings::get_singleton()->globalize_path(p_path).begins_with(GDKotlin::get_instance().scripts_root)) {
+    if (!p_path.begins_with(GDKotlin::get_instance().scripts_root)) {
         return TTR("Kotlin classes must be placed at src/main/kotlin.");
     }
     return "";

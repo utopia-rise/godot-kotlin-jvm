@@ -67,7 +67,7 @@ void GDKotlin::init() {
     jni::Jvm::init(args);
     print_line("Starting JVM ...");
     auto project_settings = ProjectSettings::get_singleton();
-    scripts_root = project_settings->globalize_path("res://src/main/kotlin");
+    scripts_root = "res://src/main/kotlin/";
     String bootstrap_jar = project_settings->globalize_path("res://build/libs/godot-bootstrap.jar");
     print_line(vformat("Loading bootstrap jar: %s", bootstrap_jar));
     auto env = jni::Jvm::current_env();
@@ -126,7 +126,7 @@ void GDKotlin::unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes) 
 }
 
 KtClass* GDKotlin::find_class(const String& p_script_path) {
-    StringName class_name = p_script_path.trim_prefix(scripts_root).replace("/", ".");
+    StringName class_name = p_script_path.trim_prefix(scripts_root).trim_suffix(".kt").replace("/", ".");
     ERR_FAIL_COND_V_MSG(!classes.has(class_name), nullptr, vformat("Failed to find class for path: %s", p_script_path))
     return classes[class_name];
 }
