@@ -130,3 +130,7 @@ KtClass* GDKotlin::find_class(const String& p_script_path) {
     ERR_FAIL_COND_V_MSG(!classes.has(class_name), nullptr, vformat("Failed to find class for path: %s", p_script_path))
     return classes[class_name];
 }
+
+jni::JObject& GDKotlin::get_class_loader() {
+    return class_loader;
+}

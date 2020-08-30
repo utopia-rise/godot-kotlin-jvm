@@ -29,7 +29,7 @@ abstract class KtFunction<T: KtObject, R>(
         return TransferContext.writeReturnValue(ret)
     }
 
-    protected abstract fun invoke(instance: T, args: List<KtVariant>): KtVariant
+    internal abstract operator fun invoke(instance: T, args: List<KtVariant>): KtVariant
 }
 
 class KtFunction0<T: KtObject, R>(

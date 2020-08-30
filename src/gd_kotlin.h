@@ -29,6 +29,8 @@ public:
     void init();
     void finish();
 
+    jni::JObject& get_class_loader();
+
     void register_classes(jni::Env& p_env, jni::JObjectArray p_classes);
     void unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes);
 

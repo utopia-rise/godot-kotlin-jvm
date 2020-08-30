@@ -12,16 +12,18 @@ Ref<Script> KotlinScript::get_base_script() const {
 }
 
 StringName KotlinScript::get_instance_base_type() const {
-    if (ktClass) {
-        return ktClass->super_class;
+    KtClass* kotlinClass = get_kotlin_class();
+    if (kotlinClass) {
+        return kotlinClass->super_class;
     }
     // not found
     return StringName();
 }
 
 ScriptInstance* KotlinScript::instance_create(Object* p_this) {
+    print_verbose(vformat("Try to create %s instance.", get_kotlin_class()->name));
     jni::Env env = jni::Jvm::current_env();
-    KtObject *wrapped = ktClass->create_instance(env, nullptr, 0, p_this);
+    KtObject *wrapped = get_kotlin_class()->create_instance(env, nullptr, 0, p_this);
     return new KotlinInstance(wrapped, p_this);
 }
 
@@ -49,21 +51,23 @@ Error KotlinScript::reload(bool p_keep_state) {
 }
 
 bool KotlinScript::has_method(const StringName& p_method) const {
-    return ktClass ? ktClass->get_method(p_method) != nullptr : false;
+    KtClass* kotlinClass = get_kotlin_class();
+    return kotlinClass ? kotlinClass->get_method(p_method) != nullptr : false;
 }
 
 MethodInfo KotlinScript::get_method_info(const StringName& p_method) const {
-    if (!ktClass) {
+    KtClass* kotlinClass = get_kotlin_class();
+    if (!kotlinClass) {
         return MethodInfo();
     }
 
-    KtClass* it { ktClass };
+    KtClass* it { kotlinClass };
     while (it) {
-        KtMethod* method {ktClass->get_method(p_method)};
+        KtFunction* method {kotlinClass->get_method(p_method)};
         if (method) {
-            return method->get_method_info();
+            return *(method->get_method_info());
         }
-        it = GDKotlin::get_instance().find_class(ktClass->super_class);
+        it = GDKotlin::get_instance().find_class(kotlinClass->super_class);
     }
     return MethodInfo();
 }
@@ -93,10 +97,11 @@ bool KotlinScript::get_property_default_value(const StringName& p_property, Vari
 }
 
 void KotlinScript::get_script_method_list(List<MethodInfo>* p_list) const {
-    if (ktClass) {
-        const Vector<KtMethod*>& methods {ktClass->get_method_list()};
+    KtClass* kotlinClass = get_kotlin_class();
+    if (kotlinClass) {
+        const Vector<KtFunction*>& methods {kotlinClass->get_method_list()};
         for (int i = 0; i < methods.size(); i++) {
-            p_list->push_back(methods[i]->get_method_info());
+            p_list->push_back(*(methods[i]->get_method_info()));
         }
     }
 }
@@ -105,8 +110,6 @@ void KotlinScript::get_script_property_list(List<PropertyInfo>* p_list) const {
 
 }
 
-void KotlinScript::set_path(const String& p_path, bool p_take_over) {
-    //TODO: Manage path change.
-    Resource::set_path(p_path, p_take_over);
-    ktClass = GDKotlin::get_instance().find_class(get_path());
+KtClass* KotlinScript::get_kotlin_class() const {
+    return GDKotlin::get_instance().find_class(get_path());
 }

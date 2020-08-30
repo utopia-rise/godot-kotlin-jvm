@@ -8,7 +8,7 @@ class KotlinScript : public Script {
 
 private:
     String source;
-    KtClass *ktClass;
+    KtClass* get_kotlin_class() const;
 
 public:
     KotlinScript() = default;
@@ -51,8 +51,6 @@ public:
     void get_script_method_list(List<MethodInfo>* p_list) const override;
 
     void get_script_property_list(List<PropertyInfo>* p_list) const override;
-
-    void set_path(const String &p_path, bool p_take_over) override;
 
 };
 
