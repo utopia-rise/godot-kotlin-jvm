@@ -52,7 +52,7 @@ public:
 
     void get_script_property_list(List<PropertyInfo>* p_list) const override;
 
-    void set_path(const String &p_path, bool p_take_over = false) override;
+    void set_path(const String &p_path, bool p_take_over) override;
 
 };
 

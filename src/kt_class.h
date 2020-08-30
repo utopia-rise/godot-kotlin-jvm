@@ -12,8 +12,6 @@ public:
     StringName name;
     StringName super_class;
 
-    Map<StringName, KtMethod*> methods;
-
     KtClass(jni::JObject p_wrapped, jni::JObject& p_class_loader);
     ~KtClass();
 
@@ -21,7 +19,14 @@ public:
 
     KtMethod* get_method(const StringName& methodName);
 
+    const Vector<KtMethod*> get_method_list() const;
+
 private:
+    Map<StringName, KtMethod*> methods;
+    Vector<KtMethod*> method_list;
+
+    bool method_fetched;
+
     StringName get_name(jni::Env& env);
     StringName get_super_class(jni::Env& env);
 };

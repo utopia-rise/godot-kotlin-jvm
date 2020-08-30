@@ -1,6 +1,7 @@
 #include "kt_class.h"
 
-KtClass::KtClass(jni::JObject p_wrapped, jni::JObject& p_class_loader) : JavaInstanceWrapper("godot.core.KtClass", p_wrapped, p_class_loader) {
+KtClass::KtClass(jni::JObject p_wrapped, jni::JObject& p_class_loader) :
+    JavaInstanceWrapper("godot.core.KtClass", p_wrapped, p_class_loader), method_fetched(false) {
     auto env = jni::Jvm::current_env();
     name = get_name(env);
     super_class = get_super_class(env);
@@ -34,10 +35,15 @@ StringName KtClass::get_super_class(jni::Env& env) {
 }
 
 KtMethod* KtClass::get_method(const StringName& methodName) {
-    if (!methods.has(methodName)) {
-        KtMethod* kMethod = new KtMethod(methodName);
-        methods[methodName] = kMethod;
-        return kMethod;
+    if (!method_fetched) {
+        // TODO fetch methods
     }
     return methods[methodName];
+}
+
+const Vector<KtMethod*> KtClass::get_method_list() const {
+    if (!method_fetched) {
+        // TODO fetch methods
+    }
+    return method_list;
 }

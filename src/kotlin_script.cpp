@@ -49,7 +49,7 @@ Error KotlinScript::reload(bool p_keep_state) {
 }
 
 bool KotlinScript::has_method(const StringName& p_method) const {
-    return false;
+    return ktClass ? ktClass->get_method(p_method) != nullptr : false;
 }
 
 MethodInfo KotlinScript::get_method_info(const StringName& p_method) const {
@@ -93,7 +93,12 @@ bool KotlinScript::get_property_default_value(const StringName& p_property, Vari
 }
 
 void KotlinScript::get_script_method_list(List<MethodInfo>* p_list) const {
-
+    if (ktClass) {
+        const Vector<KtMethod*>& methods {ktClass->get_method_list()};
+        for (int i = 0; i < methods.size(); i++) {
+            p_list->push_back(methods[i]->get_method_info());
+        }
+    }
 }
 
 void KotlinScript::get_script_property_list(List<PropertyInfo>* p_list) const {
