@@ -1,11 +1,10 @@
 #include "kotlin_script.h"
-
 #include "kotlin_language.h"
 #include "kotlin_instance.h"
 #include "gd_kotlin.h"
 
-KtClass* KotlinScript::get_kt_class() const {
-    return GDKotlin::get_instance().find_class(get_path());
+KotlinScript::KotlinScript(): ktClass(GDKotlin::get_instance().find_class(get_path())) {
+
 }
 
 bool KotlinScript::can_instance() const {
@@ -17,9 +16,8 @@ Ref<Script> KotlinScript::get_base_script() const {
 }
 
 StringName KotlinScript::get_instance_base_type() const {
-    KtClass* cls = get_kt_class();
-    if (cls) {
-        return cls->super_class;
+    if (ktClass) {
+        return ktClass->super_class;
     }
     // not found
     return StringName();
@@ -27,7 +25,7 @@ StringName KotlinScript::get_instance_base_type() const {
 
 ScriptInstance* KotlinScript::instance_create(Object* p_this) {
     jni::Env env = jni::Jvm::current_env();
-    KtObject *wrapped = get_kt_class()->create_instance(env, nullptr, 0, p_this);
+    KtObject *wrapped = ktClass->create_instance(env, nullptr, 0, p_this);
     return new KotlinInstance(wrapped, p_this);
 }
 
@@ -59,6 +57,18 @@ bool KotlinScript::has_method(const StringName& p_method) const {
 }
 
 MethodInfo KotlinScript::get_method_info(const StringName& p_method) const {
+    if (!ktClass) {
+        return MethodInfo();
+    }
+
+    KtClass* it { ktClass };
+    while (it) {
+        KtMethod* method {ktClass->get_method(p_method)};
+        if (method) {
+            return method->get_method_info();
+        }
+        it = GDKotlin::get_instance().find_class(ktClass->super_class);
+    }
     return MethodInfo();
 }
 

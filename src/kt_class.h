@@ -5,16 +5,21 @@
 #include <core/reference.h>
 #include "java_instance_wrapper.h"
 #include "kt_object.h"
+#include "kt_method.h"
 
 class KtClass : public JavaInstanceWrapper {
 public:
     StringName name;
     StringName super_class;
 
+    Map<StringName, KtMethod*> methods;
+
     KtClass(jni::JObject p_wrapped, jni::JObject& p_class_loader);
-    ~KtClass() = default;
+    ~KtClass();
 
     KtObject* create_instance(jni::Env& env, const Variant** p_args, int p_arg_count, Object* p_owner);
+
+    KtMethod* get_method(const StringName& methodName);
 
 private:
     StringName get_name(jni::Env& env);

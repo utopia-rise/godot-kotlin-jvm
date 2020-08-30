@@ -8,10 +8,10 @@ class KotlinScript : public Script {
 
 private:
     String source;
+    KtClass *ktClass;
 
-    KtClass* get_kt_class() const;
 public:
-    KotlinScript() = default;
+    KotlinScript();
     ~KotlinScript() override = default;
 
     bool can_instance() const override;
