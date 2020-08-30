@@ -7,7 +7,14 @@ abstract class KtFunction<T: KtObject, R>(
     val parameterCount: Int
 ) {
     val registrationName = name.camelToSnakeCase()
-    abstract operator fun invoke(instance: T, vararg args: KtVariant): KtVariant
+    fun invoke(instance: T): Boolean {
+        val args = TransferContext.readArguments()
+        require(args.size == parameterCount) { "Expecting $parameterCount parameter(s) for function $name, but got ${args.size} instead." }
+        val ret = invoke(instance, args)
+        return TransferContext.writeReturnValue(ret)
+    }
+
+    protected abstract fun invoke(instance: T, args: List<KtVariant>): KtVariant
 }
 
 class KtFunction0<T: KtObject, R>(
@@ -15,7 +22,7 @@ class KtFunction0<T: KtObject, R>(
     private val function: (T) -> R,
     private val returnValueConverter: (R) -> KtVariant
 ) : KtFunction<T, R>(name, 0) {
-    override fun invoke(instance: T, vararg args: KtVariant): KtVariant {
+    override fun invoke(instance: T, args: List<KtVariant>): KtVariant {
         return returnValueConverter(
             function(instance)
         )
@@ -28,8 +35,7 @@ class KtFunction1<T: KtObject, P0, R>(
     private val returnValueConverter: (R) -> KtVariant,
     private val p0Converter: (KtVariant) -> P0
 ) : KtFunction<T, R>(name, 1) {
-    override fun invoke(instance: T, vararg args: KtVariant): KtVariant {
-        require(args.size == parameterCount) { "Expecting $parameterCount parameter(s), but got ${args.size} instead." }
+    override fun invoke(instance: T, args: List<KtVariant>): KtVariant {
         return returnValueConverter(
             function(
                 instance,

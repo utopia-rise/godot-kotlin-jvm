@@ -15,10 +15,4 @@ class KtClass<T : KtObject>(
             constructor(*args)
         }
     }
-
-    fun callFunction(name: String, instance: T, vararg args: KtVariant): KtVariant {
-        val function = functions[name]
-        check(function != null) { "Function with $name not found." }
-        return function(instance, *args)
-    }
 }
