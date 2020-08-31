@@ -12,7 +12,7 @@ class Entry : godot.runtime.Entry() {
 								KtVariant.Type.LONG,
 								"value",
 								"Int",
-								PropertyHint(),
+								PropertyHint.PROPERTY_HINT_NONE,
 								""
 						)
 				)), Invocation::int, ::KtVariant, KtVariant::asInt))
@@ -21,7 +21,7 @@ class Entry : godot.runtime.Entry() {
 								KtVariant.Type.LONG,
 								"value",
 								"Long",
-								PropertyHint(),
+								PropertyHint.PROPERTY_HINT_NONE,
 								""
 						)
 				)), Invocation::long, ::KtVariant, KtVariant::asLong))
@@ -30,7 +30,7 @@ class Entry : godot.runtime.Entry() {
 								KtVariant.Type.DOUBLE,
 								"value",
 								"Float",
-								PropertyHint(),
+								PropertyHint.PROPERTY_HINT_NONE,
 								""
 						)
 				)), Invocation::float, ::KtVariant, KtVariant::asFloat))
@@ -39,7 +39,7 @@ class Entry : godot.runtime.Entry() {
 								KtVariant.Type.DOUBLE,
 								"value",
 								"Double",
-								PropertyHint(),
+								PropertyHint.PROPERTY_HINT_NONE,
 								""
 						)
 				)), Invocation::double, ::KtVariant, KtVariant::asDouble))
@@ -48,7 +48,7 @@ class Entry : godot.runtime.Entry() {
 								KtVariant.Type.BOOL,
 								"value",
 								"Boolean",
-								PropertyHint(),
+								PropertyHint.PROPERTY_HINT_NONE,
 								""
 						)
 				)), Invocation::boolean, ::KtVariant, KtVariant::asBoolean))
@@ -57,7 +57,7 @@ class Entry : godot.runtime.Entry() {
 								KtVariant.Type.STRING,
 								"value",
 								"String",
-								PropertyHint(),
+								PropertyHint.PROPERTY_HINT_NONE,
 								""
 						)
 				)), Invocation::string, ::KtVariant, KtVariant::asString))

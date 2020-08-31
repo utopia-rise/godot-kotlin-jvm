@@ -2,20 +2,70 @@ package godot.core
 
 import godot.util.camelToSnakeCase
 
-class PropertyHint
+enum class PropertyHint {
+	PROPERTY_HINT_NONE, ///< no hint provided.
+	PROPERTY_HINT_RANGE, ///< hint_text = "min,max,step,slider; //slider is optional"
+	PROPERTY_HINT_EXP_RANGE, ///< hint_text = "min,max,step", exponential edit
+	PROPERTY_HINT_ENUM, ///< hint_text= "val1,val2,val3,etc"
+	PROPERTY_HINT_EXP_EASING, /// exponential easing function (Math::ease) use "attenuation" hint string to revert (flip h), "full" to also include in/out. (ie: "attenuation,inout")
+	PROPERTY_HINT_LENGTH, ///< hint_text= "length" (as integer)
+	PROPERTY_HINT_SPRITE_FRAME, // FIXME: Obsolete: drop whenever we can break compat. Keeping now for GDNative compat.
+	PROPERTY_HINT_KEY_ACCEL, ///< hint_text= "length" (as integer)
+	PROPERTY_HINT_FLAGS, ///< hint_text= "flag1,flag2,etc" (as bit flags)
+	PROPERTY_HINT_LAYERS_2D_RENDER,
+	PROPERTY_HINT_LAYERS_2D_PHYSICS,
+	PROPERTY_HINT_LAYERS_3D_RENDER,
+	PROPERTY_HINT_LAYERS_3D_PHYSICS,
+	PROPERTY_HINT_FILE, ///< a file path must be passed, hint_text (optionally) is a filter "*.png,*.wav,*.doc,"
+	PROPERTY_HINT_DIR, ///< a directory path must be passed
+	PROPERTY_HINT_GLOBAL_FILE, ///< a file path must be passed, hint_text (optionally) is a filter "*.png,*.wav,*.doc,"
+	PROPERTY_HINT_GLOBAL_DIR, ///< a directory path must be passed
+	PROPERTY_HINT_RESOURCE_TYPE, ///< a resource object type
+	PROPERTY_HINT_MULTILINE_TEXT, ///< used for string properties that can contain multiple lines
+	PROPERTY_HINT_PLACEHOLDER_TEXT, ///< used to set a placeholder text for string properties
+	PROPERTY_HINT_COLOR_NO_ALPHA, ///< used for ignoring alpha component when editing a color
+	PROPERTY_HINT_IMAGE_COMPRESS_LOSSY,
+	PROPERTY_HINT_IMAGE_COMPRESS_LOSSLESS,
+	PROPERTY_HINT_OBJECT_ID,
+	PROPERTY_HINT_TYPE_STRING, ///< a type string, the hint is the base type to choose
+	PROPERTY_HINT_NODE_PATH_TO_EDITED_NODE, ///< so something else can provide this (used in scripts)
+	PROPERTY_HINT_METHOD_OF_VARIANT_TYPE, ///< a method of a type
+	PROPERTY_HINT_METHOD_OF_BASE_TYPE, ///< a method of a base type
+	PROPERTY_HINT_METHOD_OF_INSTANCE, ///< a method of an instance
+	PROPERTY_HINT_METHOD_OF_SCRIPT, ///< a method of a script & base
+	PROPERTY_HINT_PROPERTY_OF_VARIANT_TYPE, ///< a property of a type
+	PROPERTY_HINT_PROPERTY_OF_BASE_TYPE, ///< a property of a base type
+	PROPERTY_HINT_PROPERTY_OF_INSTANCE, ///< a property of an instance
+	PROPERTY_HINT_PROPERTY_OF_SCRIPT, ///< a property of a script & base
+	PROPERTY_HINT_OBJECT_TOO_BIG, ///< object is too big to send
+	PROPERTY_HINT_NODE_PATH_VALID_TYPES,
+	PROPERTY_HINT_SAVE_FILE, ///< a file path must be passed, hint_text (optionally) is a filter "*.png,*.wav,*.doc,". This opens a save dialog
+	PROPERTY_HINT_MAX,
+	// When updating PropertyHint, also sync the hardcoded list in VisualScriptEditorVariableEdit
+};
 
 data class KtPropertyInfo (
-		val type: KtVariant.Type,
+		val _type: KtVariant.Type,
 		val name: String,
 		val className: String,
-		val hint: PropertyHint,
+		val _hint: PropertyHint,
 		val hintString: String
-)
+) {
+	val type: Int
+		get() = (KtVariant.TYPE_TO_WIRE_VALUE_TYPE[_type] ?: error("Unknown mapping to Wire type for ${_type.name}"))
+				.number
+
+	val hint: Int
+		get() = _hint.ordinal
+}
 
 data class KtFunctionInfo (
 		val name: String,
-		val propertyInfos: List<KtPropertyInfo>
-)
+		val _propertyInfos: List<KtPropertyInfo>
+) {
+	val propertyInfos: Array<KtPropertyInfo>
+		get() = _propertyInfos.toTypedArray()
+}
 
 abstract class KtFunction<T: KtObject, R>(
 		val functionInfo: KtFunctionInfo,

@@ -19,6 +19,8 @@ static const int CONST_VARIANT_TRANSFORM = Variant::TRANSFORM;
 static void(*TO_KT_VARIANT_FROM[27 /* Variant::Type count */])(wire::Value&, const Variant&);
 static Variant(*TO_GODOT_VARIANT_FROM[27 /* KVariant::TypeCase count */])(const wire::Value&);
 
+static Variant::Type WIRE_TYPE_CASE_TO_VARIANT_TYPE[15];
+
 KtVariant::KtVariant(wire::Value value) : value(value) {}
 
 void to_kvariant_fromNIL(wire::Value& des, const Variant& src) {
@@ -253,4 +255,24 @@ void KtVariant::initMethodArray() {
     TO_GODOT_VARIANT_FROM[wire::Value::kAabbValue - 1] = from_kvariant_tokAabbValue;
     TO_GODOT_VARIANT_FROM[wire::Value::kBasisValue - 1] = from_kvariant_tokBasisValue;
     TO_GODOT_VARIANT_FROM[wire::Value::kTransformValue - 1] = from_kvariant_tokTransformValue;
+
+    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kNilValue] = Variant::Type::NIL;
+    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kBoolValue] = Variant::Type::BOOL;
+    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kLongValue] = Variant::Type::INT;
+    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kRealValue] = Variant::Type::REAL;
+    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kStringValue] = Variant::Type::STRING;
+    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kVector2Value] = Variant::Type::VECTOR2;
+    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kRect2Value] = Variant::Type::RECT2;
+    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kVector3Value] = Variant::Type::VECTOR3;
+    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kTransform2DValue] = Variant::Type::TRANSFORM2D;
+    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kPlaneValue] = Variant::Type::PLANE;
+    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kQuatValue] = Variant::Type::QUAT;
+    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kAabbValue] = Variant::Type::AABB;
+    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kBasisValue] = Variant::Type::BASIS;
+    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kTransformValue] = Variant::Type::TRANSFORM;
+    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::TYPE_NOT_SET] = Variant::Type::VARIANT_MAX;
+}
+
+Variant::Type KtVariant::fromWireType(wire::Value::TypeCase typeCase) {
+    return WIRE_TYPE_CASE_TO_VARIANT_TYPE[typeCase];
 }

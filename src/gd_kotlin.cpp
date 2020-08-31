@@ -108,8 +108,8 @@ void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
     print_line("Loading classes ...");
     for (auto i = 0; i < p_classes.length(p_env); i++) {
         auto kt_class = new KtClass(p_classes.get(p_env, i), class_loader);
-        print_verbose(vformat("Loading class %s : %s", kt_class->name, kt_class->super_class));
         classes[kt_class->name] = kt_class;
+        print_verbose(vformat("Loaded class %s : %s", kt_class->name, kt_class->super_class));
     }
 }
 
