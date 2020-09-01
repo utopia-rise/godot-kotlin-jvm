@@ -61,10 +61,11 @@ data class KtPropertyInfo (
 
 data class KtFunctionInfo (
 		val name: String,
-		val _propertyInfos: List<KtPropertyInfo>
+		val _arguments: List<KtPropertyInfo>,
+		val returnVal: KtPropertyInfo
 ) {
-	val propertyInfos: Array<KtPropertyInfo>
-		get() = _propertyInfos.toTypedArray()
+	val arguments: Array<KtPropertyInfo>
+		get() = _arguments.toTypedArray()
 }
 
 abstract class KtFunction<T: KtObject, R>(

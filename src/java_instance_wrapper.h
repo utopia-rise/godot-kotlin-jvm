@@ -17,7 +17,7 @@ private:
 
     ClassCache& get_class_cache(jni::Env& env) const;
 protected:
-    String class_name;
+    String classname;
     jni::JObject wrapped;
     jni::JObject class_loader;
 

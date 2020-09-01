@@ -4,14 +4,15 @@
 
 #include <core/object.h>
 #include "java_instance_wrapper.h"
-#include "kt_property_info.h"
 
-struct KtFunctionInfo : public MethodInfo, JavaInstanceWrapper {
+struct KtPropertyInfo : public JavaInstanceWrapper, PropertyInfo {
+    KtPropertyInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader);
+    ~KtPropertyInfo() = default;
+};
+
+struct KtFunctionInfo : public JavaInstanceWrapper, MethodInfo {
     KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader);
-    ~KtFunctionInfo();
-
-private:
-    Vector<KtPropertyInfo *> property_infos;
+    ~KtFunctionInfo() = default;
 };
 
 class KtFunction : JavaInstanceWrapper {
