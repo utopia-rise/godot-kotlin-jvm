@@ -5,17 +5,31 @@
 #include <core/object.h>
 #include "java_instance_wrapper.h"
 
-struct KtPropertyInfo : public JavaInstanceWrapper, PropertyInfo {
+struct KtPropertyInfo : public JavaInstanceWrapper {
     KtPropertyInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader);
     ~KtPropertyInfo() = default;
+
+    Variant::Type type;
+    String name;
+    StringName class_name;
+    PropertyHint hint;
+    String hint_string;
+
+    PropertyInfo toPropertyInfo();
 };
 
-struct KtFunctionInfo : public JavaInstanceWrapper, MethodInfo {
+struct KtFunctionInfo : public JavaInstanceWrapper{
     KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader);
-    ~KtFunctionInfo() = default;
+    ~KtFunctionInfo();
+
+    String name;
+    List<KtPropertyInfo*> arguments;
+    KtPropertyInfo* return_val;
+
+    MethodInfo toMethodInfo() const;
 };
 
-class KtFunction : JavaInstanceWrapper {
+class KtFunction : public JavaInstanceWrapper {
 private:
     StringName name;
     int parameterCount;
@@ -28,7 +42,7 @@ public:
     StringName get_name() const;
     int getParameterCount() const;
 
-    MethodInfo* get_method_info();
+    MethodInfo get_method_info();
 };
 
 

@@ -30,7 +30,7 @@ Error read_all_file_utf8(const String &p_path, String &r_content) {
 RES KtResourceFormatLoader::load(const String& p_path, const String& p_original_path, Error* r_error) {
     KotlinScript* script = memnew(KotlinScript);
     Ref<KotlinScript> ref(script);
-    ref->set_path(p_original_path, false);
+    ref->set_path(p_original_path);
     ref->reload(false);
 
     String source_code;

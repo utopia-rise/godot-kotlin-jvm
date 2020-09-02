@@ -10,11 +10,13 @@ KtClass::KtClass(jni::JObject p_wrapped, jni::JObject& p_class_loader) :
 }
 
 KtClass::~KtClass() {
-    for (int i = 0; i < methods.size(); i++) {
-        Map<StringName, KtFunction*, Comparator<StringName>, DefaultAllocator>::Element* pElement = methods.front();
-        methods.erase(pElement);
-        delete pElement->value();
+    Map<StringName, KtFunction*>::Element* current = methods.front();
+    while (current) {
+        KtFunction* function = current->value();
+        delete function;
+        current = current->next();
     }
+    methods.clear();
 }
 
 KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_arg_count, Object* p_owner) {
@@ -27,10 +29,6 @@ KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_
 
 KtFunction* KtClass::get_method(const StringName& methodName) {
     return methods[methodName];
-}
-
-const Vector<KtFunction*> KtClass::get_method_list() {
-    return method_list;
 }
 
 KtClass* KtClass::get_parent_class() const {
@@ -58,8 +56,15 @@ void KtClass::fetch_methods(jni::Env& env) {
     jni::JObjectArray functionsArray { wrapped.call_object_method(env, getFunctionsMethod) };
     for (int i = 0; i < functionsArray.length(env); i++) {
         auto* ktFunction = new KtFunction(functionsArray.get(env, i), GDKotlin::get_instance().get_class_loader());
-        method_list.push_back(ktFunction);
-        methods[StringName(ktFunction->get_name())] = ktFunction;
+        methods[ktFunction->get_name()] = ktFunction;
         print_verbose(vformat("Fetched method %s for class %s", ktFunction->get_name(), name));
+    }
+}
+
+void KtClass::get_method_list(List<MethodInfo>* p_list) {
+    Map<StringName, KtFunction*>::Element* current = methods.front();
+    while (current) {
+        p_list->push_back(current->value()->get_method_info());
+        current = current->next();
     }
 }

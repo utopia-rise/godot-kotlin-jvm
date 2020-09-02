@@ -20,11 +20,10 @@ public:
     KtClass* get_parent_class() const;
     KtClass* get_native_base() const;
 
-    const Vector<KtFunction*> get_method_list();
+    void get_method_list(List<MethodInfo>* p_list);
 
 private:
     Map<StringName, KtFunction*> methods;
-    Vector<KtFunction*> method_list;
 
     StringName get_name(jni::Env& env);
     StringName get_super_class(jni::Env& env);
