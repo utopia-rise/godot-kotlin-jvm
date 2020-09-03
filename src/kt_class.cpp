@@ -31,14 +31,6 @@ KtFunction* KtClass::get_method(const StringName& methodName) {
     return methods[methodName];
 }
 
-KtClass* KtClass::get_parent_class() const {
-    return GDKotlin::get_instance().find_class(super_class);
-}
-
-KtClass* KtClass::get_native_base() const {
-    return nullptr;
-}
-
 StringName KtClass::get_name(jni::Env& env) {
     auto getter =  get_method_id(env, "getName", "()Ljava/lang/String;");
     jni::JObject ret = wrapped.call_object_method(env, getter);

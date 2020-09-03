@@ -17,8 +17,6 @@ public:
 
     KtObject* create_instance(jni::Env& env, const Variant** p_args, int p_arg_count, Object* p_owner);
     KtFunction* get_method(const StringName& methodName);
-    KtClass* get_parent_class() const;
-    KtClass* get_native_base() const;
 
     void get_method_list(List<MethodInfo>* p_list);
 

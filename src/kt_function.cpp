@@ -45,7 +45,7 @@ KtPropertyInfo::KtPropertyInfo(jni::JObject p_wrapped, jni::JObject& p_class_loa
 }
 
 PropertyInfo KtPropertyInfo::toPropertyInfo() {
-    PropertyInfo info = PropertyInfo();
+    PropertyInfo info;
     info.type = type;
     info.name = name;
     info.class_name = class_name;
@@ -81,7 +81,7 @@ KtFunctionInfo::~KtFunctionInfo() {
 }
 
 MethodInfo KtFunctionInfo::toMethodInfo() const {
-    MethodInfo methodInfo = MethodInfo();
+    MethodInfo methodInfo;
     methodInfo.name = name;
     List<PropertyInfo> pInfoList;
     for (int i = 0; i < arguments.size(); i++) {
