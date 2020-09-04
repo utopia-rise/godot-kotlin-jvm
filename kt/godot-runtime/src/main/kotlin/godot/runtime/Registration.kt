@@ -4,17 +4,12 @@ import godot.core.*
 
 class KtPropertyInfoBuilderDsl {
     var type: KtVariant.Type? = null
-    var name: String? = null
+    var name: String = ""
     var className: String? = null
     var hint: PropertyHint = PropertyHint.NONE
     var hintString: String = ""
 
-    internal fun build(): KtPropertyInfo {
-        checkNotNull(type)
-        checkNotNull(name)
-        checkNotNull(className)
-        return KtPropertyInfo(type!!, name!!, className!!, hint, hintString)
-    }
+    internal fun build() = KtPropertyInfo(checkNotNull(type), name, checkNotNull(className), hint, hintString)
 }
 
 class ClassBuilderDsl<T : KtObject>(
@@ -32,7 +27,7 @@ class ClassBuilderDsl<T : KtObject>(
         constructors[constructor.parameterCount] = constructor
     }
 
-    fun <R> function0(funcName: String,
+    fun <R> function(funcName: String,
                       func: (T) -> R,
                       returnValueConverter: (R) -> KtVariant,
                       returns: KtPropertyInfoBuilderDsl.() -> Unit) {
@@ -47,7 +42,7 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, R> function1(funcName: String,
+    fun <P0, R> function(funcName: String,
                           func: (T, P0) -> R,
                           returnValueConverter: (R) -> KtVariant,
                           p0Converter: (KtVariant) -> P0,
@@ -64,7 +59,7 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, P1, R> function2(funcName: String,
+    fun <P0, P1, R> function(funcName: String,
                               func: (T, P0, P1) -> R,
                               returnValueConverter: (R) -> KtVariant,
                               p0Converter: (KtVariant) -> P0,
@@ -86,7 +81,7 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, P1, P2, R> function3(funcName: String,
+    fun <P0, P1, P2, R> function(funcName: String,
                                   func: (T, P0, P1, P2) -> R,
                                   returnValueConverter: (R) -> KtVariant,
                                   p0Converter: (KtVariant) -> P0,
@@ -110,7 +105,7 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, P1, P2, P3, R> function4(funcName: String,
+    fun <P0, P1, P2, P3, R> function(funcName: String,
                                       func: (T, P0, P1, P2, P3) -> R,
                                       returnValueConverter: (R) -> KtVariant,
                                       p0Converter: (KtVariant) -> P0,
@@ -136,7 +131,7 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, P1, P2, P3, P4, R> function5(funcName: String,
+    fun <P0, P1, P2, P3, P4, R> function(funcName: String,
                                           func: (T, P0, P1, P2, P3, P4) -> R,
                                           returnValueConverter: (R) -> KtVariant,
                                           p0Converter: (KtVariant) -> P0,
@@ -171,11 +166,20 @@ class ClassBuilderDsl<T : KtObject>(
         val returnBuilder = KtPropertyInfoBuilderDsl()
         returnBuilder.returns()
 
+        val argumentsCheckList = mutableSetOf<String>()
+
+        val returnInfo = returnBuilder.build()
         return args.map {
             val builder = KtPropertyInfoBuilderDsl()
             builder.it()
-            builder.build()
-        } to returnBuilder.build()
+            val propertyInfo = builder.build()
+            require(!argumentsCheckList.contains(propertyInfo.name)) {
+                "Cannot have two arguments with name ${propertyInfo.name}"
+            }
+            require(propertyInfo.name.isNotEmpty()) { "Function parameters should have names." }
+            argumentsCheckList.add(propertyInfo.name)
+            propertyInfo
+        } to returnInfo
     }
 
     private fun <R> appendFunction(function: KtFunction<T, R>) {
