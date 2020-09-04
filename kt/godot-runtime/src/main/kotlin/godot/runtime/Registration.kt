@@ -51,9 +51,9 @@ class ClassBuilderDsl<T : KtObject>(
                           func: (T, P0) -> R,
                           returnValueConverter: (R) -> KtVariant,
                           p0Converter: (KtVariant) -> P0,
-                          args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
+                          arg: KtPropertyInfoBuilderDsl.() -> Unit,
                           returns: KtPropertyInfoBuilderDsl.() -> Unit) {
-        val (arguments, returnType) = argumentsAndReturnType(args, returns)
+        val (arguments, returnType) = argumentsAndReturnType(returns, arg)
         appendFunction(
                 KtFunction1(
                         KtFunctionInfo(funcName, arguments, returnType),
@@ -71,7 +71,10 @@ class ClassBuilderDsl<T : KtObject>(
                               p1Converter: (KtVariant) -> P1,
                               args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
                               returns: KtPropertyInfoBuilderDsl.() -> Unit) {
-        val (arguments, returnType) = argumentsAndReturnType(args, returns)
+        val (arguments, returnType) = argumentsAndReturnType(returns, *args)
+        require(args.size == 2) {
+            "Function $funcName should have 2 arguments, found ${args.size}"
+        }
         appendFunction(
                 KtFunction2(
                         KtFunctionInfo(funcName, arguments, returnType),
@@ -91,7 +94,10 @@ class ClassBuilderDsl<T : KtObject>(
                                   p2Converter: (KtVariant) -> P2,
                                   args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
                                   returns: KtPropertyInfoBuilderDsl.() -> Unit) {
-        val (arguments, returnType) = argumentsAndReturnType(args, returns)
+        val (arguments, returnType) = argumentsAndReturnType(returns, *args)
+        require(args.size == 3) {
+            "Function $funcName should have 3 arguments, found ${args.size}"
+        }
         appendFunction(
                 KtFunction3(
                         KtFunctionInfo(funcName, arguments, returnType),
@@ -113,7 +119,10 @@ class ClassBuilderDsl<T : KtObject>(
                                       p3Converter: (KtVariant) -> P3,
                                       args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
                                       returns: KtPropertyInfoBuilderDsl.() -> Unit) {
-        val (arguments, returnType) = argumentsAndReturnType(args, returns)
+        val (arguments, returnType) = argumentsAndReturnType(returns, *args)
+        require(args.size == 4) {
+            "Function $funcName should have 4 arguments, found ${args.size}"
+        }
         appendFunction(
                 KtFunction4(
                         KtFunctionInfo(funcName, arguments, returnType),
@@ -137,7 +146,10 @@ class ClassBuilderDsl<T : KtObject>(
                                           p4Converter: (KtVariant) -> P4,
                                           args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
                                           returns: KtPropertyInfoBuilderDsl.() -> Unit) {
-        val (arguments, returnType) = argumentsAndReturnType(args, returns)
+        val (arguments, returnType) = argumentsAndReturnType(returns, *args)
+        require(args.size == 5) {
+            "Function $funcName should have 5 arguments, found ${args.size}"
+        }
         appendFunction(
                 KtFunction5(
                         KtFunctionInfo(funcName, arguments, returnType),
@@ -152,8 +164,10 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    private fun argumentsAndReturnType(args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
-                                       returns: KtPropertyInfoBuilderDsl.() -> Unit): Pair<List<KtPropertyInfo>, KtPropertyInfo> {
+    private fun argumentsAndReturnType(
+            returns: KtPropertyInfoBuilderDsl.() -> Unit,
+            vararg args: KtPropertyInfoBuilderDsl.() -> Unit
+    ): Pair<List<KtPropertyInfo>, KtPropertyInfo> {
         val returnBuilder = KtPropertyInfoBuilderDsl()
         returnBuilder.returns()
 

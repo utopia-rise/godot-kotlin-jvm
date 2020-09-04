@@ -8,26 +8,23 @@ class Entry : godot.runtime.Entry() {
             registerClass<Invocation>(Invocation::class.qualifiedName!!, "Spatial") {
                 constructor(KtConstructor0(::Invocation))
                 function1("int", Invocation::int, ::KtVariant, KtVariant::asInt,
-                        args = arrayOf(
-                                {
-                                    name = "value"
-                                    type = KtVariant.Type.LONG
-                                    className = "Int"
-                                }
-                        ),
+                        arg = {
+                            name = "value"
+                            type = KtVariant.Type.LONG
+                            className = "Int"
+                        },
                         returns = {
                             name = "value"
                             type = KtVariant.Type.LONG
                             className = "Int"
-                        })
+                        }
+                )
                 function1("long", Invocation::long, ::KtVariant, KtVariant::asLong,
-                        args = arrayOf(
-                                {
-                                    name = "value"
-                                    type = KtVariant.Type.LONG
-                                    className = "Long"
-                                }
-                        ),
+                        arg = {
+                            name = "value"
+                            type = KtVariant.Type.LONG
+                            className = "Long"
+                        },
                         returns = {
                             name = "value"
                             type = KtVariant.Type.LONG
@@ -35,13 +32,11 @@ class Entry : godot.runtime.Entry() {
                         }
                 )
                 function1("float", Invocation::float, ::KtVariant, KtVariant::asFloat,
-                        args = arrayOf(
-                                {
-                                    name = "value"
-                                    type = KtVariant.Type.DOUBLE
-                                    className = "Float"
-                                }
-                        ),
+                        arg = {
+                            name = "value"
+                            type = KtVariant.Type.DOUBLE
+                            className = "Float"
+                        },
                         returns = {
                             name = "value"
                             type = KtVariant.Type.DOUBLE
@@ -49,13 +44,11 @@ class Entry : godot.runtime.Entry() {
                         }
                 )
                 function1("double", Invocation::double, ::KtVariant, KtVariant::asDouble,
-                        args = arrayOf(
-                                {
-                                    name = "value"
-                                    type = KtVariant.Type.DOUBLE
-                                    className = "Double"
-                                }
-                        ),
+                        arg = {
+                            name = "value"
+                            type = KtVariant.Type.DOUBLE
+                            className = "Double"
+                        },
                         returns = {
                             name = "value"
                             type = KtVariant.Type.DOUBLE
@@ -63,13 +56,11 @@ class Entry : godot.runtime.Entry() {
                         }
                 )
                 function1("boolean", Invocation::boolean, ::KtVariant, KtVariant::asBoolean,
-                        args = arrayOf(
-                                {
-                                    name = "value"
-                                    type = KtVariant.Type.BOOL
-                                    className = "Boolean"
-                                }
-                        ),
+                        arg = {
+                            name = "value"
+                            type = KtVariant.Type.BOOL
+                            className = "Boolean"
+                        },
                         returns = {
                             name = "value"
                             type = KtVariant.Type.BOOL
@@ -77,13 +68,11 @@ class Entry : godot.runtime.Entry() {
                         }
                 )
                 function1("string", Invocation::string, ::KtVariant, KtVariant::asString,
-                        args = arrayOf(
-                                {
-                                    name = "value"
-                                    type = KtVariant.Type.STRING
-                                    className = "String"
-                                }
-                        ),
+                        arg = {
+                            name = "value"
+                            type = KtVariant.Type.STRING
+                            className = "String"
+                        },
                         returns = {
                             name = "value"
                             type = KtVariant.Type.STRING
