@@ -7,114 +7,89 @@ class Entry : godot.runtime.Entry() {
         with(registry) {
             registerClass<Invocation>(Invocation::class.qualifiedName!!, "Spatial") {
                 constructor(KtConstructor0(::Invocation))
-                function(KtFunction1(KtFunctionInfo("int",
-                        listOf(
-                                KtPropertyInfo(
-                                        KtVariant.Type.LONG,
-                                        "value",
-                                        "Int",
-                                        PropertyHint.NONE,
-                                        ""
-                                )
+                function1("int", Invocation::int, ::KtVariant, KtVariant::asInt,
+                        args = arrayOf(
+                                {
+                                    name = "value"
+                                    type = KtVariant.Type.LONG
+                                    className = "Int"
+                                }
                         ),
-                        KtPropertyInfo(
-                                KtVariant.Type.LONG,
-                                "value",
-                                "Int",
-                                PropertyHint.NONE,
-                                ""
-                        )
-                ), Invocation::int, ::KtVariant, KtVariant::asInt))
-                function(KtFunction1(KtFunctionInfo("long",
-                        listOf(
-                                KtPropertyInfo(
-                                        KtVariant.Type.LONG,
-                                        "value",
-                                        "Long",
-                                        PropertyHint.NONE,
-                                        ""
-                                )
+                        returns = {
+                            name = "value"
+                            type = KtVariant.Type.LONG
+                            className = "Int"
+                        })
+                function1("long", Invocation::long, ::KtVariant, KtVariant::asLong,
+                        args = arrayOf(
+                                {
+                                    name = "value"
+                                    type = KtVariant.Type.LONG
+                                    className = "Long"
+                                }
                         ),
-                        KtPropertyInfo(
-                                KtVariant.Type.LONG,
-                                "value",
-                                "Long",
-                                PropertyHint.NONE,
-                                ""
-                        )
-                ), Invocation::long, ::KtVariant, KtVariant::asLong))
-                function(KtFunction1(KtFunctionInfo("float",
-                        listOf(
-                                KtPropertyInfo(
-                                        KtVariant.Type.DOUBLE,
-                                        "value",
-                                        "Float",
-                                        PropertyHint.NONE,
-                                        ""
-                                )
+                        returns = {
+                            name = "value"
+                            type = KtVariant.Type.LONG
+                            className = "Long"
+                        }
+                )
+                function1("float", Invocation::float, ::KtVariant, KtVariant::asFloat,
+                        args = arrayOf(
+                                {
+                                    name = "value"
+                                    type = KtVariant.Type.DOUBLE
+                                    className = "Float"
+                                }
                         ),
-                        KtPropertyInfo(
-                                KtVariant.Type.DOUBLE,
-                                "value",
-                                "Float",
-                                PropertyHint.NONE,
-                                ""
-                        )
-                ), Invocation::float, ::KtVariant, KtVariant::asFloat))
-                function(KtFunction1(KtFunctionInfo("double",
-                        listOf(
-                                KtPropertyInfo(
-                                        KtVariant.Type.DOUBLE,
-                                        "value",
-                                        "Double",
-                                        PropertyHint.NONE,
-                                        ""
-                                )
+                        returns = {
+                            name = "value"
+                            type = KtVariant.Type.DOUBLE
+                            className = "Float"
+                        }
+                )
+                function1("double", Invocation::double, ::KtVariant, KtVariant::asDouble,
+                        args = arrayOf(
+                                {
+                                    name = "value"
+                                    type = KtVariant.Type.DOUBLE
+                                    className = "Double"
+                                }
                         ),
-                        KtPropertyInfo(
-                                KtVariant.Type.DOUBLE,
-                                "value",
-                                "Double",
-                                PropertyHint.NONE,
-                                ""
-                        )
-                ), Invocation::double, ::KtVariant, KtVariant::asDouble))
-                function(KtFunction1(KtFunctionInfo("boolean",
-                        listOf(
-                                KtPropertyInfo(
-                                        KtVariant.Type.BOOL,
-                                        "value",
-                                        "Boolean",
-                                        PropertyHint.NONE,
-                                        ""
-                                )
+                        returns = {
+                            name = "value"
+                            type = KtVariant.Type.DOUBLE
+                            className = "Double"
+                        }
+                )
+                function1("boolean", Invocation::boolean, ::KtVariant, KtVariant::asBoolean,
+                        args = arrayOf(
+                                {
+                                    name = "value"
+                                    type = KtVariant.Type.BOOL
+                                    className = "Boolean"
+                                }
                         ),
-                        KtPropertyInfo(
-                                KtVariant.Type.BOOL,
-                                "value",
-                                "Boolean",
-                                PropertyHint.NONE,
-                                ""
-                        )
-                ), Invocation::boolean, ::KtVariant, KtVariant::asBoolean))
-                function(KtFunction1(KtFunctionInfo("string",
-                        listOf(
-                                KtPropertyInfo(
-                                        KtVariant.Type.STRING,
-                                        "value",
-                                        "String",
-                                        PropertyHint.NONE,
-                                        ""
-                                )
+                        returns = {
+                            name = "value"
+                            type = KtVariant.Type.BOOL
+                            className = "Boolean"
+                        }
+                )
+                function1("string", Invocation::string, ::KtVariant, KtVariant::asString,
+                        args = arrayOf(
+                                {
+                                    name = "value"
+                                    type = KtVariant.Type.STRING
+                                    className = "String"
+                                }
                         ),
-                        KtPropertyInfo(
-                                KtVariant.Type.STRING,
-                                "value",
-                                "String",
-                                PropertyHint.NONE,
-                                ""
-                        )
-                ), Invocation::string, ::KtVariant, KtVariant::asString))
+                        returns = {
+                            name = "value"
+                            type = KtVariant.Type.STRING
+                            className = "String"
+                        }
+                )
             }
         }
     }
