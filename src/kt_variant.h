@@ -14,6 +14,8 @@ public:
     ~KtVariant() = default;
 
     static void initMethodArray();
+    static Variant::Type fromWireType(wire::Value::TypeCase typeCase);
+
     const wire::Value& get_value() const;
     Variant to_godot_variant() const;
 };

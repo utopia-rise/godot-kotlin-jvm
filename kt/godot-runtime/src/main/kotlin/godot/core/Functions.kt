@@ -2,56 +2,123 @@ package godot.core
 
 import godot.util.camelToSnakeCase
 
-abstract class KtFunction<T: KtObject, R>(
-    val name: String,
-    val parameterCount: Int,
+enum class PropertyHint {
+    NONE, ///< no hint provided.
+    RANGE, ///< hint_text = "min,max,step,slider; //slider is optional"
+    EXP_RANGE, ///< hint_text = "min,max,step", exponential edit
+    ENUM, ///< hint_text= "val1,val2,val3,etc"
+    EXP_EASING, /// exponential easing function (Math::ease) use "attenuation" hint string to revert (flip h), "full" to also include in/out. (ie: "attenuation,inout")
+    LENGTH, ///< hint_text= "length" (as integer)
+    SPRITE_FRAME, // FIXME: Obsolete: drop whenever we can break compat. Keeping now for GDNative compat.
+    KEY_ACCEL, ///< hint_text= "length" (as integer)
+    FLAGS, ///< hint_text= "flag1,flag2,etc" (as bit flags)
+    LAYERS_2D_RENDER,
+    LAYERS_2D_PHYSICS,
+    LAYERS_3D_RENDER,
+    LAYERS_3D_PHYSICS,
+    FILE, ///< a file path must be passed, hint_text (optionally) is a filter "*.png,*.wav,*.doc,"
+    DIR, ///< a directory path must be passed
+    GLOBAL_FILE, ///< a file path must be passed, hint_text (optionally) is a filter "*.png,*.wav,*.doc,"
+    GLOBAL_DIR, ///< a directory path must be passed
+    RESOURCE_TYPE, ///< a resource object type
+    MULTILINE_TEXT, ///< used for string properties that can contain multiple lines
+    PLACEHOLDER_TEXT, ///< used to set a placeholder text for string properties
+    COLOR_NO_ALPHA, ///< used for ignoring alpha component when editing a color
+    IMAGE_COMPRESS_LOSSY,
+    IMAGE_COMPRESS_LOSSLESS,
+    OBJECT_ID,
+    TYPE_STRING, ///< a type string, the hint is the base type to choose
+    NODE_PATH_TO_EDITED_NODE, ///< so something else can provide this (used in scripts)
+    METHOD_OF_VARIANT_TYPE, ///< a method of a type
+    METHOD_OF_BASE_TYPE, ///< a method of a base type
+    METHOD_OF_INSTANCE, ///< a method of an instance
+    METHOD_OF_SCRIPT, ///< a method of a script & base
+    PROPERTY_OF_VARIANT_TYPE, ///< a property of a type
+    PROPERTY_OF_BASE_TYPE, ///< a property of a base type
+    PROPERTY_OF_INSTANCE, ///< a property of an instance
+    PROPERTY_OF_SCRIPT, ///< a property of a script & base
+    OBJECT_TOO_BIG, ///< object is too big to send
+    NODE_PATH_VALID_TYPES,
+    SAVE_FILE, ///< a file path must be passed, hint_text (optionally) is a filter "*.png,*.wav,*.doc,". This opens a save dialog
+    MAX,
+    // When updating PropertyHint, also sync the hardcoded list in VisualScriptEditorVariableEdit
+};
+
+data class KtPropertyInfo(
+        val _type: KtVariant.Type,
+        val name: String,
+        val className: String,
+        val _hint: PropertyHint,
+        val hintString: String
 ) {
-    val registrationName = name.camelToSnakeCase()
+    val type: Int
+        get() = (KtVariant.TYPE_TO_WIRE_VALUE_TYPE[_type] ?: error("Unknown mapping to Wire type for ${_type.name}"))
+                .number
+
+    val hint: Int
+        get() = _hint.ordinal
+}
+
+data class KtFunctionInfo(
+        val name: String,
+        val _arguments: List<KtPropertyInfo>,
+        val returnVal: KtPropertyInfo
+) {
+    val arguments: Array<KtPropertyInfo>
+        get() = _arguments.toTypedArray()
+}
+
+abstract class KtFunction<T : KtObject, R>(
+        val functionInfo: KtFunctionInfo,
+        val parameterCount: Int
+) {
+    val registrationName = functionInfo.name.camelToSnakeCase()
     fun invoke(instance: T): Boolean {
         val args = TransferContext.readArguments()
-        require(args.size == parameterCount) { "Expecting $parameterCount parameter(s) for function $name, but got ${args.size} instead." }
+        require(args.size == parameterCount) { "Expecting $parameterCount parameter(s) for function ${functionInfo.name}, but got ${args.size} instead." }
         val ret = invoke(instance, args)
         return TransferContext.writeReturnValue(ret)
     }
 
-    protected abstract fun invoke(instance: T, args: List<KtVariant>): KtVariant
+    internal abstract operator fun invoke(instance: T, args: List<KtVariant>): KtVariant
 }
 
-class KtFunction0<T: KtObject, R>(
-    name: String,
-    private val function: (T) -> R,
-    private val returnValueConverter: (R) -> KtVariant,
-) : KtFunction<T, R>(name, 0) {
-    override fun invoke(instance: T, args: List<KtVariant>): KtVariant {
+class KtFunction0<T : KtObject, R>(
+        functionInfo: KtFunctionInfo,
+        private val function: (T) -> R,
+        private val returnValueConverter: (R) -> KtVariant
+) : KtFunction<T, R>(functionInfo, 0) {
+    override operator fun invoke(instance: T, args: List<KtVariant>): KtVariant {
         return returnValueConverter(
-            function(instance),
+                function(instance)
         )
     }
 }
 
-class KtFunction1<T: KtObject, P0, R>(
-    name: String,
-    private val function: (T, P0) -> R,
-    private val returnValueConverter: (R) -> KtVariant,
-    private val p0Converter: (KtVariant) -> P0,
-) : KtFunction<T, R>(name, 1) {
-    override fun invoke(instance: T, args: List<KtVariant>): KtVariant {
+class KtFunction1<T : KtObject, P0, R>(
+        functionInfo: KtFunctionInfo,
+        private val function: (T, P0) -> R,
+        private val returnValueConverter: (R) -> KtVariant,
+        private val p0Converter: (KtVariant) -> P0
+) : KtFunction<T, R>(functionInfo, 1) {
+    override operator fun invoke(instance: T, args: List<KtVariant>): KtVariant {
+        require(args.size == parameterCount) { "Expecting $parameterCount parameter(s), but got ${args.size} instead." }
         return returnValueConverter(
-            function(
-                instance,
-                p0Converter(args[0]),
-            )
+                function(
+                        instance,
+                        p0Converter(args[0])
+                )
         )
     }
 }
 
 class KtFunction2<T: KtObject, P0, P1, R>(
-    name: String,
+    functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1) -> R,
     private val returnValueConverter: (R) -> KtVariant,
     private val p0Converter: (KtVariant) -> P0,
     private val p1Converter: (KtVariant) -> P1,
-) : KtFunction<T, R>(name, 1) {
+) : KtFunction<T, R>(functionInfo, 1) {
     override fun invoke(instance: T, args: List<KtVariant>): KtVariant {
         return returnValueConverter(
             function(
@@ -64,13 +131,13 @@ class KtFunction2<T: KtObject, P0, P1, R>(
 }
 
 class KtFunction3<T: KtObject, P0, P1, P2, R>(
-    name: String,
+    functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2) -> R,
     private val returnValueConverter: (R) -> KtVariant,
     private val p0Converter: (KtVariant) -> P0,
     private val p1Converter: (KtVariant) -> P1,
     private val p2Converter: (KtVariant) -> P2,
-) : KtFunction<T, R>(name, 1) {
+) : KtFunction<T, R>(functionInfo, 1) {
     override fun invoke(instance: T, args: List<KtVariant>): KtVariant {
         return returnValueConverter(
             function(
@@ -84,14 +151,14 @@ class KtFunction3<T: KtObject, P0, P1, P2, R>(
 }
 
 class KtFunction4<T: KtObject, P0, P1, P2, P3, R>(
-    name: String,
+    functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3) -> R,
     private val returnValueConverter: (R) -> KtVariant,
     private val p0Converter: (KtVariant) -> P0,
     private val p1Converter: (KtVariant) -> P1,
     private val p2Converter: (KtVariant) -> P2,
     private val p3Converter: (KtVariant) -> P3,
-) : KtFunction<T, R>(name, 1) {
+) : KtFunction<T, R>(functionInfo, 1) {
     override fun invoke(instance: T, args: List<KtVariant>): KtVariant {
         return returnValueConverter(
             function(
@@ -106,7 +173,7 @@ class KtFunction4<T: KtObject, P0, P1, P2, P3, R>(
 }
 
 class KtFunction5<T: KtObject, P0, P1, P2, P3, P4, R>(
-    name: String,
+    functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4) -> R,
     private val returnValueConverter: (R) -> KtVariant,
     private val p0Converter: (KtVariant) -> P0,
@@ -114,7 +181,7 @@ class KtFunction5<T: KtObject, P0, P1, P2, P3, P4, R>(
     private val p2Converter: (KtVariant) -> P2,
     private val p3Converter: (KtVariant) -> P3,
     private val p4Converter: (KtVariant) -> P4,
-) : KtFunction<T, R>(name, 1) {
+) : KtFunction<T, R>(functionInfo, 1) {
     override fun invoke(instance: T, args: List<KtVariant>): KtVariant {
         return returnValueConverter(
             function(

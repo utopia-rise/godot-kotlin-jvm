@@ -60,11 +60,13 @@ namespace jni {
 
     class JString : public JObject {
     public:
+        JString(JObject jObject) : JObject(jObject.obj) {};
         explicit JString(jstring str) : JObject(str) {}
     };
 
     class JArray : public JObject {
     public:
+        JArray(JObject jObject) : JObject(jObject.obj) {};
         explicit JArray(jarray array) : JObject(array) {}
 
         int length(Env& env);
@@ -72,6 +74,7 @@ namespace jni {
 
     class JObjectArray : public JArray {
     public:
+        JObjectArray(JObject jObject) : JArray(jObject) {};
         explicit JObjectArray(jarray array) : JArray(array) {}
 
         void set(Env& env, int index, JObject value);
