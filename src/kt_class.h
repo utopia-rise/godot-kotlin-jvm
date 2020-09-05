@@ -19,14 +19,37 @@ public:
     KtFunction* get_method(const StringName& methodName);
 
     void get_method_list(List<MethodInfo>* p_list);
+    void get_property_list(List<PropertyInfo>* p_list);
 
 private:
     Map<StringName, KtFunction*> methods;
+    Map<StringName, KtProperty*> properties;
 
     StringName get_name(jni::Env& env);
     StringName get_super_class(jni::Env& env);
 
     void fetch_methods(jni::Env& env);
+    void fetch_properties(jni::Env& env);
+
+    template <typename F, typename T>
+    void get_member_list(List<F>* p_list, Map<StringName, T*>& members) {
+        Map<StringName, T*>::Element* current = members.front();
+        while (current) {
+            p_list->push_back(current->value()->get_member_info());
+            current = current->next();
+        }
+    }
+
+    template <class T>
+    void delete_members(Map<StringName, T*>& members) {
+        Map<StringName, T*>::Element* current { members.front() };
+        while (current) {
+            T* member { current->value() };
+            delete member;
+            current = current->next();
+        }
+        members.clear();
+    }
 };
 
 #endif //GODOT_JVM_KTCLASS_H

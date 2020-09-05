@@ -3,20 +3,16 @@
 
 KtClass::KtClass(jni::JObject p_wrapped, jni::JObject& p_class_loader) :
     JavaInstanceWrapper("godot.core.KtClass", p_wrapped, p_class_loader) {
-    auto env = jni::Jvm::current_env();
+    jni::Env env { jni::Jvm::current_env() };
     name = get_name(env);
     super_class = get_super_class(env);
     fetch_methods(env);
+    fetch_properties(env);
 }
 
 KtClass::~KtClass() {
-    Map<StringName, KtFunction*>::Element* current = methods.front();
-    while (current) {
-        KtFunction* function = current->value();
-        delete function;
-        current = current->next();
-    }
-    methods.clear();
+    delete_members(methods);
+    delete_members(properties);
 }
 
 KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_arg_count, Object* p_owner) {
@@ -29,18 +25,19 @@ KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_
 }
 
 KtFunction* KtClass::get_method(const StringName& methodName) {
-    return methods[methodName];
+    Map<StringName, KtFunction*>::Element* element = methods.find(methodName);
+    return element ? element->value() : nullptr;
 }
 
 StringName KtClass::get_name(jni::Env& env) {
-    auto getter =  get_method_id(env, "getName", "()Ljava/lang/String;");
-    jni::JObject ret = wrapped.call_object_method(env, getter);
+    jni::MethodId getter { get_method_id(env, "getName", "()Ljava/lang/String;") };
+    jni::JObject ret { wrapped.call_object_method(env, getter) };
     return StringName(env.from_jstring(jni::JString((jstring) ret.obj)));
 }
 
 StringName KtClass::get_super_class(jni::Env& env) {
-    auto getter =  get_method_id(env, "getSuperClass", "()Ljava/lang/String;");
-    jni::JObject ret = wrapped.call_object_method(env, getter);
+    jni::MethodId getter { get_method_id(env, "getSuperClass", "()Ljava/lang/String;") };
+    jni::JObject ret { wrapped.call_object_method(env, getter) };
     return StringName(env.from_jstring(jni::JString((jstring) ret.obj)));
 }
 
@@ -48,16 +45,26 @@ void KtClass::fetch_methods(jni::Env& env) {
     jni::MethodId getFunctionsMethod { get_method_id(env, "getFunctions", "()[Lgodot/core/KtFunction;") };
     jni::JObjectArray functionsArray { wrapped.call_object_method(env, getFunctionsMethod) };
     for (int i = 0; i < functionsArray.length(env); i++) {
-        auto* ktFunction = new KtFunction(functionsArray.get(env, i), GDKotlin::get_instance().get_class_loader());
+        auto* ktFunction { new KtFunction(functionsArray.get(env, i), GDKotlin::get_instance().get_class_loader()) };
         methods[ktFunction->get_name()] = ktFunction;
         print_verbose(vformat("Fetched method %s for class %s", ktFunction->get_name(), name));
     }
 }
 
-void KtClass::get_method_list(List<MethodInfo>* p_list) {
-    Map<StringName, KtFunction*>::Element* current = methods.front();
-    while (current) {
-        p_list->push_back(current->value()->get_method_info());
-        current = current->next();
+void KtClass::fetch_properties(jni::Env& env) {
+    jni::MethodId getPropertiesMethod { get_method_id(env, "getProperties", "()[Lgodot/core/KtProperty;") };
+    jni::JObjectArray propertiesArray { wrapped.call_object_method(env, getPropertiesMethod) };
+    for (int i = 0; i < propertiesArray.length(env); i++) {
+        auto* ktProperty { new KtProperty(propertiesArray.get(env, i), GDKotlin::get_instance().get_class_loader()) };
+        properties[ktProperty->get_name()] = ktProperty;
+        print_verbose(vformat("Fetched property %s for class %s", ktProperty->get_name(), name));
     }
+}
+
+void KtClass::get_method_list(List<MethodInfo>* p_list) {
+    get_member_list(p_list, methods);
+}
+
+void KtClass::get_property_list(List<PropertyInfo>* p_list) {
+    get_member_list(p_list, properties);
 }

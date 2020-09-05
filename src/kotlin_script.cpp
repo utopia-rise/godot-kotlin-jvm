@@ -65,7 +65,7 @@ MethodInfo KotlinScript::get_method_info(const StringName& p_method) const {
     while (it) {
         KtFunction* method {kotlinClass->get_method(p_method)};
         if (method) {
-            return method->get_method_info();
+            return method->get_member_info();
         }
         it = GDKotlin::get_instance().find_class(kotlinClass->super_class);
     }
@@ -97,14 +97,17 @@ bool KotlinScript::get_property_default_value(const StringName& p_property, Vari
 }
 
 void KotlinScript::get_script_method_list(List<MethodInfo>* p_list) const {
-    KtClass* kotlinClass = get_kotlin_class();
+    KtClass* kotlinClass { get_kotlin_class() };
     if (kotlinClass) {
         kotlinClass->get_method_list(p_list);
     }
 }
 
 void KotlinScript::get_script_property_list(List<PropertyInfo>* p_list) const {
-
+    KtClass* kotlinClass { get_kotlin_class() };
+    if (kotlinClass) {
+        kotlinClass->get_property_list(p_list);
+    }
 }
 
 KtClass* KotlinScript::get_kotlin_class() const {

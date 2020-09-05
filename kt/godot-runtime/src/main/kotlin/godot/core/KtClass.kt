@@ -3,14 +3,16 @@ package godot.core
 import godot.util.VoidPtr
 
 class KtClass<T : KtObject>(
-    val name: String,
-    val superClass: String,
-    private val constructors: Map<Int, KtConstructor<T>>,
-    private val properties: Map<String, KtProperty>,
-    private val _functions: Map<String, KtFunction<T, *>>
+        val name: String,
+        val superClass: String,
+        private val constructors: Map<Int, KtConstructor<T>>,
+        private val _properties: Map<String, KtProperty>,
+        private val _functions: Map<String, KtFunction<T, *>>
 ) {
 	val functions: Array<KtFunction<T, *>>
 		get() = _functions.values.toTypedArray()
+    val properties: Array<KtProperty>
+        get() = _properties.values.toTypedArray()
 
     fun new(rawPtr: VoidPtr, argCount: Int): T {
         val constructor = constructors[argCount]

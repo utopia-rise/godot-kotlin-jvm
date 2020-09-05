@@ -2,13 +2,13 @@
 
 #include "kt_function.h"
 #include "gd_kotlin.h"
+#include "kt_property.h"
 
 KtFunction::KtFunction(jni::JObject p_wrapped, jni::JObject& p_class_loader)
     : JavaInstanceWrapper("godot.core.KtFunction", p_wrapped, p_class_loader), parameterCount(-1) {
     jni::Env env { jni::Jvm::current_env() };
     jni::MethodId getFunctionInfoMethod {get_method_id(env, "getFunctionInfo", "()Lgodot/core/KtFunctionInfo;")};
     methodInfo = new KtFunctionInfo(wrapped.call_object_method(env, getFunctionInfoMethod), GDKotlin::get_instance().get_class_loader());
-    name = methodInfo->name;
     jni::MethodId getParameterCountMethod { get_method_id(env, "getParameterCount", "()I") };
     parameterCount = wrapped.call_int_method(env, getParameterCountMethod);
 }
@@ -17,41 +17,16 @@ KtFunction::~KtFunction() {
     delete methodInfo;
 }
 
-MethodInfo KtFunction::get_method_info() {
+MethodInfo KtFunction::get_member_info() {
     return methodInfo->toMethodInfo();
 }
 
 StringName KtFunction::get_name() const {
-    return name;
+    return methodInfo->name;
 }
 
 int KtFunction::getParameterCount() const {
     return parameterCount;
-}
-
-KtPropertyInfo::KtPropertyInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader)
-        : JavaInstanceWrapper("godot.core.KtPropertyInfo", p_wrapped, p_class_loader) {
-    jni::Env env = jni::Jvm::current_env();
-    jni::MethodId getTypeMethod { get_method_id(env, "getType", "()I") };
-    type = KtVariant::fromWireType(static_cast<wire::Value::TypeCase>(wrapped.call_int_method(env, getTypeMethod)));
-    jni::MethodId getNameMethod { get_method_id(env, "getName", "()Ljava/lang/String;") };
-    name = env.from_jstring(wrapped.call_object_method(env, getNameMethod));
-    jni::MethodId getClassNameMethod { get_method_id(env, "getClassName", "()Ljava/lang/String;") };
-    class_name = env.from_jstring(wrapped.call_object_method(env, getClassNameMethod));
-    jni::MethodId getPropertyHintMethod { get_method_id(env, "getHint", "()I") };
-    hint = static_cast<PropertyHint>(wrapped.call_int_method(env, getPropertyHintMethod));
-    jni::MethodId getHintStringMethod { get_method_id(env, "getHintString", "()Ljava/lang/String;") };
-    hint_string = env.from_jstring(wrapped.call_object_method(env, getHintStringMethod));
-}
-
-PropertyInfo KtPropertyInfo::toPropertyInfo() {
-    PropertyInfo info;
-    info.type = type;
-    info.name = name;
-    info.class_name = class_name;
-    info.hint = hint;
-    info.hint_string = hint_string;
-    return info;
 }
 
 KtFunctionInfo::KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader)
