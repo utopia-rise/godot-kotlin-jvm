@@ -20,11 +20,26 @@ class ClassBuilderDsl<T : KtObject>(
 
     private val functions = mutableMapOf<String, KtFunction<T, *>>()
 
+    private val properties = mutableMapOf<String, KtProperty>()
+
     fun constructor(constructor: KtConstructor<T>) {
         require(!constructors.containsKey(constructor.parameterCount)) {
             "A constructor with ${constructor.parameterCount} argument(s) already exists."
         }
         constructors[constructor.parameterCount] = constructor
+    }
+
+    fun property(pib: KtPropertyInfoBuilderDsl.() -> Unit) {
+        val builder = KtPropertyInfoBuilderDsl()
+        builder.pib()
+        val property = builder.build()
+        require(property.name.isNotEmpty()) {
+            "Found a property with an empty name for class $name"
+        }
+        require(!properties.contains(property.name)) {
+            "Found two properties with name ${property.name} for class $name"
+        }
+        properties[property.name] = KtProperty(property)
     }
 
     fun <R> function(funcName: String,
@@ -191,7 +206,7 @@ class ClassBuilderDsl<T : KtObject>(
 
     internal fun build(): KtClass<T> {
         check(constructors.isNotEmpty()) { "Please provide at least one constructor." }
-        return KtClass(name, superClass, constructors, functions)
+        return KtClass(name, superClass, constructors, properties, functions)
     }
 }
 

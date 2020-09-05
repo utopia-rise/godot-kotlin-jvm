@@ -44,21 +44,6 @@ enum class PropertyHint {
     // When updating PropertyHint, also sync the hardcoded list in VisualScriptEditorVariableEdit
 };
 
-data class KtPropertyInfo(
-        val _type: KtVariant.Type,
-        val name: String,
-        val className: String,
-        val _hint: PropertyHint,
-        val hintString: String
-) {
-    val type: Int
-        get() = (KtVariant.TYPE_TO_WIRE_VALUE_TYPE[_type] ?: error("Unknown mapping to Wire type for ${_type.name}"))
-                .number
-
-    val hint: Int
-        get() = _hint.ordinal
-}
-
 data class KtFunctionInfo(
         val name: String,
         val _arguments: List<KtPropertyInfo>,

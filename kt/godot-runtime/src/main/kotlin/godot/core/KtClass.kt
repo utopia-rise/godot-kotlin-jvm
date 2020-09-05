@@ -6,6 +6,7 @@ class KtClass<T : KtObject>(
     val name: String,
     val superClass: String,
     private val constructors: Map<Int, KtConstructor<T>>,
+    private val properties: Map<String, KtProperty>,
     private val _functions: Map<String, KtFunction<T, *>>
 ) {
 	val functions: Array<KtFunction<T, *>>
