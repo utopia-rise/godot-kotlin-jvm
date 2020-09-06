@@ -6,6 +6,10 @@ KotlinInstance::KotlinInstance(KtObject *p_wrappedObject) : wrappedObject(p_wrap
 
 }
 
+KotlinInstance::~KotlinInstance() {
+    delete wrappedObject;
+}
+
 KotlinInstance::KotlinInstance(KtObject *wrappedObject, Object *owner) : KotlinInstance(wrappedObject) {
     set_owner(owner);
 }

@@ -11,7 +11,7 @@ private:
 public:
     explicit KotlinInstance(KtObject *p_wrappedObject);
     KotlinInstance(KtObject *wrappedObject, Object *owner);
-    ~KotlinInstance() override = default;
+    ~KotlinInstance() override;
 
     bool set(const StringName& p_name, const Variant& p_value) override;
 
