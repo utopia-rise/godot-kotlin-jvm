@@ -1,3 +1,9 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/main/kotlin/godot/tests/Invocation.kt" type="Script" id=1]
 
 [node name="Spatial" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.974354, 0.225019, 0, -0.225019, 0.974354, 0, 1.2131, 2.47241 )

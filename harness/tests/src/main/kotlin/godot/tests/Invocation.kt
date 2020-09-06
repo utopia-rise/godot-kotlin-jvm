@@ -1,8 +1,12 @@
 package godot.tests
 
-import godot.Object
+import godot.Spatial
 
-class Invocation : Object() {
+class Invocation : Spatial() {
+    init {
+        println("Hello Invocation!")
+    }
+
     fun int(value: Int) = value
     fun long(value: Long) = value
     fun float(value: Float) = value

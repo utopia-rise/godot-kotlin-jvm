@@ -4,7 +4,7 @@
 #include "gd_kotlin.h"
 
 bool KotlinScript::can_instance() const {
-    return false;
+    return true;
 }
 
 Ref<Script> KotlinScript::get_base_script() const {

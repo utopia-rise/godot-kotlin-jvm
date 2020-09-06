@@ -16,6 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Godot Kotlin Tests"
+run/main_scene="res://Spatial.tscn"
 config/icon="res://icon.png"
 
 [rendering]

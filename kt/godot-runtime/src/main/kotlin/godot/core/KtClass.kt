@@ -11,11 +11,12 @@ class KtClass<T : KtObject>(
 	val functions: Array<KtFunction<T, *>>
 		get() = _functions.values.toTypedArray()
 
-    fun new(rawPtr: VoidPtr, vararg args: KtVariant): T {
-        val constructor = constructors[args.size]
-        check(constructor != null) { "Constructor with ${args.size} parameter(s) not found." }
+    fun new(rawPtr: VoidPtr, argCount: Int): T {
+        val constructor = constructors[argCount]
+        check(constructor != null) { "Constructor with $argCount parameter(s) not found." }
         return KtObject.instantiateWith(rawPtr) {
-            constructor(*args)
+            // todo send args
+            constructor()
         }
     }
 
