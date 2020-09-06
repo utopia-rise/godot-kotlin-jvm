@@ -24,7 +24,7 @@ ScriptInstance* KotlinScript::instance_create(Object* p_this) {
     print_verbose(vformat("Try to create %s instance.", get_kotlin_class()->name));
     jni::Env env = jni::Jvm::current_env();
     KtObject *wrapped = get_kotlin_class()->create_instance(env, nullptr, 0, p_this);
-    return new KotlinInstance(wrapped, p_this);
+    return memnew(KotlinInstance(wrapped, p_this));
 }
 
 bool KotlinScript::instance_has(const Object* p_this) const {
