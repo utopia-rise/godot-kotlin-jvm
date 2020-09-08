@@ -4,7 +4,7 @@
 
 namespace jni {
 
-    JValue::JValue(JObject& obj) {
+    JValue::JValue(JObject obj) {
         value.l = obj.obj;
     }
 
@@ -61,6 +61,13 @@ namespace jni {
     jint JObject::call_int_method(Env& env, MethodId method, std::initializer_list<JValue> values) {
         unpack_args(args)
         auto ret = env.env->CallIntMethodA((jclass) obj, method, args.data());
+        env.check_exceptions();
+        return ret;
+    }
+
+    jdouble JObject::call_double_method(Env& env, MethodId method, std::initializer_list<JValue> values) {
+        unpack_args(args)
+        jdouble ret = env.env->CallDoubleMethodA((jclass) obj, method, args.data());
         env.check_exceptions();
         return ret;
     }

@@ -14,7 +14,7 @@ namespace jni {
     public:
         jvalue value;
 
-        JValue(JObject& obj);
+        JValue(JObject obj);
 
         JValue(jint i);
 
@@ -31,6 +31,8 @@ namespace jni {
         JValue(jchar c);
 
         JValue(jshort s);
+
+        JValue() = default;
     };
 
     typedef jmethodID MethodId;
@@ -39,7 +41,7 @@ namespace jni {
     class JObject {
     public:
         jobject obj;
-        explicit JObject(jobject);
+        JObject(jobject);
         // todo: delete copy ctor and assignment?
         JObject(const JObject&) = default;
         JObject& operator=(const JObject&) = default;
@@ -52,6 +54,7 @@ namespace jni {
         JObject call_object_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
         jint call_int_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
         jlong call_long_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
+        jdouble call_double_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
         jboolean call_boolean_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
         void call_void_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
 

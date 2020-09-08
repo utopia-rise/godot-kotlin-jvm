@@ -22,6 +22,8 @@ private:
     int parameterCount;
     KtFunctionInfo* methodInfo;
 
+    String generateMethodSignature();
+
 public:
     KtFunction(jni::JObject p_wrapped, jni::JObject& p_class_loader);
     ~KtFunction();
@@ -30,6 +32,9 @@ public:
     int getParameterCount() const;
 
     MethodInfo get_member_info();
+    KtFunctionInfo* get_kt_function_info();
+
+    Variant invoke(jni::JObject instance, const Variant** p_args);
 };
 
 
