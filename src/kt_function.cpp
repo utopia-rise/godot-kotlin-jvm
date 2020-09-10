@@ -40,7 +40,7 @@ Variant KtFunction::invoke(const KtObject* instance, const Variant** p_args) {
     TransferContext* transferContext = GDKotlin::get_instance().transfer_context;
     Vector<KtVariant> args;
     for (int i = 0; i < method_info->arguments.size(); i++) {
-        args.push_back(KtVariant(p_args[i]));
+        args.push_back(KtVariant(*p_args[i]));
     }
     transferContext->write_args(env, args);
     bool refresh_buffer = wrapped.call_boolean_method(env, methodId, {instance->get_wrapped()});

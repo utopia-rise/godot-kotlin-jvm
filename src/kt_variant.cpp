@@ -229,20 +229,20 @@ void KtVariant::initMethodArray() {
     TO_KT_VARIANT_FROM[Variant::BASIS] = to_kvariant_fromBASIS;
     TO_KT_VARIANT_FROM[Variant::TRANSFORM] = to_kvariant_fromTRANSFORM;
 
-    TO_GODOT_VARIANT_FROM[wire::Value::kNilValue - 1] = from_kvariant_tokNilValue;
-    TO_GODOT_VARIANT_FROM[wire::Value::kBoolValue - 1] = from_kvariant_tokBoolValue;
-    TO_GODOT_VARIANT_FROM[wire::Value::kLongValue - 1] = from_kvariant_tokLongValue;
-    TO_GODOT_VARIANT_FROM[wire::Value::kRealValue - 1] = from_kvariant_tokRealValue;
-    TO_GODOT_VARIANT_FROM[wire::Value::kStringValue - 1] = from_kvariant_tokStringValue;
-    TO_GODOT_VARIANT_FROM[wire::Value::kVector2Value - 1] = from_kvariant_tokVector2Value;
-    TO_GODOT_VARIANT_FROM[wire::Value::kRect2Value - 1] = from_kvariant_tokRect2Value;
-    TO_GODOT_VARIANT_FROM[wire::Value::kVector3Value - 1] = from_kvariant_tokVector3Value;
-    TO_GODOT_VARIANT_FROM[wire::Value::kTransform2DValue - 1] = from_kvariant_tokTransform2DValue;
-    TO_GODOT_VARIANT_FROM[wire::Value::kPlaneValue - 1] = from_kvariant_tokPlaneValue;
-    TO_GODOT_VARIANT_FROM[wire::Value::kQuatValue - 1] = from_kvariant_tokQuatValue;
-    TO_GODOT_VARIANT_FROM[wire::Value::kAabbValue - 1] = from_kvariant_tokAabbValue;
-    TO_GODOT_VARIANT_FROM[wire::Value::kBasisValue - 1] = from_kvariant_tokBasisValue;
-    TO_GODOT_VARIANT_FROM[wire::Value::kTransformValue - 1] = from_kvariant_tokTransformValue;
+    TO_GODOT_VARIANT_FROM[wire::Value::kNilValue] = from_kvariant_tokNilValue;
+    TO_GODOT_VARIANT_FROM[wire::Value::kBoolValue] = from_kvariant_tokBoolValue;
+    TO_GODOT_VARIANT_FROM[wire::Value::kLongValue] = from_kvariant_tokLongValue;
+    TO_GODOT_VARIANT_FROM[wire::Value::kRealValue] = from_kvariant_tokRealValue;
+    TO_GODOT_VARIANT_FROM[wire::Value::kStringValue] = from_kvariant_tokStringValue;
+    TO_GODOT_VARIANT_FROM[wire::Value::kVector2Value] = from_kvariant_tokVector2Value;
+    TO_GODOT_VARIANT_FROM[wire::Value::kRect2Value] = from_kvariant_tokRect2Value;
+    TO_GODOT_VARIANT_FROM[wire::Value::kVector3Value] = from_kvariant_tokVector3Value;
+    TO_GODOT_VARIANT_FROM[wire::Value::kTransform2DValue] = from_kvariant_tokTransform2DValue;
+    TO_GODOT_VARIANT_FROM[wire::Value::kPlaneValue] = from_kvariant_tokPlaneValue;
+    TO_GODOT_VARIANT_FROM[wire::Value::kQuatValue] = from_kvariant_tokQuatValue;
+    TO_GODOT_VARIANT_FROM[wire::Value::kAabbValue] = from_kvariant_tokAabbValue;
+    TO_GODOT_VARIANT_FROM[wire::Value::kBasisValue] = from_kvariant_tokBasisValue;
+    TO_GODOT_VARIANT_FROM[wire::Value::kTransformValue] = from_kvariant_tokTransformValue;
 
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kNilValue] = Variant::Type::NIL;
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kBoolValue] = Variant::Type::BOOL;

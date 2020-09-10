@@ -19,6 +19,10 @@ config/name="Godot Kotlin Tests"
 run/main_scene="res://Spatial.tscn"
 config/icon="res://icon.png"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "gut" )
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
