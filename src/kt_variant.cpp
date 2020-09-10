@@ -1,25 +1,13 @@
 #include "kt_variant.h"
 
-static const int CONST_VARIANT_NIL = Variant::NIL;
-static const int CONST_VARIANT_BOOL = Variant::BOOL;
-static const int CONST_VARIANT_INT = Variant::INT;
-static const int CONST_VARIANT_REAL = Variant::REAL;
-static const int CONST_VARIANT_STRING = Variant::STRING;
-static const int CONST_VARIANT_VECTOR2 = Variant::VECTOR2;
-static const int CONST_VARIANT_RECT2 = Variant::RECT2;
-static const int CONST_VARIANT_VECTOR3 = Variant::VECTOR3;
-static const int CONST_VARIANT_TRANSFORM2D = Variant::TRANSFORM2D;
-static const int CONST_VARIANT_PLANE = Variant::PLANE;
-static const int CONST_VARIANT_QUAT = Variant::QUAT;
-static const int CONST_VARIANT_AABB = Variant::AABB;
-static const int CONST_VARIANT_BASIS = Variant::BASIS;
-static const int CONST_VARIANT_TRANSFORM = Variant::TRANSFORM;
-
 // must match the value order of godot_variant_type
-static void(*TO_KT_VARIANT_FROM[27 /* Variant::Type count */])(wire::Value&, const Variant&);
-static Variant(*TO_GODOT_VARIANT_FROM[27 /* KVariant::TypeCase count */])(const wire::Value&);
+static void (* TO_KT_VARIANT_FROM[27 /* Variant::Type count */])(wire::Value&, const Variant&);
+
+static Variant (* TO_GODOT_VARIANT_FROM[27 /* KVariant::TypeCase count */])(const wire::Value&);
 
 static Variant::Type WIRE_TYPE_CASE_TO_VARIANT_TYPE[15];
+static String VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[28];
+
 
 KtVariant::KtVariant(wire::Value value) : value(value) {}
 
@@ -123,11 +111,11 @@ void to_kvariant_fromBASIS(wire::Value& des, const Variant& src) {
 }
 
 void to_kvariant_fromTRANSFORM(wire::Value& des, const Variant& src) {
-        auto transform = wire::Transform::default_instance().New();
-        Transform src_transform = src;
-        transform->set_allocated_basis(to_wire_basis(src_transform.basis));
-        transform->set_allocated_origin(to_wire_vector3(src_transform.origin));
-        des.set_allocated_transform_value(transform);
+    auto transform = wire::Transform::default_instance().New();
+    Transform src_transform = src;
+    transform->set_allocated_basis(to_wire_basis(src_transform.basis));
+    transform->set_allocated_origin(to_wire_vector3(src_transform.origin));
+    des.set_allocated_transform_value(transform);
 }
 
 KtVariant::KtVariant(const Variant& variant) {
@@ -226,20 +214,20 @@ Variant KtVariant::to_godot_variant() const {
 }
 
 void KtVariant::initMethodArray() {
-    TO_KT_VARIANT_FROM[CONST_VARIANT_NIL] = to_kvariant_fromNIL;
-    TO_KT_VARIANT_FROM[CONST_VARIANT_BOOL] = to_kvariant_fromBOOL;
-    TO_KT_VARIANT_FROM[CONST_VARIANT_INT] = to_kvariant_fromINT;
-    TO_KT_VARIANT_FROM[CONST_VARIANT_REAL] = to_kvariant_fromREAL;
-    TO_KT_VARIANT_FROM[CONST_VARIANT_STRING] = to_kvariant_fromSTRING;
-    TO_KT_VARIANT_FROM[CONST_VARIANT_VECTOR2] = to_kvariant_fromVECTOR2;
-    TO_KT_VARIANT_FROM[CONST_VARIANT_RECT2] = to_kvariant_fromRECT2;
-    TO_KT_VARIANT_FROM[CONST_VARIANT_VECTOR3] = to_kvariant_fromVECTOR3;
-    TO_KT_VARIANT_FROM[CONST_VARIANT_TRANSFORM2D] = to_kvariant_fromTRANSFORM2D;
-    TO_KT_VARIANT_FROM[CONST_VARIANT_PLANE] = to_kvariant_fromPLANE;
-    TO_KT_VARIANT_FROM[CONST_VARIANT_QUAT] = to_kvariant_fromQUAT;
-    TO_KT_VARIANT_FROM[CONST_VARIANT_AABB] = to_kvariant_fromAABB;
-    TO_KT_VARIANT_FROM[CONST_VARIANT_BASIS] = to_kvariant_fromBASIS;
-    TO_KT_VARIANT_FROM[CONST_VARIANT_TRANSFORM] = to_kvariant_fromTRANSFORM;
+    TO_KT_VARIANT_FROM[Variant::NIL] = to_kvariant_fromNIL;
+    TO_KT_VARIANT_FROM[Variant::BOOL] = to_kvariant_fromBOOL;
+    TO_KT_VARIANT_FROM[Variant::INT] = to_kvariant_fromINT;
+    TO_KT_VARIANT_FROM[Variant::REAL] = to_kvariant_fromREAL;
+    TO_KT_VARIANT_FROM[Variant::STRING] = to_kvariant_fromSTRING;
+    TO_KT_VARIANT_FROM[Variant::VECTOR2] = to_kvariant_fromVECTOR2;
+    TO_KT_VARIANT_FROM[Variant::RECT2] = to_kvariant_fromRECT2;
+    TO_KT_VARIANT_FROM[Variant::VECTOR3] = to_kvariant_fromVECTOR3;
+    TO_KT_VARIANT_FROM[Variant::TRANSFORM2D] = to_kvariant_fromTRANSFORM2D;
+    TO_KT_VARIANT_FROM[Variant::PLANE] = to_kvariant_fromPLANE;
+    TO_KT_VARIANT_FROM[Variant::QUAT] = to_kvariant_fromQUAT;
+    TO_KT_VARIANT_FROM[Variant::AABB] = to_kvariant_fromAABB;
+    TO_KT_VARIANT_FROM[Variant::BASIS] = to_kvariant_fromBASIS;
+    TO_KT_VARIANT_FROM[Variant::TRANSFORM] = to_kvariant_fromTRANSFORM;
 
     TO_GODOT_VARIANT_FROM[wire::Value::kNilValue - 1] = from_kvariant_tokNilValue;
     TO_GODOT_VARIANT_FROM[wire::Value::kBoolValue - 1] = from_kvariant_tokBoolValue;
@@ -271,8 +259,28 @@ void KtVariant::initMethodArray() {
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kBasisValue] = Variant::Type::BASIS;
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kTransformValue] = Variant::Type::TRANSFORM;
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::TYPE_NOT_SET] = Variant::Type::VARIANT_MAX;
+
+    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::NIL] = "V";
+    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::BOOL] = "Z";
+    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::INT] = "J";
+    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::REAL] = "D";
+    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::STRING] = "Ljava/lang/String;";
+    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::VECTOR2] = "Lgodot/core/Vector2;";
+    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::RECT2] = "Lgodot/core/Rect2;";
+    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::VECTOR3] = "Lgodot/core/Vector3;";
+    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::TRANSFORM2D] = "Lgodot/core/Transform2D;";
+    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::PLANE] = "Lgodot/core/Plane;";
+    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::QUAT] = "Lgodot/core/Quat;";
+    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::AABB] = "Lgodot/core/AABB;";
+    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::BASIS] = "Lgodot/core/Basis;";
+    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::TRANSFORM] = "Lgodot/core/Transform;";
+    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::VARIANT_MAX] = "V";
 }
 
-Variant::Type KtVariant::fromWireType(wire::Value::TypeCase typeCase) {
+Variant::Type KtVariant::fromWireTypeToVariantType(wire::Value::TypeCase typeCase) {
     return WIRE_TYPE_CASE_TO_VARIANT_TYPE[typeCase];
+}
+
+String KtVariant::fromVariantTypeToJvmString(Variant::Type type) {
+    return VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[type];
 }

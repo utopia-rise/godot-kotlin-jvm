@@ -7,7 +7,7 @@ KtPropertyInfo::KtPropertyInfo(jni::JObject p_wrapped, jni::JObject& p_class_loa
         : JavaInstanceWrapper("godot.core.KtPropertyInfo", p_wrapped, p_class_loader) {
     jni::Env env { jni::Jvm::current_env() };
     jni::MethodId getTypeMethod{get_method_id(env, "getType", "()I")};
-    type = KtVariant::fromWireType(static_cast<wire::Value::TypeCase>(wrapped.call_int_method(env, getTypeMethod)));
+    type = KtVariant::fromWireTypeToVariantType(static_cast<wire::Value::TypeCase>(wrapped.call_int_method(env, getTypeMethod)));
     jni::MethodId getNameMethod{get_method_id(env, "getName", "()Ljava/lang/String;")};
     name = env.from_jstring(wrapped.call_object_method(env, getNameMethod));
     jni::MethodId getClassNameMethod{get_method_id(env, "getClassName", "()Ljava/lang/String;")};

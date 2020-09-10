@@ -1,6 +1,7 @@
 #include "kotlin_instance.h"
 #include "kotlin_language.h"
 #include "kt_class.h"
+#include "gd_kotlin.h"
 
 KotlinInstance::KotlinInstance(KtObject *p_wrappedObject) : wrappedObject(p_wrappedObject), owner(nullptr) {
 
@@ -47,7 +48,7 @@ void KotlinInstance::get_method_list(List<MethodInfo>* p_list) const {
 }
 
 bool KotlinInstance::has_method(const StringName& p_method) const {
-    return false;
+    return GDKotlin::get_instance().find_class_by_name(wrappedObject->get_class_name())->get_method(p_method) != nullptr;
 }
 
 Variant
@@ -58,7 +59,7 @@ KotlinInstance::call(const StringName& p_method, const Variant& p_arg1, const Va
 
 Variant
 KotlinInstance::call(const StringName& p_method, const Variant** p_args, int p_argcount, Variant::CallError& r_error) {
-    return Variant();
+    return wrappedObject->call_method(p_method, p_args);
 }
 
 void KotlinInstance::call_multilevel(const StringName& p_method, const Variant& p_arg1, const Variant& p_arg2,

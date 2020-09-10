@@ -35,6 +35,7 @@ public:
     void unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes);
 
     KtClass* find_class(const String& p_script_path);
+    KtClass* find_class_by_name(const String& class_name);
 };
 
 

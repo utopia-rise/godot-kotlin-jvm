@@ -2,6 +2,8 @@
 #define GODOT_JVM_KT_VARIANT_H
 #include "wire/wire.pb.h"
 #include "core/variant.h"
+#include "jni/wrapper.h"
+#include "java_instance_wrapper.h"
 
 class KtVariant {
 private:
@@ -14,7 +16,8 @@ public:
     ~KtVariant() = default;
 
     static void initMethodArray();
-    static Variant::Type fromWireType(wire::Value::TypeCase typeCase);
+    static Variant::Type fromWireTypeToVariantType(wire::Value::TypeCase typeCase);
+    static String fromVariantTypeToJvmString(Variant::Type type);
 
     const wire::Value& get_value() const;
     Variant to_godot_variant() const;

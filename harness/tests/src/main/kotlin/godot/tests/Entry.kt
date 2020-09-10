@@ -114,6 +114,13 @@ class Entry : godot.runtime.Entry() {
                             className = "Int"
                         }
                 )
+
+                function("_enter_tree", Invocation::_enter_tree, ::KtVariant,
+                        returns = {
+                            type = KtVariant.Type.NIL
+                            className = "Unit"
+                        }
+                )
             }
         }
     }
