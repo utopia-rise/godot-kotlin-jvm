@@ -47,14 +47,11 @@ void KotlinInstance::get_property_state(List<Pair<StringName, Variant>>& state) 
 }
 
 void KotlinInstance::get_method_list(List<MethodInfo>* p_list) const {
-    KtClass* kotlinClass { GDKotlin::get_instance().find_class_by_name(wrapped_object->get_class_name()) };
-    if (kotlinClass) {
-        kotlinClass->get_method_list(p_list);
-    }
+    kt_class->get_method_list(p_list);
 }
 
 bool KotlinInstance::has_method(const StringName& p_method) const {
-    return GDKotlin::get_instance().find_class_by_name(wrapped_object->get_class_name())->get_method(p_method) != nullptr;
+    return kt_class->get_method(p_method) != nullptr;
 }
 
 Variant

@@ -22,8 +22,8 @@ public:
     void get_property_list(List<PropertyInfo>* p_list);
 
 private:
-    Map<StringName, KtFunction*> methods;
-    Map<StringName, KtProperty*> properties;
+    HashMap<StringName, KtFunction*> methods;
+    HashMap<StringName, KtProperty*> properties;
 
     StringName get_name(jni::Env& env);
     StringName get_super_class(jni::Env& env);
@@ -32,22 +32,24 @@ private:
     void fetch_properties(jni::Env& env);
 
     template <typename F, typename T>
-    void get_member_list(List<F>* p_list, Map<StringName, T*>& members) {
-        typename Map<StringName, T*>::Element* current { members.front() };
-        while (current) {
-            p_list->push_back(current->value()->get_member_info());
-            current = current->next();
+    void get_member_list(List<F>* p_list, HashMap<StringName, T*>& members) {
+        List<StringName> keys;
+        members.get_key_list(&keys);
+
+        for (auto i = 0; i < keys.size(); i++) {
+            p_list->push_back(members.get(keys[i])->get_member_info());
         }
     }
 
     template <class T>
-    void delete_members(Map<StringName, T*>& members) {
-        typename Map<StringName, T*>::Element* current { members.front() };
-        while (current) {
-            T* member { current->value() };
-            delete member;
-            current = current->next();
+    void delete_members(HashMap<StringName, T*>& members) {
+        List<StringName> keys;
+        members.get_key_list(&keys);
+
+        for (auto i = 0; i < keys.size(); i++) {
+            delete members.get(keys[i]);
         }
+
         members.clear();
     }
 };
