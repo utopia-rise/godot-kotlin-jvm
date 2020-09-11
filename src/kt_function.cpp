@@ -4,50 +4,47 @@
 #include "gd_kotlin.h"
 
 KtFunction::KtFunction(jni::JObject p_wrapped, jni::JObject& p_class_loader)
-        : JavaInstanceWrapper("godot.core.KtFunction", p_wrapped, p_class_loader), parameterCount(-1) {
+        : JavaInstanceWrapper("godot.core.KtFunction", p_wrapped, p_class_loader), parameter_count(-1) {
     jni::Env env{jni::Jvm::current_env()};
     jni::MethodId getFunctionInfoMethod{get_method_id(env, "getFunctionInfo", "()Lgodot/core/KtFunctionInfo;")};
-    methodInfo = new KtFunctionInfo(wrapped.call_object_method(env, getFunctionInfoMethod),
-                                    GDKotlin::get_instance().get_class_loader());
+    method_info = new KtFunctionInfo(wrapped.call_object_method(env, getFunctionInfoMethod),
+                                     GDKotlin::get_instance().get_class_loader());
     jni::MethodId getParameterCountMethod{get_method_id(env, "getParameterCount", "()I")};
-    parameterCount = wrapped.call_int_method(env, getParameterCountMethod);
+    parameter_count = wrapped.call_int_method(env, getParameterCountMethod);
 }
 
 KtFunction::~KtFunction() {
-    delete methodInfo;
+    delete method_info;
 }
 
 MethodInfo KtFunction::get_member_info() {
-    return methodInfo->toMethodInfo();
+    return method_info->to_method_info();
 }
 
 StringName KtFunction::get_name() const {
-    return methodInfo->name;
+    return method_info->name;
 }
 
-int KtFunction::getParameterCount() const {
-    return parameterCount;
+int KtFunction::get_parameter_count() const {
+    return parameter_count;
 }
 
 KtFunctionInfo* KtFunction::get_kt_function_info() {
-    return methodInfo;
+    return method_info;
 }
 
-Variant KtFunction::invoke(jni::JObject instance, const Variant** p_args) {
+Variant KtFunction::invoke(const KtObject* instance, const Variant** p_args) {
     jni::Env env{jni::Jvm::current_env()};
 
     jni::MethodId methodId {get_method_id(env, "invoke", "(Lgodot/core/KtObject;)Z")};
     TransferContext* transferContext = GDKotlin::get_instance().transfer_context;
-    TransferContext::SharedBuffer buffer = transferContext->get_buffer(env);
     Vector<KtVariant> args;
-    for (int i = 0; i < methodInfo->arguments.size(); i++) {
+    for (int i = 0; i < method_info->arguments.size(); i++) {
         args.push_back(KtVariant(p_args[i]));
     }
-    transferContext->write_args(env, buffer, args);
-    if (wrapped.call_boolean_method(env, methodId, {instance})) {
-        buffer = transferContext->get_buffer(env);
-    }
-    return transferContext->read_return_value(env, buffer).to_godot_variant();
+    transferContext->write_args(env, args);
+    bool refresh_buffer = wrapped.call_boolean_method(env, methodId, {instance->get_wrapped()});
+    return transferContext->read_return_value(env, refresh_buffer).to_godot_variant();
 }
 
 KtFunctionInfo::KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader)
@@ -78,7 +75,7 @@ KtFunctionInfo::~KtFunctionInfo() {
     arguments.clear();
 }
 
-MethodInfo KtFunctionInfo::toMethodInfo() const {
+MethodInfo KtFunctionInfo::to_method_info() const {
     MethodInfo methodInfo;
     methodInfo.name = name;
     List<PropertyInfo> pInfoList;

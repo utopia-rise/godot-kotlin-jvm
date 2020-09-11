@@ -14,6 +14,8 @@ public:
     KotlinScript() = default;
     ~KotlinScript() override = default;
 
+    Variant _new(const Variant **p_args, int p_argcount, Variant::CallError &r_error);
+
     bool can_instance() const override;
 
     Ref<Script> get_base_script() const override;
@@ -52,6 +54,8 @@ public:
 
     void get_script_property_list(List<PropertyInfo>* p_list) const override;
 
+protected:
+    static void _bind_methods();
 };
 
 #endif //GODOT_JVM_KOTLIN_SCRIPT_H

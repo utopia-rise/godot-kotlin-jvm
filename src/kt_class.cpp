@@ -25,8 +25,8 @@ KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_
 }
 
 KtFunction* KtClass::get_method(const StringName& methodName) {
-    Map<StringName, KtFunction*>::Element* element = methods.find(methodName);
-    return element ? element->value() : nullptr;
+    KtFunction** method = methods.getptr(methodName);
+    return method ? *method : nullptr;
 }
 
 StringName KtClass::get_name(jni::Env& env) {

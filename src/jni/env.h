@@ -8,7 +8,7 @@
 namespace jni {
     class Env {
     public:
-       explicit Env(JNIEnv*);
+        explicit Env(JNIEnv*);
         // todo delete copy ctor and assignment?
         Env(const Env&) = default;
         Env& operator=(const Env&) = default;

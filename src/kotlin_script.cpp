@@ -21,10 +21,11 @@ StringName KotlinScript::get_instance_base_type() const {
 }
 
 ScriptInstance* KotlinScript::instance_create(Object* p_this) {
-    print_verbose(vformat("Try to create %s instance.", get_kotlin_class()->name));
+    KtClass* kt_class { get_kotlin_class() };
+    print_verbose(vformat("Try to create %s instance.", kt_class->name));
     jni::Env env = jni::Jvm::current_env();
-    KtObject *wrapped = get_kotlin_class()->create_instance(env, nullptr, 0, p_this);
-    return memnew(KotlinInstance(wrapped, p_this));
+    KtObject *wrapped = kt_class->create_instance(env, nullptr, 0, p_this);
+    return memnew(KotlinInstance(wrapped, p_this, kt_class));
 }
 
 bool KotlinScript::instance_has(const Object* p_this) const {
@@ -112,4 +113,34 @@ void KotlinScript::get_script_property_list(List<PropertyInfo>* p_list) const {
 
 KtClass* KotlinScript::get_kotlin_class() const {
     return GDKotlin::get_instance().find_class(get_path());
+}
+
+Variant KotlinScript::_new(const Variant **p_args, int p_argcount, Variant::CallError &r_error) {
+    r_error.error = Variant::CallError::CALL_OK;
+
+    Object *owner = ClassDB::instance(get_kotlin_class()->super_class);
+
+    REF ref;
+    Reference* r = Object::cast_to<Reference>(owner);
+    if (r) {
+        ref = REF(r);
+    }
+
+    ScriptInstance* instance = instance_create(owner);
+    if (!instance) {
+        if (ref.is_null()) {
+            memdelete(owner); //no owner, sorry
+        }
+        return Variant();
+    }
+
+    if (ref.is_valid()) {
+        return ref;
+    } else {
+        return owner;
+    }
+}
+
+void KotlinScript::_bind_methods() {
+    ClassDB::bind_vararg_method(METHOD_FLAGS_DEFAULT, "new", &KotlinScript::_new, MethodInfo("new"));
 }

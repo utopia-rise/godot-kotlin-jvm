@@ -3,16 +3,18 @@
 #include "kt_class.h"
 #include "gd_kotlin.h"
 
-KotlinInstance::KotlinInstance(KtObject *p_wrappedObject) : wrappedObject(p_wrappedObject), owner(nullptr) {
+KotlinInstance::KotlinInstance(KtObject *p_wrapped_object, KtClass *p_kt_class) : wrapped_object(p_wrapped_object),
+                                                                                  owner(nullptr), kt_class(p_kt_class) {
 
 }
 
 KotlinInstance::~KotlinInstance() {
-    delete wrappedObject;
+    delete wrapped_object;
 }
 
-KotlinInstance::KotlinInstance(KtObject *wrappedObject, Object *owner) : KotlinInstance(wrappedObject) {
-    set_owner(owner);
+KotlinInstance::KotlinInstance(KtObject *p_wrapped_object, Object *p_owner, KtClass *p_kt_class) : KotlinInstance(
+        p_wrapped_object, p_kt_class) {
+    set_owner(p_owner);
 }
 
 bool KotlinInstance::set(const StringName& p_name, const Variant& p_value) {
@@ -37,6 +39,7 @@ Object* KotlinInstance::get_owner() {
 
 void KotlinInstance::set_owner(Object *object) {
     owner = object;
+    owner->set_script_instance(this);
 }
 
 void KotlinInstance::get_property_state(List<Pair<StringName, Variant>>& state) {
@@ -44,11 +47,11 @@ void KotlinInstance::get_property_state(List<Pair<StringName, Variant>>& state) 
 }
 
 void KotlinInstance::get_method_list(List<MethodInfo>* p_list) const {
-
+    kt_class->get_method_list(p_list);
 }
 
 bool KotlinInstance::has_method(const StringName& p_method) const {
-    return GDKotlin::get_instance().find_class_by_name(wrappedObject->get_class_name())->get_method(p_method) != nullptr;
+    return kt_class->get_method(p_method) != nullptr;
 }
 
 Variant
@@ -57,9 +60,17 @@ KotlinInstance::call(const StringName& p_method, const Variant& p_arg1, const Va
     return ScriptInstance::call(p_method, p_arg1, p_arg2, p_arg3, p_arg4, p_arg5);
 }
 
-Variant
-KotlinInstance::call(const StringName& p_method, const Variant** p_args, int p_argcount, Variant::CallError& r_error) {
-    return wrappedObject->call_method(p_method, p_args);
+Variant KotlinInstance::call(const StringName& p_method, const Variant** p_args, int p_argcount, Variant::CallError& r_error) {
+    jni::LocalFrame local_frame(100);
+
+    KtFunction* function { kt_class->get_method(p_method) };
+    Variant ret_var;
+    if (function) {
+        ret_var = function->invoke(this->wrapped_object, p_args);
+    } else {
+        r_error.error = Variant::CallError::CALL_ERROR_INVALID_METHOD;
+    }
+    return ret_var;
 }
 
 void KotlinInstance::call_multilevel(const StringName& p_method, const Variant& p_arg1, const Variant& p_arg2,
