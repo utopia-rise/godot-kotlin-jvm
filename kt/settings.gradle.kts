@@ -1,6 +1,16 @@
 include("godot-runtime")
 include("godot-library")
 
+includeBuild("entry-generation/godot-kotlin-entry-generator") {
+    dependencySubstitution {
+        substitute(module("com.utopia-rise:godot-kotlin-entry-generator")).with(project(":")) // assuming godot-kotlin-entry-generator is the root project of entry-generator/godot-kotlin-entry-generator
+    }
+}
+
+subdir("entry-generation") {
+    include("godot-annotation-processor")
+}
+
 subdir("plugins") {
     include("godot-gradle-plugin")
 }

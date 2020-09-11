@@ -6,7 +6,10 @@ import godot.utils.GodotBuildProperties
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.*
+import org.gradle.kotlin.dsl.dependencies
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
+import org.jetbrains.kotlin.gradle.internal.Kapt3GradleSubplugin.Companion.findKaptConfiguration
+import org.jetbrains.kotlin.gradle.plugin.KaptExtension
 
 
 class GodotPlugin : Plugin<Project> {
@@ -14,6 +17,7 @@ class GodotPlugin : Plugin<Project> {
         require(project.rootProject == project) { "godot-jvm plugin can only be applied on the root project!" }
         val jvm = project.extensions.getByType<KotlinJvmProjectExtension>()
         project.pluginManager.apply(ShadowPlugin::class)
+        project.pluginManager.apply("org.jetbrains.kotlin.kapt")
         setupPlugin(project, jvm)
     }
 
@@ -24,6 +28,7 @@ class GodotPlugin : Plugin<Project> {
                 dependencies {
                     add(name, kotlin("stdlib"))
                     add(name, "com.utopia-rise:godot-library:${GodotBuildProperties.godotKotlinVersion}")
+                    add("kapt", "com.utopia-rise:godot-annotation-processor:${GodotBuildProperties.godotKotlinVersion}")
                 }
             }
             val main = configurations.create("main").apply {
@@ -34,11 +39,20 @@ class GodotPlugin : Plugin<Project> {
                         "module" to null
                     )
                 )
+                dependencies {
+                    add("kapt", "com.utopia-rise:godot-annotation-processor:${GodotBuildProperties.godotKotlinVersion}")
+                }
+            }
+
+            dependencies {
+                add("kapt", "com.utopia-rise:godot-annotation-processor:${GodotBuildProperties.godotKotlinVersion}")
             }
 
             jvm.target.compilations.getByName("main").defaultSourceSet {
+
                 dependencies {
                     compileOnly("com.utopia-rise:godot-library:${GodotBuildProperties.godotKotlinVersion}")
+                    compileOnly("com.utopia-rise:godot-annotation-processor:${GodotBuildProperties.godotKotlinVersion}")
                 }
             }
 

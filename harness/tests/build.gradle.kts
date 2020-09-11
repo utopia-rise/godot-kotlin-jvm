@@ -7,3 +7,7 @@ plugins {
 repositories {
     jcenter()
 }
+
+dependencies {
+//    kapt("com.utopia-rise:godot-annotation-processor:${godot.utils.GodotBuildProperties.godotKotlinVersion}")
+}
