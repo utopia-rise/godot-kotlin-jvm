@@ -14,8 +14,7 @@ public:
     KtObject(jni::JObject p_wrapped, jni::JObject p_class_loader, const StringName& p_ktClass);
     ~KtObject() = default;
 
-    const jni::JObject &get_wrapped() const;
-    Variant call_method(const StringName &p_method, const Variant **p_args, Variant::CallError &r_error) const;
+    const jni::JObject& get_wrapped() const;
 
     const StringName& get_class_name() const;
 };

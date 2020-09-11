@@ -5,8 +5,9 @@
 #include <core/object.h>
 #include "java_instance_wrapper.h"
 #include "kt_property.h"
+#include "kt_object.h"
 
-struct KtFunctionInfo : public JavaInstanceWrapper{
+struct KtFunctionInfo : public JavaInstanceWrapper {
     KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader);
     ~KtFunctionInfo();
 
@@ -14,27 +15,25 @@ struct KtFunctionInfo : public JavaInstanceWrapper{
     List<KtPropertyInfo*> arguments;
     KtPropertyInfo* return_val;
 
-    MethodInfo toMethodInfo() const;
+    MethodInfo to_method_info() const;
 };
 
 class KtFunction : public JavaInstanceWrapper {
 private:
-    int parameterCount;
-    KtFunctionInfo* methodInfo;
-
-    String generateMethodSignature();
+    int parameter_count;
+    KtFunctionInfo* method_info;
 
 public:
     KtFunction(jni::JObject p_wrapped, jni::JObject& p_class_loader);
     ~KtFunction();
 
     StringName get_name() const;
-    int getParameterCount() const;
+    int get_parameter_count() const;
 
     MethodInfo get_member_info();
     KtFunctionInfo* get_kt_function_info();
 
-    Variant invoke(jni::JObject instance, const Variant** p_args);
+    Variant invoke(const KtObject* instance, const Variant** p_args);
 };
 
 
