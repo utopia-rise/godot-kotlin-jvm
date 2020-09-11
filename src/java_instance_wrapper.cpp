@@ -1,7 +1,7 @@
 #include "java_instance_wrapper.h"
 #include "core/string_builder.h"
 
-Map<String, JavaInstanceWrapper::ClassCache> JavaInstanceWrapper::CLASS_CACHE = Map<String, ClassCache>();
+HashMap<String, JavaInstanceWrapper::ClassCache> JavaInstanceWrapper::CLASS_CACHE = HashMap<String, ClassCache>();
 
 JavaInstanceWrapper::JavaInstanceWrapper(const char* p_class_name, jni::JObject p_wrapped,
                                          jni::JObject p_class_loader) : java_class_name(p_class_name) {

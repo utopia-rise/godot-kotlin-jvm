@@ -2,18 +2,18 @@
 #define GODOT_JVM_JAVA_CLASS_WRAPPER_H
 #include "jni/wrapper.h"
 #include "core/ustring.h"
-#include "core/map.h"
+#include "core/hash_map.h"
 
 
 class JavaInstanceWrapper {
 private:
     struct ClassCache {
         jni::JClass cls;
-        Map<String, jni::MethodId> method_ids;
-        Map<String, jni::MethodId> static_method_ids;
+        HashMap<String, jni::MethodId> method_ids;
+        HashMap<String, jni::MethodId> static_method_ids;
     };
 
-    static Map<String, ClassCache> CLASS_CACHE;
+    static HashMap<String, ClassCache> CLASS_CACHE;
 
     ClassCache& get_class_cache(jni::Env& env) const;
 protected:
