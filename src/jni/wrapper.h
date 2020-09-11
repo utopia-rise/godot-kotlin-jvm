@@ -8,6 +8,7 @@
 #include "jvm.h"
 #include "jvm_loader.h"
 #include "types.h"
+#include "local_frame.h"
 
 namespace jni {
 

@@ -37,6 +37,7 @@ Object* KotlinInstance::get_owner() {
 
 void KotlinInstance::set_owner(Object *object) {
     owner = object;
+    owner->set_script_instance(this);
 }
 
 void KotlinInstance::get_property_state(List<Pair<StringName, Variant>>& state) {
@@ -44,7 +45,10 @@ void KotlinInstance::get_property_state(List<Pair<StringName, Variant>>& state) 
 }
 
 void KotlinInstance::get_method_list(List<MethodInfo>* p_list) const {
-
+    KtClass* kotlinClass { GDKotlin::get_instance().find_class_by_name(wrappedObject->get_class_name()) };
+    if (kotlinClass) {
+        kotlinClass->get_method_list(p_list);
+    }
 }
 
 bool KotlinInstance::has_method(const StringName& p_method) const {
@@ -57,9 +61,8 @@ KotlinInstance::call(const StringName& p_method, const Variant& p_arg1, const Va
     return ScriptInstance::call(p_method, p_arg1, p_arg2, p_arg3, p_arg4, p_arg5);
 }
 
-Variant
-KotlinInstance::call(const StringName& p_method, const Variant** p_args, int p_argcount, Variant::CallError& r_error) {
-    return wrappedObject->call_method(p_method, p_args);
+Variant KotlinInstance::call(const StringName& p_method, const Variant** p_args, int p_argcount, Variant::CallError& r_error) {
+    return wrappedObject->call_method(p_method, p_args, r_error);
 }
 
 void KotlinInstance::call_multilevel(const StringName& p_method, const Variant& p_arg1, const Variant& p_arg2,

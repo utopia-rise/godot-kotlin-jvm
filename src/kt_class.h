@@ -33,7 +33,7 @@ private:
 
     template <typename F, typename T>
     void get_member_list(List<F>* p_list, Map<StringName, T*>& members) {
-        Map<StringName, T*>::Element* current = members.front();
+        typename Map<StringName, T*>::Element* current { members.front() };
         while (current) {
             p_list->push_back(current->value()->get_member_info());
             current = current->next();
@@ -42,7 +42,7 @@ private:
 
     template <class T>
     void delete_members(Map<StringName, T*>& members) {
-        Map<StringName, T*>::Element* current { members.front() };
+        typename Map<StringName, T*>::Element* current { members.front() };
         while (current) {
             T* member { current->value() };
             delete member;

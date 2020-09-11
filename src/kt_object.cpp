@@ -9,13 +9,18 @@ const jni::JObject &KtObject::get_wrapped() const {
     return wrapped;
 }
 
-Variant KtObject::call_method(const StringName& p_method, const Variant** p_args) const {
+Variant KtObject::call_method(const StringName& p_method, const Variant** p_args, Variant::CallError& r_error) const {
+    jni::LocalFrame local_frame(100);
+
     KtFunction* function {GDKotlin::get_instance().find_class_by_name(kt_class_name)->get_method(p_method) };
+    Variant ret_var;
     if (function) {
-        return function->invoke(wrapped, p_args);
+        ret_var = function->invoke(wrapped, p_args);
     } else {
-        return Variant();
+        r_error.error = Variant::CallError::CALL_ERROR_INVALID_METHOD;
     }
+
+    return ret_var;
 }
 
 const StringName& KtObject::get_class_name() const {
