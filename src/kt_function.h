@@ -33,7 +33,7 @@ public:
     MethodInfo get_member_info();
     KtFunctionInfo* get_kt_function_info();
 
-    Variant invoke(const KtObject* instance, const Variant** p_args);
+    Variant invoke(const KtObject* instance, const Variant** p_args, int args_count);
 };
 
 
