@@ -6,16 +6,12 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
 }
 
 TransferContext::~TransferContext() {
-    if (shared_buffer) {
-        delete shared_buffer;
-    }
+    delete shared_buffer;
 }
 
 TransferContext::SharedBuffer* TransferContext::get_buffer(jni::Env& p_env, bool p_refresh_buffer) {
     if (shared_buffer == nullptr || p_refresh_buffer) {
-        if (shared_buffer) {
-            delete shared_buffer;
-        }
+        delete shared_buffer;
 
         jni::MethodId method = get_method_id(p_env, "getBuffer", "()Ljava/nio/ByteBuffer;");
         jni::JObject buffer = wrapped.call_object_method(p_env, method);

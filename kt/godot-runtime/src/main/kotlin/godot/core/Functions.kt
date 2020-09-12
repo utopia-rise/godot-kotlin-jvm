@@ -103,7 +103,7 @@ class KtFunction2<T: KtObject, P0, P1, R>(
     private val returnValueConverter: (R) -> KtVariant,
     private val p0Converter: (KtVariant) -> P0,
     private val p1Converter: (KtVariant) -> P1,
-) : KtFunction<T, R>(functionInfo, 1) {
+) : KtFunction<T, R>(functionInfo, 2) {
     override fun invoke(instance: T, args: List<KtVariant>): KtVariant {
         return returnValueConverter(
             function(
@@ -122,7 +122,7 @@ class KtFunction3<T: KtObject, P0, P1, P2, R>(
     private val p0Converter: (KtVariant) -> P0,
     private val p1Converter: (KtVariant) -> P1,
     private val p2Converter: (KtVariant) -> P2,
-) : KtFunction<T, R>(functionInfo, 1) {
+) : KtFunction<T, R>(functionInfo, 3) {
     override fun invoke(instance: T, args: List<KtVariant>): KtVariant {
         return returnValueConverter(
             function(
@@ -143,7 +143,7 @@ class KtFunction4<T: KtObject, P0, P1, P2, P3, R>(
     private val p1Converter: (KtVariant) -> P1,
     private val p2Converter: (KtVariant) -> P2,
     private val p3Converter: (KtVariant) -> P3,
-) : KtFunction<T, R>(functionInfo, 1) {
+) : KtFunction<T, R>(functionInfo, 4) {
     override fun invoke(instance: T, args: List<KtVariant>): KtVariant {
         return returnValueConverter(
             function(
@@ -166,7 +166,7 @@ class KtFunction5<T: KtObject, P0, P1, P2, P3, P4, R>(
     private val p2Converter: (KtVariant) -> P2,
     private val p3Converter: (KtVariant) -> P3,
     private val p4Converter: (KtVariant) -> P4,
-) : KtFunction<T, R>(functionInfo, 1) {
+) : KtFunction<T, R>(functionInfo, 5) {
     override fun invoke(instance: T, args: List<KtVariant>): KtVariant {
         return returnValueConverter(
             function(

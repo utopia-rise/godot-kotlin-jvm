@@ -33,14 +33,14 @@ KtFunctionInfo* KtFunction::get_kt_function_info() {
     return method_info;
 }
 
-Variant KtFunction::invoke(const KtObject* instance, const Variant** p_args) {
+Variant KtFunction::invoke(const KtObject* instance, const Variant** p_args, int args_count) {
     jni::Env env{jni::Jvm::current_env()};
 
     jni::MethodId methodId {get_method_id(env, "invoke", "(Lgodot/core/KtObject;)Z")};
     TransferContext* transferContext = GDKotlin::get_instance().transfer_context;
     Vector<KtVariant> args;
-    for (int i = 0; i < method_info->arguments.size(); i++) {
-        args.push_back(KtVariant(p_args[i]));
+    for (int i = 0; i < args_count; i++) {
+        args.push_back(KtVariant(*p_args[i]));
     }
     transferContext->write_args(env, args);
     bool refresh_buffer = wrapped.call_boolean_method(env, methodId, {instance->get_wrapped()});

@@ -39,7 +39,6 @@ Object* KotlinInstance::get_owner() {
 
 void KotlinInstance::set_owner(Object *object) {
     owner = object;
-    owner->set_script_instance(this);
 }
 
 void KotlinInstance::get_property_state(List<Pair<StringName, Variant>>& state) {
@@ -66,7 +65,7 @@ Variant KotlinInstance::call(const StringName& p_method, const Variant** p_args,
     KtFunction* function { kt_class->get_method(p_method) };
     Variant ret_var;
     if (function) {
-        ret_var = function->invoke(this->wrapped_object, p_args);
+        ret_var = function->invoke(this->wrapped_object, p_args, p_argcount);
     } else {
         r_error.error = Variant::CallError::CALL_ERROR_INVALID_METHOD;
     }
