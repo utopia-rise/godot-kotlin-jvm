@@ -20,7 +20,7 @@ class ClassBuilderDsl<T : KtObject>(
 
     private val functions = mutableMapOf<String, KtFunction<T, *>>()
 
-    private val properties = mutableMapOf<String, KtProperty>()
+    private val properties = mutableMapOf<String, KtProperty<T, *>>()
 
     fun constructor(constructor: KtConstructor<T>) {
         require(!constructors.containsKey(constructor.parameterCount)) {
@@ -29,7 +29,13 @@ class ClassBuilderDsl<T : KtObject>(
         constructors[constructor.parameterCount] = constructor
     }
 
-    fun property(pib: KtPropertyInfoBuilderDsl.() -> Unit) {
+    fun <P> property(
+            getMethod: (T) -> P,
+            setMethod: ((T, P) -> Unit)? = null,
+            getValueConverter: (P) -> KtVariant,
+            setValueConverter: ((KtVariant) -> P)? = null,
+            pib: KtPropertyInfoBuilderDsl.() -> Unit
+    ) {
         val builder = KtPropertyInfoBuilderDsl()
         builder.pib()
         val property = builder.build()
@@ -39,7 +45,7 @@ class ClassBuilderDsl<T : KtObject>(
         require(!properties.contains(property.name)) {
             "Found two properties with name ${property.name} for class $name"
         }
-        properties[property.name] = KtProperty(property)
+        properties[property.name] = KtProperty(property, getMethod, setMethod, getValueConverter, setValueConverter)
     }
 
     fun <R> function(funcName: String,

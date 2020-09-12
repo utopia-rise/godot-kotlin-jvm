@@ -15,5 +15,23 @@ data class KtPropertyInfo(
         get() = _hint.ordinal
 }
 
-//TODO implement call
-class KtProperty(val ktPropertyInfo: KtPropertyInfo)
+class KtProperty<T: KtObject, P>(
+        val ktPropertyInfo: KtPropertyInfo,
+        private val getMethod: (T) -> P,
+        private val setMethod: ((T, P) -> Unit)? = null,
+        private val getValueConverter: (P) -> KtVariant,
+        private val setValueConverter: ((KtVariant) -> P)?
+) {
+    fun callGet(instance: T): Boolean {
+        return TransferContext.writeReturnValue(getValueConverter(getMethod(instance)))
+    }
+
+    fun setCall(instance: T) {
+        val set = checkNotNull(setMethod) {
+            "Cannot call setter for property ${ktPropertyInfo.name}."
+        }
+        val arg = TransferContext.readArguments()
+        require(arg.size == 1) { "Setter should be called with only one argument." }
+        set(instance, setValueConverter!!(arg[0]))
+    }
+}
