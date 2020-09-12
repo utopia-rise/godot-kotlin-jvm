@@ -121,12 +121,13 @@ Variant KotlinScript::_new(const Variant **p_args, int p_argcount, Variant::Call
     Object *owner = ClassDB::instance(get_kotlin_class()->super_class);
 
     REF ref;
-    Reference* r = Object::cast_to<Reference>(owner);
+    auto* r = Object::cast_to<Reference>(owner);
     if (r) {
         ref = REF(r);
     }
 
     ScriptInstance* instance = instance_create(owner);
+    owner->set_script_instance(instance);
     if (!instance) {
         if (ref.is_null()) {
             memdelete(owner); //no owner, sorry

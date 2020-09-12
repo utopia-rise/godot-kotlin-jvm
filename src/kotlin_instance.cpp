@@ -39,7 +39,6 @@ Object* KotlinInstance::get_owner() {
 
 void KotlinInstance::set_owner(Object *object) {
     owner = object;
-    owner->set_script_instance(this);
 }
 
 void KotlinInstance::get_property_state(List<Pair<StringName, Variant>>& state) {
