@@ -4,6 +4,7 @@
 #include <core/object.h>
 #include "jni/wrapper.h"
 #include "java_instance_wrapper.h"
+#include "kt_object.h"
 
 struct KtPropertyInfo : public JavaInstanceWrapper {
     KtPropertyInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader);
@@ -30,6 +31,9 @@ public:
     StringName get_name() const;
 
     PropertyInfo get_member_info();
+
+    Variant callGet(const KtObject* instance);
+    void setCall(const KtObject* instance, const Variant& p_value);
 };
 
 

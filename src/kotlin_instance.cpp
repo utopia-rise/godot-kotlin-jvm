@@ -18,11 +18,27 @@ KotlinInstance::KotlinInstance(KtObject *p_wrapped_object, Object *p_owner, KtCl
 }
 
 bool KotlinInstance::set(const StringName& p_name, const Variant& p_value) {
-    return false;
+    jni::LocalFrame localFrame(100);
+
+    KtProperty* ktProperty { kt_class->get_property(p_name) };
+    if (ktProperty) {
+        ktProperty->setCall(wrapped_object, p_value);
+        return true;
+    } else {
+        return false;
+    }
 }
 
 bool KotlinInstance::get(const StringName& p_name, Variant& r_ret) const {
-    return false;
+    jni::LocalFrame localFrame(100);
+
+    KtProperty* ktProperty { kt_class->get_property(p_name) };
+    if (ktProperty) {
+        r_ret = ktProperty->callGet(wrapped_object);
+        return true;
+    } else {
+        return false;
+    }
 }
 
 void KotlinInstance::get_property_list(List<PropertyInfo>* p_properties) const {

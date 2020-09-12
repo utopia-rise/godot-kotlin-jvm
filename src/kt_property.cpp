@@ -47,3 +47,19 @@ StringName KtProperty::get_name() const {
 PropertyInfo KtProperty::get_member_info() {
     return propertyInfo->toPropertyInfo();
 }
+
+Variant KtProperty::callGet(const KtObject* instance) {
+    jni::Env env{jni::Jvm::current_env()};
+    jni::MethodId getCallMethodId {get_method_id(env, "callGet", "(Lgodot/core/KtObject;)Z")};
+    bool refreshBuffer = wrapped.call_boolean_method(env, getCallMethodId, {instance->get_wrapped()});
+    return GDKotlin::get_instance().transfer_context->read_return_value(env, refreshBuffer).to_godot_variant();
+}
+
+void KtProperty::setCall(const KtObject* instance, const Variant& p_value) {
+    jni::Env env{jni::Jvm::current_env()};
+    jni::MethodId setCallMethodId {get_method_id(env, "callSet", "(Lgodot/core/KtObject;)V")};
+    Vector<KtVariant> arg;
+    arg.push_back(KtVariant(p_value));
+    GDKotlin::get_instance().transfer_context->write_args(env, arg);
+    wrapped.call_void_method(env, setCallMethodId, {instance->get_wrapped()});
+}

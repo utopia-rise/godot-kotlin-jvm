@@ -26,7 +26,7 @@ class KtProperty<T: KtObject, P>(
         return TransferContext.writeReturnValue(getValueConverter(getMethod(instance)))
     }
 
-    fun setCall(instance: T) {
+    fun callSet(instance: T) {
         val set = checkNotNull(setMethod) {
             "Cannot call setter for property ${ktPropertyInfo.name}."
         }

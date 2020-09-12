@@ -29,6 +29,11 @@ KtFunction* KtClass::get_method(const StringName& methodName) {
     return method ? *method : nullptr;
 }
 
+KtProperty* KtClass::get_property(const StringName& p_property_name) {
+    KtProperty** property = properties.getptr(p_property_name);
+    return property ? *property : nullptr;
+}
+
 StringName KtClass::get_name(jni::Env& env) {
     jni::MethodId getter { get_method_id(env, "getName", "()Ljava/lang/String;") };
     jni::JObject ret { wrapped.call_object_method(env, getter) };
