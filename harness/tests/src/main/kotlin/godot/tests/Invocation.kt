@@ -21,7 +21,7 @@ class Invocation : Spatial() {
 
 	fun intAddition(a: Int, b: Int) = a + b
 
-	fun _enter_tree() {
+	fun _enterTree() {
 		println("Enter tree !")
 	}
 }
