@@ -9,28 +9,28 @@ class Entry : godot.runtime.Entry() {
         with (registry) {
             registerClass<Simple>(Simple::class.qualifiedName!!, "Object") {
                 constructor(KtConstructor0(::Simple))
-                function("benchmark_SimpleAdd", Simple::benchmarkSimpleAdd, ::KtVariant,
+                function(Simple::benchmarkSimpleAdd, ::KtVariant,
                     returns = {
                         type = KtVariant.Type.LONG
                         className = "Int"
                     }
                 )
 
-                function("benchmark_Avg", Simple::benchmarkAvg, ::KtVariant,
+                function(Simple::benchmarkAvg, ::KtVariant,
                     returns = {
                         type = KtVariant.Type.LONG
                         className = "Int"
                     }
                 )
 
-                function("benchmark_Vectors", Simple::benchmarkVectors, ::KtVariant,
+                function(Simple::benchmarkVectors, ::KtVariant,
                     returns = {
                         type = KtVariant.Type.VECTOR3
                         className = "Vector3"
                     }
                 )
 
-                function("benchmark_Vectors2Only", Simple::benchmarkVectors2Only, ::KtVariant,
+                function(Simple::benchmarkVectors2Only, ::KtVariant,
                     returns = {
                         type = KtVariant.Type.VECTOR2
                         className = "Vector2"
