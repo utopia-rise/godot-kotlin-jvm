@@ -50,14 +50,13 @@ class ClassBuilderDsl<T : KtObject>(
     fun <R> function(
             func: KFunction1<T, R>,
             returnValueConverter: (R) -> KtVariant,
-            funcName: String = func.name.camelToSnakeCase(),
             returns: KtPropertyInfoBuilderDsl.() -> Unit
     ) {
         val returnBuilder = KtPropertyInfoBuilderDsl()
         returnBuilder.returns()
         appendFunction(
                 KtFunction0(
-                        KtFunctionInfo(funcName, listOf(), returnBuilder.build()),
+                        KtFunctionInfo(func.name.camelToSnakeCase(), listOf(), returnBuilder.build()),
                         func,
                         returnValueConverter
                 )
@@ -68,14 +67,13 @@ class ClassBuilderDsl<T : KtObject>(
             func: KFunction2<T, P0, R>,
             returnValueConverter: (R) -> KtVariant,
             p0Converter: (KtVariant) -> P0,
-            funcName: String = func.name.camelToSnakeCase(),
             arg: KtPropertyInfoBuilderDsl.() -> Unit,
             returns: KtPropertyInfoBuilderDsl.() -> Unit
     ) {
         val (arguments, returnType) = argumentsAndReturnType(returns, arg)
         appendFunction(
                 KtFunction1(
-                        KtFunctionInfo(funcName, arguments, returnType),
+                        KtFunctionInfo(func.name.camelToSnakeCase(), arguments, returnType),
                         func,
                         returnValueConverter,
                         p0Converter
@@ -88,17 +86,16 @@ class ClassBuilderDsl<T : KtObject>(
             returnValueConverter: (R) -> KtVariant,
             p0Converter: (KtVariant) -> P0,
             p1Converter: (KtVariant) -> P1,
-            funcName: String = func.name.camelToSnakeCase(),
             args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
             returns: KtPropertyInfoBuilderDsl.() -> Unit
     ) {
         val (arguments, returnType) = argumentsAndReturnType(returns, *args)
         require(args.size == 2) {
-            "Function $funcName should have 2 arguments, found ${args.size}"
+            "Function ${func.name.camelToSnakeCase()} should have 2 arguments, found ${args.size}"
         }
         appendFunction(
                 KtFunction2(
-                        KtFunctionInfo(funcName, arguments, returnType),
+                        KtFunctionInfo(func.name.camelToSnakeCase(), arguments, returnType),
                         func,
                         returnValueConverter,
                         p0Converter,
@@ -113,17 +110,16 @@ class ClassBuilderDsl<T : KtObject>(
             p0Converter: (KtVariant) -> P0,
             p1Converter: (KtVariant) -> P1,
             p2Converter: (KtVariant) -> P2,
-            funcName: String = func.name.camelToSnakeCase(),
             args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
             returns: KtPropertyInfoBuilderDsl.() -> Unit
     ) {
         val (arguments, returnType) = argumentsAndReturnType(returns, *args)
         require(args.size == 3) {
-            "Function $funcName should have 3 arguments, found ${args.size}"
+            "Function ${func.name.camelToSnakeCase()} should have 3 arguments, found ${args.size}"
         }
         appendFunction(
                 KtFunction3(
-                        KtFunctionInfo(funcName, arguments, returnType),
+                        KtFunctionInfo(func.name.camelToSnakeCase(), arguments, returnType),
                         func,
                         returnValueConverter,
                         p0Converter,
@@ -140,17 +136,16 @@ class ClassBuilderDsl<T : KtObject>(
             p1Converter: (KtVariant) -> P1,
             p2Converter: (KtVariant) -> P2,
             p3Converter: (KtVariant) -> P3,
-            funcName: String = func.name.camelToSnakeCase(),
             args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
             returns: KtPropertyInfoBuilderDsl.() -> Unit
     ) {
         val (arguments, returnType) = argumentsAndReturnType(returns, *args)
         require(args.size == 4) {
-            "Function $funcName should have 4 arguments, found ${args.size}"
+            "Function ${func.name.camelToSnakeCase()} should have 4 arguments, found ${args.size}"
         }
         appendFunction(
                 KtFunction4(
-                        KtFunctionInfo(funcName, arguments, returnType),
+                        KtFunctionInfo(func.name.camelToSnakeCase(), arguments, returnType),
                         func,
                         returnValueConverter,
                         p0Converter,
@@ -169,17 +164,16 @@ class ClassBuilderDsl<T : KtObject>(
             p2Converter: (KtVariant) -> P2,
             p3Converter: (KtVariant) -> P3,
             p4Converter: (KtVariant) -> P4,
-            funcName: String = func.name.camelToSnakeCase(),
             args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
             returns: KtPropertyInfoBuilderDsl.() -> Unit
     ) {
         val (arguments, returnType) = argumentsAndReturnType(returns, *args)
         require(args.size == 5) {
-            "Function $funcName should have 5 arguments, found ${args.size}"
+            "Function ${func.name.camelToSnakeCase()} should have 5 arguments, found ${args.size}"
         }
         appendFunction(
                 KtFunction5(
-                        KtFunctionInfo(funcName, arguments, returnType),
+                        KtFunctionInfo(func.name.camelToSnakeCase(), arguments, returnType),
                         func,
                         returnValueConverter,
                         p0Converter,
