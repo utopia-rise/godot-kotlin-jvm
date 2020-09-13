@@ -17,6 +17,7 @@ public:
 
     KtObject* create_instance(jni::Env& env, const Variant** p_args, int p_arg_count, Object* p_owner);
     KtFunction* get_method(const StringName& methodName);
+    KtProperty* get_property(const StringName& p_property_name);
 
     void get_method_list(List<MethodInfo>* p_list);
     void get_property_list(List<PropertyInfo>* p_list);

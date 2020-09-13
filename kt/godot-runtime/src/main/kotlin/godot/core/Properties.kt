@@ -1,5 +1,7 @@
 package godot.core
 
+import kotlin.reflect.KMutableProperty1
+
 data class KtPropertyInfo(
         val _type: KtVariant.Type,
         val name: String,
@@ -15,5 +17,19 @@ data class KtPropertyInfo(
         get() = _hint.ordinal
 }
 
-//TODO implement call
-class KtProperty(val ktPropertyInfo: KtPropertyInfo)
+class KtProperty<T: KtObject, P>(
+        val ktPropertyInfo: KtPropertyInfo,
+        private val kProperty: KMutableProperty1<T, P>,
+        private val getValueConverter: (P) -> KtVariant,
+        private val setValueConverter: ((KtVariant) -> P)
+) {
+    fun callGet(instance: T): Boolean {
+        return TransferContext.writeReturnValue(getValueConverter(kProperty.get(instance)))
+    }
+
+    fun callSet(instance: T) {
+        val arg = TransferContext.readArguments()
+        require(arg.size == 1) { "Setter should be called with only one argument." }
+        kProperty.set(instance, setValueConverter(arg[0]))
+    }
+}

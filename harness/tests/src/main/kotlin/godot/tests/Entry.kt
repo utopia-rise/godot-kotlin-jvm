@@ -8,22 +8,22 @@ class Entry : godot.runtime.Entry() {
             registerClass<Invocation>(Invocation::class.qualifiedName!!, "Spatial") {
                 constructor(KtConstructor0(::Invocation))
 
-                property {
+                property(Invocation::x, ::KtVariant, KtVariant::asInt) {
                     name = "x"
                     type = KtVariant.Type.LONG
                     className = "Int"
                 }
-                property {
+                property(Invocation::y, ::KtVariant, KtVariant::asDouble) {
                     name = "y"
                     type = KtVariant.Type.DOUBLE
                     className = "Double"
                 }
-                property {
+                property(Invocation::z, ::KtVariant, KtVariant::asFloat) {
                     name = "z"
                     type = KtVariant.Type.DOUBLE
                     className = "Float"
                 }
-                property {
+                property(Invocation::name, ::KtVariant, KtVariant::asString) {
                     name = "name"
                     type = KtVariant.Type.STRING
                     className = "String"
