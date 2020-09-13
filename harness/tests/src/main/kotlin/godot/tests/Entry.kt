@@ -9,22 +9,18 @@ class Entry : godot.runtime.Entry() {
                 constructor(KtConstructor0(::Invocation))
 
                 property(Invocation::x, ::KtVariant, KtVariant::asInt) {
-                    name = "x"
                     type = KtVariant.Type.LONG
                     className = "Int"
                 }
                 property(Invocation::y, ::KtVariant, KtVariant::asDouble) {
-                    name = "y"
                     type = KtVariant.Type.DOUBLE
                     className = "Double"
                 }
                 property(Invocation::z, ::KtVariant, KtVariant::asFloat) {
-                    name = "z"
                     type = KtVariant.Type.DOUBLE
                     className = "Float"
                 }
                 property(Invocation::name, ::KtVariant, KtVariant::asString) {
-                    name = "name"
                     type = KtVariant.Type.STRING
                     className = "String"
                 }

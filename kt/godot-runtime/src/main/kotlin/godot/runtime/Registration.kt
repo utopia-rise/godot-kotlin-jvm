@@ -1,6 +1,7 @@
 package godot.runtime
 
 import godot.core.*
+import godot.util.camelToSnakeCase
 import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.KProperty
 
@@ -38,11 +39,9 @@ class ClassBuilderDsl<T : KtObject>(
             pib: KtPropertyInfoBuilderDsl.() -> Unit
     ) {
         val builder = KtPropertyInfoBuilderDsl()
+        builder.name = kProperty.name.camelToSnakeCase()
         builder.pib()
         val property = builder.build()
-        require(property.name.isNotEmpty()) {
-            "Found a property with an empty name for class $name"
-        }
         require(!properties.contains(property.name)) {
             "Found two properties with name ${property.name} for class $name"
         }
