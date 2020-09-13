@@ -1,6 +1,8 @@
 package godot.runtime
 
 import godot.core.*
+import kotlin.reflect.KMutableProperty1
+import kotlin.reflect.KProperty
 
 class KtPropertyInfoBuilderDsl {
     var type: KtVariant.Type? = null
@@ -30,10 +32,9 @@ class ClassBuilderDsl<T : KtObject>(
     }
 
     fun <P> property(
-            getMethod: (T) -> P,
-            setMethod: ((T, P) -> Unit)? = null,
+            kProperty: KMutableProperty1<T, P>,
             getValueConverter: (P) -> KtVariant,
-            setValueConverter: ((KtVariant) -> P)? = null,
+            setValueConverter: ((KtVariant) -> P),
             pib: KtPropertyInfoBuilderDsl.() -> Unit
     ) {
         val builder = KtPropertyInfoBuilderDsl()
@@ -45,7 +46,7 @@ class ClassBuilderDsl<T : KtObject>(
         require(!properties.contains(property.name)) {
             "Found two properties with name ${property.name} for class $name"
         }
-        properties[property.name] = KtProperty(property, getMethod, setMethod, getValueConverter, setValueConverter)
+        properties[property.name] = KtProperty(property, kProperty, getValueConverter, setValueConverter)
     }
 
     fun <R> function(funcName: String,

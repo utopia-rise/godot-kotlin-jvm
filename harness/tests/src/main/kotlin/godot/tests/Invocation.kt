@@ -10,7 +10,7 @@ class Invocation : Spatial() {
 	var x = 0
 	var y = 0.0
 	var z = 0.0f
-	val name = "Idonthaveanyidea"
+	var name = "Idonthaveanyidea"
 
 	fun intValue(value: Int) = value
 	fun longValue(value: Long) = value
@@ -21,7 +21,7 @@ class Invocation : Spatial() {
 
 	fun intAddition(a: Int, b: Int) = a + b
 
-    fun _enter_tree() {
-        println("Enter tree !")
-    }
+	fun _enter_tree() {
+		println("Enter tree !")
+	}
 }
