@@ -1,5 +1,6 @@
 #include "transfer_context.h"
 #include "google/protobuf/util/delimited_message_util.h"
+#include "gd_kotlin.h"
 
 TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_loader)
     : shared_buffer(nullptr), JavaInstanceWrapper("godot.core.TransferContext", p_wrapped, p_class_loader) {
@@ -76,4 +77,34 @@ Vector<KtVariant> TransferContext::read_args(jni::Env& p_env, bool p_refresh_buf
         args.push_back(KtVariant(k_arg));
     }
     return args;
+}
+
+void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jstring jClassName, jstring jMethod,
+                            jint expectedReturnType, bool p_refresh_buffer) {
+    const jni::JObject& classLoader = GDKotlin::get_instance().get_class_loader();
+    jni::Env env(rawEnv);
+    Vector<KtVariant> tArgs = read_args(env, p_refresh_buffer);
+    int argsSize = tArgs.size();
+
+    Vector<const Variant*> variantArgs;
+    for (int i = 0; i < argsSize; i++) {
+        const Variant& godotVariant = tArgs[i].to_godot_variant();
+        variantArgs.push_back(&godotVariant);
+    }
+
+    auto* ptr = reinterpret_cast<Object*>(jPtr);
+    String className = env.from_jstring(jni::JString(jClassName));
+    String method = env.from_jstring(jni::JString(jMethod));
+
+    Variant::CallError r_error {Variant::CallError::CALL_OK};
+    MethodBind* methodBind { ClassDB::get_method(className, method) };
+    if (methodBind) {
+        const KtVariant& retValue{methodBind->call(ptr, variantArgs.ptrw(), argsSize, r_error)};
+
+        //TODO: Manage r_error
+
+        write_return_value(env, retValue);
+    } else {
+        //TODO: manage if methodBind not found
+    }
 }
