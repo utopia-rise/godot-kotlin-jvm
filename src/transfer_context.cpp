@@ -79,11 +79,14 @@ Vector<KtVariant> TransferContext::read_args(jni::Env& p_env, bool p_refresh_buf
     return args;
 }
 
-void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jstring jClassName, jstring jMethod,
-                            jint expectedReturnType, bool p_refresh_buffer) {
+JNIEXPORT void JNICALL Java_TransferContext_icall(JNIEnv* rawEnv, jobject instance, jlong jPtr,
+                                                                   jstring jClassName,
+                                                                   jstring jMethod, jint expectedReturnType,
+                                                                   bool p_refresh_buffer) {
+    TransferContext* transferContext{GDKotlin::get_instance().transfer_context};
     const jni::JObject& classLoader = GDKotlin::get_instance().get_class_loader();
     jni::Env env(rawEnv);
-    Vector<KtVariant> tArgs = read_args(env, p_refresh_buffer);
+    Vector<KtVariant> tArgs = transferContext->read_args(env, p_refresh_buffer);
     int argsSize = tArgs.size();
 
     Vector<const Variant*> variantArgs;
@@ -96,14 +99,14 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jstrin
     String className = env.from_jstring(jni::JString(jClassName));
     String method = env.from_jstring(jni::JString(jMethod));
 
-    Variant::CallError r_error {Variant::CallError::CALL_OK};
-    MethodBind* methodBind { ClassDB::get_method(className, method) };
+    Variant::CallError r_error{Variant::CallError::CALL_OK};
+    MethodBind* methodBind{ClassDB::get_method(className, method)};
     if (methodBind) {
         const KtVariant& retValue{methodBind->call(ptr, variantArgs.ptrw(), argsSize, r_error)};
 
         //TODO: Manage r_error
 
-        write_return_value(env, retValue);
+        transferContext->write_return_value(env, retValue);
     } else {
         //TODO: manage if methodBind not found
     }

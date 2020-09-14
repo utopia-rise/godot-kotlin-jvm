@@ -80,15 +80,16 @@ object TransferContext {
 
     fun callMethod(ptr: VoidPtr, className: String, method: String, expectedReturnType: KtVariant.Type) {
         icall(
-            ptr,
-            className,
-            method,
-            (KtVariant.TYPE_TO_WIRE_VALUE_TYPE[expectedReturnType]
-                ?: error("Unable to map $expectedReturnType to wire value type")).number
+                ptr,
+                className,
+                method,
+                (KtVariant.TYPE_TO_WIRE_VALUE_TYPE[expectedReturnType]
+                        ?: error("Unable to map $expectedReturnType to wire value type")).number,
+                TODO()
         )
     }
 
-    private external fun icall(ptr: VoidPtr, className: String, method: String, expectedReturnType: Int)
+    private external fun icall(ptr: VoidPtr, className: String, method: String, expectedReturnType: Int, refreshBuffer: Boolean)
 
     private fun getRequiredCapacity(capacity: Int): Int {
         // extra bytes used for the delimiter
