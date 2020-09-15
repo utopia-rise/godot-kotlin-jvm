@@ -78,3 +78,9 @@ func test_string_value() -> void:
 	var invocation_script = load("res://src/main/kotlin/godot/tests/Invocation.kt").new()
 	assert_eq(invocation_script.string_value("hello"), "hello", "string value cast should return exactly same value")
 	invocation_script.free()
+
+func test_call_to_godot() -> void:
+	var invocation_script = load("res://src/main/kotlin/godot/tests/Invocation.kt").new()
+	invocation_script.name = "Hellooo"
+	assert_eq(invocation_script.name, "Hellooo", "Node::set_name should have been called.")
+	invocation_script.free()
