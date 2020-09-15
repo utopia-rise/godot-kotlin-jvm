@@ -46,7 +46,7 @@ func test_set_float_call() -> void:
 
 func test_get_string_call() -> void:
 	var invocation_script = load("res://src/main/kotlin/godot/tests/Invocation.kt").new()
-	assert_eq(invocation_script.name, "Idonthaveanyidea", "Call to get should return value of jvm variable")
+	assert_eq(invocation_script.custom_name, "Idonthaveanyidea", "Call to get should return value of jvm variable")
 	invocation_script.free()
 
 func test_int_value() -> void:

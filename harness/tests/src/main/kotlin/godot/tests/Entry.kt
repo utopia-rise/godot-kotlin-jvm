@@ -20,7 +20,7 @@ class Entry : godot.runtime.Entry() {
                     type = KtVariant.Type.DOUBLE
                     className = "Float"
                 }
-                property(Invocation::name, ::KtVariant, KtVariant::asString) {
+                property(Invocation::customName, ::KtVariant, KtVariant::asString) {
                     type = KtVariant.Type.STRING
                     className = "String"
                 }
@@ -112,6 +112,13 @@ class Entry : godot.runtime.Entry() {
                 )
 
                 function(Invocation::_enterTree, ::KtVariant,
+                        returns = {
+                            type = KtVariant.Type.NIL
+                            className = "Unit"
+                        }
+                )
+
+                function(Invocation::_ready, ::KtVariant,
                         returns = {
                             type = KtVariant.Type.NIL
                             className = "Unit"

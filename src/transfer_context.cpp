@@ -2,8 +2,16 @@
 #include "google/protobuf/util/delimited_message_util.h"
 #include "gd_kotlin.h"
 
+Variant TransferContext::variantArgs[MAX_ARGS_SIZE];
+const Variant* TransferContext::variantArgsPtr[MAX_ARGS_SIZE];
+
 TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_loader)
     : shared_buffer(nullptr), JavaInstanceWrapper("godot.core.TransferContext", p_wrapped, p_class_loader) {
+    jni::JNativeMethod method {"icall", "(JLjava/lang/String;Ljava/lang/String;IZ)V", &TransferContext::icall};
+    Vector<jni::JNativeMethod> methods;
+    methods.push_back(method);
+    jni::Env env {jni::Jvm::current_env()};
+    get_class(env).register_natives(env, methods);
 }
 
 TransferContext::~TransferContext() {
@@ -79,20 +87,26 @@ Vector<KtVariant> TransferContext::read_args(jni::Env& p_env, bool p_refresh_buf
     return args;
 }
 
-JNIEXPORT void JNICALL Java_TransferContext_icall(JNIEnv* rawEnv, jobject instance, jlong jPtr,
-                                                                   jstring jClassName,
-                                                                   jstring jMethod, jint expectedReturnType,
-                                                                   bool p_refresh_buffer) {
+void TransferContext::initVariantArgsPtrs() {
+    for (int i = 0; i < MAX_ARGS_SIZE; i++) {
+        variantArgsPtr[i] = &variantArgs[i];
+    }
+}
+
+void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr,
+           jstring jClassName,
+           jstring jMethod, jint expectedReturnType,
+           bool p_refresh_buffer) {
     TransferContext* transferContext{GDKotlin::get_instance().transfer_context};
     const jni::JObject& classLoader = GDKotlin::get_instance().get_class_loader();
     jni::Env env(rawEnv);
     Vector<KtVariant> tArgs = transferContext->read_args(env, p_refresh_buffer);
     int argsSize = tArgs.size();
 
-    Vector<const Variant*> variantArgs;
+    ERR_FAIL_COND_MSG(argsSize > MAX_ARGS_SIZE, vformat("Cannot have more than %s arguments for method call.", MAX_ARGS_SIZE))
+
     for (int i = 0; i < argsSize; i++) {
-        const Variant& godotVariant = tArgs[i].to_godot_variant();
-        variantArgs.push_back(&godotVariant);
+        variantArgs[i] = Variant(tArgs[i].to_godot_variant());
     }
 
     auto* ptr = reinterpret_cast<Object*>(jPtr);
@@ -101,13 +115,8 @@ JNIEXPORT void JNICALL Java_TransferContext_icall(JNIEnv* rawEnv, jobject instan
 
     Variant::CallError r_error{Variant::CallError::CALL_OK};
     MethodBind* methodBind{ClassDB::get_method(className, method)};
-    if (methodBind) {
-        const KtVariant& retValue{methodBind->call(ptr, variantArgs.ptrw(), argsSize, r_error)};
-
-        //TODO: Manage r_error
-
-        transferContext->write_return_value(env, retValue);
-    } else {
-        //TODO: manage if methodBind not found
-    }
+    ERR_FAIL_COND_MSG(!methodBind, vformat("Cannot find method %s in class %s", method, className))
+    const KtVariant& retValue{methodBind->call(ptr, variantArgsPtr, argsSize, r_error)};
+    ERR_FAIL_COND_MSG(r_error.error != Variant::CallError::CALL_OK, vformat("Call to %s failed.", method))
+    transferContext->write_return_value(env, retValue);
 }
