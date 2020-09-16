@@ -1,20 +1,23 @@
 package godot
 
 import godot.core.KtObject
-import godot.core.Godot
 import godot.core.KtVariant
 import godot.core.TransferContext
 import godot.util.VoidPtr
 
 open class Object : KtObject() {
     override fun __new(): VoidPtr {
-        return Godot.invokeConstructor("Object")
+        return TransferContext.invokeConstructor("Object")
     }
 
     fun getInstanceId(): Long {
         TransferContext.writeArguments()
         TransferContext.callMethod(rawPtr, "Object", "get_instance_id", KtVariant.Type.LONG, false)
         return TransferContext.readReturnValue().asLong()
+    }
+
+    fun free() {
+        TransferContext.callMethod(rawPtr, "Object", "free", KtVariant.Type.NIL, false)
     }
 }
 
@@ -32,12 +35,12 @@ open class Node : Object() {
         }
 
     override fun __new(): VoidPtr {
-        return Godot.invokeConstructor("Node")
+        return TransferContext.invokeConstructor("Node")
     }
 }
 
 open class Spatial : Node() {
     override fun __new(): VoidPtr {
-        return Godot.invokeConstructor("Spatial")
+        return TransferContext.invokeConstructor("Spatial")
     }
 }

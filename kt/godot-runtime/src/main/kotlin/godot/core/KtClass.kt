@@ -9,8 +9,8 @@ class KtClass<T : KtObject>(
         private val _properties: Map<String, KtProperty<T, *>>,
         private val _functions: Map<String, KtFunction<T, *>>
 ) {
-	val functions: Array<KtFunction<T, *>>
-		get() = _functions.values.toTypedArray()
+    val functions: Array<KtFunction<T, *>>
+        get() = _functions.values.toTypedArray()
     val properties: Array<KtProperty<T, *>>
         get() = _properties.values.toTypedArray()
 
@@ -28,5 +28,4 @@ class KtClass<T : KtObject>(
         check(function != null) { "Function with $name not found." }
         return function(instance, args.toList())
     }
-
 }

@@ -1,10 +1,15 @@
 package godot.tests
 
-import godot.core.*
+import godot.core.KtConstructor0
+import godot.core.KtVariant
 
 class Entry : godot.runtime.Entry() {
     override fun Context.init() {
         with(registry) {
+            registerClass<OtherScript>(OtherScript::class.qualifiedName!!, "Node") {
+                constructor(KtConstructor0(::OtherScript))
+            }
+
             registerClass<Invocation>(Invocation::class.qualifiedName!!, "Spatial") {
                 constructor(KtConstructor0(::Invocation))
 

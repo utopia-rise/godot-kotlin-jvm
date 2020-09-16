@@ -20,7 +20,7 @@ object Godot {
         TODO()
     }
 
-    fun setScript(rawPtr: VoidPtr, className: String) {
+    fun setScript(rawPtr: VoidPtr, obj: KtObject) {
         TODO()
     }
 }

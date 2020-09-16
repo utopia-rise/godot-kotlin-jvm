@@ -1,36 +1,48 @@
 package godot.tests
 
+import godot.Node
 import godot.Spatial
 
+class OtherScript : Node() {
+
+}
+
 class Invocation : Spatial() {
-	init {
-		println("Hello Invocation!")
-	}
+    init {
+        println("Hello Invocation!")
+    }
 
-	var x = 0
-	var y = 0.0
-	var z = 0.0f
-	var customName = "Idonthaveanyidea"
+    var x = 0
+    var y = 0.0
+    var z = 0.0f
+    var customName = "Idonthaveanyidea"
 
-	fun intValue(value: Int) = value
-	fun longValue(value: Long) = value
-	fun floatValue(value: Float) = value
-	fun doubleValue(value: Double) = value
-	fun booleanValue(value: Boolean) = value
-	fun stringValue(value: String) = value
+    var invocation = OtherScript()
 
-	fun intAddition(a: Int, b: Int) = a + b
+    fun intValue(value: Int) = value
+    fun longValue(value: Long) = value
+    fun floatValue(value: Float) = value
+    fun doubleValue(value: Double) = value
+    fun booleanValue(value: Boolean) = value
+    fun stringValue(value: String) = value
 
-	fun _enterTree() {
-		println("Enter tree !")
-		println("Instance id: ${getInstanceId()}")
-	}
+    fun intAddition(a: Int, b: Int) = a + b
 
-	fun _ready() {
-		val formerName = name
-		println("Name is: $name")
-		name = "TestName"
-		println("Name is: $name")
-		name = formerName
-	}
+    fun _enterTree() {
+        println("Enter tree !")
+        println("Instance id: ${getInstanceId()}")
+    }
+
+    fun _ready() {
+        val formerName = name
+        println("Name is: $name")
+        name = "TestName"
+        println("Name is: $name")
+        name = formerName
+    }
+
+    // TODO: implement _onDestroy
+    override fun _onDestroy() {
+        invocation.free()
+    }
 }

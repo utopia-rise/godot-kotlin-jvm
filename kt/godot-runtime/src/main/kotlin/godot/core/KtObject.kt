@@ -3,6 +3,7 @@ package godot.core
 import godot.util.VoidPtr
 import godot.util.nullptr
 
+@Suppress("LeakingThis")
 abstract class KtObject {
     var rawPtr: VoidPtr = nullptr
         set(value) {
@@ -10,19 +11,25 @@ abstract class KtObject {
                 "rawPtr should be only set once!"
             }
             field = value
-            // TODO: track instance
         }
 
+
     init {
-        if (shouldInit.get()) {
-            @Suppress("LeakingThis")
-            // user types shouldn't override this method
-            rawPtr = __new()
-            val className = checkNotNull(this::class.simpleName) { "User classes can't be anonymous." }
-            if (Godot.isUserType(className)) {
-                Godot.setScript(rawPtr, className)
+        try {
+            if (shouldInit.get()) {
+                // user types shouldn't override this method
+                rawPtr = __new()
+
+                // inheritance in Godot is faked, a script is attached to an Object allow
+                // the script to see all methods of the owning Object.
+                // For user types, we need to make sure to attach this script to the Object
+                // rawPtr is pointing to.
+                val className = checkNotNull(this::class.qualifiedName) { "User classes can't be anonymous." }
+                if (TypeManager.isUserType(className)) {
+                    TransferContext.setScript(rawPtr, className, this, this::class.java.classLoader)
+                }
             }
-        } else {
+        } finally {
             shouldInit.set(true)
         }
     }

@@ -69,7 +69,7 @@ object TransferContext {
     /*
      * Returns true if the underlying buffer object was changed.
      */
-    fun ensureCapacity(capacity: Int): Boolean {
+    private fun ensureCapacity(capacity: Int): Boolean {
         val actualCapacity = getRequiredCapacity(capacity)
         if (buffer.capacity() < actualCapacity) {
             buffer = ByteBuffer.allocateDirect(actualCapacity)
@@ -88,6 +88,9 @@ object TransferContext {
                 refreshBuffer
         )
     }
+
+    external fun setScript(rawPtr: VoidPtr, className: String, obj: KtObject, classLoader: ClassLoader);
+    external fun invokeConstructor(className: String): VoidPtr
 
     private external fun icall(ptr: VoidPtr, className: String, method: String, expectedReturnType: Int, refreshBuffer: Boolean)
 
