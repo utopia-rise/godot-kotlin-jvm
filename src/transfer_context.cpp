@@ -1,28 +1,32 @@
 #include "transfer_context.h"
 #include "google/protobuf/util/delimited_message_util.h"
+#include "gd_kotlin.h"
+
 
 TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_loader)
-    : shared_buffer(nullptr), JavaInstanceWrapper("godot.core.TransferContext", p_wrapped, p_class_loader) {
-}
-
-TransferContext::~TransferContext() {
-    delete shared_buffer;
+    : JavaInstanceWrapper("godot.core.TransferContext", p_wrapped, p_class_loader) {
+    jni::JNativeMethod method {"icall", "(JLjava/lang/String;Ljava/lang/String;IZ)V", &TransferContext::icall};
+    Vector<jni::JNativeMethod> methods;
+    methods.push_back(method);
+    jni::Env env {jni::Jvm::current_env()};
+    get_class(env).register_natives(env, methods);
 }
 
 TransferContext::SharedBuffer* TransferContext::get_buffer(jni::Env& p_env, bool p_refresh_buffer) {
-    if (shared_buffer == nullptr || p_refresh_buffer) {
-        delete shared_buffer;
+    thread_local static TransferContext::SharedBuffer shared_buffer;
+
+    if (!shared_buffer.ptr || p_refresh_buffer) {
 
         jni::MethodId method = get_method_id(p_env, "getBuffer", "()Ljava/nio/ByteBuffer;");
         jni::JObject buffer = wrapped.call_object_method(p_env, method);
         assert(!buffer.isNull());
-        shared_buffer = new SharedBuffer {
+        shared_buffer = SharedBuffer {
                 p_env.get_direct_buffer_address(buffer),
                 p_env.get_direct_buffer_capacity(buffer)
         };
     }
 
-    return shared_buffer;
+    return &shared_buffer;
 }
 
 bool TransferContext::ensure_capacity(jni::Env& p_env, long p_capacity) {
@@ -76,4 +80,42 @@ Vector<KtVariant> TransferContext::read_args(jni::Env& p_env, bool p_refresh_buf
         args.push_back(KtVariant(k_arg));
     }
     return args;
+}
+
+void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr,
+           jstring jClassName,
+           jstring jMethod, jint expectedReturnType,
+           bool p_refresh_buffer) {
+    thread_local static Variant variantArgs[MAX_ARGS_SIZE];
+    thread_local static const Variant* variantArgsPtr[MAX_ARGS_SIZE];
+    thread_local static bool icall_args_init = false;
+    if (!icall_args_init) {
+        for (int i = 0; i < MAX_ARGS_SIZE; i++) {
+            variantArgsPtr[i] = &variantArgs[i];
+        }
+        icall_args_init = true;
+    }
+
+    TransferContext* transferContext{GDKotlin::get_instance().transfer_context};
+    const jni::JObject& classLoader = GDKotlin::get_instance().get_class_loader();
+    jni::Env env(rawEnv);
+    Vector<KtVariant> tArgs = transferContext->read_args(env, p_refresh_buffer);
+    int argsSize = tArgs.size();
+
+    ERR_FAIL_COND_MSG(argsSize > MAX_ARGS_SIZE, vformat("Cannot have more than %s arguments for method call.", MAX_ARGS_SIZE))
+
+    for (int i = 0; i < argsSize; i++) {
+        variantArgs[i] = tArgs[i].to_godot_variant();
+    }
+
+    auto* ptr = reinterpret_cast<Object*>(jPtr);
+    String className = env.from_jstring(jni::JString(jClassName));
+    String method = env.from_jstring(jni::JString(jMethod));
+
+    Variant::CallError r_error{Variant::CallError::CALL_OK};
+    MethodBind* methodBind{ClassDB::get_method(className, method)};
+    ERR_FAIL_COND_MSG(!methodBind, vformat("Cannot find method %s in class %s", method, className))
+    const KtVariant& retValue{methodBind->call(ptr, variantArgsPtr, argsSize, r_error)};
+    ERR_FAIL_COND_MSG(r_error.error != Variant::CallError::CALL_OK, vformat("Call to %s failed.", method))
+    transferContext->write_return_value(env, retValue);
 }

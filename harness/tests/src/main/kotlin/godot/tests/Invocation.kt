@@ -10,7 +10,7 @@ class Invocation : Spatial() {
 	var x = 0
 	var y = 0.0
 	var z = 0.0f
-	var name = "Idonthaveanyidea"
+	var customName = "Idonthaveanyidea"
 
 	fun intValue(value: Int) = value
 	fun longValue(value: Long) = value
@@ -23,5 +23,14 @@ class Invocation : Spatial() {
 
 	fun _enterTree() {
 		println("Enter tree !")
+		println("Instance id: ${getInstanceId()}")
+	}
+
+	fun _ready() {
+		val formerName = name
+		println("Name is: $name")
+		name = "TestName"
+		println("Name is: $name")
+		name = formerName
 	}
 }
