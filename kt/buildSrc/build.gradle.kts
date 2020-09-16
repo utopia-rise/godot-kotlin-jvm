@@ -2,8 +2,15 @@ plugins {
     `kotlin-dsl`
 }
 
+buildscript {
+    repositories {
+        jcenter()
+        gradlePluginPortal()
+    }
+}
 repositories {
     jcenter()
+    gradlePluginPortal()
 }
 
 dependencies {
