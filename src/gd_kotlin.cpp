@@ -60,7 +60,6 @@ void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) 
 void GDKotlin::init() {
     // Initialize type mappings
     KtVariant::initMethodArray();
-    TransferContext::initVariantArgsPtrs();
 
     jni::InitArgs args;
     args.version = JNI_VERSION_1_8;

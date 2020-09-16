@@ -13,7 +13,7 @@ public:
     };
 
     TransferContext(jni::JObject p_wrapped, jni::JObject p_class_loader);
-    ~TransferContext();
+    ~TransferContext() = default;
     TransferContext(const TransferContext&) = delete;
     void operator=(const TransferContext&) = delete;
 
@@ -23,8 +23,6 @@ public:
     void write_args(jni::Env& p_env, const Vector<KtVariant>& p_args);
     Vector<KtVariant> read_args(jni::Env& p_env, bool p_refresh_buffer);
 
-    static void initVariantArgsPtrs();
-
     static void icall(JNIEnv* rawEnv, jobject instance, jlong jPtr,
                jstring jClassName, jstring jMethod,
                jint expectedReturnType, bool p_refresh_buffer);
@@ -32,10 +30,6 @@ public:
 private:
     SharedBuffer* get_buffer(jni::Env& p_env, bool p_refresh_buffer);
     bool ensure_capacity(jni::Env& p_env, long p_capacity);
-    SharedBuffer* shared_buffer;
-
-    static Variant variantArgs[MAX_ARGS_SIZE];
-    static const Variant* variantArgsPtr[MAX_ARGS_SIZE];
 
 };
 
