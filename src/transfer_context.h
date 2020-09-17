@@ -27,6 +27,10 @@ public:
                jstring jClassName, jstring jMethod,
                jint expectedReturnType, bool p_refresh_buffer);
 
+    static jlong invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, jstring p_class_name);
+    static void set_script(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jstring p_class_name, jobject p_object,
+                           jobject p_class_loader);
+
 private:
     SharedBuffer* get_buffer(jni::Env& p_env, bool p_refresh_buffer);
     bool ensure_capacity(jni::Env& p_env, long p_capacity);

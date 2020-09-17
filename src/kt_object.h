@@ -9,7 +9,7 @@
 class KtObject : public JavaInstanceWrapper {
 
 private:
-    const StringName& kt_class_name;
+    StringName kt_class_name;
 public:
     KtObject(jni::JObject p_wrapped, jni::JObject p_class_loader, const StringName& p_ktClass);
     ~KtObject() = default;
