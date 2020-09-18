@@ -6,7 +6,7 @@
 void *jni::JvmLoader::jvmLib = nullptr;
 
 void jni::JvmLoader::loadJvmLib() {
-    const char *libPath = getJvmLibPath();
+    String libPath = getJvmLibPath();
 
     if (OS::get_singleton()->open_dynamic_library(libPath, jvmLib) != OK) {
         ERR_PRINT(String("Failed to load the jvm dynamic library from path ") + libPath + "!")
@@ -44,13 +44,16 @@ jni::GetCreatedJavaVMs jni::JvmLoader::getGetCreatedJavaVMsFunction() {
     return reinterpret_cast<GetCreatedJavaVMs>(getCreatedJavaVMsSymbolHandle);
 }
 
-const char *jni::JvmLoader::getJvmLibPath() {
+String jni::JvmLoader::getJvmLibPath() {
 #ifdef __linux__
     String relativePath{"lib/server/libjvm.so"};
     String fileSeparator{"/"};
-#elif TARGET_OS_MAC
-    String relativePath {"lib/server/libjvm.dylib"};
-    String fileSeparator {"/"};
+#elif __APPLE__
+    #include <TargetConditionals.h>
+    #if TARGET_OS_MAC
+        String relativePath {"lib/server/libjvm.dylib"};
+        String fileSeparator {"/"};
+    #endif
 #elif defined _WIN32 || defined _WIN64
     String relativePath {"bin\\server\\jvm.dll"};
     String fileSeparator {"\\"};
@@ -72,8 +75,8 @@ const char *jni::JvmLoader::getJvmLibPath() {
 
         message += " Trying to use locally installed jdk at " + pathToLocallyInstalledJvmLib;
         WARN_PRINT(message.utf8().get_data())
-        return pathToLocallyInstalledJvmLib.utf8().ptr();
+        return pathToLocallyInstalledJvmLib;
     } else {
-        return (embeddedJrePath + relativePath).utf8().ptr();
+        return embeddedJrePath + relativePath;
     }
 }

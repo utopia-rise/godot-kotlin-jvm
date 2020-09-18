@@ -17,7 +17,7 @@ namespace jni {
     private:
         static void *jvmLib;
         static void loadJvmLib();
-        static const char* getJvmLibPath();
+        static String getJvmLibPath();
     };
 }
 
