@@ -9,6 +9,7 @@ import org.jetbrains.kotlin.descriptors.ClassDescriptor
 import org.jetbrains.kotlin.descriptors.FunctionDescriptor
 import org.jetbrains.kotlin.descriptors.PropertyDescriptor
 import org.jetbrains.kotlin.types.TypeUtils
+import java.lang.module.ModuleDescriptor
 import javax.annotation.processing.AbstractProcessor
 import javax.annotation.processing.Processor
 import javax.annotation.processing.RoundEnvironment
@@ -31,8 +32,10 @@ class GodotAnnotationProcessor: AbstractProcessor() {
     private val properties: MutableSet<PropertyDescriptor> = mutableSetOf()
     private val functions: MutableSet<FunctionDescriptor> = mutableSetOf()
     private val signals: MutableSet<PropertyDescriptor> = mutableSetOf()
+
     override fun process(elements: MutableSet<out TypeElement>, roundEnvironment: RoundEnvironment): Boolean {
 
+        processingEnv.options
 
         println("Huhu2")
         val blubb = ""

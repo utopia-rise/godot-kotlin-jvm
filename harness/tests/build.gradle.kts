@@ -9,5 +9,5 @@ repositories {
 }
 
 dependencies {
-//    kapt("com.utopia-rise:godot-annotation-processor:${godot.utils.GodotBuildProperties.godotKotlinVersion}")
+    kapt("com.utopia-rise:godot-annotation-processor:${godot.utils.GodotBuildProperties.godotKotlinVersion}")
 }
