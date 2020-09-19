@@ -144,7 +144,7 @@ jlong TransferContext::invoke_constructor(JNIEnv *p_raw_env, jobject p_instance,
     StringName class_name = env.from_jstring(jni::JString(p_class_name));
     Object* ptr = ClassDB::instance(class_name);
     ERR_FAIL_COND_V_MSG(!ptr, 0, vformat("Failed to instantiate class %s", class_name))
-    return reinterpret_cast<long>(ptr);
+    return reinterpret_cast<uintptr_t>(ptr);
 }
 
 void TransferContext::set_script(JNIEnv *p_raw_env, jobject p_instance, jlong p_raw_ptr, jstring p_class_name,
