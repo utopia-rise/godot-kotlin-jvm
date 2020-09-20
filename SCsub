@@ -3,10 +3,12 @@ import os
 Import("env")
 
 java_home = os.environ["JAVA_HOME"]
+
 java_include_dirs = [
     java_home + "/include",
     java_home + "/include/linux",
-    java_home + "/include/win32"
+    java_home + "/include/win32",
+    java_home + "/include/darwin"
 ]
 protobuf_include_dir = [
     "libprotobuf/include/"
