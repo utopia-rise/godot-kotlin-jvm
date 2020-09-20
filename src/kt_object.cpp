@@ -4,6 +4,12 @@
 KtObject::KtObject(jni::JObject p_wrapped, jni::JObject p_class_loader, const StringName& p_ktClass)
         : JavaInstanceWrapper("godot.core.KtObject", p_wrapped, p_class_loader), kt_class_name(p_ktClass) {}
 
+KtObject::~KtObject() {
+    jni::Env env { jni::Jvm::current_env() };
+    jni::MethodId on_destroy_method = get_class(env).get_method_id(env, "_onDestroy", "()V");
+    wrapped.call_void_method(env, on_destroy_method);
+}
+
 const jni::JObject &KtObject::get_wrapped() const {
     return wrapped;
 }

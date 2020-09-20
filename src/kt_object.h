@@ -12,7 +12,7 @@ private:
     StringName kt_class_name;
 public:
     KtObject(jni::JObject p_wrapped, jni::JObject p_class_loader, const StringName& p_ktClass);
-    ~KtObject() = default;
+    ~KtObject();
 
     const jni::JObject& get_wrapped() const;
 

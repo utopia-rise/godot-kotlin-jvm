@@ -15,10 +15,6 @@ open class Object : KtObject() {
         TransferContext.callMethod(rawPtr, "Object", "get_instance_id", KtVariant.Type.LONG, false)
         return TransferContext.readReturnValue().asLong()
     }
-
-    fun free() {
-        TransferContext.callMethod(rawPtr, "Object", "free", KtVariant.Type.NIL, false)
-    }
 }
 
 open class Node : Object() {
