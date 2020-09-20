@@ -166,5 +166,5 @@ void TransferContext::set_script(JNIEnv *p_raw_env, jobject p_instance, jlong p_
 
 void TransferContext::free_object(JNIEnv *p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     auto* owner = reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr));
-    memdelete(owner);
+    owner->call_multilevel("free");
 }
