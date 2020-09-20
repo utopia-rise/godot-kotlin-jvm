@@ -30,6 +30,7 @@ public:
     static jlong invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, jstring p_class_name);
     static void set_script(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jstring p_class_name, jobject p_object,
                            jobject p_class_loader);
+    static void free_object(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
 
 private:
     SharedBuffer* get_buffer(jni::Env& p_env, bool p_refresh_buffer);

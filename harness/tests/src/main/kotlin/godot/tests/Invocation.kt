@@ -8,10 +8,6 @@ class OtherScript : Node() {
 }
 
 class Invocation : Spatial() {
-    init {
-        println("Hello Invocation!")
-    }
-
     var x = 0
     var y = 0.0
     var z = 0.0f
@@ -41,7 +37,10 @@ class Invocation : Spatial() {
         name = formerName
     }
 
-    // TODO: implement _onDestroy
+    override fun _onInit() {
+        println("Hello Invocation!")
+    }
+
     override fun _onDestroy() {
         invocation.free()
     }

@@ -4,7 +4,7 @@ import godot.util.VoidPtr
 import godot.util.nullptr
 
 @Suppress("LeakingThis")
-abstract class KtObject {
+abstract class KtObject : AutoCloseable {
     var rawPtr: VoidPtr = nullptr
         set(value) {
             require(field == nullptr) {
@@ -27,6 +27,7 @@ abstract class KtObject {
                 val className = checkNotNull(this::class.qualifiedName) { "User classes can't be anonymous." }
                 if (TypeManager.isUserType(className)) {
                     TransferContext.setScript(rawPtr, className, this, this::class.java.classLoader)
+                    _onInit()
                 }
             }
         } finally {
@@ -39,6 +40,14 @@ abstract class KtObject {
     open fun _onInit() = Unit
     open fun _onDestroy() = Unit
 
+    fun free() {
+        TransferContext.freeObject(this)
+    }
+
+    final override fun close() {
+        free()
+    }
+
     companion object {
         private val shouldInit = ThreadLocal.withInitial { true }
 
@@ -46,6 +55,7 @@ abstract class KtObject {
             shouldInit.set(false)
             return constructor().also {
                 it.rawPtr = rawPtr
+                it._onInit()
             }
         }
     }

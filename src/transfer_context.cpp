@@ -23,10 +23,17 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
             (void*) TransferContext::set_script
     };
 
+    jni::JNativeMethod free_object_method {
+            "freeObject",
+            "(J)V",
+            (void*) TransferContext::free_object
+    };
+
     Vector<jni::JNativeMethod> methods;
     methods.push_back(icall_method);
     methods.push_back(invoke_ctor_method);
     methods.push_back(set_script_method);
+    methods.push_back(free_object_method);
     jni::Env env {jni::Jvm::current_env()};
     get_class(env).register_natives(env, methods);
 }
@@ -155,4 +162,9 @@ void TransferContext::set_script(JNIEnv *p_raw_env, jobject p_instance, jlong p_
     auto* kt_object = new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader), class_name);
     auto* script = memnew(KotlinInstance(kt_object, owner, GDKotlin::get_instance().find_class_by_name(class_name)));
     owner->set_script_instance(script);
+}
+
+void TransferContext::free_object(JNIEnv *p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    auto* owner = reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr));
+    memdelete(owner);
 }
