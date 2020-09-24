@@ -5,7 +5,7 @@ static void (* TO_KT_VARIANT_FROM[27 /* Variant::Type count */])(wire::Value&, c
 
 static Variant (* TO_GODOT_VARIANT_FROM[27 /* KVariant::TypeCase count */])(const wire::Value&);
 
-static Variant::Type WIRE_TYPE_CASE_TO_VARIANT_TYPE[15];
+static Variant::Type WIRE_TYPE_CASE_TO_VARIANT_TYPE[16];
 static String VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[28];
 
 
@@ -118,6 +118,11 @@ void to_kvariant_fromTRANSFORM(wire::Value& des, const Variant& src) {
     des.set_allocated_transform_value(transform);
 }
 
+void to_kvariant_fromOBJECT(wire::Value& des, const Variant& src) {
+    Object* value = src;
+    des.set_object_value(reinterpret_cast<uintptr_t>(value));
+}
+
 KtVariant::KtVariant(const Variant& variant) {
     Variant::Type type = variant.get_type();
     TO_KT_VARIANT_FROM[type](value, variant);
@@ -209,6 +214,10 @@ Variant from_kvariant_tokTransformValue(const wire::Value& src) {
     );
 }
 
+Variant from_kvariant_toKObjectValue(const wire::Value& src) {
+    return Variant(reinterpret_cast<Object*>(src.object_value()));
+}
+
 Variant KtVariant::to_godot_variant() const {
     return TO_GODOT_VARIANT_FROM[value.type_case()](value);
 }
@@ -228,6 +237,7 @@ void KtVariant::initMethodArray() {
     TO_KT_VARIANT_FROM[Variant::AABB] = to_kvariant_fromAABB;
     TO_KT_VARIANT_FROM[Variant::BASIS] = to_kvariant_fromBASIS;
     TO_KT_VARIANT_FROM[Variant::TRANSFORM] = to_kvariant_fromTRANSFORM;
+    TO_KT_VARIANT_FROM[Variant::OBJECT] = to_kvariant_fromOBJECT;
 
     TO_GODOT_VARIANT_FROM[wire::Value::kNilValue] = from_kvariant_tokNilValue;
     TO_GODOT_VARIANT_FROM[wire::Value::kBoolValue] = from_kvariant_tokBoolValue;
@@ -243,6 +253,7 @@ void KtVariant::initMethodArray() {
     TO_GODOT_VARIANT_FROM[wire::Value::kAabbValue] = from_kvariant_tokAabbValue;
     TO_GODOT_VARIANT_FROM[wire::Value::kBasisValue] = from_kvariant_tokBasisValue;
     TO_GODOT_VARIANT_FROM[wire::Value::kTransformValue] = from_kvariant_tokTransformValue;
+    TO_GODOT_VARIANT_FROM[wire::Value::kObjectValue] = from_kvariant_toKObjectValue;
 
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kNilValue] = Variant::Type::NIL;
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kBoolValue] = Variant::Type::BOOL;
@@ -258,6 +269,7 @@ void KtVariant::initMethodArray() {
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kAabbValue] = Variant::Type::AABB;
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kBasisValue] = Variant::Type::BASIS;
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kTransformValue] = Variant::Type::TRANSFORM;
+    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kObjectValue] = Variant::Type::OBJECT;
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::TYPE_NOT_SET] = Variant::Type::VARIANT_MAX;
 
     VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::NIL] = "V";
@@ -274,6 +286,7 @@ void KtVariant::initMethodArray() {
     VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::AABB] = "Lgodot/core/AABB;";
     VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::BASIS] = "Lgodot/core/Basis;";
     VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::TRANSFORM] = "Lgodot/core/Transform;";
+    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::OBJECT] = "J"; //VoidPtr
     VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::VARIANT_MAX] = "V";
 }
 

@@ -14,111 +14,115 @@ class KtVariant {
     constructor(value: Int) : this(value.toLong())
 
     constructor(value: Long) {
-        data = build { setLongValue(value) }
+        data = build { longValue = value }
     }
 
     constructor(value: Float) : this(value.toDouble())
 
     constructor(value: Double) {
-        data = build { setRealValue(value) }
+        data = build { realValue = value }
     }
 
     constructor(value: String) {
-        data = build { setStringValue(value) }
+        data = build { stringValue = value }
     }
 
     constructor(value: Boolean) {
-        data = build { setBoolValue(value) }
+        data = build { boolValue = value }
     }
 
     constructor(value: Unit) {
-        data = build { setNilValue(0) }
+        data = build { nilValue = 0 }
     }
 
     constructor(value: Vector2) {
         data = build {
-            setVector2Value(value.toWireVector2())
+            vector2Value = value.toWireVector2()
         }
     }
 
     constructor(value: Rect2) {
         data = build {
             val rect2 = Wire.Rect2.newBuilder()
-                .setPosition(value.position.toWireVector2())
-                .setSize(value.size.toWireVector2())
-                .build()
+                    .setPosition(value.position.toWireVector2())
+                    .setSize(value.size.toWireVector2())
+                    .build()
 
-            setRect2Value(rect2)
+            rect2Value = rect2
         }
     }
 
     constructor(value: Vector3) {
         data = build {
-            setVector3Value(value.toWireVector3())
+            vector3Value = value.toWireVector3()
         }
     }
 
     constructor(value: Transform2D) {
         data = build {
             val transform2D = Wire.Transform2D.newBuilder()
-                .setX(value.x.toWireVector2())
-                .setY(value.y.toWireVector2())
-                .setOrigin(value.origin.toWireVector2())
-                .build()
-            setTransform2DValue(transform2D)
+                    .setX(value.x.toWireVector2())
+                    .setY(value.y.toWireVector2())
+                    .setOrigin(value.origin.toWireVector2())
+                    .build()
+            transform2DValue = transform2D
         }
     }
 
     constructor(value: Plane) {
         data = build {
             val plane = Wire.Plane.newBuilder()
-                .setNormal(value.normal.toWireVector3())
-                .setD(value.d.toGodotReal())
-                .build()
+                    .setNormal(value.normal.toWireVector3())
+                    .setD(value.d.toGodotReal())
+                    .build()
 
-            setPlaneValue(plane)
+            planeValue = plane
         }
     }
 
     constructor(value: Quat) {
         data = build {
             val quat = Wire.Quat.newBuilder()
-                .setX(value.x.toGodotReal())
-                .setY(value.y.toGodotReal())
-                .setZ(value.z.toGodotReal())
-                .setW(value.w.toGodotReal())
-                .build()
+                    .setX(value.x.toGodotReal())
+                    .setY(value.y.toGodotReal())
+                    .setZ(value.z.toGodotReal())
+                    .setW(value.w.toGodotReal())
+                    .build()
 
-            setQuatValue(quat)
+            quatValue = quat
         }
     }
 
     constructor(value: AABB) {
         data = build {
             val aabb = Wire.AABB.newBuilder()
-                .setPosition(value.position.toWireVector3())
-                .setSize(value.size.toWireVector3())
-                .build()
+                    .setPosition(value.position.toWireVector3())
+                    .setSize(value.size.toWireVector3())
+                    .build()
 
-            setAabbValue(aabb)
+            aabbValue = aabb
         }
     }
 
     constructor(value: Basis) {
         data = build {
-            setBasisValue(value.toWireBasis())
+            basisValue = value.toWireBasis()
         }
     }
 
     constructor(value: Transform) {
         data = build {
             val transform = Wire.Transform.newBuilder()
-                .setBasis(value.basis.toWireBasis())
-                .setOrigin(value.origin.toWireVector3())
-                .build()
+                    .setBasis(value.basis.toWireBasis())
+                    .setOrigin(value.origin.toWireVector3())
+                    .build()
 
-            setTransformValue(transform)
+            transformValue = transform
         }
+    }
+
+    constructor(value: KtObject) {
+        data = build { objectValue = value.rawPtr }
     }
 
     fun asNil(): Unit {
@@ -156,10 +160,10 @@ class KtVariant {
     fun asRect2(): Rect2 {
         val rect2 = data.rect2Value
         return Rect2(
-            rect2.position.x.toRealT(),
-            rect2.position.y.toRealT(),
-            rect2.size.x.toRealT(),
-            rect2.size.y.toRealT()
+                rect2.position.x.toRealT(),
+                rect2.position.y.toRealT(),
+                rect2.size.x.toRealT(),
+                rect2.size.y.toRealT()
         )
     }
 
@@ -211,6 +215,12 @@ class KtVariant {
         return Transform(basis, origin)
     }
 
+    fun <T : KtObject> asObject(constructor: () -> T): T {
+        return KtObject.instantiateWith(data.objectValue) {
+            constructor()
+        }
+    }
+
     enum class Type {
         NIL,
         LONG,
@@ -225,25 +235,27 @@ class KtVariant {
         QUAT,
         AABB,
         BASIS,
-        TRANSFORM
+        TRANSFORM,
+        OBJECT
     }
 
     companion object {
         internal val TYPE_TO_WIRE_VALUE_TYPE = mapOf(
-            Type.NIL to Wire.Value.TypeCase.NIL_VALUE,
-            Type.LONG to Wire.Value.TypeCase.LONG_VALUE,
-            Type.DOUBLE to Wire.Value.TypeCase.LONG_VALUE,
-            Type.STRING to Wire.Value.TypeCase.LONG_VALUE,
-            Type.BOOL to Wire.Value.TypeCase.LONG_VALUE,
-            Type.VECTOR2 to Wire.Value.TypeCase.VECTOR2_VALUE,
-            Type.RECT2 to Wire.Value.TypeCase.RECT2_VALUE,
-            Type.VECTOR3 to Wire.Value.TypeCase.VECTOR3_VALUE,
-            Type.TRANSFORM2D to Wire.Value.TypeCase.TRANSFORM2D_VALUE,
-            Type.PLANE to Wire.Value.TypeCase.PLANE_VALUE,
-            Type.QUAT to Wire.Value.TypeCase.QUAT_VALUE,
-            Type.AABB to Wire.Value.TypeCase.AABB_VALUE,
-            Type.BASIS to Wire.Value.TypeCase.BASIS_VALUE,
-            Type.TRANSFORM to Wire.Value.TypeCase.TRANSFORM_VALUE,
+                Type.NIL to Wire.Value.TypeCase.NIL_VALUE,
+                Type.LONG to Wire.Value.TypeCase.LONG_VALUE,
+                Type.DOUBLE to Wire.Value.TypeCase.LONG_VALUE,
+                Type.STRING to Wire.Value.TypeCase.LONG_VALUE,
+                Type.BOOL to Wire.Value.TypeCase.LONG_VALUE,
+                Type.VECTOR2 to Wire.Value.TypeCase.VECTOR2_VALUE,
+                Type.RECT2 to Wire.Value.TypeCase.RECT2_VALUE,
+                Type.VECTOR3 to Wire.Value.TypeCase.VECTOR3_VALUE,
+                Type.TRANSFORM2D to Wire.Value.TypeCase.TRANSFORM2D_VALUE,
+                Type.PLANE to Wire.Value.TypeCase.PLANE_VALUE,
+                Type.QUAT to Wire.Value.TypeCase.QUAT_VALUE,
+                Type.AABB to Wire.Value.TypeCase.AABB_VALUE,
+                Type.BASIS to Wire.Value.TypeCase.BASIS_VALUE,
+                Type.TRANSFORM to Wire.Value.TypeCase.TRANSFORM_VALUE,
+                Type.OBJECT to Wire.Value.TypeCase.OBJECT_VALUE
         )
 
         private inline fun build(cb: Wire.Value.Builder.() -> Unit): Wire.Value {
@@ -254,26 +266,26 @@ class KtVariant {
 
         private fun Vector2.toWireVector2(): Wire.Vector2 {
             return Wire.Vector2.newBuilder()
-                .setX(x.toGodotReal())
-                .setY(y.toGodotReal())
-                .build()
+                    .setX(x.toGodotReal())
+                    .setY(y.toGodotReal())
+                    .build()
         }
 
         private fun Vector3.toWireVector3(): Wire.Vector3 {
             return Wire.Vector3.newBuilder()
-                .setX(x.toGodotReal())
-                .setY(y.toGodotReal())
-                .setZ(z.toGodotReal())
-                .build()
+                    .setX(x.toGodotReal())
+                    .setY(y.toGodotReal())
+                    .setZ(z.toGodotReal())
+                    .build()
         }
 
         private fun Basis.toWireBasis(): Wire.Basis {
             // read the internal values directly
             return Wire.Basis.newBuilder()
-                .setX(_x.toWireVector3())
-                .setY(_y.toWireVector3())
-                .setZ(_z.toWireVector3())
-                .build()
+                    .setX(_x.toWireVector3())
+                    .setY(_y.toWireVector3())
+                    .setZ(_z.toWireVector3())
+                    .build()
         }
 
         private fun Wire.Vector2.toKVector2(): Vector2 {

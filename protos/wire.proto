@@ -68,6 +68,7 @@ message Value {
     AABB aabb_value = 12;
     Basis basis_value = 13;
     Transform transform_value = 14;
+    int64 object_value = 15;
   }
 }
 

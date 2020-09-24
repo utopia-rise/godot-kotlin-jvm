@@ -64,20 +64,6 @@ class TransformDefaultTypeInternal {
 class ValueDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Value> _instance;
-  ::PROTOBUF_NAMESPACE_ID::int32 nil_value_;
-  bool bool_value_;
-  ::PROTOBUF_NAMESPACE_ID::int64 long_value_;
-  double real_value_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr string_value_;
-  const ::wire::Vector2* vector2_value_;
-  const ::wire::Rect2* rect2_value_;
-  const ::wire::Vector3* vector3_value_;
-  const ::wire::Transform2D* transform2d_value_;
-  const ::wire::Plane* plane_value_;
-  const ::wire::Quat* quat_value_;
-  const ::wire::AABB* aabb_value_;
-  const ::wire::Basis* basis_value_;
-  const ::wire::Transform* transform_value_;
 } _Value_default_instance_;
 class ReturnValueDefaultTypeInternal {
  public:
@@ -96,7 +82,6 @@ static void InitDefaultsscc_info_AABB_wire_2eproto() {
     new (ptr) ::wire::AABB();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::wire::AABB::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_AABB_wire_2eproto =
@@ -111,7 +96,6 @@ static void InitDefaultsscc_info_Basis_wire_2eproto() {
     new (ptr) ::wire::Basis();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::wire::Basis::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Basis_wire_2eproto =
@@ -126,7 +110,6 @@ static void InitDefaultsscc_info_FuncArgs_wire_2eproto() {
     new (ptr) ::wire::FuncArgs();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::wire::FuncArgs::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_FuncArgs_wire_2eproto =
@@ -141,7 +124,6 @@ static void InitDefaultsscc_info_Plane_wire_2eproto() {
     new (ptr) ::wire::Plane();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::wire::Plane::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Plane_wire_2eproto =
@@ -156,7 +138,6 @@ static void InitDefaultsscc_info_Quat_wire_2eproto() {
     new (ptr) ::wire::Quat();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::wire::Quat::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Quat_wire_2eproto =
@@ -170,7 +151,6 @@ static void InitDefaultsscc_info_Rect2_wire_2eproto() {
     new (ptr) ::wire::Rect2();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::wire::Rect2::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Rect2_wire_2eproto =
@@ -185,7 +165,6 @@ static void InitDefaultsscc_info_ReturnValue_wire_2eproto() {
     new (ptr) ::wire::ReturnValue();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::wire::ReturnValue::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_ReturnValue_wire_2eproto =
@@ -200,7 +179,6 @@ static void InitDefaultsscc_info_Transform_wire_2eproto() {
     new (ptr) ::wire::Transform();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::wire::Transform::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_Transform_wire_2eproto =
@@ -216,7 +194,6 @@ static void InitDefaultsscc_info_Transform2D_wire_2eproto() {
     new (ptr) ::wire::Transform2D();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::wire::Transform2D::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Transform2D_wire_2eproto =
@@ -231,7 +208,6 @@ static void InitDefaultsscc_info_Value_wire_2eproto() {
     new (ptr) ::wire::Value();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::wire::Value::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<9> scc_info_Value_wire_2eproto =
@@ -254,7 +230,6 @@ static void InitDefaultsscc_info_Vector2_wire_2eproto() {
     new (ptr) ::wire::Vector2();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::wire::Vector2::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Vector2_wire_2eproto =
@@ -268,7 +243,6 @@ static void InitDefaultsscc_info_Vector3_wire_2eproto() {
     new (ptr) ::wire::Vector3();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::wire::Vector3::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Vector3_wire_2eproto =
@@ -352,20 +326,21 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_wire_2eproto::offsets[] PROTOB
   ~0u,  // no _extensions_
   PROTOBUF_FIELD_OFFSET(::wire::Value, _oneof_case_[0]),
   ~0u,  // no _weak_field_map_
-  offsetof(::wire::ValueDefaultTypeInternal, nil_value_),
-  offsetof(::wire::ValueDefaultTypeInternal, bool_value_),
-  offsetof(::wire::ValueDefaultTypeInternal, long_value_),
-  offsetof(::wire::ValueDefaultTypeInternal, real_value_),
-  offsetof(::wire::ValueDefaultTypeInternal, string_value_),
-  offsetof(::wire::ValueDefaultTypeInternal, vector2_value_),
-  offsetof(::wire::ValueDefaultTypeInternal, rect2_value_),
-  offsetof(::wire::ValueDefaultTypeInternal, vector3_value_),
-  offsetof(::wire::ValueDefaultTypeInternal, transform2d_value_),
-  offsetof(::wire::ValueDefaultTypeInternal, plane_value_),
-  offsetof(::wire::ValueDefaultTypeInternal, quat_value_),
-  offsetof(::wire::ValueDefaultTypeInternal, aabb_value_),
-  offsetof(::wire::ValueDefaultTypeInternal, basis_value_),
-  offsetof(::wire::ValueDefaultTypeInternal, transform_value_),
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
   PROTOBUF_FIELD_OFFSET(::wire::Value, type_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::wire::ReturnValue, _internal_metadata_),
@@ -391,8 +366,8 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 53, -1, sizeof(::wire::Basis)},
   { 61, -1, sizeof(::wire::Transform)},
   { 68, -1, sizeof(::wire::Value)},
-  { 88, -1, sizeof(::wire::ReturnValue)},
-  { 94, -1, sizeof(::wire::FuncArgs)},
+  { 89, -1, sizeof(::wire::ReturnValue)},
+  { 95, -1, sizeof(::wire::FuncArgs)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -425,7 +400,7 @@ const char descriptor_table_protodef_wire_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "\005Basis\022\030\n\001x\030\001 \001(\0132\r.wire.Vector3\022\030\n\001y\030\002 "
   "\001(\0132\r.wire.Vector3\022\030\n\001z\030\003 \001(\0132\r.wire.Vec"
   "tor3\"F\n\tTransform\022\032\n\005basis\030\001 \001(\0132\013.wire."
-  "Basis\022\035\n\006origin\030\002 \001(\0132\r.wire.Vector3\"\332\003\n"
+  "Basis\022\035\n\006origin\030\002 \001(\0132\r.wire.Vector3\"\362\003\n"
   "\005Value\022\023\n\tnil_value\030\001 \001(\005H\000\022\024\n\nbool_valu"
   "e\030\002 \001(\010H\000\022\024\n\nlong_value\030\003 \001(\003H\000\022\024\n\nreal_"
   "value\030\004 \001(\001H\000\022\026\n\014string_value\030\005 \001(\tH\000\022&\n"
@@ -437,10 +412,10 @@ const char descriptor_table_protodef_wire_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "\nquat_value\030\013 \001(\0132\n.wire.QuatH\000\022 \n\naabb_"
   "value\030\014 \001(\0132\n.wire.AABBH\000\022\"\n\013basis_value"
   "\030\r \001(\0132\013.wire.BasisH\000\022*\n\017transform_value"
-  "\030\016 \001(\0132\017.wire.TransformH\000B\006\n\004type\"(\n\013Ret"
-  "urnValue\022\031\n\004data\030\001 \001(\0132\013.wire.Value\"%\n\010F"
-  "uncArgs\022\031\n\004args\030\001 \003(\0132\013.wire.ValueB\014\n\ngo"
-  "dot.wireb\006proto3"
+  "\030\016 \001(\0132\017.wire.TransformH\000\022\026\n\014object_valu"
+  "e\030\017 \001(\003H\000B\006\n\004type\"(\n\013ReturnValue\022\031\n\004data"
+  "\030\001 \001(\0132\013.wire.Value\"%\n\010FuncArgs\022\031\n\004args\030"
+  "\001 \003(\0132\013.wire.ValueB\014\n\ngodot.wireb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_wire_2eproto_deps[1] = {
 };
@@ -460,7 +435,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_wir
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_wire_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_wire_2eproto = {
-  false, false, descriptor_table_protodef_wire_2eproto, "wire.proto", 1176,
+  false, false, descriptor_table_protodef_wire_2eproto, "wire.proto", 1200,
   &descriptor_table_wire_2eproto_once, descriptor_table_wire_2eproto_sccs, descriptor_table_wire_2eproto_deps, 12, 0,
   schemas, file_default_instances, TableStruct_wire_2eproto::offsets,
   file_level_metadata_wire_2eproto, 12, file_level_enum_descriptors_wire_2eproto, file_level_service_descriptors_wire_2eproto,
@@ -472,8 +447,6 @@ namespace wire {
 
 // ===================================================================
 
-void Vector2::InitAsDefaultInstance() {
-}
 class Vector2::_Internal {
  public:
 };
@@ -699,12 +672,6 @@ void Vector2::InternalSwap(Vector2* other) {
 
 // ===================================================================
 
-void Rect2::InitAsDefaultInstance() {
-  ::wire::_Rect2_default_instance_._instance.get_mutable()->position_ = const_cast< ::wire::Vector2*>(
-      ::wire::Vector2::internal_default_instance());
-  ::wire::_Rect2_default_instance_._instance.get_mutable()->size_ = const_cast< ::wire::Vector2*>(
-      ::wire::Vector2::internal_default_instance());
-}
 class Rect2::_Internal {
  public:
   static const ::wire::Vector2& position(const Rect2* msg);
@@ -963,8 +930,6 @@ void Rect2::InternalSwap(Rect2* other) {
 
 // ===================================================================
 
-void Vector3::InitAsDefaultInstance() {
-}
 class Vector3::_Internal {
  public:
 };
@@ -1211,14 +1176,6 @@ void Vector3::InternalSwap(Vector3* other) {
 
 // ===================================================================
 
-void Transform2D::InitAsDefaultInstance() {
-  ::wire::_Transform2D_default_instance_._instance.get_mutable()->x_ = const_cast< ::wire::Vector2*>(
-      ::wire::Vector2::internal_default_instance());
-  ::wire::_Transform2D_default_instance_._instance.get_mutable()->y_ = const_cast< ::wire::Vector2*>(
-      ::wire::Vector2::internal_default_instance());
-  ::wire::_Transform2D_default_instance_._instance.get_mutable()->origin_ = const_cast< ::wire::Vector2*>(
-      ::wire::Vector2::internal_default_instance());
-}
 class Transform2D::_Internal {
  public:
   static const ::wire::Vector2& x(const Transform2D* msg);
@@ -1517,10 +1474,6 @@ void Transform2D::InternalSwap(Transform2D* other) {
 
 // ===================================================================
 
-void Plane::InitAsDefaultInstance() {
-  ::wire::_Plane_default_instance_._instance.get_mutable()->normal_ = const_cast< ::wire::Vector3*>(
-      ::wire::Vector3::internal_default_instance());
-}
 class Plane::_Internal {
  public:
   static const ::wire::Vector3& normal(const Plane* msg);
@@ -1762,8 +1715,6 @@ void Plane::InternalSwap(Plane* other) {
 
 // ===================================================================
 
-void Quat::InitAsDefaultInstance() {
-}
 class Quat::_Internal {
  public:
 };
@@ -2031,12 +1982,6 @@ void Quat::InternalSwap(Quat* other) {
 
 // ===================================================================
 
-void AABB::InitAsDefaultInstance() {
-  ::wire::_AABB_default_instance_._instance.get_mutable()->position_ = const_cast< ::wire::Vector3*>(
-      ::wire::Vector3::internal_default_instance());
-  ::wire::_AABB_default_instance_._instance.get_mutable()->size_ = const_cast< ::wire::Vector3*>(
-      ::wire::Vector3::internal_default_instance());
-}
 class AABB::_Internal {
  public:
   static const ::wire::Vector3& position(const AABB* msg);
@@ -2295,14 +2240,6 @@ void AABB::InternalSwap(AABB* other) {
 
 // ===================================================================
 
-void Basis::InitAsDefaultInstance() {
-  ::wire::_Basis_default_instance_._instance.get_mutable()->x_ = const_cast< ::wire::Vector3*>(
-      ::wire::Vector3::internal_default_instance());
-  ::wire::_Basis_default_instance_._instance.get_mutable()->y_ = const_cast< ::wire::Vector3*>(
-      ::wire::Vector3::internal_default_instance());
-  ::wire::_Basis_default_instance_._instance.get_mutable()->z_ = const_cast< ::wire::Vector3*>(
-      ::wire::Vector3::internal_default_instance());
-}
 class Basis::_Internal {
  public:
   static const ::wire::Vector3& x(const Basis* msg);
@@ -2601,12 +2538,6 @@ void Basis::InternalSwap(Basis* other) {
 
 // ===================================================================
 
-void Transform::InitAsDefaultInstance() {
-  ::wire::_Transform_default_instance_._instance.get_mutable()->basis_ = const_cast< ::wire::Basis*>(
-      ::wire::Basis::internal_default_instance());
-  ::wire::_Transform_default_instance_._instance.get_mutable()->origin_ = const_cast< ::wire::Vector3*>(
-      ::wire::Vector3::internal_default_instance());
-}
 class Transform::_Internal {
  public:
   static const ::wire::Basis& basis(const Transform* msg);
@@ -2865,32 +2796,6 @@ void Transform::InternalSwap(Transform* other) {
 
 // ===================================================================
 
-void Value::InitAsDefaultInstance() {
-  ::wire::_Value_default_instance_.nil_value_ = 0;
-  ::wire::_Value_default_instance_.bool_value_ = false;
-  ::wire::_Value_default_instance_.long_value_ = PROTOBUF_LONGLONG(0);
-  ::wire::_Value_default_instance_.real_value_ = 0;
-  ::wire::_Value_default_instance_.string_value_.UnsafeSetDefault(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::wire::_Value_default_instance_.vector2_value_ = const_cast< ::wire::Vector2*>(
-      ::wire::Vector2::internal_default_instance());
-  ::wire::_Value_default_instance_.rect2_value_ = const_cast< ::wire::Rect2*>(
-      ::wire::Rect2::internal_default_instance());
-  ::wire::_Value_default_instance_.vector3_value_ = const_cast< ::wire::Vector3*>(
-      ::wire::Vector3::internal_default_instance());
-  ::wire::_Value_default_instance_.transform2d_value_ = const_cast< ::wire::Transform2D*>(
-      ::wire::Transform2D::internal_default_instance());
-  ::wire::_Value_default_instance_.plane_value_ = const_cast< ::wire::Plane*>(
-      ::wire::Plane::internal_default_instance());
-  ::wire::_Value_default_instance_.quat_value_ = const_cast< ::wire::Quat*>(
-      ::wire::Quat::internal_default_instance());
-  ::wire::_Value_default_instance_.aabb_value_ = const_cast< ::wire::AABB*>(
-      ::wire::AABB::internal_default_instance());
-  ::wire::_Value_default_instance_.basis_value_ = const_cast< ::wire::Basis*>(
-      ::wire::Basis::internal_default_instance());
-  ::wire::_Value_default_instance_.transform_value_ = const_cast< ::wire::Transform*>(
-      ::wire::Transform::internal_default_instance());
-}
 class Value::_Internal {
  public:
   static const ::wire::Vector2& vector2_value(const Value* msg);
@@ -3142,6 +3047,10 @@ Value::Value(const Value& from)
       _internal_mutable_transform_value()->::wire::Transform::MergeFrom(from._internal_transform_value());
       break;
     }
+    case kObjectValue: {
+      _internal_set_object_value(from._internal_object_value());
+      break;
+    }
     case TYPE_NOT_SET: {
       break;
     }
@@ -3257,6 +3166,10 @@ void Value::clear_type() {
       if (GetArena() == nullptr) {
         delete type_.transform_value_;
       }
+      break;
+    }
+    case kObjectValue: {
+      // No need to clear
       break;
     }
     case TYPE_NOT_SET: {
@@ -3382,6 +3295,13 @@ const char* Value::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
       case 14:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 114)) {
           ptr = ctx->ParseMessage(_internal_mutable_transform_value(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int64 object_value = 15;
+      case 15:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 120)) {
+          _internal_set_object_value(::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -3519,6 +3439,12 @@ failure:
         14, _Internal::transform_value(this), target, stream);
   }
 
+  // int64 object_value = 15;
+  if (_internal_has_object_value()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(15, this->_internal_object_value(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -3630,6 +3556,13 @@ size_t Value::ByteSizeLong() const {
           *type_.transform_value_);
       break;
     }
+    // int64 object_value = 15;
+    case kObjectValue: {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+          this->_internal_object_value());
+      break;
+    }
     case TYPE_NOT_SET: {
       break;
     }
@@ -3722,6 +3655,10 @@ void Value::MergeFrom(const Value& from) {
       _internal_mutable_transform_value()->::wire::Transform::MergeFrom(from._internal_transform_value());
       break;
     }
+    case kObjectValue: {
+      _internal_set_object_value(from._internal_object_value());
+      break;
+    }
     case TYPE_NOT_SET: {
       break;
     }
@@ -3760,10 +3697,6 @@ void Value::InternalSwap(Value* other) {
 
 // ===================================================================
 
-void ReturnValue::InitAsDefaultInstance() {
-  ::wire::_ReturnValue_default_instance_._instance.get_mutable()->data_ = const_cast< ::wire::Value*>(
-      ::wire::Value::internal_default_instance());
-}
 class ReturnValue::_Internal {
  public:
   static const ::wire::Value& data(const ReturnValue* msg);
@@ -3975,8 +3908,6 @@ void ReturnValue::InternalSwap(ReturnValue* other) {
 
 // ===================================================================
 
-void FuncArgs::InitAsDefaultInstance() {
-}
 class FuncArgs::_Internal {
  public:
 };
