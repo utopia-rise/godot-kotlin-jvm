@@ -1,6 +1,7 @@
 package godot.runtime
 
 import godot.core.KtClass
+import godot.core.TypeManager
 import java.net.URL
 import java.net.URLClassLoader
 import java.nio.file.FileSystems
@@ -76,6 +77,8 @@ class Bootstrap {
                 Entry.Context(registry).init()
             }
             loadClasses(registry.classes.toTypedArray())
+            //TODO : call registerEngineTypes
+            registerManagedEngineTypes(TypeManager.engineTypes)
         } else {
             System.err.println("Unable to find Entry class, no classes will be loaded")
         }
@@ -83,4 +86,6 @@ class Bootstrap {
 
     private external fun loadClasses(classes: Array<KtClass<*>>)
     private external fun unloadClasses(classes: Array<KtClass<*>>)
+
+    private external fun registerManagedEngineTypes(engineTypes: Array<String>)
 }

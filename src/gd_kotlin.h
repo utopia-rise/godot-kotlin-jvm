@@ -13,6 +13,7 @@ private:
     ~GDKotlin() = default;
 
     Map<StringName, KtClass*> classes;
+    Set<StringName> managed_engine_types;
 
     jni::JObject class_loader;
     Bootstrap* bootstrap;
@@ -33,6 +34,7 @@ public:
 
     void register_classes(jni::Env& p_env, jni::JObjectArray p_classes);
     void unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes);
+    void register_engine_types(jni::Env& p_env, jni::JObjectArray p_engine_types);
 
     KtClass* find_class(const String& p_script_path);
     KtClass* find_class_by_name(const String& class_name);

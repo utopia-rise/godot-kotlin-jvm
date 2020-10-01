@@ -57,6 +57,11 @@ void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) 
     GDKotlin::get_instance().unregister_classes(env, jni::JObjectArray(p_classes));
 }
 
+void register_managed_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types) {
+    jni::Env env(p_env);
+    GDKotlin::get_instance().register_engine_types(env, jni::JObjectArray(p_engine_types));
+}
+
 void GDKotlin::init() {
     // Initialize type mappings
     KtVariant::initMethodArray();
@@ -79,7 +84,7 @@ void GDKotlin::init() {
     jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");
     jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
     bootstrap = new Bootstrap(instance, class_loader);
-    bootstrap->register_hooks(env, load_classes_hook, unload_classes_hook);
+    bootstrap->register_hooks(env, load_classes_hook, unload_classes_hook, register_managed_engine_types_hook);
     bool is_editor = Engine::get_singleton()->is_editor_hint();
     String project_path = project_settings->globalize_path("res://");
     bootstrap->init(env, is_editor, project_path);
@@ -123,6 +128,16 @@ void GDKotlin::unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes) 
         current = current->next();
     }
     classes.clear();
+}
+
+void GDKotlin::register_engine_types(jni::Env& p_env, jni::JObjectArray p_engine_types) {
+    print_line("Registering managed engine types...");
+    for (int i = 0; i < p_engine_types.length(p_env); i++) {
+        StringName type_name{p_env.from_jstring(static_cast<jni::JString>(p_engine_types.get(p_env, i)))};
+        managed_engine_types.insert(type_name);
+        print_verbose(vformat("Registered %s engine type.", type_name));
+    }
+    print_line("Done registering managed engine types");
 }
 
 KtClass* GDKotlin::find_class(const String& p_script_path) {

@@ -125,26 +125,26 @@ var _cancel_import = false
 var _placeholder = null
 
 func _init():
-    # This min size has to be what the min size of the GutScene's min size is
-    # but it has to be set here and not inferred i think.
-    rect_min_size = Vector2(740, 250)
+	# This min size has to be what the min size of the GutScene's min size is
+	# but it has to be set here and not inferred i think.
+	rect_min_size = Vector2(740, 250)
 
 func _ready():
-    # Must call this deferred so that there is enough time for
-    # Engine.get_main_loop() is populated and the psuedo singleton utils.gd
-    # can be setup correctly.
-    if(Engine.editor_hint):
-        _placeholder = load('res://addons/gut/GutScene.tscn').instance()
-        call_deferred('add_child', _placeholder)
-        _placeholder.rect_size = rect_size
-    else:
-        call_deferred('_setup_gut')
+	# Must call this deferred so that there is enough time for
+	# Engine.get_main_loop() is populated and the psuedo singleton utils.gd
+	# can be setup correctly.
+	if(Engine.editor_hint):
+		_placeholder = load('res://addons/gut/GutScene.tscn').instance()
+		call_deferred('add_child', _placeholder)
+		_placeholder.rect_size = rect_size
+	else:
+		call_deferred('_setup_gut')
 
-    connect('resized', self,  '_on_resized')
+	connect('resized', self,  '_on_resized')
 
 func _on_resized():
-    if(_placeholder != null):
-        _placeholder.rect_size = rect_size
+	if(_placeholder != null):
+		_placeholder.rect_size = rect_size
 
 
 # Templates can be missing if tests are exported and the export config for the
@@ -155,93 +155,93 @@ func _on_resized():
 # Assumption:  This is only a concern when running from the scene since you
 # cannot run GUT from the command line in an exported game.
 func _check_for_templates():
-    var f = File.new()
-    if(!f.file_exists('res://addons/gut/double_templates/function_template.txt')):
-        _lgr.error('Templates are missing.  Make sure you are exporting "*.txt" or "addons/gut/double_templates/*.txt".')
-        _run_on_load = false
-        _cancel_import = true
-        return false
-    return true
+	var f = File.new()
+	if(!f.file_exists('res://addons/gut/double_templates/function_template.txt')):
+		_lgr.error('Templates are missing.  Make sure you are exporting "*.txt" or "addons/gut/double_templates/*.txt".')
+		_run_on_load = false
+		_cancel_import = true
+		return false
+	return true
 
 func _setup_gut():
-    var _utils = load('res://addons/gut/utils.gd').get_instance()
+	var _utils = load('res://addons/gut/utils.gd').get_instance()
 
-    _lgr = _utils.get_logger()
-    _gut = load('res://addons/gut/gut.gd').new()
-    _gut.connect('tests_finished', self, '_on_tests_finished')
+	_lgr = _utils.get_logger()
+	_gut = load('res://addons/gut/gut.gd').new()
+	_gut.connect('tests_finished', self, '_on_tests_finished')
 
-    if(!_check_for_templates()):
-        return
+	if(!_check_for_templates()):
+		return
 
-    _gut._select_script = _select_script
-    _gut._tests_like = _tests_like
-    _gut._inner_class_name = _inner_class_name
+	_gut._select_script = _select_script
+	_gut._tests_like = _tests_like
+	_gut._inner_class_name = _inner_class_name
 
-    _gut._test_prefix = _test_prefix
-    _gut._file_prefix = _file_prefix
-    _gut._file_extension = _file_extension
-    _gut._inner_class_prefix = _inner_class_prefix
-    _gut._temp_directory = _temp_directory
+	_gut._test_prefix = _test_prefix
+	_gut._file_prefix = _file_prefix
+	_gut._file_extension = _file_extension
+	_gut._inner_class_prefix = _inner_class_prefix
+	_gut._temp_directory = _temp_directory
 
-    _gut.set_should_maximize(_should_maximize)
-    _gut.set_yield_between_tests(_yield_between_tests)
-    _gut.disable_strict_datatype_checks(_disable_strict_datatype_checks)
-    _gut.set_export_path(_export_path)
-    _gut.set_include_subdirectories(_include_subdirectories)
-    _gut.set_double_strategy(_double_strategy)
-    _gut.set_pre_run_script(_pre_run_script)
-    _gut.set_post_run_script(_post_run_script)
-    _gut.set_color_output(_color_output)
-    _gut.show_orphans(_show_orphans)
+	_gut.set_should_maximize(_should_maximize)
+	_gut.set_yield_between_tests(_yield_between_tests)
+	_gut.disable_strict_datatype_checks(_disable_strict_datatype_checks)
+	_gut.set_export_path(_export_path)
+	_gut.set_include_subdirectories(_include_subdirectories)
+	_gut.set_double_strategy(_double_strategy)
+	_gut.set_pre_run_script(_pre_run_script)
+	_gut.set_post_run_script(_post_run_script)
+	_gut.set_color_output(_color_output)
+	_gut.show_orphans(_show_orphans)
 
-    get_parent().add_child(_gut)
+	get_parent().add_child(_gut)
 
-    if(!_utils.is_version_ok()):
-        return
+	if(!_utils.is_version_ok()):
+		return
 
-    _gut.set_log_level(_log_level)
+	_gut.set_log_level(_log_level)
 
-    _gut.add_directory(_directory1)
-    _gut.add_directory(_directory2)
-    _gut.add_directory(_directory3)
-    _gut.add_directory(_directory4)
-    _gut.add_directory(_directory5)
-    _gut.add_directory(_directory6)
+	_gut.add_directory(_directory1)
+	_gut.add_directory(_directory2)
+	_gut.add_directory(_directory3)
+	_gut.add_directory(_directory4)
+	_gut.add_directory(_directory5)
+	_gut.add_directory(_directory6)
 
-    _gut.get_logger().disable_printer('console', !_should_print_to_console)
-    # When file logging enabled then the log will contain terminal escape
-    # strings.  So when running the scene this is disabled.  Also if enabled
-    # this may cause duplicate entries into the logs.
-    _gut.get_logger().disable_printer('terminal', true)
+	_gut.get_logger().disable_printer('console', !_should_print_to_console)
+	# When file logging enabled then the log will contain terminal escape
+	# strings.  So when running the scene this is disabled.  Also if enabled
+	# this may cause duplicate entries into the logs.
+	_gut.get_logger().disable_printer('terminal', true)
 
-    _gut.get_gui().set_font_size(_font_size)
-    _gut.get_gui().set_font(_font_name)
-    _gut.get_gui().set_default_font_color(_font_color)
-    _gut.get_gui().set_background_color(_background_color)
-    _gut.get_gui().rect_size =  rect_size
-    emit_signal('gut_ready')
+	_gut.get_gui().set_font_size(_font_size)
+	_gut.get_gui().set_font(_font_name)
+	_gut.get_gui().set_default_font_color(_font_color)
+	_gut.get_gui().set_background_color(_background_color)
+	_gut.get_gui().rect_size =  rect_size
+	emit_signal('gut_ready')
 
-    if(_run_on_load):
-        # Run the test scripts.  If one has been selected then only run that one
-        # otherwise all tests will be run.
-        var run_rest_of_scripts = _select_script == null
-        _gut.test_scripts(run_rest_of_scripts)
+	if(_run_on_load):
+		# Run the test scripts.  If one has been selected then only run that one
+		# otherwise all tests will be run.
+		var run_rest_of_scripts = _select_script == null
+		_gut.test_scripts(run_rest_of_scripts)
 
 func _is_ready_to_go(action):
-    if(_gut == null):
-        push_error(str('GUT is not ready for ', action, ' yet.  Perform actions on GUT in/after the gut_ready signal.'))
-    return _gut != null
+	if(_gut == null):
+		push_error(str('GUT is not ready for ', action, ' yet.  Perform actions on GUT in/after the gut_ready signal.'))
+	return _gut != null
 
 func _on_tests_finished():
-    emit_signal('tests_finished')
+	emit_signal('tests_finished')
 
 func get_gut():
-    return _gut
+	return _gut
 
 func export_if_tests_found():
-    if(_is_ready_to_go('export_if_tests_found')):
-        _gut.export_if_tests_found()
+	if(_is_ready_to_go('export_if_tests_found')):
+		_gut.export_if_tests_found()
 
 func import_tests_if_none_found():
-    if(_is_ready_to_go('import_tests_if_none_found') and !_cancel_import):
-        _gut.import_tests_if_none_found()
+	if(_is_ready_to_go('import_tests_if_none_found') and !_cancel_import):
+		_gut.import_tests_if_none_found()

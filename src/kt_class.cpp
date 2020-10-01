@@ -16,7 +16,7 @@ KtClass::~KtClass() {
 }
 
 KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_arg_count, Object* p_owner) {
-    jni::MethodId new_method { get_method_id(env, "new", "(JI)Lgodot/core/KtObject;") };
+    jni::MethodId new_method { get_method_id(env, "new", "(JLjava/lang/String;I)Lgodot/core/KtObject;") };
     // TODO: send args
     jni::JObject j_kt_object {
             wrapped.call_object_method(env, new_method, {static_cast<jlong>(reinterpret_cast<uintptr_t>(p_owner)),
