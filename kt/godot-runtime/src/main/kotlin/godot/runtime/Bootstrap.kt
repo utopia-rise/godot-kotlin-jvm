@@ -77,7 +77,7 @@ class Bootstrap {
                 Entry.Context(registry).init()
             }
             loadClasses(registry.classes.toTypedArray())
-            registerManagedEngineTypes(TypeManager.engineTypes)
+            registerManagedEngineTypes(TypeManager.engineTypes.keys.toTypedArray())
         } else {
             System.err.println("Unable to find Entry class, no classes will be loaded")
         }

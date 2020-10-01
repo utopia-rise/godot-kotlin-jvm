@@ -99,6 +99,7 @@ void GDKotlin::init() {
 
 void GDKotlin::finish() {
     auto env = jni::Jvm::current_env();
+    managed_engine_types.clear();
     delete transfer_context;
     transfer_context = nullptr;
     bootstrap->finish(env);

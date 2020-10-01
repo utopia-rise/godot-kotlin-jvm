@@ -226,7 +226,7 @@ class KtVariant {
         return KtObject.instantiateWith(
                 objectValue.ptr,
                 className,
-                checkNotNull(TypeManager._engineTypes[className]) { "Tried to instantiate unknown class $className" }
+                checkNotNull(TypeManager.engineTypes[className]) { "Tried to instantiate unknown class $className" }
         ) as T
     }
 
