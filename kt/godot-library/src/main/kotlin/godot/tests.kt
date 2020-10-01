@@ -3,6 +3,7 @@ package godot
 import godot.core.KtObject
 import godot.core.KtVariant
 import godot.core.TransferContext
+import godot.core.TypeManager
 import godot.util.VoidPtr
 
 open class Object : KtObject() {
@@ -33,10 +34,22 @@ open class Node : Object() {
     override fun __new(): VoidPtr {
         return TransferContext.invokeConstructor("Node")
     }
+
+    open fun getParent(): Node {
+        val refresh = TransferContext.writeArguments()
+        TransferContext.callMethod(rawPtr, "Node", "get_parent", KtVariant.Type.OBJECT, refresh)
+        return TransferContext.readReturnValue().asObject()
+    }
 }
 
 open class Spatial : Node() {
     override fun __new(): VoidPtr {
         return TransferContext.invokeConstructor("Spatial")
     }
+}
+
+fun registerEngineTypes() {
+    TypeManager.registerEngineType("Object", ::Object)
+    TypeManager.registerEngineType("Node", ::Node)
+    TypeManager.registerEngineType("Spatial", ::Spatial)
 }

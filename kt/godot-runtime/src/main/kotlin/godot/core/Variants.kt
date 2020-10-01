@@ -220,11 +220,14 @@ class KtVariant {
         return Transform(basis, origin)
     }
 
-    fun <T : KtObject> asObject(constructor: () -> T): T {
+    inline fun <reified T : KtObject> asObject(): T {
         val objectValue = data.objectValue
-        return KtObject.instantiateWith(objectValue.ptr, objectValue.className) {
-            constructor()
-        }
+        val className = objectValue.className
+        return KtObject.instantiateWith(
+                objectValue.ptr,
+                className,
+                checkNotNull(TypeManager._engineTypes[className]) { "Tried to instantiate unknown class $className" }
+        ) as T
     }
 
     enum class Type {

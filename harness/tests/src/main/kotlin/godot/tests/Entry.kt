@@ -2,6 +2,7 @@ package godot.tests
 
 import godot.core.KtConstructor0
 import godot.core.KtVariant
+import godot.registerEngineTypes
 
 class Entry : godot.runtime.Entry() {
     override fun Context.init() {
@@ -129,7 +130,25 @@ class Entry : godot.runtime.Entry() {
                             className = "Unit"
                         }
                 )
+                function(Invocation::parentIsSpatial, ::KtVariant,
+                        returns = {
+                            type = KtVariant.Type.BOOL
+                            className = "Boolean"
+                        }
+                )
+                function(Invocation::isObjectSpatial, ::KtVariant, KtVariant::asObject,
+                        arg = {
+                            name = "obj"
+                            type = KtVariant.Type.OBJECT
+                            className = "Object"
+                        },
+                        returns = {
+                            type = KtVariant.Type.BOOL
+                            className = "Boolean"
+                        }
+                )
             }
         }
+        registerEngineTypes()
     }
 }
