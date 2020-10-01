@@ -18,8 +18,11 @@ KtClass::~KtClass() {
 KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_arg_count, Object* p_owner) {
     jni::MethodId new_method { get_method_id(env, "new", "(JI)Lgodot/core/KtObject;") };
     // TODO: send args
-    jni::JObject j_kt_object { wrapped.call_object_method(env, new_method, {static_cast<jlong>(reinterpret_cast<uintptr_t>(p_owner)),
-                                                                            static_cast<jint>(p_arg_count)}) };
+    jni::JObject j_kt_object {
+            wrapped.call_object_method(env, new_method, {static_cast<jlong>(reinterpret_cast<uintptr_t>(p_owner)),
+                                                         env.new_string(p_owner->get_class().utf8().get_data()),
+                                                         static_cast<jint>(p_arg_count)})
+    };
     print_verbose(vformat("Instantiated an object of type %s", name));
     return new KtObject(j_kt_object, class_loader, name);
 }

@@ -122,7 +122,12 @@ class KtVariant {
     }
 
     constructor(value: KtObject) {
-        data = build { objectValue = value.rawPtr }
+        data = build {
+            objectValue = Wire.Object.newBuilder()
+                    .setPtr(value.rawPtr)
+                    .setClassName(value.className)
+                    .build()
+        }
     }
 
     fun asNil(): Unit {
@@ -216,7 +221,8 @@ class KtVariant {
     }
 
     fun <T : KtObject> asObject(constructor: () -> T): T {
-        return KtObject.instantiateWith(data.objectValue) {
+        val objectValue = data.objectValue
+        return KtObject.instantiateWith(objectValue.ptr, objectValue.className) {
             constructor()
         }
     }

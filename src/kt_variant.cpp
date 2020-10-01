@@ -1,3 +1,4 @@
+#include <core/class_db.h>
 #include "kt_variant.h"
 
 // must match the value order of godot_variant_type
@@ -119,8 +120,11 @@ void to_kvariant_fromTRANSFORM(wire::Value& des, const Variant& src) {
 }
 
 void to_kvariant_fromOBJECT(wire::Value& des, const Variant& src) {
-    Object* value = src;
-    des.set_object_value(reinterpret_cast<uintptr_t>(value));
+    Object* ptr = src;
+    wire::Object* obj_value{wire::Object::default_instance().New()};
+    obj_value->set_ptr(reinterpret_cast<uintptr_t>(ptr));
+    obj_value->set_class_name(ptr->get_class().utf8().get_data());
+    des.set_allocated_object_value(obj_value);
 }
 
 KtVariant::KtVariant(const Variant& variant) {
@@ -215,7 +219,7 @@ Variant from_kvariant_tokTransformValue(const wire::Value& src) {
 }
 
 Variant from_kvariant_toKObjectValue(const wire::Value& src) {
-    return Variant(reinterpret_cast<Object*>(src.object_value()));
+    return Variant(reinterpret_cast<Object*>(src.object_value().ptr()));
 }
 
 Variant KtVariant::to_godot_variant() const {

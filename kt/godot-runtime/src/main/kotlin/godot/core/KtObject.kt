@@ -13,6 +13,8 @@ abstract class KtObject : AutoCloseable {
             field = value
         }
 
+    lateinit var className: String
+
 
     init {
         try {
@@ -24,9 +26,10 @@ abstract class KtObject : AutoCloseable {
                 // the script to see all methods of the owning Object.
                 // For user types, we need to make sure to attach this script to the Object
                 // rawPtr is pointing to.
-                val className = checkNotNull(this::class.qualifiedName) { "User classes can't be anonymous." }
-                if (TypeManager.isUserType(className)) {
-                    TransferContext.setScript(rawPtr, className, this, this::class.java.classLoader)
+                val clazz = checkNotNull(this::class.qualifiedName) { "User classes can't be anonymous." }
+                if (TypeManager.isUserType(clazz)) {
+                    className = clazz
+                    TransferContext.setScript(rawPtr, clazz, this, this::class.java.classLoader)
                     _onInit()
                 }
             }
@@ -51,10 +54,11 @@ abstract class KtObject : AutoCloseable {
     companion object {
         private val shouldInit = ThreadLocal.withInitial { true }
 
-        fun <T: KtObject> instantiateWith(rawPtr: VoidPtr, constructor: () -> T): T {
+        fun <T: KtObject> instantiateWith(rawPtr: VoidPtr, className: String, constructor: () -> T): T {
             shouldInit.set(false)
             return constructor().also {
                 it.rawPtr = rawPtr
+                it.className = className
                 it._onInit()
             }
         }
