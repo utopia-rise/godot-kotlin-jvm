@@ -38,6 +38,8 @@ public:
 
     KtClass* find_class(const String& p_script_path);
     KtClass* find_class_by_name(const String& class_name);
+
+    bool is_managed_engine_type(const String& p_type);
 };
 
 

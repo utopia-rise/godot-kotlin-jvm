@@ -1,5 +1,6 @@
 #include <core/class_db.h>
 #include "kt_variant.h"
+#include "gd_kotlin.h"
 
 // must match the value order of godot_variant_type
 static void (* TO_KT_VARIANT_FROM[27 /* Variant::Type count */])(wire::Value&, const Variant&);
@@ -123,7 +124,20 @@ void to_kvariant_fromOBJECT(wire::Value& des, const Variant& src) {
     Object* ptr = src;
     wire::Object* obj_value{wire::Object::default_instance().New()};
     obj_value->set_ptr(reinterpret_cast<uintptr_t>(ptr));
-    obj_value->set_class_name(ptr->get_class().utf8().get_data());
+    String class_name {ptr->get_class()};
+
+    if (!GDKotlin::get_instance().is_managed_engine_type(class_name)) {
+        class_name = ClassDB::get_parent_class(class_name);
+        while (class_name.empty()) {
+            if (!GDKotlin::get_instance().is_managed_engine_type(class_name)) {
+                class_name = ClassDB::get_parent_class(class_name);
+            } else {
+                break;
+            }
+        }
+    }
+
+    obj_value->set_class_name(class_name.utf8().get_data());
     des.set_allocated_object_value(obj_value);
 }
 

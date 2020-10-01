@@ -137,7 +137,7 @@ void GDKotlin::register_engine_types(jni::Env& p_env, jni::JObjectArray p_engine
         managed_engine_types.insert(type_name);
         print_verbose(vformat("Registered %s engine type.", type_name));
     }
-    print_line("Done registering managed engine types");
+    print_line("Done registering managed engine types.");
 }
 
 KtClass* GDKotlin::find_class(const String& p_script_path) {
@@ -153,4 +153,8 @@ KtClass* GDKotlin::find_class_by_name(const String& class_name) {
 
 jni::JObject& GDKotlin::get_class_loader() {
     return class_loader;
+}
+
+bool GDKotlin::is_managed_engine_type(const String& p_type) {
+    return managed_engine_types.find(p_type) != nullptr;
 }
