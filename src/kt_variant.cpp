@@ -8,8 +8,6 @@ static void (* TO_KT_VARIANT_FROM[27 /* Variant::Type count */])(wire::Value&, c
 static Variant (* TO_GODOT_VARIANT_FROM[27 /* KVariant::TypeCase count */])(const wire::Value&);
 
 static Variant::Type WIRE_TYPE_CASE_TO_VARIANT_TYPE[16];
-static String VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[28];
-
 
 KtVariant::KtVariant(wire::Value value) : value(value) {}
 
@@ -289,29 +287,8 @@ void KtVariant::initMethodArray() {
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kTransformValue] = Variant::Type::TRANSFORM;
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kObjectValue] = Variant::Type::OBJECT;
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::TYPE_NOT_SET] = Variant::Type::VARIANT_MAX;
-
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::NIL] = "V";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::BOOL] = "Z";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::INT] = "J";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::REAL] = "D";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::STRING] = "Ljava/lang/String;";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::VECTOR2] = "Lgodot/core/Vector2;";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::RECT2] = "Lgodot/core/Rect2;";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::VECTOR3] = "Lgodot/core/Vector3;";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::TRANSFORM2D] = "Lgodot/core/Transform2D;";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::PLANE] = "Lgodot/core/Plane;";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::QUAT] = "Lgodot/core/Quat;";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::AABB] = "Lgodot/core/AABB;";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::BASIS] = "Lgodot/core/Basis;";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::TRANSFORM] = "Lgodot/core/Transform;";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::OBJECT] = "J"; //VoidPtr
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::VARIANT_MAX] = "V";
 }
 
 Variant::Type KtVariant::fromWireTypeToVariantType(wire::Value::TypeCase typeCase) {
     return WIRE_TYPE_CASE_TO_VARIANT_TYPE[typeCase];
-}
-
-String KtVariant::fromVariantTypeToJvmString(Variant::Type type) {
-    return VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[type];
 }

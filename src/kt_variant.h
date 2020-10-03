@@ -17,7 +17,6 @@ public:
 
     static void initMethodArray();
     static Variant::Type fromWireTypeToVariantType(wire::Value::TypeCase typeCase);
-    static String fromVariantTypeToJvmString(Variant::Type type);
 
     const wire::Value& get_value() const;
     Variant to_godot_variant() const;
