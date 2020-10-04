@@ -13,8 +13,6 @@ abstract class KtObject : AutoCloseable {
             field = value
         }
 
-    var engineConstructorIndex: Int = -1
-
     init {
         try {
             if (shouldInit.get()) {

@@ -7140,7 +7140,7 @@ public final class Wire {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>uint64 ptr = 1;</code>
+     * <code>fixed64 ptr = 1;</code>
      * @return The ptr.
      */
     long getPtr();
@@ -7196,9 +7196,9 @@ public final class Wire {
             case 0:
               done = true;
               break;
-            case 8: {
+            case 9: {
 
-              ptr_ = input.readUInt64();
+              ptr_ = input.readFixed64();
               break;
             }
             case 16: {
@@ -7241,7 +7241,7 @@ public final class Wire {
     public static final int PTR_FIELD_NUMBER = 1;
     private long ptr_;
     /**
-     * <code>uint64 ptr = 1;</code>
+     * <code>fixed64 ptr = 1;</code>
      * @return The ptr.
      */
     @java.lang.Override
@@ -7275,7 +7275,7 @@ public final class Wire {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (ptr_ != 0L) {
-        output.writeUInt64(1, ptr_);
+        output.writeFixed64(1, ptr_);
       }
       if (engineConstructorIndex_ != 0) {
         output.writeInt32(2, engineConstructorIndex_);
@@ -7291,7 +7291,7 @@ public final class Wire {
       size = 0;
       if (ptr_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(1, ptr_);
+          .computeFixed64Size(1, ptr_);
       }
       if (engineConstructorIndex_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -7582,7 +7582,7 @@ public final class Wire {
 
       private long ptr_ ;
       /**
-       * <code>uint64 ptr = 1;</code>
+       * <code>fixed64 ptr = 1;</code>
        * @return The ptr.
        */
       @java.lang.Override
@@ -7590,7 +7590,7 @@ public final class Wire {
         return ptr_;
       }
       /**
-       * <code>uint64 ptr = 1;</code>
+       * <code>fixed64 ptr = 1;</code>
        * @param value The ptr to set.
        * @return This builder for chaining.
        */
@@ -7601,7 +7601,7 @@ public final class Wire {
         return this;
       }
       /**
-       * <code>uint64 ptr = 1;</code>
+       * <code>fixed64 ptr = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearPtr() {
@@ -12493,7 +12493,7 @@ public final class Wire {
       "\001(\0132\r.wire.Vector3\022\030\n\001z\030\003 \001(\0132\r.wire.Vec" +
       "tor3\"F\n\tTransform\022\032\n\005basis\030\001 \001(\0132\013.wire." +
       "Basis\022\035\n\006origin\030\002 \001(\0132\r.wire.Vector3\"7\n\006" +
-      "Object\022\013\n\003ptr\030\001 \001(\004\022 \n\030engine_constructo" +
+      "Object\022\013\n\003ptr\030\001 \001(\006\022 \n\030engine_constructo" +
       "r_index\030\002 \001(\005\"\200\004\n\005Value\022\023\n\tnil_value\030\001 \001" +
       "(\005H\000\022\024\n\nbool_value\030\002 \001(\010H\000\022\024\n\nlong_value" +
       "\030\003 \001(\003H\000\022\024\n\nreal_value\030\004 \001(\001H\000\022\026\n\014string" +

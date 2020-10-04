@@ -123,9 +123,7 @@ void to_kvariant_fromTRANSFORM(wire::Value& des, const Variant& src) {
 void to_kvariant_fromOBJECT(wire::Value& des, const Variant& src) {
     Object* ptr = src;
     wire::Object* obj_value{wire::Object::default_instance().New()};
-    auto value = reinterpret_cast<uintptr_t>(ptr);
-    print_line(vformat("Reinterpret ptr to %d", value));
-    obj_value->set_ptr(value);
+    obj_value->set_ptr(reinterpret_cast<uintptr_t>(ptr));
     String class_name {ptr->get_class()};
 
     if (!ENGINE_JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {

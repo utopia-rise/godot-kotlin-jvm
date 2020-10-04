@@ -1724,7 +1724,7 @@ class Object PROTOBUF_FINAL :
     kPtrFieldNumber = 1,
     kEngineConstructorIndexFieldNumber = 2,
   };
-  // uint64 ptr = 1;
+  // fixed64 ptr = 1;
   void clear_ptr();
   ::PROTOBUF_NAMESPACE_ID::uint64 ptr() const;
   void set_ptr(::PROTOBUF_NAMESPACE_ID::uint64 value);
@@ -3816,7 +3816,7 @@ inline void Transform::set_allocated_origin(::wire::Vector3* origin) {
 
 // Object
 
-// uint64 ptr = 1;
+// fixed64 ptr = 1;
 inline void Object::clear_ptr() {
   ptr_ = PROTOBUF_ULONGLONG(0);
 }

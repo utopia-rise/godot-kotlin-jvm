@@ -14,30 +14,30 @@ class KtVariant {
     constructor(value: Int) : this(value.toLong())
 
     constructor(value: Long) {
-        data = build { longValue = value }
+        data = build { setLongValue(value) }
     }
 
     constructor(value: Float) : this(value.toDouble())
 
     constructor(value: Double) {
-        data = build { realValue = value }
+        data = build { setRealValue(value) }
     }
 
     constructor(value: String) {
-        data = build { stringValue = value }
+        data = build { setStringValue(value) }
     }
 
     constructor(value: Boolean) {
-        data = build { boolValue = value }
+        data = build { setBoolValue(value)}
     }
 
     constructor(value: Unit) {
-        data = build { nilValue = 0 }
+        data = build { setNilValue(0) }
     }
 
     constructor(value: Vector2) {
         data = build {
-            vector2Value = value.toWireVector2()
+            setVector2Value(value.toWireVector2())
         }
     }
 
@@ -48,13 +48,13 @@ class KtVariant {
                     .setSize(value.size.toWireVector2())
                     .build()
 
-            rect2Value = rect2
+            setRect2Value(rect2)
         }
     }
 
     constructor(value: Vector3) {
         data = build {
-            vector3Value = value.toWireVector3()
+            setVector3Value(value.toWireVector3())
         }
     }
 
@@ -65,7 +65,7 @@ class KtVariant {
                     .setY(value.y.toWireVector2())
                     .setOrigin(value.origin.toWireVector2())
                     .build()
-            transform2DValue = transform2D
+            setTransform2DValue(transform2D)
         }
     }
 
@@ -76,7 +76,7 @@ class KtVariant {
                     .setD(value.d.toGodotReal())
                     .build()
 
-            planeValue = plane
+            setPlaneValue(plane)
         }
     }
 
@@ -89,7 +89,7 @@ class KtVariant {
                     .setW(value.w.toGodotReal())
                     .build()
 
-            quatValue = quat
+            setQuatValue(quat)
         }
     }
 
@@ -100,13 +100,13 @@ class KtVariant {
                     .setSize(value.size.toWireVector3())
                     .build()
 
-            aabbValue = aabb
+            setAabbValue(aabb)
         }
     }
 
     constructor(value: Basis) {
         data = build {
-            basisValue = value.toWireBasis()
+            setBasisValue(value.toWireBasis())
         }
     }
 
@@ -117,16 +117,18 @@ class KtVariant {
                     .setOrigin(value.origin.toWireVector3())
                     .build()
 
-            transformValue = transform
+            setTransformValue(transform)
         }
     }
 
     constructor(value: KtObject) {
         data = build {
-            objectValue = Wire.Object.newBuilder()
+            val obj = Wire.Object.newBuilder()
                     .setPtr(value.rawPtr)
-                    .setEngineConstructorIndex(value.engineConstructorIndex)
+                    .setEngineConstructorIndex(0)
                     .build()
+
+            setObjectValue(obj)
         }
     }
 
@@ -226,7 +228,7 @@ class KtVariant {
         return KtObject.instantiateWith(
                 objectValue.ptr,
                 TypeManager.engineTypesConstructors[constructorIndex]
-        ).also { it.engineConstructorIndex = constructorIndex } as T
+        ) as T
     }
 
     enum class Type {

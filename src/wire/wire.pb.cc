@@ -429,7 +429,7 @@ const char descriptor_table_protodef_wire_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "\001(\0132\r.wire.Vector3\022\030\n\001z\030\003 \001(\0132\r.wire.Vec"
   "tor3\"F\n\tTransform\022\032\n\005basis\030\001 \001(\0132\013.wire."
   "Basis\022\035\n\006origin\030\002 \001(\0132\r.wire.Vector3\"7\n\006"
-  "Object\022\013\n\003ptr\030\001 \001(\004\022 \n\030engine_constructo"
+  "Object\022\013\n\003ptr\030\001 \001(\006\022 \n\030engine_constructo"
   "r_index\030\002 \001(\005\"\200\004\n\005Value\022\023\n\tnil_value\030\001 \001"
   "(\005H\000\022\024\n\nbool_value\030\002 \001(\010H\000\022\024\n\nlong_value"
   "\030\003 \001(\003H\000\022\024\n\nreal_value\030\004 \001(\001H\000\022\026\n\014string"
@@ -2897,11 +2897,11 @@ const char* Object::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // uint64 ptr = 1;
+      // fixed64 ptr = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          ptr_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 9)) {
+          ptr_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<::PROTOBUF_NAMESPACE_ID::uint64>(ptr);
+          ptr += sizeof(::PROTOBUF_NAMESPACE_ID::uint64);
         } else goto handle_unusual;
         continue;
       // int32 engine_constructor_index = 2;
@@ -2939,10 +2939,10 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // uint64 ptr = 1;
+  // fixed64 ptr = 1;
   if (this->ptr() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_ptr(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFixed64ToArray(1, this->_internal_ptr(), target);
   }
 
   // int32 engine_constructor_index = 2;
@@ -2967,11 +2967,9 @@ size_t Object::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // uint64 ptr = 1;
+  // fixed64 ptr = 1;
   if (this->ptr() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
-        this->_internal_ptr());
+    total_size += 1 + 8;
   }
 
   // int32 engine_constructor_index = 2;

@@ -53,7 +53,7 @@ message Transform {
 }
 
 message Object {
-  uint64 ptr = 1;
+  fixed64 ptr = 1;
   int32 engine_constructor_index = 2;
 }
 
