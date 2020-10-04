@@ -1721,32 +1721,25 @@ class Object PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kClassNameFieldNumber = 2,
     kPtrFieldNumber = 1,
+    kEngineConstructorIndexFieldNumber = 2,
   };
-  // string class_name = 2;
-  void clear_class_name();
-  const std::string& class_name() const;
-  void set_class_name(const std::string& value);
-  void set_class_name(std::string&& value);
-  void set_class_name(const char* value);
-  void set_class_name(const char* value, size_t size);
-  std::string* mutable_class_name();
-  std::string* release_class_name();
-  void set_allocated_class_name(std::string* class_name);
+  // uint64 ptr = 1;
+  void clear_ptr();
+  ::PROTOBUF_NAMESPACE_ID::uint64 ptr() const;
+  void set_ptr(::PROTOBUF_NAMESPACE_ID::uint64 value);
   private:
-  const std::string& _internal_class_name() const;
-  void _internal_set_class_name(const std::string& value);
-  std::string* _internal_mutable_class_name();
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_ptr() const;
+  void _internal_set_ptr(::PROTOBUF_NAMESPACE_ID::uint64 value);
   public:
 
-  // int64 ptr = 1;
-  void clear_ptr();
-  ::PROTOBUF_NAMESPACE_ID::int64 ptr() const;
-  void set_ptr(::PROTOBUF_NAMESPACE_ID::int64 value);
+  // int32 engine_constructor_index = 2;
+  void clear_engine_constructor_index();
+  ::PROTOBUF_NAMESPACE_ID::int32 engine_constructor_index() const;
+  void set_engine_constructor_index(::PROTOBUF_NAMESPACE_ID::int32 value);
   private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_ptr() const;
-  void _internal_set_ptr(::PROTOBUF_NAMESPACE_ID::int64 value);
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_engine_constructor_index() const;
+  void _internal_set_engine_constructor_index(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
   // @@protoc_insertion_point(class_scope:wire.Object)
@@ -1756,8 +1749,8 @@ class Object PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr class_name_;
-  ::PROTOBUF_NAMESPACE_ID::int64 ptr_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 ptr_;
+  ::PROTOBUF_NAMESPACE_ID::int32 engine_constructor_index_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_wire_2eproto;
 };
@@ -3823,86 +3816,44 @@ inline void Transform::set_allocated_origin(::wire::Vector3* origin) {
 
 // Object
 
-// int64 ptr = 1;
+// uint64 ptr = 1;
 inline void Object::clear_ptr() {
-  ptr_ = PROTOBUF_LONGLONG(0);
+  ptr_ = PROTOBUF_ULONGLONG(0);
 }
-inline ::PROTOBUF_NAMESPACE_ID::int64 Object::_internal_ptr() const {
+inline ::PROTOBUF_NAMESPACE_ID::uint64 Object::_internal_ptr() const {
   return ptr_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int64 Object::ptr() const {
+inline ::PROTOBUF_NAMESPACE_ID::uint64 Object::ptr() const {
   // @@protoc_insertion_point(field_get:wire.Object.ptr)
   return _internal_ptr();
 }
-inline void Object::_internal_set_ptr(::PROTOBUF_NAMESPACE_ID::int64 value) {
+inline void Object::_internal_set_ptr(::PROTOBUF_NAMESPACE_ID::uint64 value) {
   
   ptr_ = value;
 }
-inline void Object::set_ptr(::PROTOBUF_NAMESPACE_ID::int64 value) {
+inline void Object::set_ptr(::PROTOBUF_NAMESPACE_ID::uint64 value) {
   _internal_set_ptr(value);
   // @@protoc_insertion_point(field_set:wire.Object.ptr)
 }
 
-// string class_name = 2;
-inline void Object::clear_class_name() {
-  class_name_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+// int32 engine_constructor_index = 2;
+inline void Object::clear_engine_constructor_index() {
+  engine_constructor_index_ = 0;
 }
-inline const std::string& Object::class_name() const {
-  // @@protoc_insertion_point(field_get:wire.Object.class_name)
-  return _internal_class_name();
+inline ::PROTOBUF_NAMESPACE_ID::int32 Object::_internal_engine_constructor_index() const {
+  return engine_constructor_index_;
 }
-inline void Object::set_class_name(const std::string& value) {
-  _internal_set_class_name(value);
-  // @@protoc_insertion_point(field_set:wire.Object.class_name)
+inline ::PROTOBUF_NAMESPACE_ID::int32 Object::engine_constructor_index() const {
+  // @@protoc_insertion_point(field_get:wire.Object.engine_constructor_index)
+  return _internal_engine_constructor_index();
 }
-inline std::string* Object::mutable_class_name() {
-  // @@protoc_insertion_point(field_mutable:wire.Object.class_name)
-  return _internal_mutable_class_name();
-}
-inline const std::string& Object::_internal_class_name() const {
-  return class_name_.Get();
-}
-inline void Object::_internal_set_class_name(const std::string& value) {
+inline void Object::_internal_set_engine_constructor_index(::PROTOBUF_NAMESPACE_ID::int32 value) {
   
-  class_name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+  engine_constructor_index_ = value;
 }
-inline void Object::set_class_name(std::string&& value) {
-  
-  class_name_.Set(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
-  // @@protoc_insertion_point(field_set_rvalue:wire.Object.class_name)
-}
-inline void Object::set_class_name(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  class_name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
-              GetArena());
-  // @@protoc_insertion_point(field_set_char:wire.Object.class_name)
-}
-inline void Object::set_class_name(const char* value,
-    size_t size) {
-  
-  class_name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
-      reinterpret_cast<const char*>(value), size), GetArena());
-  // @@protoc_insertion_point(field_set_pointer:wire.Object.class_name)
-}
-inline std::string* Object::_internal_mutable_class_name() {
-  
-  return class_name_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline std::string* Object::release_class_name() {
-  // @@protoc_insertion_point(field_release:wire.Object.class_name)
-  return class_name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-}
-inline void Object::set_allocated_class_name(std::string* class_name) {
-  if (class_name != nullptr) {
-    
-  } else {
-    
-  }
-  class_name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), class_name,
-      GetArena());
-  // @@protoc_insertion_point(field_set_allocated:wire.Object.class_name)
+inline void Object::set_engine_constructor_index(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_engine_constructor_index(value);
+  // @@protoc_insertion_point(field_set:wire.Object.engine_constructor_index)
 }
 
 // -------------------------------------------------------------------

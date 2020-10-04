@@ -53,8 +53,8 @@ message Transform {
 }
 
 message Object {
-  int64 ptr = 1;
-  string class_name = 2;
+  uint64 ptr = 1;
+  int32 engine_constructor_index = 2;
 }
 
 message Value {

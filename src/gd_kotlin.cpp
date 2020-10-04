@@ -57,11 +57,6 @@ void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) 
     GDKotlin::get_instance().unregister_classes(env, jni::JObjectArray(p_classes));
 }
 
-void register_managed_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types) {
-    jni::Env env(p_env);
-    GDKotlin::get_instance().register_engine_types(env, jni::JObjectArray(p_engine_types));
-}
-
 void GDKotlin::init() {
     // Initialize type mappings
     KtVariant::initMethodArray();
@@ -84,7 +79,7 @@ void GDKotlin::init() {
     jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");
     jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
     bootstrap = new Bootstrap(instance, class_loader);
-    bootstrap->register_hooks(env, load_classes_hook, unload_classes_hook, register_managed_engine_types_hook);
+    bootstrap->register_hooks(env, load_classes_hook, unload_classes_hook, KtVariant::register_engine_types);
     bool is_editor = Engine::get_singleton()->is_editor_hint();
     String project_path = project_settings->globalize_path("res://");
     bootstrap->init(env, is_editor, project_path);
@@ -99,12 +94,12 @@ void GDKotlin::init() {
 
 void GDKotlin::finish() {
     auto env = jni::Jvm::current_env();
-    managed_engine_types.clear();
     delete transfer_context;
     transfer_context = nullptr;
     bootstrap->finish(env);
     delete bootstrap;
     bootstrap = nullptr;
+    KtVariant::clear_engine_types();
     class_loader.delete_global_ref(env);
     jni::Jvm::destroy();
     print_line("Shutting down JVM ...");
@@ -131,16 +126,6 @@ void GDKotlin::unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes) 
     classes.clear();
 }
 
-void GDKotlin::register_engine_types(jni::Env& p_env, jni::JObjectArray p_engine_types) {
-    print_line("Registering managed engine types...");
-    for (int i = 0; i < p_engine_types.length(p_env); i++) {
-        StringName type_name{p_env.from_jstring(static_cast<jni::JString>(p_engine_types.get(p_env, i)))};
-        managed_engine_types.insert(type_name);
-        print_verbose(vformat("Registered %s engine type.", type_name));
-    }
-    print_line("Done registering managed engine types.");
-}
-
 KtClass* GDKotlin::find_class(const String& p_script_path) {
     StringName class_name = p_script_path.trim_prefix(scripts_root).trim_suffix(".kt").replace("/", ".");
     ERR_FAIL_COND_V_MSG(!classes.has(class_name), nullptr, vformat("Failed to find class %s for path: %s", class_name, p_script_path))
@@ -154,8 +139,4 @@ KtClass* GDKotlin::find_class_by_name(const String& class_name) {
 
 jni::JObject& GDKotlin::get_class_loader() {
     return class_loader;
-}
-
-bool GDKotlin::is_managed_engine_type(const String& p_type) {
-    return managed_engine_types.find(p_type) != nullptr;
 }

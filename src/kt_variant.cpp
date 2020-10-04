@@ -9,6 +9,8 @@ static Variant (* TO_GODOT_VARIANT_FROM[27 /* KVariant::TypeCase count */])(cons
 
 static Variant::Type WIRE_TYPE_CASE_TO_VARIANT_TYPE[16];
 
+static HashMap<StringName, int> ENGINE_JAVA_ENGINE_TYPES_CONSTRUCTORS;
+
 KtVariant::KtVariant(wire::Value value) : value(value) {}
 
 void to_kvariant_fromNIL(wire::Value& des, const Variant& src) {
@@ -121,13 +123,16 @@ void to_kvariant_fromTRANSFORM(wire::Value& des, const Variant& src) {
 void to_kvariant_fromOBJECT(wire::Value& des, const Variant& src) {
     Object* ptr = src;
     wire::Object* obj_value{wire::Object::default_instance().New()};
-    obj_value->set_ptr(reinterpret_cast<uintptr_t>(ptr));
+    auto value = reinterpret_cast<uintptr_t>(ptr);
+    print_line(vformat("Reinterpret ptr to %d", value));
+    obj_value->set_ptr(value);
     String class_name {ptr->get_class()};
 
-    if (!GDKotlin::get_instance().is_managed_engine_type(class_name)) {
+    if (!ENGINE_JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
         class_name = ClassDB::get_parent_class(class_name);
+
         while (class_name.empty()) {
-            if (!GDKotlin::get_instance().is_managed_engine_type(class_name)) {
+            if (!ENGINE_JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
                 class_name = ClassDB::get_parent_class(class_name);
             } else {
                 break;
@@ -135,7 +140,7 @@ void to_kvariant_fromOBJECT(wire::Value& des, const Variant& src) {
         }
     }
 
-    obj_value->set_class_name(class_name.utf8().get_data());
+    obj_value->set_engine_constructor_index(ENGINE_JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name]);
     des.set_allocated_object_value(obj_value);
 }
 
@@ -291,4 +296,21 @@ void KtVariant::initMethodArray() {
 
 Variant::Type KtVariant::fromWireTypeToVariantType(wire::Value::TypeCase typeCase) {
     return WIRE_TYPE_CASE_TO_VARIANT_TYPE[typeCase];
+}
+
+void KtVariant::register_engine_types(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types_names) {
+    print_line("Starting to register managed engine types...");
+    jni::Env env(p_env);
+    jni::JObjectArray types_names{p_engine_types_names};
+
+    for (int i = 0; i < types_names.length(env); i++) {
+        const String& class_name{env.from_jstring(static_cast<jni::JString>(types_names.get(env, i)))};
+        ENGINE_JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name] = i;
+        print_verbose(vformat("Registered %s engine type with index %s.", class_name, i));
+    }
+    print_line("Done registering managed engine types...");
+}
+
+void KtVariant::clear_engine_types() {
+    ENGINE_JAVA_ENGINE_TYPES_CONSTRUCTORS.clear();
 }

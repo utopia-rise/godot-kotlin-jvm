@@ -14,10 +14,10 @@ class KtClass<T : KtObject>(
     val properties: Array<KtProperty<T, *>>
         get() = _properties.values.toTypedArray()
 
-    fun new(rawPtr: VoidPtr, className: String, argCount: Int): T {
+    fun new(rawPtr: VoidPtr, argCount: Int): T {
         val constructor = constructors[argCount]
         check(constructor != null) { "Constructor with $argCount parameter(s) not found." }
-        return KtObject.instantiateWith(rawPtr, className) {
+        return KtObject.instantiateWith(rawPtr) {
             // todo send args
             constructor()
         }

@@ -346,7 +346,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_wire_2eproto::offsets[] PROTOB
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::wire::Object, ptr_),
-  PROTOBUF_FIELD_OFFSET(::wire::Object, class_name_),
+  PROTOBUF_FIELD_OFFSET(::wire::Object, engine_constructor_index_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::wire::Value, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -428,24 +428,24 @@ const char descriptor_table_protodef_wire_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "\005Basis\022\030\n\001x\030\001 \001(\0132\r.wire.Vector3\022\030\n\001y\030\002 "
   "\001(\0132\r.wire.Vector3\022\030\n\001z\030\003 \001(\0132\r.wire.Vec"
   "tor3\"F\n\tTransform\022\032\n\005basis\030\001 \001(\0132\013.wire."
-  "Basis\022\035\n\006origin\030\002 \001(\0132\r.wire.Vector3\")\n\006"
-  "Object\022\013\n\003ptr\030\001 \001(\003\022\022\n\nclass_name\030\002 \001(\t\""
-  "\200\004\n\005Value\022\023\n\tnil_value\030\001 \001(\005H\000\022\024\n\nbool_v"
-  "alue\030\002 \001(\010H\000\022\024\n\nlong_value\030\003 \001(\003H\000\022\024\n\nre"
-  "al_value\030\004 \001(\001H\000\022\026\n\014string_value\030\005 \001(\tH\000"
-  "\022&\n\rvector2_value\030\006 \001(\0132\r.wire.Vector2H\000"
-  "\022\"\n\013rect2_value\030\007 \001(\0132\013.wire.Rect2H\000\022&\n\r"
-  "vector3_value\030\010 \001(\0132\r.wire.Vector3H\000\022.\n\021"
-  "transform2D_value\030\t \001(\0132\021.wire.Transform"
-  "2DH\000\022\"\n\013plane_value\030\n \001(\0132\013.wire.PlaneH\000"
-  "\022 \n\nquat_value\030\013 \001(\0132\n.wire.QuatH\000\022 \n\naa"
-  "bb_value\030\014 \001(\0132\n.wire.AABBH\000\022\"\n\013basis_va"
-  "lue\030\r \001(\0132\013.wire.BasisH\000\022*\n\017transform_va"
-  "lue\030\016 \001(\0132\017.wire.TransformH\000\022$\n\014object_v"
-  "alue\030\017 \001(\0132\014.wire.ObjectH\000B\006\n\004type\"(\n\013Re"
-  "turnValue\022\031\n\004data\030\001 \001(\0132\013.wire.Value\"%\n\010"
-  "FuncArgs\022\031\n\004args\030\001 \003(\0132\013.wire.ValueB\014\n\ng"
-  "odot.wireb\006proto3"
+  "Basis\022\035\n\006origin\030\002 \001(\0132\r.wire.Vector3\"7\n\006"
+  "Object\022\013\n\003ptr\030\001 \001(\004\022 \n\030engine_constructo"
+  "r_index\030\002 \001(\005\"\200\004\n\005Value\022\023\n\tnil_value\030\001 \001"
+  "(\005H\000\022\024\n\nbool_value\030\002 \001(\010H\000\022\024\n\nlong_value"
+  "\030\003 \001(\003H\000\022\024\n\nreal_value\030\004 \001(\001H\000\022\026\n\014string"
+  "_value\030\005 \001(\tH\000\022&\n\rvector2_value\030\006 \001(\0132\r."
+  "wire.Vector2H\000\022\"\n\013rect2_value\030\007 \001(\0132\013.wi"
+  "re.Rect2H\000\022&\n\rvector3_value\030\010 \001(\0132\r.wire"
+  ".Vector3H\000\022.\n\021transform2D_value\030\t \001(\0132\021."
+  "wire.Transform2DH\000\022\"\n\013plane_value\030\n \001(\0132"
+  "\013.wire.PlaneH\000\022 \n\nquat_value\030\013 \001(\0132\n.wir"
+  "e.QuatH\000\022 \n\naabb_value\030\014 \001(\0132\n.wire.AABB"
+  "H\000\022\"\n\013basis_value\030\r \001(\0132\013.wire.BasisH\000\022*"
+  "\n\017transform_value\030\016 \001(\0132\017.wire.Transform"
+  "H\000\022$\n\014object_value\030\017 \001(\0132\014.wire.ObjectH\000"
+  "B\006\n\004type\"(\n\013ReturnValue\022\031\n\004data\030\001 \001(\0132\013."
+  "wire.Value\"%\n\010FuncArgs\022\031\n\004args\030\001 \003(\0132\013.w"
+  "ire.ValueB\014\n\ngodot.wireb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_wire_2eproto_deps[1] = {
 };
@@ -466,7 +466,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_wir
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_wire_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_wire_2eproto = {
-  false, false, descriptor_table_protodef_wire_2eproto, "wire.proto", 1257,
+  false, false, descriptor_table_protodef_wire_2eproto, "wire.proto", 1271,
   &descriptor_table_wire_2eproto_once, descriptor_table_wire_2eproto_sccs, descriptor_table_wire_2eproto_deps, 13, 0,
   schemas, file_default_instances, TableStruct_wire_2eproto::offsets,
   file_level_metadata_wire_2eproto, 13, file_level_enum_descriptors_wire_2eproto, file_level_service_descriptors_wire_2eproto,
@@ -2840,19 +2840,16 @@ Object::Object(::PROTOBUF_NAMESPACE_ID::Arena* arena)
 Object::Object(const Object& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  class_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_class_name().empty()) {
-    class_name_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_class_name(),
-      GetArena());
-  }
-  ptr_ = from.ptr_;
+  ::memcpy(&ptr_, &from.ptr_,
+    static_cast<size_t>(reinterpret_cast<char*>(&engine_constructor_index_) -
+    reinterpret_cast<char*>(&ptr_)) + sizeof(engine_constructor_index_));
   // @@protoc_insertion_point(copy_constructor:wire.Object)
 }
 
 void Object::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Object_wire_2eproto.base);
-  class_name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ptr_ = PROTOBUF_LONGLONG(0);
+  ::memset(&ptr_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&engine_constructor_index_) -
+      reinterpret_cast<char*>(&ptr_)) + sizeof(engine_constructor_index_));
 }
 
 Object::~Object() {
@@ -2863,7 +2860,6 @@ Object::~Object() {
 
 void Object::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
-  class_name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 void Object::ArenaDtor(void* object) {
@@ -2887,8 +2883,9 @@ void Object::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  class_name_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  ptr_ = PROTOBUF_LONGLONG(0);
+  ::memset(&ptr_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&engine_constructor_index_) -
+      reinterpret_cast<char*>(&ptr_)) + sizeof(engine_constructor_index_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2900,19 +2897,17 @@ const char* Object::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // int64 ptr = 1;
+      // uint64 ptr = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
           ptr_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // string class_name = 2;
+      // int32 engine_constructor_index = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          auto str = _internal_mutable_class_name();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "wire.Object.class_name"));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          engine_constructor_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -2944,20 +2939,16 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // int64 ptr = 1;
+  // uint64 ptr = 1;
   if (this->ptr() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(1, this->_internal_ptr(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(1, this->_internal_ptr(), target);
   }
 
-  // string class_name = 2;
-  if (this->class_name().size() > 0) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_class_name().data(), static_cast<int>(this->_internal_class_name().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "wire.Object.class_name");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_class_name(), target);
+  // int32 engine_constructor_index = 2;
+  if (this->engine_constructor_index() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_engine_constructor_index(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2976,18 +2967,18 @@ size_t Object::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string class_name = 2;
-  if (this->class_name().size() > 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_class_name());
-  }
-
-  // int64 ptr = 1;
+  // uint64 ptr = 1;
   if (this->ptr() != 0) {
     total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
         this->_internal_ptr());
+  }
+
+  // int32 engine_constructor_index = 2;
+  if (this->engine_constructor_index() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_engine_constructor_index());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -3021,11 +3012,11 @@ void Object::MergeFrom(const Object& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.class_name().size() > 0) {
-    _internal_set_class_name(from._internal_class_name());
-  }
   if (from.ptr() != 0) {
     _internal_set_ptr(from._internal_ptr());
+  }
+  if (from.engine_constructor_index() != 0) {
+    _internal_set_engine_constructor_index(from._internal_engine_constructor_index());
   }
 }
 
@@ -3050,8 +3041,12 @@ bool Object::IsInitialized() const {
 void Object::InternalSwap(Object* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  class_name_.Swap(&other->class_name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  swap(ptr_, other->ptr_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Object, engine_constructor_index_)
+      + sizeof(Object::engine_constructor_index_)
+      - PROTOBUF_FIELD_OFFSET(Object, ptr_)>(
+          reinterpret_cast<char*>(&ptr_),
+          reinterpret_cast<char*>(&other->ptr_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Object::GetMetadata() const {

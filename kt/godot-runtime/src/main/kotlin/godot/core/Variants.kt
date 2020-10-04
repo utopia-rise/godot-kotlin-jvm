@@ -125,7 +125,7 @@ class KtVariant {
         data = build {
             objectValue = Wire.Object.newBuilder()
                     .setPtr(value.rawPtr)
-                    .setClassName(value.className)
+                    .setEngineConstructorIndex(value.engineConstructorIndex)
                     .build()
         }
     }
@@ -222,12 +222,11 @@ class KtVariant {
 
     inline fun <reified T : KtObject> asObject(): T {
         val objectValue = data.objectValue
-        val className = objectValue.className
+        val constructorIndex = objectValue.engineConstructorIndex
         return KtObject.instantiateWith(
                 objectValue.ptr,
-                className,
-                checkNotNull(TypeManager.engineTypes[className]) { "Tried to instantiate unknown class $className" }
-        ) as T
+                TypeManager.engineTypesConstructors[constructorIndex]
+        ).also { it.engineConstructorIndex = constructorIndex } as T
     }
 
     enum class Type {

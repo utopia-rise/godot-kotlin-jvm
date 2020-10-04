@@ -13,8 +13,7 @@ abstract class KtObject : AutoCloseable {
             field = value
         }
 
-    lateinit var className: String
-
+    var engineConstructorIndex: Int = -1
 
     init {
         try {
@@ -28,7 +27,6 @@ abstract class KtObject : AutoCloseable {
                 // rawPtr is pointing to.
                 val clazz = checkNotNull(this::class.qualifiedName) { "User classes can't be anonymous." }
                 if (TypeManager.isUserType(clazz)) {
-                    className = clazz
                     TransferContext.setScript(rawPtr, clazz, this, this::class.java.classLoader)
                     _onInit()
                 }
@@ -54,11 +52,10 @@ abstract class KtObject : AutoCloseable {
     companion object {
         private val shouldInit = ThreadLocal.withInitial { true }
 
-        fun <T: KtObject> instantiateWith(rawPtr: VoidPtr, className: String, constructor: () -> T): T {
+        fun <T: KtObject> instantiateWith(rawPtr: VoidPtr, constructor: () -> T): T {
             shouldInit.set(false)
             return constructor().also {
                 it.rawPtr = rawPtr
-                it.className = className
                 it._onInit()
             }
         }

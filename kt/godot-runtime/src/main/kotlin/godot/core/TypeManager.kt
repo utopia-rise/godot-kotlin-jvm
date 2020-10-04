@@ -2,15 +2,18 @@ package godot.core
 
 object TypeManager {
     private val userTypes = HashSet<String>()
-    val engineTypes = HashMap<String, () -> KtObject>()
+
+    val engineTypeNames = LinkedHashSet<String>()
+    val engineTypesConstructors = mutableListOf<() -> KtObject>()
 
     fun registerUserType(className: String) = userTypes.add(className)
 
     fun <T: KtObject> registerEngineType(className: String, invocator: () -> T) {
-        engineTypes[className] = invocator
+        engineTypesConstructors.add(invocator)
+        engineTypeNames.add(className)
     }
 
     fun isUserType(className: String) = userTypes.contains(className)
 
-    fun isEngineType(className: String) = engineTypes.contains(className)
+    fun isEngineType(className: String) = engineTypeNames.contains(className)
 }

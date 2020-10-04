@@ -20,10 +20,10 @@ Bootstrap::register_hooks(jni::Env& p_env, LoadClassesHook p_load_classes_hook, 
             (void*) p_unload_classes_hook
     };
 
-    jni::JNativeMethod register_managed_engine_types_method {
-        "registerManagedEngineTypes",
-        "([Ljava/lang/String;)V",
-        (void*) p_register_managed_engine_types_hook
+    jni::JNativeMethod register_managed_engine_types_method{
+            "registerManagedEngineTypes",
+            "([Ljava/lang/String;)V",
+            (void*) p_register_managed_engine_types_hook
     };
 
     Vector<jni::JNativeMethod> methods;

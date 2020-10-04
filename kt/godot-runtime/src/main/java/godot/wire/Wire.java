@@ -7140,22 +7140,16 @@ public final class Wire {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int64 ptr = 1;</code>
+     * <code>uint64 ptr = 1;</code>
      * @return The ptr.
      */
     long getPtr();
 
     /**
-     * <code>string class_name = 2;</code>
-     * @return The className.
+     * <code>int32 engine_constructor_index = 2;</code>
+     * @return The engineConstructorIndex.
      */
-    java.lang.String getClassName();
-    /**
-     * <code>string class_name = 2;</code>
-     * @return The bytes for className.
-     */
-    com.google.protobuf.ByteString
-        getClassNameBytes();
+    int getEngineConstructorIndex();
   }
   /**
    * Protobuf type {@code wire.Object}
@@ -7170,7 +7164,6 @@ public final class Wire {
       super(builder);
     }
     private Object() {
-      className_ = "";
     }
 
     @java.lang.Override
@@ -7205,13 +7198,12 @@ public final class Wire {
               break;
             case 8: {
 
-              ptr_ = input.readInt64();
+              ptr_ = input.readUInt64();
               break;
             }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
+            case 16: {
 
-              className_ = s;
+              engineConstructorIndex_ = input.readInt32();
               break;
             }
             default: {
@@ -7249,7 +7241,7 @@ public final class Wire {
     public static final int PTR_FIELD_NUMBER = 1;
     private long ptr_;
     /**
-     * <code>int64 ptr = 1;</code>
+     * <code>uint64 ptr = 1;</code>
      * @return The ptr.
      */
     @java.lang.Override
@@ -7257,42 +7249,15 @@ public final class Wire {
       return ptr_;
     }
 
-    public static final int CLASS_NAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object className_;
+    public static final int ENGINE_CONSTRUCTOR_INDEX_FIELD_NUMBER = 2;
+    private int engineConstructorIndex_;
     /**
-     * <code>string class_name = 2;</code>
-     * @return The className.
+     * <code>int32 engine_constructor_index = 2;</code>
+     * @return The engineConstructorIndex.
      */
     @java.lang.Override
-    public java.lang.String getClassName() {
-      java.lang.Object ref = className_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        className_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string class_name = 2;</code>
-     * @return The bytes for className.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getClassNameBytes() {
-      java.lang.Object ref = className_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        className_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getEngineConstructorIndex() {
+      return engineConstructorIndex_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -7310,10 +7275,10 @@ public final class Wire {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (ptr_ != 0L) {
-        output.writeInt64(1, ptr_);
+        output.writeUInt64(1, ptr_);
       }
-      if (!getClassNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, className_);
+      if (engineConstructorIndex_ != 0) {
+        output.writeInt32(2, engineConstructorIndex_);
       }
       unknownFields.writeTo(output);
     }
@@ -7326,10 +7291,11 @@ public final class Wire {
       size = 0;
       if (ptr_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, ptr_);
+          .computeUInt64Size(1, ptr_);
       }
-      if (!getClassNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, className_);
+      if (engineConstructorIndex_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, engineConstructorIndex_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -7348,8 +7314,8 @@ public final class Wire {
 
       if (getPtr()
           != other.getPtr()) return false;
-      if (!getClassName()
-          .equals(other.getClassName())) return false;
+      if (getEngineConstructorIndex()
+          != other.getEngineConstructorIndex()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -7364,8 +7330,8 @@ public final class Wire {
       hash = (37 * hash) + PTR_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getPtr());
-      hash = (37 * hash) + CLASS_NAME_FIELD_NUMBER;
-      hash = (53 * hash) + getClassName().hashCode();
+      hash = (37 * hash) + ENGINE_CONSTRUCTOR_INDEX_FIELD_NUMBER;
+      hash = (53 * hash) + getEngineConstructorIndex();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -7501,7 +7467,7 @@ public final class Wire {
         super.clear();
         ptr_ = 0L;
 
-        className_ = "";
+        engineConstructorIndex_ = 0;
 
         return this;
       }
@@ -7530,7 +7496,7 @@ public final class Wire {
       public godot.wire.Wire.Object buildPartial() {
         godot.wire.Wire.Object result = new godot.wire.Wire.Object(this);
         result.ptr_ = ptr_;
-        result.className_ = className_;
+        result.engineConstructorIndex_ = engineConstructorIndex_;
         onBuilt();
         return result;
       }
@@ -7582,9 +7548,8 @@ public final class Wire {
         if (other.getPtr() != 0L) {
           setPtr(other.getPtr());
         }
-        if (!other.getClassName().isEmpty()) {
-          className_ = other.className_;
-          onChanged();
+        if (other.getEngineConstructorIndex() != 0) {
+          setEngineConstructorIndex(other.getEngineConstructorIndex());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -7617,7 +7582,7 @@ public final class Wire {
 
       private long ptr_ ;
       /**
-       * <code>int64 ptr = 1;</code>
+       * <code>uint64 ptr = 1;</code>
        * @return The ptr.
        */
       @java.lang.Override
@@ -7625,7 +7590,7 @@ public final class Wire {
         return ptr_;
       }
       /**
-       * <code>int64 ptr = 1;</code>
+       * <code>uint64 ptr = 1;</code>
        * @param value The ptr to set.
        * @return This builder for chaining.
        */
@@ -7636,7 +7601,7 @@ public final class Wire {
         return this;
       }
       /**
-       * <code>int64 ptr = 1;</code>
+       * <code>uint64 ptr = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearPtr() {
@@ -7646,78 +7611,33 @@ public final class Wire {
         return this;
       }
 
-      private java.lang.Object className_ = "";
+      private int engineConstructorIndex_ ;
       /**
-       * <code>string class_name = 2;</code>
-       * @return The className.
+       * <code>int32 engine_constructor_index = 2;</code>
+       * @return The engineConstructorIndex.
        */
-      public java.lang.String getClassName() {
-        java.lang.Object ref = className_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          className_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+      @java.lang.Override
+      public int getEngineConstructorIndex() {
+        return engineConstructorIndex_;
       }
       /**
-       * <code>string class_name = 2;</code>
-       * @return The bytes for className.
-       */
-      public com.google.protobuf.ByteString
-          getClassNameBytes() {
-        java.lang.Object ref = className_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          className_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string class_name = 2;</code>
-       * @param value The className to set.
+       * <code>int32 engine_constructor_index = 2;</code>
+       * @param value The engineConstructorIndex to set.
        * @return This builder for chaining.
        */
-      public Builder setClassName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        className_ = value;
+      public Builder setEngineConstructorIndex(int value) {
+        
+        engineConstructorIndex_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string class_name = 2;</code>
+       * <code>int32 engine_constructor_index = 2;</code>
        * @return This builder for chaining.
        */
-      public Builder clearClassName() {
+      public Builder clearEngineConstructorIndex() {
         
-        className_ = getDefaultInstance().getClassName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string class_name = 2;</code>
-       * @param value The bytes for className to set.
-       * @return This builder for chaining.
-       */
-      public Builder setClassNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        className_ = value;
+        engineConstructorIndex_ = 0;
         onChanged();
         return this;
       }
@@ -12572,24 +12492,24 @@ public final class Wire {
       "\005Basis\022\030\n\001x\030\001 \001(\0132\r.wire.Vector3\022\030\n\001y\030\002 " +
       "\001(\0132\r.wire.Vector3\022\030\n\001z\030\003 \001(\0132\r.wire.Vec" +
       "tor3\"F\n\tTransform\022\032\n\005basis\030\001 \001(\0132\013.wire." +
-      "Basis\022\035\n\006origin\030\002 \001(\0132\r.wire.Vector3\")\n\006" +
-      "Object\022\013\n\003ptr\030\001 \001(\003\022\022\n\nclass_name\030\002 \001(\t\"" +
-      "\200\004\n\005Value\022\023\n\tnil_value\030\001 \001(\005H\000\022\024\n\nbool_v" +
-      "alue\030\002 \001(\010H\000\022\024\n\nlong_value\030\003 \001(\003H\000\022\024\n\nre" +
-      "al_value\030\004 \001(\001H\000\022\026\n\014string_value\030\005 \001(\tH\000" +
-      "\022&\n\rvector2_value\030\006 \001(\0132\r.wire.Vector2H\000" +
-      "\022\"\n\013rect2_value\030\007 \001(\0132\013.wire.Rect2H\000\022&\n\r" +
-      "vector3_value\030\010 \001(\0132\r.wire.Vector3H\000\022.\n\021" +
-      "transform2D_value\030\t \001(\0132\021.wire.Transform" +
-      "2DH\000\022\"\n\013plane_value\030\n \001(\0132\013.wire.PlaneH\000" +
-      "\022 \n\nquat_value\030\013 \001(\0132\n.wire.QuatH\000\022 \n\naa" +
-      "bb_value\030\014 \001(\0132\n.wire.AABBH\000\022\"\n\013basis_va" +
-      "lue\030\r \001(\0132\013.wire.BasisH\000\022*\n\017transform_va" +
-      "lue\030\016 \001(\0132\017.wire.TransformH\000\022$\n\014object_v" +
-      "alue\030\017 \001(\0132\014.wire.ObjectH\000B\006\n\004type\"(\n\013Re" +
-      "turnValue\022\031\n\004data\030\001 \001(\0132\013.wire.Value\"%\n\010" +
-      "FuncArgs\022\031\n\004args\030\001 \003(\0132\013.wire.ValueB\014\n\ng" +
-      "odot.wireb\006proto3"
+      "Basis\022\035\n\006origin\030\002 \001(\0132\r.wire.Vector3\"7\n\006" +
+      "Object\022\013\n\003ptr\030\001 \001(\004\022 \n\030engine_constructo" +
+      "r_index\030\002 \001(\005\"\200\004\n\005Value\022\023\n\tnil_value\030\001 \001" +
+      "(\005H\000\022\024\n\nbool_value\030\002 \001(\010H\000\022\024\n\nlong_value" +
+      "\030\003 \001(\003H\000\022\024\n\nreal_value\030\004 \001(\001H\000\022\026\n\014string" +
+      "_value\030\005 \001(\tH\000\022&\n\rvector2_value\030\006 \001(\0132\r." +
+      "wire.Vector2H\000\022\"\n\013rect2_value\030\007 \001(\0132\013.wi" +
+      "re.Rect2H\000\022&\n\rvector3_value\030\010 \001(\0132\r.wire" +
+      ".Vector3H\000\022.\n\021transform2D_value\030\t \001(\0132\021." +
+      "wire.Transform2DH\000\022\"\n\013plane_value\030\n \001(\0132" +
+      "\013.wire.PlaneH\000\022 \n\nquat_value\030\013 \001(\0132\n.wir" +
+      "e.QuatH\000\022 \n\naabb_value\030\014 \001(\0132\n.wire.AABB" +
+      "H\000\022\"\n\013basis_value\030\r \001(\0132\013.wire.BasisH\000\022*" +
+      "\n\017transform_value\030\016 \001(\0132\017.wire.Transform" +
+      "H\000\022$\n\014object_value\030\017 \001(\0132\014.wire.ObjectH\000" +
+      "B\006\n\004type\"(\n\013ReturnValue\022\031\n\004data\030\001 \001(\0132\013." +
+      "wire.Value\"%\n\010FuncArgs\022\031\n\004args\030\001 \003(\0132\013.w" +
+      "ire.ValueB\014\n\ngodot.wireb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -12654,7 +12574,7 @@ public final class Wire {
     internal_static_wire_Object_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_wire_Object_descriptor,
-        new java.lang.String[] { "Ptr", "ClassName", });
+        new java.lang.String[] { "Ptr", "EngineConstructorIndex", });
     internal_static_wire_Value_descriptor =
       getDescriptor().getMessageTypes().get(10);
     internal_static_wire_Value_fieldAccessorTable = new

@@ -77,7 +77,9 @@ class Bootstrap {
                 Entry.Context(registry).init()
             }
             loadClasses(registry.classes.toTypedArray())
-            registerManagedEngineTypes(TypeManager.engineTypes.keys.toTypedArray())
+            registerManagedEngineTypes(
+                    TypeManager.engineTypeNames.toTypedArray()
+            )
         } else {
             System.err.println("Unable to find Entry class, no classes will be loaded")
         }
@@ -86,5 +88,5 @@ class Bootstrap {
     private external fun loadClasses(classes: Array<KtClass<*>>)
     private external fun unloadClasses(classes: Array<KtClass<*>>)
 
-    private external fun registerManagedEngineTypes(engineTypes: Array<String>)
+    private external fun registerManagedEngineTypes(engineTypesNames: Array<String>)
 }

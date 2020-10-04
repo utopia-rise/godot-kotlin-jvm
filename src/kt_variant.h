@@ -17,6 +17,8 @@ public:
 
     static void initMethodArray();
     static Variant::Type fromWireTypeToVariantType(wire::Value::TypeCase typeCase);
+    static void register_engine_types(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types_names);
+    static void clear_engine_types();
 
     const wire::Value& get_value() const;
     Variant to_godot_variant() const;
