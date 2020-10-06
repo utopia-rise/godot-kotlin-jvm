@@ -21,7 +21,7 @@ object TransferContext {
 
     private var inputStream  = object : InputStream() {
         override fun read(): Int {
-            return buffer.get().toInt()
+            return buffer.get().toInt() and 0xFF
         }
     }
 

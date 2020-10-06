@@ -69,6 +69,21 @@ class ObjectDefaultTypeInternal {
 class ValueDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Value> _instance;
+  ::PROTOBUF_NAMESPACE_ID::int32 nil_value_;
+  bool bool_value_;
+  ::PROTOBUF_NAMESPACE_ID::int64 long_value_;
+  double real_value_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr string_value_;
+  const ::wire::Vector2* vector2_value_;
+  const ::wire::Rect2* rect2_value_;
+  const ::wire::Vector3* vector3_value_;
+  const ::wire::Transform2D* transform2d_value_;
+  const ::wire::Plane* plane_value_;
+  const ::wire::Quat* quat_value_;
+  const ::wire::AABB* aabb_value_;
+  const ::wire::Basis* basis_value_;
+  const ::wire::Transform* transform_value_;
+  const ::wire::Object* object_value_;
 } _Value_default_instance_;
 class ReturnValueDefaultTypeInternal {
  public:
@@ -87,6 +102,7 @@ static void InitDefaultsscc_info_AABB_wire_2eproto() {
     new (ptr) ::wire::AABB();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
+  ::wire::AABB::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_AABB_wire_2eproto =
@@ -101,6 +117,7 @@ static void InitDefaultsscc_info_Basis_wire_2eproto() {
     new (ptr) ::wire::Basis();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
+  ::wire::Basis::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Basis_wire_2eproto =
@@ -115,6 +132,7 @@ static void InitDefaultsscc_info_FuncArgs_wire_2eproto() {
     new (ptr) ::wire::FuncArgs();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
+  ::wire::FuncArgs::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_FuncArgs_wire_2eproto =
@@ -129,6 +147,7 @@ static void InitDefaultsscc_info_Object_wire_2eproto() {
     new (ptr) ::wire::Object();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
+  ::wire::Object::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Object_wire_2eproto =
@@ -142,6 +161,7 @@ static void InitDefaultsscc_info_Plane_wire_2eproto() {
     new (ptr) ::wire::Plane();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
+  ::wire::Plane::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Plane_wire_2eproto =
@@ -156,6 +176,7 @@ static void InitDefaultsscc_info_Quat_wire_2eproto() {
     new (ptr) ::wire::Quat();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
+  ::wire::Quat::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Quat_wire_2eproto =
@@ -169,6 +190,7 @@ static void InitDefaultsscc_info_Rect2_wire_2eproto() {
     new (ptr) ::wire::Rect2();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
+  ::wire::Rect2::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Rect2_wire_2eproto =
@@ -183,6 +205,7 @@ static void InitDefaultsscc_info_ReturnValue_wire_2eproto() {
     new (ptr) ::wire::ReturnValue();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
+  ::wire::ReturnValue::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_ReturnValue_wire_2eproto =
@@ -197,6 +220,7 @@ static void InitDefaultsscc_info_Transform_wire_2eproto() {
     new (ptr) ::wire::Transform();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
+  ::wire::Transform::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_Transform_wire_2eproto =
@@ -212,6 +236,7 @@ static void InitDefaultsscc_info_Transform2D_wire_2eproto() {
     new (ptr) ::wire::Transform2D();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
+  ::wire::Transform2D::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Transform2D_wire_2eproto =
@@ -226,6 +251,7 @@ static void InitDefaultsscc_info_Value_wire_2eproto() {
     new (ptr) ::wire::Value();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
+  ::wire::Value::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<10> scc_info_Value_wire_2eproto =
@@ -249,6 +275,7 @@ static void InitDefaultsscc_info_Vector2_wire_2eproto() {
     new (ptr) ::wire::Vector2();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
+  ::wire::Vector2::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Vector2_wire_2eproto =
@@ -262,6 +289,7 @@ static void InitDefaultsscc_info_Vector3_wire_2eproto() {
     new (ptr) ::wire::Vector3();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
+  ::wire::Vector3::InitAsDefaultInstance();
 }
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Vector3_wire_2eproto =
@@ -352,21 +380,21 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_wire_2eproto::offsets[] PROTOB
   ~0u,  // no _extensions_
   PROTOBUF_FIELD_OFFSET(::wire::Value, _oneof_case_[0]),
   ~0u,  // no _weak_field_map_
-  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
-  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
-  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
-  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
-  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
-  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
-  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
-  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
-  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
-  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
-  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
-  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
-  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
-  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
-  ::PROTOBUF_NAMESPACE_ID::internal::kInvalidFieldOffsetTag,
+  offsetof(::wire::ValueDefaultTypeInternal, nil_value_),
+  offsetof(::wire::ValueDefaultTypeInternal, bool_value_),
+  offsetof(::wire::ValueDefaultTypeInternal, long_value_),
+  offsetof(::wire::ValueDefaultTypeInternal, real_value_),
+  offsetof(::wire::ValueDefaultTypeInternal, string_value_),
+  offsetof(::wire::ValueDefaultTypeInternal, vector2_value_),
+  offsetof(::wire::ValueDefaultTypeInternal, rect2_value_),
+  offsetof(::wire::ValueDefaultTypeInternal, vector3_value_),
+  offsetof(::wire::ValueDefaultTypeInternal, transform2d_value_),
+  offsetof(::wire::ValueDefaultTypeInternal, plane_value_),
+  offsetof(::wire::ValueDefaultTypeInternal, quat_value_),
+  offsetof(::wire::ValueDefaultTypeInternal, aabb_value_),
+  offsetof(::wire::ValueDefaultTypeInternal, basis_value_),
+  offsetof(::wire::ValueDefaultTypeInternal, transform_value_),
+  offsetof(::wire::ValueDefaultTypeInternal, object_value_),
   PROTOBUF_FIELD_OFFSET(::wire::Value, type_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::wire::ReturnValue, _internal_metadata_),
@@ -478,6 +506,8 @@ namespace wire {
 
 // ===================================================================
 
+void Vector2::InitAsDefaultInstance() {
+}
 class Vector2::_Internal {
  public:
 };
@@ -703,6 +733,12 @@ void Vector2::InternalSwap(Vector2* other) {
 
 // ===================================================================
 
+void Rect2::InitAsDefaultInstance() {
+  ::wire::_Rect2_default_instance_._instance.get_mutable()->position_ = const_cast< ::wire::Vector2*>(
+      ::wire::Vector2::internal_default_instance());
+  ::wire::_Rect2_default_instance_._instance.get_mutable()->size_ = const_cast< ::wire::Vector2*>(
+      ::wire::Vector2::internal_default_instance());
+}
 class Rect2::_Internal {
  public:
   static const ::wire::Vector2& position(const Rect2* msg);
@@ -961,6 +997,8 @@ void Rect2::InternalSwap(Rect2* other) {
 
 // ===================================================================
 
+void Vector3::InitAsDefaultInstance() {
+}
 class Vector3::_Internal {
  public:
 };
@@ -1207,6 +1245,14 @@ void Vector3::InternalSwap(Vector3* other) {
 
 // ===================================================================
 
+void Transform2D::InitAsDefaultInstance() {
+  ::wire::_Transform2D_default_instance_._instance.get_mutable()->x_ = const_cast< ::wire::Vector2*>(
+      ::wire::Vector2::internal_default_instance());
+  ::wire::_Transform2D_default_instance_._instance.get_mutable()->y_ = const_cast< ::wire::Vector2*>(
+      ::wire::Vector2::internal_default_instance());
+  ::wire::_Transform2D_default_instance_._instance.get_mutable()->origin_ = const_cast< ::wire::Vector2*>(
+      ::wire::Vector2::internal_default_instance());
+}
 class Transform2D::_Internal {
  public:
   static const ::wire::Vector2& x(const Transform2D* msg);
@@ -1505,6 +1551,10 @@ void Transform2D::InternalSwap(Transform2D* other) {
 
 // ===================================================================
 
+void Plane::InitAsDefaultInstance() {
+  ::wire::_Plane_default_instance_._instance.get_mutable()->normal_ = const_cast< ::wire::Vector3*>(
+      ::wire::Vector3::internal_default_instance());
+}
 class Plane::_Internal {
  public:
   static const ::wire::Vector3& normal(const Plane* msg);
@@ -1746,6 +1796,8 @@ void Plane::InternalSwap(Plane* other) {
 
 // ===================================================================
 
+void Quat::InitAsDefaultInstance() {
+}
 class Quat::_Internal {
  public:
 };
@@ -2013,6 +2065,12 @@ void Quat::InternalSwap(Quat* other) {
 
 // ===================================================================
 
+void AABB::InitAsDefaultInstance() {
+  ::wire::_AABB_default_instance_._instance.get_mutable()->position_ = const_cast< ::wire::Vector3*>(
+      ::wire::Vector3::internal_default_instance());
+  ::wire::_AABB_default_instance_._instance.get_mutable()->size_ = const_cast< ::wire::Vector3*>(
+      ::wire::Vector3::internal_default_instance());
+}
 class AABB::_Internal {
  public:
   static const ::wire::Vector3& position(const AABB* msg);
@@ -2271,6 +2329,14 @@ void AABB::InternalSwap(AABB* other) {
 
 // ===================================================================
 
+void Basis::InitAsDefaultInstance() {
+  ::wire::_Basis_default_instance_._instance.get_mutable()->x_ = const_cast< ::wire::Vector3*>(
+      ::wire::Vector3::internal_default_instance());
+  ::wire::_Basis_default_instance_._instance.get_mutable()->y_ = const_cast< ::wire::Vector3*>(
+      ::wire::Vector3::internal_default_instance());
+  ::wire::_Basis_default_instance_._instance.get_mutable()->z_ = const_cast< ::wire::Vector3*>(
+      ::wire::Vector3::internal_default_instance());
+}
 class Basis::_Internal {
  public:
   static const ::wire::Vector3& x(const Basis* msg);
@@ -2569,6 +2635,12 @@ void Basis::InternalSwap(Basis* other) {
 
 // ===================================================================
 
+void Transform::InitAsDefaultInstance() {
+  ::wire::_Transform_default_instance_._instance.get_mutable()->basis_ = const_cast< ::wire::Basis*>(
+      ::wire::Basis::internal_default_instance());
+  ::wire::_Transform_default_instance_._instance.get_mutable()->origin_ = const_cast< ::wire::Vector3*>(
+      ::wire::Vector3::internal_default_instance());
+}
 class Transform::_Internal {
  public:
   static const ::wire::Basis& basis(const Transform* msg);
@@ -2827,6 +2899,8 @@ void Transform::InternalSwap(Transform* other) {
 
 // ===================================================================
 
+void Object::InitAsDefaultInstance() {
+}
 class Object::_Internal {
  public:
 };
@@ -3054,6 +3128,34 @@ void Object::InternalSwap(Object* other) {
 
 // ===================================================================
 
+void Value::InitAsDefaultInstance() {
+  ::wire::_Value_default_instance_.nil_value_ = 0;
+  ::wire::_Value_default_instance_.bool_value_ = false;
+  ::wire::_Value_default_instance_.long_value_ = PROTOBUF_LONGLONG(0);
+  ::wire::_Value_default_instance_.real_value_ = 0;
+  ::wire::_Value_default_instance_.string_value_.UnsafeSetDefault(
+      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  ::wire::_Value_default_instance_.vector2_value_ = const_cast< ::wire::Vector2*>(
+      ::wire::Vector2::internal_default_instance());
+  ::wire::_Value_default_instance_.rect2_value_ = const_cast< ::wire::Rect2*>(
+      ::wire::Rect2::internal_default_instance());
+  ::wire::_Value_default_instance_.vector3_value_ = const_cast< ::wire::Vector3*>(
+      ::wire::Vector3::internal_default_instance());
+  ::wire::_Value_default_instance_.transform2d_value_ = const_cast< ::wire::Transform2D*>(
+      ::wire::Transform2D::internal_default_instance());
+  ::wire::_Value_default_instance_.plane_value_ = const_cast< ::wire::Plane*>(
+      ::wire::Plane::internal_default_instance());
+  ::wire::_Value_default_instance_.quat_value_ = const_cast< ::wire::Quat*>(
+      ::wire::Quat::internal_default_instance());
+  ::wire::_Value_default_instance_.aabb_value_ = const_cast< ::wire::AABB*>(
+      ::wire::AABB::internal_default_instance());
+  ::wire::_Value_default_instance_.basis_value_ = const_cast< ::wire::Basis*>(
+      ::wire::Basis::internal_default_instance());
+  ::wire::_Value_default_instance_.transform_value_ = const_cast< ::wire::Transform*>(
+      ::wire::Transform::internal_default_instance());
+  ::wire::_Value_default_instance_.object_value_ = const_cast< ::wire::Object*>(
+      ::wire::Object::internal_default_instance());
+}
 class Value::_Internal {
  public:
   static const ::wire::Vector2& vector2_value(const Value* msg);
@@ -3979,6 +4081,10 @@ void Value::InternalSwap(Value* other) {
 
 // ===================================================================
 
+void ReturnValue::InitAsDefaultInstance() {
+  ::wire::_ReturnValue_default_instance_._instance.get_mutable()->data_ = const_cast< ::wire::Value*>(
+      ::wire::Value::internal_default_instance());
+}
 class ReturnValue::_Internal {
  public:
   static const ::wire::Value& data(const ReturnValue* msg);
@@ -4190,6 +4296,8 @@ void ReturnValue::InternalSwap(ReturnValue* other) {
 
 // ===================================================================
 
+void FuncArgs::InitAsDefaultInstance() {
+}
 class FuncArgs::_Internal {
  public:
 };

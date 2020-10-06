@@ -9,7 +9,7 @@ static Variant (* TO_GODOT_VARIANT_FROM[27 /* KVariant::TypeCase count */])(cons
 
 static Variant::Type WIRE_TYPE_CASE_TO_VARIANT_TYPE[16];
 
-static HashMap<StringName, int> ENGINE_JAVA_ENGINE_TYPES_CONSTRUCTORS;
+static HashMap<StringName, int> JAVA_ENGINE_TYPES_CONSTRUCTORS;
 
 KtVariant::KtVariant(wire::Value value) : value(value) {}
 
@@ -126,11 +126,11 @@ void to_kvariant_fromOBJECT(wire::Value& des, const Variant& src) {
     obj_value->set_ptr(reinterpret_cast<uintptr_t>(ptr));
     String class_name {ptr->get_class()};
 
-    if (!ENGINE_JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
+    if (!JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
         class_name = ClassDB::get_parent_class(class_name);
 
         while (class_name.empty()) {
-            if (!ENGINE_JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
+            if (!JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
                 class_name = ClassDB::get_parent_class(class_name);
             } else {
                 break;
@@ -138,7 +138,7 @@ void to_kvariant_fromOBJECT(wire::Value& des, const Variant& src) {
         }
     }
 
-    obj_value->set_engine_constructor_index(ENGINE_JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name]);
+    obj_value->set_engine_constructor_index(JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name]);
     des.set_allocated_object_value(obj_value);
 }
 
@@ -303,12 +303,12 @@ void KtVariant::register_engine_types(JNIEnv* p_env, jobject p_this, jobjectArra
 
     for (int i = 0; i < types_names.length(env); i++) {
         const String& class_name{env.from_jstring(static_cast<jni::JString>(types_names.get(env, i)))};
-        ENGINE_JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name] = i;
+        JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name] = i;
         print_verbose(vformat("Registered %s engine type with index %s.", class_name, i));
     }
     print_line("Done registering managed engine types...");
 }
 
 void KtVariant::clear_engine_types() {
-    ENGINE_JAVA_ENGINE_TYPES_CONSTRUCTORS.clear();
+    JAVA_ENGINE_TYPES_CONSTRUCTORS.clear();
 }

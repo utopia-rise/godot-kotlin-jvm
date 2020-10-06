@@ -150,6 +150,7 @@ class Vector2 PROTOBUF_FINAL :
   }
   static const Vector2& default_instance();
 
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
   static inline const Vector2* internal_default_instance() {
     return reinterpret_cast<const Vector2*>(
                &_Vector2_default_instance_);
@@ -297,6 +298,7 @@ class Rect2 PROTOBUF_FINAL :
   }
   static const Rect2& default_instance();
 
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
   static inline const Rect2* internal_default_instance() {
     return reinterpret_cast<const Rect2*>(
                &_Rect2_default_instance_);
@@ -462,6 +464,7 @@ class Vector3 PROTOBUF_FINAL :
   }
   static const Vector3& default_instance();
 
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
   static inline const Vector3* internal_default_instance() {
     return reinterpret_cast<const Vector3*>(
                &_Vector3_default_instance_);
@@ -620,6 +623,7 @@ class Transform2D PROTOBUF_FINAL :
   }
   static const Transform2D& default_instance();
 
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
   static inline const Transform2D* internal_default_instance() {
     return reinterpret_cast<const Transform2D*>(
                &_Transform2D_default_instance_);
@@ -805,6 +809,7 @@ class Plane PROTOBUF_FINAL :
   }
   static const Plane& default_instance();
 
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
   static inline const Plane* internal_default_instance() {
     return reinterpret_cast<const Plane*>(
                &_Plane_default_instance_);
@@ -961,6 +966,7 @@ class Quat PROTOBUF_FINAL :
   }
   static const Quat& default_instance();
 
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
   static inline const Quat* internal_default_instance() {
     return reinterpret_cast<const Quat*>(
                &_Quat_default_instance_);
@@ -1130,6 +1136,7 @@ class AABB PROTOBUF_FINAL :
   }
   static const AABB& default_instance();
 
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
   static inline const AABB* internal_default_instance() {
     return reinterpret_cast<const AABB*>(
                &_AABB_default_instance_);
@@ -1295,6 +1302,7 @@ class Basis PROTOBUF_FINAL :
   }
   static const Basis& default_instance();
 
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
   static inline const Basis* internal_default_instance() {
     return reinterpret_cast<const Basis*>(
                &_Basis_default_instance_);
@@ -1480,6 +1488,7 @@ class Transform PROTOBUF_FINAL :
   }
   static const Transform& default_instance();
 
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
   static inline const Transform* internal_default_instance() {
     return reinterpret_cast<const Transform*>(
                &_Transform_default_instance_);
@@ -1645,6 +1654,7 @@ class Object PROTOBUF_FINAL :
   }
   static const Object& default_instance();
 
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
   static inline const Object* internal_default_instance() {
     return reinterpret_cast<const Object*>(
                &_Object_default_instance_);
@@ -1811,6 +1821,7 @@ class Value PROTOBUF_FINAL :
     TYPE_NOT_SET = 0,
   };
 
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
   static inline const Value* internal_default_instance() {
     return reinterpret_cast<const Value*>(
                &_Value_default_instance_);
@@ -2238,6 +2249,7 @@ class ReturnValue PROTOBUF_FINAL :
   }
   static const ReturnValue& default_instance();
 
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
   static inline const ReturnValue* internal_default_instance() {
     return reinterpret_cast<const ReturnValue*>(
                &_ReturnValue_default_instance_);
@@ -2383,6 +2395,7 @@ class FuncArgs PROTOBUF_FINAL :
   }
   static const FuncArgs& default_instance();
 
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
   static inline const FuncArgs* internal_default_instance() {
     return reinterpret_cast<const FuncArgs*>(
                &_FuncArgs_default_instance_);
@@ -2560,8 +2573,8 @@ inline void Rect2::clear_position() {
 }
 inline const ::wire::Vector2& Rect2::_internal_position() const {
   const ::wire::Vector2* p = position_;
-  return p != nullptr ? *p : reinterpret_cast<const ::wire::Vector2&>(
-      ::wire::_Vector2_default_instance_);
+  return p != nullptr ? *p : *reinterpret_cast<const ::wire::Vector2*>(
+      &::wire::_Vector2_default_instance_);
 }
 inline const ::wire::Vector2& Rect2::position() const {
   // @@protoc_insertion_point(field_get:wire.Rect2.position)
@@ -2643,8 +2656,8 @@ inline void Rect2::clear_size() {
 }
 inline const ::wire::Vector2& Rect2::_internal_size() const {
   const ::wire::Vector2* p = size_;
-  return p != nullptr ? *p : reinterpret_cast<const ::wire::Vector2&>(
-      ::wire::_Vector2_default_instance_);
+  return p != nullptr ? *p : *reinterpret_cast<const ::wire::Vector2*>(
+      &::wire::_Vector2_default_instance_);
 }
 inline const ::wire::Vector2& Rect2::size() const {
   // @@protoc_insertion_point(field_get:wire.Rect2.size)
@@ -2794,8 +2807,8 @@ inline void Transform2D::clear_x() {
 }
 inline const ::wire::Vector2& Transform2D::_internal_x() const {
   const ::wire::Vector2* p = x_;
-  return p != nullptr ? *p : reinterpret_cast<const ::wire::Vector2&>(
-      ::wire::_Vector2_default_instance_);
+  return p != nullptr ? *p : *reinterpret_cast<const ::wire::Vector2*>(
+      &::wire::_Vector2_default_instance_);
 }
 inline const ::wire::Vector2& Transform2D::x() const {
   // @@protoc_insertion_point(field_get:wire.Transform2D.x)
@@ -2877,8 +2890,8 @@ inline void Transform2D::clear_y() {
 }
 inline const ::wire::Vector2& Transform2D::_internal_y() const {
   const ::wire::Vector2* p = y_;
-  return p != nullptr ? *p : reinterpret_cast<const ::wire::Vector2&>(
-      ::wire::_Vector2_default_instance_);
+  return p != nullptr ? *p : *reinterpret_cast<const ::wire::Vector2*>(
+      &::wire::_Vector2_default_instance_);
 }
 inline const ::wire::Vector2& Transform2D::y() const {
   // @@protoc_insertion_point(field_get:wire.Transform2D.y)
@@ -2960,8 +2973,8 @@ inline void Transform2D::clear_origin() {
 }
 inline const ::wire::Vector2& Transform2D::_internal_origin() const {
   const ::wire::Vector2* p = origin_;
-  return p != nullptr ? *p : reinterpret_cast<const ::wire::Vector2&>(
-      ::wire::_Vector2_default_instance_);
+  return p != nullptr ? *p : *reinterpret_cast<const ::wire::Vector2*>(
+      &::wire::_Vector2_default_instance_);
 }
 inline const ::wire::Vector2& Transform2D::origin() const {
   // @@protoc_insertion_point(field_get:wire.Transform2D.origin)
@@ -3047,8 +3060,8 @@ inline void Plane::clear_normal() {
 }
 inline const ::wire::Vector3& Plane::_internal_normal() const {
   const ::wire::Vector3* p = normal_;
-  return p != nullptr ? *p : reinterpret_cast<const ::wire::Vector3&>(
-      ::wire::_Vector3_default_instance_);
+  return p != nullptr ? *p : *reinterpret_cast<const ::wire::Vector3*>(
+      &::wire::_Vector3_default_instance_);
 }
 inline const ::wire::Vector3& Plane::normal() const {
   // @@protoc_insertion_point(field_get:wire.Plane.normal)
@@ -3238,8 +3251,8 @@ inline void AABB::clear_position() {
 }
 inline const ::wire::Vector3& AABB::_internal_position() const {
   const ::wire::Vector3* p = position_;
-  return p != nullptr ? *p : reinterpret_cast<const ::wire::Vector3&>(
-      ::wire::_Vector3_default_instance_);
+  return p != nullptr ? *p : *reinterpret_cast<const ::wire::Vector3*>(
+      &::wire::_Vector3_default_instance_);
 }
 inline const ::wire::Vector3& AABB::position() const {
   // @@protoc_insertion_point(field_get:wire.AABB.position)
@@ -3321,8 +3334,8 @@ inline void AABB::clear_size() {
 }
 inline const ::wire::Vector3& AABB::_internal_size() const {
   const ::wire::Vector3* p = size_;
-  return p != nullptr ? *p : reinterpret_cast<const ::wire::Vector3&>(
-      ::wire::_Vector3_default_instance_);
+  return p != nullptr ? *p : *reinterpret_cast<const ::wire::Vector3*>(
+      &::wire::_Vector3_default_instance_);
 }
 inline const ::wire::Vector3& AABB::size() const {
   // @@protoc_insertion_point(field_get:wire.AABB.size)
@@ -3408,8 +3421,8 @@ inline void Basis::clear_x() {
 }
 inline const ::wire::Vector3& Basis::_internal_x() const {
   const ::wire::Vector3* p = x_;
-  return p != nullptr ? *p : reinterpret_cast<const ::wire::Vector3&>(
-      ::wire::_Vector3_default_instance_);
+  return p != nullptr ? *p : *reinterpret_cast<const ::wire::Vector3*>(
+      &::wire::_Vector3_default_instance_);
 }
 inline const ::wire::Vector3& Basis::x() const {
   // @@protoc_insertion_point(field_get:wire.Basis.x)
@@ -3491,8 +3504,8 @@ inline void Basis::clear_y() {
 }
 inline const ::wire::Vector3& Basis::_internal_y() const {
   const ::wire::Vector3* p = y_;
-  return p != nullptr ? *p : reinterpret_cast<const ::wire::Vector3&>(
-      ::wire::_Vector3_default_instance_);
+  return p != nullptr ? *p : *reinterpret_cast<const ::wire::Vector3*>(
+      &::wire::_Vector3_default_instance_);
 }
 inline const ::wire::Vector3& Basis::y() const {
   // @@protoc_insertion_point(field_get:wire.Basis.y)
@@ -3574,8 +3587,8 @@ inline void Basis::clear_z() {
 }
 inline const ::wire::Vector3& Basis::_internal_z() const {
   const ::wire::Vector3* p = z_;
-  return p != nullptr ? *p : reinterpret_cast<const ::wire::Vector3&>(
-      ::wire::_Vector3_default_instance_);
+  return p != nullptr ? *p : *reinterpret_cast<const ::wire::Vector3*>(
+      &::wire::_Vector3_default_instance_);
 }
 inline const ::wire::Vector3& Basis::z() const {
   // @@protoc_insertion_point(field_get:wire.Basis.z)
@@ -3661,8 +3674,8 @@ inline void Transform::clear_basis() {
 }
 inline const ::wire::Basis& Transform::_internal_basis() const {
   const ::wire::Basis* p = basis_;
-  return p != nullptr ? *p : reinterpret_cast<const ::wire::Basis&>(
-      ::wire::_Basis_default_instance_);
+  return p != nullptr ? *p : *reinterpret_cast<const ::wire::Basis*>(
+      &::wire::_Basis_default_instance_);
 }
 inline const ::wire::Basis& Transform::basis() const {
   // @@protoc_insertion_point(field_get:wire.Transform.basis)
@@ -3744,8 +3757,8 @@ inline void Transform::clear_origin() {
 }
 inline const ::wire::Vector3& Transform::_internal_origin() const {
   const ::wire::Vector3* p = origin_;
-  return p != nullptr ? *p : reinterpret_cast<const ::wire::Vector3&>(
-      ::wire::_Vector3_default_instance_);
+  return p != nullptr ? *p : *reinterpret_cast<const ::wire::Vector3*>(
+      &::wire::_Vector3_default_instance_);
 }
 inline const ::wire::Vector3& Transform::origin() const {
   // @@protoc_insertion_point(field_get:wire.Transform.origin)
@@ -4141,7 +4154,7 @@ inline ::wire::Vector2* Value::release_vector2_value() {
 inline const ::wire::Vector2& Value::_internal_vector2_value() const {
   return _internal_has_vector2_value()
       ? *type_.vector2_value_
-      : reinterpret_cast< ::wire::Vector2&>(::wire::_Vector2_default_instance_);
+      : *reinterpret_cast< ::wire::Vector2*>(&::wire::_Vector2_default_instance_);
 }
 inline const ::wire::Vector2& Value::vector2_value() const {
   // @@protoc_insertion_point(field_get:wire.Value.vector2_value)
@@ -4214,7 +4227,7 @@ inline ::wire::Rect2* Value::release_rect2_value() {
 inline const ::wire::Rect2& Value::_internal_rect2_value() const {
   return _internal_has_rect2_value()
       ? *type_.rect2_value_
-      : reinterpret_cast< ::wire::Rect2&>(::wire::_Rect2_default_instance_);
+      : *reinterpret_cast< ::wire::Rect2*>(&::wire::_Rect2_default_instance_);
 }
 inline const ::wire::Rect2& Value::rect2_value() const {
   // @@protoc_insertion_point(field_get:wire.Value.rect2_value)
@@ -4287,7 +4300,7 @@ inline ::wire::Vector3* Value::release_vector3_value() {
 inline const ::wire::Vector3& Value::_internal_vector3_value() const {
   return _internal_has_vector3_value()
       ? *type_.vector3_value_
-      : reinterpret_cast< ::wire::Vector3&>(::wire::_Vector3_default_instance_);
+      : *reinterpret_cast< ::wire::Vector3*>(&::wire::_Vector3_default_instance_);
 }
 inline const ::wire::Vector3& Value::vector3_value() const {
   // @@protoc_insertion_point(field_get:wire.Value.vector3_value)
@@ -4360,7 +4373,7 @@ inline ::wire::Transform2D* Value::release_transform2d_value() {
 inline const ::wire::Transform2D& Value::_internal_transform2d_value() const {
   return _internal_has_transform2d_value()
       ? *type_.transform2d_value_
-      : reinterpret_cast< ::wire::Transform2D&>(::wire::_Transform2D_default_instance_);
+      : *reinterpret_cast< ::wire::Transform2D*>(&::wire::_Transform2D_default_instance_);
 }
 inline const ::wire::Transform2D& Value::transform2d_value() const {
   // @@protoc_insertion_point(field_get:wire.Value.transform2D_value)
@@ -4433,7 +4446,7 @@ inline ::wire::Plane* Value::release_plane_value() {
 inline const ::wire::Plane& Value::_internal_plane_value() const {
   return _internal_has_plane_value()
       ? *type_.plane_value_
-      : reinterpret_cast< ::wire::Plane&>(::wire::_Plane_default_instance_);
+      : *reinterpret_cast< ::wire::Plane*>(&::wire::_Plane_default_instance_);
 }
 inline const ::wire::Plane& Value::plane_value() const {
   // @@protoc_insertion_point(field_get:wire.Value.plane_value)
@@ -4506,7 +4519,7 @@ inline ::wire::Quat* Value::release_quat_value() {
 inline const ::wire::Quat& Value::_internal_quat_value() const {
   return _internal_has_quat_value()
       ? *type_.quat_value_
-      : reinterpret_cast< ::wire::Quat&>(::wire::_Quat_default_instance_);
+      : *reinterpret_cast< ::wire::Quat*>(&::wire::_Quat_default_instance_);
 }
 inline const ::wire::Quat& Value::quat_value() const {
   // @@protoc_insertion_point(field_get:wire.Value.quat_value)
@@ -4579,7 +4592,7 @@ inline ::wire::AABB* Value::release_aabb_value() {
 inline const ::wire::AABB& Value::_internal_aabb_value() const {
   return _internal_has_aabb_value()
       ? *type_.aabb_value_
-      : reinterpret_cast< ::wire::AABB&>(::wire::_AABB_default_instance_);
+      : *reinterpret_cast< ::wire::AABB*>(&::wire::_AABB_default_instance_);
 }
 inline const ::wire::AABB& Value::aabb_value() const {
   // @@protoc_insertion_point(field_get:wire.Value.aabb_value)
@@ -4652,7 +4665,7 @@ inline ::wire::Basis* Value::release_basis_value() {
 inline const ::wire::Basis& Value::_internal_basis_value() const {
   return _internal_has_basis_value()
       ? *type_.basis_value_
-      : reinterpret_cast< ::wire::Basis&>(::wire::_Basis_default_instance_);
+      : *reinterpret_cast< ::wire::Basis*>(&::wire::_Basis_default_instance_);
 }
 inline const ::wire::Basis& Value::basis_value() const {
   // @@protoc_insertion_point(field_get:wire.Value.basis_value)
@@ -4725,7 +4738,7 @@ inline ::wire::Transform* Value::release_transform_value() {
 inline const ::wire::Transform& Value::_internal_transform_value() const {
   return _internal_has_transform_value()
       ? *type_.transform_value_
-      : reinterpret_cast< ::wire::Transform&>(::wire::_Transform_default_instance_);
+      : *reinterpret_cast< ::wire::Transform*>(&::wire::_Transform_default_instance_);
 }
 inline const ::wire::Transform& Value::transform_value() const {
   // @@protoc_insertion_point(field_get:wire.Value.transform_value)
@@ -4798,7 +4811,7 @@ inline ::wire::Object* Value::release_object_value() {
 inline const ::wire::Object& Value::_internal_object_value() const {
   return _internal_has_object_value()
       ? *type_.object_value_
-      : reinterpret_cast< ::wire::Object&>(::wire::_Object_default_instance_);
+      : *reinterpret_cast< ::wire::Object*>(&::wire::_Object_default_instance_);
 }
 inline const ::wire::Object& Value::object_value() const {
   // @@protoc_insertion_point(field_get:wire.Value.object_value)
@@ -4864,8 +4877,8 @@ inline void ReturnValue::clear_data() {
 }
 inline const ::wire::Value& ReturnValue::_internal_data() const {
   const ::wire::Value* p = data_;
-  return p != nullptr ? *p : reinterpret_cast<const ::wire::Value&>(
-      ::wire::_Value_default_instance_);
+  return p != nullptr ? *p : *reinterpret_cast<const ::wire::Value*>(
+      &::wire::_Value_default_instance_);
 }
 inline const ::wire::Value& ReturnValue::data() const {
   // @@protoc_insertion_point(field_get:wire.ReturnValue.data)
