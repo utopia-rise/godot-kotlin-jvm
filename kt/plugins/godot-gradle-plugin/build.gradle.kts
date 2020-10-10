@@ -34,6 +34,7 @@ dependencies {
     implementation("com.github.jengelman.gradle.plugins:shadow:${DependenciesVersions.shadowJarPluginVersion}")
 
     implementation(project(":godot-build-props"))
+    compileOnly(project(":godot-kotlin-compiler-plugin-common"))
 }
 
 tasks {

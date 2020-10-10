@@ -1,14 +1,13 @@
 plugins {
     kotlin("jvm")
-    kotlin("kapt")
     `maven-publish`
 }
 
 dependencies {
-    implementation("com.utopia-rise:godot-kotlin-entry-generator")
-    implementation(project(":godot-library"))
-    compileOnly(kotlin("compiler"))
+    implementation(project(":godot-annotation-processor"))
+    implementation(project(":godot-kotlin-compiler-plugin-common"))
     implementation("de.jensklingenberg:mpapt-runtime:${DependenciesVersions.mpaptVersion}")
+    compileOnly(kotlin("compiler-embeddable"))
 }
 
 tasks {
@@ -26,7 +25,8 @@ tasks {
 
 publishing {
     publications {
-        val godotAnnotationProcessor by creating(MavenPublication::class) {
+        val godotKotlinCompilerPlugin by creating(MavenPublication::class) {
+
             pom {
                 groupId = "${project.group}"
                 artifactId = project.name
@@ -38,4 +38,4 @@ publishing {
     }
 }
 
-project.extra["artifacts"] = arrayOf("godotAnnotationProcessor")
+project.extra["artifacts"] = arrayOf("godotCompilerPlugin")

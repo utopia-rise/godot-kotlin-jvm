@@ -224,7 +224,7 @@ class ClassBuilderDsl<T : KtObject>(
 class ClassRegistry {
     val classes = mutableListOf<KtClass<*>>()
 
-    fun <T : KtObject> registerClass(name: String, superClass: String, cb: ClassBuilderDsl<T>.() -> Unit) {
+    fun <T : KtObject> registerClass(name: String, superClass: String, isTool: Boolean = false, cb: ClassBuilderDsl<T>.() -> Unit) {
         val builder = ClassBuilderDsl<T>(name, superClass)
         builder.cb()
         TypeManager.registerUserType(name)

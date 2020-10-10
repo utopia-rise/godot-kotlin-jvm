@@ -9,6 +9,8 @@ includeBuild("entry-generation/godot-kotlin-entry-generator") {
 
 subdir("entry-generation") {
     include("godot-annotation-processor")
+    include("godot-kotlin-compiler-plugin-common")
+    include("godot-kotlin-compiler-plugin")
 }
 
 subdir("plugins") {

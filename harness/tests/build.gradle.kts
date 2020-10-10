@@ -5,9 +5,10 @@ plugins {
 }
 
 repositories {
+    mavenLocal()
     jcenter()
 }
 
 dependencies {
-    kapt("com.utopia-rise:godot-annotation-processor:${godot.utils.GodotBuildProperties.godotKotlinVersion}")
+    implementation("joda-time:joda-time:2.10.6")
 }

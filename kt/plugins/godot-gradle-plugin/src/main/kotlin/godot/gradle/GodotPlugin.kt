@@ -7,10 +7,12 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.*
 import org.gradle.kotlin.dsl.dependencies
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.internal.Kapt3GradleSubplugin.Companion.findKaptConfiguration
 import org.jetbrains.kotlin.gradle.plugin.KaptExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinWithJavaCompilation
 
 
 class GodotPlugin : Plugin<Project> {
@@ -49,19 +51,37 @@ class GodotPlugin : Plugin<Project> {
                 add("kapt", "com.utopia-rise:godot-annotation-processor:${GodotBuildProperties.godotKotlinVersion}")
             }
 
-            val dummy = jvm.sourceSets.create("dummy") {
-                this.kotlin.srcDirs(jvm.target.compilations.getByName("main").defaultSourceSet.kotlin.srcDirs)
-                dependencies {
-                    compileOnly("com.utopia-rise:godot-library:${GodotBuildProperties.godotKotlinVersion}")
-                    compileOnly("com.utopia-rise:godot-annotation-processor:${GodotBuildProperties.godotKotlinVersion}")
+//            val dummy = jvm.sourceSets.create("dummy") {
+//                this.kotlin.srcDirs("src/main"/*jvm.target.compilations.getByName("main").defaultSourceSet.kotlin.srcDirs*/)
+//                dependencies {
+//                    compileOnly("com.utopia-rise:godot-library:${GodotBuildProperties.godotKotlinVersion}")
+//                    compileOnly("com.utopia-rise:godot-annotation-processor:${GodotBuildProperties.godotKotlinVersion}")
+//                }
+//            }
+
+            fun KotlinWithJavaCompilation<KotlinJvmOptions>.configureSourceSets(includeEntrySourceDir: Boolean) {
+                defaultSourceSet {
+                    kotlin.srcDirs("src/main/kotlin")
+                    if (includeEntrySourceDir) {
+                        kotlin.srcDirs(project.buildDir.resolve("godot-entry"))
+                    }
+                    dependencies {
+                        compileOnly("com.utopia-rise:godot-library:${GodotBuildProperties.godotKotlinVersion}")
+                    }
                 }
             }
 
-            jvm.target.compilations.getByName("main").defaultSourceSet {
-                this.dependsOn(dummy)
-                dependencies {
-                    compileOnly("com.utopia-rise:godot-library:${GodotBuildProperties.godotKotlinVersion}")
+            val mainCompilation = jvm.target.compilations.getByName("main").apply {
+                configureSourceSets(true)
+            }
+
+            val dummy = jvm.target.compilations.create("dummy") {
+                defaultSourceSet.dependencies {
+                    main.allDependencies.forEach {
+                        implementation(it)
+                    }
                 }
+                configureSourceSets(false)
             }
 
             tasks {
@@ -79,7 +99,7 @@ class GodotPlugin : Plugin<Project> {
                 }
 
                 val build by getting {
-                    dependsOn(bootstrapJar, shadowJar)
+                    dependsOn(bootstrapJar, shadowJar, dummy.compileKotlinTask)
                 }
             }
         }
