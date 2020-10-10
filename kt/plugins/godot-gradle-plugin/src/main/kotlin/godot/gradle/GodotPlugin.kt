@@ -10,6 +10,7 @@ import org.gradle.kotlin.dsl.dependencies
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.internal.Kapt3GradleSubplugin.Companion.findKaptConfiguration
 import org.jetbrains.kotlin.gradle.plugin.KaptExtension
+import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 
 class GodotPlugin : Plugin<Project> {
@@ -48,11 +49,18 @@ class GodotPlugin : Plugin<Project> {
                 add("kapt", "com.utopia-rise:godot-annotation-processor:${GodotBuildProperties.godotKotlinVersion}")
             }
 
-            jvm.target.compilations.getByName("main").defaultSourceSet {
-
+            val dummy = jvm.sourceSets.create("dummy") {
+                this.kotlin.srcDirs(jvm.target.compilations.getByName("main").defaultSourceSet.kotlin.srcDirs)
                 dependencies {
                     compileOnly("com.utopia-rise:godot-library:${GodotBuildProperties.godotKotlinVersion}")
                     compileOnly("com.utopia-rise:godot-annotation-processor:${GodotBuildProperties.godotKotlinVersion}")
+                }
+            }
+
+            jvm.target.compilations.getByName("main").defaultSourceSet {
+                this.dependsOn(dummy)
+                dependencies {
+                    compileOnly("com.utopia-rise:godot-library:${GodotBuildProperties.godotKotlinVersion}")
                 }
             }
 
