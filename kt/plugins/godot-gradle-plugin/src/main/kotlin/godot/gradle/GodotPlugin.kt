@@ -42,13 +42,6 @@ class GodotPlugin : Plugin<Project> {
                         "module" to null
                     )
                 )
-                dependencies {
-                    add("kapt", "com.utopia-rise:godot-annotation-processor:${GodotBuildProperties.godotKotlinVersion}")
-                }
-            }
-
-            dependencies {
-                add("kapt", "com.utopia-rise:godot-annotation-processor:${GodotBuildProperties.godotKotlinVersion}")
             }
 
             fun KotlinWithJavaCompilation<KotlinJvmOptions>.configureSourceSets(includeEntrySourceDir: Boolean) {
@@ -93,6 +86,8 @@ class GodotPlugin : Plugin<Project> {
                 val build by getting {
                     dependsOn(bootstrapJar, shadowJar, dummy.compileKotlinTask)
                 }
+
+                mainCompilation.compileKotlinTask.dependsOn(dummy.compileKotlinTask)
             }
         }
     }

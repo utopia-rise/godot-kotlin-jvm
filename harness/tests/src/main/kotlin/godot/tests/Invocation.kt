@@ -15,12 +15,12 @@ class OtherScript : Node() {
 
 @RegisterClass
 class Invocation : Spatial() {
-    @RegisterProperty var x = 0
-    @RegisterProperty var y = 0.0
-    @RegisterProperty var z = 0.0f
-    @RegisterProperty var customName = "Idonthaveanyidea"
+	@RegisterProperty var x = 0
+	@RegisterProperty var y = 0.0
+	@RegisterProperty var z = 0.0f
+	@RegisterProperty var customName = "Idonthaveanyidea"
 
-    var invocation = OtherScript()
+	var invocation = OtherScript()
 
 	@RegisterFunction fun intValue(value: Int) = value
 	@RegisterFunction fun longValue(value: Long) = value
@@ -29,23 +29,23 @@ class Invocation : Spatial() {
 	@RegisterFunction fun booleanValue(value: Boolean) = value
 	@RegisterFunction fun stringValue(value: String) = value
 
-    @RegisterFunction
+	@RegisterFunction
 	fun intAddition(a: Int, b: Int) = a + b
 
-    @RegisterFunction
+	@RegisterFunction
 	fun _enterTree() {
 		println("Enter tree !")
 		println("Instance id: ${getInstanceId()}")
 	}
 
-    @RegisterFunction
+	@RegisterFunction
 	fun _ready() {
 		val formerName = name
 		println("Name is: $name")
 		name = "TestName"
 		println("Name is: $name")
 		name = formerName
-        val test = DateTime.now()
+		val test = DateTime.now()
 	}
 
 	override fun _onInit() {
