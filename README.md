@@ -33,7 +33,7 @@ Once we reach Alpha state, we'll do branching like described in `git-flow`.
 Each Issue has a Maintainer that is the "supervisor" for the general topic the issue belongs to. Discuss implementation details with this maintainer.
 
 ## Setting up the project for local development
-1. Clone godot repo.
+1. Clone godot repo with 3.2 branch. `git clone git@github.com:godotengine/godot.git -b 3.2 --recursive`
 
 2. In `godot/`, run the following command: `git submodule add git@github.com:utopia-rise/godot-jvm.git modules/kotlin_jvm`
 
@@ -56,4 +56,9 @@ Each Issue has a Maintainer that is the "supervisor" for the general topic the i
 
 5. Build sample
     - navigate to `harness/tests`
+    - create embedded jvm (at least Java 9 is needed!): `jlink --add-modules java.base,java.logging --output jre`
     - `./gradlew build`
+
+6. In order to run the samples run `../../../../bin/godot.x11.tools.64`
+    - To run the editor append `-e`: `../../../../bin/godot.x11.tools.64 -e`
+    - You have to be in the folder of the sample you want to run for this to work otherwise the embedded jvm will not be detected correctly! This will of course change in the future but for now our priorities lie elsewhere.
