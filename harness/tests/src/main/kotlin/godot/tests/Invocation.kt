@@ -20,13 +20,14 @@ class Invocation : Spatial() {
 
 	var invocation = OtherScript()
 
-	fun intValue(value: Int) = value
-	fun longValue(value: Long) = value
-	fun floatValue(value: Float) = value
-	fun doubleValue(value: Double) = value
-	fun booleanValue(value: Boolean) = value
-	fun stringValue(value: String) = value
+	@RegisterFunction fun intValue(value: Int) = value
+	@RegisterFunction fun longValue(value: Long) = value
+	@RegisterFunction fun floatValue(value: Float) = value
+	@RegisterFunction fun doubleValue(value: Double) = value
+	@RegisterFunction fun booleanValue(value: Boolean) = value
+	@RegisterFunction fun stringValue(value: String) = value
 
+    @RegisterFunction
 	fun intAddition(a: Int, b: Int) = a + b
 
     @RegisterFunction

@@ -20,7 +20,6 @@ class CommonComponentRegistrar : ComponentRegistrar {
         val enabled = checkNotNull(configuration.get(CompilerPluginConst.CommandlineArguments.ENABLED)) {
             "enabled parameter missing"
         }
-        println("IS_ENABLED: $enabled")
         if (enabled) {
             val processor = GodotAnnotationProcessor(
                 checkNotNull(configuration.get(CompilerPluginConst.CommandlineArguments.ENTRY_DIR_PATH)) { "No path for generated entry file specified" },

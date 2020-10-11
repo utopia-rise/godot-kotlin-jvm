@@ -66,7 +66,7 @@ class GodotAnnotationProcessor(
 
         functions.addAll(
             roundEnvironment
-                .getElementsAnnotatedWith(RegisterProperty::class.java.canonicalName)
+                .getElementsAnnotatedWith(RegisterFunction::class.java.canonicalName)
                 .map { it as Element.FunctionElement }
                 .map { it.func }
         )

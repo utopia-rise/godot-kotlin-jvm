@@ -6,6 +6,8 @@ includeBuild("../../kt") {
         substitute(module("com.utopia-rise:godot-annotation-processor")).with(project(":godot-annotation-processor"))
         substitute(module("com.utopia-rise:godot-runtime")).with(project(":godot-runtime"))
         substitute(module("com.utopia-rise:godot-library")).with(project(":godot-library"))
+        substitute(module("com.utopia-rise:godot-kotlin-compiler-plugin-common")).with(project(":godot-kotlin-compiler-plugin-common"))
+        substitute(module("com.utopia-rise:godot-kotlin-compiler-plugin")).with(project(":godot-kotlin-compiler-plugin"))
     }
 }
 
