@@ -51,14 +51,6 @@ class GodotPlugin : Plugin<Project> {
                 add("kapt", "com.utopia-rise:godot-annotation-processor:${GodotBuildProperties.godotKotlinVersion}")
             }
 
-//            val dummy = jvm.sourceSets.create("dummy") {
-//                this.kotlin.srcDirs("src/main"/*jvm.target.compilations.getByName("main").defaultSourceSet.kotlin.srcDirs*/)
-//                dependencies {
-//                    compileOnly("com.utopia-rise:godot-library:${GodotBuildProperties.godotKotlinVersion}")
-//                    compileOnly("com.utopia-rise:godot-annotation-processor:${GodotBuildProperties.godotKotlinVersion}")
-//                }
-//            }
-
             fun KotlinWithJavaCompilation<KotlinJvmOptions>.configureSourceSets(includeEntrySourceDir: Boolean) {
                 defaultSourceSet {
                     kotlin.srcDirs("src/main/kotlin")

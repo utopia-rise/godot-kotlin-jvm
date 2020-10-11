@@ -5,20 +5,22 @@ import godot.Object
 import godot.Spatial
 import godot.registration.annotation.RegisterClass
 import godot.registration.annotation.RegisterFunction
+import godot.registration.annotation.RegisterProperty
 import org.joda.time.DateTime
 
+@RegisterClass
 class OtherScript : Node() {
 
 }
 
 @RegisterClass
 class Invocation : Spatial() {
-	var x = 0
-	var y = 0.0
-	var z = 0.0f
-	var customName = "Idonthaveanyidea"
+    @RegisterProperty var x = 0
+    @RegisterProperty var y = 0.0
+    @RegisterProperty var z = 0.0f
+    @RegisterProperty var customName = "Idonthaveanyidea"
 
-	var invocation = OtherScript()
+    var invocation = OtherScript()
 
 	@RegisterFunction fun intValue(value: Int) = value
 	@RegisterFunction fun longValue(value: Long) = value
