@@ -37,7 +37,11 @@ Each Issue has a Maintainer that is the "supervisor" for the general topic the i
 
 2. In `godot/`, run the following command: `git submodule add git@github.com:utopia-rise/godot-jvm.git modules/kotlin_jvm`
 
-3. Setup Protobuf:  
+3. Pull submodules of our project (currently only the entry generator): 
+    - `cd modules/kotlin_jvm`
+    - `git submodule update --init --recursive`
+
+4. Setup Protobuf:  
     https://github.com/protocolbuffers/protobuf/tree/master/src (install the java version, which already includes cpp)
     - `./configure --disable-shared CXXFLAGS="-fPIC" --prefix=<repo-root>/libprotobuf`
     - `make`
@@ -52,13 +56,13 @@ Each Issue has a Maintainer that is the "supervisor" for the general topic the i
       cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=<repo-root>/libprotobuf ../.. ```
       4. Install with : `nmake install`
 
-4. Build the engine with our module: `scons -j8 platform=x11 # your platform`
+5. Build the engine with our module: `scons -j8 platform=x11 # your platform`
 
-5. Build sample
+6. Build sample
     - navigate to `harness/tests`
     - create embedded jvm (at least Java 9 is needed!): `jlink --add-modules java.base,java.logging --output jre`
     - `./gradlew build`
 
-6. In order to run the samples run `../../../../bin/godot.x11.tools.64`
+7. In order to run the samples run `../../../../bin/godot.x11.tools.64`
     - To run the editor append `-e`: `../../../../bin/godot.x11.tools.64 -e`
     - You have to be in the folder of the sample you want to run for this to work otherwise the embedded jvm will not be detected correctly! This will of course change in the future but for now our priorities lie elsewhere.
