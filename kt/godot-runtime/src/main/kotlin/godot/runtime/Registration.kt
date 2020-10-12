@@ -28,14 +28,15 @@ data class KtFunctionArgument(
 }
 
 class ClassBuilderDsl<T : KtObject>(
-    private val name: String,
+    @PublishedApi internal val name: String,
     private val superClass: String
 ) {
     private val constructors = mutableMapOf<Int, KtConstructor<T>>()
 
     private val functions = mutableMapOf<String, KtFunction<T, *>>()
 
-    private val properties = mutableMapOf<String, KtProperty<T, *>>()
+    @PublishedApi
+    internal val properties = mutableMapOf<String, KtProperty<T, *>>()
 
     fun constructor(constructor: KtConstructor<T>) {
         require(!constructors.containsKey(constructor.parameterCount)) {
@@ -68,6 +69,99 @@ class ClassBuilderDsl<T : KtObject>(
             kProperty,
             getValueConverter,
             setValueConverter
+        )
+    }
+
+    inline fun <reified P : Enum<P>> enumProperty(
+        kProperty: KMutableProperty1<T, P>
+    ) {
+        val propertyName = kProperty.name.camelToSnakeCase()
+        require(!properties.contains(propertyName)) {
+            "Found two properties with name $propertyName for class $name"
+        }
+
+        properties[propertyName] = KtProperty(
+            KtPropertyInfo(
+                KtVariant.Type.LONG,
+                propertyName,
+                "Int",
+                PropertyHint.ENUM,
+                enumValues<P>().joinToString { it.name }
+            ),
+            kProperty,
+            { enum -> KtVariant(enum.ordinal) },
+            { ktVariant -> enumValues<P>()[ktVariant.asInt()] }
+        )
+    }
+
+    //TODO: uncomment and fixup once collections are supported in KtVariant
+//    inline fun <reified P : Enum<P>> enumListProperty(
+//        kProperty: KMutableProperty1<T, Collection<P>>
+//    ) {
+//        val propertyName = kProperty.name.camelToSnakeCase()
+//        require(!properties.contains(propertyName)) {
+//            "Found two properties with name $propertyName for class $name"
+//        }
+//
+//        properties[propertyName] = KtProperty(
+//            KtPropertyInfo(
+//                KtVariant.Type.LONG,
+//                propertyName,
+//                "Int",
+//                PropertyHint.ENUM,
+//                "2/3:${enumValues<P>().joinToString(",") { it.name }}" //2 = KtVariant.Type.LONG.ordinal | 3 = PropertyHint.ENUM.ordinal
+//            ),
+//            kProperty,
+//            { enumList ->
+//                KtVariant(enumList.map { it.ordinal } as Collection)
+//            },
+//            { ktVariant -> enumValues<P>()[ktVariant.asInt()] }
+//        )
+//    }
+
+    inline fun <reified P : Enum<P>> enumFlagProperty(
+        kProperty: KMutableProperty1<T, Set<P>>
+    ) {
+        val propertyName = kProperty.name.camelToSnakeCase()
+        require(!properties.contains(propertyName)) {
+            "Found two properties with name $propertyName for class $name"
+        }
+
+        properties[propertyName] = KtProperty(
+            KtPropertyInfo(
+                KtVariant.Type.LONG,
+                propertyName,
+                "Int",
+                PropertyHint.FLAGS,
+                enumValues<P>().joinToString { it.name }
+            ),
+            kProperty,
+            { enumSet ->
+                var intFlag = 0
+                enumSet.forEach { enum ->
+                    intFlag += 1 shl enum.ordinal
+                }
+                KtVariant(intFlag)
+            },
+            { value ->
+                val intFlag = value.asInt()
+
+                val enums = mutableSetOf<P>()
+                var bit = 1
+
+                for (i in 0 until Int.SIZE_BITS) {
+                    if ((intFlag and bit) > 0) {
+                        val element = enumValues<P>().firstOrNull { it.ordinal == i }
+                        if (element != null) {
+                            enums.add(element)
+                        }
+                    }
+                    bit = bit shl 1
+                    if (bit > intFlag) break
+                }
+
+                enums
+            }
         )
     }
 
