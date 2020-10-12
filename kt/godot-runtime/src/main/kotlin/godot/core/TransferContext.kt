@@ -19,9 +19,10 @@ object TransferContext {
         }
     }
 
-    private var inputStream  = object : InputStream() {
+    @ExperimentalUnsignedTypes
+    private var inputStream = object : InputStream() {
         override fun read(): Int {
-            return buffer.get().toInt() and 0xFF
+            return buffer.get().toUByte().toInt()
         }
     }
 
@@ -37,6 +38,7 @@ object TransferContext {
         return bufferChanged
     }
 
+    @ExperimentalUnsignedTypes
     fun readArguments(): List<KtVariant> {
         val args = Wire.FuncArgs.parseDelimitedFrom(inputStream)
         buffer.rewind()
@@ -60,6 +62,7 @@ object TransferContext {
         return bufferChanged
     }
 
+    @ExperimentalUnsignedTypes
     fun readReturnValue(): KtVariant {
         val returnValue = Wire.ReturnValue.parseDelimitedFrom(inputStream)
         buffer.rewind()
