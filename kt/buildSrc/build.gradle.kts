@@ -4,13 +4,11 @@ plugins {
 
 buildscript {
     repositories {
-        mavenLocal()
         jcenter()
         gradlePluginPortal()
     }
 }
 repositories {
-    mavenLocal()
     jcenter()
     gradlePluginPortal()
 }

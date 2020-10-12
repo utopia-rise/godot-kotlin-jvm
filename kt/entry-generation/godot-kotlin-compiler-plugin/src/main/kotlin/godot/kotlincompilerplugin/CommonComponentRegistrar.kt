@@ -23,6 +23,7 @@ class CommonComponentRegistrar : ComponentRegistrar {
         if (enabled) {
             val processor = GodotAnnotationProcessor(
                 checkNotNull(configuration.get(CompilerPluginConst.CommandlineArguments.ENTRY_DIR_PATH)) { "No path for generated entry file specified" },
+                checkNotNull(configuration.get(CompilerPluginConst.CommandlineArguments.SERVICE_FILE_DIR_PATH)) { "No path for generated entry file specified" }
             )
             val mpapt = MpAptProject(processor, configuration)
             StorageComponentContainerContributor.registerExtension(project, mpapt)
@@ -46,6 +47,14 @@ class CommonGodotKotlinCompilerPluginCommandLineProcessor : CommandLineProcessor
             allowMultipleOccurrences = false
         )
 
+        val SERVICE_FILE_DIR_PATH_OPTION = CliOption(
+            CompilerPluginConst.CommandLineOptionNames.serviceFileDirPathOption,
+            "Path to where the generated service file should be written to",
+            CompilerPluginConst.CommandlineArguments.SERVICE_FILE_DIR_PATH.toString(),
+            required = true,
+            allowMultipleOccurrences = false
+        )
+
         val ENABLED = CliOption(
             CompilerPluginConst.CommandLineOptionNames.enabledOption,
             "Flag to enable entry generation",
@@ -59,6 +68,7 @@ class CommonGodotKotlinCompilerPluginCommandLineProcessor : CommandLineProcessor
     override val pluginId = PLUGIN_ID
     override val pluginOptions = listOf(
         ENTRY_DIR_PATH_OPTION,
+        SERVICE_FILE_DIR_PATH_OPTION,
         ENABLED
     )
 
@@ -66,6 +76,9 @@ class CommonGodotKotlinCompilerPluginCommandLineProcessor : CommandLineProcessor
         return when (option) {
             ENTRY_DIR_PATH_OPTION -> configuration.put(
                 CompilerPluginConst.CommandlineArguments.ENTRY_DIR_PATH, value
+            )
+            SERVICE_FILE_DIR_PATH_OPTION -> configuration.put(
+                CompilerPluginConst.CommandlineArguments.SERVICE_FILE_DIR_PATH, value
             )
             ENABLED -> configuration.put(
                 CompilerPluginConst.CommandlineArguments.ENABLED, value.toBoolean()

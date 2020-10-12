@@ -5,7 +5,6 @@ subprojects {
     group = "com.utopia-rise"
     version = versionString
     repositories {
-        mavenLocal()
         jcenter()
     }
 }

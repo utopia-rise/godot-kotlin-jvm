@@ -14,6 +14,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinCompilerPluginSupportPlugin
 import org.jetbrains.kotlin.gradle.plugin.SubpluginArtifact
 import org.jetbrains.kotlin.gradle.plugin.SubpluginOption
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinWithJavaCompilation
+import java.io.File
 
 
 class GodotPlugin : KotlinCompilerPluginSupportPlugin {
@@ -32,7 +33,6 @@ class GodotPlugin : KotlinCompilerPluginSupportPlugin {
                 dependencies {
                     add(name, kotlin("stdlib"))
                     add(name, "com.utopia-rise:godot-library:${GodotBuildProperties.godotKotlinVersion}")
-                    add("kapt", "com.utopia-rise:godot-annotation-processor:${GodotBuildProperties.godotKotlinVersion}")
                 }
             }
             val main = configurations.create("main").apply {
@@ -85,7 +85,7 @@ class GodotPlugin : KotlinCompilerPluginSupportPlugin {
                 }
 
                 val build by getting {
-                    dependsOn(bootstrapJar, shadowJar, dummy.compileKotlinTask)
+                    dependsOn(bootstrapJar, shadowJar)
                 }
 
                 mainCompilation.compileKotlinTask.dependsOn(dummy.compileKotlinTask)
@@ -111,6 +111,12 @@ class GodotPlugin : KotlinCompilerPluginSupportPlugin {
                 SubpluginOption(
                     CompilerPluginConst.CommandLineOptionNames.enabledOption,
                     (kotlinCompilation.name == "dummy").toString()
+                ),
+                SubpluginOption(
+                    CompilerPluginConst.CommandLineOptionNames.serviceFileDirPathOption,
+                    File(project.rootDir, "/src/main/resources/META-INF/services/").apply {
+                        mkdirs()
+                    }.absolutePath
                 ),
                 SubpluginOption(
                     CompilerPluginConst.CommandLineOptionNames.entryDirPathOption,

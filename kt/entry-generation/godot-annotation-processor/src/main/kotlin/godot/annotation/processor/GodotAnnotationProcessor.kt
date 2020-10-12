@@ -18,12 +18,12 @@ import org.jetbrains.kotlin.resolve.BindingContext
 import java.lang.instrument.IllegalClassFormatException
 
 class GodotAnnotationProcessor(
-    private val entryGenerationOutputDir: String
+    private val entryGenerationOutputDir: String,
+    private val serviceFileOutputDir: String
 ): AbstractProcessor() {
     lateinit var bindingContext: BindingContext
 
     override fun getSupportedAnnotationTypes(): MutableSet<String> {
-        println("Huhu")
         return mutableSetOf(
             RegisterClass::class.java.canonicalName,
             RegisterFunction::class.java.canonicalName,
@@ -106,5 +106,6 @@ class GodotAnnotationProcessor(
 
     override fun processingOver() {
         EntryGenerator.generateEntryFile(EntryGenerationType.JVM, bindingContext, entryGenerationOutputDir, classes, properties, functions, signals)
+        EntryGenerator.generateServiceFile(serviceFileOutputDir)
     }
 }
