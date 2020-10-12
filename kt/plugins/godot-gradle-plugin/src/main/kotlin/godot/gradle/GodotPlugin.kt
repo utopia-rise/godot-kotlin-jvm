@@ -2,26 +2,27 @@ package godot.gradle
 
 import com.github.jengelman.gradle.plugins.shadow.ShadowPlugin
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import godot.kotlincompilerplugin.common.CompilerPluginConst
 import godot.utils.GodotBuildProperties
-import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.*
-import org.gradle.kotlin.dsl.dependencies
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
-import org.jetbrains.kotlin.gradle.internal.Kapt3GradleSubplugin.Companion.findKaptConfiguration
-import org.jetbrains.kotlin.gradle.plugin.KaptExtension
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
+import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation
+import org.jetbrains.kotlin.gradle.plugin.KotlinCompilerPluginSupportPlugin
+import org.jetbrains.kotlin.gradle.plugin.SubpluginArtifact
+import org.jetbrains.kotlin.gradle.plugin.SubpluginOption
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinWithJavaCompilation
 
 
-class GodotPlugin : Plugin<Project> {
-    override fun apply(project: Project) {
-        require(project.rootProject == project) { "godot-jvm plugin can only be applied on the root project!" }
-        val jvm = project.extensions.getByType<KotlinJvmProjectExtension>()
-        project.pluginManager.apply(ShadowPlugin::class)
-        project.pluginManager.apply("org.jetbrains.kotlin.kapt")
-        setupPlugin(project, jvm)
+class GodotPlugin : KotlinCompilerPluginSupportPlugin {
+    override fun apply(target: Project) {
+        require(target.rootProject == target) { "godot-jvm plugin can only be applied on the root project!" }
+        val jvm = target.extensions.getByType<KotlinJvmProjectExtension>()
+        target.pluginManager.apply(ShadowPlugin::class)
+        target.pluginManager.apply("org.jetbrains.kotlin.kapt")
+        setupPlugin(target, jvm)
     }
 
     private fun setupPlugin(project: Project, jvm: KotlinJvmProjectExtension) {
@@ -100,4 +101,34 @@ class GodotPlugin : Plugin<Project> {
                 }
             }
         }
+
+    //START: Compiler plugin configuration
+    override fun applyToCompilation(kotlinCompilation: KotlinCompilation<*>): Provider<List<SubpluginOption>> {
+        val project = kotlinCompilation.target.project
+
+        return project.provider {
+            listOf(
+                SubpluginOption(
+                    CompilerPluginConst.CommandLineOptionNames.enabledOption,
+                    (kotlinCompilation.name == "dummy").toString()
+                ),
+                SubpluginOption(
+                    CompilerPluginConst.CommandLineOptionNames.entryDirPathOption,
+                    project.buildDir.resolve("godot-entry").absolutePath
+                )
+            )
+        }
+    }
+
+    override fun getCompilerPluginId(): String = CompilerPluginConst.compilerPluginId
+
+    override fun isApplicable(kotlinCompilation: KotlinCompilation<*>): Boolean =
+        kotlinCompilation.target.project.plugins.findPlugin(GodotPlugin::class.java) != null
+
+    override fun getPluginArtifact(): SubpluginArtifact = SubpluginArtifact(
+        groupId = CompilerPluginConst.compilerPluginGroupId,
+        artifactId = CompilerPluginConst.compilerPluginArtifactId,
+        version = GodotBuildProperties.godotKotlinVersion
+    )
+    //END: Compiler plugin configuration
 }
