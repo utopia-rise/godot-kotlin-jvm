@@ -66,3 +66,10 @@ Each Issue has a Maintainer that is the "supervisor" for the general topic the i
 7. In order to run the samples run `../../../../bin/godot.x11.tools.64`
     - To run the editor append `-e`: `../../../../bin/godot.x11.tools.64 -e`
     - You have to be in the folder of the sample you want to run for this to work otherwise the embedded jvm will not be detected correctly! This will of course change in the future but for now our priorities lie elsewhere.
+
+
+## Debug entry generation (KotlinCompilerPlugin in general)
+- Build sample project with `./gradlew build --no-daemon -Dorg.gradle.debug=true -Dkotlin.compiler.execution.strategy="in-process" -Dkotlin.daemon.jvm.options="-Xdebug,-Xrunjdwp:transport=dt_socket,address=5005,server=y,suspend=n"`
+- Attach remote debugger to process (a preconfigured run configuration for it is present in the sample project `tests` called `DebugEntryGenerator`)
+
+Note: Compilation with attached debugger will be way slower. Especially for the initial build. So be patient. It takes some time until it hits your breakpoints.
