@@ -6,6 +6,7 @@
 #include "java_instance_wrapper.h"
 #include "kt_object.h"
 #include "kt_function.h"
+#include "kt_signal_info.h"
 
 class KtClass : public JavaInstanceWrapper {
 public:
@@ -18,19 +19,23 @@ public:
     KtObject* create_instance(jni::Env& env, const Variant** p_args, int p_arg_count, Object* p_owner);
     KtFunction* get_method(const StringName& methodName);
     KtProperty* get_property(const StringName& p_property_name);
+    KtSignalInfo* get_signal(const StringName& p_signal_name);
 
     void get_method_list(List<MethodInfo>* p_list);
     void get_property_list(List<PropertyInfo>* p_list);
+    void get_signal_list(List<MethodInfo>* p_list);
 
 private:
     HashMap<StringName, KtFunction*> methods;
     HashMap<StringName, KtProperty*> properties;
+    HashMap<StringName, KtSignalInfo*> signal_infos;
 
     StringName get_name(jni::Env& env);
     StringName get_super_class(jni::Env& env);
 
     void fetch_methods(jni::Env& env);
     void fetch_properties(jni::Env& env);
+    void fetch_signals(jni::Env& env);
 
     template <typename F, typename T>
     void get_member_list(List<F>* p_list, HashMap<StringName, T*>& members) {

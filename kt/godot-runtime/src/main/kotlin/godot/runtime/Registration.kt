@@ -38,6 +38,8 @@ class ClassBuilderDsl<T : KtObject>(
     @PublishedApi
     internal val properties = mutableMapOf<String, KtProperty<T, *>>()
 
+    private val signals = mutableMapOf<String, KtSignalInfo>()
+
     fun constructor(constructor: KtConstructor<T>) {
         require(!constructors.containsKey(constructor.parameterCount)) {
             "A constructor with ${constructor.parameterCount} argument(s) already exists."
@@ -530,7 +532,7 @@ class ClassBuilderDsl<T : KtObject>(
 
     internal fun build(): KtClass<T> {
         check(constructors.isNotEmpty()) { "Please provide at least one constructor." }
-        return KtClass(name, superClass, constructors, properties, functions)
+        return KtClass(name, superClass, constructors, properties, functions, signals)
     }
 }
 
