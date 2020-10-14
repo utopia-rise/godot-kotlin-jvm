@@ -52,6 +52,11 @@ message Transform {
   Vector3 origin = 2;
 }
 
+message Object {
+  fixed64 ptr = 1;
+  int32 engine_constructor_index = 2;
+}
+
 message Value {
   oneof type {
     int32 nil_value = 1;
@@ -68,6 +73,7 @@ message Value {
     AABB aabb_value = 12;
     Basis basis_value = 13;
     Transform transform_value = 14;
+    Object object_value = 15;
   }
 }
 

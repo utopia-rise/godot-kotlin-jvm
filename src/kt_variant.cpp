@@ -1,13 +1,15 @@
+#include <core/class_db.h>
 #include "kt_variant.h"
+#include "gd_kotlin.h"
 
 // must match the value order of godot_variant_type
 static void (* TO_KT_VARIANT_FROM[27 /* Variant::Type count */])(wire::Value&, const Variant&);
 
 static Variant (* TO_GODOT_VARIANT_FROM[27 /* KVariant::TypeCase count */])(const wire::Value&);
 
-static Variant::Type WIRE_TYPE_CASE_TO_VARIANT_TYPE[15];
-static String VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[28];
+static Variant::Type WIRE_TYPE_CASE_TO_VARIANT_TYPE[16];
 
+static HashMap<StringName, int> JAVA_ENGINE_TYPES_CONSTRUCTORS;
 
 KtVariant::KtVariant(wire::Value value) : value(value) {}
 
@@ -118,6 +120,28 @@ void to_kvariant_fromTRANSFORM(wire::Value& des, const Variant& src) {
     des.set_allocated_transform_value(transform);
 }
 
+void to_kvariant_fromOBJECT(wire::Value& des, const Variant& src) {
+    Object* ptr = src;
+    wire::Object* obj_value{wire::Object::default_instance().New()};
+    obj_value->set_ptr(reinterpret_cast<uintptr_t>(ptr));
+    String class_name {ptr->get_class()};
+
+    if (!JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
+        class_name = ClassDB::get_parent_class(class_name);
+
+        while (class_name.empty()) {
+            if (!JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
+                class_name = ClassDB::get_parent_class(class_name);
+            } else {
+                break;
+            }
+        }
+    }
+
+    obj_value->set_engine_constructor_index(JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name]);
+    des.set_allocated_object_value(obj_value);
+}
+
 KtVariant::KtVariant(const Variant& variant) {
     Variant::Type type = variant.get_type();
     TO_KT_VARIANT_FROM[type](value, variant);
@@ -209,6 +233,10 @@ Variant from_kvariant_tokTransformValue(const wire::Value& src) {
     );
 }
 
+Variant from_kvariant_toKObjectValue(const wire::Value& src) {
+    return Variant(reinterpret_cast<Object*>(src.object_value().ptr()));
+}
+
 Variant KtVariant::to_godot_variant() const {
     return TO_GODOT_VARIANT_FROM[value.type_case()](value);
 }
@@ -228,6 +256,7 @@ void KtVariant::initMethodArray() {
     TO_KT_VARIANT_FROM[Variant::AABB] = to_kvariant_fromAABB;
     TO_KT_VARIANT_FROM[Variant::BASIS] = to_kvariant_fromBASIS;
     TO_KT_VARIANT_FROM[Variant::TRANSFORM] = to_kvariant_fromTRANSFORM;
+    TO_KT_VARIANT_FROM[Variant::OBJECT] = to_kvariant_fromOBJECT;
 
     TO_GODOT_VARIANT_FROM[wire::Value::kNilValue] = from_kvariant_tokNilValue;
     TO_GODOT_VARIANT_FROM[wire::Value::kBoolValue] = from_kvariant_tokBoolValue;
@@ -243,6 +272,7 @@ void KtVariant::initMethodArray() {
     TO_GODOT_VARIANT_FROM[wire::Value::kAabbValue] = from_kvariant_tokAabbValue;
     TO_GODOT_VARIANT_FROM[wire::Value::kBasisValue] = from_kvariant_tokBasisValue;
     TO_GODOT_VARIANT_FROM[wire::Value::kTransformValue] = from_kvariant_tokTransformValue;
+    TO_GODOT_VARIANT_FROM[wire::Value::kObjectValue] = from_kvariant_toKObjectValue;
 
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kNilValue] = Variant::Type::NIL;
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kBoolValue] = Variant::Type::BOOL;
@@ -258,29 +288,27 @@ void KtVariant::initMethodArray() {
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kAabbValue] = Variant::Type::AABB;
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kBasisValue] = Variant::Type::BASIS;
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kTransformValue] = Variant::Type::TRANSFORM;
+    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kObjectValue] = Variant::Type::OBJECT;
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::TYPE_NOT_SET] = Variant::Type::VARIANT_MAX;
-
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::NIL] = "V";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::BOOL] = "Z";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::INT] = "J";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::REAL] = "D";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::STRING] = "Ljava/lang/String;";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::VECTOR2] = "Lgodot/core/Vector2;";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::RECT2] = "Lgodot/core/Rect2;";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::VECTOR3] = "Lgodot/core/Vector3;";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::TRANSFORM2D] = "Lgodot/core/Transform2D;";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::PLANE] = "Lgodot/core/Plane;";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::QUAT] = "Lgodot/core/Quat;";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::AABB] = "Lgodot/core/AABB;";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::BASIS] = "Lgodot/core/Basis;";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::TRANSFORM] = "Lgodot/core/Transform;";
-    VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[Variant::Type::VARIANT_MAX] = "V";
 }
 
 Variant::Type KtVariant::fromWireTypeToVariantType(wire::Value::TypeCase typeCase) {
     return WIRE_TYPE_CASE_TO_VARIANT_TYPE[typeCase];
 }
 
-String KtVariant::fromVariantTypeToJvmString(Variant::Type type) {
-    return VARIANT_TYPE_TO_JVM_SIGNATURE_STRING[type];
+void KtVariant::register_engine_types(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types_names) {
+    print_line("Starting to register managed engine types...");
+    jni::Env env(p_env);
+    jni::JObjectArray types_names{p_engine_types_names};
+
+    for (int i = 0; i < types_names.length(env); i++) {
+        const String& class_name{env.from_jstring(static_cast<jni::JString>(types_names.get(env, i)))};
+        JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name] = i;
+        print_verbose(vformat("Registered %s engine type with index %s.", class_name, i));
+    }
+    print_line("Done registering managed engine types...");
+}
+
+void KtVariant::clear_engine_types() {
+    JAVA_ENGINE_TYPES_CONSTRUCTORS.clear();
 }

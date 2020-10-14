@@ -47,7 +47,7 @@ struct TableStruct_wire_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[12]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[13]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -64,6 +64,9 @@ extern BasisDefaultTypeInternal _Basis_default_instance_;
 class FuncArgs;
 class FuncArgsDefaultTypeInternal;
 extern FuncArgsDefaultTypeInternal _FuncArgs_default_instance_;
+class Object;
+class ObjectDefaultTypeInternal;
+extern ObjectDefaultTypeInternal _Object_default_instance_;
 class Plane;
 class PlaneDefaultTypeInternal;
 extern PlaneDefaultTypeInternal _Plane_default_instance_;
@@ -96,6 +99,7 @@ PROTOBUF_NAMESPACE_OPEN
 template<> ::wire::AABB* Arena::CreateMaybeMessage<::wire::AABB>(Arena*);
 template<> ::wire::Basis* Arena::CreateMaybeMessage<::wire::Basis>(Arena*);
 template<> ::wire::FuncArgs* Arena::CreateMaybeMessage<::wire::FuncArgs>(Arena*);
+template<> ::wire::Object* Arena::CreateMaybeMessage<::wire::Object>(Arena*);
 template<> ::wire::Plane* Arena::CreateMaybeMessage<::wire::Plane>(Arena*);
 template<> ::wire::Quat* Arena::CreateMaybeMessage<::wire::Quat>(Arena*);
 template<> ::wire::Rect2* Arena::CreateMaybeMessage<::wire::Rect2>(Arena*);
@@ -1614,6 +1618,154 @@ class Transform PROTOBUF_FINAL :
 };
 // -------------------------------------------------------------------
 
+class Object PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:wire.Object) */ {
+ public:
+  inline Object() : Object(nullptr) {}
+  virtual ~Object();
+
+  Object(const Object& from);
+  Object(Object&& from) noexcept
+    : Object() {
+    *this = ::std::move(from);
+  }
+
+  inline Object& operator=(const Object& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Object& operator=(Object&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const Object& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Object* internal_default_instance() {
+    return reinterpret_cast<const Object*>(
+               &_Object_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(Object& a, Object& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Object* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Object* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Object* New() const final {
+    return CreateMaybeMessage<Object>(nullptr);
+  }
+
+  Object* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<Object>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const Object& from);
+  void MergeFrom(const Object& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Object* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "wire.Object";
+  }
+  protected:
+  explicit Object(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_wire_2eproto);
+    return ::descriptor_table_wire_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPtrFieldNumber = 1,
+    kEngineConstructorIndexFieldNumber = 2,
+  };
+  // fixed64 ptr = 1;
+  void clear_ptr();
+  ::PROTOBUF_NAMESPACE_ID::uint64 ptr() const;
+  void set_ptr(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_ptr() const;
+  void _internal_set_ptr(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // int32 engine_constructor_index = 2;
+  void clear_engine_constructor_index();
+  ::PROTOBUF_NAMESPACE_ID::int32 engine_constructor_index() const;
+  void set_engine_constructor_index(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_engine_constructor_index() const;
+  void _internal_set_engine_constructor_index(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:wire.Object)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 ptr_;
+  ::PROTOBUF_NAMESPACE_ID::int32 engine_constructor_index_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_wire_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Value PROTOBUF_FINAL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:wire.Value) */ {
  public:
@@ -1665,6 +1817,7 @@ class Value PROTOBUF_FINAL :
     kAabbValue = 12,
     kBasisValue = 13,
     kTransformValue = 14,
+    kObjectValue = 15,
     TYPE_NOT_SET = 0,
   };
 
@@ -1674,7 +1827,7 @@ class Value PROTOBUF_FINAL :
                &_Value_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(Value& a, Value& b) {
     a.Swap(&b);
@@ -1759,6 +1912,7 @@ class Value PROTOBUF_FINAL :
     kAabbValueFieldNumber = 12,
     kBasisValueFieldNumber = 13,
     kTransformValueFieldNumber = 14,
+    kObjectValueFieldNumber = 15,
   };
   // int32 nil_value = 1;
   private:
@@ -1989,6 +2143,24 @@ class Value PROTOBUF_FINAL :
       ::wire::Transform* transform_value);
   ::wire::Transform* unsafe_arena_release_transform_value();
 
+  // .wire.Object object_value = 15;
+  bool has_object_value() const;
+  private:
+  bool _internal_has_object_value() const;
+  public:
+  void clear_object_value();
+  const ::wire::Object& object_value() const;
+  ::wire::Object* release_object_value();
+  ::wire::Object* mutable_object_value();
+  void set_allocated_object_value(::wire::Object* object_value);
+  private:
+  const ::wire::Object& _internal_object_value() const;
+  ::wire::Object* _internal_mutable_object_value();
+  public:
+  void unsafe_arena_set_allocated_object_value(
+      ::wire::Object* object_value);
+  ::wire::Object* unsafe_arena_release_object_value();
+
   void clear_type();
   TypeCase type_case() const;
   // @@protoc_insertion_point(class_scope:wire.Value)
@@ -2008,6 +2180,7 @@ class Value PROTOBUF_FINAL :
   void set_has_aabb_value();
   void set_has_basis_value();
   void set_has_transform_value();
+  void set_has_object_value();
 
   inline bool has_type() const;
   inline void clear_has_type();
@@ -2031,6 +2204,7 @@ class Value PROTOBUF_FINAL :
     ::wire::AABB* aabb_value_;
     ::wire::Basis* basis_value_;
     ::wire::Transform* transform_value_;
+    ::wire::Object* object_value_;
   } type_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::uint32 _oneof_case_[1];
@@ -2081,7 +2255,7 @@ class ReturnValue PROTOBUF_FINAL :
                &_ReturnValue_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(ReturnValue& a, ReturnValue& b) {
     a.Swap(&b);
@@ -2227,7 +2401,7 @@ class FuncArgs PROTOBUF_FINAL :
                &_FuncArgs_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(FuncArgs& a, FuncArgs& b) {
     a.Swap(&b);
@@ -3653,6 +3827,50 @@ inline void Transform::set_allocated_origin(::wire::Vector3* origin) {
 
 // -------------------------------------------------------------------
 
+// Object
+
+// fixed64 ptr = 1;
+inline void Object::clear_ptr() {
+  ptr_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 Object::_internal_ptr() const {
+  return ptr_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 Object::ptr() const {
+  // @@protoc_insertion_point(field_get:wire.Object.ptr)
+  return _internal_ptr();
+}
+inline void Object::_internal_set_ptr(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  ptr_ = value;
+}
+inline void Object::set_ptr(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_ptr(value);
+  // @@protoc_insertion_point(field_set:wire.Object.ptr)
+}
+
+// int32 engine_constructor_index = 2;
+inline void Object::clear_engine_constructor_index() {
+  engine_constructor_index_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Object::_internal_engine_constructor_index() const {
+  return engine_constructor_index_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Object::engine_constructor_index() const {
+  // @@protoc_insertion_point(field_get:wire.Object.engine_constructor_index)
+  return _internal_engine_constructor_index();
+}
+inline void Object::_internal_set_engine_constructor_index(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  engine_constructor_index_ = value;
+}
+inline void Object::set_engine_constructor_index(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_engine_constructor_index(value);
+  // @@protoc_insertion_point(field_set:wire.Object.engine_constructor_index)
+}
+
+// -------------------------------------------------------------------
+
 // Value
 
 // int32 nil_value = 1;
@@ -4558,6 +4776,79 @@ inline ::wire::Transform* Value::mutable_transform_value() {
   return _internal_mutable_transform_value();
 }
 
+// .wire.Object object_value = 15;
+inline bool Value::_internal_has_object_value() const {
+  return type_case() == kObjectValue;
+}
+inline bool Value::has_object_value() const {
+  return _internal_has_object_value();
+}
+inline void Value::set_has_object_value() {
+  _oneof_case_[0] = kObjectValue;
+}
+inline void Value::clear_object_value() {
+  if (_internal_has_object_value()) {
+    if (GetArena() == nullptr) {
+      delete type_.object_value_;
+    }
+    clear_has_type();
+  }
+}
+inline ::wire::Object* Value::release_object_value() {
+  // @@protoc_insertion_point(field_release:wire.Value.object_value)
+  if (_internal_has_object_value()) {
+    clear_has_type();
+      ::wire::Object* temp = type_.object_value_;
+    if (GetArena() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    type_.object_value_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::wire::Object& Value::_internal_object_value() const {
+  return _internal_has_object_value()
+      ? *type_.object_value_
+      : *reinterpret_cast< ::wire::Object*>(&::wire::_Object_default_instance_);
+}
+inline const ::wire::Object& Value::object_value() const {
+  // @@protoc_insertion_point(field_get:wire.Value.object_value)
+  return _internal_object_value();
+}
+inline ::wire::Object* Value::unsafe_arena_release_object_value() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:wire.Value.object_value)
+  if (_internal_has_object_value()) {
+    clear_has_type();
+    ::wire::Object* temp = type_.object_value_;
+    type_.object_value_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void Value::unsafe_arena_set_allocated_object_value(::wire::Object* object_value) {
+  clear_type();
+  if (object_value) {
+    set_has_object_value();
+    type_.object_value_ = object_value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:wire.Value.object_value)
+}
+inline ::wire::Object* Value::_internal_mutable_object_value() {
+  if (!_internal_has_object_value()) {
+    clear_type();
+    set_has_object_value();
+    type_.object_value_ = CreateMaybeMessage< ::wire::Object >(GetArena());
+  }
+  return type_.object_value_;
+}
+inline ::wire::Object* Value::mutable_object_value() {
+  // @@protoc_insertion_point(field_mutable:wire.Value.object_value)
+  return _internal_mutable_object_value();
+}
+
 inline bool Value::has_type() const {
   return type_case() != TYPE_NOT_SET;
 }
@@ -4700,6 +4991,8 @@ FuncArgs::args() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

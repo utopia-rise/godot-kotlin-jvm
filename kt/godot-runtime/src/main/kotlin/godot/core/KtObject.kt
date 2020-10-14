@@ -13,7 +13,6 @@ abstract class KtObject : AutoCloseable {
             field = value
         }
 
-
     init {
         try {
             if (shouldInit.get()) {
@@ -24,9 +23,9 @@ abstract class KtObject : AutoCloseable {
                 // the script to see all methods of the owning Object.
                 // For user types, we need to make sure to attach this script to the Object
                 // rawPtr is pointing to.
-                val className = checkNotNull(this::class.qualifiedName) { "User classes can't be anonymous." }
-                if (TypeManager.isUserType(className)) {
-                    TransferContext.setScript(rawPtr, className, this, this::class.java.classLoader)
+                val clazz = checkNotNull(this::class.qualifiedName) { "User classes can't be anonymous." }
+                if (TypeManager.isUserType(clazz)) {
+                    TransferContext.setScript(rawPtr, clazz, this, this::class.java.classLoader)
                     _onInit()
                 }
             }

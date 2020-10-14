@@ -1,6 +1,7 @@
 package godot.tests
 
 import godot.Node
+import godot.Object
 import godot.Spatial
 
 class OtherScript : Node() {
@@ -44,4 +45,8 @@ class Invocation : Spatial() {
     override fun _onDestroy() {
         invocation.free()
     }
+
+    //Type cast checks
+    fun parentIsSpatial() = getParent() is Spatial
+    fun isObjectSpatial(obj: Object) = obj is Spatial
 }
