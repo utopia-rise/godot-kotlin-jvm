@@ -22,7 +22,8 @@ extern PROTOBUF_INTERNAL_EXPORT_wire_2eproto ::PROTOBUF_NAMESPACE_ID::internal::
 extern PROTOBUF_INTERNAL_EXPORT_wire_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Rect2_wire_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_wire_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_Transform_wire_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_wire_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Transform2D_wire_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_wire_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<10> scc_info_Value_wire_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_wire_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<11> scc_info_Value_wire_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_wire_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_VariantArray_wire_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_wire_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Vector2_wire_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_wire_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Vector3_wire_2eproto;
 namespace wire {
@@ -62,6 +63,10 @@ class TransformDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Transform> _instance;
 } _Transform_default_instance_;
+class VariantArrayDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<VariantArray> _instance;
+} _VariantArray_default_instance_;
 class ObjectDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Object> _instance;
@@ -83,6 +88,7 @@ class ValueDefaultTypeInternal {
   const ::wire::AABB* aabb_value_;
   const ::wire::Basis* basis_value_;
   const ::wire::Transform* transform_value_;
+  const ::wire::VariantArray* variant_array_value_;
   const ::wire::Object* object_value_;
 } _Value_default_instance_;
 class ReturnValueDefaultTypeInternal {
@@ -254,8 +260,8 @@ static void InitDefaultsscc_info_Value_wire_2eproto() {
   ::wire::Value::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<10> scc_info_Value_wire_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 10, 0, InitDefaultsscc_info_Value_wire_2eproto}, {
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<11> scc_info_Value_wire_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 11, 0, InitDefaultsscc_info_Value_wire_2eproto}, {
       &scc_info_Vector2_wire_2eproto.base,
       &scc_info_Rect2_wire_2eproto.base,
       &scc_info_Vector3_wire_2eproto.base,
@@ -265,7 +271,22 @@ static void InitDefaultsscc_info_Value_wire_2eproto() {
       &scc_info_AABB_wire_2eproto.base,
       &scc_info_Basis_wire_2eproto.base,
       &scc_info_Transform_wire_2eproto.base,
+      &scc_info_VariantArray_wire_2eproto.base,
       &scc_info_Object_wire_2eproto.base,}};
+
+static void InitDefaultsscc_info_VariantArray_wire_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::wire::_VariantArray_default_instance_;
+    new (ptr) ::wire::VariantArray();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::wire::VariantArray::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_VariantArray_wire_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_VariantArray_wire_2eproto}, {}};
 
 static void InitDefaultsscc_info_Vector2_wire_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -295,7 +316,7 @@ static void InitDefaultsscc_info_Vector3_wire_2eproto() {
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Vector3_wire_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Vector3_wire_2eproto}, {}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_wire_2eproto[13];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_wire_2eproto[14];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_wire_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_wire_2eproto = nullptr;
 
@@ -369,6 +390,11 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_wire_2eproto::offsets[] PROTOB
   PROTOBUF_FIELD_OFFSET(::wire::Transform, basis_),
   PROTOBUF_FIELD_OFFSET(::wire::Transform, origin_),
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::wire::VariantArray, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::wire::Object, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -394,6 +420,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_wire_2eproto::offsets[] PROTOB
   offsetof(::wire::ValueDefaultTypeInternal, aabb_value_),
   offsetof(::wire::ValueDefaultTypeInternal, basis_value_),
   offsetof(::wire::ValueDefaultTypeInternal, transform_value_),
+  offsetof(::wire::ValueDefaultTypeInternal, variant_array_value_),
   offsetof(::wire::ValueDefaultTypeInternal, object_value_),
   PROTOBUF_FIELD_OFFSET(::wire::Value, type_),
   ~0u,  // no _has_bits_
@@ -419,10 +446,11 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 46, -1, sizeof(::wire::AABB)},
   { 53, -1, sizeof(::wire::Basis)},
   { 61, -1, sizeof(::wire::Transform)},
-  { 68, -1, sizeof(::wire::Object)},
-  { 75, -1, sizeof(::wire::Value)},
-  { 96, -1, sizeof(::wire::ReturnValue)},
-  { 102, -1, sizeof(::wire::FuncArgs)},
+  { 68, -1, sizeof(::wire::VariantArray)},
+  { 73, -1, sizeof(::wire::Object)},
+  { 80, -1, sizeof(::wire::Value)},
+  { 102, -1, sizeof(::wire::ReturnValue)},
+  { 108, -1, sizeof(::wire::FuncArgs)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -435,6 +463,7 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::wire::_AABB_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::wire::_Basis_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::wire::_Transform_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::wire::_VariantArray_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::wire::_Object_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::wire::_Value_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::wire::_ReturnValue_default_instance_),
@@ -456,28 +485,30 @@ const char descriptor_table_protodef_wire_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "\005Basis\022\030\n\001x\030\001 \001(\0132\r.wire.Vector3\022\030\n\001y\030\002 "
   "\001(\0132\r.wire.Vector3\022\030\n\001z\030\003 \001(\0132\r.wire.Vec"
   "tor3\"F\n\tTransform\022\032\n\005basis\030\001 \001(\0132\013.wire."
-  "Basis\022\035\n\006origin\030\002 \001(\0132\r.wire.Vector3\"7\n\006"
-  "Object\022\013\n\003ptr\030\001 \001(\006\022 \n\030engine_constructo"
-  "r_index\030\002 \001(\005\"\200\004\n\005Value\022\023\n\tnil_value\030\001 \001"
-  "(\005H\000\022\024\n\nbool_value\030\002 \001(\010H\000\022\024\n\nlong_value"
-  "\030\003 \001(\003H\000\022\024\n\nreal_value\030\004 \001(\001H\000\022\026\n\014string"
-  "_value\030\005 \001(\tH\000\022&\n\rvector2_value\030\006 \001(\0132\r."
-  "wire.Vector2H\000\022\"\n\013rect2_value\030\007 \001(\0132\013.wi"
-  "re.Rect2H\000\022&\n\rvector3_value\030\010 \001(\0132\r.wire"
-  ".Vector3H\000\022.\n\021transform2D_value\030\t \001(\0132\021."
-  "wire.Transform2DH\000\022\"\n\013plane_value\030\n \001(\0132"
-  "\013.wire.PlaneH\000\022 \n\nquat_value\030\013 \001(\0132\n.wir"
-  "e.QuatH\000\022 \n\naabb_value\030\014 \001(\0132\n.wire.AABB"
-  "H\000\022\"\n\013basis_value\030\r \001(\0132\013.wire.BasisH\000\022*"
-  "\n\017transform_value\030\016 \001(\0132\017.wire.Transform"
-  "H\000\022$\n\014object_value\030\017 \001(\0132\014.wire.ObjectH\000"
-  "B\006\n\004type\"(\n\013ReturnValue\022\031\n\004data\030\001 \001(\0132\013."
-  "wire.Value\"%\n\010FuncArgs\022\031\n\004args\030\001 \003(\0132\013.w"
-  "ire.ValueB\014\n\ngodot.wireb\006proto3"
+  "Basis\022\035\n\006origin\030\002 \001(\0132\r.wire.Vector3\"\016\n\014"
+  "VariantArray\"7\n\006Object\022\013\n\003ptr\030\001 \001(\006\022 \n\030e"
+  "ngine_constructor_index\030\002 \001(\005\"\263\004\n\005Value\022"
+  "\023\n\tnil_value\030\001 \001(\005H\000\022\024\n\nbool_value\030\002 \001(\010"
+  "H\000\022\024\n\nlong_value\030\003 \001(\003H\000\022\024\n\nreal_value\030\004"
+  " \001(\001H\000\022\026\n\014string_value\030\005 \001(\tH\000\022&\n\rvector"
+  "2_value\030\006 \001(\0132\r.wire.Vector2H\000\022\"\n\013rect2_"
+  "value\030\007 \001(\0132\013.wire.Rect2H\000\022&\n\rvector3_va"
+  "lue\030\010 \001(\0132\r.wire.Vector3H\000\022.\n\021transform2"
+  "D_value\030\t \001(\0132\021.wire.Transform2DH\000\022\"\n\013pl"
+  "ane_value\030\n \001(\0132\013.wire.PlaneH\000\022 \n\nquat_v"
+  "alue\030\013 \001(\0132\n.wire.QuatH\000\022 \n\naabb_value\030\014"
+  " \001(\0132\n.wire.AABBH\000\022\"\n\013basis_value\030\r \001(\0132"
+  "\013.wire.BasisH\000\022*\n\017transform_value\030\016 \001(\0132"
+  "\017.wire.TransformH\000\0221\n\023variant_array_valu"
+  "e\030\017 \001(\0132\022.wire.VariantArrayH\000\022$\n\014object_"
+  "value\030\020 \001(\0132\014.wire.ObjectH\000B\006\n\004type\"(\n\013R"
+  "eturnValue\022\031\n\004data\030\001 \001(\0132\013.wire.Value\"%\n"
+  "\010FuncArgs\022\031\n\004args\030\001 \003(\0132\013.wire.ValueB\014\n\n"
+  "godot.wireb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_wire_2eproto_deps[1] = {
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_wire_2eproto_sccs[13] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_wire_2eproto_sccs[14] = {
   &scc_info_AABB_wire_2eproto.base,
   &scc_info_Basis_wire_2eproto.base,
   &scc_info_FuncArgs_wire_2eproto.base,
@@ -489,15 +520,16 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_wir
   &scc_info_Transform_wire_2eproto.base,
   &scc_info_Transform2D_wire_2eproto.base,
   &scc_info_Value_wire_2eproto.base,
+  &scc_info_VariantArray_wire_2eproto.base,
   &scc_info_Vector2_wire_2eproto.base,
   &scc_info_Vector3_wire_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_wire_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_wire_2eproto = {
-  false, false, descriptor_table_protodef_wire_2eproto, "wire.proto", 1271,
-  &descriptor_table_wire_2eproto_once, descriptor_table_wire_2eproto_sccs, descriptor_table_wire_2eproto_deps, 13, 0,
+  false, false, descriptor_table_protodef_wire_2eproto, "wire.proto", 1338,
+  &descriptor_table_wire_2eproto_once, descriptor_table_wire_2eproto_sccs, descriptor_table_wire_2eproto_deps, 14, 0,
   schemas, file_default_instances, TableStruct_wire_2eproto::offsets,
-  file_level_metadata_wire_2eproto, 13, file_level_enum_descriptors_wire_2eproto, file_level_service_descriptors_wire_2eproto,
+  file_level_metadata_wire_2eproto, 14, file_level_enum_descriptors_wire_2eproto, file_level_service_descriptors_wire_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -2899,6 +2931,171 @@ void Transform::InternalSwap(Transform* other) {
 
 // ===================================================================
 
+void VariantArray::InitAsDefaultInstance() {
+}
+class VariantArray::_Internal {
+ public:
+};
+
+VariantArray::VariantArray(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:wire.VariantArray)
+}
+VariantArray::VariantArray(const VariantArray& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:wire.VariantArray)
+}
+
+void VariantArray::SharedCtor() {
+}
+
+VariantArray::~VariantArray() {
+  // @@protoc_insertion_point(destructor:wire.VariantArray)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void VariantArray::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+}
+
+void VariantArray::ArenaDtor(void* object) {
+  VariantArray* _this = reinterpret_cast< VariantArray* >(object);
+  (void)_this;
+}
+void VariantArray::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void VariantArray::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const VariantArray& VariantArray::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_VariantArray_wire_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void VariantArray::Clear() {
+// @@protoc_insertion_point(message_clear_start:wire.VariantArray)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* VariantArray::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* VariantArray::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:wire.VariantArray)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:wire.VariantArray)
+  return target;
+}
+
+size_t VariantArray::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:wire.VariantArray)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void VariantArray::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:wire.VariantArray)
+  GOOGLE_DCHECK_NE(&from, this);
+  const VariantArray* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<VariantArray>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:wire.VariantArray)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:wire.VariantArray)
+    MergeFrom(*source);
+  }
+}
+
+void VariantArray::MergeFrom(const VariantArray& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:wire.VariantArray)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+}
+
+void VariantArray::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:wire.VariantArray)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void VariantArray::CopyFrom(const VariantArray& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:wire.VariantArray)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool VariantArray::IsInitialized() const {
+  return true;
+}
+
+void VariantArray::InternalSwap(VariantArray* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata VariantArray::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
 void Object::InitAsDefaultInstance() {
 }
 class Object::_Internal {
@@ -3153,6 +3350,8 @@ void Value::InitAsDefaultInstance() {
       ::wire::Basis::internal_default_instance());
   ::wire::_Value_default_instance_.transform_value_ = const_cast< ::wire::Transform*>(
       ::wire::Transform::internal_default_instance());
+  ::wire::_Value_default_instance_.variant_array_value_ = const_cast< ::wire::VariantArray*>(
+      ::wire::VariantArray::internal_default_instance());
   ::wire::_Value_default_instance_.object_value_ = const_cast< ::wire::Object*>(
       ::wire::Object::internal_default_instance());
 }
@@ -3167,6 +3366,7 @@ class Value::_Internal {
   static const ::wire::AABB& aabb_value(const Value* msg);
   static const ::wire::Basis& basis_value(const Value* msg);
   static const ::wire::Transform& transform_value(const Value* msg);
+  static const ::wire::VariantArray& variant_array_value(const Value* msg);
   static const ::wire::Object& object_value(const Value* msg);
 };
 
@@ -3205,6 +3405,10 @@ Value::_Internal::basis_value(const Value* msg) {
 const ::wire::Transform&
 Value::_Internal::transform_value(const Value* msg) {
   return *msg->type_.transform_value_;
+}
+const ::wire::VariantArray&
+Value::_Internal::variant_array_value(const Value* msg) {
+  return *msg->type_.variant_array_value_;
 }
 const ::wire::Object&
 Value::_Internal::object_value(const Value* msg) {
@@ -3345,6 +3549,21 @@ void Value::set_allocated_transform_value(::wire::Transform* transform_value) {
   }
   // @@protoc_insertion_point(field_set_allocated:wire.Value.transform_value)
 }
+void Value::set_allocated_variant_array_value(::wire::VariantArray* variant_array_value) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  clear_type();
+  if (variant_array_value) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(variant_array_value);
+    if (message_arena != submessage_arena) {
+      variant_array_value = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, variant_array_value, submessage_arena);
+    }
+    set_has_variant_array_value();
+    type_.variant_array_value_ = variant_array_value;
+  }
+  // @@protoc_insertion_point(field_set_allocated:wire.Value.variant_array_value)
+}
 void Value::set_allocated_object_value(::wire::Object* object_value) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
   clear_type();
@@ -3425,6 +3644,10 @@ Value::Value(const Value& from)
     }
     case kTransformValue: {
       _internal_mutable_transform_value()->::wire::Transform::MergeFrom(from._internal_transform_value());
+      break;
+    }
+    case kVariantArrayValue: {
+      _internal_mutable_variant_array_value()->::wire::VariantArray::MergeFrom(from._internal_variant_array_value());
       break;
     }
     case kObjectValue: {
@@ -3545,6 +3768,12 @@ void Value::clear_type() {
     case kTransformValue: {
       if (GetArena() == nullptr) {
         delete type_.transform_value_;
+      }
+      break;
+    }
+    case kVariantArrayValue: {
+      if (GetArena() == nullptr) {
+        delete type_.variant_array_value_;
       }
       break;
     }
@@ -3680,9 +3909,16 @@ const char* Value::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inte
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .wire.Object object_value = 15;
+      // .wire.VariantArray variant_array_value = 15;
       case 15:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 122)) {
+          ptr = ctx->ParseMessage(_internal_mutable_variant_array_value(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .wire.Object object_value = 16;
+      case 16:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 130)) {
           ptr = ctx->ParseMessage(_internal_mutable_object_value(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
@@ -3821,12 +4057,20 @@ failure:
         14, _Internal::transform_value(this), target, stream);
   }
 
-  // .wire.Object object_value = 15;
+  // .wire.VariantArray variant_array_value = 15;
+  if (_internal_has_variant_array_value()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        15, _Internal::variant_array_value(this), target, stream);
+  }
+
+  // .wire.Object object_value = 16;
   if (_internal_has_object_value()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
-        15, _Internal::object_value(this), target, stream);
+        16, _Internal::object_value(this), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -3940,9 +4184,16 @@ size_t Value::ByteSizeLong() const {
           *type_.transform_value_);
       break;
     }
-    // .wire.Object object_value = 15;
-    case kObjectValue: {
+    // .wire.VariantArray variant_array_value = 15;
+    case kVariantArrayValue: {
       total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+          *type_.variant_array_value_);
+      break;
+    }
+    // .wire.Object object_value = 16;
+    case kObjectValue: {
+      total_size += 2 +
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
           *type_.object_value_);
       break;
@@ -4037,6 +4288,10 @@ void Value::MergeFrom(const Value& from) {
     }
     case kTransformValue: {
       _internal_mutable_transform_value()->::wire::Transform::MergeFrom(from._internal_transform_value());
+      break;
+    }
+    case kVariantArrayValue: {
+      _internal_mutable_variant_array_value()->::wire::VariantArray::MergeFrom(from._internal_variant_array_value());
       break;
     }
     case kObjectValue: {
@@ -4526,6 +4781,9 @@ template<> PROTOBUF_NOINLINE ::wire::Basis* Arena::CreateMaybeMessage< ::wire::B
 }
 template<> PROTOBUF_NOINLINE ::wire::Transform* Arena::CreateMaybeMessage< ::wire::Transform >(Arena* arena) {
   return Arena::CreateMessageInternal< ::wire::Transform >(arena);
+}
+template<> PROTOBUF_NOINLINE ::wire::VariantArray* Arena::CreateMaybeMessage< ::wire::VariantArray >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::wire::VariantArray >(arena);
 }
 template<> PROTOBUF_NOINLINE ::wire::Object* Arena::CreateMaybeMessage< ::wire::Object >(Arena* arena) {
   return Arena::CreateMessageInternal< ::wire::Object >(arena);

@@ -47,7 +47,7 @@ struct TableStruct_wire_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[13]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[14]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -88,6 +88,9 @@ extern Transform2DDefaultTypeInternal _Transform2D_default_instance_;
 class Value;
 class ValueDefaultTypeInternal;
 extern ValueDefaultTypeInternal _Value_default_instance_;
+class VariantArray;
+class VariantArrayDefaultTypeInternal;
+extern VariantArrayDefaultTypeInternal _VariantArray_default_instance_;
 class Vector2;
 class Vector2DefaultTypeInternal;
 extern Vector2DefaultTypeInternal _Vector2_default_instance_;
@@ -107,6 +110,7 @@ template<> ::wire::ReturnValue* Arena::CreateMaybeMessage<::wire::ReturnValue>(A
 template<> ::wire::Transform* Arena::CreateMaybeMessage<::wire::Transform>(Arena*);
 template<> ::wire::Transform2D* Arena::CreateMaybeMessage<::wire::Transform2D>(Arena*);
 template<> ::wire::Value* Arena::CreateMaybeMessage<::wire::Value>(Arena*);
+template<> ::wire::VariantArray* Arena::CreateMaybeMessage<::wire::VariantArray>(Arena*);
 template<> ::wire::Vector2* Arena::CreateMaybeMessage<::wire::Vector2>(Arena*);
 template<> ::wire::Vector3* Arena::CreateMaybeMessage<::wire::Vector3>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
@@ -1618,6 +1622,130 @@ class Transform PROTOBUF_FINAL :
 };
 // -------------------------------------------------------------------
 
+class VariantArray PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:wire.VariantArray) */ {
+ public:
+  inline VariantArray() : VariantArray(nullptr) {}
+  virtual ~VariantArray();
+
+  VariantArray(const VariantArray& from);
+  VariantArray(VariantArray&& from) noexcept
+    : VariantArray() {
+    *this = ::std::move(from);
+  }
+
+  inline VariantArray& operator=(const VariantArray& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline VariantArray& operator=(VariantArray&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const VariantArray& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const VariantArray* internal_default_instance() {
+    return reinterpret_cast<const VariantArray*>(
+               &_VariantArray_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(VariantArray& a, VariantArray& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(VariantArray* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(VariantArray* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline VariantArray* New() const final {
+    return CreateMaybeMessage<VariantArray>(nullptr);
+  }
+
+  VariantArray* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<VariantArray>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const VariantArray& from);
+  void MergeFrom(const VariantArray& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(VariantArray* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "wire.VariantArray";
+  }
+  protected:
+  explicit VariantArray(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_wire_2eproto);
+    return ::descriptor_table_wire_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:wire.VariantArray)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_wire_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Object PROTOBUF_FINAL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:wire.Object) */ {
  public:
@@ -1660,7 +1788,7 @@ class Object PROTOBUF_FINAL :
                &_Object_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(Object& a, Object& b) {
     a.Swap(&b);
@@ -1817,7 +1945,8 @@ class Value PROTOBUF_FINAL :
     kAabbValue = 12,
     kBasisValue = 13,
     kTransformValue = 14,
-    kObjectValue = 15,
+    kVariantArrayValue = 15,
+    kObjectValue = 16,
     TYPE_NOT_SET = 0,
   };
 
@@ -1827,7 +1956,7 @@ class Value PROTOBUF_FINAL :
                &_Value_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    11;
 
   friend void swap(Value& a, Value& b) {
     a.Swap(&b);
@@ -1912,7 +2041,8 @@ class Value PROTOBUF_FINAL :
     kAabbValueFieldNumber = 12,
     kBasisValueFieldNumber = 13,
     kTransformValueFieldNumber = 14,
-    kObjectValueFieldNumber = 15,
+    kVariantArrayValueFieldNumber = 15,
+    kObjectValueFieldNumber = 16,
   };
   // int32 nil_value = 1;
   private:
@@ -2143,7 +2273,25 @@ class Value PROTOBUF_FINAL :
       ::wire::Transform* transform_value);
   ::wire::Transform* unsafe_arena_release_transform_value();
 
-  // .wire.Object object_value = 15;
+  // .wire.VariantArray variant_array_value = 15;
+  bool has_variant_array_value() const;
+  private:
+  bool _internal_has_variant_array_value() const;
+  public:
+  void clear_variant_array_value();
+  const ::wire::VariantArray& variant_array_value() const;
+  ::wire::VariantArray* release_variant_array_value();
+  ::wire::VariantArray* mutable_variant_array_value();
+  void set_allocated_variant_array_value(::wire::VariantArray* variant_array_value);
+  private:
+  const ::wire::VariantArray& _internal_variant_array_value() const;
+  ::wire::VariantArray* _internal_mutable_variant_array_value();
+  public:
+  void unsafe_arena_set_allocated_variant_array_value(
+      ::wire::VariantArray* variant_array_value);
+  ::wire::VariantArray* unsafe_arena_release_variant_array_value();
+
+  // .wire.Object object_value = 16;
   bool has_object_value() const;
   private:
   bool _internal_has_object_value() const;
@@ -2180,6 +2328,7 @@ class Value PROTOBUF_FINAL :
   void set_has_aabb_value();
   void set_has_basis_value();
   void set_has_transform_value();
+  void set_has_variant_array_value();
   void set_has_object_value();
 
   inline bool has_type() const;
@@ -2204,6 +2353,7 @@ class Value PROTOBUF_FINAL :
     ::wire::AABB* aabb_value_;
     ::wire::Basis* basis_value_;
     ::wire::Transform* transform_value_;
+    ::wire::VariantArray* variant_array_value_;
     ::wire::Object* object_value_;
   } type_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -2255,7 +2405,7 @@ class ReturnValue PROTOBUF_FINAL :
                &_ReturnValue_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    12;
 
   friend void swap(ReturnValue& a, ReturnValue& b) {
     a.Swap(&b);
@@ -2401,7 +2551,7 @@ class FuncArgs PROTOBUF_FINAL :
                &_FuncArgs_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    13;
 
   friend void swap(FuncArgs& a, FuncArgs& b) {
     a.Swap(&b);
@@ -3827,6 +3977,10 @@ inline void Transform::set_allocated_origin(::wire::Vector3* origin) {
 
 // -------------------------------------------------------------------
 
+// VariantArray
+
+// -------------------------------------------------------------------
+
 // Object
 
 // fixed64 ptr = 1;
@@ -4776,7 +4930,80 @@ inline ::wire::Transform* Value::mutable_transform_value() {
   return _internal_mutable_transform_value();
 }
 
-// .wire.Object object_value = 15;
+// .wire.VariantArray variant_array_value = 15;
+inline bool Value::_internal_has_variant_array_value() const {
+  return type_case() == kVariantArrayValue;
+}
+inline bool Value::has_variant_array_value() const {
+  return _internal_has_variant_array_value();
+}
+inline void Value::set_has_variant_array_value() {
+  _oneof_case_[0] = kVariantArrayValue;
+}
+inline void Value::clear_variant_array_value() {
+  if (_internal_has_variant_array_value()) {
+    if (GetArena() == nullptr) {
+      delete type_.variant_array_value_;
+    }
+    clear_has_type();
+  }
+}
+inline ::wire::VariantArray* Value::release_variant_array_value() {
+  // @@protoc_insertion_point(field_release:wire.Value.variant_array_value)
+  if (_internal_has_variant_array_value()) {
+    clear_has_type();
+      ::wire::VariantArray* temp = type_.variant_array_value_;
+    if (GetArena() != nullptr) {
+      temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+    }
+    type_.variant_array_value_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::wire::VariantArray& Value::_internal_variant_array_value() const {
+  return _internal_has_variant_array_value()
+      ? *type_.variant_array_value_
+      : *reinterpret_cast< ::wire::VariantArray*>(&::wire::_VariantArray_default_instance_);
+}
+inline const ::wire::VariantArray& Value::variant_array_value() const {
+  // @@protoc_insertion_point(field_get:wire.Value.variant_array_value)
+  return _internal_variant_array_value();
+}
+inline ::wire::VariantArray* Value::unsafe_arena_release_variant_array_value() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:wire.Value.variant_array_value)
+  if (_internal_has_variant_array_value()) {
+    clear_has_type();
+    ::wire::VariantArray* temp = type_.variant_array_value_;
+    type_.variant_array_value_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void Value::unsafe_arena_set_allocated_variant_array_value(::wire::VariantArray* variant_array_value) {
+  clear_type();
+  if (variant_array_value) {
+    set_has_variant_array_value();
+    type_.variant_array_value_ = variant_array_value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:wire.Value.variant_array_value)
+}
+inline ::wire::VariantArray* Value::_internal_mutable_variant_array_value() {
+  if (!_internal_has_variant_array_value()) {
+    clear_type();
+    set_has_variant_array_value();
+    type_.variant_array_value_ = CreateMaybeMessage< ::wire::VariantArray >(GetArena());
+  }
+  return type_.variant_array_value_;
+}
+inline ::wire::VariantArray* Value::mutable_variant_array_value() {
+  // @@protoc_insertion_point(field_mutable:wire.Value.variant_array_value)
+  return _internal_mutable_variant_array_value();
+}
+
+// .wire.Object object_value = 16;
 inline bool Value::_internal_has_object_value() const {
   return type_case() == kObjectValue;
 }
@@ -4991,6 +5218,8 @@ FuncArgs::args() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

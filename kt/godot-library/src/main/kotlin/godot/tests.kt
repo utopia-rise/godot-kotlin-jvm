@@ -1,14 +1,15 @@
 package godot
 
-import godot.core.KtObject
-import godot.core.KtVariant
-import godot.core.TransferContext
-import godot.core.TypeManager
+import godot.core.*
 import godot.util.VoidPtr
 
 open class Object : KtObject() {
     override fun __new(): VoidPtr {
         return TransferContext.invokeConstructor("Object")
+    }
+
+    override fun <T : KtObject> connect(name: String, target: T, method: String, binds: VariantArray, flags: Long) {
+        TODO("Not yet implemented")
     }
 
     fun getInstanceId(): Long {

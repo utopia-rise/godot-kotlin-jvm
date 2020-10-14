@@ -36,6 +36,9 @@ abstract class KtObject : AutoCloseable {
 
     abstract fun __new(): VoidPtr
 
+    abstract fun <T : KtObject> connect(name: String, target: T, method: String, binds: VariantArray, flags: Long)
+    abstract fun emitSignal(instance: String, vararg args: Any?)
+
     open fun _onInit() = Unit
     open fun _onDestroy() = Unit
 

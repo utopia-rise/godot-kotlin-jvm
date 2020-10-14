@@ -1,4 +1,5 @@
 package godot.core
 
-interface CoreType {
-}
+interface CoreType
+
+interface NativeCoreType: CoreType
