@@ -20,6 +20,19 @@ class OtherScript : Node() {
 		println("Hook was called with parameter: $b")
 	}
 
+	fun hookTwoParam(str: String, inv: Spatial) {
+		println("Hook was calles with parameters: $str, $inv")
+	}
+
+//		This will fail with:
+//		class godot.Spatial cannot be cast to class godot.tests.Invocation.
+//		This needs the use of user defined constructors when crossing boundaries
+//		see: KtVariant::asObject() and Bootstrap::registerManagedEngineTypes methods.
+//
+//	fun hookTwoParam(str: String, inv: Invocation) {
+//		println("Hook was calles with parameters: $str, $inv")
+//	}
+
 }
 
 @RegisterClass
@@ -33,6 +46,7 @@ class Invocation : Spatial() {
 
 	val signalNoParam by signal()
 	val signalOneParam by signal<Boolean>("refresh")
+	val signalTwoParam by signal<String, Invocation>("str", "inv")
 
 	@RegisterFunction fun intValue(value: Int) = value
 	@RegisterFunction fun longValue(value: Long) = value
@@ -58,14 +72,17 @@ class Invocation : Spatial() {
         println("Name is: $name")
         name = formerName
         val test = DateTime.now() //external dependency to test dependency inclusion in dummyCompilation
+
 		signalNoParam.emit()
 		signalOneParam.emit(false)
-    }
+		signalTwoParam.emit("My Awesome param !", this)
+	}
 
 	override fun _onInit() {
 		println("Hello Invocation!")
 		signalNoParam.connect(invocation, invocation::hookNoParam)
 		signalOneParam.connect(invocation, invocation::hookOneParam)
+		signalTwoParam.connect(invocation, invocation::hookTwoParam)
 	}
 
 	override fun _onDestroy() {
