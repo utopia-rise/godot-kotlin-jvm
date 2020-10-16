@@ -12,14 +12,17 @@ import org.joda.time.DateTime
 @RegisterClass
 class OtherScript : Node() {
 
+	@RegisterFunction
 	fun hookNoParam() {
 		println("Hook was called with no param.")
 	}
 
+	@RegisterFunction
 	fun hookOneParam(b: Boolean) {
 		println("Hook was called with parameter: $b")
 	}
 
+	@RegisterFunction
 	fun hookTwoParam(str: String, inv: Spatial) {
 		println("Hook was calles with parameters: $str, $inv")
 	}
@@ -64,14 +67,14 @@ class Invocation : Spatial() {
 		println("Instance id: ${getInstanceId()}")
 	}
 
-    @RegisterFunction
-    fun _ready() {
-        val formerName = name
-        println("Name is: $name")
-        name = "TestName"
-        println("Name is: $name")
-        name = formerName
-        val test = DateTime.now() //external dependency to test dependency inclusion in dummyCompilation
+	@RegisterFunction
+	fun _ready() {
+		val formerName = name
+		println("Name is: $name")
+		name = "TestName"
+		println("Name is: $name")
+		name = formerName
+		val test = DateTime.now() //external dependency to test dependency inclusion in dummyCompilation
 
 		signalNoParam.connect(invocation, invocation::hookNoParam)
 		signalOneParam.connect(invocation, invocation::hookOneParam)
@@ -89,9 +92,9 @@ class Invocation : Spatial() {
 		invocation.free()
 	}
 
-    //Type cast checks
-    @RegisterFunction
-    fun parentIsSpatial() = getParent() is Spatial
-    @RegisterFunction
-    fun isObjectSpatial(obj: Object) = obj is Spatial
+	//Type cast checks
+	@RegisterFunction
+	fun parentIsSpatial() = getParent() is Spatial
+	@RegisterFunction
+	fun isObjectSpatial(obj: Object) = obj is Spatial
 }
