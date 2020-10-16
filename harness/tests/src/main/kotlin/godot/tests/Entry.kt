@@ -1,0 +1,217 @@
+package godot.tests
+
+import godot.core.KtConstructor0
+import godot.core.KtVariant
+import godot.registerEngineTypes
+import kotlin.reflect.KVariance
+
+class Entry : godot.runtime.Entry() {
+    override fun Context.init() {
+        with(registry) {
+            registerClass<OtherScript>(OtherScript::class.qualifiedName!!, "Node") {
+                constructor(KtConstructor0(::OtherScript))
+
+                function(OtherScript::hookNoParam, ::KtVariant,
+                        returns = {
+                            type = KtVariant.Type.NIL
+                            className = "Unit"
+                        }
+                )
+                function(OtherScript::hookOneParam, ::KtVariant, KtVariant::asBoolean,
+                        arg = {
+                            name = "b"
+                            type = KtVariant.Type.BOOL
+                            className = "Boolean"
+                        },
+                        returns = {
+                            type = KtVariant.Type.NIL
+                            className = "Unit"
+                        }
+                )
+                function(OtherScript::hookTwoParam, ::KtVariant, KtVariant::asString, KtVariant::asObject,
+                        args = arrayOf(
+                                {
+                                    name = "str"
+                                    type = KtVariant.Type.STRING
+                                    className = "String"
+                                },
+                                {
+                                    name = "inv"
+                                    type = KtVariant.Type.OBJECT
+                                    className = "Object"
+                                }
+                        ),
+                        returns = {
+                            type = KtVariant.Type.NIL
+                            className = "Unit"
+                        }
+                )
+            }
+
+            registerClass<Invocation>(Invocation::class.qualifiedName!!, "Spatial") {
+                constructor(KtConstructor0(::Invocation))
+
+                property(Invocation::x, ::KtVariant, KtVariant::asInt) {
+                    type = KtVariant.Type.LONG
+                    className = "Int"
+                }
+                property(Invocation::y, ::KtVariant, KtVariant::asDouble) {
+                    type = KtVariant.Type.DOUBLE
+                    className = "Double"
+                }
+                property(Invocation::z, ::KtVariant, KtVariant::asFloat) {
+                    type = KtVariant.Type.DOUBLE
+                    className = "Float"
+                }
+                property(Invocation::customName, ::KtVariant, KtVariant::asString) {
+                    type = KtVariant.Type.STRING
+                    className = "String"
+                }
+
+                function(Invocation::intValue, ::KtVariant, KtVariant::asInt,
+                        arg = {
+                            name = "value"
+                            type = KtVariant.Type.LONG
+                            className = "Int"
+                        },
+                        returns = {
+                            type = KtVariant.Type.LONG
+                            className = "Int"
+                        }
+                )
+                function(Invocation::longValue, ::KtVariant, KtVariant::asLong,
+                        arg = {
+                            name = "value"
+                            type = KtVariant.Type.LONG
+                            className = "Long"
+                        },
+                        returns = {
+                            type = KtVariant.Type.LONG
+                            className = "Long"
+                        }
+                )
+                function(Invocation::floatValue, ::KtVariant, KtVariant::asFloat,
+                        arg = {
+                            name = "value"
+                            type = KtVariant.Type.DOUBLE
+                            className = "Float"
+                        },
+                        returns = {
+                            type = KtVariant.Type.DOUBLE
+                            className = "Float"
+                        }
+                )
+                function(Invocation::doubleValue, ::KtVariant, KtVariant::asDouble,
+                        arg = {
+                            name = "value"
+                            type = KtVariant.Type.DOUBLE
+                            className = "Double"
+                        },
+                        returns = {
+                            type = KtVariant.Type.DOUBLE
+                            className = "Double"
+                        }
+                )
+                function(Invocation::booleanValue, ::KtVariant, KtVariant::asBoolean,
+                        arg = {
+                            name = "value"
+                            type = KtVariant.Type.BOOL
+                            className = "Boolean"
+                        },
+                        returns = {
+                            type = KtVariant.Type.BOOL
+                            className = "Boolean"
+                        }
+                )
+                function(Invocation::stringValue, ::KtVariant, KtVariant::asString,
+                        arg = {
+                            name = "value"
+                            type = KtVariant.Type.STRING
+                            className = "String"
+                        },
+                        returns = {
+                            type = KtVariant.Type.STRING
+                            className = "String"
+                        }
+                )
+
+                function(Invocation::intAddition, ::KtVariant, KtVariant::asInt, KtVariant::asInt,
+                        args = arrayOf(
+                                {
+                                    name = "a"
+                                    type = KtVariant.Type.LONG
+                                    className = "Int"
+                                },
+                                {
+                                    name = "b"
+                                    type = KtVariant.Type.LONG
+                                    className = "Int"
+                                }
+                        ),
+                        returns = {
+                            type = KtVariant.Type.LONG
+                            className = "Int"
+                        }
+                )
+
+                function(Invocation::_enterTree, ::KtVariant,
+                        returns = {
+                            type = KtVariant.Type.NIL
+                            className = "Unit"
+                        }
+                )
+
+                function(Invocation::_ready, ::KtVariant,
+                        returns = {
+                            type = KtVariant.Type.NIL
+                            className = "Unit"
+                        }
+                )
+                function(Invocation::parentIsSpatial, ::KtVariant,
+                        returns = {
+                            type = KtVariant.Type.BOOL
+                            className = "Boolean"
+                        }
+                )
+                function(Invocation::isObjectSpatial, ::KtVariant, KtVariant::asObject,
+                        arg = {
+                            name = "obj"
+                            type = KtVariant.Type.OBJECT
+                            className = "Object"
+                        },
+                        returns = {
+                            type = KtVariant.Type.BOOL
+                            className = "Boolean"
+                        }
+                )
+
+                signal(Invocation::signalNoParam)
+                signal(Invocation::signalOneParam,
+                        //TODO: should be inferred using psi
+                        args = arrayOf(
+                                {
+                                    name = "refresh"
+                                    type = KtVariant.Type.BOOL
+                                    className = "Boolean"
+                                }
+                        )
+                )
+                signal(Invocation::signalTwoParam,
+                        args = arrayOf(
+                                {
+                                    name = "str"
+                                    type = KtVariant.Type.STRING
+                                    className = "String"
+                                },
+                                {
+                                    name = "inv"
+                                    type = KtVariant.Type.OBJECT
+                                    className = "Invocation"
+                                }
+                        )
+                )
+            }
+        }
+        registerEngineTypes()
+    }
+}

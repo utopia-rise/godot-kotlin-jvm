@@ -500,27 +500,24 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
+    inline fun <reified T> signal(kProperty: KProperty<T>, args: Array<KtPropertyInfoBuilderDsl.() -> Unit> = arrayOf()) {
+        require(T::class.simpleName?.contains("Signal") == true) {
+            "${kProperty.name} is not a signal."
+        }
+        appendSignal(
+                KtSignalInfo(kProperty.name.removePrefix("signal").camelToSnakeCase(), args.applyArgumentsDsl())
+        )
+    }
+
     private fun argumentsAndReturnType(
         returns: KtPropertyInfoBuilderDsl.() -> Unit,
         vararg args: KtPropertyInfoBuilderDsl.() -> Unit
     ): Pair<List<KtPropertyInfo>, KtPropertyInfo> {
         val returnBuilder = KtPropertyInfoBuilderDsl()
         returnBuilder.returns()
-
-        val argumentsCheckList = mutableSetOf<String>()
-
         val returnInfo = returnBuilder.build()
-        return args.map {
-            val builder = KtPropertyInfoBuilderDsl()
-            builder.it()
-            val propertyInfo = builder.build()
-            require(!argumentsCheckList.contains(propertyInfo.name)) {
-                "Cannot have two arguments with name ${propertyInfo.name}"
-            }
-            require(propertyInfo.name.isNotEmpty()) { "Function parameters should have names." }
-            argumentsCheckList.add(propertyInfo.name)
-            propertyInfo
-        } to returnInfo
+
+        return args.applyArgumentsDsl() to returnInfo
     }
 
     private fun <R> appendFunction(function: KtFunction<T, R>) {
@@ -530,9 +527,33 @@ class ClassBuilderDsl<T : KtObject>(
         functions[function.functionInfo.name] = function
     }
 
+    @PublishedApi
+    internal fun appendSignal(signalInfo: KtSignalInfo) {
+        require(!signals.containsKey(signalInfo.name)) {
+            "A signal with ${signalInfo.name} already exists."
+        }
+        signals[signalInfo.name] = signalInfo
+    }
+
     internal fun build(): KtClass<T> {
         check(constructors.isNotEmpty()) { "Please provide at least one constructor." }
         return KtClass(name, superClass, constructors, properties, functions, signals)
+    }
+
+    @PublishedApi
+    internal fun Array<out KtPropertyInfoBuilderDsl.() -> Unit>.applyArgumentsDsl(): List<KtPropertyInfo> {
+        val argumentsCheckList = mutableSetOf<String>()
+        return map {
+            val builder = KtPropertyInfoBuilderDsl()
+            builder.it()
+            val propertyInfo = builder.build()
+            require(!argumentsCheckList.contains(propertyInfo.name)) {
+                "Cannot have two arguments with name ${propertyInfo.name}"
+            }
+            require(propertyInfo.name.isNotEmpty()) { "Function parameters should have names." }
+            argumentsCheckList.add(propertyInfo.name)
+            propertyInfo
+        }
     }
 }
 

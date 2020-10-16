@@ -1,9 +1,7 @@
 package godot.signals
 
-import godot.core.KtObject
-import godot.core.VariantArray
 import godot.Object
-import kotlin.reflect.KCallable
+import godot.core.VariantArray
 
 open class Signal(
         val name: String
