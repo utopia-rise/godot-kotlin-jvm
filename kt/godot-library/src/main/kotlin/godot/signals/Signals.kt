@@ -2,10 +2,13 @@ package godot.signals
 
 import godot.Object
 import godot.core.VariantArray
+import godot.util.camelToSnakeCase
 
 open class Signal(
-        val name: String
+        jvmName: String
 ) {
+    val name = jvmName.removePrefix("signal").camelToSnakeCase().removePrefix("_")
+
     protected fun emitSignal(instance: Object, vararg args: Any?) {
         instance.emitSignal(name, *args)
     }

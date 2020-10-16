@@ -73,6 +73,9 @@ class Invocation : Spatial() {
         name = formerName
         val test = DateTime.now() //external dependency to test dependency inclusion in dummyCompilation
 
+		signalNoParam.connect(invocation, invocation::hookNoParam)
+		signalOneParam.connect(invocation, invocation::hookOneParam)
+		signalTwoParam.connect(invocation, invocation::hookTwoParam)
 		signalNoParam.emit()
 		signalOneParam.emit(false)
 		signalTwoParam.emit("My Awesome param !", this)
@@ -80,9 +83,6 @@ class Invocation : Spatial() {
 
 	override fun _onInit() {
 		println("Hello Invocation!")
-		signalNoParam.connect(invocation, invocation::hookNoParam)
-		signalOneParam.connect(invocation, invocation::hookOneParam)
-		signalTwoParam.connect(invocation, invocation::hookTwoParam)
 	}
 
 	override fun _onDestroy() {

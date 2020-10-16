@@ -301,6 +301,7 @@ void KtVariant::initMethodArray() {
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kTransformValue] = Variant::Type::TRANSFORM;
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kVariantArrayValue] = Variant::Type::ARRAY;
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kObjectValue] = Variant::Type::OBJECT;
+    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kVariantArrayValue] = Variant::Type::ARRAY;
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::TYPE_NOT_SET] = Variant::Type::VARIANT_MAX;
 }
 

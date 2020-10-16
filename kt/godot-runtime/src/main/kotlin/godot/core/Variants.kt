@@ -262,9 +262,9 @@ class KtVariant {
         internal val TYPE_TO_WIRE_VALUE_TYPE = mapOf(
                 Type.NIL to Wire.Value.TypeCase.NIL_VALUE,
                 Type.LONG to Wire.Value.TypeCase.LONG_VALUE,
-                Type.DOUBLE to Wire.Value.TypeCase.LONG_VALUE,
-                Type.STRING to Wire.Value.TypeCase.LONG_VALUE,
-                Type.BOOL to Wire.Value.TypeCase.LONG_VALUE,
+                Type.DOUBLE to Wire.Value.TypeCase.REAL_VALUE,
+                Type.STRING to Wire.Value.TypeCase.STRING_VALUE,
+                Type.BOOL to Wire.Value.TypeCase.BOOL_VALUE,
                 Type.VECTOR2 to Wire.Value.TypeCase.VECTOR2_VALUE,
                 Type.RECT2 to Wire.Value.TypeCase.RECT2_VALUE,
                 Type.VECTOR3 to Wire.Value.TypeCase.VECTOR3_VALUE,
