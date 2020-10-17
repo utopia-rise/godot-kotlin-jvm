@@ -1,4 +1,4 @@
-package godot.registration.annotation
+package godot.annotation
 
 /**
  * Registeres a property in godot so it can be used from another language or from godot

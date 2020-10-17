@@ -4,12 +4,12 @@ import de.jensklingenberg.mpapt.model.AbstractProcessor
 import de.jensklingenberg.mpapt.model.Element
 import de.jensklingenberg.mpapt.model.RoundEnvironment
 import de.jensklingenberg.mpapt.utils.KotlinPlatformValues
+import godot.annotation.RegisterClass
+import godot.annotation.RegisterFunction
+import godot.annotation.RegisterProperty
+import godot.annotation.RegisterSignal
 import godot.entrygenerator.EntryGenerationType
 import godot.entrygenerator.EntryGenerator
-import godot.registration.annotation.RegisterClass
-import godot.registration.annotation.RegisterFunction
-import godot.registration.annotation.RegisterProperty
-import godot.registration.annotation.RegisterSignal
 import org.jetbrains.kotlin.descriptors.ClassDescriptor
 import org.jetbrains.kotlin.descriptors.FunctionDescriptor
 import org.jetbrains.kotlin.descriptors.PropertyDescriptor

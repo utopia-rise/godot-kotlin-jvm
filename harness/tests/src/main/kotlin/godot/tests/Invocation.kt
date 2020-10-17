@@ -3,10 +3,10 @@ package godot.tests
 import godot.Node
 import godot.Object
 import godot.Spatial
-import godot.registration.annotation.RegisterClass
-import godot.registration.annotation.RegisterFunction
-import godot.registration.annotation.RegisterProperty
-import godot.registration.annotation.RegisterSignal
+import godot.annotation.RegisterClass
+import godot.annotation.RegisterFunction
+import godot.annotation.RegisterProperty
+import godot.annotation.RegisterSignal
 import godot.signals.signal
 import org.joda.time.DateTime
 
@@ -39,6 +39,10 @@ class OtherScript : Node() {
 
 }
 
+enum class TestEnum {
+    ENUM_1
+}
+
 @RegisterClass
 class Invocation : Spatial() {
     @RegisterProperty
@@ -54,6 +58,9 @@ class Invocation : Spatial() {
     var customName = "Idonthaveanyidea"
 
     var invocation = OtherScript()
+
+    @RegisterProperty
+    var enumTest = TestEnum.ENUM_1
 
     @RegisterSignal
     val signalNoParam by signal()
@@ -86,9 +93,10 @@ class Invocation : Spatial() {
     fun intAddition(a: Int, b: Int) = a + b
 
     @RegisterFunction
-    fun _enterTree() {
+	fun _enterTree() {
         println("Enter tree !")
         println("Instance id: ${getInstanceId()}")
+        println("CustomName is $customName")
     }
 
     @RegisterFunction
