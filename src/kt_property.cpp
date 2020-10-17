@@ -73,6 +73,7 @@ void KtProperty::get_default_value(Variant& r_value) {
         jni::MethodId getDefaultValueMethod{get_method_id(env, "getDefaultValue", "()Z")};
         bool refresh{static_cast<bool>(wrapped.call_boolean_method(env, getDefaultValueMethod))};
         default_value = GDKotlin::get_instance().transfer_context->read_return_value(env, refresh).to_godot_variant();
+        is_default_value_initialized = true;
     }
     r_value = default_value;
 }
