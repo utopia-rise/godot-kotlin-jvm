@@ -23,6 +23,8 @@ class KtProperty : JavaInstanceWrapper {
 
 private:
     KtPropertyInfo* propertyInfo;
+    Variant default_value;
+    bool is_default_value_initialized;
 
 public:
     KtProperty(jni::JObject p_wrapped, jni::JObject& p_class_loader);
@@ -34,6 +36,8 @@ public:
 
     Variant callGet(const KtObject* instance);
     void setCall(const KtObject* instance, const Variant& p_value);
+
+    void get_default_value(Variant& r_value);
 };
 
 

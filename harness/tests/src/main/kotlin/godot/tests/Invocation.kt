@@ -43,10 +43,13 @@ class OtherScript : Node() {
 class Invocation : Spatial() {
     @RegisterProperty
     var x = 0
+
     @RegisterProperty
     var y = 0.0
+
     @RegisterProperty
     var z = 0.0f
+
     @RegisterProperty
     var customName = "Idonthaveanyidea"
 

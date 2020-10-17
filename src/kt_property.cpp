@@ -29,7 +29,8 @@ PropertyInfo KtPropertyInfo::toPropertyInfo() {
 }
 
 KtProperty::KtProperty(jni::JObject p_wrapped, jni::JObject& p_class_loader)
-        : JavaInstanceWrapper("godot.core.KtProperty", p_wrapped, p_class_loader) {
+        : JavaInstanceWrapper("godot.core.KtProperty", p_wrapped, p_class_loader),
+        is_default_value_initialized(false) {
     jni::Env env { jni::Jvm::current_env() };
     jni::MethodId getKtPropertyInfoMethod{get_method_id(env, "getKtPropertyInfo", "()Lgodot/core/KtPropertyInfo;")};
     propertyInfo = new KtPropertyInfo(wrapped.call_object_method(env, getKtPropertyInfoMethod),
@@ -62,4 +63,16 @@ void KtProperty::setCall(const KtObject* instance, const Variant& p_value) {
     arg.push_back(KtVariant(p_value));
     GDKotlin::get_instance().transfer_context->write_args(env, arg);
     wrapped.call_void_method(env, setCallMethodId, {instance->get_wrapped()});
+}
+
+void KtProperty::get_default_value(Variant& r_value) {
+    if (!is_default_value_initialized) {
+        jni::Env env {jni::Jvm::current_env()};
+        Vector<KtVariant> args;
+        GDKotlin::get_instance().transfer_context->write_args(env, args);
+        jni::MethodId getDefaultValueMethod{get_method_id(env, "getDefaultValue", "()Z")};
+        bool refresh{static_cast<bool>(wrapped.call_boolean_method(env, getDefaultValueMethod))};
+        default_value = GDKotlin::get_instance().transfer_context->read_return_value(env, refresh).to_godot_variant();
+    }
+    r_value = default_value;
 }
