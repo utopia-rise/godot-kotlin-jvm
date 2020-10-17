@@ -3,10 +3,11 @@ package godot.tests
 import godot.Node
 import godot.Object
 import godot.Spatial
-import godot.signals.signal
 import godot.registration.annotation.RegisterClass
 import godot.registration.annotation.RegisterFunction
 import godot.registration.annotation.RegisterProperty
+import godot.registration.annotation.RegisterSignal
+import godot.signals.signal
 import org.joda.time.DateTime
 
 @RegisterClass
@@ -24,8 +25,8 @@ class OtherScript : Node() {
 
 	@RegisterFunction
 	fun hookTwoParam(str: String, inv: Spatial) {
-		println("Hook was calles with parameters: $str, $inv")
-	}
+        println("Hook was called with parameters: $str, $inv")
+    }
 
 //		This will fail with:
 //		class godot.Spatial cannot be cast to class godot.tests.Invocation.
@@ -40,25 +41,36 @@ class OtherScript : Node() {
 
 @RegisterClass
 class Invocation : Spatial() {
-	@RegisterProperty var x = 0
-	@RegisterProperty var y = 0.0
-	@RegisterProperty var z = 0.0f
-	@RegisterProperty var customName = "Idonthaveanyidea"
+    @RegisterProperty var x = 0
+    @RegisterProperty var y = 0.0
+    @RegisterProperty var z = 0.0f
+    @RegisterProperty var customName = "Idonthaveanyidea"
 
-	var invocation = OtherScript()
+    var invocation = OtherScript()
 
-	val signalNoParam by signal()
-	val signalOneParam by signal<Boolean>("refresh")
-	val signalTwoParam by signal<String, Invocation>("str", "inv")
+    @RegisterSignal
+    val signalNoParam by signal()
 
-	@RegisterFunction fun intValue(value: Int) = value
-	@RegisterFunction fun longValue(value: Long) = value
-	@RegisterFunction fun floatValue(value: Float) = value
-	@RegisterFunction fun doubleValue(value: Double) = value
-	@RegisterFunction fun booleanValue(value: Boolean) = value
-	@RegisterFunction fun stringValue(value: String) = value
+    @RegisterSignal
+    val signalOneParam by signal<Boolean>("refresh")
 
-	@RegisterFunction
+    @RegisterSignal
+    val signalTwoParam by signal<String, Invocation>("str", "inv")
+
+    @RegisterFunction
+    fun intValue(value: Int) = value
+    @RegisterFunction
+    fun longValue(value: Long) = value
+    @RegisterFunction
+    fun floatValue(value: Float) = value
+    @RegisterFunction
+    fun doubleValue(value: Double) = value
+    @RegisterFunction
+    fun booleanValue(value: Boolean) = value
+    @RegisterFunction
+    fun stringValue(value: String) = value
+
+    @RegisterFunction
 	fun intAddition(a: Int, b: Int) = a + b
 
 	@RegisterFunction

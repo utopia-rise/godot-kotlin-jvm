@@ -7,7 +7,7 @@ plugins {
 dependencies {
     implementation("com.utopia-rise:godot-kotlin-entry-generator")
     implementation(project(":godot-library"))
-    compileOnly(kotlin("compiler"))
+    compileOnly(kotlin("compiler-embeddable"))
     implementation("de.jensklingenberg:mpapt-runtime:${DependenciesVersions.mpaptVersion}")
 }
 

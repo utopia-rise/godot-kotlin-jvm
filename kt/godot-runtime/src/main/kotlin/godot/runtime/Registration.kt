@@ -500,12 +500,105 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    inline fun <reified T> signal(kProperty: KProperty<T>, args: Array<KtPropertyInfoBuilderDsl.() -> Unit> = arrayOf()) {
-        require(T::class.simpleName?.contains("Signal") == true) {
-            "${kProperty.name} is not a signal."
-        }
+    fun <T> signal(kProperty: KProperty<T>) {
         appendSignal(
-                KtSignalInfo(kProperty.name.removePrefix("signal").camelToSnakeCase(), args.applyArgumentsDsl())
+            KtSignalInfo(kProperty.name.removePrefix("signal").camelToSnakeCase(), listOf())
+        )
+    }
+
+    fun <T> signal(
+        kProperty: KProperty<T>,
+        p0: KtFunctionArgument
+    ) {
+        appendSignal(
+            KtSignalInfo(
+                kProperty.name.removePrefix("signal").camelToSnakeCase(),
+                listOf(
+                    p0.toKtPropertyInfo()
+                )
+            )
+        )
+    }
+
+    fun <T> signal(
+        kProperty: KProperty<T>,
+        p0: KtFunctionArgument,
+        p1: KtFunctionArgument
+    ) {
+        appendSignal(
+            KtSignalInfo(
+                kProperty.name.removePrefix("signal").camelToSnakeCase(),
+                listOf(
+                    p0.toKtPropertyInfo(),
+                    p1.toKtPropertyInfo()
+                )
+            )
+        )
+    }
+
+    fun <T> signal(
+        kProperty: KProperty<T>,
+        p0: KtFunctionArgument,
+        p1: KtFunctionArgument,
+        p2: KtFunctionArgument
+    ) {
+        appendSignal(
+            KtSignalInfo(
+                kProperty.name.removePrefix("signal").camelToSnakeCase(),
+                listOf(
+                    p0.toKtPropertyInfo(),
+                    p1.toKtPropertyInfo(),
+                    p2.toKtPropertyInfo()
+                )
+            )
+        )
+    }
+
+    fun <T> signal(
+        kProperty: KProperty<T>,
+        p0: KtFunctionArgument,
+        p1: KtFunctionArgument,
+        p2: KtFunctionArgument,
+        p3: KtFunctionArgument
+    ) {
+        appendSignal(
+            KtSignalInfo(
+                kProperty.name.removePrefix("signal").camelToSnakeCase(),
+                listOf(
+                    p0.toKtPropertyInfo(),
+                    p1.toKtPropertyInfo(),
+                    p2.toKtPropertyInfo(),
+                    p3.toKtPropertyInfo()
+                )
+            )
+        )
+    }
+
+    fun <T> signal(
+        kProperty: KProperty<T>,
+        p0: KtFunctionArgument,
+        p1: KtFunctionArgument,
+        p2: KtFunctionArgument,
+        p3: KtFunctionArgument,
+        p4: KtFunctionArgument
+    ) {
+        appendSignal(
+            KtSignalInfo(
+                kProperty.name.removePrefix("signal").camelToSnakeCase(),
+                listOf(
+                    p0.toKtPropertyInfo(),
+                    p1.toKtPropertyInfo(),
+                    p2.toKtPropertyInfo(),
+                    p3.toKtPropertyInfo(),
+                    p4.toKtPropertyInfo()
+                )
+            )
+        )
+    }
+
+    fun <T> signal(kProperty: KProperty<T>, args: Array<KtPropertyInfoBuilderDsl.() -> Unit> = arrayOf()) {
+        appendSignal(
+            KtSignalInfo(kProperty.name.removePrefix("signal").camelToSnakeCase(), args.applyArgumentsDsl())
         )
     }
 
