@@ -16,14 +16,15 @@ class KtPropertyInfoBuilderDsl {
 
 data class KtFunctionArgument(
     val type: KtVariant.Type,
-    val className: String
+    val className: String,
+    val name: String = "" //empty for return type
 ) {
     internal fun toKtPropertyInfo() = KtPropertyInfo(
         type,
-        "",
+        name,
         className,
         PropertyHint.NONE,
-        ""
+        "" //always empty. Only used for properties
     )
 }
 
