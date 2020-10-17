@@ -42,7 +42,7 @@ bool KotlinInstance::get(const StringName& p_name, Variant& r_ret) const {
 }
 
 void KotlinInstance::get_property_list(List<PropertyInfo>* p_properties) const {
-
+    kt_class->get_property_list(p_properties);
 }
 
 Variant::Type KotlinInstance::get_property_type(const StringName& p_name, bool* r_is_valid) const {
