@@ -1,5 +1,6 @@
 package godot.tests
 
+import godot.NavigationMesh
 import godot.Node
 import godot.Object
 import godot.Spatial
@@ -71,6 +72,17 @@ class Invocation : Spatial() {
     @RegisterSignal
     val signalTwoParam by signal<String, Invocation>("str", "inv")
 
+    @RegisterProperty
+    var resourceTest = NavigationMesh()
+        set(value) {
+            println("Setter of property resourceTest called. InstanceId: ${value.getInstanceId()}")
+            field = value
+        }
+        get() {
+            println("Getter of property resourceTest called. InstanceId: ${field.getInstanceId()}")
+            return field
+        }
+
     @RegisterFunction
     fun intValue(value: Int) = value
 
@@ -93,7 +105,7 @@ class Invocation : Spatial() {
     fun intAddition(a: Int, b: Int) = a + b
 
     @RegisterFunction
-	fun _enterTree() {
+    fun _enterTree() {
         println("Enter tree !")
         println("Instance id: ${getInstanceId()}")
         println("CustomName is $customName")

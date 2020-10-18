@@ -335,8 +335,29 @@ open class Spatial : Node() {
     }
 }
 
+open class Reference : Object() {
+    override fun __new(): VoidPtr {
+        return TransferContext.invokeConstructor("Reference")
+    }
+}
+
+open class Resource : Object() {
+    override fun __new(): VoidPtr {
+        return TransferContext.invokeConstructor("Resource")
+    }
+}
+
+open class NavigationMesh : Resource() {
+    override fun __new(): VoidPtr {
+        return TransferContext.invokeConstructor("NavigationMesh")
+    }
+}
+
 fun registerEngineTypes() {
     TypeManager.registerEngineType("Object", ::Object)
     TypeManager.registerEngineType("Node", ::Node)
     TypeManager.registerEngineType("Spatial", ::Spatial)
+    TypeManager.registerEngineType("Reference", ::Reference)
+    TypeManager.registerEngineType("Resource", ::Resource)
+    TypeManager.registerEngineType("NavigationMesh", ::NavigationMesh)
 }

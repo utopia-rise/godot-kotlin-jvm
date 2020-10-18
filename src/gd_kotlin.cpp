@@ -75,6 +75,13 @@ void GDKotlin::init() {
     class_loader = create_class_loader(env, bootstrap_jar).new_global_ref<jni::JObject>(env);
     set_context_class_loader(env, current_thread, class_loader);
 
+    jni::JClass transfer_ctx_cls = env.load_class("godot.core.TransferContext", class_loader);
+    jni::FieldId transfer_ctx_instance_field = transfer_ctx_cls.get_static_field_id(env, "INSTANCE",
+                                                                                    "Lgodot/core/TransferContext;");
+    jni::JObject transfer_ctx_instance = transfer_ctx_cls.get_static_object_field(env, transfer_ctx_instance_field);
+    CRASH_COND_MSG(transfer_ctx_instance.isNull(), "Failed to retrieve TransferContext instance")
+    transfer_context = new TransferContext(transfer_ctx_instance, class_loader);
+
     jni::JClass bootstrap_cls = env.load_class("godot.runtime.Bootstrap", class_loader);
     jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");
     jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
@@ -82,14 +89,8 @@ void GDKotlin::init() {
     bootstrap->register_hooks(env, load_classes_hook, unload_classes_hook, KtVariant::register_engine_types);
     bool is_editor = Engine::get_singleton()->is_editor_hint();
     String project_path = project_settings->globalize_path("res://");
-    bootstrap->init(env, is_editor, project_path);
 
-    jni::JClass transfer_ctx_cls = env.load_class("godot.core.TransferContext", class_loader);
-    jni::FieldId transfer_ctx_instance_field = transfer_ctx_cls.get_static_field_id(env, "INSTANCE",
-                                                                                    "Lgodot/core/TransferContext;");
-    jni::JObject transfer_ctx_instance = transfer_ctx_cls.get_static_object_field(env, transfer_ctx_instance_field);
-    CRASH_COND_MSG(transfer_ctx_instance.isNull(), "Failed to retrieve TransferContext instance")
-    transfer_context = new TransferContext(transfer_ctx_instance, class_loader);
+    bootstrap->init(env, is_editor, project_path);
 }
 
 void GDKotlin::finish() {
