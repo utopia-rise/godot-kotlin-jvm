@@ -28,6 +28,79 @@ data class KtFunctionArgument(
     )
 }
 
+
+//class REF<T : KtReference>(var reference: T, val owner_instance: KtObject) {
+//
+//    fun updateReference(ref: T) {
+//        reference = ref
+//        TransferContext.updateREF(this)
+//    }
+//}
+
+open class KtReference
+
+class ReferenceDelegate<T : KtReference>(val defaultValue: () -> T) {
+    private var backingField: T? = null
+
+    operator fun getValue(thisRef: KtObject, property: KProperty<*>): T {
+        if (backingField == null) {
+            backingField = defaultValue()
+            TransferContext.updateREF(thisRef, property.name, backingField)
+        }
+        return backingField!!
+    }
+
+    operator fun setValue(thisRef: KtObject, property: KProperty<*>, value: T) {
+        backingField = value
+        TransferContext.updateREF(thisRef, property.name, value)
+    }
+}
+
+class ReferenceDelegateProvider<T : KtReference>(private val defaultValue: T) {
+    operator fun provideDelegate(thisRef: KtObject, property: KProperty<*>): ReferenceDelegate<T> {
+        return ReferenceDelegate { defaultValue }
+    }
+}
+
+fun <T : KtReference> refProperty(defaultValue: T): ReferenceDelegateProvider<T> {
+    return ReferenceDelegateProvider(defaultValue)
+}
+
+//class Test: KtObject() {
+//    @RegisterProperty
+//    var resource by refProperty(NavigationMesh())
+//
+//    override fun __new(): VoidPtr {
+//        TODO("Not yet implemented")
+//    }
+//}
+
+//open class REFHandler<T : KtObject, R: KtReference>(
+//    private val property: KMutableProperty1<T, R>,
+//    private val getValueConverter: (R) -> KtVariant,
+//    private val setValueConverter: (KtVariant) -> R
+//) {
+//    private var ref: REF<R>? = null
+//
+//    open fun get(instance: T): KtVariant {
+//        if (ref == null) {
+//            ref = REF(property.get(instance), instance)
+//        }
+//        ref!!.reference = property.get(instance)
+//        return getValueConverter(ref!!.reference)
+//    }
+//
+//    open fun set(instance: T, ktVariant: KtVariant) {
+//        val value = setValueConverter(ktVariant)
+//        if (ref == null) {
+//            ref = REF(value, instance)
+//        }
+//        property.set(instance, value)
+//        ref?.reference = value
+//        requireNotNull(ref).updateReference(value)
+//    }
+//}
+
 class ClassBuilderDsl<T : KtObject>(
     @PublishedApi internal val name: String,
     private val superClass: String

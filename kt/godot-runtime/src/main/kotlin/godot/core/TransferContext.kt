@@ -106,4 +106,8 @@ object TransferContext {
         // extra bytes used for the delimiter
         return CodedOutputStream.computeUInt32SizeNoTag(capacity) + capacity
     }
+
+    fun <T> updateREF(instance: KtObject, propertyName: String, value: T) {
+        TODO("Not yet implemented")
+    }
 }
