@@ -9,7 +9,6 @@ private:
     KtObject *wrapped_object;
     Object *owner;
     KtClass* kt_class;
-    HashMap<StringName, REF> refs;
 
 public:
     explicit KotlinInstance(KtObject *p_wrapped_object, KtClass* p_kt_class);
@@ -71,7 +70,7 @@ public:
     ScriptLanguage* get_language() override;
 
     void append_or_update_ref(const StringName& field, const REF& ref);
-    const REF& get_ref_for_field(const StringName& field);
+    REF* get_ref_for_field(const StringName& field);
 };
 
 

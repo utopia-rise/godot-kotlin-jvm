@@ -35,9 +35,13 @@ KtProperty::KtProperty(jni::JObject p_wrapped, jni::JObject& p_class_loader)
     jni::MethodId getKtPropertyInfoMethod{get_method_id(env, "getKtPropertyInfo", "()Lgodot/core/KtPropertyInfo;")};
     propertyInfo = new KtPropertyInfo(wrapped.call_object_method(env, getKtPropertyInfoMethod),
                                       GDKotlin::get_instance().get_class_loader());
+    jni::MethodId getIsRefMethod{get_method_id(env, "isRef", "()Z")};
+    is_ref = wrapped.call_boolean_method(env, getIsRefMethod);
+    initialize_default_value();
 }
 
 KtProperty::~KtProperty() {
+    //Free default value if object
     if (Object* obj{default_value.operator Object *()}) {
         memdelete(obj);
     }
@@ -52,14 +56,31 @@ PropertyInfo KtProperty::get_member_info() {
     return propertyInfo->toPropertyInfo();
 }
 
-Variant KtProperty::callGet(const KtObject* instance) {
-    jni::Env env{jni::Jvm::current_env()};
-    jni::MethodId getCallMethodId {get_method_id(env, "callGet", "(Lgodot/core/KtObject;)Z")};
-    bool refreshBuffer = wrapped.call_boolean_method(env, getCallMethodId, {instance->get_wrapped()});
-    return GDKotlin::get_instance().transfer_context->read_return_value(env, refreshBuffer).to_godot_variant();
+void KtProperty::callGet(KtObject* instance, Variant& r_ret) {
+    if (is_ref) {
+        const String& field_name = propertyInfo->name;
+        if (const REF* ref{instance->get_ref_for_field(field_name)}) {
+            r_ret = Variant(ref->get_ref_ptr());
+            return;
+        } else {
+            print_error(vformat("Cannot get property %s as REF", field_name));
+        }
+    } else {
+        jni::Env env{jni::Jvm::current_env()};
+        jni::MethodId getCallMethodId{get_method_id(env, "callGet", "(Lgodot/core/KtObject;)Z")};
+        bool refreshBuffer = wrapped.call_boolean_method(env, getCallMethodId, {instance->get_wrapped()});
+        r_ret = GDKotlin::get_instance().transfer_context->read_return_value(env, refreshBuffer).to_godot_variant();
+    }
 }
 
 void KtProperty::setCall(KtObject* instance, const Variant& p_value) {
+    if (p_value.is_ref()) {
+        const String& field_name{propertyInfo->name};
+        if (REF* ref{instance->get_ref_for_field(field_name)}) {
+            ref->unref();
+        }
+        instance->append_or_update_ref(field_name, REF(dynamic_cast<Reference*>(p_value.operator Object*())));
+    }
     jni::Env env{jni::Jvm::current_env()};
     jni::MethodId setCallMethodId {get_method_id(env, "callSet", "(Lgodot/core/KtObject;)V")};
     Vector<KtVariant> arg;
@@ -69,6 +90,10 @@ void KtProperty::setCall(KtObject* instance, const Variant& p_value) {
 }
 
 void KtProperty::get_default_value(Variant& r_value) {
+    r_value = default_value;
+}
+
+void KtProperty::initialize_default_value() {
     if (!is_default_value_initialized) {
         jni::Env env {jni::Jvm::current_env()};
         Vector<KtVariant> args;
@@ -78,5 +103,4 @@ void KtProperty::get_default_value(Variant& r_value) {
         default_value = GDKotlin::get_instance().transfer_context->read_return_value(env, refresh).to_godot_variant();
         is_default_value_initialized = true;
     }
-    r_value = default_value;
 }

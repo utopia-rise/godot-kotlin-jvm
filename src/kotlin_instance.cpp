@@ -9,13 +9,6 @@ KotlinInstance::KotlinInstance(KtObject *p_wrapped_object, KtClass *p_kt_class) 
 }
 
 KotlinInstance::~KotlinInstance() {
-    print_verbose("ENTER KOTLIN INSTANCE DESTRUCTOR");
-    List<StringName> keys;
-    refs.get_key_list(&keys);
-    for (int i = 0; i < keys.size(); ++i) {
-        print_verbose(vformat("Will unref %s", keys[i]));
-        refs[keys[i]].unref();
-    }
     delete wrapped_object;
 }
 
@@ -26,14 +19,6 @@ KotlinInstance::KotlinInstance(KtObject *p_wrapped_object, Object *p_owner, KtCl
 
 bool KotlinInstance::set(const StringName& p_name, const Variant& p_value) {
     jni::LocalFrame localFrame(100);
-
-    if (p_value.is_ref()) {
-        if (REF* ref{refs.getptr(p_name)}) {
-            print_verbose(vformat("Will unref %s", p_name));
-            ref->unref();
-        }
-        refs[p_name] = REF(dynamic_cast<Reference*>(p_value.operator Object*()));
-    }
 
     KtProperty* ktProperty { kt_class->get_property(p_name) };
     if (ktProperty) {
@@ -47,14 +32,9 @@ bool KotlinInstance::set(const StringName& p_name, const Variant& p_value) {
 bool KotlinInstance::get(const StringName& p_name, Variant& r_ret) const {
     jni::LocalFrame localFrame(100);
 
-    if (const REF* ref{refs.getptr(p_name)}) {
-        r_ret = Variant(ref->get_ref_ptr());
-        return true;
-    }
-
     KtProperty* ktProperty { kt_class->get_property(p_name) };
     if (ktProperty) {
-        r_ret = ktProperty->callGet(wrapped_object);
+        ktProperty->callGet(wrapped_object, r_ret);
         return true;
     } else {
         return false;
@@ -166,13 +146,9 @@ ScriptLanguage* KotlinInstance::get_language() {
 }
 
 void KotlinInstance::append_or_update_ref(const StringName& field, const REF& ref) {
-    if (REF* r{refs.getptr(field)}) {
-        print_verbose(vformat("Will unref %s", field));
-        r->unref();
-    }
-    refs[field] = ref;
+    wrapped_object->append_or_update_ref(field, ref);
 }
 
-const REF& KotlinInstance::get_ref_for_field(const StringName& field) {
-    return refs[field];
+REF* KotlinInstance::get_ref_for_field(const StringName& field) {
+    return wrapped_object->get_ref_for_field(field);
 }

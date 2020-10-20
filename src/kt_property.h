@@ -25,6 +25,9 @@ private:
     KtPropertyInfo* propertyInfo;
     Variant default_value;
     bool is_default_value_initialized;
+    bool is_ref;
+
+    void initialize_default_value();
 
 public:
     KtProperty(jni::JObject p_wrapped, jni::JObject& p_class_loader);
@@ -34,7 +37,7 @@ public:
 
     PropertyInfo get_member_info();
 
-    Variant callGet(const KtObject* instance);
+    void callGet(KtObject* instance, Variant& r_ret);
     void setCall(KtObject* instance, const Variant& p_value);
 
     void get_default_value(Variant& r_value);

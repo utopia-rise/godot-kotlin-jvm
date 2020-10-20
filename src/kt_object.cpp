@@ -5,6 +5,15 @@ KtObject::KtObject(jni::JObject p_wrapped, jni::JObject p_class_loader, const St
         : JavaInstanceWrapper("godot.core.KtObject", p_wrapped, p_class_loader), kt_class_name(p_ktClass) {}
 
 KtObject::~KtObject() {
+    //Unload linked REF
+    print_verbose("ENTER KTOBJECT DESTRUCTOR");
+    List<StringName> keys;
+    refs.get_key_list(&keys);
+    for (int i = 0; i < keys.size(); ++i) {
+        print_verbose(vformat("Will unref %s", keys[i]));
+        refs[keys[i]].unref();
+    }
+
     jni::Env env { jni::Jvm::current_env() };
     jni::MethodId on_destroy_method = get_class(env).get_method_id(env, "_onDestroy", "()V");
     wrapped.call_void_method(env, on_destroy_method);
@@ -16,4 +25,16 @@ const jni::JObject &KtObject::get_wrapped() const {
 
 const StringName& KtObject::get_class_name() const {
     return kt_class_name;
+}
+
+void KtObject::append_or_update_ref(const StringName& field, const REF& ref) {
+    if (REF* r{refs.getptr(field)}) {
+        print_verbose(vformat("Will unref %s", field));
+        r->unref();
+    }
+    refs[field] = ref;
+}
+
+REF* KtObject::get_ref_for_field(const StringName& field) {
+    return refs.getptr(field);
 }
