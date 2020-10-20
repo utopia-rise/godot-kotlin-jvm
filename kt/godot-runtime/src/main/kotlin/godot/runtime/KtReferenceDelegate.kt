@@ -3,6 +3,7 @@ package godot.runtime
 import godot.core.KtObject
 import godot.core.KtReference
 import godot.core.TransferContext
+import godot.util.camelToSnakeCase
 import kotlin.reflect.KProperty
 
 class KtReferenceDelegate<T : KtReference>(val defaultValue: () -> T) {
@@ -11,14 +12,14 @@ class KtReferenceDelegate<T : KtReference>(val defaultValue: () -> T) {
     operator fun getValue(thisRef: KtObject, property: KProperty<*>): T {
         if (backingField == null) {
             backingField = defaultValue()
-            TransferContext.updateREF(thisRef, property.name, backingField!!)
+            TransferContext.updateREF(thisRef, property.name.camelToSnakeCase(), backingField!!)
         }
         return backingField!!
     }
 
     operator fun setValue(thisRef: KtObject, property: KProperty<*>, value: T) {
         backingField = value
-        TransferContext.updateREF(thisRef, property.name, value)
+        TransferContext.updateREF(thisRef, property.name.camelToSnakeCase(), value)
     }
 }
 
