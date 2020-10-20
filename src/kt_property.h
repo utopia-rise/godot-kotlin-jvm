@@ -35,7 +35,7 @@ public:
     PropertyInfo get_member_info();
 
     Variant callGet(const KtObject* instance);
-    void setCall(const KtObject* instance, const Variant& p_value);
+    void setCall(KtObject* instance, const Variant& p_value);
 
     void get_default_value(Variant& r_value);
 };

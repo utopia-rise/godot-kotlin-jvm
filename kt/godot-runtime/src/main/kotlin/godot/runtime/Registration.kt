@@ -37,15 +37,13 @@ data class KtFunctionArgument(
 //    }
 //}
 
-open class KtReference
-
 class ReferenceDelegate<T : KtReference>(val defaultValue: () -> T) {
     private var backingField: T? = null
 
     operator fun getValue(thisRef: KtObject, property: KProperty<*>): T {
         if (backingField == null) {
             backingField = defaultValue()
-            TransferContext.updateREF(thisRef, property.name, backingField)
+            TransferContext.updateREF(thisRef, property.name, backingField!!)
         }
         return backingField!!
     }
@@ -56,13 +54,13 @@ class ReferenceDelegate<T : KtReference>(val defaultValue: () -> T) {
     }
 }
 
-class ReferenceDelegateProvider<T : KtReference>(private val defaultValue: T) {
+class ReferenceDelegateProvider<T : KtReference>(private val defaultValue: () -> T) {
     operator fun provideDelegate(thisRef: KtObject, property: KProperty<*>): ReferenceDelegate<T> {
-        return ReferenceDelegate { defaultValue }
+        return ReferenceDelegate(defaultValue)
     }
 }
 
-fun <T : KtReference> refProperty(defaultValue: T): ReferenceDelegateProvider<T> {
+fun <T : KtReference> refProperty(defaultValue: () -> T): ReferenceDelegateProvider<T> {
     return ReferenceDelegateProvider(defaultValue)
 }
 

@@ -4,6 +4,7 @@
 
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 1 )
+enum_test = 0
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.974354, 0.225019, 0, -0.225019, 0.974354, 0, 1.2131, 2.47241 )

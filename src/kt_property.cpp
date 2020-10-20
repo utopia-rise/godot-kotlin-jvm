@@ -56,7 +56,7 @@ Variant KtProperty::callGet(const KtObject* instance) {
     return GDKotlin::get_instance().transfer_context->read_return_value(env, refreshBuffer).to_godot_variant();
 }
 
-void KtProperty::setCall(const KtObject* instance, const Variant& p_value) {
+void KtProperty::setCall(KtObject* instance, const Variant& p_value) {
     jni::Env env{jni::Jvm::current_env()};
     jni::MethodId setCallMethodId {get_method_id(env, "callSet", "(Lgodot/core/KtObject;)V")};
     Vector<KtVariant> arg;

@@ -26,6 +26,8 @@ public:
     static void icall(JNIEnv* rawEnv, jobject instance, jlong jPtr,
                jstring jClassName, jstring jMethod,
                jint expectedReturnType, bool p_refresh_buffer);
+    static void update_ref_for_instance_and_method(JNIEnv* raw_env, jobject instance, jlong instance_ptr, jstring field,
+                                                   jlong reference_ptr);
 
     static jlong invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, jstring p_class_name);
     static void set_script(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jstring p_class_name, jobject p_object,

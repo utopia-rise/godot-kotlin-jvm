@@ -8,6 +8,7 @@ import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
+import godot.runtime.refProperty
 import godot.signals.signal
 import org.joda.time.DateTime
 
@@ -41,7 +42,7 @@ class OtherScript : Node() {
 }
 
 enum class TestEnum {
-    ENUM_1
+	ENUM_1
 }
 
 @RegisterClass
@@ -58,10 +59,12 @@ class Invocation : Spatial() {
     @RegisterProperty
     var customName = "Idonthaveanyidea"
 
-    var invocation = OtherScript()
+	var invocation = OtherScript()
 
-    @RegisterProperty
-    var enumTest = TestEnum.ENUM_1
+	@RegisterProperty
+	var enumTest = TestEnum.ENUM_1
+
+	var resourceTest by refProperty(::NavigationMesh)
 
     @RegisterSignal
     val signalNoParam by signal()
@@ -72,44 +75,33 @@ class Invocation : Spatial() {
     @RegisterSignal
     val signalTwoParam by signal<String, Invocation>("str", "inv")
 
-    @RegisterProperty
-    var resourceTest = NavigationMesh()
-        set(value) {
-            println("Setter of property resourceTest called. InstanceId: ${value.getInstanceId()}")
-            field = value
-        }
-        get() {
-            println("Getter of property resourceTest called. InstanceId: ${field.getInstanceId()}")
-            return field
-        }
+	@RegisterFunction
+	fun intValue(value: Int) = value
 
-    @RegisterFunction
-    fun intValue(value: Int) = value
+	@RegisterFunction
+	fun longValue(value: Long) = value
 
-    @RegisterFunction
-    fun longValue(value: Long) = value
+	@RegisterFunction
+	fun floatValue(value: Float) = value
 
-    @RegisterFunction
-    fun floatValue(value: Float) = value
+	@RegisterFunction
+	fun doubleValue(value: Double) = value
 
-    @RegisterFunction
-    fun doubleValue(value: Double) = value
+	@RegisterFunction
+	fun booleanValue(value: Boolean) = value
 
-    @RegisterFunction
-    fun booleanValue(value: Boolean) = value
+	@RegisterFunction
+	fun stringValue(value: String) = value
 
-    @RegisterFunction
-    fun stringValue(value: String) = value
+	@RegisterFunction
+	fun intAddition(a: Int, b: Int) = a + b
 
-    @RegisterFunction
-    fun intAddition(a: Int, b: Int) = a + b
-
-    @RegisterFunction
-    fun _enterTree() {
-        println("Enter tree !")
-        println("Instance id: ${getInstanceId()}")
-        println("CustomName is $customName")
-    }
+	@RegisterFunction
+	fun _enterTree() {
+		println("Enter tree !")
+		println("Instance id: ${getInstanceId()}")
+		println("CustomName is $customName")
+	}
 
     @RegisterFunction
     fun _ready() {
@@ -126,6 +118,10 @@ class Invocation : Spatial() {
         signalNoParam.emit()
         signalOneParam.emit(false)
         signalTwoParam.emit("My Awesome param !", this)
+
+        println("NavMesh instance id before re-assign: ${resourceTest.getInstanceId()}")
+        resourceTest = NavigationMesh()
+        println("NavMesh instance id after re-assign: ${resourceTest.getInstanceId()}")
     }
 
     override fun _onInit() {
