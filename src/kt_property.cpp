@@ -38,6 +38,9 @@ KtProperty::KtProperty(jni::JObject p_wrapped, jni::JObject& p_class_loader)
 }
 
 KtProperty::~KtProperty() {
+    if (Object* obj{default_value.operator Object *()}) {
+        memdelete(obj);
+    }
     delete propertyInfo;
 }
 
