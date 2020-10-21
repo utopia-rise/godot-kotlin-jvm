@@ -11,6 +11,8 @@ static Variant::Type WIRE_TYPE_CASE_TO_VARIANT_TYPE[17];
 
 static HashMap<StringName, int> JAVA_ENGINE_TYPES_CONSTRUCTORS;
 
+static HashMap<StringName, int> JAVA_USER_TYPE_CONSTRUCTORS;
+
 KtVariant::KtVariant(wire::Value value) : value(value) {}
 
 void to_kvariant_fromNIL(wire::Value& des, const Variant& src) {
@@ -144,10 +146,29 @@ void to_kvariant_fromOBJECT(wire::Value& des, const Variant& src) {
     }
 
     obj_value->set_engine_constructor_index(JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name]);
+    if (des.has_object_value()) {
+        obj_value->set_is_user_type(des.object_value().is_user_type());
+        obj_value->set_user_constructor_index(des.object_value().user_constructor_index());
+    }
+
     des.set_allocated_object_value(obj_value);
 }
 
 KtVariant::KtVariant(const Variant& variant) {
+    Variant::Type type = variant.get_type();
+    TO_KT_VARIANT_FROM[type](value, variant);
+}
+
+KtVariant::KtVariant(const Variant& variant, const KtPropertyInfo* argInfo) {
+    String class_name {argInfo->class_name};
+
+    if (JAVA_USER_TYPE_CONSTRUCTORS.has(class_name)) {
+        wire::Object* obj_value{wire::Object::default_instance().New()};
+        obj_value->set_user_constructor_index(JAVA_USER_TYPE_CONSTRUCTORS[class_name]);
+        obj_value->set_is_user_type(true);
+        value.set_allocated_object_value(obj_value);
+    }
+
     Variant::Type type = variant.get_type();
     TO_KT_VARIANT_FROM[type](value, variant);
 }
@@ -325,3 +346,22 @@ void KtVariant::register_engine_types(JNIEnv* p_env, jobject p_this, jobjectArra
 void KtVariant::clear_engine_types() {
     JAVA_ENGINE_TYPES_CONSTRUCTORS.clear();
 }
+
+void KtVariant::register_user_types(JNIEnv* p_env, jobject p_this, jobjectArray p_user_type_names) {
+    print_line("Starting to register managed user types...");
+    jni::Env env(p_env);
+    jni::JObjectArray types_names{p_user_type_names};
+
+    for (int i = 0; i < types_names.length(env); i++) {
+        const String& class_name{env.from_jstring(static_cast<jni::JString>(types_names.get(env, i)))};
+        JAVA_USER_TYPE_CONSTRUCTORS[class_name] = i;
+        print_verbose(vformat("Registered %s user type with index %s.", class_name, i));
+    }
+    print_line("Done registering managed user types...");
+}
+
+void KtVariant::clear_user_types() {
+    JAVA_USER_TYPE_CONSTRUCTORS.clear();
+}
+
+

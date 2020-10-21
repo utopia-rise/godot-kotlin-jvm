@@ -7,7 +7,8 @@ Bootstrap::Bootstrap(jni::JObject p_wrapped, jni::JObject p_class_loader) : Java
 
 void
 Bootstrap::register_hooks(jni::Env& p_env, LoadClassesHook p_load_classes_hook, UnloadClassesHook p_unload_classes_hook,
-                          RegisterManagedEngineTypes p_register_managed_engine_types_hook) {
+                          RegisterManagedEngineTypes p_register_managed_engine_types_hook,
+                          RegisterManagedUserTypes p_register_managed_user_types_hook) {
     jni::JNativeMethod load_class_hook_method {
             "loadClasses",
             "([Lgodot/core/KtClass;)V",
@@ -26,10 +27,17 @@ Bootstrap::register_hooks(jni::Env& p_env, LoadClassesHook p_load_classes_hook, 
             (void*) p_register_managed_engine_types_hook
     };
 
+    jni::JNativeMethod register_managed_user_types_method{
+            "registerManagedUserTypes",
+            "([Ljava/lang/String;)V",
+            (void*) p_register_managed_user_types_hook
+    };
+
     Vector<jni::JNativeMethod> methods;
     methods.push_back(load_class_hook_method);
     methods.push_back(unload_class_hook_method);
     methods.push_back(register_managed_engine_types_method);
+    methods.push_back(register_managed_user_types_method);
     get_class(p_env).register_natives(p_env, methods);
 }
 

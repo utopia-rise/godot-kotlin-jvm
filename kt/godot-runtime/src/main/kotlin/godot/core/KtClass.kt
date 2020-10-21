@@ -5,7 +5,7 @@ import godot.util.VoidPtr
 class KtClass<T : KtObject>(
         val name: String,
         val superClass: String,
-        private val constructors: Map<Int, KtConstructor<T>>,
+        val constructors: Map<Int, KtConstructor<T>>,
         private val _properties: Map<String, KtProperty<T, *>>,
         private val _functions: Map<String, KtFunction<T, *>>,
         private val _signalInfos: Map<String, KtSignalInfo>

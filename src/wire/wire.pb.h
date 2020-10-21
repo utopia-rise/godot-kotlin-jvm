@@ -1861,6 +1861,8 @@ class Object PROTOBUF_FINAL :
   enum : int {
     kPtrFieldNumber = 1,
     kEngineConstructorIndexFieldNumber = 2,
+    kUserConstructorIndexFieldNumber = 3,
+    kIsUserTypeFieldNumber = 4,
   };
   // fixed64 ptr = 1;
   void clear_ptr();
@@ -1880,6 +1882,24 @@ class Object PROTOBUF_FINAL :
   void _internal_set_engine_constructor_index(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
+  // int32 user_constructor_index = 3;
+  void clear_user_constructor_index();
+  ::PROTOBUF_NAMESPACE_ID::int32 user_constructor_index() const;
+  void set_user_constructor_index(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_user_constructor_index() const;
+  void _internal_set_user_constructor_index(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // bool is_user_type = 4;
+  void clear_is_user_type();
+  bool is_user_type() const;
+  void set_is_user_type(bool value);
+  private:
+  bool _internal_is_user_type() const;
+  void _internal_set_is_user_type(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:wire.Object)
  private:
   class _Internal;
@@ -1889,6 +1909,8 @@ class Object PROTOBUF_FINAL :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::uint64 ptr_;
   ::PROTOBUF_NAMESPACE_ID::int32 engine_constructor_index_;
+  ::PROTOBUF_NAMESPACE_ID::int32 user_constructor_index_;
+  bool is_user_type_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_wire_2eproto;
 };
@@ -4021,6 +4043,46 @@ inline void Object::_internal_set_engine_constructor_index(::PROTOBUF_NAMESPACE_
 inline void Object::set_engine_constructor_index(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_engine_constructor_index(value);
   // @@protoc_insertion_point(field_set:wire.Object.engine_constructor_index)
+}
+
+// int32 user_constructor_index = 3;
+inline void Object::clear_user_constructor_index() {
+  user_constructor_index_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Object::_internal_user_constructor_index() const {
+  return user_constructor_index_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Object::user_constructor_index() const {
+  // @@protoc_insertion_point(field_get:wire.Object.user_constructor_index)
+  return _internal_user_constructor_index();
+}
+inline void Object::_internal_set_user_constructor_index(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  user_constructor_index_ = value;
+}
+inline void Object::set_user_constructor_index(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_user_constructor_index(value);
+  // @@protoc_insertion_point(field_set:wire.Object.user_constructor_index)
+}
+
+// bool is_user_type = 4;
+inline void Object::clear_is_user_type() {
+  is_user_type_ = false;
+}
+inline bool Object::_internal_is_user_type() const {
+  return is_user_type_;
+}
+inline bool Object::is_user_type() const {
+  // @@protoc_insertion_point(field_get:wire.Object.is_user_type)
+  return _internal_is_user_type();
+}
+inline void Object::_internal_set_is_user_type(bool value) {
+  
+  is_user_type_ = value;
+}
+inline void Object::set_is_user_type(bool value) {
+  _internal_set_is_user_type(value);
+  // @@protoc_insertion_point(field_set:wire.Object.is_user_type)
 }
 
 // -------------------------------------------------------------------

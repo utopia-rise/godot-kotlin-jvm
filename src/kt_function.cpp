@@ -2,6 +2,7 @@
 
 #include "kt_function.h"
 #include "gd_kotlin.h"
+#include <core/list.h>
 
 KtFunction::KtFunction(jni::JObject p_wrapped, jni::JObject& p_class_loader)
         : JavaInstanceWrapper("godot.core.KtFunction", p_wrapped, p_class_loader), parameter_count(-1) {
@@ -39,9 +40,15 @@ Variant KtFunction::invoke(const KtObject* instance, const Variant** p_args, int
     jni::MethodId methodId {get_method_id(env, "invoke", "(Lgodot/core/KtObject;)Z")};
     TransferContext* transferContext = GDKotlin::get_instance().transfer_context;
     Vector<KtVariant> args;
+    List<KtPropertyInfo*>::Element* argInfoElement = method_info->arguments.front();
     for (int i = 0; i < args_count; i++) {
-        args.push_back(KtVariant(*p_args[i]));
+        if (i > 0) {
+            argInfoElement = argInfoElement->next();
+        }
+        KtPropertyInfo* argInfo = argInfoElement->get();
+        args.push_back(KtVariant(*p_args[i], argInfo));
     }
+
     transferContext->write_args(env, args);
     bool refresh_buffer = wrapped.call_boolean_method(env, methodId, {instance->get_wrapped()});
     return transferContext->read_return_value(env, refresh_buffer).to_godot_variant();

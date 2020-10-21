@@ -79,7 +79,7 @@ void GDKotlin::init() {
     jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");
     jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
     bootstrap = new Bootstrap(instance, class_loader);
-    bootstrap->register_hooks(env, load_classes_hook, unload_classes_hook, KtVariant::register_engine_types);
+    bootstrap->register_hooks(env, load_classes_hook, unload_classes_hook, KtVariant::register_engine_types, KtVariant::register_user_types);
     bool is_editor = Engine::get_singleton()->is_editor_hint();
     String project_path = project_settings->globalize_path("res://");
     bootstrap->init(env, is_editor, project_path);

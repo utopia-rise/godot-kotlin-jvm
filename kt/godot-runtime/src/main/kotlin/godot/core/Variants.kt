@@ -232,10 +232,15 @@ class KtVariant {
 
     inline fun <reified T : KtObject> asObject(): T {
         val objectValue = data.objectValue
+        if (objectValue.isUserType) {
+            val constructor = TypeManager.userTypeConstructors[objectValue.userConstructorIndex]
+            return constructor(objectValue.ptr) as T
+        }
+
         val constructorIndex = objectValue.engineConstructorIndex
         return KtObject.instantiateWith(
-                objectValue.ptr,
-                TypeManager.engineTypesConstructors[constructorIndex]
+            objectValue.ptr,
+            TypeManager.engineTypeConstructors[constructorIndex]
         ) as T
     }
 

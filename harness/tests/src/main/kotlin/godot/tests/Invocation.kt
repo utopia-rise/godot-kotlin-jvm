@@ -33,9 +33,10 @@ class OtherScript : Node() {
 //		This needs the use of user defined constructors when crossing boundaries
 //		see: KtVariant::asObject() and Bootstrap::registerManagedEngineTypes methods.
 //
-//	fun hookTwoParam(str: String, inv: Invocation) {
-//		println("Hook was calles with parameters: $str, $inv")
-//	}
+    @RegisterFunction
+	fun hookTwoParamInvocation(str: String, inv: Invocation) {
+		println("Hook was called with parameters (invocation): $str, $inv")
+	}
 
 }
 
@@ -56,6 +57,9 @@ class Invocation : Spatial() {
 
     @RegisterSignal
     val signalTwoParam by signal<String, Invocation>("str", "inv")
+
+    @RegisterSignal
+    val signalTwoParamInvocation by signal<String, Invocation>("str", "inv")
 
     @RegisterFunction
     fun intValue(value: Int) = value
@@ -96,9 +100,11 @@ class Invocation : Spatial() {
 		signalNoParam.connect(invocation, invocation::hookNoParam)
 		signalOneParam.connect(invocation, invocation::hookOneParam)
 		signalTwoParam.connect(invocation, invocation::hookTwoParam)
+		signalTwoParamInvocation.connect(invocation, invocation::hookTwoParamInvocation)
 		signalNoParam.emit()
 		signalOneParam.emit(false)
 		signalTwoParam.emit("My Awesome param !", this)
+        signalTwoParamInvocation.emit("My Awesome param (invocation)!", this)
 	}
 
 	override fun _onInit() {

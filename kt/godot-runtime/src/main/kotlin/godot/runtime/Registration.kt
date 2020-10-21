@@ -657,8 +657,9 @@ class ClassRegistry {
     fun <T : KtObject> registerClass(name: String, superClass: String, isTool: Boolean = false, cb: ClassBuilderDsl<T>.() -> Unit) {
         val builder = ClassBuilderDsl<T>(name, superClass)
         builder.cb()
-        TypeManager.registerUserType(name)
-        registerClass(builder.build())
+        val clazz = builder.build()
+        TypeManager.registerUserType(name) { voidPtr -> clazz.new(voidPtr, 0) }
+        registerClass(clazz)
     }
 
     private fun <T : KtObject> registerClass(cls: KtClass<T>) {
