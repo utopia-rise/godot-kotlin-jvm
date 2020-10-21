@@ -63,7 +63,9 @@ void KtProperty::callGet(KtObject* instance, Variant& r_ret) {
             r_ret = Variant(ref->get_ref_ptr());
             return;
         } else {
-            print_error(vformat("Cannot get property %s as REF", field_name));
+            const REF& reference{REF(dynamic_cast<Reference*>(default_value.operator Object *()))};
+            instance->append_or_update_ref(field_name, reference);
+            r_ret = Variant(reference.get_ref_ptr());
         }
     } else {
         jni::Env env{jni::Jvm::current_env()};

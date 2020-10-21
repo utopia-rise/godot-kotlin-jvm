@@ -59,12 +59,12 @@ class Invocation : Spatial() {
     @RegisterProperty
     var customName = "Idonthaveanyidea"
 
-    var invocation = OtherScript()
+	var invocation = OtherScript()
 
-    @RegisterProperty
-    var enumTest = TestEnum.ENUM_1
+	@RegisterProperty
+	var enumTest = TestEnum.ENUM_1
 
-    @RegisterProperty var resourceTest by refProperty(::NavigationMesh)
+	@RegisterProperty var resourceTest by refProperty(::NavigationMesh)
 
     @RegisterSignal
     val signalNoParam by signal()
@@ -78,11 +78,11 @@ class Invocation : Spatial() {
     @RegisterFunction
     fun intValue(value: Int) = value
 
-    @RegisterFunction
-    fun longValue(value: Long) = value
+	@RegisterFunction
+	fun longValue(value: Long) = value
 
-    @RegisterFunction
-    fun floatValue(value: Float) = value
+	@RegisterFunction
+	fun floatValue(value: Float) = value
 
 	@RegisterFunction
 	fun doubleValue(value: Double) = value
