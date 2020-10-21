@@ -155,7 +155,6 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr,
 
 void TransferContext::update_ref_for_instance_and_method(JNIEnv* raw_env, jobject instance, jlong instance_ptr,
                                                          jstring field, jlong reference_ptr) {
-    print_verbose("ENTER UPDATE REF FOR INSTANCE AND METHOD");
     auto* script_owner{reinterpret_cast<Object*>(static_cast<uintptr_t>(instance_ptr))};
     auto* script_instance{dynamic_cast<KotlinInstance*>(script_owner->get_script_instance())};
     auto* reference{reinterpret_cast<Reference*>(static_cast<uintptr_t>(reference_ptr))};

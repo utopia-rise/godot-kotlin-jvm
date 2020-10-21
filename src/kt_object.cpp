@@ -6,11 +6,9 @@ KtObject::KtObject(jni::JObject p_wrapped, jni::JObject p_class_loader, const St
 
 KtObject::~KtObject() {
     //Unload linked REF
-    print_verbose("ENTER KTOBJECT DESTRUCTOR");
     List<StringName> keys;
     refs.get_key_list(&keys);
     for (int i = 0; i < keys.size(); ++i) {
-        print_verbose(vformat("Will unref %s", keys[i]));
         refs[keys[i]].unref();
     }
 
@@ -29,7 +27,6 @@ const StringName& KtObject::get_class_name() const {
 
 void KtObject::append_or_update_ref(const StringName& field, const REF& ref) {
     if (REF* r{refs.getptr(field)}) {
-        print_verbose(vformat("Will unref %s", field));
         r->unref();
     }
     refs[field] = ref;
