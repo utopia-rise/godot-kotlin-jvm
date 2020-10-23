@@ -4,7 +4,6 @@ import godot.core.KtVariant
 
 /**
  * Used for variadic icalls.
- * TODO: Make non generic emit and connect methods at code generation time to avoid pattern matching when calling signals
  */
 fun wrap(obj: Any?): KtVariant {
     if (obj == null) {
