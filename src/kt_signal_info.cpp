@@ -15,6 +15,12 @@ KtSignalInfo::KtSignalInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader)
     }
 }
 
+KtSignalInfo::~KtSignalInfo() {
+    for (auto i = 0; i < arguments.size(); i++) {
+        delete arguments[i];
+    }
+}
+
 MethodInfo KtSignalInfo::get_member_info() const {
     MethodInfo method_info;
     method_info.name = name;
