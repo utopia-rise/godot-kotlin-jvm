@@ -8,7 +8,7 @@
 
 struct KtSignalInfo : public JavaInstanceWrapper {
     KtSignalInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader);
-    ~KtSignalInfo() = default;
+    ~KtSignalInfo();
 
     String name;
     List<KtPropertyInfo*> arguments;
