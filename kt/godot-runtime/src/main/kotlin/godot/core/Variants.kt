@@ -121,6 +121,12 @@ class KtVariant {
         }
     }
 
+    constructor(value: VariantArray) {
+        data = build {
+            setVariantArrayValue(Wire.VariantArray.newBuilder().build())
+        }
+    }
+
     constructor(value: KtObject) {
         data = build {
             val obj = Wire.Object.newBuilder()
@@ -222,6 +228,8 @@ class KtVariant {
         return Transform(basis, origin)
     }
 
+    fun asVariantArray() = VariantArray()
+
     inline fun <reified T : KtObject> asObject(): T {
         val objectValue = data.objectValue
         val constructorIndex = objectValue.engineConstructorIndex
@@ -246,6 +254,7 @@ class KtVariant {
         AABB,
         BASIS,
         TRANSFORM,
+        ARRAY,
         OBJECT
     }
 
@@ -253,9 +262,9 @@ class KtVariant {
         internal val TYPE_TO_WIRE_VALUE_TYPE = mapOf(
                 Type.NIL to Wire.Value.TypeCase.NIL_VALUE,
                 Type.LONG to Wire.Value.TypeCase.LONG_VALUE,
-                Type.DOUBLE to Wire.Value.TypeCase.LONG_VALUE,
-                Type.STRING to Wire.Value.TypeCase.LONG_VALUE,
-                Type.BOOL to Wire.Value.TypeCase.LONG_VALUE,
+                Type.DOUBLE to Wire.Value.TypeCase.REAL_VALUE,
+                Type.STRING to Wire.Value.TypeCase.STRING_VALUE,
+                Type.BOOL to Wire.Value.TypeCase.BOOL_VALUE,
                 Type.VECTOR2 to Wire.Value.TypeCase.VECTOR2_VALUE,
                 Type.RECT2 to Wire.Value.TypeCase.RECT2_VALUE,
                 Type.VECTOR3 to Wire.Value.TypeCase.VECTOR3_VALUE,
@@ -265,6 +274,7 @@ class KtVariant {
                 Type.AABB to Wire.Value.TypeCase.AABB_VALUE,
                 Type.BASIS to Wire.Value.TypeCase.BASIS_VALUE,
                 Type.TRANSFORM to Wire.Value.TypeCase.TRANSFORM_VALUE,
+                Type.ARRAY to Wire.Value.TypeCase.VARIANT_ARRAY_VALUE,
                 Type.OBJECT to Wire.Value.TypeCase.OBJECT_VALUE
         )
 

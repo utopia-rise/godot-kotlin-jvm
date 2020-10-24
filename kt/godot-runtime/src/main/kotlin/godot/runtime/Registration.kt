@@ -16,14 +16,15 @@ class KtPropertyInfoBuilderDsl {
 
 data class KtFunctionArgument(
     val type: KtVariant.Type,
-    val className: String
+    val className: String,
+    val name: String = "" //empty for return type
 ) {
     internal fun toKtPropertyInfo() = KtPropertyInfo(
         type,
-        "",
+        name,
         className,
         PropertyHint.NONE,
-        ""
+        "" //always empty. Only used for properties
     )
 }
 
@@ -37,6 +38,8 @@ class ClassBuilderDsl<T : KtObject>(
 
     @PublishedApi
     internal val properties = mutableMapOf<String, KtProperty<T, *>>()
+
+    private val signals = mutableMapOf<String, KtSignalInfo>()
 
     fun constructor(constructor: KtConstructor<T>) {
         require(!constructors.containsKey(constructor.parameterCount)) {
@@ -498,27 +501,117 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
+    fun <T> signal(kProperty: KProperty<T>) {
+        appendSignal(
+            KtSignalInfo(kProperty.name.removePrefix("signal").camelToSnakeCase(), listOf())
+        )
+    }
+
+    fun <T> signal(
+        kProperty: KProperty<T>,
+        p0: KtFunctionArgument
+    ) {
+        appendSignal(
+            KtSignalInfo(
+                kProperty.name.removePrefix("signal").camelToSnakeCase(),
+                listOf(
+                    p0.toKtPropertyInfo()
+                )
+            )
+        )
+    }
+
+    fun <T> signal(
+        kProperty: KProperty<T>,
+        p0: KtFunctionArgument,
+        p1: KtFunctionArgument
+    ) {
+        appendSignal(
+            KtSignalInfo(
+                kProperty.name.removePrefix("signal").camelToSnakeCase(),
+                listOf(
+                    p0.toKtPropertyInfo(),
+                    p1.toKtPropertyInfo()
+                )
+            )
+        )
+    }
+
+    fun <T> signal(
+        kProperty: KProperty<T>,
+        p0: KtFunctionArgument,
+        p1: KtFunctionArgument,
+        p2: KtFunctionArgument
+    ) {
+        appendSignal(
+            KtSignalInfo(
+                kProperty.name.removePrefix("signal").camelToSnakeCase(),
+                listOf(
+                    p0.toKtPropertyInfo(),
+                    p1.toKtPropertyInfo(),
+                    p2.toKtPropertyInfo()
+                )
+            )
+        )
+    }
+
+    fun <T> signal(
+        kProperty: KProperty<T>,
+        p0: KtFunctionArgument,
+        p1: KtFunctionArgument,
+        p2: KtFunctionArgument,
+        p3: KtFunctionArgument
+    ) {
+        appendSignal(
+            KtSignalInfo(
+                kProperty.name.removePrefix("signal").camelToSnakeCase(),
+                listOf(
+                    p0.toKtPropertyInfo(),
+                    p1.toKtPropertyInfo(),
+                    p2.toKtPropertyInfo(),
+                    p3.toKtPropertyInfo()
+                )
+            )
+        )
+    }
+
+    fun <T> signal(
+        kProperty: KProperty<T>,
+        p0: KtFunctionArgument,
+        p1: KtFunctionArgument,
+        p2: KtFunctionArgument,
+        p3: KtFunctionArgument,
+        p4: KtFunctionArgument
+    ) {
+        appendSignal(
+            KtSignalInfo(
+                kProperty.name.removePrefix("signal").camelToSnakeCase(),
+                listOf(
+                    p0.toKtPropertyInfo(),
+                    p1.toKtPropertyInfo(),
+                    p2.toKtPropertyInfo(),
+                    p3.toKtPropertyInfo(),
+                    p4.toKtPropertyInfo()
+                )
+            )
+        )
+    }
+
+    fun <T> signal(kProperty: KProperty<T>, args: Array<KtPropertyInfoBuilderDsl.() -> Unit> = arrayOf()) {
+        appendSignal(
+            KtSignalInfo(kProperty.name.removePrefix("signal").camelToSnakeCase(), args.applyArgumentsDsl())
+        )
+    }
+
     private fun argumentsAndReturnType(
         returns: KtPropertyInfoBuilderDsl.() -> Unit,
         vararg args: KtPropertyInfoBuilderDsl.() -> Unit
     ): Pair<List<KtPropertyInfo>, KtPropertyInfo> {
         val returnBuilder = KtPropertyInfoBuilderDsl()
         returnBuilder.returns()
-
-        val argumentsCheckList = mutableSetOf<String>()
-
         val returnInfo = returnBuilder.build()
-        return args.map {
-            val builder = KtPropertyInfoBuilderDsl()
-            builder.it()
-            val propertyInfo = builder.build()
-            require(!argumentsCheckList.contains(propertyInfo.name)) {
-                "Cannot have two arguments with name ${propertyInfo.name}"
-            }
-            require(propertyInfo.name.isNotEmpty()) { "Function parameters should have names." }
-            argumentsCheckList.add(propertyInfo.name)
-            propertyInfo
-        } to returnInfo
+
+        return args.applyArgumentsDsl() to returnInfo
     }
 
     private fun <R> appendFunction(function: KtFunction<T, R>) {
@@ -528,9 +621,33 @@ class ClassBuilderDsl<T : KtObject>(
         functions[function.functionInfo.name] = function
     }
 
+    @PublishedApi
+    internal fun appendSignal(signalInfo: KtSignalInfo) {
+        require(!signals.containsKey(signalInfo.name)) {
+            "A signal with ${signalInfo.name} already exists."
+        }
+        signals[signalInfo.name] = signalInfo
+    }
+
     internal fun build(): KtClass<T> {
         check(constructors.isNotEmpty()) { "Please provide at least one constructor." }
-        return KtClass(name, superClass, constructors, properties, functions)
+        return KtClass(name, superClass, constructors, properties, functions, signals)
+    }
+
+    @PublishedApi
+    internal fun Array<out KtPropertyInfoBuilderDsl.() -> Unit>.applyArgumentsDsl(): List<KtPropertyInfo> {
+        val argumentsCheckList = mutableSetOf<String>()
+        return map {
+            val builder = KtPropertyInfoBuilderDsl()
+            builder.it()
+            val propertyInfo = builder.build()
+            require(!argumentsCheckList.contains(propertyInfo.name)) {
+                "Cannot have two arguments with name ${propertyInfo.name}"
+            }
+            require(propertyInfo.name.isNotEmpty()) { "Function parameters should have names." }
+            argumentsCheckList.add(propertyInfo.name)
+            propertyInfo
+        }
     }
 }
 

@@ -86,11 +86,14 @@ ScriptLanguage* KotlinScript::get_language() const {
 }
 
 bool KotlinScript::has_script_signal(const StringName& p_signal) const {
-    return false;
+    KtClass* kotlin_class{get_kotlin_class()};
+    return kotlin_class ? kotlin_class->get_signal(p_signal) != nullptr : false;
 }
 
 void KotlinScript::get_script_signal_list(List<MethodInfo>* r_signals) const {
-
+    if (KtClass* kotlin_class{get_kotlin_class()}) {
+        kotlin_class->get_signal_list(r_signals);
+    }
 }
 
 bool KotlinScript::get_property_default_value(const StringName& p_property, Variant& r_value) const {

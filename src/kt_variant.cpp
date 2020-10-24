@@ -7,7 +7,7 @@ static void (* TO_KT_VARIANT_FROM[27 /* Variant::Type count */])(wire::Value&, c
 
 static Variant (* TO_GODOT_VARIANT_FROM[27 /* KVariant::TypeCase count */])(const wire::Value&);
 
-static Variant::Type WIRE_TYPE_CASE_TO_VARIANT_TYPE[16];
+static Variant::Type WIRE_TYPE_CASE_TO_VARIANT_TYPE[17];
 
 static HashMap<StringName, int> JAVA_ENGINE_TYPES_CONSTRUCTORS;
 
@@ -118,6 +118,11 @@ void to_kvariant_fromTRANSFORM(wire::Value& des, const Variant& src) {
     transform->set_allocated_basis(to_wire_basis(src_transform.basis));
     transform->set_allocated_origin(to_wire_vector3(src_transform.origin));
     des.set_allocated_transform_value(transform);
+}
+
+void to_kvariant_fromARRAY(wire::Value& des, const Variant& src) {
+    wire::VariantArray* variant_array {wire::VariantArray::default_instance().New()};
+    des.set_allocated_variant_array_value(variant_array);
 }
 
 void to_kvariant_fromOBJECT(wire::Value& des, const Variant& src) {
@@ -233,6 +238,10 @@ Variant from_kvariant_tokTransformValue(const wire::Value& src) {
     );
 }
 
+Variant from_kvariant_tokVariantArrayValue(const wire::Value& src) {
+    return Array();
+}
+
 Variant from_kvariant_toKObjectValue(const wire::Value& src) {
     return Variant(reinterpret_cast<Object*>(src.object_value().ptr()));
 }
@@ -256,6 +265,7 @@ void KtVariant::initMethodArray() {
     TO_KT_VARIANT_FROM[Variant::AABB] = to_kvariant_fromAABB;
     TO_KT_VARIANT_FROM[Variant::BASIS] = to_kvariant_fromBASIS;
     TO_KT_VARIANT_FROM[Variant::TRANSFORM] = to_kvariant_fromTRANSFORM;
+    TO_KT_VARIANT_FROM[Variant::ARRAY] = to_kvariant_fromARRAY;
     TO_KT_VARIANT_FROM[Variant::OBJECT] = to_kvariant_fromOBJECT;
 
     TO_GODOT_VARIANT_FROM[wire::Value::kNilValue] = from_kvariant_tokNilValue;
@@ -272,6 +282,7 @@ void KtVariant::initMethodArray() {
     TO_GODOT_VARIANT_FROM[wire::Value::kAabbValue] = from_kvariant_tokAabbValue;
     TO_GODOT_VARIANT_FROM[wire::Value::kBasisValue] = from_kvariant_tokBasisValue;
     TO_GODOT_VARIANT_FROM[wire::Value::kTransformValue] = from_kvariant_tokTransformValue;
+    TO_GODOT_VARIANT_FROM[wire::Value::kVariantArrayValue] = from_kvariant_tokVariantArrayValue;
     TO_GODOT_VARIANT_FROM[wire::Value::kObjectValue] = from_kvariant_toKObjectValue;
 
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kNilValue] = Variant::Type::NIL;
@@ -288,7 +299,9 @@ void KtVariant::initMethodArray() {
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kAabbValue] = Variant::Type::AABB;
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kBasisValue] = Variant::Type::BASIS;
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kTransformValue] = Variant::Type::TRANSFORM;
+    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kVariantArrayValue] = Variant::Type::ARRAY;
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kObjectValue] = Variant::Type::OBJECT;
+    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kVariantArrayValue] = Variant::Type::ARRAY;
     WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::TYPE_NOT_SET] = Variant::Type::VARIANT_MAX;
 }
 
