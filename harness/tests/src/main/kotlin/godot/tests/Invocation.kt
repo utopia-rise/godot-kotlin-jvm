@@ -42,7 +42,7 @@ class OtherScript : Node() {
 }
 
 enum class TestEnum {
-	ENUM_1
+    ENUM_1
 }
 
 @RegisterClass
@@ -59,12 +59,13 @@ class Invocation : Spatial() {
     @RegisterProperty
     var customName = "Idonthaveanyidea"
 
-	var invocation = OtherScript()
+    var invocation = OtherScript()
 
-	@RegisterProperty
-	var enumTest = TestEnum.ENUM_1
+    @RegisterProperty
+    var enumTest = TestEnum.ENUM_1
 
-	@RegisterProperty var resourceTest by refProperty(::NavigationMesh)
+    @RegisterProperty
+    var resourceTest by refProperty(::NavigationMesh)
 
     @RegisterSignal
     val signalNoParam by signal()
@@ -78,30 +79,30 @@ class Invocation : Spatial() {
     @RegisterFunction
     fun intValue(value: Int) = value
 
-	@RegisterFunction
-	fun longValue(value: Long) = value
+    @RegisterFunction
+    fun longValue(value: Long) = value
 
-	@RegisterFunction
-	fun floatValue(value: Float) = value
+    @RegisterFunction
+    fun floatValue(value: Float) = value
 
-	@RegisterFunction
-	fun doubleValue(value: Double) = value
+    @RegisterFunction
+    fun doubleValue(value: Double) = value
 
-	@RegisterFunction
-	fun booleanValue(value: Boolean) = value
+    @RegisterFunction
+    fun booleanValue(value: Boolean) = value
 
-	@RegisterFunction
-	fun stringValue(value: String) = value
+    @RegisterFunction
+    fun stringValue(value: String) = value
 
-	@RegisterFunction
-	fun intAddition(a: Int, b: Int) = a + b
+    @RegisterFunction
+    fun intAddition(a: Int, b: Int) = a + b
 
-	@RegisterFunction
-	fun _enterTree() {
-		println("Enter tree !")
-		println("Instance id: ${getInstanceId()}")
-		println("CustomName is $customName")
-	}
+    @RegisterFunction
+    fun _enterTree() {
+        println("Enter tree !")
+        println("Instance id: ${getInstanceId()}")
+        println("CustomName is $customName")
+    }
 
     @RegisterFunction
     fun _ready() {
