@@ -28,7 +28,7 @@ class KtVariant {
     }
 
     constructor(value: Boolean) {
-        data = build { setBoolValue(value)}
+        data = build { setBoolValue(value) }
     }
 
     constructor(value: Unit) {
@@ -132,6 +132,7 @@ class KtVariant {
             val obj = Wire.Object.newBuilder()
                     .setPtr(value.rawPtr)
                     .setEngineConstructorIndex(0)
+                    .setIsRef(value.isRef)
                     .build()
 
             setObjectValue(obj)
@@ -234,10 +235,12 @@ class KtVariant {
         val objectValue = data.objectValue
         val ptr = objectValue.ptr
         val constructorIndex = objectValue.engineConstructorIndex
-        return (GarbageCollector.wrapped[ptr] ?: KtObject.instantiateWith(
-                ptr,
-                TypeManager.engineTypesConstructors[constructorIndex]
-        )) as T
+        val isRef = objectValue.isRef
+        return (if (isRef) {
+            GarbageCollector.refWrappedMap[ptr]?.get()
+        } else {
+            GarbageCollector.wrappedMap[ptr]
+        } ?: KtObject.instantiateWith(ptr, isRef, TypeManager.engineTypesConstructors[constructorIndex])) as T
     }
 
     enum class Type {

@@ -11,12 +11,6 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
         (void*) TransferContext::icall
     };
 
-    jni::JNativeMethod update_ref_for_instance_and_method_method {
-        "updateRefForInstanceAndField",
-        "(JLjava/lang/String;J)V",
-        (void*) TransferContext::update_ref_for_instance_and_method
-    };
-
     jni::JNativeMethod invoke_ctor_method {
         "invokeConstructor",
         "(Ljava/lang/String;)J",
@@ -37,7 +31,6 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
 
     Vector<jni::JNativeMethod> methods;
     methods.push_back(icall_method);
-    methods.push_back(update_ref_for_instance_and_method_method);
     methods.push_back(invoke_ctor_method);
     methods.push_back(set_script_method);
     methods.push_back(free_object_method);
@@ -151,15 +144,6 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr,
     const KtVariant& retValue{methodBind->call(ptr, variantArgsPtr, argsSize, r_error)};
     ERR_FAIL_COND_MSG(r_error.error != Variant::CallError::CALL_OK, vformat("Call to %s failed.", method))
     transferContext->write_return_value(env, retValue);
-}
-
-void TransferContext::update_ref_for_instance_and_method(JNIEnv* raw_env, jobject instance, jlong instance_ptr,
-                                                         jstring field, jlong reference_ptr) {
-    auto* script_owner{reinterpret_cast<Object*>(static_cast<uintptr_t>(instance_ptr))};
-    auto* script_instance{dynamic_cast<KotlinInstance*>(script_owner->get_script_instance())};
-    auto* reference{reinterpret_cast<Reference*>(static_cast<uintptr_t>(reference_ptr))};
-    jni::Env env(raw_env);
-    script_instance->append_or_update_ref(env.from_jstring(jni::JString(field)), REF(reference));
 }
 
 jlong TransferContext::invoke_constructor(JNIEnv *p_raw_env, jobject p_instance, jstring p_class_name) {

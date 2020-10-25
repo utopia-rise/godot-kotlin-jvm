@@ -6,7 +6,10 @@ import godot.util.VoidPtr
 import godot.util.camelToSnakeCase
 import kotlin.reflect.KCallable
 
-open class Object : KtObject() {
+open class Object(isRef: Boolean = false) : KtObject(isRef) {
+
+    constructor() : this(false)
+
     override fun __new(): VoidPtr {
         return TransferContext.invokeConstructor("Object")
     }
@@ -335,13 +338,11 @@ open class Spatial : Node() {
     }
 }
 
-open class Reference : Object(), KtReference {
+open class Reference : Object(true) {
+
     override fun __new(): VoidPtr {
         return TransferContext.invokeConstructor("Reference")
     }
-
-    override val referencePtr: VoidPtr
-        get() = rawPtr
 }
 
 open class Resource : Reference() {

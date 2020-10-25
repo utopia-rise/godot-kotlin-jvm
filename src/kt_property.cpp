@@ -42,9 +42,9 @@ KtProperty::KtProperty(jni::JObject p_wrapped, jni::JObject& p_class_loader)
 
 KtProperty::~KtProperty() {
     //Free default value if object
-    if (Object* obj{default_value.operator Object *()}) {
-        memdelete(obj);
-    }
+//    if (Object* obj{default_value.operator Object *()}) {
+//        memdelete(obj);
+//    }
     delete propertyInfo;
 }
 
@@ -57,32 +57,13 @@ PropertyInfo KtProperty::get_member_info() {
 }
 
 void KtProperty::callGet(KtObject* instance, Variant& r_ret) {
-    if (is_ref) {
-        const String& field_name = propertyInfo->name;
-        if (const REF* ref{instance->get_ref_for_field(field_name)}) {
-            r_ret = Variant(ref->get_ref_ptr());
-            return;
-        } else {
-            const REF& reference{REF(dynamic_cast<Reference*>(default_value.operator Object *()))};
-            instance->append_or_update_ref(field_name, reference);
-            r_ret = Variant(reference.get_ref_ptr());
-        }
-    } else {
-        jni::Env env{jni::Jvm::current_env()};
-        jni::MethodId getCallMethodId{get_method_id(env, "callGet", "(Lgodot/core/KtObject;)Z")};
-        bool refreshBuffer = wrapped.call_boolean_method(env, getCallMethodId, {instance->get_wrapped()});
-        r_ret = GDKotlin::get_instance().transfer_context->read_return_value(env, refreshBuffer).to_godot_variant();
-    }
+    jni::Env env{jni::Jvm::current_env()};
+    jni::MethodId getCallMethodId{get_method_id(env, "callGet", "(Lgodot/core/KtObject;)Z")};
+    bool refreshBuffer = wrapped.call_boolean_method(env, getCallMethodId, {instance->get_wrapped()});
+    r_ret = GDKotlin::get_instance().transfer_context->read_return_value(env, refreshBuffer).to_godot_variant();
 }
 
 void KtProperty::setCall(KtObject* instance, const Variant& p_value) {
-    if (p_value.is_ref()) {
-        const String& field_name{propertyInfo->name};
-        if (REF* ref{instance->get_ref_for_field(field_name)}) {
-            ref->unref();
-        }
-        instance->append_or_update_ref(field_name, REF(dynamic_cast<Reference*>(p_value.operator Object*())));
-    }
     jni::Env env{jni::Jvm::current_env()};
     jni::MethodId setCallMethodId {get_method_id(env, "callSet", "(Lgodot/core/KtObject;)V")};
     Vector<KtVariant> arg;

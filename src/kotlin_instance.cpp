@@ -144,11 +144,3 @@ MultiplayerAPI::RPCMode KotlinInstance::get_rset_mode(const StringName& p_variab
 ScriptLanguage* KotlinInstance::get_language() {
     return &KotlinLanguage::get_instance();
 }
-
-void KotlinInstance::append_or_update_ref(const StringName& field, const REF& ref) {
-    wrapped_object->append_or_update_ref(field, ref);
-}
-
-REF* KotlinInstance::get_ref_for_field(const StringName& field) {
-    return wrapped_object->get_ref_for_field(field);
-}

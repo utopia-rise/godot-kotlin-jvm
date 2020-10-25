@@ -8,7 +8,6 @@ import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
-import godot.runtime.refProperty
 import godot.signals.signal
 import org.joda.time.DateTime
 
@@ -65,7 +64,7 @@ class Invocation : Spatial() {
     var enumTest = TestEnum.ENUM_1
 
     @RegisterProperty
-    var resourceTest by refProperty(::NavigationMesh)
+    var resourceTest = NavigationMesh()
 
     @RegisterSignal
     val signalNoParam by signal()
@@ -123,6 +122,8 @@ class Invocation : Spatial() {
         println("NavMesh instance id before re-assign: ${resourceTest.getInstanceId()}")
         resourceTest = NavigationMesh()
         println("NavMesh instance id after re-assign: ${resourceTest.getInstanceId()}")
+        resourceTest = NavigationMesh()
+        println("NavMesh instance id after re-re-assign: ${resourceTest.getInstanceId()}")
     }
 
     override fun _onInit() {

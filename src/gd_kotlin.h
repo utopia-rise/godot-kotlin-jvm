@@ -6,6 +6,7 @@
 #include "core/map.h"
 #include "core/ustring.h"
 #include "transfer_context.h"
+#include "memory_bridge.h"
 
 class GDKotlin {
 private:
@@ -16,6 +17,7 @@ private:
 
     jni::JObject class_loader;
     Bootstrap* bootstrap;
+    MemoryBridge* memory_bridge;
 public:
     String scripts_root;
     TransferContext* transfer_context;

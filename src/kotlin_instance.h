@@ -69,8 +69,6 @@ public:
 
     ScriptLanguage* get_language() override;
 
-    void append_or_update_ref(const StringName& field, const REF& ref);
-    REF* get_ref_for_field(const StringName& field);
 };
 
 

@@ -4,7 +4,7 @@ import godot.util.VoidPtr
 import godot.util.nullptr
 
 @Suppress("LeakingThis")
-abstract class KtObject : AutoCloseable {
+abstract class KtObject(val isRef: Boolean) : AutoCloseable {
     var rawPtr: VoidPtr = nullptr
         set(value) {
             require(field == nullptr) {
@@ -18,6 +18,7 @@ abstract class KtObject : AutoCloseable {
             if (shouldInit.get()) {
                 // user types shouldn't override this method
                 rawPtr = __new()
+                GarbageCollector.registerInstance(this)
 
                 // inheritance in Godot is faked, a script is attached to an Object allow
                 // the script to see all methods of the owning Object.
@@ -50,10 +51,11 @@ abstract class KtObject : AutoCloseable {
     companion object {
         private val shouldInit = ThreadLocal.withInitial { true }
 
-        fun <T: KtObject> instantiateWith(rawPtr: VoidPtr, constructor: () -> T): T {
+        fun <T: KtObject> instantiateWith(rawPtr: VoidPtr, isRef: Boolean = false, constructor: () -> T): T {
             shouldInit.set(false)
             return constructor().also {
                 it.rawPtr = rawPtr
+                GarbageCollector.registerInstance(it)
                 it._onInit()
             }
         }

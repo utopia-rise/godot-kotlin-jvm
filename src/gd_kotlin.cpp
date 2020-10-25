@@ -82,6 +82,27 @@ void GDKotlin::init() {
     CRASH_COND_MSG(transfer_ctx_instance.isNull(), "Failed to retrieve TransferContext instance")
     transfer_context = new TransferContext(transfer_ctx_instance, class_loader);
 
+    jni::JClass garbage_collector_cls{env.load_class("godot.core.GarbageCollector", class_loader)};
+    jni::FieldId garbage_collector_instance_field{
+            garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/GarbageCollector;")
+    };
+    jni::JObject garbage_collector_instance{
+            garbage_collector_cls.get_static_object_field(env, garbage_collector_instance_field)
+    };
+    CRASH_COND_MSG(garbage_collector_instance.isNull(), "Failed to retrieve GarbageCollector instance")
+
+    jni::JClass memory_bridge_class{env.load_class("godot.core.GarbageCollector$MemoryBridge", class_loader)};
+    jni::FieldId memory_bridge_instance_field{
+            memory_bridge_class.get_static_field_id(env, "INSTANCE", "Lgodot/core/GarbageCollector$MemoryBridge;")
+    };
+    jni::JObject memory_bridge_instance{
+            memory_bridge_class.get_static_object_field(env, memory_bridge_instance_field)
+    };
+    memory_bridge = new MemoryBridge(memory_bridge_instance, class_loader);
+
+    jni::MethodId start_method_id{garbage_collector_cls.get_method_id(env, "start", "()V")};
+    garbage_collector_instance.call_void_method(env, start_method_id);
+
     jni::JClass bootstrap_cls = env.load_class("godot.runtime.Bootstrap", class_loader);
     jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");
     jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
@@ -95,14 +116,30 @@ void GDKotlin::init() {
 
 void GDKotlin::finish() {
     auto env = jni::Jvm::current_env();
+
+    jni::JClass garbage_collector_cls{env.load_class("godot.core.GarbageCollector", class_loader)};
+    jni::FieldId garbage_collector_instance_field{
+            garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/GarbageCollector;")
+    };
+    jni::JObject garbage_collector_instance{
+            garbage_collector_cls.get_static_object_field(env, garbage_collector_instance_field)
+    };
+    CRASH_COND_MSG(garbage_collector_instance.isNull(), "Failed to retrieve GarbageCollector instance")
+    jni::MethodId close_method_id{garbage_collector_cls.get_method_id(env, "close", "()V")};
+    garbage_collector_instance.call_void_method(env, close_method_id);
+
     delete transfer_context;
     transfer_context = nullptr;
     bootstrap->finish(env);
     delete bootstrap;
     bootstrap = nullptr;
+    delete memory_bridge;
+    memory_bridge = nullptr;
     KtVariant::clear_engine_types();
     class_loader.delete_global_ref(env);
+    print_verbose("before jvm destroy");
     jni::Jvm::destroy();
+    print_verbose("after jvm destroy");
     print_line("Shutting down JVM ...");
 }
 
@@ -129,7 +166,8 @@ void GDKotlin::unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes) 
 
 KtClass* GDKotlin::find_class(const String& p_script_path) {
     StringName class_name = p_script_path.trim_prefix(scripts_root).trim_suffix(".kt").replace("/", ".");
-    ERR_FAIL_COND_V_MSG(!classes.has(class_name), nullptr, vformat("Failed to find class %s for path: %s", class_name, p_script_path))
+    ERR_FAIL_COND_V_MSG(!classes.has(class_name), nullptr,
+                        vformat("Failed to find class %s for path: %s", class_name, p_script_path))
     return classes[class_name];
 }
 

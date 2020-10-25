@@ -144,6 +144,7 @@ void to_kvariant_fromOBJECT(wire::Value& des, const Variant& src) {
     }
 
     obj_value->set_engine_constructor_index(JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name]);
+    obj_value->set_is_ref(src.is_ref());
     des.set_allocated_object_value(obj_value);
 }
 
@@ -243,7 +244,12 @@ Variant from_kvariant_tokVariantArrayValue(const wire::Value& src) {
 }
 
 Variant from_kvariant_toKObjectValue(const wire::Value& src) {
-    return Variant(reinterpret_cast<Object*>(src.object_value().ptr()));
+    if (src.object_value().is_ref()) {
+        REF ref{REF(reinterpret_cast<Reference*>(src.object_value().ptr()))};
+        return Variant(ref.get_ref_ptr());
+    } else {
+        return Variant(reinterpret_cast<Object*>(src.object_value().ptr()));
+    }
 }
 
 Variant KtVariant::to_godot_variant() const {

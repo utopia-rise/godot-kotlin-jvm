@@ -3,8 +3,12 @@
 
 
 #include <jni.h>
+#include <modules/kotlin_jvm/src/jni/types.h>
+#include "java_instance_wrapper.h"
 
-class MemoryBridge {
+struct MemoryBridge : public JavaInstanceWrapper{
+    MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader);
+    ~MemoryBridge() = default;
     static bool check_instance(JNIEnv p_raw_env, jobject p_instance, jlong p_raw_ptr);
     static void unref(JNIEnv p_raw_env, jobject p_instance, jlong p_raw_ptr);
 };

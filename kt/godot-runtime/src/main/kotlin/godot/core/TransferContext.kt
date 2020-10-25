@@ -96,16 +96,11 @@ object TransferContext {
         freeObject(obj.rawPtr)
     }
 
-    fun updateREF(instance: KtObject, propertyName: String, value: KtReference) {
-        updateRefForInstanceAndField(instance.rawPtr, propertyName, value.referencePtr)
-    }
-
     external fun setScript(rawPtr: VoidPtr, className: String, obj: KtObject, classLoader: ClassLoader);
     external fun invokeConstructor(className: String): VoidPtr
     external fun freeObject(rawPtr: VoidPtr)
 
     private external fun icall(ptr: VoidPtr, className: String, method: String, expectedReturnType: Int, refreshBuffer: Boolean)
-    private external fun updateRefForInstanceAndField(instance: VoidPtr, fieldName: String, reference: VoidPtr)
 
     private fun getRequiredCapacity(capacity: Int): Int {
         // extra bytes used for the delimiter

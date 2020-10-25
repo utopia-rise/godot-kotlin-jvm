@@ -1861,6 +1861,7 @@ class Object PROTOBUF_FINAL :
   enum : int {
     kPtrFieldNumber = 1,
     kEngineConstructorIndexFieldNumber = 2,
+    kIsRefFieldNumber = 3,
   };
   // fixed64 ptr = 1;
   void clear_ptr();
@@ -1880,6 +1881,15 @@ class Object PROTOBUF_FINAL :
   void _internal_set_engine_constructor_index(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
+  // bool is_ref = 3;
+  void clear_is_ref();
+  bool is_ref() const;
+  void set_is_ref(bool value);
+  private:
+  bool _internal_is_ref() const;
+  void _internal_set_is_ref(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:wire.Object)
  private:
   class _Internal;
@@ -1889,6 +1899,7 @@ class Object PROTOBUF_FINAL :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::uint64 ptr_;
   ::PROTOBUF_NAMESPACE_ID::int32 engine_constructor_index_;
+  bool is_ref_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_wire_2eproto;
 };
@@ -4021,6 +4032,26 @@ inline void Object::_internal_set_engine_constructor_index(::PROTOBUF_NAMESPACE_
 inline void Object::set_engine_constructor_index(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_engine_constructor_index(value);
   // @@protoc_insertion_point(field_set:wire.Object.engine_constructor_index)
+}
+
+// bool is_ref = 3;
+inline void Object::clear_is_ref() {
+  is_ref_ = false;
+}
+inline bool Object::_internal_is_ref() const {
+  return is_ref_;
+}
+inline bool Object::is_ref() const {
+  // @@protoc_insertion_point(field_get:wire.Object.is_ref)
+  return _internal_is_ref();
+}
+inline void Object::_internal_set_is_ref(bool value) {
+  
+  is_ref_ = value;
+}
+inline void Object::set_is_ref(bool value) {
+  _internal_set_is_ref(value);
+  // @@protoc_insertion_point(field_set:wire.Object.is_ref)
 }
 
 // -------------------------------------------------------------------
