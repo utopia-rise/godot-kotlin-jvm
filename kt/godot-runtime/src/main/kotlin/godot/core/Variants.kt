@@ -232,11 +232,12 @@ class KtVariant {
 
     inline fun <reified T : KtObject> asObject(): T {
         val objectValue = data.objectValue
+        val ptr = objectValue.ptr
         val constructorIndex = objectValue.engineConstructorIndex
-        return KtObject.instantiateWith(
-                objectValue.ptr,
+        return (GarbageCollector.wrapped[ptr] ?: KtObject.instantiateWith(
+                ptr,
                 TypeManager.engineTypesConstructors[constructorIndex]
-        ) as T
+        )) as T
     }
 
     enum class Type {
