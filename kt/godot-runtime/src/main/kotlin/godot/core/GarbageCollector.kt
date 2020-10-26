@@ -6,6 +6,8 @@ import java.lang.ref.WeakReference
 object GarbageCollector : Thread() {
     val refWrappedMap = mutableMapOf<VoidPtr, WeakReference<KtObject>>()
     val wrappedMap = mutableMapOf<VoidPtr, KtObject>()
+    val refWrappedSuppressBuffer = mutableListOf<VoidPtr>()
+    val wrappedSuppressBuffer = mutableListOf<VoidPtr>()
     var isActive = false
 
     fun registerInstance(instance: KtObject) {
@@ -29,19 +31,21 @@ object GarbageCollector : Thread() {
     fun close() {
         isActive = false
 
-//        println("Before checkAndClean :")
-//        println("refWrappedMap : ")
-//        refWrappedMap.forEach { println("${it.key} : ${it.value}, class ${it.value::class.java}") }
-//        println("wrappedMap : ")
-//        wrappedMap.forEach { println("${it.key} : ${it.value}, class ${it.value::class.java}") }
+        println("Before checkAndClean :")
+        println("refWrappedMap : ")
+        refWrappedMap.forEach { println("${it.key} : ${it.value}, class ${it.value::class.java}") }
+        println("wrappedMap : ")
+        wrappedMap.forEach { println("${it.key} : ${it.value}, class ${it.value::class.java}") }
 
-        checkAndClean()
+        while (refWrappedMap.isNotEmpty() || wrappedMap.isNotEmpty()) {
+            checkAndClean()
+        }
 
-//        println("After checkAndClean :")
-//        println("refWrappedMap : ")
-//        refWrappedMap.forEach { println("${it.key} : ${it.value}, class ${it.value::class.java}") }
-//        println("wrappedMap : ")
-//        wrappedMap.forEach { println("${it.key} : ${it.value}, class ${it.value::class.java}") }
+        println("After checkAndClean :")
+        println("refWrappedMap : ")
+        refWrappedMap.forEach { println("${it.key} : ${it.value}, class ${it.value::class.java}") }
+        println("wrappedMap : ")
+        wrappedMap.forEach { println("${it.key} : ${it.value}, class ${it.value::class.java}") }
     }
 
     override fun run() {
@@ -60,12 +64,18 @@ object GarbageCollector : Thread() {
         while (weakRefsIt.hasNext()) {
             val weakRef = weakRefsIt.next()
             if (weakRef.value.get() == null) {
+                println("weak ref to ${weakRef.key} is dead.")
                 if (MemoryBridge.unref(weakRef.key)) {
-                    weakRefsIt.remove()
+                    refWrappedSuppressBuffer.add(weakRef.key)
                     println("ptr ${weakRef.key} was removed, class ${weakRef.value::class.java}")
                 }
             }
         }
+
+        for (ptr in refWrappedSuppressBuffer) {
+            refWrappedMap.remove(ptr)
+        }
+        refWrappedSuppressBuffer.clear()
 
         // Check validity of cpp pointer for classic godot Object, if not valid, then remove jvm instance.
         // This binds jvm instance lifecycle to native object's one.
@@ -73,10 +83,15 @@ object GarbageCollector : Thread() {
         while (refsIt.hasNext()) {
             val ref = refsIt.next()
             if (!MemoryBridge.checkInstance(ref.key)) {
-                refsIt.remove()
+                wrappedSuppressBuffer.add(ref.key)
                 println("ptr ${ref.key} was removed, class ${ref.value::class.java}")
             }
         }
+
+        for (ptr in wrappedSuppressBuffer) {
+            wrappedMap.remove(ptr)
+        }
+        wrappedSuppressBuffer.clear()
     }
 
     /**
