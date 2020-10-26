@@ -16,9 +16,16 @@ MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) 
             (void*) MemoryBridge::unref
     };
 
+    jni::JNativeMethod ref_method{
+            "ref",
+            "(J)Z",
+            (void*) MemoryBridge::ref
+    };
+
     Vector<jni::JNativeMethod> methods;
     methods.push_back(check_instance_method);
     methods.push_back(unref_method);
+    methods.push_back(ref_method);
 
     jni::Env env{jni::Jvm::current_env()};
     get_class(env).register_natives(env, methods);
@@ -29,9 +36,17 @@ bool MemoryBridge::check_instance(JNIEnv p_raw_env, jobject p_instance, jlong p_
     return ObjectDB::instance_validate(instance);
 }
 
-void MemoryBridge::unref(JNIEnv p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+bool MemoryBridge::unref(JNIEnv p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     auto* reference{reinterpret_cast<Reference*>(static_cast<uintptr_t>(p_raw_ptr))};
     if (reference->unreference()) {
         memdelete(reference);
+        return true;
+    } else {
+        return false;
     }
+}
+
+bool MemoryBridge::ref(JNIEnv p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    auto* reference{reinterpret_cast<Reference*>(static_cast<uintptr_t>(p_raw_ptr))};
+    return reference->init_ref();
 }

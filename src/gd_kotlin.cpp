@@ -117,6 +117,12 @@ void GDKotlin::init() {
 void GDKotlin::finish() {
     auto env = jni::Jvm::current_env();
 
+    delete transfer_context;
+    transfer_context = nullptr;
+    bootstrap->finish(env);
+    delete bootstrap;
+    bootstrap = nullptr;
+
     jni::JClass garbage_collector_cls{env.load_class("godot.core.GarbageCollector", class_loader)};
     jni::FieldId garbage_collector_instance_field{
             garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/GarbageCollector;")
@@ -128,11 +134,6 @@ void GDKotlin::finish() {
     jni::MethodId close_method_id{garbage_collector_cls.get_method_id(env, "close", "()V")};
     garbage_collector_instance.call_void_method(env, close_method_id);
 
-    delete transfer_context;
-    transfer_context = nullptr;
-    bootstrap->finish(env);
-    delete bootstrap;
-    bootstrap = nullptr;
     delete memory_bridge;
     memory_bridge = nullptr;
     KtVariant::clear_engine_types();
