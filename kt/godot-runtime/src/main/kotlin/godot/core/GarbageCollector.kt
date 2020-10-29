@@ -2,6 +2,8 @@ package godot.core
 
 import godot.util.VoidPtr
 import java.lang.ref.WeakReference
+import java.time.Duration
+import java.time.Instant
 
 object GarbageCollector : Thread() {
     val refWrappedMap = mutableMapOf<VoidPtr, WeakReference<KtObject>>()
@@ -9,6 +11,7 @@ object GarbageCollector : Thread() {
     val refWrappedSuppressBuffer = mutableListOf<VoidPtr>()
     val wrappedSuppressBuffer = mutableListOf<VoidPtr>()
     var isActive = false
+    var hasClosed = false
 
     fun registerInstance(instance: KtObject) {
         synchronized(this) {
@@ -30,22 +33,20 @@ object GarbageCollector : Thread() {
 
     fun close() {
         isActive = false
+        println("Closing GC thread ...")
+    }
 
-        println("Before checkAndClean :")
-        println("refWrappedMap : ")
-        refWrappedMap.forEach { println("${it.key} : ${it.value}, class ${it.value::class.java}") }
-        println("wrappedMap : ")
-        wrappedMap.forEach { println("${it.key} : ${it.value}, class ${it.value::class.java}") }
-
+    fun cleanUp() {
+        val begin = Instant.now()
         while (refWrappedMap.isNotEmpty() || wrappedMap.isNotEmpty()) {
             checkAndClean()
+            val finish = Instant.now()
+            if (Duration.between(begin, finish).toMillis() > 5000) {
+                //TODO : memdelete leaked instances
+                throw GCEndException("Some JVM godot instances are leaked.")
+            }
         }
 
-        println("After checkAndClean :")
-        println("refWrappedMap : ")
-        refWrappedMap.forEach { println("${it.key} : ${it.value}, class ${it.value::class.java}") }
-        println("wrappedMap : ")
-        wrappedMap.forEach { println("${it.key} : ${it.value}, class ${it.value::class.java}") }
     }
 
     override fun run() {
@@ -53,6 +54,7 @@ object GarbageCollector : Thread() {
             checkAndClean()
             sleep(500)
         }
+        hasClosed = true
     }
 
     private fun checkAndClean() {
@@ -60,18 +62,15 @@ object GarbageCollector : Thread() {
 
         // A native reference cannot die while a jvm instance exists (because counter > 0). When we don't need the
         // jvm instance anymore, we decrease the counter.
-        val weakRefsIt = refWrappedMap.iterator()
-        while (weakRefsIt.hasNext()) {
-            val weakRef = weakRefsIt.next()
-            if (weakRef.value.get() == null) {
-                println("weak ref to ${weakRef.key} is dead.")
-                if (MemoryBridge.unref(weakRef.key)) {
-                    refWrappedSuppressBuffer.add(weakRef.key)
-                    println("ptr ${weakRef.key} was removed, class ${weakRef.value::class.java}")
+        for (entry in refWrappedMap) {
+            if (entry.value.get() == null) {
+                println("weak ref to ${entry.key} is dead.")
+                if (MemoryBridge.unref(entry.key)) {
+                    refWrappedSuppressBuffer.add(entry.key)
+                    println("ptr ${entry.key} was removed, class ${entry.value::class.java}")
                 }
             }
         }
-
         for (ptr in refWrappedSuppressBuffer) {
             refWrappedMap.remove(ptr)
         }
@@ -79,15 +78,12 @@ object GarbageCollector : Thread() {
 
         // Check validity of cpp pointer for classic godot Object, if not valid, then remove jvm instance.
         // This binds jvm instance lifecycle to native object's one.
-        val refsIt = wrappedMap.iterator()
-        while (refsIt.hasNext()) {
-            val ref = refsIt.next()
-            if (!MemoryBridge.checkInstance(ref.key)) {
-                wrappedSuppressBuffer.add(ref.key)
-                println("ptr ${ref.key} was removed, class ${ref.value::class.java}")
+        for (entry in wrappedMap) {
+            if (!MemoryBridge.checkInstance(entry.key)) {
+                wrappedSuppressBuffer.add(entry.key)
+                println("ptr ${entry.key} was removed, class ${entry.value::class.java}")
             }
         }
-
         for (ptr in wrappedSuppressBuffer) {
             wrappedMap.remove(ptr)
         }
@@ -111,4 +107,6 @@ object GarbageCollector : Thread() {
         external fun unref(ptr: VoidPtr): Boolean
         external fun ref(ptr: VoidPtr): Boolean
     }
+
+    private class GCEndException(message: String): Exception(message)
 }

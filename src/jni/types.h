@@ -50,6 +50,7 @@ namespace jni {
         template <class T>
         inline T new_global_ref(Env& env);
         void delete_global_ref(Env& p_env);
+        void delete_local_ref(Env& p_env);
 
         JObject call_object_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
         jint call_int_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});

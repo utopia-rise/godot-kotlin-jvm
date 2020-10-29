@@ -29,24 +29,35 @@ MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) 
 
     jni::Env env{jni::Jvm::current_env()};
     get_class(env).register_natives(env, methods);
+    p_wrapped.delete_local_ref(env);
 }
 
-bool MemoryBridge::check_instance(JNIEnv p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+bool MemoryBridge::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     auto* instance{reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr))};
+    jni::Env env(p_raw_env);
+    jni::JObject local_ref{p_instance};
+    local_ref.delete_local_ref(env);
     return ObjectDB::instance_validate(instance);
 }
 
-bool MemoryBridge::unref(JNIEnv p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+bool MemoryBridge::unref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     auto* reference{reinterpret_cast<Reference*>(static_cast<uintptr_t>(p_raw_ptr))};
+    jni::Env env(p_raw_env);
+    jni::JObject loacl_ref{p_instance};
+    loacl_ref.delete_local_ref(env);
     if (reference->unreference()) {
         memdelete(reference);
         return true;
     } else {
+        print_verbose(vformat("Will not memdelete %s", static_cast<uintptr_t>(p_raw_ptr)));
         return false;
     }
 }
 
-bool MemoryBridge::ref(JNIEnv p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+bool MemoryBridge::ref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     auto* reference{reinterpret_cast<Reference*>(static_cast<uintptr_t>(p_raw_ptr))};
+    jni::Env env(p_raw_env);
+    jni::JObject local_ref{p_instance};
+    local_ref.delete_local_ref(env);
     return reference->init_ref();
 }

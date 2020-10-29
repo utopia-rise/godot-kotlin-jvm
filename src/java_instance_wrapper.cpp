@@ -1,3 +1,5 @@
+#include <core/print_string.h>
+#include <core/variant.h>
 #include "java_instance_wrapper.h"
 #include "core/string_builder.h"
 
