@@ -239,7 +239,7 @@ class KtVariant {
         return (if (isRef) {
             GarbageCollector.refWrappedMap[ptr]?.get()
         } else {
-            GarbageCollector.wrappedMap[ptr]
+            GarbageCollector.getObjectInstance(ptr)
         } ?: KtObject.instantiateWith(ptr, isRef, TypeManager.engineTypesConstructors[constructorIndex])) as T
     }
 

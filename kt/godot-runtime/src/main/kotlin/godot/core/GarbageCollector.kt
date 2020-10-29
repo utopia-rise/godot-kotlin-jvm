@@ -10,8 +10,9 @@ object GarbageCollector : Thread() {
     val wrappedMap = mutableMapOf<VoidPtr, KtObject>()
     val refWrappedSuppressBuffer = mutableListOf<VoidPtr>()
     val wrappedSuppressBuffer = mutableListOf<VoidPtr>()
-    var isActive = false
-    var hasClosed = false
+    private var gcState = GCState.NONE
+    val isClosed: Boolean
+        get() = gcState == GCState.CLOSED
 
     fun registerInstance(instance: KtObject) {
         synchronized(this) {
@@ -22,17 +23,23 @@ object GarbageCollector : Thread() {
             } else {
                 wrappedMap[rawPtr] = instance
             }
-            println("registered ptr: $rawPtr with class ${instance::class.java}")
         }
+    }
+
+    fun getObjectInstance(ptr: VoidPtr): KtObject? {
+        val ktObject = wrappedMap[ptr]
+        return if (ktObject != null) {
+            if (MemoryBridge.checkInstance(ptr)) ktObject else null
+        } else null
     }
 
     override fun start() {
         super.start()
-        isActive = true
+        gcState = GCState.STARTED
     }
 
     fun close() {
-        isActive = false
+        gcState = GCState.CLOSED
         println("Closing GC thread ...")
     }
 
@@ -42,19 +49,35 @@ object GarbageCollector : Thread() {
             checkAndClean()
             val finish = Instant.now()
             if (Duration.between(begin, finish).toMillis() > 5000) {
-                //TODO : memdelete leaked instances
-                throw GCEndException("Some JVM godot instances are leaked.")
+                throw GCEndException(
+                        buildString {
+                            append("Some JVM godot instances are leaked.")
+                            append(System.lineSeparator())
+                            append("Leaked references:")
+                            append(System.lineSeparator())
+                            for (entry in refWrappedMap) {
+                                append("    ${entry.key}: ${entry.value}")
+                                append(System.lineSeparator())
+                            }
+                            append("Leaked objects:")
+                            append(System.lineSeparator())
+                            for (entry in wrappedMap) {
+                                append("    ${entry.key}: ${entry.value}")
+                                append(System.lineSeparator())
+                            }
+                        }
+                )
             }
         }
 
     }
 
     override fun run() {
-        while (isActive) {
+        while (gcState == GCState.STARTED) {
             checkAndClean()
             sleep(500)
         }
-        hasClosed = true
+        gcState = GCState.CLOSED
     }
 
     private fun checkAndClean() {
@@ -64,10 +87,8 @@ object GarbageCollector : Thread() {
         // jvm instance anymore, we decrease the counter.
         for (entry in refWrappedMap) {
             if (entry.value.get() == null) {
-                println("weak ref to ${entry.key} is dead.")
                 if (MemoryBridge.unref(entry.key)) {
                     refWrappedSuppressBuffer.add(entry.key)
-                    println("ptr ${entry.key} was removed, class ${entry.value::class.java}")
                 }
             }
         }
@@ -81,7 +102,6 @@ object GarbageCollector : Thread() {
         for (entry in wrappedMap) {
             if (!MemoryBridge.checkInstance(entry.key)) {
                 wrappedSuppressBuffer.add(entry.key)
-                println("ptr ${entry.key} was removed, class ${entry.value::class.java}")
             }
         }
         for (ptr in wrappedSuppressBuffer) {
@@ -106,6 +126,12 @@ object GarbageCollector : Thread() {
         external fun checkInstance(ptr: VoidPtr): Boolean
         external fun unref(ptr: VoidPtr): Boolean
         external fun ref(ptr: VoidPtr): Boolean
+    }
+
+    private enum class GCState {
+        NONE,
+        STARTED,
+        CLOSED
     }
 
     private class GCEndException(message: String): Exception(message)

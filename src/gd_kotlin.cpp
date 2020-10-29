@@ -73,7 +73,7 @@ void GDKotlin::init() {
     args.version = JNI_VERSION_1_8;
     args.option("-Xcheck:jni");
 //    args.option("-XX:+PrintGCDetails");
-    args.option("-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005");
+//    args.option("-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005");
     jni::Jvm::init(args);
     print_line("Starting JVM ...");
     auto project_settings = ProjectSettings::get_singleton();
@@ -143,7 +143,7 @@ void GDKotlin::finish() {
     CRASH_COND_MSG(garbage_collector_instance.isNull(), "Failed to retrieve GarbageCollector instance")
     jni::MethodId close_method_id{garbage_collector_cls.get_method_id(env, "close", "()V")};
     garbage_collector_instance.call_void_method(env, close_method_id);
-    jni::MethodId has_closed_method_id{garbage_collector_cls.get_method_id(env, "getHasClosed", "()Z")};
+    jni::MethodId has_closed_method_id{garbage_collector_cls.get_method_id(env, "isClosed", "()Z")};
     while (!garbage_collector_instance.call_boolean_method(env, has_closed_method_id)) {
         std::this_thread::sleep_for(std::chrono::milliseconds(600));
     }
@@ -155,9 +155,7 @@ void GDKotlin::finish() {
     memory_bridge = nullptr;
     KtVariant::clear_engine_types();
     class_loader.delete_global_ref(env);
-    print_verbose("before jvm destroy");
     jni::Jvm::destroy();
-    print_verbose("after jvm destroy");
     print_line("Shutting down JVM ...");
 }
 
