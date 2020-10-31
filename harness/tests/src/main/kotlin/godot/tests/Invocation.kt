@@ -66,6 +66,13 @@ class Invocation : Spatial() {
     @RegisterProperty
     var resourceTest = NavigationMesh()
 
+    @RegisterProperty
+    var jvmId: Int = 0
+        get() = hashCode()
+        set(value) {
+            field = hashCode()
+        }
+
     @RegisterSignal
     val signalNoParam by signal()
 
@@ -140,4 +147,7 @@ class Invocation : Spatial() {
 
     @RegisterFunction
     fun isObjectSpatial(obj: Object) = obj is Spatial
+
+    @RegisterFunction
+    fun otherJvmId(invocation: Invocation) = invocation.jvmId
 }
