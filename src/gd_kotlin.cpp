@@ -72,8 +72,45 @@ void GDKotlin::init() {
     jni::InitArgs args;
     args.version = JNI_VERSION_1_8;
     args.option("-Xcheck:jni");
-//    args.option("-XX:+PrintGCDetails");
-//    args.option("-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005");
+
+    // Initialize remote jvm debug if one of jvm debug arguments is encountered.
+    String port;
+    String address;
+    const List<String>& cmdline_args{OS::get_singleton()->get_cmdline_args()};
+    for (int i = 0; i < cmdline_args.size(); ++i) {
+        const String cmd_arg{cmdline_args[i]};
+        if (cmd_arg.find("--jvm-debug-port") >= 0) {
+            if (split_jvm_debug_argument(cmd_arg, port) == OK) {
+                if (port.empty()) {
+                    port = "5005";
+                }
+            } else {
+                break;
+            }
+        } else if (cmd_arg.find("--jvm-debug-address") >= 0) {
+            if (split_jvm_debug_argument(cmd_arg, address) == OK) {
+                if (address.empty()) {
+                    address = "*";
+                }
+            } else {
+                break;
+            }
+        }
+        if (!port.empty() && !address.empty()) {
+            break;
+        }
+    }
+    if (!port.empty() || !address.empty()) {
+        if (address.empty()) {
+            address = "*";
+        } else if (port.empty()) {
+            port = "5005";
+        }
+
+        String debug_command{"-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=" + address + ":" + port};
+        args.option(debug_command.utf8());
+    }
+
     jni::Jvm::init(args);
     print_line("Starting JVM ...");
     auto project_settings = ProjectSettings::get_singleton();
@@ -194,4 +231,16 @@ KtClass* GDKotlin::find_class_by_name(const String& class_name) {
 
 jni::JObject& GDKotlin::get_class_loader() {
     return class_loader;
+}
+
+Error GDKotlin::split_jvm_debug_argument(const String& cmd_arg, String& result) {
+    Vector<String> jvm_debug_split{cmd_arg.split("=")};
+
+    if (jvm_debug_split.size() == 2) {
+        result = jvm_debug_split[1];
+    } else if (jvm_debug_split.size() != 1) {
+        print_error(vformat("Unrecognized --jvm-debug arg pattern: %s", cmd_arg));
+        return FAILED;
+    }
+    return OK;
 }

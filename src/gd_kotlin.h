@@ -18,6 +18,8 @@ private:
     jni::JObject class_loader;
     Bootstrap* bootstrap;
     MemoryBridge* memory_bridge;
+
+    Error split_jvm_debug_argument(const String& cmd_arg, String& result);
 public:
     String scripts_root;
     TransferContext* transfer_context;
