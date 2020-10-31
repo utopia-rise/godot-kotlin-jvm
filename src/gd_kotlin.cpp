@@ -74,8 +74,10 @@ void GDKotlin::init() {
     args.option("-Xcheck:jni");
 
     // Initialize remote jvm debug if one of jvm debug arguments is encountered.
+    // Initialize if jvm GC should be forced
     String port;
     String address;
+    bool is_gc_force_mode{false};
     const List<String>& cmdline_args{OS::get_singleton()->get_cmdline_args()};
     for (int i = 0; i < cmdline_args.size(); ++i) {
         const String cmd_arg{cmdline_args[i]};
@@ -95,11 +97,11 @@ void GDKotlin::init() {
             } else {
                 break;
             }
-        }
-        if (!port.empty() && !address.empty()) {
-            break;
+        } else if (cmd_arg == "--jvm-force-gc") {
+            is_gc_force_mode = true;
         }
     }
+
     if (!port.empty() || !address.empty()) {
         if (address.empty()) {
             address = "*";
@@ -147,8 +149,11 @@ void GDKotlin::init() {
     };
     memory_bridge = new MemoryBridge(memory_bridge_instance, class_loader);
 
-    jni::MethodId start_method_id{garbage_collector_cls.get_method_id(env, "start", "()V")};
-    garbage_collector_instance.call_void_method(env, start_method_id);
+    if (is_gc_force_mode) {
+        print_verbose("Starting GC thread with force mode.");
+    }
+    jni::MethodId start_method_id{garbage_collector_cls.get_method_id(env, "start", "(Z)V")};
+    garbage_collector_instance.call_void_method(env, start_method_id, {static_cast<jboolean>(is_gc_force_mode)});
 
     jni::JClass bootstrap_cls = env.load_class("godot.runtime.Bootstrap", class_loader);
     jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");

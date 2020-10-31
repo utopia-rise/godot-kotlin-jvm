@@ -10,6 +10,8 @@ object GarbageCollector : Thread() {
     val wrappedMap = mutableMapOf<VoidPtr, KtObject>()
     val refWrappedSuppressBuffer = mutableListOf<VoidPtr>()
     val wrappedSuppressBuffer = mutableListOf<VoidPtr>()
+
+    private var forceJvmGarbageCollector = false
     private var gcState = GCState.NONE
     val isClosed: Boolean
         get() = gcState == GCState.CLOSED
@@ -33,8 +35,9 @@ object GarbageCollector : Thread() {
         } else null
     }
 
-    override fun start() {
-        super.start()
+    fun start(forceJvmGarbageCollector: Boolean) {
+        this.forceJvmGarbageCollector = forceJvmGarbageCollector
+        start()
         gcState = GCState.STARTED
     }
 
@@ -46,6 +49,7 @@ object GarbageCollector : Thread() {
     fun cleanUp() {
         val begin = Instant.now()
         while (refWrappedMap.isNotEmpty() || wrappedMap.isNotEmpty()) {
+            forceJvmGc()
             checkAndClean()
             val finish = Instant.now()
             if (Duration.between(begin, finish).toMillis() > 5000) {
@@ -74,6 +78,9 @@ object GarbageCollector : Thread() {
 
     override fun run() {
         while (gcState == GCState.STARTED) {
+            if (forceJvmGarbageCollector) {
+                forceJvmGc()
+            }
             checkAndClean()
             sleep(500)
         }
@@ -81,8 +88,6 @@ object GarbageCollector : Thread() {
     }
 
     private fun checkAndClean() {
-        forceJvmGc()
-
         // A native reference cannot die while a jvm instance exists (because counter > 0). When we don't need the
         // jvm instance anymore, we decrease the counter.
         for (entry in refWrappedMap) {
