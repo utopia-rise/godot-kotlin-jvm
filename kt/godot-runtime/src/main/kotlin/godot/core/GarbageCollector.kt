@@ -6,33 +6,40 @@ import java.time.Duration
 import java.time.Instant
 
 object GarbageCollector : Thread() {
-    val refWrappedMap = mutableMapOf<VoidPtr, WeakReference<KtObject>>()
-    val wrappedMap = mutableMapOf<VoidPtr, KtObject>()
-    val refWrappedSuppressBuffer = mutableListOf<VoidPtr>()
-    val wrappedSuppressBuffer = mutableListOf<VoidPtr>()
+    private val refWrappedMap = mutableMapOf<VoidPtr, WeakReference<KtObject>>()
+    private val wrappedMap = mutableMapOf<VoidPtr, KtObject>()
+    private val refWrappedSuppressBuffer = mutableListOf<VoidPtr>()
+    private val wrappedSuppressBuffer = mutableListOf<VoidPtr>()
 
     private var forceJvmGarbageCollector = false
+
     private var gcState = GCState.NONE
     val isClosed: Boolean
         get() = gcState == GCState.CLOSED
 
     fun registerInstance(instance: KtObject) {
-        synchronized(this) {
-            val rawPtr = instance.rawPtr
-            if (instance.isRef) {
+        val rawPtr = instance.rawPtr
+        if (instance.isRef) {
+            synchronized(refWrappedMap) {
                 refWrappedMap[rawPtr] = WeakReference(instance)
                 MemoryBridge.ref(rawPtr)
-            } else {
+            }
+        } else {
+            synchronized(wrappedMap) {
                 wrappedMap[rawPtr] = instance
             }
         }
     }
 
-    fun getObjectInstance(ptr: VoidPtr): KtObject? {
+    fun getObjectInstance(ptr: VoidPtr) = synchronized(wrappedMap) {
         val ktObject = wrappedMap[ptr]
-        return if (ktObject != null) {
+        if (ktObject != null) {
             if (MemoryBridge.checkInstance(ptr, ktObject.godotInstanceId)) ktObject else null
         } else null
+    }
+
+    fun getRefInstance(ptr: VoidPtr) = synchronized(refWrappedMap) {
+        refWrappedMap[ptr]?.get()
     }
 
     fun start(forceJvmGarbageCollector: Boolean) {
@@ -90,27 +97,31 @@ object GarbageCollector : Thread() {
     private fun checkAndClean() {
         // A native reference cannot die while a jvm instance exists (because counter > 0). When we don't need the
         // jvm instance anymore, we decrease the counter.
-        for (entry in refWrappedMap) {
-            if (entry.value.get() == null) {
-                if (MemoryBridge.unref(entry.key)) {
-                    refWrappedSuppressBuffer.add(entry.key)
+        synchronized(refWrappedMap) {
+            for (entry in refWrappedMap) {
+                if (entry.value.get() == null) {
+                    if (MemoryBridge.unref(entry.key)) {
+                        refWrappedSuppressBuffer.add(entry.key)
+                    }
                 }
             }
-        }
-        for (ptr in refWrappedSuppressBuffer) {
-            refWrappedMap.remove(ptr)
+            for (ptr in refWrappedSuppressBuffer) {
+                refWrappedMap.remove(ptr)
+            }
         }
         refWrappedSuppressBuffer.clear()
 
         // Check validity of cpp pointer for classic godot Object, if not valid, then remove jvm instance.
         // This binds jvm instance lifecycle to native object's one.
-        for (entry in wrappedMap) {
-            if (!MemoryBridge.checkInstance(entry.key, entry.value.godotInstanceId)) {
-                wrappedSuppressBuffer.add(entry.key)
+        synchronized(wrappedMap) {
+            for (entry in wrappedMap) {
+                if (!MemoryBridge.checkInstance(entry.key, entry.value.godotInstanceId)) {
+                    wrappedSuppressBuffer.add(entry.key)
+                }
             }
-        }
-        for (ptr in wrappedSuppressBuffer) {
-            wrappedMap.remove(ptr)
+            for (ptr in wrappedSuppressBuffer) {
+                wrappedMap.remove(ptr)
+            }
         }
         wrappedSuppressBuffer.clear()
     }
@@ -139,5 +150,5 @@ object GarbageCollector : Thread() {
         CLOSED
     }
 
-    private class GCEndException(message: String): Exception(message)
+    private class GCEndException(message: String) : Exception(message)
 }

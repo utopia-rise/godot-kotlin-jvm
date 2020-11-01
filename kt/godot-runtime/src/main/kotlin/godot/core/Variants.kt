@@ -237,7 +237,7 @@ class KtVariant {
         val constructorIndex = objectValue.engineConstructorIndex
         val isRef = objectValue.isRef
         return (if (isRef) {
-            GarbageCollector.refWrappedMap[ptr]?.get()
+            GarbageCollector.getRefInstance(ptr)
         } else {
             GarbageCollector.getObjectInstance(ptr)
         } ?: KtObject.instantiateWith(
