@@ -9,7 +9,7 @@
 struct MemoryBridge : public JavaInstanceWrapper{
     MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader);
     ~MemoryBridge() = default;
-    static bool check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
+    static bool check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id);
     static bool unref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
     static bool ref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
 };

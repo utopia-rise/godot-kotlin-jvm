@@ -240,7 +240,12 @@ class KtVariant {
             GarbageCollector.refWrappedMap[ptr]?.get()
         } else {
             GarbageCollector.getObjectInstance(ptr)
-        } ?: KtObject.instantiateWith(ptr, isRef, TypeManager.engineTypesConstructors[constructorIndex])) as T
+        } ?: KtObject.instantiateWith(
+                ptr,
+                objectValue.instanceId,
+                isRef,
+                TypeManager.engineTypesConstructors[constructorIndex]
+        )) as T
     }
 
     enum class Type {

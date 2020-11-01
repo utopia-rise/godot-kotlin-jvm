@@ -1862,6 +1862,7 @@ class Object PROTOBUF_FINAL :
     kPtrFieldNumber = 1,
     kEngineConstructorIndexFieldNumber = 2,
     kIsRefFieldNumber = 3,
+    kInstanceIdFieldNumber = 4,
   };
   // fixed64 ptr = 1;
   void clear_ptr();
@@ -1890,6 +1891,15 @@ class Object PROTOBUF_FINAL :
   void _internal_set_is_ref(bool value);
   public:
 
+  // uint64 instance_id = 4;
+  void clear_instance_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 instance_id() const;
+  void set_instance_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_instance_id() const;
+  void _internal_set_instance_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:wire.Object)
  private:
   class _Internal;
@@ -1900,6 +1910,7 @@ class Object PROTOBUF_FINAL :
   ::PROTOBUF_NAMESPACE_ID::uint64 ptr_;
   ::PROTOBUF_NAMESPACE_ID::int32 engine_constructor_index_;
   bool is_ref_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 instance_id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_wire_2eproto;
 };
@@ -4052,6 +4063,26 @@ inline void Object::_internal_set_is_ref(bool value) {
 inline void Object::set_is_ref(bool value) {
   _internal_set_is_ref(value);
   // @@protoc_insertion_point(field_set:wire.Object.is_ref)
+}
+
+// uint64 instance_id = 4;
+inline void Object::clear_instance_id() {
+  instance_id_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 Object::_internal_instance_id() const {
+  return instance_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 Object::instance_id() const {
+  // @@protoc_insertion_point(field_get:wire.Object.instance_id)
+  return _internal_instance_id();
+}
+inline void Object::_internal_set_instance_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  instance_id_ = value;
+}
+inline void Object::set_instance_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_instance_id(value);
+  // @@protoc_insertion_point(field_set:wire.Object.instance_id)
 }
 
 // -------------------------------------------------------------------

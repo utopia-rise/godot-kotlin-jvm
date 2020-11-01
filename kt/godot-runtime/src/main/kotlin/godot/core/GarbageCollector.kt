@@ -31,7 +31,7 @@ object GarbageCollector : Thread() {
     fun getObjectInstance(ptr: VoidPtr): KtObject? {
         val ktObject = wrappedMap[ptr]
         return if (ktObject != null) {
-            if (MemoryBridge.checkInstance(ptr)) ktObject else null
+            if (MemoryBridge.checkInstance(ptr, ktObject.godotInstanceId)) ktObject else null
         } else null
     }
 
@@ -105,7 +105,7 @@ object GarbageCollector : Thread() {
         // Check validity of cpp pointer for classic godot Object, if not valid, then remove jvm instance.
         // This binds jvm instance lifecycle to native object's one.
         for (entry in wrappedMap) {
-            if (!MemoryBridge.checkInstance(entry.key)) {
+            if (!MemoryBridge.checkInstance(entry.key, entry.value.godotInstanceId)) {
                 wrappedSuppressBuffer.add(entry.key)
             }
         }
@@ -128,7 +128,7 @@ object GarbageCollector : Thread() {
     }
 
     private object MemoryBridge {
-        external fun checkInstance(ptr: VoidPtr): Boolean
+        external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
         external fun unref(ptr: VoidPtr): Boolean
         external fun ref(ptr: VoidPtr): Boolean
     }

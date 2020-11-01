@@ -13,6 +13,8 @@ abstract class KtObject(val isRef: Boolean) : AutoCloseable {
             field = value
         }
 
+    var godotInstanceId: Long = -1
+
     init {
         try {
             if (shouldInit.get()) {
@@ -51,10 +53,11 @@ abstract class KtObject(val isRef: Boolean) : AutoCloseable {
     companion object {
         private val shouldInit = ThreadLocal.withInitial { true }
 
-        fun <T: KtObject> instantiateWith(rawPtr: VoidPtr, isRef: Boolean = false, constructor: () -> T): T {
+        fun <T: KtObject> instantiateWith(rawPtr: VoidPtr, instanceId: Long, isRef: Boolean = false, constructor: () -> T): T {
             shouldInit.set(false)
             return constructor().also {
                 it.rawPtr = rawPtr
+                it.godotInstanceId = instanceId
                 GarbageCollector.registerInstance(it)
                 it._onInit()
             }

@@ -145,6 +145,7 @@ void to_kvariant_fromOBJECT(wire::Value& des, const Variant& src) {
 
     obj_value->set_engine_constructor_index(JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name]);
     obj_value->set_is_ref(src.is_ref());
+    obj_value->set_instance_id(ptr->get_instance_id());
     des.set_allocated_object_value(obj_value);
 }
 
