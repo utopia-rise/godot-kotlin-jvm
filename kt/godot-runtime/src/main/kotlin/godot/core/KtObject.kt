@@ -20,6 +20,7 @@ abstract class KtObject(val isRef: Boolean) : AutoCloseable {
             if (shouldInit.get()) {
                 // user types shouldn't override this method
                 rawPtr = __new()
+                godotInstanceId = getInstanceId()
                 GarbageCollector.registerInstance(this)
 
                 // inheritance in Godot is faked, a script is attached to an Object allow
@@ -38,6 +39,7 @@ abstract class KtObject(val isRef: Boolean) : AutoCloseable {
     }
 
     abstract fun __new(): VoidPtr
+    abstract fun getInstanceId(): Long
 
     open fun _onInit() = Unit
     open fun _onDestroy() = Unit

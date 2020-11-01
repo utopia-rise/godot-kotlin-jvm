@@ -26,7 +26,7 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
         TransferContext.readReturnValue()
     }
 
-    fun getInstanceId(): Long {
+    override fun getInstanceId(): Long {
         val refreshBuffer =TransferContext.writeArguments()
         TransferContext.callMethod(rawPtr, "Object", "get_instance_id", KtVariant.Type.LONG, refreshBuffer)
         return TransferContext.readReturnValue().asLong()
