@@ -41,10 +41,6 @@ KtProperty::KtProperty(jni::JObject p_wrapped, jni::JObject& p_class_loader)
 }
 
 KtProperty::~KtProperty() {
-    //Free default value if object
-//    if (Object* obj{default_value.operator Object *()}) {
-//        memdelete(obj);
-//    }
     delete propertyInfo;
 }
 
