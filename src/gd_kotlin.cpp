@@ -187,7 +187,7 @@ void GDKotlin::finish() {
     garbage_collector_instance.call_void_method(env, close_method_id);
     jni::MethodId has_closed_method_id{garbage_collector_cls.get_method_id(env, "isClosed", "()Z")};
     while (!garbage_collector_instance.call_boolean_method(env, has_closed_method_id)) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(600));
+        OS::get_singleton()->delay_usec(600000);
     }
     print_verbose("JVM GC thread was closed");
     jni::MethodId clean_up_method_id{garbage_collector_cls.get_method_id(env, "cleanUp", "()V")};
