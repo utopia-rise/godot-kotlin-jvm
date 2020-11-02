@@ -78,6 +78,7 @@ void GDKotlin::init() {
     String port;
     String address;
     bool is_gc_force_mode{false};
+    long gc_thread_period_interval{500};
     const List<String>& cmdline_args{OS::get_singleton()->get_cmdline_args()};
     for (int i = 0; i < cmdline_args.size(); ++i) {
         const String cmd_arg{cmdline_args[i]};
@@ -96,6 +97,11 @@ void GDKotlin::init() {
                 }
             } else {
                 break;
+            }
+        } else if (cmd_arg.find("--jvm-gc-thread-period-millis") >= 0) {
+            String result;
+            if (split_jvm_debug_argument(cmd_arg, result) == OK) {
+                gc_thread_period_interval = result.to_int64();
             }
         } else if (cmd_arg == "--jvm-force-gc") {
             is_gc_force_mode = true;
@@ -152,8 +158,15 @@ void GDKotlin::init() {
     if (is_gc_force_mode) {
         print_verbose("Starting GC thread with force mode.");
     }
-    jni::MethodId start_method_id{garbage_collector_cls.get_method_id(env, "start", "(Z)V")};
-    garbage_collector_instance.call_void_method(env, start_method_id, {static_cast<jboolean>(is_gc_force_mode)});
+    jni::MethodId start_method_id{garbage_collector_cls.get_method_id(env, "start", "(ZJ)V")};
+    garbage_collector_instance.call_void_method(
+            env,
+            start_method_id,
+            {
+                    static_cast<jboolean>(is_gc_force_mode),
+                    static_cast<jlong>(gc_thread_period_interval)
+            }
+    );
 
     jni::JClass bootstrap_cls = env.load_class("godot.runtime.Bootstrap", class_loader);
     jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");

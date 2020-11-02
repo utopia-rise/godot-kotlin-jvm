@@ -4,12 +4,18 @@ import godot.util.VoidPtr
 import java.lang.ref.WeakReference
 import java.time.Duration
 import java.time.Instant
+import java.util.concurrent.Executors
+import java.util.concurrent.ScheduledExecutorService
+import java.util.concurrent.ThreadFactory
+import java.util.concurrent.TimeUnit
 
-object GarbageCollector : Thread() {
+object GarbageCollector {
     private val refWrappedMap = mutableMapOf<VoidPtr, WeakReference<KtObject>>()
     private val wrappedMap = mutableMapOf<VoidPtr, KtObject>()
     private val refWrappedSuppressBuffer = mutableListOf<VoidPtr>()
     private val wrappedSuppressBuffer = mutableListOf<VoidPtr>()
+
+    private val executor = Executors.newSingleThreadScheduledExecutor()
 
     private var forceJvmGarbageCollector = false
 
@@ -42,13 +48,14 @@ object GarbageCollector : Thread() {
         refWrappedMap[ptr]?.get()
     }
 
-    fun start(forceJvmGarbageCollector: Boolean) {
+    fun start(forceJvmGarbageCollector: Boolean, period: Long) {
         this.forceJvmGarbageCollector = forceJvmGarbageCollector
-        start()
         gcState = GCState.STARTED
+        executor.scheduleAtFixedRate(GarbageCollector::run, 0, period, TimeUnit.MILLISECONDS)
     }
 
     fun close() {
+        executor.shutdown()
         gcState = GCState.CLOSED
         println("Closing GC thread ...")
     }
@@ -83,15 +90,11 @@ object GarbageCollector : Thread() {
 
     }
 
-    override fun run() {
-        while (gcState == GCState.STARTED) {
-            if (forceJvmGarbageCollector) {
-                forceJvmGc()
-            }
-            checkAndClean()
-            sleep(500)
+    private fun run() {
+        if (forceJvmGarbageCollector) {
+            forceJvmGc()
         }
-        gcState = GCState.CLOSED
+        checkAndClean()
     }
 
     private fun checkAndClean() {
