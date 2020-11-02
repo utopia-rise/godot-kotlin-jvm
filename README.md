@@ -67,6 +67,9 @@ Each Issue has a Maintainer that is the "supervisor" for the general topic the i
     - To run the editor append `-e`: `../../../../bin/godot.x11.tools.64 -e`
     - You have to be in the folder of the sample you want to run for this to work otherwise the embedded jvm will not be detected correctly! This will of course change in the future but for now our priorities lie elsewhere.
 
+8. In order to debug your jvm code, you should start godot with command line `--jvm-debug-port=XXXX`, where `XXXX`
+stands for the jmx port of you choice. You can then setup remote debug configuration in Intellij' Idea.
+
 
 ## Debug entry generation (KotlinCompilerPlugin in general)
 - Build sample project with `./gradlew build --no-daemon -Dorg.gradle.debug=true -Dkotlin.compiler.execution.strategy="in-process" -Dkotlin.daemon.jvm.options="-Xdebug,-Xrunjdwp:transport=dt_socket,address=5005,server=y,suspend=n"`
