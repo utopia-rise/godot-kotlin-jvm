@@ -3,6 +3,7 @@
 
 #include <core/string_name.h>
 #include <core/variant.h>
+#include <core/reference.h>
 #include "jni/wrapper.h"
 #include "java_instance_wrapper.h"
 

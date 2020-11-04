@@ -1,4 +1,4 @@
-package godot.registration.annotation
+package godot.annotation
 
 /**
  * Registeres a function in godot so it can be called through another language or from godot

@@ -97,7 +97,14 @@ void KotlinScript::get_script_signal_list(List<MethodInfo>* r_signals) const {
 }
 
 bool KotlinScript::get_property_default_value(const StringName& p_property, Variant& r_value) const {
-    return false;
+    bool has_default{false};
+    if (KtClass* kt_class{get_kotlin_class()}) {
+        if (KtProperty* property{kt_class->get_property(p_property)}) {
+            property->get_default_value(r_value);
+            has_default = true;
+        }
+    }
+    return has_default;
 }
 
 void KotlinScript::get_script_method_list(List<MethodInfo>* p_list) const {

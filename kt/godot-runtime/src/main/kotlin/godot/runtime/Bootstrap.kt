@@ -2,6 +2,7 @@ package godot.runtime
 
 import godot.core.KtClass
 import godot.core.TypeManager
+import java.lang.Thread.sleep
 import java.net.URL
 import java.net.URLClassLoader
 import java.nio.file.FileSystems

@@ -9,6 +9,7 @@ private:
     KtObject *wrapped_object;
     Object *owner;
     KtClass* kt_class;
+
 public:
     explicit KotlinInstance(KtObject *p_wrapped_object, KtClass* p_kt_class);
     KotlinInstance(KtObject *p_wrapped_object, Object *p_owner, KtClass* p_kt_class);
@@ -67,6 +68,7 @@ public:
     MultiplayerAPI::RPCMode get_rset_mode(const StringName& p_variable) const override;
 
     ScriptLanguage* get_language() override;
+
 };
 
 

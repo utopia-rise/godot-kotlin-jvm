@@ -1,12 +1,13 @@
 package godot.tests
 
+import godot.NavigationMesh
 import godot.Node
 import godot.Object
 import godot.Spatial
-import godot.registration.annotation.RegisterClass
-import godot.registration.annotation.RegisterFunction
-import godot.registration.annotation.RegisterProperty
-import godot.registration.annotation.RegisterSignal
+import godot.annotation.RegisterClass
+import godot.annotation.RegisterFunction
+import godot.annotation.RegisterProperty
+import godot.annotation.RegisterSignal
 import godot.signals.signal
 import org.joda.time.DateTime
 
@@ -39,18 +40,38 @@ class OtherScript : Node() {
 
 }
 
+enum class TestEnum {
+    ENUM_1
+}
+
 @RegisterClass
 class Invocation : Spatial() {
     @RegisterProperty
     var x = 0
+
     @RegisterProperty
     var y = 0.0
+
     @RegisterProperty
     var z = 0.0f
+
     @RegisterProperty
     var customName = "Idonthaveanyidea"
 
     var invocation = OtherScript()
+
+    @RegisterProperty
+    var enumTest = TestEnum.ENUM_1
+
+    @RegisterProperty
+    var resourceTest = NavigationMesh()
+
+    @RegisterProperty
+    var jvmId: Int = 0
+        get() = hashCode()
+        set(value) {
+            field = hashCode()
+        }
 
     @RegisterSignal
     val signalNoParam by signal()
@@ -86,6 +107,7 @@ class Invocation : Spatial() {
     fun _enterTree() {
         println("Enter tree !")
         println("Instance id: ${getInstanceId()}")
+        println("CustomName is $customName")
     }
 
     @RegisterFunction
@@ -103,6 +125,12 @@ class Invocation : Spatial() {
         signalNoParam.emit()
         signalOneParam.emit(false)
         signalTwoParam.emit("My Awesome param !", this)
+
+        println("NavMesh instance id before re-assign: ${resourceTest.getInstanceId()}")
+        resourceTest = NavigationMesh()
+        println("NavMesh instance id after re-assign: ${resourceTest.getInstanceId()}")
+        resourceTest = NavigationMesh()
+        println("NavMesh instance id after re-re-assign: ${resourceTest.getInstanceId()}")
     }
 
     override fun _onInit() {
@@ -119,4 +147,7 @@ class Invocation : Spatial() {
 
     @RegisterFunction
     fun isObjectSpatial(obj: Object) = obj is Spatial
+
+    @RegisterFunction
+    fun otherJvmId(invocation: Invocation) = invocation.jvmId
 }

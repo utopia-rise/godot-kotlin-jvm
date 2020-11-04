@@ -401,6 +401,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_wire_2eproto::offsets[] PROTOB
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::wire::Object, ptr_),
   PROTOBUF_FIELD_OFFSET(::wire::Object, engine_constructor_index_),
+  PROTOBUF_FIELD_OFFSET(::wire::Object, is_ref_),
+  PROTOBUF_FIELD_OFFSET(::wire::Object, instance_id_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::wire::Value, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -448,9 +450,9 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 61, -1, sizeof(::wire::Transform)},
   { 68, -1, sizeof(::wire::VariantArray)},
   { 73, -1, sizeof(::wire::Object)},
-  { 80, -1, sizeof(::wire::Value)},
-  { 102, -1, sizeof(::wire::ReturnValue)},
-  { 108, -1, sizeof(::wire::FuncArgs)},
+  { 82, -1, sizeof(::wire::Value)},
+  { 104, -1, sizeof(::wire::ReturnValue)},
+  { 110, -1, sizeof(::wire::FuncArgs)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -486,25 +488,26 @@ const char descriptor_table_protodef_wire_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "\001(\0132\r.wire.Vector3\022\030\n\001z\030\003 \001(\0132\r.wire.Vec"
   "tor3\"F\n\tTransform\022\032\n\005basis\030\001 \001(\0132\013.wire."
   "Basis\022\035\n\006origin\030\002 \001(\0132\r.wire.Vector3\"\016\n\014"
-  "VariantArray\"7\n\006Object\022\013\n\003ptr\030\001 \001(\006\022 \n\030e"
-  "ngine_constructor_index\030\002 \001(\005\"\263\004\n\005Value\022"
-  "\023\n\tnil_value\030\001 \001(\005H\000\022\024\n\nbool_value\030\002 \001(\010"
-  "H\000\022\024\n\nlong_value\030\003 \001(\003H\000\022\024\n\nreal_value\030\004"
-  " \001(\001H\000\022\026\n\014string_value\030\005 \001(\tH\000\022&\n\rvector"
-  "2_value\030\006 \001(\0132\r.wire.Vector2H\000\022\"\n\013rect2_"
-  "value\030\007 \001(\0132\013.wire.Rect2H\000\022&\n\rvector3_va"
-  "lue\030\010 \001(\0132\r.wire.Vector3H\000\022.\n\021transform2"
-  "D_value\030\t \001(\0132\021.wire.Transform2DH\000\022\"\n\013pl"
-  "ane_value\030\n \001(\0132\013.wire.PlaneH\000\022 \n\nquat_v"
-  "alue\030\013 \001(\0132\n.wire.QuatH\000\022 \n\naabb_value\030\014"
-  " \001(\0132\n.wire.AABBH\000\022\"\n\013basis_value\030\r \001(\0132"
-  "\013.wire.BasisH\000\022*\n\017transform_value\030\016 \001(\0132"
-  "\017.wire.TransformH\000\0221\n\023variant_array_valu"
-  "e\030\017 \001(\0132\022.wire.VariantArrayH\000\022$\n\014object_"
-  "value\030\020 \001(\0132\014.wire.ObjectH\000B\006\n\004type\"(\n\013R"
-  "eturnValue\022\031\n\004data\030\001 \001(\0132\013.wire.Value\"%\n"
-  "\010FuncArgs\022\031\n\004args\030\001 \003(\0132\013.wire.ValueB\014\n\n"
-  "godot.wireb\006proto3"
+  "VariantArray\"\\\n\006Object\022\013\n\003ptr\030\001 \001(\006\022 \n\030e"
+  "ngine_constructor_index\030\002 \001(\005\022\016\n\006is_ref\030"
+  "\003 \001(\010\022\023\n\013instance_id\030\004 \001(\004\"\263\004\n\005Value\022\023\n\t"
+  "nil_value\030\001 \001(\005H\000\022\024\n\nbool_value\030\002 \001(\010H\000\022"
+  "\024\n\nlong_value\030\003 \001(\003H\000\022\024\n\nreal_value\030\004 \001("
+  "\001H\000\022\026\n\014string_value\030\005 \001(\tH\000\022&\n\rvector2_v"
+  "alue\030\006 \001(\0132\r.wire.Vector2H\000\022\"\n\013rect2_val"
+  "ue\030\007 \001(\0132\013.wire.Rect2H\000\022&\n\rvector3_value"
+  "\030\010 \001(\0132\r.wire.Vector3H\000\022.\n\021transform2D_v"
+  "alue\030\t \001(\0132\021.wire.Transform2DH\000\022\"\n\013plane"
+  "_value\030\n \001(\0132\013.wire.PlaneH\000\022 \n\nquat_valu"
+  "e\030\013 \001(\0132\n.wire.QuatH\000\022 \n\naabb_value\030\014 \001("
+  "\0132\n.wire.AABBH\000\022\"\n\013basis_value\030\r \001(\0132\013.w"
+  "ire.BasisH\000\022*\n\017transform_value\030\016 \001(\0132\017.w"
+  "ire.TransformH\000\0221\n\023variant_array_value\030\017"
+  " \001(\0132\022.wire.VariantArrayH\000\022$\n\014object_val"
+  "ue\030\020 \001(\0132\014.wire.ObjectH\000B\006\n\004type\"(\n\013Retu"
+  "rnValue\022\031\n\004data\030\001 \001(\0132\013.wire.Value\"%\n\010Fu"
+  "ncArgs\022\031\n\004args\030\001 \003(\0132\013.wire.ValueB\014\n\ngod"
+  "ot.wireb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_wire_2eproto_deps[1] = {
 };
@@ -526,7 +529,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_wir
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_wire_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_wire_2eproto = {
-  false, false, descriptor_table_protodef_wire_2eproto, "wire.proto", 1338,
+  false, false, descriptor_table_protodef_wire_2eproto, "wire.proto", 1375,
   &descriptor_table_wire_2eproto_once, descriptor_table_wire_2eproto_sccs, descriptor_table_wire_2eproto_deps, 14, 0,
   schemas, file_default_instances, TableStruct_wire_2eproto::offsets,
   file_level_metadata_wire_2eproto, 14, file_level_enum_descriptors_wire_2eproto, file_level_service_descriptors_wire_2eproto,
@@ -3112,15 +3115,15 @@ Object::Object(const Object& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&ptr_, &from.ptr_,
-    static_cast<size_t>(reinterpret_cast<char*>(&engine_constructor_index_) -
-    reinterpret_cast<char*>(&ptr_)) + sizeof(engine_constructor_index_));
+    static_cast<size_t>(reinterpret_cast<char*>(&instance_id_) -
+    reinterpret_cast<char*>(&ptr_)) + sizeof(instance_id_));
   // @@protoc_insertion_point(copy_constructor:wire.Object)
 }
 
 void Object::SharedCtor() {
   ::memset(&ptr_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&engine_constructor_index_) -
-      reinterpret_cast<char*>(&ptr_)) + sizeof(engine_constructor_index_));
+      reinterpret_cast<char*>(&instance_id_) -
+      reinterpret_cast<char*>(&ptr_)) + sizeof(instance_id_));
 }
 
 Object::~Object() {
@@ -3155,8 +3158,8 @@ void Object::Clear() {
   (void) cached_has_bits;
 
   ::memset(&ptr_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&engine_constructor_index_) -
-      reinterpret_cast<char*>(&ptr_)) + sizeof(engine_constructor_index_));
+      reinterpret_cast<char*>(&instance_id_) -
+      reinterpret_cast<char*>(&ptr_)) + sizeof(instance_id_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3179,6 +3182,20 @@ const char* Object::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
           engine_constructor_index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bool is_ref = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          is_ref_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // uint64 instance_id = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
+          instance_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -3222,6 +3239,18 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_engine_constructor_index(), target);
   }
 
+  // bool is_ref = 3;
+  if (this->is_ref() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(3, this->_internal_is_ref(), target);
+  }
+
+  // uint64 instance_id = 4;
+  if (this->instance_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt64ToArray(4, this->_internal_instance_id(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -3248,6 +3277,18 @@ size_t Object::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
         this->_internal_engine_constructor_index());
+  }
+
+  // bool is_ref = 3;
+  if (this->is_ref() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // uint64 instance_id = 4;
+  if (this->instance_id() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
+        this->_internal_instance_id());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -3287,6 +3328,12 @@ void Object::MergeFrom(const Object& from) {
   if (from.engine_constructor_index() != 0) {
     _internal_set_engine_constructor_index(from._internal_engine_constructor_index());
   }
+  if (from.is_ref() != 0) {
+    _internal_set_is_ref(from._internal_is_ref());
+  }
+  if (from.instance_id() != 0) {
+    _internal_set_instance_id(from._internal_instance_id());
+  }
 }
 
 void Object::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -3311,8 +3358,8 @@ void Object::InternalSwap(Object* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Object, engine_constructor_index_)
-      + sizeof(Object::engine_constructor_index_)
+      PROTOBUF_FIELD_OFFSET(Object, instance_id_)
+      + sizeof(Object::instance_id_)
       - PROTOBUF_FIELD_OFFSET(Object, ptr_)>(
           reinterpret_cast<char*>(&ptr_),
           reinterpret_cast<char*>(&other->ptr_));

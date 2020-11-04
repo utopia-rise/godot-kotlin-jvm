@@ -144,12 +144,16 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr,
     const KtVariant& retValue{methodBind->call(ptr, variantArgsPtr, argsSize, r_error)};
     ERR_FAIL_COND_MSG(r_error.error != Variant::CallError::CALL_OK, vformat("Call to %s failed.", method))
     transferContext->write_return_value(env, retValue);
+    jni::JObject local_ref{instance};
+    local_ref.delete_local_ref(env);
 }
 
 jlong TransferContext::invoke_constructor(JNIEnv *p_raw_env, jobject p_instance, jstring p_class_name) {
     jni::Env env(p_raw_env);
     StringName class_name = env.from_jstring(jni::JString(p_class_name));
     Object* ptr = ClassDB::instance(class_name);
+    jni::JObject local_ref{p_instance};
+    local_ref.delete_local_ref(env);
     ERR_FAIL_COND_V_MSG(!ptr, 0, vformat("Failed to instantiate class %s", class_name))
     return reinterpret_cast<uintptr_t>(ptr);
 }
@@ -162,9 +166,14 @@ void TransferContext::set_script(JNIEnv *p_raw_env, jobject p_instance, jlong p_
     auto* kt_object = new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader), class_name);
     auto* script = memnew(KotlinInstance(kt_object, owner, GDKotlin::get_instance().find_class_by_name(class_name)));
     owner->set_script_instance(script);
+    jni::JObject local_ref{p_instance};
+    local_ref.delete_local_ref(env);
 }
 
 void TransferContext::free_object(JNIEnv *p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     auto* owner = reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr));
     owner->call_multilevel("free");
+    jni::Env env(p_raw_env);
+    jni::JObject local_ref{p_instance};
+    local_ref.delete_local_ref(env);
 }

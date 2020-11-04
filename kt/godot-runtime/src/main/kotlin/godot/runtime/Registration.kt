@@ -28,6 +28,7 @@ data class KtFunctionArgument(
     )
 }
 
+
 class ClassBuilderDsl<T : KtObject>(
     @PublishedApi internal val name: String,
     private val superClass: String
@@ -55,7 +56,9 @@ class ClassBuilderDsl<T : KtObject>(
         type: KtVariant.Type,
         className: String,
         hint: PropertyHint = PropertyHint.NONE,
-        hintString: String = ""
+        hintString: String = "",
+        defaultArgument: KtVariant = KtVariant(Unit),
+        isRef: Boolean = false
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
         require(!properties.contains(propertyName)) {
@@ -71,7 +74,9 @@ class ClassBuilderDsl<T : KtObject>(
             ),
             kProperty,
             getValueConverter,
-            setValueConverter
+            setValueConverter,
+            defaultArgument,
+            isRef
         )
     }
 
@@ -93,7 +98,9 @@ class ClassBuilderDsl<T : KtObject>(
             ),
             kProperty,
             { enum -> KtVariant(enum.ordinal) },
-            { ktVariant -> enumValues<P>()[ktVariant.asInt()] }
+            { ktVariant -> enumValues<P>()[ktVariant.asInt()] },
+            KtVariant(Unit),
+            false
         )
     }
 
@@ -164,7 +171,9 @@ class ClassBuilderDsl<T : KtObject>(
                 }
 
                 enums
-            }
+            },
+            KtVariant(Unit),
+            false
         )
     }
 
@@ -172,6 +181,7 @@ class ClassBuilderDsl<T : KtObject>(
         kProperty: KMutableProperty1<T, P>,
         getValueConverter: (P) -> KtVariant,
         setValueConverter: ((KtVariant) -> P),
+        isRef: Boolean = false,
         pib: KtPropertyInfoBuilderDsl.() -> Unit
     ) {
         val builder = KtPropertyInfoBuilderDsl()
@@ -181,7 +191,7 @@ class ClassBuilderDsl<T : KtObject>(
         require(!properties.contains(property.name)) {
             "Found two properties with name ${property.name} for class $name"
         }
-        properties[property.name] = KtProperty(property, kProperty, getValueConverter, setValueConverter)
+        properties[property.name] = KtProperty(property, kProperty, getValueConverter, setValueConverter, KtVariant(Unit), isRef)
     }
 
     fun <R> function(

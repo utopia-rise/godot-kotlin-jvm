@@ -59,6 +59,8 @@ message VariantArray {
 message Object {
   fixed64 ptr = 1;
   int32 engine_constructor_index = 2;
+  bool is_ref = 3;
+  uint64 instance_id = 4;
 }
 
 message Value {

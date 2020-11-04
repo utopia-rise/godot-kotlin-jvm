@@ -7568,6 +7568,18 @@ public final class Wire {
      * @return The engineConstructorIndex.
      */
     int getEngineConstructorIndex();
+
+    /**
+     * <code>bool is_ref = 3;</code>
+     * @return The isRef.
+     */
+    boolean getIsRef();
+
+    /**
+     * <code>uint64 instance_id = 4;</code>
+     * @return The instanceId.
+     */
+    long getInstanceId();
   }
   /**
    * Protobuf type {@code wire.Object}
@@ -7624,6 +7636,16 @@ public final class Wire {
               engineConstructorIndex_ = input.readInt32();
               break;
             }
+            case 24: {
+
+              isRef_ = input.readBool();
+              break;
+            }
+            case 32: {
+
+              instanceId_ = input.readUInt64();
+              break;
+            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -7678,6 +7700,28 @@ public final class Wire {
       return engineConstructorIndex_;
     }
 
+    public static final int IS_REF_FIELD_NUMBER = 3;
+    private boolean isRef_;
+    /**
+     * <code>bool is_ref = 3;</code>
+     * @return The isRef.
+     */
+    @java.lang.Override
+    public boolean getIsRef() {
+      return isRef_;
+    }
+
+    public static final int INSTANCE_ID_FIELD_NUMBER = 4;
+    private long instanceId_;
+    /**
+     * <code>uint64 instance_id = 4;</code>
+     * @return The instanceId.
+     */
+    @java.lang.Override
+    public long getInstanceId() {
+      return instanceId_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -7698,6 +7742,12 @@ public final class Wire {
       if (engineConstructorIndex_ != 0) {
         output.writeInt32(2, engineConstructorIndex_);
       }
+      if (isRef_ != false) {
+        output.writeBool(3, isRef_);
+      }
+      if (instanceId_ != 0L) {
+        output.writeUInt64(4, instanceId_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -7714,6 +7764,14 @@ public final class Wire {
       if (engineConstructorIndex_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(2, engineConstructorIndex_);
+      }
+      if (isRef_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(3, isRef_);
+      }
+      if (instanceId_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(4, instanceId_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -7734,6 +7792,10 @@ public final class Wire {
           != other.getPtr()) return false;
       if (getEngineConstructorIndex()
           != other.getEngineConstructorIndex()) return false;
+      if (getIsRef()
+          != other.getIsRef()) return false;
+      if (getInstanceId()
+          != other.getInstanceId()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -7750,6 +7812,12 @@ public final class Wire {
           getPtr());
       hash = (37 * hash) + ENGINE_CONSTRUCTOR_INDEX_FIELD_NUMBER;
       hash = (53 * hash) + getEngineConstructorIndex();
+      hash = (37 * hash) + IS_REF_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getIsRef());
+      hash = (37 * hash) + INSTANCE_ID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getInstanceId());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -7887,6 +7955,10 @@ public final class Wire {
 
         engineConstructorIndex_ = 0;
 
+        isRef_ = false;
+
+        instanceId_ = 0L;
+
         return this;
       }
 
@@ -7915,6 +7987,8 @@ public final class Wire {
         godot.wire.Wire.Object result = new godot.wire.Wire.Object(this);
         result.ptr_ = ptr_;
         result.engineConstructorIndex_ = engineConstructorIndex_;
+        result.isRef_ = isRef_;
+        result.instanceId_ = instanceId_;
         onBuilt();
         return result;
       }
@@ -7968,6 +8042,12 @@ public final class Wire {
         }
         if (other.getEngineConstructorIndex() != 0) {
           setEngineConstructorIndex(other.getEngineConstructorIndex());
+        }
+        if (other.getIsRef() != false) {
+          setIsRef(other.getIsRef());
+        }
+        if (other.getInstanceId() != 0L) {
+          setInstanceId(other.getInstanceId());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -8056,6 +8136,68 @@ public final class Wire {
       public Builder clearEngineConstructorIndex() {
         
         engineConstructorIndex_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private boolean isRef_ ;
+      /**
+       * <code>bool is_ref = 3;</code>
+       * @return The isRef.
+       */
+      @java.lang.Override
+      public boolean getIsRef() {
+        return isRef_;
+      }
+      /**
+       * <code>bool is_ref = 3;</code>
+       * @param value The isRef to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIsRef(boolean value) {
+        
+        isRef_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool is_ref = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearIsRef() {
+        
+        isRef_ = false;
+        onChanged();
+        return this;
+      }
+
+      private long instanceId_ ;
+      /**
+       * <code>uint64 instance_id = 4;</code>
+       * @return The instanceId.
+       */
+      @java.lang.Override
+      public long getInstanceId() {
+        return instanceId_;
+      }
+      /**
+       * <code>uint64 instance_id = 4;</code>
+       * @param value The instanceId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setInstanceId(long value) {
+        
+        instanceId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint64 instance_id = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearInstanceId() {
+        
+        instanceId_ = 0L;
         onChanged();
         return this;
       }
@@ -13145,25 +13287,26 @@ public final class Wire {
       "\001(\0132\r.wire.Vector3\022\030\n\001z\030\003 \001(\0132\r.wire.Vec" +
       "tor3\"F\n\tTransform\022\032\n\005basis\030\001 \001(\0132\013.wire." +
       "Basis\022\035\n\006origin\030\002 \001(\0132\r.wire.Vector3\"\016\n\014" +
-      "VariantArray\"7\n\006Object\022\013\n\003ptr\030\001 \001(\006\022 \n\030e" +
-      "ngine_constructor_index\030\002 \001(\005\"\263\004\n\005Value\022" +
-      "\023\n\tnil_value\030\001 \001(\005H\000\022\024\n\nbool_value\030\002 \001(\010" +
-      "H\000\022\024\n\nlong_value\030\003 \001(\003H\000\022\024\n\nreal_value\030\004" +
-      " \001(\001H\000\022\026\n\014string_value\030\005 \001(\tH\000\022&\n\rvector" +
-      "2_value\030\006 \001(\0132\r.wire.Vector2H\000\022\"\n\013rect2_" +
-      "value\030\007 \001(\0132\013.wire.Rect2H\000\022&\n\rvector3_va" +
-      "lue\030\010 \001(\0132\r.wire.Vector3H\000\022.\n\021transform2" +
-      "D_value\030\t \001(\0132\021.wire.Transform2DH\000\022\"\n\013pl" +
-      "ane_value\030\n \001(\0132\013.wire.PlaneH\000\022 \n\nquat_v" +
-      "alue\030\013 \001(\0132\n.wire.QuatH\000\022 \n\naabb_value\030\014" +
-      " \001(\0132\n.wire.AABBH\000\022\"\n\013basis_value\030\r \001(\0132" +
-      "\013.wire.BasisH\000\022*\n\017transform_value\030\016 \001(\0132" +
-      "\017.wire.TransformH\000\0221\n\023variant_array_valu" +
-      "e\030\017 \001(\0132\022.wire.VariantArrayH\000\022$\n\014object_" +
-      "value\030\020 \001(\0132\014.wire.ObjectH\000B\006\n\004type\"(\n\013R" +
-      "eturnValue\022\031\n\004data\030\001 \001(\0132\013.wire.Value\"%\n" +
-      "\010FuncArgs\022\031\n\004args\030\001 \003(\0132\013.wire.ValueB\014\n\n" +
-      "godot.wireb\006proto3"
+      "VariantArray\"\\\n\006Object\022\013\n\003ptr\030\001 \001(\006\022 \n\030e" +
+      "ngine_constructor_index\030\002 \001(\005\022\016\n\006is_ref\030" +
+      "\003 \001(\010\022\023\n\013instance_id\030\004 \001(\004\"\263\004\n\005Value\022\023\n\t" +
+      "nil_value\030\001 \001(\005H\000\022\024\n\nbool_value\030\002 \001(\010H\000\022" +
+      "\024\n\nlong_value\030\003 \001(\003H\000\022\024\n\nreal_value\030\004 \001(" +
+      "\001H\000\022\026\n\014string_value\030\005 \001(\tH\000\022&\n\rvector2_v" +
+      "alue\030\006 \001(\0132\r.wire.Vector2H\000\022\"\n\013rect2_val" +
+      "ue\030\007 \001(\0132\013.wire.Rect2H\000\022&\n\rvector3_value" +
+      "\030\010 \001(\0132\r.wire.Vector3H\000\022.\n\021transform2D_v" +
+      "alue\030\t \001(\0132\021.wire.Transform2DH\000\022\"\n\013plane" +
+      "_value\030\n \001(\0132\013.wire.PlaneH\000\022 \n\nquat_valu" +
+      "e\030\013 \001(\0132\n.wire.QuatH\000\022 \n\naabb_value\030\014 \001(" +
+      "\0132\n.wire.AABBH\000\022\"\n\013basis_value\030\r \001(\0132\013.w" +
+      "ire.BasisH\000\022*\n\017transform_value\030\016 \001(\0132\017.w" +
+      "ire.TransformH\000\0221\n\023variant_array_value\030\017" +
+      " \001(\0132\022.wire.VariantArrayH\000\022$\n\014object_val" +
+      "ue\030\020 \001(\0132\014.wire.ObjectH\000B\006\n\004type\"(\n\013Retu" +
+      "rnValue\022\031\n\004data\030\001 \001(\0132\013.wire.Value\"%\n\010Fu" +
+      "ncArgs\022\031\n\004args\030\001 \003(\0132\013.wire.ValueB\014\n\ngod" +
+      "ot.wireb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -13234,7 +13377,7 @@ public final class Wire {
     internal_static_wire_Object_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_wire_Object_descriptor,
-        new java.lang.String[] { "Ptr", "EngineConstructorIndex", });
+        new java.lang.String[] { "Ptr", "EngineConstructorIndex", "IsRef", "InstanceId", });
     internal_static_wire_Value_descriptor =
       getDescriptor().getMessageTypes().get(11);
     internal_static_wire_Value_fieldAccessorTable = new

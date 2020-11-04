@@ -49,12 +49,20 @@ GDKotlin& GDKotlin::get_instance() {
 
 void load_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
     jni::Env env(p_env);
-    GDKotlin::get_instance().register_classes(env, jni::JObjectArray(p_classes));
+    jni::JObjectArray classes{jni::JObjectArray(p_classes)};
+    GDKotlin::get_instance().register_classes(env, classes);
+    jni::JObject jObject{p_this};
+    jObject.delete_local_ref(env);
+    classes.delete_local_ref(env);
 }
 
 void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
     jni::Env env(p_env);
-    GDKotlin::get_instance().unregister_classes(env, jni::JObjectArray(p_classes));
+    jni::JObjectArray classes{jni::JObjectArray(p_classes)};
+    GDKotlin::get_instance().unregister_classes(env, classes);
+    jni::JObject jObject{p_this};
+    jObject.delete_local_ref(env);
+    classes.delete_local_ref(env);
 }
 
 void GDKotlin::init() {
@@ -64,6 +72,53 @@ void GDKotlin::init() {
     jni::InitArgs args;
     args.version = JNI_VERSION_1_8;
     args.option("-Xcheck:jni");
+
+    // Initialize remote jvm debug if one of jvm debug arguments is encountered.
+    // Initialize if jvm GC should be forced
+    String port;
+    String address;
+    bool is_gc_force_mode{false};
+    long gc_thread_period_interval{500};
+    const List<String>& cmdline_args{OS::get_singleton()->get_cmdline_args()};
+    for (int i = 0; i < cmdline_args.size(); ++i) {
+        const String cmd_arg{cmdline_args[i]};
+        if (cmd_arg.find("--jvm-debug-port") >= 0) {
+            if (split_jvm_debug_argument(cmd_arg, port) == OK) {
+                if (port.empty()) {
+                    port = "5005";
+                }
+            } else {
+                break;
+            }
+        } else if (cmd_arg.find("--jvm-debug-address") >= 0) {
+            if (split_jvm_debug_argument(cmd_arg, address) == OK) {
+                if (address.empty()) {
+                    address = "*";
+                }
+            } else {
+                break;
+            }
+        } else if (cmd_arg.find("--jvm-gc-thread-period-millis") >= 0) {
+            String result;
+            if (split_jvm_debug_argument(cmd_arg, result) == OK) {
+                gc_thread_period_interval = result.to_int64();
+            }
+        } else if (cmd_arg == "--jvm-force-gc") {
+            is_gc_force_mode = true;
+        }
+    }
+
+    if (!port.empty() || !address.empty()) {
+        if (address.empty()) {
+            address = "*";
+        } else if (port.empty()) {
+            port = "5005";
+        }
+
+        String debug_command{"-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=" + address + ":" + port};
+        args.option(debug_command.utf8());
+    }
+
     jni::Jvm::init(args);
     print_line("Starting JVM ...");
     auto project_settings = ProjectSettings::get_singleton();
@@ -75,6 +130,44 @@ void GDKotlin::init() {
     class_loader = create_class_loader(env, bootstrap_jar).new_global_ref<jni::JObject>(env);
     set_context_class_loader(env, current_thread, class_loader);
 
+    jni::JClass transfer_ctx_cls = env.load_class("godot.core.TransferContext", class_loader);
+    jni::FieldId transfer_ctx_instance_field = transfer_ctx_cls.get_static_field_id(env, "INSTANCE",
+                                                                                    "Lgodot/core/TransferContext;");
+    jni::JObject transfer_ctx_instance = transfer_ctx_cls.get_static_object_field(env, transfer_ctx_instance_field);
+    CRASH_COND_MSG(transfer_ctx_instance.isNull(), "Failed to retrieve TransferContext instance")
+    transfer_context = new TransferContext(transfer_ctx_instance, class_loader);
+
+    jni::JClass garbage_collector_cls{env.load_class("godot.core.GarbageCollector", class_loader)};
+    jni::FieldId garbage_collector_instance_field{
+            garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/GarbageCollector;")
+    };
+    jni::JObject garbage_collector_instance{
+            garbage_collector_cls.get_static_object_field(env, garbage_collector_instance_field)
+    };
+    CRASH_COND_MSG(garbage_collector_instance.isNull(), "Failed to retrieve GarbageCollector instance")
+
+    jni::JClass memory_bridge_class{env.load_class("godot.core.GarbageCollector$MemoryBridge", class_loader)};
+    jni::FieldId memory_bridge_instance_field{
+            memory_bridge_class.get_static_field_id(env, "INSTANCE", "Lgodot/core/GarbageCollector$MemoryBridge;")
+    };
+    jni::JObject memory_bridge_instance{
+            memory_bridge_class.get_static_object_field(env, memory_bridge_instance_field)
+    };
+    memory_bridge = new MemoryBridge(memory_bridge_instance, class_loader);
+
+    if (is_gc_force_mode) {
+        print_verbose("Starting GC thread with force mode.");
+    }
+    jni::MethodId start_method_id{garbage_collector_cls.get_method_id(env, "start", "(ZJ)V")};
+    garbage_collector_instance.call_void_method(
+            env,
+            start_method_id,
+            {
+                    static_cast<jboolean>(is_gc_force_mode),
+                    static_cast<jlong>(gc_thread_period_interval)
+            }
+    );
+
     jni::JClass bootstrap_cls = env.load_class("godot.runtime.Bootstrap", class_loader);
     jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");
     jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
@@ -82,23 +175,39 @@ void GDKotlin::init() {
     bootstrap->register_hooks(env, load_classes_hook, unload_classes_hook, KtVariant::register_engine_types);
     bool is_editor = Engine::get_singleton()->is_editor_hint();
     String project_path = project_settings->globalize_path("res://");
-    bootstrap->init(env, is_editor, project_path);
 
-    jni::JClass transfer_ctx_cls = env.load_class("godot.core.TransferContext", class_loader);
-    jni::FieldId transfer_ctx_instance_field = transfer_ctx_cls.get_static_field_id(env, "INSTANCE",
-                                                                                    "Lgodot/core/TransferContext;");
-    jni::JObject transfer_ctx_instance = transfer_ctx_cls.get_static_object_field(env, transfer_ctx_instance_field);
-    CRASH_COND_MSG(transfer_ctx_instance.isNull(), "Failed to retrieve TransferContext instance")
-    transfer_context = new TransferContext(transfer_ctx_instance, class_loader);
+    bootstrap->init(env, is_editor, project_path);
 }
 
 void GDKotlin::finish() {
     auto env = jni::Jvm::current_env();
+
     delete transfer_context;
     transfer_context = nullptr;
     bootstrap->finish(env);
     delete bootstrap;
     bootstrap = nullptr;
+
+    jni::JClass garbage_collector_cls{env.load_class("godot.core.GarbageCollector", class_loader)};
+    jni::FieldId garbage_collector_instance_field{
+            garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/GarbageCollector;")
+    };
+    jni::JObject garbage_collector_instance{
+            garbage_collector_cls.get_static_object_field(env, garbage_collector_instance_field)
+    };
+    CRASH_COND_MSG(garbage_collector_instance.isNull(), "Failed to retrieve GarbageCollector instance")
+    jni::MethodId close_method_id{garbage_collector_cls.get_method_id(env, "close", "()V")};
+    garbage_collector_instance.call_void_method(env, close_method_id);
+    jni::MethodId has_closed_method_id{garbage_collector_cls.get_method_id(env, "isClosed", "()Z")};
+    while (!garbage_collector_instance.call_boolean_method(env, has_closed_method_id)) {
+        OS::get_singleton()->delay_usec(600000);
+    }
+    print_verbose("JVM GC thread was closed");
+    jni::MethodId clean_up_method_id{garbage_collector_cls.get_method_id(env, "cleanUp", "()V")};
+    garbage_collector_instance.call_void_method(env, clean_up_method_id);
+
+    delete memory_bridge;
+    memory_bridge = nullptr;
     KtVariant::clear_engine_types();
     class_loader.delete_global_ref(env);
     jni::Jvm::destroy();
@@ -128,7 +237,8 @@ void GDKotlin::unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes) 
 
 KtClass* GDKotlin::find_class(const String& p_script_path) {
     StringName class_name = p_script_path.trim_prefix(scripts_root).trim_suffix(".kt").replace("/", ".");
-    ERR_FAIL_COND_V_MSG(!classes.has(class_name), nullptr, vformat("Failed to find class %s for path: %s", class_name, p_script_path))
+    ERR_FAIL_COND_V_MSG(!classes.has(class_name), nullptr,
+                        vformat("Failed to find class %s for path: %s", class_name, p_script_path))
     return classes[class_name];
 }
 
@@ -139,4 +249,16 @@ KtClass* GDKotlin::find_class_by_name(const String& class_name) {
 
 jni::JObject& GDKotlin::get_class_loader() {
     return class_loader;
+}
+
+Error GDKotlin::split_jvm_debug_argument(const String& cmd_arg, String& result) {
+    Vector<String> jvm_debug_split{cmd_arg.split("=")};
+
+    if (jvm_debug_split.size() == 2) {
+        result = jvm_debug_split[1];
+    } else if (jvm_debug_split.size() != 1) {
+        print_error(vformat("Unrecognized --jvm-debug arg pattern: %s", cmd_arg));
+        return FAILED;
+    }
+    return OK;
 }

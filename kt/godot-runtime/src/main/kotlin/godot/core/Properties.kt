@@ -17,12 +17,17 @@ data class KtPropertyInfo(
         get() = _hint.ordinal
 }
 
-class KtProperty<T: KtObject, P>(
-        val ktPropertyInfo: KtPropertyInfo,
-        private val kProperty: KMutableProperty1<T, P>,
-        private val getValueConverter: (P) -> KtVariant,
-        private val setValueConverter: ((KtVariant) -> P)
+class KtProperty<T : KtObject, P>(
+    val ktPropertyInfo: KtPropertyInfo,
+    private val kProperty: KMutableProperty1<T, P>,
+    private val getValueConverter: (P) -> KtVariant,
+    private val setValueConverter: ((KtVariant) -> P),
+    private val _defaultValue: KtVariant,
+    val isRef: Boolean
 ) {
+    val defaultValue: Boolean
+        get() = TransferContext.writeReturnValue(_defaultValue)
+
     fun callGet(instance: T): Boolean {
         return TransferContext.writeReturnValue(getValueConverter(kProperty.get(instance)))
     }

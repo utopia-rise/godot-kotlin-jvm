@@ -1,4 +1,4 @@
-package godot.registration.annotation
+package godot.annotation
 
 
 /**

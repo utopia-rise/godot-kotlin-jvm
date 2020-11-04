@@ -6,7 +6,10 @@ import godot.util.VoidPtr
 import godot.util.camelToSnakeCase
 import kotlin.reflect.KCallable
 
-open class Object : KtObject() {
+open class Object(isRef: Boolean = false) : KtObject(isRef) {
+
+    constructor() : this(false)
+
     override fun __new(): VoidPtr {
         return TransferContext.invokeConstructor("Object")
     }
@@ -23,7 +26,7 @@ open class Object : KtObject() {
         TransferContext.readReturnValue()
     }
 
-    fun getInstanceId(): Long {
+    override fun getInstanceId(): Long {
         val refreshBuffer =TransferContext.writeArguments()
         TransferContext.callMethod(rawPtr, "Object", "get_instance_id", KtVariant.Type.LONG, refreshBuffer)
         return TransferContext.readReturnValue().asLong()
@@ -335,8 +338,30 @@ open class Spatial : Node() {
     }
 }
 
+open class Reference : Object(true) {
+
+    override fun __new(): VoidPtr {
+        return TransferContext.invokeConstructor("Reference")
+    }
+}
+
+open class Resource : Reference() {
+    override fun __new(): VoidPtr {
+        return TransferContext.invokeConstructor("Resource")
+    }
+}
+
+open class NavigationMesh : Resource() {
+    override fun __new(): VoidPtr {
+        return TransferContext.invokeConstructor("NavigationMesh")
+    }
+}
+
 fun registerEngineTypes() {
     TypeManager.registerEngineType("Object", ::Object)
     TypeManager.registerEngineType("Node", ::Node)
     TypeManager.registerEngineType("Spatial", ::Spatial)
+    TypeManager.registerEngineType("Reference", ::Reference)
+    TypeManager.registerEngineType("Resource", ::Resource)
+    TypeManager.registerEngineType("NavigationMesh", ::NavigationMesh)
 }
