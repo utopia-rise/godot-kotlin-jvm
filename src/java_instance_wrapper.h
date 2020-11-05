@@ -7,15 +7,10 @@
 
 class JavaInstanceWrapper {
 private:
-    struct ClassCache {
-        jni::JClass cls;
-        HashMap<StringName, jni::MethodId> method_ids;
-        HashMap<StringName, jni::MethodId> static_method_ids;
-    };
+    jni::JClass jni_class;
+    bool should_refresh;
 
-    static HashMap<StringName, ClassCache> CLASS_CACHE;
-
-    ClassCache& get_class_cache(jni::Env& env) const;
+    void load_jni_class(jni::Env& env);
 protected:
     String java_class_name;
     jni::JObject wrapped;
@@ -25,8 +20,12 @@ protected:
     ~JavaInstanceWrapper();
 
     jni::JClass& get_class(jni::Env& env);
-    jni::MethodId get_method_id(jni::Env& env, jni::JavaMethodSignature& method_signature) const;
-    jni::MethodId get_static_method_id(jni::Env& env, const char* p_name, const char* p_signature);
+    jni::MethodId get_method_id(jni::Env& env, jni::JavaMethodSignature& method_signature);
+    jni::MethodId get_static_method_id(jni::Env& env, jni::JavaMethodSignature& method_signature);
+
+public:
+    void jni_refresh();
+
 };
 
 
