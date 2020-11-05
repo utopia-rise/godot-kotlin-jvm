@@ -3,6 +3,8 @@
 #include "gd_kotlin.h"
 #include "kotlin_instance.h"
 
+TransferContext::JNIMethods TransferContext::jni_methods{};
+
 TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_loader)
     : JavaInstanceWrapper("godot.core.TransferContext", p_wrapped, p_class_loader) {
     jni::JNativeMethod icall_method {
@@ -43,7 +45,7 @@ TransferContext::SharedBuffer* TransferContext::get_buffer(jni::Env& p_env, bool
 
     if (!shared_buffer.ptr || p_refresh_buffer) {
 
-        jni::MethodId method = get_method_id(p_env, "getBuffer", "()Ljava/nio/ByteBuffer;");
+        jni::MethodId method = get_method_id(p_env, jni_methods.GET_BUFFER);
         jni::JObject buffer = wrapped.call_object_method(p_env, method);
         assert(!buffer.isNull());
         shared_buffer = SharedBuffer {
@@ -56,7 +58,7 @@ TransferContext::SharedBuffer* TransferContext::get_buffer(jni::Env& p_env, bool
 }
 
 bool TransferContext::ensure_capacity(jni::Env& p_env, long p_capacity) {
-    jni::MethodId method = get_method_id(p_env, "ensureCapacity", "(I)Z");
+    jni::MethodId method = get_method_id(p_env, jni_methods.ENSURE_CAPACITY);
     return wrapped.call_boolean_method(p_env, method, {static_cast<jlong>(p_capacity)});
 }
 

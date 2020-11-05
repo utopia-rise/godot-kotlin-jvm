@@ -3,7 +3,7 @@
 #include "java_instance_wrapper.h"
 #include "core/string_builder.h"
 
-HashMap<String, JavaInstanceWrapper::ClassCache> JavaInstanceWrapper::CLASS_CACHE = HashMap<String, ClassCache>();
+HashMap<StringName, JavaInstanceWrapper::ClassCache> JavaInstanceWrapper::CLASS_CACHE = HashMap<StringName, ClassCache>();
 
 JavaInstanceWrapper::JavaInstanceWrapper(const char* p_class_name, jni::JObject p_wrapped,
                                          jni::JObject p_class_loader) : java_class_name(p_class_name) {
@@ -22,24 +22,18 @@ jni::JClass& JavaInstanceWrapper::get_class(jni::Env& env) {
     return get_class_cache(env).cls;
 }
 
-jni::MethodId JavaInstanceWrapper::get_method_id(jni::Env& env, const char* p_name, const char* p_signature) const {
-    auto& class_cache = get_class_cache(env);
-    auto key = StringBuilder()
-            .append(p_name)
-            .append(p_signature)
-            .as_string();
-    if (!class_cache.method_ids.has(key)) {
-        class_cache.method_ids[key] = class_cache.cls.get_method_id(env, p_name, p_signature);
+jni::MethodId JavaInstanceWrapper::get_method_id(jni::Env& env, jni::JavaMethodSignature& method_signature) const {
+    if (!method_signature.method_id) {
+        method_signature.init(env, get_class_cache(env).cls);
     }
-    return class_cache.method_ids[key];
+    return method_signature.method_id;
 }
 
 jni::MethodId JavaInstanceWrapper::get_static_method_id(jni::Env& env, const char* p_name, const char* p_signature) {
-    auto& class_cache = get_class_cache(env);
-    auto key = StringBuilder()
-            .append(p_name)
-            .append(p_signature)
-            .as_string();
+    ClassCache& class_cache = get_class_cache(env);
+    char key[100];
+    strcpy_s(key, p_name);
+    strcat_s(key, p_signature);
     if (!class_cache.static_method_ids.has(key)) {
         class_cache.static_method_ids[key] = class_cache.cls.get_method_id(env, p_name, p_signature);
     }

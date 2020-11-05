@@ -16,12 +16,29 @@ struct KtFunctionInfo : public JavaInstanceWrapper {
     KtPropertyInfo* return_val;
 
     MethodInfo to_method_info() const;
+
+private:
+    struct JNIMethods{
+        jni::JavaMethodSignature GET_NAME{"getName", "()Ljava/lang/String;"};
+        jni::JavaMethodSignature GET_ARGUMENTS{"getArguments", "()[Lgodot/core/KtPropertyInfo;"};
+        jni::JavaMethodSignature GET_RETURN_VAL{"getReturnVal", "()Lgodot/core/KtPropertyInfo;"};
+    };
+    static JNIMethods jni_methods;
 };
 
 class KtFunction : public JavaInstanceWrapper {
 private:
+    struct JNIMethods{
+        jni::JavaMethodSignature GET_FUNCTION_INFO{"getFunctionInfo", "()Lgodot/core/KtFunctionInfo;"};
+        jni::JavaMethodSignature GET_PARAMETER_COUNT{"getParameterCount", "()I"};
+        jni::JavaMethodSignature INVOKE{"invoke", "(Lgodot/core/KtObject;)Z"};
+    };
+    static JNIMethods jni_methods;
+
+private:
     int parameter_count;
     KtFunctionInfo* method_info;
+
 
 public:
     KtFunction(jni::JObject p_wrapped, jni::JObject& p_class_loader);

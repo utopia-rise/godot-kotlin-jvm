@@ -9,11 +9,11 @@ class JavaInstanceWrapper {
 private:
     struct ClassCache {
         jni::JClass cls;
-        HashMap<String, jni::MethodId> method_ids;
-        HashMap<String, jni::MethodId> static_method_ids;
+        HashMap<StringName, jni::MethodId> method_ids;
+        HashMap<StringName, jni::MethodId> static_method_ids;
     };
 
-    static HashMap<String, ClassCache> CLASS_CACHE;
+    static HashMap<StringName, ClassCache> CLASS_CACHE;
 
     ClassCache& get_class_cache(jni::Env& env) const;
 protected:
@@ -25,7 +25,7 @@ protected:
     ~JavaInstanceWrapper();
 
     jni::JClass& get_class(jni::Env& env);
-    jni::MethodId get_method_id(jni::Env& env, const char* p_name, const char* p_signature) const;
+    jni::MethodId get_method_id(jni::Env& env, jni::JavaMethodSignature& method_signature) const;
     jni::MethodId get_static_method_id(jni::Env& env, const char* p_name, const char* p_signature);
 };
 

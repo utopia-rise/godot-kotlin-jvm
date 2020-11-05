@@ -3,13 +3,16 @@
 #include "kt_function.h"
 #include "gd_kotlin.h"
 
+KtFunction::JNIMethods KtFunction::jni_methods{};
+KtFunctionInfo::JNIMethods KtFunctionInfo::jni_methods{};
+
 KtFunction::KtFunction(jni::JObject p_wrapped, jni::JObject& p_class_loader)
         : JavaInstanceWrapper("godot.core.KtFunction", p_wrapped, p_class_loader), parameter_count(-1) {
     jni::Env env{jni::Jvm::current_env()};
-    jni::MethodId getFunctionInfoMethod{get_method_id(env, "getFunctionInfo", "()Lgodot/core/KtFunctionInfo;")};
+    jni::MethodId getFunctionInfoMethod{get_method_id(env, jni_methods.GET_FUNCTION_INFO)};
     method_info = new KtFunctionInfo(wrapped.call_object_method(env, getFunctionInfoMethod),
                                      GDKotlin::get_instance().get_class_loader());
-    jni::MethodId getParameterCountMethod{get_method_id(env, "getParameterCount", "()I")};
+    jni::MethodId getParameterCountMethod{get_method_id(env, jni_methods.GET_PARAMETER_COUNT)};
     parameter_count = wrapped.call_int_method(env, getParameterCountMethod);
 }
 
@@ -36,7 +39,7 @@ KtFunctionInfo* KtFunction::get_kt_function_info() {
 Variant KtFunction::invoke(const KtObject* instance, const Variant** p_args, int args_count) {
     jni::Env env{jni::Jvm::current_env()};
 
-    jni::MethodId methodId {get_method_id(env, "invoke", "(Lgodot/core/KtObject;)Z")};
+    jni::MethodId methodId {get_method_id(env, jni_methods.INVOKE)};
     TransferContext* transferContext = GDKotlin::get_instance().transfer_context;
     Vector<KtVariant> args;
     for (int i = 0; i < args_count; i++) {
@@ -50,15 +53,15 @@ Variant KtFunction::invoke(const KtObject* instance, const Variant** p_args, int
 KtFunctionInfo::KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader)
         : JavaInstanceWrapper("godot.core.KtFunctionInfo", p_wrapped, p_class_loader) {
     jni::Env env{jni::Jvm::current_env()};
-    jni::MethodId getNameMethod{get_method_id(env, "getName", "()Ljava/lang/String;")};
+    jni::MethodId getNameMethod{get_method_id(env, jni_methods.GET_NAME)};
     name = env.from_jstring(wrapped.call_object_method(env, getNameMethod));
-    jni::MethodId getPropertyInfosMethod{get_method_id(env, "getArguments", "()[Lgodot/core/KtPropertyInfo;")};
+    jni::MethodId getPropertyInfosMethod{get_method_id(env, jni_methods.GET_ARGUMENTS)};
     jni::JObjectArray propertyInfoArray{wrapped.call_object_method(env, getPropertyInfosMethod)};
     for (int i = 0; i < propertyInfoArray.length(env); i++) {
         arguments.push_back(
                 new KtPropertyInfo(propertyInfoArray.get(env, i), GDKotlin::get_instance().get_class_loader()));
     }
-    jni::MethodId getReturnValMethod{get_method_id(env, "getReturnVal", "()Lgodot/core/KtPropertyInfo;")};
+    jni::MethodId getReturnValMethod{get_method_id(env, jni_methods.GET_RETURN_VAL)};
     return_val = new KtPropertyInfo(wrapped.call_object_method(env, getReturnValMethod),
                                     GDKotlin::get_instance().get_class_loader());
 }
