@@ -330,6 +330,18 @@ open class Node : Object() {
         TransferContext.callMethod(rawPtr, "Node", "get_parent", KtVariant.Type.OBJECT, refresh)
         return TransferContext.readReturnValue().asObject()
     }
+
+    open fun addChild(node: Node) {
+        val refresh = TransferContext.writeArguments(KtVariant(node))
+        TransferContext.callMethod(rawPtr, "Node", "add_child", KtVariant.Type.NIL, refresh)
+        TransferContext.readReturnValue()
+    }
+
+    open fun removeChild(node: Node) {
+        val refresh = TransferContext.writeArguments(KtVariant(node))
+        TransferContext.callMethod(rawPtr, "Node", "remove_child", KtVariant.Type.NIL, refresh)
+        TransferContext.readReturnValue()
+    }
 }
 
 open class Spatial : Node() {

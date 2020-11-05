@@ -1,17 +1,22 @@
 package godot.benchmark
 
+import godot.Node
 import godot.Object
+import godot.annotation.RegisterFunction
 import godot.core.Transform
 import godot.core.Vector2
 import godot.core.Vector3
 
 class Simple : Object() {
+
+    @RegisterFunction
     fun benchmarkSimpleAdd(): Int {
         val a = 1
         val b = 2
         return a + b
     }
 
+    @RegisterFunction
     fun benchmarkAvg(): Int {
         val size = 10000
         var total = 0
@@ -21,6 +26,7 @@ class Simple : Object() {
         return total / size
     }
 
+    @RegisterFunction
     fun benchmarkVectors(): Vector3 {
         var b = Transform()
         b = b.rotated(Vector3.UP, Math.toRadians(60.0))
@@ -36,7 +42,7 @@ class Simple : Object() {
         return s
     }
 
-
+    @RegisterFunction
     fun benchmarkVectors2Only(): Vector2 {
         var s = Vector2()
         for(i in 0 until 1000) {
@@ -47,4 +53,21 @@ class Simple : Object() {
         return s
     }
 
+    @RegisterFunction
+    fun benchmarkICall(): Node {
+        val node = Node()
+        node.getInstanceId()
+        return node
+    }
+
+    fun benchmarkICallWithLoop(): Node {
+        val node = Node()
+        for (i in 0 until 1000) {
+            val child = Node()
+            node.addChild(child)
+            node.removeChild(child)
+            child.free()
+        }
+        return node
+    }
 }
