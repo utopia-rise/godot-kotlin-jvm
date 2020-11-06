@@ -3,11 +3,11 @@
 
 
 #include <core/object.h>
-#include "java_instance_wrapper.h"
 #include "kt_property.h"
 #include "kt_object.h"
+#include "java_instance_wrapper.h"
 
-struct KtFunctionInfo : public JavaInstanceWrapper {
+struct KtFunctionInfo : public JavaInstanceWrapper<KtFunctionInfo> {
     KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader);
     ~KtFunctionInfo();
 
@@ -26,7 +26,7 @@ private:
     static JNIMethods jni_methods;
 };
 
-class KtFunction : public JavaInstanceWrapper {
+class KtFunction : public JavaInstanceWrapper<KtFunction> {
 private:
     struct JNIMethods{
         jni::JavaMethodSignature GET_FUNCTION_INFO{"getFunctionInfo", "()Lgodot/core/KtFunctionInfo;"};

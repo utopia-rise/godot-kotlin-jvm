@@ -3,10 +3,10 @@
 
 
 #include <core/object.h>
-#include "java_instance_wrapper.h"
 #include "kt_property.h"
+#include "java_instance_wrapper.h"
 
-struct KtSignalInfo : public JavaInstanceWrapper {
+struct KtSignalInfo : public JavaInstanceWrapper<KtSignalInfo> {
     KtSignalInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader);
     ~KtSignalInfo();
 

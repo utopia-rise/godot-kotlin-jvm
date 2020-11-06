@@ -1,9 +1,10 @@
 #ifndef GODOT_JVM_KT_VARIANT_H
 #define GODOT_JVM_KT_VARIANT_H
+
+
 #include "wire/wire.pb.h"
 #include "core/variant.h"
 #include "jni/wrapper.h"
-#include "java_instance_wrapper.h"
 
 class KtVariant {
 private:
@@ -17,7 +18,7 @@ public:
 
     static void initMethodArray();
     static Variant::Type fromWireTypeToVariantType(wire::Value::TypeCase typeCase);
-    static void register_engine_types(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types_names);
+    static void register_engine_types(jni::Env& p_env, jni::JObjectArray p_engine_types_names);
     static void clear_engine_types();
 
     const wire::Value& get_value() const;

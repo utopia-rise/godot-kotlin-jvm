@@ -1,13 +1,20 @@
 #ifndef GODOT_JVM_BOOTSTRAP_H
 #define GODOT_JVM_BOOTSTRAP_H
 
+
 #include "java_instance_wrapper.h"
 
-class Bootstrap : public JavaInstanceWrapper {
+class Bootstrap : public JavaInstanceWrapper<Bootstrap> {
+private:
+    struct JNIMethods {
+        jni::JavaMethodSignature INIT{"init", "(ZLjava/lang/String;)V"};
+        jni::JavaMethodSignature FINISH{"finish", "()V"};
+    };
+    static JNIMethods jni_methods;
 public:
     typedef void (*LoadClassesHook)(JNIEnv* p_env, jobject p_this, jobjectArray classes);
     typedef void (*UnloadClassesHook)(JNIEnv* p_env, jobject p_this, jobjectArray classes);
-    typedef void (*RegisterManagedEngineTypes)(JNIEnv* p_env, jobject p_this, jobjectArray classes_names);
+    typedef void (*RegisterManagedEngineTypes)(JNIEnv* p_env, jobject p_this, jobjectArray classes_names, jobjectArray method_names);
 
     Bootstrap(jni::JObject p_wrapped, jni::JObject p_class_loader);
     ~Bootstrap() = default;

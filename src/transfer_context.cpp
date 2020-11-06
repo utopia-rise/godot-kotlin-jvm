@@ -4,12 +4,13 @@
 #include "kotlin_instance.h"
 
 TransferContext::JNIMethods TransferContext::jni_methods{};
+template<> jni::JClass JavaInstanceWrapper<TransferContext>::j_class(static_cast<jclass>(nullptr));
 
 TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_loader)
     : JavaInstanceWrapper("godot.core.TransferContext", p_wrapped, p_class_loader) {
     jni::JNativeMethod icall_method {
         "icall",
-        "(JLjava/lang/String;Ljava/lang/String;IZ)V",
+        "(JIIIZ)V",
         (void*) TransferContext::icall
     };
 
@@ -37,7 +38,7 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
     methods.push_back(set_script_method);
     methods.push_back(free_object_method);
     jni::Env env {jni::Jvm::current_env()};
-    get_class(env).register_natives(env, methods);
+    j_class.register_natives(env, methods);
 }
 
 TransferContext::SharedBuffer* TransferContext::get_buffer(jni::Env& p_env, bool p_refresh_buffer) {
@@ -111,8 +112,8 @@ Vector<KtVariant> TransferContext::read_args(jni::Env& p_env, bool p_refresh_buf
 }
 
 void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr,
-           jstring jClassName,
-           jstring jMethod, jint expectedReturnType,
+           jint p_class_index,
+           jint p_method_index, jint expectedReturnType,
            bool p_refresh_buffer) {
     thread_local static Variant variantArgs[MAX_ARGS_SIZE];
     thread_local static const Variant* variantArgsPtr[MAX_ARGS_SIZE];
@@ -137,8 +138,8 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr,
     }
 
     auto* ptr = reinterpret_cast<Object*>(jPtr);
-    String className = env.from_jstring(jni::JString(jClassName));
-    String method = env.from_jstring(jni::JString(jMethod));
+    String className = GDKotlin::get_instance().engine_type_names[static_cast<int>(p_class_index)];
+    String method = GDKotlin::get_instance().engine_type_method_names[static_cast<int>(p_method_index)];
 
     Variant::CallError r_error{Variant::CallError::CALL_OK};
     MethodBind* methodBind{ClassDB::get_method(className, method)};

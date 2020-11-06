@@ -2,6 +2,9 @@
 #include <core/reference.h>
 #include "memory_bridge.h"
 
+MemoryBridge::JNIMethods MemoryBridge::jni_methods{};
+template<> jni::JClass JavaInstanceWrapper<MemoryBridge>::j_class(static_cast<jclass>(nullptr));
+
 MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) :
         JavaInstanceWrapper("godot.core.GarbageCollector$MemoryBridge", p_wrapped, p_class_loader) {
     jni::JNativeMethod check_instance_method{
@@ -28,7 +31,7 @@ MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) 
     methods.push_back(ref_method);
 
     jni::Env env{jni::Jvm::current_env()};
-    get_class(env).register_natives(env, methods);
+    j_class.register_natives(env, methods);
     p_wrapped.delete_local_ref(env);
 }
 

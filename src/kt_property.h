@@ -3,10 +3,10 @@
 
 #include <core/object.h>
 #include "jni/wrapper.h"
-#include "java_instance_wrapper.h"
 #include "kt_object.h"
+#include "java_instance_wrapper.h"
 
-struct KtPropertyInfo : public JavaInstanceWrapper {
+struct KtPropertyInfo : public JavaInstanceWrapper<KtPropertyInfo> {
     KtPropertyInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader);
     ~KtPropertyInfo() = default;
 
@@ -29,7 +29,7 @@ private:
     static JNIMethods jni_methods;
 };
 
-class KtProperty : JavaInstanceWrapper {
+class KtProperty : JavaInstanceWrapper<KtProperty> {
 private:
     struct JNIMethods{
         jni::JavaMethodSignature GET_KT_PROPERTY_INFO{"getKtPropertyInfo", "()Lgodot/core/KtPropertyInfo;"};

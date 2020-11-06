@@ -53,4 +53,9 @@ class Entry : godot.runtime.Entry() {
             }
         }
     }
+
+    override fun Context.initEngineTypes() {
+        registerEngineTypes()
+        registerEngineTypeMethods()
+    }
 }

@@ -7,8 +7,12 @@
 #include "jni/wrapper.h"
 #include "java_instance_wrapper.h"
 
-class KtObject : public JavaInstanceWrapper {
-
+class KtObject : public JavaInstanceWrapper<KtObject> {
+private:
+    struct JNIMethods {
+        jni::JavaMethodSignature ON_DESTROY{"_onDestroy", "()V"};
+    };
+    static JNIMethods jni_methods;
 private:
     StringName kt_class_name;
 public:

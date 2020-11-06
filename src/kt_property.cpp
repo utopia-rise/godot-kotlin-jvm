@@ -4,7 +4,10 @@
 #include "gd_kotlin.h"
 
 KtPropertyInfo::JNIMethods KtPropertyInfo::jni_methods{};
+template<> jni::JClass JavaInstanceWrapper<KtPropertyInfo>::j_class(static_cast<jclass>(nullptr));
+
 KtProperty::JNIMethods KtProperty::jni_methods{};
+template<> jni::JClass JavaInstanceWrapper<KtProperty>::j_class(static_cast<jclass>(nullptr));
 
 KtPropertyInfo::KtPropertyInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader)
         : JavaInstanceWrapper("godot.core.KtPropertyInfo", p_wrapped, p_class_loader) {

@@ -16,19 +16,19 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
 
     fun connect(name: String, target: Object, method: String, binds: VariantArray, flags: Long): GodotError {
         val refreshBuffer = TransferContext.writeArguments(KtVariant(name), KtVariant(target), KtVariant(method), KtVariant(binds), KtVariant(flags))
-        TransferContext.callMethod(rawPtr, "Object", "connect", KtVariant.Type.LONG, refreshBuffer)
+        TransferContext.callMethod(rawPtr, 0, 0, KtVariant.Type.LONG, refreshBuffer)
         return GodotError.values()[TransferContext.readReturnValue().asInt()]
     }
 
     fun emitSignal(signal: String, vararg args: Any?) {
         val refreshBuffer = TransferContext.writeArguments(KtVariant(signal), *args.map { wrap(it) }.toTypedArray())
-        TransferContext.callMethod(rawPtr, "Object", "emit_signal", KtVariant.Type.NIL, refreshBuffer)
+        TransferContext.callMethod(rawPtr, 0, 1, KtVariant.Type.NIL, refreshBuffer)
         TransferContext.readReturnValue()
     }
 
     override fun getInstanceId(): Long {
         val refreshBuffer =TransferContext.writeArguments()
-        TransferContext.callMethod(rawPtr, "Object", "get_instance_id", KtVariant.Type.LONG, refreshBuffer)
+        TransferContext.callMethod(rawPtr, 0, 2, KtVariant.Type.LONG, refreshBuffer)
         return TransferContext.readReturnValue().asLong()
     }
 
@@ -312,12 +312,12 @@ open class Node : Object() {
     open var name: String
         get() {
             TransferContext.writeArguments()
-            TransferContext.callMethod(rawPtr, "Node", "get_name", KtVariant.Type.STRING, false)
+            TransferContext.callMethod(rawPtr, 1, 3, KtVariant.Type.STRING, false)
             return TransferContext.readReturnValue().asString()
         }
         set(value) {
             val refresh = TransferContext.writeArguments(KtVariant(value))
-            TransferContext.callMethod(rawPtr, "Node", "set_name", KtVariant.Type.NIL, refresh)
+            TransferContext.callMethod(rawPtr, 1, 4, KtVariant.Type.NIL, refresh)
             TransferContext.readReturnValue()
         }
 
@@ -327,19 +327,19 @@ open class Node : Object() {
 
     open fun getParent(): Node {
         val refresh = TransferContext.writeArguments()
-        TransferContext.callMethod(rawPtr, "Node", "get_parent", KtVariant.Type.OBJECT, refresh)
+        TransferContext.callMethod(rawPtr, 1, 5, KtVariant.Type.OBJECT, refresh)
         return TransferContext.readReturnValue().asObject()
     }
 
     open fun addChild(node: Node) {
         val refresh = TransferContext.writeArguments(KtVariant(node))
-        TransferContext.callMethod(rawPtr, "Node", "add_child", KtVariant.Type.NIL, refresh)
+        TransferContext.callMethod(rawPtr, 1, 6, KtVariant.Type.NIL, refresh)
         TransferContext.readReturnValue()
     }
 
     open fun removeChild(node: Node) {
         val refresh = TransferContext.writeArguments(KtVariant(node))
-        TransferContext.callMethod(rawPtr, "Node", "remove_child", KtVariant.Type.NIL, refresh)
+        TransferContext.callMethod(rawPtr, 1, 7, KtVariant.Type.NIL, refresh)
         TransferContext.readReturnValue()
     }
 }
@@ -376,4 +376,15 @@ fun registerEngineTypes() {
     TypeManager.registerEngineType("Reference", ::Reference)
     TypeManager.registerEngineType("Resource", ::Resource)
     TypeManager.registerEngineType("NavigationMesh", ::NavigationMesh)
+}
+
+fun registerEngineTypeMethods() {
+    TypeManager.engineTypeMethodNames.add("connect")
+    TypeManager.engineTypeMethodNames.add("emit_signal")
+    TypeManager.engineTypeMethodNames.add("get_instance_id")
+    TypeManager.engineTypeMethodNames.add("get_name")
+    TypeManager.engineTypeMethodNames.add("set_name")
+    TypeManager.engineTypeMethodNames.add("get_parent")
+    TypeManager.engineTypeMethodNames.add("add_child")
+    TypeManager.engineTypeMethodNames.add("remove_child")
 }

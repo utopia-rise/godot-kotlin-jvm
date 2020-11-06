@@ -1,11 +1,13 @@
 #ifndef GODOT_JVM_TRANSFER_CONTEXT_H
 #define GODOT_JVM_TRANSFER_CONTEXT_H
-#include "java_instance_wrapper.h"
+
+
 #include "kt_variant.h"
+#include "java_instance_wrapper.h"
 
 #define MAX_ARGS_SIZE 16
 
-class TransferContext : public JavaInstanceWrapper {
+class TransferContext : public JavaInstanceWrapper<TransferContext> {
 private:
     struct JNIMethods{
         jni::JavaMethodSignature GET_BUFFER{"getBuffer", "()Ljava/nio/ByteBuffer;"};
@@ -31,7 +33,7 @@ public:
     Vector<KtVariant> read_args(jni::Env& p_env, bool p_refresh_buffer);
 
     static void icall(JNIEnv* rawEnv, jobject instance, jlong jPtr,
-               jstring jClassName, jstring jMethod,
+               jint p_class_index, jint p_method_index,
                jint expectedReturnType, bool p_refresh_buffer);
 
     static jlong invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, jstring p_class_name);

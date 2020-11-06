@@ -3,12 +3,12 @@
 
 #include "jni/wrapper.h"
 #include <core/reference.h>
-#include "java_instance_wrapper.h"
 #include "kt_object.h"
 #include "kt_function.h"
 #include "kt_signal_info.h"
+#include "java_instance_wrapper.h"
 
-class KtClass : public JavaInstanceWrapper {
+class KtClass : public JavaInstanceWrapper<KtClass> {
 private:
     struct JNIMethods {
         jni::JavaMethodSignature NEW{"new", "(JJI)Lgodot/core/KtObject;"};

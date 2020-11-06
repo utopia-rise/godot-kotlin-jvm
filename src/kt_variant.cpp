@@ -316,14 +316,13 @@ Variant::Type KtVariant::fromWireTypeToVariantType(wire::Value::TypeCase typeCas
     return WIRE_TYPE_CASE_TO_VARIANT_TYPE[typeCase];
 }
 
-void KtVariant::register_engine_types(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types_names) {
+void KtVariant::register_engine_types(jni::Env& env, jni::JObjectArray p_engine_types_names) {
     print_line("Starting to register managed engine types...");
-    jni::Env env(p_env);
-    jni::JObjectArray types_names{p_engine_types_names};
 
-    for (int i = 0; i < types_names.length(env); i++) {
-        const String& class_name{env.from_jstring(static_cast<jni::JString>(types_names.get(env, i)))};
+    for (int i = 0; i < p_engine_types_names.length(env); i++) {
+        const String& class_name{env.from_jstring(static_cast<jni::JString>(p_engine_types_names.get(env, i)))};
         JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name] = i;
+        GDKotlin::get_instance().engine_type_names.insert(i, class_name);
         print_verbose(vformat("Registered %s engine type with index %s.", class_name, i));
     }
     print_line("Done registering managed engine types...");

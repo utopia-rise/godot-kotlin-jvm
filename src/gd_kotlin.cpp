@@ -51,8 +51,8 @@ void load_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
     jni::Env env(p_env);
     jni::JObjectArray classes{jni::JObjectArray(p_classes)};
     GDKotlin::get_instance().register_classes(env, classes);
-    jni::JObject jObject{p_this};
-    jObject.delete_local_ref(env);
+    jni::JObject j_object{p_this};
+    j_object.delete_local_ref(env);
     classes.delete_local_ref(env);
 }
 
@@ -60,9 +60,24 @@ void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) 
     jni::Env env(p_env);
     jni::JObjectArray classes{jni::JObjectArray(p_classes)};
     GDKotlin::get_instance().unregister_classes(env, classes);
-    jni::JObject jObject{p_this};
-    jObject.delete_local_ref(env);
+    jni::JObject j_object{p_this};
+    j_object.delete_local_ref(env);
     classes.delete_local_ref(env);
+}
+
+void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types, jobjectArray p_method_names) {
+    jni::Env env(p_env);
+    jni::JObjectArray engine_types{p_engine_types};
+    KtVariant::register_engine_types(env, engine_types);
+    jni::JObjectArray method_names{p_method_names};
+    for (int i = 0; i < method_names.length(env); i++) {
+        GDKotlin::get_instance().engine_type_method_names.insert(i,
+                env.from_jstring(static_cast<jni::JString>(method_names.get(env, i))));
+    }
+    jni::JObject j_object{p_this};
+    j_object.delete_local_ref(env);
+    engine_types.delete_local_ref(env);
+    method_names.delete_local_ref(env);
 }
 
 void GDKotlin::init() {
@@ -172,7 +187,7 @@ void GDKotlin::init() {
     jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");
     jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
     bootstrap = new Bootstrap(instance, class_loader);
-    bootstrap->register_hooks(env, load_classes_hook, unload_classes_hook, KtVariant::register_engine_types);
+    bootstrap->register_hooks(env, load_classes_hook, unload_classes_hook, register_engine_types_hook);
     bool is_editor = Engine::get_singleton()->is_editor_hint();
     String project_path = project_settings->globalize_path("res://");
 
