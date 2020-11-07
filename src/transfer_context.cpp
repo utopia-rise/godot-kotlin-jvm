@@ -118,7 +118,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr,
     thread_local static Variant variantArgs[MAX_ARGS_SIZE];
     thread_local static const Variant* variantArgsPtr[MAX_ARGS_SIZE];
     thread_local static bool icall_args_init = false;
-    if (!icall_args_init) {
+    if (unlikely(!icall_args_init)) {
         for (int i = 0; i < MAX_ARGS_SIZE; i++) {
             variantArgsPtr[i] = &variantArgs[i];
         }

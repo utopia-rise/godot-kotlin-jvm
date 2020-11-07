@@ -26,7 +26,7 @@ JavaInstanceWrapper<Derived>::JavaInstanceWrapper(const char* p_class_name, jni:
     jni::Env env{jni::Jvm::current_env()};
     wrapped = p_wrapped.new_global_ref<jni::JObject>(env);
     class_loader = p_class_loader.new_global_ref<jni::JObject>(env);
-    if (!j_class.obj) {
+    if (unlikely(!j_class.obj)) {
         j_class = env.load_class(p_class_name, class_loader).new_global_ref<jni::JClass>(env);
     }
 }
@@ -40,7 +40,7 @@ JavaInstanceWrapper<Derived>::~JavaInstanceWrapper() {
 
 template<class Derived>
 jni::MethodId JavaInstanceWrapper<Derived>::get_method_id(jni::Env& env, jni::JavaMethodSignature& method_signature) {
-    if (!method_signature.method_id) {
+    if (unlikely(!method_signature.method_id)) {
         method_signature.init(env, j_class);
     }
     return method_signature.method_id;
@@ -49,7 +49,7 @@ jni::MethodId JavaInstanceWrapper<Derived>::get_method_id(jni::Env& env, jni::Ja
 template<class Derived>
 jni::MethodId
 JavaInstanceWrapper<Derived>::get_static_method_id(jni::Env& env, jni::JavaMethodSignature& method_signature) {
-    if (method_signature.method_id) {
+    if (unlikely(method_signature.method_id)) {
         method_signature.init(env, j_class);
     }
     return method_signature.method_id;
