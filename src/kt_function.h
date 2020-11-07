@@ -17,24 +17,14 @@ struct KtFunctionInfo : public JavaInstanceWrapper<KtFunctionInfo> {
 
     MethodInfo to_method_info() const;
 
-private:
-    struct JNIMethods{
-        jni::JavaMethodSignature GET_NAME{"getName", "()Ljava/lang/String;"};
-        jni::JavaMethodSignature GET_ARGUMENTS{"getArguments", "()[Lgodot/core/KtPropertyInfo;"};
-        jni::JavaMethodSignature GET_RETURN_VAL{"getReturnVal", "()Lgodot/core/KtPropertyInfo;"};
-    };
-    static JNIMethods jni_methods;
+DECLARE_JNI_METHODS(
+        JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/String;")
+        JNI_METHOD(GET_ARGUMENTS, "getArguments", "()[Lgodot/core/KtPropertyInfo;")
+        JNI_METHOD(GET_RETURN_VAL, "getReturnVal", "()Lgodot/core/KtPropertyInfo;")
+)
 };
 
 class KtFunction : public JavaInstanceWrapper<KtFunction> {
-private:
-    struct JNIMethods{
-        jni::JavaMethodSignature GET_FUNCTION_INFO{"getFunctionInfo", "()Lgodot/core/KtFunctionInfo;"};
-        jni::JavaMethodSignature GET_PARAMETER_COUNT{"getParameterCount", "()I"};
-        jni::JavaMethodSignature INVOKE{"invoke", "(Lgodot/core/KtObject;)Z"};
-    };
-    static JNIMethods jni_methods;
-
 private:
     int parameter_count;
     KtFunctionInfo* method_info;
@@ -51,6 +41,12 @@ public:
     KtFunctionInfo* get_kt_function_info();
 
     Variant invoke(const KtObject* instance, const Variant** p_args, int args_count);
+
+DECLARE_JNI_METHODS(
+        JNI_METHOD(GET_FUNCTION_INFO, "getFunctionInfo", "()Lgodot/core/KtFunctionInfo;")
+        JNI_METHOD(GET_PARAMETER_COUNT, "getParameterCount", "()I")
+        JNI_METHOD(INVOKE, "invoke", "(Lgodot/core/KtObject;)Z")
+)
 };
 
 

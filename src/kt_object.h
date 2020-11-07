@@ -9,11 +9,6 @@
 
 class KtObject : public JavaInstanceWrapper<KtObject> {
 private:
-    struct JNIMethods {
-        jni::JavaMethodSignature ON_DESTROY{"_onDestroy", "()V"};
-    };
-    static JNIMethods jni_methods;
-private:
     StringName kt_class_name;
 public:
     KtObject(jni::JObject p_wrapped, jni::JObject p_class_loader, const StringName& p_ktClass);
@@ -22,6 +17,10 @@ public:
     const jni::JObject& get_wrapped() const;
 
     const StringName& get_class_name() const;
+
+DECLARE_JNI_METHODS(
+        JNI_METHOD(ON_DESTROY, "_onDestroy", "()V")
+)
 };
 
 #endif //GODOT_JVM_KT_OBJECT_H

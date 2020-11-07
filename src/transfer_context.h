@@ -8,13 +8,6 @@
 #define MAX_ARGS_SIZE 16
 
 class TransferContext : public JavaInstanceWrapper<TransferContext> {
-private:
-    struct JNIMethods{
-        jni::JavaMethodSignature GET_BUFFER{"getBuffer", "()Ljava/nio/ByteBuffer;"};
-        jni::JavaMethodSignature ENSURE_CAPACITY{"ensureCapacity", "(I)Z"};
-    };
-    static JNIMethods jni_methods;
-
 public:
     struct SharedBuffer {
         void* ptr;
@@ -44,6 +37,11 @@ public:
 private:
     SharedBuffer* get_buffer(jni::Env& p_env, bool p_refresh_buffer);
     bool ensure_capacity(jni::Env& p_env, long p_capacity);
+
+DECLARE_JNI_METHODS(
+        JNI_METHOD(GET_BUFFER, "getBuffer", "()Ljava/nio/ByteBuffer;")
+        JNI_METHOD(ENSURE_CAPACITY, "ensureCapacity", "(I)Z")
+)
 
 };
 

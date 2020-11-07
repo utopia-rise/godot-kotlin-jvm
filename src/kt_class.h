@@ -9,17 +9,6 @@
 #include "java_instance_wrapper.h"
 
 class KtClass : public JavaInstanceWrapper<KtClass> {
-private:
-    struct JNIMethods {
-        jni::JavaMethodSignature NEW{"new", "(JJI)Lgodot/core/KtObject;"};
-        jni::JavaMethodSignature GET_NAME{"getName", "()Ljava/lang/String;"};
-        jni::JavaMethodSignature GET_SUPER_CLASS{"getSuperClass", "()Ljava/lang/String;"};
-        jni::JavaMethodSignature GET_FUNCTIONS{"getFunctions", "()[Lgodot/core/KtFunction;"};
-        jni::JavaMethodSignature GET_PROPERTIES{"getProperties", "()[Lgodot/core/KtProperty;"};
-        jni::JavaMethodSignature GET_SIGNAL_INFOS{"getSignalInfos", "()[Lgodot/core/KtSignalInfo;"};
-
-    };
-    static JNIMethods jni_methods;
 
 public:
     StringName name;
@@ -79,6 +68,15 @@ private:
 
         members.clear();
     }
+
+DECLARE_JNI_METHODS(
+        JNI_METHOD(NEW, "new", "(JJI)Lgodot/core/KtObject;")
+        JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/String;")
+        JNI_METHOD(GET_SUPER_CLASS, "getSuperClass", "()Ljava/lang/String;")
+        JNI_METHOD(GET_FUNCTIONS, "getFunctions", "()[Lgodot/core/KtFunction;")
+        JNI_METHOD(GET_PROPERTIES, "getProperties", "()[Lgodot/core/KtProperty;")
+        JNI_METHOD(GET_SIGNAL_INFOS, "getSignalInfos", "()[Lgodot/core/KtSignalInfo;")
+)
 };
 
 #endif //GODOT_JVM_KTCLASS_H

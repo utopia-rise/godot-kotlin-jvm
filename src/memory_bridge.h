@@ -13,11 +13,7 @@ struct MemoryBridge : public JavaInstanceWrapper<MemoryBridge> {
     static bool unref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
     static bool ref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
 
-private:
-    struct JNIMethods {
-
-    };
-    static JNIMethods jni_methods;
+DECLARE_JNI_METHODS()
 };
 
 

@@ -14,12 +14,11 @@ struct KtSignalInfo : public JavaInstanceWrapper<KtSignalInfo> {
     List<KtPropertyInfo*> arguments;
 
     MethodInfo get_member_info() const;
-private:
-    struct JNIMethods{
-        jni::JavaMethodSignature GET_NAME{"getName", "()Ljava/lang/String;"};
-        jni::JavaMethodSignature GET_ARGUMENTS{"getArguments", "()[Lgodot/core/KtPropertyInfo;"};
-    };
-    static JNIMethods jni_methods;
+
+DECLARE_JNI_METHODS(
+        JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/String;")
+        JNI_METHOD(GET_ARGUMENTS, "getArguments", "()[Lgodot/core/KtPropertyInfo;")
+)
 };
 
 

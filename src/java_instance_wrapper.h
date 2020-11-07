@@ -1,5 +1,5 @@
-#ifndef GODOT_JVM_JAVAINSTANCEWRAPPERSTATICS_H
-#define GODOT_JVM_JAVAINSTANCEWRAPPERSTATICS_H
+#ifndef GODOT_JVM_JAVAINSTANCEWRAPPER_H
+#define GODOT_JVM_JAVAINSTANCEWRAPPER_H
 
 
 #include "jni/wrapper.h"
@@ -7,6 +7,16 @@
 #define JNI_INIT_STATICS_FOR_CLASS(C) \
     C::JNIMethods C::jni_methods{}; \
     template<> jni::JClass JavaInstanceWrapper<C>::j_class(static_cast<jclass>(nullptr));
+
+#define JNI_METHOD(var_name, name, signature) \
+    jni::JavaMethodSignature var_name{name, signature};
+
+#define DECLARE_JNI_METHODS(...) \
+private: \
+    struct JNIMethods { \
+        __VA_ARGS__ \
+    }; \
+    static JNIMethods jni_methods;
 
 template<class Derived>
 class JavaInstanceWrapper {
@@ -17,9 +27,11 @@ protected:
     static jni::JClass j_class;
 
     JavaInstanceWrapper(const char* p_class_name, jni::JObject p_wrapped, jni::JObject& p_class_loader);
+
     ~JavaInstanceWrapper();
 
     jni::MethodId get_method_id(jni::Env& env, jni::JavaMethodSignature& method_signature);
+
     jni::MethodId get_static_method_id(jni::Env& env, jni::JavaMethodSignature& method_signature);
 };
 
@@ -58,4 +70,4 @@ JavaInstanceWrapper<Derived>::get_static_method_id(jni::Env& env, jni::JavaMetho
     return method_signature.method_id;
 }
 
-#endif //GODOT_JVM_JAVAINSTANCEWRAPPERSTATICS_H
+#endif //GODOT_JVM_JAVAINSTANCEWRAPPER_H
