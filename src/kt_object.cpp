@@ -2,8 +2,7 @@
 #include "kt_class.h"
 
 
-KtObject::JNIMethods KtObject::jni_methods{};
-template<> jni::JClass JavaInstanceWrapper<KtObject>::j_class(static_cast<jclass>(nullptr));
+JNI_INIT_STATICS_FOR_CLASS(KtObject)
 
 KtObject::KtObject(jni::JObject p_wrapped, jni::JObject p_class_loader, const StringName& p_ktClass)
         : JavaInstanceWrapper("godot.core.KtObject", p_wrapped, p_class_loader), kt_class_name(p_ktClass) {

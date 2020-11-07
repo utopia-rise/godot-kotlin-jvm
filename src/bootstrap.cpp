@@ -2,8 +2,7 @@
 #include <core/print_string.h>
 
 
-Bootstrap::JNIMethods Bootstrap::jni_methods{};
-template<> jni::JClass JavaInstanceWrapper<Bootstrap>::j_class(static_cast<jclass>(nullptr));
+JNI_INIT_STATICS_FOR_CLASS(Bootstrap)
 
 Bootstrap::Bootstrap(jni::JObject p_wrapped, jni::JObject p_class_loader) : JavaInstanceWrapper(
         "godot.runtime.Bootstrap", p_wrapped, p_class_loader) {

@@ -2,8 +2,7 @@
 #include <core/reference.h>
 #include "memory_bridge.h"
 
-MemoryBridge::JNIMethods MemoryBridge::jni_methods{};
-template<> jni::JClass JavaInstanceWrapper<MemoryBridge>::j_class(static_cast<jclass>(nullptr));
+JNI_INIT_STATICS_FOR_CLASS(MemoryBridge)
 
 MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) :
         JavaInstanceWrapper("godot.core.GarbageCollector$MemoryBridge", p_wrapped, p_class_loader) {

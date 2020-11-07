@@ -4,6 +4,9 @@
 
 #include "jni/wrapper.h"
 
+#define JNI_INIT_STATICS_FOR_CLASS(C) \
+    C::JNIMethods C::jni_methods{}; \
+    template<> jni::JClass JavaInstanceWrapper<C>::j_class(static_cast<jclass>(nullptr));
 
 template<class Derived>
 class JavaInstanceWrapper {

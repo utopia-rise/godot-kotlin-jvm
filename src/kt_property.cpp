@@ -3,11 +3,8 @@
 #include "kt_variant.h"
 #include "gd_kotlin.h"
 
-KtPropertyInfo::JNIMethods KtPropertyInfo::jni_methods{};
-template<> jni::JClass JavaInstanceWrapper<KtPropertyInfo>::j_class(static_cast<jclass>(nullptr));
-
-KtProperty::JNIMethods KtProperty::jni_methods{};
-template<> jni::JClass JavaInstanceWrapper<KtProperty>::j_class(static_cast<jclass>(nullptr));
+JNI_INIT_STATICS_FOR_CLASS(KtPropertyInfo)
+JNI_INIT_STATICS_FOR_CLASS(KtProperty)
 
 KtPropertyInfo::KtPropertyInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader)
         : JavaInstanceWrapper("godot.core.KtPropertyInfo", p_wrapped, p_class_loader) {

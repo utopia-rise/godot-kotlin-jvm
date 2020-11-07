@@ -3,11 +3,8 @@
 #include "kt_function.h"
 #include "gd_kotlin.h"
 
-KtFunction::JNIMethods KtFunction::jni_methods{};
-template<> jni::JClass JavaInstanceWrapper<KtFunction>::j_class(static_cast<jclass>(nullptr));
-
-KtFunctionInfo::JNIMethods KtFunctionInfo::jni_methods{};
-template<> jni::JClass JavaInstanceWrapper<KtFunctionInfo>::j_class(static_cast<jclass>(nullptr));
+JNI_INIT_STATICS_FOR_CLASS(KtFunction)
+JNI_INIT_STATICS_FOR_CLASS(KtFunctionInfo)
 
 KtFunction::KtFunction(jni::JObject p_wrapped, jni::JObject& p_class_loader)
         : JavaInstanceWrapper("godot.core.KtFunction", p_wrapped, p_class_loader), parameter_count(-1) {

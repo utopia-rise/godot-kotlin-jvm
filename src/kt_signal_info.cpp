@@ -1,8 +1,7 @@
 #include "kt_signal_info.h"
 #include "gd_kotlin.h"
 
-KtSignalInfo::JNIMethods KtSignalInfo::jni_methods{};
-template<> jni::JClass JavaInstanceWrapper<KtSignalInfo>::j_class(static_cast<jclass>(nullptr));
+JNI_INIT_STATICS_FOR_CLASS(KtSignalInfo)
 
 KtSignalInfo::KtSignalInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader) :
     JavaInstanceWrapper("godot.core.KtSignalInfo", p_wrapped, p_class_loader) {

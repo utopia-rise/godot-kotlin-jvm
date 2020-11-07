@@ -3,8 +3,7 @@
 #include "gd_kotlin.h"
 #include "kotlin_instance.h"
 
-TransferContext::JNIMethods TransferContext::jni_methods{};
-template<> jni::JClass JavaInstanceWrapper<TransferContext>::j_class(static_cast<jclass>(nullptr));
+JNI_INIT_STATICS_FOR_CLASS(TransferContext)
 
 TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_loader)
     : JavaInstanceWrapper("godot.core.TransferContext", p_wrapped, p_class_loader) {
