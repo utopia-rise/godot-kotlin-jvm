@@ -90,28 +90,36 @@ void GDKotlin::init() {
 
     // Initialize remote jvm debug if one of jvm debug arguments is encountered.
     // Initialize if jvm GC should be forced
-    String port;
-    String address;
+    String jvm_debug_port;
+    String jvm_debug_address;
+    String jvm_jmx_port;
     bool is_gc_force_mode{false};
+    bool is_gc_activated{true};
     long gc_thread_period_interval{500};
     const List<String>& cmdline_args{OS::get_singleton()->get_cmdline_args()};
     for (int i = 0; i < cmdline_args.size(); ++i) {
         const String cmd_arg{cmdline_args[i]};
         if (cmd_arg.find("--jvm-debug-port") >= 0) {
-            if (split_jvm_debug_argument(cmd_arg, port) == OK) {
-                if (port.empty()) {
-                    port = "5005";
+            if (split_jvm_debug_argument(cmd_arg, jvm_debug_port) == OK) {
+                if (jvm_debug_port.empty()) {
+                    jvm_debug_port = "5005";
                 }
             } else {
                 break;
             }
         } else if (cmd_arg.find("--jvm-debug-address") >= 0) {
-            if (split_jvm_debug_argument(cmd_arg, address) == OK) {
-                if (address.empty()) {
-                    address = "*";
+            if (split_jvm_debug_argument(cmd_arg, jvm_debug_address) == OK) {
+                if (jvm_debug_address.empty()) {
+                    jvm_debug_address = "*";
                 }
             } else {
                 break;
+            }
+        } else if (cmd_arg.find("--jvm-jmx-port") >= 0) {
+            if (split_jvm_debug_argument(cmd_arg, jvm_jmx_port) == OK) {
+                if (jvm_jmx_port.empty()) {
+                    jvm_jmx_port = "9010";
+                }
             }
         } else if (cmd_arg.find("--jvm-gc-thread-period-millis") >= 0) {
             String result;
@@ -120,18 +128,34 @@ void GDKotlin::init() {
             }
         } else if (cmd_arg == "--jvm-force-gc") {
             is_gc_force_mode = true;
+        } else if (cmd_arg == "--jvm-disable-gc") {
+            is_gc_activated = false;
+            print_line("Warning ! GC thread was disable. --jvm-disable-gc should only be used for debugging purpose");
         }
     }
 
-    if (!port.empty() || !address.empty()) {
-        if (address.empty()) {
-            address = "*";
-        } else if (port.empty()) {
-            port = "5005";
+    if (!jvm_debug_port.empty() || !jvm_debug_address.empty()) {
+        if (jvm_debug_address.empty()) {
+            jvm_debug_address = "*";
+        } else if (jvm_debug_port.empty()) {
+            jvm_debug_port = "5005";
         }
 
-        String debug_command{"-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=" + address + ":" + port};
+        String debug_command{"-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=" + jvm_debug_address + ":" + jvm_debug_port};
         args.option(debug_command.utf8());
+    }
+
+    if (!jvm_jmx_port.empty()) {
+        String port_command{"-Dcom.sun.management.jmxremote.port=" + jvm_jmx_port};
+        String rmi_port{"-Dcom.sun.management.jmxremote.rmi.port=" + jvm_jmx_port};
+        args.option("-Djava.rmi.server.hostname=127.0.0.1");
+        args.option("-Dcom.sun.management.jmxremote");
+        args.option(port_command.utf8());
+        args.option(rmi_port.utf8());
+        args.option("-Dcom.sun.management.jmxremote.local.only=false");
+        args.option("-Dcom.sun.management.jmxremote.authenticate=false");
+        args.option("-Dcom.sun.management.jmxremote.ssl=false");
+        print_verbose(vformat("Started JMX on port: %s", jvm_jmx_port));
     }
 
     jni::Jvm::init(args);
@@ -170,18 +194,22 @@ void GDKotlin::init() {
     };
     memory_bridge = new MemoryBridge(memory_bridge_instance, class_loader);
 
-    if (is_gc_force_mode) {
-        print_verbose("Starting GC thread with force mode.");
+    if (is_gc_activated) {
+        if (is_gc_force_mode) {
+            print_verbose("Starting GC thread with force mode.");
+        }
+        jni::MethodId start_method_id{garbage_collector_cls.get_method_id(env, "start", "(ZJ)V")};
+        garbage_collector_instance.call_void_method(
+                env,
+                start_method_id,
+                {
+                        static_cast<jboolean>(is_gc_force_mode),
+                        static_cast<jlong>(gc_thread_period_interval)
+                }
+        );
+        print_verbose("GC thread started.");
+        is_gc_started = true;
     }
-    jni::MethodId start_method_id{garbage_collector_cls.get_method_id(env, "start", "(ZJ)V")};
-    garbage_collector_instance.call_void_method(
-            env,
-            start_method_id,
-            {
-                    static_cast<jboolean>(is_gc_force_mode),
-                    static_cast<jlong>(gc_thread_period_interval)
-            }
-    );
 
     jni::JClass bootstrap_cls = env.load_class("godot.runtime.Bootstrap", class_loader);
     jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");
@@ -203,23 +231,25 @@ void GDKotlin::finish() {
     delete bootstrap;
     bootstrap = nullptr;
 
-    jni::JClass garbage_collector_cls{env.load_class("godot.core.GarbageCollector", class_loader)};
-    jni::FieldId garbage_collector_instance_field{
-            garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/GarbageCollector;")
-    };
-    jni::JObject garbage_collector_instance{
-            garbage_collector_cls.get_static_object_field(env, garbage_collector_instance_field)
-    };
-    CRASH_COND_MSG(garbage_collector_instance.isNull(), "Failed to retrieve GarbageCollector instance")
-    jni::MethodId close_method_id{garbage_collector_cls.get_method_id(env, "close", "()V")};
-    garbage_collector_instance.call_void_method(env, close_method_id);
-    jni::MethodId has_closed_method_id{garbage_collector_cls.get_method_id(env, "isClosed", "()Z")};
-    while (!garbage_collector_instance.call_boolean_method(env, has_closed_method_id)) {
-        OS::get_singleton()->delay_usec(600000);
+    if (is_gc_started) {
+        jni::JClass garbage_collector_cls{env.load_class("godot.core.GarbageCollector", class_loader)};
+        jni::FieldId garbage_collector_instance_field{
+                garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/GarbageCollector;")
+        };
+        jni::JObject garbage_collector_instance{
+                garbage_collector_cls.get_static_object_field(env, garbage_collector_instance_field)
+        };
+        CRASH_COND_MSG(garbage_collector_instance.isNull(), "Failed to retrieve GarbageCollector instance")
+        jni::MethodId close_method_id{garbage_collector_cls.get_method_id(env, "close", "()V")};
+        garbage_collector_instance.call_void_method(env, close_method_id);
+        jni::MethodId has_closed_method_id{garbage_collector_cls.get_method_id(env, "isClosed", "()Z")};
+        while (!garbage_collector_instance.call_boolean_method(env, has_closed_method_id)) {
+            OS::get_singleton()->delay_usec(600000);
+        }
+        print_verbose("JVM GC thread was closed");
+        jni::MethodId clean_up_method_id{garbage_collector_cls.get_method_id(env, "cleanUp", "()V")};
+        garbage_collector_instance.call_void_method(env, clean_up_method_id);
     }
-    print_verbose("JVM GC thread was closed");
-    jni::MethodId clean_up_method_id{garbage_collector_cls.get_method_id(env, "cleanUp", "()V")};
-    garbage_collector_instance.call_void_method(env, clean_up_method_id);
 
     delete memory_bridge;
     memory_bridge = nullptr;
@@ -276,4 +306,8 @@ Error GDKotlin::split_jvm_debug_argument(const String& cmd_arg, String& result) 
         return FAILED;
     }
     return OK;
+}
+
+GDKotlin::GDKotlin() : bootstrap(nullptr), transfer_context(nullptr), memory_bridge(nullptr), is_gc_started(false) {
+
 }

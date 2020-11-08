@@ -10,7 +10,7 @@
 
 class GDKotlin {
 private:
-    GDKotlin() = default;
+    GDKotlin();
     ~GDKotlin() = default;
 
     Map<StringName, KtClass*> classes;
@@ -18,6 +18,8 @@ private:
     jni::JObject class_loader;
     Bootstrap* bootstrap;
     MemoryBridge* memory_bridge;
+
+    bool is_gc_started;
 
     Error split_jvm_debug_argument(const String& cmd_arg, String& result);
 public:
