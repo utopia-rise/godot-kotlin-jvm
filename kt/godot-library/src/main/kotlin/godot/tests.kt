@@ -11,7 +11,7 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
     constructor() : this(false)
 
     override fun __new(): VoidPtr {
-        return TransferContext.invokeConstructor("Object")
+        return TransferContext.invokeConstructor(0)
     }
 
     fun connect(name: String, target: Object, method: String, binds: VariantArray, flags: Long): GodotError {
@@ -322,7 +322,7 @@ open class Node : Object() {
         }
 
     override fun __new(): VoidPtr {
-        return TransferContext.invokeConstructor("Node")
+        return TransferContext.invokeConstructor(1)
     }
 
     open fun getParent(): Node {
@@ -346,26 +346,26 @@ open class Node : Object() {
 
 open class Spatial : Node() {
     override fun __new(): VoidPtr {
-        return TransferContext.invokeConstructor("Spatial")
+        return TransferContext.invokeConstructor(2)
     }
 }
 
 open class Reference : Object(true) {
 
     override fun __new(): VoidPtr {
-        return TransferContext.invokeConstructor("Reference")
+        return TransferContext.invokeConstructor(3)
     }
 }
 
 open class Resource : Reference() {
     override fun __new(): VoidPtr {
-        return TransferContext.invokeConstructor("Resource")
+        return TransferContext.invokeConstructor(4)
     }
 }
 
 open class NavigationMesh : Resource() {
     override fun __new(): VoidPtr {
-        return TransferContext.invokeConstructor("NavigationMesh")
+        return TransferContext.invokeConstructor(5)
     }
 }
 

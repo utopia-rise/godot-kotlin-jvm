@@ -15,7 +15,7 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
 
     jni::JNativeMethod invoke_ctor_method {
         "invokeConstructor",
-        "(Ljava/lang/String;)J",
+        "(I)J",
         (void*) TransferContext::invoke_constructor
     };
 
@@ -150,9 +150,9 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr,
     local_ref.delete_local_ref(env);
 }
 
-jlong TransferContext::invoke_constructor(JNIEnv *p_raw_env, jobject p_instance, jstring p_class_name) {
+jlong TransferContext::invoke_constructor(JNIEnv *p_raw_env, jobject p_instance, jint p_class_index) {
     jni::Env env(p_raw_env);
-    StringName class_name = env.from_jstring(jni::JString(p_class_name));
+    const String& class_name{GDKotlin::get_instance().engine_type_names[static_cast<int>(p_class_index)]};
     Object* ptr = ClassDB::instance(class_name);
     jni::JObject local_ref{p_instance};
     local_ref.delete_local_ref(env);

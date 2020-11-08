@@ -97,7 +97,7 @@ object TransferContext {
     }
 
     external fun setScript(rawPtr: VoidPtr, className: String, obj: KtObject, classLoader: ClassLoader);
-    external fun invokeConstructor(className: String): VoidPtr
+    external fun invokeConstructor(classIndex: Int): VoidPtr
     external fun freeObject(rawPtr: VoidPtr)
 
     private external fun icall(ptr: VoidPtr, classIndex: Int, methodIndex: Int, expectedReturnType: Int, refreshBuffer: Boolean)
