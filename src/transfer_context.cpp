@@ -3,17 +3,19 @@
 #include "gd_kotlin.h"
 #include "kotlin_instance.h"
 
+JNI_INIT_STATICS_FOR_CLASS(TransferContext)
+
 TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_loader)
     : JavaInstanceWrapper("godot.core.TransferContext", p_wrapped, p_class_loader) {
     jni::JNativeMethod icall_method {
         "icall",
-        "(JLjava/lang/String;Ljava/lang/String;IZ)V",
+        "(JIIIZ)V",
         (void*) TransferContext::icall
     };
 
     jni::JNativeMethod invoke_ctor_method {
         "invokeConstructor",
-        "(Ljava/lang/String;)J",
+        "(I)J",
         (void*) TransferContext::invoke_constructor
     };
 
@@ -35,7 +37,7 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
     methods.push_back(set_script_method);
     methods.push_back(free_object_method);
     jni::Env env {jni::Jvm::current_env()};
-    get_class(env).register_natives(env, methods);
+    j_class.register_natives(env, methods);
 }
 
 TransferContext::SharedBuffer* TransferContext::get_buffer(jni::Env& p_env, bool p_refresh_buffer) {
@@ -43,7 +45,7 @@ TransferContext::SharedBuffer* TransferContext::get_buffer(jni::Env& p_env, bool
 
     if (!shared_buffer.ptr || p_refresh_buffer) {
 
-        jni::MethodId method = get_method_id(p_env, "getBuffer", "()Ljava/nio/ByteBuffer;");
+        jni::MethodId method = get_method_id(p_env, jni_methods.GET_BUFFER);
         jni::JObject buffer = wrapped.call_object_method(p_env, method);
         assert(!buffer.isNull());
         shared_buffer = SharedBuffer {
@@ -56,7 +58,7 @@ TransferContext::SharedBuffer* TransferContext::get_buffer(jni::Env& p_env, bool
 }
 
 bool TransferContext::ensure_capacity(jni::Env& p_env, long p_capacity) {
-    jni::MethodId method = get_method_id(p_env, "ensureCapacity", "(I)Z");
+    jni::MethodId method = get_method_id(p_env, jni_methods.ENSURE_CAPACITY);
     return wrapped.call_boolean_method(p_env, method, {static_cast<jlong>(p_capacity)});
 }
 
@@ -109,13 +111,13 @@ Vector<KtVariant> TransferContext::read_args(jni::Env& p_env, bool p_refresh_buf
 }
 
 void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr,
-           jstring jClassName,
-           jstring jMethod, jint expectedReturnType,
+           jint p_class_index,
+           jint p_method_index, jint expectedReturnType,
            bool p_refresh_buffer) {
     thread_local static Variant variantArgs[MAX_ARGS_SIZE];
     thread_local static const Variant* variantArgsPtr[MAX_ARGS_SIZE];
     thread_local static bool icall_args_init = false;
-    if (!icall_args_init) {
+    if (unlikely(!icall_args_init)) {
         for (int i = 0; i < MAX_ARGS_SIZE; i++) {
             variantArgsPtr[i] = &variantArgs[i];
         }
@@ -135,8 +137,8 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr,
     }
 
     auto* ptr = reinterpret_cast<Object*>(jPtr);
-    String className = env.from_jstring(jni::JString(jClassName));
-    String method = env.from_jstring(jni::JString(jMethod));
+    String className = GDKotlin::get_instance().engine_type_names[static_cast<int>(p_class_index)];
+    String method = GDKotlin::get_instance().engine_type_method_names[static_cast<int>(p_method_index)];
 
     Variant::CallError r_error{Variant::CallError::CALL_OK};
     MethodBind* methodBind{ClassDB::get_method(className, method)};
@@ -148,9 +150,9 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr,
     local_ref.delete_local_ref(env);
 }
 
-jlong TransferContext::invoke_constructor(JNIEnv *p_raw_env, jobject p_instance, jstring p_class_name) {
+jlong TransferContext::invoke_constructor(JNIEnv *p_raw_env, jobject p_instance, jint p_class_index) {
     jni::Env env(p_raw_env);
-    StringName class_name = env.from_jstring(jni::JString(p_class_name));
+    const String& class_name{GDKotlin::get_instance().engine_type_names[static_cast<int>(p_class_index)]};
     Object* ptr = ClassDB::instance(class_name);
     jni::JObject local_ref{p_instance};
     local_ref.delete_local_ref(env);

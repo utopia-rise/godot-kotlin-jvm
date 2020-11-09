@@ -3,10 +3,10 @@
 
 #include <core/object.h>
 #include "jni/wrapper.h"
-#include "java_instance_wrapper.h"
 #include "kt_object.h"
+#include "java_instance_wrapper.h"
 
-struct KtPropertyInfo : public JavaInstanceWrapper {
+struct KtPropertyInfo : public JavaInstanceWrapper<KtPropertyInfo> {
     KtPropertyInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader);
     ~KtPropertyInfo() = default;
 
@@ -17,10 +17,17 @@ struct KtPropertyInfo : public JavaInstanceWrapper {
     String hint_string;
 
     PropertyInfo toPropertyInfo();
+
+DECLARE_JNI_METHODS(
+        JNI_METHOD(GET_TYPE, "getType", "()I")
+        JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/String;")
+        JNI_METHOD(GET_CLASS_NAME, "getClassName", "()Ljava/lang/String;")
+        JNI_METHOD(GET_HINT, "getHint", "()I")
+        JNI_METHOD(GET_HINT_STRING, "getHintString", "()Ljava/lang/String;")
+)
 };
 
-class KtProperty : JavaInstanceWrapper {
-
+class KtProperty : JavaInstanceWrapper<KtProperty> {
 private:
     KtPropertyInfo* propertyInfo;
     Variant default_value;
@@ -41,6 +48,14 @@ public:
     void setCall(KtObject* instance, const Variant& p_value);
 
     void get_default_value(Variant& r_value);
+
+DECLARE_JNI_METHODS(
+        JNI_METHOD(GET_KT_PROPERTY_INFO, "getKtPropertyInfo", "()Lgodot/core/KtPropertyInfo;")
+        JNI_METHOD(IS_REF, "isRef", "()Z")
+        JNI_METHOD(CALL_GET, "callGet", "(Lgodot/core/KtObject;)Z")
+        JNI_METHOD(CALL_SET, "callSet", "(Lgodot/core/KtObject;)V")
+        JNI_METHOD(GET_DEFAULT_VALUE, "getDefaultValue", "()Z")
+)
 };
 
 

@@ -30,3 +30,17 @@ func benchmark_vectors2_only():
         s = s + v
 
     return s
+
+func benchmark_icall():
+    var node = Node.new()
+    node.get_instance_id()
+    return node
+
+func benchmark_icall_with_loop():
+    var node = Node.new()
+    for i in range(1000):
+        var child = Node.new()
+        node.add_child(child)
+        node.remove_child(child)
+        child.free()
+    return node

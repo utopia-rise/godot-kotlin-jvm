@@ -10,7 +10,7 @@
 
 class GDKotlin {
 private:
-    GDKotlin() = default;
+    GDKotlin();
     ~GDKotlin() = default;
 
     Map<StringName, KtClass*> classes;
@@ -19,10 +19,14 @@ private:
     Bootstrap* bootstrap;
     MemoryBridge* memory_bridge;
 
+    bool is_gc_started;
+
     Error split_jvm_debug_argument(const String& cmd_arg, String& result);
 public:
     String scripts_root;
     TransferContext* transfer_context;
+    Vector<String> engine_type_names;
+    Vector<String> engine_type_method_names;
 
     GDKotlin(const GDKotlin&) = delete;
 
@@ -40,6 +44,7 @@ public:
 
     KtClass* find_class(const String& p_script_path);
     KtClass* find_class_by_name(const String& class_name);
+
 };
 
 

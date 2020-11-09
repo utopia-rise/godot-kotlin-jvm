@@ -1,6 +1,8 @@
 #include "kt_class.h"
 #include "gd_kotlin.h"
 
+JNI_INIT_STATICS_FOR_CLASS(KtClass)
+
 KtClass::KtClass(jni::JObject p_wrapped, jni::JObject& p_class_loader) :
     JavaInstanceWrapper("godot.core.KtClass", p_wrapped, p_class_loader) {
     jni::Env env { jni::Jvm::current_env() };
@@ -18,7 +20,7 @@ KtClass::~KtClass() {
 }
 
 KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_arg_count, Object* p_owner) {
-    jni::MethodId new_method { get_method_id(env, "new", "(JJI)Lgodot/core/KtObject;") };
+    jni::MethodId new_method { get_method_id(env, jni_methods.NEW) };
     // TODO: send args
     jni::JObject j_kt_object {
             wrapped.call_object_method(env, new_method, {static_cast<jlong>(reinterpret_cast<uintptr_t>(p_owner)),
@@ -45,19 +47,19 @@ KtSignalInfo* KtClass::get_signal(const StringName& p_signal_name) {
 }
 
 StringName KtClass::get_name(jni::Env& env) {
-    jni::MethodId getter { get_method_id(env, "getName", "()Ljava/lang/String;") };
+    jni::MethodId getter { get_method_id(env, jni_methods.GET_NAME) };
     jni::JObject ret { wrapped.call_object_method(env, getter) };
     return StringName(env.from_jstring(jni::JString((jstring) ret.obj)));
 }
 
 StringName KtClass::get_super_class(jni::Env& env) {
-    jni::MethodId getter { get_method_id(env, "getSuperClass", "()Ljava/lang/String;") };
+    jni::MethodId getter { get_method_id(env, jni_methods.GET_SUPER_CLASS) };
     jni::JObject ret { wrapped.call_object_method(env, getter) };
     return StringName(env.from_jstring(jni::JString((jstring) ret.obj)));
 }
 
 void KtClass::fetch_methods(jni::Env& env) {
-    jni::MethodId getFunctionsMethod { get_method_id(env, "getFunctions", "()[Lgodot/core/KtFunction;") };
+    jni::MethodId getFunctionsMethod { get_method_id(env, jni_methods.GET_FUNCTIONS) };
     jni::JObjectArray functionsArray { wrapped.call_object_method(env, getFunctionsMethod) };
     for (int i = 0; i < functionsArray.length(env); i++) {
         auto* ktFunction { new KtFunction(functionsArray.get(env, i), GDKotlin::get_instance().get_class_loader()) };
@@ -67,7 +69,7 @@ void KtClass::fetch_methods(jni::Env& env) {
 }
 
 void KtClass::fetch_properties(jni::Env& env) {
-    jni::MethodId getPropertiesMethod { get_method_id(env, "getProperties", "()[Lgodot/core/KtProperty;") };
+    jni::MethodId getPropertiesMethod { get_method_id(env, jni_methods.GET_PROPERTIES) };
     jni::JObjectArray propertiesArray { wrapped.call_object_method(env, getPropertiesMethod) };
     for (int i = 0; i < propertiesArray.length(env); i++) {
         auto* ktProperty { new KtProperty(propertiesArray.get(env, i), GDKotlin::get_instance().get_class_loader()) };
@@ -77,7 +79,7 @@ void KtClass::fetch_properties(jni::Env& env) {
 }
 
 void KtClass::fetch_signals(jni::Env& env) {
-    jni::MethodId get_signal_infos_method{get_method_id(env, "getSignalInfos", "()[Lgodot/core/KtSignalInfo;")};
+    jni::MethodId get_signal_infos_method{get_method_id(env, jni_methods.GET_SIGNAL_INFOS)};
     jni::JObjectArray signal_info_array{wrapped.call_object_method(env, get_signal_infos_method)};
     for (int i = 0; i < signal_info_array.length(env); i++) {
         auto* kt_signal_info{

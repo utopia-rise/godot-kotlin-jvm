@@ -81,11 +81,11 @@ object TransferContext {
         return false
     }
 
-    fun callMethod(ptr: VoidPtr, className: String, method: String, expectedReturnType: KtVariant.Type, refreshBuffer: Boolean) {
+    fun callMethod(ptr: VoidPtr, classIndex: Int, methodIndex: Int, expectedReturnType: KtVariant.Type, refreshBuffer: Boolean) {
         icall(
                 ptr,
-                className,
-                method,
+                classIndex,
+                methodIndex,
                 (KtVariant.TYPE_TO_WIRE_VALUE_TYPE[expectedReturnType]
                         ?: error("Unable to map $expectedReturnType to wire value type")).number,
                 refreshBuffer
@@ -97,10 +97,10 @@ object TransferContext {
     }
 
     external fun setScript(rawPtr: VoidPtr, className: String, obj: KtObject, classLoader: ClassLoader);
-    external fun invokeConstructor(className: String): VoidPtr
+    external fun invokeConstructor(classIndex: Int): VoidPtr
     external fun freeObject(rawPtr: VoidPtr)
 
-    private external fun icall(ptr: VoidPtr, className: String, method: String, expectedReturnType: Int, refreshBuffer: Boolean)
+    private external fun icall(ptr: VoidPtr, classIndex: Int, methodIndex: Int, expectedReturnType: Int, refreshBuffer: Boolean)
 
     private fun getRequiredCapacity(capacity: Int): Int {
         // extra bytes used for the delimiter

@@ -1,6 +1,9 @@
 #include "bootstrap.h"
 #include <core/print_string.h>
 
+
+JNI_INIT_STATICS_FOR_CLASS(Bootstrap)
+
 Bootstrap::Bootstrap(jni::JObject p_wrapped, jni::JObject p_class_loader) : JavaInstanceWrapper(
         "godot.runtime.Bootstrap", p_wrapped, p_class_loader) {
 }
@@ -22,7 +25,7 @@ Bootstrap::register_hooks(jni::Env& p_env, LoadClassesHook p_load_classes_hook, 
 
     jni::JNativeMethod register_managed_engine_types_method{
             "registerManagedEngineTypes",
-            "([Ljava/lang/String;)V",
+            "([Ljava/lang/String;[Ljava/lang/String;)V",
             (void*) p_register_managed_engine_types_hook
     };
 
@@ -30,16 +33,16 @@ Bootstrap::register_hooks(jni::Env& p_env, LoadClassesHook p_load_classes_hook, 
     methods.push_back(load_class_hook_method);
     methods.push_back(unload_class_hook_method);
     methods.push_back(register_managed_engine_types_method);
-    get_class(p_env).register_natives(p_env, methods);
+    j_class.register_natives(p_env, methods);
 }
 
 void Bootstrap::init(jni::Env& p_env, bool p_is_editor, const String& p_project_path) {
-    jni::MethodId init_method = get_class(p_env).get_method_id(p_env, "init", "(ZLjava/lang/String;)V");
+    jni::MethodId init_method = get_method_id(p_env, jni_methods.INIT);
     jni::JObject str = p_env.new_string(p_project_path.utf8().get_data());
     wrapped.call_void_method(p_env, init_method, {static_cast<jboolean>(p_is_editor), str});
 }
 
 void Bootstrap::finish(jni::Env& p_env) {
-    jni::MethodId finish_method = get_class(p_env).get_method_id(p_env, "finish", "()V");
+    jni::MethodId finish_method = get_method_id(p_env, jni_methods.FINISH);
     wrapped.call_void_method(p_env, finish_method);
 }

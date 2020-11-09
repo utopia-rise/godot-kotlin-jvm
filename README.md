@@ -61,6 +61,8 @@ Each Issue has a Maintainer that is the "supervisor" for the general topic the i
 6. Build sample
     - navigate to `harness/tests`
     - create embedded jvm (at least Java 9 is needed!): `jlink --add-modules java.base,java.logging --output jre`
+        - If you want to remote debug add module `jdk.jdwp.agent` to command.
+        - If you want to enable jmx, add `jdk.management.agent` to command.
     - `./gradlew build`
 
 7. In order to run the samples run `../../../../bin/godot.x11.tools.64`

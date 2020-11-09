@@ -36,7 +36,26 @@ class Entry : godot.runtime.Entry() {
                         className = "Vector2"
                     }
                 )
+
+                function(Simple::benchmarkICall, ::KtVariant,
+                        returns = {
+                            type = KtVariant.Type.OBJECT
+                            className = "Node"
+                        }
+                )
+
+                function(Simple::benchmarkICallWithLoop, ::KtVariant,
+                        returns = {
+                            type = KtVariant.Type.OBJECT
+                            className = "Node"
+                        }
+                )
             }
         }
+    }
+
+    override fun Context.initEngineTypes() {
+        registerEngineTypes()
+        registerEngineTypeMethods()
     }
 }

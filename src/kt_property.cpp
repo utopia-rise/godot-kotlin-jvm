@@ -3,18 +3,21 @@
 #include "kt_variant.h"
 #include "gd_kotlin.h"
 
+JNI_INIT_STATICS_FOR_CLASS(KtPropertyInfo)
+JNI_INIT_STATICS_FOR_CLASS(KtProperty)
+
 KtPropertyInfo::KtPropertyInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader)
         : JavaInstanceWrapper("godot.core.KtPropertyInfo", p_wrapped, p_class_loader) {
     jni::Env env { jni::Jvm::current_env() };
-    jni::MethodId getTypeMethod{get_method_id(env, "getType", "()I")};
+    jni::MethodId getTypeMethod{get_method_id(env, jni_methods.GET_TYPE)};
     type = KtVariant::fromWireTypeToVariantType(static_cast<wire::Value::TypeCase>(wrapped.call_int_method(env, getTypeMethod)));
-    jni::MethodId getNameMethod{get_method_id(env, "getName", "()Ljava/lang/String;")};
+    jni::MethodId getNameMethod{get_method_id(env, jni_methods.GET_NAME)};
     name = env.from_jstring(wrapped.call_object_method(env, getNameMethod));
-    jni::MethodId getClassNameMethod{get_method_id(env, "getClassName", "()Ljava/lang/String;")};
+    jni::MethodId getClassNameMethod{get_method_id(env, jni_methods.GET_CLASS_NAME)};
     class_name = env.from_jstring(wrapped.call_object_method(env, getClassNameMethod));
-    jni::MethodId getPropertyHintMethod{get_method_id(env, "getHint", "()I")};
+    jni::MethodId getPropertyHintMethod{get_method_id(env, jni_methods.GET_HINT)};
     hint = static_cast<PropertyHint>(wrapped.call_int_method(env, getPropertyHintMethod));
-    jni::MethodId getHintStringMethod{get_method_id(env, "getHintString", "()Ljava/lang/String;")};
+    jni::MethodId getHintStringMethod{get_method_id(env, jni_methods.GET_HINT_STRING)};
     hint_string = env.from_jstring(wrapped.call_object_method(env, getHintStringMethod));
 }
 
@@ -32,10 +35,10 @@ KtProperty::KtProperty(jni::JObject p_wrapped, jni::JObject& p_class_loader)
         : JavaInstanceWrapper("godot.core.KtProperty", p_wrapped, p_class_loader),
         is_default_value_initialized(false) {
     jni::Env env { jni::Jvm::current_env() };
-    jni::MethodId getKtPropertyInfoMethod{get_method_id(env, "getKtPropertyInfo", "()Lgodot/core/KtPropertyInfo;")};
+    jni::MethodId getKtPropertyInfoMethod{get_method_id(env, jni_methods.GET_KT_PROPERTY_INFO)};
     propertyInfo = new KtPropertyInfo(wrapped.call_object_method(env, getKtPropertyInfoMethod),
                                       GDKotlin::get_instance().get_class_loader());
-    jni::MethodId getIsRefMethod{get_method_id(env, "isRef", "()Z")};
+    jni::MethodId getIsRefMethod{get_method_id(env, jni_methods.IS_REF)};
     is_ref = wrapped.call_boolean_method(env, getIsRefMethod);
     initialize_default_value();
 }
@@ -54,14 +57,14 @@ PropertyInfo KtProperty::get_member_info() {
 
 void KtProperty::callGet(KtObject* instance, Variant& r_ret) {
     jni::Env env{jni::Jvm::current_env()};
-    jni::MethodId getCallMethodId{get_method_id(env, "callGet", "(Lgodot/core/KtObject;)Z")};
+    jni::MethodId getCallMethodId{get_method_id(env, jni_methods.CALL_GET)};
     bool refreshBuffer = wrapped.call_boolean_method(env, getCallMethodId, {instance->get_wrapped()});
     r_ret = GDKotlin::get_instance().transfer_context->read_return_value(env, refreshBuffer).to_godot_variant();
 }
 
 void KtProperty::setCall(KtObject* instance, const Variant& p_value) {
     jni::Env env{jni::Jvm::current_env()};
-    jni::MethodId setCallMethodId {get_method_id(env, "callSet", "(Lgodot/core/KtObject;)V")};
+    jni::MethodId setCallMethodId {get_method_id(env, jni_methods.CALL_SET)};
     Vector<KtVariant> arg;
     arg.push_back(KtVariant(p_value));
     GDKotlin::get_instance().transfer_context->write_args(env, arg);
@@ -77,7 +80,7 @@ void KtProperty::initialize_default_value() {
         jni::Env env {jni::Jvm::current_env()};
         Vector<KtVariant> args;
         GDKotlin::get_instance().transfer_context->write_args(env, args);
-        jni::MethodId getDefaultValueMethod{get_method_id(env, "getDefaultValue", "()Z")};
+        jni::MethodId getDefaultValueMethod{get_method_id(env, jni_methods.GET_DEFAULT_VALUE)};
         bool refresh{static_cast<bool>(wrapped.call_boolean_method(env, getDefaultValueMethod))};
         default_value = GDKotlin::get_instance().transfer_context->read_return_value(env, refresh).to_godot_variant();
         is_default_value_initialized = true;

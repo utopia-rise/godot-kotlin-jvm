@@ -11,24 +11,24 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
     constructor() : this(false)
 
     override fun __new(): VoidPtr {
-        return TransferContext.invokeConstructor("Object")
+        return TransferContext.invokeConstructor(OBJECT)
     }
 
     fun connect(name: String, target: Object, method: String, binds: VariantArray, flags: Long): GodotError {
         val refreshBuffer = TransferContext.writeArguments(KtVariant(name), KtVariant(target), KtVariant(method), KtVariant(binds), KtVariant(flags))
-        TransferContext.callMethod(rawPtr, "Object", "connect", KtVariant.Type.LONG, refreshBuffer)
+        TransferContext.callMethod(rawPtr, OBJECT, OBJECT_CONNECT, KtVariant.Type.LONG, refreshBuffer)
         return GodotError.values()[TransferContext.readReturnValue().asInt()]
     }
 
     fun emitSignal(signal: String, vararg args: Any?) {
         val refreshBuffer = TransferContext.writeArguments(KtVariant(signal), *args.map { wrap(it) }.toTypedArray())
-        TransferContext.callMethod(rawPtr, "Object", "emit_signal", KtVariant.Type.NIL, refreshBuffer)
+        TransferContext.callMethod(rawPtr, OBJECT, OBJECT_EMIT_SIGNAL, KtVariant.Type.NIL, refreshBuffer)
         TransferContext.readReturnValue()
     }
 
     override fun getInstanceId(): Long {
         val refreshBuffer =TransferContext.writeArguments()
-        TransferContext.callMethod(rawPtr, "Object", "get_instance_id", KtVariant.Type.LONG, refreshBuffer)
+        TransferContext.callMethod(rawPtr, OBJECT, OBJECT_GET_INSTANCE_ID, KtVariant.Type.LONG, refreshBuffer)
         return TransferContext.readReturnValue().asLong()
     }
 
@@ -312,48 +312,60 @@ open class Node : Object() {
     open var name: String
         get() {
             TransferContext.writeArguments()
-            TransferContext.callMethod(rawPtr, "Node", "get_name", KtVariant.Type.STRING, false)
+            TransferContext.callMethod(rawPtr, NODE, NODE_GET_NAME, KtVariant.Type.STRING, false)
             return TransferContext.readReturnValue().asString()
         }
         set(value) {
             val refresh = TransferContext.writeArguments(KtVariant(value))
-            TransferContext.callMethod(rawPtr, "Node", "set_name", KtVariant.Type.NIL, refresh)
+            TransferContext.callMethod(rawPtr, NODE, NODE_SET_NAME, KtVariant.Type.NIL, refresh)
             TransferContext.readReturnValue()
         }
 
     override fun __new(): VoidPtr {
-        return TransferContext.invokeConstructor("Node")
+        return TransferContext.invokeConstructor(NODE)
     }
 
     open fun getParent(): Node {
         val refresh = TransferContext.writeArguments()
-        TransferContext.callMethod(rawPtr, "Node", "get_parent", KtVariant.Type.OBJECT, refresh)
+        TransferContext.callMethod(rawPtr, NODE, NODE_GET_PARENT, KtVariant.Type.OBJECT, refresh)
         return TransferContext.readReturnValue().asObject()
+    }
+
+    open fun addChild(node: Node) {
+        val refresh = TransferContext.writeArguments(KtVariant(node))
+        TransferContext.callMethod(rawPtr, NODE, NODE_ADD_CHILD, KtVariant.Type.NIL, refresh)
+        TransferContext.readReturnValue()
+    }
+
+    open fun removeChild(node: Node) {
+        val refresh = TransferContext.writeArguments(KtVariant(node))
+        TransferContext.callMethod(rawPtr, NODE, NODE_REMOVE_CHILD, KtVariant.Type.NIL, refresh)
+        TransferContext.readReturnValue()
     }
 }
 
 open class Spatial : Node() {
     override fun __new(): VoidPtr {
-        return TransferContext.invokeConstructor("Spatial")
+        return TransferContext.invokeConstructor(SPATIAL)
     }
 }
 
 open class Reference : Object(true) {
 
     override fun __new(): VoidPtr {
-        return TransferContext.invokeConstructor("Reference")
+        return TransferContext.invokeConstructor(REFERENCE)
     }
 }
 
 open class Resource : Reference() {
     override fun __new(): VoidPtr {
-        return TransferContext.invokeConstructor("Resource")
+        return TransferContext.invokeConstructor(RESOURCE)
     }
 }
 
 open class NavigationMesh : Resource() {
     override fun __new(): VoidPtr {
-        return TransferContext.invokeConstructor("NavigationMesh")
+        return TransferContext.invokeConstructor(NAVIGATION_MESH)
     }
 }
 
@@ -364,4 +376,15 @@ fun registerEngineTypes() {
     TypeManager.registerEngineType("Reference", ::Reference)
     TypeManager.registerEngineType("Resource", ::Resource)
     TypeManager.registerEngineType("NavigationMesh", ::NavigationMesh)
+}
+
+fun registerEngineTypeMethods() {
+    TypeManager.engineTypeMethodNames.add("connect")
+    TypeManager.engineTypeMethodNames.add("emit_signal")
+    TypeManager.engineTypeMethodNames.add("get_instance_id")
+    TypeManager.engineTypeMethodNames.add("get_name")
+    TypeManager.engineTypeMethodNames.add("set_name")
+    TypeManager.engineTypeMethodNames.add("get_parent")
+    TypeManager.engineTypeMethodNames.add("add_child")
+    TypeManager.engineTypeMethodNames.add("remove_child")
 }

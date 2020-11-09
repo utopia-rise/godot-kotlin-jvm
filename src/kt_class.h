@@ -3,26 +3,33 @@
 
 #include "jni/wrapper.h"
 #include <core/reference.h>
-#include "java_instance_wrapper.h"
 #include "kt_object.h"
 #include "kt_function.h"
 #include "kt_signal_info.h"
+#include "java_instance_wrapper.h"
 
-class KtClass : public JavaInstanceWrapper {
+class KtClass : public JavaInstanceWrapper<KtClass> {
+
 public:
     StringName name;
     StringName super_class;
 
     KtClass(jni::JObject p_wrapped, jni::JObject& p_class_loader);
+
     ~KtClass();
 
     KtObject* create_instance(jni::Env& env, const Variant** p_args, int p_arg_count, Object* p_owner);
+
     KtFunction* get_method(const StringName& methodName);
+
     KtProperty* get_property(const StringName& p_property_name);
+
     KtSignalInfo* get_signal(const StringName& p_signal_name);
 
     void get_method_list(List<MethodInfo>* p_list);
+
     void get_property_list(List<PropertyInfo>* p_list);
+
     void get_signal_list(List<MethodInfo>* p_list);
 
 private:
@@ -31,13 +38,16 @@ private:
     HashMap<StringName, KtSignalInfo*> signal_infos;
 
     StringName get_name(jni::Env& env);
+
     StringName get_super_class(jni::Env& env);
 
     void fetch_methods(jni::Env& env);
+
     void fetch_properties(jni::Env& env);
+
     void fetch_signals(jni::Env& env);
 
-    template <typename F, typename T>
+    template<typename F, typename T>
     void get_member_list(List<F>* p_list, HashMap<StringName, T*>& members) {
         List<StringName> keys;
         members.get_key_list(&keys);
@@ -47,7 +57,7 @@ private:
         }
     }
 
-    template <class T>
+    template<class T>
     void delete_members(HashMap<StringName, T*>& members) {
         List<StringName> keys;
         members.get_key_list(&keys);
@@ -58,6 +68,15 @@ private:
 
         members.clear();
     }
+
+DECLARE_JNI_METHODS(
+        JNI_METHOD(NEW, "new", "(JJI)Lgodot/core/KtObject;")
+        JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/String;")
+        JNI_METHOD(GET_SUPER_CLASS, "getSuperClass", "()Ljava/lang/String;")
+        JNI_METHOD(GET_FUNCTIONS, "getFunctions", "()[Lgodot/core/KtFunction;")
+        JNI_METHOD(GET_PROPERTIES, "getProperties", "()[Lgodot/core/KtProperty;")
+        JNI_METHOD(GET_SIGNAL_INFOS, "getSignalInfos", "()[Lgodot/core/KtSignalInfo;")
+)
 };
 
 #endif //GODOT_JVM_KTCLASS_H
