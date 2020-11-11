@@ -35,8 +35,8 @@ namespace jni {
             auto cls = find_class("java/lang/ClassLoader");
             loadClassMethodId = cls.get_method_id(*this, "loadClass", "(Ljava/lang/String;)Ljava/lang/Class;");
         }
-        auto str = new_string(name);
-        auto ret = class_loader.call_object_method(*this, loadClassMethodId, {str});
+        jvalue args[1] = {static_cast<JValue>(new_string(name)).value};
+        auto ret = class_loader.call_object_method(*this, loadClassMethodId, args);
         return JClass((jclass) ret.obj);
     }
 

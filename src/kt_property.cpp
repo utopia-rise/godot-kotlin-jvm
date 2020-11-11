@@ -57,9 +57,10 @@ PropertyInfo KtProperty::get_member_info() {
 
 void KtProperty::callGet(KtObject* instance, Variant& r_ret) {
     jni::Env env{jni::Jvm::current_env()};
-    jni::MethodId getCallMethodId{get_method_id(env, jni_methods.CALL_GET)};
-    bool refreshBuffer = wrapped.call_boolean_method(env, getCallMethodId, {instance->get_wrapped()});
-    r_ret = GDKotlin::get_instance().transfer_context->read_return_value(env, refreshBuffer).to_godot_variant();
+    jni::MethodId get_call_method_id{get_method_id(env, jni_methods.CALL_GET)};
+    jvalue call_args[1] = {jni::to_jni_arg(instance->get_wrapped())};
+    bool refresh_buffer = wrapped.call_boolean_method(env, get_call_method_id, call_args);
+    r_ret = GDKotlin::get_instance().transfer_context->read_return_value(env, refresh_buffer).to_godot_variant();
 }
 
 void KtProperty::setCall(KtObject* instance, const Variant& p_value) {
@@ -68,7 +69,8 @@ void KtProperty::setCall(KtObject* instance, const Variant& p_value) {
     Vector<KtVariant> arg;
     arg.push_back(KtVariant(p_value));
     GDKotlin::get_instance().transfer_context->write_args(env, arg);
-    wrapped.call_void_method(env, setCallMethodId, {instance->get_wrapped()});
+    jvalue args[1] = {jni::to_jni_arg(instance->get_wrapped())};
+    wrapped.call_void_method(env, setCallMethodId, args);
 }
 
 void KtProperty::get_default_value(Variant& r_value) {
@@ -80,8 +82,8 @@ void KtProperty::initialize_default_value() {
         jni::Env env {jni::Jvm::current_env()};
         Vector<KtVariant> args;
         GDKotlin::get_instance().transfer_context->write_args(env, args);
-        jni::MethodId getDefaultValueMethod{get_method_id(env, jni_methods.GET_DEFAULT_VALUE)};
-        bool refresh{static_cast<bool>(wrapped.call_boolean_method(env, getDefaultValueMethod))};
+        jni::MethodId get_default_value_method{get_method_id(env, jni_methods.GET_DEFAULT_VALUE)};
+        bool refresh{static_cast<bool>(wrapped.call_boolean_method(env, get_default_value_method))};
         default_value = GDKotlin::get_instance().transfer_context->read_return_value(env, refresh).to_godot_variant();
         is_default_value_initialized = true;
     }

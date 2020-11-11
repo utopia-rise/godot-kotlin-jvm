@@ -1,7 +1,8 @@
 #ifndef GODOT_LOADER_JOBJECT_H
 #define GODOT_LOADER_JOBJECT_H
+
+
 #include <jni.h>
-#include <initializer_list>
 #include <core/vector.h>
 
 namespace jni {
@@ -52,12 +53,12 @@ namespace jni {
         void delete_global_ref(Env& p_env);
         void delete_local_ref(Env& p_env);
 
-        JObject call_object_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
-        jint call_int_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
-        jlong call_long_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
-        jdouble call_double_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
-        jboolean call_boolean_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
-        void call_void_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
+        JObject call_object_method(Env& env, MethodId method, jvalue* args = {});
+        jint call_int_method(Env& env, MethodId method, jvalue* args = {});
+        jlong call_long_method(Env& env, MethodId method, jvalue* args = {});
+        jdouble call_double_method(Env& env, MethodId method, jvalue* args = {});
+        jboolean call_boolean_method(Env& env, MethodId method, jvalue* args = {});
+        void call_void_method(Env& env, MethodId method, jvalue* args = {});
 
         bool isNull();
     };
@@ -96,7 +97,7 @@ namespace jni {
         JClass& operator=(const JClass&) = default;
         JClass(): JClass((jclass) nullptr) {}
 
-        JObject new_instance(Env& env, MethodId ctor, std::initializer_list<JValue> values = {});
+        JObject new_instance(Env& env, MethodId ctor, jvalue* args = {});
         JObjectArray new_object_array(Env& env, int size, JObject initial = {});
         MethodId get_constructor_method_id(Env& env, const char* signature);
         MethodId get_method_id(Env& env, const char* name, const char* signature);
@@ -104,12 +105,10 @@ namespace jni {
         FieldId get_static_field_id(Env& env, const char* name, const char* signature);
         void register_natives(Env& env, Vector<JNativeMethod> methods);
 
-        JObject call_static_object_method(Env& env, MethodId method, std::initializer_list<JValue> values = {});
+        JObject call_static_object_method(Env& env, MethodId method, jvalue* args = {});
         JObject get_static_object_field(Env& env, FieldId field);
     };
 
-#define unpack_args(args) \
-    auto args = std::vector<jvalue>(); for (auto value : values) {  args.emplace_back(value.value); }
 }
 
 
