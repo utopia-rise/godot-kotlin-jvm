@@ -17,7 +17,8 @@ jni::JObject to_java_url(jni::Env& env, const String& bootstrapJar) {
     jni::JClass cls = env.find_class("java/io/File");
     jni::MethodId ctor = cls.get_constructor_method_id(env, "(Ljava/lang/String;)V");
     jni::JObject path = env.new_string(bootstrapJar.utf8().get_data());
-    jni::JObject file = cls.new_instance(env, ctor, {path});
+    jvalue args[1] = {jni::to_jni_arg(path)};
+    jni::JObject file = cls.new_instance(env, ctor, args);
     assert(!file.isNull());
     jni::MethodId to_url_method = cls.get_method_id(env, "toURL", "()Ljava/net/URL;");
     jni::JObject url = file.call_object_method(env, to_url_method);
@@ -31,7 +32,8 @@ jni::JObject create_class_loader(jni::Env& env, const String& bootstrapJar) {
     jni::JObjectArray urls = url_cls.new_object_array(env, 1, {url});
     jni::JClass class_loader_cls = env.find_class("java/net/URLClassLoader");
     jni::MethodId ctor = class_loader_cls.get_constructor_method_id(env, "([Ljava/net/URL;)V");
-    jni::JObject class_loader = class_loader_cls.new_instance(env, ctor, {urls});
+    jvalue args[1] = {jni::to_jni_arg(urls)};
+    jni::JObject class_loader = class_loader_cls.new_instance(env, ctor, args);
     assert(!class_loader_cls.isNull());
     return class_loader;
 }
@@ -39,7 +41,8 @@ jni::JObject create_class_loader(jni::Env& env, const String& bootstrapJar) {
 void set_context_class_loader(jni::Env& env, jni::JObject thread, jni::JObject classLoader) {
     auto cls = env.find_class("java/lang/Thread");
     auto setContextClassLoaderMethod = cls.get_method_id(env, "setContextClassLoader", "(Ljava/lang/ClassLoader;)V");
-    thread.call_object_method(env, setContextClassLoaderMethod, {classLoader});
+    jvalue args[1] = {jni::to_jni_arg(classLoader)};
+    thread.call_object_method(env, setContextClassLoaderMethod, args);
 }
 
 GDKotlin& GDKotlin::get_instance() {
@@ -199,14 +202,8 @@ void GDKotlin::init() {
             print_verbose("Starting GC thread with force mode.");
         }
         jni::MethodId start_method_id{garbage_collector_cls.get_method_id(env, "start", "(ZJ)V")};
-        garbage_collector_instance.call_void_method(
-                env,
-                start_method_id,
-                {
-                        static_cast<jboolean>(is_gc_force_mode),
-                        static_cast<jlong>(gc_thread_period_interval)
-                }
-        );
+        jvalue start_args[2] = {jni::to_jni_arg(is_gc_force_mode), jni::to_jni_arg(gc_thread_period_interval)};
+        garbage_collector_instance.call_void_method(env, start_method_id, start_args);
         print_verbose("GC thread started.");
         is_gc_started = true;
     }

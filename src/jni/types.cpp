@@ -56,44 +56,38 @@ namespace jni {
         return obj == nullptr;
     }
 
-    JObject JObject::call_object_method(Env &env, MethodId method, std::initializer_list<JValue> values) {
-        unpack_args(args)
-        auto ret = env.env->CallObjectMethodA((jclass) obj, method, args.data());
+    JObject JObject::call_object_method(Env &env, MethodId method, jvalue* args) {
+        auto ret = env.env->CallObjectMethodA((jclass) obj, method, args);
         env.check_exceptions();
         return JObject(ret);
     }
 
-    jint JObject::call_int_method(Env& env, MethodId method, std::initializer_list<JValue> values) {
-        unpack_args(args)
-        auto ret = env.env->CallIntMethodA((jclass) obj, method, args.data());
+    jint JObject::call_int_method(Env& env, MethodId method, jvalue* args) {
+        auto ret = env.env->CallIntMethodA((jclass) obj, method, args);
         env.check_exceptions();
         return ret;
     }
 
-    jdouble JObject::call_double_method(Env& env, MethodId method, std::initializer_list<JValue> values) {
-        unpack_args(args)
-        jdouble ret = env.env->CallDoubleMethodA((jclass) obj, method, args.data());
+    jdouble JObject::call_double_method(Env& env, MethodId method, jvalue* args) {
+        jdouble ret = env.env->CallDoubleMethodA((jclass) obj, method, args);
         env.check_exceptions();
         return ret;
     }
 
-    jlong JObject::call_long_method(Env& env, MethodId method, std::initializer_list<JValue> values) {
-        unpack_args(args)
-        auto ret = env.env->CallLongMethodA((jclass) obj, method, args.data());
+    jlong JObject::call_long_method(Env& env, MethodId method, jvalue* args) {
+        auto ret = env.env->CallLongMethodA((jclass) obj, method, args);
         env.check_exceptions();
         return ret;
     }
 
-    jboolean JObject::call_boolean_method(Env& env, MethodId method, std::initializer_list<JValue> values) {
-        unpack_args(args)
-        auto ret = env.env->CallBooleanMethodA((jclass) obj, method, args.data());
+    jboolean JObject::call_boolean_method(Env& env, MethodId method, jvalue* args) {
+        auto ret = env.env->CallBooleanMethodA((jclass) obj, method, args);
         env.check_exceptions();
         return ret;
     }
 
-    void JObject::call_void_method(Env& env, MethodId method, std::initializer_list<JValue> values) {
-        unpack_args(args)
-        env.env->CallVoidMethodA((jclass) obj, method, args.data());
+    void JObject::call_void_method(Env& env, MethodId method, jvalue* args) {
+        env.env->CallVoidMethodA((jclass) obj, method, args);
         env.check_exceptions();
     }
 
@@ -133,9 +127,8 @@ namespace jni {
         return get_method_id(env, "<init>", signature);
     }
 
-    JObject JClass::new_instance(Env &env, MethodId ctor, std::initializer_list<JValue> values) {
-        unpack_args(args)
-        auto ret = env.env->NewObjectA((jclass) obj, ctor, args.data());
+    JObject JClass::new_instance(Env &env, MethodId ctor, jvalue* args) {
+        auto ret = env.env->NewObjectA((jclass) obj, ctor, args);
         if (ret == nullptr) {
             throw JniError("Failed to instantiated object!");
         }
@@ -143,9 +136,8 @@ namespace jni {
         return JObject(ret);
     }
 
-    JObject JClass::call_static_object_method(Env &env, MethodId method, std::initializer_list<JValue> values) {
-        unpack_args(args)
-        auto ret = env.env->CallStaticObjectMethodA((jclass) obj, method, args.data());
+    JObject JClass::call_static_object_method(Env &env, MethodId method, jvalue* args) {
+        auto ret = env.env->CallStaticObjectMethodA((jclass) obj, method, args);
         env.check_exceptions();
         return JObject(ret);
     }

@@ -22,11 +22,12 @@ KtClass::~KtClass() {
 KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_arg_count, Object* p_owner) {
     jni::MethodId new_method { get_method_id(env, jni_methods.NEW) };
     // TODO: send args
-    jni::JObject j_kt_object {
-            wrapped.call_object_method(env, new_method, {static_cast<jlong>(reinterpret_cast<uintptr_t>(p_owner)),
-                                                         static_cast<jlong>(p_owner->get_instance_id()),
-                                                         static_cast<jint>(p_arg_count)})
+    jvalue args[3] = {
+            jni::to_jni_arg(p_owner),
+            jni::to_jni_arg(p_owner->get_instance_id()),
+            jni::to_jni_arg(p_arg_count)
     };
+    jni::JObject j_kt_object{wrapped.call_object_method(env, new_method, args)};
     print_verbose(vformat("Instantiated an object of type %s", name));
     return new KtObject(j_kt_object, class_loader, name);
 }
