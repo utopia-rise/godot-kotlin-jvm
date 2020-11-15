@@ -5,24 +5,16 @@
 #include "wire/wire.pb.h"
 #include "core/variant.h"
 #include "jni/wrapper.h"
+#include "SharedBuffer.h"
 
-class KtVariant {
-private:
-    wire::Value value;
+namespace ktvariant {
 
-public:
-    KtVariant() = default;
-    KtVariant(wire::Value value);
-    KtVariant(const Variant& variant);
-    ~KtVariant() = default;
+    static void get_variant_from_buffer(SharedBuffer& byte_buffer, Variant& res);
+    static void send_variant_to_buffer(const Variant& variant, SharedBuffer& byte_buffer);
 
     static void initMethodArray();
-    static Variant::Type fromWireTypeToVariantType(wire::Value::TypeCase typeCase);
     static void register_engine_types(jni::Env& p_env, jni::JObjectArray p_engine_types_names);
     static void clear_engine_types();
-
-    const wire::Value& get_value() const;
-    Variant to_godot_variant() const;
 };
 
 

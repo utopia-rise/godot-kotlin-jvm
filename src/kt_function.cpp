@@ -48,7 +48,7 @@ Variant KtFunction::invoke(const KtObject* instance, const Variant** p_args, int
     transferContext->write_args(env, args);
     jvalue call_args[1] = {jni::to_jni_arg(instance->get_wrapped())};
     bool refresh_buffer = wrapped.call_boolean_method(env, methodId, call_args);
-    return transferContext->read_return_value(env, refresh_buffer).to_godot_variant();
+    return transferContext->read_return_value(env, refresh_buffer).to_godot_variant(COLOR, nullptr);
 }
 
 KtFunctionInfo::KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader)

@@ -6,9 +6,14 @@ import godot.wire.Wire
 import java.io.InputStream
 import java.io.OutputStream
 import java.nio.ByteBuffer
+import java.nio.ByteOrder
 
 object TransferContext {
-    private var threadLocalBuffer = ThreadLocal.withInitial { ByteBuffer.allocateDirect(100) }
+    private var threadLocalBuffer = ThreadLocal.withInitial {
+        val buf = ByteBuffer.allocateDirect(512)
+        buf.order(ByteOrder.LITTLE_ENDIAN)
+        buf
+    }
     var buffer: ByteBuffer
         get() = threadLocalBuffer.get()
         set(value) { threadLocalBuffer.set(value) }

@@ -60,7 +60,8 @@ void KtProperty::callGet(KtObject* instance, Variant& r_ret) {
     jni::MethodId get_call_method_id{get_method_id(env, jni_methods.CALL_GET)};
     jvalue call_args[1] = {jni::to_jni_arg(instance->get_wrapped())};
     bool refresh_buffer = wrapped.call_boolean_method(env, get_call_method_id, call_args);
-    r_ret = GDKotlin::get_instance().transfer_context->read_return_value(env, refresh_buffer).to_godot_variant();
+    r_ret = GDKotlin::get_instance().transfer_context->read_return_value(env, refresh_buffer).to_godot_variant(COLOR,
+                                                                                                               nullptr);
 }
 
 void KtProperty::setCall(KtObject* instance, const Variant& p_value) {
@@ -84,7 +85,8 @@ void KtProperty::initialize_default_value() {
         GDKotlin::get_instance().transfer_context->write_args(env, args);
         jni::MethodId get_default_value_method{get_method_id(env, jni_methods.GET_DEFAULT_VALUE)};
         bool refresh{static_cast<bool>(wrapped.call_boolean_method(env, get_default_value_method))};
-        default_value = GDKotlin::get_instance().transfer_context->read_return_value(env, refresh).to_godot_variant();
+        default_value = GDKotlin::get_instance().transfer_context->read_return_value(env, refresh).to_godot_variant(
+                COLOR, nullptr);
         is_default_value_initialized = true;
     }
 }

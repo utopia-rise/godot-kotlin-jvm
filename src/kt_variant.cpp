@@ -1,17 +1,15 @@
 #include <core/class_db.h>
+#include <core/io/marshalls.h>
 #include "kt_variant.h"
 #include "gd_kotlin.h"
+
 
 // must match the value order of godot_variant_type
 static void (* TO_KT_VARIANT_FROM[27 /* Variant::Type count */])(wire::Value&, const Variant&);
 
-static Variant (* TO_GODOT_VARIANT_FROM[27 /* KVariant::TypeCase count */])(const wire::Value&);
-
-static Variant::Type WIRE_TYPE_CASE_TO_VARIANT_TYPE[17];
+static Variant (* TO_GODOT_VARIANT_FROM[27 /* KVariant::TypeCase count */])(SharedBuffer& byte_buffer);
 
 static HashMap<StringName, int> JAVA_ENGINE_TYPES_CONSTRUCTORS;
-
-KtVariant::KtVariant(wire::Value value) : value(value) {}
 
 void to_kvariant_fromNIL(wire::Value& des, const Variant& src) {
     des.set_nil_value(0);
@@ -149,7 +147,7 @@ void to_kvariant_fromOBJECT(wire::Value& des, const Variant& src) {
     des.set_allocated_object_value(obj_value);
 }
 
-KtVariant::KtVariant(const Variant& variant) {
+void ktvariant::send_variant_to_buffer(const Variant& variant, SharedBuffer& byte_buffer) {
     Variant::Type type = variant.get_type();
     TO_KT_VARIANT_FROM[type](value, variant);
 }
@@ -158,23 +156,23 @@ const wire::Value& KtVariant::get_value() const {
     return value;
 }
 
-Variant from_kvariant_tokNilValue(const wire::Value& src) {
+Variant from_kvariant_tokNilValue(SharedBuffer& byte_buffer) {
     return Variant();
 }
 
-Variant from_kvariant_tokLongValue(const wire::Value& src) {
+Variant from_kvariant_tokLongValue(SharedBuffer& byte_buffer) {
     return Variant(src.long_value());
 }
 
-Variant from_kvariant_tokRealValue(const wire::Value& src) {
+Variant from_kvariant_tokRealValue(SharedBuffer& byte_buffer) {
     return Variant(src.real_value());
 }
 
-Variant from_kvariant_tokStringValue(const wire::Value& src) {
+Variant from_kvariant_tokStringValue(SharedBuffer& byte_buffer) {
     return Variant(String(src.string_value().c_str()));
 }
 
-Variant from_kvariant_tokBoolValue(const wire::Value& src) {
+Variant from_kvariant_tokBoolValue(SharedBuffer& byte_buffer) {
     return Variant(src.bool_value());
 }
 
@@ -182,11 +180,11 @@ inline Vector2 to_godot_vector2(const wire::Vector2& data) {
     return {data.x(), data.y()};
 }
 
-Variant from_kvariant_tokVector2Value(const wire::Value& src) {
+Variant from_kvariant_tokVector2Value(SharedBuffer& byte_buffer) {
     return Variant(to_godot_vector2(src.vector2_value()));
 }
 
-Variant from_kvariant_tokRect2Value(const wire::Value& src) {
+Variant from_kvariant_tokRect2Value(SharedBuffer& byte_buffer) {
     return Variant(
             Rect2(to_godot_vector2(src.rect2_value().position()), to_godot_vector2(src.rect2_value().size()))
     );
@@ -196,11 +194,11 @@ inline Vector3 to_godot_vector3(const wire::Vector3& data) {
     return {data.x(), data.y(), data.z()};
 }
 
-Variant from_kvariant_tokVector3Value(const wire::Value& src) {
+Variant from_kvariant_tokVector3Value(SharedBuffer& byte_buffer) {
     return Variant(to_godot_vector3(src.vector3_value()));
 }
 
-Variant from_kvariant_tokTransform2DValue(const wire::Value& src) {
+Variant from_kvariant_tokTransform2DValue(SharedBuffer& byte_buffer) {
     Transform2D transform2d;
     transform2d.set_axis(0, to_godot_vector2(src.transform2d_value().x()));
     transform2d.set_axis(1, to_godot_vector2(src.transform2d_value().y()));
@@ -208,19 +206,19 @@ Variant from_kvariant_tokTransform2DValue(const wire::Value& src) {
     return Variant(transform2d);
 }
 
-Variant from_kvariant_tokPlaneValue(const wire::Value& src) {
+Variant from_kvariant_tokPlaneValue(SharedBuffer& byte_buffer) {
     return Variant(
             Plane(to_godot_vector3(src.plane_value().normal()), src.plane_value().d())
     );
 }
 
-Variant from_kvariant_tokQuatValue(const wire::Value& src) {
+Variant from_kvariant_tokQuatValue(SharedBuffer& byte_buffer) {
     return Variant(
             Quat(src.quat_value().x(), src.quat_value().y(), src.quat_value().z(), src.quat_value().w())
     );
 }
 
-Variant from_kvariant_tokAabbValue(const wire::Value& src) {
+Variant from_kvariant_tokAabbValue(SharedBuffer& byte_buffer) {
     return Variant(
             AABB(to_godot_vector3(src.aabb_value().position()), to_godot_vector3(src.aabb_value().size()))
     );
@@ -230,21 +228,21 @@ inline Basis to_godot_basis(const wire::Basis& data) {
     return {to_godot_vector3(data.x()), to_godot_vector3(data.y()), to_godot_vector3(data.z())};
 }
 
-Variant from_kvariant_tokBasisValue(const wire::Value& src) {
+Variant from_kvariant_tokBasisValue(SharedBuffer& byte_buffer) {
     return Variant(to_godot_basis(src.basis_value()));
 }
 
-Variant from_kvariant_tokTransformValue(const wire::Value& src) {
+Variant from_kvariant_tokTransformValue(SharedBuffer& byte_buffer) {
     return Variant(
             Transform(to_godot_basis(src.transform_value().basis()), to_godot_vector3(src.transform_value().origin()))
     );
 }
 
-Variant from_kvariant_tokVariantArrayValue(const wire::Value& src) {
+Variant from_kvariant_tokVariantArrayValue(SharedBuffer& byte_buffer) {
     return Array();
 }
 
-Variant from_kvariant_toKObjectValue(const wire::Value& src) {
+Variant from_kvariant_toKObjectValue(SharedBuffer& byte_buffer) {
     if (src.object_value().is_ref()) {
         REF ref{REF(reinterpret_cast<Reference*>(src.object_value().ptr()))};
         return Variant(ref.get_ref_ptr());
@@ -253,11 +251,12 @@ Variant from_kvariant_toKObjectValue(const wire::Value& src) {
     }
 }
 
-Variant KtVariant::to_godot_variant() const {
-    return TO_GODOT_VARIANT_FROM[value.type_case()](value);
+void ktvariant::get_variant_from_buffer(SharedBuffer& byte_buffer, Variant& res) {
+    uint32_t variant_type_int{decode_uint32(byte_buffer.position)};
+    res = TO_GODOT_VARIANT_FROM[static_cast<Variant::Type>(variant_type_int)](byte_buffer);
 }
 
-void KtVariant::initMethodArray() {
+void ktvariant::initMethodArray() {
     TO_KT_VARIANT_FROM[Variant::NIL] = to_kvariant_fromNIL;
     TO_KT_VARIANT_FROM[Variant::BOOL] = to_kvariant_fromBOOL;
     TO_KT_VARIANT_FROM[Variant::INT] = to_kvariant_fromINT;
@@ -275,48 +274,25 @@ void KtVariant::initMethodArray() {
     TO_KT_VARIANT_FROM[Variant::ARRAY] = to_kvariant_fromARRAY;
     TO_KT_VARIANT_FROM[Variant::OBJECT] = to_kvariant_fromOBJECT;
 
-    TO_GODOT_VARIANT_FROM[wire::Value::kNilValue] = from_kvariant_tokNilValue;
-    TO_GODOT_VARIANT_FROM[wire::Value::kBoolValue] = from_kvariant_tokBoolValue;
-    TO_GODOT_VARIANT_FROM[wire::Value::kLongValue] = from_kvariant_tokLongValue;
-    TO_GODOT_VARIANT_FROM[wire::Value::kRealValue] = from_kvariant_tokRealValue;
-    TO_GODOT_VARIANT_FROM[wire::Value::kStringValue] = from_kvariant_tokStringValue;
-    TO_GODOT_VARIANT_FROM[wire::Value::kVector2Value] = from_kvariant_tokVector2Value;
-    TO_GODOT_VARIANT_FROM[wire::Value::kRect2Value] = from_kvariant_tokRect2Value;
-    TO_GODOT_VARIANT_FROM[wire::Value::kVector3Value] = from_kvariant_tokVector3Value;
-    TO_GODOT_VARIANT_FROM[wire::Value::kTransform2DValue] = from_kvariant_tokTransform2DValue;
-    TO_GODOT_VARIANT_FROM[wire::Value::kPlaneValue] = from_kvariant_tokPlaneValue;
-    TO_GODOT_VARIANT_FROM[wire::Value::kQuatValue] = from_kvariant_tokQuatValue;
-    TO_GODOT_VARIANT_FROM[wire::Value::kAabbValue] = from_kvariant_tokAabbValue;
-    TO_GODOT_VARIANT_FROM[wire::Value::kBasisValue] = from_kvariant_tokBasisValue;
-    TO_GODOT_VARIANT_FROM[wire::Value::kTransformValue] = from_kvariant_tokTransformValue;
-    TO_GODOT_VARIANT_FROM[wire::Value::kVariantArrayValue] = from_kvariant_tokVariantArrayValue;
-    TO_GODOT_VARIANT_FROM[wire::Value::kObjectValue] = from_kvariant_toKObjectValue;
-
-    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kNilValue] = Variant::Type::NIL;
-    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kBoolValue] = Variant::Type::BOOL;
-    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kLongValue] = Variant::Type::INT;
-    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kRealValue] = Variant::Type::REAL;
-    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kStringValue] = Variant::Type::STRING;
-    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kVector2Value] = Variant::Type::VECTOR2;
-    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kRect2Value] = Variant::Type::RECT2;
-    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kVector3Value] = Variant::Type::VECTOR3;
-    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kTransform2DValue] = Variant::Type::TRANSFORM2D;
-    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kPlaneValue] = Variant::Type::PLANE;
-    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kQuatValue] = Variant::Type::QUAT;
-    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kAabbValue] = Variant::Type::AABB;
-    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kBasisValue] = Variant::Type::BASIS;
-    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kTransformValue] = Variant::Type::TRANSFORM;
-    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kVariantArrayValue] = Variant::Type::ARRAY;
-    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kObjectValue] = Variant::Type::OBJECT;
-    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::kVariantArrayValue] = Variant::Type::ARRAY;
-    WIRE_TYPE_CASE_TO_VARIANT_TYPE[wire::Value::TYPE_NOT_SET] = Variant::Type::VARIANT_MAX;
+    TO_GODOT_VARIANT_FROM[Variant::NIL] = from_kvariant_tokNilValue;
+    TO_GODOT_VARIANT_FROM[Variant::BOOL] = from_kvariant_tokBoolValue;
+    TO_GODOT_VARIANT_FROM[Variant::INT] = from_kvariant_tokLongValue;
+    TO_GODOT_VARIANT_FROM[Variant::REAL] = from_kvariant_tokRealValue;
+    TO_GODOT_VARIANT_FROM[Variant::STRING] = from_kvariant_tokStringValue;
+    TO_GODOT_VARIANT_FROM[Variant::VECTOR2] = from_kvariant_tokVector2Value;
+    TO_GODOT_VARIANT_FROM[Variant::RECT2] = from_kvariant_tokRect2Value;
+    TO_GODOT_VARIANT_FROM[Variant::VECTOR3] = from_kvariant_tokVector3Value;
+    TO_GODOT_VARIANT_FROM[Variant::TRANSFORM2D] = from_kvariant_tokTransform2DValue;
+    TO_GODOT_VARIANT_FROM[Variant::PLANE] = from_kvariant_tokPlaneValue;
+    TO_GODOT_VARIANT_FROM[Variant::QUAT] = from_kvariant_tokQuatValue;
+    TO_GODOT_VARIANT_FROM[Variant::AABB] = from_kvariant_tokAabbValue;
+    TO_GODOT_VARIANT_FROM[Variant::BASIS] = from_kvariant_tokBasisValue;
+    TO_GODOT_VARIANT_FROM[Variant::TRANSFORM] = from_kvariant_tokTransformValue;
+    TO_GODOT_VARIANT_FROM[Variant::ARRAY] = from_kvariant_tokVariantArrayValue;
+    TO_GODOT_VARIANT_FROM[Variant::OBJECT] = from_kvariant_toKObjectValue;
 }
 
-Variant::Type KtVariant::fromWireTypeToVariantType(wire::Value::TypeCase typeCase) {
-    return WIRE_TYPE_CASE_TO_VARIANT_TYPE[typeCase];
-}
-
-void KtVariant::register_engine_types(jni::Env& env, jni::JObjectArray p_engine_types_names) {
+void ktvariant::register_engine_types(jni::Env& env, jni::JObjectArray p_engine_types_names) {
     print_line("Starting to register managed engine types...");
 
     for (int i = 0; i < p_engine_types_names.length(env); i++) {
@@ -328,6 +304,6 @@ void KtVariant::register_engine_types(jni::Env& env, jni::JObjectArray p_engine_
     print_line("Done registering managed engine types...");
 }
 
-void KtVariant::clear_engine_types() {
+void ktvariant::clear_engine_types() {
     JAVA_ENGINE_TYPES_CONSTRUCTORS.clear();
 }

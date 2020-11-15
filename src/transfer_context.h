@@ -4,16 +4,12 @@
 
 #include "kt_variant.h"
 #include "java_instance_wrapper.h"
+#include "SharedBuffer.h"
 
 #define MAX_ARGS_SIZE 16
 
 class TransferContext : public JavaInstanceWrapper<TransferContext> {
 public:
-    struct SharedBuffer {
-        void* ptr;
-        int capacity;
-    };
-
     TransferContext(jni::JObject p_wrapped, jni::JObject p_class_loader);
     ~TransferContext() = default;
     TransferContext(const TransferContext&) = delete;

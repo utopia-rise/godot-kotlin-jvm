@@ -1,5 +1,5 @@
+#include <assert.h>
 #include "transfer_context.h"
-#include "google/protobuf/util/delimited_message_util.h"
 #include "gd_kotlin.h"
 #include "kotlin_instance.h"
 
@@ -7,25 +7,25 @@ JNI_INIT_STATICS_FOR_CLASS(TransferContext)
 
 TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_loader)
     : JavaInstanceWrapper("godot.core.TransferContext", p_wrapped, p_class_loader) {
-    jni::JNativeMethod icall_method {
-        "icall",
-        "(JIIIZ)V",
-        (void*) TransferContext::icall
+    jni::JNativeMethod icall_method{
+            "icall",
+            "(JIIIZ)V",
+            (void*) TransferContext::icall
     };
 
-    jni::JNativeMethod invoke_ctor_method {
-        "invokeConstructor",
-        "(I)J",
-        (void*) TransferContext::invoke_constructor
+    jni::JNativeMethod invoke_ctor_method{
+            "invokeConstructor",
+            "(I)J",
+            (void*) TransferContext::invoke_constructor
     };
 
-    jni::JNativeMethod set_script_method {
+    jni::JNativeMethod set_script_method{
             "setScript",
             "(JLjava/lang/String;Lgodot/core/KtObject;Ljava/lang/ClassLoader;)V",
             (void*) TransferContext::set_script
     };
 
-    jni::JNativeMethod free_object_method {
+    jni::JNativeMethod free_object_method{
             "freeObject",
             "(J)V",
             (void*) TransferContext::free_object
@@ -40,16 +40,18 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
     j_class.register_natives(env, methods);
 }
 
-TransferContext::SharedBuffer* TransferContext::get_buffer(jni::Env& p_env, bool p_refresh_buffer) {
-    thread_local static TransferContext::SharedBuffer shared_buffer;
+SharedBuffer* TransferContext::get_buffer(jni::Env& p_env, bool p_refresh_buffer) {
+    thread_local static SharedBuffer shared_buffer;
 
-    if (!shared_buffer.ptr || p_refresh_buffer) {
+    if (unlikely(!shared_buffer.ptr) || p_refresh_buffer) {
 
         jni::MethodId method = get_method_id(p_env, jni_methods.GET_BUFFER);
         jni::JObject buffer = wrapped.call_object_method(p_env, method);
         assert(!buffer.isNull());
+        auto* address{static_cast<uint8_t*>(p_env.get_direct_buffer_address(buffer))};
         shared_buffer = SharedBuffer {
-                p_env.get_direct_buffer_address(buffer),
+                address,
+                address,
                 p_env.get_direct_buffer_capacity(buffer)
         };
     }
@@ -134,7 +136,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr,
     ERR_FAIL_COND_MSG(argsSize > MAX_ARGS_SIZE, vformat("Cannot have more than %s arguments for method call.", MAX_ARGS_SIZE))
 
     for (int i = 0; i < argsSize; i++) {
-        variantArgs[i] = tArgs[i].to_godot_variant();
+        variantArgs[i] = tArgs[i].to_godot_variant(COLOR, nullptr);
     }
 
     auto* ptr = reinterpret_cast<Object*>(jPtr);
