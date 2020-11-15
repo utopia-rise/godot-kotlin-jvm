@@ -2,7 +2,6 @@
 #define GODOT_JVM_KT_VARIANT_H
 
 
-#include "wire/wire.pb.h"
 #include "core/variant.h"
 #include "jni/wrapper.h"
 #include "SharedBuffer.h"

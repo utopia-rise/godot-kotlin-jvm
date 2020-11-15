@@ -51,7 +51,7 @@ SharedBuffer* TransferContext::get_buffer(jni::Env& p_env, bool p_refresh_buffer
         auto* address{static_cast<uint8_t*>(p_env.get_direct_buffer_address(buffer))};
         shared_buffer = SharedBuffer {
                 address,
-                address,
+                0,
                 p_env.get_direct_buffer_capacity(buffer)
         };
     }

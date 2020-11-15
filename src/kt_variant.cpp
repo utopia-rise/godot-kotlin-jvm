@@ -152,89 +152,122 @@ void ktvariant::send_variant_to_buffer(const Variant& variant, SharedBuffer& byt
     TO_KT_VARIANT_FROM[type](value, variant);
 }
 
-const wire::Value& KtVariant::get_value() const {
-    return value;
-}
-
 Variant from_kvariant_tokNilValue(SharedBuffer& byte_buffer) {
     return Variant();
 }
 
 Variant from_kvariant_tokLongValue(SharedBuffer& byte_buffer) {
-    return Variant(src.long_value());
+    uint64_t ulong{decode_uint64(byte_buffer.get_cursor())};
+    byte_buffer.increment_position(8);
+    return Variant(ulong);
 }
 
 Variant from_kvariant_tokRealValue(SharedBuffer& byte_buffer) {
-    return Variant(src.real_value());
+    double real{decode_double(byte_buffer.get_cursor())};
+    byte_buffer.increment_position(8);
+    return Variant(real);
 }
 
 Variant from_kvariant_tokStringValue(SharedBuffer& byte_buffer) {
-    return Variant(String(src.string_value().c_str()));
+    uint32_t size{decode_uint32(byte_buffer.get_cursor())};
+    byte_buffer.increment_position(4);
+    char str[size];
+    for (int i = 0; i < size; ++i) {
+        str[i] = *byte_buffer.get_cursor();
+    }
+    byte_buffer.increment_position(size);
+    return Variant(String(str));
 }
 
 Variant from_kvariant_tokBoolValue(SharedBuffer& byte_buffer) {
-    return Variant(src.bool_value());
+    bool b{static_cast<bool>(decode_uint32(byte_buffer.get_cursor()))};
+    byte_buffer.increment_position(4);
+    return Variant(b);
 }
 
-inline Vector2 to_godot_vector2(const wire::Vector2& data) {
-    return {data.x(), data.y()};
+inline Vector2 to_godot_vector2(SharedBuffer &byte_buffer) {
+    float x{decode_float(byte_buffer.get_cursor())};
+    byte_buffer.increment_position(4);
+    float y{decode_float(byte_buffer.get_cursor())};
+    byte_buffer.increment_position(4);
+    return {x, y};
 }
 
 Variant from_kvariant_tokVector2Value(SharedBuffer& byte_buffer) {
-    return Variant(to_godot_vector2(src.vector2_value()));
+    return Variant(to_godot_vector2(byte_buffer));
 }
 
 Variant from_kvariant_tokRect2Value(SharedBuffer& byte_buffer) {
     return Variant(
-            Rect2(to_godot_vector2(src.rect2_value().position()), to_godot_vector2(src.rect2_value().size()))
+            Rect2(to_godot_vector2(byte_buffer), to_godot_vector2(byte_buffer))
     );
 }
 
-inline Vector3 to_godot_vector3(const wire::Vector3& data) {
-    return {data.x(), data.y(), data.z()};
+inline Vector3 to_godot_vector3(SharedBuffer &byte_buffer) {
+    float x{decode_float(byte_buffer.get_cursor())};
+    byte_buffer.increment_position(4);
+    float y{decode_float(byte_buffer.get_cursor())};
+    byte_buffer.increment_position(4);
+    float z{decode_float(byte_buffer.get_cursor())};
+    return {x, y, z};
 }
 
 Variant from_kvariant_tokVector3Value(SharedBuffer& byte_buffer) {
-    return Variant(to_godot_vector3(src.vector3_value()));
+    return Variant(to_godot_vector3(byte_buffer));
 }
 
 Variant from_kvariant_tokTransform2DValue(SharedBuffer& byte_buffer) {
     Transform2D transform2d;
-    transform2d.set_axis(0, to_godot_vector2(src.transform2d_value().x()));
-    transform2d.set_axis(1, to_godot_vector2(src.transform2d_value().y()));
-    transform2d.set_origin(to_godot_vector2(src.transform2d_value().origin()));
+    transform2d.set_axis(0, to_godot_vector2(byte_buffer));
+    transform2d.set_axis(1, to_godot_vector2(byte_buffer));
+    transform2d.set_origin(to_godot_vector2(byte_buffer));
     return Variant(transform2d);
 }
 
 Variant from_kvariant_tokPlaneValue(SharedBuffer& byte_buffer) {
+    Vector3 norm{to_godot_vector3(byte_buffer)};
+    float d{decode_float(byte_buffer.get_cursor())};
+    byte_buffer.increment_position(4);
     return Variant(
-            Plane(to_godot_vector3(src.plane_value().normal()), src.plane_value().d())
+            Plane(norm, d)
     );
 }
 
 Variant from_kvariant_tokQuatValue(SharedBuffer& byte_buffer) {
+    float x{decode_float(byte_buffer.get_cursor())};
+    byte_buffer.increment_position(4);
+    float y{decode_float(byte_buffer.get_cursor())};
+    byte_buffer.increment_position(4);
+    float z{decode_float(byte_buffer.get_cursor())};
+    byte_buffer.increment_position(4);
+    float w{decode_float(byte_buffer.get_cursor())};
+    byte_buffer.increment_position(4);
     return Variant(
-            Quat(src.quat_value().x(), src.quat_value().y(), src.quat_value().z(), src.quat_value().w())
+            Quat(x, y, z, w)
     );
 }
 
 Variant from_kvariant_tokAabbValue(SharedBuffer& byte_buffer) {
     return Variant(
-            AABB(to_godot_vector3(src.aabb_value().position()), to_godot_vector3(src.aabb_value().size()))
+            AABB(to_godot_vector3(byte_buffer), to_godot_vector3(byte_buffer))
     );
 }
 
-inline Basis to_godot_basis(const wire::Basis& data) {
-    return {to_godot_vector3(data.x()), to_godot_vector3(data.y()), to_godot_vector3(data.z())};
+inline Basis to_godot_basis(SharedBuffer &byte_buffer) {
+    return {
+        to_godot_vector3(byte_buffer),
+        to_godot_vector3(byte_buffer),
+        to_godot_vector3(byte_buffer)
+    };
 }
 
 Variant from_kvariant_tokBasisValue(SharedBuffer& byte_buffer) {
-    return Variant(to_godot_basis(src.basis_value()));
+    return Variant(to_godot_basis(byte_buffer));
 }
 
 Variant from_kvariant_tokTransformValue(SharedBuffer& byte_buffer) {
     return Variant(
-            Transform(to_godot_basis(src.transform_value().basis()), to_godot_vector3(src.transform_value().origin()))
+            Transform(to_godot_basis(byte_buffer), to_godot_vector3(byte_buffer))
     );
 }
 
@@ -243,16 +276,21 @@ Variant from_kvariant_tokVariantArrayValue(SharedBuffer& byte_buffer) {
 }
 
 Variant from_kvariant_toKObjectValue(SharedBuffer& byte_buffer) {
-    if (src.object_value().is_ref()) {
-        REF ref{REF(reinterpret_cast<Reference*>(src.object_value().ptr()))};
+    uint64_t ptr{decode_uint64(byte_buffer.get_cursor())};
+    byte_buffer.increment_position(12);
+    bool is_ref{static_cast<bool>(decode_uint32(byte_buffer.get_cursor()))};
+    byte_buffer.increment_position(12);
+    if (is_ref) {
+        REF ref{REF(reinterpret_cast<Reference*>(ptr))};
         return Variant(ref.get_ref_ptr());
     } else {
-        return Variant(reinterpret_cast<Object*>(src.object_value().ptr()));
+        return Variant(reinterpret_cast<Object*>(ptr));
     }
 }
 
 void ktvariant::get_variant_from_buffer(SharedBuffer& byte_buffer, Variant& res) {
-    uint32_t variant_type_int{decode_uint32(byte_buffer.position)};
+    uint32_t variant_type_int{decode_uint32(byte_buffer.get_cursor())};
+    byte_buffer.increment_position(4);
     res = TO_GODOT_VARIANT_FROM[static_cast<Variant::Type>(variant_type_int)](byte_buffer);
 }
 
