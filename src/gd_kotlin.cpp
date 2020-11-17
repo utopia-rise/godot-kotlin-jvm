@@ -69,9 +69,15 @@ void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) 
 }
 
 void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types, jobjectArray p_method_names) {
+    print_line("Starting to register managed engine types...");
     jni::Env env(p_env);
     jni::JObjectArray engine_types{p_engine_types};
-    KtVariant::register_engine_types(env, engine_types);
+    for (int i = 0; i < engine_types.length(env); ++i) {
+        const String& class_name = env.from_jstring(static_cast<jni::JString>(engine_types.get(env, i)));
+        GDKotlin::get_instance().engine_type_names.insert(i, class_name);
+        ktvariant::register_engine_types(env, class_name, i);
+        print_verbose(vformat("Registered %s engine type with index %s.", class_name, i));
+    }
     jni::JObjectArray method_names{p_method_names};
     for (int i = 0; i < method_names.length(env); i++) {
         GDKotlin::get_instance().engine_type_method_names.insert(i,
@@ -81,11 +87,12 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
     j_object.delete_local_ref(env);
     engine_types.delete_local_ref(env);
     method_names.delete_local_ref(env);
+    print_line("Done registering managed engine types...");
 }
 
 void GDKotlin::init() {
     // Initialize type mappings
-    KtVariant::initMethodArray();
+    ktvariant::initMethodArray();
 
     jni::InitArgs args;
     args.version = JNI_VERSION_1_8;
@@ -250,7 +257,7 @@ void GDKotlin::finish() {
 
     delete memory_bridge;
     memory_bridge = nullptr;
-    KtVariant::clear_engine_types();
+    ktvariant::clear_engine_types();
     class_loader.delete_global_ref(env);
     jni::Jvm::destroy();
     print_line("Shutting down JVM ...");

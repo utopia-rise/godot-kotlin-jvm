@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <core/io/marshalls.h>
 #include "transfer_context.h"
 #include "gd_kotlin.h"
 #include "kotlin_instance.h"
@@ -40,10 +41,10 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
     j_class.register_natives(env, methods);
 }
 
-SharedBuffer* TransferContext::get_buffer(jni::Env& p_env, bool p_refresh_buffer) {
+SharedBuffer* TransferContext::get_buffer(jni::Env& p_env) {
     thread_local static SharedBuffer shared_buffer;
 
-    if (unlikely(!shared_buffer.ptr) || p_refresh_buffer) {
+    if (unlikely(!shared_buffer.is_init())) {
 
         jni::MethodId method = get_method_id(p_env, jni_methods.GET_BUFFER);
         jni::JObject buffer = wrapped.call_object_method(p_env, method);
@@ -65,58 +66,46 @@ bool TransferContext::ensure_capacity(jni::Env& p_env, long p_capacity) {
     return wrapped.call_boolean_method(p_env, method, call_args);
 }
 
-void TransferContext::write_return_value(jni::Env& p_env, const KtVariant& p_value) {
-    wire::ReturnValue ret_val;
-    ret_val.mutable_data()->CopyFrom(p_value.get_value());
-
-    SharedBuffer* buffer { get_buffer(p_env, ensure_capacity(p_env, ret_val.ByteSizeLong())) };
-    google::protobuf::io::ArrayOutputStream os(buffer->ptr, buffer->capacity);
-    google::protobuf::io::CodedOutputStream cos(&os);
-    google::protobuf::util::SerializeDelimitedToCodedStream(ret_val, &cos);
+void TransferContext::write_return_value(jni::Env& p_env, const Variant& p_value) {
+    SharedBuffer* buffer{get_buffer(p_env)};
+    ktvariant::send_variant_to_buffer(p_value, buffer);
+    buffer->rewind();
+    
 }
 
-KtVariant TransferContext::read_return_value(jni::Env& p_env, bool p_refresh_buffer) {
-    wire::ReturnValue ret_val;
-
-    SharedBuffer* buffer { get_buffer(p_env, p_refresh_buffer) };
-    google::protobuf::io::ArrayInputStream is(buffer->ptr, buffer->capacity);
-    google::protobuf::io::CodedInputStream cis(&is);
-    bool cleanEof;
-    google::protobuf::util::ParseDelimitedFromCodedStream(&ret_val, &cis, &cleanEof);
-    return KtVariant(ret_val.data());
+Variant TransferContext::read_return_value(jni::Env& p_env) {
+    Variant ret;
+    SharedBuffer* buffer{get_buffer(p_env)};
+    ktvariant::get_variant_from_buffer(buffer, ret);
+    buffer->rewind();
+    return ret;
 }
 
-void TransferContext::write_args(jni::Env& p_env, const Vector<KtVariant>& p_args) {
-    wire::FuncArgs func_args;
-    for (auto i = 0; i < p_args.size(); i++) {
-        func_args.add_args()->CopyFrom(p_args.get(i).get_value());
+void TransferContext::write_args(jni::Env& p_env, const Variant** p_args, int args_size) {
+    SharedBuffer* buffer {get_buffer(p_env)};
+    buffer->increment_position(encode_uint32(args_size, buffer->get_cursor()));
+    for (auto i = 0; i < args_size; ++i) {
+        ktvariant::send_variant_to_buffer(*p_args[i], buffer);
     }
-
-    SharedBuffer* buffer { get_buffer(p_env, ensure_capacity(p_env, func_args.ByteSizeLong())) };
-    google::protobuf::io::ArrayOutputStream os(buffer->ptr, buffer->capacity);
-    google::protobuf::io::CodedOutputStream cos(&os);
-    google::protobuf::util::SerializeDelimitedToCodedStream(func_args, &cos);
+    buffer->rewind();
 }
 
-Vector<KtVariant> TransferContext::read_args(jni::Env& p_env, bool p_refresh_buffer) {
-    wire::FuncArgs k_args;
-
-    SharedBuffer* buffer { get_buffer(p_env, p_refresh_buffer) };
-    google::protobuf::io::ArrayInputStream is(buffer->ptr, buffer->capacity);
-    google::protobuf::io::CodedInputStream cis(&is);
-    bool cleanEof;
-    google::protobuf::util::ParseDelimitedFromCodedStream(&k_args, &cis, &cleanEof);
-    Vector<KtVariant> args;
-    for (const auto& k_arg : k_args.args()) {
-        args.push_back(KtVariant(k_arg));
+Vector<Variant> TransferContext::read_args(jni::Env& p_env) {
+    SharedBuffer* buffer {get_buffer(p_env)};
+    uint32_t size{decode_uint32(buffer->get_cursor())};
+    buffer->increment_position(4);
+    Vector<Variant> args;
+    for (int i = 0; i < size; ++i) {
+        Variant ret;
+        ktvariant::get_variant_from_buffer(buffer, ret);
+        args.push_back(ret);
     }
+    buffer->rewind();
     return args;
 }
 
-void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr,
-           jint p_class_index,
-           jint p_method_index, jint expectedReturnType,
-           bool p_refresh_buffer) {
+void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jint p_class_index, jint p_method_index,
+                            jint expectedReturnType) {
     thread_local static Variant variantArgs[MAX_ARGS_SIZE];
     thread_local static const Variant* variantArgsPtr[MAX_ARGS_SIZE];
     thread_local static bool icall_args_init = false;
@@ -130,13 +119,13 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr,
     TransferContext* transferContext{GDKotlin::get_instance().transfer_context};
     const jni::JObject& classLoader = GDKotlin::get_instance().get_class_loader();
     jni::Env env(rawEnv);
-    Vector<KtVariant> tArgs = transferContext->read_args(env, p_refresh_buffer);
+    Vector<Variant> tArgs{transferContext->read_args(env)};
     int argsSize = tArgs.size();
 
     ERR_FAIL_COND_MSG(argsSize > MAX_ARGS_SIZE, vformat("Cannot have more than %s arguments for method call.", MAX_ARGS_SIZE))
 
     for (int i = 0; i < argsSize; i++) {
-        variantArgs[i] = tArgs[i].to_godot_variant(COLOR, nullptr);
+        variantArgs[i] = tArgs[i];
     }
 
     auto* ptr = reinterpret_cast<Object*>(jPtr);
@@ -146,7 +135,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr,
     Variant::CallError r_error{Variant::CallError::CALL_OK};
     MethodBind* methodBind{ClassDB::get_method(className, method)};
     ERR_FAIL_COND_MSG(!methodBind, vformat("Cannot find method %s in class %s", method, className))
-    const KtVariant& retValue{methodBind->call(ptr, variantArgsPtr, argsSize, r_error)};
+    const Variant& retValue{methodBind->call(ptr, variantArgsPtr, argsSize, r_error)};
     ERR_FAIL_COND_MSG(r_error.error != Variant::CallError::CALL_OK, vformat("Call to %s failed.", method))
     transferContext->write_return_value(env, retValue);
     jni::JObject local_ref{instance};

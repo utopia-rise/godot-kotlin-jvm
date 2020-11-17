@@ -41,14 +41,10 @@ Variant KtFunction::invoke(const KtObject* instance, const Variant** p_args, int
 
     jni::MethodId methodId {get_method_id(env, jni_methods.INVOKE)};
     TransferContext* transferContext = GDKotlin::get_instance().transfer_context;
-    Vector<KtVariant> args;
-    for (int i = 0; i < args_count; i++) {
-        args.push_back(KtVariant(*p_args[i]));
-    }
-    transferContext->write_args(env, args);
+    transferContext->write_args(env, p_args, args_count);
     jvalue call_args[1] = {jni::to_jni_arg(instance->get_wrapped())};
     bool refresh_buffer = wrapped.call_boolean_method(env, methodId, call_args);
-    return transferContext->read_return_value(env, refresh_buffer).to_godot_variant(COLOR, nullptr);
+    return transferContext->read_return_value(env);
 }
 
 KtFunctionInfo::KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader)
