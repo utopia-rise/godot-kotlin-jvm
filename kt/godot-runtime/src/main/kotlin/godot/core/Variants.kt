@@ -1,337 +1,281 @@
 package godot.core
 
-import godot.util.toGodotReal
 import godot.util.toRealT
-import godot.wire.Wire
+import java.nio.ByteBuffer
 
-class KtVariant {
-    var data: Wire.Value
 
-    constructor(data: Wire.Value) {
-        this.data = data
+fun getVariantType(unit: Unit) = VariantType.NIL to unit
+fun getVariantType(int: Int) = VariantType.LONG to int.toLong()
+fun getVariantType(long: Long) = VariantType.LONG to long
+fun getVariantType(float: Float) = VariantType.DOUBLE to float.toDouble()
+fun getVariantType(double: Double) = VariantType.DOUBLE to double
+fun getVariantType(str: String) = VariantType.STRING to str
+fun getVariantType(bool: Boolean) = VariantType.BOOL to bool
+fun getVariantType(vector2: Vector2) = VariantType.VECTOR2 to vector2
+fun getVariantType(rect2: Rect2) = VariantType.RECT2 to rect2
+fun getVariantType(vector3: Vector3) = VariantType.VECTOR3 to vector3
+fun getVariantType(transform2D: Transform2D) = VariantType.TRANSFORM2D to transform2D
+fun getVariantType(plane: Plane) = VariantType.PLANE to plane
+fun getVariantType(quat: Quat) = VariantType.QUAT to quat
+fun getVariantType(aabb: AABB) = VariantType.AABB to aabb
+fun getVariantType(basis: Basis) = VariantType.BASIS to basis
+fun getVariantType(transform: Transform) = VariantType.TRANSFORM to transform
+fun getVariantType(variantArray: VariantArray) = VariantType.ARRAY to variantArray
+fun getVariantType(ktObject: KtObject) = VariantType.OBJECT to ktObject
+
+var ByteBuffer.bool: Boolean
+    get() = int == 1
+    set(value) {
+        putInt(if (value) 1 else 0)
     }
 
-    constructor(value: Int) : this(value.toLong())
-
-    constructor(value: Long) {
-        data = build { setLongValue(value) }
+private var ByteBuffer.vector2: Vector2
+    get() = Vector2(float.toRealT(), float.toRealT())
+    set(value) {
+        putFloat(value.x.toFloat())
+        putFloat(value.y.toFloat())
     }
 
-    constructor(value: Float) : this(value.toDouble())
-
-    constructor(value: Double) {
-        data = build { setRealValue(value) }
+private var ByteBuffer.vector3: Vector3
+    get() = Vector3(float.toRealT(), float.toRealT(), float.toRealT())
+    set(value) {
+        putFloat(value.x.toFloat())
+        putFloat(value.y.toFloat())
+        putFloat(value.z.toFloat())
     }
 
-    constructor(value: String) {
-        data = build { setStringValue(value) }
+private var ByteBuffer.basis: Basis
+    get() = Basis().also {
+        it._x = vector3
+        it._y = vector3
+        it._z = vector3
+    }
+    set(value) {
+        vector3 = value._x
+        vector3 = value._y
+        vector3 = value._z
     }
 
-    constructor(value: Boolean) {
-        data = build { setBoolValue(value) }
-    }
 
-    constructor(value: Unit) {
-        data = build { setNilValue(0) }
-    }
+internal fun Any.encode(type: VariantType, buffer: ByteBuffer) {
+    buffer.putInt(type.ordinal)
+    type.toGodot(buffer, this)
+}
 
-    constructor(value: Vector2) {
-        data = build {
-            setVector2Value(value.toWireVector2())
-        }
-    }
+internal fun parse(buffer: ByteBuffer) = VariantType.values()[buffer.int].toKotlin(buffer)
 
-    constructor(value: Rect2) {
-        data = build {
-            val rect2 = Wire.Rect2.newBuilder()
-                    .setPosition(value.position.toWireVector2())
-                    .setSize(value.size.toWireVector2())
-                    .build()
+inline fun <reified T> Any.asObject(): T = this as T
 
-            setRect2Value(rect2)
-        }
-    }
+enum class VariantType (
+        internal val toKotlin: (ByteBuffer) -> Any,
+        internal val toGodot: (ByteBuffer, any: Any) -> Unit
+) {
+    NIL(
+            { buffer: ByteBuffer -> Unit },
+            { buffer: ByteBuffer, any: Any -> Unit }
+    ),
 
-    constructor(value: Vector3) {
-        data = build {
-            setVector3Value(value.toWireVector3())
-        }
-    }
-
-    constructor(value: Transform2D) {
-        data = build {
-            val transform2D = Wire.Transform2D.newBuilder()
-                    .setX(value.x.toWireVector2())
-                    .setY(value.y.toWireVector2())
-                    .setOrigin(value.origin.toWireVector2())
-                    .build()
-            setTransform2DValue(transform2D)
-        }
-    }
-
-    constructor(value: Plane) {
-        data = build {
-            val plane = Wire.Plane.newBuilder()
-                    .setNormal(value.normal.toWireVector3())
-                    .setD(value.d.toGodotReal())
-                    .build()
-
-            setPlaneValue(plane)
-        }
-    }
-
-    constructor(value: Quat) {
-        data = build {
-            val quat = Wire.Quat.newBuilder()
-                    .setX(value.x.toGodotReal())
-                    .setY(value.y.toGodotReal())
-                    .setZ(value.z.toGodotReal())
-                    .setW(value.w.toGodotReal())
-                    .build()
-
-            setQuatValue(quat)
-        }
-    }
-
-    constructor(value: AABB) {
-        data = build {
-            val aabb = Wire.AABB.newBuilder()
-                    .setPosition(value.position.toWireVector3())
-                    .setSize(value.size.toWireVector3())
-                    .build()
-
-            setAabbValue(aabb)
-        }
-    }
-
-    constructor(value: Basis) {
-        data = build {
-            setBasisValue(value.toWireBasis())
-        }
-    }
-
-    constructor(value: Transform) {
-        data = build {
-            val transform = Wire.Transform.newBuilder()
-                    .setBasis(value.basis.toWireBasis())
-                    .setOrigin(value.origin.toWireVector3())
-                    .build()
-
-            setTransformValue(transform)
-        }
-    }
-
-    constructor(value: VariantArray) {
-        data = build {
-            setVariantArrayValue(Wire.VariantArray.newBuilder().build())
-        }
-    }
-
-    constructor(value: KtObject) {
-        data = build {
-            val obj = Wire.Object.newBuilder()
-                    .setPtr(value.rawPtr)
-                    .setEngineConstructorIndex(0)
-                    .setIsRef(value.isRef)
-                    .build()
-
-            setObjectValue(obj)
-        }
-    }
-
-    fun asNil(): Unit {
-        check(data.typeCase == Wire.Value.TypeCase.NIL_VALUE) {
-            "Expecting a NIL but got ${data.typeCase}"
-        }
-        return Unit
-    }
-
-    fun asInt() = asLong().toInt()
-
-    fun asLong(): Long {
-        return data.longValue
-    }
-
-    fun asFloat() = asDouble().toFloat()
-
-    fun asDouble(): Double {
-        return data.realValue
-    }
-
-    fun asString(): String {
-        return data.stringValue
-    }
-
-    fun asBoolean(): Boolean {
-        return data.boolValue
-    }
-
-    fun asVector2(): Vector2 {
-        val vec2 = data.vector2Value
-        return Vector2(vec2.x, vec2.y)
-    }
-
-    fun asRect2(): Rect2 {
-        val rect2 = data.rect2Value
-        return Rect2(
-                rect2.position.x.toRealT(),
-                rect2.position.y.toRealT(),
-                rect2.size.x.toRealT(),
-                rect2.size.y.toRealT()
-        )
-    }
-
-    fun asVector3(): Vector3 {
-        val vec3 = data.vector3Value
-        return Vector3(vec3.x, vec3.y, vec3.z)
-    }
-
-    fun asTransform2D(): Transform2D {
-        val transform2D = data.transform2DValue
-        val x = transform2D.x.toKVector2()
-        val y = transform2D.y.toKVector2()
-        val origin = transform2D.origin.toKVector2()
-        return Transform2D(x, y, origin)
-    }
-
-    fun asPlane(): Plane {
-        val plane = data.planeValue
-        val normal = plane.normal.toKVector3()
-        val d = plane.d.toRealT()
-        return Plane(normal, d)
-    }
-
-    fun asQuat(): Quat {
-        val quat = data.quatValue
-        val x = quat.x.toRealT()
-        val y = quat.y.toRealT()
-        val z = quat.z.toRealT()
-        val w = quat.w.toRealT()
-
-        return Quat(x, y, z, w)
-    }
-
-    fun asAABB(): AABB {
-        val aabb = data.aabbValue
-        val position = aabb.position.toKVector3()
-        val size = aabb.size.toKVector3()
-        return AABB(position, size)
-    }
-
-    fun asBasis(): Basis {
-        return data.basisValue.toKBasis()
-    }
-
-    fun asTransform(): Transform {
-        val transform = data.transformValue
-        val basis = transform.basis.toKBasis()
-        val origin = transform.origin.toKVector3()
-        return Transform(basis, origin)
-    }
-
-    fun asVariantArray() = VariantArray()
-
-    inline fun <reified T : KtObject> asObject(): T {
-        val objectValue = data.objectValue
-        val ptr = objectValue.ptr
-        val constructorIndex = objectValue.engineConstructorIndex
-        val isRef = objectValue.isRef
-        return (if (isRef) {
-            GarbageCollector.getRefInstance(ptr)
-        } else {
-            GarbageCollector.getObjectInstance(ptr)
-        } ?: KtObject.instantiateWith(
-                ptr,
-                objectValue.instanceId,
-                isRef,
-                TypeManager.engineTypesConstructors[constructorIndex]
-        )) as T
-    }
-
-    enum class Type {
-        NIL,
-        LONG,
-        DOUBLE,
-        STRING,
-        BOOL,
-        VECTOR2,
-        RECT2,
-        VECTOR3,
-        TRANSFORM2D,
-        PLANE,
-        QUAT,
-        AABB,
-        BASIS,
-        TRANSFORM,
-        ARRAY,
-        OBJECT
-    }
-
-    companion object {
-        internal val TYPE_TO_WIRE_VALUE_TYPE = mapOf(
-                Type.NIL to Wire.Value.TypeCase.NIL_VALUE,
-                Type.LONG to Wire.Value.TypeCase.LONG_VALUE,
-                Type.DOUBLE to Wire.Value.TypeCase.REAL_VALUE,
-                Type.STRING to Wire.Value.TypeCase.STRING_VALUE,
-                Type.BOOL to Wire.Value.TypeCase.BOOL_VALUE,
-                Type.VECTOR2 to Wire.Value.TypeCase.VECTOR2_VALUE,
-                Type.RECT2 to Wire.Value.TypeCase.RECT2_VALUE,
-                Type.VECTOR3 to Wire.Value.TypeCase.VECTOR3_VALUE,
-                Type.TRANSFORM2D to Wire.Value.TypeCase.TRANSFORM2D_VALUE,
-                Type.PLANE to Wire.Value.TypeCase.PLANE_VALUE,
-                Type.QUAT to Wire.Value.TypeCase.QUAT_VALUE,
-                Type.AABB to Wire.Value.TypeCase.AABB_VALUE,
-                Type.BASIS to Wire.Value.TypeCase.BASIS_VALUE,
-                Type.TRANSFORM to Wire.Value.TypeCase.TRANSFORM_VALUE,
-                Type.ARRAY to Wire.Value.TypeCase.VARIANT_ARRAY_VALUE,
-                Type.OBJECT to Wire.Value.TypeCase.OBJECT_VALUE
-        )
-
-        private inline fun build(cb: Wire.Value.Builder.() -> Unit): Wire.Value {
-            val builder = Wire.Value.newBuilder()
-            builder.cb()
-            return builder.build()
-        }
-
-        private fun Vector2.toWireVector2(): Wire.Vector2 {
-            return Wire.Vector2.newBuilder()
-                    .setX(x.toGodotReal())
-                    .setY(y.toGodotReal())
-                    .build()
-        }
-
-        private fun Vector3.toWireVector3(): Wire.Vector3 {
-            return Wire.Vector3.newBuilder()
-                    .setX(x.toGodotReal())
-                    .setY(y.toGodotReal())
-                    .setZ(z.toGodotReal())
-                    .build()
-        }
-
-        private fun Basis.toWireBasis(): Wire.Basis {
-            // read the internal values directly
-            return Wire.Basis.newBuilder()
-                    .setX(_x.toWireVector3())
-                    .setY(_y.toWireVector3())
-                    .setZ(_z.toWireVector3())
-                    .build()
-        }
-
-        private fun Wire.Vector2.toKVector2(): Vector2 {
-            return Vector2(x, y)
-        }
-
-        private fun Wire.Vector3.toKVector3(): Vector3 {
-            return Vector3(x, y, z)
-        }
-
-        private fun Wire.Basis.toKBasis(): Basis {
-            // write to the internal values directly
-            return Basis().also {
-                it._x = Vector3(this.x.x, this.x.y, this.x.z)
-                it._y = Vector3(this.y.x, this.y.y, this.y.z)
-                it._z = Vector3(this.z.x, this.z.y, this.z.z)
+    // atomic types
+    BOOL(
+            { buffer: ByteBuffer -> buffer.bool },
+            { buffer: ByteBuffer, any: Any -> buffer.bool = any as Boolean }
+    ),
+    LONG(
+            { buffer: ByteBuffer -> buffer.long },
+            { buffer: ByteBuffer, any: Any -> buffer.putLong(any as Long) }
+    ),
+    DOUBLE(
+            { buffer: ByteBuffer -> buffer.double},
+            { buffer: ByteBuffer, any: Any -> buffer.putDouble(any as Double) }
+    ),
+    STRING(
+            { buffer: ByteBuffer ->
+                val length = buffer.int
+                val charBuffer = kotlin.ByteArray(length)
+                buffer.get(charBuffer, buffer.position(), length)
+                Charsets.UTF_8.decode(buffer).toString()
+            },
+            { buffer: ByteBuffer, any: Any ->
+                any as String
+                val stringBytes = any.encodeToByteArray()
+                buffer.putInt(stringBytes.size)
+                buffer.put(stringBytes)
             }
-        }
-    }
+    ),
+
+    // math types
+
+    VECTOR2(
+            { buffer: ByteBuffer -> buffer.vector2 },
+            { buffer: ByteBuffer, any: Any -> buffer.vector2 = any as Vector2 }
+    ), // 5
+    RECT2(
+            { buffer: ByteBuffer ->
+                Rect2(
+                        buffer.vector2,
+                        buffer.vector2
+                )
+            },
+            { buffer: ByteBuffer, any: Any ->
+                any as Rect2
+                buffer.vector2 = any._position
+                buffer.vector2 = any._size
+            }
+    ),
+    VECTOR3(
+            { buffer: ByteBuffer ->
+                Vector3(buffer.float.toRealT(), buffer.float.toRealT(), buffer.float.toRealT())
+            },
+            { buffer: ByteBuffer, any: Any -> buffer.vector3 = any as Vector3 }
+    ),
+    TRANSFORM2D(
+            { buffer: ByteBuffer ->
+                val x = buffer.vector2
+                val y = buffer.vector2
+                val origin = buffer.vector2
+                Transform2D(x, y, origin)
+            },
+            { buffer: ByteBuffer, any: Any ->
+                any as Transform2D
+                buffer.vector2 = any._x
+                buffer.vector2 = any._y
+                buffer.vector2 = any.origin
+            }
+    ),
+    PLANE(
+            { buffer: ByteBuffer ->
+                val normal = buffer.vector3
+                val d = buffer.float.toRealT()
+                Plane(normal, d)
+            },
+            { buffer: ByteBuffer, any: Any ->
+                any as Plane
+                buffer.vector3 = any._normal
+                buffer.putFloat(any.d.toFloat())
+            }
+    ),
+    QUAT(
+            { buffer: ByteBuffer ->
+                val x = buffer.float.toRealT()
+                val y = buffer.float.toRealT()
+                val z = buffer.float.toRealT()
+                val w = buffer.float.toRealT()
+
+                Quat(x, y, z, w)
+            },
+            { buffer: ByteBuffer, any: Any ->
+                any as Quat
+                buffer.putFloat(any.x.toFloat())
+                buffer.putFloat(any.y.toFloat())
+                buffer.putFloat(any.z.toFloat())
+                buffer.putFloat(any.w.toFloat())
+            }
+    ), // 10
+    AABB(
+            { buffer: ByteBuffer ->
+                val position = buffer.vector3
+                val size = buffer.vector3
+                AABB(position, size)
+            },
+            { buffer: ByteBuffer, any: Any ->
+                any as godot.core.AABB
+                buffer.vector3 = any._position
+                buffer.vector3 = any._size
+            }
+    ),
+    BASIS(
+            { buffer: ByteBuffer -> buffer.basis },
+            { buffer: ByteBuffer, any: Any -> buffer.basis = any as Basis }
+    ),
+    TRANSFORM(
+            { buffer: ByteBuffer ->
+                val basis = buffer.basis
+                val origin = buffer.vector3
+                Transform(basis, origin)
+            },
+            { buffer: ByteBuffer, any: Any ->
+                any as Transform
+                buffer.basis = any._basis
+                buffer.vector3 = any._origin
+            }
+    ),
+
+    // misc types
+    COLOR(
+            { buffer: ByteBuffer -> TODO() },
+            { buffer: ByteBuffer, any: Any -> TODO() }
+    ),
+    NODE_PATH(
+            { buffer: ByteBuffer -> TODO() },
+            { buffer: ByteBuffer, any: Any -> TODO() }
+    ), // 15
+    _RID(
+            { buffer: ByteBuffer -> TODO() },
+            { buffer: ByteBuffer, any: Any -> TODO() }
+    ),
+    OBJECT(
+            { buffer: ByteBuffer ->
+                val ptr = buffer.long
+                val constructorIndex = buffer.int
+                val isRef = buffer.bool
+                if (isRef) {
+                    GarbageCollector.getRefInstance(ptr)
+                } else {
+                    GarbageCollector.getObjectInstance(ptr)
+                } ?: KtObject.instantiateWith(
+                        ptr,
+                        buffer.long,
+                        isRef,
+                        TypeManager.engineTypesConstructors[constructorIndex]
+                )
+            },
+            { buffer: ByteBuffer, any: Any ->
+                any as KtObject
+                buffer.putLong(any.rawPtr)
+                buffer.bool = any.isRef
+            }
+    ),
+    DICTIONARY(
+            { buffer: ByteBuffer -> TODO() },
+            { buffer: ByteBuffer, any: Any -> TODO() }
+    ),
+    ARRAY(
+            { buffer: ByteBuffer -> VariantArray() },
+            { buffer: ByteBuffer, any: Any -> TODO() }
+    ),
+
+    // arrays
+    POOL_BYTE_ARRAY(
+            { buffer: ByteBuffer -> TODO() },
+            { buffer: ByteBuffer, any: Any -> TODO() }
+    ), // 20
+    POOL_INT_ARRAY(
+            { buffer: ByteBuffer -> TODO() },
+            { buffer: ByteBuffer, any: Any -> TODO() }
+    ),
+    POOL_REAL_ARRAY(
+            { buffer: ByteBuffer -> TODO() },
+            { buffer: ByteBuffer, any: Any -> TODO() }
+    ),
+    POOL_STRING_ARRAY(
+            { buffer: ByteBuffer -> TODO() },
+            { buffer: ByteBuffer, any: Any -> TODO() }
+    ),
+    POOL_VECTOR2_ARRAY(
+            { buffer: ByteBuffer -> TODO() },
+            { buffer: ByteBuffer, any: Any -> TODO() }
+    ),
+    POOL_VECTOR3_ARRAY(
+            { buffer: ByteBuffer -> TODO() },
+            { buffer: ByteBuffer, any: Any -> TODO() }
+    ), // 25
+    POOL_COLOR_ARRAY(
+            { buffer: ByteBuffer -> TODO() },
+            { buffer: ByteBuffer, any: Any -> TODO() }
+    ),
+
+    VARIANT_MAX(
+            { buffer: ByteBuffer -> TODO() },
+            { buffer: ByteBuffer, any: Any -> TODO() }
+    )
 }

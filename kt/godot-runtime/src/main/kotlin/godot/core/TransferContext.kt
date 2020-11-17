@@ -1,8 +1,6 @@
 package godot.core
 
-import com.google.protobuf.CodedOutputStream
 import godot.util.VoidPtr
-import godot.wire.Wire
 import java.io.InputStream
 import java.io.OutputStream
 import java.nio.ByteBuffer
@@ -18,82 +16,55 @@ object TransferContext {
         get() = threadLocalBuffer.get()
         set(value) { threadLocalBuffer.set(value) }
 
-    private var outputStream = object : OutputStream() {
-        override fun write(b: Int) {
-            buffer.put(b.toByte())
-        }
-    }
-
-    @ExperimentalUnsignedTypes
-    private var inputStream = object : InputStream() {
-        override fun read(): Int {
-            return buffer.get().toUByte().toInt()
-        }
-    }
-
-    fun writeArguments(vararg values: KtVariant): Boolean {
-        val argsBuilder = Wire.FuncArgs.newBuilder()
+    fun writeArguments(vararg values: Pair<VariantType, Any>) {
+        buffer.putInt(values.size)
         for (value in values) {
-            argsBuilder.addArgs(value.data)
+            value.second.encode(value.first, buffer)
         }
-        val args = argsBuilder.build()
-        val bufferChanged = ensureCapacity(args.serializedSize)
-        args.writeDelimitedTo(outputStream)
         buffer.rewind()
-        return bufferChanged
     }
 
     @ExperimentalUnsignedTypes
-    fun readArguments(): List<KtVariant> {
-        val args = Wire.FuncArgs.parseDelimitedFrom(inputStream)
-        buffer.rewind()
-        val values = mutableListOf<KtVariant>()
-
-        for (tArg in args.argsList) {
-            val value = KtVariant(tArg)
-            values.add(value)
+    fun readArguments(): List<Any> {
+        val argSize = buffer.int
+        val values = mutableListOf<Any>()
+        for (i in 0 until argSize) {
+            values.add(parse(buffer))
         }
-        return values.toList()
+        buffer.rewind()
+        return values
     }
 
-    fun writeReturnValue(value: KtVariant): Boolean {
-        val returnValue = Wire.ReturnValue.newBuilder()
-            .setData(value.data)
-            .build()
-
-        val bufferChanged = ensureCapacity(returnValue.serializedSize)
-        returnValue.writeDelimitedTo(outputStream)
+    fun writeReturnValue(value: Pair<VariantType, Any>) {
+        value.second.encode(value.first, buffer)
         buffer.rewind()
-        return bufferChanged
     }
 
     @ExperimentalUnsignedTypes
-    fun readReturnValue(): KtVariant {
-        val returnValue = Wire.ReturnValue.parseDelimitedFrom(inputStream)
+    fun readReturnValue(): Any {
+        val converted = parse(buffer)
         buffer.rewind()
-        return KtVariant(returnValue.data)
+        return converted
     }
 
     /*
      * Returns true if the underlying buffer object was changed.
      */
-    private fun ensureCapacity(capacity: Int): Boolean {
-        val actualCapacity = getRequiredCapacity(capacity)
-        if (buffer.capacity() < actualCapacity) {
-            buffer = ByteBuffer.allocateDirect(actualCapacity)
-            return true
-        }
-        return false
-    }
+//    private fun ensureCapacity(capacity: Int): Boolean {
+//        val actualCapacity = getRequiredCapacity(capacity)
+//        if (buffer.capacity() < actualCapacity) {
+//            buffer = ByteBuffer.allocateDirect(actualCapacity)
+//            return true
+//        }
+//        return false
+//    }
 
-    fun callMethod(ptr: VoidPtr, classIndex: Int, methodIndex: Int, expectedReturnType: KtVariant.Type, refreshBuffer: Boolean) {
+    fun callMethod(ptr: VoidPtr, classIndex: Int, methodIndex: Int, expectedReturnType: VariantType) {
         icall(
                 ptr,
                 classIndex,
                 methodIndex,
-                (KtVariant.TYPE_TO_WIRE_VALUE_TYPE[expectedReturnType]
-                        ?: error("Unable to map $expectedReturnType to wire value type")).number,
-                refreshBuffer
+                expectedReturnType.ordinal
         )
     }
 
@@ -105,11 +76,11 @@ object TransferContext {
     external fun invokeConstructor(classIndex: Int): VoidPtr
     external fun freeObject(rawPtr: VoidPtr)
 
-    private external fun icall(ptr: VoidPtr, classIndex: Int, methodIndex: Int, expectedReturnType: Int, refreshBuffer: Boolean)
+    private external fun icall(ptr: VoidPtr, classIndex: Int, methodIndex: Int, expectedReturnType: Int)
 
-    private fun getRequiredCapacity(capacity: Int): Int {
-        // extra bytes used for the delimiter
-        return CodedOutputStream.computeUInt32SizeNoTag(capacity) + capacity
-    }
+//    private fun getRequiredCapacity(capacity: Int): Int {
+//        // extra bytes used for the delimiter
+//        return CodedOutputStream.computeUInt32SizeNoTag(capacity) + capacity
+//    }
 
 }

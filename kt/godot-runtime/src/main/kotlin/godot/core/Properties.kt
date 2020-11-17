@@ -3,15 +3,14 @@ package godot.core
 import kotlin.reflect.KMutableProperty1
 
 data class KtPropertyInfo(
-        val _type: KtVariant.Type,
+        val _type: VariantType,
         val name: String,
         val className: String,
         val _hint: PropertyHint,
         val hintString: String
 ) {
     val type: Int
-        get() = (KtVariant.TYPE_TO_WIRE_VALUE_TYPE[_type] ?: error("Unknown mapping to Wire type for ${_type.name}"))
-                .number
+        get() = _type.ordinal
 
     val hint: Int
         get() = _hint.ordinal
@@ -20,16 +19,20 @@ data class KtPropertyInfo(
 class KtProperty<T : KtObject, P>(
     val ktPropertyInfo: KtPropertyInfo,
     private val kProperty: KMutableProperty1<T, P>,
-    private val getValueConverter: (P) -> KtVariant,
-    private val setValueConverter: ((KtVariant) -> P),
-    private val _defaultValue: KtVariant,
+    private val getValueConverter: (P) -> Pair<VariantType, Any>,
+    private val setValueConverter: ((Any) -> P),
+    private val _defaultValue: P,
     val isRef: Boolean
 ) {
-    val defaultValue: Boolean
-        get() = TransferContext.writeReturnValue(_defaultValue)
+    val defaultValue: Unit
+        get() {
+            val converted = getValueConverter(_defaultValue)
+            TransferContext.writeReturnValue(converted)
+        }
 
-    fun callGet(instance: T): Boolean {
-        return TransferContext.writeReturnValue(getValueConverter(kProperty.get(instance)))
+    fun callGet(instance: T): Unit {
+        val converted = getValueConverter(kProperty.get(instance))
+        TransferContext.writeReturnValue(converted)
     }
 
     fun callSet(instance: T) {

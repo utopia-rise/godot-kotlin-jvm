@@ -58,22 +58,22 @@ abstract class KtFunction<T : KtObject, R>(
         val parameterCount: Int
 ) {
     val registrationName = functionInfo.name.camelToSnakeCase()
-    fun invoke(instance: T): Boolean {
+    fun invoke(instance: T) {
         val args = TransferContext.readArguments()
         require(args.size == parameterCount) { "Expecting $parameterCount parameter(s) for function ${functionInfo.name}, but got ${args.size} instead." }
         val ret = invoke(instance, args)
-        return TransferContext.writeReturnValue(ret)
+        TransferContext.writeReturnValue(ret)
     }
 
-    internal abstract operator fun invoke(instance: T, args: List<KtVariant>): KtVariant
+    internal abstract operator fun invoke(instance: T, args: List<Any>): Pair<VariantType, Any>
 }
 
 class KtFunction0<T : KtObject, R>(
         functionInfo: KtFunctionInfo,
         private val function: (T) -> R,
-        private val returnValueConverter: (R) -> KtVariant
+        private val returnValueConverter: (R) -> Pair<VariantType, Any>
 ) : KtFunction<T, R>(functionInfo, 0) {
-    override operator fun invoke(instance: T, args: List<KtVariant>): KtVariant {
+    override operator fun invoke(instance: T, args: List<Any>): Pair<VariantType, Any> {
         return returnValueConverter(
                 function(instance)
         )
@@ -83,10 +83,10 @@ class KtFunction0<T : KtObject, R>(
 class KtFunction1<T : KtObject, P0, R>(
         functionInfo: KtFunctionInfo,
         private val function: (T, P0) -> R,
-        private val returnValueConverter: (R) -> KtVariant,
-        private val p0Converter: (KtVariant) -> P0
-) : KtFunction<T, R>(functionInfo, 1) {
-    override operator fun invoke(instance: T, args: List<KtVariant>): KtVariant {
+        private val returnValueConverter: (R) -> Pair<VariantType, Any>,
+        private val p0Converter: (Any) -> P0
+) : KtFunction<T, Any>(functionInfo, 1) {
+    override operator fun invoke(instance: T, args: List<Any>): Pair<VariantType, Any> {
         require(args.size == parameterCount) { "Expecting $parameterCount parameter(s), but got ${args.size} instead." }
         return returnValueConverter(
                 function(
@@ -100,11 +100,11 @@ class KtFunction1<T : KtObject, P0, R>(
 class KtFunction2<T: KtObject, P0, P1, R>(
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1) -> R,
-    private val returnValueConverter: (R) -> KtVariant,
-    private val p0Converter: (KtVariant) -> P0,
-    private val p1Converter: (KtVariant) -> P1,
+    private val returnValueConverter: (R) -> Pair<VariantType, Any>,
+    private val p0Converter: (Any) -> P0,
+    private val p1Converter: (Any) -> P1,
 ) : KtFunction<T, R>(functionInfo, 2) {
-    override fun invoke(instance: T, args: List<KtVariant>): KtVariant {
+    override fun invoke(instance: T, args: List<Any>): Pair<VariantType, Any> {
         return returnValueConverter(
             function(
                 instance,
@@ -118,12 +118,12 @@ class KtFunction2<T: KtObject, P0, P1, R>(
 class KtFunction3<T: KtObject, P0, P1, P2, R>(
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2) -> R,
-    private val returnValueConverter: (R) -> KtVariant,
-    private val p0Converter: (KtVariant) -> P0,
-    private val p1Converter: (KtVariant) -> P1,
-    private val p2Converter: (KtVariant) -> P2,
+    private val returnValueConverter: (R) -> Pair<VariantType, Any>,
+    private val p0Converter: (Any) -> P0,
+    private val p1Converter: (Any) -> P1,
+    private val p2Converter: (Any) -> P2,
 ) : KtFunction<T, R>(functionInfo, 3) {
-    override fun invoke(instance: T, args: List<KtVariant>): KtVariant {
+    override fun invoke(instance: T, args: List<Any>): Pair<VariantType, Any> {
         return returnValueConverter(
             function(
                 instance,
@@ -138,13 +138,13 @@ class KtFunction3<T: KtObject, P0, P1, P2, R>(
 class KtFunction4<T: KtObject, P0, P1, P2, P3, R>(
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3) -> R,
-    private val returnValueConverter: (R) -> KtVariant,
-    private val p0Converter: (KtVariant) -> P0,
-    private val p1Converter: (KtVariant) -> P1,
-    private val p2Converter: (KtVariant) -> P2,
-    private val p3Converter: (KtVariant) -> P3,
+    private val returnValueConverter: (R) -> Pair<VariantType, Any>,
+    private val p0Converter: (Any) -> P0,
+    private val p1Converter: (Any) -> P1,
+    private val p2Converter: (Any) -> P2,
+    private val p3Converter: (Any) -> P3,
 ) : KtFunction<T, R>(functionInfo, 4) {
-    override fun invoke(instance: T, args: List<KtVariant>): KtVariant {
+    override fun invoke(instance: T, args: List<Any>): Pair<VariantType, Any> {
         return returnValueConverter(
             function(
                 instance,
@@ -160,14 +160,14 @@ class KtFunction4<T: KtObject, P0, P1, P2, P3, R>(
 class KtFunction5<T: KtObject, P0, P1, P2, P3, P4, R>(
     functionInfo: KtFunctionInfo,
     private val function: (T, P0, P1, P2, P3, P4) -> R,
-    private val returnValueConverter: (R) -> KtVariant,
-    private val p0Converter: (KtVariant) -> P0,
-    private val p1Converter: (KtVariant) -> P1,
-    private val p2Converter: (KtVariant) -> P2,
-    private val p3Converter: (KtVariant) -> P3,
-    private val p4Converter: (KtVariant) -> P4,
+    private val returnValueConverter: (R) -> Pair<VariantType, Any>,
+    private val p0Converter: (Any) -> P0,
+    private val p1Converter: (Any) -> P1,
+    private val p2Converter: (Any) -> P2,
+    private val p3Converter: (Any) -> P3,
+    private val p4Converter: (Any) -> P4,
 ) : KtFunction<T, R>(functionInfo, 5) {
-    override fun invoke(instance: T, args: List<KtVariant>): KtVariant {
+    override fun invoke(instance: T, args: List<Any>): Pair<VariantType, Any> {
         return returnValueConverter(
             function(
                 instance,
