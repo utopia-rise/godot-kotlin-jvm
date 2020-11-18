@@ -1,14 +1,12 @@
 package godot.core
 
 import godot.util.VoidPtr
-import java.io.InputStream
-import java.io.OutputStream
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
 object TransferContext {
     private var threadLocalBuffer = ThreadLocal.withInitial {
-        val buf = ByteBuffer.allocateDirect(512)
+        val buf = ByteBuffer.allocateDirect(2048)
         buf.order(ByteOrder.LITTLE_ENDIAN)
         buf
     }

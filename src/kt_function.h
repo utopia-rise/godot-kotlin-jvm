@@ -45,7 +45,7 @@ public:
 DECLARE_JNI_METHODS(
         JNI_METHOD(GET_FUNCTION_INFO, "getFunctionInfo", "()Lgodot/core/KtFunctionInfo;")
         JNI_METHOD(GET_PARAMETER_COUNT, "getParameterCount", "()I")
-        JNI_METHOD(INVOKE, "invoke", "(Lgodot/core/KtObject;)Z")
+        JNI_METHOD(INVOKE, "invoke", "(Lgodot/core/KtObject;)V")
 )
 };
 

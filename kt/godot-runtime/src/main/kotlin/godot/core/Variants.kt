@@ -62,7 +62,10 @@ internal fun Any.encode(type: VariantType, buffer: ByteBuffer) {
     type.toGodot(buffer, this)
 }
 
-internal fun parse(buffer: ByteBuffer) = VariantType.values()[buffer.int].toKotlin(buffer)
+internal fun parse(buffer: ByteBuffer): Any {
+    val int = buffer.int
+    return VariantType.values()[int].toKotlin(buffer)
+}
 
 inline fun <reified T> Any.asObject(): T = this as T
 
@@ -90,14 +93,15 @@ enum class VariantType (
     ),
     STRING(
             { buffer: ByteBuffer ->
-                val length = buffer.int
-                val charBuffer = kotlin.ByteArray(length)
-                buffer.get(charBuffer, buffer.position(), length)
-                Charsets.UTF_8.decode(buffer).toString()
+                val stringSize = buffer.int
+                val charArray = kotlin.ByteArray(stringSize)
+                buffer.get(charArray, 0, stringSize)
+                kotlin.text.String(charArray, kotlin.text.Charsets.UTF_8)
             },
             { buffer: ByteBuffer, any: Any ->
                 any as String
                 val stringBytes = any.encodeToByteArray()
+                kotlin.io.println("char array size is: ${stringBytes.size}")
                 buffer.putInt(stringBytes.size)
                 buffer.put(stringBytes)
             }

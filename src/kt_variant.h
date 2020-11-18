@@ -3,9 +3,11 @@
 
 
 #include <core/io/marshalls.h>
+#include <core/os/os.h>
 #include "core/variant.h"
 #include "jni/wrapper.h"
 #include "shared_buffer.h"
+#include "type_manager.h"
 
 namespace ktvariant {
 
@@ -19,19 +21,6 @@ namespace ktvariant {
     const int FLOAT_SIZE = 4;
 
 
-    // must match the value order of godot_variant_type
-    static void (* TO_KT_VARIANT_FROM[27 /* Variant::Type count */])(SharedBuffer*, const Variant&);
-
-    static Variant (* TO_GODOT_VARIANT_FROM[27 /* KVariant::TypeCase count */])(SharedBuffer* byte_buffer);
-
-    static HashMap<StringName, int> JAVA_ENGINE_TYPES_CONSTRUCTORS;
-
-    static void get_variant_from_buffer(SharedBuffer* byte_buffer, Variant& res) {
-        uint32_t variant_type_int{decode_uint32(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(4);
-        res = TO_GODOT_VARIANT_FROM[static_cast<Variant::Type>(variant_type_int)](byte_buffer);
-    }
-
     static void set_variant_type(SharedBuffer* des, Variant::Type variant_type) {
         des->increment_position(encode_uint32(variant_type, des->get_cursor()));
     }
@@ -42,7 +31,7 @@ namespace ktvariant {
 
     static void to_kvariant_fromINT(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::INT);
-        des->increment_position(encode_uint32(src.operator int64_t(), des->get_cursor()));
+        des->increment_position(encode_uint64(static_cast<int64_t>(src), des->get_cursor()));
     }
 
     static void to_kvariant_fromREAL(SharedBuffer* des, const Variant& src) {
@@ -52,10 +41,10 @@ namespace ktvariant {
 
     static void to_kvariant_fromSTRING(SharedBuffer* des, const Variant& src) {
         String str{src};
+        const CharString& char_string{str.utf8()};
         set_variant_type(des, Variant::Type::STRING);
-        const CharString& charSequence = str.utf8();
-        des->increment_position(encode_uint32(charSequence.size(), des->get_cursor()));
-        des->increment_position(encode_cstring(charSequence, des->get_cursor()));
+        des->increment_position(encode_uint32(char_string.size(), des->get_cursor()));
+        des->increment_position(encode_cstring(char_string, des->get_cursor()));
     }
 
     static void to_kvariant_fromBOOL(SharedBuffer* des, const Variant& src) {
@@ -153,11 +142,11 @@ namespace ktvariant {
 
         String class_name {ptr->get_class()};
 
-        if (!JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
+        if (!TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
             class_name = ClassDB::get_parent_class(class_name);
 
             while (class_name.empty()) {
-                if (!JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
+                if (!TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
                     class_name = ClassDB::get_parent_class(class_name);
                 } else {
                     break;
@@ -165,12 +154,36 @@ namespace ktvariant {
             }
         }
 
-        des->increment_position(encode_uint32(JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name], des->get_cursor()));
+        des->increment_position(encode_uint32(TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name], des->get_cursor()));
         des->increment_position(encode_uint32(src.is_ref(), des->get_cursor()));
         des->increment_position(encode_uint64(ptr->get_instance_id(), des->get_cursor()));
     }
 
+    static void init_to_kt_methods(void (* to_kt_array[27 /* Variant::Type count */])(SharedBuffer*, const Variant&)) {
+        to_kt_array[Variant::NIL] = to_kvariant_fromNIL;
+        to_kt_array[Variant::BOOL] = to_kvariant_fromBOOL;
+        to_kt_array[Variant::INT] = to_kvariant_fromINT;
+        to_kt_array[Variant::REAL] = to_kvariant_fromREAL;
+        to_kt_array[Variant::STRING] = to_kvariant_fromSTRING;
+        to_kt_array[Variant::VECTOR2] = to_kvariant_fromVECTOR2;
+        to_kt_array[Variant::RECT2] = to_kvariant_fromRECT2;
+        to_kt_array[Variant::VECTOR3] = to_kvariant_fromVECTOR3;
+        to_kt_array[Variant::TRANSFORM2D] = to_kvariant_fromTRANSFORM2D;
+        to_kt_array[Variant::PLANE] = to_kvariant_fromPLANE;
+        to_kt_array[Variant::QUAT] = to_kvariant_fromQUAT;
+        to_kt_array[Variant::AABB] = to_kvariant_fromAABB;
+        to_kt_array[Variant::BASIS] = to_kvariant_fromBASIS;
+        to_kt_array[Variant::TRANSFORM] = to_kvariant_fromTRANSFORM;
+        to_kt_array[Variant::ARRAY] = to_kvariant_fromARRAY;
+        to_kt_array[Variant::OBJECT] = to_kvariant_fromOBJECT;
+    }
+
     static void send_variant_to_buffer(const Variant& variant, SharedBuffer* byte_buffer) {
+        // must match the value order of godot_variant_type
+        static void (* TO_KT_VARIANT_FROM[27 /* Variant::Type count */])(SharedBuffer*, const Variant&);
+        if (unlikely(!TO_KT_VARIANT_FROM[0])) {
+            init_to_kt_methods(TO_KT_VARIANT_FROM);
+        }
         Variant::Type type = variant.get_type();
         TO_KT_VARIANT_FROM[type](byte_buffer, variant);
     }
@@ -309,49 +322,35 @@ namespace ktvariant {
         }
     }
 
-    static void initMethodArray() {
-        TO_KT_VARIANT_FROM[Variant::NIL] = to_kvariant_fromNIL;
-        TO_KT_VARIANT_FROM[Variant::BOOL] = to_kvariant_fromBOOL;
-        TO_KT_VARIANT_FROM[Variant::INT] = to_kvariant_fromINT;
-        TO_KT_VARIANT_FROM[Variant::REAL] = to_kvariant_fromREAL;
-        TO_KT_VARIANT_FROM[Variant::STRING] = to_kvariant_fromSTRING;
-        TO_KT_VARIANT_FROM[Variant::VECTOR2] = to_kvariant_fromVECTOR2;
-        TO_KT_VARIANT_FROM[Variant::RECT2] = to_kvariant_fromRECT2;
-        TO_KT_VARIANT_FROM[Variant::VECTOR3] = to_kvariant_fromVECTOR3;
-        TO_KT_VARIANT_FROM[Variant::TRANSFORM2D] = to_kvariant_fromTRANSFORM2D;
-        TO_KT_VARIANT_FROM[Variant::PLANE] = to_kvariant_fromPLANE;
-        TO_KT_VARIANT_FROM[Variant::QUAT] = to_kvariant_fromQUAT;
-        TO_KT_VARIANT_FROM[Variant::AABB] = to_kvariant_fromAABB;
-        TO_KT_VARIANT_FROM[Variant::BASIS] = to_kvariant_fromBASIS;
-        TO_KT_VARIANT_FROM[Variant::TRANSFORM] = to_kvariant_fromTRANSFORM;
-        TO_KT_VARIANT_FROM[Variant::ARRAY] = to_kvariant_fromARRAY;
-        TO_KT_VARIANT_FROM[Variant::OBJECT] = to_kvariant_fromOBJECT;
-
-        TO_GODOT_VARIANT_FROM[Variant::NIL] = from_kvariant_tokNilValue;
-        TO_GODOT_VARIANT_FROM[Variant::BOOL] = from_kvariant_tokBoolValue;
-        TO_GODOT_VARIANT_FROM[Variant::INT] = from_kvariant_tokLongValue;
-        TO_GODOT_VARIANT_FROM[Variant::REAL] = from_kvariant_tokRealValue;
-        TO_GODOT_VARIANT_FROM[Variant::STRING] = from_kvariant_tokStringValue;
-        TO_GODOT_VARIANT_FROM[Variant::VECTOR2] = from_kvariant_tokVector2Value;
-        TO_GODOT_VARIANT_FROM[Variant::RECT2] = from_kvariant_tokRect2Value;
-        TO_GODOT_VARIANT_FROM[Variant::VECTOR3] = from_kvariant_tokVector3Value;
-        TO_GODOT_VARIANT_FROM[Variant::TRANSFORM2D] = from_kvariant_tokTransform2DValue;
-        TO_GODOT_VARIANT_FROM[Variant::PLANE] = from_kvariant_tokPlaneValue;
-        TO_GODOT_VARIANT_FROM[Variant::QUAT] = from_kvariant_tokQuatValue;
-        TO_GODOT_VARIANT_FROM[Variant::AABB] = from_kvariant_tokAabbValue;
-        TO_GODOT_VARIANT_FROM[Variant::BASIS] = from_kvariant_tokBasisValue;
-        TO_GODOT_VARIANT_FROM[Variant::TRANSFORM] = from_kvariant_tokTransformValue;
-        TO_GODOT_VARIANT_FROM[Variant::ARRAY] = from_kvariant_tokVariantArrayValue;
-        TO_GODOT_VARIANT_FROM[Variant::OBJECT] = from_kvariant_toKObjectValue;
+    static void init_to_gd_methods(Variant (* to_gd_array[27 /* KVariant::TypeCase count */])(SharedBuffer* byte_buffer)) {
+        to_gd_array[Variant::NIL] = from_kvariant_tokNilValue;
+        to_gd_array[Variant::BOOL] = from_kvariant_tokBoolValue;
+        to_gd_array[Variant::INT] = from_kvariant_tokLongValue;
+        to_gd_array[Variant::REAL] = from_kvariant_tokRealValue;
+        to_gd_array[Variant::STRING] = from_kvariant_tokStringValue;
+        to_gd_array[Variant::VECTOR2] = from_kvariant_tokVector2Value;
+        to_gd_array[Variant::RECT2] = from_kvariant_tokRect2Value;
+        to_gd_array[Variant::VECTOR3] = from_kvariant_tokVector3Value;
+        to_gd_array[Variant::TRANSFORM2D] = from_kvariant_tokTransform2DValue;
+        to_gd_array[Variant::PLANE] = from_kvariant_tokPlaneValue;
+        to_gd_array[Variant::QUAT] = from_kvariant_tokQuatValue;
+        to_gd_array[Variant::AABB] = from_kvariant_tokAabbValue;
+        to_gd_array[Variant::BASIS] = from_kvariant_tokBasisValue;
+        to_gd_array[Variant::TRANSFORM] = from_kvariant_tokTransformValue;
+        to_gd_array[Variant::ARRAY] = from_kvariant_tokVariantArrayValue;
+        to_gd_array[Variant::OBJECT] = from_kvariant_toKObjectValue;
     }
 
-    static void register_engine_types(jni::Env& p_env, const String& engine_type_name, int index) {
-        JAVA_ENGINE_TYPES_CONSTRUCTORS[engine_type_name] = index;
+    static void get_variant_from_buffer(SharedBuffer* byte_buffer, Variant& res) {
+        static Variant (* TO_GODOT_VARIANT_FROM[27 /* KVariant::TypeCase count */])(SharedBuffer* byte_buffer);
+        if (unlikely(!TO_GODOT_VARIANT_FROM[0])) {
+            init_to_gd_methods(TO_GODOT_VARIANT_FROM);
+        }
+        uint32_t variant_type_int{decode_uint32(byte_buffer->get_cursor())};
+        byte_buffer->increment_position(4);
+        res = TO_GODOT_VARIANT_FROM[static_cast<Variant::Type>(variant_type_int)](byte_buffer);
     }
 
-    static void clear_engine_types() {
-        JAVA_ENGINE_TYPES_CONSTRUCTORS.clear();
-    }
 }
 
 

@@ -58,16 +58,15 @@ void KtProperty::callGet(KtObject* instance, Variant& r_ret) {
     jni::Env env{jni::Jvm::current_env()};
     jni::MethodId get_call_method_id{get_method_id(env, jni_methods.CALL_GET)};
     jvalue call_args[1] = {jni::to_jni_arg(instance->get_wrapped())};
-    bool refresh_buffer = wrapped.call_boolean_method(env, get_call_method_id, call_args);
+    wrapped.call_void_method(env, get_call_method_id, call_args);
     r_ret = GDKotlin::get_instance().transfer_context->read_return_value(env);
 }
 
 void KtProperty::setCall(KtObject* instance, const Variant& p_value) {
     jni::Env env{jni::Jvm::current_env()};
     jni::MethodId setCallMethodId {get_method_id(env, jni_methods.CALL_SET)};
-    Vector<Variant> arg;
-    arg.push_back(p_value);
-    GDKotlin::get_instance().transfer_context->write_args(env, arg, 0);
+    const Variant* arg[1] = {&p_value};
+    GDKotlin::get_instance().transfer_context->write_args(env, arg, 1);
     jvalue args[1] = {jni::to_jni_arg(instance->get_wrapped())};
     wrapped.call_void_method(env, setCallMethodId, args);
 }
@@ -79,10 +78,9 @@ void KtProperty::get_default_value(Variant& r_value) {
 void KtProperty::initialize_default_value() {
     if (!is_default_value_initialized) {
         jni::Env env {jni::Jvm::current_env()};
-        Vector<Variant> args;
-        GDKotlin::get_instance().transfer_context->write_args(env, args, 0);
+        GDKotlin::get_instance().transfer_context->write_args(env, nullptr, 0);
         jni::MethodId get_default_value_method{get_method_id(env, jni_methods.GET_DEFAULT_VALUE)};
-        bool refresh{static_cast<bool>(wrapped.call_boolean_method(env, get_default_value_method))};
+        wrapped.call_void_method(env, get_default_value_method);
         default_value = GDKotlin::get_instance().transfer_context->read_return_value(env);
         is_default_value_initialized = true;
     }

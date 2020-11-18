@@ -10,7 +10,7 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
     : JavaInstanceWrapper("godot.core.TransferContext", p_wrapped, p_class_loader) {
     jni::JNativeMethod icall_method{
             "icall",
-            "(JIIIZ)V",
+            "(JIII)V",
             (void*) TransferContext::icall
     };
 
@@ -129,8 +129,8 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jint p
     }
 
     auto* ptr = reinterpret_cast<Object*>(jPtr);
-    String className = GDKotlin::get_instance().engine_type_names[static_cast<int>(p_class_index)];
-    String method = GDKotlin::get_instance().engine_type_method_names[static_cast<int>(p_method_index)];
+    const StringName& className = GDKotlin::get_instance().engine_type_names[static_cast<int>(p_class_index)];
+    const StringName& method = GDKotlin::get_instance().engine_type_method_names[static_cast<int>(p_method_index)];
 
     Variant::CallError r_error{Variant::CallError::CALL_OK};
     MethodBind* methodBind{ClassDB::get_method(className, method)};
@@ -144,7 +144,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jint p
 
 jlong TransferContext::invoke_constructor(JNIEnv *p_raw_env, jobject p_instance, jint p_class_index) {
     jni::Env env(p_raw_env);
-    const String& class_name{GDKotlin::get_instance().engine_type_names[static_cast<int>(p_class_index)]};
+    const StringName& class_name{GDKotlin::get_instance().engine_type_names[static_cast<int>(p_class_index)]};
     Object* ptr = ClassDB::instance(class_name);
     jni::JObject local_ref{p_instance};
     local_ref.delete_local_ref(env);

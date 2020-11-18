@@ -4,6 +4,8 @@
 #include "core/os/os.h"
 #include "core/project_settings.h"
 #include "bootstrap.h"
+#include "type_manager.h"
+
 
 jni::JObject get_current_thread(jni::Env& env) {
     jni::JClass cls = env.find_class("java/lang/Thread");
@@ -75,7 +77,7 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
     for (int i = 0; i < engine_types.length(env); ++i) {
         const String& class_name = env.from_jstring(static_cast<jni::JString>(engine_types.get(env, i)));
         GDKotlin::get_instance().engine_type_names.insert(i, class_name);
-        ktvariant::register_engine_types(env, class_name, i);
+        TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name] = i;
         print_verbose(vformat("Registered %s engine type with index %s.", class_name, i));
     }
     jni::JObjectArray method_names{p_method_names};
@@ -91,9 +93,6 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
 }
 
 void GDKotlin::init() {
-    // Initialize type mappings
-    ktvariant::initMethodArray();
-
     jni::InitArgs args;
     args.version = JNI_VERSION_1_8;
     args.option("-Xcheck:jni");
@@ -257,7 +256,11 @@ void GDKotlin::finish() {
 
     delete memory_bridge;
     memory_bridge = nullptr;
-    ktvariant::clear_engine_types();
+
+    engine_type_method_names.clear();
+    engine_type_names.clear();
+
+    TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.clear();
     class_loader.delete_global_ref(env);
     jni::Jvm::destroy();
     print_line("Shutting down JVM ...");

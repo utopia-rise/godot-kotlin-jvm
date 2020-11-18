@@ -24,13 +24,12 @@ class KtProperty<T : KtObject, P>(
     private val _defaultValue: P,
     val isRef: Boolean
 ) {
-    val defaultValue: Unit
-        get() {
-            val converted = getValueConverter(_defaultValue)
-            TransferContext.writeReturnValue(converted)
-        }
+    fun getDefaultValue() {
+        val converted = getValueConverter(_defaultValue)
+        TransferContext.writeReturnValue(converted)
+    }
 
-    fun callGet(instance: T): Unit {
+    fun callGet(instance: T) {
         val converted = getValueConverter(kProperty.get(instance))
         TransferContext.writeReturnValue(converted)
     }

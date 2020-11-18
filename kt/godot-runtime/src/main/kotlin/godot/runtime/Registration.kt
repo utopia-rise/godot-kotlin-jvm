@@ -97,8 +97,8 @@ class ClassBuilderDsl<T : KtObject>(
                         enumValues<P>().joinToString { it.name }
                 ),
                 kProperty,
-                { enum -> VariantType.LONG to enum.ordinal },
-                { any -> enumValues<P>()[any as Int] },
+                { enum -> getVariantType(enum.ordinal) },
+                { any -> enumValues<P>()[(any as Long).toInt()] },
                 //TODO : Not sure here
                 enumValues<P>()[0],
                 false

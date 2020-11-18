@@ -43,7 +43,7 @@ Variant KtFunction::invoke(const KtObject* instance, const Variant** p_args, int
     TransferContext* transferContext = GDKotlin::get_instance().transfer_context;
     transferContext->write_args(env, p_args, args_count);
     jvalue call_args[1] = {jni::to_jni_arg(instance->get_wrapped())};
-    bool refresh_buffer = wrapped.call_boolean_method(env, methodId, call_args);
+    wrapped.call_void_method(env, methodId, call_args);
     return transferContext->read_return_value(env);
 }
 

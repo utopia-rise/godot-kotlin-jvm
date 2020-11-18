@@ -337,7 +337,8 @@ open class Node : Object() {
     open fun getParent(): Node {
         val refresh = TransferContext.writeArguments()
         TransferContext.callMethod(rawPtr, NODE, NODE_GET_PARENT, VariantType.OBJECT)
-        return TransferContext.readReturnValue() as Node
+        val readReturnValue = TransferContext.readReturnValue()
+        return readReturnValue as Node
     }
 
     open fun addChild(node: Node) {
