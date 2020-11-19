@@ -78,3 +78,10 @@ stands for the jmx port of you choice. You can then setup remote debug configura
 - Attach remote debugger to process (a preconfigured run configuration for it is present in the sample project `tests` called `DebugEntryGenerator`)
 
 Note: Compilation with attached debugger will be way slower. Especially for the initial build. So be patient. It takes some time until it hits your breakpoints.
+
+## Increment shared buffer capacity
+
+Godot-jvm is using a shared buffer between JVM and engine to share methods parameters and returns. Default shared buffer
+size is `20 000 000` bytes.  
+If you'd like to change this buffer size, add `--jvm-to-engine-shared-buffer-size=XXXX` command line argument to
+godot, where `XXXX` stands for the desired size.

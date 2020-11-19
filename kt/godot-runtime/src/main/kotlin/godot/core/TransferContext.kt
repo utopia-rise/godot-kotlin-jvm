@@ -6,10 +6,10 @@ import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
 object TransferContext {
-    val bufferCapacity = 20000000
+    var bufferSize = 20000000
 
     private val buffer by threadLocalLazy {
-        val buf = ByteBuffer.allocateDirect(bufferCapacity)
+        val buf = ByteBuffer.allocateDirect(bufferSize)
         buf.order(ByteOrder.LITTLE_ENDIAN)
         buf
     }
