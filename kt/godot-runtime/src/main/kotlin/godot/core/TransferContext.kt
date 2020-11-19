@@ -1,18 +1,18 @@
 package godot.core
 
 import godot.util.VoidPtr
+import godot.util.threadLocalLazy
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
 object TransferContext {
-    private var threadLocalBuffer = ThreadLocal.withInitial {
-        val buf = ByteBuffer.allocateDirect(2048)
+    val bufferCapacity = 20000000
+
+    private val buffer by threadLocalLazy {
+        val buf = ByteBuffer.allocateDirect(bufferCapacity)
         buf.order(ByteOrder.LITTLE_ENDIAN)
         buf
     }
-    var buffer: ByteBuffer
-        get() = threadLocalBuffer.get()
-        set(value) { threadLocalBuffer.set(value) }
 
     fun writeArguments(vararg values: Pair<VariantType, Any>) {
         buffer.putInt(values.size)
