@@ -6,7 +6,8 @@ import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
 object TransferContext {
-    var bufferSize = 20000000
+    // If changed, remember to change also DEFAULT_SHARED_BUFFER_SIZE in gd_kotlin.cpp
+    var bufferSize = 20_000_000
 
     private val buffer by threadLocalLazy {
         val buf = ByteBuffer.allocateDirect(bufferSize)

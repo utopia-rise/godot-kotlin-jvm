@@ -7,7 +7,7 @@
 #include "type_manager.h"
 
 // If changed, remember to change also TransferContext::bufferCapacity on JVM side
-const int DEFAULT_SHARED_BUFFER_SIZE{20000000};
+const int DEFAULT_SHARED_BUFFER_SIZE{20'000'000};
 
 jni::JObject get_current_thread(jni::Env& env) {
     jni::JClass cls = env.find_class("java/lang/Thread");
