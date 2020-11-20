@@ -46,18 +46,6 @@ object TransferContext {
         return converted
     }
 
-    /*
-     * Returns true if the underlying buffer object was changed.
-     */
-//    private fun ensureCapacity(capacity: Int): Boolean {
-//        val actualCapacity = getRequiredCapacity(capacity)
-//        if (buffer.capacity() < actualCapacity) {
-//            buffer = ByteBuffer.allocateDirect(actualCapacity)
-//            return true
-//        }
-//        return false
-//    }
-
     fun callMethod(ptr: VoidPtr, classIndex: Int, methodIndex: Int, expectedReturnType: VariantType) {
         icall(
                 ptr,
@@ -76,10 +64,4 @@ object TransferContext {
     external fun freeObject(rawPtr: VoidPtr)
 
     private external fun icall(ptr: VoidPtr, classIndex: Int, methodIndex: Int, expectedReturnType: Int)
-
-//    private fun getRequiredCapacity(capacity: Int): Int {
-//        // extra bytes used for the delimiter
-//        return CodedOutputStream.computeUInt32SizeNoTag(capacity) + capacity
-//    }
-
 }
