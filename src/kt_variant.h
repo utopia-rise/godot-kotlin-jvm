@@ -159,7 +159,7 @@ namespace ktvariant {
         des->increment_position(encode_uint64(ptr->get_instance_id(), des->get_cursor()));
     }
 
-    static void init_to_kt_methods(void (* to_kt_array[27 /* Variant::Type count */])(SharedBuffer*, const Variant&)) {
+    static void init_to_kt_methods(void (* to_kt_array[Variant::Type::VARIANT_MAX])(SharedBuffer*, const Variant&)) {
         to_kt_array[Variant::NIL] = to_kvariant_fromNIL;
         to_kt_array[Variant::BOOL] = to_kvariant_fromBOOL;
         to_kt_array[Variant::INT] = to_kvariant_fromINT;
@@ -180,7 +180,7 @@ namespace ktvariant {
 
     static void send_variant_to_buffer(const Variant& variant, SharedBuffer* byte_buffer) {
         // must match the value order of godot_variant_type
-        static void (* TO_KT_VARIANT_FROM[27 /* Variant::Type count */])(SharedBuffer*, const Variant&);
+        static void (* TO_KT_VARIANT_FROM[Variant::Type::VARIANT_MAX])(SharedBuffer*, const Variant&);
         if (unlikely(!TO_KT_VARIANT_FROM[0])) {
             init_to_kt_methods(TO_KT_VARIANT_FROM);
         }
@@ -322,7 +322,7 @@ namespace ktvariant {
         }
     }
 
-    static void init_to_gd_methods(Variant (* to_gd_array[27 /* KVariant::TypeCase count */])(SharedBuffer* byte_buffer)) {
+    static void init_to_gd_methods(Variant (* to_gd_array[Variant::Type::VARIANT_MAX])(SharedBuffer* byte_buffer)) {
         to_gd_array[Variant::NIL] = from_kvariant_tokNilValue;
         to_gd_array[Variant::BOOL] = from_kvariant_tokBoolValue;
         to_gd_array[Variant::INT] = from_kvariant_tokLongValue;
@@ -342,7 +342,7 @@ namespace ktvariant {
     }
 
     static void get_variant_from_buffer(SharedBuffer* byte_buffer, Variant& res) {
-        static Variant (* TO_GODOT_VARIANT_FROM[27 /* KVariant::TypeCase count */])(SharedBuffer* byte_buffer);
+        static Variant (* TO_GODOT_VARIANT_FROM[Variant::Type::VARIANT_MAX])(SharedBuffer* byte_buffer);
         if (unlikely(!TO_GODOT_VARIANT_FROM[0])) {
             init_to_gd_methods(TO_GODOT_VARIANT_FROM);
         }

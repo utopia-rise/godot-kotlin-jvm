@@ -99,7 +99,7 @@ class ClassBuilderDsl<T : KtObject>(
                 kProperty,
                 { enum -> getVariantType(enum.ordinal) },
                 { any -> enumValues<P>()[(any as Long).toInt()] },
-                //TODO : Not sure here
+                //TODO : Change when null default values are supported
                 enumValues<P>()[0],
                 false
         )
@@ -173,7 +173,7 @@ class ClassBuilderDsl<T : KtObject>(
 
                 enums
             },
-                //TODO : Not sure here
+                //TODO : Change when null default values are supported
             setOf(enumValues<P>()[0]),
             false
         )
