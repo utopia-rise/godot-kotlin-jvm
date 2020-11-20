@@ -142,14 +142,15 @@ void GDKotlin::init() {
             String result;
             if (split_jvm_debug_argument(cmd_arg, result) == OK) {
                 jvm_to_engine_shared_buffer_size = result.to_int();
-                print_line(vformat("Warning ! Buffer capacity was changed to %s, this is not a recommended practice",
-                        result));
+                WARN_PRINT(vformat("Warning ! Buffer capacity was changed to %s, this is not a recommended practice",
+                                   result))
             }
         } else if (cmd_arg == "--jvm-force-gc") {
             is_gc_force_mode = true;
+            WARN_PRINT("GC is started in force mode, this should only be done for debugging purpose")
         } else if (cmd_arg == "--jvm-disable-gc") {
             is_gc_activated = false;
-            print_line("Warning ! GC thread was disable. --jvm-disable-gc should only be used for debugging purpose");
+            WARN_PRINT("GC thread was disable. --jvm-disable-gc should only be used for debugging purpose")
         }
     }
 
