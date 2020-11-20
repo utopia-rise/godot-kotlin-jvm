@@ -67,6 +67,6 @@ Note: Compilation with attached debugger will be way slower. Especially for the 
 ## Increment shared buffer capacity
 
 Godot-jvm is using a shared buffer between JVM and engine to share methods parameters and returns. Default shared buffer
-size is `20 000 000` bytes.  
+size is `20 000 000` bytes for each threads.  
 If you'd like to change this buffer size, add `--jvm-to-engine-shared-buffer-size=XXXX` command line argument to
 godot, where `XXXX` stands for the desired size.
