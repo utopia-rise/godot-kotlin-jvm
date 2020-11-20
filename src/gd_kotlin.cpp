@@ -73,7 +73,7 @@ void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) 
 }
 
 void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types, jobjectArray p_method_names) {
-    print_line("Starting to register managed engine types...");
+    print_verbose("Starting to register managed engine types...");
     jni::Env env(p_env);
     jni::JObjectArray engine_types{p_engine_types};
     for (int i = 0; i < engine_types.length(env); ++i) {
@@ -91,7 +91,7 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
     j_object.delete_local_ref(env);
     engine_types.delete_local_ref(env);
     method_names.delete_local_ref(env);
-    print_line("Done registering managed engine types...");
+    print_verbose("Done registering managed engine types...");
 }
 
 void GDKotlin::init() {
@@ -142,14 +142,17 @@ void GDKotlin::init() {
             String result;
             if (split_jvm_debug_argument(cmd_arg, result) == OK) {
                 jvm_to_engine_shared_buffer_size = result.to_int();
+                //TODO: Link to documentation
                 WARN_PRINT(vformat("Warning ! Buffer capacity was changed to %s, this is not a recommended practice",
                                    result))
             }
         } else if (cmd_arg == "--jvm-force-gc") {
             is_gc_force_mode = true;
+            //TODO: Link to documentation
             WARN_PRINT("GC is started in force mode, this should only be done for debugging purpose")
         } else if (cmd_arg == "--jvm-disable-gc") {
             is_gc_activated = false;
+            //TODO: Link to documentation
             WARN_PRINT("GC thread was disable. --jvm-disable-gc should only be used for debugging purpose")
         }
     }
