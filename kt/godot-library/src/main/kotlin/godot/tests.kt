@@ -23,7 +23,7 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
                 VariantType.LONG to flags
         )
         TransferContext.callMethod(rawPtr, OBJECT, OBJECT_CONNECT, VariantType.LONG)
-        return GodotError.values()[TransferContext.readReturnValue() as Int]
+        return GodotError.values()[(TransferContext.readReturnValue() as Long).toInt()]
     }
 
     fun emitSignal(signal: String, vararg args: Any?) {

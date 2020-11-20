@@ -96,12 +96,11 @@ enum class VariantType (
                 val stringSize = buffer.int
                 val charArray = kotlin.ByteArray(stringSize)
                 buffer.get(charArray, 0, stringSize)
-                kotlin.text.String(charArray, kotlin.text.Charsets.UTF_8)
+                String(charArray, Charsets.UTF_8)
             },
             { buffer: ByteBuffer, any: Any ->
                 any as String
                 val stringBytes = any.encodeToByteArray()
-                kotlin.io.println("char array size is: ${stringBytes.size}")
                 buffer.putInt(stringBytes.size)
                 buffer.put(stringBytes)
             }
