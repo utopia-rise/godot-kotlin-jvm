@@ -243,8 +243,14 @@ enum class VariantType (
             { buffer: ByteBuffer, any: Any -> TODO() }
     ),
     ARRAY(
-            { buffer: ByteBuffer -> VariantArray() },
-            { buffer: ByteBuffer, any: Any -> Unit }
+            { buffer: ByteBuffer ->
+                // TODO: Placeholder for now, should be replaced when VariantArray is properly implemented.
+                VariantArray()
+            },
+            { buffer: ByteBuffer, any: Any ->
+                // TODO: Placeholder for now, should be replaced when VariantArray is properly implemented.
+                Unit
+            }
     ),
 
     // arrays
