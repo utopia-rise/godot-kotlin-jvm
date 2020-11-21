@@ -40,7 +40,7 @@ public:
     MethodInfo get_member_info();
     KtFunctionInfo* get_kt_function_info();
 
-    Variant invoke(const KtObject* instance, const Variant** p_args, int args_count);
+    void invoke(const KtObject* instance, const Variant** p_args, int args_count, Variant& r_ret);
 
 DECLARE_JNI_METHODS(
         JNI_METHOD(GET_FUNCTION_INFO, "getFunctionInfo", "()Lgodot/core/KtFunctionInfo;")

@@ -36,7 +36,7 @@ KtFunctionInfo* KtFunction::get_kt_function_info() {
     return method_info;
 }
 
-Variant KtFunction::invoke(const KtObject* instance, const Variant** p_args, int args_count) {
+void KtFunction::invoke(const KtObject* instance, const Variant** p_args, int args_count, Variant& r_ret) {
     jni::Env env{jni::Jvm::current_env()};
 
     jni::MethodId methodId {get_method_id(env, jni_methods.INVOKE)};
@@ -44,7 +44,7 @@ Variant KtFunction::invoke(const KtObject* instance, const Variant** p_args, int
     transferContext->write_args(env, p_args, args_count);
     jvalue call_args[1] = {jni::to_jni_arg(instance->get_wrapped())};
     wrapped.call_void_method(env, methodId, call_args);
-    return transferContext->read_return_value(env);
+    transferContext->read_return_value(env, r_ret);
 }
 
 KtFunctionInfo::KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader)

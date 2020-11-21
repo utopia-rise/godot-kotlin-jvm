@@ -15,10 +15,12 @@ public:
     TransferContext(const TransferContext&) = delete;
     void operator=(const TransferContext&) = delete;
 
+    // Not used but still here in case we need it.
     void write_return_value(jni::Env& p_env, const Variant& p_value);
-    Variant read_return_value(jni::Env& p_env);
+    void read_return_value(jni::Env& p_env, Variant& r_ret);
 
     void write_args(jni::Env& p_env, const Variant** p_args, int args_size);
+    //Not used but still here in case we need it. Not optimized.
     Vector<Variant> read_args(jni::Env& p_env);
 
     static void icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jint p_class_index, jint p_method_index,
@@ -32,6 +34,23 @@ public:
 private:
     SharedBuffer* get_buffer(jni::Env& p_env);
     bool ensure_capacity(jni::Env& p_env, long p_capacity);
+
+    _FORCE_INLINE_ static uint32_t read_args_size(jni::Env& p_env, SharedBuffer* buffer) {
+        uint32_t args_size{decode_uint32(buffer->get_cursor())};
+        buffer->increment_position(4);
+        return args_size;
+    }
+    _FORCE_INLINE_ static void read_args_to_array(SharedBuffer* buffer, Variant* p_args, uint32_t args_size) {
+        for (int i = 0; i < args_size; ++i) {
+            ktvariant::get_variant_from_buffer(buffer, p_args[i]);
+        }
+
+        buffer->rewind();
+    }
+    _FORCE_INLINE_ static void write_return_value(SharedBuffer* buffer, const Variant& r_ret) {
+        ktvariant::send_variant_to_buffer(r_ret, buffer);
+        buffer->rewind();
+    }
 
 DECLARE_JNI_METHODS(
         JNI_METHOD(GET_BUFFER, "getBuffer", "()Ljava/nio/ByteBuffer;")

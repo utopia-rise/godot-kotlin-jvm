@@ -73,12 +73,10 @@ void TransferContext::write_return_value(jni::Env& p_env, const Variant& p_value
     
 }
 
-Variant TransferContext::read_return_value(jni::Env& p_env) {
-    Variant ret;
+void TransferContext::read_return_value(jni::Env& p_env, Variant& r_ret) {
     SharedBuffer* buffer{get_buffer(p_env)};
-    ktvariant::get_variant_from_buffer(buffer, ret);
+    ktvariant::get_variant_from_buffer(buffer, r_ret);
     buffer->rewind();
-    return ret;
 }
 
 void TransferContext::write_args(jni::Env& p_env, const Variant** p_args, int args_size) {
@@ -106,38 +104,47 @@ Vector<Variant> TransferContext::read_args(jni::Env& p_env) {
 
 void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jint p_class_index, jint p_method_index,
                             jint expectedReturnType) {
-    thread_local static Variant variantArgs[MAX_ARGS_SIZE];
-    thread_local static const Variant* variantArgsPtr[MAX_ARGS_SIZE];
+    thread_local static Variant variant_args[MAX_ARGS_SIZE];
+    thread_local static const Variant* variant_args_ptr[MAX_ARGS_SIZE];
     thread_local static bool icall_args_init = false;
     if (unlikely(!icall_args_init)) {
         for (int i = 0; i < MAX_ARGS_SIZE; i++) {
-            variantArgsPtr[i] = &variantArgs[i];
+            variant_args_ptr[i] = &variant_args[i];
         }
         icall_args_init = true;
     }
 
-    TransferContext* transferContext{GDKotlin::get_instance().transfer_context};
-    const jni::JObject& classLoader = GDKotlin::get_instance().get_class_loader();
+    TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
+    const jni::JObject& class_loader = GDKotlin::get_instance().get_class_loader();
     jni::Env env(rawEnv);
-    Vector<Variant> tArgs{transferContext->read_args(env)};
-    int argsSize = tArgs.size();
 
-    ERR_FAIL_COND_MSG(argsSize > MAX_ARGS_SIZE, vformat("Cannot have more than %s arguments for method call.", MAX_ARGS_SIZE))
+    SharedBuffer* buffer {transfer_context->get_buffer(env)};
+    uint32_t args_size{read_args_size(env, buffer)};
 
-    for (int i = 0; i < argsSize; i++) {
-        variantArgs[i] = tArgs[i];
-    }
+#ifdef DEBUG_ENABLED
+    ERR_FAIL_COND_MSG(args_size > MAX_ARGS_SIZE, vformat("Cannot have more than %s arguments for method call.", MAX_ARGS_SIZE))
+#endif
+
+    read_args_to_array(buffer, variant_args, args_size);
 
     auto* ptr = reinterpret_cast<Object*>(jPtr);
-    const StringName& className = GDKotlin::get_instance().engine_type_names[static_cast<int>(p_class_index)];
+    const StringName& class_name = GDKotlin::get_instance().engine_type_names[static_cast<int>(p_class_index)];
     const StringName& method = GDKotlin::get_instance().engine_type_method_names[static_cast<int>(p_method_index)];
 
     Variant::CallError r_error{Variant::CallError::CALL_OK};
-    MethodBind* methodBind{ClassDB::get_method(className, method)};
-    ERR_FAIL_COND_MSG(!methodBind, vformat("Cannot find method %s in class %s", method, className))
-    const Variant& retValue{methodBind->call(ptr, variantArgsPtr, argsSize, r_error)};
+    MethodBind* methodBind{ClassDB::get_method(class_name, method)};
+
+#ifdef DEBUG_ENABLED
+    ERR_FAIL_COND_MSG(!methodBind, vformat("Cannot find method %s in class %s", method, class_name))
+#endif
+
+    const Variant& ret_value{methodBind->call(ptr, variant_args_ptr, args_size, r_error)};
+
+#ifdef DEBUG_ENABLED
     ERR_FAIL_COND_MSG(r_error.error != Variant::CallError::CALL_OK, vformat("Call to %s failed.", method))
-    transferContext->write_return_value(env, retValue);
+#endif
+
+    write_return_value(buffer, ret_value);
     jni::JObject local_ref{instance};
     local_ref.delete_local_ref(env);
 }
@@ -148,7 +155,11 @@ jlong TransferContext::invoke_constructor(JNIEnv *p_raw_env, jobject p_instance,
     Object* ptr = ClassDB::instance(class_name);
     jni::JObject local_ref{p_instance};
     local_ref.delete_local_ref(env);
+
+#ifdef DEBUG_ENABLED
     ERR_FAIL_COND_V_MSG(!ptr, 0, vformat("Failed to instantiate class %s", class_name))
+#endif
+
     return reinterpret_cast<uintptr_t>(ptr);
 }
 
@@ -166,7 +177,12 @@ void TransferContext::set_script(JNIEnv *p_raw_env, jobject p_instance, jlong p_
 
 void TransferContext::free_object(JNIEnv *p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     auto* owner = reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr));
-    owner->call_multilevel("free");
+
+#ifdef DEBUG_ENABLED
+    ERR_FAIL_COND_MSG(Object::cast_to<Reference>(owner), "Can't 'free' a reference.")
+#endif
+
+    memdelete(owner);
     jni::Env env(p_raw_env);
     jni::JObject local_ref{p_instance};
     local_ref.delete_local_ref(env);
