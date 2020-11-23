@@ -15,35 +15,35 @@ object TransferContext {
         buf
     }
 
-    fun writeArguments(vararg values: Pair<VariantType, Any>) {
+    fun writeArguments(vararg values: Pair<VariantType, Any?>) {
         buffer.putInt(values.size)
         for (value in values) {
-            value.second.encode(value.first, buffer)
+            value.first.toGodot(buffer, value.second)
         }
         buffer.rewind()
     }
 
     @ExperimentalUnsignedTypes
-    fun readArguments(): List<Any> {
+    fun readArguments(vararg variantType: VariantType): List<Any?> {
         val argSize = buffer.int
-        val values = mutableListOf<Any>()
+        val values = mutableListOf<Any?>()
         for (i in 0 until argSize) {
-            values.add(parse(buffer))
+            values.add(variantType[i].toKotlin(buffer))
         }
         buffer.rewind()
         return values
     }
 
-    fun writeReturnValue(value: Pair<VariantType, Any>) {
-        value.second.encode(value.first, buffer)
-        buffer.rewind()
-    }
+   fun writeReturnValue(value: Any?, type: VariantType) {
+       type.toGodot(buffer, value)
+       buffer.rewind()
+   }
 
     @ExperimentalUnsignedTypes
-    fun readReturnValue(): Any {
-        val converted = parse(buffer)
+    fun readReturnValue(type: VariantType): Any? {
+        val ret = type.toKotlin(buffer)
         buffer.rewind()
-        return converted
+        return ret
     }
 
     fun callMethod(ptr: VoidPtr, classIndex: Int, methodIndex: Int, expectedReturnType: VariantType) {

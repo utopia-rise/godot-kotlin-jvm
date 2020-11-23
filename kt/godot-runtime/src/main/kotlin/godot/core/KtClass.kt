@@ -26,7 +26,7 @@ class KtClass<T : KtObject>(
         }
     }
 
-    fun callFunction(name: String, instance: T, vararg args: Any): Any {
+    fun callFunction(name: String, instance: T, vararg args: Any): Any? {
         val function = _functions[name]
         check(function != null) { "Function with $name not found." }
         return function(instance, args.toList())

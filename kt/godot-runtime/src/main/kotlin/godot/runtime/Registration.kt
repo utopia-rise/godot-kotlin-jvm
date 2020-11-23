@@ -49,10 +49,9 @@ class ClassBuilderDsl<T : KtObject>(
         constructors[constructor.parameterCount] = constructor
     }
 
-    fun <P> property(
+    fun <P: Any> property(
         kProperty: KMutableProperty1<T, P>,
-        getValueConverter: (P) -> Pair<VariantType, Any>,
-        setValueConverter: ((Any) -> P),
+        variantType: VariantType,
         type: VariantType,
         className: String,
         hint: PropertyHint = PropertyHint.NONE,
@@ -73,22 +72,21 @@ class ClassBuilderDsl<T : KtObject>(
                 hintString
             ),
             kProperty,
-            getValueConverter,
-            setValueConverter,
+            variantType,
             defaultArgument,
             isRef
         )
     }
 
     inline fun <reified P : Enum<P>> enumProperty(
-        kProperty: KMutableProperty1<T, P>
+        kProperty: KMutableProperty1<T, P?>
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
         require(!properties.contains(propertyName)) {
             "Found two properties with name $propertyName for class $name"
         }
 
-        properties[propertyName] = KtProperty(
+        properties[propertyName] = KtEnumProperty(
                 KtPropertyInfo(
                         VariantType.LONG,
                         propertyName,
@@ -97,11 +95,9 @@ class ClassBuilderDsl<T : KtObject>(
                         enumValues<P>().joinToString { it.name }
                 ),
                 kProperty,
-                { enum -> getVariantType(enum.ordinal) },
-                { any -> enumValues<P>()[(any as Long).toInt()] },
-                //TODO : Change when null default values are supported
-                enumValues<P>()[0],
-                false
+                null,
+                { enum: P? -> enum?.ordinal },
+                { i -> if (i == null) null else enumValues<P>()[i] }
         )
     }
 
@@ -131,14 +127,14 @@ class ClassBuilderDsl<T : KtObject>(
 //    }
 
     inline fun <reified P : Enum<P>> enumFlagProperty(
-        kProperty: KMutableProperty1<T, Set<P>>
+        kProperty: KMutableProperty1<T, Set<P>?>
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
         require(!properties.contains(propertyName)) {
             "Found two properties with name $propertyName for class $name"
         }
 
-        properties[propertyName] = KtProperty(
+        properties[propertyName] = KtEnumProperty(
             KtPropertyInfo(
                     VariantType.LONG,
                 propertyName,
@@ -147,12 +143,14 @@ class ClassBuilderDsl<T : KtObject>(
                 enumValues<P>().joinToString { it.name }
             ),
             kProperty,
+            //TODO : Change when null default values are supported
+            setOf(enumValues<P>()[0]),
             { enumSet ->
                 var intFlag = 0
-                enumSet.forEach { enum ->
+                enumSet?.forEach { enum ->
                     intFlag += 1 shl enum.ordinal
                 }
-                VariantType.LONG to intFlag
+                intFlag
             },
             { value ->
                 val intFlag = (value as P).ordinal
@@ -172,17 +170,14 @@ class ClassBuilderDsl<T : KtObject>(
                 }
 
                 enums
-            },
-                //TODO : Change when null default values are supported
-            setOf(enumValues<P>()[0]),
-            false
+            }
         )
     }
 
-    fun <P> property(
+    fun <P: Any> property(
         kProperty: KMutableProperty1<T, P>,
-        getValueConverter: (P) -> Pair<VariantType, Any>,
-        setValueConverter: ((Any) -> P),
+        variantType: VariantType,
+        setValueConverter: ((Any?) -> P),
         isRef: Boolean = false,
         defaultArgument: P,
         pib: KtPropertyInfoBuilderDsl.() -> Unit
@@ -194,12 +189,12 @@ class ClassBuilderDsl<T : KtObject>(
         require(!properties.contains(property.name)) {
             "Found two properties with name ${property.name} for class $name"
         }
-        properties[property.name] = KtProperty(property, kProperty, getValueConverter, setValueConverter, defaultArgument, isRef)
+        properties[property.name] = KtProperty(property, kProperty, variantType, defaultArgument, isRef)
     }
 
-    fun <R> function(
+    fun <R: Any> function(
         func: KFunction1<T, R>,
-        returnValueConverter: (R) -> Pair<VariantType, Any>,
+        variantType: VariantType,
         returnType: KtFunctionArgument
     ) {
         appendFunction(
@@ -216,14 +211,14 @@ class ClassBuilderDsl<T : KtObject>(
                     )
                 ),
                 func,
-                returnValueConverter
+                variantType
             )
         )
     }
 
-    fun <R> function(
+    fun <R: Any> function(
         func: KFunction1<T, R>,
-        returnValueConverter: (R) -> Pair<VariantType, Any>,
+        variantType: VariantType,
         returns: KtPropertyInfoBuilderDsl.() -> Unit
     ) {
         val returnBuilder = KtPropertyInfoBuilderDsl()
@@ -232,15 +227,15 @@ class ClassBuilderDsl<T : KtObject>(
             KtFunction0(
                 KtFunctionInfo(func.name.camelToSnakeCase(), listOf(), returnBuilder.build()),
                 func,
-                returnValueConverter
+                variantType
             )
         )
     }
 
-    fun <P0, R> function(
+    fun <P0, R: Any> function(
         func: KFunction2<T, P0, R>,
-        returnValueConverter: (R) -> Pair<VariantType, Any>,
-        p0Converter: (Any) -> P0,
+        variantType: VariantType,
+        p0Type: VariantType,
         p0: KtFunctionArgument,
         returnType: KtFunctionArgument
     ) {
@@ -254,16 +249,16 @@ class ClassBuilderDsl<T : KtObject>(
                     returnType.toKtPropertyInfo()
                 ),
                 func,
-                returnValueConverter,
-                p0Converter
+                variantType,
+                p0Type
             )
         )
     }
 
-    fun <P0, R> function(
+    fun <P0, R: Any> function(
         func: KFunction2<T, P0, R>,
-        returnValueConverter: (R) -> Pair<VariantType, Any>,
-        p0Converter: (Any) -> P0,
+        variantType: VariantType,
+        p0Type: VariantType,
         arg: KtPropertyInfoBuilderDsl.() -> Unit,
         returns: KtPropertyInfoBuilderDsl.() -> Unit
     ) {
@@ -272,17 +267,17 @@ class ClassBuilderDsl<T : KtObject>(
             KtFunction1(
                 KtFunctionInfo(func.name.camelToSnakeCase(), arguments, returnType),
                 func,
-                returnValueConverter,
-                p0Converter
+                variantType,
+                p0Type
             )
         )
     }
 
-    fun <P0, P1, R> function(
+    fun <P0, P1, R: Any> function(
         func: KFunction3<T, P0, P1, R>,
-        returnValueConverter: (R) -> Pair<VariantType, Any>,
-        p0Converter: (Any) -> P0,
-        p1Converter: (Any) -> P1,
+        variantType: VariantType,
+        p0Type: VariantType,
+        p1Type: VariantType,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         returnType: KtFunctionArgument
@@ -298,18 +293,18 @@ class ClassBuilderDsl<T : KtObject>(
                     returnType.toKtPropertyInfo()
                 ),
                 func,
-                returnValueConverter,
-                p0Converter,
-                p1Converter
+                variantType,
+                p0Type,
+                p1Type
             )
         )
     }
 
-    fun <P0, P1, R> function(
+    fun <P0, P1, R: Any> function(
         func: KFunction3<T, P0, P1, R>,
-        returnValueConverter: (R) -> Pair<VariantType, Any>,
-        p0Converter: (Any) -> P0,
-        p1Converter: (Any) -> P1,
+        variantType: VariantType,
+        p0Type: VariantType,
+        p1Type: VariantType,
         args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
         returns: KtPropertyInfoBuilderDsl.() -> Unit
     ) {
@@ -321,19 +316,19 @@ class ClassBuilderDsl<T : KtObject>(
             KtFunction2(
                 KtFunctionInfo(func.name.camelToSnakeCase(), arguments, returnType),
                 func,
-                returnValueConverter,
-                p0Converter,
-                p1Converter
+                variantType,
+                p0Type,
+                p1Type
             )
         )
     }
 
-    fun <P0, P1, P2, R> function(
+    fun <P0, P1, P2, R: Any> function(
         func: KFunction4<T, P0, P1, P2, R>,
-        returnValueConverter: (R) -> Pair<VariantType, Any>,
-        p0Converter: (Any) -> P0,
-        p1Converter: (Any) -> P1,
-        p2Converter: (Any) -> P2,
+        variantType: VariantType,
+        p0Type: VariantType,
+        p1Type: VariantType,
+        p2Type: VariantType,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -351,20 +346,20 @@ class ClassBuilderDsl<T : KtObject>(
                     returnType.toKtPropertyInfo()
                 ),
                 func,
-                returnValueConverter,
-                p0Converter,
-                p1Converter,
-                p2Converter
+                variantType,
+                p0Type,
+                p1Type,
+                p2Type
             )
         )
     }
 
-    fun <P0, P1, P2, R> function(
+    fun <P0, P1, P2, R: Any> function(
         func: KFunction4<T, P0, P1, P2, R>,
-        returnValueConverter: (R) -> Pair<VariantType, Any>,
-        p0Converter: (Any) -> P0,
-        p1Converter: (Any) -> P1,
-        p2Converter: (Any) -> P2,
+        variantType: VariantType,
+        p0Type: VariantType,
+        p1Type: VariantType,
+        p2Type: VariantType,
         args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
         returns: KtPropertyInfoBuilderDsl.() -> Unit
     ) {
@@ -376,21 +371,21 @@ class ClassBuilderDsl<T : KtObject>(
             KtFunction3(
                 KtFunctionInfo(func.name.camelToSnakeCase(), arguments, returnType),
                 func,
-                returnValueConverter,
-                p0Converter,
-                p1Converter,
-                p2Converter
+                variantType,
+                p0Type,
+                p1Type,
+                p2Type
             )
         )
     }
 
-    fun <P0, P1, P2, P3, R> function(
+    fun <P0, P1, P2, P3, R: Any> function(
         func: KFunction5<T, P0, P1, P2, P3, R>,
-        returnValueConverter: (R) -> Pair<VariantType, Any>,
-        p0Converter: (Any) -> P0,
-        p1Converter: (Any) -> P1,
-        p2Converter: (Any) -> P2,
-        p3Converter: (Any) -> P3,
+        variantType: VariantType,
+        p0Type: VariantType,
+        p1Type: VariantType,
+        p2Type: VariantType,
+        p3Type: VariantType,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -410,22 +405,22 @@ class ClassBuilderDsl<T : KtObject>(
                     returnType.toKtPropertyInfo()
                 ),
                 func,
-                returnValueConverter,
-                p0Converter,
-                p1Converter,
-                p2Converter,
-                p3Converter
+                variantType,
+                p0Type,
+                p1Type,
+                p2Type,
+                p3Type
             )
         )
     }
 
-    fun <P0, P1, P2, P3, R> function(
+    fun <P0, P1, P2, P3, R: Any> function(
         func: KFunction5<T, P0, P1, P2, P3, R>,
-        returnValueConverter: (R) -> Pair<VariantType, Any>,
-        p0Converter: (Any) -> P0,
-        p1Converter: (Any) -> P1,
-        p2Converter: (Any) -> P2,
-        p3Converter: (Any) -> P3,
+        variantType: VariantType,
+        p0Type: VariantType,
+        p1Type: VariantType,
+        p2Type: VariantType,
+        p3Type: VariantType,
         args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
         returns: KtPropertyInfoBuilderDsl.() -> Unit
     ) {
@@ -437,23 +432,23 @@ class ClassBuilderDsl<T : KtObject>(
             KtFunction4(
                 KtFunctionInfo(func.name.camelToSnakeCase(), arguments, returnType),
                 func,
-                returnValueConverter,
-                p0Converter,
-                p1Converter,
-                p2Converter,
-                p3Converter
+                variantType,
+                p0Type,
+                p1Type,
+                p2Type,
+                p3Type
             )
         )
     }
 
-    fun <P0, P1, P2, P3, P4, R> function(
+    fun <P0, P1, P2, P3, P4, R: Any> function(
         func: KFunction6<T, P0, P1, P2, P3, P4, R>,
-        returnValueConverter: (R) -> Pair<VariantType, Any>,
-        p0Converter: (Any) -> P0,
-        p1Converter: (Any) -> P1,
-        p2Converter: (Any) -> P2,
-        p3Converter: (Any) -> P3,
-        p4Converter: (Any) -> P4,
+        variantType: VariantType,
+        p0Type: VariantType,
+        p1Type: VariantType,
+        p2Type: VariantType,
+        p3Type: VariantType,
+        p4Type: VariantType,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -475,24 +470,24 @@ class ClassBuilderDsl<T : KtObject>(
                     returnType.toKtPropertyInfo()
                 ),
                 func,
-                returnValueConverter,
-                p0Converter,
-                p1Converter,
-                p2Converter,
-                p3Converter,
-                p4Converter
+                variantType,
+                p0Type,
+                p1Type,
+                p2Type,
+                p3Type,
+                p4Type
             )
         )
     }
 
-    fun <P0, P1, P2, P3, P4, R> function(
+    fun <P0, P1, P2, P3, P4, R: Any> function(
         func: KFunction6<T, P0, P1, P2, P3, P4, R>,
-        returnValueConverter: (R) -> Pair<VariantType, Any>,
-        p0Converter: (Any) -> P0,
-        p1Converter: (Any) -> P1,
-        p2Converter: (Any) -> P2,
-        p3Converter: (Any) -> P3,
-        p4Converter: (Any) -> P4,
+        variantType: VariantType,
+        p0Type: VariantType,
+        p1Type: VariantType,
+        p2Type: VariantType,
+        p3Type: VariantType,
+        p4Type: VariantType,
         args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
         returns: KtPropertyInfoBuilderDsl.() -> Unit
     ) {
@@ -504,12 +499,12 @@ class ClassBuilderDsl<T : KtObject>(
             KtFunction5(
                 KtFunctionInfo(func.name.camelToSnakeCase(), arguments, returnType),
                 func,
-                returnValueConverter,
-                p0Converter,
-                p1Converter,
-                p2Converter,
-                p3Converter,
-                p4Converter
+                variantType,
+                p0Type,
+                p1Type,
+                p2Type,
+                p3Type,
+                p4Type
             )
         )
     }
@@ -627,7 +622,7 @@ class ClassBuilderDsl<T : KtObject>(
         return args.applyArgumentsDsl() to returnInfo
     }
 
-    private fun <R> appendFunction(function: KtFunction<T, R>) {
+    private fun <R: Any> appendFunction(function: KtFunction<T, R>) {
         require(!functions.containsKey(function.functionInfo.name)) {
             "A method with ${function.functionInfo.name} already exists."
         }

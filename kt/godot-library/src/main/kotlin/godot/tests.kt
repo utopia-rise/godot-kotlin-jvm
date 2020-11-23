@@ -14,7 +14,7 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
         return TransferContext.invokeConstructor(OBJECT)
     }
 
-    fun connect(name: String, target: Object, method: String, binds: VariantArray, flags: Long): GodotError {
+    fun connect(name: String, target: Object, method: String, binds: VariantArray<Any>, flags: Long): GodotError {
         TransferContext.writeArguments(
                 VariantType.STRING to name,
                 VariantType.OBJECT to target,
@@ -23,22 +23,22 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
                 VariantType.LONG to flags
         )
         TransferContext.callMethod(rawPtr, OBJECT, OBJECT_CONNECT, VariantType.LONG)
-        return GodotError.values()[(TransferContext.readReturnValue() as Long).toInt()]
+        return GodotError.values()[TransferContext.readReturnValue(VariantType.JVM_INT) as Int]
     }
 
     fun emitSignal(signal: String, vararg args: Any?) {
         TransferContext.writeArguments(
                 VariantType.STRING to signal,
-                *args.map { wrap(it) }.toTypedArray()
+                *args.map { VariantType.ANY to it }.toTypedArray()
         )
         TransferContext.callMethod(rawPtr, OBJECT, OBJECT_EMIT_SIGNAL, VariantType.NIL)
-        TransferContext.readReturnValue()
+        TransferContext.readReturnValue(VariantType.NIL)
     }
 
     override fun getInstanceId(): Long {
         TransferContext.writeArguments()
         TransferContext.callMethod(rawPtr, OBJECT, OBJECT_GET_INSTANCE_ID, VariantType.LONG)
-        return TransferContext.readReturnValue() as Long
+        return TransferContext.readReturnValue(VariantType.LONG) as Long
     }
 
     fun Signal0.emit() {
@@ -48,7 +48,7 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
     fun <K : () -> Unit> Signal0.connect(
             target: Object,
             method: K,
-            binds: VariantArray? = null,
+            binds: VariantArray<Any>? = null,
             flags: Long = 0
     ) {
         val methodName = (method as KCallable<*>).name.camelToSnakeCase()
@@ -62,7 +62,7 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
     fun <A0, K : (A0) -> Unit> Signal1<A0>.connect(
             target: Object,
             method: K,
-            binds: VariantArray? = null,
+            binds: VariantArray<Any>? = null,
             flags: Long = 0
     ) {
         val methodName = (method as KCallable<*>).name.camelToSnakeCase()
@@ -76,7 +76,7 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
     fun <A0, A1, K : (A0, A1) -> Unit> Signal2<A0, A1>.connect(
             target: Object,
             method: K,
-            binds: VariantArray? = null,
+            binds: VariantArray<Any>? = null,
             flags: Long = 0
     ) {
         val methodName = (method as KCallable<Unit>).name.camelToSnakeCase()
@@ -98,7 +98,7 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
     ) -> Unit> Signal3<A0, A1, A2>.connect(
             target: Object,
             method: K,
-            binds: VariantArray? = null,
+            binds: VariantArray<Any>? = null,
             flags: Long = 0
     ) {
         val methodName = (method as KCallable<Unit>).name.camelToSnakeCase()
@@ -122,7 +122,7 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
     ) -> Unit> Signal4<A0, A1, A2, A3>.connect(
             target: Object,
             method: K,
-            binds: VariantArray? = null,
+            binds: VariantArray<Any>? = null,
             flags: Long = 0
     ) {
         val methodName = (method as KCallable<Unit>).name.camelToSnakeCase()
@@ -148,7 +148,7 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
     ) -> Unit> Signal5<A0, A1, A2, A3, A4>.connect(
             target: Object,
             method: K,
-            binds: VariantArray? = null,
+            binds: VariantArray<Any>? = null,
             flags: Long = 0
     ) {
         val methodName = (method as KCallable<Unit>).name.camelToSnakeCase()
@@ -176,7 +176,7 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
     ) -> Unit> Signal6<A0, A1, A2, A3, A4, A5>.connect(
             target: Object,
             method: K,
-            binds: VariantArray? = null,
+            binds: VariantArray<Any>? = null,
             flags: Long = 0
     ) {
         val methodName = (method as KCallable<Unit>).name.camelToSnakeCase()
@@ -206,7 +206,7 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
     ) -> Unit> Signal7<A0, A1, A2, A3, A4, A5, A6>.connect(
             target: Object,
             method: K,
-            binds: VariantArray? = null,
+            binds: VariantArray<Any>? = null,
             flags: Long = 0
     ) {
         val methodName = (method as KCallable<Unit>).name.camelToSnakeCase()
@@ -238,7 +238,7 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
     ) -> Unit> Signal8<A0, A1, A2, A3, A4, A5, A6, A7>.connect(
             target: Object,
             method: K,
-            binds: VariantArray? = null,
+            binds: VariantArray<Any>? = null,
             flags: Long = 0
     ) {
         val methodName = (method as KCallable<Unit>).name.camelToSnakeCase()
@@ -272,7 +272,7 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
     ) -> Unit> Signal9<A0, A1, A2, A3, A4, A5, A6, A7, A8>.connect(
             target: Object,
             method: K,
-            binds: VariantArray? = null,
+            binds: VariantArray<Any>? = null,
             flags: Long = 0
     ) {
         val methodName = (method as KCallable<Unit>).name.camelToSnakeCase()
@@ -309,7 +309,7 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
     ) -> Unit> Signal10<A0, A1, A2, A3, A4, A5, A6, A7, A8, A9>.connect(
             target: Object,
             method: K,
-            binds: VariantArray? = null,
+            binds: VariantArray<Any>? = null,
             flags: Long = 0
     ) {
         val methodName = (method as KCallable<Unit>).name.camelToSnakeCase()
@@ -322,35 +322,35 @@ open class Node : Object() {
         get() {
             TransferContext.writeArguments()
             TransferContext.callMethod(rawPtr, NODE, NODE_GET_NAME, VariantType.STRING)
-            return TransferContext.readReturnValue() as String
+            return TransferContext.readReturnValue(VariantType.STRING) as String
         }
         set(value) {
             TransferContext.writeArguments(VariantType.STRING to value)
             TransferContext.callMethod(rawPtr, NODE, NODE_SET_NAME, VariantType.NIL)
-            TransferContext.readReturnValue()
+            TransferContext.readReturnValue(VariantType.NIL)
         }
 
     override fun __new(): VoidPtr {
         return TransferContext.invokeConstructor(NODE)
     }
 
-    open fun getParent(): Node {
+    open fun getParent(): Node? {
         TransferContext.writeArguments()
         TransferContext.callMethod(rawPtr, NODE, NODE_GET_PARENT, VariantType.OBJECT)
-        val readReturnValue = TransferContext.readReturnValue()
-        return readReturnValue as Node
+        val readReturnValue = TransferContext.readReturnValue(VariantType.OBJECT)
+        return readReturnValue as Node?
     }
 
     open fun addChild(node: Node) {
         TransferContext.writeArguments(VariantType.OBJECT to node)
         TransferContext.callMethod(rawPtr, NODE, NODE_ADD_CHILD, VariantType.NIL)
-        TransferContext.readReturnValue()
+        TransferContext.readReturnValue(VariantType.NIL)
     }
 
     open fun removeChild(node: Node) {
         TransferContext.writeArguments(VariantType.OBJECT to node)
         TransferContext.callMethod(rawPtr, NODE, NODE_REMOVE_CHILD, VariantType.NIL)
-        TransferContext.readReturnValue()
+        TransferContext.readReturnValue(VariantType.NIL)
     }
 }
 
