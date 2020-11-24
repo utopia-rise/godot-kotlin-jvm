@@ -353,14 +353,14 @@ enum class VariantType(
             },
             { buffer: ByteBuffer, any: Any ->
                 when (any) {
-                    is Unit -> NIL.toGodotWithoutNullCheck
-                    is Boolean -> BOOL.toGodotWithoutNullCheck
-                    is Int -> JVM_INT.toGodotWithoutNullCheck
-                    is Long -> LONG.toGodotWithoutNullCheck
-                    is Float -> JVM_FLOAT.toGodotWithoutNullCheck
-                    is Double -> DOUBLE.toGodotWithoutNullCheck
-                    is String -> STRING.toGodotWithoutNullCheck
-                    is KtObject -> OBJECT.toGodotWithoutNullCheck
+                    is Unit -> NIL.toGodotWithoutNullCheck(buffer, any)
+                    is Boolean -> BOOL.toGodotWithoutNullCheck(buffer, any)
+                    is Int -> JVM_INT.toGodotWithoutNullCheck(buffer, any)
+                    is Long -> LONG.toGodotWithoutNullCheck(buffer, any)
+                    is Float -> JVM_FLOAT.toGodotWithoutNullCheck(buffer, any)
+                    is Double -> DOUBLE.toGodotWithoutNullCheck(buffer, any)
+                    is String -> STRING.toGodotWithoutNullCheck(buffer, any)
+                    is KtObject -> OBJECT.toGodotWithoutNullCheck(buffer, any)
                     else -> throw UnsupportedOperationException("Can't convert type ${any!!::class} to Variant")
                 }
             }
