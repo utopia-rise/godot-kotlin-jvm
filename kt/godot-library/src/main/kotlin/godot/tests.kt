@@ -22,7 +22,7 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
                 VariantType.ARRAY to binds,
                 VariantType.LONG to flags
         )
-        TransferContext.callMethod(rawPtr, OBJECT, OBJECT_CONNECT, VariantType.LONG)
+        TransferContext.callMethod(rawPtr, OBJECT_CONNECT, VariantType.LONG)
         return GodotError.values()[TransferContext.readReturnValue(VariantType.JVM_INT) as Int]
     }
 
@@ -31,13 +31,13 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
                 VariantType.STRING to signal,
                 *args.map { VariantType.ANY to it }.toTypedArray()
         )
-        TransferContext.callMethod(rawPtr, OBJECT, OBJECT_EMIT_SIGNAL, VariantType.NIL)
+        TransferContext.callMethod(rawPtr, OBJECT_EMIT_SIGNAL, VariantType.NIL)
         TransferContext.readReturnValue(VariantType.NIL)
     }
 
     override fun getInstanceId(): Long {
         TransferContext.writeArguments()
-        TransferContext.callMethod(rawPtr, OBJECT, OBJECT_GET_INSTANCE_ID, VariantType.LONG)
+        TransferContext.callMethod(rawPtr, OBJECT_GET_INSTANCE_ID, VariantType.LONG)
         return TransferContext.readReturnValue(VariantType.LONG) as Long
     }
 
@@ -321,12 +321,12 @@ open class Node : Object() {
     open var name: String
         get() {
             TransferContext.writeArguments()
-            TransferContext.callMethod(rawPtr, NODE, NODE_GET_NAME, VariantType.STRING)
+            TransferContext.callMethod(rawPtr, NODE_GET_NAME, VariantType.STRING)
             return TransferContext.readReturnValue(VariantType.STRING) as String
         }
         set(value) {
             TransferContext.writeArguments(VariantType.STRING to value)
-            TransferContext.callMethod(rawPtr, NODE, NODE_SET_NAME, VariantType.NIL)
+            TransferContext.callMethod(rawPtr, NODE_SET_NAME, VariantType.NIL)
             TransferContext.readReturnValue(VariantType.NIL)
         }
 
@@ -336,20 +336,20 @@ open class Node : Object() {
 
     open fun getParent(): Node? {
         TransferContext.writeArguments()
-        TransferContext.callMethod(rawPtr, NODE, NODE_GET_PARENT, VariantType.OBJECT)
+        TransferContext.callMethod(rawPtr, NODE_GET_PARENT, VariantType.OBJECT)
         val readReturnValue = TransferContext.readReturnValue(VariantType.OBJECT)
         return readReturnValue as Node?
     }
 
     open fun addChild(node: Node) {
         TransferContext.writeArguments(VariantType.OBJECT to node)
-        TransferContext.callMethod(rawPtr, NODE, NODE_ADD_CHILD, VariantType.NIL)
+        TransferContext.callMethod(rawPtr, NODE_ADD_CHILD, VariantType.NIL)
         TransferContext.readReturnValue(VariantType.NIL)
     }
 
     open fun removeChild(node: Node) {
         TransferContext.writeArguments(VariantType.OBJECT to node)
-        TransferContext.callMethod(rawPtr, NODE, NODE_REMOVE_CHILD, VariantType.NIL)
+        TransferContext.callMethod(rawPtr, NODE_REMOVE_CHILD, VariantType.NIL)
         TransferContext.readReturnValue(VariantType.NIL)
     }
 }
@@ -389,12 +389,12 @@ fun registerEngineTypes() {
 }
 
 fun registerEngineTypeMethods() {
-    TypeManager.engineTypeMethodNames.add("connect")
-    TypeManager.engineTypeMethodNames.add("emit_signal")
-    TypeManager.engineTypeMethodNames.add("get_instance_id")
-    TypeManager.engineTypeMethodNames.add("get_name")
-    TypeManager.engineTypeMethodNames.add("set_name")
-    TypeManager.engineTypeMethodNames.add("get_parent")
-    TypeManager.engineTypeMethodNames.add("add_child")
-    TypeManager.engineTypeMethodNames.add("remove_child")
+    TypeManager.engineTypeMethod.add(Pair(OBJECT, "connect"))
+    TypeManager.engineTypeMethod.add(Pair(OBJECT, "emit_signal"))
+    TypeManager.engineTypeMethod.add(Pair(OBJECT, "get_instance_id"))
+    TypeManager.engineTypeMethod.add(Pair(NODE, "get_name"))
+    TypeManager.engineTypeMethod.add(Pair(NODE, "set_name"))
+    TypeManager.engineTypeMethod.add(Pair(NODE, "get_parent"))
+    TypeManager.engineTypeMethod.add(Pair(NODE, "add_child"))
+    TypeManager.engineTypeMethod.add(Pair(NODE, "remove_child"))
 }

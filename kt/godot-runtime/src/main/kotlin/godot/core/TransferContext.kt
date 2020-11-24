@@ -48,10 +48,9 @@ object TransferContext {
         return ret
     }
 
-    fun callMethod(ptr: VoidPtr, classIndex: Int, methodIndex: Int, expectedReturnType: VariantType) {
+    fun callMethod(ptr: VoidPtr, methodIndex: Int, expectedReturnType: VariantType) {
         icall(
                 ptr,
-                classIndex,
                 methodIndex,
                 expectedReturnType.ordinal
         )
@@ -65,5 +64,5 @@ object TransferContext {
     external fun invokeConstructor(classIndex: Int): VoidPtr
     external fun freeObject(rawPtr: VoidPtr)
 
-    private external fun icall(ptr: VoidPtr, classIndex: Int, methodIndex: Int, expectedReturnType: Int)
+    private external fun icall(ptr: VoidPtr, methodIndex: Int, expectedReturnType: Int)
 }

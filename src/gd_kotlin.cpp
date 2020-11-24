@@ -72,7 +72,8 @@ void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) 
     classes.delete_local_ref(env);
 }
 
-void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types, jobjectArray p_method_names) {
+void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types, jobjectArray p_method_names,
+        jobjectArray p_types_of_methods) {
     print_verbose("Starting to register managed engine types...");
     jni::Env env(p_env);
     jni::JObjectArray engine_types{p_engine_types};
@@ -83,9 +84,18 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
         print_verbose(vformat("Registered %s engine type with index %s.", class_name, i));
     }
     jni::JObjectArray method_names{p_method_names};
+    jni::JObjectArray types_of_methods{p_types_of_methods};
+    jni::JClass integer_class{env.load_class("java.lang.Integer", GDKotlin::get_instance().get_class_loader())};
+    jni::MethodId integer_get_value_method{integer_class.get_method_id(env, "intValue", "()I")};
     for (int i = 0; i < method_names.length(env); i++) {
-        GDKotlin::get_instance().engine_type_method_names.insert(i,
-                env.from_jstring(static_cast<jni::JString>(method_names.get(env, i))));
+        int type_of_method{static_cast<int>(types_of_methods.get(env, i).call_int_method(env, integer_get_value_method))};
+        GDKotlin::get_instance().engine_type_method.insert(
+                i,
+                ClassDB::get_method(
+                        GDKotlin::get_instance().engine_type_names[type_of_method],
+                        env.from_jstring(method_names.get(env, i))
+                )
+        );
     }
     jni::JObject j_object{p_this};
     j_object.delete_local_ref(env);
@@ -276,7 +286,7 @@ void GDKotlin::finish() {
     delete memory_bridge;
     memory_bridge = nullptr;
 
-    engine_type_method_names.clear();
+    engine_type_method.clear();
     engine_type_names.clear();
 
     TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.clear();

@@ -26,7 +26,7 @@ public:
     String scripts_root;
     TransferContext* transfer_context;
     Vector<StringName> engine_type_names;
-    Vector<StringName> engine_type_method_names;
+    Vector<MethodBind*> engine_type_method;
 
     GDKotlin(const GDKotlin&) = delete;
 

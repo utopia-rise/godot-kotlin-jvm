@@ -10,7 +10,7 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
     : JavaInstanceWrapper("godot.core.TransferContext", p_wrapped, p_class_loader) {
     jni::JNativeMethod icall_method{
             "icall",
-            "(JIII)V",
+            "(JII)V",
             (void*) TransferContext::icall
     };
 
@@ -102,8 +102,7 @@ Vector<Variant> TransferContext::read_args(jni::Env& p_env) {
     return args;
 }
 
-void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jint p_class_index, jint p_method_index,
-                            jint expectedReturnType) {
+void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jint p_method_index, jint expectedReturnType) {
     thread_local static Variant variant_args[MAX_ARGS_SIZE];
     thread_local static const Variant* variant_args_ptr[MAX_ARGS_SIZE];
     thread_local static bool icall_args_init = false;
@@ -128,20 +127,19 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jint p
     read_args_to_array(buffer, variant_args, args_size);
 
     auto* ptr = reinterpret_cast<Object*>(jPtr);
-    const StringName& class_name = GDKotlin::get_instance().engine_type_names[static_cast<int>(p_class_index)];
-    const StringName& method = GDKotlin::get_instance().engine_type_method_names[static_cast<int>(p_method_index)];
 
-    Variant::CallError r_error{Variant::CallError::CALL_OK};
-    MethodBind* methodBind{ClassDB::get_method(class_name, method)};
+    int method_index{static_cast<int>(p_method_index)};
+    MethodBind* methodBind{GDKotlin::get_instance().engine_type_method[method_index]};
 
 #ifdef DEBUG_ENABLED
-    ERR_FAIL_COND_MSG(!methodBind, vformat("Cannot find method %s in class %s", method, class_name))
+    ERR_FAIL_COND_MSG(!methodBind, vformat("Cannot find method with id %s", method_index))
 #endif
 
+    Variant::CallError r_error{Variant::CallError::CALL_OK};
     const Variant& ret_value{methodBind->call(ptr, variant_args_ptr, args_size, r_error)};
 
 #ifdef DEBUG_ENABLED
-    ERR_FAIL_COND_MSG(r_error.error != Variant::CallError::CALL_OK, vformat("Call to %s failed.", method))
+    ERR_FAIL_COND_MSG(r_error.error != Variant::CallError::CALL_OK, vformat("Call to method with id %s failed.", method_index))
 #endif
 
     write_return_value(buffer, ret_value);

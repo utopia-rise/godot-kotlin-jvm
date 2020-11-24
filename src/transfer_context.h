@@ -23,8 +23,7 @@ public:
     //Not used but still here in case we need it. Not optimized.
     Vector<Variant> read_args(jni::Env& p_env);
 
-    static void icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jint p_class_index, jint p_method_index,
-                      jint expectedReturnType);
+    static void icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jint p_method_index, jint expectedReturnType);
 
     static jlong invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index);
     static void set_script(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jstring p_class_name, jobject p_object,
