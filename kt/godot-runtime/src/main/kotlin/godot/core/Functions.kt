@@ -67,6 +67,7 @@ abstract class KtFunction<T : KtObject, R : Any?>(
         require(argsSize == parameterCount) { "Expecting $parameterCount parameter(s) for function ${functionInfo.name}, but got $argsSize instead." }
         readArguments(argsSize)
         val ret = invokeKt(instance)
+        resetParamsArray()
         TransferContext.writeReturnValue(ret, variantType)
     }
 
@@ -81,6 +82,10 @@ abstract class KtFunction<T : KtObject, R : Any?>(
 
     companion object {
         val paramsArray by threadLocal { arrayOf<Any?>(null, null, null, null, null) }
+
+        fun resetParamsArray() {
+            paramsArray.fill(null)
+        }
     }
 }
 

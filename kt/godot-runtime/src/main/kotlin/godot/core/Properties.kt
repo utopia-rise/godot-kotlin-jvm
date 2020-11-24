@@ -32,9 +32,11 @@ open class KtProperty<T : KtObject, P: Any?>(
     }
 
     open fun callSet(instance: T) {
-        val arg = TransferContext.readArguments(variantType)
-        require(arg.size == 1) { "Setter should be called with only one argument." }
-        kProperty.set(instance, arg[0] as P)
+        val argsSize = TransferContext.buffer.int
+        require(argsSize == 1) { "Setter should be called with only one argument." }
+        val arg = TransferContext.readSingleArgument(variantType)
+        TransferContext.buffer.rewind()
+        kProperty.set(instance, arg as P)
     }
 }
 
@@ -60,8 +62,10 @@ class KtEnumProperty<T : KtObject, P : Any>(
     }
 
     override fun callSet(instance: T) {
-        val arg = TransferContext.readArguments(VariantType.JVM_INT)
-        require(arg.size == 1) { "Setter should be called with only one argument." }
-        kProperty.set(instance, setValueConverter(arg[0] as Int))
+        val argsSize = TransferContext.buffer.int
+        require(argsSize == 1) { "Setter should be called with only one argument." }
+        val arg = TransferContext.readSingleArgument(VariantType.JVM_INT)
+        TransferContext.buffer.rewind()
+        kProperty.set(instance, setValueConverter(arg as Int))
     }
 }
