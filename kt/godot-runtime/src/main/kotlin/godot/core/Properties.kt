@@ -40,11 +40,11 @@ open class KtProperty<T : KtObject, P: Any?>(
 
 class KtEnumProperty<T : KtObject, P : Any>(
         ktPropertyInfo: KtPropertyInfo,
-        kProperty: KMutableProperty1<T, P?>,
-        defaultValue: P?,
-        val getValueConverter: (P?) -> Int?,
-        val setValueConverter: (Int?) -> P?
-) : KtProperty<T, P?>(
+        kProperty: KMutableProperty1<T, P>,
+        defaultValue: P,
+        val getValueConverter: (P) -> Int,
+        val setValueConverter: (Int) -> P
+) : KtProperty<T, P>(
         ktPropertyInfo,
         kProperty,
         VariantType.JVM_INT,

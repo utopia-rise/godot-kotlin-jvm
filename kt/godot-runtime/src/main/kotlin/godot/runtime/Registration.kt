@@ -79,7 +79,8 @@ class ClassBuilderDsl<T : KtObject>(
     }
 
     inline fun <reified P : Enum<P>> enumProperty(
-        kProperty: KMutableProperty1<T, P?>
+            kProperty: KMutableProperty1<T, P>,
+            defaultValue: P
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
         require(!properties.contains(propertyName)) {
@@ -95,9 +96,10 @@ class ClassBuilderDsl<T : KtObject>(
                         enumValues<P>().joinToString { it.name }
                 ),
                 kProperty,
-                null,
-                { enum: P? -> enum?.ordinal },
-                { i -> if (i == null) null else enumValues<P>()[i] }
+                //TODO change when nullable enum are here.
+                defaultValue,
+                { enum: P -> enum.ordinal },
+                { i -> enumValues<P>()[i] }
         )
     }
 
@@ -127,7 +129,8 @@ class ClassBuilderDsl<T : KtObject>(
 //    }
 
     inline fun <reified P : Enum<P>> enumFlagProperty(
-        kProperty: KMutableProperty1<T, Set<P>?>
+        kProperty: KMutableProperty1<T, Set<P>>,
+        defaultValue: P
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
         require(!properties.contains(propertyName)) {
@@ -144,7 +147,7 @@ class ClassBuilderDsl<T : KtObject>(
             ),
             kProperty,
             //TODO : Change when null default values are supported
-            setOf(enumValues<P>()[0]),
+            setOf(defaultValue),
             { enumSet ->
                 var intFlag = 0
                 enumSet?.forEach { enum ->
