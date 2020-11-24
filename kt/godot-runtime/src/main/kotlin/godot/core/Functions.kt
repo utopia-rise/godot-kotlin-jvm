@@ -1,6 +1,7 @@
 package godot.core
 
 import godot.util.camelToSnakeCase
+import godot.util.threadLocal
 
 enum class PropertyHint {
     NONE, ///< no hint provided.
@@ -56,18 +57,31 @@ data class KtFunctionInfo(
 abstract class KtFunction<T : KtObject, R : Any?>(
         val functionInfo: KtFunctionInfo,
         val parameterCount: Int,
-        val variantType: VariantType
+        val variantType: VariantType,
+        private vararg val parameterTypes: VariantType
 ) {
     val registrationName = functionInfo.name.camelToSnakeCase()
+
     fun invoke(instance: T) {
-        val args = readArguments()
-        require(args.size == parameterCount) { "Expecting $parameterCount parameter(s) for function ${functionInfo.name}, but got ${args.size} instead." }
-        val ret = invoke(instance, args)
+        val argsSize = TransferContext.buffer.int
+        require(argsSize == parameterCount) { "Expecting $parameterCount parameter(s) for function ${functionInfo.name}, but got $argsSize instead." }
+        readArguments(argsSize)
+        val ret = invokeKt(instance)
         TransferContext.writeReturnValue(ret, variantType)
     }
 
-    internal abstract fun readArguments(): List<Any?>
-    internal abstract operator fun invoke(instance: T, args: List<Any?>): R
+    private fun readArguments(argsSize: Int) {
+        for (i in 0 until argsSize) {
+            paramsArray[i] = TransferContext.readSingleArgument(parameterTypes[i])
+        }
+        TransferContext.buffer.rewind()
+    }
+
+    internal abstract fun invokeKt(instance: T): R
+
+    companion object {
+        val paramsArray by threadLocal { arrayOf<Any?>(null, null, null, null, null) }
+    }
 }
 
 class KtFunction0<T : KtObject, R : Any?>(
@@ -75,99 +89,116 @@ class KtFunction0<T : KtObject, R : Any?>(
         private val function: (T) -> R,
         variantType: VariantType
 ) : KtFunction<T, R>(functionInfo, 0, variantType) {
-    override operator fun invoke(instance: T, args: List<Any?>) = function(instance)
-    override fun readArguments() = TransferContext.readArguments()
+    override fun invokeKt(instance: T) = function(instance)
 }
 
-class KtFunction1<T : KtObject, P0: Any?, R : Any?>(
+class KtFunction1<T : KtObject, P0 : Any?, R : Any?>(
         functionInfo: KtFunctionInfo,
         private val function: (T, P0) -> R,
         variantType: VariantType,
-        private val p0Type: VariantType
-) : KtFunction<T, R>(functionInfo, 1, variantType) {
-    override operator fun invoke(instance: T, args: List<Any?>): R {
-        require(args.size == parameterCount) { "Expecting $parameterCount parameter(s), but got ${args.size} instead." }
+        p0Type: VariantType
+) : KtFunction<T, R>(functionInfo, 1, variantType, p0Type) {
+    override fun invokeKt(instance: T): R {
         return function(
                 instance,
-                args[0] as P0
+                paramsArray[0] as P0
         )
     }
-
-    override fun readArguments() = TransferContext.readArguments(p0Type)
 }
 
-class KtFunction2<T : KtObject, P0: Any?, P1: Any?, R : Any?>(
+class KtFunction2<T : KtObject, P0 : Any?, P1 : Any?, R : Any?>(
         functionInfo: KtFunctionInfo,
         private val function: (T, P0, P1) -> R,
         variantType: VariantType,
-        private val p0Type: VariantType,
-        private val p1Type: VariantType
-) : KtFunction<T, R>(functionInfo, 2, variantType) {
-    override fun invoke(instance: T, args: List<Any?>) = function(
+        p0Type: VariantType,
+        p1Type: VariantType
+) : KtFunction<T, R>(
+        functionInfo,
+        2,
+        variantType,
+        p0Type,
+        p1Type
+) {
+    override fun invokeKt(instance: T) = function(
             instance,
-            args[0] as P0,
-            args[1] as P1,
+            paramsArray[0] as P0,
+            paramsArray[1] as P1,
     )
-
-    override fun readArguments() = TransferContext.readArguments(p0Type, p1Type)
 }
 
-class KtFunction3<T : KtObject, P0: Any?, P1: Any?, P2: Any?, R : Any?>(
+class KtFunction3<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, R : Any?>(
         functionInfo: KtFunctionInfo,
         private val function: (T, P0, P1, P2) -> R,
         variantType: VariantType,
-        private val p0Type: VariantType,
-        private val p1Type: VariantType,
-        private val p2Type: VariantType,
-) : KtFunction<T, R>(functionInfo, 3, variantType) {
-    override fun invoke(instance: T, args: List<Any?>) = function(
+        p0Type: VariantType,
+        p1Type: VariantType,
+        p2Type: VariantType,
+) : KtFunction<T, R>(
+        functionInfo,
+        3,
+        variantType,
+        p0Type,
+        p1Type,
+        p2Type
+) {
+    override fun invokeKt(instance: T) = function(
             instance,
-            args[0] as P0,
-            args[1] as P1,
-            args[2] as P2,
+            paramsArray[0] as P0,
+            paramsArray[1] as P1,
+            paramsArray[2] as P2
     )
-
-    override fun readArguments() = TransferContext.readArguments(p0Type, p1Type, p2Type)
 }
 
-class KtFunction4<T : KtObject, P0: Any?, P1: Any?, P2: Any?, P3: Any?, R : Any?>(
+class KtFunction4<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, R : Any?>(
         functionInfo: KtFunctionInfo,
         private val function: (T, P0, P1, P2, P3) -> R,
         variantType: VariantType,
-        private val p0Type: VariantType,
-        private val p1Type: VariantType,
-        private val p2Type: VariantType,
-        private val p3Type: VariantType,
-) : KtFunction<T, R>(functionInfo, 4, variantType) {
-    override fun invoke(instance: T, args: List<Any?>) = function(
+        p0Type: VariantType,
+        p1Type: VariantType,
+        p2Type: VariantType,
+        p3Type: VariantType,
+) : KtFunction<T, R>(
+        functionInfo,
+        4,
+        variantType,
+        p0Type,
+        p1Type,
+        p2Type,
+        p3Type
+) {
+    override fun invokeKt(instance: T) = function(
             instance,
-            args[0] as P0,
-            args[1] as P1,
-            args[2] as P2,
-            args[3] as P3,
+            paramsArray[0] as P0,
+            paramsArray[1] as P1,
+            paramsArray[2] as P2,
+            paramsArray[3] as P3,
     )
-
-    override fun readArguments() = TransferContext.readArguments(p0Type, p1Type, p2Type, p3Type)
 }
 
-class KtFunction5<T : KtObject, P0: Any?, P1: Any?, P2: Any?, P3: Any?, P4: Any?, R : Any?>(
+class KtFunction5<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 : Any?, R : Any?>(
         functionInfo: KtFunctionInfo,
         private val function: (T, P0, P1, P2, P3, P4) -> R,
         variantType: VariantType,
-        private val p0Type: VariantType,
-        private val p1Type: VariantType,
-        private val p2Type: VariantType,
-        private val p3Type: VariantType,
-        private val p4Type: VariantType,
-) : KtFunction<T, R>(functionInfo, 5, variantType) {
-    override fun invoke(instance: T, args: List<Any?>) = function(
+        p0Type: VariantType,
+        p1Type: VariantType,
+        p2Type: VariantType,
+        p3Type: VariantType,
+        p4Type: VariantType,
+) : KtFunction<T, R>(
+        functionInfo,
+        5,
+        variantType,
+        p0Type,
+        p1Type,
+        p2Type,
+        p3Type,
+        p4Type) {
+    override fun invokeKt(instance: T) = function(
             instance,
-            args[0] as P0,
-            args[1] as P1,
-            args[2] as P2,
-            args[3] as P3,
-            args[4] as P4,
+            paramsArray[0] as P0,
+            paramsArray[1] as P1,
+            paramsArray[2] as P2,
+            paramsArray[3] as P3,
+            paramsArray[4] as P4,
     )
-
-    override fun readArguments() = TransferContext.readArguments(p0Type, p1Type, p2Type, p3Type, p4Type)
 }

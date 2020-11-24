@@ -361,7 +361,7 @@ enum class VariantType(
                     is Double -> DOUBLE.toGodotWithoutNullCheck(buffer, any)
                     is String -> STRING.toGodotWithoutNullCheck(buffer, any)
                     is KtObject -> OBJECT.toGodotWithoutNullCheck(buffer, any)
-                    else -> throw UnsupportedOperationException("Can't convert type ${any!!::class} to Variant")
+                    else -> throw UnsupportedOperationException("Can't convert type ${any::class} to Variant")
                 }
             }
     );

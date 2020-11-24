@@ -9,7 +9,7 @@ object TransferContext {
     // If changed, remember to change also DEFAULT_SHARED_BUFFER_SIZE in gd_kotlin.cpp
     var bufferSize = 20_000_000
 
-    private val buffer by threadLocalLazy {
+    val buffer by threadLocalLazy {
         val buf = ByteBuffer.allocateDirect(bufferSize)
         buf.order(ByteOrder.LITTLE_ENDIAN)
         buf
@@ -33,6 +33,8 @@ object TransferContext {
         buffer.rewind()
         return values
     }
+
+    fun readSingleArgument(variantType: VariantType) = variantType.toKotlin(buffer)
 
    fun writeReturnValue(value: Any?, type: VariantType) {
        type.toGodot(buffer, value)
