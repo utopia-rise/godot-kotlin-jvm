@@ -62,7 +62,7 @@ class Simple : Object() {
 
     fun benchmarkICallWithLoop(): Node {
         val node = Node()
-        for (i in 0 until 1000) {
+        for (i in 0 until 100) {
             val child = Node()
             node.addChild(child)
             node.removeChild(child)

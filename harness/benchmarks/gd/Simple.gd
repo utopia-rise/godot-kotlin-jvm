@@ -38,7 +38,7 @@ func benchmark_icall():
 
 func benchmark_icall_with_loop():
 	var node = Node.new()
-	for i in range(1000):
+	for i in range(100):
 		var child = Node.new()
 		node.add_child(child)
 		node.remove_child(child)

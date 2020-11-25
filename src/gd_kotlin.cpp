@@ -120,6 +120,7 @@ void GDKotlin::init() {
     bool is_gc_activated{true};
     long gc_thread_period_interval{500};
     int jvm_to_engine_shared_buffer_size{DEFAULT_SHARED_BUFFER_SIZE};
+    bool should_display_leaked_jvm_instances_on_close{true};
     const List<String>& cmdline_args{OS::get_singleton()->get_cmdline_args()};
     for (int i = 0; i < cmdline_args.size(); ++i) {
         const String cmd_arg{cmdline_args[i]};
@@ -166,6 +167,9 @@ void GDKotlin::init() {
             is_gc_activated = false;
             //TODO: Link to documentation
             WARN_PRINT("GC thread was disable. --jvm-disable-gc should only be used for debugging purpose")
+        } else if (cmd_arg == "--jvm-disable-closing-leaks-warning") {
+            WARN_PRINT("JVM leaked instances will not be displayed in console (see --jvm-disable-closing-leaks-warning)")
+            should_display_leaked_jvm_instances_on_close = false;
         }
     }
 
@@ -243,6 +247,13 @@ void GDKotlin::init() {
         garbage_collector_instance.call_void_method(env, start_method_id, start_args);
         print_verbose("GC thread started.");
         is_gc_started = true;
+    }
+
+    if (!should_display_leaked_jvm_instances_on_close) {
+        jni::MethodId set_should_display_method_id{garbage_collector_cls.get_method_id(
+                env, "setShouldDisplayLeakInstancesOneClose", "(Z)V")};
+        jvalue d_arg[1] = {jni::to_jni_arg(false)};
+        garbage_collector_instance.call_void_method(env, set_should_display_method_id, d_arg);
     }
 
     jni::JClass bootstrap_cls = env.load_class("godot.runtime.Bootstrap", class_loader);

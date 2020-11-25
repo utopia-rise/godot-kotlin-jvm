@@ -19,6 +19,8 @@ object GarbageCollector {
 
     private var forceJvmGarbageCollector = false
 
+    var shouldDisplayLeakInstancesOneClose = true
+
     private var gcState = GCState.NONE
     val isClosed: Boolean
         get() = gcState == GCState.CLOSED
@@ -71,17 +73,19 @@ object GarbageCollector {
                         buildString {
                             append("Some JVM godot instances are leaked.")
                             append(System.lineSeparator())
-                            append("Leaked references:")
-                            append(System.lineSeparator())
-                            for (entry in refWrappedMap) {
-                                append("    ${entry.key}: ${entry.value}")
+                            if (shouldDisplayLeakInstancesOneClose) {
+                                append("Leaked references:")
                                 append(System.lineSeparator())
-                            }
-                            append("Leaked objects:")
-                            append(System.lineSeparator())
-                            for (entry in wrappedMap) {
-                                append("    ${entry.key}: ${entry.value}")
+                                for (entry in refWrappedMap) {
+                                    append("    ${entry.key}: ${entry.value}")
+                                    append(System.lineSeparator())
+                                }
+                                append("Leaked objects:")
                                 append(System.lineSeparator())
+                                for (entry in wrappedMap) {
+                                    append("    ${entry.key}: ${entry.value}")
+                                    append(System.lineSeparator())
+                                }
                             }
                         }
                 )
