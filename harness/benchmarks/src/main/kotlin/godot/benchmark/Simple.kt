@@ -70,4 +70,7 @@ class Simple : Object() {
         }
         return node
     }
+
+    fun benchmarkMethodCall() {
+    }
 }

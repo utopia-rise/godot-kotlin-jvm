@@ -18,6 +18,8 @@ func __resolve_script(lang, name):
         path = "gd/%s.gd" % name
     elif lang == "kt":
         path = "src/main/kotlin/godot/benchmark/%s.kt" % name
+    elif lang == "csharp":
+        path = "csharp/%s.cs" % name
     else:
         assert(false, "Invalid language: %s" % lang)
     return "res://%s" % path

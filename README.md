@@ -70,3 +70,14 @@ Godot-jvm is using a shared buffer between JVM and engine to share methods param
 size is `20 000 000` bytes for each threads.  
 If you'd like to change this buffer size, add `--jvm-to-engine-shared-buffer-size=XXXX` command line argument to
 godot, where `XXXX` stands for the desired size.
+
+
+## Build engine for C# and Kotlin/JVM
+1. Fulfill requirements mentioned here: https://docs.godotengine.org/en/stable/development/compiling/compiling_with_mono.html
+2. scons p=<platform> tools=yes module_mono_enabled=yes mono_glue=no
+3. <godot_binary> --generate-mono-glue modules/mono/glue
+    - For this step to work you need a jre in the root `godot` folder
+    - And a `godot-bootstrap.jar` in `build/libs` of the root `godot` folder
+4. export LD_PRELOAD=<path_to_sample_project>/jre/lib/libjsig.so
+5. scons -j20 platform=<platform> module_mono_enabled=yes
+6. run with `../../../../bin/godot.x11.tools.64.mono`

@@ -50,6 +50,13 @@ class Entry : godot.runtime.Entry() {
                             className = "Node"
                         }
                 )
+
+                function(Simple::benchmarkMethodCall, VariantType.NIL,
+                    returns = {
+                        type = VariantType.NIL
+                        className = "kotlin.Unit"
+                    }
+                )
             }
         }
     }

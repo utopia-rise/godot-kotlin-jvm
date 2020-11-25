@@ -107,7 +107,9 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
 void GDKotlin::init() {
     jni::InitArgs args;
     args.version = JNI_VERSION_1_8;
+#ifdef DEBUG_ENABLED
     args.option("-Xcheck:jni");
+#endif
 
     // Initialize remote jvm debug if one of jvm debug arguments is encountered.
     // Initialize if jvm GC should be forced
