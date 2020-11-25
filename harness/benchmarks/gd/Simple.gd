@@ -34,7 +34,8 @@ func benchmark_vectors2_only():
 func benchmark_icall():
 	var node = Node.new()
 	node.get_instance_id()
-	return node
+	node.free()
+	return 0
 
 func benchmark_icall_with_loop():
 	var node = Node.new()
@@ -43,7 +44,8 @@ func benchmark_icall_with_loop():
 		node.add_child(child)
 		node.remove_child(child)
 		child.free()
-	return node
+	node.free()
+	return 0
 
 func benchmark_method_call():
 	pass
