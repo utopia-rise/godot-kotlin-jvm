@@ -2,12 +2,14 @@ var instance
 var name
 var method
 var lang
+var warmup
 
-func _init(instance, name, method, lang):
+func _init(instance, name, method, lang, warmup):
     self.instance = instance
     self.name = name
     self.method = method
     self.lang = lang
+    self.warmup = warmup
 
 func exec():
     self.instance.call(method)
