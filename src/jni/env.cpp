@@ -67,7 +67,7 @@ namespace jni {
     }
 
     void* Env::get_direct_buffer_address(const jni::JObject& buffer) {
-        auto res = env->GetDirectBufferAddress(buffer.obj);
+        void* res = env->GetDirectBufferAddress(buffer.obj);
         check_exceptions();
         return res;
     }

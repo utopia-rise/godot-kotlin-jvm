@@ -56,6 +56,7 @@ class Bootstrap {
         executor?.shutdown()
         watchService?.close()
         unloadClasses(registry.classes.toTypedArray())
+        registry.classes.clear()
     }
 
     /**

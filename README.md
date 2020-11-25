@@ -41,35 +41,20 @@ Each Issue has a Maintainer that is the "supervisor" for the general topic the i
     - `cd modules/kotlin_jvm`
     - `git submodule update --init --recursive`
 
-4. Setup Protobuf:  
-    https://github.com/protocolbuffers/protobuf/tree/master/src (install the java version, which already includes cpp)
-    - `./configure --disable-shared CXXFLAGS="-fPIC" --prefix=<repo-root>/libprotobuf`
-    - `make`
-    - `make install`
-    - Windows instructions
-      
-      0. Install CMake with chocolatey
-      1. Clone protobuf repo:
-      `https://github.com/protocolbuffers/protobuf/`
-      2. Mkdir and cd to `cmake/build/release`
-      3. Configure project with : ```
-      cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=<repo-root>/libprotobuf ../.. ```
-      4. Install with : `nmake install`
+4. Build the engine with our module: `scons -j8 platform=x11 # your platform`
 
-5. Build the engine with our module: `scons -j8 platform=x11 # your platform`
-
-6. Build sample
+5. Build sample
     - navigate to `harness/tests`
     - create embedded jvm (at least Java 9 is needed!): `jlink --add-modules java.base,java.logging --output jre`
         - If you want to remote debug add module `jdk.jdwp.agent` to command.
         - If you want to enable jmx, add `jdk.management.agent` to command.
     - `./gradlew build`
 
-7. In order to run the samples run `../../../../bin/godot.x11.tools.64`
+6. In order to run the samples run `../../../../bin/godot.x11.tools.64`
     - To run the editor append `-e`: `../../../../bin/godot.x11.tools.64 -e`
     - You have to be in the folder of the sample you want to run for this to work otherwise the embedded jvm will not be detected correctly! This will of course change in the future but for now our priorities lie elsewhere.
 
-8. In order to debug your jvm code, you should start godot with command line `--jvm-debug-port=XXXX`, where `XXXX`
+7. In order to debug your jvm code, you should start godot with command line `--jvm-debug-port=XXXX`, where `XXXX`
 stands for the jmx port of you choice. You can then setup remote debug configuration in Intellij' Idea.
 
 
@@ -78,3 +63,10 @@ stands for the jmx port of you choice. You can then setup remote debug configura
 - Attach remote debugger to process (a preconfigured run configuration for it is present in the sample project `tests` called `DebugEntryGenerator`)
 
 Note: Compilation with attached debugger will be way slower. Especially for the initial build. So be patient. It takes some time until it hits your breakpoints.
+
+## Increment shared buffer capacity
+
+Godot-jvm is using a shared buffer between JVM and engine to share methods parameters and returns. Default shared buffer
+size is `20 000 000` bytes for each threads.  
+If you'd like to change this buffer size, add `--jvm-to-engine-shared-buffer-size=XXXX` command line argument to
+godot, where `XXXX` stands for the desired size.

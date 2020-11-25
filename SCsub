@@ -10,20 +10,9 @@ java_include_dirs = [
     java_home + "/include/win32",
     java_home + "/include/darwin"
 ]
-protobuf_include_dir = [
-    "libprotobuf/include/"
-]
-
-protobuf_lib_dir = Dir("libprotobuf/lib").path
-if env["platform"] == "windows":
-    env.Append(LINKFLAGS="/LIBPATH:" + protobuf_lib_dir)
-    env.Append(LINKFLAGS="/DEFAULTLIB:libprotobuf")
-else:
-    env.Append(LINKFLAGS="-L" + protobuf_lib_dir)
-    env.Append(LIBS="protobuf")
 
 module_env = env.Clone()
-module_env.Append(CPPPATH=[java_include_dirs, protobuf_include_dir])
+module_env.Append(CPPPATH=[java_include_dirs])
 module_env.add_source_files(module_env.modules_sources, "register_types.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/jni/*.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/wire/*.pb.cc")

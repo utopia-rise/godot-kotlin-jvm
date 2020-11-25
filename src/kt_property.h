@@ -52,9 +52,9 @@ public:
 DECLARE_JNI_METHODS(
         JNI_METHOD(GET_KT_PROPERTY_INFO, "getKtPropertyInfo", "()Lgodot/core/KtPropertyInfo;")
         JNI_METHOD(IS_REF, "isRef", "()Z")
-        JNI_METHOD(CALL_GET, "callGet", "(Lgodot/core/KtObject;)Z")
+        JNI_METHOD(CALL_GET, "callGet", "(Lgodot/core/KtObject;)V")
         JNI_METHOD(CALL_SET, "callSet", "(Lgodot/core/KtObject;)V")
-        JNI_METHOD(GET_DEFAULT_VALUE, "getDefaultValue", "()Z")
+        JNI_METHOD(GET_DEFAULT_VALUE, "getDefaultValue", "()V")
 )
 };
 

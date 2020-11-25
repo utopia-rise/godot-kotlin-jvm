@@ -2,51 +2,52 @@ package godot
 
 import godot.benchmark.Simple
 import godot.core.KtConstructor0
-import godot.core.KtVariant
+import godot.core.VariantType
+import godot.core.getVariantType
 
 class Entry : godot.runtime.Entry() {
     override fun Context.init() {
         with (registry) {
             registerClass<Simple>(Simple::class.qualifiedName!!, "Object") {
                 constructor(KtConstructor0(::Simple))
-                function(Simple::benchmarkSimpleAdd, ::KtVariant,
+                function(Simple::benchmarkSimpleAdd, ::getVariantType,
                     returns = {
-                        type = KtVariant.Type.LONG
+                        type = VariantType.LONG
                         className = "Int"
                     }
                 )
 
-                function(Simple::benchmarkAvg, ::KtVariant,
+                function(Simple::benchmarkAvg, ::getVariantType,
                     returns = {
-                        type = KtVariant.Type.LONG
+                        type = VariantType.LONG
                         className = "Int"
                     }
                 )
 
-                function(Simple::benchmarkVectors, ::KtVariant,
+                function(Simple::benchmarkVectors, ::getVariantType,
                     returns = {
-                        type = KtVariant.Type.VECTOR3
+                        type = VariantType.VECTOR3
                         className = "Vector3"
                     }
                 )
 
-                function(Simple::benchmarkVectors2Only, ::KtVariant,
+                function(Simple::benchmarkVectors2Only, ::getVariantType,
                     returns = {
-                        type = KtVariant.Type.VECTOR2
+                        type = VariantType.VECTOR2
                         className = "Vector2"
                     }
                 )
 
-                function(Simple::benchmarkICall, ::KtVariant,
+                function(Simple::benchmarkICall, ::getVariantType,
                         returns = {
-                            type = KtVariant.Type.OBJECT
+                            type = VariantType.OBJECT
                             className = "Node"
                         }
                 )
 
-                function(Simple::benchmarkICallWithLoop, ::KtVariant,
+                function(Simple::benchmarkICallWithLoop, ::getVariantType,
                         returns = {
-                            type = KtVariant.Type.OBJECT
+                            type = VariantType.OBJECT
                             className = "Node"
                         }
                 )

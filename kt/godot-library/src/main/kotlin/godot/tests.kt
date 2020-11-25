@@ -15,28 +15,37 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
     }
 
     fun connect(name: String, target: Object, method: String, binds: VariantArray, flags: Long): GodotError {
-        val refreshBuffer = TransferContext.writeArguments(KtVariant(name), KtVariant(target), KtVariant(method), KtVariant(binds), KtVariant(flags))
-        TransferContext.callMethod(rawPtr, OBJECT, OBJECT_CONNECT, KtVariant.Type.LONG, refreshBuffer)
-        return GodotError.values()[TransferContext.readReturnValue().asInt()]
+        TransferContext.writeArguments(
+                VariantType.STRING to name,
+                VariantType.OBJECT to target,
+                VariantType.STRING to method,
+                VariantType.ARRAY to binds,
+                VariantType.LONG to flags
+        )
+        TransferContext.callMethod(rawPtr, OBJECT, OBJECT_CONNECT, VariantType.LONG)
+        return GodotError.values()[(TransferContext.readReturnValue() as Long).toInt()]
     }
 
     fun emitSignal(signal: String, vararg args: Any?) {
-        val refreshBuffer = TransferContext.writeArguments(KtVariant(signal), *args.map { wrap(it) }.toTypedArray())
-        TransferContext.callMethod(rawPtr, OBJECT, OBJECT_EMIT_SIGNAL, KtVariant.Type.NIL, refreshBuffer)
+        TransferContext.writeArguments(
+                VariantType.STRING to signal,
+                *args.map { wrap(it) }.toTypedArray()
+        )
+        TransferContext.callMethod(rawPtr, OBJECT, OBJECT_EMIT_SIGNAL, VariantType.NIL)
         TransferContext.readReturnValue()
     }
 
     override fun getInstanceId(): Long {
-        val refreshBuffer =TransferContext.writeArguments()
-        TransferContext.callMethod(rawPtr, OBJECT, OBJECT_GET_INSTANCE_ID, KtVariant.Type.LONG, refreshBuffer)
-        return TransferContext.readReturnValue().asLong()
+        TransferContext.writeArguments()
+        TransferContext.callMethod(rawPtr, OBJECT, OBJECT_GET_INSTANCE_ID, VariantType.LONG)
+        return TransferContext.readReturnValue() as Long
     }
 
     fun Signal0.emit() {
         emit(this@Object)
     }
 
-    fun <K: () -> Unit> Signal0.connect(
+    fun <K : () -> Unit> Signal0.connect(
             target: Object,
             method: K,
             binds: VariantArray? = null,
@@ -312,12 +321,12 @@ open class Node : Object() {
     open var name: String
         get() {
             TransferContext.writeArguments()
-            TransferContext.callMethod(rawPtr, NODE, NODE_GET_NAME, KtVariant.Type.STRING, false)
-            return TransferContext.readReturnValue().asString()
+            TransferContext.callMethod(rawPtr, NODE, NODE_GET_NAME, VariantType.STRING)
+            return TransferContext.readReturnValue() as String
         }
         set(value) {
-            val refresh = TransferContext.writeArguments(KtVariant(value))
-            TransferContext.callMethod(rawPtr, NODE, NODE_SET_NAME, KtVariant.Type.NIL, refresh)
+            TransferContext.writeArguments(VariantType.STRING to value)
+            TransferContext.callMethod(rawPtr, NODE, NODE_SET_NAME, VariantType.NIL)
             TransferContext.readReturnValue()
         }
 
@@ -326,20 +335,21 @@ open class Node : Object() {
     }
 
     open fun getParent(): Node {
-        val refresh = TransferContext.writeArguments()
-        TransferContext.callMethod(rawPtr, NODE, NODE_GET_PARENT, KtVariant.Type.OBJECT, refresh)
-        return TransferContext.readReturnValue().asObject()
+        TransferContext.writeArguments()
+        TransferContext.callMethod(rawPtr, NODE, NODE_GET_PARENT, VariantType.OBJECT)
+        val readReturnValue = TransferContext.readReturnValue()
+        return readReturnValue as Node
     }
 
     open fun addChild(node: Node) {
-        val refresh = TransferContext.writeArguments(KtVariant(node))
-        TransferContext.callMethod(rawPtr, NODE, NODE_ADD_CHILD, KtVariant.Type.NIL, refresh)
+        TransferContext.writeArguments(VariantType.OBJECT to node)
+        TransferContext.callMethod(rawPtr, NODE, NODE_ADD_CHILD, VariantType.NIL)
         TransferContext.readReturnValue()
     }
 
     open fun removeChild(node: Node) {
-        val refresh = TransferContext.writeArguments(KtVariant(node))
-        TransferContext.callMethod(rawPtr, NODE, NODE_REMOVE_CHILD, KtVariant.Type.NIL, refresh)
+        TransferContext.writeArguments(VariantType.OBJECT to node)
+        TransferContext.callMethod(rawPtr, NODE, NODE_REMOVE_CHILD, VariantType.NIL)
         TransferContext.readReturnValue()
     }
 }

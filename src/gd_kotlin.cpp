@@ -4,6 +4,10 @@
 #include "core/os/os.h"
 #include "core/project_settings.h"
 #include "bootstrap.h"
+#include "type_manager.h"
+
+// If changed, remember to change also TransferContext::bufferCapacity on JVM side
+const int DEFAULT_SHARED_BUFFER_SIZE{20'000'000};
 
 jni::JObject get_current_thread(jni::Env& env) {
     jni::JClass cls = env.find_class("java/lang/Thread");
@@ -69,9 +73,15 @@ void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) 
 }
 
 void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types, jobjectArray p_method_names) {
+    print_verbose("Starting to register managed engine types...");
     jni::Env env(p_env);
     jni::JObjectArray engine_types{p_engine_types};
-    KtVariant::register_engine_types(env, engine_types);
+    for (int i = 0; i < engine_types.length(env); ++i) {
+        const String& class_name = env.from_jstring(static_cast<jni::JString>(engine_types.get(env, i)));
+        GDKotlin::get_instance().engine_type_names.insert(i, class_name);
+        TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name] = i;
+        print_verbose(vformat("Registered %s engine type with index %s.", class_name, i));
+    }
     jni::JObjectArray method_names{p_method_names};
     for (int i = 0; i < method_names.length(env); i++) {
         GDKotlin::get_instance().engine_type_method_names.insert(i,
@@ -81,12 +91,10 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
     j_object.delete_local_ref(env);
     engine_types.delete_local_ref(env);
     method_names.delete_local_ref(env);
+    print_verbose("Done registering managed engine types...");
 }
 
 void GDKotlin::init() {
-    // Initialize type mappings
-    KtVariant::initMethodArray();
-
     jni::InitArgs args;
     args.version = JNI_VERSION_1_8;
     args.option("-Xcheck:jni");
@@ -99,6 +107,7 @@ void GDKotlin::init() {
     bool is_gc_force_mode{false};
     bool is_gc_activated{true};
     long gc_thread_period_interval{500};
+    int jvm_to_engine_shared_buffer_size{DEFAULT_SHARED_BUFFER_SIZE};
     const List<String>& cmdline_args{OS::get_singleton()->get_cmdline_args()};
     for (int i = 0; i < cmdline_args.size(); ++i) {
         const String cmd_arg{cmdline_args[i]};
@@ -129,11 +138,22 @@ void GDKotlin::init() {
             if (split_jvm_debug_argument(cmd_arg, result) == OK) {
                 gc_thread_period_interval = result.to_int64();
             }
+        } else if (cmd_arg.find("--jvm-to-engine-shared-buffer-size") >= 0) {
+            String result;
+            if (split_jvm_debug_argument(cmd_arg, result) == OK) {
+                jvm_to_engine_shared_buffer_size = result.to_int();
+                //TODO: Link to documentation
+                WARN_PRINT(vformat("Warning ! Buffer capacity was changed to %s, this is not a recommended practice",
+                                   result))
+            }
         } else if (cmd_arg == "--jvm-force-gc") {
             is_gc_force_mode = true;
+            //TODO: Link to documentation
+            WARN_PRINT("GC is started in force mode, this should only be done for debugging purpose")
         } else if (cmd_arg == "--jvm-disable-gc") {
             is_gc_activated = false;
-            print_line("Warning ! GC thread was disable. --jvm-disable-gc should only be used for debugging purpose");
+            //TODO: Link to documentation
+            WARN_PRINT("GC thread was disable. --jvm-disable-gc should only be used for debugging purpose")
         }
     }
 
@@ -178,6 +198,11 @@ void GDKotlin::init() {
     jni::JObject transfer_ctx_instance = transfer_ctx_cls.get_static_object_field(env, transfer_ctx_instance_field);
     CRASH_COND_MSG(transfer_ctx_instance.isNull(), "Failed to retrieve TransferContext instance")
     transfer_context = new TransferContext(transfer_ctx_instance, class_loader);
+    if (jvm_to_engine_shared_buffer_size != DEFAULT_SHARED_BUFFER_SIZE) {
+        jni::MethodId set_buffer_size_method{transfer_ctx_cls.get_method_id(env, "setBufferSize", "(I)V")};
+        jvalue buffer_size[1] = {jni::to_jni_arg(jvm_to_engine_shared_buffer_size)};
+        transfer_ctx_instance.call_void_method(env, set_buffer_size_method, buffer_size);
+    }
 
     jni::JClass garbage_collector_cls{env.load_class("godot.core.GarbageCollector", class_loader)};
     jni::FieldId garbage_collector_instance_field{
@@ -250,7 +275,11 @@ void GDKotlin::finish() {
 
     delete memory_bridge;
     memory_bridge = nullptr;
-    KtVariant::clear_engine_types();
+
+    engine_type_method_names.clear();
+    engine_type_names.clear();
+
+    TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.clear();
     class_loader.delete_global_ref(env);
     jni::Jvm::destroy();
     print_line("Shutting down JVM ...");
