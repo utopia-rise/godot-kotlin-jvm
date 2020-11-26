@@ -66,4 +66,4 @@ func _to_string():
 	var pc05 = results.p05
 	var pc95 = results.p95
 	var args = [avg, _min, pc05, median, pc95, _max]
-	return "AVG=%d op/s, MIN=%d op/s, 05PC=%d op/s, MEDIAN=%d op/s, 95PC=%d op/s MAX=%d op/s" % args
+	return "AVG=%d op/s, MIN=%d op/s, 05PC=%d op/s, MEDIAN=%d op/s, 95PC=%d op/s, MAX=%d op/s" % args
