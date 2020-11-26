@@ -37,14 +37,14 @@ class Entry : godot.runtime.Entry() {
                     }
                 )
 
-                function(Simple::benchmarkICall, VariantType.JVM_INT,
+                function(Simple::benchmarkIcall, VariantType.JVM_INT,
                         returns = {
                             type = VariantType.LONG
                             className = "Int"
                         }
                 )
 
-                function(Simple::benchmarkICallWithLoop, VariantType.JVM_INT,
+                function(Simple::benchmarkIcallWithLoop, VariantType.JVM_INT,
                         returns = {
                             type = VariantType.LONG
                             className = "Int"
