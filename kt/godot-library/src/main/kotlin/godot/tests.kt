@@ -32,7 +32,6 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
                 *args.map { VariantType.ANY to it }.toTypedArray()
         )
         TransferContext.callMethod(rawPtr, OBJECT_EMIT_SIGNAL, VariantType.NIL)
-        TransferContext.readReturnValue(VariantType.NIL)
     }
 
     override fun getInstanceId(): Long {
@@ -327,7 +326,6 @@ open class Node : Object() {
         set(value) {
             TransferContext.writeArguments(VariantType.STRING to value)
             TransferContext.callMethod(rawPtr, NODE_SET_NAME, VariantType.NIL)
-            TransferContext.readReturnValue(VariantType.NIL)
         }
 
     override fun __new(): VoidPtr {
@@ -337,20 +335,18 @@ open class Node : Object() {
     open fun getParent(): Node? {
         TransferContext.writeArguments()
         TransferContext.callMethod(rawPtr, NODE_GET_PARENT, VariantType.OBJECT)
-        val readReturnValue = TransferContext.readReturnValue(VariantType.OBJECT)
+        val readReturnValue = TransferContext.readReturnValue(VariantType.OBJECT, true)
         return readReturnValue as Node?
     }
 
     open fun addChild(node: Node) {
         TransferContext.writeArguments(VariantType.OBJECT to node)
         TransferContext.callMethod(rawPtr, NODE_ADD_CHILD, VariantType.NIL)
-        TransferContext.readReturnValue(VariantType.NIL)
     }
 
     open fun removeChild(node: Node) {
         TransferContext.writeArguments(VariantType.OBJECT to node)
         TransferContext.callMethod(rawPtr, NODE_REMOVE_CHILD, VariantType.NIL)
-        TransferContext.readReturnValue(VariantType.NIL)
     }
 }
 
