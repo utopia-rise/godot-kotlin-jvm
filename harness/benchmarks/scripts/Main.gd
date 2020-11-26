@@ -26,9 +26,7 @@ func _init():
 	else:
 		commit = str(OS.get_datetime().hash())
 			
-		
 	var report = Report.new(commit)
-	
 	
 	for cls in classes:
 		print("Starting class test: %s" % cls)
@@ -38,6 +36,7 @@ func _init():
 			var new_test_name = benchmark.name
 			if test_name != new_test_name:
 				test_name = new_test_name
+				print("")
 				print("Running benchmark: %s" % test_name)
 			__run_benchmark(benchmark, report)
 	print("Benchmark tests are over!")

@@ -48,8 +48,8 @@ func get_results():
 	result["max"] = __to_op_per_s(get_max())
 	result["avg"] = __to_op_per_s(get_avg())
 	result["median"] = __to_op_per_s(get_median())
-	result["p95"] = __to_op_per_s(get_percentile(0.95))
-	result["p99"] = __to_op_per_s(get_percentile(0.95))
+	result["p05"] = __to_op_per_s(get_percentile(0.95))
+	result["p95"] = __to_op_per_s(get_percentile(0.05))
 	return result
 
 func __to_op_per_s(value):
@@ -63,7 +63,7 @@ func _to_string():
 	var _max = results.max
 	var avg = results.avg
 	var median = results.median
+	var pc05 = results.p05
 	var pc95 = results.p95
-	var pc99 = results.p99
-	var args = [_min, _max, avg, median, pc95, pc99]
-	return "AVG=%d op/s, MEDIAN=%d op/s, MIN=%d, MAX=%d 95PC=%d op/s, 99PC=%d op/s" % args
+	var args = [avg, _min, pc05, median, pc95, _max]
+	return "AVG=%d op/s, MIN=%d, 05PC=%d op/s, MEDIAN=%d op/s, 95PC=%d op/s MAX=%d " % args
