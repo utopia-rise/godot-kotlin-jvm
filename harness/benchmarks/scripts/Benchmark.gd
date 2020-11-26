@@ -1,18 +1,17 @@
-var instance
-var name
-var method
-var lang
-var warmup
+extends Reference
+class_name Benchmark
 
-func _init(instance, name, method, lang, warmup):
-    self.instance = instance
-    self.name = name
-    self.method = method
-    self.lang = lang
-    self.warmup = warmup
+var instance: Object
+var name: String
+var method: String
+var lang: Language
+var warmup: bool
+
+func _init(instance: Object, name: String, method: String, lang: Language):
+	self.instance = instance
+	self.name = name
+	self.method = method
+	self.lang = lang
 
 func exec():
-    self.instance.call(method)
-
-func _to_string():
-    return "[name=%s, lang=%s]" % [self.name, self.lang]
+	self.instance.call(method)

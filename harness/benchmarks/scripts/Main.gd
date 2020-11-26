@@ -1,86 +1,106 @@
 extends MainLoop
-
-var Benchmarks = load("res://scripts/Benchmarks.gd")
-var Stats = load("res://scripts/Stats.gd")
-var Report = load("res://scripts/Report.gd")
+var iterations: int = 1000
+var warmups: int = 3000
+var commit: String
 
 var classes = [
 	"Simple"
 ]
+
 var languages = [
-	["gd", false],
-	["kt", true],
-	["csharp", true]
+	Language.new("GDScript", "gd", "res://gd/", false),
+	Language.new("Kotlin", "kt", "res://src/main/kotlin/godot/benchmark/", true),
+	Language.new("C# Mono", "cs", "res://csharp/", true)
 ]
 
 func _init():
-	var args = __parse_args()
+	var args: Dictionary = __parse_args()
 	print("Parsed arguments: %s" % str(args))
-	var report = Report.new(args.commit)
-	var factory = Benchmarks.new()
+
+	if args.has("iterations"):
+		iterations = args.iterations
+	if args.has("warmups"):
+		warmups = args.warmup
+	if args.has("commit"):
+		commit = args.commit
+	else:
+		commit = str(OS.get_datetime().hash())
+			
+		
+	var report = Report.new(commit)
+	
+	
 	for cls in classes:
-		for lang in languages:
-			for benchmark in factory.create(lang[0], lang[1], cls):
-				__run_benchmark(benchmark, report)
+		print("Starting class test: %s" % cls)
+		var benchmarks: Array = Benchmarks.create(languages, cls)
+		var test_name: String = ""
+		for benchmark in benchmarks:
+			var new_test_name = benchmark.name
+			if test_name != new_test_name:
+				test_name = new_test_name
+				print("Running benchmark: %s" % test_name)
+			__run_benchmark(benchmark, report)
+	print("Benchmark tests are over!")
 	__save_report(report)
 
 
-func __run_benchmark(benchmark, report, iterations=1000, warmups=3000):
+func __run_benchmark(benchmark: Benchmark, report: Report):
 	var stats = Stats.new()
-	print("Running benchmark: %s" % str(benchmark))
 	if benchmark.warmup:
 		for warmup in range(warmups):
 			__do_run(warmup, benchmark, stats, true)
 	for iteration in range(iterations):
 		__do_run(iteration, benchmark, stats, false)
-	print("Results: %s" % str(stats))
+	printt("	%s: %s" % [benchmark.lang.name, str(stats)])
 	report.add(benchmark, stats.get_results())
 
 
-func __do_run(iteration, benchmark, stats, is_warmup):
-    var start: float = OS.get_ticks_usec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    benchmark.exec()
-    var duration: float = OS.get_ticks_usec() - start
-    if not is_warmup:
-        stats.add(duration/30)
-        #print("[iteration=%d,run=%d] %dus" % [iteration, run, duration])
+func __do_run(iteration: int, benchmark: Benchmark, stats: Stats, is_warmup: bool):
+	var start: float = OS.get_ticks_usec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	benchmark.exec()
+	var duration: float = OS.get_ticks_usec() - start
+	if not is_warmup:
+		stats.add(duration/30)
+		#print("[iteration=%d,run=%d] %dus" % [iteration, run, duration])
 
-func __save_report(report):
+func __save_report(report: Report):
 	var f = File.new()
-	f.open("res://build/benchmark-results.json", File.WRITE_READ)
+	var path = "res://build/benchmark-results.json"
+	print("Writing results at: %s" % path)
+	f.open(path, File.WRITE_READ)
 	f.store_string(report.to_json())
 	f.close()
 
-func __parse_args():
+func __parse_args() -> Dictionary:
 	var arguments = {}
 	for argument in OS.get_cmdline_args():
 		if argument.find("=") > -1:
