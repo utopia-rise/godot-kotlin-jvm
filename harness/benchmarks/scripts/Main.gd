@@ -50,7 +50,7 @@ func __run_benchmark(benchmark: Benchmark, report: Report):
 			__do_run(warmup, benchmark, stats, true)
 	for iteration in range(iterations):
 		__do_run(iteration, benchmark, stats, false)
-	printt("	%s: %s" % [benchmark.lang.name, str(stats)])
+	printt("%s:" % benchmark.lang.name, str(stats))
 	report.add(benchmark, stats.get_results())
 
 
