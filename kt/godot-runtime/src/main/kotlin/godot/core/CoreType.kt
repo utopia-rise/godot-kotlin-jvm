@@ -4,6 +4,7 @@ import godot.util.VoidPtr
 
 interface CoreType
 
-open class NativeCoreType: CoreType {
+abstract class NativeCoreType: CoreType {
+    internal abstract val coreVariantType: VariantType
     internal var _handle: VoidPtr = 0
 }

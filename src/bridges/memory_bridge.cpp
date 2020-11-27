@@ -27,10 +27,17 @@ MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) 
             (void*) MemoryBridge::ref
     };
 
+    jni::JNativeMethod unref_native_core_type_method{
+            "unrefNativeCoreType",
+            "(JI)Z",
+            (void*) MemoryBridge::unref_native_core_type
+    };
+
     Vector<jni::JNativeMethod> methods;
     methods.push_back(check_instance_method);
     methods.push_back(unref_method);
     methods.push_back(ref_method);
+    methods.push_back(unref_native_core_type_method);
 
     jni::Env env{jni::Jvm::current_env()};
     j_class.register_natives(env, methods);
@@ -65,4 +72,37 @@ bool MemoryBridge::ref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::JObject local_ref{p_instance};
     local_ref.delete_local_ref(env);
     return reference->init_ref();
+}
+
+bool MemoryBridge::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint var_type) {
+    Variant::Type variant_type{static_cast<Variant::Type>(var_type)};
+    switch (variant_type) {
+
+        case Variant::DICTIONARY:
+            break;
+        case Variant::ARRAY:
+            memdelete(reinterpret_cast<Array*>(p_raw_ptr));
+            return true;
+        case Variant::POOL_BYTE_ARRAY:
+            break;
+        case Variant::POOL_INT_ARRAY:
+            break;
+        case Variant::POOL_REAL_ARRAY:
+            break;
+        case Variant::POOL_STRING_ARRAY:
+            break;
+        case Variant::POOL_VECTOR2_ARRAY:
+            break;
+        case Variant::POOL_VECTOR3_ARRAY:
+            break;
+        case Variant::POOL_COLOR_ARRAY:
+            break;
+        default:
+            break;
+    }
+
+    jni::Env env(p_raw_env);
+    jni::JObject local_ref{p_instance};
+    local_ref.delete_local_ref(env);
+    return false;
 }

@@ -39,7 +39,9 @@ val variantMapper: Map<KClass<*>, VariantType> = mapOf(
 
 class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
 
-    var variantType: VariantType = VariantType.NIL
+    override val coreVariantType: VariantType = VariantType.ARRAY
+
+    private var variantType: VariantType = VariantType.NIL
 
     @PublishedApi
     internal constructor(handle: VoidPtr) {
@@ -499,6 +501,8 @@ inline fun <reified T> VariantArray() =
         VariantArray<T>(
                 variantMapper[T::class]
                         ?: throw UnsupportedOperationException("Can't create a VariantArray with generic ${T::class}.")
-        )
+        ).also {
+            GarbageCollector.registerNativeCoreType(it)
+        }
 
 fun variantArrayOf(vararg args: Any?) = VariantArray<Any?>()
