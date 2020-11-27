@@ -130,7 +130,9 @@ namespace ktvariant {
 
     static void to_kvariant_fromARRAY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::ARRAY);
-        //TODO
+        des->increment_position(
+                encode_uint64(reinterpret_cast<uintptr_t>(new Array(src.operator Array())), des->get_cursor())
+        );
     }
 
     static void to_kvariant_fromOBJECT(SharedBuffer* des, const Variant& src) {
@@ -306,7 +308,9 @@ namespace ktvariant {
     }
 
     static Variant from_kvariant_tokVariantArrayValue(SharedBuffer* byte_buffer) {
-        return Array();
+        uint64_t ptr{decode_uint64(byte_buffer->get_cursor())};
+        byte_buffer->increment_position(PTR_SIZE);
+        return *reinterpret_cast<Array*>(ptr);
     }
 
     static Variant from_kvariant_toKObjectValue(SharedBuffer* byte_buffer) {

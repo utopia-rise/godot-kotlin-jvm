@@ -1,6 +1,6 @@
 #include <core/reference.h>
 #include <modules/kotlin_jvm/src/gd_kotlin.h>
-#include "VariantArrayBridge.h"
+#include "variant_array_bridge.h"
 #include "constants.h"
 
 using namespace bridges;
@@ -171,6 +171,8 @@ VariantArrayBridge::VariantArrayBridge(jni::JObject p_wrapped, jni::JObject p_cl
     };
 
     Vector<jni::JNativeMethod> methods;
+    methods.push_back(engine_call_constructor_method);
+
     methods.push_back(engine_call_get_size_method);
     methods.push_back(engine_call_clear_method);
     methods.push_back(engine_call_empty_method);

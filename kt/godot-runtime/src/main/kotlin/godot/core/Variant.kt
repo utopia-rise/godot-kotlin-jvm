@@ -47,7 +47,7 @@ inline fun <reified T> Any.asObject(): T = this as T
 
 enum class VariantType(
         private val toKotlinWithoutNullCheck: (ByteBuffer, expectedType: Int) -> Any,
-        private val toGodotWithoutNullCheck: (ByteBuffer, any: Any) -> Unit
+        private val toGodotWithoutNullCheck: (ByteBuffer, any: Any) -> Unit,
 ) {
     NIL(
             { buffer: ByteBuffer, expectedType: Int ->
@@ -268,13 +268,14 @@ enum class VariantType(
     ),
     ARRAY(
             { buffer: ByteBuffer, expectedType: Int ->
-                // TODO: Placeholder for now, should be replaced when VariantArray is properly implemented.
-                VariantArray<Unit>()
+                VariantArray<Any?>().also {
+                    it._handle = buffer.long
+                }
             },
             { buffer: ByteBuffer, any: Any ->
-                // TODO: Placeholder for now, should be replaced when VariantArray is properly implemented.
                 buffer.variantType = ARRAY.ordinal
-                Unit
+                any as VariantArray<*>
+                buffer.putLong(any._handle)
             }
     ),
 
@@ -364,6 +365,8 @@ enum class VariantType(
             }
     );
 
+    var baseOrdinal = ordinal
+
     constructor(
             originalVariantType: VariantType,
             toKotlinConverter: (Any) -> Any,
@@ -373,7 +376,9 @@ enum class VariantType(
                 toKotlinConverter(originalVariantType.toKotlinWithoutNullCheck(buffer, expectedType))
             },
             { buffer: ByteBuffer, any: Any -> originalVariantType.toGodotWithoutNullCheck(buffer, toGodotConverter(any)) }
-    )
+    ) {
+        baseOrdinal = originalVariantType.ordinal
+    }
 
     internal val toGodot = { buffer: ByteBuffer, any: Any? ->
         if (any == null) {
@@ -385,7 +390,7 @@ enum class VariantType(
 
     internal val toKotlin = { buffer: ByteBuffer, isNullable: Boolean ->
         when (val variantType = buffer.variantType) {
-            ordinal -> {
+            baseOrdinal -> {
                 toKotlinWithoutNullCheck(buffer, variantType)
             }
             NIL.ordinal -> {

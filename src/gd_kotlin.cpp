@@ -5,7 +5,7 @@
 #include "core/project_settings.h"
 #include "bootstrap.h"
 #include "type_manager.h"
-#include "BridgesManager.h"
+#include "bridges_manager.h"
 
 // If changed, remember to change also TransferContext::bufferCapacity on JVM side
 const int DEFAULT_SHARED_BUFFER_SIZE{20'000'000};

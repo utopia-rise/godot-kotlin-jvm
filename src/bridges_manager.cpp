@@ -1,5 +1,5 @@
 #include <modules/kotlin_jvm/src/bridges/constants.h>
-#include "BridgesManager.h"
+#include "bridges_manager.h"
 
 BridgesManager& BridgesManager::get_instance() {
     static BridgesManager bridgesManager;

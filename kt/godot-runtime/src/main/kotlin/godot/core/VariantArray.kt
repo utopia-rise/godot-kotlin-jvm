@@ -243,7 +243,9 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
     fun duplicate(deep: Boolean = false): VariantArray<T> {
         TransferContext.writeArguments(VariantType.BOOL to deep)
         Bridge.engine_call_duplicate(_handle)
-        return TransferContext.readReturnValue(VariantType.ARRAY) as VariantArray<T>
+        return (TransferContext.readReturnValue(VariantType.ARRAY) as VariantArray<T>).also {
+            it.variantType = variantType
+        }
     }
 
     /**
@@ -371,7 +373,9 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
         TransferContext.writeArguments(VariantType.JVM_INT to begin, VariantType.JVM_INT to end,
                 VariantType.JVM_INT to step, VariantType.BOOL to deep)
         Bridge.engine_call_slice(_handle)
-        return TransferContext.readReturnValue(VariantType.ARRAY) as VariantArray<T>
+        return (TransferContext.readReturnValue(VariantType.ARRAY) as VariantArray<T>).also {
+            it.variantType = variantType
+        }
     }
 
 
