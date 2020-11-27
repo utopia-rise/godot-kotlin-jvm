@@ -5,6 +5,7 @@
 #include "core/project_settings.h"
 #include "bootstrap.h"
 #include "type_manager.h"
+#include "BridgesManager.h"
 
 // If changed, remember to change also TransferContext::bufferCapacity on JVM side
 const int DEFAULT_SHARED_BUFFER_SIZE{20'000'000};
@@ -203,7 +204,7 @@ void GDKotlin::init() {
     scripts_root = "res://src/main/kotlin/";
     String bootstrap_jar = project_settings->globalize_path("res://build/libs/godot-bootstrap.jar");
     print_line(vformat("Loading bootstrap jar: %s", bootstrap_jar));
-    auto env = jni::Jvm::current_env();
+    jni::Env env{jni::Jvm::current_env()};
     jni::JObject current_thread = get_current_thread(env);
     class_loader = create_class_loader(env, bootstrap_jar).new_global_ref<jni::JObject>(env);
     set_context_class_loader(env, current_thread, class_loader);
@@ -229,14 +230,7 @@ void GDKotlin::init() {
     };
     CRASH_COND_MSG(garbage_collector_instance.isNull(), "Failed to retrieve GarbageCollector instance")
 
-    jni::JClass memory_bridge_class{env.load_class("godot.core.GarbageCollector$MemoryBridge", class_loader)};
-    jni::FieldId memory_bridge_instance_field{
-            memory_bridge_class.get_static_field_id(env, "INSTANCE", "Lgodot/core/GarbageCollector$MemoryBridge;")
-    };
-    jni::JObject memory_bridge_instance{
-            memory_bridge_class.get_static_object_field(env, memory_bridge_instance_field)
-    };
-    memory_bridge = new MemoryBridge(memory_bridge_instance, class_loader);
+    BridgesManager::get_instance().initialize_bridges(env, class_loader);
 
     if (is_gc_activated) {
         if (is_gc_force_mode) {
@@ -296,9 +290,6 @@ void GDKotlin::finish() {
         garbage_collector_instance.call_void_method(env, clean_up_method_id);
     }
 
-    delete memory_bridge;
-    memory_bridge = nullptr;
-
     engine_type_method.clear();
     engine_type_names.clear();
 
@@ -357,6 +348,6 @@ Error GDKotlin::split_jvm_debug_argument(const String& cmd_arg, String& result) 
     return OK;
 }
 
-GDKotlin::GDKotlin() : bootstrap(nullptr), transfer_context(nullptr), memory_bridge(nullptr), is_gc_started(false) {
+GDKotlin::GDKotlin() : bootstrap(nullptr), transfer_context(nullptr), is_gc_started(false) {
 
 }

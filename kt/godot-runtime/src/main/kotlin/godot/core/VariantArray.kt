@@ -50,7 +50,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
     @PublishedApi
     internal constructor(variantType: VariantType) {
         this.variantType = variantType;
-        _handle = engine_call_constructor()
+        _handle = Bridge.engine_call_constructor()
     }
 
 //########################PUBLIC###############################
@@ -60,7 +60,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      */
     override val size: Int
         get() {
-            engine_call_get_size(_handle)
+            Bridge.engine_call_get_size(_handle)
             return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
         }
 
@@ -89,14 +89,14 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      * Clears the array. This is equivalent to using resize with a size of 0.
      */
     override fun clear() {
-        engine_call_clear(_handle)
+        Bridge.engine_call_clear(_handle)
     }
 
     /**
      * Returns true if the array is empty.
      */
     fun empty(): Boolean {
-        engine_call_empty(_handle)
+        Bridge.engine_call_empty(_handle)
         return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
     }
 
@@ -104,7 +104,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      * Returns a hashed integer value representing the array contents.
      */
     fun hash(): Int {
-        engine_call_hash(_handle)
+        Bridge.engine_call_hash(_handle)
         return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
     }
 
@@ -112,7 +112,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      * Reverses the order of the elements in the array.
      */
     fun invert() {
-        engine_call_invert(_handle)
+        Bridge.engine_call_invert(_handle)
     }
 
     override fun remove(element: T): Boolean {
@@ -129,7 +129,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      */
     fun remove(position: Int) {
         TransferContext.writeArguments(VariantType.JVM_INT to position)
-        engine_call_remove(_handle)
+        Bridge.engine_call_remove(_handle)
     }
 
     override fun removeAll(elements: Collection<T>): Boolean {
@@ -146,7 +146,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      */
     fun resize(size: Int) {
         TransferContext.writeArguments(VariantType.JVM_INT to size)
-        engine_call_resize(_handle)
+        Bridge.engine_call_resize(_handle)
     }
 
     override fun retainAll(elements: Collection<T>): Boolean {
@@ -168,7 +168,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      * Call @randomize to ensure that a new seed will be used each time if you want non-reproducible shuffling.
      */
     fun shuffle() {
-        engine_call_shuffle(_handle)
+        Bridge.engine_call_shuffle(_handle)
     }
 
 
@@ -176,7 +176,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      * Sorts the array.
      */
     fun sort() {
-        engine_call_sort(_handle)
+        Bridge.engine_call_sort(_handle)
     }
 
     /**
@@ -185,7 +185,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      */
     fun sortCustom(obj: KtObject, func: String) {
         TransferContext.writeArguments(VariantType.OBJECT to obj, VariantType.STRING to func)
-        engine_call_sortCustom(_handle)
+        Bridge.engine_call_sortCustom(_handle)
     }
 
     //API
@@ -195,7 +195,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      */
     fun append(value: T) {
         TransferContext.writeArguments(variantType to value)
-        engine_call_append(_handle)
+        Bridge.engine_call_append(_handle)
     }
 
     /**
@@ -206,7 +206,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      */
     fun bsearch(value: T, before: Boolean = true): Int {
         TransferContext.writeArguments(variantType to value, VariantType.BOOL to before)
-        engine_call_bsearch(_handle)
+        Bridge.engine_call_bsearch(_handle)
         return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
     }
 
@@ -220,7 +220,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
     fun bsearchCustom(value: T, obj: KtObject, func: String, before: Boolean = true): Int {
         TransferContext.writeArguments(variantType to value, VariantType.OBJECT to obj,
                 VariantType.STRING to func, VariantType.BOOL to before)
-        engine_call_bsearchCustom(_handle)
+        Bridge.engine_call_bsearchCustom(_handle)
         return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
     }
 
@@ -229,7 +229,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      */
     fun count(value: T): Int {
         TransferContext.writeArguments(variantType to value)
-        engine_call_count(_handle)
+        Bridge.engine_call_count(_handle)
         return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
     }
 
@@ -240,10 +240,10 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      * all nested arrays and dictionaries are duplicated and will not be shared with the original array.
      * If false, a shallow copy is made and references to the original nested arrays and dictionaries are kept, so that modifying a sub-array or dictionary in the copy will also impact those referenced in the source array.
      */
-    fun duplicate(deep: Boolean = false) = VariantArray<T>(variantType).also {
+    fun duplicate(deep: Boolean = false): VariantArray<T> {
         TransferContext.writeArguments(VariantType.BOOL to deep)
-        engine_call_duplicate(_handle)
-        _handle = TransferContext.readReturnValue(VariantType.LONG) as VoidPtr
+        Bridge.engine_call_duplicate(_handle)
+        return TransferContext.readReturnValue(VariantType.ARRAY) as VariantArray<T>
     }
 
     /**
@@ -251,7 +251,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      */
     fun erase(value: T) {
         TransferContext.writeArguments(variantType to value)
-        engine_call_erase(_handle)
+        Bridge.engine_call_erase(_handle)
     }
 
     /**
@@ -260,7 +260,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      */
     fun find(what: T, from: Int = 0): Int {
         TransferContext.writeArguments(variantType to what, VariantType.JVM_INT to from)
-        engine_call_find(_handle)
+        Bridge.engine_call_find(_handle)
         return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
     }
 
@@ -269,7 +269,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      */
     fun findLast(value: T): Int {
         TransferContext.writeArguments(variantType to value)
-        engine_call_findLast(_handle)
+        Bridge.engine_call_findLast(_handle)
         return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
     }
 
@@ -277,7 +277,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      * Returns the first element of the array, or null if the array is empty.
      */
     fun front(): T {
-        engine_call_front(_handle)
+        Bridge.engine_call_front(_handle)
         return TransferContext.readReturnValue(variantType) as T
     }
 
@@ -286,7 +286,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      */
     fun has(value: T): Boolean {
         TransferContext.writeArguments(variantType to value)
-        engine_call_has(_handle)
+        Bridge.engine_call_has(_handle)
         return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
     }
 
@@ -296,7 +296,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      */
     fun insert(position: Int, value: T) {
         TransferContext.writeArguments(VariantType.JVM_INT to position, variantType to value)
-        engine_call_insert(_handle)
+        Bridge.engine_call_insert(_handle)
     }
 
     /**
@@ -304,7 +304,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      * If the elements can't be compared, null is returned.
      */
     fun max(): T {
-        engine_call_max(_handle)
+        Bridge.engine_call_max(_handle)
         return TransferContext.readReturnValue(variantType) as T
     }
 
@@ -313,7 +313,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      * If the elements can't be compared, null is returned.
      */
     fun min(): T {
-        engine_call_min(_handle)
+        Bridge.engine_call_min(_handle)
         return TransferContext.readReturnValue(variantType) as T
     }
 
@@ -322,7 +322,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      * Returns null if the array is empty.
      */
     fun popBack(): T {
-        engine_call_popBack(_handle)
+        Bridge.engine_call_popBack(_handle)
         return TransferContext.readReturnValue(variantType) as T
     }
 
@@ -331,7 +331,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      * Returns null if the array is empty.
      */
     fun popFront(): T {
-        engine_call_popFront(_handle)
+        Bridge.engine_call_popFront(_handle)
         return TransferContext.readReturnValue(variantType) as T
     }
 
@@ -340,7 +340,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      */
     fun pushBack(value: T) {
         TransferContext.writeArguments(variantType to value)
-        engine_call_pushBack(_handle)
+        Bridge.engine_call_pushBack(_handle)
     }
 
     /**
@@ -348,7 +348,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      */
     fun pushFront(value: T) {
         TransferContext.writeArguments(variantType to value)
-        engine_call_pushFront(_handle)
+        Bridge.engine_call_pushFront(_handle)
     }
 
     /**
@@ -358,7 +358,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
      */
     fun rfind(what: T, from: Int = -1): Int {
         TransferContext.writeArguments(variantType to what, VariantType.JVM_INT to from)
-        engine_call_rfind(_handle)
+        Bridge.engine_call_rfind(_handle)
         return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
     }
 
@@ -370,10 +370,8 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
     fun slice(begin: Int, end: Int, step: Int = 1, deep: Boolean = false): VariantArray<T> {
         TransferContext.writeArguments(VariantType.JVM_INT to begin, VariantType.JVM_INT to end,
                 VariantType.JVM_INT to step, VariantType.BOOL to deep)
-        return VariantArray<T>(variantType).also {
-            engine_call_slice(_handle)
-            _handle = TransferContext.readReturnValue(VariantType.LONG) as VoidPtr
-        }
+        Bridge.engine_call_slice(_handle)
+        return TransferContext.readReturnValue(VariantType.ARRAY) as VariantArray<T>
     }
 
 
@@ -381,13 +379,13 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
 
     operator fun set(idx: Int, data: T) {
         TransferContext.writeArguments(VariantType.JVM_INT to idx, variantType to data)
-        engine_call_operator_set(_handle)
+        Bridge.engine_call_operator_set(_handle)
     }
 
 
     operator fun get(idx: Int): T {
         TransferContext.writeArguments(VariantType.JVM_INT to idx)
-        engine_call_operator_get(_handle)
+        Bridge.engine_call_operator_get(_handle)
         return TransferContext.readReturnValue(variantType) as T
     }
 
@@ -432,39 +430,41 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
         return "Array(${size})"
     }
 
-    private external fun engine_call_constructor(): VoidPtr
-    private external fun engine_call_get_size(_handle: VoidPtr)
-    private external fun engine_call_clear(_handle: VoidPtr)
-    private external fun engine_call_empty(_handle: VoidPtr)
-    private external fun engine_call_hash(_handle: VoidPtr)
-    private external fun engine_call_invert(_handle: VoidPtr)
-    private external fun engine_call_remove(_handle: VoidPtr)
-    private external fun engine_call_resize(_handle: VoidPtr)
-    private external fun engine_call_shuffle(_handle: VoidPtr)
-    private external fun engine_call_sort(_handle: VoidPtr)
-    private external fun engine_call_sortCustom(_handle: VoidPtr)
-    private external fun engine_call_append(_handle: VoidPtr)
-    private external fun engine_call_bsearch(_handle: VoidPtr)
-    private external fun engine_call_bsearchCustom(_handle: VoidPtr)
-    private external fun engine_call_count(_handle: VoidPtr)
-    private external fun engine_call_duplicate(_handle: VoidPtr)
-    private external fun engine_call_erase(_handle: VoidPtr)
-    private external fun engine_call_find(_handle: VoidPtr)
-    private external fun engine_call_findLast(_handle: VoidPtr)
-    private external fun engine_call_front(_handle: VoidPtr)
-    private external fun engine_call_has(_handle: VoidPtr)
-    private external fun engine_call_insert(_handle: VoidPtr)
-    private external fun engine_call_max(_handle: VoidPtr)
-    private external fun engine_call_min(_handle: VoidPtr)
-    private external fun engine_call_popBack(_handle: VoidPtr)
-    private external fun engine_call_popFront(_handle: VoidPtr)
-    private external fun engine_call_pushBack(_handle: VoidPtr)
-    private external fun engine_call_pushFront(_handle: VoidPtr)
-    private external fun engine_call_rfind(_handle: VoidPtr)
-    private external fun engine_call_slice(_handle: VoidPtr)
-    private external fun engine_call_operator_set(_handle: VoidPtr)
-    private external fun engine_call_operator_get(_handle: VoidPtr)
 
+    private object Bridge {
+        external fun engine_call_constructor(): VoidPtr
+        external fun engine_call_get_size(_handle: VoidPtr)
+        external fun engine_call_clear(_handle: VoidPtr)
+        external fun engine_call_empty(_handle: VoidPtr)
+        external fun engine_call_hash(_handle: VoidPtr)
+        external fun engine_call_invert(_handle: VoidPtr)
+        external fun engine_call_remove(_handle: VoidPtr)
+        external fun engine_call_resize(_handle: VoidPtr)
+        external fun engine_call_shuffle(_handle: VoidPtr)
+        external fun engine_call_sort(_handle: VoidPtr)
+        external fun engine_call_sortCustom(_handle: VoidPtr)
+        external fun engine_call_append(_handle: VoidPtr)
+        external fun engine_call_bsearch(_handle: VoidPtr)
+        external fun engine_call_bsearchCustom(_handle: VoidPtr)
+        external fun engine_call_count(_handle: VoidPtr)
+        external fun engine_call_duplicate(_handle: VoidPtr)
+        external fun engine_call_erase(_handle: VoidPtr)
+        external fun engine_call_find(_handle: VoidPtr)
+        external fun engine_call_findLast(_handle: VoidPtr)
+        external fun engine_call_front(_handle: VoidPtr)
+        external fun engine_call_has(_handle: VoidPtr)
+        external fun engine_call_insert(_handle: VoidPtr)
+        external fun engine_call_max(_handle: VoidPtr)
+        external fun engine_call_min(_handle: VoidPtr)
+        external fun engine_call_popBack(_handle: VoidPtr)
+        external fun engine_call_popFront(_handle: VoidPtr)
+        external fun engine_call_pushBack(_handle: VoidPtr)
+        external fun engine_call_pushFront(_handle: VoidPtr)
+        external fun engine_call_rfind(_handle: VoidPtr)
+        external fun engine_call_slice(_handle: VoidPtr)
+        external fun engine_call_operator_set(_handle: VoidPtr)
+        external fun engine_call_operator_get(_handle: VoidPtr)
+    }
 }
 
 

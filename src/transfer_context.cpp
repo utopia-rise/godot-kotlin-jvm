@@ -60,19 +60,6 @@ SharedBuffer* TransferContext::get_buffer(jni::Env& p_env) {
     return &shared_buffer;
 }
 
-bool TransferContext::ensure_capacity(jni::Env& p_env, long p_capacity) {
-    jni::MethodId method = get_method_id(p_env, jni_methods.ENSURE_CAPACITY);
-    jvalue call_args[1] = {jni::to_jni_arg(p_capacity)};
-    return wrapped.call_boolean_method(p_env, method, call_args);
-}
-
-void TransferContext::write_return_value(jni::Env& p_env, const Variant& p_value) {
-    SharedBuffer* buffer{get_buffer(p_env)};
-    ktvariant::send_variant_to_buffer(p_value, buffer);
-    buffer->rewind();
-    
-}
-
 void TransferContext::read_return_value(jni::Env& p_env, Variant& r_ret) {
     SharedBuffer* buffer{get_buffer(p_env)};
     ktvariant::get_variant_from_buffer(buffer, r_ret);
@@ -88,18 +75,14 @@ void TransferContext::write_args(jni::Env& p_env, const Variant** p_args, int ar
     buffer->rewind();
 }
 
-Vector<Variant> TransferContext::read_args(jni::Env& p_env) {
+void TransferContext::read_args(jni::Env& p_env, Variant* args) {
     SharedBuffer* buffer {get_buffer(p_env)};
     uint32_t size{decode_uint32(buffer->get_cursor())};
     buffer->increment_position(4);
-    Vector<Variant> args;
     for (int i = 0; i < size; ++i) {
-        Variant ret;
-        ktvariant::get_variant_from_buffer(buffer, ret);
-        args.push_back(ret);
+        ktvariant::get_variant_from_buffer(buffer, args[i]);
     }
     buffer->rewind();
-    return args;
 }
 
 void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jint p_method_index, jint expectedReturnType) {
@@ -184,4 +167,8 @@ void TransferContext::free_object(JNIEnv *p_raw_env, jobject p_instance, jlong p
     jni::Env env(p_raw_env);
     jni::JObject local_ref{p_instance};
     local_ref.delete_local_ref(env);
+}
+
+void TransferContext::write_return_value(jni::Env& p_env, Variant& variant) {
+    write_return_value(get_buffer(p_env), variant);
 }

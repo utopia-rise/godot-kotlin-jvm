@@ -1,11 +1,14 @@
 #include <core/object.h>
 #include <core/reference.h>
 #include "memory_bridge.h"
+#include "constants.h"
+
+using namespace bridges;
 
 JNI_INIT_STATICS_FOR_CLASS(MemoryBridge)
 
 MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) :
-        JavaInstanceWrapper("godot.core.GarbageCollector$MemoryBridge", p_wrapped, p_class_loader) {
+        JavaInstanceWrapper(MEMORY_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
     jni::JNativeMethod check_instance_method{
             "checkInstance",
             "(JJ)Z",
