@@ -8,6 +8,8 @@ import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
+import godot.core.VariantArray
+import godot.core.variantArrayOf
 import godot.signals.signal
 import org.joda.time.DateTime
 
@@ -72,6 +74,12 @@ class Invocation : Spatial() {
         set(value) {
             field = hashCode()
         }
+
+    @RegisterProperty
+    var testArrayAny = VariantArray<Any>()
+
+    @RegisterProperty
+    var navMeshes = variantArrayOf(NavigationMesh())
 
     @RegisterSignal
     val signalNoParam by signal()
@@ -139,7 +147,24 @@ class Invocation : Spatial() {
 
     override fun _onDestroy() {
         invocation.free()
+        navMeshes.clear()
     }
+
+    @RegisterFunction
+    fun appendStandardNavMesh() {
+        navMeshes.append(NavigationMesh())
+    }
+
+    @RegisterFunction
+    fun removeNavMesh(navigationMesh: NavigationMesh) {
+        navMeshes.remove(navigationMesh)
+    }
+
+    @RegisterFunction
+    fun countNameshInstance(navigationMesh: NavigationMesh) = navMeshes.count(navigationMesh)
+
+    @RegisterFunction
+    fun getNavMeshCount() = navMeshes.count()
 
     //Type cast checks
     @RegisterFunction

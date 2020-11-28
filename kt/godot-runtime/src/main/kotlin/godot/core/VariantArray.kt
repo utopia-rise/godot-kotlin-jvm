@@ -5,7 +5,7 @@ import godot.util.VoidPtr
 import kotlin.reflect.KClass
 
 
-val variantMapper: Map<KClass<*>, VariantType> = mapOf(
+val variantMapper = mutableMapOf(
         Unit::class to VariantType.NIL,
         Any::class to VariantType.ANY,
         Boolean::class to VariantType.BOOL,
@@ -505,4 +505,4 @@ inline fun <reified T> VariantArray() =
             GarbageCollector.registerNativeCoreType(it)
         }
 
-fun variantArrayOf(vararg args: Any?) = VariantArray<Any?>()
+inline fun <reified T> variantArrayOf(vararg args: T) = VariantArray<T>().also { it.addAll(args) }

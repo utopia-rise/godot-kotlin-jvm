@@ -375,6 +375,15 @@ open class NavigationMesh : Resource() {
     }
 }
 
+fun registerVariantMapping() {
+    variantMapper[Object::class] = VariantType.OBJECT
+    variantMapper[Node::class] = VariantType.OBJECT
+    variantMapper[Spatial::class] = VariantType.OBJECT
+    variantMapper[Reference::class] = VariantType.OBJECT
+    variantMapper[Resource::class] = VariantType.OBJECT
+    variantMapper[NavigationMesh::class] = VariantType.OBJECT
+}
+
 fun registerEngineTypes() {
     TypeManager.registerEngineType("Object", ::Object)
     TypeManager.registerEngineType("Node", ::Node)
