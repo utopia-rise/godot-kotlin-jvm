@@ -63,7 +63,7 @@ public class Simple : Reference
     public int benchmark_icall_with_loop()
     {
         var node = new Node();
-        for (var i = 0; i < 1000; i++)
+        for (var i = 0; i < 100; i++)
         {
             var child = new Node();
             node.AddChild(child);
