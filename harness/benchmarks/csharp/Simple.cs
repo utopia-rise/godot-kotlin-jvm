@@ -52,11 +52,12 @@ public class Simple : Reference
         return s;
     }
 
-    public Node benchmark_icall()
+    public int benchmark_icall()
     {
         var node = new Node();
         node.GetInstanceId();
-        return node;
+        node.Free();
+        return 0;
     }
 
     public int benchmark_icall_with_loop()
