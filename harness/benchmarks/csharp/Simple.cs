@@ -59,7 +59,7 @@ public class Simple : Reference
         return node;
     }
 
-    public Node benchmark_icall_with_loop()
+    public int benchmark_icall_with_loop()
     {
         var node = new Node();
         for (var i = 0; i < 1000; i++)
@@ -69,8 +69,9 @@ public class Simple : Reference
             node.RemoveChild(child);
             child.Free();
         }
+        node.Free();
 
-        return node;
+        return 0;
     }
 
     public void benchmark_method_call()
