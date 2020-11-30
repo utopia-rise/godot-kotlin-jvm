@@ -388,16 +388,30 @@ enum class VariantType(
         }
     }
 
-    internal val toKotlin = { buffer: ByteBuffer, isNullable: Boolean ->
-        when (val variantType = buffer.variantType) {
-            baseOrdinal -> {
-                toKotlinWithoutNullCheck(buffer, variantType)
-            }
-            NIL.ordinal -> {
+    internal val toKotlin = this.getToKotlinLambdaToExecute(toKotlinWithoutNullCheck)
+}
+
+fun VariantType.getToKotlinLambdaToExecute(defaultLambda: (ByteBuffer, Int) -> Any?) : (ByteBuffer, Boolean) -> Any? {
+    return if (this == VariantType.ANY) {
+        { buffer: ByteBuffer, isNullable: Boolean ->
+            val variantType = buffer.variantType
+            if (variantType == VariantType.NIL.ordinal) {
                 if (!isNullable) throw TypeCastException("Expected a non nullable ${this.name} but received a null.")
                 null
+            } else defaultLambda(buffer, variantType)
+        }
+    } else {
+        { buffer: ByteBuffer, isNullable: Boolean ->
+            when (val variantType = buffer.variantType) {
+                baseOrdinal -> {
+                    defaultLambda(buffer, variantType)
+                }
+                VariantType.NIL.ordinal -> {
+                    if (!isNullable) throw TypeCastException("Expected a non nullable ${this.name} but received a null.")
+                    null
+                }
+                else -> throw TypeCastException("Cannot match $variantType to ${this.baseOrdinal}")
             }
-            else -> throw TypeCastException("Cannot match $variantType to $this")
         }
     }
 }
