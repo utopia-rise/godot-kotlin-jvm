@@ -78,6 +78,32 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
+    fun <P: Any> arrayProperty(
+            kProperty: KMutableProperty1<T, VariantArray<P>>,
+            containedType: VariantType,
+            className: String,
+            hint: PropertyHint = PropertyHint.NONE,
+            hintString: String = "",
+            defaultArgument: VariantArray<P>,
+    ) {
+        val propertyName = kProperty.name.camelToSnakeCase()
+        require(!properties.contains(propertyName)) {
+            "Found two properties with name $propertyName for class $name"
+        }
+        properties[propertyName] = KtArrayProperty(
+                KtPropertyInfo(
+                        VariantType.ARRAY,
+                        propertyName,
+                        className,
+                        hint,
+                        hintString
+                ),
+                kProperty,
+                defaultArgument,
+                containedType
+        )
+    }
+
     inline fun <reified P : Enum<P>> enumProperty(
             kProperty: KMutableProperty1<T, P>,
             defaultValue: P

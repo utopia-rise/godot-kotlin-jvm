@@ -41,7 +41,7 @@ class VariantArray<T : Any?> : NativeCoreType, MutableCollection<T> {
 
     override val coreVariantType: VariantType = VariantType.ARRAY
 
-    private var variantType: VariantType = VariantType.NIL
+    internal var variantType: VariantType = VariantType.NIL
 
     @PublishedApi
     internal constructor(handle: VoidPtr) {
