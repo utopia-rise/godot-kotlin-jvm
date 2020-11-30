@@ -58,6 +58,10 @@ object GarbageCollector {
         refWrappedMap[ptr]?.get()
     }
 
+    fun getNativeCoreTypeInstance(ptr: VoidPtr) = synchronized(nativeCoreTypeMap) {
+        nativeCoreTypeMap[ptr]?.get()
+    }
+
     fun start(forceJvmGarbageCollector: Boolean, period: Long) {
         this.forceJvmGarbageCollector = forceJvmGarbageCollector
         gcState = GCState.STARTED

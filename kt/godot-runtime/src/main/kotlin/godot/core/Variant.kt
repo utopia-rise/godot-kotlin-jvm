@@ -268,8 +268,9 @@ enum class VariantType(
     ),
     ARRAY(
             { buffer: ByteBuffer, expectedType: Int ->
-                VariantArray<Any?>().also {
-                    it._handle = buffer.long
+                val ptr = buffer.long
+                godot.core.GarbageCollector.getNativeCoreTypeInstance(ptr) ?: godot.core.VariantArray<kotlin.Any?>().also {
+                    it._handle = ptr
                 }
             },
             { buffer: ByteBuffer, any: Any ->
@@ -348,7 +349,7 @@ enum class VariantType(
 
     ANY(
             { buffer: ByteBuffer, expectedType: Int ->
-                throw kotlin.Error()
+                values()[expectedType].toKotlinWithoutNullCheck(buffer, expectedType)
             },
             { buffer: ByteBuffer, any: Any ->
                 when (any) {
@@ -392,7 +393,7 @@ enum class VariantType(
 }
 
 fun VariantType.getToKotlinLambdaToExecute(defaultLambda: (ByteBuffer, Int) -> Any?) : (ByteBuffer, Boolean) -> Any? {
-    return if (this == VariantType.ANY) {
+    return if (this.ordinal == 30) {
         { buffer: ByteBuffer, isNullable: Boolean ->
             val variantType = buffer.variantType
             if (variantType == VariantType.NIL.ordinal) {

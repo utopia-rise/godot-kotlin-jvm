@@ -61,7 +61,9 @@ bool MemoryBridge::unref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr)
         memdelete(reference);
         return true;
     } else {
+#ifdef DEBUG_ENABLED
         print_verbose(vformat("Will not memdelete %s", static_cast<uintptr_t>(p_raw_ptr)));
+#endif
         return false;
     }
 }
