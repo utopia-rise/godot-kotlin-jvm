@@ -251,7 +251,7 @@ void GDKotlin::init() {
 
     if (!should_display_leaked_jvm_instances_on_close) {
         jni::MethodId set_should_display_method_id{garbage_collector_cls.get_method_id(
-                env, "setShouldDisplayLeakInstancesOneClose", "(Z)V")};
+                env, "setShouldDisplayLeakInstancesOnClose", "(Z)V")};
         jvalue d_arg[1] = {jni::to_jni_arg(false)};
         garbage_collector_instance.call_void_method(env, set_should_display_method_id, d_arg);
     }
