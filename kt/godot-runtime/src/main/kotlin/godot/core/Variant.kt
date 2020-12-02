@@ -4,6 +4,38 @@ import godot.util.toRealT
 import java.nio.ByteBuffer
 
 
+val variantMapper = mutableMapOf(
+        Unit::class to VariantType.NIL,
+        Any::class to VariantType.ANY,
+        Boolean::class to VariantType.BOOL,
+        Int::class to VariantType.JVM_INT,
+        Long::class to VariantType.LONG,
+        Float::class to VariantType.JVM_FLOAT,
+        Double::class to VariantType.DOUBLE,
+        String::class to VariantType.STRING,
+        AABB::class to VariantType.AABB,
+        Basis::class to VariantType.BASIS,
+        Color::class to VariantType.COLOR,
+//        Dictionary::class to VariantType.DICTIONARY,
+//        GodotArray::class to VariantType.ARRAY,
+        Plane::class to VariantType.PLANE,
+//        NodePath::class to VariantType.NODE_PATH,
+        Quat::class to VariantType.QUAT,
+        Rect2::class to VariantType.RECT2,
+//        RID::class to VariantType.RID,
+        Transform::class to VariantType.TRANSFORM,
+        Transform2D::class to VariantType.TRANSFORM2D,
+        Vector2::class to VariantType.VECTOR2,
+        Vector3::class to VariantType.VECTOR3,
+//        PoolByteArray::class to VariantType.POOL_BYTE_ARRAY,
+//        PoolColorArray::class to VariantType.POOL_COLOR_ARRAY,
+//        PoolIntArray::class to VariantType.POOL_INT_ARRAY,
+//        PoolRealArray::class to VariantType.POOL_REAL_ARRAY,
+//        PoolStringArray::class to VariantType.POOL_STRING_ARRAY,
+//        PoolVector2Array::class to VariantType.POOL_VECTOR2_ARRAY,
+//        PoolVector3Array::class to VariantType.POOL_VECTOR3_ARRAY,
+)
+
 var ByteBuffer.bool: Boolean
     get() = int == 1
     set(value) {
@@ -262,16 +294,19 @@ enum class VariantType(
     ),
     DICTIONARY(
             { buffer: ByteBuffer, expectedType: Int ->
-                TODO()
+                val ptr = buffer.long
+                GarbageCollector.getNativeCoreTypeInstance(ptr) ?: Dictionary<Any, Any?>(ptr)
             },
-            { buffer: ByteBuffer, any: Any -> TODO() }
+            { buffer: ByteBuffer, any: Any ->
+                buffer.variantType = DICTIONARY.ordinal
+                any as Dictionary<*, *>
+                buffer.putLong(any._handle)
+            }
     ),
     ARRAY(
             { buffer: ByteBuffer, expectedType: Int ->
                 val ptr = buffer.long
-                godot.core.GarbageCollector.getNativeCoreTypeInstance(ptr) ?: godot.core.VariantArray<kotlin.Any?>().also {
-                    it._handle = ptr
-                }
+                GarbageCollector.getNativeCoreTypeInstance(ptr) ?: VariantArray<Any?>(ptr)
             },
             { buffer: ByteBuffer, any: Any ->
                 buffer.variantType = ARRAY.ordinal
