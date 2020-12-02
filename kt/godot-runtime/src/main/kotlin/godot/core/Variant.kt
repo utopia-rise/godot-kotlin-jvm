@@ -428,7 +428,7 @@ enum class VariantType(
 }
 
 fun VariantType.getToKotlinLambdaToExecute(defaultLambda: (ByteBuffer, Int) -> Any?) : (ByteBuffer, Boolean) -> Any? {
-    return if (this.ordinal == 30) {
+    return if (this.ordinal == ANY_VARIANT_TYPE) {
         { buffer: ByteBuffer, isNullable: Boolean ->
             val variantType = buffer.variantType
             if (variantType == VariantType.NIL.ordinal) {
@@ -451,3 +451,5 @@ fun VariantType.getToKotlinLambdaToExecute(defaultLambda: (ByteBuffer, Int) -> A
         }
     }
 }
+
+private const val ANY_VARIANT_TYPE = 30

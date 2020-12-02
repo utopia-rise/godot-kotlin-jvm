@@ -161,6 +161,18 @@ class Invocation : Spatial() {
     }
 
     @RegisterFunction
+    fun navMeshesSize() = navMeshes.size
+
+    @RegisterFunction
+    fun appendAnyToArray(any: Any) = testArrayAny.append(any)
+
+    @RegisterFunction
+    fun getAnyFromArray(index: Int) = testArrayAny[index]
+
+    @RegisterFunction
+    fun arrayAnySize() = testArrayAny.size
+
+    @RegisterFunction
     fun countNameshInstance(navigationMesh: NavigationMesh) = navMeshes.count(navigationMesh)
 
     @RegisterFunction
