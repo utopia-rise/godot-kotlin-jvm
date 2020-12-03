@@ -81,6 +81,9 @@ class Invocation : Spatial() {
     @RegisterProperty
     var navMeshes = variantArrayOf(NavigationMesh())
 
+    @RegisterProperty
+    var nullableArray = variantArrayOf(NavigationMesh(), null)
+
     @RegisterSignal
     val signalNoParam by signal()
 
@@ -151,20 +154,47 @@ class Invocation : Spatial() {
     }
 
     @RegisterFunction
-    fun appendStandardNavMesh() {
-        navMeshes.append(NavigationMesh())
-    }
+    fun appendNullableStandardNavMesh() = nullableArray.append(NavigationMesh())
 
     @RegisterFunction
-    fun removeNavMesh(navigationMesh: NavigationMesh) {
-        navMeshes.remove(navigationMesh)
-    }
+    fun appendNullableNavMesh(navigationMesh: NavigationMesh?) = nullableArray.append(navigationMesh)
+
+    @RegisterFunction
+    fun removeNullableNavMesh(navigationMesh: NavigationMesh?) = nullableArray.remove(navigationMesh)
+
+    @RegisterFunction
+    fun removeNullableNavMeshWithIndex(index: Int) = nullableArray.remove(index)
+
+//	TODO: This will fail to register as we cannot register nullable return type
+//	@RegisterFunction
+//	fun getNullableNavMeshFromArray(index: Int) = nullableArray[index]
+
+    @RegisterFunction
+    fun nullableNavMeshesSize() = nullableArray.size
+
+    @RegisterFunction
+    fun appendStandardNavMesh() = navMeshes.append(NavigationMesh())
+
+    @RegisterFunction
+    fun appendNavMesh(navigationMesh: NavigationMesh) = navMeshes.append(navigationMesh)
+
+    @RegisterFunction
+    fun removeNavMesh(navigationMesh: NavigationMesh) = navMeshes.remove(navigationMesh)
+
+    @RegisterFunction
+    fun removeNavMeshWithIndex(index: Int) = navMeshes.remove(index)
+
+    @RegisterFunction
+    fun getNavMeshFromArray(index: Int) = navMeshes[index]
 
     @RegisterFunction
     fun navMeshesSize() = navMeshes.size
 
     @RegisterFunction
     fun appendAnyToArray(any: Any) = testArrayAny.append(any)
+
+    @RegisterFunction
+    fun removeAnyFromArray(any: Any) = testArrayAny.remove(any)
 
     @RegisterFunction
     fun getAnyFromArray(index: Int) = testArrayAny[index]
