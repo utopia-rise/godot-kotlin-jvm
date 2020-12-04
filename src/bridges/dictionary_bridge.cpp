@@ -3,8 +3,9 @@
 #include "constants.h"
 #include "bridges_utils.h"
 
-
 using namespace bridges;
+
+JNI_INIT_STATICS_FOR_CLASS(DictionaryBridge)
 
 DictionaryBridge::DictionaryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader)
     : JavaInstanceWrapper(DICTIONARY_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader){

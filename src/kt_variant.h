@@ -128,10 +128,11 @@ namespace ktvariant {
         append_vector3(des, src_transform.origin);
     }
 
-    static void to_kvariant_fromARRAY(SharedBuffer* des, const Variant& src) {
+    template <class T>
+    static void to_kvariant_fromCONTAINER(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::ARRAY);
         des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(new Array(src.operator Array())), des->get_cursor())
+                encode_uint64(reinterpret_cast<uintptr_t>(new T(src.operator T())), des->get_cursor())
         );
     }
 
@@ -176,7 +177,8 @@ namespace ktvariant {
         to_kt_array[Variant::AABB] = to_kvariant_fromAABB;
         to_kt_array[Variant::BASIS] = to_kvariant_fromBASIS;
         to_kt_array[Variant::TRANSFORM] = to_kvariant_fromTRANSFORM;
-        to_kt_array[Variant::ARRAY] = to_kvariant_fromARRAY;
+        to_kt_array[Variant::DICTIONARY] = to_kvariant_fromCONTAINER<Dictionary>;
+        to_kt_array[Variant::ARRAY] = to_kvariant_fromCONTAINER<Array>;
         to_kt_array[Variant::OBJECT] = to_kvariant_fromOBJECT;
     }
 
@@ -307,10 +309,11 @@ namespace ktvariant {
         );
     }
 
-    static Variant from_kvariant_tokVariantArrayValue(SharedBuffer* byte_buffer) {
+    template <class T>
+    static Variant from_kvariant_tokVariantContainerValue(SharedBuffer* byte_buffer) {
         uint64_t ptr{decode_uint64(byte_buffer->get_cursor())};
         byte_buffer->increment_position(PTR_SIZE);
-        return *reinterpret_cast<Array*>(ptr);
+        return *reinterpret_cast<T*>(ptr);
     }
 
     static Variant from_kvariant_toKObjectValue(SharedBuffer* byte_buffer) {
@@ -341,7 +344,8 @@ namespace ktvariant {
         to_gd_array[Variant::AABB] = from_kvariant_tokAabbValue;
         to_gd_array[Variant::BASIS] = from_kvariant_tokBasisValue;
         to_gd_array[Variant::TRANSFORM] = from_kvariant_tokTransformValue;
-        to_gd_array[Variant::ARRAY] = from_kvariant_tokVariantArrayValue;
+        to_gd_array[Variant::DICTIONARY] = from_kvariant_tokVariantContainerValue<Dictionary>;
+        to_gd_array[Variant::ARRAY] = from_kvariant_tokVariantContainerValue<Array>;
         to_gd_array[Variant::OBJECT] = from_kvariant_toKObjectValue;
     }
 
