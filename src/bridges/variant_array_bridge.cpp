@@ -2,6 +2,7 @@
 #include <modules/kotlin_jvm/src/gd_kotlin.h>
 #include "variant_array_bridge.h"
 #include "constants.h"
+#include "bridges_utils.h"
 
 using namespace bridges;
 
@@ -216,64 +217,64 @@ uintptr_t VariantArrayBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject
 
 void VariantArrayBridge::engine_call_get_size(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{jni::Jvm::current_env()};
-    Variant variant{as_array(p_raw_ptr)->size()};
+    Variant variant{as_container<Array>(p_raw_ptr)->size()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 
 void VariantArrayBridge::engine_call_clear(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    as_array(p_raw_ptr)->clear();
+    as_container<Array>(p_raw_ptr)->clear();
 }
 
 void VariantArrayBridge::engine_call_empty(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{jni::Jvm::current_env()};
-    Variant variant{as_array(p_raw_ptr)->empty()};
+    Variant variant{as_container<Array>(p_raw_ptr)->empty()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 
 void VariantArrayBridge::engine_call_hash(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{jni::Jvm::current_env()};
-    Variant variant{as_array(p_raw_ptr)->hash()};
+    Variant variant{as_container<Array>(p_raw_ptr)->hash()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 
 void VariantArrayBridge::engine_call_invert(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    as_array(p_raw_ptr)->invert();
+    as_container<Array>(p_raw_ptr)->invert();
 }
 
 void VariantArrayBridge::engine_call_remove(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{jni::Jvm::current_env()};
     Variant args[1] = {};
     GDKotlin::get_instance().transfer_context->read_args(env, args);
-    as_array(p_raw_ptr)->remove(args[0].operator int64_t());
+    as_container<Array>(p_raw_ptr)->remove(args[0].operator int64_t());
 }
 
 void VariantArrayBridge::engine_call_resize(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{jni::Jvm::current_env()};
     Variant args[1] = {};
     GDKotlin::get_instance().transfer_context->read_args(env, args);
-    as_array(p_raw_ptr)->resize(args[0].operator int64_t());
+    as_container<Array>(p_raw_ptr)->resize(args[0].operator int64_t());
 }
 
 void VariantArrayBridge::engine_call_shuffle(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    as_array(p_raw_ptr)->shuffle();
+    as_container<Array>(p_raw_ptr)->shuffle();
 }
 
 void VariantArrayBridge::engine_call_sort(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    as_array(p_raw_ptr)->sort();
+    as_container<Array>(p_raw_ptr)->sort();
 }
 
 void VariantArrayBridge::engine_call_sortCustom(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{jni::Jvm::current_env()};
     Variant args[2] = {};
     GDKotlin::get_instance().transfer_context->read_args(env, args);
-    as_array(p_raw_ptr)->sort_custom(args[0].operator Object *(), args[1].operator String());
+    as_container<Array>(p_raw_ptr)->sort_custom(args[0].operator Object *(), args[1].operator String());
 }
 
 void VariantArrayBridge::engine_call_append(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{jni::Jvm::current_env()};
     Variant args[1] = {};
     GDKotlin::get_instance().transfer_context->read_args(env, args);
-    as_array(p_raw_ptr)->append(args[0]);
+    as_container<Array>(p_raw_ptr)->append(args[0]);
 }
 
 void VariantArrayBridge::engine_call_bsearch(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
@@ -281,7 +282,7 @@ void VariantArrayBridge::engine_call_bsearch(JNIEnv* p_raw_env, jobject p_instan
     Variant args[2] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
-    Variant variant{as_array(p_raw_ptr)->bsearch(args[0], args[1].operator bool())};
+    Variant variant{as_container<Array>(p_raw_ptr)->bsearch(args[0], args[1].operator bool())};
     transfer_context->write_return_value(env, variant);
 }
 
@@ -290,7 +291,7 @@ void VariantArrayBridge::engine_call_bsearchCustom(JNIEnv* p_raw_env, jobject p_
     Variant args[4] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
-    Variant variant{as_array(p_raw_ptr)->bsearch_custom(
+    Variant variant{as_container<Array>(p_raw_ptr)->bsearch_custom(
             args[0], args[1].operator Object *(), args[2].operator String(), args[3].operator bool()
     )};
     transfer_context->write_return_value(env, variant);
@@ -300,7 +301,7 @@ void VariantArrayBridge::engine_call_count(JNIEnv* p_raw_env, jobject p_instance
     jni::Env env{jni::Jvm::current_env()};
     Variant args[1] = {};
     GDKotlin::get_instance().transfer_context->read_args(env, args);
-    Variant variant{as_array(p_raw_ptr)->count(args[0].operator Object *())};
+    Variant variant{as_container<Array>(p_raw_ptr)->count(args[0].operator Object *())};
 }
 
 void VariantArrayBridge::engine_call_duplicate(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
@@ -308,7 +309,7 @@ void VariantArrayBridge::engine_call_duplicate(JNIEnv* p_raw_env, jobject p_inst
     Variant args[1] = {};
     TransferContext* transfer_context = GDKotlin::get_instance().transfer_context;
     transfer_context->read_args(env, args);
-    Variant variant{as_array(p_raw_ptr)->duplicate(args[0].operator bool())};
+    Variant variant{as_container<Array>(p_raw_ptr)->duplicate(args[0].operator bool())};
     transfer_context->write_return_value(env, variant);
 }
 
@@ -316,7 +317,7 @@ void VariantArrayBridge::engine_call_erase(JNIEnv* p_raw_env, jobject p_instance
     jni::Env env{jni::Jvm::current_env()};
     Variant args[1] = {};
     GDKotlin::get_instance().transfer_context->read_args(env, args);
-    as_array(p_raw_ptr)->erase(args[0]);
+    as_container<Array>(p_raw_ptr)->erase(args[0]);
 }
 
 void VariantArrayBridge::engine_call_find(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
@@ -324,7 +325,7 @@ void VariantArrayBridge::engine_call_find(JNIEnv* p_raw_env, jobject p_instance,
     Variant args[2] = {};
     TransferContext* transfer_context = GDKotlin::get_instance().transfer_context;
     transfer_context->read_args(env, args);
-    Variant variant{as_array(p_raw_ptr)->find(args[0], args[1].operator int64_t())};
+    Variant variant{as_container<Array>(p_raw_ptr)->find(args[0], args[1].operator int64_t())};
     transfer_context->write_return_value(env, variant);
 }
 
@@ -333,13 +334,13 @@ void VariantArrayBridge::engine_call_findLast(JNIEnv* p_raw_env, jobject p_insta
     Variant args[1] = {};
     TransferContext* transfer_context = GDKotlin::get_instance().transfer_context;
     transfer_context->read_args(env, args);
-    Variant variant{as_array(p_raw_ptr)->find_last(args[0].operator Object *())};
+    Variant variant{as_container<Array>(p_raw_ptr)->find_last(args[0].operator Object *())};
     transfer_context->write_return_value(env, variant);
 }
 
 void VariantArrayBridge::engine_call_front(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{jni::Jvm::current_env()};
-    Variant variant{as_array(p_raw_ptr)->front()};
+    Variant variant{as_container<Array>(p_raw_ptr)->front()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 
@@ -348,7 +349,7 @@ void VariantArrayBridge::engine_call_has(JNIEnv* p_raw_env, jobject p_instance, 
     Variant args[1] = {};
     TransferContext* transfer_context = GDKotlin::get_instance().transfer_context;
     transfer_context->read_args(env, args);
-    Variant variant{as_array(p_raw_ptr)->has(args[0])};
+    Variant variant{as_container<Array>(p_raw_ptr)->has(args[0])};
     transfer_context->write_return_value(env, variant);
 }
 
@@ -356,30 +357,30 @@ void VariantArrayBridge::engine_call_insert(JNIEnv* p_raw_env, jobject p_instanc
     jni::Env env{jni::Jvm::current_env()};
     Variant args[2] = {};
     GDKotlin::get_instance().transfer_context->read_args(env, args);
-    as_array(p_raw_ptr)->insert(args[0].operator int64_t(), args[1].operator Object *());
+    as_container<Array>(p_raw_ptr)->insert(args[0].operator int64_t(), args[1].operator Object *());
 }
 
 void VariantArrayBridge::engine_call_max(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{jni::Jvm::current_env()};
-    Variant variant{as_array(p_raw_ptr)->max()};
+    Variant variant{as_container<Array>(p_raw_ptr)->max()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 
 void VariantArrayBridge::engine_call_min(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{jni::Jvm::current_env()};
-    Variant variant{as_array(p_raw_ptr)->min()};
+    Variant variant{as_container<Array>(p_raw_ptr)->min()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 
 void VariantArrayBridge::engine_call_popBack(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{jni::Jvm::current_env()};
-    Variant variant{as_array(p_raw_ptr)->pop_back()};
+    Variant variant{as_container<Array>(p_raw_ptr)->pop_back()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 
 void VariantArrayBridge::engine_call_popFront(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{jni::Jvm::current_env()};
-    Variant variant{as_array(p_raw_ptr)->pop_front()};
+    Variant variant{as_container<Array>(p_raw_ptr)->pop_front()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 
@@ -387,14 +388,14 @@ void VariantArrayBridge::engine_call_pushBack(JNIEnv* p_raw_env, jobject p_insta
     jni::Env env{jni::Jvm::current_env()};
     Variant args[1] = {};
     GDKotlin::get_instance().transfer_context->read_args(env, args);
-    as_array(p_raw_ptr)->push_back(args[0]);
+    as_container<Array>(p_raw_ptr)->push_back(args[0]);
 }
 
 void VariantArrayBridge::engine_call_pushFront(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{jni::Jvm::current_env()};
     Variant args[1] = {};
     GDKotlin::get_instance().transfer_context->read_args(env, args);
-    as_array(p_raw_ptr)->push_front(args[0]);
+    as_container<Array>(p_raw_ptr)->push_front(args[0]);
 }
 
 void VariantArrayBridge::engine_call_rfind(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
@@ -402,7 +403,7 @@ void VariantArrayBridge::engine_call_rfind(JNIEnv* p_raw_env, jobject p_instance
     Variant args[2] = {};
     TransferContext* transfer_context = GDKotlin::get_instance().transfer_context;
     transfer_context->read_args(env, args);
-    Variant variant{as_array(p_raw_ptr)->rfind(args[0], args[1].operator int64_t())};
+    Variant variant{as_container<Array>(p_raw_ptr)->rfind(args[0], args[1].operator int64_t())};
     transfer_context->write_return_value(env, variant);
 }
 
@@ -412,7 +413,7 @@ void VariantArrayBridge::engine_call_slice(JNIEnv* p_raw_env, jobject p_instance
     TransferContext* transfer_context = GDKotlin::get_instance().transfer_context;
     transfer_context->read_args(env, args);
     Variant variant{
-        as_array(p_raw_ptr)->slice(
+        as_container<Array>(p_raw_ptr)->slice(
                 args[0].operator int64_t(),
                 args[1].operator int64_t(),
                 args[2].operator int64_t(),
@@ -426,7 +427,7 @@ void VariantArrayBridge::engine_call_operator_set(JNIEnv* p_raw_env, jobject p_i
     jni::Env env{jni::Jvm::current_env()};
     Variant args[2] = {};
     GDKotlin::get_instance().transfer_context->read_args(env, args);
-    as_array(p_raw_ptr)->set(args[0].operator int64_t(), args[1].operator Object *());
+    as_container<Array>(p_raw_ptr)->set(args[0].operator int64_t(), args[1].operator Object *());
 }
 
 void VariantArrayBridge::engine_call_operator_get(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
@@ -434,6 +435,6 @@ void VariantArrayBridge::engine_call_operator_get(JNIEnv* p_raw_env, jobject p_i
     Variant args[1] = {};
     TransferContext* transfer_context = GDKotlin::get_instance().transfer_context;
     transfer_context->read_args(env, args);
-    Variant variant{as_array(p_raw_ptr)->get(args[0])};
+    Variant variant{as_container<Array>(p_raw_ptr)->get(args[0])};
     transfer_context->write_return_value(env, variant);
 }

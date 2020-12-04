@@ -5,12 +5,14 @@
 #include <modules/kotlin_jvm/src/bridges/memory_bridge.h>
 #include <modules/kotlin_jvm/src/bridges/variant_array_bridge.h>
 #include <core/variant.h>
+#include <modules/kotlin_jvm/src/bridges/dictionary_bridge.h>
 
 class BridgesManager {
 private:
     bridges::MemoryBridge* memory_bridge;
 
     bridges::VariantArrayBridge* variant_array_bridge;
+    bridges::DictionaryBridge* dictionary_bridge;
 
     BridgesManager();
     ~BridgesManager();

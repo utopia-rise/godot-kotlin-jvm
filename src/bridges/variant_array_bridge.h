@@ -7,11 +7,6 @@
 namespace bridges {
 
     class VariantArrayBridge : public JavaInstanceWrapper<VariantArrayBridge> {
-    private:
-        static inline Array* as_array(jlong raw_ptr) {
-            return reinterpret_cast<Array*>(static_cast<uintptr_t>(raw_ptr));
-        }
-
     public:
         VariantArrayBridge(jni::JObject p_wrapped, jni::JObject p_class_loader);
         ~VariantArrayBridge() = default;
