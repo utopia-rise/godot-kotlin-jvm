@@ -1,32 +1,34 @@
 package godot.core
 
+import godot.core.AABB
+import godot.core.VariantType.*
 import godot.util.toRealT
 import java.nio.ByteBuffer
 
 
 val variantMapper = mutableMapOf(
-        Unit::class to VariantType.NIL,
-        Any::class to VariantType.ANY,
-        Boolean::class to VariantType.BOOL,
-        Int::class to VariantType.JVM_INT,
-        Long::class to VariantType.LONG,
-        Float::class to VariantType.JVM_FLOAT,
-        Double::class to VariantType.DOUBLE,
-        String::class to VariantType.STRING,
-        AABB::class to VariantType.AABB,
-        Basis::class to VariantType.BASIS,
-        Color::class to VariantType.COLOR,
+        Unit::class to NIL,
+        Any::class to ANY,
+        Boolean::class to BOOL,
+        Int::class to JVM_INT,
+        Long::class to LONG,
+        Float::class to JVM_FLOAT,
+        Double::class to DOUBLE,
+        String::class to STRING,
+        AABB::class to AABB,
+        Basis::class to BASIS,
+        Color::class to COLOR,
 //        Dictionary::class to VariantType.DICTIONARY,
 //        GodotArray::class to VariantType.ARRAY,
-        Plane::class to VariantType.PLANE,
+        Plane::class to PLANE,
 //        NodePath::class to VariantType.NODE_PATH,
-        Quat::class to VariantType.QUAT,
-        Rect2::class to VariantType.RECT2,
+        Quat::class to QUAT,
+        Rect2::class to RECT2,
 //        RID::class to VariantType.RID,
-        Transform::class to VariantType.TRANSFORM,
-        Transform2D::class to VariantType.TRANSFORM2D,
-        Vector2::class to VariantType.VECTOR2,
-        Vector3::class to VariantType.VECTOR3,
+        Transform::class to TRANSFORM,
+        Transform2D::class to TRANSFORM2D,
+        Vector2::class to VECTOR2,
+        Vector3::class to VECTOR3,
 //        PoolByteArray::class to VariantType.POOL_BYTE_ARRAY,
 //        PoolColorArray::class to VariantType.POOL_COLOR_ARRAY,
 //        PoolIntArray::class to VariantType.POOL_INT_ARRAY,
@@ -77,6 +79,7 @@ private var ByteBuffer.variantType: Int
 
 inline fun <reified T> Any.asObject(): T = this as T
 
+@Suppress("EnumEntryName")
 enum class VariantType(
         private val toKotlinWithoutNullCheck: (ByteBuffer, expectedType: Int) -> Any,
         private val toGodotWithoutNullCheck: (ByteBuffer, any: Any) -> Unit,
@@ -272,9 +275,12 @@ enum class VariantType(
     ), // 15
     _RID(
             { buffer: ByteBuffer, expectedType: Int ->
-                TODO()
+                val ptr = buffer.long
+                GarbageCollector.getNativeCoreTypeInstance(ptr) ?: RID(ptr)
             },
-            { buffer: ByteBuffer, any: Any -> TODO() }
+            { buffer: ByteBuffer, any: Any ->
+                _RID.toGodotNativeCoreType<RID>(buffer, any)
+            }
     ),
     OBJECT(
             { buffer: ByteBuffer, _: Int ->
@@ -305,7 +311,7 @@ enum class VariantType(
                 GarbageCollector.getNativeCoreTypeInstance(ptr) ?: Dictionary<Any, Any?>(ptr)
             },
             { buffer: ByteBuffer, any: Any ->
-                DICTIONARY.toGodotContainer<Dictionary<*, *>>(buffer, any)
+                DICTIONARY.toGodotNativeCoreType<Dictionary<*, *>>(buffer, any)
             }
     ),
     ARRAY(
@@ -314,7 +320,7 @@ enum class VariantType(
                 GarbageCollector.getNativeCoreTypeInstance(ptr) ?: VariantArray<Any?>(ptr)
             },
             { buffer: ByteBuffer, any: Any ->
-                ARRAY.toGodotContainer<VariantArray<*>>(buffer, any)
+                ARRAY.toGodotNativeCoreType<VariantArray<*>>(buffer, any)
             }
     ),
 
@@ -436,7 +442,7 @@ fun VariantType.getToKotlinLambdaToExecute(defaultLambda: (ByteBuffer, Int) -> A
     return if (this.ordinal == ANY_VARIANT_TYPE) {
         { buffer: ByteBuffer, isNullable: Boolean ->
             val variantType = buffer.variantType
-            if (variantType == VariantType.NIL.ordinal) {
+            if (variantType == NIL.ordinal) {
                 if (!isNullable) throw TypeCastException("Expected a non nullable ${this.name} but received a null.")
                 null
             } else defaultLambda(buffer, variantType)
@@ -447,7 +453,7 @@ fun VariantType.getToKotlinLambdaToExecute(defaultLambda: (ByteBuffer, Int) -> A
                 baseOrdinal -> {
                     defaultLambda(buffer, variantType)
                 }
-                VariantType.NIL.ordinal -> {
+                NIL.ordinal -> {
                     if (!isNullable) throw TypeCastException("Expected a non nullable ${this.name} but received a null.")
                     null
                 }
@@ -457,7 +463,7 @@ fun VariantType.getToKotlinLambdaToExecute(defaultLambda: (ByteBuffer, Int) -> A
     }
 }
 
-private inline fun <reified T: NativeCoreType> VariantType.toGodotContainer(buffer: ByteBuffer, any: Any) {
+private inline fun <reified T: NativeCoreType> VariantType.toGodotNativeCoreType(buffer: ByteBuffer, any: Any) {
     buffer.variantType = ordinal
     any as T
     buffer.putLong(any._handle)

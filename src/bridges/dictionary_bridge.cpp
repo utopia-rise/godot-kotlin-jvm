@@ -113,7 +113,7 @@ uintptr_t DictionaryBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p
 }
 
 void DictionaryBridge::engine_call_clear(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    as_container<Dictionary>(p_raw_ptr)->clear();
+    from_uint_to_ptr<Dictionary>(p_raw_ptr)->clear();
 }
 
 void DictionaryBridge::engine_call_duplicate(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
@@ -121,13 +121,13 @@ void DictionaryBridge::engine_call_duplicate(JNIEnv* p_raw_env, jobject p_instan
     Variant args[1] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
-    Variant variant{as_container<Dictionary>(p_raw_ptr)->duplicate(args[0].operator bool())};
+    Variant variant{from_uint_to_ptr<Dictionary>(p_raw_ptr)->duplicate(args[0].operator bool())};
     transfer_context->write_return_value(env, variant);
 }
 
 void DictionaryBridge::engine_call_empty(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{jni::Jvm::current_env()};
-    Variant variant{as_container<Dictionary>(p_raw_ptr)->empty()};
+    Variant variant{from_uint_to_ptr<Dictionary>(p_raw_ptr)->empty()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 
@@ -135,7 +135,7 @@ void DictionaryBridge::engine_call_erase(JNIEnv* p_raw_env, jobject p_instance, 
     jni::Env env{jni::Jvm::current_env()};
     Variant args[1] = {};
     GDKotlin::get_instance().transfer_context->read_args(env, args);
-    as_container<Dictionary>(p_raw_ptr)->erase(args[0]);
+    from_uint_to_ptr<Dictionary>(p_raw_ptr)->erase(args[0]);
 }
 
 void DictionaryBridge::engine_call_get(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
@@ -143,7 +143,7 @@ void DictionaryBridge::engine_call_get(JNIEnv* p_raw_env, jobject p_instance, jl
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     Variant args[2] = {};
     transfer_context->read_args(env, args);
-    Variant variant{as_container<Dictionary>(p_raw_ptr)->get(args[0], args[1])};
+    Variant variant{from_uint_to_ptr<Dictionary>(p_raw_ptr)->get(args[0], args[1])};
     transfer_context->write_return_value(env, variant);
 }
 
@@ -152,7 +152,7 @@ void DictionaryBridge::engine_call_has(JNIEnv* p_raw_env, jobject p_instance, jl
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     Variant args[1] = {};
     transfer_context->read_args(env, args);
-    Variant variant{as_container<Dictionary>(p_raw_ptr)->has(args[0])};
+    Variant variant{from_uint_to_ptr<Dictionary>(p_raw_ptr)->has(args[0])};
     transfer_context->write_return_value(env, variant);
 }
 
@@ -161,31 +161,31 @@ void DictionaryBridge::engine_call_hasAll(JNIEnv* p_raw_env, jobject p_instance,
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     Variant args[1] = {};
     transfer_context->read_args(env, args);
-    Variant variant{as_container<Dictionary>(p_raw_ptr)->has_all(args[0])};
+    Variant variant{from_uint_to_ptr<Dictionary>(p_raw_ptr)->has_all(args[0])};
     transfer_context->write_return_value(env, variant);
 }
 
 void DictionaryBridge::engine_call_hash(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{jni::Jvm::current_env()};
-    Variant variant{as_container<Dictionary>(p_raw_ptr)->hash()};
+    Variant variant{from_uint_to_ptr<Dictionary>(p_raw_ptr)->hash()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 
 void DictionaryBridge::engine_call_keys(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{jni::Jvm::current_env()};
-    Variant variant{as_container<Dictionary>(p_raw_ptr)->keys()};
+    Variant variant{from_uint_to_ptr<Dictionary>(p_raw_ptr)->keys()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 
 void DictionaryBridge::engine_call_size(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{jni::Jvm::current_env()};
-    Variant variant{as_container<Dictionary>(p_raw_ptr)->size()};
+    Variant variant{from_uint_to_ptr<Dictionary>(p_raw_ptr)->size()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 
 void DictionaryBridge::engine_call_values(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{jni::Jvm::current_env()};
-    Variant variant{as_container<Dictionary>(p_raw_ptr)->values()};
+    Variant variant{from_uint_to_ptr<Dictionary>(p_raw_ptr)->values()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 
@@ -194,7 +194,7 @@ void DictionaryBridge::engine_call_operator_get(JNIEnv* p_raw_env, jobject p_ins
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     Variant args[1] = {};
     transfer_context->read_args(env, args);
-    Variant variant{as_container<Dictionary>(p_raw_ptr)[args[0]]};
+    Variant variant{from_uint_to_ptr<Dictionary>(p_raw_ptr)[args[0]]};
     transfer_context->write_return_value(env, variant);
 }
 
@@ -202,7 +202,7 @@ void DictionaryBridge::engine_call_operator_set(JNIEnv* p_raw_env, jobject p_ins
     jni::Env env{jni::Jvm::current_env()};
     Variant args[2] = {};
     GDKotlin::get_instance().transfer_context->read_args(env, args);
-    as_container<Dictionary>(p_raw_ptr)[args[0]] = args[1];
+    from_uint_to_ptr<Dictionary>(p_raw_ptr)[args[0]] = args[1];
 }
 
 void DictionaryBridge::engine_call_equals(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
@@ -210,6 +210,6 @@ void DictionaryBridge::engine_call_equals(JNIEnv* p_raw_env, jobject p_instance,
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     Variant args[1] = {};
     transfer_context->read_args(env, args);
-    Variant variant{*as_container<Dictionary>(p_raw_ptr) == args[0].operator Dictionary()};
+    Variant variant{*from_uint_to_ptr<Dictionary>(p_raw_ptr) == args[0].operator Dictionary()};
     transfer_context->write_return_value(env, variant);
 }

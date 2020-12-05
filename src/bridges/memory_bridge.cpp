@@ -79,9 +79,12 @@ bool MemoryBridge::ref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
 bool MemoryBridge::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint var_type) {
     Variant::Type variant_type{static_cast<Variant::Type>(var_type)};
     switch (variant_type) {
-
+        case Variant::_RID:
+            memdelete(reinterpret_cast<RID*>(p_raw_ptr));
+            return true;
         case Variant::DICTIONARY:
-            break;
+            memdelete(reinterpret_cast<Dictionary*>(p_raw_ptr));
+            return true;
         case Variant::ARRAY:
             memdelete(reinterpret_cast<Array*>(p_raw_ptr));
             return true;
