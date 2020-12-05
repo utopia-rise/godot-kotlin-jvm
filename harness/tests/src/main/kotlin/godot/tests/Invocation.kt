@@ -95,6 +95,9 @@ class Invocation : Spatial() {
 //            "null" to null
 //    )
 
+    @RegisterProperty
+    var color = Color()
+
     @RegisterSignal
     val signalNoParam by signal()
 

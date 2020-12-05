@@ -31,7 +31,6 @@ object TransferContext {
        buffer.rewind()
    }
 
-    @ExperimentalUnsignedTypes
     fun readReturnValue(type: VariantType, isNullable: Boolean = false): Any? {
         val ret = type.toKotlin(buffer, isNullable)
         buffer.rewind()

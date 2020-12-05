@@ -293,6 +293,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
         return "Dictionary($size)"
     }
 
+    @Suppress("FunctionName")
     private object Bridge {
         external fun engine_call_constructor(): VoidPtr
 
@@ -313,6 +314,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
     }
 }
 
+@Suppress("FunctionName")
 inline fun <reified K, reified V> Dictionary() = Dictionary<K, V>(
         variantMapper[K::class]
                 ?: throw UnsupportedOperationException("Can't create a Dictionary with generic key ${K::class}."),

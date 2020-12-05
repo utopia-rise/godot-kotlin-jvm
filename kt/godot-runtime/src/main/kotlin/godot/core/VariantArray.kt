@@ -403,6 +403,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     }
 
 
+    @Suppress("FunctionName")
     private object Bridge {
         external fun engine_call_constructor(): VoidPtr
 
@@ -442,6 +443,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
 
 
 //CONSTRUCTOR
+@Suppress("FunctionName")
 inline fun <reified T> VariantArray() =
         VariantArray<T>(
                 variantMapper[T::class]
