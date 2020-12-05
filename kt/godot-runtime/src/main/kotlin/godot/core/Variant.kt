@@ -298,9 +298,7 @@ enum class VariantType(
                 GarbageCollector.getNativeCoreTypeInstance(ptr) ?: Dictionary<Any, Any?>(ptr)
             },
             { buffer: ByteBuffer, any: Any ->
-                buffer.variantType = DICTIONARY.ordinal
-                any as Dictionary<*, *>
-                buffer.putLong(any._handle)
+                DICTIONARY.toGodotContainer<Dictionary<*, *>>(buffer, any)
             }
     ),
     ARRAY(
@@ -309,9 +307,7 @@ enum class VariantType(
                 GarbageCollector.getNativeCoreTypeInstance(ptr) ?: VariantArray<Any?>(ptr)
             },
             { buffer: ByteBuffer, any: Any ->
-                buffer.variantType = ARRAY.ordinal
-                any as VariantArray<*>
-                buffer.putLong(any._handle)
+                ARRAY.toGodotContainer<VariantArray<*>>(buffer, any)
             }
     ),
 
@@ -361,10 +357,10 @@ enum class VariantType(
 
     VARIANT_MAX(
             { _: ByteBuffer, _: Int ->
-                throw java.lang.UnsupportedOperationException("Received VARIANT_MAX type, which should not happen.")
+                throw UnsupportedOperationException("Received VARIANT_MAX type, which should not happen.")
             },
             { _: ByteBuffer, _: Any ->
-                throw java.lang.UnsupportedOperationException("Try to send a VARIANT_MAX type, which should not be done.")
+                throw UnsupportedOperationException("Try to send a VARIANT_MAX type, which should not be done.")
             }
     ),
 
@@ -452,6 +448,12 @@ fun VariantType.getToKotlinLambdaToExecute(defaultLambda: (ByteBuffer, Int) -> A
             }
         }
     }
+}
+
+private inline fun <reified T: NativeCoreType> VariantType.toGodotContainer(buffer: ByteBuffer, any: Any) {
+    buffer.variantType = ordinal
+    any as T
+    buffer.putLong(any._handle)
 }
 
 private const val ANY_VARIANT_TYPE = 30
