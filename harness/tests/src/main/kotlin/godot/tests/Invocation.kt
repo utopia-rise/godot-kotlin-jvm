@@ -8,8 +8,7 @@ import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
-import godot.core.VariantArray
-import godot.core.variantArrayOf
+import godot.core.*
 import godot.signals.signal
 import org.joda.time.DateTime
 
@@ -83,6 +82,18 @@ class Invocation : Spatial() {
 
     @RegisterProperty
     var nullableArray = variantArrayOf(NavigationMesh(), null)
+
+//    @RegisterProperty
+//    var anyToAnyDictionary = Dictionary<Any, Any>()
+//
+//    @RegisterProperty
+//    var navMeshesDictionary = dictionaryOf("AwesomeNavmesh" to NavigationMesh())
+//
+//    @RegisterProperty
+//    var nullableDictionary = dictionaryOf(
+//            "notnull" to NavigationMesh(),
+//            "null" to null
+//    )
 
     @RegisterSignal
     val signalNoParam by signal()
