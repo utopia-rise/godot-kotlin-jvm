@@ -82,17 +82,17 @@ enum class VariantType(
         private val toGodotWithoutNullCheck: (ByteBuffer, any: Any) -> Unit,
 ) {
     NIL(
-            { buffer: ByteBuffer, expectedType: Int ->
+            { _: ByteBuffer, _: Int ->
                 Unit
             },
-            { buffer: ByteBuffer, any: Any ->
+            { buffer: ByteBuffer, _: Any ->
                 buffer.variantType = NIL.ordinal
             }
     ),
 
     // atomic types
     BOOL(
-            { buffer: ByteBuffer, expectedType: Int ->
+            { buffer: ByteBuffer, _: Int ->
                 buffer.bool
             },
             { buffer: ByteBuffer, any: Any ->
@@ -101,7 +101,7 @@ enum class VariantType(
             }
     ),
     LONG(
-            { buffer: ByteBuffer, expectedType: Int ->
+            { buffer: ByteBuffer, _: Int ->
                 buffer.long
             },
             { buffer: ByteBuffer, any: Any ->
@@ -110,7 +110,7 @@ enum class VariantType(
             }
     ),
     DOUBLE(
-            { buffer: ByteBuffer, expectedType: Int ->
+            { buffer: ByteBuffer, _: Int ->
                 buffer.double
             },
             { buffer: ByteBuffer, any: Any ->
@@ -119,7 +119,7 @@ enum class VariantType(
             }
     ),
     STRING(
-            { buffer: ByteBuffer, expectedType: Int ->
+            { buffer: ByteBuffer, _: Int ->
                 val stringSize = buffer.int
                 val charArray = ByteArray(stringSize)
                 buffer.get(charArray, 0, stringSize)
@@ -137,7 +137,7 @@ enum class VariantType(
     // math types
 
     VECTOR2(
-            { buffer: ByteBuffer, expectedType: Int ->
+            { buffer: ByteBuffer, _: Int ->
                 buffer.vector2
             },
             { buffer: ByteBuffer, any: Any ->
@@ -146,7 +146,7 @@ enum class VariantType(
             }
     ), // 5
     RECT2(
-            { buffer: ByteBuffer, expectedType: Int ->
+            { buffer: ByteBuffer, _: Int ->
                 Rect2(
                         buffer.vector2,
                         buffer.vector2
@@ -160,7 +160,7 @@ enum class VariantType(
             }
     ),
     VECTOR3(
-            { buffer: ByteBuffer, expectedType: Int ->
+            { buffer: ByteBuffer, _: Int ->
                 Vector3(buffer.float.toRealT(), buffer.float.toRealT(), buffer.float.toRealT())
             },
             { buffer: ByteBuffer, any: Any ->
@@ -184,7 +184,7 @@ enum class VariantType(
             }
     ),
     PLANE(
-            { buffer: ByteBuffer, expectedType: Int ->
+            { buffer: ByteBuffer, _: Int ->
                 val normal = buffer.vector3
                 val d = buffer.float.toRealT()
                 Plane(normal, d)
@@ -197,7 +197,7 @@ enum class VariantType(
             }
     ),
     QUAT(
-            { buffer: ByteBuffer, expectedType: Int ->
+            { buffer: ByteBuffer, _: Int ->
                 val x = buffer.float.toRealT()
                 val y = buffer.float.toRealT()
                 val z = buffer.float.toRealT()
@@ -215,7 +215,7 @@ enum class VariantType(
             }
     ), // 10
     AABB(
-            { buffer: ByteBuffer, expectedType: Int ->
+            { buffer: ByteBuffer, _: Int ->
                 val position = buffer.vector3
                 val size = buffer.vector3
                 AABB(position, size)
@@ -228,7 +228,7 @@ enum class VariantType(
             }
     ),
     BASIS(
-            { buffer: ByteBuffer, expectedType: Int ->
+            { buffer: ByteBuffer, _: Int ->
                 buffer.basis
             },
             { buffer: ByteBuffer, any: Any ->
@@ -237,7 +237,7 @@ enum class VariantType(
             }
     ),
     TRANSFORM(
-            { buffer: ByteBuffer, expectedType: Int ->
+            { buffer: ByteBuffer, _: Int ->
                 val basis = buffer.basis
                 val origin = buffer.vector3
                 Transform(basis, origin)
@@ -270,7 +270,7 @@ enum class VariantType(
             { buffer: ByteBuffer, any: Any -> TODO() }
     ),
     OBJECT(
-            { buffer: ByteBuffer, expectedType: Int ->
+            { buffer: ByteBuffer, _: Int ->
                 val ptr = buffer.long
                 val constructorIndex = buffer.int
                 val isRef = buffer.bool
@@ -293,7 +293,7 @@ enum class VariantType(
             }
     ),
     DICTIONARY(
-            { buffer: ByteBuffer, expectedType: Int ->
+            { buffer: ByteBuffer, _: Int ->
                 val ptr = buffer.long
                 GarbageCollector.getNativeCoreTypeInstance(ptr) ?: Dictionary<Any, Any?>(ptr)
             },
@@ -304,7 +304,7 @@ enum class VariantType(
             }
     ),
     ARRAY(
-            { buffer: ByteBuffer, expectedType: Int ->
+            { buffer: ByteBuffer, _: Int ->
                 val ptr = buffer.long
                 GarbageCollector.getNativeCoreTypeInstance(ptr) ?: VariantArray<Any?>(ptr)
             },
@@ -360,10 +360,12 @@ enum class VariantType(
     ),
 
     VARIANT_MAX(
-            { buffer: ByteBuffer, expectedType: Int ->
-                TODO()
+            { _: ByteBuffer, _: Int ->
+                throw java.lang.UnsupportedOperationException("Received VARIANT_MAX type, which should not happen.")
             },
-            { buffer: ByteBuffer, any: Any -> TODO() }
+            { _: ByteBuffer, _: Any ->
+                throw java.lang.UnsupportedOperationException("Try to send a VARIANT_MAX type, which should not be done.")
+            }
     ),
 
     JVM_INT(
