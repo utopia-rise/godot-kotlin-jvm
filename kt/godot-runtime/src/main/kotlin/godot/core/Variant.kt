@@ -252,10 +252,17 @@ enum class VariantType(
 
     // misc types
     COLOR(
-            { buffer: ByteBuffer, expectedType: Int ->
-                TODO()
+            { buffer: ByteBuffer, _: Int ->
+                Color(buffer.float, buffer.float, buffer.float, buffer.float)
             },
-            { buffer: ByteBuffer, any: Any -> TODO() }
+            { buffer: ByteBuffer, any: Any ->
+                buffer.variantType = COLOR.ordinal
+                any as Color
+                buffer.putFloat(any.r.toFloat())
+                buffer.putFloat(any.g.toFloat())
+                buffer.putFloat(any.b.toFloat())
+                buffer.putFloat(any.a.toFloat())
+            }
     ),
     NODE_PATH(
             { buffer: ByteBuffer, expectedType: Int ->
