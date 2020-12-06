@@ -8,82 +8,82 @@ using namespace bridges;
 JNI_INIT_STATICS_FOR_CLASS(DictionaryBridge)
 
 DictionaryBridge::DictionaryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader)
-    : JavaInstanceWrapper(DICTIONARY_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader){
-    jni::JNativeMethod engine_call_constructor_method {
+        : JavaInstanceWrapper(DICTIONARY_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
+    jni::JNativeMethod engine_call_constructor_method{
             "engine_call_constructor",
             "()J",
             (void*) DictionaryBridge::engine_call_constructor
     };
 
-    jni::JNativeMethod engine_call_clear_method {
-        "engine_call_clear",
-        "(J)V",
-        (void*) DictionaryBridge::engine_call_clear
+    jni::JNativeMethod engine_call_clear_method{
+            "engine_call_clear",
+            "(J)V",
+            (void*) DictionaryBridge::engine_call_clear
     };
-    jni::JNativeMethod engine_call_duplicate_method {
-        "engine_call_duplicate",
-        "(J)V",
-        (void*) DictionaryBridge::engine_call_duplicate
+    jni::JNativeMethod engine_call_duplicate_method{
+            "engine_call_duplicate",
+            "(J)V",
+            (void*) DictionaryBridge::engine_call_duplicate
     };
-    jni::JNativeMethod engine_call_empty_method {
-        "engine_call_empty",
-        "(J)V",
-        (void*) DictionaryBridge::engine_call_empty
+    jni::JNativeMethod engine_call_empty_method{
+            "engine_call_empty",
+            "(J)V",
+            (void*) DictionaryBridge::engine_call_empty
     };
-    jni::JNativeMethod engine_call_erase_method {
-        "engine_call_erase",
-        "(J)V",
-        (void*) DictionaryBridge::engine_call_erase
+    jni::JNativeMethod engine_call_erase_method{
+            "engine_call_erase",
+            "(J)V",
+            (void*) DictionaryBridge::engine_call_erase
     };
-    jni::JNativeMethod engine_call_get_method {
-        "engine_call_get",
-        "(J)V",
-        (void*) DictionaryBridge::engine_call_get
+    jni::JNativeMethod engine_call_get_method{
+            "engine_call_get",
+            "(J)V",
+            (void*) DictionaryBridge::engine_call_get
     };
-    jni::JNativeMethod engine_call_has_method {
-        "engine_call_has",
-        "(J)V",
-        (void*) DictionaryBridge::engine_call_has
+    jni::JNativeMethod engine_call_has_method{
+            "engine_call_has",
+            "(J)V",
+            (void*) DictionaryBridge::engine_call_has
     };
-    jni::JNativeMethod engine_call_hasAll_method {
-        "engine_call_hasAll",
-        "(J)V",
-        (void*) DictionaryBridge::engine_call_hasAll
+    jni::JNativeMethod engine_call_hasAll_method{
+            "engine_call_hasAll",
+            "(J)V",
+            (void*) DictionaryBridge::engine_call_hasAll
     };
-    jni::JNativeMethod engine_call_hash_method {
-        "engine_call_hash",
-        "(J)V",
-        (void*) DictionaryBridge::engine_call_hash
+    jni::JNativeMethod engine_call_hash_method{
+            "engine_call_hash",
+            "(J)V",
+            (void*) DictionaryBridge::engine_call_hash
     };
-    jni::JNativeMethod engine_call_keys_method {
-        "engine_call_keys",
-        "(J)V",
-        (void*) DictionaryBridge::engine_call_keys
+    jni::JNativeMethod engine_call_keys_method{
+            "engine_call_keys",
+            "(J)V",
+            (void*) DictionaryBridge::engine_call_keys
     };
-    jni::JNativeMethod engine_call_size_method {
-        "engine_call_size",
-        "(J)V",
-        (void*) DictionaryBridge::engine_call_size
+    jni::JNativeMethod engine_call_size_method{
+            "engine_call_size",
+            "(J)V",
+            (void*) DictionaryBridge::engine_call_size
     };
-    jni::JNativeMethod engine_call_values_method {
-        "engine_call_values",
-        "(J)V",
-        (void*) DictionaryBridge::engine_call_values
+    jni::JNativeMethod engine_call_values_method{
+            "engine_call_values",
+            "(J)V",
+            (void*) DictionaryBridge::engine_call_values
     };
-    jni::JNativeMethod engine_call_operator_get_method {
-        "engine_call_operator_get",
-        "(J)V",
-        (void*) DictionaryBridge::engine_call_operator_get
+    jni::JNativeMethod engine_call_operator_get_method{
+            "engine_call_operator_get",
+            "(J)V",
+            (void*) DictionaryBridge::engine_call_operator_get
     };
-    jni::JNativeMethod engine_call_operator_set_method {
-        "engine_call_operator_set",
-        "(J)V",
-        (void*) DictionaryBridge::engine_call_operator_set
+    jni::JNativeMethod engine_call_operator_set_method{
+            "engine_call_operator_set",
+            "(J)V",
+            (void*) DictionaryBridge::engine_call_operator_set
     };
-    jni::JNativeMethod engine_call_equals_method {
-        "engine_call_equals",
-        "(J)V",
-        (void*) DictionaryBridge::engine_call_equals
+    jni::JNativeMethod engine_call_equals_method{
+            "engine_call_equals",
+            "(J)V",
+            (void*) DictionaryBridge::engine_call_equals
     };
 
     Vector<jni::JNativeMethod> methods;

@@ -19,23 +19,23 @@ RidBridge::RidBridge(jni::JObject p_wrapped, jni::JObject p_class_loader)
     jni::JNativeMethod engine_call_constructor_arg_method{
             "engine_call_constructor",
             "(J)J",
-            (void*) RidBridge::engine_call_constructor
+            (void*) RidBridge::engine_call_constructor_arg
     };
 
     jni::JNativeMethod engine_call_getID_method{
             "engine_call_getID",
             "(J)V",
-            (void*) engine_call_getID
+            (void*) RidBridge::engine_call_getID
     };
     jni::JNativeMethod engine_call_compareTo_method{
             "engine_call_compareTo",
             "(J)V",
-            (void*) engine_call_compareTo
+            (void*) RidBridge::engine_call_compareTo
     };
     jni::JNativeMethod engine_call_equals_method{
             "engine_call_equals",
             "(J)V",
-            (void*) engine_call_equals
+            (void*) RidBridge::engine_call_equals
     };
 
     Vector<jni::JNativeMethod> methods;

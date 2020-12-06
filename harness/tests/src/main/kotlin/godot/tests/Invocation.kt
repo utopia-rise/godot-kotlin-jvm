@@ -98,8 +98,8 @@ class Invocation : Spatial() {
     @RegisterProperty
     var color = Color()
 
-//    @RegisterProperty
-//    var rid = RID()
+    @RegisterProperty
+    var rid = RID()
 
     @RegisterSignal
     val signalNoParam by signal()
