@@ -171,6 +171,12 @@ class Invocation : Spatial() {
     }
 
     @RegisterFunction
+    fun getRidId() = rid.id
+
+    @RegisterFunction
+    fun getNavMeshRid() = resourceTest.getId()
+
+    @RegisterFunction
     fun appendToAnyDict(key: Any, value: Any) {
         anyToAnyDictionary[key] = value
     }

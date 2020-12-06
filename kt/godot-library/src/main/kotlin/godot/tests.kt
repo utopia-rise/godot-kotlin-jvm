@@ -367,6 +367,11 @@ open class Resource : Reference() {
     override fun __new(): VoidPtr {
         return TransferContext.invokeConstructor(RESOURCE)
     }
+
+    fun getId(): RID {
+        TransferContext.callMethod(rawPtr, RESOURCE_GET_ID, VariantType._RID)
+        return TransferContext.readReturnValue(VariantType._RID, false) as RID
+    }
 }
 
 open class NavigationMesh : Resource() {
