@@ -83,20 +83,23 @@ class Invocation : Spatial() {
     @RegisterProperty
     var nullableArray = variantArrayOf(NavigationMesh(), null)
 
-//    @RegisterProperty
-//    var anyToAnyDictionary = Dictionary<Any, Any>()
-//
-//    @RegisterProperty
-//    var navMeshesDictionary = dictionaryOf("AwesomeNavmesh" to NavigationMesh())
-//
-//    @RegisterProperty
-//    var nullableDictionary = dictionaryOf(
-//            "notnull" to NavigationMesh(),
-//            "null" to null
-//    )
+    @RegisterProperty
+    var anyToAnyDictionary = Dictionary<Any, Any>()
+
+    @RegisterProperty
+    var navMeshesDictionary = dictionaryOf("AwesomeNavmesh" to NavigationMesh())
+
+    @RegisterProperty
+    var nullableDictionary = dictionaryOf(
+            "notnull" to NavigationMesh(),
+            "null" to null
+    )
 
     @RegisterProperty
     var color = Color()
+
+//    @RegisterProperty
+//    var rid = RID()
 
     @RegisterSignal
     val signalNoParam by signal()
@@ -166,6 +169,55 @@ class Invocation : Spatial() {
         invocation.free()
         navMeshes.clear()
     }
+
+    @RegisterFunction
+    fun appendToAnyDict(key: Any, value: Any) {
+        anyToAnyDictionary[key] = value
+    }
+
+    @RegisterFunction
+    fun removeFromAnyDict(key: Any) {
+        anyToAnyDictionary.remove(key)
+    }
+
+    @RegisterFunction
+    fun getFromAnyDict(key: Any) = anyToAnyDictionary[key]
+
+    @RegisterFunction
+    fun anyDictSize() = anyToAnyDictionary.size
+
+    @RegisterFunction
+    fun appendToStringNavMeshDict(key: String, value: NavigationMesh) {
+        navMeshesDictionary[key] = value
+    }
+
+    @RegisterFunction
+    fun removeFromStringNavMeshDict(key: String) {
+        navMeshesDictionary.remove(key)
+    }
+
+    @RegisterFunction
+    fun getFromStringNavMeshDict(key: String) = navMeshesDictionary[key]
+
+    @RegisterFunction
+    fun stringNavMeshDictSize() = navMeshesDictionary.size
+
+    @RegisterFunction
+    fun appendToStringNavMeshNullableDict(key: String, value: NavigationMesh) {
+        nullableDictionary[key] = value
+    }
+
+    @RegisterFunction
+    fun removeFromStringNavMeshNullableDict(key: String) {
+        nullableDictionary.remove(key)
+    }
+
+//	TODO: This will fail to register as we cannot register nullable return type
+//	@RegisterFunction
+//	fun getFromStringNavMeshNullableDict(key: String) = nullableDictionary[key]
+
+    @RegisterFunction
+    fun stringNavMeshNullableDictSize() = nullableDictionary.size
 
     @RegisterFunction
     fun appendNullableStandardNavMesh() = nullableArray.append(NavigationMesh())

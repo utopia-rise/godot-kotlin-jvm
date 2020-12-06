@@ -194,7 +194,7 @@ void DictionaryBridge::engine_call_operator_get(JNIEnv* p_raw_env, jobject p_ins
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     Variant args[1] = {};
     transfer_context->read_args(env, args);
-    Variant variant{from_uint_to_ptr<Dictionary>(p_raw_ptr)[args[0]]};
+    Variant variant{from_uint_to_ptr<Dictionary>(p_raw_ptr)->operator[](args[0])};
     transfer_context->write_return_value(env, variant);
 }
 
@@ -202,7 +202,7 @@ void DictionaryBridge::engine_call_operator_set(JNIEnv* p_raw_env, jobject p_ins
     jni::Env env{jni::Jvm::current_env()};
     Variant args[2] = {};
     GDKotlin::get_instance().transfer_context->read_args(env, args);
-    from_uint_to_ptr<Dictionary>(p_raw_ptr)[args[0]] = args[1];
+    from_uint_to_ptr<Dictionary>(p_raw_ptr)->operator[](args[0]) = args[1];
 }
 
 void DictionaryBridge::engine_call_equals(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {

@@ -406,6 +406,8 @@ enum class VariantType(
                     is Float -> JVM_FLOAT.toGodotWithoutNullCheck(buffer, any)
                     is Double -> DOUBLE.toGodotWithoutNullCheck(buffer, any)
                     is String -> STRING.toGodotWithoutNullCheck(buffer, any)
+                    is VariantArray<*> -> ARRAY.toGodotWithoutNullCheck(buffer, any)
+                    is Dictionary<*, *> -> DICTIONARY.toGodotWithoutNullCheck(buffer, any)
                     is KtObject -> OBJECT.toGodotWithoutNullCheck(buffer, any)
                     else -> throw UnsupportedOperationException("Can't convert type ${any::class} to Variant")
                 }
