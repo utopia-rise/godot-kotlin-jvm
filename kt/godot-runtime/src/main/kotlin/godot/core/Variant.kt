@@ -269,9 +269,12 @@ enum class VariantType(
     ),
     NODE_PATH(
             { buffer: ByteBuffer, expectedType: Int ->
-                TODO()
+                val ptr = buffer.long
+                GarbageCollector.getNativeCoreTypeInstance(ptr) ?: NodePath(ptr)
             },
-            { buffer: ByteBuffer, any: Any -> TODO() }
+            { buffer: ByteBuffer, any: Any ->
+                NODE_PATH.toGodotNativeCoreType<NodePath>(buffer, any)
+            }
     ), // 15
     _RID(
             { buffer: ByteBuffer, expectedType: Int ->
