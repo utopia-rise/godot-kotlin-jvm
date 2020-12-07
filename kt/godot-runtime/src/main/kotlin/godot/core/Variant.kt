@@ -268,7 +268,7 @@ enum class VariantType(
             }
     ),
     NODE_PATH(
-            { buffer: ByteBuffer, expectedType: Int ->
+            { buffer: ByteBuffer, _: Int ->
                 val ptr = buffer.long
                 GarbageCollector.getNativeCoreTypeInstance(ptr) ?: NodePath(ptr)
             },
@@ -277,7 +277,7 @@ enum class VariantType(
             }
     ), // 15
     _RID(
-            { buffer: ByteBuffer, expectedType: Int ->
+            { buffer: ByteBuffer, _: Int ->
                 val ptr = buffer.long
                 GarbageCollector.getNativeCoreTypeInstance(ptr) ?: RID(ptr)
             },

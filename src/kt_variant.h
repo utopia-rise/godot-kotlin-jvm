@@ -154,6 +154,11 @@ namespace ktvariant {
         to_kvariant_fromNATIVECORETYPE<Array>(des, src);
     }
 
+    static void to_kvariant_fromNODEPATH(SharedBuffer* des, const Variant& src) {
+        set_variant_type(des, Variant::Type::NODE_PATH);
+        to_kvariant_fromNATIVECORETYPE<NodePath>(des, src);
+    }
+
     static void to_kvariant_fromRID(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::_RID);
         to_kvariant_fromNATIVECORETYPE<RID>(des, src);
@@ -203,6 +208,7 @@ namespace ktvariant {
         to_kt_array[Variant::COLOR] = to_kvariant_fromCOLOR;
         to_kt_array[Variant::DICTIONARY] = to_kvariant_fromDICTIONARY;
         to_kt_array[Variant::ARRAY] = to_kvariant_fromARRAY;
+        to_kt_array[Variant::NODE_PATH] = to_kvariant_fromNODEPATH;
         to_kt_array[Variant::_RID] = to_kvariant_fromRID;
         to_kt_array[Variant::OBJECT] = to_kvariant_fromOBJECT;
     }
@@ -384,6 +390,7 @@ namespace ktvariant {
         to_gd_array[Variant::COLOR] = from_kvariant_tokColorValue;
         to_gd_array[Variant::DICTIONARY] = from_kvariant_tokVariantNativeCoreTypeValue<Dictionary>;
         to_gd_array[Variant::ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<Array>;
+        to_gd_array[Variant::NODE_PATH] = from_kvariant_tokVariantNativeCoreTypeValue<NodePath>;
         to_gd_array[Variant::_RID] = from_kvariant_tokVariantNativeCoreTypeValue<RID>;
         to_gd_array[Variant::OBJECT] = from_kvariant_toKObjectValue;
     }

@@ -7,6 +7,7 @@
 #include <core/variant.h>
 #include <modules/kotlin_jvm/src/bridges/dictionary_bridge.h>
 #include <modules/kotlin_jvm/src/bridges/rid_bridge.h>
+#include <modules/kotlin_jvm/src/bridges/node_path_bridge.h>
 
 class BridgesManager {
 private:
@@ -15,6 +16,7 @@ private:
     bridges::VariantArrayBridge* variant_array_bridge;
     bridges::DictionaryBridge* dictionary_bridge;
     bridges::RidBridge* rid_bridge;
+    bridges::NodePathBridge* node_path_bridge;
 
     BridgesManager();
     ~BridgesManager();
