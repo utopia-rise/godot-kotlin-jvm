@@ -37,18 +37,18 @@ class Entry : godot.runtime.Entry() {
                     }
                 )
 
-                function(Simple::benchmarkIcall, VariantType.JVM_INT,
-                        returns = {
-                            type = VariantType.LONG
-                            className = "Int"
-                        }
+                function(Simple::benchmarkIcall, VariantType.NIL,
+                    returns = {
+                        type = VariantType.NIL
+                        className = "kotlin.Unit"
+                    }
                 )
 
-                function(Simple::benchmarkIcallWithLoop, VariantType.JVM_INT,
-                        returns = {
-                            type = VariantType.LONG
-                            className = "Int"
-                        }
+                function(Simple::benchmarkIcallWithLoop, VariantType.NIL,
+                    returns = {
+                        type = VariantType.NIL
+                        className = "kotlin.Unit"
+                    }
                 )
 
                 function(Simple::benchmarkMethodCall, VariantType.NIL,
