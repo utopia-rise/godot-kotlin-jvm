@@ -5,7 +5,7 @@ func benchmark_simple_add():
 
 func benchmark_avg():
 	var size = 10000
-	var total = 0
+	var total = 0.0
 	for i in range(size):
 		total += i
 	return total / size
@@ -15,9 +15,9 @@ func benchmark_vectors():
 	b = b.rotated(Vector3.UP, deg2rad(60))
 	b = b.scaled(Vector3(0.5, 0.5, 0.5))
 
-	var s = Vector3()
+	var s: Vector3 = Vector3()
 	for i in range(1000):
-		var v = Vector3(i, i, i)
+		var v  = Vector3(i, i, i)
 		v = b.xform(v)
 		s = s + v
 
@@ -32,10 +32,10 @@ func benchmark_vectors2_only():
 	return s
 
 func benchmark_icall():
-	var node = Node.new()
+	var node: Node = Node.new()
 	node.get_instance_id()
 	node.free()
-	return 0
+	return
 
 func benchmark_icall_with_loop():
 	var node = Node.new()
@@ -45,7 +45,7 @@ func benchmark_icall_with_loop():
 		node.remove_child(child)
 		child.free()
 	node.free()
-	return 0
+	return
 
 func benchmark_method_call():
 	pass

@@ -57,7 +57,7 @@ func __to_op_per_s(value):
 		return value
 	return SEC_IN_USEC / value
 
-func _to_string():
+func get_result_array() -> Array:
 	var results = get_results()
 	var _min = results.min
 	var _max = results.max
@@ -66,4 +66,4 @@ func _to_string():
 	var pc05 = results.p05
 	var pc95 = results.p95
 	var args = [avg, _min, pc05, median, pc95, _max]
-	return "AVG=%d op/s, MIN=%d op/s, 05PC=%d op/s, MEDIAN=%d op/s, 95PC=%d op/s, MAX=%d op/s" % args
+	return ["AVG=%d" % avg, "MIN=%d" % _min, "05PC=%d" % pc05, "MEDIAN=%d" % median, "95PC=%d" % pc95, "MAX=%d" % _max]

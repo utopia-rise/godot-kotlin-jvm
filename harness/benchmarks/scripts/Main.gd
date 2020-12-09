@@ -9,6 +9,7 @@ var classes = [
 
 var languages = [
 	Language.new("GDScript", "gd", "res://gd/", false),
+	Language.new("Typed GDScript", "gd", "res://typed_gd/", false),
 	Language.new("Kotlin", "kt", "res://src/main/kotlin/godot/benchmark/", true),
 	Language.new("C# Mono", "cs", "res://csharp/", true)
 ]
@@ -37,7 +38,7 @@ func _init():
 			if test_name != new_test_name:
 				test_name = new_test_name
 				print("")
-				print("Running benchmark: %s" % test_name)
+				print("Running benchmark (unit: op/s): %s " % test_name)
 			__run_benchmark(benchmark, report)
 	print("Benchmark tests are over!")
 	__save_report(report)
@@ -45,17 +46,20 @@ func _init():
 
 func __run_benchmark(benchmark: Benchmark, report: Report):
 	var stats = Stats.new()
-	if benchmark.warmup:
+	if benchmark.warmup:	
 		for warmup in range(warmups):
 			__do_run(warmup, benchmark, stats, true)
 	for iteration in range(iterations):
 		__do_run(iteration, benchmark, stats, false)
-	printt("%s:" % benchmark.lang.name, str(stats))
+	var results: Array = stats.get_result_array()
+	prints("%s:" % benchmark.lang.name, results[0], results[1], results[2], results[3], results[4], results[5])
 	report.add(benchmark, stats.get_results())
 
 
 func __do_run(iteration: int, benchmark: Benchmark, stats: Stats, is_warmup: bool):
 	var start: float = OS.get_ticks_usec()
+	##Loop is costly in GDScropt so to avoid measure the execution time of it, we manually execute the benchmark 30 times.
+	##Godot doesnt' measure time with enough precision so we have to execute the benchmark multiple times to get more than a 1 micro second.
 	benchmark.exec()
 	benchmark.exec()
 	benchmark.exec()

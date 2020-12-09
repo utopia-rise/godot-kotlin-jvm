@@ -30,14 +30,14 @@ static func create(langs: Array, name: String) -> Array:
 			if method_name.begins_with("benchmark_"):
 				method_list.append(method_name)
 	
-				#If not already in the global method last, we add it.
+				#If not already in the global method list, we add it.
 				if !methods.has(method_name):
 					methods.append(method_name)
 				
 	
 	methods.sort()
 	print("Tests to run:")
-	##Loop over the methods, then the scripts so they are all next toeach other for a same test.	
+	##Loop over the methods, then the scripts so the results of the different languages for a same script are print next to each other.
 	for method_name in methods:
 		printt("	" + method_name)
 		for script in scripts:
