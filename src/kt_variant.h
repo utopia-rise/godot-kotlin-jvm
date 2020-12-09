@@ -166,6 +166,13 @@ namespace ktvariant {
 
     static void to_kvariant_fromOBJECT(SharedBuffer* des, const Variant& src) {
         Object* ptr{src};
+
+        // TODO : Investigate on nullable management of Godot. Is Object the only nullable type ?
+        if (!ptr) {
+            to_kvariant_fromNIL(des, src);
+            return;
+        }
+
         set_variant_type(des, Variant::Type::OBJECT);
 
         //TODO: Manage 32 bits systems.

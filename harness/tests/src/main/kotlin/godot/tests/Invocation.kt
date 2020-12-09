@@ -289,4 +289,7 @@ class Invocation : Spatial() {
 
     @RegisterFunction
     fun otherJvmId(invocation: Invocation) = invocation.jvmId
+
+    @RegisterFunction
+    fun hasCameraNode() = getNode(NodePath("Camera")) != null
 }

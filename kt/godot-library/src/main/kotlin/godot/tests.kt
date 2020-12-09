@@ -348,6 +348,12 @@ open class Node : Object() {
         TransferContext.writeArguments(VariantType.OBJECT to node)
         TransferContext.callMethod(rawPtr, NODE_REMOVE_CHILD, VariantType.NIL)
     }
+
+    open fun getNode(nodePath: NodePath): Node? {
+        TransferContext.writeArguments(VariantType.NODE_PATH to nodePath)
+        TransferContext.callMethod(rawPtr, NODE_GET_NODE, VariantType.OBJECT)
+        return TransferContext.readReturnValue(VariantType.OBJECT, true) as Node?
+    }
 }
 
 open class Spatial : Node() {
@@ -399,12 +405,14 @@ fun registerEngineTypes() {
 }
 
 fun registerEngineTypeMethods() {
-    TypeManager.engineTypeMethod.add(Pair(OBJECT, "connect"))
-    TypeManager.engineTypeMethod.add(Pair(OBJECT, "emit_signal"))
-    TypeManager.engineTypeMethod.add(Pair(OBJECT, "get_instance_id"))
-    TypeManager.engineTypeMethod.add(Pair(NODE, "get_name"))
-    TypeManager.engineTypeMethod.add(Pair(NODE, "set_name"))
-    TypeManager.engineTypeMethod.add(Pair(NODE, "get_parent"))
-    TypeManager.engineTypeMethod.add(Pair(NODE, "add_child"))
-    TypeManager.engineTypeMethod.add(Pair(NODE, "remove_child"))
+    TypeManager.engineTypeMethod.add(OBJECT to "connect")
+    TypeManager.engineTypeMethod.add(OBJECT to "emit_signal")
+    TypeManager.engineTypeMethod.add(OBJECT to "get_instance_id")
+    TypeManager.engineTypeMethod.add(NODE to "get_name")
+    TypeManager.engineTypeMethod.add(NODE to "set_name")
+    TypeManager.engineTypeMethod.add(NODE to "get_parent")
+    TypeManager.engineTypeMethod.add(NODE to "add_child")
+    TypeManager.engineTypeMethod.add(NODE to "remove_child")
+    TypeManager.engineTypeMethod.add(NODE to "get_node")
+    TypeManager.engineTypeMethod.add(RESOURCE to "get_id")
 }
