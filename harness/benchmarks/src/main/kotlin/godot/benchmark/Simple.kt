@@ -54,14 +54,13 @@ class Simple : Object() {
     }
 
     @RegisterFunction
-    fun benchmarkIcall(): Int {
+    fun benchmarkIcall() {
         val node = Node()
         node.getInstanceId()
         node.free()
-        return 0
     }
 
-    fun benchmarkIcallWithLoop(): Int {
+    fun benchmarkIcallWithLoop() {
         val node = Node()
         for (i in 0 until 100) {
             val child = Node()
@@ -70,7 +69,6 @@ class Simple : Object() {
             child.free()
         }
         node.free()
-        return 0
     }
 
     fun benchmarkMethodCall() {

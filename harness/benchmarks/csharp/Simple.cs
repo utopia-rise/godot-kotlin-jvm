@@ -52,15 +52,14 @@ public class Simple : Reference
         return s;
     }
 
-    public int benchmark_icall()
+    public void benchmark_icall()
     {
         var node = new Node();
         node.GetInstanceId();
         node.Free();
-        return 0;
     }
 
-    public int benchmark_icall_with_loop()
+    public void benchmark_icall_with_loop()
     {
         var node = new Node();
         for (var i = 0; i < 100; i++)
@@ -71,8 +70,6 @@ public class Simple : Reference
             child.Free();
         }
         node.Free();
-
-        return 0;
     }
 
     public void benchmark_method_call()
