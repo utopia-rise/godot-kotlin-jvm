@@ -18,7 +18,7 @@ KotlinInstance::KotlinInstance(KtObject *p_wrapped_object, Object *p_owner, KtCl
 }
 
 bool KotlinInstance::set(const StringName& p_name, const Variant& p_value) {
-    jni::LocalFrame localFrame(100);
+    jni::LocalFrame localFrame(1000);
 
     KtProperty* ktProperty { kt_class->get_property(p_name) };
     if (ktProperty) {
@@ -30,7 +30,7 @@ bool KotlinInstance::set(const StringName& p_name, const Variant& p_value) {
 }
 
 bool KotlinInstance::get(const StringName& p_name, Variant& r_ret) const {
-    jni::LocalFrame localFrame(100);
+    jni::LocalFrame localFrame(1000);
 
     KtProperty* ktProperty { kt_class->get_property(p_name) };
     if (ktProperty) {

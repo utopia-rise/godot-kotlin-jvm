@@ -3,53 +3,59 @@ package godot
 import godot.benchmark.Simple
 import godot.core.KtConstructor0
 import godot.core.VariantType
-import godot.core.getVariantType
 
 class Entry : godot.runtime.Entry() {
     override fun Context.init() {
         with (registry) {
             registerClass<Simple>(Simple::class.qualifiedName!!, "Object") {
                 constructor(KtConstructor0(::Simple))
-                function(Simple::benchmarkSimpleAdd, ::getVariantType,
+                function(Simple::benchmarkSimpleAdd, VariantType.JVM_INT,
                     returns = {
                         type = VariantType.LONG
                         className = "Int"
                     }
                 )
 
-                function(Simple::benchmarkAvg, ::getVariantType,
+                function(Simple::benchmarkAvg, VariantType.JVM_INT,
                     returns = {
                         type = VariantType.LONG
                         className = "Int"
                     }
                 )
 
-                function(Simple::benchmarkVectors, ::getVariantType,
+                function(Simple::benchmarkVectors, VariantType.VECTOR3,
                     returns = {
                         type = VariantType.VECTOR3
                         className = "Vector3"
                     }
                 )
 
-                function(Simple::benchmarkVectors2Only, ::getVariantType,
+                function(Simple::benchmarkVectors2Only, VariantType.VECTOR2,
                     returns = {
                         type = VariantType.VECTOR2
                         className = "Vector2"
                     }
                 )
 
-                function(Simple::benchmarkICall, ::getVariantType,
-                        returns = {
-                            type = VariantType.OBJECT
-                            className = "Node"
-                        }
+                function(Simple::benchmarkIcall, VariantType.NIL,
+                    returns = {
+                        type = VariantType.NIL
+                        className = "kotlin.Unit"
+                    }
                 )
 
-                function(Simple::benchmarkICallWithLoop, ::getVariantType,
-                        returns = {
-                            type = VariantType.OBJECT
-                            className = "Node"
-                        }
+                function(Simple::benchmarkIcallWithLoop, VariantType.NIL,
+                    returns = {
+                        type = VariantType.NIL
+                        className = "kotlin.Unit"
+                    }
+                )
+
+                function(Simple::benchmarkMethodCall, VariantType.NIL,
+                    returns = {
+                        type = VariantType.NIL
+                        className = "kotlin.Unit"
+                    }
                 )
             }
         }

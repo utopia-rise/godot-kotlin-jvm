@@ -8,9 +8,38 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Reference",
+"class": "Benchmark",
+"language": "GDScript",
+"path": "res://scripts/Benchmark.gd"
+}, {
+"base": "Reference",
+"class": "Benchmarks",
+"language": "GDScript",
+"path": "res://scripts/Benchmarks.gd"
+}, {
+"base": "Reference",
+"class": "Language",
+"language": "GDScript",
+"path": "res://scripts/Language.gd"
+}, {
+"base": "Reference",
+"class": "Report",
+"language": "GDScript",
+"path": "res://scripts/Report.gd"
+}, {
+"base": "Reference",
+"class": "Stats",
+"language": "GDScript",
+"path": "res://scripts/Stats.gd"
+} ]
 _global_script_class_icons={
-
+"Benchmark": "",
+"Benchmarks": "",
+"Language": "",
+"Report": "",
+"Stats": ""
 }
 
 [application]

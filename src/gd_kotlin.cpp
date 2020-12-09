@@ -72,7 +72,8 @@ void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) 
     classes.delete_local_ref(env);
 }
 
-void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types, jobjectArray p_method_names) {
+void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types, jobjectArray p_method_names,
+        jobjectArray p_types_of_methods) {
     print_verbose("Starting to register managed engine types...");
     jni::Env env(p_env);
     jni::JObjectArray engine_types{p_engine_types};
@@ -83,9 +84,18 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
         print_verbose(vformat("Registered %s engine type with index %s.", class_name, i));
     }
     jni::JObjectArray method_names{p_method_names};
+    jni::JObjectArray types_of_methods{p_types_of_methods};
+    jni::JClass integer_class{env.load_class("java.lang.Integer", GDKotlin::get_instance().get_class_loader())};
+    jni::MethodId integer_get_value_method{integer_class.get_method_id(env, "intValue", "()I")};
     for (int i = 0; i < method_names.length(env); i++) {
-        GDKotlin::get_instance().engine_type_method_names.insert(i,
-                env.from_jstring(static_cast<jni::JString>(method_names.get(env, i))));
+        int type_of_method{static_cast<int>(types_of_methods.get(env, i).call_int_method(env, integer_get_value_method))};
+        GDKotlin::get_instance().engine_type_method.insert(
+                i,
+                ClassDB::get_method(
+                        GDKotlin::get_instance().engine_type_names[type_of_method],
+                        env.from_jstring(method_names.get(env, i))
+                )
+        );
     }
     jni::JObject j_object{p_this};
     j_object.delete_local_ref(env);
@@ -97,7 +107,9 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
 void GDKotlin::init() {
     jni::InitArgs args;
     args.version = JNI_VERSION_1_8;
+#ifdef DEBUG_ENABLED
     args.option("-Xcheck:jni");
+#endif
 
     // Initialize remote jvm debug if one of jvm debug arguments is encountered.
     // Initialize if jvm GC should be forced
@@ -108,6 +120,7 @@ void GDKotlin::init() {
     bool is_gc_activated{true};
     long gc_thread_period_interval{500};
     int jvm_to_engine_shared_buffer_size{DEFAULT_SHARED_BUFFER_SIZE};
+    bool should_display_leaked_jvm_instances_on_close{true};
     const List<String>& cmdline_args{OS::get_singleton()->get_cmdline_args()};
     for (int i = 0; i < cmdline_args.size(); ++i) {
         const String cmd_arg{cmdline_args[i]};
@@ -154,6 +167,9 @@ void GDKotlin::init() {
             is_gc_activated = false;
             //TODO: Link to documentation
             WARN_PRINT("GC thread was disable. --jvm-disable-gc should only be used for debugging purpose")
+        } else if (cmd_arg == "--jvm-disable-closing-leaks-warning") {
+            WARN_PRINT("JVM leaked instances will not be displayed in console (see --jvm-disable-closing-leaks-warning)")
+            should_display_leaked_jvm_instances_on_close = false;
         }
     }
 
@@ -233,6 +249,13 @@ void GDKotlin::init() {
         is_gc_started = true;
     }
 
+    if (!should_display_leaked_jvm_instances_on_close) {
+        jni::MethodId set_should_display_method_id{garbage_collector_cls.get_method_id(
+                env, "setShouldDisplayLeakInstancesOnClose", "(Z)V")};
+        jvalue d_arg[1] = {jni::to_jni_arg(false)};
+        garbage_collector_instance.call_void_method(env, set_should_display_method_id, d_arg);
+    }
+
     jni::JClass bootstrap_cls = env.load_class("godot.runtime.Bootstrap", class_loader);
     jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");
     jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
@@ -276,7 +299,7 @@ void GDKotlin::finish() {
     delete memory_bridge;
     memory_bridge = nullptr;
 
-    engine_type_method_names.clear();
+    engine_type_method.clear();
     engine_type_names.clear();
 
     TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.clear();

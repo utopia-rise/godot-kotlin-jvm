@@ -5,7 +5,7 @@ object TypeManager {
 
     val engineTypeNames = LinkedHashSet<String>()
     val engineTypesConstructors = mutableListOf<() -> KtObject>()
-    val engineTypeMethodNames = LinkedHashSet<String>()
+    val engineTypeMethod = mutableListOf<Pair<Int, String>>()
 
     fun registerUserType(className: String) = userTypes.add(className)
 

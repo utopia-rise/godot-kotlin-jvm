@@ -9,47 +9,48 @@ object TransferContext {
     // If changed, remember to change also DEFAULT_SHARED_BUFFER_SIZE in gd_kotlin.cpp
     var bufferSize = 20_000_000
 
-    private val buffer by threadLocalLazy {
+    val buffer by threadLocalLazy {
         val buf = ByteBuffer.allocateDirect(bufferSize)
         buf.order(ByteOrder.LITTLE_ENDIAN)
         buf
     }
 
-    fun writeArguments(vararg values: Pair<VariantType, Any>) {
+    fun writeArguments(vararg values: Pair<VariantType, Any?>) {
         buffer.putInt(values.size)
         for (value in values) {
-            value.second.encode(value.first, buffer)
+            value.first.toGodot(buffer, value.second)
         }
         buffer.rewind()
     }
 
     @ExperimentalUnsignedTypes
-    fun readArguments(): List<Any> {
+    fun readArguments(vararg variantType: VariantType): List<Any?> {
         val argSize = buffer.int
-        val values = mutableListOf<Any>()
+        val values = mutableListOf<Any?>()
         for (i in 0 until argSize) {
-            values.add(parse(buffer))
+            values.add(variantType[i].toKotlin(buffer))
         }
         buffer.rewind()
         return values
     }
 
-    fun writeReturnValue(value: Pair<VariantType, Any>) {
-        value.second.encode(value.first, buffer)
-        buffer.rewind()
-    }
+    fun readSingleArgument(variantType: VariantType) = variantType.toKotlin(buffer)
+
+   fun writeReturnValue(value: Any?, type: VariantType) {
+       type.toGodot(buffer, value)
+       buffer.rewind()
+   }
 
     @ExperimentalUnsignedTypes
-    fun readReturnValue(): Any {
-        val converted = parse(buffer)
+    fun readReturnValue(type: VariantType): Any? {
+        val ret = type.toKotlin(buffer)
         buffer.rewind()
-        return converted
+        return ret
     }
 
-    fun callMethod(ptr: VoidPtr, classIndex: Int, methodIndex: Int, expectedReturnType: VariantType) {
+    fun callMethod(ptr: VoidPtr, methodIndex: Int, expectedReturnType: VariantType) {
         icall(
                 ptr,
-                classIndex,
                 methodIndex,
                 expectedReturnType.ordinal
         )
@@ -63,5 +64,5 @@ object TransferContext {
     external fun invokeConstructor(classIndex: Int): VoidPtr
     external fun freeObject(rawPtr: VoidPtr)
 
-    private external fun icall(ptr: VoidPtr, classIndex: Int, methodIndex: Int, expectedReturnType: Int)
+    private external fun icall(ptr: VoidPtr, methodIndex: Int, expectedReturnType: Int)
 }

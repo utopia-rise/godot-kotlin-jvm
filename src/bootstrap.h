@@ -8,7 +8,8 @@ class Bootstrap : public JavaInstanceWrapper<Bootstrap> {
 public:
     typedef void (*LoadClassesHook)(JNIEnv* p_env, jobject p_this, jobjectArray classes);
     typedef void (*UnloadClassesHook)(JNIEnv* p_env, jobject p_this, jobjectArray classes);
-    typedef void (*RegisterManagedEngineTypes)(JNIEnv* p_env, jobject p_this, jobjectArray classes_names, jobjectArray method_names);
+    typedef void (*RegisterManagedEngineTypes)(JNIEnv* p_env, jobject p_this, jobjectArray classes_names,
+            jobjectArray method_names, jobjectArray types_of_methods);
 
     Bootstrap(jni::JObject p_wrapped, jni::JObject p_class_loader);
     ~Bootstrap() = default;

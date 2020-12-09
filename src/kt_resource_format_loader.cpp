@@ -3,7 +3,7 @@
 #include "kotlin_language.h"
 #include "kotlin_script.h"
 
-Error read_all_file_utf8(const String &p_path, String &r_content) {
+Error kt_read_all_file_utf8(const String &p_path, String &r_content) {
     PoolVector<uint8_t> sourcef;
     Error err;
     FileAccess *f = FileAccess::open(p_path, FileAccess::READ, &err);
@@ -33,7 +33,7 @@ RES KtResourceFormatLoader::load(const String& p_path, const String& p_original_
     ref->reload(false);
 
     String source_code;
-    Error load_err = read_all_file_utf8(p_original_path, source_code);
+    Error load_err = kt_read_all_file_utf8(p_original_path, source_code);
     ref->set_source_code(source_code);
 
     if (r_error) {
