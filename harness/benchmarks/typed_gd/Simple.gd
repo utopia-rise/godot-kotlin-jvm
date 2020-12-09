@@ -26,7 +26,7 @@ func benchmark_vectors() -> Vector3:
 func benchmark_vectors2_only() -> Vector2:
 	var s: Vector2 = Vector2()
 	for i in range(1000):
-		var v = Vector2(i, i)
+		var v: Vector2 = Vector2(i, i)
 		s = s + v
 
 	return s
