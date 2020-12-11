@@ -23,10 +23,11 @@ class GodotPlugin : KotlinCompilerPluginSupportPlugin {
         val jvm = target.extensions.getByType<KotlinJvmProjectExtension>()
         target.pluginManager.apply(ShadowPlugin::class)
         target.pluginManager.apply("org.jetbrains.kotlin.kapt")
-        setupPlugin(target, jvm)
+        val godotEntryGeneratorExtension = target.extensions.create<GodotEntryGeneratorExtension>("entryGenerator")
+        setupPlugin(target, jvm, godotEntryGeneratorExtension)
     }
 
-    private fun setupPlugin(project: Project, jvm: KotlinJvmProjectExtension) {
+    private fun setupPlugin(project: Project, jvm: KotlinJvmProjectExtension, godotEntryGeneratorExtension: GodotEntryGeneratorExtension) {
 
         project.afterEvaluate {
             val bootstrap = configurations.create("bootstrap") {
@@ -45,6 +46,19 @@ class GodotPlugin : KotlinCompilerPluginSupportPlugin {
                 )
             }
 
+            //create a configuration for each extension so a jar for each extension gets built into the libs directory so it can be easily accessed from within the entry generation process
+            val entryGeneratorExtensionConfigurations = godotEntryGeneratorExtension
+                .entryGeneratorExtensions
+                .apply { addAll(godotEntryGeneratorExtension.entryGeneratorExtensionsWithAnnotations) }
+                .map { entryGeneratorExtensionDependency ->
+                    configurations.create("entryGeneratorExtension_${entryGeneratorExtensionDependency.replace(":", "_").replace(".", "·")}") {
+                        dependencies {
+                            add(name, kotlin("stdlib"))
+                            add(name, entryGeneratorExtensionDependency)
+                        }
+                    }
+                }
+
             fun KotlinWithJavaCompilation<KotlinJvmOptions>.configureSourceSets(includeEntrySourceDir: Boolean) {
                 defaultSourceSet {
                     kotlin.srcDirs("src/main/kotlin")
@@ -53,6 +67,11 @@ class GodotPlugin : KotlinCompilerPluginSupportPlugin {
                     }
                     dependencies {
                         compileOnly("com.utopia-rise:godot-library:${GodotBuildProperties.godotKotlinVersion}")
+
+                        //add an entry generator extension as a dependency to the users project if it provides annotations that can be used from there
+                        godotEntryGeneratorExtension.entryGeneratorExtensionsWithAnnotations.forEach { dependencyNotation ->
+                            implementation(dependencyNotation)
+                        }
                     }
                 }
             }
@@ -84,8 +103,18 @@ class GodotPlugin : KotlinCompilerPluginSupportPlugin {
                     configurations.add(main)
                 }
 
+                //build the entry generator extension to the libs folder when the project is built
+                val entryGeneratorExtensionTasks = entryGeneratorExtensionConfigurations
+                    .map {
+                        create("${it.name}Jar", ShadowJar::class) {
+                            archiveBaseName.set(it.name)
+                            configurations.add(it)
+                        }
+                    }
+                    .toTypedArray()
+
                 val build by getting {
-                    dependsOn(bootstrapJar, shadowJar)
+                    dependsOn(bootstrapJar, shadowJar, *entryGeneratorExtensionTasks)
                 }
 
                 mainCompilation.compileKotlinTask.dependsOn(dummy.compileKotlinTask)
@@ -117,6 +146,10 @@ class GodotPlugin : KotlinCompilerPluginSupportPlugin {
                     File(project.rootDir, "/src/main/resources/META-INF/services/").apply {
                         mkdirs()
                     }.absolutePath
+                ),
+                SubpluginOption( //used by the godotAnnotationProcessor to load built entryGenerator extensions
+                    CompilerPluginConst.CommandLineOptionNames.extensionsDirPathOption,
+                    project.buildDir.resolve("libs").absolutePath
                 ),
                 SubpluginOption(
                     CompilerPluginConst.CommandLineOptionNames.entryDirPathOption,

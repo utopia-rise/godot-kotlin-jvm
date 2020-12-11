@@ -11,3 +11,9 @@ repositories {
 dependencies {
     implementation("joda-time:joda-time:2.10.6") //external dependency to test dependency inclusion in dummyCompilation
 }
+
+entryGenerator {
+    extensions {
+        extensionWithAnnotations("com.utopia-rise:godot-node-injection-extension")
+    }
+}

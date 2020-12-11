@@ -17,6 +17,12 @@ includeBuild("../../kt/entry-generation/godot-kotlin-entry-generator") {
     }
 }
 
+includeBuild("../../kt/entry-generation/godot-node-injection-extension") {
+    dependencySubstitution {
+        substitute(module("com.utopia-rise:godot-node-injection-extension")).with(project(":")) // assuming godot-node-injection-extension is the root project of entry-generator/godot-node-injection-extension
+    }
+}
+
 pluginManagement {
     repositories {
         jcenter()

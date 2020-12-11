@@ -23,7 +23,8 @@ class CommonComponentRegistrar : ComponentRegistrar {
         if (enabled) {
             val processor = GodotAnnotationProcessor(
                 checkNotNull(configuration.get(CompilerPluginConst.CommandlineArguments.ENTRY_DIR_PATH)) { "No path for generated entry file specified" },
-                checkNotNull(configuration.get(CompilerPluginConst.CommandlineArguments.SERVICE_FILE_DIR_PATH)) { "No path for generated entry file specified" }
+                checkNotNull(configuration.get(CompilerPluginConst.CommandlineArguments.SERVICE_FILE_DIR_PATH)) { "No path for generated entry file specified" },
+                checkNotNull(configuration.get(CompilerPluginConst.CommandlineArguments.EXTENSIONS_DIR_PATH)) { "No path for entry generator extension jar files specified" }
             )
             val mpapt = MpAptProject(processor, configuration)
             StorageComponentContainerContributor.registerExtension(project, mpapt)
@@ -55,6 +56,14 @@ class CommonGodotKotlinCompilerPluginCommandLineProcessor : CommandLineProcessor
             allowMultipleOccurrences = false
         )
 
+        val EXTENSIONS_DIR_PATH_OPTION = CliOption(
+            CompilerPluginConst.CommandLineOptionNames.extensionsDirPathOption,
+            "Path to where the generated service file should be written to",
+            CompilerPluginConst.CommandlineArguments.EXTENSIONS_DIR_PATH.toString(),
+            required = true,
+            allowMultipleOccurrences = false
+        )
+
         val ENABLED = CliOption(
             CompilerPluginConst.CommandLineOptionNames.enabledOption,
             "Flag to enable entry generation",
@@ -69,6 +78,7 @@ class CommonGodotKotlinCompilerPluginCommandLineProcessor : CommandLineProcessor
     override val pluginOptions = listOf(
         ENTRY_DIR_PATH_OPTION,
         SERVICE_FILE_DIR_PATH_OPTION,
+        EXTENSIONS_DIR_PATH_OPTION,
         ENABLED
     )
 
@@ -79,6 +89,9 @@ class CommonGodotKotlinCompilerPluginCommandLineProcessor : CommandLineProcessor
             )
             SERVICE_FILE_DIR_PATH_OPTION -> configuration.put(
                 CompilerPluginConst.CommandlineArguments.SERVICE_FILE_DIR_PATH, value
+            )
+            EXTENSIONS_DIR_PATH_OPTION -> configuration.put(
+                CompilerPluginConst.CommandlineArguments.EXTENSIONS_DIR_PATH, value
             )
             ENABLED -> configuration.put(
                 CompilerPluginConst.CommandlineArguments.ENABLED, value.toBoolean()
