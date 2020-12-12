@@ -68,10 +68,10 @@ abstract class KtObject(val isRef: Boolean) : AutoCloseable {
         private val shouldInit = ThreadLocal.withInitial { true }
 
         @PublishedApi
-        internal val onInitListener: MutableMap<KClass<out KtObject>, MutableList<(KtObject) -> Unit>> = mutableMapOf()
+        internal val onInitListener: MutableMap<KClass<out KtObject>, MutableSet<(KtObject) -> Unit>> = mutableMapOf()
 
         @PublishedApi
-        internal val onDestroyListener: MutableMap<KClass<out KtObject>, MutableList<(KtObject) -> Unit>> = mutableMapOf()
+        internal val onDestroyListener: MutableMap<KClass<out KtObject>, MutableSet<(KtObject) -> Unit>> = mutableMapOf()
 
         fun <T : KtObject> instantiateWith(rawPtr: VoidPtr, instanceId: Long, isRef: Boolean = false, constructor: () -> T): T {
             shouldInit.set(false)
@@ -84,7 +84,7 @@ abstract class KtObject(val isRef: Boolean) : AutoCloseable {
         }
 
         inline fun <reified T : KtObject> subscribeToOnInit(noinline listener: (T: KtObject) -> Unit) {
-            onInitListener[T::class]?.add(listener) ?: run { onInitListener[T::class] = mutableListOf(listener) }
+            onInitListener[T::class]?.add(listener) ?: run { onInitListener[T::class] = mutableSetOf(listener) }
         }
 
         inline fun <reified T : KtObject> unSubscribeFromOnInit(noinline listener: (KtObject) -> Unit) {
@@ -95,7 +95,7 @@ abstract class KtObject(val isRef: Boolean) : AutoCloseable {
         }
 
         inline fun <reified T : KtObject> subscribeToOnDestroy(noinline listener: (T: KtObject) -> Unit) {
-            onDestroyListener[T::class]?.add(listener) ?: run { onDestroyListener[T::class] = mutableListOf(listener) }
+            onDestroyListener[T::class]?.add(listener) ?: run { onDestroyListener[T::class] = mutableSetOf(listener) }
         }
 
         inline fun <reified T : KtObject> unSubscribeFromOnDestroy(noinline listener: (KtObject) -> Unit) {
