@@ -19,7 +19,7 @@ public:
     const StringName& get_class_name() const;
 
 DECLARE_JNI_METHODS(
-        JNI_METHOD(ON_DESTROY, "_onDestroy", "()V")
+        JNI_METHOD(ON_DESTROY, "__onDestroy", "()V")
 )
 };
 
