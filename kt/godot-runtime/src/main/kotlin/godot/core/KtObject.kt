@@ -48,6 +48,7 @@ abstract class KtObject(val isRef: Boolean) : AutoCloseable {
     }
 
     open fun _onInit() = Unit
+
     fun __onDestroy() { //not private, but final -> needs to be called through jni
         onDestroyListener[this::class]?.forEach { it.invoke(this) }
         _onDestroy()
