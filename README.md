@@ -81,3 +81,8 @@ godot, where `XXXX` stands for the desired size.
 4. export LD_PRELOAD=<path_to_sample_project>/jre/lib/libjsig.so
 5. scons -j20 platform=<platform> module_mono_enabled=yes
 6. run with `../../../../bin/godot.x11.tools.64.mono`
+
+## Partners
+Jetbrains is helping us to develop this project by providing development tools to projects maintainers.  
+We also recommend Jetbrains Intellij' Idea to get into kotlin development.  
+[![jblogo](.README/jetbrains.svg)](https://www.jetbrains.com/)
