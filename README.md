@@ -83,6 +83,6 @@ godot, where `XXXX` stands for the desired size.
 6. run with `../../../../bin/godot.x11.tools.64.mono`
 
 ## Partners
-Jetbrains is helping us to develop this project by providing development tools to projects maintainers.  
+Jetbrains is helping us to develop this project by providing development tools to maintainers.  
 We also recommend Jetbrains Intellij' Idea to get into kotlin development.  
 [![jblogo](.README/jetbrains.svg)](https://www.jetbrains.com/)
