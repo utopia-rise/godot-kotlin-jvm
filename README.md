@@ -84,5 +84,5 @@ godot, where `XXXX` stands for the desired size.
 
 ## Partners
 Jetbrains is helping us to develop this project by providing development tools to maintainers.  
-We also recommend Jetbrains Intellij' Idea to get into kotlin development.  
+Intellij Idea is our IDE of choice for kotlin development and we strongly recommend using it.  
 [![jblogo](.README/jetbrains.svg)](https://www.jetbrains.com/)
