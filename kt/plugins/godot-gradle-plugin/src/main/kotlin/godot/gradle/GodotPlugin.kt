@@ -44,30 +44,22 @@ class GodotPlugin : KotlinCompilerPluginSupportPlugin {
                     )
                 )
             }
-
-            fun KotlinWithJavaCompilation<KotlinJvmOptions>.configureSourceSets(includeEntrySourceDir: Boolean) {
-                defaultSourceSet {
-                    kotlin.srcDirs("src/main/kotlin")
-                    if (includeEntrySourceDir) {
-                        kotlin.srcDirs(project.buildDir.resolve("godot-entry"))
-                    }
-                    dependencies {
-                        compileOnly("com.utopia-rise:godot-library:${GodotBuildProperties.godotKotlinVersion}")
-                    }
-                }
+            val gameConfiguration = configurations.create("game").apply {
+                extendsFrom(main)
             }
 
             val mainCompilation = jvm.target.compilations.getByName("main").apply {
-                configureSourceSets(true)
-            }
-
-            val dummy = jvm.target.compilations.create("dummy") {
-                defaultSourceSet.dependencies {
-                    main.allDependencies.forEach {
-                        implementation(it)
-                    }
+                dependencies {
+                    compileOnly("com.utopia-rise:godot-library:${GodotBuildProperties.godotKotlinVersion}")
                 }
-                configureSourceSets(false)
+            }
+            val gameCompilation = jvm.target.compilations.create("game").apply {
+                defaultSourceSet {
+                    dependencies {
+                        implementation(mainCompilation.compileDependencyFiles + mainCompilation.output.classesDirs)
+                    }
+                    kotlin.srcDirs(project.buildDir.resolve("godot-entry"))
+                }
             }
 
             tasks {
@@ -81,14 +73,15 @@ class GodotPlugin : KotlinCompilerPluginSupportPlugin {
                     archiveVersion.set("")
                     archiveClassifier.set("")
                     configurations.clear()
-                    configurations.add(main)
+                    configurations.add(gameConfiguration)
+                    from(gameCompilation.compileDependencyFiles + gameCompilation.output.classesDirs)
                 }
 
                 val build by getting {
                     dependsOn(bootstrapJar, shadowJar)
                 }
 
-                mainCompilation.compileKotlinTask.dependsOn(dummy.compileKotlinTask)
+                mainCompilation.compileKotlinTask.finalizedBy(gameCompilation.compileKotlinTask)
             }
         }
     }
@@ -110,7 +103,7 @@ class GodotPlugin : KotlinCompilerPluginSupportPlugin {
             listOf(
                 SubpluginOption(
                     CompilerPluginConst.CommandLineOptionNames.enabledOption,
-                    (kotlinCompilation.name == "dummy").toString()
+                    (kotlinCompilation.name == "main").toString()
                 ),
                 SubpluginOption(
                     CompilerPluginConst.CommandLineOptionNames.serviceFileDirPathOption,
