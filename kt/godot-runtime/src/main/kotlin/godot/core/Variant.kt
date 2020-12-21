@@ -29,13 +29,13 @@ val variantMapper = mutableMapOf(
         Transform2D::class to TRANSFORM2D,
         Vector2::class to VECTOR2,
         Vector3::class to VECTOR3,
-//        PoolByteArray::class to VariantType.POOL_BYTE_ARRAY,
-//        PoolColorArray::class to VariantType.POOL_COLOR_ARRAY,
-//        PoolIntArray::class to VariantType.POOL_INT_ARRAY,
-//        PoolRealArray::class to VariantType.POOL_REAL_ARRAY,
-//        PoolStringArray::class to VariantType.POOL_STRING_ARRAY,
-//        PoolVector2Array::class to VariantType.POOL_VECTOR2_ARRAY,
-//        PoolVector3Array::class to VariantType.POOL_VECTOR3_ARRAY,
+        PoolByteArray::class to VariantType.POOL_BYTE_ARRAY,
+        PoolColorArray::class to VariantType.POOL_COLOR_ARRAY,
+        PoolIntArray::class to VariantType.POOL_INT_ARRAY,
+        PoolRealArray::class to VariantType.POOL_REAL_ARRAY,
+        PoolStringArray::class to VariantType.POOL_STRING_ARRAY,
+        PoolVector2Array::class to VariantType.POOL_VECTOR2_ARRAY,
+        PoolVector3Array::class to VariantType.POOL_VECTOR3_ARRAY,
 )
 
 var ByteBuffer.bool: Boolean
@@ -322,53 +322,65 @@ enum class VariantType(
                 val ptr = buffer.long
                 GarbageCollector.getNativeCoreTypeInstance(ptr) ?: VariantArray<Any?>(ptr)
             },
-            { buffer: ByteBuffer, any: Any ->
-                ARRAY.toGodotNativeCoreType<VariantArray<*>>(buffer, any)
-            }
+        { buffer: ByteBuffer, any: Any ->
+            ARRAY.toGodotNativeCoreType<VariantArray<*>>(buffer, any)
+        }
     ),
 
     // arrays
     POOL_BYTE_ARRAY(
             { buffer: ByteBuffer, expectedType: Int ->
-                TODO()
+                val ptr = buffer.long
             },
-            { buffer: ByteBuffer, any: Any -> TODO() }
+            { buffer: ByteBuffer, any: Any ->
+                POOL_BYTE_ARRAY.toGodotNativeCoreType<PoolByteArray>(buffer, any)
+            }
     ), // 20
     POOL_INT_ARRAY(
             { buffer: ByteBuffer, expectedType: Int ->
-                TODO()
+                val ptr = buffer.long
             },
-            { buffer: ByteBuffer, any: Any -> TODO() }
+            { buffer: ByteBuffer, any: Any ->
+                POOL_Int_ARRAY.toGodotNativeCoreType<PoolIntArray>(buffer, any)
+            }
     ),
     POOL_REAL_ARRAY(
             { buffer: ByteBuffer, expectedType: Int ->
-                TODO()
+                val ptr = buffer.long
             },
-            { buffer: ByteBuffer, any: Any -> TODO() }
+            { buffer: ByteBuffer, any: Any ->
+                POOL_REAL_ARRAY.toGodotNativeCoreType<PoolRealArray>(buffer, any)
+            }
     ),
     POOL_STRING_ARRAY(
             { buffer: ByteBuffer, expectedType: Int ->
-                TODO()
+                val ptr = buffer.long
             },
             { buffer: ByteBuffer, any: Any -> TODO() }
     ),
     POOL_VECTOR2_ARRAY(
             { buffer: ByteBuffer, expectedType: Int ->
-                TODO()
+                val ptr = buffer.long
             },
-            { buffer: ByteBuffer, any: Any -> TODO() }
+            { buffer: ByteBuffer, any: Any ->
+                POOL_VECTOR2_ARRAY.toGodotNativeCoreType<PoolVector2Array>(buffer, any)
+            }
     ),
     POOL_VECTOR3_ARRAY(
             { buffer: ByteBuffer, expectedType: Int ->
-                TODO()
+                val ptr = buffer.long
             },
-            { buffer: ByteBuffer, any: Any -> TODO() }
+            { buffer: ByteBuffer, any: Any ->
+                POOL_VECTOR3_ARRAY.toGodotNativeCoreType<PoolVector3Array>(buffer, any)
+            }
     ), // 25
     POOL_COLOR_ARRAY(
             { buffer: ByteBuffer, expectedType: Int ->
-                TODO()
+                val ptr = buffer.long
             },
-            { buffer: ByteBuffer, any: Any -> TODO() }
+            { buffer: ByteBuffer, any: Any ->
+                POOL_COLOR_ARRAY.toGodotNativeCoreType<PoolColorArray>(buffer, any)
+            }
     ),
 
     VARIANT_MAX(
@@ -394,6 +406,14 @@ enum class VariantType(
             { any ->
                 (any as Float).toDouble()
             }
+    ),
+
+    JVM_BYTE(
+        LONG,
+        { any -> (any as Long).toByte() },
+        { any ->
+            (any as Byte).toLong()
+        }
     ),
 
     ANY(
@@ -474,4 +494,4 @@ private inline fun <reified T: NativeCoreType> VariantType.toGodotNativeCoreType
     buffer.putLong(any._handle)
 }
 
-private const val ANY_VARIANT_TYPE = 30
+private const val ANY_VARIANT_TYPE = 31

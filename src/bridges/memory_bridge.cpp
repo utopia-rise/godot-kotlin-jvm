@@ -89,19 +89,26 @@ bool MemoryBridge::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance,
             memdelete(reinterpret_cast<Array*>(p_raw_ptr));
             return true;
         case Variant::POOL_BYTE_ARRAY:
-            break;
+            memdelete(reinterpret_cast<PoolByteArray*>(p_raw_ptr));
+            return true;
         case Variant::POOL_INT_ARRAY:
-            break;
+            memdelete(reinterpret_cast<PoolIntArray*>(p_raw_ptr));
+            return true;
         case Variant::POOL_REAL_ARRAY:
-            break;
+            memdelete(reinterpret_cast<PoolRealArray*>(p_raw_ptr));
+            return true;
         case Variant::POOL_STRING_ARRAY:
-            break;
+            memdelete(reinterpret_cast<PoolStringArray*>(p_raw_ptr));
+            return true;
         case Variant::POOL_VECTOR2_ARRAY:
-            break;
+            memdelete(reinterpret_cast<PoolVector2Array*>(p_raw_ptr));
+            return true;
         case Variant::POOL_VECTOR3_ARRAY:
-            break;
+            memdelete(reinterpret_cast<PoolVector3Array*>(p_raw_ptr));
+            return true;
         case Variant::POOL_COLOR_ARRAY:
-            break;
+            memdelete(reinterpret_cast<PoolColorArray*>(p_raw_ptr));
+            return true;
         default:
             break;
     }
