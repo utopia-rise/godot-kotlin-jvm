@@ -1,12 +1,15 @@
+@file:Suppress("PackageDirectoryMismatch")
+
 package godot.core
 
+import godot.util.IndexedIterator
 import godot.util.VoidPtr
 
-@Suppress("MemberVisibilityCanBePrivate")
-class PoolColorArray : NativeCoreType {
+@Suppress("MemberVisibilityCanBePrivate", "unused")
+class PoolColorArray : NativeCoreType, Iterable<Color> {
 
 
-    override val coreVariantType: VariantType = VariantType.PoolColorArray
+    override val coreVariantType: VariantType = VariantType.POOL_COLOR_ARRAY
 
     //PROPERTIES
     val size: Int
@@ -41,16 +44,16 @@ class PoolColorArray : NativeCoreType {
      * Appends a PoolIntArray at the end of this array.
      */
     fun appendArray(array: PoolIntArray) {
-        TransferContext.writeArguments(VariantType.PoolColorArray to Array)
+        TransferContext.writeArguments(VariantType.POOL_COLOR_ARRAY to array)
         Bridge.engine_call_appendArray(_handle)
     }
 
     /**
      * Returns true if the array is empty.
      */
-    fun empty() {
+    fun empty(): Boolean {
         Bridge.engine_call_empty(_handle)
-        return TransferContext.readReturnValue(VariantType.Bool) as Boolean
+        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
     }
 
     /**
@@ -99,7 +102,7 @@ class PoolColorArray : NativeCoreType {
      * If the array is shrunk, truncates the array to the new size.
      */
     fun resize(size: Int) {
-        TransferContext.writeArguments(VariantType.JVM_INT to idx)
+        TransferContext.writeArguments(VariantType.JVM_INT to size)
         Bridge.engine_call_resize(_handle)
     }
 
@@ -113,8 +116,6 @@ class PoolColorArray : NativeCoreType {
 
 
     //UTILITIES
-    override fun toVariant() = Variant(this)
-
     operator fun plus(other: Color) {
         this.append(other)
     }
@@ -136,7 +137,7 @@ class PoolColorArray : NativeCoreType {
      * This methods implementation works but is not the fastest one.
      */
     override fun equals(other: Any?): Boolean {
-        return if (other is PoolIntArray) {
+        return if (other is PoolColorArray) {
             val list1 = this.toList()
             val list2 = other.toList()
             list1 == list2

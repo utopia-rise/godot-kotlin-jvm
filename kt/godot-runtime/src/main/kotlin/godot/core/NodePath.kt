@@ -17,22 +17,26 @@ class NodePath : NativeCoreType {
     //INTERNAL
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
+        GarbageCollector.registerNativeCoreType(this)
     }
 
     //CONSTRUCTORS
 
     constructor() {
         _handle = Bridge.engine_call_constructor()
+        GarbageCollector.registerNativeCoreType(this)
     }
 
     constructor(from: String) {
         TransferContext.writeArguments(VariantType.STRING to from)
         _handle = Bridge.engine_call_constructor(true)
+        GarbageCollector.registerNativeCoreType(this)
     }
 
     constructor(from: NodePath) {
         TransferContext.writeArguments(VariantType.STRING to from.path)
         _handle = Bridge.engine_call_constructor(true)
+        GarbageCollector.registerNativeCoreType(this)
     }
 
     //API

@@ -18,10 +18,12 @@ class RID : NativeCoreType, Comparable<RID> {
     //CONSTRUCTOR
     constructor() {
         _handle = Bridge.engine_call_constructor()
+        GarbageCollector.registerNativeCoreType(this)
     }
 
     constructor(from: KtObject) {
         _handle = Bridge.engine_call_constructor(from.rawPtr)
+        GarbageCollector.registerNativeCoreType(this)
     }
 
     //API

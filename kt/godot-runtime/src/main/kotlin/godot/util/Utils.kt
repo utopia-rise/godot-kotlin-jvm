@@ -1,9 +1,12 @@
 package godot.util
 
+import godot.core.VariantType
 import kotlin.math.abs
 
 typealias RealT = Double
 internal typealias NaturalT = Long
+internal val realTVariantType = VariantType.DOUBLE
+internal val NaturalTVariantType = VariantType.LONG
 
 typealias VoidPtr = Long
 const val nullptr: VoidPtr = 0L

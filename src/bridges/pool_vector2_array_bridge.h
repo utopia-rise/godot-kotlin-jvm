@@ -2,10 +2,6 @@
 #define GODOT_JVM_POOL_VECTOR2_ARRAY_BRIDGE_H
 
 
-#include <modules/kotlin_jvm/src/java_instance_wrapper.h>
-#include "PoolArrays.hpp"
-#include "Vector2.hpp"
-
 namespace bridges {
 
     class PoolVector2ArrayBridge : JavaInstanceWrapper<PoolVector2ArrayBridge> {

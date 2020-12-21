@@ -1,12 +1,13 @@
 package godot.core
 
+import godot.util.IndexedIterator
 import godot.util.VoidPtr
 
-@Suppress("MemberVisibilityCanBePrivate")
-class PoolStringArray : NativeCoreType {
+@Suppress("MemberVisibilityCanBePrivate", "unused")
+class PoolStringArray : NativeCoreType, Iterable<String> {
 
 
-    override val coreVariantType: VariantType = VariantType.PoolStringArray
+    override val coreVariantType: VariantType = VariantType.POOL_STRING_ARRAY
 
     //PROPERTIES
     val size: Int
@@ -41,16 +42,16 @@ class PoolStringArray : NativeCoreType {
      * Appends a PoolIntArray at the end of this array.
      */
     fun appendArray(array: PoolIntArray) {
-        TransferContext.writeArguments(VariantType.PoolStringArray to Array)
+        TransferContext.writeArguments(VariantType.POOL_STRING_ARRAY to array)
         Bridge.engine_call_appendArray(_handle)
     }
 
     /**
      * Returns true if the array is empty.
      */
-    fun empty() {
+    fun empty(): Boolean {
         Bridge.engine_call_empty(_handle)
-        return TransferContext.readReturnValue(VariantType.Bool) as Boolean
+        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
     }
 
     /**
@@ -99,7 +100,7 @@ class PoolStringArray : NativeCoreType {
      * If the array is shrunk, truncates the array to the new size.
      */
     fun resize(size: Int) {
-        TransferContext.writeArguments(VariantType.JVM_INT to idx)
+        TransferContext.writeArguments(VariantType.JVM_INT to size)
         Bridge.engine_call_resize(_handle)
     }
 
@@ -113,8 +114,6 @@ class PoolStringArray : NativeCoreType {
 
 
     //UTILITIES
-    override fun toVariant() = Variant(this)
-
     operator fun plus(other: String) {
         this.append(other)
     }
@@ -136,7 +135,7 @@ class PoolStringArray : NativeCoreType {
      * This methods implementation works but is not the fastest one.
      */
     override fun equals(other: Any?): Boolean {
-        return if (other is PoolIntArray) {
+        return if (other is PoolStringArray) {
             val list1 = this.toList()
             val list2 = other.toList()
             list1 == list2

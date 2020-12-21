@@ -1,16 +1,13 @@
-#ifndef GODOT_JVM_POOL_REAL_ARRAY_BRIDGE_H
-#define GODOT_JVM_POOL_REAL_ARRAY_BRIDGE_H
+#ifndef GODOT_JVM_POOL_INT_ARRAY_BRIDGE_H
+#define GODOT_JVM_POOL_INT_ARRAY_BRIDGE_H
 
-
-#include <modules/kotlin_jvm/src/java_instance_wrapper.h>
-#include "PoolArrays.hpp"
 
 namespace bridges {
 
-    class PoolRealArrayBridge : JavaInstanceWrapper<PoolRealArrayBridge> {
+    class PoolIntArrayBridge : JavaInstanceWrapper<PoolIntArrayBridge> {
     public:
-        PoolRealArrayBridge(jni::JObject p_wrapped, jni::JObject p_class_loader);
-        ~PoolRealArrayBridge() = default;
+        PoolIntArrayBridge(jni::JObject p_wrapped, jni::JObject p_class_loader);
+        ~PoolIntArrayBridge() = default;
 
         static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance, jboolean has_param);
 

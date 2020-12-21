@@ -1,12 +1,16 @@
+@file:Suppress("PackageDirectoryMismatch")
+
 package godot.core
 
+import godot.util.IndexedIterator
+import godot.util.RealT
 import godot.util.VoidPtr
+import godot.util.realTVariantType
 
-@Suppress("MemberVisibilityCanBePrivate")
-class PoolRealArray : NativeCoreType {
+@Suppress("MemberVisibilityCanBePrivate", "unused")
+class PoolRealArray : NativeCoreType, Iterable<RealT> {
 
-
-    override val coreVariantType: VariantType = VariantType.PoolRealArray
+    override val coreVariantType: VariantType = VariantType.POOL_REAL_ARRAY
 
     //PROPERTIES
     val size: Int
@@ -31,8 +35,8 @@ class PoolRealArray : NativeCoreType {
     /**
      * Appends an element at the end of the array (alias of push_back).
      */
-    fun append(i: Float) {
-        TransferContext.writeArguments(VariantType.JVM_FLOAT to i)
+    fun append(i: RealT) {
+        TransferContext.writeArguments(realTVariantType to i)
         Bridge.engine_call_append(_handle)
     }
 
@@ -41,33 +45,33 @@ class PoolRealArray : NativeCoreType {
      * Appends a PoolIntArray at the end of this array.
      */
     fun appendArray(array: PoolIntArray) {
-        TransferContext.writeArguments(VariantType.PoolRealArray to Array)
+        TransferContext.writeArguments(VariantType.POOL_REAL_ARRAY to array)
         Bridge.engine_call_appendArray(_handle)
     }
 
     /**
      * Returns true if the array is empty.
      */
-    fun empty() {
+    fun empty(): Boolean {
         Bridge.engine_call_empty(_handle)
-        return TransferContext.readReturnValue(VariantType.Bool) as Boolean
+        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
     }
 
     /**
      *  Retrieve the element at the given index.
      */
-    operator fun get(idx: Int): Float {
+    operator fun get(idx: Int): RealT {
         TransferContext.writeArguments(VariantType.JVM_INT to idx)
         Bridge.engine_call_get(_handle)
-        return TransferContext.readReturnValue(VariantType.JVM_FLOAT) as Float
+        return TransferContext.readReturnValue(realTVariantType) as RealT
     }
 
     /**
      * Inserts a new element at a given position in the array.
      * The position must be valid, or at the end of the array (idx == size()).
      */
-    fun insert(idx: Int, data: Float) {
-        TransferContext.writeArguments(VariantType.JVM_INT to idx, VariantType.JVM_FLOAT to data)
+    fun insert(idx: Int, data: RealT) {
+        TransferContext.writeArguments(VariantType.JVM_INT to idx, realTVariantType to data)
         Bridge.engine_call_insert(_handle)
     }
 
@@ -81,8 +85,8 @@ class PoolRealArray : NativeCoreType {
     /**
      * Appends a value to the array.
      */
-    fun pushBack(data: Float) {
-        TransferContext.writeArguments(VariantType.JVM_FLOAT to data)
+    fun pushBack(data: RealT) {
+        TransferContext.writeArguments(realTVariantType to data)
         Bridge.engine_call_pushback(_handle)
     }
 
@@ -99,23 +103,21 @@ class PoolRealArray : NativeCoreType {
      * If the array is shrunk, truncates the array to the new size.
      */
     fun resize(size: Int) {
-        TransferContext.writeArguments(VariantType.JVM_INT to idx)
+        TransferContext.writeArguments(VariantType.JVM_INT to size)
         Bridge.engine_call_resize(_handle)
     }
 
     /**
      * Changes the integer at the given index.
      */
-    operator fun set(idx: Int, data: Float) {
-        TransferContext.writeArguments(VariantType.JVM_INT to idx, VariantType.JVM_FLOAT to data)
+    operator fun set(idx: Int, data: RealT) {
+        TransferContext.writeArguments(VariantType.JVM_INT to idx, realTVariantType to data)
         Bridge.engine_call_set(_handle)
     }
 
 
     //UTILITIES
-    override fun toVariant() = Variant(this)
-
-    operator fun plus(other: Float) {
+    operator fun plus(other: RealT) {
         this.append(other)
     }
 
@@ -127,7 +129,7 @@ class PoolRealArray : NativeCoreType {
         return "PoolIntArray(${size})"
     }
 
-    override fun iterator(): Iterator<Float> {
+    override fun iterator(): Iterator<RealT> {
         return IndexedIterator(this::size, this::get, this::remove)
     }
 
@@ -136,7 +138,7 @@ class PoolRealArray : NativeCoreType {
      * This methods implementation works but is not the fastest one.
      */
     override fun equals(other: Any?): Boolean {
-        return if (other is PoolIntArray) {
+        return if (other is PoolRealArray) {
             val list1 = this.toList()
             val list2 = other.toList()
             list1 == list2

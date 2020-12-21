@@ -1,12 +1,15 @@
+@file:Suppress("PackageDirectoryMismatch")
+
 package godot.core
 
+import godot.util.IndexedIterator
 import godot.util.VoidPtr
 
-@Suppress("MemberVisibilityCanBePrivate")
-class PoolByteArray : NativeCoreType {
+@Suppress("MemberVisibilityCanBePrivate", "unused")
+class PoolByteArray : NativeCoreType, Iterable<Byte> {
 
 
-    override val coreVariantType: VariantType = VariantType.PoolByteArray
+    override val coreVariantType: VariantType = VariantType.POOL_BYTE_ARRAY
 
     //PROPERTIES
     val size: Int
@@ -41,16 +44,16 @@ class PoolByteArray : NativeCoreType {
      * Appends a PoolIntArray at the end of this array.
      */
     fun appendArray(array: PoolIntArray) {
-        TransferContext.writeArguments(VariantType.PoolByteArray to Array)
+        TransferContext.writeArguments(VariantType.POOL_BYTE_ARRAY to array)
         Bridge.engine_call_appendArray(_handle)
     }
 
     /**
      * Returns true if the array is empty.
      */
-    fun empty() {
+    fun empty(): Boolean {
         Bridge.engine_call_empty(_handle)
-        return TransferContext.readReturnValue(VariantType.Bool) as Boolean
+        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
     }
 
     /**
@@ -99,7 +102,7 @@ class PoolByteArray : NativeCoreType {
      * If the array is shrunk, truncates the array to the new size.
      */
     fun resize(size: Int) {
-        TransferContext.writeArguments(VariantType.JVM_INT to idx)
+        TransferContext.writeArguments(VariantType.JVM_INT to size)
         Bridge.engine_call_resize(_handle)
     }
 
@@ -113,8 +116,6 @@ class PoolByteArray : NativeCoreType {
 
 
     //UTILITIES
-    override fun toVariant() = Variant(this)
-
     operator fun plus(other: Byte) {
         this.append(other)
     }
@@ -136,7 +137,7 @@ class PoolByteArray : NativeCoreType {
      * This methods implementation works but is not the fastest one.
      */
     override fun equals(other: Any?): Boolean {
-        return if (other is PoolIntArray) {
+        return if (other is PoolByteArray) {
             val list1 = this.toList()
             val list2 = other.toList()
             list1 == list2

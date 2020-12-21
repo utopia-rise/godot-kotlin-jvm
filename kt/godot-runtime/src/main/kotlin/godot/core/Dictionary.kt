@@ -14,6 +14,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
         keyVariantType = VariantType.ANY
         valueVariantType = VariantType.ANY
         _handle = handle
+        GarbageCollector.registerNativeCoreType(this)
     }
 
     @PublishedApi
@@ -21,6 +22,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
         this.keyVariantType = keyVariantType
         this.valueVariantType = valueVariantType
         _handle = Bridge.engine_call_constructor()
+        GarbageCollector.registerNativeCoreType(this)
     }
 
     //########################PUBLIC###############################
@@ -131,6 +133,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
         keyVariantType = other.keyVariantType
         valueVariantType = other.valueVariantType
         _handle = other._handle
+        GarbageCollector.registerNativeCoreType(this)
     }
 
 
@@ -315,13 +318,16 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
 }
 
 @Suppress("FunctionName")
-inline fun <reified K, reified V> Dictionary() = Dictionary<K, V>(
-        variantMapper[K::class]
-                ?: throw UnsupportedOperationException("Can't create a Dictionary with generic key ${K::class}."),
-        variantMapper[V::class]
-                ?: throw UnsupportedOperationException("Can't create a Dictionary with generic value ${V::class}.")
-).also {
-    GarbageCollector.registerNativeCoreType(it)
+inline fun <reified K, reified V> Dictionary(): Dictionary<K, V> {
+    val keyVariantType = variantMapper[K::class]
+    checkNotNull(keyVariantType) {
+        "Can't create a Dictionary with generic key ${K::class}."
+    }
+    val valVariantType = variantMapper[V::class]
+    checkNotNull(valVariantType) {
+        "Can't create a Dictionary with generic value ${V::class}."
+    }
+    return Dictionary<K, V>(keyVariantType, valVariantType)
 }
 
 inline fun <reified K, reified V> dictionaryOf(vararg args: Pair<K, V>) = Dictionary<K, V>().also {

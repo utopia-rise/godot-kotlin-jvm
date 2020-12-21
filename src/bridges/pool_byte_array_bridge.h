@@ -1,16 +1,13 @@
-#ifndef GODOT_JVM_POOL_COLOR_ARRAY_BRIDGE_H
-#define GODOT_JVM_POOL_COLOR_ARRAY_BRIDGE_H
+#ifndef GODOT_JVM_POOL_BYTE_ARRAY_BRIDGE_H
+#define GODOT_JVM_POOL_BYTE_ARRAY_BRIDGE_H
 
-
-#include <modules/kotlin_jvm/src/java_instance_wrapper.h>
-#include "PoolArrays.hpp"
 
 namespace bridges {
 
-    class PoolColorArrayBridge : JavaInstanceWrapper<PoolColorArrayBridge> {
+    class PoolByteArrayBridge : JavaInstanceWrapper<PoolByteArrayBridge> {
     public:
-        PoolColorArrayBridge(jni::JObject p_wrapped, jni::JObject p_class_loader);
-        ~PoolColorArrayBridge() = default;
+        PoolByteArrayBridge(jni::JObject p_wrapped, jni::JObject p_class_loader);
+        ~PoolByteArrayBridge() = default;
 
         static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance, jboolean has_param);
 
@@ -27,6 +24,7 @@ namespace bridges {
 
         DECLARE_JNI_METHODS()
     };
+
 }
 
 

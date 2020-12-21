@@ -8,6 +8,13 @@
 #include <modules/kotlin_jvm/src/bridges/dictionary_bridge.h>
 #include <modules/kotlin_jvm/src/bridges/rid_bridge.h>
 #include <modules/kotlin_jvm/src/bridges/node_path_bridge.h>
+#include <modules/kotlin_jvm/src/bridges/pool_byte_array_bridge.h>
+#include <modules/kotlin_jvm/src/bridges/pool_color_array_bridge.h>
+#include <modules/kotlin_jvm/src/bridges/pool_int_array_bridge.h>
+#include <modules/kotlin_jvm/src/bridges/pool_real_array_bridge.h>
+#include <modules/kotlin_jvm/src/bridges/pool_string_array_bridge.h>
+#include <modules/kotlin_jvm/src/bridges/pool_vector2_array_bridge.h>
+#include <modules/kotlin_jvm/src/bridges/pool_vector3_array_bridge.h>
 
 class BridgesManager {
 private:
@@ -17,6 +24,14 @@ private:
     bridges::DictionaryBridge* dictionary_bridge;
     bridges::RidBridge* rid_bridge;
     bridges::NodePathBridge* node_path_bridge;
+
+    bridges::PoolByteArrayBridge* pool_byte_array_bridge;
+    bridges::PoolColorArrayBridge* pool_color_array_bridge;
+    bridges::PoolIntArrayBridge* pool_int_array_bridge;
+    bridges::PoolRealArrayBridge* pool_real_array_bridge;
+    bridges::PoolStringArrayBridge* pool_string_array_bridge;
+    bridges::PoolVector2ArrayBridge* pool_vector2_array_bridge;
+    bridges::PoolVector3ArrayBridge* pool_vector3_array_bridge;
 
     BridgesManager();
     ~BridgesManager();

@@ -4,6 +4,7 @@ import godot.util.IndexedIterator
 import godot.util.VoidPtr
 
 
+@Suppress("unused")
 class VariantArray<T> : NativeCoreType, MutableCollection<T> {
 
     override val coreVariantType: VariantType = VariantType.ARRAY
@@ -14,12 +15,14 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     internal constructor(handle: VoidPtr) {
         variantType = VariantType.ANY
         _handle = handle
+        GarbageCollector.registerNativeCoreType(this)
     }
 
     @PublishedApi
     internal constructor(variantType: VariantType) {
         this.variantType = variantType;
         _handle = Bridge.engine_call_constructor()
+        GarbageCollector.registerNativeCoreType(this)
     }
 
 //########################PUBLIC###############################
@@ -39,6 +42,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     constructor(other: VariantArray<T>) {
         this.variantType = other.variantType
         this._handle = other._handle
+        GarbageCollector.registerNativeCoreType(this)
     }
 
     //COMMON API
@@ -444,13 +448,15 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
 
 //CONSTRUCTOR
 @Suppress("FunctionName")
-inline fun <reified T> VariantArray() =
-        VariantArray<T>(
-                variantMapper[T::class]
-                        ?: throw UnsupportedOperationException("Can't create a VariantArray with generic ${T::class}.")
-        ).also {
-            GarbageCollector.registerNativeCoreType(it)
-        }
+inline fun <reified T> VariantArray(): VariantArray<T> {
+    val variantType = variantMapper[T::class]
+    checkNotNull(variantType) {
+        "Can't create a VariantArray with generic ${T::class}."
+    }
+    return VariantArray<T>(
+            variantType
+    )
+}
 
 //HELPER
 inline fun <reified T> variantArrayOf(vararg args: T) = VariantArray<T>().also { it.addAll(args) }

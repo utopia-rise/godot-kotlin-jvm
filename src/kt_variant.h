@@ -164,37 +164,37 @@ namespace ktvariant {
         to_kvariant_fromNATIVECORETYPE<RID>(des, src);
     }
 
-    static void to_kvariant_fromPOOLBYTEARRAY;(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromPOOLBYTEARRAY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::POOL_BYTE_ARRAY);
         to_kvariant_fromNATIVECORETYPE<PoolByteArray>(des, src);
     }
 
-    static void to_kvariant_fromPOOLINTARRAY;(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromPOOLINTARRAY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::POOL_INT_ARRAY);
         to_kvariant_fromNATIVECORETYPE<PoolIntArray>(des, src);
     }
 
-    static void to_kvariant_fromPOOLREALARRAY;(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromPOOLREALARRAY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::POOL_REAL_ARRAY);
         to_kvariant_fromNATIVECORETYPE<PoolRealArray>(des, src);
     }
 
-    static void to_kvariant_fromPOOLSTRINGARRAY;(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromPOOLSTRINGARRAY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::POOL_STRING_ARRAY);
         to_kvariant_fromNATIVECORETYPE<PoolStringArray>(des, src);
     }
 
-    static void to_kvariant_fromPOOLVECTOR2ARRAY;(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromPOOLVECTOR2ARRAY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::POOL_VECTOR2_ARRAY);
         to_kvariant_fromNATIVECORETYPE<PoolVector2Array>(des, src);
     }
 
-    static void to_kvariant_fromPOOLVECTOR3ARRAY;(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromPOOLVECTOR3ARRAY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::POOL_VECTOR3_ARRAY);
         to_kvariant_fromNATIVECORETYPE<PoolVector3Array>(des, src);
     }
 
-    static void to_kvariant_fromPOOLCOLORARRAY;(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromPOOLCOLORARRAY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::POOL_COLOR_ARRAY);
         to_kvariant_fromNATIVECORETYPE<PoolColorArray>(des, src);
     }
