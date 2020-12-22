@@ -34,16 +34,16 @@ class PoolColorArray : NativeCoreType, Iterable<Color> {
     /**
      * Appends an element at the end of the array (alias of push_back).
      */
-    fun append(i: Color) {
-        TransferContext.writeArguments(VariantType.COLOR to i)
+    fun append(color: Color) {
+        TransferContext.writeArguments(VariantType.COLOR to color)
         Bridge.engine_call_append(_handle)
     }
 
 
     /**
-     * Appends a PoolIntArray at the end of this array.
+     * Appends a PoolColorArray at the end of this array.
      */
-    fun appendArray(array: PoolIntArray) {
+    fun appendArray(array: PoolColorArray) {
         TransferContext.writeArguments(VariantType.POOL_COLOR_ARRAY to array)
         Bridge.engine_call_appendArray(_handle)
     }
@@ -120,12 +120,12 @@ class PoolColorArray : NativeCoreType, Iterable<Color> {
         this.append(other)
     }
 
-    operator fun plus(other: PoolIntArray) {
+    operator fun plus(other: PoolColorArray) {
         this.appendArray(other)
     }
 
     override fun toString(): String {
-        return "PoolIntArray(${size})"
+        return "PoolColorArray(${size})"
     }
 
     override fun iterator(): Iterator<Color> {

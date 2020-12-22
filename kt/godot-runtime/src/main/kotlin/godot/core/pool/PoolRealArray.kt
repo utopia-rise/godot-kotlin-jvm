@@ -35,16 +35,16 @@ class PoolRealArray : NativeCoreType, Iterable<RealT> {
     /**
      * Appends an element at the end of the array (alias of push_back).
      */
-    fun append(i: RealT) {
-        TransferContext.writeArguments(realTVariantType to i)
+    fun append(real: RealT) {
+        TransferContext.writeArguments(realTVariantType to real)
         Bridge.engine_call_append(_handle)
     }
 
 
     /**
-     * Appends a PoolIntArray at the end of this array.
+     * Appends a PoolRealArray at the end of this array.
      */
-    fun appendArray(array: PoolIntArray) {
+    fun appendArray(array: PoolRealArray) {
         TransferContext.writeArguments(VariantType.POOL_REAL_ARRAY to array)
         Bridge.engine_call_appendArray(_handle)
     }
@@ -121,12 +121,12 @@ class PoolRealArray : NativeCoreType, Iterable<RealT> {
         this.append(other)
     }
 
-    operator fun plus(other: PoolIntArray) {
+    operator fun plus(other: PoolRealArray) {
         this.appendArray(other)
     }
 
     override fun toString(): String {
-        return "PoolIntArray(${size})"
+        return "PoolRealArray(${size})"
     }
 
     override fun iterator(): Iterator<RealT> {

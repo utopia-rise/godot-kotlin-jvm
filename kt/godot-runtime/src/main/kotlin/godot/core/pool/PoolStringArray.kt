@@ -32,16 +32,16 @@ class PoolStringArray : NativeCoreType, Iterable<String> {
     /**
      * Appends an element at the end of the array (alias of push_back).
      */
-    fun append(i: String) {
-        TransferContext.writeArguments(VariantType.STRING to i)
+    fun append(str: String) {
+        TransferContext.writeArguments(VariantType.STRING to str)
         Bridge.engine_call_append(_handle)
     }
 
 
     /**
-     * Appends a PoolIntArray at the end of this array.
+     * Appends a PoolStringArray at the end of this array.
      */
-    fun appendArray(array: PoolIntArray) {
+    fun appendArray(array: PoolStringArray) {
         TransferContext.writeArguments(VariantType.POOL_STRING_ARRAY to array)
         Bridge.engine_call_appendArray(_handle)
     }
@@ -118,12 +118,12 @@ class PoolStringArray : NativeCoreType, Iterable<String> {
         this.append(other)
     }
 
-    operator fun plus(other: PoolIntArray) {
+    operator fun plus(other: PoolStringArray) {
         this.appendArray(other)
     }
 
     override fun toString(): String {
-        return "PoolIntArray(${size})"
+        return "PoolStringArray(${size})"
     }
 
     override fun iterator(): Iterator<String> {

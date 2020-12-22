@@ -10,6 +10,7 @@ import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.core.*
 import godot.signals.signal
+import godot.util.RealT
 import org.joda.time.DateTime
 
 @RegisterClass
@@ -100,6 +101,27 @@ class Invocation : Spatial() {
 
     @RegisterProperty
     var rid = RID()
+
+    @RegisterProperty
+    var poolByteArray = PoolByteArray()
+
+    @RegisterProperty
+    var poolIntArray = PoolIntArray()
+
+    @RegisterProperty
+    var poolRealArray = PoolRealArray()
+
+    @RegisterProperty
+    var poolColorArray = PoolColorArray()
+
+    @RegisterProperty
+    var poolStringArray = PoolStringArray()
+
+    @RegisterProperty
+    var poolVector2Array = PoolVector2Array()
+
+    @RegisterProperty
+    var poolVector3Array = PoolVector3Array()
 
     @RegisterSignal
     val signalNoParam by signal()
@@ -292,4 +314,88 @@ class Invocation : Spatial() {
 
     @RegisterFunction
     fun hasCameraNode() = getNode(NodePath("Camera")) != null
+
+    @RegisterFunction
+    fun addByteToPoolArray(byte: Byte) = poolByteArray.append(byte)
+
+    @RegisterFunction
+    fun addByteArrayToPoolArray(poolByteArray: PoolByteArray) = poolByteArray.appendArray(poolByteArray)
+
+    @RegisterFunction
+    fun deleteByteFromPoolArray(index: Int) = poolByteArray.remove(index)
+
+    @RegisterFunction
+    fun getByteFromPoolArray(index: Int) = poolByteArray[index]
+
+    @RegisterFunction
+    fun addColorToPoolArray(color: Color) = poolColorArray.append(color)
+
+    @RegisterFunction
+    fun addColorArrayToPoolArray(colorArray: PoolColorArray) = poolColorArray.appendArray(colorArray)
+
+    @RegisterFunction
+    fun deleteColorFromPoolArray(index: Int) = poolColorArray.remove(index)
+
+    @RegisterFunction
+    fun getColorFromPoolArray(index: Int) = poolColorArray[index]
+
+    @RegisterFunction
+    fun addIntToPoolArray(int: Int) = poolIntArray.append(int)
+
+    @RegisterFunction
+    fun addIntArrayToPoolArray(intArray: PoolIntArray) = this.poolIntArray.appendArray(intArray)
+
+    @RegisterFunction
+    fun deleteIntFromPoolArray(index: Int) = poolIntArray.remove(index)
+
+    @RegisterFunction
+    fun getIntFromPoolArray(index: Int) = poolIntArray[index]
+
+    @RegisterFunction
+    fun addRealToPoolArray(realT: RealT) = poolRealArray.append(realT)
+
+    @RegisterFunction
+    fun addRealArrayToPoolArray(realArray: PoolRealArray) = poolRealArray.appendArray(realArray)
+
+    @RegisterFunction
+    fun deleteRealFromPoolArray(index: Int) = poolRealArray.remove(index)
+
+    @RegisterFunction
+    fun getRealFromPoolArray(index: Int) = poolRealArray[index]
+
+    @RegisterFunction
+    fun addStringToPoolArray(string: String) = poolStringArray.append(string)
+
+    @RegisterFunction
+    fun addStringArrayToPoolArray(stringArray: PoolStringArray) = poolStringArray.appendArray(stringArray)
+
+    @RegisterFunction
+    fun deleteStringFromPoolArray(index: Int) = poolStringArray.remove(index)
+
+    @RegisterFunction
+    fun getStringFromPoolArray(index: Int) = poolStringArray[index]
+
+    @RegisterFunction
+    fun addVector2ToPoolArray(vector2: Vector2) = poolVector2Array.append(vector2)
+
+    @RegisterFunction
+    fun addVector2ArrayToPoolArray(vector2Array: PoolVector2Array) = poolVector2Array.appendArray(vector2Array)
+
+    @RegisterFunction
+    fun deleteVector2FromPoolArray(index: Int) = poolVector2Array.remove(index)
+
+    @RegisterFunction
+    fun getVector2FromPoolArray(index: Int) = poolVector2Array[index]
+
+    @RegisterFunction
+    fun addVector3ToPoolArray(vector3: Vector3) = poolVector3Array.append(vector3)
+
+    @RegisterFunction
+    fun addVector3ArrayToPoolArray(vector3Array: PoolVector3Array) = poolVector3Array.appendArray(vector3Array)
+
+    @RegisterFunction
+    fun deleteVector3FromPoolArray(index: Int) = poolVector3Array.remove(index)
+
+    @RegisterFunction
+    fun getVector3FromPoolArray(index: Int) = poolVector3Array[index]
 }

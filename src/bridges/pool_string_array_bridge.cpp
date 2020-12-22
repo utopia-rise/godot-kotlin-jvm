@@ -108,7 +108,7 @@ void PoolStringArrayBridge::engine_call_get(JNIEnv* p_raw_env, jobject p_instanc
     Variant args[1] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
-    Variant variant{from_uint_to_ptr<PoolStringArray>(p_raw_ptr)[args[0].operator unsigned int()]};
+    Variant variant{from_uint_to_ptr<PoolStringArray>(p_raw_ptr)->operator[](args[0].operator unsigned int())};
     transfer_context->write_return_value(env, variant);
 }
 
