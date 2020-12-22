@@ -64,13 +64,13 @@ uintptr_t RidBridge::engine_call_constructor_arg(JNIEnv* p_raw_env, jobject p_in
 }
 
 void RidBridge::engine_call_getID(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env{p_raw_env};
     Variant variant{from_uint_to_ptr<RID>(p_raw_ptr)->get_id()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 
 void RidBridge::engine_call_compareTo(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env{p_raw_env};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     Variant args[1] = {};
     transfer_context->read_args(env, args);
@@ -79,7 +79,7 @@ void RidBridge::engine_call_compareTo(JNIEnv* p_raw_env, jobject p_instance, jlo
 }
 
 void RidBridge::engine_call_equals(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env{p_raw_env};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     Variant args[1] = {};
     transfer_context->read_args(env, args);

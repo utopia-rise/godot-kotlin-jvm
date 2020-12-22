@@ -85,7 +85,7 @@ NodePathBridge::NodePathBridge(jni::JObject p_wrapped, jni::JObject p_class_load
 
 uintptr_t NodePathBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance, jboolean has_param) {
     if (static_cast<bool>(has_param)) {
-        jni::Env env{jni::Jvm::current_env()};
+        jni::Env env{p_raw_env};
         Variant args[1] = {};
         GDKotlin::get_instance().transfer_context->read_args(env, args);
         return reinterpret_cast<uintptr_t>(new NodePath(args[0].operator String()));
@@ -95,13 +95,13 @@ uintptr_t NodePathBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_i
 }
 
 void NodePathBridge::engine_call_path(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env{p_raw_env};
     Variant variant{from_uint_to_ptr<NodePath>(p_raw_ptr)->operator String()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 
 void NodePathBridge::engine_call_getName(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env{p_raw_env};
     Variant args[1] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
@@ -110,19 +110,19 @@ void NodePathBridge::engine_call_getName(JNIEnv* p_raw_env, jobject p_instance, 
 }
 
 void NodePathBridge::engine_call_getNameCount(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env{p_raw_env};
     Variant variant{from_uint_to_ptr<NodePath>(p_raw_ptr)->get_name_count()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 
 void NodePathBridge::engine_call_getProperty(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env{p_raw_env};
     Variant variant{from_uint_to_ptr<NodePath>(p_raw_ptr)->get_as_property_path().operator String()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 
 void NodePathBridge::engine_call_getSubname(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env{p_raw_env};
     Variant args[1] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
@@ -131,31 +131,31 @@ void NodePathBridge::engine_call_getSubname(JNIEnv* p_raw_env, jobject p_instanc
 }
 
 void NodePathBridge::engine_call_getSubnameCount(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env{p_raw_env};
     Variant variant{from_uint_to_ptr<NodePath>(p_raw_ptr)->get_subname_count()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 
 void NodePathBridge::engine_call_isAbsolute(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env{p_raw_env};
     Variant variant{from_uint_to_ptr<NodePath>(p_raw_ptr)->is_absolute()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 
 void NodePathBridge::engine_call_isEmpty(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env{p_raw_env};
     Variant variant{from_uint_to_ptr<NodePath>(p_raw_ptr)->is_empty()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 
 void NodePathBridge::engine_call_getConcatenatedSubnames(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env{p_raw_env};
     Variant variant{from_uint_to_ptr<NodePath>(p_raw_ptr)->get_concatenated_subnames()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 
 void NodePathBridge::engine_call_equals(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env{p_raw_env};
     Variant args[1] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);

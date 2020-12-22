@@ -89,7 +89,7 @@ uintptr_t PoolByteArrayBridge::engine_call_constructor(JNIEnv* p_raw_env, jobjec
 }
 
 void PoolByteArrayBridge::engine_call_append(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env{p_raw_env};
     Variant args[1] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
@@ -97,7 +97,7 @@ void PoolByteArrayBridge::engine_call_append(JNIEnv* p_raw_env, jobject p_instan
 }
 
 void PoolByteArrayBridge::engine_call_appendArray(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env{p_raw_env};
     Variant args[1] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
@@ -105,7 +105,7 @@ void PoolByteArrayBridge::engine_call_appendArray(JNIEnv* p_raw_env, jobject p_i
 }
 
 void PoolByteArrayBridge::engine_call_get(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env{p_raw_env};
     Variant args[1] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
@@ -114,7 +114,7 @@ void PoolByteArrayBridge::engine_call_get(JNIEnv* p_raw_env, jobject p_instance,
 }
 
 void PoolByteArrayBridge::engine_call_insert(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env{p_raw_env};
     Variant args[2] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
@@ -122,12 +122,12 @@ void PoolByteArrayBridge::engine_call_insert(JNIEnv* p_raw_env, jobject p_instan
 }
 
 void PoolByteArrayBridge::engine_call_invert(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env{p_raw_env};
     from_uint_to_ptr<PoolByteArray>(p_raw_ptr)->invert();
 }
 
 void PoolByteArrayBridge::engine_call_pushback(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env{p_raw_env};
     Variant args[1] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
@@ -135,7 +135,7 @@ void PoolByteArrayBridge::engine_call_pushback(JNIEnv* p_raw_env, jobject p_inst
 }
 
 void PoolByteArrayBridge::engine_call_remove(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env{p_raw_env};
     Variant args[1] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
@@ -143,7 +143,7 @@ void PoolByteArrayBridge::engine_call_remove(JNIEnv* p_raw_env, jobject p_instan
 }
 
 void PoolByteArrayBridge::engine_call_resize(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env{p_raw_env};
     Variant args[1] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
@@ -151,7 +151,7 @@ void PoolByteArrayBridge::engine_call_resize(JNIEnv* p_raw_env, jobject p_instan
 }
 
 void PoolByteArrayBridge::engine_call_set(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env{p_raw_env};
     Variant args[2] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
@@ -159,7 +159,7 @@ void PoolByteArrayBridge::engine_call_set(JNIEnv* p_raw_env, jobject p_instance,
 }
 
 void PoolByteArrayBridge::engine_call_size(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{jni::Jvm::current_env()};
+    jni::Env env{p_raw_env};
     Variant variant{from_uint_to_ptr<PoolByteArray>(p_raw_ptr)->size()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }

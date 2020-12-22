@@ -46,7 +46,7 @@ MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) 
 
 bool MemoryBridge::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id) {
     auto* instance{reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr))};
-    jni::Env env(p_raw_env);
+    jni::Env env{p_raw_env};
     jni::JObject local_ref{p_instance};
     local_ref.delete_local_ref(env);
     return ObjectDB::instance_validate(instance) && instance->get_instance_id() == static_cast<ObjectID>(instance_id);
@@ -54,7 +54,7 @@ bool MemoryBridge::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p
 
 bool MemoryBridge::unref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     auto* reference{reinterpret_cast<Reference*>(static_cast<uintptr_t>(p_raw_ptr))};
-    jni::Env env(p_raw_env);
+    jni::Env env{p_raw_env};
     jni::JObject loacl_ref{p_instance};
     loacl_ref.delete_local_ref(env);
     if (reference->unreference()) {
@@ -70,7 +70,7 @@ bool MemoryBridge::unref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr)
 
 bool MemoryBridge::ref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     auto* reference{reinterpret_cast<Reference*>(static_cast<uintptr_t>(p_raw_ptr))};
-    jni::Env env(p_raw_env);
+    jni::Env env{p_raw_env};
     jni::JObject local_ref{p_instance};
     local_ref.delete_local_ref(env);
     return reference->init_ref();
@@ -78,43 +78,58 @@ bool MemoryBridge::ref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
 
 bool MemoryBridge::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint var_type) {
     Variant::Type variant_type{static_cast<Variant::Type>(var_type)};
+    bool has_free{false};
     switch (variant_type) {
         case Variant::_RID:
             memdelete(reinterpret_cast<RID*>(p_raw_ptr));
-            return true;
+            has_free = true;
+            break;
         case Variant::DICTIONARY:
             memdelete(reinterpret_cast<Dictionary*>(p_raw_ptr));
-            return true;
+            has_free = true;
+            break;
         case Variant::ARRAY:
             memdelete(reinterpret_cast<Array*>(p_raw_ptr));
-            return true;
+            has_free = true;
+            break;
+        case Variant::NODE_PATH:
+            memdelete(reinterpret_cast<NodePath*>(p_raw_ptr));
+            has_free = true;
+            break;
         case Variant::POOL_BYTE_ARRAY:
             memdelete(reinterpret_cast<PoolByteArray*>(p_raw_ptr));
-            return true;
+            has_free = true;
+            break;
         case Variant::POOL_INT_ARRAY:
             memdelete(reinterpret_cast<PoolIntArray*>(p_raw_ptr));
-            return true;
+            has_free = true;
+            break;
         case Variant::POOL_REAL_ARRAY:
             memdelete(reinterpret_cast<PoolRealArray*>(p_raw_ptr));
-            return true;
+            has_free = true;
+            break;
         case Variant::POOL_STRING_ARRAY:
             memdelete(reinterpret_cast<PoolStringArray*>(p_raw_ptr));
-            return true;
+            has_free = true;
+            break;
         case Variant::POOL_VECTOR2_ARRAY:
             memdelete(reinterpret_cast<PoolVector2Array*>(p_raw_ptr));
-            return true;
+            has_free = true;
+            break;
         case Variant::POOL_VECTOR3_ARRAY:
             memdelete(reinterpret_cast<PoolVector3Array*>(p_raw_ptr));
-            return true;
+            has_free = true;
+            break;
         case Variant::POOL_COLOR_ARRAY:
             memdelete(reinterpret_cast<PoolColorArray*>(p_raw_ptr));
-            return true;
+            has_free = true;
+            break;
         default:
             break;
     }
 
-    jni::Env env(p_raw_env);
+    jni::Env env{p_raw_env};
     jni::JObject local_ref{p_instance};
     local_ref.delete_local_ref(env);
-    return false;
+    return has_free;
 }
