@@ -28,7 +28,7 @@ class GodotPlugin : KotlinCompilerPluginSupportPlugin {
 
     private fun setupPlugin(project: Project, jvm: KotlinJvmProjectExtension) {
         project.afterEvaluate {
-            setupConfigurationsAndCompilations(jvm, project)
+            setupConfigurationsAndCompilations(jvm)
         }
     }
 

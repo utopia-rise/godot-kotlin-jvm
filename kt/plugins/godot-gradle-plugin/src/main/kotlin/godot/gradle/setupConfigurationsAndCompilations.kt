@@ -33,7 +33,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
  *
  * We also not used a normal annotation processor to be able to use the full information the compiler has at compile time for the entry generation process. Again increasing maintainability.
  */
-fun Project.setupConfigurationsAndCompilations(jvm: KotlinJvmProjectExtension, project: Project) {
+fun Project.setupConfigurationsAndCompilations(jvm: KotlinJvmProjectExtension) {
     //bootstrap jar containing all glue code
     val bootstrap = configurations.create("bootstrap") {
         dependencies {
