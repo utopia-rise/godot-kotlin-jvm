@@ -6,6 +6,10 @@
 
 JNI_INIT_STATICS_FOR_CLASS(TransferContext)
 
+thread_local static Variant variant_args[MAX_ARGS_SIZE];
+thread_local static const Variant* variant_args_ptr[MAX_ARGS_SIZE];
+thread_local static bool icall_args_init = false;
+
 TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_loader)
     : JavaInstanceWrapper("godot.core.TransferContext", p_wrapped, p_class_loader) {
     jni::JNativeMethod icall_method{
@@ -39,6 +43,12 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
     methods.push_back(free_object_method);
     jni::Env env {jni::Jvm::current_env()};
     j_class.register_natives(env, methods);
+}
+
+TransferContext::~TransferContext() {
+    for (auto& variant_arg : variant_args) {
+        variant_arg = Variant();
+    }
 }
 
 SharedBuffer* TransferContext::get_buffer(jni::Env& p_env) {
@@ -86,9 +96,6 @@ void TransferContext::read_args(jni::Env& p_env, Variant* args) {
 }
 
 void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jint p_method_index, jint expectedReturnType) {
-    thread_local static Variant variant_args[MAX_ARGS_SIZE];
-    thread_local static const Variant* variant_args_ptr[MAX_ARGS_SIZE];
-    thread_local static bool icall_args_init = false;
     if (unlikely(!icall_args_init)) {
         for (int i = 0; i < MAX_ARGS_SIZE; i++) {
             variant_args_ptr[i] = &variant_args[i];

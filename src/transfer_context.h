@@ -11,7 +11,7 @@
 class TransferContext : public JavaInstanceWrapper<TransferContext> {
 public:
     TransferContext(jni::JObject p_wrapped, jni::JObject p_class_loader);
-    ~TransferContext() = default;
+    ~TransferContext();
     TransferContext(const TransferContext&) = delete;
     void operator=(const TransferContext&) = delete;
 
