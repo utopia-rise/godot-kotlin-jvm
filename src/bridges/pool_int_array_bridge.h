@@ -9,7 +9,7 @@ namespace bridges {
         PoolIntArrayBridge(jni::JObject p_wrapped, jni::JObject p_class_loader);
         ~PoolIntArrayBridge() = default;
 
-        static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance, jboolean has_param);
+        static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance);
 
         static void engine_call_append(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_appendArray(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);

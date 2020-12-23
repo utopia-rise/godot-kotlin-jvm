@@ -12,7 +12,7 @@ PoolByteArrayBridge::PoolByteArrayBridge(jni::JObject p_wrapped, jni::JObject p_
         : JavaInstanceWrapper(POOL_BYTE_ARRAY_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
     jni::JNativeMethod engine_call_constructor_method{
             "engine_call_constructor",
-            "(Z)J",
+            "()J",
             (void*) PoolByteArrayBridge::engine_call_constructor
     };
     jni::JNativeMethod engine_call_append_method{
@@ -75,7 +75,7 @@ PoolByteArrayBridge::PoolByteArrayBridge(jni::JObject p_wrapped, jni::JObject p_
     methods.push_back(engine_call_invert_method);
     methods.push_back(engine_call_pushback_method);
     methods.push_back(engine_call_remove_method);
-    methods.push_back(engine_call_remove_method);
+    methods.push_back(engine_call_resize_method);
     methods.push_back(engine_call_set_method);
     methods.push_back(engine_call_size_method);
 
@@ -84,8 +84,8 @@ PoolByteArrayBridge::PoolByteArrayBridge(jni::JObject p_wrapped, jni::JObject p_
     p_wrapped.delete_local_ref(env);
 }
 
-uintptr_t PoolByteArrayBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance, jboolean has_param) {
-    return reinterpret_cast<uintptr_t>(new PoolByteArray());
+uintptr_t PoolByteArrayBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
+    return reinterpret_cast<uintptr_t>(memnew(PoolByteArray));
 }
 
 void PoolByteArrayBridge::engine_call_append(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {

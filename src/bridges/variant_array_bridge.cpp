@@ -212,7 +212,7 @@ VariantArrayBridge::VariantArrayBridge(jni::JObject p_wrapped, jni::JObject p_cl
 }
 
 uintptr_t VariantArrayBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
-    return reinterpret_cast<uintptr_t>(new Array());
+    return reinterpret_cast<uintptr_t>(memnew(Array));
 }
 
 void VariantArrayBridge::engine_call_get_size(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {

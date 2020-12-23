@@ -109,7 +109,7 @@ DictionaryBridge::DictionaryBridge(jni::JObject p_wrapped, jni::JObject p_class_
 }
 
 uintptr_t DictionaryBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
-    return reinterpret_cast<uintptr_t>(new Dictionary());
+    return reinterpret_cast<uintptr_t>(memnew(Dictionary));
 }
 
 void DictionaryBridge::engine_call_clear(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {

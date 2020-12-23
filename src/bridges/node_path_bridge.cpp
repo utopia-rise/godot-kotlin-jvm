@@ -88,9 +88,9 @@ uintptr_t NodePathBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_i
         jni::Env env{p_raw_env};
         Variant args[1] = {};
         GDKotlin::get_instance().transfer_context->read_args(env, args);
-        return reinterpret_cast<uintptr_t>(new NodePath(args[0].operator String()));
+        return reinterpret_cast<uintptr_t>(memnew(NodePath(args[0].operator String())));
     } else {
-        return reinterpret_cast<uintptr_t>(new NodePath());
+        return reinterpret_cast<uintptr_t>(memnew(NodePath));
     }
 }
 

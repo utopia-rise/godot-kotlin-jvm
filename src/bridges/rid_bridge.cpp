@@ -52,14 +52,14 @@ RidBridge::RidBridge(jni::JObject p_wrapped, jni::JObject p_class_loader)
 }
 
 uintptr_t RidBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
-    return reinterpret_cast<uintptr_t>(new RID());
+    return reinterpret_cast<uintptr_t>(memnew(RID));
 }
 
 uintptr_t RidBridge::engine_call_constructor_arg(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     if (auto* ref{from_uint_to_ptr<Resource>(p_raw_ptr)}) {
-        return reinterpret_cast<uintptr_t>(new RID(ref->get_rid()));
+        return reinterpret_cast<uintptr_t>(memnew(RID(ref->get_rid())));
     } else {
-        return reinterpret_cast<uintptr_t>(new RID());
+        return reinterpret_cast<uintptr_t>(memnew(RID));
     }
 }
 

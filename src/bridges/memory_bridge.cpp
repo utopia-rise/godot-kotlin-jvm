@@ -59,13 +59,12 @@ bool MemoryBridge::unref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr)
     loacl_ref.delete_local_ref(env);
     if (reference->unreference()) {
         memdelete(reference);
-        return true;
     } else {
 #ifdef DEBUG_ENABLED
         print_verbose(vformat("Will not memdelete %s", static_cast<uintptr_t>(p_raw_ptr)));
 #endif
-        return false;
     }
+    return true;
 }
 
 bool MemoryBridge::ref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {

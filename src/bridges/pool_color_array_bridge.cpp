@@ -11,7 +11,7 @@ PoolColorArrayBridge::PoolColorArrayBridge(jni::JObject p_wrapped, jni::JObject 
         : JavaInstanceWrapper(POOL_COLOR_ARRAY_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
     jni::JNativeMethod engine_call_constructor_method{
             "engine_call_constructor",
-            "(Z)J",
+            "()J",
             (void*) PoolColorArrayBridge::engine_call_constructor
     };
     jni::JNativeMethod engine_call_append_method{
@@ -74,7 +74,7 @@ PoolColorArrayBridge::PoolColorArrayBridge(jni::JObject p_wrapped, jni::JObject 
     methods.push_back(engine_call_invert_method);
     methods.push_back(engine_call_pushback_method);
     methods.push_back(engine_call_remove_method);
-    methods.push_back(engine_call_remove_method);
+    methods.push_back(engine_call_resize_method);
     methods.push_back(engine_call_set_method);
     methods.push_back(engine_call_size_method);
 
@@ -83,8 +83,8 @@ PoolColorArrayBridge::PoolColorArrayBridge(jni::JObject p_wrapped, jni::JObject 
     p_wrapped.delete_local_ref(env);
 }
 
-uintptr_t PoolColorArrayBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance, jboolean has_param) {
-    return reinterpret_cast<uintptr_t>(new PoolColorArray());
+uintptr_t PoolColorArrayBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
+    return reinterpret_cast<uintptr_t>(memnew(PoolColorArray));
 }
 
 void PoolColorArrayBridge::engine_call_append(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {

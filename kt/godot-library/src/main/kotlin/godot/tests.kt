@@ -354,6 +354,12 @@ open class Node : Object() {
         TransferContext.callMethod(rawPtr, NODE_GET_NODE, VariantType.OBJECT)
         return TransferContext.readReturnValue(VariantType.OBJECT, true) as Node?
     }
+
+    open fun getNodeOrNull(nodePath: NodePath): Node? {
+        TransferContext.writeArguments(VariantType.NODE_PATH to nodePath)
+        TransferContext.callMethod(rawPtr, NODE_GET_NODE_OR_NULL, VariantType.OBJECT)
+        return TransferContext.readReturnValue(VariantType.OBJECT, true) as Node?
+    }
 }
 
 open class Spatial : Node() {
@@ -414,5 +420,6 @@ fun registerEngineTypeMethods() {
     TypeManager.engineTypeMethod.add(NODE to "add_child")
     TypeManager.engineTypeMethod.add(NODE to "remove_child")
     TypeManager.engineTypeMethod.add(NODE to "get_node")
+    TypeManager.engineTypeMethod.add(NODE to "get_node_or_null")
     TypeManager.engineTypeMethod.add(RESOURCE to "get_id")
 }

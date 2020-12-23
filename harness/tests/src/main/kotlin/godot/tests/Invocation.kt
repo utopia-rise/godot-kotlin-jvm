@@ -190,6 +190,11 @@ class Invocation : Spatial() {
     override fun _onDestroy() {
         invocation.free()
         navMeshes.clear()
+        navMeshesDictionary.clear()
+        anyToAnyDictionary.clear()
+        nullableArray.clear()
+        nullableDictionary.clear()
+        testArrayAny.clear()
     }
 
     @RegisterFunction
@@ -313,7 +318,7 @@ class Invocation : Spatial() {
     fun otherJvmId(invocation: Invocation) = invocation.jvmId
 
     @RegisterFunction
-    fun hasCameraNode() = getNode(NodePath("Camera")) != null
+    fun hasCameraNode() = getNodeOrNull(NodePath("Camera")) != null
 
     @RegisterFunction
     fun addByteToPoolArray(byte: Byte) = poolByteArray.append(byte)

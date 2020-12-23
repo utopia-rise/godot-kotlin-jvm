@@ -11,7 +11,7 @@ PoolRealArrayBridge::PoolRealArrayBridge(jni::JObject p_wrapped, jni::JObject p_
         : JavaInstanceWrapper(POOL_REAL_ARRAY_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
     jni::JNativeMethod engine_call_constructor_method{
             "engine_call_constructor",
-            "(Z)J",
+            "()J",
             (void*) PoolRealArrayBridge::engine_call_constructor
     };
     jni::JNativeMethod engine_call_append_method{
@@ -74,7 +74,7 @@ PoolRealArrayBridge::PoolRealArrayBridge(jni::JObject p_wrapped, jni::JObject p_
     methods.push_back(engine_call_invert_method);
     methods.push_back(engine_call_pushback_method);
     methods.push_back(engine_call_remove_method);
-    methods.push_back(engine_call_remove_method);
+    methods.push_back(engine_call_resize_method);
     methods.push_back(engine_call_set_method);
     methods.push_back(engine_call_size_method);
 
@@ -83,12 +83,12 @@ PoolRealArrayBridge::PoolRealArrayBridge(jni::JObject p_wrapped, jni::JObject p_
     p_wrapped.delete_local_ref(env);
 }
 
-uintptr_t PoolRealArrayBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance, jboolean has_param) {
-    return reinterpret_cast<uintptr_t>(new PoolRealArray());
+uintptr_t PoolRealArrayBridge::engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance) {
+    return reinterpret_cast<uintptr_t>(memnew(PoolRealArray));
 }
 
 void PoolRealArrayBridge::engine_call_append(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{p_raw_env};;
+    jni::Env env{p_raw_env};
     Variant args[1] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
@@ -96,7 +96,7 @@ void PoolRealArrayBridge::engine_call_append(JNIEnv* p_raw_env, jobject p_instan
 }
 
 void PoolRealArrayBridge::engine_call_appendArray(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{p_raw_env};;
+    jni::Env env{p_raw_env};
     Variant args[1] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
@@ -104,7 +104,7 @@ void PoolRealArrayBridge::engine_call_appendArray(JNIEnv* p_raw_env, jobject p_i
 }
 
 void PoolRealArrayBridge::engine_call_get(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{p_raw_env};;
+    jni::Env env{p_raw_env};
     Variant args[1] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
@@ -113,7 +113,7 @@ void PoolRealArrayBridge::engine_call_get(JNIEnv* p_raw_env, jobject p_instance,
 }
 
 void PoolRealArrayBridge::engine_call_insert(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{p_raw_env};;
+    jni::Env env{p_raw_env};
     Variant args[2] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
@@ -121,12 +121,12 @@ void PoolRealArrayBridge::engine_call_insert(JNIEnv* p_raw_env, jobject p_instan
 }
 
 void PoolRealArrayBridge::engine_call_invert(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{p_raw_env};;
+    jni::Env env{p_raw_env};
     from_uint_to_ptr<PoolRealArray>(p_raw_ptr)->invert();
 }
 
 void PoolRealArrayBridge::engine_call_pushback(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{p_raw_env};;
+    jni::Env env{p_raw_env};
     Variant args[1] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
@@ -134,7 +134,7 @@ void PoolRealArrayBridge::engine_call_pushback(JNIEnv* p_raw_env, jobject p_inst
 }
 
 void PoolRealArrayBridge::engine_call_remove(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{p_raw_env};;
+    jni::Env env{p_raw_env};
     Variant args[1] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
@@ -142,7 +142,7 @@ void PoolRealArrayBridge::engine_call_remove(JNIEnv* p_raw_env, jobject p_instan
 }
 
 void PoolRealArrayBridge::engine_call_resize(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{p_raw_env};;
+    jni::Env env{p_raw_env};
     Variant args[1] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
@@ -150,7 +150,7 @@ void PoolRealArrayBridge::engine_call_resize(JNIEnv* p_raw_env, jobject p_instan
 }
 
 void PoolRealArrayBridge::engine_call_set(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{p_raw_env};;
+    jni::Env env{p_raw_env};
     Variant args[2] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
@@ -158,7 +158,7 @@ void PoolRealArrayBridge::engine_call_set(JNIEnv* p_raw_env, jobject p_instance,
 }
 
 void PoolRealArrayBridge::engine_call_size(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    jni::Env env{p_raw_env};;
+    jni::Env env{p_raw_env};
     Variant variant{from_uint_to_ptr<PoolRealArray>(p_raw_ptr)->size()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }

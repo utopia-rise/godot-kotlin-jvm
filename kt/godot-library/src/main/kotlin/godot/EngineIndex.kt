@@ -20,4 +20,5 @@ const val NODE_GET_PARENT = 5
 const val NODE_ADD_CHILD = 6
 const val NODE_REMOVE_CHILD = 7
 const val NODE_GET_NODE = 8
-const val RESOURCE_GET_ID = 9
+const val NODE_GET_NODE_OR_NULL = 9
+const val RESOURCE_GET_ID = 10

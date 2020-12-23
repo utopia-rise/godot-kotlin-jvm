@@ -140,7 +140,7 @@ namespace ktvariant {
     template <class T>
     static void to_kvariant_fromNATIVECORETYPE(SharedBuffer* des, const Variant& src) {
         des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(new T(src.operator T())), des->get_cursor())
+                encode_uint64(reinterpret_cast<uintptr_t>(memnew(T(src.operator T()))), des->get_cursor())
         );
     }
 
@@ -403,7 +403,7 @@ namespace ktvariant {
 
     template <class T>
     static Variant from_kvariant_tokVariantNativeCoreTypeValue(SharedBuffer* byte_buffer) {
-        uint64_t ptr{decode_uint64(byte_buffer->get_cursor())};
+        uintptr_t ptr{decode_uint64(byte_buffer->get_cursor())};
         byte_buffer->increment_position(PTR_SIZE);
         return Variant(*reinterpret_cast<T*>(ptr));
     }

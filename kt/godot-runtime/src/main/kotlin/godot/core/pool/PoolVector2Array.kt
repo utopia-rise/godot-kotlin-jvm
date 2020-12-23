@@ -154,7 +154,7 @@ class PoolVector2Array : NativeCoreType, Iterable<Vector2> {
 
     @Suppress("FunctionName")
     private object Bridge {
-        external fun engine_call_constructor(withParam: Boolean = false): VoidPtr
+        external fun engine_call_constructor(): VoidPtr
 
         external fun engine_call_append(_handle: VoidPtr)
         external fun engine_call_appendArray(_handle: VoidPtr)
