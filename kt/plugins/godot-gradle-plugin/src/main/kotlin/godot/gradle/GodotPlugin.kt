@@ -27,80 +27,10 @@ class GodotPlugin : KotlinCompilerPluginSupportPlugin {
     }
 
     private fun setupPlugin(project: Project, jvm: KotlinJvmProjectExtension) {
-
         project.afterEvaluate {
-            val bootstrap = configurations.create("bootstrap") {
-                dependencies {
-                    add(name, kotlin("stdlib"))
-                    add(name, "com.utopia-rise:godot-library:${GodotBuildProperties.godotKotlinVersion}")
-                }
-            }
-            val main = configurations.create("main").apply {
-                extendsFrom(configurations.getByName("implementation"), configurations.getByName("runtimeOnly"))
-                exclude(
-                    mapOfNonNullValuesOf(
-                        "group" to "org.jetbrains.kotlin",
-                        "module" to null
-                    )
-                )
-            }
-
-            fun KotlinWithJavaCompilation<KotlinJvmOptions>.configureSourceSets(includeEntrySourceDir: Boolean) {
-                defaultSourceSet {
-                    kotlin.srcDirs("src/main/kotlin")
-                    if (includeEntrySourceDir) {
-                        kotlin.srcDirs(project.buildDir.resolve("godot-entry"))
-                    }
-                    dependencies {
-                        compileOnly("com.utopia-rise:godot-library:${GodotBuildProperties.godotKotlinVersion}")
-                    }
-                }
-            }
-
-            val mainCompilation = jvm.target.compilations.getByName("main").apply {
-                configureSourceSets(true)
-            }
-
-            val dummy = jvm.target.compilations.create("dummy") {
-                defaultSourceSet.dependencies {
-                    main.allDependencies.forEach {
-                        implementation(it)
-                    }
-                }
-                configureSourceSets(false)
-            }
-
-            tasks {
-                val bootstrapJar by creating(ShadowJar::class) {
-                    archiveBaseName.set("godot-bootstrap")
-                    configurations.add(bootstrap)
-                }
-
-                val shadowJar = named<ShadowJar>("shadowJar") {
-                    archiveBaseName.set("main")
-                    archiveVersion.set("")
-                    archiveClassifier.set("")
-                    configurations.clear()
-                    configurations.add(main)
-                }
-
-                val build by getting {
-                    dependsOn(bootstrapJar, shadowJar)
-                }
-
-                mainCompilation.compileKotlinTask.dependsOn(dummy.compileKotlinTask)
-            }
+            setupConfigurationsAndCompilations(jvm)
         }
     }
-
-    private fun mapOfNonNullValuesOf(vararg entries: Pair<String, String?>): Map<String, String> =
-        mutableMapOf<String, String>().apply {
-            for ((k, v) in entries) {
-                if (v != null) {
-                    put(k, v)
-                }
-            }
-        }
 
     //START: Compiler plugin configuration
     override fun applyToCompilation(kotlinCompilation: KotlinCompilation<*>): Provider<List<SubpluginOption>> {
@@ -110,7 +40,7 @@ class GodotPlugin : KotlinCompilerPluginSupportPlugin {
             listOf(
                 SubpluginOption(
                     CompilerPluginConst.CommandLineOptionNames.enabledOption,
-                    (kotlinCompilation.name == "dummy").toString()
+                    (kotlinCompilation.name == "main").toString() //only apply the plugin to the main compilation.
                 ),
                 SubpluginOption(
                     CompilerPluginConst.CommandLineOptionNames.serviceFileDirPathOption,
