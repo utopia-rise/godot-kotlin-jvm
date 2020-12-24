@@ -189,12 +189,6 @@ class Invocation : Spatial() {
 
     override fun _onDestroy() {
         invocation.free()
-        navMeshes.clear()
-        navMeshesDictionary.clear()
-        anyToAnyDictionary.clear()
-        nullableArray.clear()
-        nullableDictionary.clear()
-        testArrayAny.clear()
     }
 
     @RegisterFunction
