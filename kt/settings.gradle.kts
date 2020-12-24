@@ -16,6 +16,7 @@ subdir("entry-generation") {
 subdir("plugins") {
     include("godot-gradle-plugin")
 }
+includeBuild("plugins/godot-intellij-plugin")
 
 subdir("utils") {
     include("godot-build-props")

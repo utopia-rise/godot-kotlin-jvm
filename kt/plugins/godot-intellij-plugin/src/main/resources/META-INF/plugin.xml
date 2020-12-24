@@ -1,0 +1,28 @@
+<idea-plugin>
+    <id>com.utopia-rise.godotjvmideaplugin</id>
+    <name>Godot-Jvm</name>
+    <vendor>utopia-rise</vendor>
+
+    <!-- Product and plugin compatibility requirements -->
+    <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="godot.intellij.plugin.services.MyApplicationService" />
+        <projectService serviceImplementation="godot.intellij.plugin.services.MyProjectService" />
+        <localInspection enabledByDefault="true"
+            level="ERROR"
+            implementationClass="godot.intellij.plugin.inspections.RegisterPropertiesInspection"
+            displayName="Register property inspector" groupKey="registerPropertyInspector" />
+    </extensions>
+
+    <applicationListeners>
+        <listener class="godot.intellij.plugin.listeners.MyProjectManagerListener"
+            topic="com.intellij.openapi.project.ProjectManagerListener" />
+    </applicationListeners>
+
+    <resource-bundle>messages.MyBundle</resource-bundle>
+
+    <depends>com.intellij.modules.java</depends>
+    <depends>org.jetbrains.kotlin</depends>
+</idea-plugin>
