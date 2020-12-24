@@ -1,16 +1,16 @@
 extends "res://addons/gut/test.gd"
 
 
-#func test_pool_byte_array_add_delete() -> void:
-#	var invocation_script = load("res://src/main/kotlin/godot/tests/Invocation.kt").new()
-#	assert_eq(invocation_script.pool_byte_array.size(), 0, "PoolByteArray should be empty")
-#	invocation_script.add_byte_to_pool_array(2)
-#	assert_eq(invocation_script.pool_byte_array.size(), 1, "PoolByteArray have one element")
-#	invocation_script.add_byte_array_to_pool_array(PoolByteArray([2, 3]))
-#	assert_eq(invocation_script.pool_byte_array.size(), 3, "PoolByteArray have 3 elements")
-#	invocation_script.delete_byte_from_pool_array(0)
-#	assert_eq(invocation_script.pool_byte_array.size(), 2, "PoolByteArray have 2 elements")
-#	invocation_script.free()
+func test_pool_byte_array_add_delete() -> void:
+	var invocation_script = load("res://src/main/kotlin/godot/tests/Invocation.kt").new()
+	assert_eq(invocation_script.pool_byte_array.size(), 0, "PoolByteArray should be empty")
+	invocation_script.add_byte_to_pool_array(2)
+	assert_eq(invocation_script.pool_byte_array.size(), 1, "PoolByteArray have one element")
+	invocation_script.add_byte_array_to_pool_array(PoolByteArray([2, 3]))
+	assert_eq(invocation_script.pool_byte_array.size(), 3, "PoolByteArray have 3 elements")
+	invocation_script.delete_byte_from_pool_array(0)
+	assert_eq(invocation_script.pool_byte_array.size(), 2, "PoolByteArray have 2 elements")
+	invocation_script.free()
 
 func test_pool_color_array_add_delete() -> void:
 	var invocation_script = load("res://src/main/kotlin/godot/tests/Invocation.kt").new()

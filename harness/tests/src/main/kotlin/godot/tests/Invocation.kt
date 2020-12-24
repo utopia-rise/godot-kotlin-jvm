@@ -324,7 +324,7 @@ class Invocation : Spatial() {
     fun addByteToPoolArray(byte: Byte) = poolByteArray.append(byte)
 
     @RegisterFunction
-    fun addByteArrayToPoolArray(poolByteArray: PoolByteArray) = poolByteArray.appendArray(poolByteArray)
+    fun addByteArrayToPoolArray(array: PoolByteArray) = poolByteArray.appendArray(array)
 
     @RegisterFunction
     fun deleteByteFromPoolArray(index: Int) = poolByteArray.remove(index)
