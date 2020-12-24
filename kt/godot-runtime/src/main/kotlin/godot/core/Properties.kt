@@ -73,22 +73,3 @@ class KtEnumProperty<T : KtObject, P : Any>(
     }
 }
 
-class KtArrayProperty<T: KtObject, P: Any?>(
-        ktPropertyInfo: KtPropertyInfo,
-        kProperty: KMutableProperty1<T, VariantArray<P>>,
-        _defaultValue: VariantArray<P>,
-        val containedType: VariantType
-) : KtProperty<T, VariantArray<P>>(
-        ktPropertyInfo,
-        kProperty,
-        VariantType.ARRAY,
-        _defaultValue,
-        false
-) {
-    override fun callSet(instance: T) {
-        val arg = extractSetterArgument<VariantArray<P>>().also {
-            it.variantType = containedType
-        }
-        kProperty.set(instance, arg)
-    }
-}
