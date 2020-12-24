@@ -463,7 +463,7 @@ inline fun <reified T> variantArrayOf(vararg args: T) = VariantArray<T>().also {
 
 /**
  * Convert an iterable into a GodotArray
- * Warning: Might be slow if the iterable contains a lot of items because GDNative can only append items one by one
+ * Warning: Might be slow if the iterable contains a lot of items because can only append items one by one
  */
 inline fun <reified T> Iterable<T>.toVariantArray() = VariantArray<T>().also { arr ->
     forEach {

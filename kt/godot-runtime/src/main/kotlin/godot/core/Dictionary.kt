@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package godot.core
 
 import godot.util.MapIterator
@@ -332,4 +334,11 @@ inline fun <reified K, reified V> Dictionary(): Dictionary<K, V> {
 
 inline fun <reified K, reified V> dictionaryOf(vararg args: Pair<K, V>) = Dictionary<K, V>().also {
     it.putAll(args)
+}
+
+/**
+ * Convert an Map into a Dictionary
+ */
+inline fun <reified K, reified V> Map<K, V>.toDictionary() = Dictionary<K, V>().also {
+    it.putAll(this)
 }
