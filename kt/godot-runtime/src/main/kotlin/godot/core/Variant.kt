@@ -12,6 +12,7 @@ val variantMapper = mutableMapOf(
         Int::class to JVM_INT,
         Long::class to LONG,
         Float::class to JVM_FLOAT,
+        Byte::class to JVM_BYTE,
         Double::class to DOUBLE,
         String::class to STRING,
         AABB::class to AABB,
