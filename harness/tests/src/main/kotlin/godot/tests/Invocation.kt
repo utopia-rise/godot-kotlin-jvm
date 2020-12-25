@@ -1,3 +1,4 @@
+
 package godot.tests
 
 import godot.NavigationMesh
@@ -11,7 +12,12 @@ import godot.core.*
 import godot.signals.signal
 import godot.tests.subpackage.OtherScript
 import godot.util.RealT
+import godot.annotation.*
+import godot.annotation.IntRange
+import godot.core.Color
+import godot.core.variantArrayOf
 import org.joda.time.DateTime
+import godot.signals.signal
 
 enum class TestEnum {
     ENUM_1
@@ -93,6 +99,81 @@ class Invocation : Spatial() {
 
     @RegisterProperty
     var poolVector3Array = PoolVector3Array()
+
+    @RegisterProperty
+    @IntRange(1, 2)
+    var p1 = 1
+
+    @RegisterProperty
+    @FloatRange(1f, 2f)
+    var p2 = 1f
+
+    @RegisterProperty
+    @DoubleRange(1.0, 2.0)
+    var p3 = 1.0
+
+    @RegisterProperty
+    @ExpRange(1f, 2f)
+    var p4 = 1.0
+
+    @RegisterProperty
+    @ExpRange(1f, 2f)
+    var p5 = 1f
+
+    @RegisterProperty
+    @EnumTypeHint
+    var p6 = TestEnum.ENUM_1
+
+    @RegisterProperty
+    @ExpEasing
+    var p7 = 1f
+
+    @RegisterProperty
+    @ExpEasing
+    var p8 = 1.0
+
+    @RegisterProperty
+    @EnumFlag
+    var p9 = setOf(TestEnum.ENUM_1)
+
+    @RegisterProperty
+    @EnumFlag
+    var p10 = mutableSetOf(TestEnum.ENUM_1)
+
+    @RegisterProperty
+    @EnumFlag
+    var p11 = mutableSetOf<TestEnum>()
+
+    @RegisterProperty
+    @IntFlag
+    var p12 = 1 or 2 and 3
+
+    @RegisterProperty
+    @File
+    var p13 = "someFile"
+
+    @RegisterProperty
+    @Dir
+    var p14 = "someDir"
+
+    @RegisterProperty
+    @MultilineText
+    var p15 = """
+        some
+        multiline
+        text
+    """.trimIndent()
+
+    @RegisterProperty
+    @PlaceHolderText
+    var p16 = "someDir"
+
+    @RegisterProperty
+    @ColorNoAlpha
+    var p17 = Color()
+
+    @RegisterProperty
+    var stringtemplation = "blubb ${17 + 25}"
 
     @RegisterSignal
     val signalNoParam by signal()
