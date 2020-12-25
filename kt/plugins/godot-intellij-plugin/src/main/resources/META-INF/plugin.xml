@@ -12,6 +12,10 @@
         <projectService serviceImplementation="godot.intellij.plugin.services.MyProjectService" />
         <localInspection enabledByDefault="true"
             level="ERROR"
+            implementationClass="godot.intellij.plugin.inspections.registration.property.inspector.RegisterClassInspection"
+            displayName="Register class inspector" groupKey="registerClassInspector" />
+        <localInspection enabledByDefault="true"
+            level="ERROR"
             implementationClass="godot.intellij.plugin.inspections.registration.property.inspector.RegisterPropertiesInspection"
             displayName="Register property inspector" groupKey="registerPropertyInspector" />
     </extensions>
