@@ -1,21 +1,14 @@
-package godot.intellij.plugin.inspections.registration.property.quickfix
+package godot.intellij.plugin.inspections.registration.quickfix
 
 import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemDescriptor
-import com.intellij.notification.NotificationDisplayType
-import com.intellij.notification.NotificationGroup
-import com.intellij.notification.NotificationType
-import com.intellij.notification.Notifications
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.util.NotNullLazyValue
 import godot.annotation.RegisterSignal
 import org.jetbrains.kotlin.idea.util.addAnnotation
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtModifierListOwner
 import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.psi.KtPsiFactory
-import org.jetbrains.kotlin.psi.createDeclarationByPattern
-import org.jetbrains.kotlin.psi.psiUtil.containingClass
 import org.jetbrains.kotlin.resolve.ImportPath
 
 class RegisterSignalInitializerQuickFix : LocalQuickFix {

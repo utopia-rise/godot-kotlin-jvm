@@ -1,10 +1,9 @@
-package godot.intellij.plugin.inspections.registration.property.inspector
+package godot.intellij.plugin.inspections.registration.inspector
 
 import com.intellij.codeInspection.ProblemsHolder
 import com.intellij.psi.PsiElementVisitor
 import godot.annotation.RegisterProperty
-import godot.intellij.plugin.inspections.registration.property.quickfix.ClassNotRegisteredQuickFix
-import godot.intellij.plugin.inspections.registration.property.quickfix.RegisterPropertyMutabilityQuickFix
+import godot.intellij.plugin.inspections.registration.quickfix.RegisterPropertyMutabilityQuickFix
 import org.jetbrains.kotlin.backend.common.serialization.findPackage
 import org.jetbrains.kotlin.builtins.KotlinBuiltIns
 import org.jetbrains.kotlin.descriptors.impl.ClassConstructorDescriptorImpl
@@ -18,7 +17,6 @@ import org.jetbrains.kotlin.js.resolve.diagnostics.findPsi
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.nj2k.postProcessing.type
 import org.jetbrains.kotlin.psi.*
-import org.jetbrains.kotlin.psi.psiUtil.containingClass
 import org.jetbrains.kotlin.psi.psiUtil.referenceExpression
 import org.jetbrains.kotlin.resolve.bindingContextUtil.getReferenceTargets
 import org.jetbrains.kotlin.resolve.calls.callUtil.getType

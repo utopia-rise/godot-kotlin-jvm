@@ -1,4 +1,4 @@
-package godot.intellij.plugin.inspections.registration.property.quickfix
+package godot.intellij.plugin.inspections.registration.quickfix
 
 import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemDescriptor
@@ -7,10 +7,7 @@ import godot.annotation.RegisterClass
 import org.jetbrains.kotlin.idea.util.addAnnotation
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClass
-import org.jetbrains.kotlin.psi.KtModifierList
 import org.jetbrains.kotlin.psi.KtModifierListOwner
-import org.jetbrains.kotlin.psi.KtPsiFactory
-import org.jetbrains.kotlin.resolve.ImportPath
 
 class ClassNotRegisteredQuickFix : LocalQuickFix {
     override fun getFamilyName(): String {
