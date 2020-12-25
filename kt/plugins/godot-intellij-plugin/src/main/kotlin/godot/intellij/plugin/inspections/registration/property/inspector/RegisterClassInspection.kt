@@ -52,6 +52,19 @@ class RegisterClassInspection : AbstractKotlinInspection() {
                         classNotRegisteredQuickFix
                     )
                 }
+            } else  {
+                checkConstructorParameterCount(ktClass, holder)
+            }
+        }
+    }
+
+    private fun checkConstructorParameterCount(ktClass: KtClass, holder: ProblemsHolder) {
+        ktClass.allConstructors.forEach { ktConstructor ->
+            if (ktConstructor.valueParameters.size > 5) {
+                holder.registerProblem(
+                    ktConstructor.valueParameterList?.psiOrParent ?: ktConstructor.nameIdentifier ?: ktConstructor.navigationElement,
+                    "Godot cannot handle constructors for registered classes with more than 5 parameters. Reduce your parameter count"
+                )
             }
         }
     }
