@@ -3,6 +3,7 @@ package godot.intellij.plugin.inspections.registration.property.quickfix
 import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
+import godot.annotation.RegisterFunction
 import org.jetbrains.kotlin.idea.util.addAnnotation
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.*
@@ -15,6 +16,6 @@ class EngineFunctionNotRegisteredQuickFix : LocalQuickFix {
 
     override fun applyFix(project: Project, descriptor: ProblemDescriptor) {
         val ktNamedFunction = descriptor.psiElement as KtNamedFunction
-        ktNamedFunction.addAnnotation(FqName("godot.annotation.RegisterFunction"))
+        ktNamedFunction.addAnnotation(FqName(RegisterFunction::class.java.canonicalName))
     }
 }

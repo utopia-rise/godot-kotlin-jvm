@@ -3,6 +3,8 @@ package godot.intellij.plugin.inspections.registration.property.inspector
 import com.intellij.codeInspection.ProblemHighlightType
 import com.intellij.codeInspection.ProblemsHolder
 import com.intellij.psi.PsiElementVisitor
+import godot.annotation.RegisterClass
+import godot.annotation.RegisterFunction
 import godot.intellij.plugin.inspections.registration.property.quickfix.ClassNotRegisteredQuickFix
 import godot.intellij.plugin.inspections.registration.property.quickfix.EngineFunctionNotRegisteredQuickFix
 import godot.intellij.plugin.inspections.registration.property.quickfix.RegisterPropertyMutabilityQuickFix
@@ -34,9 +36,9 @@ class RegisterFunctionInspection : AbstractKotlinInspection() {
     override fun buildVisitor(holder: ProblemsHolder, isOnTheFly: Boolean): PsiElementVisitor {
         return namedFunctionVisitor { ktNamedFunction ->
             if (
-                ktNamedFunction.containingClass()?.findAnnotation(FqName("godot.annotation.RegisterClass")) != null
+                ktNamedFunction.containingClass()?.findAnnotation(FqName(RegisterClass::class.java.canonicalName)) != null
                 && engineFunctions.contains(ktNamedFunction.name)
-                && ktNamedFunction.findAnnotation(FqName("godot.annotation.RegisterFunction")) == null
+                && ktNamedFunction.findAnnotation(FqName(RegisterFunction::class.java.canonicalName)) == null
             ) {
                 holder.registerProblem(
                     ktNamedFunction.navigationElement,

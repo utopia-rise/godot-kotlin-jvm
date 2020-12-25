@@ -2,6 +2,7 @@ package godot.intellij.plugin.inspections.registration.property.inspector
 
 import com.intellij.codeInspection.ProblemsHolder
 import com.intellij.psi.PsiElementVisitor
+import godot.annotation.RegisterProperty
 import godot.intellij.plugin.inspections.registration.property.quickfix.ClassNotRegisteredQuickFix
 import godot.intellij.plugin.inspections.registration.property.quickfix.RegisterPropertyMutabilityQuickFix
 import org.jetbrains.kotlin.backend.common.serialization.findPackage
@@ -30,7 +31,7 @@ class RegisterPropertiesInspection : AbstractKotlinInspection() {
 
     override fun buildVisitor(holder: ProblemsHolder, isOnTheFly: Boolean): PsiElementVisitor {
         return propertyVisitor { ktProperty ->
-            if (ktProperty.findAnnotation(FqName("godot.annotation.RegisterProperty")) != null) {
+            if (ktProperty.findAnnotation(FqName(RegisterProperty::class.java.canonicalName)) != null) {
                 checkMutability(ktProperty, holder)
                 checkRegisteredType(ktProperty, holder)
                 checkIfDefaultValueIsConstant(ktProperty, holder)

@@ -8,6 +8,7 @@ import com.intellij.notification.NotificationType
 import com.intellij.notification.Notifications
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.NotNullLazyValue
+import godot.annotation.RegisterSignal
 import org.jetbrains.kotlin.idea.util.addAnnotation
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtModifierListOwner
@@ -31,7 +32,7 @@ class RegisterSignalInitializerQuickFix : LocalQuickFix {
         val property = propertyPsi.replace(newProperty)
         property.add(delegate)
 
-        (property as KtModifierListOwner).addAnnotation(FqName("godot.annotation.RegisterSignal"))
+        (property as KtModifierListOwner).addAnnotation(FqName(RegisterSignal::class.java.canonicalName))
 
         val baseImportPath = "godot.signals"
         val importDirective = factory.createImportDirective(ImportPath(FqName("$baseImportPath.signal"), false))

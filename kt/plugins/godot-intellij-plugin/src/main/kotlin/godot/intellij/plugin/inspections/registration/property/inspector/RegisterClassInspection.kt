@@ -2,6 +2,10 @@ package godot.intellij.plugin.inspections.registration.property.inspector
 
 import com.intellij.codeInspection.ProblemsHolder
 import com.intellij.psi.PsiElementVisitor
+import godot.annotation.RegisterClass
+import godot.annotation.RegisterFunction
+import godot.annotation.RegisterProperty
+import godot.annotation.RegisterSignal
 import godot.intellij.plugin.inspections.registration.property.quickfix.ClassNotRegisteredQuickFix
 import godot.intellij.plugin.inspections.registration.property.quickfix.RegisterPropertyMutabilityQuickFix
 import org.jetbrains.kotlin.backend.common.serialization.findPackage
@@ -30,22 +34,22 @@ class RegisterClassInspection : AbstractKotlinInspection() {
 
     override fun buildVisitor(holder: ProblemsHolder, isOnTheFly: Boolean): PsiElementVisitor {
         return classVisitor { ktClass ->
-            if (ktClass.findAnnotation(FqName("godot.annotation.RegisterClass")) == null) {
-                if (ktClass.getProperties().any { ktProperty -> ktProperty.findAnnotation(FqName("godot.annotation.RegisterProperty")) != null }) {
+            if (ktClass.findAnnotation(FqName(RegisterClass::class.java.canonicalName)) == null) {
+                if (ktClass.getProperties().any { ktProperty -> ktProperty.findAnnotation(FqName(RegisterProperty::class.java.canonicalName)) != null }) {
                     holder.registerProblem(
                         ktClass.nameIdentifier ?: ktClass.navigationElement,
                         "This class contains registered properties but is not registered",
                         classNotRegisteredQuickFix
                     )
                 }
-                if (ktClass.getProperties().any { ktProperty -> ktProperty.findAnnotation(FqName("godot.annotation.RegisterSignal")) != null }) {
+                if (ktClass.getProperties().any { ktProperty -> ktProperty.findAnnotation(FqName(RegisterSignal::class.java.canonicalName)) != null }) {
                     holder.registerProblem(
                         ktClass.nameIdentifier ?: ktClass.navigationElement,
                         "This class contains registered signals but is not registered",
                         classNotRegisteredQuickFix
                     )
                 }
-                if (ktClass.declarations.any { it.findAnnotation(FqName("godot.annotation.RegisterFunction")) != null }) {
+                if (ktClass.declarations.any { it.findAnnotation(FqName(RegisterFunction::class.java.canonicalName)) != null }) {
                     holder.registerProblem(
                         ktClass.nameIdentifier ?: ktClass.navigationElement,
                         "This class contains registered functions but is not registered",
