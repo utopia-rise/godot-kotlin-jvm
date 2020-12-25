@@ -22,6 +22,10 @@
             level="ERROR"
             implementationClass="godot.intellij.plugin.inspections.registration.property.inspector.RegisterSignalInspection"
             displayName="Register signal inspector" groupKey="registerSignalInspector" />
+        <localInspection enabledByDefault="true"
+            level="ERROR"
+            implementationClass="godot.intellij.plugin.inspections.registration.property.inspector.RegisterFunctionInspection"
+            displayName="Register function inspector" groupKey="registerFunctionInspector" />
     </extensions>
 
     <applicationListeners>
@@ -29,7 +33,7 @@
             topic="com.intellij.openapi.project.ProjectManagerListener" />
     </applicationListeners>
 
-    <resource-bundle>messages.MyBundle</resource-bundle>
+    <resource-bundle>messages.generalLabels</resource-bundle>
 
     <depends>com.intellij.modules.java</depends>
     <depends>org.jetbrains.kotlin</depends>
