@@ -12,20 +12,28 @@
         <projectService serviceImplementation="godot.intellij.plugin.services.MyProjectService" />
         <localInspection enabledByDefault="true"
             level="ERROR"
+            language="JVM"
+            groupPath="Godot-Jvm"
             implementationClass="godot.intellij.plugin.inspections.registration.property.inspector.RegisterClassInspection"
-            displayName="Register class inspector" groupKey="registerClassInspector" />
+            displayName="@RegisterClass inspector" groupKey="registrationInspectionsGroupKey" />
         <localInspection enabledByDefault="true"
             level="ERROR"
+            language="JVM"
+            groupPath="Godot-Jvm"
             implementationClass="godot.intellij.plugin.inspections.registration.property.inspector.RegisterPropertiesInspection"
-            displayName="Register property inspector" groupKey="registerPropertyInspector" />
+            displayName="@RegisterProperty inspector" groupKey="registrationInspectionsGroupKey" />
         <localInspection enabledByDefault="true"
             level="ERROR"
+            language="JVM"
+            groupPath="Godot-Jvm"
             implementationClass="godot.intellij.plugin.inspections.registration.property.inspector.RegisterSignalInspection"
-            displayName="Register signal inspector" groupKey="registerSignalInspector" />
+            displayName="@RegisterSignal inspector" groupKey="registrationInspectionsGroupKey" />
         <localInspection enabledByDefault="true"
             level="ERROR"
+            language="JVM"
+            groupPath="Godot-Jvm"
             implementationClass="godot.intellij.plugin.inspections.registration.property.inspector.RegisterFunctionInspection"
-            displayName="Register function inspector" groupKey="registerFunctionInspector" />
+            displayName="@RegisterFunction inspector" groupKey="registrationInspectionsGroupKey" />
     </extensions>
 
     <applicationListeners>
