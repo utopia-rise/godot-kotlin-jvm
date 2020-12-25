@@ -129,9 +129,15 @@ class ClassBuilderDsl<T : KtObject>(
 //        )
 //    }
 
+    @JvmName("enumFlagPropertyMutable")
+    inline fun <reified P : Enum<P>> enumFlagProperty(
+        kProperty: KMutableProperty1<T, MutableSet<P>>,
+        defaultValue: MutableSet<P>
+    ) = enumFlagProperty(kProperty as KMutableProperty1<T, Set<P>>, defaultValue)
+
     inline fun <reified P : Enum<P>> enumFlagProperty(
         kProperty: KMutableProperty1<T, Set<P>>,
-        defaultValue: P
+        defaultValue: Set<P>
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
         require(!properties.contains(propertyName)) {
@@ -148,7 +154,7 @@ class ClassBuilderDsl<T : KtObject>(
             ),
             kProperty,
             //TODO : Change when null default values are supported
-            setOf(defaultValue),
+            defaultValue,
             { enumSet ->
                 var intFlag = 0
                 enumSet?.forEach { enum ->
