@@ -30,9 +30,7 @@ class RegisterClassInspection : AbstractKotlinInspection() {
 
     override fun buildVisitor(holder: ProblemsHolder, isOnTheFly: Boolean): PsiElementVisitor {
         return classVisitor { ktClass ->
-            if (ktClass.findAnnotation(FqName("godot.annotation.RegisterClass")) != null) {
-                //TODO
-            } else {
+            if (ktClass.findAnnotation(FqName("godot.annotation.RegisterClass")) == null) {
                 if (ktClass.getProperties().any { ktProperty -> ktProperty.findAnnotation(FqName("godot.annotation.RegisterProperty")) != null }) {
                     holder.registerProblem(
                         ktClass.nameIdentifier ?: ktClass.navigationElement,
