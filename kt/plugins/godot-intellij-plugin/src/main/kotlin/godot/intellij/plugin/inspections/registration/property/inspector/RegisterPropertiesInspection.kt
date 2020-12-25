@@ -23,7 +23,7 @@ import org.jetbrains.kotlin.resolve.bindingContextUtil.getReferenceTargets
 import org.jetbrains.kotlin.resolve.calls.callUtil.getType
 import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
 import org.jetbrains.kotlin.resolve.lazy.BodyResolveMode
-import org.jetbrains.kotlin.types.typeUtil.isEnum
+import org.jetbrains.kotlin.types.typeUtil.*
 
 class RegisterPropertiesInspection : AbstractKotlinInspection() {
     private val mutabilityQuickFix by lazy { RegisterPropertyMutabilityQuickFix() }

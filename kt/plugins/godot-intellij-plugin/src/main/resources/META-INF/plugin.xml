@@ -18,6 +18,10 @@
             level="ERROR"
             implementationClass="godot.intellij.plugin.inspections.registration.property.inspector.RegisterPropertiesInspection"
             displayName="Register property inspector" groupKey="registerPropertyInspector" />
+        <localInspection enabledByDefault="true"
+            level="ERROR"
+            implementationClass="godot.intellij.plugin.inspections.registration.property.inspector.RegisterSignalInspection"
+            displayName="Register signal inspector" groupKey="registerSignalInspector" />
     </extensions>
 
     <applicationListeners>
