@@ -8,8 +8,6 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="godot.intellij.plugin.services.MyApplicationService" />
-        <projectService serviceImplementation="godot.intellij.plugin.services.MyProjectService" />
         <localInspection enabledByDefault="true"
             level="ERROR"
             language="JVM"
@@ -35,11 +33,6 @@
             implementationClass="godot.intellij.plugin.inspections.registration.property.inspector.RegisterFunctionInspection"
             displayName="@RegisterFunction inspector" groupKey="registrationInspectionsGroupKey" />
     </extensions>
-
-    <applicationListeners>
-        <listener class="godot.intellij.plugin.listeners.MyProjectManagerListener"
-            topic="com.intellij.openapi.project.ProjectManagerListener" />
-    </applicationListeners>
 
     <resource-bundle>messages.generalLabels</resource-bundle>
 
