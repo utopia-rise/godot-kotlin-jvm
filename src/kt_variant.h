@@ -403,13 +403,13 @@ namespace ktvariant {
 
     template <class T>
     static Variant from_kvariant_tokVariantNativeCoreTypeValue(SharedBuffer* byte_buffer) {
-        uintptr_t ptr{decode_uint64(byte_buffer->get_cursor())};
+        auto ptr{static_cast<uintptr_t>(decode_uint64(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(PTR_SIZE);
         return Variant(*reinterpret_cast<T*>(ptr));
     }
 
     static Variant from_kvariant_toKObjectValue(SharedBuffer* byte_buffer) {
-        uint64_t ptr{decode_uint64(byte_buffer->get_cursor())};
+        auto ptr{static_cast<uintptr_t>(decode_uint64(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(PTR_SIZE);
         bool is_ref{static_cast<bool>(decode_uint32(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(BOOL_SIZE);
