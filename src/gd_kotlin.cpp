@@ -6,9 +6,7 @@
 #include "bootstrap.h"
 #include "type_manager.h"
 #include "bridges_manager.h"
-
-// If changed, remember to change also TransferContext::bufferCapacity on JVM side
-const int DEFAULT_SHARED_BUFFER_SIZE{20'000'000};
+#include "jvm_config.h"
 
 jni::JObject get_current_thread(jni::Env& env) {
     jni::JClass cls = env.find_class("java/lang/Thread");
@@ -112,79 +110,16 @@ void GDKotlin::init() {
     args.option("-Xcheck:jni");
 #endif
 
-    // Initialize remote jvm debug if one of jvm debug arguments is encountered.
-    // Initialize if jvm GC should be forced
-    String jvm_debug_port;
-    String jvm_debug_address;
-    String jvm_jmx_port;
-    bool is_gc_force_mode{false};
-    bool is_gc_activated{true};
-    long gc_thread_period_interval{500};
-    int jvm_to_engine_shared_buffer_size{DEFAULT_SHARED_BUFFER_SIZE};
-    bool should_display_leaked_jvm_instances_on_close{true};
-    const List<String>& cmdline_args{OS::get_singleton()->get_cmdline_args()};
-    for (int i = 0; i < cmdline_args.size(); ++i) {
-        const String cmd_arg{cmdline_args[i]};
-        if (cmd_arg.find("--jvm-debug-port") >= 0) {
-            if (split_jvm_debug_argument(cmd_arg, jvm_debug_port) == OK) {
-                if (jvm_debug_port.empty()) {
-                    jvm_debug_port = "5005";
-                }
-            } else {
-                break;
-            }
-        } else if (cmd_arg.find("--jvm-debug-address") >= 0) {
-            if (split_jvm_debug_argument(cmd_arg, jvm_debug_address) == OK) {
-                if (jvm_debug_address.empty()) {
-                    jvm_debug_address = "*";
-                }
-            } else {
-                break;
-            }
-        } else if (cmd_arg.find("--jvm-jmx-port") >= 0) {
-            if (split_jvm_debug_argument(cmd_arg, jvm_jmx_port) == OK) {
-                if (jvm_jmx_port.empty()) {
-                    jvm_jmx_port = "9010";
-                }
-            }
-        } else if (cmd_arg.find("--jvm-gc-thread-period-millis") >= 0) {
-            String result;
-            if (split_jvm_debug_argument(cmd_arg, result) == OK) {
-                gc_thread_period_interval = result.to_int64();
-            }
-        } else if (cmd_arg.find("--jvm-to-engine-shared-buffer-size") >= 0) {
-            String result;
-            if (split_jvm_debug_argument(cmd_arg, result) == OK) {
-                jvm_to_engine_shared_buffer_size = result.to_int();
-                //TODO: Link to documentation
-                WARN_PRINT(vformat("Warning ! Buffer capacity was changed to %s, this is not a recommended practice",
-                                   result))
-            }
-        } else if (cmd_arg == "--jvm-force-gc") {
-            is_gc_force_mode = true;
-            //TODO: Link to documentation
-            WARN_PRINT("GC is started in force mode, this should only be done for debugging purpose")
-        } else if (cmd_arg == "--jvm-disable-gc") {
-            is_gc_activated = false;
-            //TODO: Link to documentation
-            WARN_PRINT("GC thread was disable. --jvm-disable-gc should only be used for debugging purpose")
-        } else if (cmd_arg == "--jvm-disable-closing-leaks-warning") {
-            WARN_PRINT("JVM leaked instances will not be displayed in console (see --jvm-disable-closing-leaks-warning)")
-            should_display_leaked_jvm_instances_on_close = false;
-        }
-    }
+    JvmConfig jvm_config{JvmConfig::from_godot_command_line_args()};
 
+    const String& jvm_debug_port{jvm_config.jvm_debug_port};
+    const String& jvm_debug_address{jvm_config.jvm_debug_address};
     if (!jvm_debug_port.empty() || !jvm_debug_address.empty()) {
-        if (jvm_debug_address.empty()) {
-            jvm_debug_address = "*";
-        } else if (jvm_debug_port.empty()) {
-            jvm_debug_port = "5005";
-        }
-
         String debug_command{"-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=" + jvm_debug_address + ":" + jvm_debug_port};
         args.option(debug_command.utf8());
     }
 
+    const String& jvm_jmx_port{jvm_config.jvm_jmx_port};
     if (!jvm_jmx_port.empty()) {
         String port_command{"-Dcom.sun.management.jmxremote.port=" + jvm_jmx_port};
         String rmi_port{"-Dcom.sun.management.jmxremote.rmi.port=" + jvm_jmx_port};
@@ -215,11 +150,10 @@ void GDKotlin::init() {
     jni::JObject transfer_ctx_instance = transfer_ctx_cls.get_static_object_field(env, transfer_ctx_instance_field);
     CRASH_COND_MSG(transfer_ctx_instance.isNull(), "Failed to retrieve TransferContext instance")
     transfer_context = new TransferContext(transfer_ctx_instance, class_loader);
-    if (jvm_to_engine_shared_buffer_size != DEFAULT_SHARED_BUFFER_SIZE) {
-        jni::MethodId set_buffer_size_method{transfer_ctx_cls.get_method_id(env, "setBufferSize", "(I)V")};
-        jvalue buffer_size[1] = {jni::to_jni_arg(jvm_to_engine_shared_buffer_size)};
-        transfer_ctx_instance.call_void_method(env, set_buffer_size_method, buffer_size);
-    }
+
+    jni::MethodId set_buffer_size_method{transfer_ctx_cls.get_method_id(env, "setBufferSize", "(I)V")};
+    jvalue buffer_size[1] = {jni::to_jni_arg(jvm_config.jvm_to_engine_shared_buffer_size)};
+    transfer_ctx_instance.call_void_method(env, set_buffer_size_method, buffer_size);
 
     jni::JClass garbage_collector_cls{env.load_class("godot.core.GarbageCollector", class_loader)};
     jni::FieldId garbage_collector_instance_field{
@@ -232,18 +166,19 @@ void GDKotlin::init() {
 
     BridgesManager::get_instance().initialize_bridges(env, class_loader);
 
-    if (is_gc_activated) {
+    if (jvm_config.is_gc_activated) {
+        bool is_gc_force_mode{jvm_config.is_gc_force_mode};
         if (is_gc_force_mode) {
             print_verbose("Starting GC thread with force mode.");
         }
         jni::MethodId start_method_id{garbage_collector_cls.get_method_id(env, "start", "(ZJ)V")};
-        jvalue start_args[2] = {jni::to_jni_arg(is_gc_force_mode), jni::to_jni_arg(gc_thread_period_interval)};
+        jvalue start_args[2] = {jni::to_jni_arg(is_gc_force_mode), jni::to_jni_arg(jvm_config.gc_thread_period_interval)};
         garbage_collector_instance.call_void_method(env, start_method_id, start_args);
         print_verbose("GC thread started.");
         is_gc_started = true;
     }
 
-    if (!should_display_leaked_jvm_instances_on_close) {
+    if (!jvm_config.should_display_leaked_jvm_instances_on_close) {
         jni::MethodId set_should_display_method_id{garbage_collector_cls.get_method_id(
                 env, "setShouldDisplayLeakInstancesOnClose", "(Z)V")};
         jvalue d_arg[1] = {jni::to_jni_arg(false)};
