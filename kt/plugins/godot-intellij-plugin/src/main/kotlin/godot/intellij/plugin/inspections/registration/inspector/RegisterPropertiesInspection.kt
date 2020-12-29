@@ -125,6 +125,14 @@ class RegisterPropertiesInspection : AbstractKotlinInspection() {
                     } else false
                 }
                 is KtStringTemplateExpression -> !ktExpression.hasInterpolation()
+                is KtBinaryExpression -> {
+                    val assignment = ktExpression
+                        .children
+                        .filterNot { it is KtOperationReferenceExpression } //stuff like the `to` keyword in `key to value`
+                        .map { isConstantEnoughForRegistration(it as KtExpression) }
+
+                    !assignment.any { !it }
+                }
                 else -> false
             }
         } else true
