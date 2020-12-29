@@ -3,6 +3,7 @@
 
 // If changed, remember to change also TransferContext::bufferCapacity on JVM side
 const int DEFAULT_SHARED_BUFFER_SIZE{20'000'000};
+const int DEFAULT_JVM_GARBAGE_COLLECTOR_THREAD_PERIOD{500};
 
 JvmConfig::JvmConfig(const String& p_jvm_debug_port, const String& p_jvm_debug_address, const String& p_jvm_jmx_port,
                      bool p_is_gc_force_mode, bool p_is_gc_activated, long p_gc_thread_period_interval,
@@ -21,7 +22,7 @@ JvmConfig JvmConfig::from_godot_command_line_args() {
     String jvm_jmx_port;
     bool is_gc_force_mode{false};
     bool is_gc_activated{true};
-    long gc_thread_period_interval{500};
+    long gc_thread_period_interval{DEFAULT_JVM_GARBAGE_COLLECTOR_THREAD_PERIOD};
     int jvm_to_engine_shared_buffer_size{DEFAULT_SHARED_BUFFER_SIZE};
     bool should_display_leaked_jvm_instances_on_close{true};
 
