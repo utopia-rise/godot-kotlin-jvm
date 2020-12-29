@@ -18,27 +18,37 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint") version "9.4.1"
 }
 
+val buildMatrix = mapOf(
+    "IJ203" to godot.plugins.intellij.BuildConfig(
+        "203.5981.155",
+        "IJ2020.3",
+        "IJ183",
+        godot.plugins.intellij.VersionRange("203.1", "203.*"),
+        listOf("2020.1.4", "2020.2.3", "2020.3"),
+        listOf("java", "org.jetbrains.kotlin:1.4.0-release-IJ2020.2-1")
+    )
+)
+
 group = "com.utopia-rise"
 version = "0.0.1"
-
-dependencies {
-    implementation(project(":godot-library"))
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.14.2")
-}
+val sdkVersion = project.properties["godot.plugins.intellij.version"] ?: "IJ203"
+val settings = checkNotNull(buildMatrix[sdkVersion])
 
 // Configure gradle-intellij-plugin plugin.
 // Read more: https://github.com/JetBrains/gradle-intellij-plugin
 intellij {
     pluginName = "godot-jvm-idea-plugin"
-    version = "2020.1"
+    version = settings.sdk
     type = "IC"
     downloadSources = true
     updateSinceUntilBuild = true
 
-    setPlugins(
-        "org.jetbrains.kotlin",
-        "com.intellij.java"
-    )
+    setPlugins(*settings.deps.toTypedArray())
+}
+
+dependencies {
+    implementation(project(":godot-library"))
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.14.2")
 }
 
 // Configure detekt plugin.
@@ -56,9 +66,9 @@ detekt {
 
 tasks {
     patchPluginXml {
-        version(version)
-        sinceBuild("201")
-        untilBuild("203.*")
+        version("${project.version}-${settings.prefix}")
+        sinceBuild(settings.version.since)
+        untilBuild(settings.version.until)
 
         // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
         pluginDescription(
@@ -84,7 +94,7 @@ tasks {
     }
 
     runPluginVerifier {
-        ideVersions("2020.1.4, 2020.2.3, 2020.3")
+        ideVersions(settings.ideVersionsForVerifierTask.joinToString(", "))
     }
 
     publishPlugin {
