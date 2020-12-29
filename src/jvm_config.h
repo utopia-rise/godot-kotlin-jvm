@@ -11,14 +11,14 @@ struct JvmConfig {
     /**
      * Jvm debug port. Default value will be 5005 if no port is specified or if --jvm-debug-address is encountered.
      *
-     * Use --jvm-debug-port or --jvm-debug-port=XXXXX
+     * Use --jvm-debug-port (equivalent to --jvm-debug-port=5005) or --jvm-debug-port=XXXXX
      */
     String jvm_debug_port;
 
     /**
      * Jvm debug address. Default value will be * if no value is specified or if --jvm-debug-port is encountered.
      *
-     * Use --jvm-debug-address or --jvm-debug-address=address
+     * Use --jvm-debug-address (equivalent to --jvm-debug-address=*) or --jvm-debug-address=address
      */
     String jvm_debug_address;
 
@@ -37,7 +37,7 @@ struct JvmConfig {
     bool is_gc_force_mode;
 
     /**
-     * Set if Jvm garbage collection of godot ref counted object should be activated. Should only be set to false for
+     * Set if godot ref counted object Jvm garbage collection should be activated. Should only be set to false for
      * debug purpose.
      *
      * Use --jvm-disable-gc
@@ -45,7 +45,7 @@ struct JvmConfig {
     bool is_gc_activated;
 
     /**
-     * Override jvm garbage collection thread of ref counted godot object period interval.
+     * Override ref counted godot object jvm garbage collection thread period interval.
      *
      * Use --jvm-gc-thread-period-millis=millis
      */

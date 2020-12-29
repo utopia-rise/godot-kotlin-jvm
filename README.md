@@ -57,6 +57,21 @@ Each Issue has a Maintainer that is the "supervisor" for the general topic the i
 7. In order to debug your jvm code, you should start godot with command line `--jvm-debug-port=XXXX`, where `XXXX`
 stands for the jmx port of you choice. You can then setup remote debug configuration in Intellij' Idea.
 
+## Command line arguments
+
+In order to debug, or override behaviour of this module, there are some command lines arguments you can add when
+starting godot:  
+| Command line argument               | Description                                                                                                                | Usage                                                                                        |
+|-------------------------------------|----------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| --jvm-debug-port                    | Jvm debug port. Default value will be 5005 if no port is specified or if --jvm-debug-address is encountered.               | Use --jvm-debug-port (equivalent to --jvm-debug-port=5005) or --jvm-debug-port=XXXXX         |
+| --jvm-debug-address                 | Jvm debug address. Default value will be * if no value is specified or if --jvm-debug-port is encountered.                 | Use --jvm-debug-address (equivalent to --jvm-debug-address=*) or --jvm-debug-address=address |
+| --jvm-jmx-port                      | Jvm jmx address. Default value will be 9010 if no value is specified.                                                      | Use --jvm-jmx-port or --jvm-jmx-port=XXXXX                                                   |
+| --jvm-force-gc                      | Set if Jvm garbage collector will be forced. Should only be set to true for debug purpose.                                 | Use --jvm-force-gc                                                                           |
+| --jvm-disable-gc                    | Set if godot ref counted object Jvm garbage collection should be activated. Should only be set to false for debug purpose. | Use --jvm-disable-gc                                                                         |
+| --jvm-gc-thread-period-millis       | Override ref counted godot object jvm garbage collection thread period interval.                                           | Use --jvm-gc-thread-period-millis=millis                                                     |
+| --jvm-to-engine-shared-buffer-size  | Override default shared buffer (between engine and JVM) size. This should be used only for debug purpose.                  | Use --jvm-to-engine-shared-buffer-size                                                       |
+| --jvm-disable-closing-leaks-warning | Disable JVM instances leak warning on engine closing. Here for debug.                                                      | Use --jvm-disable-closing-leaks-warning                                                      |
+
 
 ## Debug entry generation (KotlinCompilerPlugin in general)
 - Build sample project with `./gradlew build --no-daemon -Dorg.gradle.debug=true -Dkotlin.compiler.execution.strategy="in-process" -Dkotlin.daemon.jvm.options="-Xdebug,-Xrunjdwp:transport=dt_socket,address=5005,server=y,suspend=n"`
