@@ -14,6 +14,7 @@ import godot.tests.subpackage.OtherScript
 import godot.util.RealT
 import godot.annotation.*
 import godot.annotation.IntRange
+import godot.annotation.LongRange
 import godot.core.Color
 import godot.core.variantArrayOf
 import org.joda.time.DateTime
@@ -103,6 +104,10 @@ class Invocation : Spatial() {
     @RegisterProperty
     @IntRange(1, 2)
     var p1 = 1
+
+    @RegisterProperty
+    @LongRange(1L, 2L)
+    var p1_1 = 1L
 
     @RegisterProperty
     @FloatRange(1f, 2f)

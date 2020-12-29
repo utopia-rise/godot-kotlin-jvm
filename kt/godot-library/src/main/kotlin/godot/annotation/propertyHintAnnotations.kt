@@ -17,6 +17,13 @@ The following annotations are implemented based on https://github.com/godotengin
 annotation class IntRange(val start: Int, val end: Int, val step: Int = -1, val or: Range = Range.NONE)
 
 /**
+ * Can only be used on Long properties!
+ */
+@Target(AnnotationTarget.PROPERTY)
+@Retention(AnnotationRetention.RUNTIME)
+annotation class LongRange(val start: Long, val end: Long, val step: Long = -1, val or: Range = Range.NONE)
+
+/**
  * Can only be used on Float properties!
  */
 @Target(AnnotationTarget.PROPERTY)

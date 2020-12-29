@@ -4,6 +4,7 @@ import com.intellij.codeInspection.ProblemsHolder
 import com.intellij.psi.PsiElementVisitor
 import godot.annotation.*
 import godot.annotation.IntRange
+import godot.annotation.LongRange
 import godot.core.Color
 import godot.intellij.plugin.inspections.registration.quickfix.RegisterPropertyMutabilityQuickFix
 import org.jetbrains.kotlin.backend.common.serialization.findPackage
@@ -137,6 +138,15 @@ class RegisterPropertiesInspection : AbstractKotlinInspection() {
                     holder.registerProblem(
                         ktProperty.findAnnotation(FqName(IntRange::class.java.canonicalName))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement,
                         "Property must be of type ${Int::class.qualifiedName}"
+                    )
+                }
+            }
+            ktProperty.findAnnotation(FqName(LongRange::class.java.canonicalName)) != null -> {
+                checkForRegistrationAnnotation(ktProperty, holder)
+                if (ktProperty.type()?.isLong() == false) {
+                    holder.registerProblem(
+                        ktProperty.findAnnotation(FqName(LongRange::class.java.canonicalName))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement,
+                        "Property must be of type ${Long::class.qualifiedName}"
                     )
                 }
             }
