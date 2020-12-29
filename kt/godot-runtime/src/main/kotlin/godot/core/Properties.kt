@@ -32,11 +32,17 @@ open class KtProperty<T : KtObject, P: Any?>(
     }
 
     open fun callSet(instance: T) {
+        val arg = extractSetterArgument<P>()
+        kProperty.set(instance, arg)
+    }
+
+    protected fun <P> extractSetterArgument(): P {
         val argsSize = TransferContext.buffer.int
         require(argsSize == 1) { "Setter should be called with only one argument." }
+        //TODO: manage nullable argument of enum setter (only for objects)
         val arg = TransferContext.readSingleArgument(variantType)
         TransferContext.buffer.rewind()
-        kProperty.set(instance, arg as P)
+        return arg as P
     }
 }
 
@@ -62,10 +68,8 @@ class KtEnumProperty<T : KtObject, P : Any>(
     }
 
     override fun callSet(instance: T) {
-        val argsSize = TransferContext.buffer.int
-        require(argsSize == 1) { "Setter should be called with only one argument." }
-        val arg = TransferContext.readSingleArgument(VariantType.JVM_INT)
-        TransferContext.buffer.rewind()
-        kProperty.set(instance, setValueConverter(arg as Int))
+        val arg = extractSetterArgument<Int>()
+        kProperty.set(instance, setValueConverter(arg))
     }
 }
+

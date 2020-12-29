@@ -1,8 +1,42 @@
 package godot.core
 
+import godot.core.VariantType.*
 import godot.util.toRealT
 import java.nio.ByteBuffer
 
+
+val variantMapper = mutableMapOf(
+        Unit::class to NIL,
+        Any::class to ANY,
+        Boolean::class to BOOL,
+        Int::class to JVM_INT,
+        Long::class to LONG,
+        Float::class to JVM_FLOAT,
+        Byte::class to JVM_BYTE,
+        Double::class to DOUBLE,
+        String::class to STRING,
+        AABB::class to AABB,
+        Basis::class to BASIS,
+        Color::class to COLOR,
+        Dictionary::class to DICTIONARY,
+        VariantArray::class to ARRAY,
+        Plane::class to PLANE,
+        NodePath::class to NODE_PATH,
+        Quat::class to QUAT,
+        Rect2::class to RECT2,
+        RID::class to _RID,
+        Transform::class to TRANSFORM,
+        Transform2D::class to TRANSFORM2D,
+        Vector2::class to VECTOR2,
+        Vector3::class to VECTOR3,
+        PoolByteArray::class to POOL_BYTE_ARRAY,
+        PoolColorArray::class to POOL_COLOR_ARRAY,
+        PoolIntArray::class to POOL_INT_ARRAY,
+        PoolRealArray::class to POOL_REAL_ARRAY,
+        PoolStringArray::class to POOL_STRING_ARRAY,
+        PoolVector2Array::class to POOL_VECTOR2_ARRAY,
+        PoolVector3Array::class to POOL_VECTOR3_ARRAY,
+)
 
 var ByteBuffer.bool: Boolean
     get() = int == 1
@@ -43,26 +77,25 @@ private var ByteBuffer.variantType: Int
         putInt(value)
     }
 
-private fun ByteBuffer.isReceivedNull() = variantType == VariantType.NIL.ordinal
-
 inline fun <reified T> Any.asObject(): T = this as T
 
+@Suppress("EnumEntryName")
 enum class VariantType(
-        internal val toKotlinWithoutNullCheck: (ByteBuffer) -> Any,
-        private val toGodotWithoutNullCheck: (ByteBuffer, any: Any) -> Unit
+        private val toKotlinWithoutNullCheck: (ByteBuffer, expectedType: Int) -> Any,
+        private val toGodotWithoutNullCheck: (ByteBuffer, any: Any) -> Unit,
 ) {
     NIL(
-            { buffer: ByteBuffer ->
+            { _: ByteBuffer, _: Int ->
                 Unit
             },
-            { buffer: ByteBuffer, any: Any ->
+            { buffer: ByteBuffer, _: Any ->
                 buffer.variantType = NIL.ordinal
             }
     ),
 
     // atomic types
     BOOL(
-            { buffer: ByteBuffer ->
+            { buffer: ByteBuffer, _: Int ->
                 buffer.bool
             },
             { buffer: ByteBuffer, any: Any ->
@@ -71,7 +104,7 @@ enum class VariantType(
             }
     ),
     LONG(
-            { buffer: ByteBuffer ->
+            { buffer: ByteBuffer, _: Int ->
                 buffer.long
             },
             { buffer: ByteBuffer, any: Any ->
@@ -80,7 +113,7 @@ enum class VariantType(
             }
     ),
     DOUBLE(
-            { buffer: ByteBuffer ->
+            { buffer: ByteBuffer, _: Int ->
                 buffer.double
             },
             { buffer: ByteBuffer, any: Any ->
@@ -89,7 +122,7 @@ enum class VariantType(
             }
     ),
     STRING(
-            { buffer: ByteBuffer ->
+            { buffer: ByteBuffer, _: Int ->
                 val stringSize = buffer.int
                 val charArray = ByteArray(stringSize)
                 buffer.get(charArray, 0, stringSize)
@@ -107,7 +140,7 @@ enum class VariantType(
     // math types
 
     VECTOR2(
-            { buffer: ByteBuffer ->
+            { buffer: ByteBuffer, _: Int ->
                 buffer.vector2
             },
             { buffer: ByteBuffer, any: Any ->
@@ -116,7 +149,7 @@ enum class VariantType(
             }
     ), // 5
     RECT2(
-            { buffer: ByteBuffer ->
+            { buffer: ByteBuffer, _: Int ->
                 Rect2(
                         buffer.vector2,
                         buffer.vector2
@@ -130,7 +163,7 @@ enum class VariantType(
             }
     ),
     VECTOR3(
-            { buffer: ByteBuffer ->
+            { buffer: ByteBuffer, _: Int ->
                 Vector3(buffer.float.toRealT(), buffer.float.toRealT(), buffer.float.toRealT())
             },
             { buffer: ByteBuffer, any: Any ->
@@ -139,7 +172,7 @@ enum class VariantType(
             }
     ),
     TRANSFORM2D(
-            { buffer: ByteBuffer ->
+            { buffer: ByteBuffer, expectedType: Int ->
                 val x = buffer.vector2
                 val y = buffer.vector2
                 val origin = buffer.vector2
@@ -154,7 +187,7 @@ enum class VariantType(
             }
     ),
     PLANE(
-            { buffer: ByteBuffer ->
+            { buffer: ByteBuffer, _: Int ->
                 val normal = buffer.vector3
                 val d = buffer.float.toRealT()
                 Plane(normal, d)
@@ -167,7 +200,7 @@ enum class VariantType(
             }
     ),
     QUAT(
-            { buffer: ByteBuffer ->
+            { buffer: ByteBuffer, _: Int ->
                 val x = buffer.float.toRealT()
                 val y = buffer.float.toRealT()
                 val z = buffer.float.toRealT()
@@ -185,7 +218,7 @@ enum class VariantType(
             }
     ), // 10
     AABB(
-            { buffer: ByteBuffer ->
+            { buffer: ByteBuffer, _: Int ->
                 val position = buffer.vector3
                 val size = buffer.vector3
                 AABB(position, size)
@@ -198,7 +231,7 @@ enum class VariantType(
             }
     ),
     BASIS(
-            { buffer: ByteBuffer ->
+            { buffer: ByteBuffer, _: Int ->
                 buffer.basis
             },
             { buffer: ByteBuffer, any: Any ->
@@ -207,7 +240,7 @@ enum class VariantType(
             }
     ),
     TRANSFORM(
-            { buffer: ByteBuffer ->
+            { buffer: ByteBuffer, _: Int ->
                 val basis = buffer.basis
                 val origin = buffer.vector3
                 Transform(basis, origin)
@@ -222,25 +255,38 @@ enum class VariantType(
 
     // misc types
     COLOR(
-            { buffer: ByteBuffer ->
-                TODO()
+            { buffer: ByteBuffer, _: Int ->
+                Color(buffer.float, buffer.float, buffer.float, buffer.float)
             },
-            { buffer: ByteBuffer, any: Any -> TODO() }
+            { buffer: ByteBuffer, any: Any ->
+                buffer.variantType = COLOR.ordinal
+                any as Color
+                buffer.putFloat(any.r.toFloat())
+                buffer.putFloat(any.g.toFloat())
+                buffer.putFloat(any.b.toFloat())
+                buffer.putFloat(any.a.toFloat())
+            }
     ),
     NODE_PATH(
-            { buffer: ByteBuffer ->
-                TODO()
+            { buffer: ByteBuffer, _: Int ->
+                val ptr = buffer.long
+                GarbageCollector.getNativeCoreTypeInstance(ptr) ?: NodePath(ptr)
             },
-            { buffer: ByteBuffer, any: Any -> TODO() }
+            { buffer: ByteBuffer, any: Any ->
+                NODE_PATH.toGodotNativeCoreType<NodePath>(buffer, any)
+            }
     ), // 15
     _RID(
-            { buffer: ByteBuffer ->
-                TODO()
+            { buffer: ByteBuffer, _: Int ->
+                val ptr = buffer.long
+                GarbageCollector.getNativeCoreTypeInstance(ptr) ?: RID(ptr)
             },
-            { buffer: ByteBuffer, any: Any -> TODO() }
+            { buffer: ByteBuffer, any: Any ->
+                _RID.toGodotNativeCoreType<RID>(buffer, any)
+            }
     ),
     OBJECT(
-            { buffer: ByteBuffer ->
+            { buffer: ByteBuffer, _: Int ->
                 val ptr = buffer.long
                 val constructorIndex = buffer.int
                 val isRef = buffer.bool
@@ -263,72 +309,96 @@ enum class VariantType(
             }
     ),
     DICTIONARY(
-            { buffer: ByteBuffer ->
-                TODO()
-            },
-            { buffer: ByteBuffer, any: Any -> TODO() }
-    ),
-    ARRAY(
-            { buffer: ByteBuffer ->
-                // TODO: Placeholder for now, should be replaced when VariantArray is properly implemented.
-                VariantArray<Unit>()
+            { buffer: ByteBuffer, _: Int ->
+                val ptr = buffer.long
+                GarbageCollector.getNativeCoreTypeInstance(ptr) ?: Dictionary<Any, Any?>(ptr)
             },
             { buffer: ByteBuffer, any: Any ->
-                // TODO: Placeholder for now, should be replaced when VariantArray is properly implemented.
-                buffer.variantType = ARRAY.ordinal
-                Unit
+                DICTIONARY.toGodotNativeCoreType<Dictionary<*, *>>(buffer, any)
             }
+    ),
+    ARRAY(
+            { buffer: ByteBuffer, _: Int ->
+                val ptr = buffer.long
+                GarbageCollector.getNativeCoreTypeInstance(ptr) ?: VariantArray<Any?>(ptr)
+            },
+        { buffer: ByteBuffer, any: Any ->
+            ARRAY.toGodotNativeCoreType<VariantArray<*>>(buffer, any)
+        }
     ),
 
     // arrays
     POOL_BYTE_ARRAY(
-            { buffer: ByteBuffer ->
-                TODO()
+            { buffer: ByteBuffer, _: Int ->
+                val ptr = buffer.long
+                PoolByteArray(ptr)
             },
-            { buffer: ByteBuffer, any: Any -> TODO() }
+            { buffer: ByteBuffer, any: Any ->
+                POOL_BYTE_ARRAY.toGodotNativeCoreType<PoolByteArray>(buffer, any)
+            }
     ), // 20
     POOL_INT_ARRAY(
-            { buffer: ByteBuffer ->
-                TODO()
+            { buffer: ByteBuffer, _: Int ->
+                val ptr = buffer.long
+                PoolIntArray(ptr)
             },
-            { buffer: ByteBuffer, any: Any -> TODO() }
+            { buffer: ByteBuffer, any: Any ->
+                POOL_INT_ARRAY.toGodotNativeCoreType<PoolIntArray>(buffer, any)
+            }
     ),
     POOL_REAL_ARRAY(
-            { buffer: ByteBuffer ->
-                TODO()
+            { buffer: ByteBuffer, _: Int ->
+                val ptr = buffer.long
+                PoolRealArray(ptr)
             },
-            { buffer: ByteBuffer, any: Any -> TODO() }
+            { buffer: ByteBuffer, any: Any ->
+                POOL_REAL_ARRAY.toGodotNativeCoreType<PoolRealArray>(buffer, any)
+            }
     ),
     POOL_STRING_ARRAY(
-            { buffer: ByteBuffer ->
-                TODO()
+            { buffer: ByteBuffer, _: Int ->
+                val ptr = buffer.long
+                PoolStringArray(ptr)
             },
-            { buffer: ByteBuffer, any: Any -> TODO() }
+            { buffer: ByteBuffer, any: Any ->
+                POOL_STRING_ARRAY.toGodotNativeCoreType<PoolStringArray>(buffer, any)
+            }
     ),
     POOL_VECTOR2_ARRAY(
-            { buffer: ByteBuffer ->
-                TODO()
+            { buffer: ByteBuffer, _: Int ->
+                val ptr = buffer.long
+                PoolVector2Array(ptr)
             },
-            { buffer: ByteBuffer, any: Any -> TODO() }
+            { buffer: ByteBuffer, any: Any ->
+                POOL_VECTOR2_ARRAY.toGodotNativeCoreType<PoolVector2Array>(buffer, any)
+            }
     ),
     POOL_VECTOR3_ARRAY(
-            { buffer: ByteBuffer ->
-                TODO()
+            { buffer: ByteBuffer, _: Int ->
+                val ptr = buffer.long
+                PoolVector3Array(ptr)
             },
-            { buffer: ByteBuffer, any: Any -> TODO() }
+            { buffer: ByteBuffer, any: Any ->
+                POOL_VECTOR3_ARRAY.toGodotNativeCoreType<PoolVector3Array>(buffer, any)
+            }
     ), // 25
     POOL_COLOR_ARRAY(
-            { buffer: ByteBuffer ->
-                TODO()
+            { buffer: ByteBuffer, expectedType: Int ->
+                val ptr = buffer.long
+                PoolColorArray(ptr)
             },
-            { buffer: ByteBuffer, any: Any -> TODO() }
+            { buffer: ByteBuffer, any: Any ->
+                POOL_COLOR_ARRAY.toGodotNativeCoreType<PoolColorArray>(buffer, any)
+            }
     ),
 
     VARIANT_MAX(
-            { buffer: ByteBuffer ->
-                TODO()
+            { _: ByteBuffer, _: Int ->
+                throw UnsupportedOperationException("Received VARIANT_MAX type, which should not happen.")
             },
-            { buffer: ByteBuffer, any: Any -> TODO() }
+            { _: ByteBuffer, _: Any ->
+                throw UnsupportedOperationException("Try to send a VARIANT_MAX type, which should not be done.")
+            }
     ),
 
     JVM_INT(
@@ -347,9 +417,17 @@ enum class VariantType(
             }
     ),
 
+    JVM_BYTE(
+        LONG,
+        { any -> (any as Long).toByte() },
+        { any ->
+            (any as Byte).toLong()
+        }
+    ),
+
     ANY(
-            { buffer: ByteBuffer ->
-                throw kotlin.Error()
+            { buffer: ByteBuffer, expectedType: Int ->
+                values()[expectedType].toKotlinWithoutNullCheck(buffer, expectedType)
             },
             { buffer: ByteBuffer, any: Any ->
                 when (any) {
@@ -360,22 +438,28 @@ enum class VariantType(
                     is Float -> JVM_FLOAT.toGodotWithoutNullCheck(buffer, any)
                     is Double -> DOUBLE.toGodotWithoutNullCheck(buffer, any)
                     is String -> STRING.toGodotWithoutNullCheck(buffer, any)
+                    is VariantArray<*> -> ARRAY.toGodotWithoutNullCheck(buffer, any)
+                    is Dictionary<*, *> -> DICTIONARY.toGodotWithoutNullCheck(buffer, any)
                     is KtObject -> OBJECT.toGodotWithoutNullCheck(buffer, any)
                     else -> throw UnsupportedOperationException("Can't convert type ${any::class} to Variant")
                 }
             }
     );
 
+    var baseOrdinal = ordinal
+
     constructor(
             originalVariantType: VariantType,
             toKotlinConverter: (Any) -> Any,
             toGodotConverter: (Any) -> Any
     ) : this(
-            { buffer: ByteBuffer ->
-                toKotlinConverter(originalVariantType.toKotlinWithoutNullCheck(buffer))
+            { buffer: ByteBuffer, expectedType: Int ->
+                toKotlinConverter(originalVariantType.toKotlinWithoutNullCheck(buffer, expectedType))
             },
             { buffer: ByteBuffer, any: Any -> originalVariantType.toGodotWithoutNullCheck(buffer, toGodotConverter(any)) }
-    )
+    ) {
+        baseOrdinal = originalVariantType.ordinal
+    }
 
     internal val toGodot = { buffer: ByteBuffer, any: Any? ->
         if (any == null) {
@@ -385,7 +469,38 @@ enum class VariantType(
         }
     }
 
-    internal val toKotlin = { buffer: ByteBuffer ->
-        if (buffer.isReceivedNull()) null else toKotlinWithoutNullCheck(buffer)
+    internal val toKotlin = this.getToKotlinLambdaToExecute(toKotlinWithoutNullCheck)
+}
+
+fun VariantType.getToKotlinLambdaToExecute(defaultLambda: (ByteBuffer, Int) -> Any?) : (ByteBuffer, Boolean) -> Any? {
+    return if (this.ordinal == ANY_VARIANT_TYPE) {
+        { buffer: ByteBuffer, isNullable: Boolean ->
+            val variantType = buffer.variantType
+            if (variantType == NIL.ordinal) {
+                if (!isNullable) throw TypeCastException("Expected a non nullable ${this.name} but received a null.")
+                null
+            } else defaultLambda(buffer, variantType)
+        }
+    } else {
+        { buffer: ByteBuffer, isNullable: Boolean ->
+            when (val variantType = buffer.variantType) {
+                baseOrdinal -> {
+                    defaultLambda(buffer, variantType)
+                }
+                NIL.ordinal -> {
+                    if (!isNullable) throw TypeCastException("Expected a non nullable ${this.name} but received a null.")
+                    null
+                }
+                else -> throw TypeCastException("Cannot match $variantType to ${this.baseOrdinal}")
+            }
+        }
     }
 }
+
+private inline fun <reified T: NativeCoreType> VariantType.toGodotNativeCoreType(buffer: ByteBuffer, any: Any) {
+    buffer.variantType = ordinal
+    any as T
+    buffer.putLong(any._handle)
+}
+
+private const val ANY_VARIANT_TYPE = 31

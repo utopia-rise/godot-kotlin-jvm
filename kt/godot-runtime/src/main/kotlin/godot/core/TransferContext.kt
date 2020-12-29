@@ -23,27 +23,16 @@ object TransferContext {
         buffer.rewind()
     }
 
-    @ExperimentalUnsignedTypes
-    fun readArguments(vararg variantType: VariantType): List<Any?> {
-        val argSize = buffer.int
-        val values = mutableListOf<Any?>()
-        for (i in 0 until argSize) {
-            values.add(variantType[i].toKotlin(buffer))
-        }
-        buffer.rewind()
-        return values
-    }
-
-    fun readSingleArgument(variantType: VariantType) = variantType.toKotlin(buffer)
+    fun readSingleArgument(variantType: VariantType, isNullable: Boolean = false)
+            = variantType.toKotlin(buffer, isNullable)
 
    fun writeReturnValue(value: Any?, type: VariantType) {
        type.toGodot(buffer, value)
        buffer.rewind()
    }
 
-    @ExperimentalUnsignedTypes
-    fun readReturnValue(type: VariantType): Any? {
-        val ret = type.toKotlin(buffer)
+    fun readReturnValue(type: VariantType, isNullable: Boolean = false): Any? {
+        val ret = type.toKotlin(buffer, isNullable)
         buffer.rewind()
         return ret
     }

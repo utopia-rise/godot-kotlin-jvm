@@ -1,0 +1,56 @@
+extends "res://addons/gut/test.gd"
+
+
+func test_dictionary_any_not_null_append():
+	var invocation_script = load("res://src/main/kotlin/godot/tests/Invocation.kt").new()
+	assert_eq(invocation_script.any_dict_size(), 0, "Dict should be empty")
+	var key = Node.new()
+	var value = Node.new()
+	invocation_script.append_to_any_dict(key, value)
+	invocation_script.append_to_any_dict("key2", 11)
+	assert_eq(invocation_script.any_dict_size(), 2, "Dict size should be 2")
+	assert_eq(invocation_script.any_to_any_dictionary[key], value, "Should find value for key")
+	assert_eq(invocation_script.get_from_any_dict(key), value, "Should find value for key")
+	assert_eq(invocation_script.any_to_any_dictionary["key2"], 11, "Should find 11 for key2")
+	assert_eq(invocation_script.get_from_any_dict("key2"), 11, "Should find 11 for key2")
+	invocation_script.free()
+	key.free()
+	value.free()
+
+func test_dictionary_any_not_null_remove():
+	var invocation_script = load("res://src/main/kotlin/godot/tests/Invocation.kt").new()
+	invocation_script.append_to_any_dict("key2", 11)
+	assert_eq(invocation_script.any_dict_size(), 1, "Dict size should be 1")
+	invocation_script.remove_from_any_dict("key2")
+	assert_eq(invocation_script.any_dict_size(), 0, "Dict size should be 0")
+	var key = Node.new()
+	var value = Node.new()
+	invocation_script.append_to_any_dict(key, value)
+	assert_eq(invocation_script.any_dict_size(), 1, "Dict size should be 1")
+	invocation_script.remove_from_any_dict(key)
+	assert_eq(invocation_script.any_dict_size(), 0, "Dict size should be 0")
+	invocation_script.free()
+	key.free()
+	value.free()
+
+func test_dictionary_typed_not_null_append():
+	var invocation_script = load("res://src/main/kotlin/godot/tests/Invocation.kt").new()
+	assert_eq(invocation_script.string_nav_mesh_dict_size(), 1, "Dict size should be 1")
+	var nav_mesh = NavigationMesh.new()
+	invocation_script.append_to_string_nav_mesh_dict("key", nav_mesh)
+	assert_eq(invocation_script.string_nav_mesh_dict_size(), 2, "Dict size should be 2")
+	assert_eq(invocation_script.nav_meshes_dictionary["key"], nav_mesh, "Should find nav_mesh for key")
+	assert_eq(invocation_script.get_from_string_nav_mesh_dict("key"), nav_mesh, "Should find nav_mesh for key")
+	invocation_script.free()
+
+func test_dictionary_typed_not_null_remove():
+	var invocation_script = load("res://src/main/kotlin/godot/tests/Invocation.kt").new()
+	assert_eq(invocation_script.string_nav_mesh_dict_size(), 1, "Array size should be 1")
+	invocation_script.remove_from_string_nav_mesh_dict("AwesomeNavmesh")
+	assert_eq(invocation_script.string_nav_mesh_dict_size(), 0, "Dict size should be 0")
+	var nav_mesh = NavigationMesh.new()
+	invocation_script.append_to_string_nav_mesh_dict("key", nav_mesh)
+	assert_eq(invocation_script.string_nav_mesh_dict_size(), 1, "Dict size should be 1")
+	invocation_script.remove_from_string_nav_mesh_dict("key")
+	assert_eq(invocation_script.string_nav_mesh_dict_size(), 0, "Dict size should be 0")
+	invocation_script.free()

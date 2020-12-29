@@ -72,7 +72,7 @@ void KtProperty::setCall(KtObject* instance, const Variant& p_value) {
 }
 
 void KtProperty::get_default_value(Variant& r_value) {
-    r_value = default_value;
+    r_value = default_value.duplicate(true);
 }
 
 void KtProperty::initialize_default_value() {

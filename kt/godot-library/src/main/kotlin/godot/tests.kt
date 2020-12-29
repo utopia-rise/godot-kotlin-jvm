@@ -32,7 +32,6 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
                 *args.map { VariantType.ANY to it }.toTypedArray()
         )
         TransferContext.callMethod(rawPtr, OBJECT_EMIT_SIGNAL, VariantType.NIL)
-        TransferContext.readReturnValue(VariantType.NIL)
     }
 
     override fun getInstanceId(): Long {
@@ -327,7 +326,6 @@ open class Node : Object() {
         set(value) {
             TransferContext.writeArguments(VariantType.STRING to value)
             TransferContext.callMethod(rawPtr, NODE_SET_NAME, VariantType.NIL)
-            TransferContext.readReturnValue(VariantType.NIL)
         }
 
     override fun __new(): VoidPtr {
@@ -337,20 +335,30 @@ open class Node : Object() {
     open fun getParent(): Node? {
         TransferContext.writeArguments()
         TransferContext.callMethod(rawPtr, NODE_GET_PARENT, VariantType.OBJECT)
-        val readReturnValue = TransferContext.readReturnValue(VariantType.OBJECT)
+        val readReturnValue = TransferContext.readReturnValue(VariantType.OBJECT, true)
         return readReturnValue as Node?
     }
 
     open fun addChild(node: Node) {
         TransferContext.writeArguments(VariantType.OBJECT to node)
         TransferContext.callMethod(rawPtr, NODE_ADD_CHILD, VariantType.NIL)
-        TransferContext.readReturnValue(VariantType.NIL)
     }
 
     open fun removeChild(node: Node) {
         TransferContext.writeArguments(VariantType.OBJECT to node)
         TransferContext.callMethod(rawPtr, NODE_REMOVE_CHILD, VariantType.NIL)
-        TransferContext.readReturnValue(VariantType.NIL)
+    }
+
+    open fun getNode(nodePath: NodePath): Node? {
+        TransferContext.writeArguments(VariantType.NODE_PATH to nodePath)
+        TransferContext.callMethod(rawPtr, NODE_GET_NODE, VariantType.OBJECT)
+        return TransferContext.readReturnValue(VariantType.OBJECT, true) as Node?
+    }
+
+    open fun getNodeOrNull(nodePath: NodePath): Node? {
+        TransferContext.writeArguments(VariantType.NODE_PATH to nodePath)
+        TransferContext.callMethod(rawPtr, NODE_GET_NODE_OR_NULL, VariantType.OBJECT)
+        return TransferContext.readReturnValue(VariantType.OBJECT, true) as Node?
     }
 }
 
@@ -371,12 +379,26 @@ open class Resource : Reference() {
     override fun __new(): VoidPtr {
         return TransferContext.invokeConstructor(RESOURCE)
     }
+
+    fun getId(): RID {
+        TransferContext.callMethod(rawPtr, RESOURCE_GET_ID, VariantType._RID)
+        return TransferContext.readReturnValue(VariantType._RID, false) as RID
+    }
 }
 
 open class NavigationMesh : Resource() {
     override fun __new(): VoidPtr {
         return TransferContext.invokeConstructor(NAVIGATION_MESH)
     }
+}
+
+fun registerVariantMapping() {
+    variantMapper[Object::class] = VariantType.OBJECT
+    variantMapper[Node::class] = VariantType.OBJECT
+    variantMapper[Spatial::class] = VariantType.OBJECT
+    variantMapper[Reference::class] = VariantType.OBJECT
+    variantMapper[Resource::class] = VariantType.OBJECT
+    variantMapper[NavigationMesh::class] = VariantType.OBJECT
 }
 
 fun registerEngineTypes() {
@@ -389,12 +411,15 @@ fun registerEngineTypes() {
 }
 
 fun registerEngineTypeMethods() {
-    TypeManager.engineTypeMethod.add(Pair(OBJECT, "connect"))
-    TypeManager.engineTypeMethod.add(Pair(OBJECT, "emit_signal"))
-    TypeManager.engineTypeMethod.add(Pair(OBJECT, "get_instance_id"))
-    TypeManager.engineTypeMethod.add(Pair(NODE, "get_name"))
-    TypeManager.engineTypeMethod.add(Pair(NODE, "set_name"))
-    TypeManager.engineTypeMethod.add(Pair(NODE, "get_parent"))
-    TypeManager.engineTypeMethod.add(Pair(NODE, "add_child"))
-    TypeManager.engineTypeMethod.add(Pair(NODE, "remove_child"))
+    TypeManager.engineTypeMethod.add(OBJECT to "connect")
+    TypeManager.engineTypeMethod.add(OBJECT to "emit_signal")
+    TypeManager.engineTypeMethod.add(OBJECT to "get_instance_id")
+    TypeManager.engineTypeMethod.add(NODE to "get_name")
+    TypeManager.engineTypeMethod.add(NODE to "set_name")
+    TypeManager.engineTypeMethod.add(NODE to "get_parent")
+    TypeManager.engineTypeMethod.add(NODE to "add_child")
+    TypeManager.engineTypeMethod.add(NODE to "remove_child")
+    TypeManager.engineTypeMethod.add(NODE to "get_node")
+    TypeManager.engineTypeMethod.add(NODE to "get_node_or_null")
+    TypeManager.engineTypeMethod.add(RESOURCE to "get_id")
 }

@@ -468,6 +468,66 @@ class Color(
             }
             return ig
         }
+
+        //Color construction helpers
+        fun html(from: String): Color {
+            var color = from
+            if (color.isEmpty())
+                return Color()
+            if (color[0] == '#')
+                color = color.substring(1, color.length - 1)
+
+            val alpha = when {
+                color.length == 8 -> true
+                color.length == 6 -> false
+                else -> return Color()
+            }
+
+            var a = 255
+            if (alpha) {
+                a = parseCol(color, 0).toInt()
+                if (a < 0) {
+                    return Color()
+                }
+            }
+
+            val p = if (alpha) 2 else 0
+            val r = parseCol(color, p + 0).toInt()
+            val g = parseCol(color, p + 2).toInt()
+            val b = parseCol(color, p + 4).toInt()
+            if (r < 0 || g < 0 || b < 0) {
+                return Color()
+            }
+
+            return Color(
+                    r / 255.0,
+                    g / 255.0,
+                    b / 255.0,
+                    a / 255.0
+            )
+        }
+
+        fun hex(from: Int): Color {
+            val a = (from and 0xFF) / 255.0
+            var hex = from shr 8
+            val b = (hex and 0xFF) / 255.0
+            hex = hex shr 8
+            val g = (hex and 0xFF) / 255.0
+            hex = hex shr 8
+            val r = (hex and 0xFF) / 255.0
+            return Color(r, g, b, a)
+        }
+
+        fun hex64(from: Long): Color {
+            val a = (from and 0xFFFF) / 65535.0
+            var hex = from shr 16
+            val b = (hex and 0xFFFF) / 65535.0
+            hex = hex shr 16
+            val g = (hex and 0xFFFF) / 65535.0
+            hex = hex shr 16
+            val r = (hex and 0xFFFF) / 65535.0
+            return Color(r, g, b, a)
+        }
     }
 
     //CONSTRUCTOR
@@ -478,51 +538,6 @@ class Color(
 
     constructor(r: Number, g: Number, b: Number, a: Number = 1.0) :
             this(r.toRealT(), g.toRealT(), b.toRealT(), a.toRealT())
-
-    constructor(from: String) : this() {
-        var color = from
-        if (color.isEmpty())
-            return
-        if (color[0] == '#')
-            color = color.substring(1, color.length - 1)
-
-        val alpha = when {
-            color.length == 8 -> true
-            color.length == 6 -> false
-            else -> return
-        }
-
-        var a = 255
-        if (alpha) {
-            a = parseCol(color, 0).toInt()
-            if (a < 0) {
-                return
-            }
-        }
-
-        val p = if (alpha) 2 else 0
-        val r = parseCol(color, p + 0).toInt()
-        val g = parseCol(color, p + 2).toInt()
-        val b = parseCol(color, p + 4).toInt()
-        if (r < 0 || g < 0 || b < 0) {
-            return
-        }
-
-        this.r = r / 255.0
-        this.g = g / 255.0
-        this.b = b / 255.0
-        this.a = a / 255.0
-    }
-
-    constructor(from: Int) : this() {
-        a = (from and 0xFF) / 255.0
-        var hex = from shr 8
-        b = (hex and 0xFF) / 255.0
-        hex = hex shr 8
-        g = (hex and 0xFF) / 255.0
-        hex = hex shr 8
-        r = (hex and 0xFF) / 255.0
-    }
 
     //API
     /**

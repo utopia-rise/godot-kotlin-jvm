@@ -5,15 +5,16 @@ import java.lang.ref.WeakReference
 import java.time.Duration
 import java.time.Instant
 import java.util.concurrent.Executors
-import java.util.concurrent.ScheduledExecutorService
-import java.util.concurrent.ThreadFactory
 import java.util.concurrent.TimeUnit
 
 object GarbageCollector {
     private val refWrappedMap = mutableMapOf<VoidPtr, WeakReference<KtObject>>()
     private val wrappedMap = mutableMapOf<VoidPtr, KtObject>()
+    private val nativeCoreTypeMap =
+            mutableMapOf<VoidPtr, NativeCoreTypeWeakReference>()
     private val refWrappedSuppressBuffer = mutableListOf<VoidPtr>()
     private val wrappedSuppressBuffer = mutableListOf<VoidPtr>()
+    private val nativeCoreTypeSuppressBuffer = mutableListOf<VoidPtr>()
 
     private val executor = Executors.newSingleThreadScheduledExecutor()
 
@@ -39,6 +40,13 @@ object GarbageCollector {
         }
     }
 
+    fun registerNativeCoreType(nativeCoreType: NativeCoreType) {
+        val rawPtr = nativeCoreType._handle
+        synchronized(nativeCoreTypeMap) {
+            nativeCoreTypeMap[rawPtr] = NativeCoreTypeWeakReference(nativeCoreType)
+        }
+    }
+
     fun getObjectInstance(ptr: VoidPtr) = synchronized(wrappedMap) {
         val ktObject = wrappedMap[ptr]
         if (ktObject != null) {
@@ -48,6 +56,10 @@ object GarbageCollector {
 
     fun getRefInstance(ptr: VoidPtr) = synchronized(refWrappedMap) {
         refWrappedMap[ptr]?.get()
+    }
+
+    fun getNativeCoreTypeInstance(ptr: VoidPtr) = synchronized(nativeCoreTypeMap) {
+        nativeCoreTypeMap[ptr]?.get()
     }
 
     fun start(forceJvmGarbageCollector: Boolean, period: Long) {
@@ -64,7 +76,7 @@ object GarbageCollector {
 
     fun cleanUp() {
         val begin = Instant.now()
-        while (refWrappedMap.isNotEmpty() || wrappedMap.isNotEmpty()) {
+        while (refWrappedMap.isNotEmpty() || wrappedMap.isNotEmpty() || nativeCoreTypeMap.isNotEmpty()) {
             forceJvmGc()
             checkAndClean()
             val finish = Instant.now()
@@ -83,6 +95,12 @@ object GarbageCollector {
                                 append("Leaked objects:")
                                 append(System.lineSeparator())
                                 for (entry in wrappedMap) {
+                                    append("    ${entry.key}: ${entry.value}")
+                                    append(System.lineSeparator())
+                                }
+                                append("Leaked native core types:")
+                                append(System.lineSeparator())
+                                for (entry in nativeCoreTypeMap) {
                                     append("    ${entry.key}: ${entry.value}")
                                     append(System.lineSeparator())
                                 }
@@ -131,6 +149,21 @@ object GarbageCollector {
             }
         }
         wrappedSuppressBuffer.clear()
+
+        synchronized(nativeCoreTypeMap) {
+            for (entry in nativeCoreTypeMap) {
+                val nativeCoreTypeReference = entry.value
+                if (nativeCoreTypeReference.get() == null) {
+                    if (MemoryBridge.unrefNativeCoreType(entry.key, nativeCoreTypeReference.coreVariantType.baseOrdinal)) {
+                        nativeCoreTypeSuppressBuffer.add(entry.key)
+                    }
+                }
+            }
+            for (ptr in nativeCoreTypeSuppressBuffer) {
+                nativeCoreTypeMap.remove(ptr)
+            }
+        }
+        nativeCoreTypeSuppressBuffer.clear()
     }
 
     /**
@@ -149,6 +182,7 @@ object GarbageCollector {
         external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
         external fun unref(ptr: VoidPtr): Boolean
         external fun ref(ptr: VoidPtr): Boolean
+        external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
     }
 
     private enum class GCState {

@@ -68,11 +68,13 @@ abstract class KtFunction<T : KtObject, R : Any?>(
         readArguments(argsSize)
         val ret = invokeKt(instance)
         resetParamsArray()
+        //TODO: manage nullable returns of registered methods (only for objects)
         TransferContext.writeReturnValue(ret, variantType)
     }
 
     private fun readArguments(argsSize: Int) {
         for (i in 0 until argsSize) {
+            //TODO: manage nullable arguments of registered methods (only for objects)
             paramsArray[i] = TransferContext.readSingleArgument(parameterTypes[i])
         }
         TransferContext.buffer.rewind()

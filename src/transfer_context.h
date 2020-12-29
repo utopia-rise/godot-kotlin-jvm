@@ -11,17 +11,15 @@
 class TransferContext : public JavaInstanceWrapper<TransferContext> {
 public:
     TransferContext(jni::JObject p_wrapped, jni::JObject p_class_loader);
-    ~TransferContext() = default;
+    ~TransferContext();
     TransferContext(const TransferContext&) = delete;
     void operator=(const TransferContext&) = delete;
 
-    // Not used but still here in case we need it.
-    void write_return_value(jni::Env& p_env, const Variant& p_value);
+    void write_return_value(jni::Env& p_env, Variant& variant);
     void read_return_value(jni::Env& p_env, Variant& r_ret);
 
     void write_args(jni::Env& p_env, const Variant** p_args, int args_size);
-    //Not used but still here in case we need it. Not optimized.
-    Vector<Variant> read_args(jni::Env& p_env);
+    void read_args(jni::Env& p_env, Variant* args);
 
     static void icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jint p_method_index, jint expectedReturnType);
 
@@ -32,8 +30,6 @@ public:
 
 private:
     SharedBuffer* get_buffer(jni::Env& p_env);
-    bool ensure_capacity(jni::Env& p_env, long p_capacity);
-
     _FORCE_INLINE_ static uint32_t read_args_size(jni::Env& p_env, SharedBuffer* buffer) {
         uint32_t args_size{decode_uint32(buffer->get_cursor())};
         buffer->increment_position(4);
