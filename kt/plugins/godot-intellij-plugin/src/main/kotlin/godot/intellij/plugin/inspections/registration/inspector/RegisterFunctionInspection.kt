@@ -3,8 +3,6 @@ package godot.intellij.plugin.inspections.registration.inspector
 import com.intellij.codeInspection.ProblemHighlightType
 import com.intellij.codeInspection.ProblemsHolder
 import com.intellij.psi.PsiElementVisitor
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
 import godot.intellij.plugin.inspections.registration.quickfix.EngineFunctionNotRegisteredQuickFix
 import org.jetbrains.kotlin.idea.inspections.AbstractKotlinInspection
 import org.jetbrains.kotlin.idea.util.findAnnotation
@@ -18,9 +16,9 @@ class RegisterFunctionInspection : AbstractKotlinInspection() {
     override fun buildVisitor(holder: ProblemsHolder, isOnTheFly: Boolean): PsiElementVisitor {
         return namedFunctionVisitor { ktNamedFunction ->
             if (
-                ktNamedFunction.containingClass()?.findAnnotation(FqName(RegisterClass::class.java.canonicalName)) != null
+                ktNamedFunction.containingClass()?.findAnnotation(FqName("godot.annotation.RegisterClass")) != null
                 && notificationFunctions.contains(ktNamedFunction.name)
-                && ktNamedFunction.findAnnotation(FqName(RegisterFunction::class.java.canonicalName)) == null
+                && ktNamedFunction.findAnnotation(FqName("godot.annotation.RegisterFunction")) == null
             ) {
                 holder.registerProblem(
                     ktNamedFunction.navigationElement,

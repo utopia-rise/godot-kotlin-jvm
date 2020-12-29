@@ -47,7 +47,6 @@ intellij {
 }
 
 dependencies {
-    implementation(project(":godot-library"))
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.14.2")
 }
 

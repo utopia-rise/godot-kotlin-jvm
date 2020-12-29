@@ -3,7 +3,6 @@ package godot.intellij.plugin.inspections.registration.inspector
 import com.intellij.codeInspection.ProblemHighlightType
 import com.intellij.codeInspection.ProblemsHolder
 import com.intellij.psi.PsiElementVisitor
-import godot.annotation.RegisterSignal
 import godot.intellij.plugin.inspections.registration.quickfix.RegisterSignalInitializerQuickFix
 import godot.intellij.plugin.inspections.registration.quickfix.RegisterSignalMutabilityQuickFix
 import org.jetbrains.kotlin.idea.inspections.AbstractKotlinInspection
@@ -19,7 +18,7 @@ class RegisterSignalInspection : AbstractKotlinInspection() {
 
     override fun buildVisitor(holder: ProblemsHolder, isOnTheFly: Boolean): PsiElementVisitor {
         return propertyVisitor { ktProperty ->
-            if (ktProperty.findAnnotation(FqName(RegisterSignal::class.java.canonicalName)) != null) {
+            if (ktProperty.findAnnotation(FqName("godot.annotation.RegisterSignal")) != null) {
                 checkMutability(ktProperty, holder)
                 checkRegisteredType(ktProperty, holder)
             }
