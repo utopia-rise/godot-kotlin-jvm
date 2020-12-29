@@ -48,6 +48,7 @@ class RegisterPropertiesInspection : AbstractKotlinInspection() {
     private fun checkRegisteredType(ktProperty: KtProperty, holder: ProblemsHolder) {
         val type = ktProperty.type() ?: return
         if (type.getJetTypeFqName(false).startsWith("kotlin.collections") && ktProperty.findAnnotation(FqName("godot.annotation.EnumFlag")) == null) { //enum flag is the only case where registering a kotlin collection is allowed
+            //TODO: add quick fix
             holder.registerProblem(getInitializerProblemLocation(ktProperty), "Kotlin collections cannot be registered as default values. Consider using one of the godot collections. There are handy conversion functions available")
         }
     }
