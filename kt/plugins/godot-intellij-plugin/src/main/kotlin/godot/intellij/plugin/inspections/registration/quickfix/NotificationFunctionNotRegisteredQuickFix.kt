@@ -7,7 +7,7 @@ import org.jetbrains.kotlin.idea.util.addAnnotation
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.*
 
-class EngineFunctionNotRegisteredQuickFix : LocalQuickFix {
+class NotificationFunctionNotRegisteredQuickFix : LocalQuickFix {
     override fun getFamilyName(): String {
         return "Add @RegisterFunction annotation"
     }

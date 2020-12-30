@@ -3,7 +3,7 @@ package godot.intellij.plugin.inspections.registration.inspector
 import com.intellij.codeInspection.ProblemHighlightType
 import com.intellij.codeInspection.ProblemsHolder
 import com.intellij.psi.PsiElementVisitor
-import godot.intellij.plugin.inspections.registration.quickfix.EngineFunctionNotRegisteredQuickFix
+import godot.intellij.plugin.inspections.registration.quickfix.NotificationFunctionNotRegisteredQuickFix
 import org.jetbrains.kotlin.idea.inspections.AbstractKotlinInspection
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
@@ -11,7 +11,7 @@ import org.jetbrains.kotlin.psi.*
 import org.jetbrains.kotlin.psi.psiUtil.containingClass
 
 class RegisterFunctionInspection : AbstractKotlinInspection() {
-    private val engineFunctionNotRegisteredQuickFix by lazy { EngineFunctionNotRegisteredQuickFix() }
+    private val notificationFunctionNotRegisteredQuickFix by lazy { NotificationFunctionNotRegisteredQuickFix() }
 
     override fun buildVisitor(holder: ProblemsHolder, isOnTheFly: Boolean): PsiElementVisitor {
         return namedFunctionVisitor { ktNamedFunction ->
@@ -24,14 +24,14 @@ class RegisterFunctionInspection : AbstractKotlinInspection() {
                     ktNamedFunction.navigationElement,
                     "Overridden notification function which is not registered will not be called by Godot. Using notification functions for other purposes than to be called from Godot is considered a bad practise. Either register it or move your logic to a custom function you defined",
                     ProblemHighlightType.WARNING,
-                    engineFunctionNotRegisteredQuickFix
+                    notificationFunctionNotRegisteredQuickFix
                 )
             }
         }
     }
 
     private val notificationFunctions = listOf(
-        //TODO: find a better way of checking all -> maybe add godot-library as a dependency and query engine functions through reflection or generate during compilation of the plugin
+        //TODO: find a better way of checking all -> maybe add godot-library as a dependency and query notification functions through reflection or generate during compilation of the plugin
         "_ready",
         "_enter_tree",
         "_exit_tree",
