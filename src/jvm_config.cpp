@@ -5,14 +5,24 @@
 const int DEFAULT_SHARED_BUFFER_SIZE{20'000'000};
 const int DEFAULT_JVM_GARBAGE_COLLECTOR_THREAD_PERIOD{500};
 
-JvmConfig::JvmConfig(const String& p_jvm_debug_port, const String& p_jvm_debug_address, const String& p_jvm_jmx_port,
-                     bool p_is_gc_force_mode, bool p_is_gc_activated, long p_gc_thread_period_interval,
-                     int p_jvm_to_engine_shared_buffer_size, bool p_should_display_leaked_jvm_instances_on_close)
-        : jvm_debug_port(p_jvm_debug_port), jvm_debug_address(p_jvm_debug_address), jvm_jmx_port(p_jvm_jmx_port),
-          is_gc_force_mode(p_is_gc_force_mode), is_gc_activated(p_is_gc_activated),
-          gc_thread_period_interval(p_gc_thread_period_interval),
-          jvm_to_engine_shared_buffer_size(p_jvm_to_engine_shared_buffer_size),
-          should_display_leaked_jvm_instances_on_close(p_should_display_leaked_jvm_instances_on_close) {
+JvmConfig::JvmConfig(
+        const String& p_jvm_debug_port,
+        const String& p_jvm_debug_address,
+        const String& p_jvm_jmx_port,
+        bool p_is_gc_force_mode,
+        bool p_is_gc_activated,
+        long p_gc_thread_period_interval,
+        int p_jvm_to_engine_shared_buffer_size,
+        bool p_should_display_leaked_jvm_instances_on_close
+) :
+        jvm_debug_port(p_jvm_debug_port),
+        jvm_debug_address(p_jvm_debug_address),
+        jvm_jmx_port(p_jvm_jmx_port),
+        is_gc_force_mode(p_is_gc_force_mode),
+        is_gc_activated(p_is_gc_activated),
+        gc_thread_period_interval(p_gc_thread_period_interval),
+        jvm_to_engine_shared_buffer_size(p_jvm_to_engine_shared_buffer_size),
+        should_display_leaked_jvm_instances_on_close(p_should_display_leaked_jvm_instances_on_close) {
 
 }
 
