@@ -8,6 +8,7 @@ KtClass::KtClass(jni::JObject p_wrapped, jni::JObject& p_class_loader) :
     jni::Env env { jni::Jvm::current_env() };
     name = get_name(env);
     super_class = get_super_class(env);
+    base_godot_class = get_base_godot_class(env);
     fetch_methods(env);
     fetch_properties(env);
     fetch_signals(env);
@@ -56,6 +57,12 @@ StringName KtClass::get_name(jni::Env& env) {
 StringName KtClass::get_super_class(jni::Env& env) {
     jni::MethodId getter { get_method_id(env, jni_methods.GET_SUPER_CLASS) };
     jni::JObject ret { wrapped.call_object_method(env, getter) };
+    return StringName(env.from_jstring(jni::JString((jstring) ret.obj)));
+}
+
+StringName KtClass::get_base_godot_class(jni::Env& env) {
+    jni::MethodId getter{get_method_id(env, jni_methods.GET_BASE_GODOT_CLASS)};
+    jni::JObject ret{wrapped.call_object_method(env, getter)};
     return StringName(env.from_jstring(jni::JString((jstring) ret.obj)));
 }
 

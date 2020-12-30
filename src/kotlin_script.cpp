@@ -128,7 +128,7 @@ KtClass* KotlinScript::get_kotlin_class() const {
 Variant KotlinScript::_new(const Variant **p_args, int p_argcount, Variant::CallError &r_error) {
     r_error.error = Variant::CallError::CALL_OK;
 
-    Object *owner = ClassDB::instance(get_kotlin_class()->super_class);
+    Object *owner = ClassDB::instance(get_kotlin_class()->base_godot_class);
 
     REF ref;
     auto* r = Object::cast_to<Reference>(owner);
