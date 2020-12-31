@@ -3,8 +3,6 @@
 
 
 #include <core/ustring.h>
-#include <core/list.h>
-#include <modules/kotlin_jvm/src/jni/init_args.h>
 
 struct JvmConfig {
 
