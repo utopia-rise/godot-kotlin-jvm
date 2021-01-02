@@ -1,4 +1,4 @@
-name: Check PR - godot-library
+name: Check PR - Engine
 on:
   pull_request:
     paths:
@@ -41,9 +41,7 @@ jobs:
       - name: Configuring Python packages
         run: |
           python -c "import sys; print(sys.version)"
-          python -m pip install scons pywin32
-          python --version
-          scons --version
+          python -m pip install scons
       - name: Build editor debug
         run: |
           scons platform=${{ matrix.platform }}
