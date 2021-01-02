@@ -137,66 +137,81 @@ namespace ktvariant {
         des->increment_position(encode_float(src_color.a, des->get_cursor()));
     }
 
-    template <class T>
-    static void to_kvariant_fromNATIVECORETYPE(SharedBuffer* des, const Variant& src) {
-        des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(memnew(T(src.operator T()))), des->get_cursor())
-        );
-    }
-
     static void to_kvariant_fromDICTIONARY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::DICTIONARY);
-        to_kvariant_fromNATIVECORETYPE<Dictionary>(des, src);
+        des->increment_position(
+                encode_uint64(reinterpret_cast<uintptr_t>(memnew(Dictionary(src.operator Dictionary()))), des->get_cursor())
+        );
     }
 
     static void to_kvariant_fromARRAY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::ARRAY);
-        to_kvariant_fromNATIVECORETYPE<Array>(des, src);
+        des->increment_position(
+                encode_uint64(reinterpret_cast<uintptr_t>(memnew(Array(src.operator Array()))), des->get_cursor())
+        );
     }
 
     static void to_kvariant_fromNODEPATH(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::NODE_PATH);
-        to_kvariant_fromNATIVECORETYPE<NodePath>(des, src);
+        des->increment_position(
+                encode_uint64(reinterpret_cast<uintptr_t>(memnew(NodePath(src.operator NodePath()))), des->get_cursor())
+        );
     }
 
     static void to_kvariant_fromRID(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::_RID);
-        to_kvariant_fromNATIVECORETYPE<RID>(des, src);
+        des->increment_position(
+                encode_uint64(reinterpret_cast<uintptr_t>(memnew(RID(src.operator RID()))), des->get_cursor())
+        );
     }
 
     static void to_kvariant_fromPOOLBYTEARRAY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::POOL_BYTE_ARRAY);
-        to_kvariant_fromNATIVECORETYPE<PoolByteArray>(des, src);
+        des->increment_position(
+                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolByteArray(src.operator PoolByteArray()))), des->get_cursor())
+        );
     }
 
     static void to_kvariant_fromPOOLINTARRAY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::POOL_INT_ARRAY);
-        to_kvariant_fromNATIVECORETYPE<PoolIntArray>(des, src);
+        des->increment_position(
+                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolIntArray(src.operator PoolIntArray()))), des->get_cursor())
+        );
     }
 
     static void to_kvariant_fromPOOLREALARRAY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::POOL_REAL_ARRAY);
-        to_kvariant_fromNATIVECORETYPE<PoolRealArray>(des, src);
+        des->increment_position(
+                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolRealArray(src.operator PoolRealArray()))), des->get_cursor())
+        );
     }
 
     static void to_kvariant_fromPOOLSTRINGARRAY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::POOL_STRING_ARRAY);
-        to_kvariant_fromNATIVECORETYPE<PoolStringArray>(des, src);
+        des->increment_position(
+                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolStringArray(src.operator PoolStringArray()))), des->get_cursor())
+        );
     }
 
     static void to_kvariant_fromPOOLVECTOR2ARRAY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::POOL_VECTOR2_ARRAY);
-        to_kvariant_fromNATIVECORETYPE<PoolVector2Array>(des, src);
+        des->increment_position(
+                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolVector2Array(src.operator PoolVector2Array()))), des->get_cursor())
+        );
     }
 
     static void to_kvariant_fromPOOLVECTOR3ARRAY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::POOL_VECTOR3_ARRAY);
-        to_kvariant_fromNATIVECORETYPE<PoolVector3Array>(des, src);
+        des->increment_position(
+                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolVector3Array(src.operator PoolVector3Array()))), des->get_cursor())
+        );
     }
 
     static void to_kvariant_fromPOOLCOLORARRAY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::POOL_COLOR_ARRAY);
-        to_kvariant_fromNATIVECORETYPE<PoolColorArray>(des, src);
+        des->increment_position(
+                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolColorArray(src.operator PoolColorArray()))), des->get_cursor())
+        );
     }
 
     static void to_kvariant_fromOBJECT(SharedBuffer* des, const Variant& src) {

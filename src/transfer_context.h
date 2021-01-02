@@ -36,7 +36,7 @@ private:
         return args_size;
     }
     _FORCE_INLINE_ static void read_args_to_array(SharedBuffer* buffer, Variant* p_args, uint32_t args_size) {
-        for (int i = 0; i < args_size; ++i) {
+        for (uint32_t i = 0; i < args_size; ++i) {
             ktvariant::get_variant_from_buffer(buffer, p_args[i]);
         }
 
