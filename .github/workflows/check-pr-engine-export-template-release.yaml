@@ -1,4 +1,4 @@
-name: Check PR - Engine
+name: Check PR - Engine Export Template Release
 on:
   pull_request:
     paths:
@@ -7,7 +7,7 @@ on:
       - 'register_types.cpp'
       - 'register_types.h'
       - 'SCsub'
-      - '.github/workflows/check-pr-engine.yaml'
+      - '.github/workflows/check-pr-engine-export-template-release.yaml'
 
 jobs:
   build:
@@ -47,6 +47,6 @@ jobs:
         run: |
           python -c "import sys; print(sys.version)"
           python -m pip install scons
-      - name: Build editor debug
+      - name: Build release export template
         run: |
-          scons platform=${{ matrix.platform }}
+          scons platform=${{ matrix.platform }} tools=no target=release bits=64

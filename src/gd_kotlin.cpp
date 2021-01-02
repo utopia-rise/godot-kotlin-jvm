@@ -348,6 +348,6 @@ Error GDKotlin::split_jvm_debug_argument(const String& cmd_arg, String& result) 
     return OK;
 }
 
-GDKotlin::GDKotlin() : bootstrap(nullptr), transfer_context(nullptr), is_gc_started(false) {
+GDKotlin::GDKotlin() : bootstrap(nullptr), is_gc_started(false), transfer_context(nullptr) {
 
 }

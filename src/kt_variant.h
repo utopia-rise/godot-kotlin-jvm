@@ -140,7 +140,8 @@ namespace ktvariant {
     static void to_kvariant_fromDICTIONARY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::DICTIONARY);
         des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(memnew(Dictionary(src.operator Dictionary()))), des->get_cursor())
+                encode_uint64(reinterpret_cast<uintptr_t>(memnew(Dictionary(src.operator Dictionary()))),
+                              des->get_cursor())
         );
     }
 
@@ -168,49 +169,56 @@ namespace ktvariant {
     static void to_kvariant_fromPOOLBYTEARRAY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::POOL_BYTE_ARRAY);
         des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolByteArray(src.operator PoolByteArray()))), des->get_cursor())
+                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolByteArray(src.operator PoolByteArray()))),
+                              des->get_cursor())
         );
     }
 
     static void to_kvariant_fromPOOLINTARRAY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::POOL_INT_ARRAY);
         des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolIntArray(src.operator PoolIntArray()))), des->get_cursor())
+                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolIntArray(src.operator PoolIntArray()))),
+                              des->get_cursor())
         );
     }
 
     static void to_kvariant_fromPOOLREALARRAY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::POOL_REAL_ARRAY);
         des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolRealArray(src.operator PoolRealArray()))), des->get_cursor())
+                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolRealArray(src.operator PoolRealArray()))),
+                              des->get_cursor())
         );
     }
 
     static void to_kvariant_fromPOOLSTRINGARRAY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::POOL_STRING_ARRAY);
         des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolStringArray(src.operator PoolStringArray()))), des->get_cursor())
+                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolStringArray(src.operator PoolStringArray()))),
+                              des->get_cursor())
         );
     }
 
     static void to_kvariant_fromPOOLVECTOR2ARRAY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::POOL_VECTOR2_ARRAY);
         des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolVector2Array(src.operator PoolVector2Array()))), des->get_cursor())
+                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolVector2Array(src.operator PoolVector2Array()))),
+                              des->get_cursor())
         );
     }
 
     static void to_kvariant_fromPOOLVECTOR3ARRAY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::POOL_VECTOR3_ARRAY);
         des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolVector3Array(src.operator PoolVector3Array()))), des->get_cursor())
+                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolVector3Array(src.operator PoolVector3Array()))),
+                              des->get_cursor())
         );
     }
 
     static void to_kvariant_fromPOOLCOLORARRAY(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, Variant::Type::POOL_COLOR_ARRAY);
         des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolColorArray(src.operator PoolColorArray()))), des->get_cursor())
+                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolColorArray(src.operator PoolColorArray()))),
+                              des->get_cursor())
         );
     }
 
