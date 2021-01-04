@@ -83,8 +83,8 @@ jobs:
       - name: Run Tests
         run: |
           cd harness/tests/
-          wget https://gist.githubusercontent.com/piiertho/ff3fbb678ca9ef30bd22d95f1ff1358e/raw/b9983de4f751a069bc38bde3ac24f544abdd69d1/run_godot_tests.sh
-          chmod +x run_godot_tests.sh
+          wget https://gist.githubusercontent.com/piiertho/fb25f9326189d00608ffeb7702b91395/raw/dddef0b20a61062bb4d091bf2f7ada6b7b25b7c7/run_godot_kotlin_tests.sh
+          chmod +x run_godot_kotlin_tests.sh
           chmod +x ../../osx-editor-debug-app/godot.osx.tools.64
           jlink --add-modules java.base,java.logging --output jre
-          ./run_godot_tests.sh ../../osx-editor-debug-app/godot.osx.tools.64
+          ./run_godot_kotlin_tests.sh ../../osx-editor-debug-app/godot.osx.tools.64
