@@ -15,7 +15,7 @@ val variantMapper = mutableMapOf(
         Byte::class to JVM_BYTE,
         Double::class to DOUBLE,
         String::class to STRING,
-        AABB::class to AABB,
+        godot.core.AABB::class to AABB,
         Basis::class to BASIS,
         Color::class to COLOR,
         Dictionary::class to DICTIONARY,
