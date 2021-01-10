@@ -11,16 +11,22 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        include:
+          - os: ubuntu-latest
+            java-version: 11
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
       - name: Checkout submodules
         uses: snickerbockers/submodules-init@v4
-      - name: Set up JDK 11
+      - name: Set up JDK ${{ matrix.java-version }}
         uses: actions/setup-java@v1
         with:
-          java-version: 11
+          java-version: ${{ matrix.java-version }}
       - uses: eskatos/gradle-command-action@v1
         with:
           wrapper-directory: kt/

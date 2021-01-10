@@ -60,16 +60,22 @@ jobs:
           path: bin/godot.osx.tools.64
   test:
     needs: build
-    runs-on: macos-latest
+    strategy:
+      matrix:
+        os: [macos-latest]
+        include:
+          - os: macos-latest
+            java-version: 11
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
         with:
           submodules: recursive
-      - name: Set up JDK 11
+      - name: Set up JDK ${{ matrix.java-version }}
         uses: actions/setup-java@v1
         with:
-          java-version: 11
+          java-version: ${{ matrix.java-version }}
       - name: Build tests project
         uses: eskatos/gradle-command-action@v1
         with:
