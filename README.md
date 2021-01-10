@@ -71,6 +71,7 @@ starting godot:
 | --jvm-gc-thread-period-millis       | Override ref counted godot object jvm garbage collection thread period interval.                                           | Use --jvm-gc-thread-period-millis=millis                                                     |
 | --jvm-to-engine-shared-buffer-size  | Override default shared buffer (between engine and JVM) size. This should be used only for debug purpose.                  | Use --jvm-to-engine-shared-buffer-size                                                       |
 | --jvm-disable-closing-leaks-warning | Disable JVM instances leak warning on engine closing. Here for debug.                                                      | Use --jvm-disable-closing-leaks-warning                                                      |
+| --jvm-additional-arguments          | Add all additional jvm command line arguments desired. Unsafe, will not check if arguments are corrects.                   | Use --jvm-additional-arguments=arg0;arg1;...;argN                                            |
 
 
 ## Debug entry generation (KotlinCompilerPlugin in general)

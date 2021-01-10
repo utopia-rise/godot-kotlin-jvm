@@ -133,6 +133,11 @@ void GDKotlin::init() {
         print_verbose(vformat("Started JMX on port: %s", jvm_jmx_port));
     }
 
+    const Vector<String>& additional_arguments{jvm_config.additional_arguments};
+    for (int i = 0; i < additional_arguments.size(); ++i) {
+        args.option(additional_arguments[i].utf8());
+    }
+
     jni::Jvm::init(args);
     print_line("Starting JVM ...");
     auto project_settings = ProjectSettings::get_singleton();

@@ -13,7 +13,8 @@ JvmConfig::JvmConfig(
         bool p_is_gc_activated,
         long p_gc_thread_period_interval,
         int p_jvm_to_engine_shared_buffer_size,
-        bool p_should_display_leaked_jvm_instances_on_close
+        bool p_should_display_leaked_jvm_instances_on_close,
+        const Vector<String>& p_additional_arguments
 ) :
         jvm_debug_port(p_jvm_debug_port),
         jvm_debug_address(p_jvm_debug_address),
@@ -22,7 +23,8 @@ JvmConfig::JvmConfig(
         is_gc_activated(p_is_gc_activated),
         gc_thread_period_interval(p_gc_thread_period_interval),
         jvm_to_engine_shared_buffer_size(p_jvm_to_engine_shared_buffer_size),
-        should_display_leaked_jvm_instances_on_close(p_should_display_leaked_jvm_instances_on_close) {
+        should_display_leaked_jvm_instances_on_close(p_should_display_leaked_jvm_instances_on_close),
+        additional_arguments(p_additional_arguments) {
 
 }
 
@@ -35,6 +37,7 @@ JvmConfig JvmConfig::from_godot_command_line_args() {
     long gc_thread_period_interval{DEFAULT_JVM_GARBAGE_COLLECTOR_THREAD_PERIOD};
     int jvm_to_engine_shared_buffer_size{DEFAULT_SHARED_BUFFER_SIZE};
     bool should_display_leaked_jvm_instances_on_close{true};
+    Vector<String> additional_jvm_arguments;
 
     const List<String>& cmdline_args{OS::get_singleton()->get_cmdline_args()};
     for (int i = 0; i < cmdline_args.size(); ++i) {
@@ -74,6 +77,11 @@ JvmConfig JvmConfig::from_godot_command_line_args() {
                 WARN_PRINT(vformat("Warning ! Buffer capacity was changed to %s, this is not a recommended practice",
                                    result))
             }
+        } else if (cmd_arg.find("--jvm-additional-arguments") >= 0) {
+            String result;
+            if (split_jvm_debug_argument(cmd_arg, result) == OK) {
+                additional_jvm_arguments = result.split(";");
+            }
         } else if (cmd_arg == "--jvm-force-gc") {
             is_gc_force_mode = true;
             //TODO: Link to documentation
@@ -98,7 +106,7 @@ JvmConfig JvmConfig::from_godot_command_line_args() {
 
     return JvmConfig(jvm_debug_port, jvm_debug_address, jvm_jmx_port, is_gc_force_mode, is_gc_activated,
                      gc_thread_period_interval, jvm_to_engine_shared_buffer_size,
-                     should_display_leaked_jvm_instances_on_close);
+                     should_display_leaked_jvm_instances_on_close, additional_jvm_arguments);
 }
 
 Error JvmConfig::split_jvm_debug_argument(const String& cmd_arg, String& result) {

@@ -63,6 +63,13 @@ struct JvmConfig {
      */
     bool should_display_leaked_jvm_instances_on_close;
 
+    /**
+     * Add all additional jvm command line arguments desired. Unsafe, will not check if arguments are corrects.
+     *
+     * Use --jvm-additional-arguments=arg0;arg1;...;argN
+     */
+    Vector<String> additional_arguments;
+
     static JvmConfig from_godot_command_line_args();
 
     ~JvmConfig() = default;
@@ -77,7 +84,8 @@ private:
             bool p_is_gc_activated,
             long p_gc_thread_period_interval,
             int p_jvm_to_engine_shared_buffer_size,
-            bool p_should_display_leaked_jvm_instances_on_close
+            bool p_should_display_leaked_jvm_instances_on_close,
+            const Vector<String>& p_additional_arguments
     );
 
     static Error split_jvm_debug_argument(const String& cmd_arg, String& result);
