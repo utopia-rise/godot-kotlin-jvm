@@ -10,7 +10,7 @@ on:
       - '.github/workflows/check-pr-engine-editor-release.yaml'
 
 jobs:
-  build:
+  build-editor-release:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]

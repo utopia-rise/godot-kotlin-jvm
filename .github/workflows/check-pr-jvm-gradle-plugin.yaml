@@ -10,7 +10,7 @@ on:
       - '.github/workflows/check-pr-jvm-gradle-plugin.yaml'
 
 jobs:
-  build:
+  build-gradle-plugin:
     strategy:
       matrix:
         os: [ubuntu-latest]
