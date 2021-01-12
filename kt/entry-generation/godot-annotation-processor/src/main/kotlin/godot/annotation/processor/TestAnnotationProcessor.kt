@@ -166,7 +166,7 @@ class TestAnnotationProcessor : AbstractProcessor() {
         return metadata.toKmClass()
     }
 
-    private fun TypeElement.getSupertypes(supertypes: MutableList<TypeElement> = mutableListOf()): List<TypeElement> {
+    private tailrec fun TypeElement.getSupertypes(supertypes: MutableList<TypeElement> = mutableListOf()): List<TypeElement> {
         return if (superclass is NoType) {
             supertypes
         } else {
