@@ -10,7 +10,7 @@ on:
       - '.github/workflows/check-pr-engine-export-template-debug.yaml'
 
 jobs:
-  build:
+  build-export-debug:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]

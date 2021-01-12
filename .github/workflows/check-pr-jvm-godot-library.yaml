@@ -9,7 +9,7 @@ on:
       - '.github/workflows/check-pr-jvm-godot-library.yaml'
 
 jobs:
-  build:
+  build-godot-library:
     strategy:
       matrix:
         os: [ubuntu-latest]
