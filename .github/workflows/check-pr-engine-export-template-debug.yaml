@@ -1,0 +1,52 @@
+name: Check PR - Engine Export Template Debug
+on:
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'config.py'
+      - 'register_types.cpp'
+      - 'register_types.h'
+      - 'SCsub'
+      - '.github/workflows/check-pr-engine-export-template-debug.yaml'
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            platform: x11
+          - os: macos-latest
+            platform: osx
+          - os: windows-latest
+            platform: windows
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Configure dependencies
+        if: matrix.platform == 'x11'
+        run: |
+          sudo apt-get install build-essential pkg-config libx11-dev libxcursor-dev \
+            libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm
+      - name: Clone Godot Engine
+        uses: actions/checkout@v2
+        with:
+          repository: godotengine/godot
+          ref: 3.2.3-stable
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v2
+        with:
+          path: modules/kotlin_jvm
+          submodules: recursive
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
+      - name: Configuring Python packages
+        run: |
+          python -c "import sys; print(sys.version)"
+          python -m pip install scons
+      - name: Build debug export template
+        run: |
+          scons platform=${{ matrix.platform }} tools=no target=release_debug bits=64

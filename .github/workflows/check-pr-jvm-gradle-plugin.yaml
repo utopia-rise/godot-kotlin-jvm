@@ -1,0 +1,34 @@
+name: Check PR - JVM Godot Gradle Plugin
+on:
+  pull_request:
+    paths:
+      - 'kt/buildSrc/**'
+      - 'kt/gradle/**'
+      - 'kt/entry-generation/**'
+      - 'kt/utils/godot-build-props/**'
+      - 'kt/plugins/godot-gradle-plugin/**'
+      - '.github/workflows/check-pr-jvm-gradle-plugin.yaml'
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        include:
+          - os: ubuntu-latest
+            java-version: 11
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v2
+      - name: Checkout submodules
+        uses: snickerbockers/submodules-init@v4
+      - name: Set up JDK ${{ matrix.java-version }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java-version }}
+      - uses: eskatos/gradle-command-action@v1
+        with:
+          wrapper-directory: kt/
+          build-root-directory: kt/
+          arguments: godot-gradle-plugin:build
