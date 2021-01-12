@@ -58,8 +58,8 @@ jobs:
         with:
           name: osx-editor-debug-app
           path: bin/godot.osx.tools.64
-  test:
-    needs: build
+  test-editor-debug:
+    needs: build-editor-debug
     strategy:
       matrix:
         os: [macos-latest]
