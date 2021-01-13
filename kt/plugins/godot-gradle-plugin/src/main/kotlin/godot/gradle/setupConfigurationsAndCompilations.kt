@@ -94,8 +94,9 @@ fun Project.setupConfigurationsAndCompilations(jvm: KotlinJvmProjectExtension) {
          * does not get deleted, leading to a compiler error.
          * This task deletes and regenerates the MainEntry file for each build without the need of a recompilation.
          */
-        val deleteOldEntryFiles by creating(Delete::class) {
+        val cleanupEntryFiles by creating(Delete::class) {
             group = "godot-jvm"
+            description = "Cleanup of old entry files. No need to run manually"
             doLast {
                 EntryGenerator.deleteOldEntryFilesAndReGenerateMainEntryFile(
                     mainCompilation
@@ -112,7 +113,7 @@ fun Project.setupConfigurationsAndCompilations(jvm: KotlinJvmProjectExtension) {
         }
 
         val build by getting {
-            dependsOn(deleteOldEntryFiles, bootstrapJar, shadowJar)
+            dependsOn(cleanupEntryFiles, bootstrapJar, shadowJar)
         }
 
         //let the main compilation compile task be finalized by the game compilation compile task to catch possible errors
