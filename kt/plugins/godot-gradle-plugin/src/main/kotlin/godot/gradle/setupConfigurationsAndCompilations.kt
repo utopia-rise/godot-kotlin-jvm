@@ -88,10 +88,16 @@ fun Project.setupConfigurationsAndCompilations(jvm: KotlinJvmProjectExtension) {
             from(gameCompilation.compileDependencyFiles + gameCompilation.output.classesDirs)
         }
 
+        /**
+         * This task is mainly for the case if a source file is deleted and no other change has happened.
+         * Then the main configuration does not get recompiled, thus the deletion of the obsolete entry file for that class
+         * does not get deleted, leading to a compiler error.
+         * This task deletes and regenerates the MainEntry file for each build without the need of a recompilation.
+         */
         val deleteOldEntryFiles by creating(Delete::class) {
             group = "godot-jvm"
             doLast {
-                EntryGenerator.jvmDeleteOldEntryFilesAndReGenerateMainEntryFile(
+                EntryGenerator.deleteOldEntryFilesAndReGenerateMainEntryFile(
                     mainCompilation
                         .allKotlinSourceSets
                         .flatMap { kotlinSourceSet ->
