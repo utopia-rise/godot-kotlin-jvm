@@ -5,7 +5,6 @@ import godot.entrygenerator.EntryGenerator
 import godot.gradle.util.mapOfNonNullValuesOf
 import godot.utils.GodotBuildProperties
 import org.gradle.api.Project
-import org.gradle.api.tasks.Delete
 import org.gradle.kotlin.dsl.*
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
@@ -94,7 +93,7 @@ fun Project.setupConfigurationsAndCompilations(jvm: KotlinJvmProjectExtension) {
          * does not get triggered, leading to a compiler error.
          * This task deletes and regenerates the MainEntry file for each build without the need of a recompilation.
          */
-        val cleanupEntryFiles by creating(Delete::class) {
+        val cleanupEntryFiles by creating {
             group = "godot-jvm"
             description = "Cleanup of old entry files. No need to run manually"
             doLast {
