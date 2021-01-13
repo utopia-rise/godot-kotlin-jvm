@@ -9,10 +9,7 @@ import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.*
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
-import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation
-import org.jetbrains.kotlin.gradle.plugin.KotlinCompilerPluginSupportPlugin
-import org.jetbrains.kotlin.gradle.plugin.SubpluginArtifact
-import org.jetbrains.kotlin.gradle.plugin.SubpluginOption
+import org.jetbrains.kotlin.gradle.plugin.*
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinWithJavaCompilation
 import java.io.File
 
@@ -36,6 +33,8 @@ class GodotPlugin : KotlinCompilerPluginSupportPlugin {
     override fun applyToCompilation(kotlinCompilation: KotlinCompilation<*>): Provider<List<SubpluginOption>> {
         val project = kotlinCompilation.target.project
 
+        val srcDirs = kotlinCompilation.allKotlinSourceSets.flatMap { it.kotlin.srcDirs }
+
         return project.provider {
             listOf(
                 SubpluginOption(
@@ -47,6 +46,10 @@ class GodotPlugin : KotlinCompilerPluginSupportPlugin {
                     File(project.rootDir, "/src/main/resources/META-INF/services/").apply {
                         mkdirs()
                     }.absolutePath
+                ),
+                FilesSubpluginOption(
+                    CompilerPluginConst.CommandLineOptionNames.sourcesDirPathOption,
+                    srcDirs
                 ),
                 SubpluginOption(
                     CompilerPluginConst.CommandLineOptionNames.entryDirPathOption,

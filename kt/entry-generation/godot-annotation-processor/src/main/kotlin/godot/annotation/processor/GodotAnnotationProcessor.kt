@@ -10,11 +10,13 @@ import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.entrygenerator.EntryGenerationType
 import godot.entrygenerator.EntryGenerator
+import org.jetbrains.kotlin.cli.common.messages.CompilerMessageSeverity
 import org.jetbrains.kotlin.descriptors.ClassDescriptor
 import org.jetbrains.kotlin.descriptors.FunctionDescriptor
 import org.jetbrains.kotlin.descriptors.PropertyDescriptor
 import org.jetbrains.kotlin.platform.TargetPlatform
 import org.jetbrains.kotlin.resolve.BindingContext
+import java.io.File
 import java.lang.instrument.IllegalClassFormatException
 
 class GodotAnnotationProcessor(
@@ -22,6 +24,7 @@ class GodotAnnotationProcessor(
     private val serviceFileOutputDir: String
 ): AbstractProcessor() {
     lateinit var bindingContext: BindingContext
+    lateinit var userClasses: List<String>
 
     override fun getSupportedAnnotationTypes(): MutableSet<String> {
         return mutableSetOf(
@@ -105,6 +108,16 @@ class GodotAnnotationProcessor(
     }
 
     override fun processingOver() {
+        processingEnv.messager.report(CompilerMessageSeverity.STRONG_WARNING, "asdfasdfafsdafsdasdfdsfafsdafdsafdsaasdffads")
+        File(entryGenerationOutputDir)
+            .walkTopDown()
+            .filter { it.isFile && it.exists() && it.extension == "kt" }
+            .forEach {
+                val fqName = it.absolutePath.removePrefix(entryGenerationOutputDir).removePrefix("/godot/").replace("/", ".").removeSuffix("Entry.kt")
+                if (!userClasses.contains(fqName)) {
+                    it.delete()
+                }
+            }
         EntryGenerator.generateEntryFile(EntryGenerationType.JVM, bindingContext, entryGenerationOutputDir, classes, properties, functions, signals)
         EntryGenerator.generateServiceFile(serviceFileOutputDir)
     }

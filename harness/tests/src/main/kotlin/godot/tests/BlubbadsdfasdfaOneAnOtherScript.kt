@@ -6,7 +6,7 @@ import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 
 @RegisterClass
-class OtherScript : Node() {
+class BlubbadsdfasdfaOneAnOtherScript : Node() {
     @RegisterFunction
     fun hookNoParam() {
         println("Hook was called with no param.")

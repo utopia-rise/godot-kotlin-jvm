@@ -68,45 +68,45 @@ class TestAnnotationProcessor : AbstractProcessor() {
     private val classWithMembers: MutableList<ClassWithMembers> = mutableListOf()
 
     override fun process(annotations: MutableSet<out TypeElement>, roundEnvironment: RoundEnvironment): Boolean {
-        val classes = roundEnvironment
-            .getElementsAnnotatedWith(RegisterClass::class.java)
-            .map { element ->
-                require(element.kind == ElementKind.CLASS) { TODO() }
-                require(element is TypeElement) { TODO() }
-                val registerClassAnnotation = element.getAnnotation(RegisterClass::class.java)
-                val kmClass = element.toKmClass()
-
-                RegisteredClass(
-                    element.qualifiedName.toString(),
-                    element.getSupertypes().map { it.qualifiedName.toString() },
-                    kmClass.constructors.map { it.valueParameters.map { valueParameter -> valueParameter.name to requireNotNull(valueParameter.type?.classifier?.toString()) } },
-                    registerClassAnnotation.isTool
-                )
-            }
-
-        val properties = roundEnvironment
-            .getElementsAnnotatedWith(RegisterProperty::class.java)
-            .map { element ->
-                val classElement = element.enclosingElement
-                require(classElement.kind == ElementKind.CLASS) { TODO() }
-                require(classElement is TypeElement) { TODO() }
-                val registerPropertyAnnotation = element.getAnnotation(RegisterProperty::class.java)
-                val kmClass = classElement.toKmClass()
-                val kmProperty = kmClass.properties.first { kmProperty ->
-                    kmProperty.getterSignature?.name == element.simpleName.toString().substringBefore("$")
-                }
-
-                object: KmPropertyVisitor() {
-
-                }
-
-                RegisteredProperty(
-                    kmProperty.name,
-                    kmProperty.returnType.classifier.toString().replace("/", "."),
-                    registerPropertyAnnotation.visibleInEditor,
-                    registerPropertyAnnotation.rpcMode
-                )
-            }
+//        val classes = roundEnvironment
+//            .getElementsAnnotatedWith(RegisterClass::class.java)
+//            .map { element ->
+//                require(element.kind == ElementKind.CLASS) { TODO() }
+//                require(element is TypeElement) { TODO() }
+//                val registerClassAnnotation = element.getAnnotation(RegisterClass::class.java)
+//                val kmClass = element.toKmClass()
+//
+//                RegisteredClass(
+//                    element.qualifiedName.toString(),
+//                    element.getSupertypes().map { it.qualifiedName.toString() },
+//                    kmClass.constructors.map { it.valueParameters.map { valueParameter -> valueParameter.name to requireNotNull(valueParameter.type?.classifier?.toString()) } },
+//                    registerClassAnnotation.isTool
+//                )
+//            }
+//
+//        val properties = roundEnvironment
+//            .getElementsAnnotatedWith(RegisterProperty::class.java)
+//            .map { element ->
+//                val classElement = element.enclosingElement
+//                require(classElement.kind == ElementKind.CLASS) { TODO() }
+//                require(classElement is TypeElement) { TODO() }
+//                val registerPropertyAnnotation = element.getAnnotation(RegisterProperty::class.java)
+//                val kmClass = classElement.toKmClass()
+//                val kmProperty = kmClass.properties.first { kmProperty ->
+//                    kmProperty.getterSignature?.name == element.simpleName.toString().substringBefore("$")
+//                }
+//
+//                object: KmPropertyVisitor() {
+//
+//                }
+//
+//                RegisteredProperty(
+//                    kmProperty.name,
+//                    kmProperty.returnType.classifier.toString().replace("/", "."),
+//                    registerPropertyAnnotation.visibleInEditor,
+//                    registerPropertyAnnotation.rpcMode
+//                )
+//            }
 
 //        roundEnvironment.getElementsAnnotatedWith(RegisterClass::class.java).forEach { typeElement ->
 //            if (typeElement.kind == ElementKind.CLASS) {
