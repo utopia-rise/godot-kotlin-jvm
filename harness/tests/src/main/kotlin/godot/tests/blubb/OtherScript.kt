@@ -1,4 +1,4 @@
-package godot.tests
+package godot.tests.blubb
 
 import godot.Node
 import godot.Spatial
@@ -6,7 +6,7 @@ import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 
 @RegisterClass
-class BlubbadsdfasdfaOneAnOtherScript : Node() {
+class OtherScript : Node() {
     @RegisterFunction
     fun hookNoParam() {
         println("Hook was called with no param.")

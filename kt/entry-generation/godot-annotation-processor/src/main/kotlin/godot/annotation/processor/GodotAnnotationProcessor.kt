@@ -5,7 +5,6 @@ import de.jensklingenberg.mpapt.model.Element
 import de.jensklingenberg.mpapt.model.RoundEnvironment
 import de.jensklingenberg.mpapt.utils.KotlinPlatformValues
 import godot.annotation.*
-import godot.annotation.processor.extension.getAnnotationValue
 import godot.entrygenerator.EntryGenerationType
 import godot.entrygenerator.EntryGenerator
 import godot.entrygenerator.extension.assignmentPsi
@@ -189,15 +188,6 @@ class GodotAnnotationProcessor(
 
     private fun deleteObsoleteClassSpecificEntryFiles() {
         val userClassesFqNames = userClasses.map { userClass -> userClass.fqName?.asString() }
-
-        File("${entryGenerationOutputDir}/debug.txt").let {
-            it.parentFile.mkdirs()
-            if (it.exists()) {
-                it.appendText("run")
-            } else {
-                it.writeText("run")
-            }
-        }
 
         File(entryGenerationOutputDir)
             .walkTopDown()

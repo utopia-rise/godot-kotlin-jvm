@@ -1,14 +1,13 @@
 package godot.gradle
 
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import godot.entrygenerator.EntryGenerator
 import godot.gradle.util.mapOfNonNullValuesOf
 import godot.utils.GodotBuildProperties
 import org.gradle.api.Project
 import org.gradle.api.tasks.Delete
 import org.gradle.kotlin.dsl.*
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
-import org.jetbrains.kotlin.gradle.internal.Kapt3GradleSubplugin.Companion.isIncrementalKapt
-import java.io.File
 
 /**
  * Set's up all configurations and compilations needed for kotlin_jvm to work and defines proper task dependencies between them.
@@ -89,25 +88,25 @@ fun Project.setupConfigurationsAndCompilations(jvm: KotlinJvmProjectExtension) {
             from(gameCompilation.compileDependencyFiles + gameCompilation.output.classesDirs)
         }
 
-//        val deleteOldEntryFiles by creating(Delete::class) {
-//            doLast {
-//                val entryGenerationOutputDir = buildDir.resolve("godot-entry").absolutePath
-//                File(entryGenerationOutputDir)
-//                    .walkTopDown()
-//                    .filter { it.isFile && it.exists() && it.extension == "kt" }
-//                    .forEach { entryFile ->
-//                        mainCompilation.allKotlinSourceSets.flatMap { it.kotlin.srcDirs }
-//                        val fqName = entryFile.absolutePath.removePrefix(entryGenerationOutputDir).removePrefix("/godot/").replace("/", ".").removeSuffix("Entry.kt")
-//                        if (!userClasses.contains(fqName)) {
-//                            entryFile.delete()
-//                        }
-//                    }
-//            }
-//            delete = ""
-//        }
+        val deleteOldEntryFiles by creating(Delete::class) {
+            group = "godot-jvm"
+            doLast {
+                EntryGenerator.jvmDeleteOldEntryFilesAndReGenerateMainEntryFile(
+                    mainCompilation
+                        .allKotlinSourceSets
+                        .flatMap { kotlinSourceSet ->
+                            kotlinSourceSet
+                                .kotlin
+                                .srcDirs
+                                .map { srcDir -> srcDir.absolutePath }
+                        },
+                    project.buildDir.resolve("godot-entry").absolutePath
+                )
+            }
+        }
 
         val build by getting {
-            dependsOn(bootstrapJar, shadowJar)
+            dependsOn(deleteOldEntryFiles, bootstrapJar, shadowJar)
         }
 
         //let the main compilation compile task be finalized by the game compilation compile task to catch possible errors
