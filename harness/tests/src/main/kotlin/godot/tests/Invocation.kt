@@ -9,6 +9,7 @@ import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.core.*
 import godot.signals.signal
+import godot.tests.subpackage.OtherScript
 import godot.util.RealT
 import org.joda.time.DateTime
 

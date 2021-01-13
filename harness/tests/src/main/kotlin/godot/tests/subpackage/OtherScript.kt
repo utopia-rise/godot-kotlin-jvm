@@ -1,4 +1,4 @@
-package godot.tests
+package godot.tests.subpackage
 
 import godot.Node
 import godot.Spatial
@@ -6,7 +6,7 @@ import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 
 @RegisterClass
-class OneAnOtherScript : Node() {
+class OtherScript : Node() {
     @RegisterFunction
     fun hookNoParam() {
         println("Hook was called with no param.")
