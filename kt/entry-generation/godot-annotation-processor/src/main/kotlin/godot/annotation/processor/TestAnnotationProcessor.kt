@@ -10,6 +10,7 @@ import kotlinx.metadata.jvm.KotlinClassMetadata
 import kotlinx.metadata.jvm.getterSignature
 import org.jetbrains.kotlin.metadata.jvm.deserialization.JvmBytecodeBinaryVersion
 import org.jetbrains.kotlin.metadata.jvm.deserialization.JvmMetadataVersion
+import org.jetbrains.kotlin.psi.KtExpression
 import javax.annotation.processing.*
 import javax.lang.model.SourceVersion
 import javax.lang.model.element.ElementKind
@@ -45,7 +46,8 @@ class TestAnnotationProcessor : AbstractProcessor() {
         override val name: String,
         val type: String,
         val visibleInEditor: Boolean,
-        val rpcMode: RPCMode
+        val rpcMode: RPCMode,
+        val assignmentPsi: KtExpression
     ): RegisteredMember()
 
     data class RegisteredFunction(
