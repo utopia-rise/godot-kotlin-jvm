@@ -1,4 +1,4 @@
-name: Check PR - Engine Editor Release
+name: Check PR - Intellij Plugin
 on:
   pull_request:
     paths:
