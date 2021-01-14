@@ -18,19 +18,13 @@
             level="ERROR"
             language="JVM"
             groupPath="Godot-Jvm"
-            implementationClass="godot.intellij.plugin.inspections.registration.inspector.RegisterPropertiesInspection"
+            implementationClass="godot.intellij.plugin.inspections.registration.inspector.property.RegisterPropertiesInspection"
             displayName="@RegisterProperty inspector" groupKey="registrationInspectionsGroupKey" />
-        <localInspection enabledByDefault="true"
-            level="ERROR"
-            language="JVM"
-            groupPath="Godot-Jvm"
-            implementationClass="godot.intellij.plugin.inspections.registration.inspector.RegisterSignalInspection"
+        <localInspection enabledByDefault="true" level="ERROR" language="JVM" groupPath="Godot-Jvm"
+            implementationClass="godot.intellij.plugin.inspections.registration.inspector.signal.RegisterSignalInspection"
             displayName="@RegisterSignal inspector" groupKey="registrationInspectionsGroupKey" />
-        <localInspection enabledByDefault="true"
-            level="ERROR"
-            language="JVM"
-            groupPath="Godot-Jvm"
-            implementationClass="godot.intellij.plugin.inspections.registration.inspector.RegisterFunctionInspection"
+        <localInspection enabledByDefault="true" level="ERROR" language="JVM" groupPath="Godot-Jvm"
+            implementationClass="godot.intellij.plugin.inspections.registration.inspector.function.RegisterFunctionInspection"
             displayName="@RegisterFunction inspector" groupKey="registrationInspectionsGroupKey" />
     </extensions>
 

@@ -30,12 +30,11 @@ class RegisterSignalInitializerQuickFix : LocalQuickFix {
         val importDirective = factory.createImportDirective(ImportPath(FqName("$baseImportPath.signal"), false))
         val imports = property.containingKtFile.importList
 
-
         val fileAlreadyContainsImport = imports
             ?.imports
             ?.firstOrNull {
-                it.importPath?.fqName?.asString() == baseImportPath && it.isAllUnder
-                    || it.importPath?.fqName?.asString() == importDirective.importedFqName?.asString()
+                it.importPath?.fqName?.asString() == baseImportPath && it.isAllUnder ||
+                    it.importPath?.fqName?.asString() == importDirective.importedFqName?.asString()
             } != null
 
         if (!fileAlreadyContainsImport) {

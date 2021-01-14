@@ -20,11 +20,12 @@ class RegisterPropertyMutabilityQuickFix : LocalQuickFix {
             val factory = KtPsiFactory(project)
             descriptor.psiElement.replace(factory.createVarKeyword())
         } else {
+            val propertyName = descriptor.psiElement.nextSibling.text
             Notifications.Bus.notify(
                 NOTIFICATION_GROUP.value
                     .createNotification(
                         "@RegisterProperty Quick Fix",
-                        "Could not change the mutability of property ${descriptor.psiElement.nextSibling.text}. Change it manually",
+                        "Could not change the mutability of property $propertyName. Change it manually",
                         NotificationType.ERROR,
                         null
                     )

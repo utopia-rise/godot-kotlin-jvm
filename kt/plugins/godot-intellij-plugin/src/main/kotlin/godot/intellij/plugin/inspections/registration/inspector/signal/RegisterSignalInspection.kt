@@ -1,4 +1,4 @@
-package godot.intellij.plugin.inspections.registration.inspector
+package godot.intellij.plugin.inspections.registration.inspector.signal
 
 import com.intellij.codeInspection.ProblemHighlightType
 import com.intellij.codeInspection.ProblemsHolder
@@ -10,7 +10,8 @@ import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.js.descriptorUtils.getJetTypeFqName
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.nj2k.postProcessing.type
-import org.jetbrains.kotlin.psi.*
+import org.jetbrains.kotlin.psi.KtProperty
+import org.jetbrains.kotlin.psi.propertyVisitor
 
 class RegisterSignalInspection : AbstractKotlinInspection() {
     private val mutabilityQuickFix by lazy { RegisterSignalMutabilityQuickFix() }
@@ -27,7 +28,12 @@ class RegisterSignalInspection : AbstractKotlinInspection() {
 
     private fun checkMutability(ktProperty: KtProperty, holder: ProblemsHolder) {
         if (ktProperty.isVar) {
-            holder.registerProblem(ktProperty.valOrVarKeyword, "Registered signals should not be mutable", ProblemHighlightType.WARNING, mutabilityQuickFix)
+            holder.registerProblem(
+                ktProperty.valOrVarKeyword,
+                "Registered signals should not be mutable",
+                ProblemHighlightType.WARNING,
+                mutabilityQuickFix
+            )
         }
     }
 
@@ -42,5 +48,11 @@ class RegisterSignalInspection : AbstractKotlinInspection() {
         }
     }
 
-    private fun getInitializerProblemLocation(ktProperty: KtProperty) = ktProperty.initializer?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
+    private fun getInitializerProblemLocation(ktProperty: KtProperty) = ktProperty
+        .initializer
+        ?.psiOrParent
+        ?: ktProperty
+            .nameIdentifier
+        ?: ktProperty
+            .navigationElement
 }

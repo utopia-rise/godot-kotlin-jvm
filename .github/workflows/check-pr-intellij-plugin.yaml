@@ -1,0 +1,30 @@
+name: Check PR - Engine Editor Release
+on:
+  pull_request:
+    paths:
+      - 'kt/plugins/godot-intellij-plugin/**'
+
+jobs:
+  build-intellij-plugin:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        include:
+          - os: ubuntu-latest
+            java-version: 11
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Set up JDK ${{ matrix.java-version }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java-version }}
+      - name: Build intellij plugin
+        uses: eskatos/gradle-command-action@v1
+        with:
+          wrapper-directory: kt/
+          build-root-directory: kt/
+          arguments: :godot-intellij-plugin:build
