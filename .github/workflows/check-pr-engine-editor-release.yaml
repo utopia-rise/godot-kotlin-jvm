@@ -8,12 +8,13 @@ on:
       - 'register_types.h'
       - 'SCsub'
       - '.github/workflows/check-pr-engine-editor-release.yaml'
+      - 'kt/**'
 
 jobs:
   build-editor-release:
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
         include:
           - os: ubuntu-latest
             platform: x11
