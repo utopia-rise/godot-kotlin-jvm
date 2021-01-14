@@ -1,7 +1,7 @@
-import godot.plugins.intellij.BuildConfig
-import godot.plugins.intellij.VersionRange
 import org.jetbrains.changelog.closure
 import org.jetbrains.changelog.markdownToHTML
+import plugins.intellij.BuildConfig
+import plugins.intellij.VersionRange
 
 plugins {
     // Java support
