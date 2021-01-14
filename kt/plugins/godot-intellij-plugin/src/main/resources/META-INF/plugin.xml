@@ -12,7 +12,7 @@
             level="ERROR"
             language="JVM"
             groupPath="Godot-Jvm"
-            implementationClass="godot.intellij.plugin.inspections.registration.inspector.RegisterClassInspection"
+            implementationClass="godot.intellij.plugin.inspections.registration.inspector.clazz.RegisterClassInspection"
             displayName="@RegisterClass inspector" groupKey="registrationInspectionsGroupKey" />
         <localInspection enabledByDefault="true"
             level="ERROR"
