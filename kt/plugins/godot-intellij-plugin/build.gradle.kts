@@ -1,3 +1,5 @@
+import godot.plugins.intellij.BuildConfig
+import godot.plugins.intellij.VersionRange
 import org.jetbrains.changelog.closure
 import org.jetbrains.changelog.markdownToHTML
 
@@ -16,12 +18,12 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint") version "9.4.1"
 }
 
-val buildMatrix = mapOf(
-    "IJ203" to godot.plugins.intellij.BuildConfig(
+val buildMatrix: Map<String, BuildConfig> = mapOf(
+    "IJ203" to BuildConfig(
         "203.5981.155",
         "IJ2020.3",
         "IJ183",
-        godot.plugins.intellij.VersionRange("203.1", "203.*"),
+        VersionRange("203.1", "203.*"),
         listOf("2020.1.4", "2020.2.3", "2020.3"),
         listOf("java", "org.jetbrains.kotlin:1.4.0-release-IJ2020.2-1")
     )
