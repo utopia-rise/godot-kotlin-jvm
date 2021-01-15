@@ -1,12 +1,5 @@
 name: Check PR - JVM Godot Library
-on:
-  pull_request:
-    paths:
-      - 'kt/buildSrc/**'
-      - 'kt/gradle/**'
-      - 'kt/godot-library/**'
-      - 'kt/godot-runtime/**'
-      - '.github/workflows/check-pr-jvm-godot-library.yaml'
+on: [pull_request]
 
 jobs:
   build-godot-library:

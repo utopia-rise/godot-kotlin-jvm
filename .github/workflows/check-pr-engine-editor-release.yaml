@@ -1,14 +1,5 @@
 name: Check PR - Engine Editor Release
-on:
-  pull_request:
-    paths:
-      - 'src/**'
-      - 'config.py'
-      - 'register_types.cpp'
-      - 'register_types.h'
-      - 'SCsub'
-      - '.github/workflows/check-pr-engine-editor-release.yaml'
-      - 'kt/**'
+on: [pull_request]
 
 jobs:
   build-editor-release:

@@ -1,15 +1,5 @@
 name: Check PR - Engine Editor Debug And Tests
-on:
-  pull_request:
-    paths:
-      - 'src/**'
-      - 'config.py'
-      - 'register_types.cpp'
-      - 'register_types.h'
-      - 'SCsub'
-      - 'kt/**'
-      - 'harness/tests/**'
-      - '.github/workflows/check-pr-engine-editor-debug-and-tests.yaml'
+on: [pull_request]
 
 jobs:
   build-editor-debug:
