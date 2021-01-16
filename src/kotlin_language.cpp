@@ -377,9 +377,9 @@ void KotlinLanguage::frame() {
 }
 
 bool KotlinLanguage::handles_global_class_type(const String& p_type) const {
-    return ScriptLanguage::handles_global_class_type(p_type);
+    return p_type == "KotlinScript";
 }
 
 String KotlinLanguage::get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path) const {
-    return ScriptLanguage::get_global_class_name(p_path, r_base_type, r_icon_path);
+    return GDKotlin::get_instance().find_class(p_path)->name;
 }
