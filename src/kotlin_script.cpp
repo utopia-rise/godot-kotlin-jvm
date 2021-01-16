@@ -12,9 +12,8 @@ Ref<Script> KotlinScript::get_base_script() const {
 }
 
 StringName KotlinScript::get_instance_base_type() const {
-    KtClass* kotlinClass = get_kotlin_class();
-    if (kotlinClass) {
-        return kotlinClass->super_class;
+    if (KtClass* kotlin_class{get_kotlin_class()}) {
+        return kotlin_class->base_godot_class;
     }
     // not found
     return StringName();
@@ -57,8 +56,8 @@ bool KotlinScript::has_method(const StringName& p_method) const {
 }
 
 MethodInfo KotlinScript::get_method_info(const StringName& p_method) const {
-    if (KtClass* kotlinClass{get_kotlin_class()}) {
-        if (KtFunction* method{kotlinClass->get_method(p_method)}) {
+    if (KtClass* kotlin_class{get_kotlin_class()}) {
+        if (KtFunction* method{kotlin_class->get_method(p_method)}) {
             return method->get_member_info();
         }
     }
