@@ -9,14 +9,6 @@ dependencies {
     implementation(project(":godot-library"))
     compileOnly(kotlin("compiler-embeddable"))
     implementation("de.jensklingenberg:mpapt-runtime:${DependenciesVersions.mpaptVersion}")
-
-    //TODO: remove once decision about runtime default values is made
-    implementation("org.jetbrains.kotlinx:kotlinx-metadata-jvm:${DependenciesVersions.kotlinMetadataVersion}")
-
-    //TODO: remove once decision about runtime default values is made
-    implementation("com.google.auto.service:auto-service:1.0-rc4")
-    //TODO: remove once decision about runtime default values is made
-    kapt("com.google.auto.service:auto-service:1.0-rc4")
 }
 
 tasks {
