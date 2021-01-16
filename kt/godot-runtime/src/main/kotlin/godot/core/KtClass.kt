@@ -2,6 +2,7 @@ package godot.core
 
 import godot.util.VoidPtr
 
+@Suppress("unused")
 class KtClass<T : KtObject>(
         val name: String,
         val superClass: String,
