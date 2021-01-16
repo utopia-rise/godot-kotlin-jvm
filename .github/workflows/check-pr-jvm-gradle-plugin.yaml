@@ -1,13 +1,5 @@
 name: Check PR - JVM Godot Gradle Plugin
-on:
-  pull_request:
-    paths:
-      - 'kt/buildSrc/**'
-      - 'kt/gradle/**'
-      - 'kt/entry-generation/**'
-      - 'kt/utils/godot-build-props/**'
-      - 'kt/plugins/godot-gradle-plugin/**'
-      - '.github/workflows/check-pr-jvm-gradle-plugin.yaml'
+on: [pull_request]
 
 jobs:
   build-gradle-plugin:
