@@ -1,6 +1,7 @@
 package godot.gradle
 
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import godot.entrygenerator.EntryGenerator
 import godot.gradle.util.mapOfNonNullValuesOf
 import godot.utils.GodotBuildProperties
 import org.gradle.api.Project
@@ -86,8 +87,32 @@ fun Project.setupConfigurationsAndCompilations(jvm: KotlinJvmProjectExtension) {
             from(gameCompilation.compileDependencyFiles + gameCompilation.output.classesDirs)
         }
 
+        /**
+         * This task is mainly for the case if a source file is deleted and no other change has happened.
+         * Then the main configuration does not get recompiled, thus the deletion of the obsolete entry file for that class
+         * does not get triggered, leading to a compiler error.
+         * This task deletes and regenerates the MainEntry file for each build without the need of a recompilation.
+         */
+        val cleanupEntryFiles by creating {
+            group = "godot-jvm"
+            description = "Cleanup of old entry files. No need to run manually"
+            doLast {
+                EntryGenerator.deleteOldEntryFilesAndReGenerateMainEntryFile(
+                    mainCompilation
+                        .allKotlinSourceSets
+                        .flatMap { kotlinSourceSet ->
+                            kotlinSourceSet
+                                .kotlin
+                                .srcDirs
+                                .map { srcDir -> srcDir.absolutePath }
+                        },
+                    project.buildDir.resolve("godot-entry").absolutePath
+                )
+            }
+        }
+
         val build by getting {
-            dependsOn(bootstrapJar, shadowJar)
+            dependsOn(cleanupEntryFiles, bootstrapJar, shadowJar)
         }
 
         //let the main compilation compile task be finalized by the game compilation compile task to catch possible errors

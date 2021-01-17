@@ -11,6 +11,7 @@ import org.jetbrains.kotlin.config.CompilerConfiguration
 import org.jetbrains.kotlin.diagnostics.DiagnosticSink
 import org.jetbrains.kotlin.extensions.StorageComponentContainerContributor
 import org.jetbrains.kotlin.resolve.BindingContext
+import java.io.File
 
 class CommonComponentRegistrar : ComponentRegistrar {
     override fun registerProjectComponents(
@@ -22,12 +23,14 @@ class CommonComponentRegistrar : ComponentRegistrar {
         }
         if (enabled) {
             val processor = GodotAnnotationProcessor(
+                project,
                 checkNotNull(configuration.get(CompilerPluginConst.CommandlineArguments.ENTRY_DIR_PATH)) { "No path for generated entry file specified" },
-                checkNotNull(configuration.get(CompilerPluginConst.CommandlineArguments.SERVICE_FILE_DIR_PATH)) { "No path for generated entry file specified" }
+                checkNotNull(configuration.get(CompilerPluginConst.CommandlineArguments.SERVICE_FILE_DIR_PATH)) { "No path for generated entry file specified" },
+                checkNotNull(configuration.get(CompilerPluginConst.CommandlineArguments.SOURCES_DIR_PATH)) { "No sources dirs defined" }
             )
             val mpapt = MpAptProject(processor, configuration)
             StorageComponentContainerContributor.registerExtension(project, mpapt)
-            ClassBuilderInterceptorExtension.registerExtension(project, object: ClassBuilderInterceptorExtension {
+            ClassBuilderInterceptorExtension.registerExtension(project, object : ClassBuilderInterceptorExtension {
                 override fun interceptClassBuilderFactory(interceptedFactory: ClassBuilderFactory, bindingContext: BindingContext, diagnostics: DiagnosticSink): ClassBuilderFactory {
                     processor.bindingContext = bindingContext
                     return mpapt.interceptClassBuilderFactory(interceptedFactory, bindingContext, diagnostics)
@@ -55,6 +58,14 @@ class CommonGodotKotlinCompilerPluginCommandLineProcessor : CommandLineProcessor
             allowMultipleOccurrences = false
         )
 
+        val SOURCES_DIR_PATH_OPTION = CliOption(
+            CompilerPluginConst.CommandLineOptionNames.sourcesDirPathOption,
+            "Dir files where the source files reside",
+            CompilerPluginConst.CommandlineArguments.SOURCES_DIR_PATH.toString(),
+            required = true,
+            allowMultipleOccurrences = false
+        )
+
         val ENABLED = CliOption(
             CompilerPluginConst.CommandLineOptionNames.enabledOption,
             "Flag to enable entry generation",
@@ -69,6 +80,7 @@ class CommonGodotKotlinCompilerPluginCommandLineProcessor : CommandLineProcessor
     override val pluginOptions = listOf(
         ENTRY_DIR_PATH_OPTION,
         SERVICE_FILE_DIR_PATH_OPTION,
+        SOURCES_DIR_PATH_OPTION,
         ENABLED
     )
 
@@ -80,6 +92,11 @@ class CommonGodotKotlinCompilerPluginCommandLineProcessor : CommandLineProcessor
             SERVICE_FILE_DIR_PATH_OPTION -> configuration.put(
                 CompilerPluginConst.CommandlineArguments.SERVICE_FILE_DIR_PATH, value
             )
+            SOURCES_DIR_PATH_OPTION -> {
+                configuration.put(
+                    CompilerPluginConst.CommandlineArguments.SOURCES_DIR_PATH, value.split(":").map { File(it) }
+                )
+            }
             ENABLED -> configuration.put(
                 CompilerPluginConst.CommandlineArguments.ENABLED, value.toBoolean()
             )
