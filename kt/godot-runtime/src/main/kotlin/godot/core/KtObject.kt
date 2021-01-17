@@ -21,7 +21,10 @@ abstract class KtObject(val isRef: Boolean) : AutoCloseable {
                 // user types shouldn't override this method
                 rawPtr = __new()
                 godotInstanceId = getInstanceId()
-                GarbageCollector.registerInstance(this)
+
+                if (!isSingleton()) {
+                    GarbageCollector.registerInstance(this)
+                }
 
                 // inheritance in Godot is faked, a script is attached to an Object allow
                 // the script to see all methods of the owning Object.
@@ -40,6 +43,8 @@ abstract class KtObject(val isRef: Boolean) : AutoCloseable {
 
     abstract fun __new(): VoidPtr
     abstract fun getInstanceId(): Long
+
+    open fun isSingleton() = false
 
     open fun _onInit() = Unit
     open fun _onDestroy() = Unit
@@ -60,7 +65,9 @@ abstract class KtObject(val isRef: Boolean) : AutoCloseable {
             return constructor().also {
                 it.rawPtr = rawPtr
                 it.godotInstanceId = instanceId
-                GarbageCollector.registerInstance(it)
+                if (!it.isSingleton()) {
+                    GarbageCollector.registerInstance(it)
+                }
                 it._onInit()
             }
         }

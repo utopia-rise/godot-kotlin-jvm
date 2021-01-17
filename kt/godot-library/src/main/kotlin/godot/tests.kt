@@ -393,6 +393,7 @@ open class NavigationMesh : Resource() {
 }
 
 object ARVRServer : Object() {
+    override fun isSingleton() = true
     override fun __new(): VoidPtr {
         return TransferContext.getSingleton(ARVR_SERVER)
     }
