@@ -392,6 +392,12 @@ open class NavigationMesh : Resource() {
     }
 }
 
+object ARVRServer : Object() {
+    override fun __new(): VoidPtr {
+        return TransferContext.getSingleton(ARVR_SERVER)
+    }
+}
+
 fun registerVariantMapping() {
     variantMapper[Object::class] = VariantType.OBJECT
     variantMapper[Node::class] = VariantType.OBJECT
@@ -399,6 +405,7 @@ fun registerVariantMapping() {
     variantMapper[Reference::class] = VariantType.OBJECT
     variantMapper[Resource::class] = VariantType.OBJECT
     variantMapper[NavigationMesh::class] = VariantType.OBJECT
+    variantMapper[ARVRServer::class] = VariantType.OBJECT
 }
 
 fun registerEngineTypes() {
@@ -408,6 +415,7 @@ fun registerEngineTypes() {
     TypeManager.registerEngineType("Reference", ::Reference)
     TypeManager.registerEngineType("Resource", ::Resource)
     TypeManager.registerEngineType("NavigationMesh", ::NavigationMesh)
+    TypeManager.registerEngineType("ARVRServer") { ARVRServer }
 }
 
 fun registerEngineTypeMethods() {

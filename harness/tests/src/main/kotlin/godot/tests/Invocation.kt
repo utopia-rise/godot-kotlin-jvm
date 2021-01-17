@@ -1,6 +1,7 @@
 
 package godot.tests
 
+import godot.ARVRServer
 import godot.NavigationMesh
 import godot.Object
 import godot.Spatial
@@ -242,6 +243,7 @@ class Invocation : Spatial() {
 
     override fun _onInit() {
         println("Hello Invocation!")
+        println("ARVR server is: ${ARVRServer.getInstanceId()}")
     }
 
     override fun _onDestroy() {
