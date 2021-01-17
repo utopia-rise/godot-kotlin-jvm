@@ -4,7 +4,7 @@ import godot.util.VoidPtr
 import godot.util.nullptr
 
 @Suppress("LeakingThis")
-abstract class KtObject(val isRef: Boolean, private val isSingleton: Boolean) : AutoCloseable {
+abstract class KtObject(internal val isRef: Boolean, private val isSingleton: Boolean) : AutoCloseable {
     var rawPtr: VoidPtr = nullptr
         set(value) {
             require(field == nullptr) {
