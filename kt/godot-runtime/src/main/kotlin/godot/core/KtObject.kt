@@ -4,7 +4,7 @@ import godot.util.VoidPtr
 import godot.util.nullptr
 
 @Suppress("LeakingThis")
-abstract class KtObject(val isRef: Boolean) : AutoCloseable {
+abstract class KtObject(val isRef: Boolean, private val isSingleton: Boolean) : AutoCloseable {
     var rawPtr: VoidPtr = nullptr
         set(value) {
             require(field == nullptr) {
@@ -22,7 +22,7 @@ abstract class KtObject(val isRef: Boolean) : AutoCloseable {
                 rawPtr = __new()
                 godotInstanceId = getInstanceId()
 
-                if (!isSingleton()) {
+                if (!isSingleton) {
                     GarbageCollector.registerInstance(this)
                 }
 
@@ -44,8 +44,6 @@ abstract class KtObject(val isRef: Boolean) : AutoCloseable {
     abstract fun __new(): VoidPtr
     abstract fun getInstanceId(): Long
 
-    open fun isSingleton() = false
-
     open fun _onInit() = Unit
     open fun _onDestroy() = Unit
 
@@ -65,7 +63,7 @@ abstract class KtObject(val isRef: Boolean) : AutoCloseable {
             return constructor().also {
                 it.rawPtr = rawPtr
                 it.godotInstanceId = instanceId
-                if (!it.isSingleton()) {
+                if (!it.isSingleton) {
                     GarbageCollector.registerInstance(it)
                 }
                 it._onInit()
