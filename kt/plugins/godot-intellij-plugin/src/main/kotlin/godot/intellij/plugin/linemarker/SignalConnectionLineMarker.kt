@@ -35,8 +35,10 @@ class SignalConnectionLineMarker : LineMarkerProvider {
                     if (index != 0) {
                         appendLine()
                     }
-                    appendLine("Target: ${pluginOutgoingKtScriptSignalConnection.targetNodeName}::${pluginOutgoingKtScriptSignalConnection.targetMethodName}")
-                    appendLine("$nbsp$nbsp$nbsp${nbsp}Script: ${pluginOutgoingKtScriptSignalConnection.targetScriptPath}") //normal space gets trimmed
+                    //normal space gets trimmed
+                    appendLine("Scene: ${pluginOutgoingKtScriptSignalConnection.scenePath}")
+                    appendLine("$nbsp${nbsp}Target: ${pluginOutgoingKtScriptSignalConnection.targetNodeName}::${pluginOutgoingKtScriptSignalConnection.targetMethodName}")
+                    appendLine("$nbsp$nbsp$nbsp${nbsp}Script: ${pluginOutgoingKtScriptSignalConnection.targetScriptPath}")
                 }
             }
 
@@ -72,9 +74,11 @@ class SignalConnectionLineMarker : LineMarkerProvider {
                     if (index != 0) {
                         appendLine()
                     }
-                    appendLine("${pluginIncomingKtScriptSignalConnection.signalName}:")
-                    appendLine("$nbsp$nbsp$nbsp${nbsp}Source: ${pluginIncomingKtScriptSignalConnection.fromNodeName}") //normal space gets trimmed
-                    appendLine("$nbsp$nbsp$nbsp${nbsp}Script: ${pluginIncomingKtScriptSignalConnection.fromScriptPath}") //normal space gets trimmed
+                    //normal space gets trimmed
+                    appendLine("Scene: ${pluginIncomingKtScriptSignalConnection.scenePath}")
+                    appendLine("$nbsp$nbsp${pluginIncomingKtScriptSignalConnection.signalName}:")
+                    appendLine("$nbsp$nbsp$nbsp${nbsp}Source: ${pluginIncomingKtScriptSignalConnection.fromNodeName}")
+                    appendLine("$nbsp$nbsp$nbsp${nbsp}Script: ${pluginIncomingKtScriptSignalConnection.fromScriptPath}")
                 }
             }
 

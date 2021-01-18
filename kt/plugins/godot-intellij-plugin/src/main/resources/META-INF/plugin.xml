@@ -8,15 +8,25 @@
     <depends>com.intellij.modules.platform</depends>
 
     <applicationListeners>
-        <listener class="godot.intellij.plugin.listener.GodotProjectManagerListener"
-            topic="com.intellij.openapi.project.ProjectManagerListener" />
+        <listener class="godot.intellij.plugin.listener.SignalConnectionService"
+                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
 
     <extensions defaultExtensionNs="com.intellij">
-        <annotator implementationClass="godot.intellij.plugin.annotator.clazz.RegisterClassAnnotator" language="JVM" />
-        <annotator implementationClass="godot.intellij.plugin.annotator.function.RegisterFunctionAnnotator" language="JVM" />
-        <annotator implementationClass="godot.intellij.plugin.annotator.property.RegisterPropertiesAnnotator" language="JVM" />
-        <annotator implementationClass="godot.intellij.plugin.annotator.signal.RegisterSignalAnnotator" language="JVM" />
+        <localInspection enabledByDefault="true" level="ERROR" language="JVM" groupPath="Godot-Jvm"
+                         implementationClass="godot.intellij.plugin.inspections.registration.inspector.clazz.RegisterClassInspection"
+                         displayName="@RegisterClass inspector" groupKey="registrationInspectionsGroupKey"/>
+        <localInspection enabledByDefault="true" level="ERROR" language="JVM" groupPath="Godot-Jvm"
+                         implementationClass="godot.intellij.plugin.inspections.registration.inspector.property.RegisterPropertiesInspection"
+                         displayName="@RegisterProperty inspector" groupKey="registrationInspectionsGroupKey"/>
+        <localInspection enabledByDefault="true" level="ERROR" language="JVM" groupPath="Godot-Jvm"
+                         implementationClass="godot.intellij.plugin.inspections.registration.inspector.signal.RegisterSignalInspection"
+                         displayName="@RegisterSignal inspector" groupKey="registrationInspectionsGroupKey"/>
+        <localInspection enabledByDefault="true" level="ERROR" language="JVM" groupPath="Godot-Jvm"
+                         implementationClass="godot.intellij.plugin.inspections.registration.inspector.function.RegisterFunctionInspection"
+                         displayName="@RegisterFunction inspector" groupKey="registrationInspectionsGroupKey"/>
+        <codeInsight.lineMarkerProvider language="JVM"
+                                        implementationClass="godot.intellij.plugin.linemarker.SignalConnectionLineMarker"/>
     </extensions>
 
     <resource-bundle>messages.generalLabels</resource-bundle>

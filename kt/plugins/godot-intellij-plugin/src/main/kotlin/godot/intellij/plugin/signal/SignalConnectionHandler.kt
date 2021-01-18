@@ -2,22 +2,8 @@ package godot.intellij.plugin.signal
 
 import com.intellij.openapi.project.Project
 import com.utopiarise.serialization.godot.model.SignalConnection
-
-data class PluginOutgoingKtScriptSignalConnection(
-    val signalName: String,
-    val targetNodeName: String,
-    val targetMethodName: String,
-    val fromKtClassFqName: String,
-    val targetScriptPath: String
-)
-
-data class PluginIncomingKtScriptSignalConnection(
-    val signalName: String,
-    val fromNodeName: String,
-    val fromScriptPath: String?,
-    val toMethodName: String,
-    val toKtClassFqName: String
-)
+import godot.intellij.plugin.data.model.PluginIncomingKtScriptSignalConnection
+import godot.intellij.plugin.data.model.PluginOutgoingKtScriptSignalConnection
 
 object SignalConnectionHandlerProvider {
     private val projectToSignalConnectionHandler: MutableMap<Project, SignalConnectionHandler> = mutableMapOf()
@@ -85,6 +71,7 @@ class SignalConnectionHandler {
                     .removeSuffix(".kt")
 
                 PluginIncomingKtScriptSignalConnection(
+                    path,
                     signalName,
                     fromNode.name,
                     signalConnection.from.script,
@@ -117,6 +104,7 @@ class SignalConnectionHandler {
                     .removeSuffix(".kt")
 
                 PluginOutgoingKtScriptSignalConnection(
+                    path,
                     signalName,
                     signalConnection.to.name,
                     toMethodName,

@@ -1,4 +1,4 @@
-package godot.intellij.plugin.filelistener
+package godot.intellij.plugin.listener
 
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.project.Project
