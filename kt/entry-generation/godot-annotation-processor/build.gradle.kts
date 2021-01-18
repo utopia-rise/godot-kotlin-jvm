@@ -1,6 +1,5 @@
 plugins {
     kotlin("jvm")
-    kotlin("kapt")
     `maven-publish`
 }
 
@@ -9,10 +8,6 @@ dependencies {
     implementation(project(":godot-library"))
     compileOnly(kotlin("compiler-embeddable"))
     implementation("de.jensklingenberg:mpapt-runtime:${DependenciesVersions.mpaptVersion}")
-    implementation("org.jetbrains.kotlinx:kotlinx-metadata-jvm:${DependenciesVersions.kotlinMetadataVersion}")
-
-    implementation("com.google.auto.service:auto-service:1.0-rc4")
-    kapt("com.google.auto.service:auto-service:1.0-rc4")
 }
 
 tasks {
