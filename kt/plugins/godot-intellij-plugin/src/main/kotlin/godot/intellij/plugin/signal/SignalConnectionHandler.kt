@@ -50,7 +50,7 @@ class SignalConnectionHandler {
             .filter { it.signalName == signalName }
     }
 
-    fun updateSignalConnections(path: String, newSignalConnections: List<SignalConnection>) {
+    fun updateSignalConnections(project: Project, path: String, newSignalConnections: List<SignalConnection>) {
         newSignalConnections
             .filter { signalConnection ->
                 signalConnection.to.script?.endsWith("kt") == true
@@ -71,7 +71,7 @@ class SignalConnectionHandler {
                     .removeSuffix(".kt")
 
                 PluginIncomingKtScriptSignalConnection(
-                    path,
+                    path.replace(project.basePath ?: "", "res://"),
                     signalName,
                     fromNode.name,
                     signalConnection.from.script,
@@ -104,7 +104,7 @@ class SignalConnectionHandler {
                     .removeSuffix(".kt")
 
                 PluginOutgoingKtScriptSignalConnection(
-                    path,
+                    path.replace(project.basePath ?: "", "res://"),
                     signalName,
                     signalConnection.to.name,
                     toMethodName,

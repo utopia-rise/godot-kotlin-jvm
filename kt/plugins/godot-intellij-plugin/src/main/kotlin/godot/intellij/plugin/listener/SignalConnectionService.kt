@@ -44,6 +44,7 @@ class SignalConnectionService : ProjectManagerListener {
                             SignalConnectionHandlerProvider
                                 .getInstanceForProject(project)
                                 .updateSignalConnections(
+                                    project,
                                     path,
                                     signals
                                 )
