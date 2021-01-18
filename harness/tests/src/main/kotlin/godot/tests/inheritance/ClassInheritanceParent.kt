@@ -10,6 +10,9 @@ import godot.signals.signal
 @RegisterClass
 open class ClassInheritanceParent : Node() {
 
+    @RegisterProperty
+    var blubb = "asdfasdff"
+
     @RegisterSignal
     val signalTestNotOverridden by signal<String>("blubb")
 

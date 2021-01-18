@@ -72,6 +72,21 @@ fun Project.setupConfigurationsAndCompilations(jvm: KotlinJvmProjectExtension) {
         }
     }
 
+//    extensions.getByType(KaptExtension::class).arguments {
+//        arg(
+//            "godot.annotationProcessor.sourceDirs",
+//            mainCompilation
+//                .allKotlinSourceSets
+//                .flatMap { kotlinSourceSet ->
+//                    kotlinSourceSet
+//                        .kotlin
+//                        .srcDirs
+//                        .map { srcDir -> srcDir.absolutePath }
+//                }
+//                .joinToString(",")
+//        )
+//    }
+
     tasks {
         val bootstrapJar by creating(ShadowJar::class) {
             archiveBaseName.set("godot-bootstrap")

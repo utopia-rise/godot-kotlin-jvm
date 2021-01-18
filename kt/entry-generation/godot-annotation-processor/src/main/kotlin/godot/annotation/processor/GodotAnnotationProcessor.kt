@@ -116,7 +116,14 @@ class GodotAnnotationProcessor(
     }
 
     override fun processingOver() {
+        File(entryGenerationOutputDir).mkdirs()
+        File("$entryGenerationOutputDir/debug.txt").appendText(classes.map { it.name }.joinToString("\n"))
+
         deleteObsoleteClassSpecificEntryFiles()
+        EntryGenerator.psiClassesToProperties = userClasses
+            .map { ktClass ->
+                ktClass to ktClass.getProperties()
+            }
         EntryGenerator.generateEntryFiles(
             EntryGenerationType.JVM,
             bindingContext,
