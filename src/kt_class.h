@@ -12,6 +12,7 @@ class KtClass : public JavaInstanceWrapper<KtClass> {
 
 public:
     StringName name;
+    String registered_class_name;
     StringName super_class;
     StringName base_godot_class;
 

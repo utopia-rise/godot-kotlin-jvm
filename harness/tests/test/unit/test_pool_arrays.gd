@@ -2,7 +2,7 @@ extends "res://addons/gut/test.gd"
 
 
 func test_pool_byte_array_add_delete() -> void:
-	var invocation_script = load("res://src/main/kotlin/godot/tests/Invocation.kt").new()
+	var invocation_script = godot_tests_Invocation.new()
 	assert_eq(invocation_script.pool_byte_array.size(), 0, "PoolByteArray should be empty")
 	invocation_script.add_byte_to_pool_array(2)
 	assert_eq(invocation_script.pool_byte_array.size(), 1, "PoolByteArray have one element")
@@ -13,7 +13,7 @@ func test_pool_byte_array_add_delete() -> void:
 	invocation_script.free()
 
 func test_pool_color_array_add_delete() -> void:
-	var invocation_script = load("res://src/main/kotlin/godot/tests/Invocation.kt").new()
+	var invocation_script = godot_tests_Invocation.new()
 	assert_eq(invocation_script.pool_color_array.size(), 0, "PoolColorArray should be empty")
 	invocation_script.add_color_to_pool_array(Color())
 	assert_eq(invocation_script.pool_color_array.size(), 1, "PoolColorArray have one element")
@@ -27,7 +27,7 @@ func test_pool_color_array_add_delete() -> void:
 	invocation_script.free()
 
 func test_pool_int_array_add_delete() -> void:
-	var invocation_script = load("res://src/main/kotlin/godot/tests/Invocation.kt").new()
+	var invocation_script = godot_tests_Invocation.new()
 	assert_eq(invocation_script.pool_int_array.size(), 0, "PoolIntArray should be empty")
 	invocation_script.add_int_to_pool_array(2)
 	assert_eq(invocation_script.pool_int_array.size(), 1, "PoolIntArray have one element")
@@ -41,7 +41,7 @@ func test_pool_int_array_add_delete() -> void:
 	invocation_script.free()
 
 func test_pool_real_array_add_delete() -> void:
-	var invocation_script = load("res://src/main/kotlin/godot/tests/Invocation.kt").new()
+	var invocation_script = godot_tests_Invocation.new()
 	assert_eq(invocation_script.pool_real_array.size(), 0, "PoolRealArray should be empty")
 	invocation_script.add_real_to_pool_array(2.0)
 	assert_eq(invocation_script.pool_real_array.size(), 1, "PoolRealArray have one element")
@@ -55,7 +55,7 @@ func test_pool_real_array_add_delete() -> void:
 	invocation_script.free()
 
 func test_pool_string_array_add_delete() -> void:
-	var invocation_script = load("res://src/main/kotlin/godot/tests/Invocation.kt").new()
+	var invocation_script = godot_tests_Invocation.new()
 	assert_eq(invocation_script.pool_string_array.size(), 0, "PoolStringArray should be empty")
 	invocation_script.add_string_to_pool_array("2")
 	assert_eq(invocation_script.pool_string_array.size(), 1, "PoolStringArray have one element")
@@ -69,7 +69,7 @@ func test_pool_string_array_add_delete() -> void:
 	invocation_script.free()
 
 func test_pool_vector2_array_add_delete() -> void:
-	var invocation_script = load("res://src/main/kotlin/godot/tests/Invocation.kt").new()
+	var invocation_script = godot_tests_Invocation.new()
 	assert_eq(invocation_script.pool_vector2_array.size(), 0, "PoolVector2Array should be empty")
 	invocation_script.add_vector2_to_pool_array(Vector2(2, 1))
 	assert_eq(invocation_script.pool_vector2_array.size(), 1, "PoolVector2Array have one element")
@@ -83,7 +83,7 @@ func test_pool_vector2_array_add_delete() -> void:
 	invocation_script.free()
 
 func test_pool_vector3_array_add_delete() -> void:
-	var invocation_script = load("res://src/main/kotlin/godot/tests/Invocation.kt").new()
+	var invocation_script = godot_tests_Invocation.new()
 	assert_eq(invocation_script.pool_vector3_array.size(), 0, "PoolVector3Array should be empty")
 	invocation_script.add_vector3_to_pool_array(Vector3(2, 1, 1))
 	assert_eq(invocation_script.pool_vector3_array.size(), 1, "PoolVector3Array have one element")

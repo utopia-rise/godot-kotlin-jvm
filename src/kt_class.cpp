@@ -7,6 +7,8 @@ KtClass::KtClass(jni::JObject p_wrapped, jni::JObject& p_class_loader) :
     JavaInstanceWrapper("godot.core.KtClass", p_wrapped, p_class_loader) {
     jni::Env env { jni::Jvm::current_env() };
     name = get_name(env);
+    //TODO: Add it to JVM KtClass and use it.
+    registered_class_name = String(name).replace(".", "_");
     super_class = get_super_class(env);
     base_godot_class = get_base_godot_class(env);
     fetch_methods(env);

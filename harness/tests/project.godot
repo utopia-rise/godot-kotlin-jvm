@@ -8,9 +8,32 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "",
+"class": "godot_tests_Invocation",
+"language": "Kotlin",
+"path": "res://src/main/kotlin/godot/tests/Invocation.kt"
+}, {
+"base": "",
+"class": "godot_tests_inheritance_ClassInheritanceChild",
+"language": "Kotlin",
+"path": "res://src/main/kotlin/godot/tests/inheritance/ClassInheritanceChild.kt"
+}, {
+"base": "",
+"class": "godot_tests_inheritance_ClassInheritanceParent",
+"language": "Kotlin",
+"path": "res://src/main/kotlin/godot/tests/inheritance/ClassInheritanceParent.kt"
+}, {
+"base": "",
+"class": "godot_tests_subpackage_OtherScript",
+"language": "Kotlin",
+"path": "res://src/main/kotlin/godot/tests/subpackage/OtherScript.kt"
+} ]
 _global_script_class_icons={
-
+"godot_tests_Invocation": "",
+"godot_tests_inheritance_ClassInheritanceChild": "",
+"godot_tests_inheritance_ClassInheritanceParent": "",
+"godot_tests_subpackage_OtherScript": ""
 }
 
 [application]
