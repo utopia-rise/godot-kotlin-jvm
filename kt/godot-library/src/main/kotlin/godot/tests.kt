@@ -6,9 +6,7 @@ import godot.util.VoidPtr
 import godot.util.camelToSnakeCase
 import kotlin.reflect.KCallable
 
-open class Object internal constructor(isRef: Boolean = false, isSingleton: Boolean = false) : KtObject(isRef, isSingleton) {
-
-    constructor() : this(false, false)
+open class Object : KtObject() {
 
     override fun __new(): VoidPtr {
         return TransferContext.invokeConstructor(OBJECT)
@@ -316,9 +314,7 @@ open class Object internal constructor(isRef: Boolean = false, isSingleton: Bool
     }
 }
 
-open class Node internal constructor(isSingleton: Boolean): Object(isSingleton = isSingleton){
-
-    constructor() : this(false)
+open class Node : Object() {
 
     open var name: String
         get() {
@@ -365,27 +361,23 @@ open class Node internal constructor(isSingleton: Boolean): Object(isSingleton =
     }
 }
 
-open class Spatial internal constructor(isSingleton: Boolean) : Node(isSingleton = isSingleton) {
-
-    constructor() : this(false)
+open class Spatial : Node() {
 
     override fun __new(): VoidPtr {
         return TransferContext.invokeConstructor(SPATIAL)
     }
 }
 
-open class Reference internal constructor(isSingleton: Boolean) : Object(true, isSingleton) {
-
-    constructor() : this(false)
+open class Reference : Object() {
 
     override fun __new(): VoidPtr {
         return TransferContext.invokeConstructor(REFERENCE)
     }
+
+    override fun ____DO_NOT_TOUCH_THIS_isRef____() = true
 }
 
-open class Resource internal constructor(isSingleton: Boolean): Reference(isSingleton = isSingleton) {
-
-    constructor() : this(false)
+open class Resource : Reference() {
 
     override fun __new(): VoidPtr {
         return TransferContext.invokeConstructor(RESOURCE)
@@ -397,19 +389,19 @@ open class Resource internal constructor(isSingleton: Boolean): Reference(isSing
     }
 }
 
-open class NavigationMesh internal constructor(isSingleton: Boolean) : Resource(isSingleton = isSingleton) {
-
-    constructor() : this(false)
+open class NavigationMesh : Resource() {
 
     override fun __new(): VoidPtr {
         return TransferContext.invokeConstructor(NAVIGATION_MESH)
     }
 }
 
-object ARVRServer : Object(isSingleton = true) {
+object ARVRServer : Object() {
     override fun __new(): VoidPtr {
         return TransferContext.getSingleton(ARVR_SERVER)
     }
+
+    override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 }
 
 fun registerVariantMapping() {

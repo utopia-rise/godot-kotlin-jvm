@@ -4,7 +4,7 @@ import godot.util.VoidPtr
 import godot.util.nullptr
 
 @Suppress("LeakingThis")
-abstract class KtObject(internal val isRef: Boolean, private val isSingleton: Boolean) : AutoCloseable {
+abstract class KtObject : AutoCloseable {
     var rawPtr: VoidPtr = nullptr
         set(value) {
             require(field == nullptr) {
@@ -22,7 +22,7 @@ abstract class KtObject(internal val isRef: Boolean, private val isSingleton: Bo
                 rawPtr = __new()
                 godotInstanceId = getInstanceId()
 
-                if (!isSingleton) {
+                if (!____DO_NOT_TOUCH_THIS_isSingleton____()) {
                     GarbageCollector.registerInstance(this)
                 }
 
@@ -40,6 +40,12 @@ abstract class KtObject(internal val isRef: Boolean, private val isSingleton: Bo
             shouldInit.set(true)
         }
     }
+
+    @Suppress("FunctionName")
+    open fun ____DO_NOT_TOUCH_THIS_isRef____() = false
+
+    @Suppress("FunctionName")
+    open fun ____DO_NOT_TOUCH_THIS_isSingleton____() = false
 
     abstract fun __new(): VoidPtr
     abstract fun getInstanceId(): Long
@@ -63,7 +69,7 @@ abstract class KtObject(internal val isRef: Boolean, private val isSingleton: Bo
             return constructor().also {
                 it.rawPtr = rawPtr
                 it.godotInstanceId = instanceId
-                if (!it.isSingleton) {
+                if (!it.____DO_NOT_TOUCH_THIS_isSingleton____()) {
                     GarbageCollector.registerInstance(it)
                 }
                 it._onInit()
