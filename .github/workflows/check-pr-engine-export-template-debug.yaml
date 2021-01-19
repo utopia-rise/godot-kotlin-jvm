@@ -18,7 +18,7 @@ jobs:
       - name: Configure dependencies
         if: matrix.platform == 'x11'
         run: |
-          sudo apt-get install build-essential pkg-config libx11-dev libxcursor-dev \
+          sudo apt-get update && sudo apt-get install build-essential pkg-config libx11-dev libxcursor-dev \
             libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm
       - name: Clone Godot Engine
         uses: actions/checkout@v2
