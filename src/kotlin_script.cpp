@@ -12,9 +12,8 @@ Ref<Script> KotlinScript::get_base_script() const {
 }
 
 StringName KotlinScript::get_instance_base_type() const {
-    KtClass* kotlinClass = get_kotlin_class();
-    if (kotlinClass) {
-        return kotlinClass->super_class;
+    if (KtClass* kotlin_class{get_kotlin_class()}) {
+        return kotlin_class->base_godot_class;
     }
     // not found
     return StringName();
@@ -33,7 +32,7 @@ bool KotlinScript::instance_has(const Object* p_this) const {
 }
 
 bool KotlinScript::has_source_code() const {
-    return false;
+    return !source.empty();
 }
 
 String KotlinScript::get_source_code() const {
@@ -57,18 +56,10 @@ bool KotlinScript::has_method(const StringName& p_method) const {
 }
 
 MethodInfo KotlinScript::get_method_info(const StringName& p_method) const {
-    KtClass* kotlinClass = get_kotlin_class();
-    if (!kotlinClass) {
-        return MethodInfo();
-    }
-
-    KtClass* it { kotlinClass };
-    while (it) {
-        KtFunction* method {kotlinClass->get_method(p_method)};
-        if (method) {
+    if (KtClass* kotlin_class{get_kotlin_class()}) {
+        if (KtFunction* method{kotlin_class->get_method(p_method)}) {
             return method->get_member_info();
         }
-        it = GDKotlin::get_instance().find_class(kotlinClass->super_class);
     }
     return MethodInfo();
 }
@@ -128,15 +119,15 @@ KtClass* KotlinScript::get_kotlin_class() const {
 Variant KotlinScript::_new(const Variant **p_args, int p_argcount, Variant::CallError &r_error) {
     r_error.error = Variant::CallError::CALL_OK;
 
-    Object *owner = ClassDB::instance(get_kotlin_class()->super_class);
+    Object* owner{ClassDB::instance(get_kotlin_class()->base_godot_class)};
 
     REF ref;
-    auto* r = Object::cast_to<Reference>(owner);
+    auto* r{Object::cast_to<Reference>(owner)};
     if (r) {
         ref = REF(r);
     }
 
-    ScriptInstance* instance = instance_create(owner);
+    ScriptInstance* instance{instance_create(owner)};
     owner->set_script_instance(instance);
     if (!instance) {
         if (ref.is_null()) {

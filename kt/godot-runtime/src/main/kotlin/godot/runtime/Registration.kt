@@ -31,7 +31,8 @@ data class KtFunctionArgument(
 
 class ClassBuilderDsl<T : KtObject>(
     @PublishedApi internal val name: String,
-    private val superClass: String
+    private val superClass: String,
+    private val baseGodotClass: String
 ) {
     private val constructors = mutableMapOf<Int, KtConstructor<T>>()
 
@@ -642,7 +643,7 @@ class ClassBuilderDsl<T : KtObject>(
 
     internal fun build(): KtClass<T> {
         check(constructors.isNotEmpty()) { "Please provide at least one constructor." }
-        return KtClass(name, superClass, constructors, properties, functions, signals)
+        return KtClass(name, superClass, constructors, properties, functions, signals, baseGodotClass)
     }
 
     @PublishedApi
@@ -665,8 +666,8 @@ class ClassBuilderDsl<T : KtObject>(
 class ClassRegistry {
     val classes = mutableListOf<KtClass<*>>()
 
-    fun <T : KtObject> registerClass(name: String, superClass: String, isTool: Boolean = false, cb: ClassBuilderDsl<T>.() -> Unit) {
-        val builder = ClassBuilderDsl<T>(name, superClass)
+    fun <T : KtObject> registerClass(name: String, superClass: String, isTool: Boolean = false, baseGodotClass: String, cb: ClassBuilderDsl<T>.() -> Unit) {
+        val builder = ClassBuilderDsl<T>(name, superClass, baseGodotClass)
         builder.cb()
         TypeManager.registerUserType(name)
         registerClass(builder.build())
