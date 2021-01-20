@@ -5,6 +5,7 @@ import godot.util.VoidPtr
 @Suppress("unused")
 class KtClass<T : KtObject>(
         val name: String,
+        val registeredName: String,
         val superClass: String,
         private val constructors: Map<Int, KtConstructor<T>>,
         private val _properties: Map<String, KtProperty<T, *>>,

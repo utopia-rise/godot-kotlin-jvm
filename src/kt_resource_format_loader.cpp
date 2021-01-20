@@ -34,7 +34,9 @@ RES KtResourceFormatLoader::load(const String& p_path, const String& p_original_
 
     String source_code;
     Error load_err = kt_read_all_file_utf8(p_original_path, source_code);
+#if defined(DEBUG_ENABLED) || defined(TOOLS_ENABLED)
     ref->set_source_code(source_code);
+#endif
 
     if (r_error) {
         *r_error = load_err;
