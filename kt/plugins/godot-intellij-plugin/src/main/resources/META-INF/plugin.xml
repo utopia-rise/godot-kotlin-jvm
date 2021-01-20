@@ -1,0 +1,35 @@
+<idea-plugin>
+    <id>com.utopia-rise.godotjvmideaplugin</id>
+    <name>Godot-Jvm</name>
+    <vendor>utopia-rise</vendor>
+
+    <!-- Product and plugin compatibility requirements -->
+    <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <localInspection enabledByDefault="true"
+            level="ERROR"
+            language="JVM"
+            groupPath="Godot-Jvm"
+            implementationClass="godot.intellij.plugin.inspections.registration.inspector.clazz.RegisterClassInspection"
+            displayName="@RegisterClass inspector" groupKey="registrationInspectionsGroupKey" />
+        <localInspection enabledByDefault="true"
+            level="ERROR"
+            language="JVM"
+            groupPath="Godot-Jvm"
+            implementationClass="godot.intellij.plugin.inspections.registration.inspector.property.RegisterPropertiesInspection"
+            displayName="@RegisterProperty inspector" groupKey="registrationInspectionsGroupKey" />
+        <localInspection enabledByDefault="true" level="ERROR" language="JVM" groupPath="Godot-Jvm"
+            implementationClass="godot.intellij.plugin.inspections.registration.inspector.signal.RegisterSignalInspection"
+            displayName="@RegisterSignal inspector" groupKey="registrationInspectionsGroupKey" />
+        <localInspection enabledByDefault="true" level="ERROR" language="JVM" groupPath="Godot-Jvm"
+            implementationClass="godot.intellij.plugin.inspections.registration.inspector.function.RegisterFunctionInspection"
+            displayName="@RegisterFunction inspector" groupKey="registrationInspectionsGroupKey" />
+    </extensions>
+
+    <resource-bundle>messages.generalLabels</resource-bundle>
+
+    <depends>com.intellij.modules.java</depends>
+    <depends>org.jetbrains.kotlin</depends>
+</idea-plugin>

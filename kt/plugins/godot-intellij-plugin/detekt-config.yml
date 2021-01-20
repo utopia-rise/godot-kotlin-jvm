@@ -1,0 +1,24 @@
+# Default detekt configuration:
+# https://github.com/detekt/detekt/blob/master/detekt-core/src/main/resources/default-detekt-config.yml
+
+formatting:
+  Indentation:
+    continuationIndentSize: 8
+  ParameterListWrapping:
+    indentSize: 8
+  MaximumLineLength:
+    maxLineLength: 240
+  CommentSpacing:
+    active: false
+
+style:
+  MaxLineLength:
+    maxLineLength: 240
+  ForbiddenComment:
+    values: [ 'STOPSHIP:' ] # explicit to allow Todo and fixme comments
+
+complexity:
+  ComplexMethod:
+    ignoreSingleWhenExpression: true
+  TooManyFunctions:
+    excludes: [ '**/godot/intellij/plugin/inspections/registration/inspector/property/PropertyHintAnnotationChecker.kt' ]
