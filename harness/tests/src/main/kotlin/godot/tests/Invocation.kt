@@ -1,4 +1,3 @@
-
 package godot.tests
 
 import godot.ARVRServer
@@ -71,8 +70,8 @@ class Invocation : Spatial() {
 
     @RegisterProperty
     var nullableDictionary = dictionaryOf(
-            "notnull" to NavigationMesh(),
-            "null" to null
+        "notnull" to NavigationMesh(),
+        "null" to null
     )
 
     @RegisterProperty
@@ -165,10 +164,10 @@ class Invocation : Spatial() {
     @RegisterProperty
     @MultilineText
     var p15 = """
-        some
-        multiline
-        text
-    """.trimIndent()
+		some
+		multiline
+		text
+	""".trimIndent()
 
     @RegisterProperty
     @PlaceHolderText
@@ -243,7 +242,6 @@ class Invocation : Spatial() {
 
     override fun _onInit() {
         println("Hello Invocation!")
-        println("ARVR server is: ${ARVRServer.getInstanceId()}")
     }
 
     override fun _onDestroy() {
@@ -456,4 +454,10 @@ class Invocation : Spatial() {
 
     @RegisterFunction
     fun getVector3FromPoolArray(index: Int) = poolVector3Array[index]
+
+    // Singleton tests
+
+    @RegisterFunction
+    fun isSentArvrSameInstanceAsJvmSingleton(arvrServer: ARVRServer) =
+        ARVRServer.getInstanceId() == arvrServer.getInstanceId()
 }
