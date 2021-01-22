@@ -8,6 +8,7 @@ const val SPATIAL = 2
 const val REFERENCE = 3
 const val RESOURCE = 4
 const val NAVIGATION_MESH = 5
+const val ARVR_SERVER = 6
 
 
 // Methods

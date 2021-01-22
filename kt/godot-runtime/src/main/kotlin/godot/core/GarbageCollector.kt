@@ -28,7 +28,7 @@ object GarbageCollector {
 
     fun registerInstance(instance: KtObject) {
         val rawPtr = instance.rawPtr
-        if (instance.isRef) {
+        if (instance.____DO_NOT_TOUCH_THIS_isRef____()) {
             synchronized(refWrappedMap) {
                 refWrappedMap[rawPtr] = WeakReference(instance)
                 MemoryBridge.ref(rawPtr)

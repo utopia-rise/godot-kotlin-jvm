@@ -305,7 +305,7 @@ enum class VariantType(
                 buffer.variantType = OBJECT.ordinal
                 any as KtObject
                 buffer.putLong(any.rawPtr)
-                buffer.bool = any.isRef
+                buffer.bool = any.____DO_NOT_TOUCH_THIS_isRef____()
             }
     ),
     DICTIONARY(

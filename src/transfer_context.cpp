@@ -24,6 +24,12 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
             (void*) TransferContext::invoke_constructor
     };
 
+    jni::JNativeMethod get_singleton_method{
+            "getSingleton",
+            "(I)J",
+            (void*) TransferContext::get_singleton
+    };
+
     jni::JNativeMethod set_script_method{
             "setScript",
             "(JLjava/lang/String;Lgodot/core/KtObject;Ljava/lang/ClassLoader;)V",
@@ -39,6 +45,7 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
     Vector<jni::JNativeMethod> methods;
     methods.push_back(icall_method);
     methods.push_back(invoke_ctor_method);
+    methods.push_back(get_singleton_method);
     methods.push_back(set_script_method);
     methods.push_back(free_object_method);
     jni::Env env {jni::Jvm::current_env()};
@@ -149,6 +156,14 @@ jlong TransferContext::invoke_constructor(JNIEnv *p_raw_env, jobject p_instance,
 #endif
 
     return reinterpret_cast<uintptr_t>(ptr);
+}
+
+jlong TransferContext::get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index) {
+    return reinterpret_cast<uintptr_t>(
+            Engine::get_singleton()->get_singleton_object(
+                    GDKotlin::get_instance().engine_type_names[static_cast<int>(p_class_index)]
+            )
+    );
 }
 
 void TransferContext::set_script(JNIEnv *p_raw_env, jobject p_instance, jlong p_raw_ptr, jstring p_class_name,

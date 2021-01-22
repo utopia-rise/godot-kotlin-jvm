@@ -6,9 +6,7 @@ import godot.util.VoidPtr
 import godot.util.camelToSnakeCase
 import kotlin.reflect.KCallable
 
-open class Object(isRef: Boolean = false) : KtObject(isRef) {
-
-    constructor() : this(false)
+open class Object : KtObject() {
 
     override fun __new(): VoidPtr {
         return TransferContext.invokeConstructor(OBJECT)
@@ -317,6 +315,7 @@ open class Object(isRef: Boolean = false) : KtObject(isRef) {
 }
 
 open class Node : Object() {
+
     open var name: String
         get() {
             TransferContext.writeArguments()
@@ -363,19 +362,23 @@ open class Node : Object() {
 }
 
 open class Spatial : Node() {
+
     override fun __new(): VoidPtr {
         return TransferContext.invokeConstructor(SPATIAL)
     }
 }
 
-open class Reference : Object(true) {
+open class Reference : Object() {
 
     override fun __new(): VoidPtr {
         return TransferContext.invokeConstructor(REFERENCE)
     }
+
+    override fun ____DO_NOT_TOUCH_THIS_isRef____() = true
 }
 
 open class Resource : Reference() {
+
     override fun __new(): VoidPtr {
         return TransferContext.invokeConstructor(RESOURCE)
     }
@@ -387,9 +390,18 @@ open class Resource : Reference() {
 }
 
 open class NavigationMesh : Resource() {
+
     override fun __new(): VoidPtr {
         return TransferContext.invokeConstructor(NAVIGATION_MESH)
     }
+}
+
+object ARVRServer : Object() {
+    override fun __new(): VoidPtr {
+        return TransferContext.getSingleton(ARVR_SERVER)
+    }
+
+    override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 }
 
 fun registerVariantMapping() {
@@ -399,6 +411,7 @@ fun registerVariantMapping() {
     variantMapper[Reference::class] = VariantType.OBJECT
     variantMapper[Resource::class] = VariantType.OBJECT
     variantMapper[NavigationMesh::class] = VariantType.OBJECT
+    variantMapper[ARVRServer::class] = VariantType.OBJECT
 }
 
 fun registerEngineTypes() {
@@ -408,6 +421,7 @@ fun registerEngineTypes() {
     TypeManager.registerEngineType("Reference", ::Reference)
     TypeManager.registerEngineType("Resource", ::Resource)
     TypeManager.registerEngineType("NavigationMesh", ::NavigationMesh)
+    TypeManager.registerEngineType("ARVRServer") { ARVRServer }
 }
 
 fun registerEngineTypeMethods() {
