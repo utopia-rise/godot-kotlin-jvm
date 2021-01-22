@@ -1,5 +1,10 @@
 rootProject.name = "godot-kotlin-tests"
 
+includeBuild("../../kt/api-generator") {
+    dependencySubstitution {
+        substitute(module("com.utopia-rise:api-generator")).with(project(":")) // assuming godot-entry-generator is the root project of entry-generator/godot-entry-generator
+    }
+}
 includeBuild("../../kt") {
     dependencySubstitution {
         substitute(module("com.utopia-rise:godot-gradle-plugin")).with(project(":godot-gradle-plugin"))
@@ -25,6 +30,9 @@ pluginManagement {
     resolutionStrategy.eachPlugin {
         if (requested.id.id == "com.utopia-rise.godot-jvm") {
             useModule("com.utopia-rise:godot-gradle-plugin:0.1.0-3.2")
+        }
+        if (requested.id.id == "com.utopia-rise.api-generator") {
+            useModule("com.utopia-rise:api-generator:0.0.1")
         }
     }
 }
