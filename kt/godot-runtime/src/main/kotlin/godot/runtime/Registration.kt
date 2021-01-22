@@ -683,3 +683,7 @@ class ClassRegistry {
         classes.add(cls)
     }
 }
+
+interface ClassRegistrar {
+    fun register(registry: ClassRegistry)
+}

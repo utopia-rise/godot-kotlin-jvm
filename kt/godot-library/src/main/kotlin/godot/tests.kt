@@ -1,11 +1,13 @@
 package godot
 
+import godot.annotation.GodotBaseType
 import godot.core.*
 import godot.signals.*
 import godot.util.VoidPtr
 import godot.util.camelToSnakeCase
 import kotlin.reflect.KCallable
 
+@GodotBaseType
 open class Object : KtObject() {
 
     override fun __new(): VoidPtr {
@@ -14,11 +16,11 @@ open class Object : KtObject() {
 
     fun connect(name: String, target: Object, method: String, binds: VariantArray<Any>, flags: Long): GodotError {
         TransferContext.writeArguments(
-                VariantType.STRING to name,
-                VariantType.OBJECT to target,
-                VariantType.STRING to method,
-                VariantType.ARRAY to binds,
-                VariantType.LONG to flags
+            VariantType.STRING to name,
+            VariantType.OBJECT to target,
+            VariantType.STRING to method,
+            VariantType.ARRAY to binds,
+            VariantType.LONG to flags
         )
         TransferContext.callMethod(rawPtr, OBJECT_CONNECT, VariantType.LONG)
         return GodotError.values()[TransferContext.readReturnValue(VariantType.JVM_INT) as Int]
@@ -26,8 +28,8 @@ open class Object : KtObject() {
 
     fun emitSignal(signal: String, vararg args: Any?) {
         TransferContext.writeArguments(
-                VariantType.STRING to signal,
-                *args.map { VariantType.ANY to it }.toTypedArray()
+            VariantType.STRING to signal,
+            *args.map { VariantType.ANY to it }.toTypedArray()
         )
         TransferContext.callMethod(rawPtr, OBJECT_EMIT_SIGNAL, VariantType.NIL)
     }
@@ -43,10 +45,10 @@ open class Object : KtObject() {
     }
 
     fun <K : () -> Unit> Signal0.connect(
-            target: Object,
-            method: K,
-            binds: VariantArray<Any>? = null,
-            flags: Long = 0
+        target: Object,
+        method: K,
+        binds: VariantArray<Any>? = null,
+        flags: Long = 0
     ) {
         val methodName = (method as KCallable<*>).name.camelToSnakeCase()
         connect(this@Object, target, methodName, binds, flags)
@@ -57,10 +59,10 @@ open class Object : KtObject() {
     }
 
     fun <A0, K : (A0) -> Unit> Signal1<A0>.connect(
-            target: Object,
-            method: K,
-            binds: VariantArray<Any>? = null,
-            flags: Long = 0
+        target: Object,
+        method: K,
+        binds: VariantArray<Any>? = null,
+        flags: Long = 0
     ) {
         val methodName = (method as KCallable<*>).name.camelToSnakeCase()
         connect(this@Object, target, methodName, binds, flags)
@@ -71,249 +73,250 @@ open class Object : KtObject() {
     }
 
     fun <A0, A1, K : (A0, A1) -> Unit> Signal2<A0, A1>.connect(
-            target: Object,
-            method: K,
-            binds: VariantArray<Any>? = null,
-            flags: Long = 0
+        target: Object,
+        method: K,
+        binds: VariantArray<Any>? = null,
+        flags: Long = 0
     ) {
         val methodName = (method as KCallable<Unit>).name.camelToSnakeCase()
         connect(this@Object, target, methodName, binds, flags)
     }
 
     fun <A0, A1, A2> Signal3<A0, A1, A2>.emit(
-            a0: A0,
-            a1: A1,
-            a2: A2
+        a0: A0,
+        a1: A1,
+        a2: A2
     ) {
         emit(this@Object, a0, a1, a2)
     }
 
     fun <A0, A1, A2, K : (
-            A0,
-            A1,
-            A2
+        A0,
+        A1,
+        A2
     ) -> Unit> Signal3<A0, A1, A2>.connect(
-            target: Object,
-            method: K,
-            binds: VariantArray<Any>? = null,
-            flags: Long = 0
+        target: Object,
+        method: K,
+        binds: VariantArray<Any>? = null,
+        flags: Long = 0
     ) {
         val methodName = (method as KCallable<Unit>).name.camelToSnakeCase()
         connect(this@Object, target, methodName, binds, flags)
     }
 
     fun <A0, A1, A2, A3> Signal4<A0, A1, A2, A3>.emit(
-            a0: A0,
-            a1: A1,
-            a2: A2,
-            a3: A3
+        a0: A0,
+        a1: A1,
+        a2: A2,
+        a3: A3
     ) {
         emit(this@Object, a0, a1, a2, a3)
     }
 
     fun <A0, A1, A2, A3, K : (
-            A0,
-            A1,
-            A2,
-            A3
+        A0,
+        A1,
+        A2,
+        A3
     ) -> Unit> Signal4<A0, A1, A2, A3>.connect(
-            target: Object,
-            method: K,
-            binds: VariantArray<Any>? = null,
-            flags: Long = 0
+        target: Object,
+        method: K,
+        binds: VariantArray<Any>? = null,
+        flags: Long = 0
     ) {
         val methodName = (method as KCallable<Unit>).name.camelToSnakeCase()
         connect(this@Object, target, methodName, binds, flags)
     }
 
     fun <A0, A1, A2, A3, A4> Signal5<A0, A1, A2, A3, A4>.emit(
-            a0: A0,
-            a1: A1,
-            a2: A2,
-            a3: A3,
-            a4: A4
+        a0: A0,
+        a1: A1,
+        a2: A2,
+        a3: A3,
+        a4: A4
     ) {
         emit(this@Object, a0, a1, a2, a3, a4)
     }
 
     fun <A0, A1, A2, A3, A4, K : (
-            A0,
-            A1,
-            A2,
-            A3,
-            A4
+        A0,
+        A1,
+        A2,
+        A3,
+        A4
     ) -> Unit> Signal5<A0, A1, A2, A3, A4>.connect(
-            target: Object,
-            method: K,
-            binds: VariantArray<Any>? = null,
-            flags: Long = 0
+        target: Object,
+        method: K,
+        binds: VariantArray<Any>? = null,
+        flags: Long = 0
     ) {
         val methodName = (method as KCallable<Unit>).name.camelToSnakeCase()
         connect(this@Object, target, methodName, binds, flags)
     }
 
     fun <A0, A1, A2, A3, A4, A5> Signal6<A0, A1, A2, A3, A4, A5>.emit(
-            a0: A0,
-            a1: A1,
-            a2: A2,
-            a3: A3,
-            a4: A4,
-            a5: A5
+        a0: A0,
+        a1: A1,
+        a2: A2,
+        a3: A3,
+        a4: A4,
+        a5: A5
     ) {
         emit(this@Object, a0, a1, a2, a3, a4, a5)
     }
 
     fun <A0, A1, A2, A3, A4, A5, K : (
-            A0,
-            A1,
-            A2,
-            A3,
-            A4,
-            A5
+        A0,
+        A1,
+        A2,
+        A3,
+        A4,
+        A5
     ) -> Unit> Signal6<A0, A1, A2, A3, A4, A5>.connect(
-            target: Object,
-            method: K,
-            binds: VariantArray<Any>? = null,
-            flags: Long = 0
+        target: Object,
+        method: K,
+        binds: VariantArray<Any>? = null,
+        flags: Long = 0
     ) {
         val methodName = (method as KCallable<Unit>).name.camelToSnakeCase()
         connect(this@Object, target, methodName, binds, flags)
     }
 
     fun <A0, A1, A2, A3, A4, A5, A6> Signal7<A0, A1, A2, A3, A4, A5, A6>.emit(
-            a0: A0,
-            a1: A1,
-            a2: A2,
-            a3: A3,
-            a4: A4,
-            a5: A5,
-            a6: A6
+        a0: A0,
+        a1: A1,
+        a2: A2,
+        a3: A3,
+        a4: A4,
+        a5: A5,
+        a6: A6
     ) {
         emit(this@Object, a0, a1, a2, a3, a4, a5, a6)
     }
 
     fun <A0, A1, A2, A3, A4, A5, A6, K : (
-            A0,
-            A1,
-            A2,
-            A3,
-            A4,
-            A5,
-            A6
+        A0,
+        A1,
+        A2,
+        A3,
+        A4,
+        A5,
+        A6
     ) -> Unit> Signal7<A0, A1, A2, A3, A4, A5, A6>.connect(
-            target: Object,
-            method: K,
-            binds: VariantArray<Any>? = null,
-            flags: Long = 0
+        target: Object,
+        method: K,
+        binds: VariantArray<Any>? = null,
+        flags: Long = 0
     ) {
         val methodName = (method as KCallable<Unit>).name.camelToSnakeCase()
         connect(this@Object, target, methodName, binds, flags)
     }
 
     fun <A0, A1, A2, A3, A4, A5, A6, A7> Signal8<A0, A1, A2, A3, A4, A5, A6, A7>.emit(
-            a0: A0,
-            a1: A1,
-            a2: A2,
-            a3: A3,
-            a4: A4,
-            a5: A5,
-            a6: A6,
-            a7: A7
+        a0: A0,
+        a1: A1,
+        a2: A2,
+        a3: A3,
+        a4: A4,
+        a5: A5,
+        a6: A6,
+        a7: A7
     ) {
         emit(this@Object, a0, a1, a2, a3, a4, a5, a6, a7)
     }
 
     fun <A0, A1, A2, A3, A4, A5, A6, A7, K : (
-            A0,
-            A1,
-            A2,
-            A3,
-            A4,
-            A5,
-            A6,
-            A7
+        A0,
+        A1,
+        A2,
+        A3,
+        A4,
+        A5,
+        A6,
+        A7
     ) -> Unit> Signal8<A0, A1, A2, A3, A4, A5, A6, A7>.connect(
-            target: Object,
-            method: K,
-            binds: VariantArray<Any>? = null,
-            flags: Long = 0
+        target: Object,
+        method: K,
+        binds: VariantArray<Any>? = null,
+        flags: Long = 0
     ) {
         val methodName = (method as KCallable<Unit>).name.camelToSnakeCase()
         connect(this@Object, target, methodName, binds, flags)
     }
 
     fun <A0, A1, A2, A3, A4, A5, A6, A7, A8> Signal9<A0, A1, A2, A3, A4, A5, A6, A7, A8>.emit(
-            a0: A0,
-            a1: A1,
-            a2: A2,
-            a3: A3,
-            a4: A4,
-            a5: A5,
-            a6: A6,
-            a7: A7,
-            a8: A8
+        a0: A0,
+        a1: A1,
+        a2: A2,
+        a3: A3,
+        a4: A4,
+        a5: A5,
+        a6: A6,
+        a7: A7,
+        a8: A8
     ) {
         emit(this@Object, a0, a1, a2, a3, a4, a5, a6, a7, a8)
     }
 
     fun <A0, A1, A2, A3, A4, A5, A6, A7, A8, K : (
-            A0,
-            A1,
-            A2,
-            A3,
-            A4,
-            A5,
-            A6,
-            A7,
-            A8
+        A0,
+        A1,
+        A2,
+        A3,
+        A4,
+        A5,
+        A6,
+        A7,
+        A8
     ) -> Unit> Signal9<A0, A1, A2, A3, A4, A5, A6, A7, A8>.connect(
-            target: Object,
-            method: K,
-            binds: VariantArray<Any>? = null,
-            flags: Long = 0
+        target: Object,
+        method: K,
+        binds: VariantArray<Any>? = null,
+        flags: Long = 0
     ) {
         val methodName = (method as KCallable<Unit>).name.camelToSnakeCase()
         connect(this@Object, target, methodName, binds, flags)
     }
 
     fun <A0, A1, A2, A3, A4, A5, A6, A7, A8, A9> Signal10<A0, A1, A2, A3, A4, A5, A6, A7, A8,
-            A9>.emit(
-            a0: A0,
-            a1: A1,
-            a2: A2,
-            a3: A3,
-            a4: A4,
-            a5: A5,
-            a6: A6,
-            a7: A7,
-            a8: A8,
-            a9: A9
+        A9>.emit(
+        a0: A0,
+        a1: A1,
+        a2: A2,
+        a3: A3,
+        a4: A4,
+        a5: A5,
+        a6: A6,
+        a7: A7,
+        a8: A8,
+        a9: A9
     ) {
         emit(this@Object, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9)
     }
 
     fun <A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, K : (
-            A0,
-            A1,
-            A2,
-            A3,
-            A4,
-            A5,
-            A6,
-            A7,
-            A8,
-            A9
+        A0,
+        A1,
+        A2,
+        A3,
+        A4,
+        A5,
+        A6,
+        A7,
+        A8,
+        A9
     ) -> Unit> Signal10<A0, A1, A2, A3, A4, A5, A6, A7, A8, A9>.connect(
-            target: Object,
-            method: K,
-            binds: VariantArray<Any>? = null,
-            flags: Long = 0
+        target: Object,
+        method: K,
+        binds: VariantArray<Any>? = null,
+        flags: Long = 0
     ) {
         val methodName = (method as KCallable<Unit>).name.camelToSnakeCase()
         connect(this@Object, target, methodName, binds, flags)
     }
 }
 
+@GodotBaseType
 open class Node : Object() {
 
     open var name: String
@@ -361,6 +364,7 @@ open class Node : Object() {
     }
 }
 
+@GodotBaseType
 open class Spatial : Node() {
 
     override fun __new(): VoidPtr {
@@ -368,6 +372,7 @@ open class Spatial : Node() {
     }
 }
 
+@GodotBaseType
 open class Reference : Object() {
 
     override fun __new(): VoidPtr {
@@ -377,6 +382,7 @@ open class Reference : Object() {
     override fun ____DO_NOT_TOUCH_THIS_isRef____() = true
 }
 
+@GodotBaseType
 open class Resource : Reference() {
 
     override fun __new(): VoidPtr {
@@ -389,6 +395,7 @@ open class Resource : Reference() {
     }
 }
 
+@GodotBaseType
 open class NavigationMesh : Resource() {
 
     override fun __new(): VoidPtr {
@@ -396,6 +403,7 @@ open class NavigationMesh : Resource() {
     }
 }
 
+@GodotBaseType
 object ARVRServer : Object() {
     override fun __new(): VoidPtr {
         return TransferContext.getSingleton(ARVR_SERVER)

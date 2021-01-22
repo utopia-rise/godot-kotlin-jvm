@@ -21,6 +21,7 @@ import org.jetbrains.kotlin.idea.KotlinFileType
 import org.jetbrains.kotlin.platform.TargetPlatform
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtFile
+import org.jetbrains.kotlin.psi.KtNamedFunction
 import org.jetbrains.kotlin.resolve.BindingContext
 import java.io.File
 import java.lang.instrument.IllegalClassFormatException
@@ -116,7 +117,11 @@ class GodotAnnotationProcessor(
     }
 
     override fun processingOver() {
+        File(entryGenerationOutputDir).mkdirs()
+        File("$entryGenerationOutputDir/debug.txt").appendText(classes.map { it.name }.joinToString("\n"))
+
         deleteObsoleteClassSpecificEntryFiles()
+        EntryGenerator.psiClassesWithMembers = getAllRegisteredUserPsiClassesWithMembers()
         EntryGenerator.generateEntryFiles(
             EntryGenerationType.JVM,
             bindingContext,
@@ -129,6 +134,44 @@ class GodotAnnotationProcessor(
         EntryGenerator.generateServiceFile(serviceFileOutputDir)
     }
 
+    private fun getAllRegisteredUserPsiClassesWithMembers() = userClasses
+        .filter { ktClass ->
+            ktClass
+                .annotationEntries
+                .mapNotNull { annotationEntry -> annotationEntry.shortName?.asString() }
+                .contains(RegisterClass::class.java.simpleName)
+        }
+        .map { ktClass ->
+            PsiClassWithMembers(
+                ktClass,
+                ktClass
+                    .getProperties()
+                    .filter { ktProperty ->
+                        ktProperty
+                            .annotationEntries
+                            .mapNotNull { annotationEntry -> annotationEntry.shortName?.asString() }
+                            .contains(RegisterProperty::class.java.simpleName)
+                    },
+                ktClass
+                    .declarations
+                    .filterIsInstance<KtNamedFunction>()
+                    .filter { ktNamedFunction ->
+                        ktNamedFunction
+                            .annotationEntries
+                            .mapNotNull { annotationEntry -> annotationEntry.shortName?.asString() }
+                            .contains(RegisterFunction::class.java.simpleName)
+                    },
+                ktClass
+                    .getProperties()
+                    .filter { ktProperty ->
+                        ktProperty
+                            .annotationEntries
+                            .mapNotNull { annotationEntry -> annotationEntry.shortName?.asString() }
+                            .contains(RegisterSignal::class.java.simpleName)
+                    }
+            )
+        }
+
     private fun deleteObsoleteClassSpecificEntryFiles() {
         val userClassesFqNames = userClasses.map { userClass -> userClass.fqName?.asString() }
 
@@ -136,7 +179,9 @@ class GodotAnnotationProcessor(
             .walkTopDown()
             .filter { it.isFile && it.exists() && it.extension == "kt" }
             .forEach {
-                val fqName = it.absolutePath.removePrefix(entryGenerationOutputDir).removePrefix("/godot/").replace("/", ".").removeSuffix("Entry.kt")
+                val fqName =
+                    it.absolutePath.removePrefix(entryGenerationOutputDir).removePrefix("/godot/").replace("/", ".")
+                        .removeSuffix("Entry.kt")
                 if (!userClassesFqNames.contains(fqName)) {
                     it.delete()
                 }
