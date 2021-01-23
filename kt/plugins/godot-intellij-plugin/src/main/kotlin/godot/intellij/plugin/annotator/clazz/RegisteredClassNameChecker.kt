@@ -1,21 +1,30 @@
 package godot.intellij.plugin.annotator.clazz
 
+import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiRecursiveElementWalkingVisitor
 import godot.intellij.plugin.extension.getFqNameToRegisteredClassNamePair
 import org.jetbrains.kotlin.psi.KtClass
 
-class RegisteredClassNameChecker {
-    private val fqNameToRegisteredName: MutableMap<String, String> = mutableMapOf()
+data class RegisteredClassDataContainer(
+    val fqName: String,
+    val registeredName: String,
+    val vFile: VirtualFile
+)
 
-    fun getFqNamesRegisteredWithName(registeredName: String): Set<String> =
+class RegisteredClassNameChecker {
+    private val fqNameToRegisteredName: MutableMap<String, RegisteredClassDataContainer> = mutableMapOf()
+
+    fun getContainersByName(registeredName: String): Set<RegisteredClassDataContainer> =
         fqNameToRegisteredName
             .entries
-            .groupBy { it.value }[registeredName]
-            ?.map { it.key }
+            .groupBy { it.value.registeredName }[registeredName]
+            ?.map { it.value }
             ?.toSet()
             ?: emptySet()
+
+    fun getContainerByFqName(fqName: String): RegisteredClassDataContainer? = fqNameToRegisteredName[fqName]
 
     fun psiFileChanged(psiFile: PsiFile) {
         psiFile.accept(object : PsiRecursiveElementWalkingVisitor() {
@@ -27,7 +36,11 @@ class RegisteredClassNameChecker {
                         fqNameToRegisteredName.remove(element.fqName?.asString())
                         return
                     }
-                    fqNameToRegisteredName[fqName] = registeredName
+                    fqNameToRegisteredName[fqName] = RegisteredClassDataContainer(
+                        fqName,
+                        registeredName,
+                        element.containingFile.virtualFile
+                    )
                 }
             }
         })

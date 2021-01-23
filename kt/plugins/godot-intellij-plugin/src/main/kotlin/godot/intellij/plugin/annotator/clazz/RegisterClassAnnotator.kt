@@ -75,7 +75,8 @@ class RegisterClassAnnotator : Annotator {
     private fun checkRegisteredClassName(ktClass: KtClass, holder: AnnotationHolder) {
         val (fqName, registeredName) = ktClass.getFqNameToRegisteredClassNamePair() ?: return
         val fqNames = RegisteredClassNameCheckerProvider.provide(ktClass.project)
-            .getFqNamesRegisteredWithName(registeredName)
+            .getContainersByName(registeredName)
+            .map { container -> container.fqName }
 
         if (fqNames.size > 1 || (fqNames.size == 1 && !fqNames.contains(fqName))) {
             val registerClassAnnotation = ktClass.findAnnotation(FqName("godot.annotation.RegisterClass"))
