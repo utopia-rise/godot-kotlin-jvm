@@ -1,12 +1,12 @@
-package godot.intellij.plugin.inspections.registration.inspector.signal
+package godot.intellij.plugin.annotator.signal
 
 import com.intellij.codeInspection.ProblemHighlightType
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
 import godot.intellij.plugin.extension.registerProblem
-import godot.intellij.plugin.inspections.registration.quickfix.RegisterSignalInitializerQuickFix
-import godot.intellij.plugin.inspections.registration.quickfix.RegisterSignalMutabilityQuickFix
+import godot.intellij.plugin.quickfix.RegisterSignalInitializerQuickFix
+import godot.intellij.plugin.quickfix.RegisterSignalMutabilityQuickFix
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.js.descriptorUtils.getJetTypeFqName
 import org.jetbrains.kotlin.name.FqName

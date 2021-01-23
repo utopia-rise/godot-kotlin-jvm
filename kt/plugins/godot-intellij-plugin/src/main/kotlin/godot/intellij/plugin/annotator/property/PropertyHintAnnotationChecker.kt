@@ -1,4 +1,4 @@
-package godot.intellij.plugin.inspections.registration.inspector.property
+package godot.intellij.plugin.annotator.property
 
 import com.intellij.lang.annotation.AnnotationHolder
 import godot.intellij.plugin.extension.registerProblem

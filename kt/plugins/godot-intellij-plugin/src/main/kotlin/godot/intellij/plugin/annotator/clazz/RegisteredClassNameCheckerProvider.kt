@@ -1,4 +1,4 @@
-package godot.intellij.plugin.inspections.registration.inspector.clazz
+package godot.intellij.plugin.annotator.clazz
 
 import com.intellij.openapi.project.Project
 

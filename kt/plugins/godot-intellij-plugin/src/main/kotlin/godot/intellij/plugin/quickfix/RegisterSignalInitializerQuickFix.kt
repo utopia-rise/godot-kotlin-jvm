@@ -1,4 +1,4 @@
-package godot.intellij.plugin.inspections.registration.quickfix
+package godot.intellij.plugin.quickfix
 
 import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemDescriptor

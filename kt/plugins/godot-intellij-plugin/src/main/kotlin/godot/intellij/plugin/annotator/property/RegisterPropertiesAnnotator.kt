@@ -1,10 +1,10 @@
-package godot.intellij.plugin.inspections.registration.inspector.property
+package godot.intellij.plugin.annotator.property
 
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
 import godot.intellij.plugin.extension.registerProblem
-import godot.intellij.plugin.inspections.registration.quickfix.RegisterPropertyMutabilityQuickFix
+import godot.intellij.plugin.quickfix.RegisterPropertyMutabilityQuickFix
 import org.jetbrains.kotlin.idea.intentions.loopToCallChain.isConstant
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.js.descriptorUtils.getJetTypeFqName

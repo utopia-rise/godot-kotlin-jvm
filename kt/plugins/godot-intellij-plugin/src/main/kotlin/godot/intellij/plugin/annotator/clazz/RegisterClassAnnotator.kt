@@ -1,12 +1,12 @@
-package godot.intellij.plugin.inspections.registration.inspector.clazz
+package godot.intellij.plugin.annotator.clazz
 
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
 import godot.intellij.plugin.extension.getFqNameToRegisteredClassNamePair
 import godot.intellij.plugin.extension.registerProblem
-import godot.intellij.plugin.inspections.registration.quickfix.ClassAlreadyRegisteredQuickFix
-import godot.intellij.plugin.inspections.registration.quickfix.ClassNotRegisteredQuickFix
+import godot.intellij.plugin.quickfix.ClassAlreadyRegisteredQuickFix
+import godot.intellij.plugin.quickfix.ClassNotRegisteredQuickFix
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClass
@@ -74,8 +74,7 @@ class RegisterClassAnnotator : Annotator {
 
     private fun checkRegisteredClassName(ktClass: KtClass, holder: AnnotationHolder) {
         val (fqName, registeredName) = ktClass.getFqNameToRegisteredClassNamePair() ?: return
-        val fqNames = RegisteredClassNameCheckerProvider
-            .provide(ktClass.project)
+        val fqNames = RegisteredClassNameCheckerProvider.provide(ktClass.project)
             .getFqNamesRegisteredWithName(registeredName)
 
         if (fqNames.size > 1 || (fqNames.size == 1 && !fqNames.contains(fqName))) {

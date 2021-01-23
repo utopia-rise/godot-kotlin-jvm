@@ -1,10 +1,10 @@
-package godot.intellij.plugin.inspections.registration.inspector.function
+package godot.intellij.plugin.annotator.function
 
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
 import godot.intellij.plugin.extension.registerProblem
-import godot.intellij.plugin.inspections.registration.quickfix.NotificationFunctionNotRegisteredQuickFix
+import godot.intellij.plugin.quickfix.NotificationFunctionNotRegisteredQuickFix
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtNamedFunction

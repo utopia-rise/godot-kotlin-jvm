@@ -9,7 +9,7 @@ import com.intellij.psi.search.FileTypeIndex
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.util.indexing.FileBasedIndex
 import godot.intellij.plugin.ProjectDisposable
-import godot.intellij.plugin.inspections.registration.inspector.clazz.RegisteredClassNameCheckerProvider
+import godot.intellij.plugin.annotator.clazz.RegisteredClassNameCheckerProvider
 import godot.intellij.plugin.wrapper.PsiTreeChangeListenerKt
 import org.jetbrains.kotlin.idea.KotlinFileType
 import org.jetbrains.kotlin.idea.KotlinLanguage

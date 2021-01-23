@@ -14,17 +14,12 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <annotator
-            implementationClass="godot.intellij.plugin.inspections.registration.inspector.clazz.RegisterClassAnnotator"
+            implementationClass="godot.intellij.plugin.annotator.RegisterClassAnnotator" language="JVM" />
+        <annotator implementationClass="godot.intellij.plugin.annotator.function.RegisterFunctionAnnotator"
             language="JVM" />
-        <annotator
-            implementationClass="godot.intellij.plugin.inspections.registration.inspector.function.RegisterFunctionAnnotator"
+        <annotator implementationClass="godot.intellij.plugin.annotator.property.RegisterPropertiesAnnotator"
             language="JVM" />
-        <annotator
-            implementationClass="godot.intellij.plugin.inspections.registration.inspector.property.RegisterPropertiesAnnotator"
-            language="JVM" />
-        <annotator
-            implementationClass="godot.intellij.plugin.inspections.registration.inspector.signal.RegisterSignalAnnotator"
-            language="JVM" />
+        <annotator implementationClass="godot.intellij.plugin.annotator.signal.RegisterSignalAnnotator" language="JVM" />
     </extensions>
 
     <resource-bundle>messages.generalLabels</resource-bundle>

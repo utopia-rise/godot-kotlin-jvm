@@ -1,4 +1,4 @@
-package godot.intellij.plugin.inspections.registration.inspector.property
+package godot.intellij.plugin.annotator.property
 
 import org.jetbrains.kotlin.backend.common.serialization.findPackage
 import org.jetbrains.kotlin.builtins.KotlinBuiltIns

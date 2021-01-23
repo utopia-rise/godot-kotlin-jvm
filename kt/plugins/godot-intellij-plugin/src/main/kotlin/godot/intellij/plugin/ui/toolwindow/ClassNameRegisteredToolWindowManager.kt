@@ -6,7 +6,7 @@ import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowManager
 import com.intellij.ui.OnePixelSplitter
 import com.intellij.ui.components.Label
-import godot.intellij.plugin.inspections.registration.inspector.clazz.RegisteredClassNameCheckerProvider
+import godot.intellij.plugin.annotator.clazz.RegisteredClassNameCheckerProvider
 import java.awt.EventQueue
 
 object ClassNameRegisteredToolWindowManager {
