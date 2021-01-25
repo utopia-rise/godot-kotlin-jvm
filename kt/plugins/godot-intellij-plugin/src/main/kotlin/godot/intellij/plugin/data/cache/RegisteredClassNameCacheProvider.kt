@@ -1,4 +1,4 @@
-package godot.intellij.plugin.cache
+package godot.intellij.plugin.data.cache
 
 import com.intellij.openapi.project.Project
 
