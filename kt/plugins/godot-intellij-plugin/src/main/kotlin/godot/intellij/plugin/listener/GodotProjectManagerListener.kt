@@ -11,7 +11,7 @@ class GodotProjectManagerListener : ProjectManagerListener {
 
     override fun projectOpened(project: Project) {
         listenerPerProject[project] = mutableListOf(
-            KtClassFileListener(project)
+            KtPsiTreeListener(project)
         )
 
         listenerPerProject

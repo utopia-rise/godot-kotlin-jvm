@@ -16,7 +16,7 @@ import org.jetbrains.kotlin.idea.KotlinLanguage
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtFile
 
-class KtClassFileListener(private val project: Project) : ProjectDisposable {
+class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
 
     init {
         DumbService.getInstance(project).runWhenSmart {
