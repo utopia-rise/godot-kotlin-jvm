@@ -30,7 +30,6 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
             .getInstance(project)
             .addPsiTreeChangeListener(
                 object : PsiTreeChangeListenerKt {
-
                     override fun beforeChildRemoval(event: PsiTreeChangeEvent) {
                         val child = event.child
                         when {
@@ -39,6 +38,19 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
                             // class in file removed (just annotation removed covered in [childrenChanged]
                             child is KtClass -> psiFileChanged(child.containingFile)
                         }
+                    }
+
+                    override fun beforeChildrenChange(event: PsiTreeChangeEvent) {
+                        event
+                            .file
+                            ?.let { psiFile ->
+                                if (psiFile.language == KotlinLanguage.INSTANCE) {
+                                    // remove class names (will be re registered in [childrenChanged])
+                                    // needed because [childrenChanged] gets triggered for each char typed. So for class name's a "new" class gets registered for each typed char
+                                    // no way to delete those obsolete class names again after [childrenChanged] as they simply don't exist anymore
+                                    psiFileRemoved(psiFile)
+                                }
+                            }
                     }
 
                     override fun childrenChanged(event: PsiTreeChangeEvent) {

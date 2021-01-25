@@ -5,7 +5,7 @@ import godot.Spatial
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 
-@RegisterClass(customClassName = "ImAVeryFunnyClassName")
+@RegisterClass
 class OtherScript : Node() {
     @RegisterFunction
     fun hookNoParam() {
