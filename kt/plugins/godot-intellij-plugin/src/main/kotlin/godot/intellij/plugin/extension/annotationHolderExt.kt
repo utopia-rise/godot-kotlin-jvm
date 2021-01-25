@@ -33,7 +33,6 @@ private fun getProblemDescriptor(element: PsiElement, quickFix: LocalQuickFix, p
         true
     )
 
-
 private fun highlightSeverityFromHighlightType(problemHighlightType: ProblemHighlightType): HighlightSeverity {
     return when (problemHighlightType) {
         ProblemHighlightType.GENERIC_ERROR_OR_WARNING -> HighlightSeverity.ERROR

@@ -4,6 +4,7 @@ import com.intellij.codeInspection.ProblemHighlightType
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
+import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.RegisterSignalInitializerQuickFix
 import godot.intellij.plugin.quickfix.RegisterSignalMutabilityQuickFix
@@ -27,7 +28,7 @@ class RegisterSignalAnnotator : Annotator {
     private fun checkMutability(ktProperty: KtProperty, holder: AnnotationHolder) {
         if (ktProperty.isVar) {
             holder.registerProblem(
-                "Registered signals should not be mutable",
+                GodotPluginBundle.message("problem.signal.mutability"),
                 ktProperty.valOrVarKeyword,
                 mutabilityQuickFix,
                 ProblemHighlightType.WARNING
@@ -39,7 +40,7 @@ class RegisterSignalAnnotator : Annotator {
         val type = ktProperty.type() ?: return
         if (!type.getJetTypeFqName(false).startsWith("godot.signals.Signal")) {
             holder.registerProblem(
-                "Not of type signal. Properties annotated with @RegisterSignal have to be of type signal. Consider using one of the \"by signal\" delegates",
+                GodotPluginBundle.message("problem.signal.wrongType"),
                 getInitializerProblemLocation(ktProperty),
                 useDelegateQuickFix
             )

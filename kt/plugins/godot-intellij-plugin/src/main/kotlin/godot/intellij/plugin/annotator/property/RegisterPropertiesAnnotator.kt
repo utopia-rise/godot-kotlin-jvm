@@ -3,6 +3,7 @@ package godot.intellij.plugin.annotator.property
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
+import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.RegisterPropertyMutabilityQuickFix
 import org.jetbrains.kotlin.idea.intentions.loopToCallChain.isConstant
@@ -16,7 +17,6 @@ class RegisterPropertiesAnnotator : Annotator {
     private val mutabilityQuickFix by lazy { RegisterPropertyMutabilityQuickFix() }
     private val ktExpressionConstantChecker by lazy { KtExpressionConstantChecker() }
     private val propertyHintAnnotationChecker by lazy { PropertyHintAnnotationChecker() }
-
 
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
         if (element is KtProperty) {
@@ -33,7 +33,7 @@ class RegisterPropertiesAnnotator : Annotator {
     private fun checkMutability(ktProperty: KtProperty, holder: AnnotationHolder) {
         if (!ktProperty.isVar) {
             holder.registerProblem(
-                "Registered properties have to be mutable",
+                GodotPluginBundle.message("problem.property.mutability"),
                 ktProperty.valOrVarKeyword,
                 mutabilityQuickFix
             )
@@ -46,7 +46,7 @@ class RegisterPropertiesAnnotator : Annotator {
         if (type.getJetTypeFqName(false).startsWith("kotlin.collections") && ktProperty.findAnnotation(FqName("godot.annotation.EnumFlag")) == null) {
             // TODO: add quick fix
             holder.registerProblem(
-                "Kotlin collections cannot be registered as default values. Consider using one of the godot collections. There are handy conversion functions available",
+                GodotPluginBundle.message("problem.property.registeredKotlinCollection"),
                 getInitializerProblemLocation(ktProperty)
             )
         }
@@ -58,7 +58,7 @@ class RegisterPropertiesAnnotator : Annotator {
             ?.let {
                 if (!it.isConstant() && !ktExpressionConstantChecker.isConstantEnoughForRegistration(it)) {
                     holder.registerProblem(
-                        "Default values of registered properties have to be compile time constants or direct constructor calls",
+                        GodotPluginBundle.message("problem.property.defaultValue.notConstant"),
                         getInitializerProblemLocation(ktProperty)
                     )
                 }

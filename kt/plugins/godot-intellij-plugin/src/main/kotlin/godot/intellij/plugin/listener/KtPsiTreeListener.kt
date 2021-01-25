@@ -9,7 +9,7 @@ import com.intellij.psi.search.FileTypeIndex
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.util.indexing.FileBasedIndex
 import godot.intellij.plugin.ProjectDisposable
-import godot.intellij.plugin.annotator.clazz.RegisteredClassNameCheckerProvider
+import godot.intellij.plugin.cache.RegisteredClassNameCacheProvider
 import godot.intellij.plugin.wrapper.PsiTreeChangeListenerKt
 import org.jetbrains.kotlin.idea.KotlinFileType
 import org.jetbrains.kotlin.idea.KotlinLanguage
@@ -34,9 +34,9 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
                     override fun beforeChildRemoval(event: PsiTreeChangeEvent) {
                         val child = event.child
                         when {
-                            //whole file removed
+                            // whole file removed
                             child is KtFile && event.file == null -> psiFileRemoved(child)
-                            //class in file removed (just annotation removed covered in [childrenChanged]
+                            // class in file removed (just annotation removed covered in [childrenChanged]
                             child is KtClass -> psiFileChanged(child.containingFile)
                         }
                     }
@@ -71,14 +71,14 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
     }
 
     private fun psiFileRemoved(psiFile: PsiFile) {
-        RegisteredClassNameCheckerProvider.provide(project).psiFileRemoved(psiFile)
+        RegisteredClassNameCacheProvider.provide(project).psiFileRemoved(psiFile)
     }
 
     private fun psiFileChanged(psiFile: PsiFile) {
-        RegisteredClassNameCheckerProvider.provide(project).psiFileChanged(psiFile)
+        RegisteredClassNameCacheProvider.provide(project).psiFileChanged(psiFile)
     }
 
     override fun dispose(project: Project) {
-        RegisteredClassNameCheckerProvider.disposeForProject(project)
+        RegisteredClassNameCacheProvider.disposeForProject(project)
     }
 }

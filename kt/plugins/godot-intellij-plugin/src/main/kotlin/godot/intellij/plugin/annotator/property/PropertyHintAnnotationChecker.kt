@@ -1,6 +1,7 @@
 package godot.intellij.plugin.annotator.property
 
 import com.intellij.lang.annotation.AnnotationHolder
+import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.extension.registerProblem
 import org.jetbrains.kotlin.idea.refactoring.fqName.fqName
 import org.jetbrains.kotlin.idea.util.findAnnotation
@@ -43,7 +44,7 @@ class PropertyHintAnnotationChecker {
         checkForRegistrationAnnotation(ktProperty, holder)
         if (ktProperty.type()?.getJetTypeFqName(false) != "godot.core.Color") {
             holder.registerProblem(
-                "Property must be of type godot.core.Color",
+                GodotPluginBundle.message("problem.property.hint.wrongType", "godot.core.Color"),
                 ktProperty.findAnnotation(FqName("godot.annotation.ColorNoAlpha"))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
             )
         }
@@ -53,7 +54,7 @@ class PropertyHintAnnotationChecker {
         checkForRegistrationAnnotation(ktProperty, holder)
         if (ktProperty.type()?.getJetTypeFqName(false) != "kotlin.String") {
             holder.registerProblem(
-                "Property must be of type ${String::class.qualifiedName}",
+                GodotPluginBundle.message("problem.property.hint.wrongType", String::class.qualifiedName.toString()),
                 ktProperty.findAnnotation(FqName("godot.annotation.PlaceHolderText"))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
             )
         }
@@ -63,7 +64,7 @@ class PropertyHintAnnotationChecker {
         checkForRegistrationAnnotation(ktProperty, holder)
         if (ktProperty.type()?.getJetTypeFqName(false) != "kotlin.String") {
             holder.registerProblem(
-                "Property must be of type ${String::class.qualifiedName}",
+                GodotPluginBundle.message("problem.property.hint.wrongType", String::class.qualifiedName.toString()),
                 ktProperty.findAnnotation(FqName("godot.annotation.MultilineText"))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
             )
         }
@@ -73,7 +74,7 @@ class PropertyHintAnnotationChecker {
         checkForRegistrationAnnotation(ktProperty, holder)
         if (ktProperty.type()?.getJetTypeFqName(false) != "kotlin.String") {
             holder.registerProblem(
-                "Property must be of type ${String::class.qualifiedName}",
+                GodotPluginBundle.message("problem.property.hint.wrongType", String::class.qualifiedName.toString()),
                 ktProperty.findAnnotation(FqName("godot.annotation.Dir"))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
             )
         }
@@ -83,7 +84,7 @@ class PropertyHintAnnotationChecker {
         checkForRegistrationAnnotation(ktProperty, holder)
         if (ktProperty.type()?.getJetTypeFqName(false) != "kotlin.String") {
             holder.registerProblem(
-                "Property must be of type ${String::class.qualifiedName}",
+                GodotPluginBundle.message("problem.property.hint.wrongType", String::class.qualifiedName.toString()),
                 ktProperty.findAnnotation(FqName("godot.annotation.File"))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
             )
         }
@@ -93,7 +94,7 @@ class PropertyHintAnnotationChecker {
         checkForRegistrationAnnotation(ktProperty, holder)
         if (ktProperty.type()?.isInt() == false) {
             holder.registerProblem(
-                "Property must be of type ${Int::class.qualifiedName}",
+                GodotPluginBundle.message("problem.property.hint.wrongType", Int::class.qualifiedName.toString()),
                 ktProperty.findAnnotation(FqName("godot.annotation.IntFlag"))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
             )
         }
@@ -103,7 +104,7 @@ class PropertyHintAnnotationChecker {
         checkForRegistrationAnnotation(ktProperty, holder)
         if (ktProperty.type()?.fqName?.asString()?.matches(Regex("^kotlin\\.collections\\..*Set\$")) == false) {
             holder.registerProblem(
-                "Property must be of type ${Set::class.qualifiedName} or ${MutableSet::class.qualifiedName}",
+                GodotPluginBundle.message("problem.property.hint.wrongType", "${Set::class.qualifiedName} or ${MutableSet::class.qualifiedName}"),
                 ktProperty.findAnnotation(FqName("godot.annotation.EnumFlag"))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
             )
         } else {
@@ -119,7 +120,7 @@ class PropertyHintAnnotationChecker {
 
             if (numberOfEnumEntriesInEnum > MAX_ENUM_ENTRIES_FOR_ENUM_FLAGS) {
                 holder.registerProblem(
-                    "Enums used as EnumFlags can only have a maximum of 32 entries",
+                    GodotPluginBundle.message("problem.property.hint.toManyEnumEntries"),
                     ktProperty.findAnnotation(FqName("godot.annotation.EnumFlag"))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
                 )
             }
@@ -130,7 +131,7 @@ class PropertyHintAnnotationChecker {
         checkForRegistrationAnnotation(ktProperty, holder)
         if (ktProperty.type()?.isEnum() == false) {
             holder.registerProblem(
-                "Property must be of type ${Enum::class.qualifiedName}",
+                GodotPluginBundle.message("problem.property.hint.wrongType", Enum::class.qualifiedName.toString()),
                 ktProperty.findAnnotation(FqName("godot.annotation.EnumTypeHint"))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
             )
         }
@@ -140,7 +141,7 @@ class PropertyHintAnnotationChecker {
         checkForRegistrationAnnotation(ktProperty, holder)
         if (ktProperty.type()?.isFloat() == false && ktProperty.type()?.isDouble() == false) {
             holder.registerProblem(
-                "Property must be of type ${Float::class.qualifiedName} or ${Double::class.qualifiedName}",
+                GodotPluginBundle.message("problem.property.hint.wrongType", "${Float::class.qualifiedName} or ${Double::class.qualifiedName}"),
                 ktProperty.findAnnotation(FqName("godot.annotation.ExpEasing"))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
             )
         }
@@ -150,7 +151,7 @@ class PropertyHintAnnotationChecker {
         checkForRegistrationAnnotation(ktProperty, holder)
         if (ktProperty.type()?.isFloat() == false && ktProperty.type()?.isDouble() == false) {
             holder.registerProblem(
-                "Property must be of type ${Float::class.qualifiedName} or ${Double::class.qualifiedName}",
+                GodotPluginBundle.message("problem.property.hint.wrongType", "${Float::class.qualifiedName} or ${Double::class.qualifiedName}"),
                 ktProperty.findAnnotation(FqName("godot.annotation.ExpRange"))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
             )
         }
@@ -160,7 +161,7 @@ class PropertyHintAnnotationChecker {
         checkForRegistrationAnnotation(ktProperty, holder)
         if (ktProperty.type()?.isDouble() == false) {
             holder.registerProblem(
-                "Property must be of type ${Double::class.qualifiedName}",
+                GodotPluginBundle.message("problem.property.hint.wrongType", Double::class.qualifiedName.toString()),
                 ktProperty.findAnnotation(FqName("godot.annotation.DoubleRange"))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
             )
         }
@@ -170,7 +171,7 @@ class PropertyHintAnnotationChecker {
         checkForRegistrationAnnotation(ktProperty, holder)
         if (ktProperty.type()?.isFloat() == false) {
             holder.registerProblem(
-                "Property must be of type ${Float::class.qualifiedName}",
+                GodotPluginBundle.message("problem.property.hint.wrongType", Float::class.qualifiedName.toString()),
                 ktProperty.findAnnotation(FqName("godot.annotation.FloatRange"))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
             )
         }
@@ -180,7 +181,7 @@ class PropertyHintAnnotationChecker {
         checkForRegistrationAnnotation(ktProperty, holder)
         if (ktProperty.type()?.isLong() == false) {
             holder.registerProblem(
-                "Property must be of type ${Long::class.qualifiedName}",
+                GodotPluginBundle.message("problem.property.hint.wrongType", Long::class.qualifiedName.toString()),
                 ktProperty.findAnnotation(FqName("godot.annotation.LongRange"))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
             )
         }
@@ -190,7 +191,7 @@ class PropertyHintAnnotationChecker {
         checkForRegistrationAnnotation(ktProperty, holder)
         if (ktProperty.type()?.isInt() == false) {
             holder.registerProblem(
-                "Property must be of type ${Int::class.qualifiedName}",
+                GodotPluginBundle.message("problem.property.hint.wrongType", Int::class.qualifiedName.toString()),
                 ktProperty.findAnnotation(FqName("godot.annotation.IntRange"))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
             )
         }
@@ -199,7 +200,7 @@ class PropertyHintAnnotationChecker {
     private fun checkForRegistrationAnnotation(ktProperty: KtProperty, holder: AnnotationHolder) {
         if (ktProperty.findAnnotation(FqName("godot.annotation.RegisterProperty")) == null) {
             holder.registerProblem(
-                "Property has a type hint but is not registered",
+                GodotPluginBundle.message("problem.property.hint.notRegistered"),
                 ktProperty.nameIdentifier ?: ktProperty.navigationElement
             )
         }

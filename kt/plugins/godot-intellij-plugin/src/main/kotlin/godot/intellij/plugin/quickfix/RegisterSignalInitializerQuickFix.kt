@@ -3,6 +3,7 @@ package godot.intellij.plugin.quickfix
 import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
+import godot.intellij.plugin.GodotPluginBundle
 import org.jetbrains.kotlin.idea.util.addAnnotation
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtModifierListOwner
@@ -11,9 +12,7 @@ import org.jetbrains.kotlin.psi.KtPsiFactory
 import org.jetbrains.kotlin.resolve.ImportPath
 
 class RegisterSignalInitializerQuickFix : LocalQuickFix {
-    override fun getFamilyName(): String {
-        return "Use \"by signal\" delegate"
-    }
+    override fun getFamilyName(): String = GodotPluginBundle.message("quickFix.signal.initializer.familyName")
 
     override fun applyFix(project: Project, descriptor: ProblemDescriptor) {
         val factory = KtPsiFactory(project)
