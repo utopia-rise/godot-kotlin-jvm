@@ -39,7 +39,7 @@ fun KtClass.getRegisteredClassName(): Pair<String, String>? {
     } else { // just registered as `@RegisterClass` without constructor params
         null
     }
-    // we already know the annotation is present. So if no custom name was define in the annotation, the class is registered with the fqName
+        // we already know the annotation is present. So if no custom name was define in the annotation, the class is registered with the fqName
         ?: fqName
 
     return fqName to registeredClassName
