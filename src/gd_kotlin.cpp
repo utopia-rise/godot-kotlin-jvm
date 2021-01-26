@@ -300,20 +300,29 @@ void GDKotlin::finish() {
 }
 
 void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
+#ifdef DEBUG_ENABLED
     print_line("Loading classes ...");
+#endif
     for (auto i = 0; i < p_classes.length(p_env); i++) {
         auto kt_class = new KtClass(p_classes.get(p_env, i), class_loader);
         classes[kt_class->name] = kt_class;
-        print_verbose(vformat("Loaded class %s : %s", kt_class->name, kt_class->super_class));
+#ifdef DEBUG_ENABLED
+        print_verbose(vformat("Loaded class %s : %s, as %s", kt_class->name, kt_class->super_class,
+                              kt_class->registered_class_name));
+#endif
     }
 }
 
 void GDKotlin::unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
+#ifdef DEBUG_ENABLED
     print_line("Unloading classes ...");
+#endif
     Map<StringName, KtClass*>::Element* current = classes.front();
     while (current != nullptr) {
         KtClass* kt_class = current->value();
+#ifdef DEBUG_ENABLED
         print_verbose(vformat("Unloading class %s : %s", kt_class->name, kt_class->super_class));
+#endif
         delete kt_class;
         current = current->next();
     }

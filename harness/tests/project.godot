@@ -9,22 +9,22 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "",
+"base": "Spatial",
 "class": "godot_tests_Invocation",
 "language": "Kotlin",
 "path": "res://src/main/kotlin/godot/tests/Invocation.kt"
 }, {
-"base": "",
+"base": "Node",
 "class": "godot_tests_inheritance_ClassInheritanceChild",
 "language": "Kotlin",
 "path": "res://src/main/kotlin/godot/tests/inheritance/ClassInheritanceChild.kt"
 }, {
-"base": "",
+"base": "Node",
 "class": "godot_tests_inheritance_ClassInheritanceParent",
 "language": "Kotlin",
 "path": "res://src/main/kotlin/godot/tests/inheritance/ClassInheritanceParent.kt"
 }, {
-"base": "",
+"base": "Node",
 "class": "godot_tests_subpackage_OtherScript",
 "language": "Kotlin",
 "path": "res://src/main/kotlin/godot/tests/subpackage/OtherScript.kt"

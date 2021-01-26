@@ -386,5 +386,11 @@ String KotlinLanguage::get_global_class_name(const String& p_path, String* r_bas
     if (p_path.begins_with(GODOT_ENTRY_PATH)) {
         return String();
     }
-    return GDKotlin::get_instance().find_class(p_path)->registered_class_name;
+    KtClass* clazz{GDKotlin::get_instance().find_class(p_path)};
+
+    if (r_base_type) {
+        *r_base_type = clazz->base_godot_class;
+    }
+
+    return clazz->registered_class_name;
 }
