@@ -78,8 +78,8 @@ class RegisterClassAnnotator : Annotator {
                 val valueArgumentList = registerClassAnnotation.valueArgumentList
                 if (valueArgumentList != null) {
                     valueArgumentList.arguments.firstOrNull { argument ->
-                        argument.getArgumentName()?.asName?.asString() == "customClassName"
-                    } ?: valueArgumentList.arguments.last()
+                        argument.getArgumentName()?.asName?.asString() == "className"
+                    } ?: valueArgumentList.arguments.first()
                 } else {
                     registerClassAnnotation
                 }

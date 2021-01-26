@@ -24,31 +24,22 @@ fun KtClass.getRegisteredClassName(): Pair<String, String>? {
 
     val lastChild = ktAnnotationEntry.lastChild
     val registeredClassName = if (lastChild is KtValueArgumentList) { // if (...) present in `@RegisterClass(...)`
-        // case: `@RegisterClass(customClassName = "Something")`
-        val customNameDefinedWithNamedValue = lastChild
+        lastChild
             .children
-            .firstOrNull { it.firstChild is KtValueArgumentName && it.firstChild.text == "customClassName" }
+            .firstOrNull { it.firstChild is KtValueArgumentName && it.firstChild.text == "className" } // named; position not relevant
             ?.children
             ?.lastOrNull()
             ?.text
             ?.removeSurrounding("\"")
-
-        // if not defined with a named param, it has to be the last child in the parameter list when the parameter list
-        // is greater than 1 (the first parameter being the `isTool` flag.
-        // Otherwise no custom name was defined
-        if (customNameDefinedWithNamedValue == null && lastChild.children.size > 1) {
-            lastChild
+            ?: lastChild
                 .children
-                .lastOrNull()
+                .firstOrNull() // not named; first position
                 ?.text
                 ?.removeSurrounding("\"")
-        } else {
-            customNameDefinedWithNamedValue
-        }
     } else { // just registered as `@RegisterClass` without constructor params
         null
     }
-        // we already know the annotation is present. So if no custom name was define in the annotation, the class is registered with the fqName
+    // we already know the annotation is present. So if no custom name was define in the annotation, the class is registered with the fqName
         ?: fqName
 
     return fqName to registeredClassName
