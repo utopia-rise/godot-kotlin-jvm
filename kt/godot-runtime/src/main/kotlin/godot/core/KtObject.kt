@@ -4,7 +4,7 @@ import godot.util.VoidPtr
 import godot.util.nullptr
 
 @Suppress("LeakingThis")
-abstract class KtObject : AutoCloseable {
+abstract class KtObject {
     var rawPtr: VoidPtr = nullptr
         set(value) {
             require(field == nullptr) {
@@ -55,10 +55,6 @@ abstract class KtObject : AutoCloseable {
 
     fun free() {
         TransferContext.freeObject(this)
-    }
-
-    final override fun close() {
-        free()
     }
 
     companion object {
