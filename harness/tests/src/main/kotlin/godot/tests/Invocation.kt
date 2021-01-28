@@ -218,7 +218,7 @@ class Invocation : Spatial() {
     }
 
     @RegisterFunction
-    fun _ready() {
+    override fun _ready() {
         val formerName = name
         println("Name is: $name")
         name = "TestName"
@@ -252,7 +252,7 @@ class Invocation : Spatial() {
     fun getRidId() = rid.id
 
     @RegisterFunction
-    fun getNavMeshRid() = resourceTest.getId()
+    fun getNavMeshRid() = resourceTest.getRid()
 
     @RegisterFunction
     fun appendToAnyDict(key: Any, value: Any) {
