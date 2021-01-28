@@ -5,7 +5,7 @@ formatting:
   Indentation:
     continuationIndentSize: 8
   ParameterListWrapping:
-    indentSize: 8
+    indentSize: 4
   MaximumLineLength:
     maxLineLength: 240
   CommentSpacing:
@@ -21,4 +21,7 @@ complexity:
   ComplexMethod:
     ignoreSingleWhenExpression: true
   TooManyFunctions:
-    excludes: [ '**/godot/intellij/plugin/inspections/registration/inspector/property/PropertyHintAnnotationChecker.kt' ]
+    excludes: [
+        '**/godot/intellij/plugin/annotator/property/PropertyHintAnnotationChecker.kt',
+        '**/intellij/plugin/wrapper/PsiTreeChangeListenerKt.kt',
+    ]

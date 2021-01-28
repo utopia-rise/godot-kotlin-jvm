@@ -1,17 +1,16 @@
-package godot.intellij.plugin.inspections.registration.quickfix
+package godot.intellij.plugin.quickfix
 
 import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
+import godot.intellij.plugin.GodotPluginBundle
 import org.jetbrains.kotlin.idea.util.addAnnotation
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtModifierListOwner
 
 class ClassNotRegisteredQuickFix : LocalQuickFix {
-    override fun getFamilyName(): String {
-        return "Add @RegisterClass annotation"
-    }
+    override fun getFamilyName(): String = GodotPluginBundle.message("quickFix.class.notRegistered.familyName")
 
     override fun applyFix(project: Project, descriptor: ProblemDescriptor) {
         val ktClass = if (descriptor.psiElement is KtClass) {

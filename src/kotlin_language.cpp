@@ -4,6 +4,8 @@
 #include "gd_kotlin.h"
 #include "godotkotlin_defs.h"
 
+static const String GODOT_ENTRY_PATH{"res://build/godot-entry"};
+
 KotlinLanguage& KotlinLanguage::get_instance() {
     static KotlinLanguage instance;
     return instance;
@@ -377,9 +379,18 @@ void KotlinLanguage::frame() {
 }
 
 bool KotlinLanguage::handles_global_class_type(const String& p_type) const {
-    return ScriptLanguage::handles_global_class_type(p_type);
+    return p_type == "KotlinScript";
 }
 
 String KotlinLanguage::get_global_class_name(const String& p_path, String* r_base_type, String* r_icon_path) const {
-    return ScriptLanguage::get_global_class_name(p_path, r_base_type, r_icon_path);
+    if (p_path.begins_with(GODOT_ENTRY_PATH)) {
+        return String();
+    }
+    KtClass* clazz{GDKotlin::get_instance().find_class(p_path)};
+
+    if (r_base_type) {
+        *r_base_type = clazz->base_godot_class;
+    }
+
+    return clazz->registered_class_name;
 }

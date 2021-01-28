@@ -12,6 +12,7 @@ class KtClass : public JavaInstanceWrapper<KtClass> {
 
 public:
     StringName name;
+    String registered_class_name;
     StringName super_class;
     StringName base_godot_class;
 
@@ -39,6 +40,8 @@ private:
     HashMap<StringName, KtSignalInfo*> signal_infos;
 
     StringName get_name(jni::Env& env);
+
+    String get_registered_name(jni::Env& env);
 
     StringName get_super_class(jni::Env& env);
 
@@ -75,6 +78,7 @@ private:
 DECLARE_JNI_METHODS(
         JNI_METHOD(NEW, "new", "(JJI)Lgodot/core/KtObject;")
         JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/String;")
+        JNI_METHOD(GET_REGISTERED_NAME, "getRegisteredName", "()Ljava/lang/String;")
         JNI_METHOD(GET_SUPER_CLASS, "getSuperClass", "()Ljava/lang/String;")
         JNI_METHOD(GET_BASE_GODOT_CLASS, "getBaseGodotClass", "()Ljava/lang/String;")
         JNI_METHOD(GET_FUNCTIONS, "getFunctions", "()[Lgodot/core/KtFunction;")

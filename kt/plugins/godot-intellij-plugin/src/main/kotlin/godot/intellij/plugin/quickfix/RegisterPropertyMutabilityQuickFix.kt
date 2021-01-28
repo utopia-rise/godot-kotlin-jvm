@@ -1,4 +1,4 @@
-package godot.intellij.plugin.inspections.registration.quickfix
+package godot.intellij.plugin.quickfix
 
 import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemDescriptor
@@ -8,24 +8,23 @@ import com.intellij.notification.NotificationType
 import com.intellij.notification.Notifications
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.NotNullLazyValue
+import godot.intellij.plugin.GodotPluginBundle
 import org.jetbrains.kotlin.psi.KtPsiFactory
 
-class RegisterSignalMutabilityQuickFix : LocalQuickFix {
-    override fun getFamilyName(): String {
-        return "Make signal not mutable"
-    }
+class RegisterPropertyMutabilityQuickFix : LocalQuickFix {
+    override fun getFamilyName(): String = GodotPluginBundle.message("quickFix.property.mutability.familyName")
 
     override fun applyFix(project: Project, descriptor: ProblemDescriptor) {
-        if (descriptor.psiElement.text == "var") {
+        if (descriptor.psiElement.text == "val") {
             val factory = KtPsiFactory(project)
-            descriptor.psiElement.replace(factory.createValKeyword())
+            descriptor.psiElement.replace(factory.createVarKeyword())
         } else {
             val propertyName = descriptor.psiElement.nextSibling.text
             Notifications.Bus.notify(
                 NOTIFICATION_GROUP.value
                     .createNotification(
-                        "@RegisterSignal Quick Fix",
-                        "Could not change the mutability of property $propertyName. Change it manually",
+                        GodotPluginBundle.message("notification.property.mutability.error.title"),
+                        GodotPluginBundle.message("notification.property.mutability.error.content", propertyName),
                         NotificationType.ERROR,
                         null
                     )
@@ -37,7 +36,7 @@ class RegisterSignalMutabilityQuickFix : LocalQuickFix {
         private val NOTIFICATION_GROUP = object : NotNullLazyValue<NotificationGroup>() {
             override fun compute(): NotificationGroup {
                 return NotificationGroup(
-                    "Error message",
+                    GodotPluginBundle.message("notification.group.error"),
                     NotificationDisplayType.STICKY_BALLOON,
                     true
                 )
