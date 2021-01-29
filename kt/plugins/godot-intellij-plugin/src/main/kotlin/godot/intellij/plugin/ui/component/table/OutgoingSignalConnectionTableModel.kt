@@ -5,7 +5,7 @@ import javax.swing.table.AbstractTableModel
 
 class OutgoingSignalConnectionTableModel(
     private val outgoingSignalConnectionDataContainers: List<OutgoingSignalConnectionDataContainer>
-): AbstractTableModel() {
+) : AbstractTableModel() {
     private val columnNames = arrayOf("Scene", "Source", "Method", "Target")
     private val tableData = outgoingSignalConnectionDataContainers
         .map { outgoingSignalConnectionDataContainer ->

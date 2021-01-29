@@ -53,7 +53,7 @@ class GodotSceneBulkFileListener(private val project: Project) : BulkFileListene
             val signals = try {
                 sceneFromTscn(path)
             } catch (e: Throwable) {
-                //TODO: show some info maybe
+                // TODO: show some info maybe
                 null
             }
                 ?.signalConnections

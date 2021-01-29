@@ -48,7 +48,7 @@ class SignalConnectionCache {
                 val toNode = signalConnection.to
                 val toKtClassFqName = signalConnection
                     .to
-                    .script!! //already filtered above
+                    .script!! // already filtered above
                     .removePrefix("res://src/main/kotlin/")
                     .replace("/", ".")
                     .removeSuffix(".kt")
@@ -82,7 +82,7 @@ class SignalConnectionCache {
                 }
                 val fromKtClassFqName = signalConnection
                     .from
-                    .script!! //already filtered above
+                    .script!! // already filtered above
                     .removePrefix("res://src/main/kotlin/")
                     .replace("/", ".")
                     .removeSuffix(".kt")

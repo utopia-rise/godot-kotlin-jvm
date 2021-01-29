@@ -16,6 +16,14 @@ style:
     maxLineLength: 240
   ForbiddenComment:
     values: [ 'STOPSHIP:' ] # explicit to allow Todo and fixme comments
+  ReturnCount:
+    active: false
+  MagicNumber:
+    active: false
+
+exceptions:
+  TooGenericExceptionCaught:
+    active: false
 
 complexity:
   ComplexMethod:
@@ -23,5 +31,10 @@ complexity:
   TooManyFunctions:
     excludes: [
         '**/godot/intellij/plugin/annotator/property/PropertyHintAnnotationChecker.kt',
-        '**/intellij/plugin/wrapper/PsiTreeChangeListenerKt.kt',
+        '**/godot/intellij/plugin/wrapper/PsiTreeChangeListenerKt.kt',
+    ]
+  LongMethod:
+    excludes: [
+        '**/godot/intellij/plugin/linemarker/SignalConnectionLineMarker.kt',
+        '**/godot/intellij/plugin/data/cache/SignalConnectionCache.kt',
     ]

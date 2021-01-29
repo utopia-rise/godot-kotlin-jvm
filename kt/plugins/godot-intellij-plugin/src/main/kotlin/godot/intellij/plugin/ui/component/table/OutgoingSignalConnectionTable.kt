@@ -4,7 +4,7 @@ import com.intellij.ui.table.JBTable
 import javax.swing.table.DefaultTableCellRenderer
 import javax.swing.table.TableCellRenderer
 
-class OutgoingSignalConnectionTable (
+class OutgoingSignalConnectionTable(
     model: OutgoingSignalConnectionTableModel
 ) : JBTable(model) {
     private val sceneCellRenderer = IconCellRenderer("/icon_packed_scene.svg")

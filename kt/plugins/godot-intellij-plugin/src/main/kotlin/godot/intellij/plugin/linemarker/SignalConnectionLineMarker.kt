@@ -17,7 +17,6 @@ import kotlin.text.Typography.nbsp
 
 class SignalConnectionLineMarker : LineMarkerProvider {
     override fun getLineMarkerInfo(element: PsiElement): LineMarkerInfo<*>? {
-
         if (element is KtProperty && element.type().isSignal()) {
             val project = element.project
             val containingClassFqName = element.containingClass()?.fqName?.asString() ?: return null
@@ -35,7 +34,7 @@ class SignalConnectionLineMarker : LineMarkerProvider {
                     if (index != 0) {
                         appendLine()
                     }
-                    //normal space gets trimmed
+                    // normal space gets trimmed
                     appendLine("Scene: ${pluginOutgoingKtScriptSignalConnection.scenePath}")
                     appendLine("$nbsp${nbsp}Target Node: ${pluginOutgoingKtScriptSignalConnection.targetNodeName}")
                     appendLine("$nbsp${nbsp}Target Function: ::${pluginOutgoingKtScriptSignalConnection.targetFunctionName}")
@@ -77,7 +76,7 @@ class SignalConnectionLineMarker : LineMarkerProvider {
                     if (index != 0) {
                         appendLine()
                     }
-                    //normal space gets trimmed
+                    // normal space gets trimmed
                     appendLine("Scene: ${pluginIncomingKtScriptSignalConnection.scenePath}")
                     appendLine("$nbsp$nbsp${pluginIncomingKtScriptSignalConnection.signalName}:")
                     appendLine("$nbsp$nbsp$nbsp${nbsp}Source Node: ${pluginIncomingKtScriptSignalConnection.fromNodeName}")
