@@ -7,11 +7,12 @@ import com.intellij.openapi.vfs.newvfs.BulkFileListener
 import godot.intellij.plugin.ProjectDisposable
 
 class GodotProjectManagerListener : ProjectManagerListener {
-    private val listenerPerProject: MutableMap<Project, MutableList<ProjectDisposable>> = mutableMapOf()
+    private val listenerPerProject: MutableMap<Project, List<ProjectDisposable>> = mutableMapOf()
 
     override fun projectOpened(project: Project) {
-        listenerPerProject[project] = mutableListOf(
-            KtPsiTreeListener(project)
+        listenerPerProject[project] = listOf(
+            KtPsiTreeListener(project),
+            GodotSceneBulkFileListener(project)
         )
 
         listenerPerProject

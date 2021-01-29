@@ -5,14 +5,14 @@ import com.intellij.codeInsight.daemon.LineMarkerProvider
 import com.intellij.openapi.editor.markup.GutterIconRenderer
 import com.intellij.openapi.util.IconLoader
 import com.intellij.psi.PsiElement
-import godot.intellij.plugin.signal.SignalConnectionHandlerProvider
-import org.jetbrains.kotlin.js.descriptorUtils.getJetTypeFqName
+import godot.intellij.plugin.data.cache.SignalConnectionCacheProvider
+import godot.intellij.plugin.extension.isSignal
+import godot.intellij.plugin.ui.dialog.IncomingSignalConnectionsDialog
+import godot.intellij.plugin.ui.dialog.OutgoingSignalConnectionsDialog
 import org.jetbrains.kotlin.nj2k.postProcessing.type
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.psi.psiUtil.containingClass
-import org.jetbrains.kotlin.types.KotlinType
-import org.jetbrains.kotlin.types.typeUtil.supertypes
 import kotlin.text.Typography.nbsp
 
 class SignalConnectionLineMarker : LineMarkerProvider {
@@ -22,7 +22,7 @@ class SignalConnectionLineMarker : LineMarkerProvider {
             val project = element.project
             val containingClassFqName = element.containingClass()?.fqName?.asString() ?: return null
             val propertyName = element.name ?: return null
-            val signalConnectionHandler = SignalConnectionHandlerProvider.getInstanceForProject(project)
+            val signalConnectionHandler = SignalConnectionCacheProvider.provide(project)
 
             val signalConnections = signalConnectionHandler
                 .getOutgoingKtSignalConnection(
@@ -37,8 +37,9 @@ class SignalConnectionLineMarker : LineMarkerProvider {
                     }
                     //normal space gets trimmed
                     appendLine("Scene: ${pluginOutgoingKtScriptSignalConnection.scenePath}")
-                    appendLine("$nbsp${nbsp}Target: ${pluginOutgoingKtScriptSignalConnection.targetNodeName}::${pluginOutgoingKtScriptSignalConnection.targetMethodName}")
-                    appendLine("$nbsp$nbsp$nbsp${nbsp}Script: ${pluginOutgoingKtScriptSignalConnection.targetScriptPath}")
+                    appendLine("$nbsp${nbsp}Target Node: ${pluginOutgoingKtScriptSignalConnection.targetNodeName}")
+                    appendLine("$nbsp${nbsp}Target Function: ::${pluginOutgoingKtScriptSignalConnection.targetFunctionName}")
+                    appendLine("$nbsp${nbsp}Script: ${pluginOutgoingKtScriptSignalConnection.targetScriptPath}")
                 }
             }
 
@@ -51,7 +52,9 @@ class SignalConnectionLineMarker : LineMarkerProvider {
                 signalIdentifyingElement.textRange,
                 imageIcon,
                 { tooltip },
-                null,
+                { _, _ ->
+                    OutgoingSignalConnectionsDialog(signalConnections).show()
+                },
                 GutterIconRenderer.Alignment.LEFT,
                 { "outgoing kt script signal connection" }
             )
@@ -61,7 +64,7 @@ class SignalConnectionLineMarker : LineMarkerProvider {
             val project = element.project
             val containingClassFqName = element.containingClass()?.fqName?.asString() ?: return null
             val functionName = element.name ?: return null
-            val signalConnectionHandler = SignalConnectionHandlerProvider.getInstanceForProject(project)
+            val signalConnectionHandler = SignalConnectionCacheProvider.provide(project)
 
             val signalConnections = signalConnectionHandler
                 .getIncomingKtSignalConnection(
@@ -77,7 +80,7 @@ class SignalConnectionLineMarker : LineMarkerProvider {
                     //normal space gets trimmed
                     appendLine("Scene: ${pluginIncomingKtScriptSignalConnection.scenePath}")
                     appendLine("$nbsp$nbsp${pluginIncomingKtScriptSignalConnection.signalName}:")
-                    appendLine("$nbsp$nbsp$nbsp${nbsp}Source: ${pluginIncomingKtScriptSignalConnection.fromNodeName}")
+                    appendLine("$nbsp$nbsp$nbsp${nbsp}Source Node: ${pluginIncomingKtScriptSignalConnection.fromNodeName}")
                     appendLine("$nbsp$nbsp$nbsp${nbsp}Script: ${pluginIncomingKtScriptSignalConnection.fromScriptPath}")
                 }
             }
@@ -91,24 +94,14 @@ class SignalConnectionLineMarker : LineMarkerProvider {
                 signalIdentifyingElement.textRange,
                 imageIcon,
                 { tooltip },
-                null,
+                { _, _ ->
+                    IncomingSignalConnectionsDialog(signalConnections).show()
+                },
                 GutterIconRenderer.Alignment.LEFT,
                 { "incoming kt script signal connection" }
             )
         }
 
         return null
-    }
-}
-
-private fun KotlinType?.isSignal(): Boolean {
-    if (this == null) return false
-    return if (getJetTypeFqName(false) == "godot.signals.Signal") {
-        true
-    } else {
-        supertypes()
-            .any { supertype ->
-                supertype.getJetTypeFqName(false) == "godot.signals.Signal"
-            }
     }
 }

@@ -1,49 +1,31 @@
-package godot.intellij.plugin.signal
+package godot.intellij.plugin.data.cache
 
 import com.intellij.openapi.project.Project
 import com.utopiarise.serialization.godot.model.SignalConnection
-import godot.intellij.plugin.data.model.PluginIncomingKtScriptSignalConnection
-import godot.intellij.plugin.data.model.PluginOutgoingKtScriptSignalConnection
+import godot.intellij.plugin.data.model.IncomingSignalConnectionDataContainer
+import godot.intellij.plugin.data.model.OutgoingSignalConnectionDataContainer
+import godot.intellij.plugin.extension.snakeToLowerCamelCase
 
-object SignalConnectionHandlerProvider {
-    private val projectToSignalConnectionHandler: MutableMap<Project, SignalConnectionHandler> = mutableMapOf()
-
-    fun getInstanceForProject(project: Project): SignalConnectionHandler {
-        val signalConnectionHandler = projectToSignalConnectionHandler[project]
-
-        return if (signalConnectionHandler == null) {
-            val newSignalConnectionHanlder = SignalConnectionHandler()
-            projectToSignalConnectionHandler[project] = newSignalConnectionHanlder
-            newSignalConnectionHanlder
-        } else {
-            signalConnectionHandler
-        }
-    }
-
-    fun disposeSignalConnectionHandlerForProject(project: Project) =
-        projectToSignalConnectionHandler.remove(project)
-}
-
-class SignalConnectionHandler {
-    private val incomingKtScriptSignalConnections: MutableMap<String, MutableMap<String, List<PluginIncomingKtScriptSignalConnection>>> =
+class SignalConnectionCache {
+    private val incomingSignalConnectionDataContainers: MutableMap<String, MutableMap<String, List<IncomingSignalConnectionDataContainer>>> =
         mutableMapOf()
-    private val outgoingKtScriptSignalConnections: MutableMap<String, MutableMap<String, List<PluginOutgoingKtScriptSignalConnection>>> =
+    private val outgoingKtScriptSignalConnections: MutableMap<String, MutableMap<String, List<OutgoingSignalConnectionDataContainer>>> =
         mutableMapOf()
 
     fun getIncomingKtSignalConnection(
         classFqName: String,
         methodName: String
-    ): List<PluginIncomingKtScriptSignalConnection> {
-        return incomingKtScriptSignalConnections
+    ): List<IncomingSignalConnectionDataContainer> {
+        return incomingSignalConnectionDataContainers
             .map { it.value }
             .flatMap { it[classFqName] ?: emptyList() }
-            .filter { it.toMethodName == methodName }
+            .filter { it.toFunctionName == methodName }
     }
 
     fun getOutgoingKtSignalConnection(
         classFqName: String,
         signalName: String
-    ): List<PluginOutgoingKtScriptSignalConnection> {
+    ): List<OutgoingSignalConnectionDataContainer> {
         return outgoingKtScriptSignalConnections
             .map { it.value }
             .flatMap { it[classFqName] ?: emptyList() }
@@ -63,6 +45,7 @@ class SignalConnectionHandler {
                 }
                 val toMethodName = signalConnection.method.snakeToLowerCamelCase()
                 val fromNode = signalConnection.from
+                val toNode = signalConnection.to
                 val toKtClassFqName = signalConnection
                     .to
                     .script!! //already filtered above
@@ -70,10 +53,11 @@ class SignalConnectionHandler {
                     .replace("/", ".")
                     .removeSuffix(".kt")
 
-                PluginIncomingKtScriptSignalConnection(
+                IncomingSignalConnectionDataContainer(
                     path.replace(project.basePath ?: "", "res://"),
                     signalName,
                     fromNode.name,
+                    toNode.name,
                     signalConnection.from.script,
                     toMethodName,
                     toKtClassFqName
@@ -81,7 +65,7 @@ class SignalConnectionHandler {
             }
             .groupBy { pluginIncomingKtSignalConnection -> pluginIncomingKtSignalConnection.toKtClassFqName }
             .let { map ->
-                incomingKtScriptSignalConnections[path] = map.toMutableMap()
+                incomingSignalConnectionDataContainers[path] = map.toMutableMap()
             }
 
         newSignalConnections
@@ -103,9 +87,10 @@ class SignalConnectionHandler {
                     .replace("/", ".")
                     .removeSuffix(".kt")
 
-                PluginOutgoingKtScriptSignalConnection(
+                OutgoingSignalConnectionDataContainer(
                     path.replace(project.basePath ?: "", "res://"),
                     signalName,
+                    signalConnection.from.name,
                     signalConnection.to.name,
                     toMethodName,
                     fromKtClassFqName,
@@ -119,18 +104,7 @@ class SignalConnectionHandler {
     }
 
     fun removeSignalConnections(path: String) {
-        incomingKtScriptSignalConnections.remove(path)
+        incomingSignalConnectionDataContainers.remove(path)
         outgoingKtScriptSignalConnections.remove(path)
-    }
-
-    private fun String.snakeToLowerCamelCase(): String {
-        return "_[a-zA-Z]"
-            .toRegex()
-            .replace(this) {
-                it
-                    .value
-                    .replace("_", "")
-                    .toUpperCase()
-            }
     }
 }
