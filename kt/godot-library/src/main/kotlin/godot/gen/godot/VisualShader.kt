@@ -1,0 +1,225 @@
+// THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
+    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
+    "RemoveRedundantQualifierName")
+
+package godot
+
+import godot.annotation.GodotBaseType
+import godot.core.GodotError
+import godot.core.PoolIntArray
+import godot.core.TransferContext
+import godot.core.VariantArray
+import godot.core.VariantType.ARRAY
+import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
+import godot.core.VariantType.LONG
+import godot.core.VariantType.NIL
+import godot.core.VariantType.OBJECT
+import godot.core.VariantType.POOL_INT_ARRAY
+import godot.core.VariantType.VECTOR2
+import godot.core.Vector2
+import godot.util.VoidPtr
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
+import kotlin.Long
+import kotlin.Suppress
+import kotlin.Unit
+
+@GodotBaseType
+open class VisualShader : Shader() {
+  open var graphOffset: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_GRAPH_OFFSET,
+          VECTOR2)
+      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    }
+    set(value) {
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_SET_GRAPH_OFFSET,
+          NIL)
+    }
+
+  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADER)
+
+  open fun graphOffset(schedule: Vector2.() -> Unit): Vector2 = graphOffset.apply{
+      schedule(this)
+      graphOffset = this
+  }
+
+
+  open fun _input_type_changed(arg0: Long, arg1: Long) {
+  }
+
+  open fun _queue_update() {
+  }
+
+  open fun _update_shader() {
+  }
+
+  open fun addNode(
+    type: Long,
+    node: VisualShaderNode,
+    position: Vector2,
+    id: Long
+  ) {
+    TransferContext.writeArguments(LONG to type, OBJECT to node, VECTOR2 to position, LONG to id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_ADD_NODE, NIL)
+  }
+
+  open fun canConnectNodes(
+    type: Long,
+    fromNode: Long,
+    fromPort: Long,
+    toNode: Long,
+    toPort: Long
+  ): Boolean {
+    TransferContext.writeArguments(LONG to type, LONG to fromNode, LONG to fromPort, LONG to toNode,
+        LONG to toPort)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_CAN_CONNECT_NODES,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  open fun connectNodes(
+    type: Long,
+    fromNode: Long,
+    fromPort: Long,
+    toNode: Long,
+    toPort: Long
+  ): GodotError {
+    TransferContext.writeArguments(LONG to type, LONG to fromNode, LONG to fromPort, LONG to toNode,
+        LONG to toPort)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_CONNECT_NODES, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  open fun connectNodesForced(
+    type: Long,
+    fromNode: Long,
+    fromPort: Long,
+    toNode: Long,
+    toPort: Long
+  ) {
+    TransferContext.writeArguments(LONG to type, LONG to fromNode, LONG to fromPort, LONG to toNode,
+        LONG to toPort)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_CONNECT_NODES_FORCED,
+        NIL)
+  }
+
+  open fun disconnectNodes(
+    type: Long,
+    fromNode: Long,
+    fromPort: Long,
+    toNode: Long,
+    toPort: Long
+  ) {
+    TransferContext.writeArguments(LONG to type, LONG to fromNode, LONG to fromPort, LONG to toNode,
+        LONG to toPort)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_DISCONNECT_NODES, NIL)
+  }
+
+  open fun getNode(type: Long, id: Long): VisualShaderNode? {
+    TransferContext.writeArguments(LONG to type, LONG to id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as VisualShaderNode?
+  }
+
+  open fun getNodeConnections(type: Long): VariantArray<Any?> {
+    TransferContext.writeArguments(LONG to type)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE_CONNECTIONS,
+        ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+  }
+
+  open fun getNodeList(type: Long): PoolIntArray {
+    TransferContext.writeArguments(LONG to type)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE_LIST,
+        POOL_INT_ARRAY)
+    return TransferContext.readReturnValue(POOL_INT_ARRAY, false) as PoolIntArray
+  }
+
+  open fun getNodePosition(type: Long, id: Long): Vector2 {
+    TransferContext.writeArguments(LONG to type, LONG to id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE_POSITION,
+        VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  open fun getValidNodeId(type: Long): Long {
+    TransferContext.writeArguments(LONG to type)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_VALID_NODE_ID,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  open fun isNodeConnection(
+    type: Long,
+    fromNode: Long,
+    fromPort: Long,
+    toNode: Long,
+    toPort: Long
+  ): Boolean {
+    TransferContext.writeArguments(LONG to type, LONG to fromNode, LONG to fromPort, LONG to toNode,
+        LONG to toPort)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_IS_NODE_CONNECTION,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  open fun removeNode(type: Long, id: Long) {
+    TransferContext.writeArguments(LONG to type, LONG to id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_REMOVE_NODE, NIL)
+  }
+
+  open fun setMode(mode: Long) {
+    TransferContext.writeArguments(LONG to mode)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_SET_MODE, NIL)
+  }
+
+  open fun setNodePosition(
+    type: Long,
+    id: Long,
+    position: Vector2
+  ) {
+    TransferContext.writeArguments(LONG to type, LONG to id, VECTOR2 to position)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_SET_NODE_POSITION, NIL)
+  }
+
+  enum class Type(
+    id: Long
+  ) {
+    TYPE_VERTEX(0),
+
+    TYPE_FRAGMENT(1),
+
+    TYPE_LIGHT(2),
+
+    TYPE_MAX(3);
+
+    val id: Long
+    init {
+      this.id = id
+    }
+
+    companion object {
+      fun from(value: Long) = values().single { it.id == value }
+    }
+  }
+
+  companion object {
+    final const val NODE_ID_INVALID: Long = -1
+
+    final const val NODE_ID_OUTPUT: Long = 0
+
+    final const val TYPE_FRAGMENT: Long = 1
+
+    final const val TYPE_LIGHT: Long = 2
+
+    final const val TYPE_MAX: Long = 3
+
+    final const val TYPE_VERTEX: Long = 0
+  }
+}
