@@ -12,6 +12,10 @@ apiGenerator {
     isNative.set(false)
 }
 
+tasks.compileKotlin {
+    dependsOn(tasks.generateAPI)
+}
+
 dependencies {
     api(project(":godot-runtime"))
 }
