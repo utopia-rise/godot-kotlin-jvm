@@ -20,7 +20,7 @@ import kotlin.Suppress
 object VisualScriptEditor : Object() {
   val customNodesUpdated: Signal0 by signal()
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINECLASS__VISUALSCRIPTEDITOR)
+  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_VISUALSCRIPTEDITOR)
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

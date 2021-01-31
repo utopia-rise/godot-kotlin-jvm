@@ -20,7 +20,7 @@ import kotlin.Suppress
 
 @GodotBaseType
 object ResourceLoader : Object() {
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINECLASS__RESOURCELOADER)
+  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_RESOURCELOADER)
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

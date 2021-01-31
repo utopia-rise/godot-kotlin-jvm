@@ -348,7 +348,7 @@ object OS : Object() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_WINDOW_SIZE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINECLASS__OS)
+  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_OS)
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

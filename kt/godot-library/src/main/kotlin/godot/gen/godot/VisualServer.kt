@@ -503,7 +503,7 @@ object VisualServer : Object() {
 
   val framePreDraw: Signal0 by signal()
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINECLASS_VISUALSERVER)
+  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_VISUALSERVER)
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

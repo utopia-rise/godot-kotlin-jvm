@@ -26,6 +26,7 @@ public:
     TransferContext* transfer_context;
     Vector<StringName> engine_type_names;
     Vector<MethodBind*> engine_type_method;
+    Vector<String> engine_singleton_names;
 
     GDKotlin(const GDKotlin&) = delete;
 

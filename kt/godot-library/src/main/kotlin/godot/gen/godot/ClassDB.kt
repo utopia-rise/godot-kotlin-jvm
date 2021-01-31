@@ -30,7 +30,7 @@ import kotlin.Suppress
 
 @GodotBaseType
 object ClassDB : Object() {
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINECLASS__CLASSDB)
+  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_CLASSDB)
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

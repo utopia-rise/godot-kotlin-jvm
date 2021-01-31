@@ -86,7 +86,7 @@ object Engine : Object() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_SET_TIME_SCALE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINECLASS__ENGINE)
+  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_ENGINE)
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

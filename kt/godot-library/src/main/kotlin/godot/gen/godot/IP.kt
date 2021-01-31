@@ -43,7 +43,7 @@ object IP : Object() {
 
   final const val TYPE_NONE: Long = 0
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINECLASS_IP)
+  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_IP)
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

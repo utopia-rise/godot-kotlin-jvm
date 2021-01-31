@@ -161,7 +161,7 @@ jlong TransferContext::invoke_constructor(JNIEnv *p_raw_env, jobject p_instance,
 jlong TransferContext::get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index) {
     return reinterpret_cast<uintptr_t>(
             Engine::get_singleton()->get_singleton_object(
-                    GDKotlin::get_instance().engine_type_names[static_cast<int>(p_class_index)]
+                    GDKotlin::get_instance().engine_singleton_names[static_cast<int>(p_class_index)]
             )
     );
 }

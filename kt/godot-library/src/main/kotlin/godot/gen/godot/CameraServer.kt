@@ -33,7 +33,7 @@ object CameraServer : Object() {
 
   val cameraFeedRemoved: Signal1<Long> by signal("id")
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINECLASS_CAMERASERVER)
+  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_CAMERASERVER)
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

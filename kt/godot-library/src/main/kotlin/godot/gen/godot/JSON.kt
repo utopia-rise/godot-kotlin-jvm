@@ -19,7 +19,7 @@ import kotlin.Suppress
 
 @GodotBaseType
 object JSON : Object() {
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINECLASS__JSON)
+  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_JSON)
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

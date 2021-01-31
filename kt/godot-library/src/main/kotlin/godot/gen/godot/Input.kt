@@ -78,7 +78,7 @@ object Input : Object() {
 
   val joyConnectionChanged: Signal2<Long, Boolean> by signal("device", "connected")
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINECLASS_INPUT)
+  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_INPUT)
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

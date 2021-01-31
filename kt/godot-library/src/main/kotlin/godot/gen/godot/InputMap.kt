@@ -23,7 +23,7 @@ import kotlin.Suppress
 
 @GodotBaseType
 object InputMap : Object() {
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINECLASS_INPUTMAP)
+  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_INPUTMAP)
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

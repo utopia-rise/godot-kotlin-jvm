@@ -20,7 +20,7 @@ import kotlin.Suppress
 
 @GodotBaseType
 object Marshalls : Object() {
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINECLASS__MARSHALLS)
+  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_MARSHALLS)
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

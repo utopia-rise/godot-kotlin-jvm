@@ -81,7 +81,7 @@ object ARVRServer : Object() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRSERVER_SET_WORLD_SCALE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINECLASS_ARVRSERVER)
+  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_ARVRSERVER)
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

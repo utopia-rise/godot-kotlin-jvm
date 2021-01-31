@@ -36,7 +36,7 @@ object ResourceSaver : Object() {
 
   final const val FLAG_SAVE_BIG_ENDIAN: Long = 16
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINECLASS__RESOURCESAVER)
+  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_RESOURCESAVER)
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

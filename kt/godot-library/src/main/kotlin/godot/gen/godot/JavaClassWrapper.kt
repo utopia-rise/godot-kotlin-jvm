@@ -15,7 +15,7 @@ import kotlin.Suppress
 
 @GodotBaseType
 object JavaClassWrapper : Object() {
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINECLASS_JAVACLASSWRAPPER)
+  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_JAVACLASSWRAPPER)
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

@@ -75,7 +75,7 @@ object AudioServer : Object() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINECLASS_AUDIOSERVER)
+  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_AUDIOSERVER)
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

@@ -60,7 +60,7 @@ object Geometry : Object() {
 
   final const val OPERATION_XOR: Long = 3
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINECLASS__GEOMETRY)
+  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_GEOMETRY)
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

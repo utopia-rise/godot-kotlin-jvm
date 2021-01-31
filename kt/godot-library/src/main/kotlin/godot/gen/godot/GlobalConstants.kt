@@ -1025,7 +1025,7 @@ object GlobalConstants : Object() {
 
   final const val VERTICAL: Long = 1
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINECLASS_GLOBALCONSTANTS)
+  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_GLOBALCONSTANTS)
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 }

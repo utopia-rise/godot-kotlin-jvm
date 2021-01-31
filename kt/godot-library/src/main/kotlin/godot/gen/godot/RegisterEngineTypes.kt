@@ -12684,6 +12684,7 @@ private fun registerEngineTypeMethodForVisualScriptEditor() {
 
 fun registerEngineTypes() {
   TypeManager.registerEngineType("GlobalConstants") { GlobalConstants }
+  TypeManager.registerSingleton("GlobalConstants")
   TypeManager.registerEngineType("ARVRAnchor", ::ARVRAnchor)
   TypeManager.registerEngineType("ARVRCamera", ::ARVRCamera)
   TypeManager.registerEngineType("ARVRController", ::ARVRController)
@@ -12692,6 +12693,7 @@ fun registerEngineTypes() {
   TypeManager.registerEngineType("ARVROrigin", ::ARVROrigin)
   TypeManager.registerEngineType("ARVRPositionalTracker", ::ARVRPositionalTracker)
   TypeManager.registerEngineType("ARVRServer") { ARVRServer }
+  TypeManager.registerSingleton("ARVRServer")
   TypeManager.registerEngineType("AStar", ::AStar)
   TypeManager.registerEngineType("AStar2D", ::AStar2D)
   TypeManager.registerEngineType("AcceptDialog", ::AcceptDialog)
@@ -12758,6 +12760,7 @@ fun registerEngineTypes() {
       ::AudioEffectSpectrumAnalyzerInstance)
   TypeManager.registerEngineType("AudioEffectStereoEnhance", ::AudioEffectStereoEnhance)
   TypeManager.registerEngineType("AudioServer") { AudioServer }
+  TypeManager.registerSingleton("AudioServer")
   TypeManager.registerEngineType("AudioStream", ::AudioStream)
   TypeManager.registerEngineType("AudioStreamGenerator", ::AudioStreamGenerator)
   TypeManager.registerEngineType("AudioStreamGeneratorPlayback", ::AudioStreamGeneratorPlayback)
@@ -12798,6 +12801,7 @@ fun registerEngineTypes() {
   TypeManager.registerEngineType("Camera2D", ::Camera2D)
   TypeManager.registerEngineType("CameraFeed", ::CameraFeed)
   TypeManager.registerEngineType("CameraServer") { CameraServer }
+  TypeManager.registerSingleton("CameraServer")
   TypeManager.registerEngineType("CameraTexture", ::CameraTexture)
   TypeManager.registerEngineType("CanvasItem", ::CanvasItem)
   TypeManager.registerEngineType("CanvasItemMaterial", ::CanvasItemMaterial)
@@ -12904,10 +12908,12 @@ fun registerEngineTypes() {
   TypeManager.registerEngineType("HeightMapShape", ::HeightMapShape)
   TypeManager.registerEngineType("HingeJoint", ::HingeJoint)
   TypeManager.registerEngineType("IP") { IP }
+  TypeManager.registerSingleton("IP")
   TypeManager.registerEngineType("Image", ::Image)
   TypeManager.registerEngineType("ImageTexture", ::ImageTexture)
   TypeManager.registerEngineType("ImmediateGeometry", ::ImmediateGeometry)
   TypeManager.registerEngineType("Input") { Input }
+  TypeManager.registerSingleton("Input")
   TypeManager.registerEngineType("InputEvent", ::InputEvent)
   TypeManager.registerEngineType("InputEventAction", ::InputEventAction)
   TypeManager.registerEngineType("InputEventGesture", ::InputEventGesture)
@@ -12924,6 +12930,7 @@ fun registerEngineTypes() {
   TypeManager.registerEngineType("InputEventScreenTouch", ::InputEventScreenTouch)
   TypeManager.registerEngineType("InputEventWithModifiers", ::InputEventWithModifiers)
   TypeManager.registerEngineType("InputMap") { InputMap }
+  TypeManager.registerSingleton("InputMap")
   TypeManager.registerEngineType("InstancePlaceholder", ::InstancePlaceholder)
   TypeManager.registerEngineType("InterpolatedCamera", ::InterpolatedCamera)
   TypeManager.registerEngineType("ItemList", ::ItemList)
@@ -12932,7 +12939,9 @@ fun registerEngineTypes() {
   TypeManager.registerEngineType("JSONRPC", ::JSONRPC)
   TypeManager.registerEngineType("JavaClass", ::JavaClass)
   TypeManager.registerEngineType("JavaClassWrapper") { JavaClassWrapper }
+  TypeManager.registerSingleton("JavaClassWrapper")
   TypeManager.registerEngineType("JavaScript") { JavaScript }
+  TypeManager.registerSingleton("JavaScript")
   TypeManager.registerEngineType("Joint", ::Joint)
   TypeManager.registerEngineType("Joint2D", ::Joint2D)
   TypeManager.registerEngineType("KinematicBody", ::KinematicBody)
@@ -13006,11 +13015,13 @@ fun registerEngineTypes() {
   TypeManager.registerEngineType("PathFollow", ::PathFollow)
   TypeManager.registerEngineType("PathFollow2D", ::PathFollow2D)
   TypeManager.registerEngineType("Performance") { Performance }
+  TypeManager.registerSingleton("Performance")
   TypeManager.registerEngineType("PhysicalBone", ::PhysicalBone)
   TypeManager.registerEngineType("Physics2DDirectBodyState", ::Physics2DDirectBodyState)
   TypeManager.registerEngineType("Physics2DDirectBodyStateSW", ::Physics2DDirectBodyStateSW)
   TypeManager.registerEngineType("Physics2DDirectSpaceState", ::Physics2DDirectSpaceState)
   TypeManager.registerEngineType("Physics2DServer") { Physics2DServer }
+  TypeManager.registerSingleton("Physics2DServer")
   TypeManager.registerEngineType("Physics2DShapeQueryParameters", ::Physics2DShapeQueryParameters)
   TypeManager.registerEngineType("Physics2DShapeQueryResult", ::Physics2DShapeQueryResult)
   TypeManager.registerEngineType("Physics2DTestMotionResult", ::Physics2DTestMotionResult)
@@ -13020,6 +13031,7 @@ fun registerEngineTypes() {
   TypeManager.registerEngineType("PhysicsDirectSpaceState", ::PhysicsDirectSpaceState)
   TypeManager.registerEngineType("PhysicsMaterial", ::PhysicsMaterial)
   TypeManager.registerEngineType("PhysicsServer") { PhysicsServer }
+  TypeManager.registerSingleton("PhysicsServer")
   TypeManager.registerEngineType("PhysicsShapeQueryParameters", ::PhysicsShapeQueryParameters)
   TypeManager.registerEngineType("PhysicsShapeQueryResult", ::PhysicsShapeQueryResult)
   TypeManager.registerEngineType("PinJoint", ::PinJoint)
@@ -13041,6 +13053,7 @@ fun registerEngineTypes() {
   TypeManager.registerEngineType("ProceduralSky", ::ProceduralSky)
   TypeManager.registerEngineType("ProgressBar", ::ProgressBar)
   TypeManager.registerEngineType("ProjectSettings") { ProjectSettings }
+  TypeManager.registerSingleton("ProjectSettings")
   TypeManager.registerEngineType("ProximityGroup", ::ProximityGroup)
   TypeManager.registerEngineType("ProxyTexture", ::ProxyTexture)
   TypeManager.registerEngineType("QuadMesh", ::QuadMesh)
@@ -13141,6 +13154,7 @@ fun registerEngineTypes() {
   TypeManager.registerEngineType("TouchScreenButton", ::TouchScreenButton)
   TypeManager.registerEngineType("Translation", ::Translation)
   TypeManager.registerEngineType("TranslationServer") { TranslationServer }
+  TypeManager.registerSingleton("TranslationServer")
   TypeManager.registerEngineType("Tree", ::Tree)
   TypeManager.registerEngineType("TreeItem", ::TreeItem)
   TypeManager.registerEngineType("TriangleMesh", ::TriangleMesh)
@@ -13216,6 +13230,7 @@ fun registerEngineTypes() {
   TypeManager.registerEngineType("VisualScriptYield", ::VisualScriptYield)
   TypeManager.registerEngineType("VisualScriptYieldSignal", ::VisualScriptYieldSignal)
   TypeManager.registerEngineType("VisualServer") { VisualServer }
+  TypeManager.registerSingleton("VisualServer")
   TypeManager.registerEngineType("VisualShader", ::VisualShader)
   TypeManager.registerEngineType("VisualShaderNode", ::VisualShaderNode)
   TypeManager.registerEngineType("VisualShaderNodeBooleanConstant",
@@ -13310,20 +13325,29 @@ fun registerEngineTypes() {
   TypeManager.registerEngineType("X509Certificate", ::X509Certificate)
   TypeManager.registerEngineType("XMLParser", ::XMLParser)
   TypeManager.registerEngineType("YSort", ::YSort)
-  TypeManager.registerEngineType("ClassDB") { ClassDB }
-  TypeManager.registerEngineType("Directory", ::Directory)
-  TypeManager.registerEngineType("Engine") { Engine }
-  TypeManager.registerEngineType("File", ::File)
-  TypeManager.registerEngineType("Geometry") { Geometry }
-  TypeManager.registerEngineType("JSON") { JSON }
-  TypeManager.registerEngineType("Marshalls") { Marshalls }
-  TypeManager.registerEngineType("Mutex", ::Mutex)
-  TypeManager.registerEngineType("OS") { OS }
-  TypeManager.registerEngineType("ResourceLoader") { ResourceLoader }
-  TypeManager.registerEngineType("ResourceSaver") { ResourceSaver }
-  TypeManager.registerEngineType("Semaphore", ::Semaphore)
-  TypeManager.registerEngineType("Thread", ::Thread)
-  TypeManager.registerEngineType("VisualScriptEditor") { VisualScriptEditor }
+  TypeManager.registerEngineType("_ClassDB") { ClassDB }
+  TypeManager.registerSingleton("ClassDB")
+  TypeManager.registerEngineType("_Directory", ::Directory)
+  TypeManager.registerEngineType("_Engine") { Engine }
+  TypeManager.registerSingleton("Engine")
+  TypeManager.registerEngineType("_File", ::File)
+  TypeManager.registerEngineType("_Geometry") { Geometry }
+  TypeManager.registerSingleton("Geometry")
+  TypeManager.registerEngineType("_JSON") { JSON }
+  TypeManager.registerSingleton("JSON")
+  TypeManager.registerEngineType("_Marshalls") { Marshalls }
+  TypeManager.registerSingleton("Marshalls")
+  TypeManager.registerEngineType("_Mutex", ::Mutex)
+  TypeManager.registerEngineType("_OS") { OS }
+  TypeManager.registerSingleton("OS")
+  TypeManager.registerEngineType("_ResourceLoader") { ResourceLoader }
+  TypeManager.registerSingleton("ResourceLoader")
+  TypeManager.registerEngineType("_ResourceSaver") { ResourceSaver }
+  TypeManager.registerSingleton("ResourceSaver")
+  TypeManager.registerEngineType("_Semaphore", ::Semaphore)
+  TypeManager.registerEngineType("_Thread", ::Thread)
+  TypeManager.registerEngineType("_VisualScriptEditor") { VisualScriptEditor }
+  TypeManager.registerSingleton("VisualScriptEditor")
 }
 
 fun registerVariantMapping() {

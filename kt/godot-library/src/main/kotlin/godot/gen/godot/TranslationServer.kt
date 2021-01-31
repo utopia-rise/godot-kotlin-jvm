@@ -19,7 +19,7 @@ import kotlin.Suppress
 
 @GodotBaseType
 object TranslationServer : Object() {
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINECLASS_TRANSLATIONSERVER)
+  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_TRANSLATIONSERVER)
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

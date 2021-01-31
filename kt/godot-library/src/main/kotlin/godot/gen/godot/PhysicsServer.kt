@@ -283,7 +283,7 @@ object PhysicsServer : Object() {
 
   final const val SPACE_PARAM_TEST_MOTION_MIN_CONTACT_DEPTH: Long = 8
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINECLASS_PHYSICSSERVER)
+  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_PHYSICSSERVER)
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
