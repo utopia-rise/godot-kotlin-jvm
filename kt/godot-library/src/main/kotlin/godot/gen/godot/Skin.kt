@@ -74,6 +74,4 @@ open class Skin : Resource() {
     TransferContext.writeArguments(LONG to bindIndex, TRANSFORM to pose)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKIN_SET_BIND_POSE, NIL)
   }
-
-  companion object
 }

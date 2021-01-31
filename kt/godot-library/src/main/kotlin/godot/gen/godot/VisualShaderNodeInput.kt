@@ -41,6 +41,4 @@ open class VisualShaderNodeInput : VisualShaderNode() {
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINPUT_GET_INPUT_REAL_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
-
-  companion object
 }

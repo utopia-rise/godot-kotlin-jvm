@@ -31,6 +31,4 @@ open class SkinReference : Reference() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKINREFERENCE_GET_SKIN, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Skin?
   }
-
-  companion object
 }

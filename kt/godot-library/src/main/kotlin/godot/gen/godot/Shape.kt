@@ -27,6 +27,4 @@ open class Shape : Resource() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SHAPE)
-
-  companion object
 }

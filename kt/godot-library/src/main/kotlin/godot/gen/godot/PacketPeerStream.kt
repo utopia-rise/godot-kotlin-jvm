@@ -56,6 +56,4 @@ open class PacketPeerStream : PacketPeer() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PACKETPEERSTREAM)
-
-  companion object
 }

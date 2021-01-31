@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class JNISingleton : Object() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_JNISINGLETON)
-
-  companion object
 }

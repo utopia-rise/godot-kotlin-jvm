@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class VisualShaderNodeFaceForward : VisualShaderNode() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEFACEFORWARD)
-
-  companion object
 }

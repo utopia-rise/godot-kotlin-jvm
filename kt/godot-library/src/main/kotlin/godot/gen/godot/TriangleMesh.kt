@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class TriangleMesh : Reference() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_TRIANGLEMESH)
-
-  companion object
 }

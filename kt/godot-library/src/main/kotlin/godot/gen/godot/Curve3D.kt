@@ -202,6 +202,4 @@ open class Curve3D : Resource() {
         POOL_VECTOR3_ARRAY)
     return TransferContext.readReturnValue(POOL_VECTOR3_ARRAY, false) as PoolVector3Array
   }
-
-  companion object
 }

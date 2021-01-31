@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class ARVRCamera : Camera() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ARVRCAMERA)
-
-  companion object
 }

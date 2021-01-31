@@ -30,6 +30,4 @@ open class VisualScriptGlobalConstant : VisualScriptNode() {
 
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTGLOBALCONSTANT)
-
-  companion object
 }

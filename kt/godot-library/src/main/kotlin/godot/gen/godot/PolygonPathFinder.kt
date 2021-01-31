@@ -90,6 +90,4 @@ open class PolygonPathFinder : Resource() {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to points, POOL_INT_ARRAY to connections)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_SETUP, NIL)
   }
-
-  companion object
 }

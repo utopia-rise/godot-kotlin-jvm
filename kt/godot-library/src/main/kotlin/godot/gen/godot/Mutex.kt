@@ -34,6 +34,4 @@ open class Mutex : Reference() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__MUTEX_UNLOCK, NIL)
   }
-
-  companion object
 }

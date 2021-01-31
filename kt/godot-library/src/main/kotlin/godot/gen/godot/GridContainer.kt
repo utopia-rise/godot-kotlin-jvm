@@ -27,6 +27,4 @@ open class GridContainer : Container() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_GRIDCONTAINER)
-
-  companion object
 }

@@ -114,6 +114,4 @@ open class AudioEffectReverb : AudioEffect() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTREVERB)
-
-  companion object
 }

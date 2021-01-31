@@ -123,6 +123,4 @@ open class NavigationPolygon : Resource() {
     TransferContext.writeArguments(LONG to idx, POOL_VECTOR2_ARRAY to outline)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_SET_OUTLINE, NIL)
   }
-
-  companion object
 }

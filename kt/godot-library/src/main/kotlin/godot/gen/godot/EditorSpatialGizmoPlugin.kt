@@ -126,6 +126,4 @@ open class EditorSpatialGizmoPlugin : Resource() {
     point: Vector2
   ) {
   }
-
-  companion object
 }

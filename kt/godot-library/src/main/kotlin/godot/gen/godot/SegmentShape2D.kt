@@ -51,6 +51,4 @@ open class SegmentShape2D : Shape2D() {
       b = this
   }
 
-
-  companion object
 }

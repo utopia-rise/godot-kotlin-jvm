@@ -30,6 +30,4 @@ open class VisualShaderNodeBooleanConstant : VisualShaderNode() {
 
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEBOOLEANCONSTANT)
-
-  companion object
 }

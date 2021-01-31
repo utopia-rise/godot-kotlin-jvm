@@ -28,6 +28,4 @@ open class WorldEnvironment : Node() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_WORLDENVIRONMENT)
-
-  companion object
 }

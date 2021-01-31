@@ -263,6 +263,4 @@ open class MeshDataTool : Reference() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_VERTEX_WEIGHTS,
         NIL)
   }
-
-  companion object
 }

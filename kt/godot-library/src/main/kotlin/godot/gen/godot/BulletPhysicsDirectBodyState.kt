@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class BulletPhysicsDirectBodyState : PhysicsDirectBodyState() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_BULLETPHYSICSDIRECTBODYSTATE)
-
-  companion object
 }

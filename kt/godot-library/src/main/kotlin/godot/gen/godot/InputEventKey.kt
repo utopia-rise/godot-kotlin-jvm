@@ -66,6 +66,4 @@ open class InputEventKey : InputEventWithModifiers() {
         ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_SCANCODE_WITH_MODIFIERS, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
-
-  companion object
 }

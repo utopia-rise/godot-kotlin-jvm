@@ -118,6 +118,4 @@ open class Sprite3D : SpriteBase3D() {
       regionRect = this
   }
 
-
-  companion object
 }

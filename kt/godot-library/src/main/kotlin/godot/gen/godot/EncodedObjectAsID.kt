@@ -29,6 +29,4 @@ open class EncodedObjectAsID : Reference() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ENCODEDOBJECTASID)
-
-  companion object
 }

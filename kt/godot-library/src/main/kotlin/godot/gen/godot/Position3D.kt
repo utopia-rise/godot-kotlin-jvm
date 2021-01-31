@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class Position3D : Spatial() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_POSITION3D)
-
-  companion object
 }

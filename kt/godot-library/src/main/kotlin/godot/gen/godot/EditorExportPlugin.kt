@@ -97,6 +97,4 @@ open class EditorExportPlugin : Reference() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_SKIP, NIL)
   }
-
-  companion object
 }

@@ -881,6 +881,4 @@ open class AnimationNodeTransition : AnimationNode() {
 
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODETRANSITION)
-
-  companion object
 }

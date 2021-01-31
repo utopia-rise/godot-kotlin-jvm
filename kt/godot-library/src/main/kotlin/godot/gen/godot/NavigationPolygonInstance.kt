@@ -47,6 +47,4 @@ open class NavigationPolygonInstance : Node2D() {
 
   open fun _navpoly_changed() {
   }
-
-  companion object
 }

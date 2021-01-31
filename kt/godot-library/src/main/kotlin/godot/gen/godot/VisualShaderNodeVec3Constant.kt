@@ -37,6 +37,4 @@ open class VisualShaderNodeVec3Constant : VisualShaderNode() {
       constant = this
   }
 
-
-  companion object
 }

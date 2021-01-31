@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class AudioEffectHighPassFilter : AudioEffectFilter() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTHIGHPASSFILTER)
-
-  companion object
 }

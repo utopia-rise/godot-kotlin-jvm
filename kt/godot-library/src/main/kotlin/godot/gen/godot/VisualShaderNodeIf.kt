@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class VisualShaderNodeIf : VisualShaderNode() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEIF)
-
-  companion object
 }

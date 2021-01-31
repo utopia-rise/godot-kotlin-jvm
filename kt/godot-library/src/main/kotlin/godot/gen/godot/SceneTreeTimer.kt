@@ -32,6 +32,4 @@ open class SceneTreeTimer : Reference() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SCENETREETIMER)
-
-  companion object
 }

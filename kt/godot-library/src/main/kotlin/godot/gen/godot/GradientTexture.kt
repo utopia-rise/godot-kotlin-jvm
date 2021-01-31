@@ -39,6 +39,4 @@ open class GradientTexture : Texture() {
 
   open fun _update() {
   }
-
-  companion object
 }

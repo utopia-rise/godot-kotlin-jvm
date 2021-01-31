@@ -79,6 +79,4 @@ open class ColorPickerButton : Button() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_POPUP, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as PopupPanel?
   }
-
-  companion object
 }

@@ -58,6 +58,4 @@ open class InterpolatedCamera : Camera() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_INTERPOLATEDCAMERA)
-
-  companion object
 }

@@ -60,6 +60,4 @@ open class AudioStreamOGGVorbis : AudioStream() {
 
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_AUDIOSTREAMOGGVORBIS)
-
-  companion object
 }

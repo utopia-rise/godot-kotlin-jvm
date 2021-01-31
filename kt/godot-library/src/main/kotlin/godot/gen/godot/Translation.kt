@@ -68,6 +68,4 @@ open class Translation : Resource() {
         POOL_STRING_ARRAY)
     return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
   }
-
-  companion object
 }

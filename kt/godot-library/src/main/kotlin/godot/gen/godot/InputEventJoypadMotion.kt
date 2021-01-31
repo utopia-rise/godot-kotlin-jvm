@@ -45,6 +45,4 @@ open class InputEventJoypadMotion : InputEvent() {
 
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_INPUTEVENTJOYPADMOTION)
-
-  companion object
 }

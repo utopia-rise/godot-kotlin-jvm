@@ -138,6 +138,4 @@ open class CharFXTransform : Reference() {
       offset = this
   }
 
-
-  companion object
 }

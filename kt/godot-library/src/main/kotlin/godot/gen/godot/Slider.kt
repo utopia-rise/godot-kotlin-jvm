@@ -65,6 +65,4 @@ open class Slider : Range() {
 
   override fun _gui_input(event: InputEvent) {
   }
-
-  companion object
 }

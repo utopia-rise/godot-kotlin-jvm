@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class Panel : Control() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PANEL)
-
-  companion object
 }

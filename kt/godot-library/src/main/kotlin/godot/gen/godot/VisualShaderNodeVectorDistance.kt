@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class VisualShaderNodeVectorDistance : VisualShaderNode() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEVECTORDISTANCE)
-
-  companion object
 }

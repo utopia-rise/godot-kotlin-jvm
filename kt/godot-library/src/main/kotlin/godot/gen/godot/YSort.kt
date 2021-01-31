@@ -27,6 +27,4 @@ open class YSort : Node2D() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_YSORT)
-
-  companion object
 }

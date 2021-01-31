@@ -89,6 +89,4 @@ open class RemoteTransform2D : Node2D() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_FORCE_UPDATE_CACHE, NIL)
   }
-
-  companion object
 }

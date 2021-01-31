@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class VideoStream : Resource() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VIDEOSTREAM)
-
-  companion object
 }

@@ -138,6 +138,4 @@ open class WebSocketServer : WebSocketMultiplayerPeer() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_STOP, NIL)
   }
-
-  companion object
 }

@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class HSplitContainer : SplitContainer() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_HSPLITCONTAINER)
-
-  companion object
 }

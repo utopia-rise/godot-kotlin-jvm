@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class CSGCombiner : CSGShape() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CSGCOMBINER)
-
-  companion object
 }

@@ -57,6 +57,4 @@ open class EditorSelection : Object() {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_REMOVE_NODE, NIL)
   }
-
-  companion object
 }

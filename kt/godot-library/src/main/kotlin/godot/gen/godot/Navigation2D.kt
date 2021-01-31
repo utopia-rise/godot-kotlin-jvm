@@ -71,6 +71,4 @@ open class Navigation2D : Node2D() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION2D_NAVPOLY_SET_TRANSFORM,
         NIL)
   }
-
-  companion object
 }

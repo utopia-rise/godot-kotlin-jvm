@@ -62,6 +62,4 @@ open class PlaneMesh : PrimitiveMesh() {
       size = this
   }
 
-
-  companion object
 }

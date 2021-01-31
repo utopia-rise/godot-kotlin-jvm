@@ -54,6 +54,4 @@ open class TCP_Server : Reference() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCP_SERVER_TAKE_CONNECTION, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as StreamPeerTCP?
   }
-
-  companion object
 }

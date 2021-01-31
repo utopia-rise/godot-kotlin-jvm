@@ -74,6 +74,4 @@ open class VisualScriptLists : VisualScriptNode() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLISTS_SET_OUTPUT_DATA_PORT_TYPE, NIL)
   }
-
-  companion object
 }

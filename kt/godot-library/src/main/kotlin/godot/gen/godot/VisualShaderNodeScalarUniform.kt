@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class VisualShaderNodeScalarUniform : VisualShaderNodeUniform() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODESCALARUNIFORM)
-
-  companion object
 }

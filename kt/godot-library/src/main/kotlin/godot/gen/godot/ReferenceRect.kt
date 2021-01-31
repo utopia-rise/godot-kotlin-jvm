@@ -51,6 +51,4 @@ open class ReferenceRect : Control() {
       borderColor = this
   }
 
-
-  companion object
 }

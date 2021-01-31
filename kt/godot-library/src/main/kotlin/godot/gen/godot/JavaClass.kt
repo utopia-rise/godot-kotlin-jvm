@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class JavaClass : Reference() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_JAVACLASS)
-
-  companion object
 }

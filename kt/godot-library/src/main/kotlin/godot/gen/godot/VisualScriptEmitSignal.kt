@@ -30,6 +30,4 @@ open class VisualScriptEmitSignal : VisualScriptNode() {
 
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTEMITSIGNAL)
-
-  companion object
 }

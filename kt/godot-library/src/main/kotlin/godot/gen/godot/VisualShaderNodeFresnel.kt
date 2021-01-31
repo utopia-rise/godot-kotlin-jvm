@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class VisualShaderNodeFresnel : VisualShaderNode() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEFRESNEL)
-
-  companion object
 }

@@ -44,6 +44,4 @@ open class AudioStreamRandomPitch : AudioStream() {
 
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_AUDIOSTREAMRANDOMPITCH)
-
-  companion object
 }

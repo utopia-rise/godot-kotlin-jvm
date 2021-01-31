@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class StyleBoxEmpty : StyleBox() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_STYLEBOXEMPTY)
-
-  companion object
 }

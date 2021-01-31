@@ -50,6 +50,4 @@ open class VehicleBody : RigidBody() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VEHICLEBODY)
-
-  companion object
 }

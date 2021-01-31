@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class EditorSceneImporterAssimp : EditorSceneImporter() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_EDITORSCENEIMPORTERASSIMP)
-
-  companion object
 }

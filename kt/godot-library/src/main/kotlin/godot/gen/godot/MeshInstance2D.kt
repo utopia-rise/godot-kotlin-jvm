@@ -55,6 +55,4 @@ open class MeshInstance2D : Node2D() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_MESHINSTANCE2D)
-
-  companion object
 }

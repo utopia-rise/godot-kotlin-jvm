@@ -86,6 +86,4 @@ open class BitMap : Resource() {
     TransferContext.writeArguments(RECT2 to rect, BOOL to bit)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAP_SET_BIT_RECT, NIL)
   }
-
-  companion object
 }

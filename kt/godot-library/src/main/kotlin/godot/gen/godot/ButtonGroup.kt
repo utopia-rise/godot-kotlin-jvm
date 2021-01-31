@@ -30,6 +30,4 @@ open class ButtonGroup : Resource() {
         OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as BaseButton?
   }
-
-  companion object
 }

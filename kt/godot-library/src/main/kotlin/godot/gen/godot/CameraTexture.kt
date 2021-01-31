@@ -56,6 +56,4 @@ open class CameraTexture : Texture() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CAMERATEXTURE)
-
-  companion object
 }

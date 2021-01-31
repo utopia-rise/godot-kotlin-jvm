@@ -27,6 +27,4 @@ open class AudioEffectPanner : AudioEffect() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTPANNER)
-
-  companion object
 }

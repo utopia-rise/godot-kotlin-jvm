@@ -91,6 +91,4 @@ open class StaticBody2D : PhysicsBody2D() {
 
   open fun _reload_physics_characteristics() {
   }
-
-  companion object
 }

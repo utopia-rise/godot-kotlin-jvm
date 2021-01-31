@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class Physics2DDirectBodyStateSW : Physics2DDirectBodyState() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_PHYSICS2DDIRECTBODYSTATESW)
-
-  companion object
 }

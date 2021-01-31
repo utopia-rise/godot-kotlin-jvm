@@ -89,6 +89,4 @@ open class RemoteTransform : Spatial() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM_FORCE_UPDATE_CACHE,
         NIL)
   }
-
-  companion object
 }

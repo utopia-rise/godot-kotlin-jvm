@@ -27,6 +27,4 @@ open class PinJoint2D : Joint2D() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PINJOINT2D)
-
-  companion object
 }

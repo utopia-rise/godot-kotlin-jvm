@@ -40,6 +40,4 @@ open class GrooveJoint2D : Joint2D() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_GROOVEJOINT2D)
-
-  companion object
 }

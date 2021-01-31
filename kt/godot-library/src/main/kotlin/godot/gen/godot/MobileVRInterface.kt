@@ -101,6 +101,4 @@ open class MobileVRInterface : ARVRInterface() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_MOBILEVRINTERFACE)
-
-  companion object
 }

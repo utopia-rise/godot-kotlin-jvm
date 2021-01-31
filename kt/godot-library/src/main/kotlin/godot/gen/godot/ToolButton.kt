@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class ToolButton : Button() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_TOOLBUTTON)
-
-  companion object
 }

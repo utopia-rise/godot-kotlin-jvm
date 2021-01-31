@@ -186,6 +186,4 @@ open class VisualShaderNodeGroupBase : VisualShaderNode() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_OUTPUTS, NIL)
   }
-
-  companion object
 }

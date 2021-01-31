@@ -77,6 +77,4 @@ open class EditorResourcePreview : Node() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_REMOVE_PREVIEW_GENERATOR, NIL)
   }
-
-  companion object
 }

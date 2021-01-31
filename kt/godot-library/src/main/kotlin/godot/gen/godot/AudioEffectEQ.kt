@@ -36,6 +36,4 @@ open class AudioEffectEQ : AudioEffect() {
     TransferContext.writeArguments(LONG to bandIdx, DOUBLE to volumeDb)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTEQ_SET_BAND_GAIN_DB, NIL)
   }
-
-  companion object
 }

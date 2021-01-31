@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class RootMotionView : VisualInstance() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ROOTMOTIONVIEW)
-
-  companion object
 }

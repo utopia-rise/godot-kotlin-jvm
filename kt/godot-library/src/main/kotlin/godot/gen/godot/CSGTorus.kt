@@ -87,6 +87,4 @@ open class CSGTorus : CSGPrimitive() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CSGTORUS)
-
-  companion object
 }

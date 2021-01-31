@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class AnimationNodeOutput : AnimationNode() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODEOUTPUT)
-
-  companion object
 }

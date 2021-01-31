@@ -68,6 +68,4 @@ open class DampedSpringJoint2D : Joint2D() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_DAMPEDSPRINGJOINT2D)
-
-  companion object
 }

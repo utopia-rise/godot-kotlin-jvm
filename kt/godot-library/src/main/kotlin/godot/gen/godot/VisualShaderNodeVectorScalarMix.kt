@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class VisualShaderNodeVectorScalarMix : VisualShaderNode() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEVECTORSCALARMIX)
-
-  companion object
 }

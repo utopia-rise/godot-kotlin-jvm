@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class VisualScriptComposeArray : VisualScriptLists() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTCOMPOSEARRAY)
-
-  companion object
 }

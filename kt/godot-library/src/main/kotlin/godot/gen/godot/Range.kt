@@ -146,6 +146,4 @@ open class Range : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_UNSHARE, NIL)
   }
-
-  companion object
 }

@@ -43,6 +43,4 @@ open class AudioStreamGenerator : AudioStream() {
 
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_AUDIOSTREAMGENERATOR)
-
-  companion object
 }

@@ -380,6 +380,4 @@ open class StyleBoxFlat : StyleBox() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN_INDIVIDUAL, NIL)
   }
-
-  companion object
 }

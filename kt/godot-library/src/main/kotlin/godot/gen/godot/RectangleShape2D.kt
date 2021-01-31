@@ -35,6 +35,4 @@ open class RectangleShape2D : Shape2D() {
       extents = this
   }
 
-
-  companion object
 }

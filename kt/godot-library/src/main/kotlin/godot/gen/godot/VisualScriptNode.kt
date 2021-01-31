@@ -58,6 +58,4 @@ open class VisualScriptNode : Resource() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTNODE_SET_DEFAULT_INPUT_VALUE, NIL)
   }
-
-  companion object
 }

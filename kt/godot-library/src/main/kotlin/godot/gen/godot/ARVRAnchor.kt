@@ -70,6 +70,4 @@ open class ARVRAnchor : Spatial() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRANCHOR_GET_SIZE, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
-
-  companion object
 }

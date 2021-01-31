@@ -104,6 +104,4 @@ open class ARVRController : Spatial() {
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
-
-  companion object
 }

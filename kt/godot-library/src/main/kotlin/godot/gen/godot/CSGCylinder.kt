@@ -88,6 +88,4 @@ open class CSGCylinder : CSGPrimitive() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CSGCYLINDER)
-
-  companion object
 }

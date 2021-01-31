@@ -50,6 +50,4 @@ open class ViewportContainer : Container() {
 
   override fun _unhandled_input(event: InputEvent) {
   }
-
-  companion object
 }

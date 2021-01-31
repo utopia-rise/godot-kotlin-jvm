@@ -29,6 +29,4 @@ open class CSGPrimitive : CSGShape() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CSGPRIMITIVE)
-
-  companion object
 }

@@ -67,6 +67,4 @@ open class Bone2D : Node2D() {
         TRANSFORM2D)
     return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
   }
-
-  companion object
 }

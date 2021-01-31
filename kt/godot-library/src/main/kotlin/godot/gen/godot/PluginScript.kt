@@ -21,6 +21,4 @@ open class PluginScript : Script() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLUGINSCRIPT_NEW, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
-
-  companion object
 }

@@ -29,6 +29,4 @@ open class AudioEffectAmplify : AudioEffect() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTAMPLIFY)
-
-  companion object
 }

@@ -155,6 +155,4 @@ open class Curve2D : Resource() {
         POOL_VECTOR2_ARRAY)
     return TransferContext.readReturnValue(POOL_VECTOR2_ARRAY, false) as PoolVector2Array
   }
-
-  companion object
 }

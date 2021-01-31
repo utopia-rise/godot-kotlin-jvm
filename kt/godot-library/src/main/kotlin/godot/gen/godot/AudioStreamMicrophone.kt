@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class AudioStreamMicrophone : AudioStream() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_AUDIOSTREAMMICROPHONE)
-
-  companion object
 }

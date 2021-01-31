@@ -93,6 +93,4 @@ open class Physics2DTestMotionResult : Reference() {
 
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_PHYSICS2DTESTMOTIONRESULT)
-
-  companion object
 }

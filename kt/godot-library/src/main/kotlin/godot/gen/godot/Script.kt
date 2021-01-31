@@ -124,6 +124,4 @@ open class Script : Resource() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPT_RELOAD, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
-
-  companion object
 }

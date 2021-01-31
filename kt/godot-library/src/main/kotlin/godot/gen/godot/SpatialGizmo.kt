@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class SpatialGizmo : Reference() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SPATIALGIZMO)
-
-  companion object
 }

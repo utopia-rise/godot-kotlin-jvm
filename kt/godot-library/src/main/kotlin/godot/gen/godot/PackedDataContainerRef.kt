@@ -42,6 +42,4 @@ open class PackedDataContainerRef : Reference() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDDATACONTAINERREF_SIZE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
-
-  companion object
 }

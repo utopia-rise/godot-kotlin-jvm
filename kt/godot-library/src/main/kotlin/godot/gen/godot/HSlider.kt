@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class HSlider : Slider() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_HSLIDER)
-
-  companion object
 }

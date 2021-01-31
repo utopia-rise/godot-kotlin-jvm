@@ -63,6 +63,4 @@ open class World : Resource() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_WORLD)
-
-  companion object
 }

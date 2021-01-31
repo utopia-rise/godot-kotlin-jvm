@@ -26,6 +26,4 @@ open class ProxyTexture : Texture() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PROXYTEXTURE)
-
-  companion object
 }

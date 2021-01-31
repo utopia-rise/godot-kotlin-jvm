@@ -38,6 +38,4 @@ open class CylinderShape : Shape() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CYLINDERSHAPE)
-
-  companion object
 }

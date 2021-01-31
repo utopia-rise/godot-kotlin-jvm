@@ -30,6 +30,4 @@ open class GDScript : Script() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDSCRIPT_NEW, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
-
-  companion object
 }

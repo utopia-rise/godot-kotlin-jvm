@@ -364,6 +364,4 @@ open class VisualScript : Script() {
     TransferContext.writeArguments(STRING to name, DICTIONARY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_SET_VARIABLE_INFO, NIL)
   }
-
-  companion object
 }

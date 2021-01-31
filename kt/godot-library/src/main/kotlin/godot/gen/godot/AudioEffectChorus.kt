@@ -365,6 +365,4 @@ open class AudioEffectChorus : AudioEffect() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTCHORUS)
-
-  companion object
 }

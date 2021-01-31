@@ -38,6 +38,4 @@ open class CurveTexture : Texture() {
 
   open fun _update() {
   }
-
-  companion object
 }

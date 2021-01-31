@@ -51,6 +51,4 @@ open class AudioEffectRecord : AudioEffect() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTRECORD_SET_RECORDING_ACTIVE, NIL)
   }
-
-  companion object
 }

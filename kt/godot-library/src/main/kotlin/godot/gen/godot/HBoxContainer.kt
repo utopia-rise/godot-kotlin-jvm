@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class HBoxContainer : BoxContainer() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_HBOXCONTAINER)
-
-  companion object
 }

@@ -174,6 +174,4 @@ open class RayCast : Spatial() {
     TransferContext.writeArguments(LONG to bit, BOOL to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_SET_COLLISION_MASK_BIT, NIL)
   }
-
-  companion object
 }

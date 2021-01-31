@@ -71,6 +71,4 @@ open class EditorInspectorPlugin : Reference() {
   ): Boolean {
     throw NotImplementedError("parse_property is not implemented for EditorInspectorPlugin")
   }
-
-  companion object
 }

@@ -61,6 +61,4 @@ open class CSGBox : CSGPrimitive() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CSGBOX)
-
-  companion object
 }

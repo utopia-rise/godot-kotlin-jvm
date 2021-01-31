@@ -100,6 +100,4 @@ open class EditorInspector : ScrollContainer() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINSPECTOR_REFRESH, NIL)
   }
-
-  companion object
 }

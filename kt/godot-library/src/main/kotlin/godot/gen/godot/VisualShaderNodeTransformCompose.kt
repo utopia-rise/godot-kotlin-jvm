@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class VisualShaderNodeTransformCompose : VisualShaderNode() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMCOMPOSE)
-
-  companion object
 }

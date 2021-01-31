@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class VisualShaderNodeVectorRefract : VisualShaderNode() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEVECTORREFRACT)
-
-  companion object
 }

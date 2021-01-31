@@ -191,6 +191,4 @@ open class AudioStreamPlayer2D : Node2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_STOP, NIL)
   }
-
-  companion object
 }

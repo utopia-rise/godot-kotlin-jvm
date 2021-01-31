@@ -208,6 +208,4 @@ open class Sprite : Node2D() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE_IS_PIXEL_OPAQUE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
-
-  companion object
 }

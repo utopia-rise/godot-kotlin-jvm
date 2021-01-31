@@ -28,6 +28,4 @@ open class VideoStreamGDNative : VideoStream() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VIDEOSTREAMGDNATIVE)
-
-  companion object
 }

@@ -110,6 +110,4 @@ open class PathFollow2D : Node2D() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PATHFOLLOW2D)
-
-  companion object
 }

@@ -93,6 +93,4 @@ open class Resource : Reference() {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_TAKE_OVER_PATH, NIL)
   }
-
-  companion object
 }

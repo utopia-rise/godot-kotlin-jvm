@@ -78,6 +78,4 @@ open class CylinderMesh : PrimitiveMesh() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CYLINDERMESH)
-
-  companion object
 }

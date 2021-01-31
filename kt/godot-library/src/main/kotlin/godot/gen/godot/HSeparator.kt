@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class HSeparator : Separator() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_HSEPARATOR)
-
-  companion object
 }

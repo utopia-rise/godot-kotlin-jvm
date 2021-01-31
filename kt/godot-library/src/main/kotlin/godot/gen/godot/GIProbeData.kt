@@ -167,6 +167,4 @@ open class GIProbeData : Resource() {
       toCellXform = this
   }
 
-
-  companion object
 }

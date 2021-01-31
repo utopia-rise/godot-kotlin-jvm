@@ -19,6 +19,4 @@ open class VisualScriptSubCall : VisualScriptNode() {
   open fun _subcall(arguments: Any): Any? {
     throw NotImplementedError("_subcall is not implemented for VisualScriptSubCall")
   }
-
-  companion object
 }

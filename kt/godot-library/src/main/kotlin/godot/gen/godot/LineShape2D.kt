@@ -47,6 +47,4 @@ open class LineShape2D : Shape2D() {
       normal = this
   }
 
-
-  companion object
 }

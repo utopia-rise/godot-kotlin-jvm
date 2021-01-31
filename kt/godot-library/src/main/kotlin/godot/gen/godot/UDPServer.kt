@@ -54,6 +54,4 @@ open class UDPServer : Reference() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_TAKE_CONNECTION, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as PacketPeerUDP?
   }
-
-  companion object
 }

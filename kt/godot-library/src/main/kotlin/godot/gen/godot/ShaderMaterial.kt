@@ -62,6 +62,4 @@ open class ShaderMaterial : Material() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER_PARAM,
         NIL)
   }
-
-  companion object
 }

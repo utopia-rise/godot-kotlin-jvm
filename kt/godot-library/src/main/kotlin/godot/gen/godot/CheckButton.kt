@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class CheckButton : Button() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CHECKBUTTON)
-
-  companion object
 }

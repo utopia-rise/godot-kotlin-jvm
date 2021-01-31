@@ -33,6 +33,4 @@ open class StreamTexture : Texture() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMTEXTURE_LOAD, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
-
-  companion object
 }

@@ -41,6 +41,4 @@ open class EditorResourcePreviewGenerator : Reference() {
   open fun handles(type: String): Boolean {
     throw NotImplementedError("handles is not implemented for EditorResourcePreviewGenerator")
   }
-
-  companion object
 }

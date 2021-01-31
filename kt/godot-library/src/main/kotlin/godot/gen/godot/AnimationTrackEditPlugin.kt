@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class AnimationTrackEditPlugin : Reference() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONTRACKEDITPLUGIN)
-
-  companion object
 }

@@ -29,6 +29,4 @@ open class Semaphore : Reference() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__SEMAPHORE_WAIT, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
-
-  companion object
 }

@@ -37,6 +37,4 @@ open class VisualShaderNodeTransformConstant : VisualShaderNode() {
       constant = this
   }
 
-
-  companion object
 }

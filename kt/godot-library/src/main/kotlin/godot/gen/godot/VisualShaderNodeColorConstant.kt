@@ -37,6 +37,4 @@ open class VisualShaderNodeColorConstant : VisualShaderNode() {
       constant = this
   }
 
-
-  companion object
 }

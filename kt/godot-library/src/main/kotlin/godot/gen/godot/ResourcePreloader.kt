@@ -69,6 +69,4 @@ open class ResourcePreloader : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEPRELOADER_RENAME_RESOURCE,
         NIL)
   }
-
-  companion object
 }

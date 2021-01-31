@@ -141,6 +141,4 @@ open class SpriteFrames : Resource() {
     TransferContext.writeArguments(STRING to anim, LONG to idx, OBJECT to txt)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEFRAMES_SET_FRAME, NIL)
   }
-
-  companion object
 }

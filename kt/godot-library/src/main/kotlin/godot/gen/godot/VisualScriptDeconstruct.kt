@@ -40,6 +40,4 @@ open class VisualScriptDeconstruct : VisualScriptNode() {
 
   open fun _set_elem_cache(_cache: VariantArray<Any?>) {
   }
-
-  companion object
 }

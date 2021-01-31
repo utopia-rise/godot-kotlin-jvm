@@ -36,6 +36,4 @@ open class InputEventGesture : InputEventWithModifiers() {
       position = this
   }
 
-
-  companion object
 }

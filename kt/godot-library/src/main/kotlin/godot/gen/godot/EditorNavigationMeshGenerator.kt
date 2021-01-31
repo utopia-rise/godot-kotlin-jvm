@@ -28,6 +28,4 @@ open class EditorNavigationMeshGenerator : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNAVIGATIONMESHGENERATOR_CLEAR,
         NIL)
   }
-
-  companion object
 }

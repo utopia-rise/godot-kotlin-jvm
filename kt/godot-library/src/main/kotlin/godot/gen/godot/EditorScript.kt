@@ -36,6 +36,4 @@ open class EditorScript : Reference() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSCRIPT_GET_SCENE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
-
-  companion object
 }

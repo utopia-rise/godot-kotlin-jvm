@@ -26,6 +26,4 @@ open class PanoramaSky : Sky() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PANORAMASKY)
-
-  companion object
 }

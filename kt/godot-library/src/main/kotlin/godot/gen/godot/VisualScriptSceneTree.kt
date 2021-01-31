@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class VisualScriptSceneTree : VisualScriptNode() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTSCENETREE)
-
-  companion object
 }

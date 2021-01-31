@@ -29,6 +29,4 @@ open class ProgressBar : Range() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PROGRESSBAR)
-
-  companion object
 }

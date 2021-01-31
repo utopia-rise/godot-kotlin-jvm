@@ -57,6 +57,4 @@ open class GDNative : Reference() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDNATIVE_TERMINATE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
-
-  companion object
 }

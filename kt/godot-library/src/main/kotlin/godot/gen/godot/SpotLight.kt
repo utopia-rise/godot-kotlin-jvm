@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class SpotLight : Light() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SPOTLIGHT)
-
-  companion object
 }

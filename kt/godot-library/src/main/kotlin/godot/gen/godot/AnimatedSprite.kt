@@ -157,6 +157,4 @@ open class AnimatedSprite : Node2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_STOP, NIL)
   }
-
-  companion object
 }

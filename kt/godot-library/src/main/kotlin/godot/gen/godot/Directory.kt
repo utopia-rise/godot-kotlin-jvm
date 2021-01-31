@@ -131,6 +131,4 @@ open class Directory : Reference() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_RENAME, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
-
-  companion object
 }

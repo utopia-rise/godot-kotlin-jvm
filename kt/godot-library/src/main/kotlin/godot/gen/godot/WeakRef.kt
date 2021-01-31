@@ -21,6 +21,4 @@ open class WeakRef : Reference() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEAKREF_GET_REF, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
-
-  companion object
 }

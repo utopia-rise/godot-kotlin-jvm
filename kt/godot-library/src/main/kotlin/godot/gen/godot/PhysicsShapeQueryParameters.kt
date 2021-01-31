@@ -133,6 +133,4 @@ open class PhysicsShapeQueryParameters : Reference() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_SET_SHAPE, NIL)
   }
-
-  companion object
 }

@@ -177,6 +177,4 @@ open class CollisionObject : Spatial() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_SHAPE_OWNER_SET_TRANSFORM, NIL)
   }
-
-  companion object
 }

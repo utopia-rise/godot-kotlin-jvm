@@ -34,6 +34,4 @@ open class QuadMesh : PrimitiveMesh() {
       size = this
   }
 
-
-  companion object
 }

@@ -90,6 +90,4 @@ open class InputEventMouseMotion : InputEventMouse() {
       tilt = this
   }
 
-
-  companion object
 }

@@ -101,6 +101,4 @@ open class PhysicsBody2D : CollisionObject2D() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_SET_COLLISION_MASK_BIT, NIL)
   }
-
-  companion object
 }

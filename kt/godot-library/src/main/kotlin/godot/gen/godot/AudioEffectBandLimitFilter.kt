@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class AudioEffectBandLimitFilter : AudioEffectFilter() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTBANDLIMITFILTER)
-
-  companion object
 }

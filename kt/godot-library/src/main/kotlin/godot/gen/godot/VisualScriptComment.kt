@@ -63,6 +63,4 @@ open class VisualScriptComment : VisualScriptNode() {
       size = this
   }
 
-
-  companion object
 }

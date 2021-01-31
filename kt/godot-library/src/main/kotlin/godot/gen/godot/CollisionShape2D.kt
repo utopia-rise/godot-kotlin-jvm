@@ -73,6 +73,4 @@ open class CollisionShape2D : Node2D() {
 
   open fun _shape_changed() {
   }
-
-  companion object
 }

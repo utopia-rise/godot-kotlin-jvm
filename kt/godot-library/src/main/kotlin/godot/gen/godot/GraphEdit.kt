@@ -283,6 +283,4 @@ open class GraphEdit : Control() {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_SELECTED, NIL)
   }
-
-  companion object
 }

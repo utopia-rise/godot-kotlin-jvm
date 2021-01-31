@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class VisualShaderNodeVectorScalarStep : VisualShaderNode() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEVECTORSCALARSTEP)
-
-  companion object
 }

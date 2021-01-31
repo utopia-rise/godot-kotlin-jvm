@@ -62,6 +62,4 @@ open class CollisionPolygon : Spatial() {
   open fun _is_editable_3d_polygon(): Boolean {
     throw NotImplementedError("_is_editable_3d_polygon is not implemented for CollisionPolygon")
   }
-
-  companion object
 }

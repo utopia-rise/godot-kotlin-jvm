@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class VScrollBar : ScrollBar() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VSCROLLBAR)
-
-  companion object
 }

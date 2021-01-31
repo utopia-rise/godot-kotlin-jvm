@@ -69,6 +69,4 @@ open class JSONParseResult : Reference() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_JSONPARSERESULT)
-
-  companion object
 }

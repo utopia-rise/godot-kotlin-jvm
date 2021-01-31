@@ -34,6 +34,4 @@ open class CanvasModulate : Node2D() {
       color = this
   }
 
-
-  companion object
 }

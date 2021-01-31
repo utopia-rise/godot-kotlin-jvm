@@ -34,6 +34,4 @@ open class PlaneShape : Shape() {
       plane = this
   }
 
-
-  companion object
 }

@@ -75,6 +75,4 @@ open class LargeTexture : Texture() {
     TransferContext.writeArguments(VECTOR2 to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LARGETEXTURE_SET_SIZE, NIL)
   }
-
-  companion object
 }

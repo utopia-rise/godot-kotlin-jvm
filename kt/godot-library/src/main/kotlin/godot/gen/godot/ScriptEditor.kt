@@ -264,6 +264,4 @@ open class ScriptEditor : PanelContainer() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_OPEN_SCRIPT_CREATE_DIALOG, NIL)
   }
-
-  companion object
 }

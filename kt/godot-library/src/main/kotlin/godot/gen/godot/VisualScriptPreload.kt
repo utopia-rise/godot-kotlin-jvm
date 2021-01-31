@@ -28,6 +28,4 @@ open class VisualScriptPreload : VisualScriptNode() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTPRELOAD)
-
-  companion object
 }

@@ -108,6 +108,4 @@ open class KinematicCollision : Reference() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_KINEMATICCOLLISION)
-
-  companion object
 }

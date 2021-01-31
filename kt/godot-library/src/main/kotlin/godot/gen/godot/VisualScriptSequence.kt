@@ -30,6 +30,4 @@ open class VisualScriptSequence : VisualScriptNode() {
 
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTSEQUENCE)
-
-  companion object
 }

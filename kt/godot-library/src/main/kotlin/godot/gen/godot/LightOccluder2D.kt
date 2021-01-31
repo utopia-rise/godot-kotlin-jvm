@@ -45,6 +45,4 @@ open class LightOccluder2D : Node2D() {
 
   open fun _poly_changed() {
   }
-
-  companion object
 }

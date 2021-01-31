@@ -142,6 +142,4 @@ open class EditorSpatialGizmo : SpatialGizmo() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPATIALGIZMO_SET_SPATIAL_NODE,
         NIL)
   }
-
-  companion object
 }

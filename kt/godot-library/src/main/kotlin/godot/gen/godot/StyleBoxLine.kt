@@ -85,6 +85,4 @@ open class StyleBoxLine : StyleBox() {
       color = this
   }
 
-
-  companion object
 }

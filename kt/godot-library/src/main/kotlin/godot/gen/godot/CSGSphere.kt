@@ -78,6 +78,4 @@ open class CSGSphere : CSGPrimitive() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CSGSPHERE)
-
-  companion object
 }

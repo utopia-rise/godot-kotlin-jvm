@@ -100,6 +100,4 @@ open class GDNativeLibrary : Resource() {
         ENGINEMETHOD_ENGINECLASS_GDNATIVELIBRARY_GET_CURRENT_LIBRARY_PATH, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
-
-  companion object
 }

@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class AudioEffectNotchFilter : AudioEffectFilter() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTNOTCHFILTER)
-
-  companion object
 }

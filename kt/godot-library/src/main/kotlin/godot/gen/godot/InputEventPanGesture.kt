@@ -37,6 +37,4 @@ open class InputEventPanGesture : InputEventGesture() {
       delta = this
   }
 
-
-  companion object
 }

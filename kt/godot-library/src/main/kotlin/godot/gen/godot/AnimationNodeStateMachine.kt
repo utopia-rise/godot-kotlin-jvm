@@ -185,6 +185,4 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_SET_START_NODE, NIL)
   }
-
-  companion object
 }

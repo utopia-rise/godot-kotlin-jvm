@@ -53,6 +53,4 @@ open class VisualScriptFunctionState : Reference() {
         ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
-
-  companion object
 }

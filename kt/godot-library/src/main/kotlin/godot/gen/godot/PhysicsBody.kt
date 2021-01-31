@@ -101,6 +101,4 @@ open class PhysicsBody : CollisionObject() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY_SET_COLLISION_MASK_BIT,
         NIL)
   }
-
-  companion object
 }

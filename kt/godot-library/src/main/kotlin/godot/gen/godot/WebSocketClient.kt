@@ -99,6 +99,4 @@ open class WebSocketClient : WebSocketMultiplayerPeer() {
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
-
-  companion object
 }

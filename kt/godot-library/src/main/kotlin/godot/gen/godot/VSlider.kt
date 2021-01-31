@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class VSlider : Slider() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VSLIDER)
-
-  companion object
 }

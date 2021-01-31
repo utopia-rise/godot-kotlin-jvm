@@ -179,6 +179,4 @@ open class SurfaceTool : Reference() {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_MATERIAL, NIL)
   }
-
-  companion object
 }

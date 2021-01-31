@@ -1453,6 +1453,4 @@ open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_SET_BLEND_POINT_NODE, NIL)
   }
-
-  companion object
 }

@@ -155,6 +155,4 @@ open class KinematicBody2D : PhysicsBody2D() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY2D_TEST_MOVE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
-
-  companion object
 }

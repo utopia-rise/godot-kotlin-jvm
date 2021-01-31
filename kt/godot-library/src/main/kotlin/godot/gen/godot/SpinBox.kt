@@ -91,6 +91,4 @@ open class SpinBox : Range() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_LINE_EDIT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as LineEdit?
   }
-
-  companion object
 }

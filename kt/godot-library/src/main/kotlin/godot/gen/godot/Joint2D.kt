@@ -66,6 +66,4 @@ open class Joint2D : Node2D() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_JOINT2D)
-
-  companion object
 }

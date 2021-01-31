@@ -59,6 +59,4 @@ open class MenuButton : Button() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_SET_DISABLE_SHORTCUTS,
         NIL)
   }
-
-  companion object
 }

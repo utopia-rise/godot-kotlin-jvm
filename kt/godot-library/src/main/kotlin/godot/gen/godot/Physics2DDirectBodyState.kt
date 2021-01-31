@@ -270,6 +270,4 @@ open class Physics2DDirectBodyState : Object() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICS2DDIRECTBODYSTATE_INTEGRATE_FORCES, NIL)
   }
-
-  companion object
 }

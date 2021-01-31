@@ -68,6 +68,4 @@ open class RegExMatch : Reference() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_STRING, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
-
-  companion object
 }

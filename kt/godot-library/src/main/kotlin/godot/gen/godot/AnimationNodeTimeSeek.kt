@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class AnimationNodeTimeSeek : AnimationNode() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODETIMESEEK)
-
-  companion object
 }

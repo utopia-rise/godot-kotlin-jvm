@@ -21,6 +21,4 @@ open class AudioStream : Resource() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_GET_LENGTH, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
-
-  companion object
 }

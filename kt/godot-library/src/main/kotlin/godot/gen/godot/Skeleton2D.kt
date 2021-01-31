@@ -46,6 +46,4 @@ open class Skeleton2D : Node2D() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON2D_GET_SKELETON, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
-
-  companion object
 }

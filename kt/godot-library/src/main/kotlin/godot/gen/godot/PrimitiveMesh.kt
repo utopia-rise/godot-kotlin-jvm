@@ -75,6 +75,4 @@ open class PrimitiveMesh : Mesh() {
         ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
-
-  companion object
 }

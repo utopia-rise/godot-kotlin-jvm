@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class AudioBusLayout : Resource() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_AUDIOBUSLAYOUT)
-
-  companion object
 }

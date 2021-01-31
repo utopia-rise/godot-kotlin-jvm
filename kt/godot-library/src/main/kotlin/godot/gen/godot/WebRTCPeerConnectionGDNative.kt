@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class WebRTCPeerConnectionGDNative : WebRTCPeerConnection() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_WEBRTCPEERCONNECTIONGDNATIVE)
-
-  companion object
 }

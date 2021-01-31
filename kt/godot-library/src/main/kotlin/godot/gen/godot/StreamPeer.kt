@@ -216,6 +216,4 @@ open class StreamPeer : Reference() {
     TransferContext.writeArguments(ANY to value, BOOL to fullObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_VAR, NIL)
   }
-
-  companion object
 }

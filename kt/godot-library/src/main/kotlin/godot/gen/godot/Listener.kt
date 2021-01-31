@@ -41,6 +41,4 @@ open class Listener : Spatial() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LISTENER_MAKE_CURRENT, NIL)
   }
-
-  companion object
 }

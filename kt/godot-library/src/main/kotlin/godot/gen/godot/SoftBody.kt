@@ -236,6 +236,4 @@ open class SoftBody : MeshInstance() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_SET_COLLISION_MASK_BIT,
         NIL)
   }
-
-  companion object
 }

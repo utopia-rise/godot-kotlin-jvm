@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class VisualScriptIndexSet : VisualScriptNode() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTINDEXSET)
-
-  companion object
 }

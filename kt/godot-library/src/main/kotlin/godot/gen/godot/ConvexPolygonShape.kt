@@ -29,6 +29,4 @@ open class ConvexPolygonShape : Shape() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CONVEXPOLYGONSHAPE)
-
-  companion object
 }

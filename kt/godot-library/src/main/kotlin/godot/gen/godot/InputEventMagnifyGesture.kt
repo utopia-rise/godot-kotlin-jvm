@@ -30,6 +30,4 @@ open class InputEventMagnifyGesture : InputEventGesture() {
 
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_INPUTEVENTMAGNIFYGESTURE)
-
-  companion object
 }

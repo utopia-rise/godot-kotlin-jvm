@@ -77,6 +77,4 @@ open class AtlasTexture : Texture() {
       region = this
   }
 
-
-  companion object
 }

@@ -88,6 +88,4 @@ open class AnimatedSprite3D : SpriteBase3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_STOP, NIL)
   }
-
-  companion object
 }

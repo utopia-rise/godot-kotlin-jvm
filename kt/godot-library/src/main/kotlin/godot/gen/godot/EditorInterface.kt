@@ -188,6 +188,4 @@ open class EditorInterface : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_PLUGIN_ENABLED,
         NIL)
   }
-
-  companion object
 }

@@ -65,6 +65,4 @@ open class InputEventScreenTouch : InputEvent() {
       position = this
   }
 
-
-  companion object
 }

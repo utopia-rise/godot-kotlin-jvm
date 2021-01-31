@@ -102,6 +102,4 @@ open class NativeScript : Script() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NATIVESCRIPT_NEW, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
-
-  companion object
 }

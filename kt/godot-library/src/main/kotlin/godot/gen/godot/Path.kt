@@ -33,6 +33,4 @@ open class Path : Spatial() {
 
   open fun _curve_changed() {
   }
-
-  companion object
 }

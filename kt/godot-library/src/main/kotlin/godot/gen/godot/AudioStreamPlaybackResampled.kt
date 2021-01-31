@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_AUDIOSTREAMPLAYBACKRESAMPLED)
-
-  companion object
 }

@@ -57,6 +57,4 @@ open class CollisionShape : Spatial() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE_RESOURCE_CHANGED,
         NIL)
   }
-
-  companion object
 }

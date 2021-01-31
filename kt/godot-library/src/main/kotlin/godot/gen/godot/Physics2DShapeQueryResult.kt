@@ -54,6 +54,4 @@ open class Physics2DShapeQueryResult : Reference() {
         ENGINEMETHOD_ENGINECLASS_PHYSICS2DSHAPEQUERYRESULT_GET_RESULT_RID, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
-
-  companion object
 }

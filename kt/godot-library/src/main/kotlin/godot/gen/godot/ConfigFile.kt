@@ -127,6 +127,4 @@ open class ConfigFile : Reference() {
     TransferContext.writeArguments(STRING to section, STRING to key, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_SET_VALUE, NIL)
   }
-
-  companion object
 }

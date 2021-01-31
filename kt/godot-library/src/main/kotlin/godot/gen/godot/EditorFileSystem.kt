@@ -88,6 +88,4 @@ open class EditorFileSystem : Node() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_UPDATE_SCRIPT_CLASSES, NIL)
   }
-
-  companion object
 }

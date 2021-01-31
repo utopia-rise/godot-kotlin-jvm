@@ -64,6 +64,4 @@ open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() {
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_PUSH_FRAME, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
-
-  companion object
 }

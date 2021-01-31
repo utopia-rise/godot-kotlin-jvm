@@ -27,6 +27,4 @@ open class VisualScriptSelect : VisualScriptNode() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTSELECT)
-
-  companion object
 }

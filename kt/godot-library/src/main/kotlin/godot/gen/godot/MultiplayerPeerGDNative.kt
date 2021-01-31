@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class MultiplayerPeerGDNative : NetworkedMultiplayerPeer() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_MULTIPLAYERPEERGDNATIVE)
-
-  companion object
 }

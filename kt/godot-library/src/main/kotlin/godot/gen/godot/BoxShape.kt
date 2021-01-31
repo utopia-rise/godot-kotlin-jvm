@@ -34,6 +34,4 @@ open class BoxShape : Shape() {
       extents = this
   }
 
-
-  companion object
 }

@@ -21,6 +21,4 @@ open class ConfirmationDialog : AcceptDialog() {
         OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Button?
   }
-
-  companion object
 }

@@ -49,6 +49,4 @@ open class InstancePlaceholder : Node() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_INSTANCEPLACEHOLDER_REPLACE_BY_INSTANCE, NIL)
   }
-
-  companion object
 }

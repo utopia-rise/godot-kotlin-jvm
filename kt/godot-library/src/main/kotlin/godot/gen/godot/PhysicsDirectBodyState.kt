@@ -292,6 +292,4 @@ open class PhysicsDirectBodyState : Object() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE_INTEGRATE_FORCES, NIL)
   }
-
-  companion object
 }

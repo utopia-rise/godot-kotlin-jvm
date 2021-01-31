@@ -174,6 +174,4 @@ open class OptionButton : Button() {
     TransferContext.writeArguments(LONG to idx, STRING to text)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ITEM_TEXT, NIL)
   }
-
-  companion object
 }

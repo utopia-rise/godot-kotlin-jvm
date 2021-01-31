@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class VisualShaderNodeCubeMapUniform : VisualShaderNodeTextureUniform() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODECUBEMAPUNIFORM)
-
-  companion object
 }

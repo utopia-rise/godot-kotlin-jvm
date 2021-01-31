@@ -84,6 +84,4 @@ open class ImmediateGeometry : GeometryInstance() {
     TransferContext.writeArguments(VECTOR2 to uv)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEGEOMETRY_SET_UV2, NIL)
   }
-
-  companion object
 }

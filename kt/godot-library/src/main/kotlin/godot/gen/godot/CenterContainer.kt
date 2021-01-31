@@ -29,6 +29,4 @@ open class CenterContainer : Container() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CENTERCONTAINER)
-
-  companion object
 }

@@ -30,6 +30,4 @@ open class VisualShaderNodeScalarConstant : VisualShaderNode() {
 
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODESCALARCONSTANT)
-
-  companion object
 }

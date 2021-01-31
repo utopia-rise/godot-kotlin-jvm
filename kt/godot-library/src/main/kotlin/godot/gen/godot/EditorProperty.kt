@@ -164,6 +164,4 @@ open class EditorProperty : Container() {
 
   open fun update_property() {
   }
-
-  companion object
 }

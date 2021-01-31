@@ -74,6 +74,4 @@ open class ParallaxLayer : Node2D() {
       motionScale = this
   }
 
-
-  companion object
 }

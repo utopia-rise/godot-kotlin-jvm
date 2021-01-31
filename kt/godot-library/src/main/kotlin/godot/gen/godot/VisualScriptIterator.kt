@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class VisualScriptIterator : VisualScriptNode() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTITERATOR)
-
-  companion object
 }

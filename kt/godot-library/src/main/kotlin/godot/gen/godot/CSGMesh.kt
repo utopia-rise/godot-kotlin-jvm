@@ -40,6 +40,4 @@ open class CSGMesh : CSGPrimitive() {
 
   open fun _mesh_changed() {
   }
-
-  companion object
 }

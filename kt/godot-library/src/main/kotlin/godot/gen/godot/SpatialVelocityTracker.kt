@@ -50,6 +50,4 @@ open class SpatialVelocityTracker : Reference() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SPATIALVELOCITYTRACKER_UPDATE_POSITION, NIL)
   }
-
-  companion object
 }

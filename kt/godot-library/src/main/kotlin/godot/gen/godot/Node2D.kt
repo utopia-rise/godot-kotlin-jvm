@@ -273,6 +273,4 @@ open class Node2D : CanvasItem() {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_TRANSLATE, NIL)
   }
-
-  companion object
 }

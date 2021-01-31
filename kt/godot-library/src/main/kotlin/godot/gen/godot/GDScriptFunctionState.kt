@@ -40,6 +40,4 @@ open class GDScriptFunctionState : Reference() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDSCRIPTFUNCTIONSTATE_RESUME, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
-
-  companion object
 }

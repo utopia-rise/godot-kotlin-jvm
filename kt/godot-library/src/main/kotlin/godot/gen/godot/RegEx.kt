@@ -95,6 +95,4 @@ open class RegEx : Reference() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_SUB, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
-
-  companion object
 }

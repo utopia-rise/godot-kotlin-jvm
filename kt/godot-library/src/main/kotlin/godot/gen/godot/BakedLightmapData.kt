@@ -146,6 +146,4 @@ open class BakedLightmapData : Resource() {
         NODE_PATH)
     return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
   }
-
-  companion object
 }

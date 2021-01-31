@@ -130,6 +130,4 @@ open class ScrollContainer : Container() {
         OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as VScrollBar?
   }
-
-  companion object
 }

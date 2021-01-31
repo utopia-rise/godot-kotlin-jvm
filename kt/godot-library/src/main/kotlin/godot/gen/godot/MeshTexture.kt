@@ -59,6 +59,4 @@ open class MeshTexture : Texture() {
       imageSize = this
   }
 
-
-  companion object
 }

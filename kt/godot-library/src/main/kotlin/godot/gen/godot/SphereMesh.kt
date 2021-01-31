@@ -78,6 +78,4 @@ open class SphereMesh : PrimitiveMesh() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SPHEREMESH)
-
-  companion object
 }

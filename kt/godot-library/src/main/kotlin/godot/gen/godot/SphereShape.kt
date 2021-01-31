@@ -27,6 +27,4 @@ open class SphereShape : Shape() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SPHERESHAPE)
-
-  companion object
 }

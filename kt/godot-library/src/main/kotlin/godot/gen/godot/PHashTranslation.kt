@@ -20,6 +20,4 @@ open class PHashTranslation : Translation() {
     TransferContext.writeArguments(OBJECT to from)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHASHTRANSLATION_GENERATE, NIL)
   }
-
-  companion object
 }

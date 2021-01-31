@@ -28,6 +28,4 @@ open class MultiMeshInstance : GeometryInstance() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_MULTIMESHINSTANCE)
-
-  companion object
 }

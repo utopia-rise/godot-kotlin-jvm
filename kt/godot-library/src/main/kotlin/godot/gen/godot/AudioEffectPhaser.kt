@@ -80,6 +80,4 @@ open class AudioEffectPhaser : AudioEffect() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTPHASER)
-
-  companion object
 }

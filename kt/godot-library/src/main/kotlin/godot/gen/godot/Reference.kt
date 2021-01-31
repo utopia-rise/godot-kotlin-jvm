@@ -35,6 +35,4 @@ open class Reference : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFERENCE_UNREFERENCE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
-
-  companion object
 }

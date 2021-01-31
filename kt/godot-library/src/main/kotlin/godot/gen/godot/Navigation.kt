@@ -107,6 +107,4 @@ open class Navigation : Spatial() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION_NAVMESH_SET_TRANSFORM,
         NIL)
   }
-
-  companion object
 }

@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class AudioStreamPlayback : Reference() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_AUDIOSTREAMPLAYBACK)
-
-  companion object
 }

@@ -39,6 +39,4 @@ open class ExternalTexture : Texture() {
         ENGINEMETHOD_ENGINECLASS_EXTERNALTEXTURE_GET_EXTERNAL_TEXTURE_ID, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
-
-  companion object
 }

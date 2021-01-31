@@ -75,6 +75,4 @@ open class EditorImportPlugin : ResourceImporter() {
   ): Long {
     throw NotImplementedError("import is not implemented for EditorImportPlugin")
   }
-
-  companion object
 }

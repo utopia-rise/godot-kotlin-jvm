@@ -28,6 +28,4 @@ open class VideoStreamTheora : VideoStream() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VIDEOSTREAMTHEORA)
-
-  companion object
 }

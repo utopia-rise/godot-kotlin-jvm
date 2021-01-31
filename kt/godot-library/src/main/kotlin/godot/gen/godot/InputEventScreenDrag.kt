@@ -90,6 +90,4 @@ open class InputEventScreenDrag : InputEvent() {
       speed = this
   }
 
-
-  companion object
 }

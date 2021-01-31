@@ -183,6 +183,4 @@ open class ColorPicker : BoxContainer() {
         POOL_COLOR_ARRAY)
     return TransferContext.readReturnValue(POOL_COLOR_ARRAY, false) as PoolColorArray
   }
-
-  companion object
 }

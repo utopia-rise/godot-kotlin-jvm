@@ -34,6 +34,4 @@ open class ColorRect : Control() {
       color = this
   }
 
-
-  companion object
 }

@@ -75,6 +75,4 @@ open class EditorSpinSlider : Range() {
 
   open fun _value_input_entered(arg0: String) {
   }
-
-  companion object
 }

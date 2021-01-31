@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class Texture3D : TextureLayered() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_TEXTURE3D)
-
-  companion object
 }

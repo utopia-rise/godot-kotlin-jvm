@@ -480,6 +480,4 @@ open class PopupMenu : Popup() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_TOGGLE_ITEM_MULTISTATE,
         NIL)
   }
-
-  companion object
 }

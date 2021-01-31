@@ -71,6 +71,4 @@ open class WebRTCMultiplayer : NetworkedMultiplayerPeer() {
     TransferContext.writeArguments(LONG to peerId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCMULTIPLAYER_REMOVE_PEER, NIL)
   }
-
-  companion object
 }

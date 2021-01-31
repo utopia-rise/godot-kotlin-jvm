@@ -30,6 +30,4 @@ open class VisualShaderNodeExpression : VisualShaderNodeGroupBase() {
 
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEEXPRESSION)
-
-  companion object
 }

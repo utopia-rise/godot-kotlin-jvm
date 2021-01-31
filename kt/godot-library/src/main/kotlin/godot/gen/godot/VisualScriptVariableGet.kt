@@ -30,6 +30,4 @@ open class VisualScriptVariableGet : VisualScriptNode() {
 
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTVARIABLEGET)
-
-  companion object
 }

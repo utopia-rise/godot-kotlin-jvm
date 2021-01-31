@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class VisualShaderNodeVectorLen : VisualShaderNode() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEVECTORLEN)
-
-  companion object
 }

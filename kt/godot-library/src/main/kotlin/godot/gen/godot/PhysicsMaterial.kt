@@ -66,6 +66,4 @@ open class PhysicsMaterial : Resource() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PHYSICSMATERIAL)
-
-  companion object
 }

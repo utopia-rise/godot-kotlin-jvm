@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class HScrollBar : ScrollBar() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_HSCROLLBAR)
-
-  companion object
 }

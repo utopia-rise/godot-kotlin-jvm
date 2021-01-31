@@ -71,6 +71,4 @@ open class RandomNumberGenerator : Reference() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDOMIZE,
         NIL)
   }
-
-  companion object
 }

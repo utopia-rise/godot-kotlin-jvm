@@ -188,6 +188,4 @@ open class CollisionObject2D : Node2D() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_SHAPE_OWNER_SET_TRANSFORM, NIL)
   }
-
-  companion object
 }

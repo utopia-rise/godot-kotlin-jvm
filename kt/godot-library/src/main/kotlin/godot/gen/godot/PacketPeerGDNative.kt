@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class PacketPeerGDNative : PacketPeer() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PACKETPEERGDNATIVE)
-
-  companion object
 }

@@ -233,6 +233,4 @@ open class Theme : Resource() {
     TransferContext.writeArguments(STRING to name, STRING to type, OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_STYLEBOX, NIL)
   }
-
-  companion object
 }

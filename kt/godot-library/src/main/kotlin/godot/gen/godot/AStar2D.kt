@@ -180,6 +180,4 @@ open class AStar2D : Reference() {
     TransferContext.writeArguments(LONG to id, DOUBLE to weightScale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR2D_SET_POINT_WEIGHT_SCALE, NIL)
   }
-
-  companion object
 }

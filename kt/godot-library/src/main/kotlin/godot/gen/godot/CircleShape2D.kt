@@ -27,6 +27,4 @@ open class CircleShape2D : Shape2D() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CIRCLESHAPE2D)
-
-  companion object
 }

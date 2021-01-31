@@ -45,6 +45,4 @@ open class VisualScriptLocalVarSet : VisualScriptNode() {
 
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTLOCALVARSET)
-
-  companion object
 }

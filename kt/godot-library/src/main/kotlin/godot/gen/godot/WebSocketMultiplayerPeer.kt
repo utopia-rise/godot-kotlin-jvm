@@ -44,6 +44,4 @@ open class WebSocketMultiplayerPeer : NetworkedMultiplayerPeer() {
         ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_SET_BUFFERS, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
-
-  companion object
 }

@@ -29,6 +29,4 @@ open class ViewportTexture : Texture() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VIEWPORTTEXTURE)
-
-  companion object
 }

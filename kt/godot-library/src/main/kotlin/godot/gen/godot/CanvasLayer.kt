@@ -160,6 +160,4 @@ open class CanvasLayer : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_GET_CANVAS, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
-
-  companion object
 }

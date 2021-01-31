@@ -103,6 +103,4 @@ open class Font : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_UPDATE_CHANGES, NIL)
   }
-
-  companion object
 }

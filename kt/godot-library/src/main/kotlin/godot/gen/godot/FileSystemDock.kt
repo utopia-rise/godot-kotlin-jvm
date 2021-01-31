@@ -206,6 +206,4 @@ open class FileSystemDock : VBoxContainer() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILESYSTEMDOCK_NAVIGATE_TO_PATH,
         NIL)
   }
-
-  companion object
 }

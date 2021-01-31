@@ -81,6 +81,4 @@ open class VisualInstance : Spatial() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE_SET_LAYER_MASK_BIT,
         NIL)
   }
-
-  companion object
 }

@@ -94,6 +94,4 @@ open class MeshInstance : GeometryInstance() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_SET_SURFACE_MATERIAL,
         NIL)
   }
-
-  companion object
 }

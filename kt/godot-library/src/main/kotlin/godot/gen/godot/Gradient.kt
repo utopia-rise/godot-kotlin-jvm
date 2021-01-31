@@ -92,6 +92,4 @@ open class Gradient : Resource() {
     TransferContext.writeArguments(LONG to point, DOUBLE to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_SET_OFFSET, NIL)
   }
-
-  companion object
 }

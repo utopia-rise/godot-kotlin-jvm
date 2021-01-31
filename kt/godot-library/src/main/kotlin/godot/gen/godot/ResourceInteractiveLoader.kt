@@ -55,6 +55,4 @@ open class ResourceInteractiveLoader : Reference() {
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
-
-  companion object
 }

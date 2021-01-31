@@ -61,6 +61,4 @@ open class AnimationNodeStateMachinePlayback : Resource() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_TRAVEL, NIL)
   }
-
-  companion object
 }

@@ -107,6 +107,4 @@ open class AcceptDialog : WindowDialog() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_REGISTER_TEXT_ENTER,
         NIL)
   }
-
-  companion object
 }

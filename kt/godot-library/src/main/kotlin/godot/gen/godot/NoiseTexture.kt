@@ -97,6 +97,4 @@ open class NoiseTexture : Texture() {
 
   open fun _update_texture() {
   }
-
-  companion object
 }

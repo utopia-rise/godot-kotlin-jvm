@@ -71,6 +71,4 @@ open class PhysicsDirectSpaceState : Object() {
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTSPACESTATE_INTERSECT_SHAPE, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
-
-  companion object
 }

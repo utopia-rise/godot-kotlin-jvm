@@ -105,6 +105,4 @@ open class InputEvent : Resource() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_XFORMED_BY, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as InputEvent?
   }
-
-  companion object
 }

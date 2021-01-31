@@ -304,6 +304,4 @@ open class Polygon2D : Node2D() {
     TransferContext.writeArguments(LONG to index, POOL_REAL_ARRAY to weights)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_BONE_WEIGHTS, NIL)
   }
-
-  companion object
 }

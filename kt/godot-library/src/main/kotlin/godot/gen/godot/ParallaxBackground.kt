@@ -131,6 +131,4 @@ open class ParallaxBackground : CanvasLayer() {
 
   open fun _camera_moved(arg0: Transform2D, arg1: Vector2) {
   }
-
-  companion object
 }

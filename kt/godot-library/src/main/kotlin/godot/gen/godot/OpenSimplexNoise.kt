@@ -148,6 +148,4 @@ open class OpenSimplexNoise : Resource() {
         OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Image?
   }
-
-  companion object
 }

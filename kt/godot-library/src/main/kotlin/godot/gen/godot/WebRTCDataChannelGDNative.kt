@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class WebRTCDataChannelGDNative : WebRTCDataChannel() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_WEBRTCDATACHANNELGDNATIVE)
-
-  companion object
 }

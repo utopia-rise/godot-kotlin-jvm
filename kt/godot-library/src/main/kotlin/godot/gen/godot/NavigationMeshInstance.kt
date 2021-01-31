@@ -44,6 +44,4 @@ open class NavigationMeshInstance : Spatial() {
 
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_NAVIGATIONMESHINSTANCE)
-
-  companion object
 }

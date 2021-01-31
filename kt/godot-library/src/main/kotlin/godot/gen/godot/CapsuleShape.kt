@@ -38,6 +38,4 @@ open class CapsuleShape : Shape() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CAPSULESHAPE)
-
-  companion object
 }

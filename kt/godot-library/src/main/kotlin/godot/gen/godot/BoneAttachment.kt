@@ -28,6 +28,4 @@ open class BoneAttachment : Spatial() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_BONEATTACHMENT)
-
-  companion object
 }

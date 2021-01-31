@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class VisualShaderNodeScalarClamp : VisualShaderNode() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODESCALARCLAMP)
-
-  companion object
 }

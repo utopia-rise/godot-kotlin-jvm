@@ -185,6 +185,4 @@ open class AudioEffectDelay : AudioEffect() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTDELAY)
-
-  companion object
 }

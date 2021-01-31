@@ -38,6 +38,4 @@ open class World2D : Resource() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_WORLD2D)
-
-  companion object
 }

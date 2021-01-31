@@ -56,6 +56,4 @@ open class WindowDialog : Popup() {
         OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as TextureButton?
   }
-
-  companion object
 }

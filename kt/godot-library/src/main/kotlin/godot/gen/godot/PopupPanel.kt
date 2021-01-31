@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class PopupPanel : Popup() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_POPUPPANEL)
-
-  companion object
 }

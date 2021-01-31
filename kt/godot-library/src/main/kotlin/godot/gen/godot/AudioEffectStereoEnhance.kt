@@ -56,6 +56,4 @@ open class AudioEffectStereoEnhance : AudioEffect() {
 
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTSTEREOENHANCE)
-
-  companion object
 }

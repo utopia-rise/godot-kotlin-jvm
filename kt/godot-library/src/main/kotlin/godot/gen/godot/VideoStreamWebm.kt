@@ -27,6 +27,4 @@ open class VideoStreamWebm : VideoStream() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VIDEOSTREAMWEBM)
-
-  companion object
 }

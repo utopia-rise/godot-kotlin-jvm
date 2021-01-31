@@ -66,6 +66,4 @@ open class Joint : Spatial() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_JOINT)
-
-  companion object
 }

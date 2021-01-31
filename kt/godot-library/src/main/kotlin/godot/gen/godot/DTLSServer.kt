@@ -34,6 +34,4 @@ open class DTLSServer : Reference() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DTLSSERVER_TAKE_CONNECTION, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as PacketPeerDTLS?
   }
-
-  companion object
 }

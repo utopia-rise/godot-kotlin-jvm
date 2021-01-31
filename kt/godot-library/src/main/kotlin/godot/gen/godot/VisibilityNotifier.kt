@@ -54,6 +54,4 @@ open class VisibilityNotifier : Spatial() {
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
-
-  companion object
 }

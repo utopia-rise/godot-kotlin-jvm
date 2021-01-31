@@ -57,6 +57,4 @@ open class VisibilityNotifier2D : Node2D() {
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
-
-  companion object
 }

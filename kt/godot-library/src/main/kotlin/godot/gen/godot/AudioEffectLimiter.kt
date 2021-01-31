@@ -68,6 +68,4 @@ open class AudioEffectLimiter : AudioEffect() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTLIMITER)
-
-  companion object
 }

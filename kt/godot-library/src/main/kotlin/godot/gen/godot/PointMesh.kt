@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class PointMesh : PrimitiveMesh() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_POINTMESH)
-
-  companion object
 }

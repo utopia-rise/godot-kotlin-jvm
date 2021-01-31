@@ -131,6 +131,4 @@ open class EditorVCSInterface : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_UNSTAGE_FILE,
         NIL)
   }
-
-  companion object
 }

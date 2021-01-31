@@ -42,6 +42,4 @@ open class RayShape2D : Shape2D() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_RAYSHAPE2D)
-
-  companion object
 }

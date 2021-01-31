@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class ARVRInterfaceGDNative : ARVRInterface() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_ARVRINTERFACEGDNATIVE)
-
-  companion object
 }

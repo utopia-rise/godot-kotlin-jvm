@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class VisualShaderNodeTextureUniformTriplanar : VisualShaderNodeTextureUniform() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODETEXTUREUNIFORMTRIPLANAR)
-
-  companion object
 }

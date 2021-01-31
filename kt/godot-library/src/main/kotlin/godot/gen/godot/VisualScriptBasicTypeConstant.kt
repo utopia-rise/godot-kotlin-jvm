@@ -45,6 +45,4 @@ open class VisualScriptBasicTypeConstant : VisualScriptNode() {
 
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTBASICTYPECONSTANT)
-
-  companion object
 }

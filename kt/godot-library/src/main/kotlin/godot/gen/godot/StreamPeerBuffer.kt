@@ -65,6 +65,4 @@ open class StreamPeerBuffer : StreamPeer() {
     TransferContext.writeArguments(LONG to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_SEEK, NIL)
   }
-
-  companion object
 }

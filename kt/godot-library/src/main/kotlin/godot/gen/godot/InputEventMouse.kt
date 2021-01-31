@@ -69,6 +69,4 @@ open class InputEventMouse : InputEventWithModifiers() {
       position = this
   }
 
-
-  companion object
 }

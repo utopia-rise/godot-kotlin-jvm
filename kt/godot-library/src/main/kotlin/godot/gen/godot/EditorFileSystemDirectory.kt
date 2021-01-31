@@ -119,6 +119,4 @@ open class EditorFileSystemDirectory : Object() {
         ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEMDIRECTORY_GET_SUBDIR_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
-
-  companion object
 }

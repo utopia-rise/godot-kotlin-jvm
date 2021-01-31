@@ -82,6 +82,4 @@ open class InputEventWithModifiers : InputEvent() {
 
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_INPUTEVENTWITHMODIFIERS)
-
-  companion object
 }

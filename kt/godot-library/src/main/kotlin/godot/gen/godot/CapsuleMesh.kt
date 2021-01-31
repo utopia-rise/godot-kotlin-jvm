@@ -65,6 +65,4 @@ open class CapsuleMesh : PrimitiveMesh() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CAPSULEMESH)
-
-  companion object
 }

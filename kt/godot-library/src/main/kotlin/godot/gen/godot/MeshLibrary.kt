@@ -131,6 +131,4 @@ open class MeshLibrary : Resource() {
     TransferContext.writeArguments(LONG to id, ARRAY to shapes)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_SHAPES, NIL)
   }
-
-  companion object
 }

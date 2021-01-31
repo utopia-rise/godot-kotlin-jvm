@@ -110,6 +110,4 @@ open class AudioEffectCompressor : AudioEffect() {
 
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTCOMPRESSOR)
-
-  companion object
 }

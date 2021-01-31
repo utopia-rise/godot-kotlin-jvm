@@ -28,6 +28,4 @@ open class ARVROrigin : Spatial() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ARVRORIGIN)
-
-  companion object
 }

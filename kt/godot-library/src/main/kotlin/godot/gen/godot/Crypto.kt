@@ -46,6 +46,4 @@ open class Crypto : Reference() {
         ENGINEMETHOD_ENGINECLASS_CRYPTO_GENERATE_SELF_SIGNED_CERTIFICATE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as X509Certificate?
   }
-
-  companion object
 }

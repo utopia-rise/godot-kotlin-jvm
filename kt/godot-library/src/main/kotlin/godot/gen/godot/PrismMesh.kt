@@ -89,6 +89,4 @@ open class PrismMesh : PrimitiveMesh() {
       size = this
   }
 
-
-  companion object
 }

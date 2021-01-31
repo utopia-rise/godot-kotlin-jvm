@@ -54,6 +54,4 @@ open class HeightMapShape : Shape() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_HEIGHTMAPSHAPE)
-
-  companion object
 }

@@ -214,6 +214,4 @@ open class VehicleWheel : Spatial() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL_IS_IN_CONTACT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
-
-  companion object
 }

@@ -70,6 +70,4 @@ open class ScriptCreateDialog : ConfirmationDialog() {
         to loadEnabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTCREATEDIALOG_CONFIG, NIL)
   }
-
-  companion object
 }

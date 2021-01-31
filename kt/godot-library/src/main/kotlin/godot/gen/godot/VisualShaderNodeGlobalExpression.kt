@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class VisualShaderNodeGlobalExpression : VisualShaderNodeExpression() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEGLOBALEXPRESSION)
-
-  companion object
 }

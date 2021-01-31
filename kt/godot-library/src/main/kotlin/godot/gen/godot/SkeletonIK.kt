@@ -182,6 +182,4 @@ open class SkeletonIK : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK_STOP, NIL)
   }
-
-  companion object
 }

@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class VisualScriptSwitch : VisualScriptNode() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTSWITCH)
-
-  companion object
 }

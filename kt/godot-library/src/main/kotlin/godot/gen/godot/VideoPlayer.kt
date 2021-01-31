@@ -170,6 +170,4 @@ open class VideoPlayer : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_STOP, NIL)
   }
-
-  companion object
 }

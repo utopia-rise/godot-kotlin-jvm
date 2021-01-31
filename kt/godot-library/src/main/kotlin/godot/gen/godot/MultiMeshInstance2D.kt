@@ -58,6 +58,4 @@ open class MultiMeshInstance2D : Node2D() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_MULTIMESHINSTANCE2D)
-
-  companion object
 }

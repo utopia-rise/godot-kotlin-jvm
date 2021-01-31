@@ -29,6 +29,4 @@ open class Path2D : Node2D() {
 
   open fun _curve_changed() {
   }
-
-  companion object
 }

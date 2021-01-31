@@ -73,6 +73,4 @@ open class CubeMesh : PrimitiveMesh() {
       size = this
   }
 
-
-  companion object
 }

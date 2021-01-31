@@ -51,6 +51,4 @@ open class FuncRef : Reference() {
     TransferContext.writeArguments(OBJECT to instance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FUNCREF_SET_INSTANCE, NIL)
   }
-
-  companion object
 }

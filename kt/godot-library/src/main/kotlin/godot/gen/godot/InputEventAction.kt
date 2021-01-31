@@ -55,6 +55,4 @@ open class InputEventAction : InputEvent() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_INPUTEVENTACTION)
-
-  companion object
 }

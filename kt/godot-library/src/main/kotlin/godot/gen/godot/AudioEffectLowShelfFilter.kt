@@ -14,6 +14,4 @@ import kotlin.Suppress
 open class AudioEffectLowShelfFilter : AudioEffectFilter() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTLOWSHELFFILTER)
-
-  companion object
 }

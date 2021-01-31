@@ -71,6 +71,4 @@ open class InputEventMouseButton : InputEventMouse() {
 
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_INPUTEVENTMOUSEBUTTON)
-
-  companion object
 }

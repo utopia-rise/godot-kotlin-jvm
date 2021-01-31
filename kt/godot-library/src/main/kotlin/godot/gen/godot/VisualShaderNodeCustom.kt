@@ -77,6 +77,4 @@ open class VisualShaderNodeCustom : VisualShaderNode() {
   open fun _get_subcategory(): String {
     throw NotImplementedError("_get_subcategory is not implemented for VisualShaderNodeCustom")
   }
-
-  companion object
 }

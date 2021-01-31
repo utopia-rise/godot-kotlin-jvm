@@ -13,6 +13,4 @@ import kotlin.Suppress
 @GodotBaseType
 open class AudioEffect : Resource() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECT)
-
-  companion object
 }

@@ -27,6 +27,4 @@ open class AnimationNodeAdd2 : AnimationNode() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODEADD2)
-
-  companion object
 }

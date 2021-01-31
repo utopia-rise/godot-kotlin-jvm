@@ -110,6 +110,4 @@ open class InputEventMIDI : InputEvent() {
     }
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_INPUTEVENTMIDI)
-
-  companion object
 }

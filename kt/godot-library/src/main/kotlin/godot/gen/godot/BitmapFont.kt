@@ -153,6 +153,4 @@ open class BitmapFont : Font() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAPFONT_GET_TEXTURE_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
-
-  companion object
 }

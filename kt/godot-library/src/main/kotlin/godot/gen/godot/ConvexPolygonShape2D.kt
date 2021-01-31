@@ -36,6 +36,4 @@ open class ConvexPolygonShape2D : Shape2D() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CONVEXPOLYGONSHAPE2D_SET_POINT_CLOUD, NIL)
   }
-
-  companion object
 }
