@@ -141,8 +141,8 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jint p
 #endif
 
     write_return_value(buffer, ret_value);
-    jni::JObject local_ref{instance};
-    local_ref.delete_local_ref(env);
+//    jni::JObject local_ref{instance};
+//    local_ref.delete_local_ref(env);
 }
 
 jlong TransferContext::invoke_constructor(JNIEnv *p_raw_env, jobject p_instance, jint p_class_index) {
