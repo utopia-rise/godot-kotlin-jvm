@@ -53,17 +53,18 @@ bool MemoryBridge::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p
 }
 
 bool MemoryBridge::unref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    auto* reference{reinterpret_cast<Reference*>(static_cast<uintptr_t>(p_raw_ptr))};
+    if (auto* reference{reinterpret_cast<Reference*>(static_cast<uintptr_t>(p_raw_ptr))}) {
+        if (reference->unreference()) {
+            memdelete(reference);
+        } else {
+#ifdef DEBUG_ENABLED
+            print_verbose(vformat("Will not memdelete %s", String::num_int64(static_cast<uintptr_t>(p_raw_ptr))));
+#endif
+        }
+    }
     jni::Env env{p_raw_env};
     jni::JObject local_ref{p_instance};
     local_ref.delete_local_ref(env);
-    if (reference->unreference()) {
-        memdelete(reference);
-    } else {
-#ifdef DEBUG_ENABLED
-        print_verbose(vformat("Will not memdelete %s", String::num_int64(static_cast<uintptr_t>(p_raw_ptr))));
-#endif
-    }
     return true;
 }
 
