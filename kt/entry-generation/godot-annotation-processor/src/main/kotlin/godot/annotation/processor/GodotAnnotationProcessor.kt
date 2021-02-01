@@ -117,9 +117,6 @@ class GodotAnnotationProcessor(
     }
 
     override fun processingOver() {
-        File(entryGenerationOutputDir).mkdirs()
-        File("$entryGenerationOutputDir/debug.txt").appendText(classes.map { it.name }.joinToString("\n"))
-
         deleteObsoleteClassSpecificEntryFiles()
         EntryGenerator.psiClassesWithMembers = getAllRegisteredUserPsiClassesWithMembers()
         EntryGenerator.generateEntryFiles(
@@ -129,7 +126,15 @@ class GodotAnnotationProcessor(
             classes,
             properties,
             functions,
-            signals
+            signals,
+            srcDirs
+                .map {
+                    it
+                        .absolutePath
+                        .removePrefix(File(entryGenerationOutputDir).parentFile.parentFile.absolutePath)
+                        .removePrefix("/")
+                        .let { path -> "$path/" }
+                }
         )
         EntryGenerator.generateServiceFile(serviceFileOutputDir)
     }

@@ -83,6 +83,7 @@ class Bootstrap {
                         TypeManager.engineTypeMethod.map { it.first }.toTypedArray()
                 )
                 context.init()
+                registerSrcDirs(provideSrcDirs().toTypedArray())
             }
             loadClasses(registry.classes.toTypedArray())
         } else {
@@ -90,6 +91,7 @@ class Bootstrap {
         }
     }
 
+    private external fun registerSrcDirs(srcDirs: Array<String>)
     private external fun loadClasses(classes: Array<KtClass<*>>)
     private external fun unloadClasses(classes: Array<KtClass<*>>)
 

@@ -64,6 +64,20 @@ void load_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
     classes.delete_local_ref(env);
 }
 
+void provide_src_dirs_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_src_dirs) {
+    jni::Env env(p_env);
+    jni::JObjectArray src_dirs_raw{jni::JObjectArray(p_src_dirs)};
+    Vector<String> src_dirs{};
+    for (int i = 0; i < src_dirs_raw.length(env); ++i) {
+        String src_dir = env.from_jstring(src_dirs_raw.get(env, i));
+        src_dirs.push_back(src_dir);
+    }
+    GDKotlin::get_instance().scripts_root = src_dirs;
+    jni::JObject j_object{p_this};
+    j_object.delete_local_ref(env);
+    src_dirs_raw.delete_local_ref(env);
+}
+
 void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
     jni::Env env(p_env);
     jni::JObjectArray classes{jni::JObjectArray(p_classes)};
@@ -201,7 +215,6 @@ void GDKotlin::init() {
     jni::Jvm::init(args);
     print_line("Starting JVM ...");
     auto project_settings = ProjectSettings::get_singleton();
-    scripts_root = "res://src/main/kotlin/";
     String bootstrap_jar = project_settings->globalize_path("res://build/libs/godot-bootstrap.jar");
     print_line(vformat("Loading bootstrap jar: %s", bootstrap_jar));
     jni::Env env{jni::Jvm::current_env()};
@@ -254,7 +267,7 @@ void GDKotlin::init() {
     jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");
     jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
     bootstrap = new Bootstrap(instance, class_loader);
-    bootstrap->register_hooks(env, load_classes_hook, unload_classes_hook, register_engine_types_hook);
+    bootstrap->register_hooks(env, provide_src_dirs_hook, load_classes_hook, unload_classes_hook, register_engine_types_hook);
     bool is_editor = Engine::get_singleton()->is_editor_hint();
     String project_path = project_settings->globalize_path("res://");
 
@@ -330,7 +343,12 @@ void GDKotlin::unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes) 
 }
 
 KtClass* GDKotlin::find_class(const String& p_script_path) {
-    StringName class_name = p_script_path.trim_prefix(scripts_root).trim_suffix(".kt").replace("/", ".");
+    String class_name_as_string = p_script_path.trim_prefix("res://").trim_suffix(".kt");
+    for (int i = 0; i < scripts_root.size(); ++i) {
+        String script_root = scripts_root[i].strip_edges();
+        class_name_as_string = class_name_as_string.trim_prefix(script_root);
+    }
+    StringName class_name = class_name_as_string.replace("/", ".");
     ERR_FAIL_COND_V_MSG(!classes.has(class_name), nullptr,
                         vformat("Failed to find class %s for path: %s", class_name, p_script_path))
     return classes[class_name];
