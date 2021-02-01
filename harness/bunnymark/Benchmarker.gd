@@ -18,7 +18,7 @@ var stable_updates_required = 3
 var bunnymark_update_elapsed_time = 0.0
 var stable_updates = 0
 
-export(String, "BunnymarkV2", "BunnymarkV1Sprites", "BunnymarkV1DrawTexture") var benchmark: String = "BunnymarkV2"
+export(String, "BunnymarkV2", "BunnymarkV1Sprites", "BunnymarkV1DrawTexture", "BunnymarkV3") var benchmark: String = "BunnymarkV2"
 export(String, "gd", "kt", "cs") var language: String = "gd"
 
 func _ready():
