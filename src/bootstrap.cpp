@@ -9,12 +9,12 @@ Bootstrap::Bootstrap(jni::JObject p_wrapped, jni::JObject p_class_loader) : Java
 }
 
 void
-Bootstrap::register_hooks(jni::Env& p_env, ProvideSrcDirsHook p_provide_src_dirs_hook, LoadClassesHook p_load_classes_hook, UnloadClassesHook p_unload_classes_hook,
+Bootstrap::register_hooks(jni::Env& p_env, RegisterSrcDirsHook p_register_src_dirs_hook, LoadClassesHook p_load_classes_hook, UnloadClassesHook p_unload_classes_hook,
                           RegisterManagedEngineTypes p_register_managed_engine_types_hook) {
     jni::JNativeMethod provide_src_dirs_hook_method {
             "registerSrcDirs",
             "([Ljava/lang/String;)V",
-            (void*) p_provide_src_dirs_hook
+            (void*) p_register_src_dirs_hook
     };
 
     jni::JNativeMethod load_class_hook_method {

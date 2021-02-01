@@ -64,7 +64,7 @@ void load_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
     classes.delete_local_ref(env);
 }
 
-void provide_src_dirs_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_src_dirs) {
+void register_src_dirs_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_src_dirs) {
     jni::Env env(p_env);
     jni::JObjectArray src_dirs_raw{jni::JObjectArray(p_src_dirs)};
     Vector<String> src_dirs{};
@@ -267,7 +267,8 @@ void GDKotlin::init() {
     jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");
     jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
     bootstrap = new Bootstrap(instance, class_loader);
-    bootstrap->register_hooks(env, provide_src_dirs_hook, load_classes_hook, unload_classes_hook, register_engine_types_hook);
+    bootstrap->register_hooks(env, register_src_dirs_hook, load_classes_hook, unload_classes_hook,
+                              register_engine_types_hook);
     bool is_editor = Engine::get_singleton()->is_editor_hint();
     String project_path = project_settings->globalize_path("res://");
 
