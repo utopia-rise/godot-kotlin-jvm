@@ -13,16 +13,13 @@ class BunnymarkV2 : Node2D() {
     private var bunnySpeeds = ArrayList<Vector2>()
     private var label = Label()
     private var bunnies = Node2D()
-    private lateinit var bunnyTexture: Texture
+    private var bunnyTexture = ResourceLoader.load("res://images/godot_bunny.png") as Texture
     private val randomNumberGenerator = RandomNumberGenerator()
 
     lateinit var screenSize: Vector2
 
     @RegisterFunction
     override fun _ready() {
-        println("NOTICE MEE SENPAIII!")
-        bunnyTexture = ResourceLoader.load("res://images/godot_bunny.png") as Texture
-        println("NOTICE MEE SENPAIII!")
         addChild(bunnies)
         label.setPosition(Vector2(0, 20))
         addChild(label)

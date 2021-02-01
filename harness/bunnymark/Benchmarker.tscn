@@ -9,7 +9,8 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-language = "kt"
+benchmark = "BunnymarkV1DrawTexture"
+language = "cs"
 
 [node name="BenchmarkContainer" type="Node2D" parent="."]
 
