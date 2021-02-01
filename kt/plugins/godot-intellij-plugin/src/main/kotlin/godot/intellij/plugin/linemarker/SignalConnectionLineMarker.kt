@@ -5,10 +5,12 @@ import com.intellij.codeInsight.daemon.LineMarkerProvider
 import com.intellij.openapi.editor.markup.GutterIconRenderer
 import com.intellij.openapi.util.IconLoader
 import com.intellij.psi.PsiElement
+import com.intellij.psi.impl.source.tree.LeafPsiElement
 import godot.intellij.plugin.data.cache.SignalConnectionCacheProvider
 import godot.intellij.plugin.extension.isSignal
 import godot.intellij.plugin.ui.dialog.IncomingSignalConnectionsDialog
 import godot.intellij.plugin.ui.dialog.OutgoingSignalConnectionsDialog
+import org.jetbrains.kotlin.lexer.KtTokens
 import org.jetbrains.kotlin.nj2k.postProcessing.type
 import org.jetbrains.kotlin.psi.KtFunction
 import org.jetbrains.kotlin.psi.KtProperty
@@ -17,10 +19,15 @@ import kotlin.text.Typography.nbsp
 
 class SignalConnectionLineMarker : LineMarkerProvider {
     override fun getLineMarkerInfo(element: PsiElement): LineMarkerInfo<*>? {
-        if (element is KtProperty && element.type().isSignal()) {
-            val project = element.project
-            val containingClassFqName = element.containingClass()?.fqName?.asString() ?: return null
-            val propertyName = element.name ?: return null
+        if (element !is LeafPsiElement || element.elementType != KtTokens.IDENTIFIER) {
+            return null
+        }
+
+        val parent = element.parent
+        if (parent is KtProperty && parent.type().isSignal()) {
+            val project = parent.project
+            val containingClassFqName = parent.containingClass()?.fqName?.asString() ?: return null
+            val propertyName = parent.name ?: return null
             val signalConnectionHandler = SignalConnectionCacheProvider.provide(project)
 
             val signalConnections = signalConnectionHandler
@@ -43,7 +50,7 @@ class SignalConnectionLineMarker : LineMarkerProvider {
             }
 
             if (signalConnections.isEmpty()) return null
-            val signalIdentifyingElement = element.identifyingElement ?: return null
+            val signalIdentifyingElement = parent.identifyingElement ?: return null
 
             val imageIcon = IconLoader.getIcon("/icon_signals.svg", this::class.java)
             return LineMarkerInfo(
@@ -59,10 +66,10 @@ class SignalConnectionLineMarker : LineMarkerProvider {
             )
         }
 
-        if (element is KtFunction) {
-            val project = element.project
-            val containingClassFqName = element.containingClass()?.fqName?.asString() ?: return null
-            val functionName = element.name ?: return null
+        if (parent is KtFunction) {
+            val project = parent.project
+            val containingClassFqName = parent.containingClass()?.fqName?.asString() ?: return null
+            val functionName = parent.name ?: return null
             val signalConnectionHandler = SignalConnectionCacheProvider.provide(project)
 
             val signalConnections = signalConnectionHandler
@@ -85,7 +92,7 @@ class SignalConnectionLineMarker : LineMarkerProvider {
             }
 
             if (signalConnections.isEmpty()) return null
-            val signalIdentifyingElement = element.identifyingElement ?: return null
+            val signalIdentifyingElement = parent.identifyingElement ?: return null
 
             val imageIcon = IconLoader.getIcon("/icon_slot.svg", this::class.java)
             return LineMarkerInfo(
