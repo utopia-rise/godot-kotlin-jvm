@@ -4,22 +4,27 @@ import godot.core.*
 import godot.*
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
+import godot.annotation.RegisterSignal
+import godot.signals.signal
 
 @RegisterClass("BunnymarkV2")
 class BunnymarkV2 : Node2D() {
 
+    @RegisterSignal
+    val signalBenchmarkFinished by signal<Int>("bunnyCount")
 
-    private var gravity = 500
-    private var bunnySpeeds = ArrayList<Vector2>()
-    private var label = Label()
-    private var bunnies = Node2D()
-    private var bunnyTexture = ResourceLoader.load("res://images/godot_bunny.png") as Texture
+    private val gravity = 500
+    private val bunnySpeeds = mutableListOf<Vector2>()
+    private val label = Label()
+    private val bunnies = Node2D()
+    private val bunnyTexture = ResourceLoader.load("res://images/godot_bunny.png") as Texture
     private val randomNumberGenerator = RandomNumberGenerator()
 
-    lateinit var screenSize: Vector2
+    private lateinit var screenSize: Vector2
 
     @RegisterFunction
     override fun _ready() {
+        randomNumberGenerator.randomize()
         addChild(bunnies)
         label.setPosition(Vector2(0, 20))
         addChild(label)
@@ -30,9 +35,9 @@ class BunnymarkV2 : Node2D() {
         screenSize = getViewportRect().size
         label.text = "Bunnies: " + bunnies.getChildCount().toString()
 
-        val bunny_children = bunnies.getChildren()
-        for (i in 0 until bunny_children.size) {
-            val bunny = bunny_children[i]!! as Sprite
+        val bunnyChildren = bunnies.getChildren()
+        for (i in 0 until bunnyChildren.size) {
+            val bunny = bunnyChildren[i]!! as Sprite
             val pos = bunny.position
             val speed = bunnySpeeds[i]
 
@@ -71,7 +76,7 @@ class BunnymarkV2 : Node2D() {
     }
 
     @RegisterFunction
-    fun add_bunny() {
+    fun addBunny() {
         val bunny = Sprite()
         bunny.texture = bunnyTexture
         bunnies.addChild(bunny)
@@ -82,19 +87,19 @@ class BunnymarkV2 : Node2D() {
     }
 
     @RegisterFunction
-    fun remove_bunny() {
-        val child_count = bunnies.getChildCount()
-        if (child_count == 0L) return
+    fun removeBunny() {
+        val childCount = bunnies.getChildCount()
+        if (childCount == 0L) return
         bunnies
-            .getChild(child_count - 1)
+            .getChild(childCount - 1)
             ?.let { bunny ->
                 bunnies.removeChild(bunny)
             }
-        bunnySpeeds.removeAt(child_count.toInt() - 1)
+        bunnySpeeds.removeAt(childCount.toInt() - 1)
     }
 
     @RegisterFunction
     fun finish() {
-        emitSignal("benchmark_finished", bunnySpeeds.size)
+        signalBenchmarkFinished.emit(bunnySpeeds.size)
     }
 }

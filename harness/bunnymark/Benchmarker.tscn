@@ -10,7 +10,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 benchmark = "BunnymarkV1DrawTexture"
-language = "cs"
+language = "kt"
 
 [node name="BenchmarkContainer" type="Node2D" parent="."]
 

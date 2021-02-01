@@ -6,19 +6,24 @@ import godot.ResourceLoader
 import godot.Texture
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
+import godot.annotation.RegisterSignal
 import godot.core.Vector2
+import godot.signals.signal
 
 @RegisterClass("BunnymarkV1DrawTexture")
 class BunnymarkV1DrawTexture : Node2D() {
 
+    @RegisterSignal
+    val signalBenchmarkFinished by signal<Int>("bunnyCount")
+
     data class Bunny(var position: Vector2, var speed: Vector2)
 
-    private var bunnies = ArrayList<Bunny>()
-    private var gravity = 500
-    private var bunnyTexture = ResourceLoader.load("res://images/godot_bunny.png") as Texture
+    private val bunnies = mutableListOf<Bunny>()
+    private val gravity = 500
+    private val bunnyTexture = ResourceLoader.load("res://images/godot_bunny.png") as Texture
     private val randomNumberGenerator = RandomNumberGenerator()
 
-    lateinit var screenSize: Vector2
+    private lateinit var screenSize: Vector2
 
     @RegisterFunction
     override fun _ready() {
@@ -64,8 +69,6 @@ class BunnymarkV1DrawTexture : Node2D() {
                 }
             }
 
-
-
             if (pos.y < 0) {
                 speed.y = 0.0
                 pos.y = 0.0
@@ -78,22 +81,23 @@ class BunnymarkV1DrawTexture : Node2D() {
     }
 
     @RegisterFunction
-    fun add_bunny() {
-        bunnies.add(Bunny(
+    fun addBunny() {
+        bunnies.add(
+            Bunny(
                 Vector2(screenSize.x / 2, screenSize.y / 2),
                 Vector2(randomNumberGenerator.randi() % 200 + 50, randomNumberGenerator.randi() % 200 + 50)
-
-        ))
+            )
+        )
     }
 
     @RegisterFunction
-    fun remove_bunny() {
+    fun removeBunny() {
         if (bunnies.size == 0) return
         bunnies.removeAt(bunnies.size - 1)
     }
 
     @RegisterFunction
     fun finish() {
-        emitSignal("benchmark_finished", bunnies.size)
+        signalBenchmarkFinished.emit(bunnies.size)
     }
 }

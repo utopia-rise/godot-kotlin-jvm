@@ -4,18 +4,28 @@ import godot.core.*
 import godot.*
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
+import godot.annotation.RegisterSignal
+import godot.signals.signal
 
 @RegisterClass("BunnymarkV1Sprites")
 class BunnymarkV1Sprites : Node2D() {
 
+    @RegisterSignal
+    val signalBenchmarkFinished by signal<Int>("bunnyCount")
+
     private data class Bunny(var sprite: Sprite, var speed: Vector2)
 
-    private var bunnies = ArrayList<Bunny>()
-    private var gravity = 500
-    private var bunnyTexture = ResourceLoader.load("res://images/godot_bunny.png") as Texture
+    private val bunnies = mutableListOf<Bunny>()
+    private val gravity = 500
+    private val bunnyTexture = ResourceLoader.load("res://images/godot_bunny.png") as Texture
     private val randomNumberGenerator = RandomNumberGenerator()
 
-    lateinit var screenSize: Vector2
+    private lateinit var screenSize: Vector2
+
+    @RegisterFunction
+    override fun _ready() {
+        randomNumberGenerator.randomize()
+    }
 
     @RegisterFunction
     override fun _process(delta: Double) {
@@ -49,8 +59,6 @@ class BunnymarkV1Sprites : Node2D() {
                 }
             }
 
-
-
             if (pos.y < 0) {
                 speed.y = 0.0
                 pos.y = 0.0
@@ -62,21 +70,21 @@ class BunnymarkV1Sprites : Node2D() {
     }
 
     @RegisterFunction
-    fun add_bunny() {
+    fun addBunny() {
         val bunny = Sprite()
         bunny.texture = bunnyTexture
         addChild(bunny)
         bunny.position = Vector2(screenSize.x / 2, screenSize.y / 2)
         bunnies.add(
-                Bunny(
-                        bunny,
-                        Vector2(randomNumberGenerator.randi() % 200 + 50, randomNumberGenerator.randi() % 200 + 50)
-                )
+            Bunny(
+                bunny,
+                Vector2(randomNumberGenerator.randi() % 200 + 50, randomNumberGenerator.randi() % 200 + 50)
+            )
         )
     }
 
     @RegisterFunction
-    fun remove_bunny() {
+    fun removeBunny() {
         if (bunnies.size == 0) return
         val bunny = bunnies[bunnies.size - 1]
         removeChild(bunny.sprite)
@@ -85,6 +93,6 @@ class BunnymarkV1Sprites : Node2D() {
 
     @RegisterFunction
     fun finish() {
-        emitSignal("benchmark_finished", bunnies.size)
+        signalBenchmarkFinished.emit(bunnies.size)
     }
 }
