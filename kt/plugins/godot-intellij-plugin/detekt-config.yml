@@ -28,6 +28,9 @@ exceptions:
 complexity:
   ComplexMethod:
     ignoreSingleWhenExpression: true
+    excludes: [
+        '**/godot/intellij/plugin/linemarker/SignalConnectionLineMarker.kt',
+    ]
   TooManyFunctions:
     excludes: [
         '**/godot/intellij/plugin/annotator/property/PropertyHintAnnotationChecker.kt',
