@@ -236,22 +236,19 @@ namespace ktvariant {
         //TODO: Manage 32 bits systems.
         des->increment_position(encode_uint64(reinterpret_cast<uintptr_t>(ptr), des->get_cursor()));
 
-
         StringName class_name{ptr->get_class()};
 
-//        String class_name {ptr->get_class()};
-//
-//        if (!TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
-//            class_name = ClassDB::get_parent_class(class_name);
-//
-//            while (class_name.empty()) {
-//                if (!TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
-//                    class_name = ClassDB::get_parent_class(class_name);
-//                } else {
-//                    break;
-//                }
-//            }
-//        }
+        if (!TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
+            class_name = ClassDB::get_parent_class(class_name);
+
+            while (class_name == String()) {
+                if (!TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.has(class_name)) {
+                    class_name = ClassDB::get_parent_class(class_name);
+                } else {
+                    break;
+                }
+            }
+        }
 
         bool is_ref{src.is_ref()};
         bool should_increment_refcount{is_ref && is_engine_return};
