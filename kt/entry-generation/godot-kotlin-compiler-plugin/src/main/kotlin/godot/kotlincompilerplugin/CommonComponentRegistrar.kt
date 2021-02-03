@@ -6,7 +6,11 @@ import godot.kotlincompilerplugin.common.CompilerPluginConst
 import org.jetbrains.kotlin.codegen.ClassBuilderFactory
 import org.jetbrains.kotlin.codegen.extensions.ClassBuilderInterceptorExtension
 import org.jetbrains.kotlin.com.intellij.mock.MockProject
-import org.jetbrains.kotlin.compiler.plugin.*
+import org.jetbrains.kotlin.compiler.plugin.AbstractCliOption
+import org.jetbrains.kotlin.compiler.plugin.CliOption
+import org.jetbrains.kotlin.compiler.plugin.CliOptionProcessingException
+import org.jetbrains.kotlin.compiler.plugin.CommandLineProcessor
+import org.jetbrains.kotlin.compiler.plugin.ComponentRegistrar
 import org.jetbrains.kotlin.config.CompilerConfiguration
 import org.jetbrains.kotlin.diagnostics.DiagnosticSink
 import org.jetbrains.kotlin.extensions.StorageComponentContainerContributor
@@ -94,7 +98,7 @@ class CommonGodotKotlinCompilerPluginCommandLineProcessor : CommandLineProcessor
             )
             SOURCES_DIR_PATH_OPTION -> {
                 configuration.put(
-                    CompilerPluginConst.CommandlineArguments.SOURCES_DIR_PATH, value.split(":").map { File(it) }
+                    CompilerPluginConst.CommandlineArguments.SOURCES_DIR_PATH, value.split(File.pathSeparator)
                 )
             }
             ENABLED -> configuration.put(

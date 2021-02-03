@@ -30,7 +30,7 @@ class GodotAnnotationProcessor(
     private val project: MockProject,
     private val entryGenerationOutputDir: String,
     private val serviceFileOutputDir: String,
-    private val srcDirs: List<File>
+    private val srcDirs: List<String>
 ) : AbstractProcessor() {
     lateinit var bindingContext: BindingContext
     private val userClasses: List<KtClass> = getAllUserDefinedClasses()
@@ -118,7 +118,6 @@ class GodotAnnotationProcessor(
 
     override fun processingOver() {
         File(entryGenerationOutputDir).mkdirs()
-        File("$entryGenerationOutputDir/debug.txt").appendText(classes.map { it.name }.joinToString("\n"))
 
         deleteObsoleteClassSpecificEntryFiles()
         EntryGenerator.psiClassesWithMembers = getAllRegisteredUserPsiClassesWithMembers()
@@ -201,7 +200,6 @@ class GodotAnnotationProcessor(
         //End: taken from CoreEnvironmentUtils createSourceFilesFromSourceRoots inside org.jetbrains.kotlin:kotlin-compiler:1.4.10
 
         return srcDirs
-            .map { it.absolutePath }
             .flatMap { srcDirAbsolutePath ->
                 //Start: taken from CoreEnvironmentUtils createSourceFilesFromSourceRoots inside org.jetbrains.kotlin:kotlin-compiler:1.4.10
                 val vFile = localFileSystem.findFileByPath(srcDirAbsolutePath) ?: return@flatMap emptySequence()

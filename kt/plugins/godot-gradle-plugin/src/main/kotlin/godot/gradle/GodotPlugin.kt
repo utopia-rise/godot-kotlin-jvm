@@ -1,6 +1,7 @@
 package godot.gradle
 
 import com.github.jengelman.gradle.plugins.shadow.ShadowPlugin
+import godot.gradle.util.absolutePathFixedForWindows
 import godot.kotlincompilerplugin.common.CompilerPluginConst
 import godot.utils.GodotBuildProperties
 import org.gradle.api.Project
@@ -8,7 +9,10 @@ import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
-import org.jetbrains.kotlin.gradle.plugin.*
+import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation
+import org.jetbrains.kotlin.gradle.plugin.KotlinCompilerPluginSupportPlugin
+import org.jetbrains.kotlin.gradle.plugin.SubpluginArtifact
+import org.jetbrains.kotlin.gradle.plugin.SubpluginOption
 import java.io.File
 
 
@@ -31,7 +35,10 @@ class GodotPlugin : KotlinCompilerPluginSupportPlugin {
     override fun applyToCompilation(kotlinCompilation: KotlinCompilation<*>): Provider<List<SubpluginOption>> {
         val project = kotlinCompilation.target.project
 
-        val srcDirs = kotlinCompilation.allKotlinSourceSets.flatMap { it.kotlin.srcDirs }
+        val srcDirs = kotlinCompilation
+            .allKotlinSourceSets
+            .flatMap { it.kotlin.srcDirs }
+            .map { it.absolutePathFixedForWindows }
 
         return project.provider {
             listOf(
@@ -45,9 +52,9 @@ class GodotPlugin : KotlinCompilerPluginSupportPlugin {
                         mkdirs()
                     }.absolutePath
                 ),
-                FilesSubpluginOption(
+                SubpluginOption(
                     CompilerPluginConst.CommandLineOptionNames.sourcesDirPathOption,
-                    srcDirs
+                    srcDirs.joinToString(File.pathSeparator)
                 ),
                 SubpluginOption(
                     CompilerPluginConst.CommandLineOptionNames.entryDirPathOption,
