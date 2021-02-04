@@ -17,12 +17,23 @@ dependencies {
 }
 
 tasks {
-    compileKotlin {
-        dependsOn(generateAPI)
+    build.get().finalizedBy(shadowJar)
+
+    val copyBootstrapJar by creating(Copy::class.java) {
+        group = "godot-jvm"
+        from(shadowJar)
+        destinationDir = File("${projectDir.absolutePath}/../../../../bin/")
+        dependsOn(shadowJar)
     }
+
     withType<ShadowJar> {
         archiveBaseName.set("godot-bootstrap")
         archiveVersion.set("")
         archiveClassifier.set("")
+        finalizedBy(copyBootstrapJar)
+    }
+
+    compileKotlin {
+        dependsOn(generateAPI)
     }
 }
