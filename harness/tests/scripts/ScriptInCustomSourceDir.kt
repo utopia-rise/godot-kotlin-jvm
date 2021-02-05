@@ -3,7 +3,7 @@ import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 
 @RegisterClass
-class TestScript : Node() {
+class ScriptInCustomSourceDir : Node() {
 
     @RegisterFunction
     fun _ready() {
