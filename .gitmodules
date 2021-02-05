@@ -4,3 +4,6 @@
 [submodule "kt/entry-generation/godot-kotlin-entry-generator"]
 	path = kt/entry-generation/godot-kotlin-entry-generator
 	url = https://github.com/utopia-rise/godot-kotlin-entry-generator
+[submodule "kt/utils/jvm-godot-resource-serialization"]
+	path = kt/utils/jvm-godot-resource-serialization
+	url = https://github.com/utopia-rise/jvm-godot-resource-serialization.git
