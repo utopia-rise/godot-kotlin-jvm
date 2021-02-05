@@ -179,9 +179,13 @@ class GodotAnnotationProcessor(
             .walkTopDown()
             .filter { it.isFile && it.exists() && it.extension == "kt" }
             .forEach {
-                val fqName =
-                    it.absolutePath.removePrefix(entryGenerationOutputDir).removePrefix("/godot/").replace("/", ".")
-                        .removeSuffix("Entry.kt")
+                val fqName = it
+                    .absolutePath
+                    .removePrefix(entryGenerationOutputDir)
+                    .removePrefix("${File.separator}godot${File.separator}")
+                    .replace(File.separator, ".")
+                    .removeSuffix("Entry.kt")
+
                 if (!userClassesFqNames.contains(fqName)) {
                     it.delete()
                 }
@@ -212,7 +216,10 @@ class GodotAnnotationProcessor(
                     .map { file ->
                         if (!file.isFile) return@map null
 
-                        val virtualFile = localFileSystem.findFileByPath(file.absolutePath)?.let(virtualFileCreator::create)
+                        val virtualFile = localFileSystem
+                            .findFileByPath(file.absolutePath)
+                            ?.let(virtualFileCreator::create)
+
                         if (virtualFile != null && processedFiles.add(virtualFile)) {
                             val psiFile = psiManager.findFile(virtualFile)
                             if (psiFile is KtFile) {
