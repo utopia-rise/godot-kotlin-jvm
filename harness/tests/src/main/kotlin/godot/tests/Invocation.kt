@@ -49,6 +49,33 @@ enum class TestEnum {
 
 @RegisterClass
 class Invocation : Spatial() {
+
+    @RegisterProperty
+    var testNullable: Int? = null
+
+    @RegisterProperty
+    lateinit var lateinitString: String
+
+    @RegisterProperty
+    lateinit var registerObject: OtherScript
+
+    @RegisterProperty
+    var registerObjectNullable: OtherScript? = null
+
+    @RegisterProperty
+    var registerObjectNullablePreInit: OtherScript? = OtherScript()
+        set(value) {
+            field?.free()
+            field = value
+        }
+
+    @RegisterProperty
+    var registerObjectNonNullPreInit: OtherScript = OtherScript()
+        set(value) {
+            field.free()
+            field = value
+        }
+
     @RegisterProperty
     var x = 0
 
@@ -234,6 +261,14 @@ class Invocation : Spatial() {
     fun intAddition(a: Int, b: Int) = a + b
 
     @RegisterFunction
+    fun initNullables() {
+        testNullable = 1
+        lateinitString = "works"
+        registerObject = OtherScript()
+        registerObjectNullable = OtherScript()
+    }
+
+    @RegisterFunction
     override fun _enterTree() {
         println("Enter tree !")
         println("Instance id: ${getInstanceId()}")
@@ -269,6 +304,9 @@ class Invocation : Spatial() {
 
     override fun _onDestroy() {
         invocation.free()
+        registerObjectNullable?.free()
+        registerObjectNullablePreInit?.free()
+        registerObjectNonNullPreInit.free()
     }
 
     @RegisterFunction
