@@ -170,6 +170,8 @@ jlong TransferContext::get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint
 void TransferContext::set_script(JNIEnv *p_raw_env, jobject p_instance, jlong p_raw_ptr, jstring p_class_name,
                                  jobject p_object, jobject p_class_loader) {
     jni::Env env(p_raw_env);
+    
+    //TODO : Register user types name in a Vector<StringName> and send an indices to avoid string operations
     StringName class_name = env.from_jstring(jni::JString(p_class_name));
     auto* owner = reinterpret_cast<Object*>(p_raw_ptr);
     auto* kt_object = new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader), class_name);
