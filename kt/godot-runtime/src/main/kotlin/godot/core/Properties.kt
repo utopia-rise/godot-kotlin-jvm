@@ -20,7 +20,7 @@ open class KtProperty<T : KtObject, P: Any?>(
     val ktPropertyInfo: KtPropertyInfo,
     protected val kProperty: KMutableProperty1<T, P>,
     protected val variantType: VariantType,
-    protected val _defaultValue: P?,
+    internal val _defaultValue: P?,
     val isRef: Boolean
 ) {
     open fun getDefaultValue() {

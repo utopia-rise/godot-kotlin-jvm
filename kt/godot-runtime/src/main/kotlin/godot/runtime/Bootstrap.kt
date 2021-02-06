@@ -1,6 +1,7 @@
 package godot.runtime
 
 import godot.core.KtClass
+import godot.core.KtObject
 import godot.core.TypeManager
 import godot.util.err
 import godot.util.info
@@ -60,10 +61,7 @@ class Bootstrap {
                         return@scheduleAtFixedRate
                     }
                     info("Changes detected, reloading classes ...")
-                    registry?.let {
-                        unloadClasses(it.classes.toTypedArray())
-                        it.classes.clear()
-                    }
+                    clearClassesCache()
 
                     if (File(mainJarPath.toString()).exists()) {
                         doInit(mainJarPath.toUri().toURL())
@@ -78,8 +76,7 @@ class Bootstrap {
     fun finish() {
         executor?.shutdown()
         watchService?.close()
-        registry?.let { unloadClasses(it.classes.toTypedArray()) }
-        registry?.classes?.clear()
+        clearClassesCache()
     }
 
     /**
@@ -124,6 +121,22 @@ class Bootstrap {
             lockDir.delete()
             lockDir.mkdirs()
             lockDir
+        }
+    }
+
+    private fun clearClassesCache() {
+        registry?.let {
+            unloadClasses(it.classes.toTypedArray())
+            it.classes.forEach { clazz ->
+                clazz.properties.forEach { property ->
+                    val defaultValue = property._defaultValue
+                    if (defaultValue is KtObject && !defaultValue.____DO_NOT_TOUCH_THIS_isRef____() &&
+                            !defaultValue.____DO_NOT_TOUCH_THIS_isSingleton____()) {
+                        defaultValue.free()
+                    }
+                }
+            }
+            it.classes.clear()
         }
     }
 
