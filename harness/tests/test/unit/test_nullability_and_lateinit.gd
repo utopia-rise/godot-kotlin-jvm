@@ -57,23 +57,24 @@ func test_set_nullable_from_gdscript():
 	assert_eq(invocation_script.test_nullable, 1234, "test_nullable should be 1234")
 	spatial.free()
 
-# TODO: reenable once KotlinInstance::get_script() is fixed
-#func test_set_objects_from_gdscript():
-#	var spatial = Spatial.new()
-#	var invocation_script = godot_tests_Invocation.new()
-#	spatial.add_child(invocation_script)
-#
-#	# TODO: check type once bug is fixed where with `kotlin_script_Name.new()` does not set the script on the object
-#	assert_true(invocation_script.register_object_nullable_pre_init != null, "register_object should have been initialized in ready to an instance of OtherScript")
-#	# TODO: check type once bug is fixed where with `kotlin_script_Name.new()` does not set the script on the object
-#	assert_true(invocation_script.register_object_non_nullable_pre_init != null, "register_object_nullable should have been initialized in ready to an instance of OtherScript")
-#
-#	invocation_script.register_object_nullable_pre_init = godot_tests_subpackage_OtherScript.new()
-#	invocation_script.register_object_non_nullable_pre_init = godot_tests_subpackage_OtherScript.new()
-#
-#	# TODO: check type once bug is fixed where with `kotlin_script_Name.new()` does not set the script on the object
-#	assert_true(invocation_script.register_object_nullable_pre_init != null, "register_object should have been initialized in ready to an instance of OtherScript")
-#	# TODO: check type once bug is fixed where with `kotlin_script_Name.new()` does not set the script on the object
-#	assert_true(invocation_script.register_object_non_nullable_pre_init != null, "register_object_nullable should have been initialized in ready to an instance of OtherScript")
-#
-#	spatial.free()
+
+func test_set_objects_from_gdscript():
+	var spatial = Spatial.new()
+	var invocation_script = godot_tests_Invocation.new()
+	spatial.add_child(invocation_script)
+
+	# TODO: check type once bug is fixed where with `kotlin_script_Name.new()` does not set the script on the object
+	assert_true(invocation_script.register_object_nullable_pre_init != null, "register_object should have been initialized in ready to an instance of OtherScript")
+	# TODO: check type once bug is fixed where with `kotlin_script_Name.new()` does not set the script on the object
+	assert_true(invocation_script.register_object_non_nullable_pre_init != null, "register_object_nullable should have been initialized in ready to an instance of OtherScript")
+
+	invocation_script.register_object_nullable_pre_init = godot_tests_subpackage_OtherScript.new()
+	invocation_script.register_object_non_nullable_pre_init = godot_tests_subpackage_OtherScript.new()
+
+	# TODO: check type once bug is fixed where with `kotlin_script_Name.new()` does not set the script on the object
+	assert_true(invocation_script.register_object_nullable_pre_init != null, "register_object should have been initialized in ready to an instance of OtherScript")
+	# TODO: check type once bug is fixed where with `kotlin_script_Name.new()` does not set the script on the object
+	assert_true(invocation_script.register_object_non_nullable_pre_init != null, "register_object_nullable should have been initialized in ready to an instance of OtherScript")
+	
+	invocation_script.free()
+	spatial.free()
