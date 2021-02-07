@@ -53,6 +53,8 @@ class Invocation : Spatial() {
     @RegisterProperty
     var testNullable: Int? = null
 
+    private var hasInitializedLateInits = false
+
     @RegisterProperty
     lateinit var lateinitString: String
 
@@ -70,7 +72,7 @@ class Invocation : Spatial() {
         }
 
     @RegisterProperty
-    var registerObjectNonNullPreInit: OtherScript = OtherScript()
+    var registerObjectNonNullablePreInit: OtherScript = OtherScript()
         set(value) {
             field.free()
             field = value
@@ -266,6 +268,7 @@ class Invocation : Spatial() {
         lateinitString = "works"
         registerObject = OtherScript()
         registerObjectNullable = OtherScript()
+        hasInitializedLateInits = true
     }
 
     @RegisterFunction
@@ -304,9 +307,12 @@ class Invocation : Spatial() {
 
     override fun _onDestroy() {
         invocation.free()
+        if (hasInitializedLateInits) {
+            registerObject.free()
+        }
         registerObjectNullable?.free()
         registerObjectNullablePreInit?.free()
-        registerObjectNonNullPreInit.free()
+        registerObjectNonNullablePreInit.free()
     }
 
     @RegisterFunction
