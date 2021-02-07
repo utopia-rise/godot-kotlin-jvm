@@ -676,6 +676,7 @@ class ClassRegistry {
     fun <T : KtObject> registerClass(
         fqName: String,
         superClass: String,
+        kClass: KClass<out KtObject>,
         isTool: Boolean = false,
         baseGodotClass: String,
         registeredName: String = fqName.replace('.', '_'),
@@ -683,7 +684,7 @@ class ClassRegistry {
     ) {
         val builder = ClassBuilderDsl<T>(fqName, registeredName, superClass, baseGodotClass)
         builder.cb()
-        TypeManager.registerUserType(fqName, TODO("Inject user type KClass"))
+        TypeManager.registerUserType(fqName, kClass)
         registerClass(builder.build())
     }
 
