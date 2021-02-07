@@ -33,7 +33,7 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
 
     jni::JNativeMethod set_script_method{
             "setScript",
-            "(JLjava/lang/String;Lgodot/core/KtObject;Ljava/lang/ClassLoader;)V",
+            "(JILgodot/core/KtObject;Ljava/lang/ClassLoader;)V",
             (void*) TransferContext::set_script
     };
 
@@ -167,12 +167,10 @@ jlong TransferContext::get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint
     );
 }
 
-void TransferContext::set_script(JNIEnv *p_raw_env, jobject p_instance, jlong p_raw_ptr, jstring p_class_name,
+void TransferContext::set_script(JNIEnv *p_raw_env, jobject p_instance, jlong p_raw_ptr, jint p_class_index,
                                  jobject p_object, jobject p_class_loader) {
     jni::Env env(p_raw_env);
-    
-    //TODO : Register user types name in a Vector<StringName> and send an indices to avoid string operations
-    StringName class_name = env.from_jstring(jni::JString(p_class_name));
+    StringName class_name{GDKotlin::get_instance().user_type_names.get(static_cast<int>(p_class_index))};
     auto* owner = reinterpret_cast<Object*>(p_raw_ptr);
     auto* kt_object = new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader), class_name);
     auto* script = memnew(KotlinInstance(kt_object, owner, GDKotlin::get_instance().find_class_by_name(class_name)));

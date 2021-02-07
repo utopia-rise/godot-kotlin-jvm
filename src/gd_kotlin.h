@@ -28,6 +28,8 @@ public:
     Vector<MethodBind*> engine_type_method;
     Vector<String> engine_singleton_names;
 
+    Vector<StringName> user_type_names;
+
     GDKotlin(const GDKotlin&) = delete;
 
     static GDKotlin& get_instance();

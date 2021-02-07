@@ -121,6 +121,18 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
 #endif
 }
 
+void register_user_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_types) {
+    print_verbose("Starting to register user types...");
+    jni::Env env(p_env);
+    jni::JObjectArray types{p_types};
+    for (int i = 0; i < types.length(env); ++i) {
+        const String& class_name{env.from_jstring(static_cast<jni::JString>(types.get(env, i)))};
+        GDKotlin::get_instance().user_type_names.insert(i, class_name);
+        print_verbose(vformat("Registered %s user type with index %s.", class_name, i));
+    }
+    print_verbose("Done registering user types.");
+}
+
 void GDKotlin::init() {
     if (Main::is_project_manager()) {
 #ifdef DEBUG_ENABLED
@@ -290,7 +302,8 @@ void GDKotlin::init() {
     jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");
     jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
     bootstrap = new Bootstrap(instance, class_loader);
-    bootstrap->register_hooks(env, load_classes_hook, unload_classes_hook, register_engine_types_hook);
+    bootstrap->register_hooks(env, load_classes_hook, unload_classes_hook, register_engine_types_hook,
+                              register_user_types_hook);
     bool is_editor = Engine::get_singleton()->is_editor_hint();
     String project_path = project_settings->globalize_path("res://");
 

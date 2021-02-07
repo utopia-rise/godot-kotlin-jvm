@@ -30,9 +30,10 @@ abstract class KtObject {
                 // the script to see all methods of the owning Object.
                 // For user types, we need to make sure to attach this script to the Object
                 // rawPtr is pointing to.
-                val clazz = checkNotNull(this::class.qualifiedName) { "User classes can't be anonymous." }
-                if (TypeManager.isUserType(clazz)) {
-                    TransferContext.setScript(rawPtr, clazz, this, this::class.java.classLoader)
+                val classIndex = TypeManager.userTypeToId[this::class]
+                // If user type
+                if (classIndex != null) {
+                    TransferContext.setScript(rawPtr, classIndex, this, this::class.java.classLoader)
                     _onInit()
                 }
             }

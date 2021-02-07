@@ -103,7 +103,10 @@ class Bootstrap {
                     TypeManager.engineTypeMethod.map { it.second }.toTypedArray(),
                     TypeManager.engineTypeMethod.map { it.first }.toTypedArray()
                 )
+
                 context.init()
+
+                registerUserTypesNames(TypeManager.userTypes.toTypedArray())
             }
             loadClasses(registry!!.classes.toTypedArray())
         } else {
@@ -150,4 +153,6 @@ class Bootstrap {
         engineTypeMethodNames: Array<String>,
         typeOfMethods: Array<Int>
     )
+
+    private external fun registerUserTypesNames(userTypesNames: Array<String>)
 }

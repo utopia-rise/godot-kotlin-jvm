@@ -683,7 +683,7 @@ class ClassRegistry {
     ) {
         val builder = ClassBuilderDsl<T>(fqName, registeredName, superClass, baseGodotClass)
         builder.cb()
-        TypeManager.registerUserType(fqName)
+        TypeManager.registerUserType(fqName, TODO("Inject user type KClass"))
         registerClass(builder.build())
     }
 
