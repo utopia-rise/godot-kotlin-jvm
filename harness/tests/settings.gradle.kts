@@ -2,7 +2,7 @@ rootProject.name = "godot-kotlin-tests"
 
 includeBuild("../../kt/api-generator") {
     dependencySubstitution {
-        substitute(module("com.utopia-rise:api-generator")).with(project(":")) // assuming godot-entry-generator is the root project of entry-generator/godot-entry-generator
+        substitute(module("com.utopia-rise:api-generator")).with(project(":"))
     }
 }
 includeBuild("../../kt") {
