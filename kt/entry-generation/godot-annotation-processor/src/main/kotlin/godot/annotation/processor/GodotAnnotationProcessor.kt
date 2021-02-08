@@ -129,7 +129,8 @@ class GodotAnnotationProcessor(
             classes,
             properties,
             functions,
-            signals
+            signals,
+            srcDirs.map { it.absolutePath }
         )
         EntryGenerator.generateServiceFile(serviceFileOutputDir)
     }

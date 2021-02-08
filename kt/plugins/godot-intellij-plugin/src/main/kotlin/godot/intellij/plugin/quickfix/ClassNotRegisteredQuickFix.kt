@@ -4,6 +4,7 @@ import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
 import godot.intellij.plugin.GodotPluginBundle
+import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
 import org.jetbrains.kotlin.idea.util.addAnnotation
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClass
@@ -21,6 +22,6 @@ class ClassNotRegisteredQuickFix : LocalQuickFix {
 
         ktClass
             .let { it as? KtModifierListOwner }
-            ?.addAnnotation(FqName("godot.annotation.RegisterClass"))
+            ?.addAnnotation(FqName(REGISTER_CLASS_ANNOTATION))
     }
 }
