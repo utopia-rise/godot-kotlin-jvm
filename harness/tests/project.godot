@@ -10,18 +10,36 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
-"class": "TestScript",
+"class": "ScriptInCustomSourceDir",
 "language": "Kotlin",
-"path": "res://scripts/TestScript.kt"
+"path": "res://scripts/ScriptInCustomSourceDir.kt"
 }, {
 "base": "Spatial",
 "class": "godot_tests_Invocation",
 "language": "Kotlin",
 "path": "res://src/main/kotlin/godot/tests/Invocation.kt"
+}, {
+"base": "Node",
+"class": "godot_tests_inheritance_ClassInheritanceChild",
+"language": "Kotlin",
+"path": "res://src/main/kotlin/godot/tests/inheritance/ClassInheritanceChild.kt"
+}, {
+"base": "Node",
+"class": "godot_tests_inheritance_ClassInheritanceParent",
+"language": "Kotlin",
+"path": "res://src/main/kotlin/godot/tests/inheritance/ClassInheritanceParent.kt"
+}, {
+"base": "Node",
+"class": "godot_tests_subpackage_OtherScript",
+"language": "Kotlin",
+"path": "res://src/main/kotlin/godot/tests/subpackage/OtherScript.kt"
 } ]
 _global_script_class_icons={
-"TestScript": "",
-"godot_tests_Invocation": ""
+"ScriptInCustomSourceDir": "",
+"godot_tests_Invocation": "",
+"godot_tests_inheritance_ClassInheritanceChild": "",
+"godot_tests_inheritance_ClassInheritanceParent": "",
+"godot_tests_subpackage_OtherScript": ""
 }
 
 [application]
