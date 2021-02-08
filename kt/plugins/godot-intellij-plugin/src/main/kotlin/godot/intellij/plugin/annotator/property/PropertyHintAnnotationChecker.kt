@@ -13,7 +13,11 @@ import org.jetbrains.kotlin.nj2k.postProcessing.type
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtEnumEntry
 import org.jetbrains.kotlin.psi.KtProperty
-import org.jetbrains.kotlin.types.typeUtil.*
+import org.jetbrains.kotlin.types.typeUtil.isDouble
+import org.jetbrains.kotlin.types.typeUtil.isEnum
+import org.jetbrains.kotlin.types.typeUtil.isFloat
+import org.jetbrains.kotlin.types.typeUtil.isInt
+import org.jetbrains.kotlin.types.typeUtil.isLong
 
 private const val MAX_ENUM_ENTRIES_FOR_ENUM_FLAGS = 32
 
