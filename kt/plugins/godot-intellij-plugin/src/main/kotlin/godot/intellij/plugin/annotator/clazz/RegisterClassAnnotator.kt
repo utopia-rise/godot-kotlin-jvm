@@ -85,8 +85,11 @@ class RegisterClassAnnotator : Annotator {
             if (ktConstructor.valueParameters.size > MAX_CONSTRUCTOR_ARGS) {
                 holder.registerProblem(
                     GodotPluginBundle.message("problem.class.constructor.toManyParams"),
-                    ktConstructor.valueParameterList?.psiOrParent ?: ktConstructor.nameIdentifier
-                    ?: ktConstructor.navigationElement
+                    ktConstructor
+                        .valueParameterList
+                        ?.psiOrParent
+                        ?: ktConstructor.nameIdentifier
+                        ?: ktConstructor.navigationElement
                 )
             }
         }
