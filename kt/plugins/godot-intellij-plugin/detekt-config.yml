@@ -39,5 +39,5 @@ complexity:
   LongMethod:
     excludes: [
         '**/godot/intellij/plugin/linemarker/SignalConnectionLineMarker.kt',
-        '**/godot/intellij/plugin/data/cache/SignalConnectionCache.kt',
+        '**/godot/intellij/plugin/data/cache/signalconnection/SignalConnectionCache.kt',
     ]

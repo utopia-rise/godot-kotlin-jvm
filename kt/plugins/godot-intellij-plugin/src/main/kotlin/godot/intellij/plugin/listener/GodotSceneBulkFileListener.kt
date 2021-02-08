@@ -12,7 +12,7 @@ import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.util.indexing.FileBasedIndex
 import com.utopiarise.serialization.godot.scene.sceneFromTscn
 import godot.intellij.plugin.ProjectDisposable
-import godot.intellij.plugin.data.cache.SignalConnectionCacheProvider
+import godot.intellij.plugin.data.cache.signalconnection.SignalConnectionCacheProvider
 
 class GodotSceneBulkFileListener(private val project: Project) : BulkFileListener, ProjectDisposable {
 

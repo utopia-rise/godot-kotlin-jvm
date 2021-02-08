@@ -7,7 +7,7 @@ import com.intellij.openapi.fileEditor.OpenFileDescriptor
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.popup.JBPopupFactory
 import godot.intellij.plugin.GodotPluginBundle
-import godot.intellij.plugin.data.cache.RegisteredClassNameCacheProvider
+import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCacheProvider
 import godot.intellij.plugin.data.model.RegisteredClassDataContainer
 import org.jetbrains.kotlin.idea.core.util.getLineNumber
 import org.jetbrains.kotlin.idea.core.util.toPsiFile
