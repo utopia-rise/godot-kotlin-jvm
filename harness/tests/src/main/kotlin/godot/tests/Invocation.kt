@@ -49,7 +49,6 @@ enum class TestEnum {
 
 @RegisterClass
 class Invocation : Spatial() {
-
     @RegisterProperty
     var testNullable: Int? = null
 
