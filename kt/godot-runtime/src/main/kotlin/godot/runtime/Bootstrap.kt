@@ -99,7 +99,8 @@ class Bootstrap {
                 context.initEngineTypes()
                 registerManagedEngineTypes(
                     TypeManager.engineTypeNames.toTypedArray(),
-                    TypeManager.engineSingletonsNames.toTypedArray(),TypeManager.engineTypeMethod.map { it.second }.toTypedArray(),
+                    TypeManager.engineSingletonsNames.toTypedArray(),
+                    TypeManager.engineTypeMethod.map { it.second }.toTypedArray(),
                     TypeManager.engineTypeMethod.map { it.first }.toTypedArray()
                 )
                 context.init()
@@ -145,7 +146,8 @@ class Bootstrap {
 
     private external fun registerManagedEngineTypes(
         engineTypesNames: Array<String>,
-        engineSingletonNames: Array<String>,engineTypeMethodNames: Array<String>,
+        engineSingletonNames: Array<String>,
+        engineTypeMethodNames: Array<String>,
         typeOfMethods: Array<Int>
     )
 }
