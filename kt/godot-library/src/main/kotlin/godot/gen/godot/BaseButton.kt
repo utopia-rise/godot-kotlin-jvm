@@ -150,7 +150,7 @@ open class BaseButton : Control() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_BASEBUTTON)
 
-  override fun _gui_input(event: InputEvent) {
+  override fun _guiInput(event: InputEvent) {
   }
 
   open fun _pressed() {
@@ -159,7 +159,7 @@ open class BaseButton : Control() {
   open fun _toggled(buttonPressed: Boolean) {
   }
 
-  override fun _unhandled_input(event: InputEvent) {
+  override fun _unhandledInput(event: InputEvent) {
   }
 
   open fun getDrawMode(): BaseButton.DrawMode {

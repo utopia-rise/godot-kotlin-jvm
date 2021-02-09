@@ -20,11 +20,11 @@ open class VisualShaderNodeCustom : VisualShaderNode() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODECUSTOM)
 
-  open fun _get_category(): String {
+  open fun _getCategory(): String {
     throw NotImplementedError("_get_category is not implemented for VisualShaderNodeCustom")
   }
 
-  open fun _get_code(
+  open fun _getCode(
     inputVars: VariantArray<Any?>,
     outputVars: VariantArray<Any?>,
     mode: Long,
@@ -33,48 +33,48 @@ open class VisualShaderNodeCustom : VisualShaderNode() {
     throw NotImplementedError("_get_code is not implemented for VisualShaderNodeCustom")
   }
 
-  open fun _get_description(): String {
+  open fun _getDescription(): String {
     throw NotImplementedError("_get_description is not implemented for VisualShaderNodeCustom")
   }
 
-  open fun _get_global_code(mode: Long): String {
+  open fun _getGlobalCode(mode: Long): String {
     throw NotImplementedError("_get_global_code is not implemented for VisualShaderNodeCustom")
   }
 
-  open fun _get_input_port_count(): Long {
+  open fun _getInputPortCount(): Long {
     throw NotImplementedError("_get_input_port_count is not implemented for VisualShaderNodeCustom")
   }
 
-  open fun _get_input_port_name(port: Long): String {
+  open fun _getInputPortName(port: Long): String {
     throw NotImplementedError("_get_input_port_name is not implemented for VisualShaderNodeCustom")
   }
 
-  open fun _get_input_port_type(port: Long): Long {
+  open fun _getInputPortType(port: Long): Long {
     throw NotImplementedError("_get_input_port_type is not implemented for VisualShaderNodeCustom")
   }
 
-  open fun _get_name(): String {
+  open fun _getName(): String {
     throw NotImplementedError("_get_name is not implemented for VisualShaderNodeCustom")
   }
 
-  open fun _get_output_port_count(): Long {
+  open fun _getOutputPortCount(): Long {
     throw
         NotImplementedError("_get_output_port_count is not implemented for VisualShaderNodeCustom")
   }
 
-  open fun _get_output_port_name(port: Long): String {
+  open fun _getOutputPortName(port: Long): String {
     throw NotImplementedError("_get_output_port_name is not implemented for VisualShaderNodeCustom")
   }
 
-  open fun _get_output_port_type(port: Long): Long {
+  open fun _getOutputPortType(port: Long): Long {
     throw NotImplementedError("_get_output_port_type is not implemented for VisualShaderNodeCustom")
   }
 
-  open fun _get_return_icon_type(): Long {
+  open fun _getReturnIconType(): Long {
     throw NotImplementedError("_get_return_icon_type is not implemented for VisualShaderNodeCustom")
   }
 
-  open fun _get_subcategory(): String {
+  open fun _getSubcategory(): String {
     throw NotImplementedError("_get_subcategory is not implemented for VisualShaderNodeCustom")
   }
 }

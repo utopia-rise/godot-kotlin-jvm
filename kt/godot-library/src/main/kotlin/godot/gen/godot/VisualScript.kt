@@ -36,14 +36,14 @@ open class VisualScript : Script() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPT)
 
-  open fun _get_data(): Dictionary<Any?, Any?> {
+  open fun _getData(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_data is not implemented for VisualScript")
   }
 
-  open fun _node_ports_changed(arg0: Long) {
+  open fun _nodePortsChanged(arg0: Long) {
   }
 
-  open fun _set_data(data: Dictionary<Any?, Any?>) {
+  open fun _setData(data: Dictionary<Any?, Any?>) {
   }
 
   open fun addCustomSignal(name: String) {

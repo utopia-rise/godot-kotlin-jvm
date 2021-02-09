@@ -26,7 +26,7 @@ open class EditorResourcePreview : Node() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_EDITORRESOURCEPREVIEW)
 
-  open fun _preview_ready(
+  open fun _previewReady(
     arg0: String,
     arg1: Texture,
     arg2: Texture,

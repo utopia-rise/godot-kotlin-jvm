@@ -177,18 +177,18 @@ open class CSGPolygon : CSGPrimitive() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CSGPOLYGON)
 
-  open fun _has_editable_3d_polygon_no_depth(): Boolean {
+  open fun _hasEditable3dPolygonNoDepth(): Boolean {
     throw NotImplementedError("_has_editable_3d_polygon_no_depth is not implemented for CSGPolygon")
   }
 
-  open fun _is_editable_3d_polygon(): Boolean {
+  open fun _isEditable3dPolygon(): Boolean {
     throw NotImplementedError("_is_editable_3d_polygon is not implemented for CSGPolygon")
   }
 
-  open fun _path_changed() {
+  open fun _pathChanged() {
   }
 
-  open fun _path_exited() {
+  open fun _pathExited() {
   }
 
   enum class PathRotation(

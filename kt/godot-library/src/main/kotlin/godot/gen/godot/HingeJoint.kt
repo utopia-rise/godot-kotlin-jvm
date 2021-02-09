@@ -122,18 +122,18 @@ open class HingeJoint : Joint() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_HINGEJOINT)
 
-  open fun _get_lower_limit(): Double {
+  open fun _getLowerLimit(): Double {
     throw NotImplementedError("_get_lower_limit is not implemented for HingeJoint")
   }
 
-  open fun _get_upper_limit(): Double {
+  open fun _getUpperLimit(): Double {
     throw NotImplementedError("_get_upper_limit is not implemented for HingeJoint")
   }
 
-  open fun _set_lower_limit(lowerLimit: Double) {
+  open fun _setLowerLimit(lowerLimit: Double) {
   }
 
-  open fun _set_upper_limit(upperLimit: Double) {
+  open fun _setUpperLimit(upperLimit: Double) {
   }
 
   enum class Param(

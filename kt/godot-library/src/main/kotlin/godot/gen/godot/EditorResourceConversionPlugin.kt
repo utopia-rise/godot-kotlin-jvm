@@ -21,7 +21,7 @@ open class EditorResourceConversionPlugin : Reference() {
     throw NotImplementedError("_convert is not implemented for EditorResourceConversionPlugin")
   }
 
-  open fun _converts_to(): String {
+  open fun _convertsTo(): String {
     throw NotImplementedError("_converts_to is not implemented for EditorResourceConversionPlugin")
   }
 }

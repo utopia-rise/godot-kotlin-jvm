@@ -34,7 +34,7 @@ open class VisualInstance : Spatial() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VISUALINSTANCE)
 
-  open fun _get_visual_instance_rid(): RID {
+  open fun _getVisualInstanceRid(): RID {
     throw NotImplementedError("_get_visual_instance_rid is not implemented for VisualInstance")
   }
 

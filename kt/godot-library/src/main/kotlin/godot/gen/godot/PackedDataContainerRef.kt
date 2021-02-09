@@ -21,19 +21,19 @@ open class PackedDataContainerRef : Reference() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_PACKEDDATACONTAINERREF)
 
-  open fun _is_dictionary(): Boolean {
+  open fun _isDictionary(): Boolean {
     throw NotImplementedError("_is_dictionary is not implemented for PackedDataContainerRef")
   }
 
-  open fun _iter_get(arg0: Any): Any? {
+  open fun _iterGet(arg0: Any): Any? {
     throw NotImplementedError("_iter_get is not implemented for PackedDataContainerRef")
   }
 
-  open fun _iter_init(arg0: VariantArray<Any?>): Any? {
+  open fun _iterInit(arg0: VariantArray<Any?>): Any? {
     throw NotImplementedError("_iter_init is not implemented for PackedDataContainerRef")
   }
 
-  open fun _iter_next(arg0: VariantArray<Any?>): Any? {
+  open fun _iterNext(arg0: VariantArray<Any?>): Any? {
     throw NotImplementedError("_iter_next is not implemented for PackedDataContainerRef")
   }
 

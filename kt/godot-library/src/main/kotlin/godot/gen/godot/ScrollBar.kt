@@ -32,12 +32,12 @@ open class ScrollBar : Range() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SCROLLBAR)
 
-  open fun _drag_node_exit() {
+  open fun _dragNodeExit() {
   }
 
-  open fun _drag_node_input(arg0: InputEvent) {
+  open fun _dragNodeInput(arg0: InputEvent) {
   }
 
-  override fun _gui_input(event: InputEvent) {
+  override fun _guiInput(event: InputEvent) {
   }
 }

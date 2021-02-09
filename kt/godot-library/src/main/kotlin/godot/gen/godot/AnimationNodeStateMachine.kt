@@ -25,7 +25,7 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINE)
 
-  open fun _tree_changed() {
+  open fun _treeChanged() {
   }
 
   open fun addNode(

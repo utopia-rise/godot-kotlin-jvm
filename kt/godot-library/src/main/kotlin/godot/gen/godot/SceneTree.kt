@@ -202,22 +202,22 @@ open class SceneTree : MainLoop() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SCENETREE)
 
-  open fun _change_scene(arg0: Node) {
+  open fun _changeScene(arg0: Node) {
   }
 
-  open fun _connected_to_server() {
+  open fun _connectedToServer() {
   }
 
-  open fun _connection_failed() {
+  open fun _connectionFailed() {
   }
 
-  open fun _network_peer_connected(arg0: Long) {
+  open fun _networkPeerConnected(arg0: Long) {
   }
 
-  open fun _network_peer_disconnected(arg0: Long) {
+  open fun _networkPeerDisconnected(arg0: Long) {
   }
 
-  open fun _server_disconnected() {
+  open fun _serverDisconnected() {
   }
 
   open fun callGroup(

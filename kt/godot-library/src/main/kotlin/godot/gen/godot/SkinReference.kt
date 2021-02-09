@@ -17,7 +17,7 @@ import kotlin.Suppress
 open class SkinReference : Reference() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SKINREFERENCE)
 
-  open fun _skin_changed() {
+  open fun _skinChanged() {
   }
 
   open fun getSkeleton(): RID {

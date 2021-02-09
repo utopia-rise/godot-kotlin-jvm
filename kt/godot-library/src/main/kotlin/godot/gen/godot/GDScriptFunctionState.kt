@@ -24,7 +24,7 @@ open class GDScriptFunctionState : Reference() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_GDSCRIPTFUNCTIONSTATE)
 
-  open fun _signal_callback(vararg __var_args: Any?): Any? {
+  open fun _signalCallback(vararg __var_args: Any?): Any? {
     throw NotImplementedError("_signal_callback is not implemented for GDScriptFunctionState")
   }
 

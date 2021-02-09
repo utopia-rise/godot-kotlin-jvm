@@ -93,19 +93,19 @@ open class TabContainer : Container() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_TABCONTAINER)
 
-  open fun _child_renamed_callback() {
+  open fun _childRenamedCallback() {
   }
 
-  override fun _gui_input(event: InputEvent) {
+  override fun _guiInput(event: InputEvent) {
   }
 
-  open fun _on_mouse_exited() {
+  open fun _onMouseExited() {
   }
 
-  open fun _on_theme_changed() {
+  open fun _onThemeChanged() {
   }
 
-  open fun _update_current_tab() {
+  open fun _updateCurrentTab() {
   }
 
   open fun getCurrentTabControl(): Control? {

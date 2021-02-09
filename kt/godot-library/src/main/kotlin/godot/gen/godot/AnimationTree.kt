@@ -90,16 +90,16 @@ open class AnimationTree : Node() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONTREE)
 
-  open fun _clear_caches() {
+  open fun _clearCaches() {
   }
 
-  open fun _node_removed(arg0: Node) {
+  open fun _nodeRemoved(arg0: Node) {
   }
 
-  open fun _tree_changed() {
+  open fun _treeChanged() {
   }
 
-  open fun _update_properties() {
+  open fun _updateProperties() {
   }
 
   open fun advance(delta: Double) {

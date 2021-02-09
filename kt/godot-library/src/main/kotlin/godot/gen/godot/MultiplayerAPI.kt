@@ -82,19 +82,19 @@ open class MultiplayerAPI : Reference() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_MULTIPLAYERAPI)
 
-  open fun _add_peer(id: Long) {
+  open fun _addPeer(id: Long) {
   }
 
-  open fun _connected_to_server() {
+  open fun _connectedToServer() {
   }
 
-  open fun _connection_failed() {
+  open fun _connectionFailed() {
   }
 
-  open fun _del_peer(id: Long) {
+  open fun _delPeer(id: Long) {
   }
 
-  open fun _server_disconnected() {
+  open fun _serverDisconnected() {
   }
 
   open fun clear() {

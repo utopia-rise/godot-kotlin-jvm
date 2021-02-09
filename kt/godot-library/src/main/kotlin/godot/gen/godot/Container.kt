@@ -23,10 +23,10 @@ open class Container : Control() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CONTAINER)
 
-  open fun _child_minsize_changed() {
+  open fun _childMinsizeChanged() {
   }
 
-  open fun _sort_children() {
+  open fun _sortChildren() {
   }
 
   open fun fitChildInRect(child: Control, rect: Rect2) {

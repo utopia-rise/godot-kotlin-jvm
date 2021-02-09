@@ -24,40 +24,40 @@ open class ScriptCreateDialog : ConfirmationDialog() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SCRIPTCREATEDIALOG)
 
-  open fun _browse_class_in_tree() {
+  open fun _browseClassInTree() {
   }
 
-  open fun _browse_path(arg0: Boolean, arg1: Boolean) {
+  open fun _browsePath(arg0: Boolean, arg1: Boolean) {
   }
 
-  open fun _built_in_pressed() {
+  open fun _builtInPressed() {
   }
 
-  open fun _class_name_changed(arg0: String) {
+  open fun _classNameChanged(arg0: String) {
   }
 
   open fun _create() {
   }
 
-  open fun _file_selected(arg0: String) {
+  open fun _fileSelected(arg0: String) {
   }
 
-  open fun _lang_changed(arg0: Long) {
+  open fun _langChanged(arg0: Long) {
   }
 
-  open fun _parent_name_changed(arg0: String) {
+  open fun _parentNameChanged(arg0: String) {
   }
 
-  open fun _path_changed(arg0: String) {
+  open fun _pathChanged(arg0: String) {
   }
 
-  open fun _path_entered(arg0: String) {
+  open fun _pathEntered(arg0: String) {
   }
 
-  open fun _path_hbox_sorted() {
+  open fun _pathHboxSorted() {
   }
 
-  open fun _template_changed(arg0: Long) {
+  open fun _templateChanged(arg0: Long) {
   }
 
   open fun config(

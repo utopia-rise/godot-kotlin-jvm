@@ -89,18 +89,18 @@ open class EditorSpatialGizmo : SpatialGizmo() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPATIALGIZMO_CLEAR, NIL)
   }
 
-  open fun commit_handle(
+  open fun _commitHandle(
     index: Long,
     restore: Any,
     cancel: Boolean
   ) {
   }
 
-  open fun get_handle_name(index: Long): String {
+  open fun _getHandleName(index: Long): String {
     throw NotImplementedError("get_handle_name is not implemented for EditorSpatialGizmo")
   }
 
-  open fun get_handle_value(index: Long): Any? {
+  open fun _getHandleValue(index: Long): Any? {
     throw NotImplementedError("get_handle_value is not implemented for EditorSpatialGizmo")
   }
 
@@ -118,14 +118,14 @@ open class EditorSpatialGizmo : SpatialGizmo() {
     return TransferContext.readReturnValue(OBJECT, true) as Spatial?
   }
 
-  open fun is_handle_highlighted(index: Long): Boolean {
+  open fun _isHandleHighlighted(index: Long): Boolean {
     throw NotImplementedError("is_handle_highlighted is not implemented for EditorSpatialGizmo")
   }
 
-  open fun redraw() {
+  open fun _redraw() {
   }
 
-  open fun set_handle(
+  open fun _setHandle(
     index: Long,
     camera: Camera,
     point: Vector2

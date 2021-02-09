@@ -31,11 +31,11 @@ import kotlin.Suppress
 open class BitMap : Resource() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_BITMAP)
 
-  open fun _get_data(): Dictionary<Any?, Any?> {
+  open fun _getData(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_data is not implemented for BitMap")
   }
 
-  open fun _set_data(arg0: Dictionary<Any?, Any?>) {
+  open fun _setData(arg0: Dictionary<Any?, Any?>) {
   }
 
   open fun create(size: Vector2) {

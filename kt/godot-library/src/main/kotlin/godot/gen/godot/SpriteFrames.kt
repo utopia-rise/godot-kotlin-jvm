@@ -29,18 +29,18 @@ import kotlin.Suppress
 open class SpriteFrames : Resource() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SPRITEFRAMES)
 
-  open fun _get_animations(): VariantArray<Any?> {
+  open fun _getAnimations(): VariantArray<Any?> {
     throw NotImplementedError("_get_animations is not implemented for SpriteFrames")
   }
 
-  open fun _get_frames(): VariantArray<Any?> {
+  open fun _getFrames(): VariantArray<Any?> {
     throw NotImplementedError("_get_frames is not implemented for SpriteFrames")
   }
 
-  open fun _set_animations(arg0: VariantArray<Any?>) {
+  open fun _setAnimations(arg0: VariantArray<Any?>) {
   }
 
-  open fun _set_frames(arg0: VariantArray<Any?>) {
+  open fun _setFrames(arg0: VariantArray<Any?>) {
   }
 
   open fun addAnimation(anim: String) {

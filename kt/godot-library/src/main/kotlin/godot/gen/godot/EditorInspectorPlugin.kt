@@ -48,20 +48,20 @@ open class EditorInspectorPlugin : Reference() {
         NIL)
   }
 
-  open fun can_handle(_object: Object): Boolean {
+  open fun _canHandle(_object: Object): Boolean {
     throw NotImplementedError("can_handle is not implemented for EditorInspectorPlugin")
   }
 
-  open fun parse_begin(_object: Object) {
+  open fun _parseBegin(_object: Object) {
   }
 
-  open fun parse_category(_object: Object, category: String) {
+  open fun _parseCategory(_object: Object, category: String) {
   }
 
-  open fun parse_end() {
+  open fun _parseEnd() {
   }
 
-  open fun parse_property(
+  open fun _parseProperty(
     _object: Object,
     type: Long,
     path: String,

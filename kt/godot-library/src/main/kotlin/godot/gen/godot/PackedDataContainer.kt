@@ -24,23 +24,23 @@ import kotlin.Suppress
 open class PackedDataContainer : Resource() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PACKEDDATACONTAINER)
 
-  open fun _get_data(): PoolByteArray {
+  open fun _getData(): PoolByteArray {
     throw NotImplementedError("_get_data is not implemented for PackedDataContainer")
   }
 
-  open fun _iter_get(arg0: Any): Any? {
+  open fun _iterGet(arg0: Any): Any? {
     throw NotImplementedError("_iter_get is not implemented for PackedDataContainer")
   }
 
-  open fun _iter_init(arg0: VariantArray<Any?>): Any? {
+  open fun _iterInit(arg0: VariantArray<Any?>): Any? {
     throw NotImplementedError("_iter_init is not implemented for PackedDataContainer")
   }
 
-  open fun _iter_next(arg0: VariantArray<Any?>): Any? {
+  open fun _iterNext(arg0: VariantArray<Any?>): Any? {
     throw NotImplementedError("_iter_next is not implemented for PackedDataContainer")
   }
 
-  open fun _set_data(arg0: PoolByteArray) {
+  open fun _setData(arg0: PoolByteArray) {
   }
 
   open fun pack(value: Any): GodotError {

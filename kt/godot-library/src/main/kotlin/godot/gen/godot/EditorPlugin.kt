@@ -116,40 +116,40 @@ open class EditorPlugin : Node() {
         NIL)
   }
 
-  open fun apply_changes() {
+  open fun _applyChanges() {
   }
 
-  open fun build(): Boolean {
+  open fun _build(): Boolean {
     throw NotImplementedError("build is not implemented for EditorPlugin")
   }
 
-  open fun clear() {
+  open fun _clear() {
   }
 
-  open fun disable_plugin() {
+  open fun _disablePlugin() {
   }
 
-  open fun edit(_object: Object) {
+  open fun _edit(_object: Object) {
   }
 
-  open fun enable_plugin() {
+  open fun _enablePlugin() {
   }
 
-  open fun forward_canvas_draw_over_viewport(overlay: Control) {
+  open fun _forwardCanvasDrawOverViewport(overlay: Control) {
   }
 
-  open fun forward_canvas_force_draw_over_viewport(overlay: Control) {
+  open fun _forwardCanvasForceDrawOverViewport(overlay: Control) {
   }
 
-  open fun forward_canvas_gui_input(event: InputEvent): Boolean {
+  open fun _forwardCanvasGuiInput(event: InputEvent): Boolean {
     throw NotImplementedError("forward_canvas_gui_input is not implemented for EditorPlugin")
   }
 
-  open fun forward_spatial_gui_input(camera: Camera, event: InputEvent): Boolean {
+  open fun _forwardSpatialGuiInput(camera: Camera, event: InputEvent): Boolean {
     throw NotImplementedError("forward_spatial_gui_input is not implemented for EditorPlugin")
   }
 
-  open fun get_breakpoints(): PoolStringArray {
+  open fun _getBreakpoints(): PoolStringArray {
     throw NotImplementedError("get_breakpoints is not implemented for EditorPlugin")
   }
 
@@ -160,11 +160,11 @@ open class EditorPlugin : Node() {
     return TransferContext.readReturnValue(OBJECT, true) as EditorInterface?
   }
 
-  open fun get_plugin_icon(): Texture? {
+  open fun _getPluginIcon(): Texture? {
     throw NotImplementedError("get_plugin_icon is not implemented for EditorPlugin")
   }
 
-  open fun get_plugin_name(): String {
+  open fun _getPluginName(): String {
     throw NotImplementedError("get_plugin_name is not implemented for EditorPlugin")
   }
 
@@ -175,7 +175,7 @@ open class EditorPlugin : Node() {
     return TransferContext.readReturnValue(OBJECT, true) as ScriptCreateDialog?
   }
 
-  open fun get_state(): Dictionary<Any?, Any?> {
+  open fun _getState(): Dictionary<Any?, Any?> {
     throw NotImplementedError("get_state is not implemented for EditorPlugin")
   }
 
@@ -185,14 +185,14 @@ open class EditorPlugin : Node() {
     return TransferContext.readReturnValue(OBJECT, true) as UndoRedo?
   }
 
-  open fun get_window_layout(layout: ConfigFile) {
+  open fun _getWindowLayout(layout: ConfigFile) {
   }
 
-  open fun handles(_object: Object): Boolean {
+  open fun _handles(_object: Object): Boolean {
     throw NotImplementedError("handles is not implemented for EditorPlugin")
   }
 
-  open fun has_main_screen(): Boolean {
+  open fun _hasMainScreen(): Boolean {
     throw NotImplementedError("has_main_screen is not implemented for EditorPlugin")
   }
 
@@ -207,7 +207,7 @@ open class EditorPlugin : Node() {
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_MAKE_BOTTOM_PANEL_ITEM_VISIBLE, NIL)
   }
 
-  open fun make_visible(visible: Boolean) {
+  open fun _makeVisible(visible: Boolean) {
   }
 
   open fun queueSaveLayout() {
@@ -281,7 +281,7 @@ open class EditorPlugin : Node() {
         NIL)
   }
 
-  open fun save_external_data() {
+  open fun _saveExternalData() {
   }
 
   open fun setForceDrawOverForwardingEnabled() {
@@ -296,10 +296,10 @@ open class EditorPlugin : Node() {
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_SET_INPUT_EVENT_FORWARDING_ALWAYS_ENABLED, NIL)
   }
 
-  open fun set_state(state: Dictionary<Any?, Any?>) {
+  open fun _setState(state: Dictionary<Any?, Any?>) {
   }
 
-  open fun set_window_layout(layout: ConfigFile) {
+  open fun _setWindowLayout(layout: ConfigFile) {
   }
 
   open fun updateOverlays(): Long {

@@ -38,6 +38,6 @@ open class CSGMesh : CSGPrimitive() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CSGMESH)
 
-  open fun _mesh_changed() {
+  open fun _meshChanged() {
   }
 }

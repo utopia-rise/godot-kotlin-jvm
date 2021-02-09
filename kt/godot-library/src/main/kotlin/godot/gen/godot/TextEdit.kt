@@ -364,31 +364,31 @@ open class TextEdit : Control() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_TEXTEDIT)
 
-  open fun _click_selection_held() {
+  open fun _clickSelectionHeld() {
   }
 
-  open fun _cursor_changed_emit() {
+  open fun _cursorChangedEmit() {
   }
 
-  override fun _gui_input(event: InputEvent) {
+  override fun _guiInput(event: InputEvent) {
   }
 
-  open fun _push_current_op() {
+  open fun _pushCurrentOp() {
   }
 
-  open fun _scroll_moved(arg0: Double) {
+  open fun _scrollMoved(arg0: Double) {
   }
 
-  open fun _text_changed_emit() {
+  open fun _textChangedEmit() {
   }
 
-  open fun _toggle_draw_caret() {
+  open fun _toggleDrawCaret() {
   }
 
-  open fun _update_wrap_at() {
+  open fun _updateWrapAt() {
   }
 
-  open fun _v_scroll_input() {
+  open fun _vScrollInput() {
   }
 
   open fun addColorRegion(

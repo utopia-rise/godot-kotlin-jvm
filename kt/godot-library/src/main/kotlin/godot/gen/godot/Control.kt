@@ -426,47 +426,47 @@ open class Control : CanvasItem() {
   }
 
 
-  open fun _clips_input(): Boolean {
+  open fun _clipsInput(): Boolean {
     throw NotImplementedError("_clips_input is not implemented for Control")
   }
 
-  open fun _get_minimum_size(): Vector2 {
+  open fun _getMinimumSize(): Vector2 {
     throw NotImplementedError("_get_minimum_size is not implemented for Control")
   }
 
-  open fun _get_tooltip(): String {
+  open fun _getTooltip(): String {
     throw NotImplementedError("_get_tooltip is not implemented for Control")
   }
 
-  open fun _gui_input(event: InputEvent) {
+  open fun _guiInput(event: InputEvent) {
   }
 
-  open fun _make_custom_tooltip(forText: String): Object? {
+  open fun _makeCustomTooltip(forText: String): Object? {
     throw NotImplementedError("_make_custom_tooltip is not implemented for Control")
   }
 
-  open fun _override_changed() {
+  open fun _overrideChanged() {
   }
 
-  open fun _set_anchor(margin: Long, anchor: Double) {
+  open fun _setAnchor(margin: Long, anchor: Double) {
   }
 
-  open fun _set_global_position(position: Vector2) {
+  open fun _setGlobalPosition(position: Vector2) {
   }
 
-  open fun _set_position(margin: Vector2) {
+  open fun _setPosition(margin: Vector2) {
   }
 
-  open fun _set_size(size: Vector2) {
+  open fun _setSize(size: Vector2) {
   }
 
-  open fun _size_changed() {
+  open fun _sizeChanged() {
   }
 
-  open fun _theme_changed() {
+  open fun _themeChanged() {
   }
 
-  open fun _update_minimum_size() {
+  open fun _updateMinimumSize() {
   }
 
   open fun acceptEvent() {
@@ -504,11 +504,11 @@ open class Control : CanvasItem() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_ADD_STYLEBOX_OVERRIDE, NIL)
   }
 
-  open fun can_drop_data(position: Vector2, data: Any): Boolean {
+  open fun _canDropData(position: Vector2, data: Any): Boolean {
     throw NotImplementedError("can_drop_data is not implemented for Control")
   }
 
-  open fun drop_data(position: Vector2, data: Any) {
+  open fun _dropData(position: Vector2, data: Any) {
   }
 
   open fun forceDrag(data: Any, preview: Control) {
@@ -547,7 +547,7 @@ open class Control : CanvasItem() {
     return Control.CursorShape.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  open fun get_drag_data(position: Vector2): Any? {
+  open fun _getDragData(position: Vector2): Any? {
     throw NotImplementedError("get_drag_data is not implemented for Control")
   }
 
@@ -688,7 +688,7 @@ open class Control : CanvasItem() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  open fun has_point(point: Vector2): Boolean {
+  open fun _hasPoint(point: Vector2): Boolean {
     throw NotImplementedError("has_point is not implemented for Control")
   }
 

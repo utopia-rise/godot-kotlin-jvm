@@ -53,7 +53,7 @@ open class ImageTexture : Texture() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_IMAGETEXTURE)
 
-  open fun _reload_hook(rid: RID) {
+  open fun _reloadHook(rid: RID) {
   }
 
   open fun create(

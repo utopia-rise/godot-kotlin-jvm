@@ -55,18 +55,18 @@ open class ConeTwistJoint : Joint() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CONETWISTJOINT)
 
-  open fun _get_swing_span(): Double {
+  open fun _getSwingSpan(): Double {
     throw NotImplementedError("_get_swing_span is not implemented for ConeTwistJoint")
   }
 
-  open fun _get_twist_span(): Double {
+  open fun _getTwistSpan(): Double {
     throw NotImplementedError("_get_twist_span is not implemented for ConeTwistJoint")
   }
 
-  open fun _set_swing_span(swingSpan: Double) {
+  open fun _setSwingSpan(swingSpan: Double) {
   }
 
-  open fun _set_twist_span(twistSpan: Double) {
+  open fun _setTwistSpan(twistSpan: Double) {
   }
 
   enum class Param(

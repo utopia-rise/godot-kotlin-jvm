@@ -50,11 +50,11 @@ open class PhysicsBody2D : CollisionObject2D() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PHYSICSBODY2D)
 
-  open fun _get_layers(): Long {
+  open fun _getLayers(): Long {
     throw NotImplementedError("_get_layers is not implemented for PhysicsBody2D")
   }
 
-  open fun _set_layers(mask: Long) {
+  open fun _setLayers(mask: Long) {
   }
 
   open fun addCollisionExceptionWith(body: Node) {

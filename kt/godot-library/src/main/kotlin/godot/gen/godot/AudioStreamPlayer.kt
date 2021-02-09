@@ -125,14 +125,14 @@ open class AudioStreamPlayer : Node() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_AUDIOSTREAMPLAYER)
 
-  open fun _bus_layout_changed() {
+  open fun _busLayoutChanged() {
   }
 
-  open fun _is_active(): Boolean {
+  open fun _isActive(): Boolean {
     throw NotImplementedError("_is_active is not implemented for AudioStreamPlayer")
   }
 
-  open fun _set_playing(enable: Boolean) {
+  open fun _setPlaying(enable: Boolean) {
   }
 
   open fun getPlaybackPosition(): Double {

@@ -76,7 +76,7 @@ open class TextureRect : Control() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_TEXTURERECT)
 
-  open fun _texture_changed() {
+  open fun _textureChanged() {
   }
 
   enum class StretchMode(

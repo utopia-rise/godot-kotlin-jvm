@@ -38,14 +38,14 @@ open class MenuButton : Button() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_MENUBUTTON)
 
-  open fun _get_items(): VariantArray<Any?> {
+  open fun _getItems(): VariantArray<Any?> {
     throw NotImplementedError("_get_items is not implemented for MenuButton")
   }
 
-  open fun _set_items(arg0: VariantArray<Any?>) {
+  open fun _setItems(arg0: VariantArray<Any?>) {
   }
 
-  open fun _unhandled_key_input(arg0: InputEvent) {
+  open fun _unhandledKeyInput(arg0: InputEvent) {
   }
 
   open fun getPopup(): PopupMenu? {

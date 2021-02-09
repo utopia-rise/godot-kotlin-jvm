@@ -19,16 +19,16 @@ import kotlin.Suppress
 open class ResourceFormatSaver : Reference() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_RESOURCEFORMATSAVER)
 
-  open fun get_recognized_extensions(resource: Resource): PoolStringArray {
+  open fun _getRecognizedExtensions(resource: Resource): PoolStringArray {
     throw
         NotImplementedError("get_recognized_extensions is not implemented for ResourceFormatSaver")
   }
 
-  open fun recognize(resource: Resource): Boolean {
+  open fun _recognize(resource: Resource): Boolean {
     throw NotImplementedError("recognize is not implemented for ResourceFormatSaver")
   }
 
-  open fun save(
+  open fun _save(
     path: String,
     resource: Resource,
     flags: Long

@@ -50,13 +50,13 @@ open class VisualShader : Shader() {
   }
 
 
-  open fun _input_type_changed(arg0: Long, arg1: Long) {
+  open fun _inputTypeChanged(arg0: Long, arg1: Long) {
   }
 
-  open fun _queue_update() {
+  open fun _queueUpdate() {
   }
 
-  open fun _update_shader() {
+  open fun _updateShader() {
   }
 
   open fun addNode(

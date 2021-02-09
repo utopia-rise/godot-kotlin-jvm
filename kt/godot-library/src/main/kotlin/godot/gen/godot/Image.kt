@@ -39,11 +39,11 @@ import kotlin.Suppress
 open class Image : Resource() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_IMAGE)
 
-  open fun _get_data(): Dictionary<Any?, Any?> {
+  open fun _getData(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_data is not implemented for Image")
   }
 
-  open fun _set_data(data: Dictionary<Any?, Any?>) {
+  open fun _setData(data: Dictionary<Any?, Any?>) {
   }
 
   open fun blendRect(

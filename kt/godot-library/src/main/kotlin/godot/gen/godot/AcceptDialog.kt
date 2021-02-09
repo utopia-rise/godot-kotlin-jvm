@@ -7,17 +7,11 @@ package godot
 
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.STRING
+import godot.core.VariantType.*
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
 import godot.util.VoidPtr
-import kotlin.Boolean
-import kotlin.String
-import kotlin.Suppress
 
 @GodotBaseType
 open class AcceptDialog : WindowDialog() {
@@ -65,10 +59,10 @@ open class AcceptDialog : WindowDialog() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ACCEPTDIALOG)
 
-  open fun _builtin_text_entered(arg0: String) {
+  open fun _builtinTextEntered(arg0: String) {
   }
 
-  open fun _custom_action(arg0: String) {
+  open fun _customAction(arg0: String) {
   }
 
   open fun _ok() {

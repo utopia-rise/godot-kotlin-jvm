@@ -272,14 +272,14 @@ open class AudioStreamPlayer3D : Spatial() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_AUDIOSTREAMPLAYER3D)
 
-  open fun _bus_layout_changed() {
+  open fun _busLayoutChanged() {
   }
 
-  open fun _is_active(): Boolean {
+  open fun _isActive(): Boolean {
     throw NotImplementedError("_is_active is not implemented for AudioStreamPlayer3D")
   }
 
-  open fun _set_playing(enable: Boolean) {
+  open fun _setPlaying(enable: Boolean) {
   }
 
   open fun getPlaybackPosition(): Double {

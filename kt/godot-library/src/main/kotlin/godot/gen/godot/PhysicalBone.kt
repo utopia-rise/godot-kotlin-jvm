@@ -131,7 +131,7 @@ open class PhysicalBone : PhysicsBody() {
   }
 
 
-  open fun _direct_state_changed(arg0: Object) {
+  open fun _directStateChanged(arg0: Object) {
   }
 
   open fun applyCentralImpulse(impulse: Vector3) {

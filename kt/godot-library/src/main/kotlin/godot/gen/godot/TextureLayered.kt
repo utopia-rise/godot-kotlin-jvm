@@ -35,11 +35,11 @@ open class TextureLayered : Resource() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_TEXTURELAYERED)
 
-  open fun _get_data(): Dictionary<Any?, Any?> {
+  open fun _getData(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_data is not implemented for TextureLayered")
   }
 
-  open fun _set_data(data: Dictionary<Any?, Any?>) {
+  open fun _setData(data: Dictionary<Any?, Any?>) {
   }
 
   open fun create(

@@ -852,7 +852,7 @@ open class CPUParticles : GeometryInstance() {
   }
 
 
-  open fun _update_render_thread() {
+  open fun _updateRenderThread() {
   }
 
   open fun convertFromParticles(particles: Node) {

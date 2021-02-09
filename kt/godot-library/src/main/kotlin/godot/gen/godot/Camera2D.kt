@@ -329,16 +329,16 @@ open class Camera2D : Node2D() {
   }
 
 
-  open fun _make_current(arg0: Object) {
+  open fun _makeCurrent(arg0: Object) {
   }
 
-  open fun _set_current(current: Boolean) {
+  open fun _setCurrent(current: Boolean) {
   }
 
-  open fun _set_old_smoothing(followSmoothing: Double) {
+  open fun _setOldSmoothing(followSmoothing: Double) {
   }
 
-  open fun _update_scroll() {
+  open fun _updateScroll() {
   }
 
   open fun align() {

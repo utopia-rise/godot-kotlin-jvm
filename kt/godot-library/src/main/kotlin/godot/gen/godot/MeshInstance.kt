@@ -54,7 +54,7 @@ open class MeshInstance : GeometryInstance() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_MESHINSTANCE)
 
-  open fun _mesh_changed() {
+  open fun _meshChanged() {
   }
 
   open fun createConvexCollision() {

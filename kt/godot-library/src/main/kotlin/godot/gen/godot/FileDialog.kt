@@ -128,59 +128,59 @@ open class FileDialog : ConfirmationDialog() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_FILEDIALOG)
 
-  open fun _action_pressed() {
+  open fun _actionPressed() {
   }
 
-  open fun _cancel_pressed() {
+  open fun _cancelPressed() {
   }
 
-  open fun _dir_entered(arg0: String) {
+  open fun _dirEntered(arg0: String) {
   }
 
-  open fun _file_entered(arg0: String) {
+  open fun _fileEntered(arg0: String) {
   }
 
-  open fun _filter_selected(arg0: Long) {
+  open fun _filterSelected(arg0: Long) {
   }
 
-  open fun _go_up() {
+  open fun _goUp() {
   }
 
-  open fun _make_dir() {
+  open fun _makeDir() {
   }
 
-  open fun _make_dir_confirm() {
+  open fun _makeDirConfirm() {
   }
 
-  open fun _save_confirm_pressed() {
+  open fun _saveConfirmPressed() {
   }
 
-  open fun _select_drive(arg0: Long) {
+  open fun _selectDrive(arg0: Long) {
   }
 
-  open fun _tree_item_activated() {
+  open fun _treeItemActivated() {
   }
 
-  open fun _tree_multi_selected(
+  open fun _treeMultiSelected(
     arg0: Object,
     arg1: Long,
     arg2: Boolean
   ) {
   }
 
-  open fun _tree_selected() {
+  open fun _treeSelected() {
   }
 
-  override fun _unhandled_input(event: InputEvent) {
+  override fun _unhandledInput(event: InputEvent) {
   }
 
-  open fun _update_dir() {
+  open fun _updateDir() {
   }
 
-  open fun _update_file_list() {
+  open fun _updateFileList() {
   }
 
-  open fun _update_file_name() {
+  open fun _updateFileName() {
   }
 
   open fun addFilter(filter: String) {

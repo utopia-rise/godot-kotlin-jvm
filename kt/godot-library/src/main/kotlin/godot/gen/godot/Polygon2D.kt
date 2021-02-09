@@ -251,14 +251,14 @@ open class Polygon2D : Node2D() {
   }
 
 
-  open fun _get_bones(): VariantArray<Any?> {
+  open fun _getBones(): VariantArray<Any?> {
     throw NotImplementedError("_get_bones is not implemented for Polygon2D")
   }
 
-  open fun _set_bones(bones: VariantArray<Any?>) {
+  open fun _setBones(bones: VariantArray<Any?>) {
   }
 
-  open fun _skeleton_bone_setup_changed() {
+  open fun _skeletonBoneSetupChanged() {
   }
 
   open fun addBone(path: NodePath, weights: PoolRealArray) {

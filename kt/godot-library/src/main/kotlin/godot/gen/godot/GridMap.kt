@@ -140,7 +140,7 @@ open class GridMap : Spatial() {
   }
 
 
-  open fun _update_octants_callback() {
+  open fun _updateOctantsCallback() {
   }
 
   open fun clear() {

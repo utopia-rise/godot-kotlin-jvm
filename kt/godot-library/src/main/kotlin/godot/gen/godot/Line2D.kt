@@ -179,10 +179,10 @@ open class Line2D : Node2D() {
   }
 
 
-  open fun _curve_changed() {
+  open fun _curveChanged() {
   }
 
-  open fun _gradient_changed() {
+  open fun _gradientChanged() {
   }
 
   open fun addPoint(position: Vector2, atPosition: Long = -1) {

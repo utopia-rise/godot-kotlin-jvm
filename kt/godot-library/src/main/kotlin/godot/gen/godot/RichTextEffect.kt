@@ -16,7 +16,7 @@ import kotlin.Suppress
 open class RichTextEffect : Resource() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_RICHTEXTEFFECT)
 
-  open fun _process_custom_fx(charFx: CharFXTransform): Boolean {
+  open fun _processCustomFx(charFx: CharFXTransform): Boolean {
     throw NotImplementedError("_process_custom_fx is not implemented for RichTextEffect")
   }
 }

@@ -30,13 +30,13 @@ open class MainLoop : Object() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_MAINLOOP)
 
-  open fun _drop_files(files: PoolStringArray, fromScreen: Long) {
+  open fun _dropFiles(files: PoolStringArray, fromScreen: Long) {
   }
 
   open fun _finalize() {
   }
 
-  open fun _global_menu_action(id: Any, meta: Any) {
+  open fun _globalMenuAction(id: Any, meta: Any) {
   }
 
   open fun _idle(delta: Double): Boolean {
@@ -46,10 +46,10 @@ open class MainLoop : Object() {
   open fun _initialize() {
   }
 
-  open fun _input_event(event: InputEvent) {
+  open fun _inputEvent(event: InputEvent) {
   }
 
-  open fun _input_text(text: String) {
+  open fun _inputText(text: String) {
   }
 
   open fun _iteration(delta: Double): Boolean {

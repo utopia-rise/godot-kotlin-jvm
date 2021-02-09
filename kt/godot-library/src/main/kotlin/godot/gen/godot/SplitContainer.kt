@@ -61,7 +61,7 @@ open class SplitContainer : Container() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SPLITCONTAINER)
 
-  override fun _gui_input(event: InputEvent) {
+  override fun _guiInput(event: InputEvent) {
   }
 
   open fun clampSplitOffset() {

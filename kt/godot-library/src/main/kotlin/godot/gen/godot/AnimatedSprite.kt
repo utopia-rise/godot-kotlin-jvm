@@ -7,24 +7,11 @@ package godot
 
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.STRING
-import godot.core.VariantType.VECTOR2
+import godot.core.VariantType.*
 import godot.core.Vector2
 import godot.signals.Signal0
 import godot.signals.signal
 import godot.util.VoidPtr
-import kotlin.Boolean
-import kotlin.Double
-import kotlin.Long
-import kotlin.NotImplementedError
-import kotlin.String
-import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 open class AnimatedSprite : Node2D() {
@@ -132,14 +119,14 @@ open class AnimatedSprite : Node2D() {
   }
 
 
-  open fun _is_playing(): Boolean {
+  open fun _isPlaying(): Boolean {
     throw NotImplementedError("_is_playing is not implemented for AnimatedSprite")
   }
 
-  open fun _res_changed() {
+  open fun _resChanged() {
   }
 
-  open fun _set_playing(playing: Boolean) {
+  open fun _setPlaying(playing: Boolean) {
   }
 
   open fun isPlaying(): Boolean {

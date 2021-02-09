@@ -63,6 +63,6 @@ open class Slider : Range() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SLIDER)
 
-  override fun _gui_input(event: InputEvent) {
+  override fun _guiInput(event: InputEvent) {
   }
 }

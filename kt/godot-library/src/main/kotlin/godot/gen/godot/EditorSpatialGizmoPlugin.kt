@@ -33,11 +33,11 @@ open class EditorSpatialGizmoPlugin : Resource() {
         ENGINEMETHOD_ENGINECLASS_EDITORSPATIALGIZMOPLUGIN_ADD_MATERIAL, NIL)
   }
 
-  open fun can_be_hidden(): Boolean {
+  open fun _canBeHidden(): Boolean {
     throw NotImplementedError("can_be_hidden is not implemented for EditorSpatialGizmoPlugin")
   }
 
-  open fun commit_handle(
+  open fun _commitHandle(
     gizmo: EditorSpatialGizmo,
     index: Long,
     restore: Any,
@@ -45,7 +45,7 @@ open class EditorSpatialGizmoPlugin : Resource() {
   ) {
   }
 
-  open fun create_gizmo(spatial: Spatial): EditorSpatialGizmo? {
+  open fun _createGizmo(spatial: Spatial): EditorSpatialGizmo? {
     throw NotImplementedError("create_gizmo is not implemented for EditorSpatialGizmoPlugin")
   }
 
@@ -79,11 +79,11 @@ open class EditorSpatialGizmoPlugin : Resource() {
         ENGINEMETHOD_ENGINECLASS_EDITORSPATIALGIZMOPLUGIN_CREATE_MATERIAL, NIL)
   }
 
-  open fun get_handle_name(gizmo: EditorSpatialGizmo, index: Long): String {
+  open fun _getHandleName(gizmo: EditorSpatialGizmo, index: Long): String {
     throw NotImplementedError("get_handle_name is not implemented for EditorSpatialGizmoPlugin")
   }
 
-  open fun get_handle_value(gizmo: EditorSpatialGizmo, index: Long): Any? {
+  open fun _getHandleValue(gizmo: EditorSpatialGizmo, index: Long): Any? {
     throw NotImplementedError("get_handle_value is not implemented for EditorSpatialGizmoPlugin")
   }
 
@@ -94,32 +94,32 @@ open class EditorSpatialGizmoPlugin : Resource() {
     return TransferContext.readReturnValue(OBJECT, true) as SpatialMaterial?
   }
 
-  open fun get_name(): String {
+  open fun _getName(): String {
     throw NotImplementedError("get_name is not implemented for EditorSpatialGizmoPlugin")
   }
 
-  open fun get_priority(): String {
+  open fun _getPriority(): String {
     throw NotImplementedError("get_priority is not implemented for EditorSpatialGizmoPlugin")
   }
 
-  open fun has_gizmo(spatial: Spatial): Boolean {
+  open fun _hasGizmo(spatial: Spatial): Boolean {
     throw NotImplementedError("has_gizmo is not implemented for EditorSpatialGizmoPlugin")
   }
 
-  open fun is_handle_highlighted(gizmo: EditorSpatialGizmo, index: Long): Boolean {
+  open fun _isHandleHighlighted(gizmo: EditorSpatialGizmo, index: Long): Boolean {
     throw
         NotImplementedError("is_handle_highlighted is not implemented for EditorSpatialGizmoPlugin")
   }
 
-  open fun is_selectable_when_hidden(): Boolean {
+  open fun _isSelectableWhenHidden(): Boolean {
     throw
         NotImplementedError("is_selectable_when_hidden is not implemented for EditorSpatialGizmoPlugin")
   }
 
-  open fun redraw(gizmo: EditorSpatialGizmo) {
+  open fun _redraw(gizmo: EditorSpatialGizmo) {
   }
 
-  open fun set_handle(
+  open fun _setHandle(
     gizmo: EditorSpatialGizmo,
     index: Long,
     camera: Camera,

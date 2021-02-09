@@ -37,105 +37,105 @@ open class ScriptEditor : PanelContainer() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SCRIPTEDITOR)
 
-  open fun _add_callback(
+  open fun _addCallback(
     arg0: Object,
     arg1: String,
     arg2: PoolStringArray
   ) {
   }
 
-  open fun _autosave_scripts() {
+  open fun _autosaveScripts() {
   }
 
   open fun _breaked(arg0: Boolean, arg1: Boolean) {
   }
 
-  open fun _clear_execution(arg0: Reference) {
+  open fun _clearExecution(arg0: Reference) {
   }
 
-  open fun _close_all_tabs() {
+  open fun _closeAllTabs() {
   }
 
-  open fun _close_current_tab() {
+  open fun _closeCurrentTab() {
   }
 
-  open fun _close_discard_current_tab(arg0: String) {
+  open fun _closeDiscardCurrentTab(arg0: String) {
   }
 
-  open fun _close_docs_tab() {
+  open fun _closeDocsTab() {
   }
 
-  open fun _close_other_tabs() {
+  open fun _closeOtherTabs() {
   }
 
-  open fun _copy_script_path() {
+  open fun _copyScriptPath() {
   }
 
-  open fun _editor_pause() {
+  open fun _editorPause() {
   }
 
-  open fun _editor_play() {
+  open fun _editorPlay() {
   }
 
-  open fun _editor_settings_changed() {
+  open fun _editorSettingsChanged() {
   }
 
-  open fun _editor_stop() {
+  open fun _editorStop() {
   }
 
-  open fun _file_dialog_action(arg0: String) {
+  open fun _fileDialogAction(arg0: String) {
   }
 
-  open fun _filter_methods_text_changed(arg0: String) {
+  open fun _filterMethodsTextChanged(arg0: String) {
   }
 
-  open fun _filter_scripts_text_changed(arg0: String) {
+  open fun _filterScriptsTextChanged(arg0: String) {
   }
 
-  open fun _get_debug_tooltip(arg0: String, arg1: Node): String {
+  open fun _getDebugTooltip(arg0: String, arg1: Node): String {
     throw NotImplementedError("_get_debug_tooltip is not implemented for ScriptEditor")
   }
 
-  open fun _goto_script_line(arg0: Reference, arg1: Long) {
+  open fun _gotoScriptLine(arg0: Reference, arg1: Long) {
   }
 
-  open fun _goto_script_line2(arg0: Long) {
+  open fun _gotoScriptLine2(arg0: Long) {
   }
 
-  open fun _help_class_goto(arg0: String) {
+  open fun _helpClassGoto(arg0: String) {
   }
 
-  open fun _help_class_open(arg0: String) {
+  open fun _helpClassOpen(arg0: String) {
   }
 
-  open fun _help_overview_selected(arg0: Long) {
+  open fun _helpOverviewSelected(arg0: Long) {
   }
 
-  open fun _help_search(arg0: String) {
+  open fun _helpSearch(arg0: String) {
   }
 
-  open fun _history_back() {
+  open fun _historyBack() {
   }
 
-  open fun _history_forward() {
+  open fun _historyForward() {
   }
 
-  open fun _live_auto_reload_running_scripts() {
+  open fun _liveAutoReloadRunningScripts() {
   }
 
-  open fun _members_overview_selected(arg0: Long) {
+  open fun _membersOverviewSelected(arg0: Long) {
   }
 
-  open fun _menu_option(arg0: Long) {
+  open fun _menuOption(arg0: Long) {
   }
 
-  open fun _on_find_in_files_modified_files(arg0: PoolStringArray) {
+  open fun _onFindInFilesModifiedFiles(arg0: PoolStringArray) {
   }
 
-  open fun _on_find_in_files_requested(arg0: String) {
+  open fun _onFindInFilesRequested(arg0: String) {
   }
 
-  open fun _on_find_in_files_result_selected(
+  open fun _onFindInFilesResultSelected(
     arg0: String,
     arg1: Long,
     arg2: Long,
@@ -143,76 +143,76 @@ open class ScriptEditor : PanelContainer() {
   ) {
   }
 
-  open fun _open_recent_script(arg0: Long) {
+  open fun _openRecentScript(arg0: Long) {
   }
 
-  open fun _reload_scripts() {
+  open fun _reloadScripts() {
   }
 
-  open fun _request_help(arg0: String) {
+  open fun _requestHelp(arg0: String) {
   }
 
-  open fun _res_saved_callback(arg0: Resource) {
+  open fun _resSavedCallback(arg0: Resource) {
   }
 
-  open fun _resave_scripts(arg0: String) {
+  open fun _resaveScripts(arg0: String) {
   }
 
-  open fun _save_history() {
+  open fun _saveHistory() {
   }
 
-  open fun _script_changed() {
+  open fun _scriptChanged() {
   }
 
-  open fun _script_created(arg0: Script) {
+  open fun _scriptCreated(arg0: Script) {
   }
 
-  open fun _script_list_gui_input(arg0: InputEvent) {
+  open fun _scriptListGuiInput(arg0: InputEvent) {
   }
 
-  open fun _script_selected(arg0: Long) {
+  open fun _scriptSelected(arg0: Long) {
   }
 
-  open fun _script_split_dragged(arg0: Double) {
+  open fun _scriptSplitDragged(arg0: Double) {
   }
 
-  open fun _set_execution(arg0: Reference, arg1: Long) {
+  open fun _setExecution(arg0: Reference, arg1: Long) {
   }
 
-  open fun _show_debugger(arg0: Boolean) {
+  open fun _showDebugger(arg0: Boolean) {
   }
 
-  open fun _start_find_in_files(arg0: Boolean) {
+  open fun _startFindInFiles(arg0: Boolean) {
   }
 
-  open fun _tab_changed(arg0: Long) {
+  open fun _tabChanged(arg0: Long) {
   }
 
-  open fun _theme_option(arg0: Long) {
+  open fun _themeOption(arg0: Long) {
   }
 
-  open fun _toggle_members_overview_alpha_sort(arg0: Boolean) {
+  open fun _toggleMembersOverviewAlphaSort(arg0: Boolean) {
   }
 
-  open fun _tree_changed() {
+  open fun _treeChanged() {
   }
 
-  override fun _unhandled_input(event: InputEvent) {
+  override fun _unhandledInput(event: InputEvent) {
   }
 
-  open fun _update_autosave_timer() {
+  open fun _updateAutosaveTimer() {
   }
 
-  open fun _update_members_overview() {
+  open fun _updateMembersOverview() {
   }
 
-  open fun _update_recent_scripts() {
+  open fun _updateRecentScripts() {
   }
 
-  open fun _update_script_connections() {
+  open fun _updateScriptConnections() {
   }
 
-  open fun _update_script_names() {
+  open fun _updateScriptNames() {
   }
 
   open fun canDropDataFw(

@@ -188,10 +188,10 @@ open class SpriteBase3D : GeometryInstance() {
   }
 
 
-  open fun _im_update() {
+  open fun _imUpdate() {
   }
 
-  open fun _queue_update() {
+  open fun _queueUpdate() {
   }
 
   open fun generateTriangleMesh(): TriangleMesh? {

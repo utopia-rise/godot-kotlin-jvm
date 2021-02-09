@@ -263,13 +263,13 @@ open class Area : CollisionObject() {
   }
 
 
-  open fun _area_enter_tree(id: Long) {
+  open fun _areaEnterTree(id: Long) {
   }
 
-  open fun _area_exit_tree(id: Long) {
+  open fun _areaExitTree(id: Long) {
   }
 
-  open fun _area_inout(
+  open fun _areaInout(
     arg0: Long,
     arg1: RID,
     arg2: Long,
@@ -278,13 +278,13 @@ open class Area : CollisionObject() {
   ) {
   }
 
-  open fun _body_enter_tree(id: Long) {
+  open fun _bodyEnterTree(id: Long) {
   }
 
-  open fun _body_exit_tree(id: Long) {
+  open fun _bodyExitTree(id: Long) {
   }
 
-  open fun _body_inout(
+  open fun _bodyInout(
     arg0: Long,
     arg1: RID,
     arg2: Long,

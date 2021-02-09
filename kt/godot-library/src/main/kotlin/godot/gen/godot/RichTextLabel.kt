@@ -197,10 +197,10 @@ open class RichTextLabel : Control() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_RICHTEXTLABEL)
 
-  override fun _gui_input(event: InputEvent) {
+  override fun _guiInput(event: InputEvent) {
   }
 
-  open fun _scroll_changed(arg0: Double) {
+  open fun _scrollChanged(arg0: Double) {
   }
 
   open fun addImage(

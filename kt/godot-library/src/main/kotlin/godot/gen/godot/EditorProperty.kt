@@ -113,10 +113,10 @@ open class EditorProperty : Container() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_EDITORPROPERTY)
 
-  open fun _focusable_focused(arg0: Long) {
+  open fun _focusableFocused(arg0: Long) {
   }
 
-  override fun _gui_input(event: InputEvent) {
+  override fun _guiInput(event: InputEvent) {
   }
 
   open fun addFocusable(control: Control) {
@@ -162,6 +162,6 @@ open class EditorProperty : Container() {
         NIL)
   }
 
-  open fun update_property() {
+  open fun _updateProperty() {
   }
 }

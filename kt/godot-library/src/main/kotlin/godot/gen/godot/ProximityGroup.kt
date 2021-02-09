@@ -74,7 +74,7 @@ open class ProximityGroup : Spatial() {
   }
 
 
-  open fun _proximity_group_broadcast(name: String, params: Any) {
+  open fun _proximityGroupBroadcast(name: String, params: Any) {
   }
 
   open fun broadcast(name: String, parameters: Any) {

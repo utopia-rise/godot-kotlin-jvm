@@ -105,11 +105,11 @@ open class BakedLightmapData : Resource() {
   }
 
 
-  open fun _get_user_data(): VariantArray<Any?> {
+  open fun _getUserData(): VariantArray<Any?> {
     throw NotImplementedError("_get_user_data is not implemented for BakedLightmapData")
   }
 
-  open fun _set_user_data(data: VariantArray<Any?>) {
+  open fun _setUserData(data: VariantArray<Any?>) {
   }
 
   open fun addUser(

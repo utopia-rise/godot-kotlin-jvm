@@ -64,11 +64,11 @@ open class Curve : Resource() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CURVE)
 
-  open fun _get_data(): VariantArray<Any?> {
+  open fun _getData(): VariantArray<Any?> {
     throw NotImplementedError("_get_data is not implemented for Curve")
   }
 
-  open fun _set_data(data: VariantArray<Any?>) {
+  open fun _setData(data: VariantArray<Any?>) {
   }
 
   open fun addPoint(
