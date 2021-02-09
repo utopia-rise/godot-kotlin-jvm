@@ -72,25 +72,25 @@ open class BitmapFont : Font() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_BITMAPFONT)
 
-  open fun _get_chars(): PoolIntArray {
+  open fun _getChars(): PoolIntArray {
     throw NotImplementedError("_get_chars is not implemented for BitmapFont")
   }
 
-  open fun _get_kernings(): PoolIntArray {
+  open fun _getKernings(): PoolIntArray {
     throw NotImplementedError("_get_kernings is not implemented for BitmapFont")
   }
 
-  open fun _get_textures(): VariantArray<Any?> {
+  open fun _getTextures(): VariantArray<Any?> {
     throw NotImplementedError("_get_textures is not implemented for BitmapFont")
   }
 
-  open fun _set_chars(arg0: PoolIntArray) {
+  open fun _setChars(arg0: PoolIntArray) {
   }
 
-  open fun _set_kernings(arg0: PoolIntArray) {
+  open fun _setKernings(arg0: PoolIntArray) {
   }
 
-  open fun _set_textures(arg0: VariantArray<Any?>) {
+  open fun _setTextures(arg0: VariantArray<Any?>) {
   }
 
   open fun addChar(

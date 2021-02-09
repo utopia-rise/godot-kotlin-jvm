@@ -28,19 +28,19 @@ open class EditorVCSInterface : Object() {
   open fun _commit(msg: String) {
   }
 
-  open fun _get_file_diff(filePath: String): VariantArray<Any?> {
+  open fun _getFileDiff(filePath: String): VariantArray<Any?> {
     throw NotImplementedError("_get_file_diff is not implemented for EditorVCSInterface")
   }
 
-  open fun _get_modified_files_data(): Dictionary<Any?, Any?> {
+  open fun _getModifiedFilesData(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_modified_files_data is not implemented for EditorVCSInterface")
   }
 
-  open fun _get_project_name(): String {
+  open fun _getProjectName(): String {
     throw NotImplementedError("_get_project_name is not implemented for EditorVCSInterface")
   }
 
-  open fun _get_vcs_name(): String {
+  open fun _getVcsName(): String {
     throw NotImplementedError("_get_vcs_name is not implemented for EditorVCSInterface")
   }
 
@@ -48,18 +48,18 @@ open class EditorVCSInterface : Object() {
     throw NotImplementedError("_initialize is not implemented for EditorVCSInterface")
   }
 
-  open fun _is_vcs_initialized(): Boolean {
+  open fun _isVcsInitialized(): Boolean {
     throw NotImplementedError("_is_vcs_initialized is not implemented for EditorVCSInterface")
   }
 
-  open fun _shut_down(): Boolean {
+  open fun _shutDown(): Boolean {
     throw NotImplementedError("_shut_down is not implemented for EditorVCSInterface")
   }
 
-  open fun _stage_file(filePath: String) {
+  open fun _stageFile(filePath: String) {
   }
 
-  open fun _unstage_file(filePath: String) {
+  open fun _unstageFile(filePath: String) {
   }
 
   open fun commit(msg: String) {

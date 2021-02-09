@@ -59,7 +59,7 @@ open class CollisionPolygon : Spatial() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_COLLISIONPOLYGON)
 
-  open fun _is_editable_3d_polygon(): Boolean {
+  open fun _isEditable3dPolygon(): Boolean {
     throw NotImplementedError("_is_editable_3d_polygon is not implemented for CollisionPolygon")
   }
 }

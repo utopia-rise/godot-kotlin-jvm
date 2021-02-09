@@ -317,11 +317,11 @@ open class NavigationMesh : Resource() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_NAVIGATIONMESH)
 
-  open fun _get_polygons(): VariantArray<Any?> {
+  open fun _getPolygons(): VariantArray<Any?> {
     throw NotImplementedError("_get_polygons is not implemented for NavigationMesh")
   }
 
-  open fun _set_polygons(polygons: VariantArray<Any?>) {
+  open fun _setPolygons(polygons: VariantArray<Any?>) {
   }
 
   open fun addPolygon(polygon: PoolIntArray) {

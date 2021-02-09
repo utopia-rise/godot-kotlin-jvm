@@ -93,7 +93,7 @@ open class CSGShape : GeometryInstance() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CSGSHAPE)
 
-  open fun _update_shape() {
+  open fun _updateShape() {
   }
 
   open fun getCollisionLayerBit(bit: Long): Boolean {

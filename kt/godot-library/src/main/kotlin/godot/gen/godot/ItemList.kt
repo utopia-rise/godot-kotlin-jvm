@@ -187,17 +187,17 @@ open class ItemList : Control() {
   }
 
 
-  open fun _get_items(): VariantArray<Any?> {
+  open fun _getItems(): VariantArray<Any?> {
     throw NotImplementedError("_get_items is not implemented for ItemList")
   }
 
-  override fun _gui_input(event: InputEvent) {
+  override fun _guiInput(event: InputEvent) {
   }
 
-  open fun _scroll_changed(arg0: Double) {
+  open fun _scrollChanged(arg0: Double) {
   }
 
-  open fun _set_items(arg0: VariantArray<Any?>) {
+  open fun _setItems(arg0: VariantArray<Any?>) {
   }
 
   open fun addIconItem(icon: Texture, selectable: Boolean = true) {

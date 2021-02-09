@@ -23,10 +23,10 @@ open class Skeleton2D : Node2D() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SKELETON2D)
 
-  open fun _update_bone_setup() {
+  open fun _updateBoneSetup() {
   }
 
-  open fun _update_transform() {
+  open fun _updateTransform() {
   }
 
   open fun getBone(idx: Long): Bone2D? {

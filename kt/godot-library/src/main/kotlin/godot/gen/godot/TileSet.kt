@@ -39,7 +39,7 @@ import kotlin.Suppress
 open class TileSet : Resource() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_TILESET)
 
-  open fun _forward_atlas_subtile_selection(
+  open fun _forwardAtlasSubtileSelection(
     atlastileId: Long,
     tilemap: Object,
     tileLocation: Vector2
@@ -47,7 +47,7 @@ open class TileSet : Resource() {
     throw NotImplementedError("_forward_atlas_subtile_selection is not implemented for TileSet")
   }
 
-  open fun _forward_subtile_selection(
+  open fun _forwardSubtileSelection(
     autotileId: Long,
     bitmask: Long,
     tilemap: Object,
@@ -56,7 +56,7 @@ open class TileSet : Resource() {
     throw NotImplementedError("_forward_subtile_selection is not implemented for TileSet")
   }
 
-  open fun _is_tile_bound(drawnId: Long, neighborId: Long): Boolean {
+  open fun _isTileBound(drawnId: Long, neighborId: Long): Boolean {
     throw NotImplementedError("_is_tile_bound is not implemented for TileSet")
   }
 

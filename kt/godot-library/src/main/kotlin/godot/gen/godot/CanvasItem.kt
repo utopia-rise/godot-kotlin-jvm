@@ -149,75 +149,75 @@ open class CanvasItem : Node() {
   open fun _draw() {
   }
 
-  open fun _edit_get_pivot(): Vector2 {
+  open fun _editGetPivot(): Vector2 {
     throw NotImplementedError("_edit_get_pivot is not implemented for CanvasItem")
   }
 
-  open fun _edit_get_position(): Vector2 {
+  open fun _editGetPosition(): Vector2 {
     throw NotImplementedError("_edit_get_position is not implemented for CanvasItem")
   }
 
-  open fun _edit_get_rect(): Rect2 {
+  open fun _editGetRect(): Rect2 {
     throw NotImplementedError("_edit_get_rect is not implemented for CanvasItem")
   }
 
-  open fun _edit_get_rotation(): Double {
+  open fun _editGetRotation(): Double {
     throw NotImplementedError("_edit_get_rotation is not implemented for CanvasItem")
   }
 
-  open fun _edit_get_scale(): Vector2 {
+  open fun _editGetScale(): Vector2 {
     throw NotImplementedError("_edit_get_scale is not implemented for CanvasItem")
   }
 
-  open fun _edit_get_state(): Dictionary<Any?, Any?> {
+  open fun _editGetState(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_edit_get_state is not implemented for CanvasItem")
   }
 
-  open fun _edit_get_transform(): Transform2D {
+  open fun _editGetTransform(): Transform2D {
     throw NotImplementedError("_edit_get_transform is not implemented for CanvasItem")
   }
 
-  open fun _edit_set_pivot(pivot: Vector2) {
+  open fun _editSetPivot(pivot: Vector2) {
   }
 
-  open fun _edit_set_position(position: Vector2) {
+  open fun _editSetPosition(position: Vector2) {
   }
 
-  open fun _edit_set_rect(rect: Rect2) {
+  open fun _editSetRect(rect: Rect2) {
   }
 
-  open fun _edit_set_rotation(degrees: Double) {
+  open fun _editSetRotation(degrees: Double) {
   }
 
-  open fun _edit_set_scale(scale: Vector2) {
+  open fun _editSetScale(scale: Vector2) {
   }
 
-  open fun _edit_set_state(state: Dictionary<Any?, Any?>) {
+  open fun _editSetState(state: Dictionary<Any?, Any?>) {
   }
 
-  open fun _edit_use_pivot(): Boolean {
+  open fun _editUsePivot(): Boolean {
     throw NotImplementedError("_edit_use_pivot is not implemented for CanvasItem")
   }
 
-  open fun _edit_use_rect(): Boolean {
+  open fun _editUseRect(): Boolean {
     throw NotImplementedError("_edit_use_rect is not implemented for CanvasItem")
   }
 
-  open fun _edit_use_rotation(): Boolean {
+  open fun _editUseRotation(): Boolean {
     throw NotImplementedError("_edit_use_rotation is not implemented for CanvasItem")
   }
 
-  open fun _is_on_top(): Boolean {
+  open fun _isOnTop(): Boolean {
     throw NotImplementedError("_is_on_top is not implemented for CanvasItem")
   }
 
-  open fun _set_on_top(onTop: Boolean) {
+  open fun _setOnTop(onTop: Boolean) {
   }
 
-  open fun _toplevel_raise_self() {
+  open fun _toplevelRaiseSelf() {
   }
 
-  open fun _update_callback() {
+  open fun _updateCallback() {
   }
 
   open fun drawArc(

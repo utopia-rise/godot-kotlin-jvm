@@ -37,7 +37,7 @@ open class Theme : Resource() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_THEME)
 
-  open fun _emit_theme_changed() {
+  open fun _emitThemeChanged() {
   }
 
   open fun clear() {

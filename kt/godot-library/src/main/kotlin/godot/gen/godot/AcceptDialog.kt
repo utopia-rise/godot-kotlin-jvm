@@ -65,10 +65,10 @@ open class AcceptDialog : WindowDialog() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ACCEPTDIALOG)
 
-  open fun _builtin_text_entered(arg0: String) {
+  open fun _builtinTextEntered(arg0: String) {
   }
 
-  open fun _custom_action(arg0: String) {
+  open fun _customAction(arg0: String) {
   }
 
   open fun _ok() {

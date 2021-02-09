@@ -59,7 +59,7 @@ open class CameraFeed : Reference() {
   }
 
 
-  open fun _allocate_texture(
+  open fun _allocateTexture(
     width: Long,
     height: Long,
     format: Long,
@@ -68,19 +68,19 @@ open class CameraFeed : Reference() {
   ) {
   }
 
-  open fun _set_RGB_img(rgbImg: Image) {
+  open fun _setRGBImg(rgbImg: Image) {
   }
 
-  open fun _set_YCbCr_img(ycbcrImg: Image) {
+  open fun _setYCbCrImg(ycbcrImg: Image) {
   }
 
-  open fun _set_YCbCr_imgs(yImg: Image, cbcrImg: Image) {
+  open fun _setYCbCrImgs(yImg: Image, cbcrImg: Image) {
   }
 
-  open fun _set_name(name: String) {
+  open fun _setName(name: String) {
   }
 
-  open fun _set_position(position: Long) {
+  open fun _setPosition(position: Long) {
   }
 
   open fun getId(): Long {

@@ -51,7 +51,7 @@ open class CollisionObject2D : Node2D() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_COLLISIONOBJECT2D)
 
-  open fun _input_event(
+  open fun _inputEvent(
     viewport: Object,
     event: InputEvent,
     shapeIdx: Long

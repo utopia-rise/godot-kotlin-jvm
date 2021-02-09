@@ -133,79 +133,79 @@ open class EditorFileDialog : ConfirmationDialog() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_EDITORFILEDIALOG)
 
-  open fun _action_pressed() {
+  open fun _actionPressed() {
   }
 
-  open fun _cancel_pressed() {
+  open fun _cancelPressed() {
   }
 
-  open fun _dir_entered(arg0: String) {
+  open fun _dirEntered(arg0: String) {
   }
 
-  open fun _favorite_move_down() {
+  open fun _favoriteMoveDown() {
   }
 
-  open fun _favorite_move_up() {
+  open fun _favoriteMoveUp() {
   }
 
-  open fun _favorite_pressed() {
+  open fun _favoritePressed() {
   }
 
-  open fun _favorite_selected(arg0: Long) {
+  open fun _favoriteSelected(arg0: Long) {
   }
 
-  open fun _file_entered(arg0: String) {
+  open fun _fileEntered(arg0: String) {
   }
 
-  open fun _filter_selected(arg0: Long) {
+  open fun _filterSelected(arg0: Long) {
   }
 
-  open fun _go_back() {
+  open fun _goBack() {
   }
 
-  open fun _go_forward() {
+  open fun _goForward() {
   }
 
-  open fun _go_up() {
+  open fun _goUp() {
   }
 
-  open fun _item_db_selected(arg0: Long) {
+  open fun _itemDbSelected(arg0: Long) {
   }
 
-  open fun _item_list_item_rmb_selected(arg0: Long, arg1: Vector2) {
+  open fun _itemListItemRmbSelected(arg0: Long, arg1: Vector2) {
   }
 
-  open fun _item_list_rmb_clicked(arg0: Vector2) {
+  open fun _itemListRmbClicked(arg0: Vector2) {
   }
 
-  open fun _item_menu_id_pressed(arg0: Long) {
+  open fun _itemMenuIdPressed(arg0: Long) {
   }
 
-  open fun _item_selected(arg0: Long) {
+  open fun _itemSelected(arg0: Long) {
   }
 
-  open fun _items_clear_selection() {
+  open fun _itemsClearSelection() {
   }
 
-  open fun _make_dir() {
+  open fun _makeDir() {
   }
 
-  open fun _make_dir_confirm() {
+  open fun _makeDirConfirm() {
   }
 
-  open fun _multi_selected(arg0: Long, arg1: Boolean) {
+  open fun _multiSelected(arg0: Long, arg1: Boolean) {
   }
 
-  open fun _recent_selected(arg0: Long) {
+  open fun _recentSelected(arg0: Long) {
   }
 
-  open fun _save_confirm_pressed() {
+  open fun _saveConfirmPressed() {
   }
 
-  open fun _select_drive(arg0: Long) {
+  open fun _selectDrive(arg0: Long) {
   }
 
-  open fun _thumbnail_done(
+  open fun _thumbnailDone(
     arg0: String,
     arg1: Texture,
     arg2: Texture,
@@ -213,7 +213,7 @@ open class EditorFileDialog : ConfirmationDialog() {
   ) {
   }
 
-  open fun _thumbnail_result(
+  open fun _thumbnailResult(
     arg0: String,
     arg1: Texture,
     arg2: Texture,
@@ -221,16 +221,16 @@ open class EditorFileDialog : ConfirmationDialog() {
   ) {
   }
 
-  override fun _unhandled_input(event: InputEvent) {
+  override fun _unhandledInput(event: InputEvent) {
   }
 
-  open fun _update_dir() {
+  open fun _updateDir() {
   }
 
-  open fun _update_file_list() {
+  open fun _updateFileList() {
   }
 
-  open fun _update_file_name() {
+  open fun _updateFileName() {
   }
 
   open fun addFilter(filter: String) {

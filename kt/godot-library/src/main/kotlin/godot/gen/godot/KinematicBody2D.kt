@@ -52,7 +52,7 @@ open class KinematicBody2D : PhysicsBody2D() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_KINEMATICBODY2D)
 
-  open fun _direct_state_changed(arg0: Object) {
+  open fun _directStateChanged(arg0: Object) {
   }
 
   open fun getFloorNormal(): Vector2 {

@@ -115,11 +115,11 @@ open class VisualScriptPropertyGet : VisualScriptNode() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTPROPERTYGET)
 
-  open fun _get_type_cache(): VariantType {
+  open fun _getTypeCache(): VariantType {
     throw NotImplementedError("_get_type_cache is not implemented for VisualScriptPropertyGet")
   }
 
-  open fun _set_type_cache(typeCache: Long) {
+  open fun _setTypeCache(typeCache: Long) {
   }
 
   enum class CallMode(

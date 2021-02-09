@@ -122,49 +122,49 @@ open class ColorPicker : BoxContainer() {
   }
 
 
-  open fun _add_preset_pressed() {
+  open fun _addPresetPressed() {
   }
 
-  open fun _focus_enter() {
+  open fun _focusEnter() {
   }
 
-  open fun _focus_exit() {
+  open fun _focusExit() {
   }
 
-  open fun _hsv_draw(arg0: Long, arg1: Control) {
+  open fun _hsvDraw(arg0: Long, arg1: Control) {
   }
 
-  open fun _html_entered(arg0: String) {
+  open fun _htmlEntered(arg0: String) {
   }
 
-  open fun _html_focus_exit() {
+  open fun _htmlFocusExit() {
   }
 
-  open fun _preset_input(arg0: InputEvent) {
+  open fun _presetInput(arg0: InputEvent) {
   }
 
-  open fun _sample_draw() {
+  open fun _sampleDraw() {
   }
 
-  open fun _screen_input(arg0: InputEvent) {
+  open fun _screenInput(arg0: InputEvent) {
   }
 
-  open fun _screen_pick_pressed() {
+  open fun _screenPickPressed() {
   }
 
-  open fun _text_type_toggled() {
+  open fun _textTypeToggled() {
   }
 
-  open fun _update_presets() {
+  open fun _updatePresets() {
   }
 
-  open fun _uv_input(arg0: InputEvent) {
+  open fun _uvInput(arg0: InputEvent) {
   }
 
-  open fun _value_changed(arg0: Double) {
+  open fun _valueChanged(arg0: Double) {
   }
 
-  open fun _w_input(arg0: InputEvent) {
+  open fun _wInput(arg0: InputEvent) {
   }
 
   open fun addPreset(color: Color) {

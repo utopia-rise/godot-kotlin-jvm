@@ -107,10 +107,10 @@ open class HTTPRequest : Node() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_HTTPREQUEST)
 
-  open fun _redirect_request(arg0: String) {
+  open fun _redirectRequest(arg0: String) {
   }
 
-  open fun _request_done(
+  open fun _requestDone(
     arg0: Long,
     arg1: Long,
     arg2: PoolStringArray,

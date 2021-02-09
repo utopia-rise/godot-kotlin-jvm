@@ -23,11 +23,11 @@ import kotlin.Suppress
 open class LargeTexture : Texture() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_LARGETEXTURE)
 
-  open fun _get_data(): VariantArray<Any?> {
+  open fun _getData(): VariantArray<Any?> {
     throw NotImplementedError("_get_data is not implemented for LargeTexture")
   }
 
-  open fun _set_data(data: VariantArray<Any?>) {
+  open fun _setData(data: VariantArray<Any?>) {
   }
 
   open fun addPiece(ofs: Vector2, texture: Texture): Long {

@@ -4,21 +4,44 @@ import godot.ARVRServer
 import godot.NavigationMesh
 import godot.Object
 import godot.Spatial
+import godot.annotation.ColorNoAlpha
+import godot.annotation.Dir
+import godot.annotation.DoubleRange
+import godot.annotation.EnumFlag
+import godot.annotation.EnumTypeHint
+import godot.annotation.ExpEasing
+import godot.annotation.ExpRange
+import godot.annotation.File
+import godot.annotation.FloatRange
+import godot.annotation.IntFlag
+import godot.annotation.IntRange
+import godot.annotation.LongRange
+import godot.annotation.MultilineText
+import godot.annotation.PlaceHolderText
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
-import godot.core.*
+import godot.core.Color
+import godot.core.Dictionary
+import godot.core.NodePath
+import godot.core.PoolByteArray
+import godot.core.PoolColorArray
+import godot.core.PoolIntArray
+import godot.core.PoolRealArray
+import godot.core.PoolStringArray
+import godot.core.PoolVector2Array
+import godot.core.PoolVector3Array
+import godot.core.RID
+import godot.core.VariantArray
+import godot.core.Vector2
+import godot.core.Vector3
+import godot.core.dictionaryOf
+import godot.core.variantArrayOf
 import godot.signals.signal
 import godot.tests.subpackage.OtherScript
 import godot.util.RealT
-import godot.annotation.*
-import godot.annotation.IntRange
-import godot.annotation.LongRange
-import godot.core.Color
-import godot.core.variantArrayOf
 import org.joda.time.DateTime
-import godot.signals.signal
 
 enum class TestEnum {
     ENUM_1
@@ -211,7 +234,7 @@ class Invocation : Spatial() {
     fun intAddition(a: Int, b: Int) = a + b
 
     @RegisterFunction
-    fun _enterTree() {
+    override fun _enterTree() {
         println("Enter tree !")
         println("Instance id: ${getInstanceId()}")
         println("CustomName is $customName")

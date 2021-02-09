@@ -1049,46 +1049,46 @@ open class Generic6DOFJoint : Joint() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_GENERIC6DOFJOINT)
 
-  open fun _get_angular_hi_limit_x(): Double {
+  open fun _getAngularHiLimitX(): Double {
     throw NotImplementedError("_get_angular_hi_limit_x is not implemented for Generic6DOFJoint")
   }
 
-  open fun _get_angular_hi_limit_y(): Double {
+  open fun _getAngularHiLimitY(): Double {
     throw NotImplementedError("_get_angular_hi_limit_y is not implemented for Generic6DOFJoint")
   }
 
-  open fun _get_angular_hi_limit_z(): Double {
+  open fun _getAngularHiLimitZ(): Double {
     throw NotImplementedError("_get_angular_hi_limit_z is not implemented for Generic6DOFJoint")
   }
 
-  open fun _get_angular_lo_limit_x(): Double {
+  open fun _getAngularLoLimitX(): Double {
     throw NotImplementedError("_get_angular_lo_limit_x is not implemented for Generic6DOFJoint")
   }
 
-  open fun _get_angular_lo_limit_y(): Double {
+  open fun _getAngularLoLimitY(): Double {
     throw NotImplementedError("_get_angular_lo_limit_y is not implemented for Generic6DOFJoint")
   }
 
-  open fun _get_angular_lo_limit_z(): Double {
+  open fun _getAngularLoLimitZ(): Double {
     throw NotImplementedError("_get_angular_lo_limit_z is not implemented for Generic6DOFJoint")
   }
 
-  open fun _set_angular_hi_limit_x(angle: Double) {
+  open fun _setAngularHiLimitX(angle: Double) {
   }
 
-  open fun _set_angular_hi_limit_y(angle: Double) {
+  open fun _setAngularHiLimitY(angle: Double) {
   }
 
-  open fun _set_angular_hi_limit_z(angle: Double) {
+  open fun _setAngularHiLimitZ(angle: Double) {
   }
 
-  open fun _set_angular_lo_limit_x(angle: Double) {
+  open fun _setAngularLoLimitX(angle: Double) {
   }
 
-  open fun _set_angular_lo_limit_y(angle: Double) {
+  open fun _setAngularLoLimitY(angle: Double) {
   }
 
-  open fun _set_angular_lo_limit_z(angle: Double) {
+  open fun _setAngularLoLimitZ(angle: Double) {
   }
 
   enum class Param(

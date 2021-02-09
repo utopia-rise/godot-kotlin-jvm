@@ -31,6 +31,6 @@ open class Path : Spatial() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PATH)
 
-  open fun _curve_changed() {
+  open fun _curveChanged() {
   }
 }

@@ -96,6 +96,6 @@ open class StaticBody : PhysicsBody() {
   }
 
 
-  open fun _reload_physics_characteristics() {
+  open fun _reloadPhysicsCharacteristics() {
   }
 }

@@ -129,11 +129,11 @@ open class VisualScriptPropertySet : VisualScriptNode() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTPROPERTYSET)
 
-  open fun _get_type_cache(): Dictionary<Any?, Any?> {
+  open fun _getTypeCache(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_type_cache is not implemented for VisualScriptPropertySet")
   }
 
-  open fun _set_type_cache(typeCache: Dictionary<Any?, Any?>) {
+  open fun _setTypeCache(typeCache: Dictionary<Any?, Any?>) {
   }
 
   enum class AssignOp(

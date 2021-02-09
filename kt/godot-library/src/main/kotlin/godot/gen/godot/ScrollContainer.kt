@@ -105,16 +105,16 @@ open class ScrollContainer : Container() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SCROLLCONTAINER)
 
-  open fun _ensure_focused_visible(arg0: Control) {
+  open fun _ensureFocusedVisible(arg0: Control) {
   }
 
-  override fun _gui_input(event: InputEvent) {
+  override fun _guiInput(event: InputEvent) {
   }
 
-  open fun _scroll_moved(arg0: Double) {
+  open fun _scrollMoved(arg0: Double) {
   }
 
-  open fun _update_scrollbar_position() {
+  open fun _updateScrollbarPosition() {
   }
 
   open fun getHScrollbar(): HScrollBar? {

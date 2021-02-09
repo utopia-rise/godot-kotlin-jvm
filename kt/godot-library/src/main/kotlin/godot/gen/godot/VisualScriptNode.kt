@@ -26,11 +26,11 @@ open class VisualScriptNode : Resource() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTNODE)
 
-  open fun _get_default_input_values(): VariantArray<Any?> {
+  open fun _getDefaultInputValues(): VariantArray<Any?> {
     throw NotImplementedError("_get_default_input_values is not implemented for VisualScriptNode")
   }
 
-  open fun _set_default_input_values(values: VariantArray<Any?>) {
+  open fun _setDefaultInputValues(values: VariantArray<Any?>) {
   }
 
   open fun getDefaultInputValue(portIdx: Long): Any? {

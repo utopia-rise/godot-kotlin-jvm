@@ -64,7 +64,7 @@ open class CollisionObject : Spatial() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_COLLISIONOBJECT)
 
-  open fun _input_event(
+  open fun _inputEvent(
     camera: Object,
     event: InputEvent,
     clickPosition: Vector3,

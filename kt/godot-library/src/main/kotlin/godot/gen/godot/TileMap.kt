@@ -269,27 +269,27 @@ open class TileMap : Node2D() {
   }
 
 
-  open fun _clear_quadrants() {
+  open fun _clearQuadrants() {
   }
 
-  open fun _get_old_cell_size(): Long {
+  open fun _getOldCellSize(): Long {
     throw NotImplementedError("_get_old_cell_size is not implemented for TileMap")
   }
 
-  open fun _get_tile_data(): PoolIntArray {
+  open fun _getTileData(): PoolIntArray {
     throw NotImplementedError("_get_tile_data is not implemented for TileMap")
   }
 
-  open fun _recreate_quadrants() {
+  open fun _recreateQuadrants() {
   }
 
-  open fun _set_celld(position: Vector2, data: Dictionary<Any?, Any?>) {
+  open fun _setCelld(position: Vector2, data: Dictionary<Any?, Any?>) {
   }
 
-  open fun _set_old_cell_size(size: Long) {
+  open fun _setOldCellSize(size: Long) {
   }
 
-  open fun _set_tile_data(arg0: PoolIntArray) {
+  open fun _setTileData(arg0: PoolIntArray) {
   }
 
   open fun clear() {

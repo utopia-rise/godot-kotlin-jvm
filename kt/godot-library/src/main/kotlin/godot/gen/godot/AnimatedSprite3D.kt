@@ -63,14 +63,14 @@ open class AnimatedSprite3D : SpriteBase3D() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ANIMATEDSPRITE3D)
 
-  open fun _is_playing(): Boolean {
+  open fun _isPlaying(): Boolean {
     throw NotImplementedError("_is_playing is not implemented for AnimatedSprite3D")
   }
 
-  open fun _res_changed() {
+  open fun _resChanged() {
   }
 
-  open fun _set_playing(playing: Boolean) {
+  open fun _setPlaying(playing: Boolean) {
   }
 
   open fun isPlaying(): Boolean {

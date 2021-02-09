@@ -255,10 +255,10 @@ open class ProceduralSky : Sky() {
   }
 
 
-  open fun _thread_done(image: Image) {
+  open fun _threadDone(image: Image) {
   }
 
-  open fun _update_sky() {
+  open fun _updateSky() {
   }
 
   enum class TextureSize(

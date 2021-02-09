@@ -39,11 +39,11 @@ open class Curve2D : Resource() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CURVE2D)
 
-  open fun _get_data(): Dictionary<Any?, Any?> {
+  open fun _getData(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_data is not implemented for Curve2D")
   }
 
-  open fun _set_data(arg0: Dictionary<Any?, Any?>) {
+  open fun _setData(arg0: Dictionary<Any?, Any?>) {
   }
 
   open fun addPoint(

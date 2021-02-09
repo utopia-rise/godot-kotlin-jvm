@@ -45,6 +45,6 @@ open class NavigationPolygonInstance : Node2D() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_NAVIGATIONPOLYGONINSTANCE)
 
-  open fun _navpoly_changed() {
+  open fun _navpolyChanged() {
   }
 }

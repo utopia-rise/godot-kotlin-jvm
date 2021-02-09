@@ -189,7 +189,7 @@ open class SoftBody : MeshInstance() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SOFTBODY)
 
-  open fun _draw_soft_mesh() {
+  open fun _drawSoftMesh() {
   }
 
   open fun addCollisionExceptionWith(body: Node) {

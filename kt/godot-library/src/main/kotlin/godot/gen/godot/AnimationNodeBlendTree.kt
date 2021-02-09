@@ -45,10 +45,10 @@ open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
 
-  open fun _node_changed(node: String) {
+  open fun _nodeChanged(node: String) {
   }
 
-  open fun _tree_changed() {
+  open fun _treeChanged() {
   }
 
   open fun addNode(

@@ -44,31 +44,31 @@ open class FileSystemDock : VBoxContainer() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_FILESYSTEMDOCK)
 
-  open fun _bw_history() {
+  open fun _bwHistory() {
   }
 
-  open fun _duplicate_operation_confirm() {
+  open fun _duplicateOperationConfirm() {
   }
 
-  open fun _feature_profile_changed() {
+  open fun _featureProfileChanged() {
   }
 
-  open fun _file_list_activate_file(arg0: Long) {
+  open fun _fileListActivateFile(arg0: Long) {
   }
 
-  open fun _file_list_gui_input(arg0: InputEvent) {
+  open fun _fileListGuiInput(arg0: InputEvent) {
   }
 
-  open fun _file_list_rmb_option(option: Long) {
+  open fun _fileListRmbOption(option: Long) {
   }
 
-  open fun _file_list_rmb_pressed(arg0: Vector2) {
+  open fun _fileListRmbPressed(arg0: Vector2) {
   }
 
-  open fun _file_list_rmb_select(arg0: Long, arg1: Vector2) {
+  open fun _fileListRmbSelect(arg0: Long, arg1: Vector2) {
   }
 
-  open fun _file_list_thumbnail_done(
+  open fun _fileListThumbnailDone(
     arg0: String,
     arg1: Texture,
     arg2: Texture,
@@ -76,86 +76,86 @@ open class FileSystemDock : VBoxContainer() {
   ) {
   }
 
-  open fun _file_multi_selected(arg0: Long, arg1: Boolean) {
+  open fun _fileMultiSelected(arg0: Long, arg1: Boolean) {
   }
 
-  open fun _file_removed(arg0: String) {
+  open fun _fileRemoved(arg0: String) {
   }
 
-  open fun _folder_removed(arg0: String) {
+  open fun _folderRemoved(arg0: String) {
   }
 
-  open fun _fs_changed() {
+  open fun _fsChanged() {
   }
 
-  open fun _fw_history() {
+  open fun _fwHistory() {
   }
 
-  open fun _make_dir_confirm() {
+  open fun _makeDirConfirm() {
   }
 
-  open fun _make_scene_confirm() {
+  open fun _makeSceneConfirm() {
   }
 
-  open fun _move_operation_confirm(toPath: String, overwrite: Boolean = false) {
+  open fun _moveOperationConfirm(toPath: String, overwrite: Boolean = false) {
   }
 
-  open fun _move_with_overwrite() {
+  open fun _moveWithOverwrite() {
   }
 
-  open fun _navigate_to_path(arg0: String, arg1: Boolean = false) {
+  open fun _navigateToPath(arg0: String, arg1: Boolean = false) {
   }
 
-  open fun _preview_invalidated(arg0: String) {
+  open fun _previewInvalidated(arg0: String) {
   }
 
-  open fun _rename_operation_confirm() {
+  open fun _renameOperationConfirm() {
   }
 
   open fun _rescan() {
   }
 
-  open fun _resource_created() {
+  open fun _resourceCreated() {
   }
 
-  open fun _search_changed(arg0: String, arg1: Control) {
+  open fun _searchChanged(arg0: String, arg1: Control) {
   }
 
-  open fun _select_file(arg0: String, arg1: Boolean) {
+  open fun _selectFile(arg0: String, arg1: Boolean) {
   }
 
-  open fun _toggle_file_display() {
+  open fun _toggleFileDisplay() {
   }
 
-  open fun _toggle_split_mode(arg0: Boolean) {
+  open fun _toggleSplitMode(arg0: Boolean) {
   }
 
-  open fun _tree_activate_file() {
+  open fun _treeActivateFile() {
   }
 
-  open fun _tree_empty_selected() {
+  open fun _treeEmptySelected() {
   }
 
-  open fun _tree_gui_input(arg0: InputEvent) {
+  open fun _treeGuiInput(arg0: InputEvent) {
   }
 
-  open fun _tree_multi_selected(
+  open fun _treeMultiSelected(
     arg0: Object,
     arg1: Long,
     arg2: Boolean
   ) {
   }
 
-  open fun _tree_rmb_empty(arg0: Vector2) {
+  open fun _treeRmbEmpty(arg0: Vector2) {
   }
 
-  open fun _tree_rmb_option(option: Long) {
+  open fun _treeRmbOption(option: Long) {
   }
 
-  open fun _tree_rmb_select(arg0: Vector2) {
+  open fun _treeRmbSelect(arg0: Vector2) {
   }
 
-  open fun _tree_thumbnail_done(
+  open fun _treeThumbnailDone(
     arg0: String,
     arg1: Texture,
     arg2: Texture,
@@ -163,10 +163,10 @@ open class FileSystemDock : VBoxContainer() {
   ) {
   }
 
-  open fun _update_import_dock() {
+  open fun _updateImportDock() {
   }
 
-  open fun _update_tree(
+  open fun _updateTree(
     arg0: PoolStringArray,
     arg1: Boolean,
     arg2: Boolean,

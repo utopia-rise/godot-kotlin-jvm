@@ -842,10 +842,10 @@ open class CPUParticles2D : Node2D() {
   }
 
 
-  open fun _texture_changed() {
+  open fun _textureChanged() {
   }
 
-  open fun _update_render_thread() {
+  open fun _updateRenderThread() {
   }
 
   open fun convertFromParticles(particles: Node) {

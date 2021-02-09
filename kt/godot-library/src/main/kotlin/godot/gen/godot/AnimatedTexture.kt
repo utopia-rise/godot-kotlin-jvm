@@ -6735,7 +6735,7 @@ open class AnimatedTexture : Texture() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ANIMATEDTEXTURE)
 
-  open fun _update_proxy() {
+  open fun _updateProxy() {
   }
 
   companion object {

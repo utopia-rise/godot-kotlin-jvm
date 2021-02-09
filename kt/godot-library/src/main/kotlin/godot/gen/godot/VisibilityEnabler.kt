@@ -44,7 +44,7 @@ open class VisibilityEnabler : VisibilityNotifier() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VISIBILITYENABLER)
 
-  open fun _node_removed(arg0: Node) {
+  open fun _nodeRemoved(arg0: Node) {
   }
 
   enum class Enabler(

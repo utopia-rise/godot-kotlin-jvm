@@ -194,7 +194,7 @@ open class Sprite : Node2D() {
   }
 
 
-  open fun _texture_changed() {
+  open fun _textureChanged() {
   }
 
   open fun getRect(): Rect2 {

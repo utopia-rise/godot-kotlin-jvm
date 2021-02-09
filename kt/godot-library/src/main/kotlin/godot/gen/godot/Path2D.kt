@@ -27,6 +27,6 @@ open class Path2D : Node2D() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PATH2D)
 
-  open fun _curve_changed() {
+  open fun _curveChanged() {
   }
 }

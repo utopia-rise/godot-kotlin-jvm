@@ -134,43 +134,43 @@ open class GraphEdit : Control() {
   }
 
 
-  open fun _connections_layer_draw() {
+  open fun _connectionsLayerDraw() {
   }
 
-  open fun _graph_node_moved(arg0: Node) {
+  open fun _graphNodeMoved(arg0: Node) {
   }
 
-  open fun _graph_node_raised(arg0: Node) {
+  open fun _graphNodeRaised(arg0: Node) {
   }
 
-  override fun _gui_input(event: InputEvent) {
+  override fun _guiInput(event: InputEvent) {
   }
 
-  open fun _scroll_moved(arg0: Double) {
+  open fun _scrollMoved(arg0: Double) {
   }
 
-  open fun _snap_toggled() {
+  open fun _snapToggled() {
   }
 
-  open fun _snap_value_changed(arg0: Double) {
+  open fun _snapValueChanged(arg0: Double) {
   }
 
-  open fun _top_layer_draw() {
+  open fun _topLayerDraw() {
   }
 
-  open fun _top_layer_input(arg0: InputEvent) {
+  open fun _topLayerInput(arg0: InputEvent) {
   }
 
-  open fun _update_scroll_offset() {
+  open fun _updateScrollOffset() {
   }
 
-  open fun _zoom_minus() {
+  open fun _zoomMinus() {
   }
 
-  open fun _zoom_plus() {
+  open fun _zoomPlus() {
   }
 
-  open fun _zoom_reset() {
+  open fun _zoomReset() {
   }
 
   open fun addValidConnectionType(fromType: Long, toType: Long) {

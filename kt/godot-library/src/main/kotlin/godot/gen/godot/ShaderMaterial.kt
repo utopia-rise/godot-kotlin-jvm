@@ -33,7 +33,7 @@ open class ShaderMaterial : Material() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SHADERMATERIAL)
 
-  open fun _shader_changed() {
+  open fun _shaderChanged() {
   }
 
   open fun getShaderParam(param: String): Any? {

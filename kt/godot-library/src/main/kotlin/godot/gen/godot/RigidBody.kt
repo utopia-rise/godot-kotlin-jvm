@@ -335,19 +335,19 @@ open class RigidBody : PhysicsBody() {
   }
 
 
-  open fun _body_enter_tree(arg0: Long) {
+  open fun _bodyEnterTree(arg0: Long) {
   }
 
-  open fun _body_exit_tree(arg0: Long) {
+  open fun _bodyExitTree(arg0: Long) {
   }
 
-  open fun _direct_state_changed(arg0: Object) {
+  open fun _directStateChanged(arg0: Object) {
   }
 
-  open fun _integrate_forces(state: PhysicsDirectBodyState) {
+  open fun _integrateForces(state: PhysicsDirectBodyState) {
   }
 
-  open fun _reload_physics_characteristics() {
+  open fun _reloadPhysicsCharacteristics() {
   }
 
   open fun addCentralForce(force: Vector3) {

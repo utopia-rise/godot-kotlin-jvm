@@ -117,28 +117,28 @@ open class Node : Object() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_NODE)
 
-  open fun _enter_tree() {
+  open fun _enterTree() {
   }
 
-  open fun _exit_tree() {
+  open fun _exitTree() {
   }
 
-  open fun _get_configuration_warning(): String {
+  open fun _getConfigurationWarning(): String {
     throw NotImplementedError("_get_configuration_warning is not implemented for Node")
   }
 
-  open fun _get_editor_description(): String {
+  open fun _getEditorDescription(): String {
     throw NotImplementedError("_get_editor_description is not implemented for Node")
   }
 
-  open fun _get_import_path(): NodePath {
+  open fun _getImportPath(): NodePath {
     throw NotImplementedError("_get_import_path is not implemented for Node")
   }
 
   open fun _input(event: InputEvent) {
   }
 
-  open fun _physics_process(delta: Double) {
+  open fun _physicsProcess(delta: Double) {
   }
 
   open fun _process(delta: Double) {
@@ -147,16 +147,16 @@ open class Node : Object() {
   open fun _ready() {
   }
 
-  open fun _set_editor_description(editorDescription: String) {
+  open fun _setEditorDescription(editorDescription: String) {
   }
 
-  open fun _set_import_path(importPath: NodePath) {
+  open fun _setImportPath(importPath: NodePath) {
   }
 
-  open fun _unhandled_input(event: InputEvent) {
+  open fun _unhandledInput(event: InputEvent) {
   }
 
-  open fun _unhandled_key_input(event: InputEventKey) {
+  open fun _unhandledKeyInput(event: InputEventKey) {
   }
 
   open fun addChild(node: Node, legibleUniqueName: Boolean = false) {

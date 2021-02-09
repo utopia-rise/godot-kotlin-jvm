@@ -71,6 +71,6 @@ open class CollisionShape2D : Node2D() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_COLLISIONSHAPE2D)
 
-  open fun _shape_changed() {
+  open fun _shapeChanged() {
   }
 }

@@ -99,17 +99,17 @@ open class PopupMenu : Popup() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_POPUPMENU)
 
-  open fun _get_items(): VariantArray<Any?> {
+  open fun _getItems(): VariantArray<Any?> {
     throw NotImplementedError("_get_items is not implemented for PopupMenu")
   }
 
-  override fun _gui_input(event: InputEvent) {
+  override fun _guiInput(event: InputEvent) {
   }
 
-  open fun _set_items(arg0: VariantArray<Any?>) {
+  open fun _setItems(arg0: VariantArray<Any?>) {
   }
 
-  open fun _submenu_timeout() {
+  open fun _submenuTimeout() {
   }
 
   open fun addCheckItem(

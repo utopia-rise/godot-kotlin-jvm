@@ -33,11 +33,11 @@ open class Translation : Resource() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_TRANSLATION)
 
-  open fun _get_messages(): PoolStringArray {
+  open fun _getMessages(): PoolStringArray {
     throw NotImplementedError("_get_messages is not implemented for Translation")
   }
 
-  open fun _set_messages(arg0: PoolStringArray) {
+  open fun _setMessages(arg0: PoolStringArray) {
   }
 
   open fun addMessage(srcMessage: String, xlatedMessage: String) {

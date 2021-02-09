@@ -32,11 +32,11 @@ import kotlin.Suppress
 open class PolygonPathFinder : Resource() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_POLYGONPATHFINDER)
 
-  open fun _get_data(): Dictionary<Any?, Any?> {
+  open fun _getData(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_data is not implemented for PolygonPathFinder")
   }
 
-  open fun _set_data(arg0: Dictionary<Any?, Any?>) {
+  open fun _setData(arg0: Dictionary<Any?, Any?>) {
   }
 
   open fun findPath(from: Vector2, to: Vector2): PoolVector2Array {

@@ -21,27 +21,27 @@ open class ResourceFormatLoader : Reference() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_RESOURCEFORMATLOADER)
 
-  open fun get_dependencies(path: String, addTypes: String) {
+  open fun _getDependencies(path: String, addTypes: String) {
   }
 
-  open fun get_recognized_extensions(): PoolStringArray {
+  open fun _getRecognizedExtensions(): PoolStringArray {
     throw
         NotImplementedError("get_recognized_extensions is not implemented for ResourceFormatLoader")
   }
 
-  open fun get_resource_type(path: String): String {
+  open fun _getResourceType(path: String): String {
     throw NotImplementedError("get_resource_type is not implemented for ResourceFormatLoader")
   }
 
-  open fun handles_type(typename: String): Boolean {
+  open fun _handlesType(typename: String): Boolean {
     throw NotImplementedError("handles_type is not implemented for ResourceFormatLoader")
   }
 
-  open fun load(path: String, originalPath: String): Any? {
+  open fun _load(path: String, originalPath: String): Any? {
     throw NotImplementedError("load is not implemented for ResourceFormatLoader")
   }
 
-  open fun rename_dependencies(path: String, renames: String): Long {
+  open fun _renameDependencies(path: String, renames: String): Long {
     throw NotImplementedError("rename_dependencies is not implemented for ResourceFormatLoader")
   }
 }

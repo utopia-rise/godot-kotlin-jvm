@@ -157,11 +157,11 @@ open class VisualScriptFunctionCall : VisualScriptNode() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTFUNCTIONCALL)
 
-  open fun _get_argument_cache(): Dictionary<Any?, Any?> {
+  open fun _getArgumentCache(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_argument_cache is not implemented for VisualScriptFunctionCall")
   }
 
-  open fun _set_argument_cache(argumentCache: Dictionary<Any?, Any?>) {
+  open fun _setArgumentCache(argumentCache: Dictionary<Any?, Any?>) {
   }
 
   enum class RPCCallMode(

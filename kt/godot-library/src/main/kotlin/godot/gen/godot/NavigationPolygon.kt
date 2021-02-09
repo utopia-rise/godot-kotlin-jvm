@@ -37,18 +37,18 @@ open class NavigationPolygon : Resource() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_NAVIGATIONPOLYGON)
 
-  open fun _get_outlines(): VariantArray<Any?> {
+  open fun _getOutlines(): VariantArray<Any?> {
     throw NotImplementedError("_get_outlines is not implemented for NavigationPolygon")
   }
 
-  open fun _get_polygons(): VariantArray<Any?> {
+  open fun _getPolygons(): VariantArray<Any?> {
     throw NotImplementedError("_get_polygons is not implemented for NavigationPolygon")
   }
 
-  open fun _set_outlines(outlines: VariantArray<Any?>) {
+  open fun _setOutlines(outlines: VariantArray<Any?>) {
   }
 
-  open fun _set_polygons(polygons: VariantArray<Any?>) {
+  open fun _setPolygons(polygons: VariantArray<Any?>) {
   }
 
   open fun addOutline(outline: PoolVector2Array) {

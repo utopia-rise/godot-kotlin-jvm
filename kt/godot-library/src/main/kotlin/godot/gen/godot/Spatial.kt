@@ -156,7 +156,7 @@ open class Spatial : Node() {
   }
 
 
-  open fun _update_gizmo() {
+  open fun _updateGizmo() {
   }
 
   open fun forceUpdateTransform() {

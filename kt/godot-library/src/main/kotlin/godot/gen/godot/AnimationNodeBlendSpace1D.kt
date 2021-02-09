@@ -1419,10 +1419,10 @@ open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODEBLENDSPACE1D)
 
-  open fun _add_blend_point(index: Long, node: AnimationRootNode) {
+  open fun _addBlendPoint(index: Long, node: AnimationRootNode) {
   }
 
-  open fun _tree_changed() {
+  open fun _treeChanged() {
   }
 
   open fun addBlendPoint(

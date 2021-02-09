@@ -22,15 +22,15 @@ import kotlin.Suppress
 open class EditorSceneImporter : Reference() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_EDITORSCENEIMPORTER)
 
-  open fun _get_extensions(): VariantArray<Any?> {
+  open fun _getExtensions(): VariantArray<Any?> {
     throw NotImplementedError("_get_extensions is not implemented for EditorSceneImporter")
   }
 
-  open fun _get_import_flags(): Long {
+  open fun _getImportFlags(): Long {
     throw NotImplementedError("_get_import_flags is not implemented for EditorSceneImporter")
   }
 
-  open fun _import_animation(
+  open fun _importAnimation(
     path: String,
     flags: Long,
     bakeFps: Long
@@ -38,7 +38,7 @@ open class EditorSceneImporter : Reference() {
     throw NotImplementedError("_import_animation is not implemented for EditorSceneImporter")
   }
 
-  open fun _import_scene(
+  open fun _importScene(
     path: String,
     flags: Long,
     bakeFps: Long

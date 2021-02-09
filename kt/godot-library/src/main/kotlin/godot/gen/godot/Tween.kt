@@ -76,7 +76,7 @@ open class Tween : Node() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_TWEEN)
 
-  open fun _remove_by_uid(uid: Long) {
+  open fun _removeByUid(uid: Long) {
   }
 
   open fun followMethod(

@@ -238,16 +238,16 @@ open class LineEdit : Control() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_LINEEDIT)
 
-  open fun _editor_settings_changed() {
+  open fun _editorSettingsChanged() {
   }
 
-  override fun _gui_input(event: InputEvent) {
+  override fun _guiInput(event: InputEvent) {
   }
 
-  open fun _text_changed() {
+  open fun _textChanged() {
   }
 
-  open fun _toggle_draw_caret() {
+  open fun _toggleDrawCaret() {
   }
 
   open fun appendAtCursor(text: String) {

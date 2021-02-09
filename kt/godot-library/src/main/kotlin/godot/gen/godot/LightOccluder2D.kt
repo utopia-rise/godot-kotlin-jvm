@@ -43,6 +43,6 @@ open class LightOccluder2D : Node2D() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_LIGHTOCCLUDER2D)
 
-  open fun _poly_changed() {
+  open fun _polyChanged() {
   }
 }

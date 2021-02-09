@@ -331,7 +331,7 @@ open class Object : KtObject() {
     throw NotImplementedError("_get is not implemented for Object")
   }
 
-  open fun _get_property_list(): VariantArray<Any?> {
+  open fun _getPropertyList(): VariantArray<Any?> {
     throw NotImplementedError("_get_property_list is not implemented for Object")
   }
 
@@ -345,7 +345,7 @@ open class Object : KtObject() {
     throw NotImplementedError("_set is not implemented for Object")
   }
 
-  open fun _to_string(): String {
+  open fun _toString(): String {
     throw NotImplementedError("_to_string is not implemented for Object")
   }
 

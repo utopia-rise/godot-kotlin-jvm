@@ -25,11 +25,11 @@ import kotlin.Suppress
 open class PackedScene : Resource() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PACKEDSCENE)
 
-  open fun _get_bundled_scene(): Dictionary<Any?, Any?> {
+  open fun _getBundledScene(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_bundled_scene is not implemented for PackedScene")
   }
 
-  open fun _set_bundled_scene(arg0: Dictionary<Any?, Any?>) {
+  open fun _setBundledScene(arg0: Dictionary<Any?, Any?>) {
   }
 
   open fun canInstance(): Boolean {

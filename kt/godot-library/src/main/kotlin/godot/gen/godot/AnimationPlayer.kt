@@ -175,10 +175,10 @@ open class AnimationPlayer : Node() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONPLAYER)
 
-  open fun _animation_changed() {
+  open fun _animationChanged() {
   }
 
-  open fun _node_removed(arg0: Node) {
+  open fun _nodeRemoved(arg0: Node) {
   }
 
   open fun addAnimation(name: String, animation: Animation): GodotError {

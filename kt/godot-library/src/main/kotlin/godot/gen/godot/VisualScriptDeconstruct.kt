@@ -34,10 +34,10 @@ open class VisualScriptDeconstruct : VisualScriptNode() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTDECONSTRUCT)
 
-  open fun _get_elem_cache(): VariantArray<Any?> {
+  open fun _getElemCache(): VariantArray<Any?> {
     throw NotImplementedError("_get_elem_cache is not implemented for VisualScriptDeconstruct")
   }
 
-  open fun _set_elem_cache(_cache: VariantArray<Any?>) {
+  open fun _setElemCache(_cache: VariantArray<Any?>) {
   }
 }

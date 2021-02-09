@@ -97,13 +97,13 @@ open class Tabs : Control() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_TABS)
 
-  override fun _gui_input(event: InputEvent) {
+  override fun _guiInput(event: InputEvent) {
   }
 
-  open fun _on_mouse_exited() {
+  open fun _onMouseExited() {
   }
 
-  open fun _update_hover() {
+  open fun _updateHover() {
   }
 
   open fun addTab(title: String = "", icon: Texture? = null) {

@@ -279,18 +279,18 @@ open class SliderJoint : Joint() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SLIDERJOINT)
 
-  open fun _get_lower_limit_angular(): Double {
+  open fun _getLowerLimitAngular(): Double {
     throw NotImplementedError("_get_lower_limit_angular is not implemented for SliderJoint")
   }
 
-  open fun _get_upper_limit_angular(): Double {
+  open fun _getUpperLimitAngular(): Double {
     throw NotImplementedError("_get_upper_limit_angular is not implemented for SliderJoint")
   }
 
-  open fun _set_lower_limit_angular(lowerLimitAngular: Double) {
+  open fun _setLowerLimitAngular(lowerLimitAngular: Double) {
   }
 
-  open fun _set_upper_limit_angular(upperLimitAngular: Double) {
+  open fun _setUpperLimitAngular(upperLimitAngular: Double) {
   }
 
   enum class Param(

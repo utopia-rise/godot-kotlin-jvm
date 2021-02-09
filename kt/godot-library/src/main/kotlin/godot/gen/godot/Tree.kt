@@ -140,25 +140,25 @@ open class Tree : Control() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_TREE)
 
-  override fun _gui_input(event: InputEvent) {
+  override fun _guiInput(event: InputEvent) {
   }
 
-  open fun _popup_select(arg0: Long) {
+  open fun _popupSelect(arg0: Long) {
   }
 
-  open fun _range_click_timeout() {
+  open fun _rangeClickTimeout() {
   }
 
-  open fun _scroll_moved(arg0: Double) {
+  open fun _scrollMoved(arg0: Double) {
   }
 
-  open fun _text_editor_enter(arg0: String) {
+  open fun _textEditorEnter(arg0: String) {
   }
 
-  open fun _text_editor_modal_close() {
+  open fun _textEditorModalClose() {
   }
 
-  open fun _value_editor_changed(arg0: Double) {
+  open fun _valueEditorChanged(arg0: Double) {
   }
 
   open fun areColumnTitlesVisible(): Boolean {

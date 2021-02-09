@@ -32,7 +32,7 @@ open class EditorScenePostImport : Reference() {
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  open fun post_import(scene: Object): Object? {
+  open fun _postImport(scene: Object): Object? {
     throw NotImplementedError("post_import is not implemented for EditorScenePostImport")
   }
 }

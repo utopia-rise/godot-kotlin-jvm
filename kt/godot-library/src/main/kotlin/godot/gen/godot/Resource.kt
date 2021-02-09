@@ -63,7 +63,7 @@ open class Resource : Reference() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_RESOURCE)
 
-  open fun _setup_local_to_scene() {
+  open fun _setupLocalToScene() {
   }
 
   open fun duplicate(subresources: Boolean = false): Resource? {

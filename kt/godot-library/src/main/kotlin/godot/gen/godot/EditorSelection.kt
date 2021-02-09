@@ -23,10 +23,10 @@ open class EditorSelection : Object() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_EDITORSELECTION)
 
-  open fun _emit_change() {
+  open fun _emitChange() {
   }
 
-  open fun _node_removed(arg0: Node) {
+  open fun _nodeRemoved(arg0: Node) {
   }
 
   open fun addNode(node: Node) {

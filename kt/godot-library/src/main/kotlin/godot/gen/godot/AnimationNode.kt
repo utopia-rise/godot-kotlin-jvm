@@ -50,11 +50,11 @@ open class AnimationNode : Resource() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODE)
 
-  open fun _get_filters(): VariantArray<Any?> {
+  open fun _getFilters(): VariantArray<Any?> {
     throw NotImplementedError("_get_filters is not implemented for AnimationNode")
   }
 
-  open fun _set_filters(filters: VariantArray<Any?>) {
+  open fun _setFilters(filters: VariantArray<Any?>) {
   }
 
   open fun addInput(name: String) {
@@ -103,15 +103,15 @@ open class AnimationNode : Resource() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  open fun get_caption(): String {
+  open fun _getCaption(): String {
     throw NotImplementedError("get_caption is not implemented for AnimationNode")
   }
 
-  open fun get_child_by_name(name: String): Object? {
+  open fun _getChildByName(name: String): Object? {
     throw NotImplementedError("get_child_by_name is not implemented for AnimationNode")
   }
 
-  open fun get_child_nodes(): Dictionary<Any?, Any?> {
+  open fun _getChildNodes(): Dictionary<Any?, Any?> {
     throw NotImplementedError("get_child_nodes is not implemented for AnimationNode")
   }
 
@@ -134,15 +134,15 @@ open class AnimationNode : Resource() {
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
-  open fun get_parameter_default_value(name: String): Any? {
+  open fun _getParameterDefaultValue(name: String): Any? {
     throw NotImplementedError("get_parameter_default_value is not implemented for AnimationNode")
   }
 
-  open fun get_parameter_list(): VariantArray<Any?> {
+  open fun _getParameterList(): VariantArray<Any?> {
     throw NotImplementedError("get_parameter_list is not implemented for AnimationNode")
   }
 
-  open fun has_filter(): String {
+  open fun _hasFilter(): String {
     throw NotImplementedError("has_filter is not implemented for AnimationNode")
   }
 
@@ -153,7 +153,7 @@ open class AnimationNode : Resource() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  open fun process(time: Double, seek: Boolean) {
+  open fun _process(time: Double, seek: Boolean) {
   }
 
   open fun removeInput(index: Long) {

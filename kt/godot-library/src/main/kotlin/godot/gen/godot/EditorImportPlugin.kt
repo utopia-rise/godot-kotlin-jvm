@@ -22,51 +22,51 @@ import kotlin.Suppress
 open class EditorImportPlugin : ResourceImporter() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_EDITORIMPORTPLUGIN)
 
-  open fun get_import_options(preset: Long): VariantArray<Any?> {
+  open fun _getImportOptions(preset: Long): VariantArray<Any?> {
     throw NotImplementedError("get_import_options is not implemented for EditorImportPlugin")
   }
 
-  open fun get_import_order(): Long {
+  open fun _getImportOrder(): Long {
     throw NotImplementedError("get_import_order is not implemented for EditorImportPlugin")
   }
 
-  open fun get_importer_name(): String {
+  open fun _getImporterName(): String {
     throw NotImplementedError("get_importer_name is not implemented for EditorImportPlugin")
   }
 
-  open fun get_option_visibility(option: String, options: Dictionary<Any?, Any?>): Boolean {
+  open fun _getOptionVisibility(option: String, options: Dictionary<Any?, Any?>): Boolean {
     throw NotImplementedError("get_option_visibility is not implemented for EditorImportPlugin")
   }
 
-  open fun get_preset_count(): Long {
+  open fun _getPresetCount(): Long {
     throw NotImplementedError("get_preset_count is not implemented for EditorImportPlugin")
   }
 
-  open fun get_preset_name(preset: Long): String {
+  open fun _getPresetName(preset: Long): String {
     throw NotImplementedError("get_preset_name is not implemented for EditorImportPlugin")
   }
 
-  open fun get_priority(): Double {
+  open fun _getPriority(): Double {
     throw NotImplementedError("get_priority is not implemented for EditorImportPlugin")
   }
 
-  open fun get_recognized_extensions(): VariantArray<Any?> {
+  open fun _getRecognizedExtensions(): VariantArray<Any?> {
     throw NotImplementedError("get_recognized_extensions is not implemented for EditorImportPlugin")
   }
 
-  open fun get_resource_type(): String {
+  open fun _getResourceType(): String {
     throw NotImplementedError("get_resource_type is not implemented for EditorImportPlugin")
   }
 
-  open fun get_save_extension(): String {
+  open fun _getSaveExtension(): String {
     throw NotImplementedError("get_save_extension is not implemented for EditorImportPlugin")
   }
 
-  open fun get_visible_name(): String {
+  open fun _getVisibleName(): String {
     throw NotImplementedError("get_visible_name is not implemented for EditorImportPlugin")
   }
 
-  open fun import(
+  open fun _import(
     sourceFile: String,
     savePath: String,
     options: Dictionary<Any?, Any?>,

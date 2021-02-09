@@ -25,11 +25,11 @@ import kotlin.Suppress
 open class ResourcePreloader : Node() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_RESOURCEPRELOADER)
 
-  open fun _get_resources(): VariantArray<Any?> {
+  open fun _getResources(): VariantArray<Any?> {
     throw NotImplementedError("_get_resources is not implemented for ResourcePreloader")
   }
 
-  open fun _set_resources(arg0: VariantArray<Any?>) {
+  open fun _setResources(arg0: VariantArray<Any?>) {
   }
 
   open fun addResource(name: String, resource: Resource) {

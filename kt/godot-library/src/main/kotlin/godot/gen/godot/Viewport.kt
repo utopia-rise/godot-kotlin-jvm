@@ -424,28 +424,28 @@ open class Viewport : Node() {
   }
 
 
-  open fun _gui_remove_focus() {
+  open fun _guiRemoveFocus() {
   }
 
-  open fun _gui_show_tooltip() {
+  open fun _guiShowTooltip() {
   }
 
-  open fun _own_world_changed() {
+  open fun _ownWorldChanged() {
   }
 
-  open fun _post_gui_grab_click_focus() {
+  open fun _postGuiGrabClickFocus() {
   }
 
-  open fun _subwindow_visibility_changed() {
+  open fun _subwindowVisibilityChanged() {
   }
 
-  open fun _vp_input(arg0: InputEvent) {
+  open fun _vpInput(arg0: InputEvent) {
   }
 
-  open fun _vp_input_text(text: String) {
+  open fun _vpInputText(text: String) {
   }
 
-  open fun _vp_unhandled_input(arg0: InputEvent) {
+  open fun _vpUnhandledInput(arg0: InputEvent) {
   }
 
   open fun findWorld(): World? {

@@ -24,7 +24,7 @@ import kotlin.Suppress
 open class EditorExportPlugin : Reference() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_EDITOREXPORTPLUGIN)
 
-  open fun _export_begin(
+  open fun _exportBegin(
     features: PoolStringArray,
     isDebug: Boolean,
     path: String,
@@ -32,10 +32,10 @@ open class EditorExportPlugin : Reference() {
   ) {
   }
 
-  open fun _export_end() {
+  open fun _exportEnd() {
   }
 
-  open fun _export_file(
+  open fun _exportFile(
     path: String,
     type: String,
     features: PoolStringArray

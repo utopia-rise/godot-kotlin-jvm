@@ -124,7 +124,7 @@ open class GraphNode : Container() {
   }
 
 
-  override fun _gui_input(event: InputEvent) {
+  override fun _guiInput(event: InputEvent) {
   }
 
   open fun clearAllSlots() {

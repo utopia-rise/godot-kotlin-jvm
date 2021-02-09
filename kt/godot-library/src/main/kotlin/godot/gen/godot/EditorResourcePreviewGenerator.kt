@@ -19,26 +19,26 @@ open class EditorResourcePreviewGenerator : Reference() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_EDITORRESOURCEPREVIEWGENERATOR)
 
-  open fun can_generate_small_preview(): Boolean {
+  open fun _canGenerateSmallPreview(): Boolean {
     throw
         NotImplementedError("can_generate_small_preview is not implemented for EditorResourcePreviewGenerator")
   }
 
-  open fun generate(from: Resource, size: Vector2): Texture? {
+  open fun _generate(from: Resource, size: Vector2): Texture? {
     throw NotImplementedError("generate is not implemented for EditorResourcePreviewGenerator")
   }
 
-  open fun generate_from_path(path: String, size: Vector2): Texture? {
+  open fun _generateFromPath(path: String, size: Vector2): Texture? {
     throw
         NotImplementedError("generate_from_path is not implemented for EditorResourcePreviewGenerator")
   }
 
-  open fun generate_small_preview_automatically(): Boolean {
+  open fun _generateSmallPreviewAutomatically(): Boolean {
     throw
         NotImplementedError("generate_small_preview_automatically is not implemented for EditorResourcePreviewGenerator")
   }
 
-  open fun handles(type: String): Boolean {
+  open fun _handles(type: String): Boolean {
     throw NotImplementedError("handles is not implemented for EditorResourcePreviewGenerator")
   }
 }
