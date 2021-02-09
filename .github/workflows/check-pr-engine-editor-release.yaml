@@ -9,10 +9,13 @@ jobs:
         include:
           - os: ubuntu-latest
             platform: x11
+            java-version: 11
           - os: macos-latest
             platform: osx
+            java-version: 11
           - os: windows-latest
             platform: windows
+            java-version: 11
     runs-on: ${{ matrix.os }}
     steps:
       - name: Configure dependencies
