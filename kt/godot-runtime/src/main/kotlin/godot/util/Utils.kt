@@ -17,11 +17,11 @@ fun String.camelToSnakeCase(): String {
     }.toLowerCase()
 }
 
-@PublishedApi
-internal inline fun Number.toRealT(): RealT = this.toDouble()
+inline fun Number.toRealT(): RealT = this.toDouble()
 
-@PublishedApi
-internal inline fun Double.toRealT(): RealT = this
+inline fun Double.toRealT(): RealT = this
+
+inline fun Float.toRealT(): RealT = this.toDouble()
 
 @PublishedApi
 internal inline fun Number.toGodotReal(): Float = this.toFloat()
