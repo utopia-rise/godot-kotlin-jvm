@@ -2,8 +2,8 @@ package godot
 
 import godot.core.NodePath
 import godot.core.VariantArray
+import godot.signals.Signal
 import godot.util.camelToSnakeCase
-import jdk.internal.misc.Signal
 import kotlin.reflect.KFunction
 
 @Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
