@@ -7,11 +7,24 @@ package godot
 
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
-import godot.core.VariantType.*
+import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.LONG
+import godot.core.VariantType.NIL
+import godot.core.VariantType.OBJECT
+import godot.core.VariantType.STRING
+import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.signals.Signal0
 import godot.signals.signal
 import godot.util.VoidPtr
+import kotlin.Boolean
+import kotlin.Double
+import kotlin.Long
+import kotlin.NotImplementedError
+import kotlin.String
+import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
 open class AnimatedSprite : Node2D() {
