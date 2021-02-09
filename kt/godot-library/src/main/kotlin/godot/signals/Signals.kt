@@ -13,11 +13,12 @@ open class Signal(
         instance.emitSignal(name, *args)
     }
 
+    @PublishedApi
     internal fun connect(
             instance: Object,
             target: Object,
             method: String,
-            binds: VariantArray<Any>?,
+            binds: VariantArray<Any?>?,
             flags: Long
     ) {
         instance.connect(name, target, method, binds ?: VariantArray(), flags)

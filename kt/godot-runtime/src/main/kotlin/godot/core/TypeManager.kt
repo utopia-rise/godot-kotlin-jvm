@@ -4,6 +4,7 @@ object TypeManager {
     private val userTypes = HashSet<String>()
 
     val engineTypeNames = LinkedHashSet<String>()
+    val engineSingletonsNames = LinkedHashSet<String>()
     val engineTypesConstructors = mutableListOf<() -> KtObject>()
     val engineTypeMethod = mutableListOf<Pair<Int, String>>()
 
@@ -12,6 +13,10 @@ object TypeManager {
     fun <T: KtObject> registerEngineType(className: String, invocator: () -> T) {
         engineTypesConstructors.add(invocator)
         engineTypeNames.add(className)
+    }
+
+    fun registerSingleton(singletonName: String) {
+        engineSingletonsNames.add(singletonName)
     }
 
     fun isUserType(className: String) = userTypes.contains(className)

@@ -26,12 +26,14 @@ object GarbageCollector {
     val isClosed: Boolean
         get() = gcState == GCState.CLOSED
 
-    fun registerInstance(instance: KtObject) {
+    fun registerInstance(instance: KtObject, hasRefCountBeenIncremented: Boolean) {
         val rawPtr = instance.rawPtr
         if (instance.____DO_NOT_TOUCH_THIS_isRef____()) {
             synchronized(refWrappedMap) {
                 refWrappedMap[rawPtr] = WeakReference(instance)
-                MemoryBridge.ref(rawPtr)
+                if (!hasRefCountBeenIncremented) {
+                    MemoryBridge.ref(rawPtr)
+                }
             }
         } else {
             synchronized(wrappedMap) {
@@ -60,6 +62,10 @@ object GarbageCollector {
 
     fun getNativeCoreTypeInstance(ptr: VoidPtr) = synchronized(nativeCoreTypeMap) {
         nativeCoreTypeMap[ptr]?.get()
+    }
+
+    internal fun unrefRefInstance(ptr: VoidPtr) {
+        MemoryBridge.unref(ptr)
     }
 
     fun start(forceJvmGarbageCollector: Boolean, period: Long) {

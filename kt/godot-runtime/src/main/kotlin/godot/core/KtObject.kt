@@ -4,7 +4,7 @@ import godot.util.VoidPtr
 import godot.util.nullptr
 
 @Suppress("LeakingThis")
-abstract class KtObject : AutoCloseable {
+abstract class KtObject {
     var rawPtr: VoidPtr = nullptr
         set(value) {
             require(field == nullptr) {
@@ -23,7 +23,7 @@ abstract class KtObject : AutoCloseable {
                 godotInstanceId = getInstanceId()
 
                 if (!____DO_NOT_TOUCH_THIS_isSingleton____()) {
-                    GarbageCollector.registerInstance(this)
+                    GarbageCollector.registerInstance(this, false)
                 }
 
                 // inheritance in Godot is faked, a script is attached to an Object allow
@@ -57,20 +57,16 @@ abstract class KtObject : AutoCloseable {
         TransferContext.freeObject(this)
     }
 
-    final override fun close() {
-        free()
-    }
-
     companion object {
         private val shouldInit = ThreadLocal.withInitial { true }
 
-        fun <T: KtObject> instantiateWith(rawPtr: VoidPtr, instanceId: Long, isRef: Boolean = false, constructor: () -> T): T {
+        fun <T: KtObject> instantiateWith(rawPtr: VoidPtr, instanceId: Long, hasRefCountBeenIncremented: Boolean = false, constructor: () -> T): T {
             shouldInit.set(false)
             return constructor().also {
                 it.rawPtr = rawPtr
                 it.godotInstanceId = instanceId
                 if (!it.____DO_NOT_TOUCH_THIS_isSingleton____()) {
-                    GarbageCollector.registerInstance(it)
+                    GarbageCollector.registerInstance(it, hasRefCountBeenIncremented)
                 }
                 it._onInit()
             }

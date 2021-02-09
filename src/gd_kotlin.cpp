@@ -73,10 +73,11 @@ void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) 
     classes.delete_local_ref(env);
 }
 
-void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types, jobjectArray p_method_names,
-        jobjectArray p_types_of_methods) {
+void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types, jobjectArray p_singleton_names,
+        jobjectArray p_method_names, jobjectArray p_types_of_methods) {
     print_verbose("Starting to register managed engine types...");
     jni::Env env(p_env);
+
     jni::JObjectArray engine_types{p_engine_types};
     for (int i = 0; i < engine_types.length(env); ++i) {
         const String& class_name = env.from_jstring(static_cast<jni::JString>(engine_types.get(env, i)));
@@ -84,6 +85,13 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
         TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name] = i;
         print_verbose(vformat("Registered %s engine type with index %s.", class_name, i));
     }
+
+    jni::JObjectArray singleton_names{p_singleton_names};
+    for (int i = 0; i < singleton_names.length(env); ++i) {
+        const String& singleton_name{env.from_jstring(static_cast<jni::JString>(singleton_names.get(env, i)))};
+        GDKotlin::get_instance().engine_singleton_names.insert(i, singleton_name);
+    }
+
     jni::JObjectArray method_names{p_method_names};
     jni::JObjectArray types_of_methods{p_types_of_methods};
     jni::JClass integer_class{env.load_class("java.lang.Integer", GDKotlin::get_instance().get_class_loader())};

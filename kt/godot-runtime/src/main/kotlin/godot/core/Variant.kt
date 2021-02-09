@@ -290,14 +290,22 @@ enum class VariantType(
                 val ptr = buffer.long
                 val constructorIndex = buffer.int
                 val isRef = buffer.bool
-                if (isRef) {
+                val instanceId = buffer.long
+                val hasRefCountBeenIncremented = buffer.bool
+                val existingInstance = if (isRef) {
                     GarbageCollector.getRefInstance(ptr)
                 } else {
                     GarbageCollector.getObjectInstance(ptr)
-                } ?: KtObject.instantiateWith(
+                }
+
+                if (existingInstance != null && hasRefCountBeenIncremented) {
+                    GarbageCollector.unrefRefInstance(ptr)
+                }
+
+                existingInstance ?: KtObject.instantiateWith(
                         ptr,
-                        buffer.long,
-                        isRef,
+                        instanceId,
+                        hasRefCountBeenIncremented,
                         TypeManager.engineTypesConstructors[constructorIndex]
                 )
             },

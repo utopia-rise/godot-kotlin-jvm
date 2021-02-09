@@ -87,7 +87,7 @@ void TransferContext::write_args(jni::Env& p_env, const Variant** p_args, int ar
     SharedBuffer* buffer {get_buffer(p_env)};
     buffer->increment_position(encode_uint32(args_size, buffer->get_cursor()));
     for (auto i = 0; i < args_size; ++i) {
-        ktvariant::send_variant_to_buffer(*p_args[i], buffer);
+        ktvariant::send_variant_to_buffer(*p_args[i], buffer, false);
     }
     buffer->rewind();
 }
@@ -161,7 +161,7 @@ jlong TransferContext::invoke_constructor(JNIEnv *p_raw_env, jobject p_instance,
 jlong TransferContext::get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index) {
     return reinterpret_cast<uintptr_t>(
             Engine::get_singleton()->get_singleton_object(
-                    GDKotlin::get_instance().engine_type_names[static_cast<int>(p_class_index)]
+                    GDKotlin::get_instance().engine_singleton_names[static_cast<int>(p_class_index)]
             )
     );
 }
