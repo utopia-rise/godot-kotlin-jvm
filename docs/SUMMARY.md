@@ -7,6 +7,7 @@
     * [Properties](src/doc/user-guide/properties.md)
     * [Signals](src/doc/user-guide/signals.md)
     * [Functions](src/doc/user-guide/functions.md)
-* [Supported platforms](src/doc/supported-platforms.md)
 * [API differences](src/doc/api-differences.md)
+* [Versioning](src/doc/versioning.md)
+* [Supported platforms](src/doc/supported-platforms.md)
 * [Contribution](src/doc/contribution.md)

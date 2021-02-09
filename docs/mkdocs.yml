@@ -1,7 +1,7 @@
 site_name: Godot-Jvm
 docs_dir: src/doc
 
-repo_name: 'utopia-rise/godot-kotlin'
+repo_name: 'utopia-rise/godot-jvm'
 repo_url: 'https://github.com/utopia-rise/godot-jvm'
 
 theme:
@@ -14,8 +14,8 @@ theme:
 
 extra:
   social:
-    - type: 'github'
-      link: 'https://github.com/utopia-rise'
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/utopia-rise
 
 markdown_extensions:
   - codehilite:
@@ -26,14 +26,15 @@ markdown_extensions:
 
 nav:
   - Overview: index.md
-  - API differences: api-differences.md
-  - Supported platforms: supported-platforms.md
-  - Setting up:
-      - Gradle: setup/gradle.md
-      - IDE: setup/ide.md
+  - Getting started:
+      - Gradle: getting-started/gradle.md
+      - IDE: getting-started/ide.md
   - User guide:
     - Classes: user-guide/classes.md
-    - Methods: user-guide/methods.md
-    - Signals: user-guide/signals.md
     - Properties: user-guide/properties.md
+    - Signals: user-guide/signals.md
+    - Functions: user-guide/functions.md
+  - API differences: api-differences.md
+  - Versioning: versioning.md
+  - Supported platforms: supported-platforms.md
   - Contribution: contribution.md

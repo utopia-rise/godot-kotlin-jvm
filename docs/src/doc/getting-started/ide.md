@@ -3,11 +3,9 @@ We strongly recommend using [IntelliJ IDEA](https://jetbrains.com/idea) (The com
 The easiest way to install and update it is via the [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/) app.
 
 ## Intellij IDEA plugin
-We provide a [Intellij plugin](TODO()) which provides additional source code inspections, warnings, errors detection and quick fixes specific to the way this module works. We strongly recommend using it as it provides you with a lot of useful checks and helpers to detect errors before compilation.
+We provide a [Intellij plugin](TODO()) which provides additional source code inspections, warnings, error detection and quick fixes specific to the way this module works. We strongly recommend using it as it provides you with a lot of useful checks and helpers to detect errors before compilation.
 
 ## Importing
 Once your IDE is set up you can import your project.
 
-![Import](../assets/img/import.png)
-
-Click `Import Project` and select your project's `build.gradle.kts` file. The IDE will take some time to index your project, but once done you can start coding!
+Click `Open` and select your project's `build.gradle.kts` file. The IDE will take some time to index your project, but once done you can start coding!

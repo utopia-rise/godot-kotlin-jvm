@@ -28,7 +28,7 @@ rotation.y += 10f
 spatial.rotation = rotation
 ``` 
 
-This approach introduces a lot of boilerplate, so this binding provides a concise way of achieving the same behaviour.
+This approach introduces a lot of boilerplate, so this module provides a concise way of achieving the same behaviour.
 
 ```kotlin
 spatial.rotation {
@@ -46,7 +46,7 @@ array.get(index).asVector3().y += 10f
 dictionary.get("foo").asVector3().y += 5f
 ```
 
-To get the desired behaviour, you can re-assign the copy back or in a similar fashion as before, this binding provides a better alternative.
+To get the desired behaviour, you can re-assign the copy back or in a similar fashion as before, this module provides a better alternative.
 
 ```kotlin
 array.get<Vector3>(index) {
@@ -59,12 +59,12 @@ dictionary.get<Vector3>(index) {
 ``` 
 
 ## Enums and constants
-Godot enums are mapped to Kotlin enums, the generated enum exposes a `value` property that represents the value in Godot. Constants in Godot classes that represent an enum value (such as `Node.PAUSE_MODE_INHERIT`) are not present in this binding, please use the generated enum instead (`Node.PauseMode.INHERIT`).
+Godot enums are mapped to Kotlin enums, the generated enum exposes a `value` property that represents the value in Godot. Constants in Godot classes that represent an enum value (such as `Node.PAUSE_MODE_INHERIT`) are not present in this module, please use the generated enum instead (`Node.PauseMode.INHERIT`).
 
 ## Signals and exposed methods
-In GDScript, signals and methods can have any number of arguments, this is not possible in Kotlin as it is a statically typed language. At the moment, you can create signals and expose methods to Godot with at most 10 parameters.
+In GDScript, signals can have any number of arguments, this is not possible in Kotlin as it is a statically typed language. At the moment, you can create signals and expose them to Godot with at most 10 parameters.
 
-Additionally, signals are mapped to properties of type `Signal` and must start with a prefix `signal` (check [Signals](user-guide/signals.md) section for more details). The prefix is dropped during registration, so the signal `signalReverseChanged` is known in Godot as `reverseChanged`. This is done to avoid naming conflicts with other members of a class. There is no signal type in GDScript, signals are only referenced by name so they can have the same name as methods and/or properties in the same class. 
+Additionally, signals are mapped to properties of type `Signal` and must start with a prefix `signal` (check [Signals](user-guide/signals.md) section for more details). The prefix is dropped during registration and converted to snake_case, so the signal `signalReverseChanged` is known in Godot as `reverse_changed`. This is done to avoid naming conflicts with other members of a class. There is no signal type in GDScript, signals are only referenced by name so they can have the same name as methods and/or properties in the same class. 
 
 ## Renamed symbols
 To avoid confusion and conflict with Kotlin types, the following Godot symbols are renamed.
