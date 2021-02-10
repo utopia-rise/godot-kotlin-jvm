@@ -24,8 +24,3 @@ jobs:
           wrapper-directory: kt/
           build-root-directory: kt/
           arguments: godot-library:build
-      - name: Upload godot-bootstrap jar
-        uses: actions/upload-artifact@v1
-        with:
-          name: godot-bootstrap
-          path: kt/godot-library/build/libs/godot-bootstrap.jar
