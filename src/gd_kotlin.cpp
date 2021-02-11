@@ -77,7 +77,9 @@ void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) 
 
 void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types, jobjectArray p_singleton_names,
                                 jobjectArray p_method_names, jobjectArray p_types_of_methods) {
+#ifdef DEBUG_ENABLED
     LOG_VERBOSE("Starting to register managed engine types...")
+#endif
     jni::Env env(p_env);
 
     jni::JObjectArray engine_types{p_engine_types};
@@ -85,7 +87,9 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
         const String& class_name = env.from_jstring(static_cast<jni::JString>(engine_types.get(env, i)));
         GDKotlin::get_instance().engine_type_names.insert(i, class_name);
         TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name] = i;
+#ifdef DEBUG_ENABLED
         LOG_VERBOSE(vformat("Registered %s engine type with index %s.", class_name, i))
+#endif
     }
 
     jni::JObjectArray singleton_names{p_singleton_names};
@@ -112,12 +116,16 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
     j_object.delete_local_ref(env);
     engine_types.delete_local_ref(env);
     method_names.delete_local_ref(env);
+#ifdef DEBUG_ENABLED
     LOG_VERBOSE("Done registering managed engine types...")
+#endif
 }
 
 void GDKotlin::init() {
     if (Main::is_project_manager()) {
+#ifdef DEBUG_ENABLED
         LOG_VERBOSE("Detected that we're in the project manager. Won't initialize kotlin lang.")
+#endif
         return;
     }
     jni::InitArgs args;
@@ -214,7 +222,9 @@ void GDKotlin::init() {
         args.option("-Dcom.sun.management.jmxremote.local.only=false");
         args.option("-Dcom.sun.management.jmxremote.authenticate=false");
         args.option("-Dcom.sun.management.jmxremote.ssl=false");
+#ifdef DEBUG_ENABLED
         LOG_VERBOSE(vformat("Started JMX on port: %s", jvm_jmx_port))
+#endif
     }
 
     jni::Jvm::init(args);
@@ -256,12 +266,16 @@ void GDKotlin::init() {
 
     if (is_gc_activated) {
         if (is_gc_force_mode) {
+#ifdef DEBUG_ENABLED
             LOG_VERBOSE("Starting GC thread with force mode.")
+#endif
         }
         jni::MethodId start_method_id{garbage_collector_cls.get_method_id(env, "start", "(ZJ)V")};
         jvalue start_args[2] = {jni::to_jni_arg(is_gc_force_mode), jni::to_jni_arg(gc_thread_period_interval)};
         garbage_collector_instance.call_void_method(env, start_method_id, start_args);
+#ifdef DEBUG_ENABLED
         LOG_VERBOSE("GC thread started.")
+#endif
         is_gc_started = true;
     }
 
@@ -285,7 +299,9 @@ void GDKotlin::init() {
 
 void GDKotlin::finish() {
     if (Main::is_project_manager()) {
+#ifdef DEBUG_ENABLED
         LOG_VERBOSE("Detected that we're in the project manager. No cleanup necessary")
+#endif
         return;
     }
     auto env = jni::Jvm::current_env();
@@ -311,7 +327,9 @@ void GDKotlin::finish() {
         while (!garbage_collector_instance.call_boolean_method(env, has_closed_method_id)) {
             OS::get_singleton()->delay_usec(600000);
         }
+#ifdef DEBUG_ENABLED
         LOG_VERBOSE("JVM GC thread was closed")
+#endif
         jni::MethodId clean_up_method_id{garbage_collector_cls.get_method_id(env, "cleanUp", "()V")};
         garbage_collector_instance.call_void_method(env, clean_up_method_id);
     }

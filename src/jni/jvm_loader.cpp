@@ -76,7 +76,9 @@ String jni::JvmLoader::getPathToLocallyInstalledJvm() {
 
     String pathToLocallyInstalledJvmLib{javaHome + FILE_SEPARATOR + LIB_JVM_RELATIVE_PATH};
 
+#ifdef DEBUG_ENABLED
     LOG_VERBOSE(vformat("Godot-JVM: Trying to use locally installed jdk at %s", pathToLocallyInstalledJvmLib))
+#endif
 
     if (!FileAccess::exists(pathToLocallyInstalledJvmLib)) {
         LOG_ERROR(vformat("Godot-JVM: No jvm found at %s! Exiting...", pathToLocallyInstalledJvmLib))
