@@ -16,7 +16,7 @@ jni::JObject get_current_thread(jni::Env& env) {
     jni::JClass cls = env.find_class("java/lang/Thread");
     jni::MethodId current_thread_method = cls.get_static_method_id(env, "currentThread", "()Ljava/lang/Thread;");
     jni::JObject thread = cls.call_static_object_method(env, current_thread_method);
-    assert(!thread.isNull());
+    assert(!thread.is_null());
     return thread;
 }
 
@@ -26,10 +26,10 @@ jni::JObject to_java_url(jni::Env& env, const String& bootstrapJar) {
     jni::JObject path = env.new_string(bootstrapJar.utf8().get_data());
     jvalue args[1] = {jni::to_jni_arg(path)};
     jni::JObject file = cls.new_instance(env, ctor, args);
-    assert(!file.isNull());
+    assert(!file.is_null());
     jni::MethodId to_url_method = cls.get_method_id(env, "toURL", "()Ljava/net/URL;");
     jni::JObject url = file.call_object_method(env, to_url_method);
-    assert(!url.isNull());
+    assert(!url.is_null());
     return url;
 }
 
@@ -41,7 +41,7 @@ jni::JObject create_class_loader(jni::Env& env, const String& bootstrapJar) {
     jni::MethodId ctor = class_loader_cls.get_constructor_method_id(env, "([Ljava/net/URL;)V");
     jvalue args[1] = {jni::to_jni_arg(urls)};
     jni::JObject class_loader = class_loader_cls.new_instance(env, ctor, args);
-    assert(!class_loader_cls.isNull());
+    assert(!class_loader_cls.is_null());
     return class_loader;
 }
 
@@ -245,7 +245,7 @@ void GDKotlin::init() {
     jni::FieldId transfer_ctx_instance_field = transfer_ctx_cls.get_static_field_id(env, "INSTANCE",
                                                                                     "Lgodot/core/TransferContext;");
     jni::JObject transfer_ctx_instance = transfer_ctx_cls.get_static_object_field(env, transfer_ctx_instance_field);
-    JVM_CRASH_COND_MSG(transfer_ctx_instance.isNull(), "Failed to retrieve TransferContext instance")
+    JVM_CRASH_COND_MSG(transfer_ctx_instance.is_null(), "Failed to retrieve TransferContext instance")
     transfer_context = new TransferContext(transfer_ctx_instance, class_loader);
     if (jvm_to_engine_shared_buffer_size != DEFAULT_SHARED_BUFFER_SIZE) {
         jni::MethodId set_buffer_size_method{transfer_ctx_cls.get_method_id(env, "setBufferSize", "(I)V")};
@@ -260,7 +260,7 @@ void GDKotlin::init() {
     jni::JObject garbage_collector_instance{
             garbage_collector_cls.get_static_object_field(env, garbage_collector_instance_field)
     };
-    JVM_CRASH_COND_MSG(garbage_collector_instance.isNull(), "Failed to retrieve GarbageCollector instance")
+    JVM_CRASH_COND_MSG(garbage_collector_instance.is_null(), "Failed to retrieve GarbageCollector instance")
 
     BridgesManager::get_instance().initialize_bridges(env, class_loader);
 
@@ -320,7 +320,7 @@ void GDKotlin::finish() {
         jni::JObject garbage_collector_instance{
                 garbage_collector_cls.get_static_object_field(env, garbage_collector_instance_field)
         };
-        JVM_CRASH_COND_MSG(garbage_collector_instance.isNull(), "Failed to retrieve GarbageCollector instance")
+        JVM_CRASH_COND_MSG(garbage_collector_instance.is_null(), "Failed to retrieve GarbageCollector instance")
         jni::MethodId close_method_id{garbage_collector_cls.get_method_id(env, "close", "()V")};
         garbage_collector_instance.call_void_method(env, close_method_id);
         jni::MethodId has_closed_method_id{garbage_collector_cls.get_method_id(env, "isClosed", "()Z")};

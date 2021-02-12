@@ -60,7 +60,7 @@ namespace jni {
         jboolean call_boolean_method(Env& env, MethodId method, jvalue* args = {});
         void call_void_method(Env& env, MethodId method, jvalue* args = {});
 
-        bool isNull();
+        bool is_null();
     };
 
     class JString : public JObject {

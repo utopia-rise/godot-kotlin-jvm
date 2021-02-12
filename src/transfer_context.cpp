@@ -66,7 +66,7 @@ SharedBuffer* TransferContext::get_buffer(jni::Env& p_env) {
 
         jni::MethodId method = get_method_id(p_env, jni_methods.GET_BUFFER);
         jni::JObject buffer = wrapped.call_object_method(p_env, method);
-        assert(!buffer.isNull());
+        assert(!buffer.is_null());
         auto* address{static_cast<uint8_t*>(p_env.get_direct_buffer_address(buffer))};
         shared_buffer = SharedBuffer {
                 address,

@@ -24,15 +24,15 @@
 namespace jni {
     class JvmLoader {
     public:
-        static CreateJavaVM getCreateJvmFunction();
-        static GetCreatedJavaVMs getGetCreatedJavaVMsFunction();
-        static void closeJvmLib();
+        static CreateJavaVM get_create_jvm_function();
+        static GetCreatedJavaVMs get_get_created_java_vm_function();
+        static void close_jvm_lib();
 
     private:
         static void *jvmLib;
-        static void loadJvmLib();
-        static String getJvmLibPath();
-        static String getPathToLocallyInstalledJvm();
+        static void load_jvm_lib();
+        static String get_jvm_lib_path();
+        static String get_path_to_locally_installed_jvm();
     };
 }
 

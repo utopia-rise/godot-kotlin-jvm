@@ -7,8 +7,8 @@
 
 void* jni::JvmLoader::jvmLib{nullptr};
 
-void jni::JvmLoader::loadJvmLib() {
-    String libPath{getJvmLibPath()};
+void jni::JvmLoader::load_jvm_lib() {
+    String libPath{get_jvm_lib_path()};
 
     if (OS::get_singleton()->open_dynamic_library(libPath, jvmLib) != OK) {
         LOG_ERROR(String("Failed to load the jvm dynamic library from path ") + libPath + "!")
@@ -16,15 +16,15 @@ void jni::JvmLoader::loadJvmLib() {
     }
 }
 
-void jni::JvmLoader::closeJvmLib() {
+void jni::JvmLoader::close_jvm_lib() {
     if (OS::get_singleton()->close_dynamic_library(jvmLib) != OK) {
         LOG_ERROR("Failed to close the jvm dynamic library!")
     }
 }
 
-jni::CreateJavaVM jni::JvmLoader::getCreateJvmFunction() {
+jni::CreateJavaVM jni::JvmLoader::get_create_jvm_function() {
     if (jvmLib == nullptr) {
-        loadJvmLib();
+        load_jvm_lib();
     }
     void* createJavaVMSymbolHandle;
     if (OS::get_singleton()->get_dynamic_library_symbol_handle(jvmLib, "JNI_CreateJavaVM", createJavaVMSymbolHandle) !=
@@ -35,9 +35,9 @@ jni::CreateJavaVM jni::JvmLoader::getCreateJvmFunction() {
     return reinterpret_cast<CreateJavaVM>(createJavaVMSymbolHandle);
 }
 
-jni::GetCreatedJavaVMs jni::JvmLoader::getGetCreatedJavaVMsFunction() {
+jni::GetCreatedJavaVMs jni::JvmLoader::get_get_created_java_vm_function() {
     if (jvmLib == nullptr) {
-        loadJvmLib();
+        load_jvm_lib();
     }
     void* getCreatedJavaVMsSymbolHandle;
     if (OS::get_singleton()->get_dynamic_library_symbol_handle(jvmLib, "JNI_GetCreatedJavaVMs",
@@ -48,10 +48,10 @@ jni::GetCreatedJavaVMs jni::JvmLoader::getGetCreatedJavaVMsFunction() {
     return reinterpret_cast<GetCreatedJavaVMs>(getCreatedJavaVMsSymbolHandle);
 }
 
-String jni::JvmLoader::getJvmLibPath() {
+String jni::JvmLoader::get_jvm_lib_path() {
     if (Engine::get_singleton()->is_editor_hint()) {
         LOG_INFO("Godot-JVM: Editor mode, loading jvm from JAVA_HOME")
-        return getPathToLocallyInstalledJvm();
+        return get_path_to_locally_installed_jvm();
     } else {
         String embeddedJrePath{
                 ProjectSettings::get_singleton()->globalize_path(vformat("res://jre/%s", LIB_JVM_RELATIVE_PATH))};
@@ -60,13 +60,13 @@ String jni::JvmLoader::getJvmLibPath() {
 #ifdef DEBUG_ENABLED
             LOG_WARNING(vformat("Godot-JVM: You really should embedd a jre in your game with jlink! See the documentation if you don't know how to do that"))
 #endif
-            return getPathToLocallyInstalledJvm();
+            return get_path_to_locally_installed_jvm();
         }
         return embeddedJrePath;
     }
 }
 
-String jni::JvmLoader::getPathToLocallyInstalledJvm() {
+String jni::JvmLoader::get_path_to_locally_installed_jvm() {
     String javaHome{getenv("JAVA_HOME")};
 
     if (javaHome.empty()) {
