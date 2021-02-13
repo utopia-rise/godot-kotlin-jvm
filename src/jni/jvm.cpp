@@ -20,7 +20,7 @@ namespace jni {
     void Jvm::destroy() {
         vm->DetachCurrentThread();
         vm->DestroyJavaVM();
-        JvmLoader::closeJvmLib();
+        JvmLoader::close_jvm_lib();
     }
 
     JavaVM* Jvm::create(const InitArgs& initArgs) {
@@ -37,7 +37,7 @@ namespace jni {
 
         JavaVM* vm;
         JNIEnv* env;
-        auto result = JvmLoader::getCreateJvmFunction()(&vm, (void**) &env, (void*) &args);
+        auto result = JvmLoader::get_create_jvm_function()(&vm, (void**) &env, (void*) &args);
         delete[] options;
         if (result != JNI_OK) {
             throw JniError("Failed to create a new vm!");
@@ -48,7 +48,7 @@ namespace jni {
     JavaVM* Jvm::get_existing() {
         JavaVM* buffer[1];
         jsize count;
-        auto result = JvmLoader::getGetCreatedJavaVMsFunction()(buffer, 1, &count);
+        auto result = JvmLoader::get_get_created_java_vm_function()(buffer, 1, &count);
         if (result != JNI_OK) {
             throw JniError("Failed to retrieve existing vm!");
         }

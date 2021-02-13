@@ -2,9 +2,18 @@
 #include "kotlin_language.h"
 #include "kotlin_instance.h"
 #include "gd_kotlin.h"
+#include "logging.h"
 
 bool KotlinScript::can_instance() const {
+#ifdef TOOLS_ENABLED
+    if (Engine::get_singleton()->is_editor_hint()) {
+        return false;
+    } else {
+        return true;
+    }
+#else
     return true;
+#endif
 }
 
 Ref<Script> KotlinScript::get_base_script() const {
@@ -21,7 +30,9 @@ StringName KotlinScript::get_instance_base_type() const {
 
 ScriptInstance* KotlinScript::instance_create(Object* p_this) {
     KtClass* kt_class { get_kotlin_class() };
-    print_verbose(vformat("Try to create %s instance.", kt_class->name));
+#ifdef DEBUG_ENABLED
+    LOG_VERBOSE(vformat("Try to create %s instance.", kt_class->name))
+#endif
     jni::Env env = jni::Jvm::current_env();
     KtObject *wrapped = kt_class->create_instance(env, nullptr, 0, p_this);
     return memnew(KotlinInstance(wrapped, p_this, kt_class));
@@ -141,6 +152,59 @@ Variant KotlinScript::_new(const Variant **p_args, int p_argcount, Variant::Call
     } else {
         return owner;
     }
+}
+
+PlaceHolderScriptInstance* KotlinScript::placeholder_instance_create(Object* p_this) {
+#ifdef TOOLS_ENABLED
+    PlaceHolderScriptInstance* placeholder{
+        memnew(PlaceHolderScriptInstance(&KotlinLanguage::get_instance(), Ref<Script>(this), p_this))
+    };
+    p_this->set_script_instance(placeholder);
+    placeholders.insert(placeholder);
+    _update_exports(placeholder);
+    return placeholder;
+#else
+    return nullptr;
+#endif
+}
+
+void KotlinScript::update_exports() {
+#ifdef TOOLS_ENABLED
+    for (Set<PlaceHolderScriptInstance *>::Element *E = placeholders.front(); E; E = E->next()) {
+        _update_exports(E->get());
+    }
+#endif
+}
+
+void KotlinScript::_update_exports(PlaceHolderScriptInstance* placeholder) const {
+#ifdef TOOLS_ENABLED
+    List<PropertyInfo> properties;
+    Map<StringName, Variant> default_values;
+    get_script_property_list(&properties);
+    for (int i = 0; i < properties.size(); ++i) {
+        StringName property_name{properties[i].name};
+        Variant ret;
+        get_property_default_value(property_name, ret);
+        default_values[property_name] = ret;
+    }
+    placeholder->update(properties, default_values);
+#endif
+}
+
+void KotlinScript::_placeholder_erased(PlaceHolderScriptInstance* p_placeholder) {
+#ifdef TOOLS_ENABLED
+    placeholders.erase(p_placeholder);
+#endif
+}
+
+KotlinScript::~KotlinScript() {
+#ifdef TOOLS_ENABLED
+    for (Set<PlaceHolderScriptInstance *>::Element *E = placeholders.front(); E; E = E->next()) {
+        memdelete(E->get());
+    }
+
+    placeholders.clear();
+#endif
 }
 
 void KotlinScript::_bind_methods() {

@@ -7,17 +7,32 @@
 
 #include "jvm.h"
 
+#ifdef __linux__
+#define LIB_JVM_RELATIVE_PATH "lib/server/libjvm.so"
+#define FILE_SEPARATOR "/"
+#elif __APPLE__
+#include <TargetConditionals.h>
+    #if TARGET_OS_MAC
+        #define LIB_JVM_RELATIVE_PATH "lib/server/libjvm.dylib"
+        #define FILE_SEPARATOR "/"
+    #endif
+#elif defined _WIN32 || defined _WIN64
+#define FILE_SEPARATOR "\\"
+#define LIB_JVM_RELATIVE_PATH "bin\\server\\jvm.dll"
+#endif
+
 namespace jni {
     class JvmLoader {
     public:
-        static CreateJavaVM getCreateJvmFunction();
-        static GetCreatedJavaVMs getGetCreatedJavaVMsFunction();
-        static void closeJvmLib();
+        static CreateJavaVM get_create_jvm_function();
+        static GetCreatedJavaVMs get_get_created_java_vm_function();
+        static void close_jvm_lib();
 
     private:
         static void *jvmLib;
-        static void loadJvmLib();
-        static String getJvmLibPath();
+        static void load_jvm_lib();
+        static String get_jvm_lib_path();
+        static String get_path_to_locally_installed_jvm();
     };
 }
 

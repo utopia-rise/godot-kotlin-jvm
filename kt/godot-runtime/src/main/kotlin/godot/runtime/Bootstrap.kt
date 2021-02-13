@@ -1,7 +1,12 @@
 package godot.runtime
 
 import godot.core.KtClass
+import godot.core.KtObject
 import godot.core.TypeManager
+import godot.util.err
+import godot.util.info
+import godot.util.warning
+import java.io.File
 import java.net.URL
 import java.net.URLClassLoader
 import java.nio.file.FileSystems
@@ -14,21 +19,29 @@ import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
 
 class Bootstrap {
-    private lateinit var registry: ClassRegistry
+    private var registry: ClassRegistry? = null
     private lateinit var classloader: URLClassLoader
     private lateinit var serviceLoader: ServiceLoader<Entry>
     private var executor: ScheduledExecutorService? = null
-    private var watchService: WatchService? = null;
+    private var watchService: WatchService? = null
 
     fun init(isEditor: Boolean, projectDir: String) {
         val libsDir = Paths.get(projectDir, "build/libs")
         val mainJarPath = libsDir.resolve("main.jar")
-        val mainJarUrl = mainJarPath.toUri().toURL()
-        doInit(mainJarUrl)
+
+        if (File(mainJarPath.toString()).exists()) {
+            doInit(mainJarPath.toUri().toURL())
+        } else {
+            if (isEditor) {
+                ::warning
+            } else {
+                ::err
+            }.invoke("No main.jar detected. No classes will be loaded. Build the gradle project to load classes")
+        }
 
         if (isEditor) {
             watchService = FileSystems.getDefault().newWatchService()
-            val watchKey = libsDir.register(
+            val watchKey = getBuildLockDir(projectDir).toPath().register(
                 watchService,
                 StandardWatchEventKinds.ENTRY_CREATE,
                 StandardWatchEventKinds.ENTRY_DELETE,
@@ -44,9 +57,17 @@ class Bootstrap {
             executor!!.scheduleAtFixedRate({
                 val events = watchKey.pollEvents()
                 if (events.isNotEmpty()) {
-                    println("Changes detected, reloading classes ...")
-                    unloadClasses(registry.classes.toTypedArray())
-                    doInit(mainJarUrl)
+                    if (File(getBuildLockDir(projectDir), "buildLock.lock").exists()) {
+                        return@scheduleAtFixedRate
+                    }
+                    info("Changes detected, reloading classes ...")
+                    clearClassesCache()
+
+                    if (File(mainJarPath.toString()).exists()) {
+                        doInit(mainJarPath.toUri().toURL())
+                    } else {
+                        warning("No main.jar detected. No classes will be loaded. Build the project to load classes")
+                    }
                 }
             }, 3, 3, TimeUnit.SECONDS)
         }
@@ -55,8 +76,7 @@ class Bootstrap {
     fun finish() {
         executor?.shutdown()
         watchService?.close()
-        unloadClasses(registry.classes.toTypedArray())
-        registry.classes.clear()
+        clearClassesCache()
     }
 
     /**
@@ -75,19 +95,49 @@ class Bootstrap {
 
         if (entry.isPresent) {
             with(entry.get()) {
-                val context = Entry.Context(registry)
+                val context = Entry.Context(registry!!)
                 context.initEngineTypes()
                 registerManagedEngineTypes(
-                        TypeManager.engineTypeNames.toTypedArray(),
-                        TypeManager.engineSingletonsNames.toTypedArray(),
-                        TypeManager.engineTypeMethod.map { it.second }.toTypedArray(),
-                        TypeManager.engineTypeMethod.map { it.first }.toTypedArray()
+                    TypeManager.engineTypeNames.toTypedArray(),
+                    TypeManager.engineSingletonsNames.toTypedArray(),
+                    TypeManager.engineTypeMethod.map { it.second }.toTypedArray(),
+                    TypeManager.engineTypeMethod.map { it.first }.toTypedArray()
                 )
                 context.init()
             }
-            loadClasses(registry.classes.toTypedArray())
+            loadClasses(registry!!.classes.toTypedArray())
         } else {
-            System.err.println("Unable to find Entry class, no classes will be loaded")
+            err("Unable to find Entry class, no classes will be loaded")
+        }
+    }
+
+    private fun getBuildLockDir(projectDir: String): File {
+        val name = "${File(projectDir).name}_buildLockDir" //keep the same in the gradle plugin!
+        val tmpDir = System.getProperty("java.io.tmpdir")
+        val lockDir = File(tmpDir, name)
+
+        return if (lockDir.exists() && lockDir.isDirectory) {
+            lockDir
+        } else {
+            lockDir.delete()
+            lockDir.mkdirs()
+            lockDir
+        }
+    }
+
+    private fun clearClassesCache() {
+        registry?.let {
+            unloadClasses(it.classes.toTypedArray())
+            it.classes.forEach { clazz ->
+                clazz.properties.forEach { property ->
+                    val defaultValue = property._defaultValue
+                    if (defaultValue is KtObject && !defaultValue.____DO_NOT_TOUCH_THIS_isRef____() &&
+                            !defaultValue.____DO_NOT_TOUCH_THIS_isSingleton____()) {
+                        defaultValue.free()
+                    }
+                }
+            }
+            it.classes.clear()
         }
     }
 
@@ -95,9 +145,9 @@ class Bootstrap {
     private external fun unloadClasses(classes: Array<KtClass<*>>)
 
     private external fun registerManagedEngineTypes(
-            engineTypesNames: Array<String>,
-            engineSingletonNames: Array<String>,
-            engineTypeMethodNames: Array<String>,
-            typeOfMethods: Array<Int>
+        engineTypesNames: Array<String>,
+        engineSingletonNames: Array<String>,
+        engineTypeMethodNames: Array<String>,
+        typeOfMethods: Array<Int>
     )
 }

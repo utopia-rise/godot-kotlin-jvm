@@ -1,6 +1,7 @@
 package godot.core
 
 import godot.util.VoidPtr
+import godot.util.info
 import java.lang.ref.WeakReference
 import java.time.Duration
 import java.time.Instant
@@ -77,7 +78,7 @@ object GarbageCollector {
     fun close() {
         executor.shutdown()
         gcState = GCState.CLOSED
-        println("Closing GC thread ...")
+        info("Closing GC thread")
     }
 
     fun cleanUp() {

@@ -51,14 +51,14 @@ class ClassBuilderDsl<T : KtObject>(
         constructors[constructor.parameterCount] = constructor
     }
 
-    fun <P: Any> property(
+    fun <P : Any?> property(
         kProperty: KMutableProperty1<T, P>,
         variantType: VariantType,
         type: VariantType,
         className: String,
         hint: PropertyHint = PropertyHint.NONE,
         hintString: String = "",
-        defaultArgument: P,
+        defaultArgument: P?,
         isRef: Boolean = false
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
@@ -90,18 +90,18 @@ class ClassBuilderDsl<T : KtObject>(
         }
 
         properties[propertyName] = KtEnumProperty(
-                KtPropertyInfo(
-                        VariantType.LONG,
-                        propertyName,
-                        "Int",
-                        PropertyHint.ENUM,
-                        enumValues<P>().joinToString { it.name }
-                ),
-                kProperty,
-                //TODO change when nullable enum are here.
-                defaultValue,
-                { enum: P -> enum.ordinal },
-                { i -> enumValues<P>()[i] }
+            KtPropertyInfo(
+                VariantType.LONG,
+                propertyName,
+                "Int",
+                PropertyHint.ENUM,
+                enumValues<P>().joinToString { it.name }
+            ),
+            kProperty,
+            //TODO change when nullable enum are here.
+            defaultValue,
+            { enum: P? -> enum?.ordinal ?: 1 },
+            { i -> enumValues<P>()[i] }
         )
     }
 

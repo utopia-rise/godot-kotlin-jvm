@@ -1,6 +1,9 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     kotlin("jvm")
     id("com.utopia-rise.api-generator")
+    id("com.github.johnrengelman.shadow") version "6.1.0"
 }
 
 apiGenerator {
@@ -9,10 +12,28 @@ apiGenerator {
     isNative.set(false)
 }
 
-tasks.compileKotlin {
-    dependsOn(tasks.generateAPI)
-}
-
 dependencies {
     api(project(":godot-runtime"))
+}
+
+tasks {
+    build.get().finalizedBy(shadowJar)
+
+    val copyBootstrapJar by creating(Copy::class.java) {
+        group = "godot-jvm"
+        from(shadowJar)
+        destinationDir = File("${projectDir.absolutePath}/../../../../bin/")
+        dependsOn(shadowJar)
+    }
+
+    withType<ShadowJar> {
+        archiveBaseName.set("godot-bootstrap")
+        archiveVersion.set("")
+        archiveClassifier.set("")
+        finalizedBy(copyBootstrapJar)
+    }
+
+    compileKotlin {
+        dependsOn(generateAPI)
+    }
 }

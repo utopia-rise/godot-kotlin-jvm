@@ -52,7 +52,7 @@ namespace jni {
         p_env.check_exceptions();
     }
 
-    bool JObject::isNull() {
+    bool JObject::is_null() {
         return obj == nullptr;
     }
 

@@ -2,6 +2,33 @@ name: Check PR - Engine Editor Debug And Tests
 on: [pull_request]
 
 jobs:
+  build-godot-library:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        include:
+          - os: ubuntu-latest
+            java-version: 11
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v2
+      - name: Checkout submodules
+        uses: snickerbockers/submodules-init@v4
+      - name: Set up JDK ${{ matrix.java-version }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java-version }}
+      - uses: eskatos/gradle-command-action@v1
+        with:
+          wrapper-directory: kt/
+          build-root-directory: kt/
+          arguments: godot-library:build
+      - name: Upload godot-bootstrap jar
+        uses: actions/upload-artifact@v1
+        with:
+          name: godot-bootstrap
+          path: kt/godot-library/build/libs/godot-bootstrap.jar
   build-editor-debug:
     strategy:
       matrix:
@@ -49,7 +76,7 @@ jobs:
           name: osx-editor-debug-app
           path: bin/godot.osx.tools.64
   test-editor-debug:
-    needs: build-editor-debug
+    needs: [build-editor-debug, build-godot-library]
     strategy:
       matrix:
         os: [macos-latest]
@@ -76,8 +103,13 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: osx-editor-debug-app
+      - name: Download godot-bootstrap
+        uses: actions/download-artifact@v1
+        with:
+          name: godot-bootstrap
       - name: Run Tests
         run: |
+          cp godot-bootstrap/godot-bootstrap.jar osx-editor-debug-app/
           cd harness/tests/
           chmod +x run_godot_kotlin_tests.sh
           chmod +x ../../osx-editor-debug-app/godot.osx.tools.64

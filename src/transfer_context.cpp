@@ -3,6 +3,7 @@
 #include "transfer_context.h"
 #include "gd_kotlin.h"
 #include "kotlin_instance.h"
+#include "logging.h"
 
 JNI_INIT_STATICS_FOR_CLASS(TransferContext)
 
@@ -65,7 +66,7 @@ SharedBuffer* TransferContext::get_buffer(jni::Env& p_env) {
 
         jni::MethodId method = get_method_id(p_env, jni_methods.GET_BUFFER);
         jni::JObject buffer = wrapped.call_object_method(p_env, method);
-        assert(!buffer.isNull());
+        assert(!buffer.is_null());
         auto* address{static_cast<uint8_t*>(p_env.get_direct_buffer_address(buffer))};
         shared_buffer = SharedBuffer {
                 address,
@@ -118,7 +119,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jint p
     uint32_t args_size{read_args_size(env, buffer)};
 
 #ifdef DEBUG_ENABLED
-    ERR_FAIL_COND_MSG(args_size > MAX_ARGS_SIZE, vformat("Cannot have more than %s arguments for method call.", MAX_ARGS_SIZE))
+    JVM_CRASH_COND_MSG(args_size > MAX_ARGS_SIZE, vformat("Cannot have more than %s arguments for method call.", MAX_ARGS_SIZE))
 #endif
 
     read_args_to_array(buffer, variant_args, args_size);
@@ -129,14 +130,14 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jint p
     MethodBind* methodBind{GDKotlin::get_instance().engine_type_method[method_index]};
 
 #ifdef DEBUG_ENABLED
-    ERR_FAIL_COND_MSG(!methodBind, vformat("Cannot find method with id %s", method_index))
+    JVM_CRASH_COND_MSG(!methodBind, vformat("Cannot find method with id %s", method_index))
 #endif
 
     Variant::CallError r_error{Variant::CallError::CALL_OK};
     const Variant& ret_value{methodBind->call(ptr, variant_args_ptr, args_size, r_error)};
 
 #ifdef DEBUG_ENABLED
-    ERR_FAIL_COND_MSG(r_error.error != Variant::CallError::CALL_OK, vformat("Call to method with id %s failed.", method_index))
+    JVM_CRASH_COND_MSG(r_error.error != Variant::CallError::CALL_OK, vformat("Call to method with id %s failed.", method_index))
 #endif
 
     write_return_value(buffer, ret_value);
@@ -152,7 +153,7 @@ jlong TransferContext::invoke_constructor(JNIEnv *p_raw_env, jobject p_instance,
     local_ref.delete_local_ref(env);
 
 #ifdef DEBUG_ENABLED
-    ERR_FAIL_COND_V_MSG(!ptr, 0, vformat("Failed to instantiate class %s", class_name))
+    JVM_ERR_FAIL_COND_V_MSG(!ptr, 0, vformat("Failed to instantiate class %s", class_name))
 #endif
 
     return reinterpret_cast<uintptr_t>(ptr);
@@ -169,6 +170,8 @@ jlong TransferContext::get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint
 void TransferContext::set_script(JNIEnv *p_raw_env, jobject p_instance, jlong p_raw_ptr, jstring p_class_name,
                                  jobject p_object, jobject p_class_loader) {
     jni::Env env(p_raw_env);
+    
+    //TODO : Register user types name in a Vector<StringName> and send an indices to avoid string operations
     StringName class_name = env.from_jstring(jni::JString(p_class_name));
     auto* owner = reinterpret_cast<Object*>(p_raw_ptr);
     auto* kt_object = new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader), class_name);
@@ -182,7 +185,7 @@ void TransferContext::free_object(JNIEnv *p_raw_env, jobject p_instance, jlong p
     auto* owner = reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr));
 
 #ifdef DEBUG_ENABLED
-    ERR_FAIL_COND_MSG(Object::cast_to<Reference>(owner), "Can't 'free' a reference.")
+    JVM_CRASH_COND_MSG(Object::cast_to<Reference>(owner), "Can't 'free' a reference.")
 #endif
 
     memdelete(owner);
