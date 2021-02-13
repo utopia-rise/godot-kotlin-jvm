@@ -6,7 +6,7 @@ import com.intellij.openapi.editor.markup.GutterIconRenderer
 import com.intellij.openapi.util.IconLoader
 import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.LeafPsiElement
-import godot.intellij.plugin.data.cache.SignalConnectionCacheProvider
+import godot.intellij.plugin.data.cache.signalconnection.SignalConnectionCacheProvider
 import godot.intellij.plugin.extension.isSignal
 import godot.intellij.plugin.ui.dialog.IncomingSignalConnectionsDialog
 import godot.intellij.plugin.ui.dialog.OutgoingSignalConnectionsDialog

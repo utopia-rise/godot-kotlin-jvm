@@ -2,6 +2,7 @@ package godot.intellij.plugin.listener
 
 import com.intellij.openapi.project.DumbService
 import com.intellij.openapi.project.Project
+import com.intellij.psi.PsiDirectory
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiManager
 import com.intellij.psi.PsiTreeChangeEvent
@@ -9,10 +10,12 @@ import com.intellij.psi.search.FileTypeIndex
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.util.indexing.FileBasedIndex
 import godot.intellij.plugin.ProjectDisposable
-import godot.intellij.plugin.data.cache.RegisteredClassNameCacheProvider
+import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCacheProvider
+import godot.intellij.plugin.refactor.SceneAction
 import godot.intellij.plugin.wrapper.PsiTreeChangeListenerKt
 import org.jetbrains.kotlin.idea.KotlinFileType
 import org.jetbrains.kotlin.idea.KotlinLanguage
+import org.jetbrains.kotlin.idea.refactoring.fqName.getKotlinFqName
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtFile
 
@@ -61,6 +64,30 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
                                     psiFileChanged(psiFile)
                                 }
                             }
+                    }
+
+                    override fun childMoved(event: PsiTreeChangeEvent) {
+                        val containingFile = event.child.containingFile
+                        if (containingFile.language == KotlinLanguage.INSTANCE && containingFile is KtFile) {
+                            val isAnyClassRegisteredInFile = containingFile
+                                .classes
+                                .any { ktClass ->
+                                    ktClass
+                                        .annotations
+                                        .any { ktAnnotation -> ktAnnotation.qualifiedName == "godot.annotation.RegisterClass" }
+                                }
+                            if (isAnyClassRegisteredInFile) {
+                                SceneAction.scriptMoved(
+                                    project = project,
+                                    oldPath = (event.oldParent as? PsiDirectory)?.virtualFile?.path ?: return,
+                                    newPath = event.child.containingFile.parent?.virtualFile?.path ?: return,
+                                    fqNames = (event.child.containingFile as? KtFile)
+                                        ?.classes
+                                        ?.mapNotNull { it.getKotlinFqName()?.asString() }
+                                        ?: return
+                                )
+                            }
+                        }
                     }
                 },
                 this

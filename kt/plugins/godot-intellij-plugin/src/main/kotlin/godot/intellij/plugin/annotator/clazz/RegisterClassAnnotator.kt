@@ -4,7 +4,7 @@ import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
-import godot.intellij.plugin.data.cache.RegisteredClassNameCacheProvider
+import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCacheProvider
 import godot.intellij.plugin.extension.anyFunctionHasAnnotation
 import godot.intellij.plugin.extension.anyPropertyHasAnnotation
 import godot.intellij.plugin.extension.getRegisteredClassName

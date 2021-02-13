@@ -1,4 +1,4 @@
-package godot.intellij.plugin.data.cache
+package godot.intellij.plugin.data.cache.classname
 
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile

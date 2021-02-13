@@ -1,4 +1,4 @@
-package godot.intellij.plugin.data.cache
+package godot.intellij.plugin.data.cache.signalconnection
 
 import com.intellij.openapi.project.Project
 import com.utopiarise.serialization.godot.model.SignalConnection
