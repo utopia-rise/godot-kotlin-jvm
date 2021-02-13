@@ -351,6 +351,7 @@ void GDKotlin::finish() {
 
     engine_type_method.clear();
     engine_type_names.clear();
+    user_type_names.clear();
 
     TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.clear();
     class_loader.delete_global_ref(env);
