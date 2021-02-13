@@ -15,7 +15,7 @@ elif [[ "$jvm_closed" == "false" ]]; then
     echo "ERROR: JVM has not closed properly !"
     exit 1
 else
-    echo "ERROR: Some assertions failed !"
+    echo "All tests OK !"
     exit 0
 fi
 ); exit $?
