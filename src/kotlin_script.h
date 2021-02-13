@@ -8,11 +8,14 @@ class KotlinScript : public Script {
 
 private:
     String source;
-    KtClass* kt_class;
+
+    // Stored kotlin_class should be nullptr when in TOOL
+    KtClass* kotlin_class;
+    KtClass* get_kotlin_class() const;
 
 public:
     KotlinScript();
-    ~KotlinScript() override;
+    ~KotlinScript() override = default;
 
     Variant _new(const Variant **p_args, int p_argcount, Variant::CallError &r_error);
 

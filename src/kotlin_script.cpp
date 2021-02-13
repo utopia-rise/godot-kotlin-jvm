@@ -4,6 +4,12 @@
 #include "gd_kotlin.h"
 #include "logging.h"
 
+#include "kotlin_script.h"
+#include "kotlin_language.h"
+#include "kotlin_instance.h"
+#include "gd_kotlin.h"
+#include "logging.h"
+
 bool KotlinScript::can_instance() const {
 #ifdef TOOLS_ENABLED
     if (Engine::get_singleton()->is_editor_hint()) {
@@ -21,14 +27,15 @@ Ref<Script> KotlinScript::get_base_script() const {
 }
 
 StringName KotlinScript::get_instance_base_type() const {
-    if (kt_class) {
-        return kt_class->base_godot_class;
+    if (KtClass* kotlin_class{get_kotlin_class()}) {
+        return kotlin_class->base_godot_class;
     }
     // not found
     return StringName();
 }
 
 ScriptInstance* KotlinScript::instance_create(Object* p_this) {
+    KtClass* kt_class { get_kotlin_class() };
 #ifdef DEBUG_ENABLED
     LOG_VERBOSE(vformat("Try to create %s instance.", kt_class->name))
 #endif
@@ -61,11 +68,12 @@ Error KotlinScript::reload(bool p_keep_state) {
 }
 
 bool KotlinScript::has_method(const StringName& p_method) const {
+    KtClass* kt_class{get_kotlin_class()};
     return kt_class != nullptr && kt_class->get_method(p_method) != nullptr;
 }
 
 MethodInfo KotlinScript::get_method_info(const StringName& p_method) const {
-    if (kt_class) {
+    if (KtClass* kt_class{get_kotlin_class()}) {
         if (KtFunction* method{kt_class->get_method(p_method)}) {
             return method->get_member_info();
         }
@@ -86,18 +94,19 @@ ScriptLanguage* KotlinScript::get_language() const {
 }
 
 bool KotlinScript::has_script_signal(const StringName& p_signal) const {
+    KtClass* kt_class{get_kotlin_class()};
     return kt_class != nullptr && kt_class->get_signal(p_signal) != nullptr;
 }
 
 void KotlinScript::get_script_signal_list(List<MethodInfo>* r_signals) const {
-    if (kt_class) {
+    if (KtClass* kt_class{get_kotlin_class()}) {
         kt_class->get_signal_list(r_signals);
     }
 }
 
 bool KotlinScript::get_property_default_value(const StringName& p_property, Variant& r_value) const {
     bool has_default{false};
-    if (kt_class) {
+    if (KtClass* kt_class{get_kotlin_class()}) {
         if (KtProperty* property{kt_class->get_property(p_property)}) {
             property->get_default_value(r_value);
             has_default = true;
@@ -107,21 +116,31 @@ bool KotlinScript::get_property_default_value(const StringName& p_property, Vari
 }
 
 void KotlinScript::get_script_method_list(List<MethodInfo>* p_list) const {
+    KtClass* kt_class{get_kotlin_class()};
     if (kt_class) {
         kt_class->get_method_list(p_list);
     }
 }
 
 void KotlinScript::get_script_property_list(List<PropertyInfo>* p_list) const {
+    KtClass* kt_class{get_kotlin_class()};
     if (kt_class) {
         kt_class->get_property_list(p_list);
     }
 }
 
+KtClass* KotlinScript::get_kotlin_class() const {
+#ifdef TOOLS_ENABLED
+    return GDKotlin::get_instance().find_class(get_path());
+#else
+    return kotlin_class;
+#endif
+}
+
 Variant KotlinScript::_new(const Variant **p_args, int p_argcount, Variant::CallError &r_error) {
     r_error.error = Variant::CallError::CALL_OK;
 
-    Object* owner{ClassDB::instance(kt_class->base_godot_class)};
+    Object* owner{ClassDB::instance(get_kotlin_class()->base_godot_class)};
 
     REF ref;
     auto* r{Object::cast_to<Reference>(owner)};
@@ -147,23 +166,15 @@ Variant KotlinScript::_new(const Variant **p_args, int p_argcount, Variant::Call
 
 void KotlinScript::set_path(const String& p_path, bool p_take_over) {
     Resource::set_path(p_path, p_take_over);
-    if (!kt_class) {
-        kt_class = GDKotlin::get_instance().find_class(get_path());
+#ifndef TOOLS_ENABLED
+    if (!kotlin_class) {
+        kotlin_class = GDKotlin::get_instance().find_class(p_path);
     }
-}
-
-KotlinScript::KotlinScript() : kt_class(nullptr) {
-
-}
-
-KotlinScript::~KotlinScript() {
-#ifdef TOOLS_ENABLED
-    for (Set<PlaceHolderScriptInstance *>::Element *E = placeholders.front(); E; E = E->next()) {
-        memdelete(E->get());
-    }
-
-    placeholders.clear();
 #endif
+}
+
+KotlinScript::KotlinScript() : kotlin_class(nullptr) {
+
 }
 
 PlaceHolderScriptInstance* KotlinScript::placeholder_instance_create(Object* p_this) {
