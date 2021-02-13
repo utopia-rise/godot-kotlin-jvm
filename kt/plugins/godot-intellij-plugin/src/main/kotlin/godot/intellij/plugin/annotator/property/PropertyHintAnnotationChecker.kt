@@ -2,6 +2,7 @@ package godot.intellij.plugin.annotator.property
 
 import com.intellij.lang.annotation.AnnotationHolder
 import godot.intellij.plugin.GodotPluginBundle
+import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
 import godot.intellij.plugin.extension.registerProblem
 import org.jetbrains.kotlin.idea.refactoring.fqName.fqName
 import org.jetbrains.kotlin.idea.util.findAnnotation
@@ -198,7 +199,7 @@ class PropertyHintAnnotationChecker {
     }
 
     private fun checkForRegistrationAnnotation(ktProperty: KtProperty, holder: AnnotationHolder) {
-        if (ktProperty.findAnnotation(FqName("godot.annotation.RegisterProperty")) == null) {
+        if (ktProperty.findAnnotation(FqName(REGISTER_PROPERTY_ANNOTATION)) == null) {
             holder.registerProblem(
                 GodotPluginBundle.message("problem.property.hint.notRegistered"),
                 ktProperty.nameIdentifier ?: ktProperty.navigationElement

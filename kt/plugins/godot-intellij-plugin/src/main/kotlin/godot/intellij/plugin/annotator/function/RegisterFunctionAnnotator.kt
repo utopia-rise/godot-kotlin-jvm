@@ -4,6 +4,8 @@ import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
+import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
+import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.NotificationFunctionNotRegisteredQuickFix
 import org.jetbrains.kotlin.idea.util.findAnnotation
@@ -17,9 +19,9 @@ class RegisterFunctionAnnotator : Annotator {
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
         if (element is KtNamedFunction) {
             if (
-                element.containingClass()?.findAnnotation(FqName("godot.annotation.RegisterClass")) != null &&
+                element.containingClass()?.findAnnotation(FqName(REGISTER_CLASS_ANNOTATION)) != null &&
                 notificationFunctions.contains(element.name) &&
-                element.findAnnotation(FqName("godot.annotation.RegisterFunction")) == null
+                element.findAnnotation(FqName(REGISTER_FUNCTION_ANNOTATION)) == null
             ) {
                 holder.registerProblem(
                     GodotPluginBundle.message("problem.function.notificationFunctionNotRegistered"),
