@@ -30,7 +30,7 @@ class GodotAnnotationProcessor(
     private val project: MockProject,
     private val entryGenerationOutputDir: String,
     private val serviceFileOutputDir: String,
-    private val srcDirs: List<File>
+    private val srcDirs: List<String>
 ) : AbstractProcessor() {
     lateinit var bindingContext: BindingContext
     private val userClasses: List<KtClass> = getAllUserDefinedClasses()
@@ -118,7 +118,6 @@ class GodotAnnotationProcessor(
 
     override fun processingOver() {
         File(entryGenerationOutputDir).mkdirs()
-        File("$entryGenerationOutputDir/debug.txt").appendText(classes.map { it.name }.joinToString("\n"))
 
         deleteObsoleteClassSpecificEntryFiles()
         EntryGenerator.psiClassesWithMembers = getAllRegisteredUserPsiClassesWithMembers()
@@ -130,7 +129,7 @@ class GodotAnnotationProcessor(
             properties,
             functions,
             signals,
-            srcDirs.map { it.absolutePath }
+            srcDirs
         )
         EntryGenerator.generateServiceFile(serviceFileOutputDir)
     }
@@ -180,9 +179,13 @@ class GodotAnnotationProcessor(
             .walkTopDown()
             .filter { it.isFile && it.exists() && it.extension == "kt" }
             .forEach {
-                val fqName =
-                    it.absolutePath.removePrefix(entryGenerationOutputDir).removePrefix("/godot/").replace("/", ".")
-                        .removeSuffix("Entry.kt")
+                val fqName = it
+                    .absolutePath
+                    .removePrefix(entryGenerationOutputDir)
+                    .removePrefix("${File.separator}godot${File.separator}")
+                    .replace(File.separator, ".")
+                    .removeSuffix("Entry.kt")
+
                 if (!userClassesFqNames.contains(fqName)) {
                     it.delete()
                 }
@@ -201,7 +204,6 @@ class GodotAnnotationProcessor(
         //End: taken from CoreEnvironmentUtils createSourceFilesFromSourceRoots inside org.jetbrains.kotlin:kotlin-compiler:1.4.10
 
         return srcDirs
-            .map { it.absolutePath }
             .flatMap { srcDirAbsolutePath ->
                 //Start: taken from CoreEnvironmentUtils createSourceFilesFromSourceRoots inside org.jetbrains.kotlin:kotlin-compiler:1.4.10
                 val vFile = localFileSystem.findFileByPath(srcDirAbsolutePath) ?: return@flatMap emptySequence()
@@ -214,7 +216,10 @@ class GodotAnnotationProcessor(
                     .map { file ->
                         if (!file.isFile) return@map null
 
-                        val virtualFile = localFileSystem.findFileByPath(file.absolutePath)?.let(virtualFileCreator::create)
+                        val virtualFile = localFileSystem
+                            .findFileByPath(file.absolutePath)
+                            ?.let(virtualFileCreator::create)
+
                         if (virtualFile != null && processedFiles.add(virtualFile)) {
                             val psiFile = psiManager.findFile(virtualFile)
                             if (psiFile is KtFile) {

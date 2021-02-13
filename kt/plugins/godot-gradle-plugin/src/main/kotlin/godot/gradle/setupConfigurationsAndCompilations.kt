@@ -2,10 +2,17 @@ package godot.gradle
 
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import godot.entrygenerator.EntryGenerator
+import godot.gradle.util.absolutePathFixedForWindows
 import godot.gradle.util.mapOfNonNullValuesOf
 import godot.utils.GodotBuildProperties
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.*
+import org.gradle.kotlin.dsl.creating
+import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.getValue
+import org.gradle.kotlin.dsl.getting
+import org.gradle.kotlin.dsl.invoke
+import org.gradle.kotlin.dsl.kotlin
+import org.gradle.kotlin.dsl.named
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import java.io.File
 
@@ -123,7 +130,7 @@ fun Project.setupConfigurationsAndCompilations(jvm: KotlinJvmProjectExtension) {
                             kotlinSourceSet
                                 .kotlin
                                 .srcDirs
-                                .map { srcDir -> srcDir.absolutePath }
+                                .map { it.absolutePathFixedForWindows }
                         },
                     project.buildDir.resolve("godot-entry").absolutePath
                 )
