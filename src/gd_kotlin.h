@@ -7,6 +7,7 @@
 #include "core/ustring.h"
 #include "transfer_context.h"
 #include "modules/kotlin_jvm/src/bridges/memory_bridge.h"
+#include "kotlin_script.h"
 
 class GDKotlin {
 private:
@@ -29,6 +30,7 @@ public:
     Vector<String> engine_singleton_names;
 
     Vector<StringName> user_type_names;
+    Vector<Ref<KotlinScript>> user_scripts;
 
     GDKotlin(const GDKotlin&) = delete;
 

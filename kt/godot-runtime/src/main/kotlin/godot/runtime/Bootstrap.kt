@@ -105,10 +105,9 @@ class Bootstrap {
                 )
 
                 context.init()
-
-                registerUserTypesNames(TypeManager.userTypes.toTypedArray())
             }
             loadClasses(registry!!.classes.toTypedArray())
+            registerUserTypesNames(TypeManager.userTypes.toTypedArray())
         } else {
             err("Unable to find Entry class, no classes will be loaded")
         }

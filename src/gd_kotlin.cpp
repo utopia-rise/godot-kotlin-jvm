@@ -8,6 +8,7 @@
 #include "type_manager.h"
 #include "bridges_manager.h"
 #include "logging.h"
+#include <core/io/resource_loader.h>
 
 // If changed, remember to change also TransferContext::bufferCapacity on JVM side
 const int DEFAULT_SHARED_BUFFER_SIZE{20'000'000};
@@ -128,6 +129,8 @@ void register_user_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_type
     for (int i = 0; i < types.length(env); ++i) {
         const String& class_name{env.from_jstring(static_cast<jni::JString>(types.get(env, i)))};
         GDKotlin::get_instance().user_type_names.insert(i, class_name);
+        const String& script_path{GDKotlin::get_instance().scripts_root + class_name.replace(".", "/") + ".kt"};
+        GDKotlin::get_instance().user_scripts.insert(i, ResourceLoader::load(script_path, "KotlinScript"));
         print_verbose(vformat("Registered %s user type with index %s.", class_name, i));
     }
     print_verbose("Done registering user types.");
@@ -352,6 +355,7 @@ void GDKotlin::finish() {
     engine_type_method.clear();
     engine_type_names.clear();
     user_type_names.clear();
+    user_scripts.clear();
 
     TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.clear();
     class_loader.delete_global_ref(env);
