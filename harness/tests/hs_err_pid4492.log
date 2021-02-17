@@ -1,0 +1,39 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (./open/src/hotspot/os_cpu/windows_x86/os_windows_x86.cpp:145), pid=4492, tid=13560
+#  guarantee(result == EXCEPTION_CONTINUE_EXECUTION) failed: Unexpected result from topLevelExceptionFilter
+#
+# JRE version: Java(TM) SE Runtime Environment 18.9 (11.0.8+10) (build 11.0.8+10-LTS)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM 18.9 (11.0.8+10-LTS, mixed mode, tiered, compressed oops, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   https://bugreport.java.com/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Xcheck:jni 
+
+Host: Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz, 6 cores, 15G,  Windows 10 , 64 bit Build 19041 (10.0.19041.804)
+Time: Sun Feb 14 10:04:28 2021 Paris, Madrid elapsed time: 164 seconds (0d 0h 2m 44s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000002a54b006000):  JavaThread "Thread-0" daemon [_thread_in_native, id=13560, stack(0x000000fa6fa00000,0x000000fa70200000)]
+
+Stack: [0x000000fa6fa00000,0x000000fa70200000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x601aea]
+V  [jvm.dll+0x737fef]
+V  [jvm.dll+0x739675]
+V  [jvm.dll+0x739ca7]
+V  [jvm.dll+0x2427cc]
+V  [jvm.dll+0x6017bc]
+C  [ntdll.dll+0xa197f]
+C  [ntdll.dll+0x4b754]
+C  [ntdll.dll+0xa04ae]
+C  [godot.windows.tools.64.exe+0x1da0df]

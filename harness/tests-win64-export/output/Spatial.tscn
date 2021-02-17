@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/main/kotlin/godot/tests/Invocation.kt" type="Script" id=1]
+
+[sub_resource type="NavigationMesh" id=1]
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 1 )
+resource_test = SubResource( 1 )
+jvm_id = 1658926803
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.974354, 0.225019, 0, -0.225019, 0.974354, 0, 1.2131, 2.47241 )

@@ -4,12 +4,6 @@
 #include "gd_kotlin.h"
 #include "logging.h"
 
-#include "kotlin_script.h"
-#include "kotlin_language.h"
-#include "kotlin_instance.h"
-#include "gd_kotlin.h"
-#include "logging.h"
-
 bool KotlinScript::can_instance() const {
 #ifdef TOOLS_ENABLED
     if (Engine::get_singleton()->is_editor_hint()) {
