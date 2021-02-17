@@ -12,6 +12,12 @@ internal interface GDRandom {
     /** Random range, any floating point value between from and to. */
     fun randRange(from: Double, to: Double) = rng.randfRange(from, to).toDouble()
 
+    /** Random range, any integer value between from and to. */
+    fun randRange(from: Int, to: Int) = rng.randiRange(from.toLong(), to.toLong()).toInt()
+
+    /** Random range, any long value between from and to. */
+    fun randRange(from: Long, to: Long) = rng.randiRange(from, to)
+
     /** Random from seed: pass a seed, and an array with both number and new seed is returned. "Seed" here refers to the internal state of the pseudo random number generator.
      * The internal state of the current implementation is 64 bits. */
     fun randSeed(seed: Long): Pair<Long, Long> {
@@ -26,6 +32,9 @@ internal interface GDRandom {
 
     /** Returns a random signed 32 bit integer. */
     fun randi() = rng.randi().toInt()
+
+    /** Returns a random long. */
+    fun randl() = rng.randi()
 
     /** Randomizes the seed (or the internal state) of the random number generator. Current implementation reseeds using a number based on time. */
     fun randomize() = rng.randomize()
