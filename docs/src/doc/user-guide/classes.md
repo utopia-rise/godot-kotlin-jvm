@@ -1,4 +1,4 @@
-To expose a class written in Kotlin it needs to extend `godot.core.KtObject` (or any type that extends it) and annotate it with `@RegisterClass`.
+To expose a class written in Kotlin it needs to extend `godot.core.Object` (or any type that extends it) and annotate it with `@RegisterClass`.
 
 ```kotlin
 @RegisterClass
@@ -62,6 +62,9 @@ override fun _ready() {
 }
 ```
 
+## Constructors
+Currently only no arg constructors are supported for registered classes.  
+This will change in future releases though.
 
 ## Registration Configuration
 You can customize to some extent how your class should be registered in Godot:
