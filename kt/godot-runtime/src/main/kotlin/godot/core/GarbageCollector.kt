@@ -42,6 +42,8 @@ object GarbageCollector {
         }
     }
 
+    fun isInstanceValid(ktObject: KtObject) = MemoryBridge.checkInstance(ktObject.rawPtr, ktObject.godotInstanceId)
+
     fun registerNativeCoreType(nativeCoreType: NativeCoreType) {
         val rawPtr = nativeCoreType._handle
         synchronized(nativeCoreTypeMap) {

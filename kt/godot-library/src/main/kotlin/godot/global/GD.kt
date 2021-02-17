@@ -5,6 +5,7 @@ import godot.RandomNumberGenerator
 import godot.Resource
 import godot.ResourceLoader
 import godot.core.Dictionary
+import godot.core.GarbageCollector
 import godot.core.NodePath
 import godot.core.PoolByteArray
 import godot.core.PoolColorArray
@@ -27,7 +28,7 @@ object GD : GDMath, GDCore, GDRandom, GDPrint {
 
     /** Returns whether instance is a valid object (e.g. has not been deleted from memory).*/
     fun isInstanceValid(instance: Object): Boolean {
-        return instance.rawPtr != nullptr
+        return instance.rawPtr != nullptr && GarbageCollector.isInstanceValid(instance)
     }
 
     /** Returns length of Variant var
