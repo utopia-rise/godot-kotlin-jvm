@@ -52,6 +52,7 @@ func remove_bunny():
 	var bunny = bunnies[bunnies.size() - 1]
 	remove_child(bunny[0])
 	bunnies.pop_back()
+	bunny[0].queue_free()
 
 func finish():
 	emit_signal("benchmark_finished", bunnies.size())

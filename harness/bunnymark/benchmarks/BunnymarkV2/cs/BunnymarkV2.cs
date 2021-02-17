@@ -92,6 +92,7 @@ public class BunnymarkV2 : Node2D
         var bunny = bunnies.GetChild(childCount - 1);
         speeds.RemoveAt(childCount - 1);
         bunnies.RemoveChild(bunny);
+        bunny.QueueFree();
     }
 
     public void finish()

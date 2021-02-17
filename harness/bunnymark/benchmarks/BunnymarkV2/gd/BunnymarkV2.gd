@@ -64,6 +64,7 @@ func remove_bunny():
 	var bunny = bunnies.get_child(child_count - 1)
 	bunny_speeds.pop_back()
 	bunnies.remove_child(bunny)
+	bunny.queue_free()
 
 func finish():
 	emit_signal("benchmark_finished", bunnies.get_child_count())

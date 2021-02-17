@@ -85,6 +85,7 @@ public class BunnymarkV1Sprites : Node2D
         var bunny = bunnies[bunnies.Count - 1];
         bunnies.RemoveAt(bunnies.Count - 1);
         RemoveChild(bunny.Sprite);
+        bunny.Sprite.QueueFree();
     }
 
     public void finish()

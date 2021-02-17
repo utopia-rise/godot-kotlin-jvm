@@ -7,3 +7,6 @@
 ../../../../bin/godot.x11.opt.tools.64.mono --bench=BunnymarkV1DrawTexture --lang=gd
 ../../../../bin/godot.x11.opt.tools.64.mono --bench=BunnymarkV1DrawTexture --lang=kt
 ../../../../bin/godot.x11.opt.tools.64.mono --bench=BunnymarkV1DrawTexture --lang=cs
+../../../../bin/godot.x11.opt.tools.64.mono --bench=BunnymarkV3 --lang=gd
+../../../../bin/godot.x11.opt.tools.64.mono --bench=BunnymarkV3 --lang=kt
+../../../../bin/godot.x11.opt.tools.64.mono --bench=BunnymarkV3 --lang=cs
