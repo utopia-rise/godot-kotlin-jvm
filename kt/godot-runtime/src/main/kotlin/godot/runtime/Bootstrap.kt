@@ -103,9 +103,11 @@ class Bootstrap {
                     TypeManager.engineTypeMethod.map { it.second }.toTypedArray(),
                     TypeManager.engineTypeMethod.map { it.first }.toTypedArray()
                 )
+
                 context.init()
             }
             loadClasses(registry!!.classes.toTypedArray())
+            registerUserTypesNames(TypeManager.userTypes.toTypedArray())
         } else {
             err("Unable to find Entry class, no classes will be loaded")
         }
@@ -150,4 +152,6 @@ class Bootstrap {
         engineTypeMethodNames: Array<String>,
         typeOfMethods: Array<Int>
     )
+
+    private external fun registerUserTypesNames(userTypesNames: Array<String>)
 }

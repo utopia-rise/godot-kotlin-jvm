@@ -8,12 +8,14 @@ class KotlinScript : public Script {
 
 private:
     String source;
+
+    // Stored kotlin_class should be nullptr when in TOOL
+    KtClass* kotlin_class;
     KtClass* get_kotlin_class() const;
 
 public:
-    KotlinScript() = default;
-
-    ~KotlinScript() override;
+    KotlinScript();
+    ~KotlinScript() override = default;
 
     Variant _new(const Variant **p_args, int p_argcount, Variant::CallError &r_error);
 
@@ -54,6 +56,8 @@ public:
     void get_script_method_list(List<MethodInfo>* p_list) const override;
 
     void get_script_property_list(List<PropertyInfo>* p_list) const override;
+
+    void set_path(const String &p_path, bool p_take_over) override;
 
 
 // This concerns placeholders script instances only

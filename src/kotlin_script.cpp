@@ -4,6 +4,12 @@
 #include "gd_kotlin.h"
 #include "logging.h"
 
+#include "kotlin_script.h"
+#include "kotlin_language.h"
+#include "kotlin_instance.h"
+#include "gd_kotlin.h"
+#include "logging.h"
+
 bool KotlinScript::can_instance() const {
 #ifdef TOOLS_ENABLED
     if (Engine::get_singleton()->is_editor_hint()) {
@@ -62,13 +68,13 @@ Error KotlinScript::reload(bool p_keep_state) {
 }
 
 bool KotlinScript::has_method(const StringName& p_method) const {
-    KtClass* kotlinClass = get_kotlin_class();
-    return kotlinClass ? kotlinClass->get_method(p_method) != nullptr : false;
+    KtClass* kt_class{get_kotlin_class()};
+    return kt_class != nullptr && kt_class->get_method(p_method) != nullptr;
 }
 
 MethodInfo KotlinScript::get_method_info(const StringName& p_method) const {
-    if (KtClass* kotlin_class{get_kotlin_class()}) {
-        if (KtFunction* method{kotlin_class->get_method(p_method)}) {
+    if (KtClass* kt_class{get_kotlin_class()}) {
+        if (KtFunction* method{kt_class->get_method(p_method)}) {
             return method->get_member_info();
         }
     }
@@ -88,13 +94,13 @@ ScriptLanguage* KotlinScript::get_language() const {
 }
 
 bool KotlinScript::has_script_signal(const StringName& p_signal) const {
-    KtClass* kotlin_class{get_kotlin_class()};
-    return kotlin_class ? kotlin_class->get_signal(p_signal) != nullptr : false;
+    KtClass* kt_class{get_kotlin_class()};
+    return kt_class != nullptr && kt_class->get_signal(p_signal) != nullptr;
 }
 
 void KotlinScript::get_script_signal_list(List<MethodInfo>* r_signals) const {
-    if (KtClass* kotlin_class{get_kotlin_class()}) {
-        kotlin_class->get_signal_list(r_signals);
+    if (KtClass* kt_class{get_kotlin_class()}) {
+        kt_class->get_signal_list(r_signals);
     }
 }
 
@@ -110,21 +116,25 @@ bool KotlinScript::get_property_default_value(const StringName& p_property, Vari
 }
 
 void KotlinScript::get_script_method_list(List<MethodInfo>* p_list) const {
-    KtClass* kotlinClass { get_kotlin_class() };
-    if (kotlinClass) {
-        kotlinClass->get_method_list(p_list);
+    KtClass* kt_class{get_kotlin_class()};
+    if (kt_class) {
+        kt_class->get_method_list(p_list);
     }
 }
 
 void KotlinScript::get_script_property_list(List<PropertyInfo>* p_list) const {
-    KtClass* kotlinClass { get_kotlin_class() };
-    if (kotlinClass) {
-        kotlinClass->get_property_list(p_list);
+    KtClass* kt_class{get_kotlin_class()};
+    if (kt_class) {
+        kt_class->get_property_list(p_list);
     }
 }
 
 KtClass* KotlinScript::get_kotlin_class() const {
+#ifdef TOOLS_ENABLED
     return GDKotlin::get_instance().find_class(get_path());
+#else
+    return kotlin_class;
+#endif
 }
 
 Variant KotlinScript::_new(const Variant **p_args, int p_argcount, Variant::CallError &r_error) {
@@ -152,6 +162,19 @@ Variant KotlinScript::_new(const Variant **p_args, int p_argcount, Variant::Call
     } else {
         return owner;
     }
+}
+
+void KotlinScript::set_path(const String& p_path, bool p_take_over) {
+    Resource::set_path(p_path, p_take_over);
+#ifndef TOOLS_ENABLED
+    if (!kotlin_class) {
+        kotlin_class = GDKotlin::get_instance().find_class(p_path);
+    }
+#endif
+}
+
+KotlinScript::KotlinScript() : kotlin_class(nullptr) {
+
 }
 
 PlaceHolderScriptInstance* KotlinScript::placeholder_instance_create(Object* p_this) {
@@ -194,16 +217,6 @@ void KotlinScript::_update_exports(PlaceHolderScriptInstance* placeholder) const
 void KotlinScript::_placeholder_erased(PlaceHolderScriptInstance* p_placeholder) {
 #ifdef TOOLS_ENABLED
     placeholders.erase(p_placeholder);
-#endif
-}
-
-KotlinScript::~KotlinScript() {
-#ifdef TOOLS_ENABLED
-    for (Set<PlaceHolderScriptInstance *>::Element *E = placeholders.front(); E; E = E->next()) {
-        memdelete(E->get());
-    }
-
-    placeholders.clear();
 #endif
 }
 

@@ -1,14 +1,20 @@
 package godot.core
 
-object TypeManager {
-    private val userTypes = HashSet<String>()
+import kotlin.reflect.KClass
 
+object TypeManager {
+    internal val userTypeToId = mutableMapOf<KClass<out KtObject>, Int>()
+
+    val userTypes = LinkedHashSet<String>()
     val engineTypeNames = LinkedHashSet<String>()
     val engineSingletonsNames = LinkedHashSet<String>()
     val engineTypesConstructors = mutableListOf<() -> KtObject>()
     val engineTypeMethod = mutableListOf<Pair<Int, String>>()
 
-    fun registerUserType(className: String) = userTypes.add(className)
+    fun registerUserType(className: String, kclass: KClass<out KtObject>) {
+        userTypes.add(className)
+        userTypeToId[kclass] = userTypes.size - 1
+    }
 
     fun <T: KtObject> registerEngineType(className: String, invocator: () -> T) {
         engineTypesConstructors.add(invocator)
