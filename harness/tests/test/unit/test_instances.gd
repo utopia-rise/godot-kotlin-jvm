@@ -18,4 +18,5 @@ func test_script_is_attached_when_script() -> void:
 
 func test_script_is_attached_when_instance_created_on_jvm_side() -> void:
 	var invocation_script = godot_tests_Invocation.new()
+	assert_eq(invocation_script.invocation.get_script(), godot_tests_subpackage_OtherScript, "Script should be set when creating instance from JVM")
 	invocation_script.free()
