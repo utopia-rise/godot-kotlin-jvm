@@ -47,9 +47,6 @@ MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) 
 
 bool MemoryBridge::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id) {
     auto* instance{reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr))};
-//    jni::Env env{p_raw_env};
-//    jni::JObject local_ref{p_instance};
-//    local_ref.delete_local_ref(env);
     return ObjectDB::instance_validate(instance) && instance->get_instance_id() == static_cast<ObjectID>(instance_id);
 }
 
@@ -63,17 +60,11 @@ bool MemoryBridge::unref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr)
 #endif
         }
     }
-//    jni::Env env{p_raw_env};
-//    jni::JObject local_ref{p_instance};
-//    local_ref.delete_local_ref(env);
     return true;
 }
 
 bool MemoryBridge::ref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     auto* reference{reinterpret_cast<Reference*>(static_cast<uintptr_t>(p_raw_ptr))};
-//    jni::Env env{p_raw_env};
-//    jni::JObject local_ref{p_instance};
-//    local_ref.delete_local_ref(env);
     return reference->init_ref();
 }
 
