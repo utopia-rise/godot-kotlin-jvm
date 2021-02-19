@@ -34,7 +34,7 @@ KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_
 #ifdef DEBUG_ENABLED
     LOG_VERBOSE(vformat("Instantiated an object of type %s", name))
 #endif
-    return new KtObject(j_kt_object, class_loader, name);
+    return new KtObject(j_kt_object, class_loader);
 }
 
 KtFunction* KtClass::get_method(const StringName& methodName) {

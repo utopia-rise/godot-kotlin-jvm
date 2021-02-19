@@ -2,11 +2,13 @@ package godot.benchmark
 
 import godot.Node
 import godot.Object
+import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.core.Transform
 import godot.core.Vector2
 import godot.core.Vector3
 
+@RegisterClass
 class Simple : Object() {
 
     @RegisterFunction
@@ -60,6 +62,7 @@ class Simple : Object() {
         node.free()
     }
 
+    @RegisterFunction
     fun benchmarkIcallWithLoop() {
         val node = Node()
         for (i in 0 until 100) {
@@ -71,6 +74,7 @@ class Simple : Object() {
         node.free()
     }
 
+    @RegisterFunction
     fun benchmarkMethodCall() {
     }
 }

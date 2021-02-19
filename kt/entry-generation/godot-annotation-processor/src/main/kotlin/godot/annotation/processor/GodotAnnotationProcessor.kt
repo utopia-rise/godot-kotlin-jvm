@@ -287,7 +287,7 @@ class GodotAnnotationProcessor(
                             .containingKtFile
                             .virtualFilePath
                             .replace(File.separator, "/")
-                            .removePrefix(projectDir)
+                            .removePrefix(projectDir.replace(File.separator, "/"))
                             .removePrefix("/")
 
                         val resPath = "res://$classFilePath"

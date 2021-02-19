@@ -89,6 +89,7 @@ class Invocation : Spatial() {
     @RegisterProperty
     var customName = "Idonthaveanyidea"
 
+    @RegisterProperty
     var invocation = OtherScript()
 
     @RegisterProperty

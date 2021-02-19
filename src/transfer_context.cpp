@@ -165,11 +165,10 @@ jlong TransferContext::get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint
 void TransferContext::set_script(JNIEnv *p_raw_env, jobject p_instance, jlong p_raw_ptr, jint p_class_index,
                                  jobject p_object, jobject p_class_loader) {
     jni::Env env(p_raw_env);
-    StringName class_name{GDKotlin::get_instance().user_type_names.get(static_cast<int>(p_class_index))};
-    auto* owner = reinterpret_cast<Object*>(p_raw_ptr);
-    auto* kt_object = new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader), class_name);
-    auto* script = memnew(KotlinInstance(kt_object, owner, GDKotlin::get_instance().find_class_by_name(class_name),
-                                         nullptr));
+    Ref<KotlinScript> kotlin_script{GDKotlin::get_instance().user_scripts[static_cast<int>(p_class_index)]};
+    auto* owner{reinterpret_cast<Object*>(p_raw_ptr)};
+    auto* kt_object{new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader))};
+    auto* script{memnew(KotlinInstance(kt_object, owner, kotlin_script->get_kotlin_class(), kotlin_script.ptr()))};
     owner->set_script_instance(script);
 }
 

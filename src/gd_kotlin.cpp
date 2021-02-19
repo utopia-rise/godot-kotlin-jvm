@@ -127,13 +127,13 @@ void register_user_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_type
     jni::Env env(p_env);
     jni::JObjectArray types{p_types};
     for (int i = 0; i < types.length(env); ++i) {
-        const String& class_name{env.from_jstring(static_cast<jni::JString>(types.get(env, i)))};
-        GDKotlin::get_instance().user_type_names.insert(i, class_name);
-        const String& script_path{GDKotlin::get_instance().scripts_root + class_name.replace(".", "/") + ".kt"};
+        const String& script_path{env.from_jstring(static_cast<jni::JString>(types.get(env, i)))};
         GDKotlin::get_instance().user_scripts.insert(i, ResourceLoader::load(script_path, "KotlinScript"));
-        print_verbose(vformat("Registered %s user type with index %s.", class_name, i));
+#ifdef DEBUG_ENABLED
+        LOG_VERBOSE(vformat("Registered %s user type with index %s.", script_path, i));
+#endif
     }
-    print_verbose("Done registering user types.");
+    LOG_VERBOSE("Done registering user types.");
 }
 
 void GDKotlin::init() {
@@ -354,7 +354,6 @@ void GDKotlin::finish() {
 
     engine_type_method.clear();
     engine_type_names.clear();
-    user_type_names.clear();
     user_scripts.clear();
 
     TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.clear();
@@ -393,16 +392,12 @@ void GDKotlin::unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes) 
     classes.clear();
 }
 
-KtClass* GDKotlin::find_class(const String& p_script_path) {
-    StringName class_name = p_script_path.trim_prefix(scripts_root).trim_suffix(".kt").replace("/", ".");
-    JVM_ERR_FAIL_COND_V_MSG(!classes.has(class_name), nullptr,
-                   vformat("Failed to find class %s for path: %s", class_name, p_script_path));
-    return classes[class_name];
-}
-
-KtClass* GDKotlin::find_class_by_name(const String& class_name) {
-    JVM_ERR_FAIL_COND_V_MSG(!classes.has(class_name), nullptr, vformat("Failed to find class for path: %s", class_name))
-    return classes[class_name];
+KtClass* GDKotlin::find_class(const StringName& p_script_path) {
+#ifdef DEBUG_ENABLED
+    JVM_ERR_FAIL_COND_V_MSG(!classes.has(p_script_path), nullptr,
+                   vformat("Failed to find class for path: %s", p_script_path));
+#endif
+    return classes[p_script_path];
 }
 
 jni::JObject& GDKotlin::get_class_loader() {

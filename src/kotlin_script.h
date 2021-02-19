@@ -11,11 +11,12 @@ private:
 
     // Stored kotlin_class should be nullptr when in TOOL
     KtClass* kotlin_class;
-    KtClass* get_kotlin_class() const;
 
 public:
     KotlinScript();
     ~KotlinScript() override = default;
+
+    KtClass* get_kotlin_class() const;
 
     Variant _new(const Variant **p_args, int p_argcount, Variant::CallError &r_error);
 
