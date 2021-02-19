@@ -21,8 +21,8 @@ Ref<Script> KotlinScript::get_base_script() const {
 }
 
 StringName KotlinScript::get_instance_base_type() const {
-    if (KtClass* kotlin_class{get_kotlin_class()}) {
-        return kotlin_class->base_godot_class;
+    if (KtClass* kt_class{get_kotlin_class()}) {
+        return kt_class->base_godot_class;
     }
     // not found
     return StringName();
