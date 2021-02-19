@@ -57,6 +57,10 @@ class GodotPlugin : KotlinCompilerPluginSupportPlugin {
                     srcDirs.joinToString(File.pathSeparator)
                 ),
                 SubpluginOption(
+                    CompilerPluginConst.CommandLineOptionNames.projectDirPathOption,
+                    project.projectDir.absolutePath
+                ),
+                SubpluginOption(
                     CompilerPluginConst.CommandLineOptionNames.entryDirPathOption,
                     project.buildDir.resolve("godot-entry").absolutePath
                 )
