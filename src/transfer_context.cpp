@@ -141,16 +141,11 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jint p
 #endif
 
     write_return_value(buffer, ret_value);
-    jni::JObject local_ref{instance};
-    local_ref.delete_local_ref(env);
 }
 
 jlong TransferContext::invoke_constructor(JNIEnv *p_raw_env, jobject p_instance, jint p_class_index) {
-    jni::Env env(p_raw_env);
     const StringName& class_name{GDKotlin::get_instance().engine_type_names[static_cast<int>(p_class_index)]};
     Object* ptr = ClassDB::instance(class_name);
-    jni::JObject local_ref{p_instance};
-    local_ref.delete_local_ref(env);
 
 #ifdef DEBUG_ENABLED
     JVM_ERR_FAIL_COND_V_MSG(!ptr, 0, vformat("Failed to instantiate class %s", class_name))
@@ -175,8 +170,6 @@ void TransferContext::set_script(JNIEnv *p_raw_env, jobject p_instance, jlong p_
     auto* kt_object = new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader), class_name);
     auto* script = memnew(KotlinInstance(kt_object, owner, GDKotlin::get_instance().find_class_by_name(class_name)));
     owner->set_script_instance(script);
-    jni::JObject local_ref{p_instance};
-    local_ref.delete_local_ref(env);
 }
 
 void TransferContext::free_object(JNIEnv *p_raw_env, jobject p_instance, jlong p_raw_ptr) {
@@ -187,9 +180,6 @@ void TransferContext::free_object(JNIEnv *p_raw_env, jobject p_instance, jlong p
 #endif
 
     memdelete(owner);
-    jni::Env env(p_raw_env);
-    jni::JObject local_ref{p_instance};
-    local_ref.delete_local_ref(env);
 }
 
 void TransferContext::write_return_value(jni::Env& p_env, Variant& variant) {

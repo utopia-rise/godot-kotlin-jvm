@@ -1,0 +1,12 @@
+../../../../bin/godot.x11.opt.tools.64.mono --bench=BunnymarkV2 --lang=gd
+../../../../bin/godot.x11.opt.tools.64.mono --bench=BunnymarkV2 --lang=kt
+../../../../bin/godot.x11.opt.tools.64.mono --bench=BunnymarkV2 --lang=cs
+../../../../bin/godot.x11.opt.tools.64.mono --bench=BunnymarkV1Sprites --lang=gd
+../../../../bin/godot.x11.opt.tools.64.mono --bench=BunnymarkV1Sprites --lang=kt
+../../../../bin/godot.x11.opt.tools.64.mono --bench=BunnymarkV1Sprites --lang=cs
+../../../../bin/godot.x11.opt.tools.64.mono --bench=BunnymarkV1DrawTexture --lang=gd
+../../../../bin/godot.x11.opt.tools.64.mono --bench=BunnymarkV1DrawTexture --lang=kt
+../../../../bin/godot.x11.opt.tools.64.mono --bench=BunnymarkV1DrawTexture --lang=cs
+../../../../bin/godot.x11.opt.tools.64.mono --bench=BunnymarkV3 --lang=gd
+../../../../bin/godot.x11.opt.tools.64.mono --bench=BunnymarkV3 --lang=kt
+../../../../bin/godot.x11.opt.tools.64.mono --bench=BunnymarkV3 --lang=cs

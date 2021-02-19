@@ -1,0 +1,63 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Sprite",
+"class": "Bunny",
+"language": "GDScript",
+"path": "res://benchmarks/BunnymarkV3/gd/Bunny.gd"
+}, {
+"base": "Node2D",
+"class": "BunnymarkV1DrawTexture",
+"language": "Kotlin",
+"path": "res://src/main/kotlin/godot/benchmark/bunnymark/BunnymarkV1DrawTexture.kt"
+}, {
+"base": "Node2D",
+"class": "BunnymarkV1Sprites",
+"language": "Kotlin",
+"path": "res://src/main/kotlin/godot/benchmark/bunnymark/BunnymarkV1Sprites.kt"
+}, {
+"base": "Node2D",
+"class": "BunnymarkV2",
+"language": "Kotlin",
+"path": "res://src/main/kotlin/godot/benchmark/bunnymark/BunnymarkV2.kt"
+}, {
+"base": "Node2D",
+"class": "BunnymarkV3",
+"language": "Kotlin",
+"path": "res://src/main/kotlin/godot/benchmark/bunnymark/BunnymarkV3.kt"
+}, {
+"base": "Sprite",
+"class": "godot_benchmark_bunnymark_v3_Bunny",
+"language": "Kotlin",
+"path": "res://src/main/kotlin/godot/benchmark/bunnymark/v3/Bunny.kt"
+} ]
+_global_script_class_icons={
+"Bunny": "",
+"BunnymarkV1DrawTexture": "",
+"BunnymarkV1Sprites": "",
+"BunnymarkV2": "",
+"BunnymarkV3": "",
+"godot_benchmark_bunnymark_v3_Bunny": ""
+}
+
+[application]
+
+config/name="Bunnymark"
+run/main_scene="res://Benchmarker.tscn"
+config/icon="res://icon.png"
+
+[display]
+
+window/vsync/use_vsync=false
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
