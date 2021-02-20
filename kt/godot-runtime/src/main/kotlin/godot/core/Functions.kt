@@ -1,3 +1,5 @@
+@file:Suppress("UNCHECKED_CAST")
+
 package godot.core
 
 import godot.util.camelToSnakeCase

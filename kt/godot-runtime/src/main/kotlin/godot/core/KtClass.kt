@@ -24,8 +24,11 @@ class KtClass<T : KtObject>(
         val constructor = constructors[argCount]
         check(constructor != null) { "Constructor with $argCount parameter(s) not found." }
         return KtObject.instantiateWith(rawPtr, instanceId) {
-            // todo send args
-            constructor()
+            val arguments = Array(constructor.parameterCount) {
+                TransferContext.readSingleArgument(constructor.parameterTypes[it], constructor.parameterNullables[it])
+            }
+            TransferContext.buffer.rewind()
+            constructor(arguments)
         }
     }
 }

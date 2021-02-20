@@ -12,6 +12,8 @@ private:
     // Stored kotlin_class should be nullptr when in TOOL
     KtClass* kotlin_class;
 
+    ScriptInstance* _instance_create(const Variant **p_args, int p_argcount, Object* p_this);
+
 public:
     KotlinScript();
     ~KotlinScript() override = default;

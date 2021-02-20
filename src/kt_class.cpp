@@ -24,7 +24,9 @@ KtClass::~KtClass() {
 
 KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_arg_count, Object* p_owner) {
     jni::MethodId new_method { get_method_id(env, jni_methods.NEW) };
-    // TODO: send args
+
+    GDKotlin::get_instance().transfer_context->write_args(env, p_args, p_arg_count);
+
     jvalue args[3] = {
             jni::to_jni_arg(p_owner),
             jni::to_jni_arg(p_owner->get_instance_id()),
