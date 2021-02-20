@@ -1,0 +1,40 @@
+site_name: Godot-Jvm
+docs_dir: src/doc
+
+repo_name: 'utopia-rise/godot-jvm'
+repo_url: 'https://github.com/utopia-rise/godot-jvm'
+
+theme:
+  name: material
+  favicon: assets/img/favicon.ico
+  palette:
+    primary: indigo
+    accent: light-blue
+  logo: assets/img/logo.png
+
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/utopia-rise
+
+markdown_extensions:
+  - codehilite:
+      linenums: true
+  - pymdownx.inlinehilite
+  - admonition
+
+
+nav:
+  - Overview: index.md
+  - Getting started:
+      - Gradle: getting-started/gradle.md
+      - IDE: getting-started/ide.md
+  - User guide:
+    - Classes: user-guide/classes.md
+    - Properties: user-guide/properties.md
+    - Signals: user-guide/signals.md
+    - Functions: user-guide/functions.md
+  - API differences: api-differences.md
+  - Versioning: versioning.md
+  - Supported platforms: supported-platforms.md
+  - Contribution: contribution.md
