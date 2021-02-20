@@ -674,17 +674,17 @@ class ClassRegistry {
     val classes = mutableListOf<KtClass<*>>()
 
     fun <T : KtObject> registerClass(
-        fqName: String,
+        resPath: String,
         superClass: String,
         kClass: KClass<out KtObject>,
         isTool: Boolean = false,
         baseGodotClass: String,
-        registeredName: String = fqName.replace('.', '_'),
+        registeredName: String = resPath.replace('.', '_'),
         cb: ClassBuilderDsl<T>.() -> Unit
     ) {
-        val builder = ClassBuilderDsl<T>(fqName, registeredName, superClass, baseGodotClass)
+        val builder = ClassBuilderDsl<T>(resPath, registeredName, superClass, baseGodotClass)
         builder.cb()
-        TypeManager.registerUserType(fqName, kClass)
+        TypeManager.registerUserType(resPath, kClass)
         registerClass(builder.build())
     }
 

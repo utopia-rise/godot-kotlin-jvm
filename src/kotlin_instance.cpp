@@ -3,18 +3,14 @@
 #include "kt_class.h"
 #include "gd_kotlin.h"
 
-KotlinInstance::KotlinInstance(KtObject *p_wrapped_object, KtClass *p_kt_class) : wrapped_object(p_wrapped_object),
-                                                                                  owner(nullptr), kt_class(p_kt_class) {
-
+KotlinInstance::KotlinInstance(KtObject* p_wrapped_object, Object* p_owner, KtClass* p_kt_class, Script* p_script)
+        : wrapped_object(p_wrapped_object),
+          owner(nullptr), kt_class(p_kt_class), script(p_script) {
+    set_owner(p_owner);
 }
 
 KotlinInstance::~KotlinInstance() {
     delete wrapped_object;
-}
-
-KotlinInstance::KotlinInstance(KtObject *p_wrapped_object, Object *p_owner, KtClass *p_kt_class) : KotlinInstance(
-        p_wrapped_object, p_kt_class) {
-    set_owner(p_owner);
 }
 
 bool KotlinInstance::set(const StringName& p_name, const Variant& p_value) {
@@ -118,7 +114,7 @@ bool KotlinInstance::refcount_decremented() {
 }
 
 Ref<Script> KotlinInstance::get_script() const {
-    return Ref<Script>();
+    return script;
 }
 
 bool KotlinInstance::is_placeholder() const {

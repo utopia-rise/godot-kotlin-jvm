@@ -30,7 +30,8 @@ class CommonComponentRegistrar : ComponentRegistrar {
                 project,
                 checkNotNull(configuration.get(CompilerPluginConst.CommandlineArguments.ENTRY_DIR_PATH)) { "No path for generated entry file specified" },
                 checkNotNull(configuration.get(CompilerPluginConst.CommandlineArguments.SERVICE_FILE_DIR_PATH)) { "No path for generated entry file specified" },
-                checkNotNull(configuration.get(CompilerPluginConst.CommandlineArguments.SOURCES_DIR_PATH)) { "No sources dirs defined" }
+                checkNotNull(configuration.get(CompilerPluginConst.CommandlineArguments.SOURCES_DIR_PATH)) { "No sources dirs defined" },
+                checkNotNull(configuration.get(CompilerPluginConst.CommandlineArguments.PROJECT_DIR_PATH)) { "No project dir defined" }
             )
             val mpapt = MpAptProject(processor, configuration)
             StorageComponentContainerContributor.registerExtension(project, mpapt)
@@ -70,6 +71,14 @@ class CommonGodotKotlinCompilerPluginCommandLineProcessor : CommandLineProcessor
             allowMultipleOccurrences = false
         )
 
+        val PROJECT_DIR_PATH_OPTION = CliOption(
+            CompilerPluginConst.CommandLineOptionNames.projectDirPathOption,
+            "project dir path",
+            CompilerPluginConst.CommandlineArguments.PROJECT_DIR_PATH.toString(),
+            required = true,
+            allowMultipleOccurrences = false
+        )
+
         val ENABLED = CliOption(
             CompilerPluginConst.CommandLineOptionNames.enabledOption,
             "Flag to enable entry generation",
@@ -85,6 +94,7 @@ class CommonGodotKotlinCompilerPluginCommandLineProcessor : CommandLineProcessor
         ENTRY_DIR_PATH_OPTION,
         SERVICE_FILE_DIR_PATH_OPTION,
         SOURCES_DIR_PATH_OPTION,
+        PROJECT_DIR_PATH_OPTION,
         ENABLED
     )
 
@@ -99,6 +109,11 @@ class CommonGodotKotlinCompilerPluginCommandLineProcessor : CommandLineProcessor
             SOURCES_DIR_PATH_OPTION -> {
                 configuration.put(
                     CompilerPluginConst.CommandlineArguments.SOURCES_DIR_PATH, value.split(File.pathSeparator)
+                )
+            }
+            PROJECT_DIR_PATH_OPTION -> {
+                configuration.put(
+                    CompilerPluginConst.CommandlineArguments.PROJECT_DIR_PATH, value
                 )
             }
             ENABLED -> configuration.put(

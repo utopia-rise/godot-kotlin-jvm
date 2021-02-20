@@ -29,7 +29,6 @@ public:
     Vector<MethodBind*> engine_type_method;
     Vector<String> engine_singleton_names;
 
-    Vector<StringName> user_type_names;
     Vector<Ref<KotlinScript>> user_scripts;
 
     GDKotlin(const GDKotlin&) = delete;
@@ -46,9 +45,7 @@ public:
     void register_classes(jni::Env& p_env, jni::JObjectArray p_classes);
     void unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes);
 
-    KtClass* find_class(const String& p_script_path);
-    KtClass* find_class_by_name(const String& class_name);
-
+    KtClass* find_class(const StringName& p_script_path);
 };
 
 

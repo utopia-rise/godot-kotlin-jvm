@@ -30,7 +30,8 @@ class GodotAnnotationProcessor(
     private val project: MockProject,
     private val entryGenerationOutputDir: String,
     private val serviceFileOutputDir: String,
-    private val srcDirs: List<String>
+    private val srcDirs: List<String>,
+    private val projectDir: String
 ) : AbstractProcessor() {
     lateinit var bindingContext: BindingContext
     private val userClasses: List<KtClass> = getAllUserDefinedClasses()
@@ -121,6 +122,7 @@ class GodotAnnotationProcessor(
 
         deleteObsoleteClassSpecificEntryFiles()
         EntryGenerator.psiClassesWithMembers = getAllRegisteredUserPsiClassesWithMembers()
+        EntryGenerator.fqNamesToRePath = fqNameToResPath()
         EntryGenerator.generateEntryFiles(
             EntryGenerationType.JVM,
             bindingContext,
@@ -235,5 +237,63 @@ class GodotAnnotationProcessor(
                             .filterIsInstance<KtClass>()
                     }
             }
+    }
+
+    private fun fqNameToResPath(): Map<String, String> {
+        //Start: taken from CoreEnvironmentUtils createSourceFilesFromSourceRoots inside org.jetbrains.kotlin:kotlin-compiler:1.4.10
+        val localFileSystem = VirtualFileManager
+            .getInstance()
+            .getFileSystem(StandardFileSystems.FILE_PROTOCOL)
+        val psiManager = PsiManager.getInstance(project)
+        val virtualFileCreator = PreprocessedFileCreator(project)
+
+        val processedFiles = hashSetOf<VirtualFile>()
+        //End: taken from CoreEnvironmentUtils createSourceFilesFromSourceRoots inside org.jetbrains.kotlin:kotlin-compiler:1.4.10
+
+        return srcDirs
+            .flatMap { srcDirAbsolutePath ->
+                //Start: taken from CoreEnvironmentUtils createSourceFilesFromSourceRoots inside org.jetbrains.kotlin:kotlin-compiler:1.4.10
+                val vFile = localFileSystem.findFileByPath(srcDirAbsolutePath) ?: return@flatMap emptySequence()
+                if (!vFile.isDirectory && vFile.fileType != KotlinFileType.INSTANCE) {
+                    return@flatMap emptySequence()
+                }
+
+                File(srcDirAbsolutePath)
+                    .walkTopDown()
+                    .map { file ->
+                        if (!file.isFile) return@map null
+
+                        val virtualFile = localFileSystem
+                            .findFileByPath(file.absolutePath)
+                            ?.let(virtualFileCreator::create)
+
+                        if (virtualFile != null && processedFiles.add(virtualFile)) {
+                            val psiFile = psiManager.findFile(virtualFile)
+                            if (psiFile is KtFile) {
+                                psiFile
+                            } else null
+                        } else null
+                    }
+                    //End: taken from CoreEnvironmentUtils createSourceFilesFromSourceRoots inside org.jetbrains.kotlin:kotlin-compiler:1.4.10
+                    .filterNotNull()
+                    .flatMap { ktFile ->
+                        ktFile
+                            .children
+                            .filterIsInstance<KtClass>()
+                    }
+                    .mapNotNull { ktClass ->
+                        val fqName = ktClass.fqName?.asString() ?: return@mapNotNull null
+                        val classFilePath = ktClass
+                            .containingKtFile
+                            .virtualFilePath
+                            .replace(File.separator, "/")
+                            .removePrefix(projectDir.replace(File.separator, "/"))
+                            .removePrefix("/")
+
+                        val resPath = "res://$classFilePath"
+                        fqName to resPath
+                    }
+            }
+            .toMap()
     }
 }

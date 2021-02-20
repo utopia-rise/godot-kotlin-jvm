@@ -7,7 +7,7 @@ import godot.util.nullptr
 abstract class KtObject {
     var rawPtr: VoidPtr = nullptr
         set(value) {
-            require(field == nullptr) {
+            require(field == nullptr || field == value) {
                 "rawPtr should be only set once!"
             }
             field = value

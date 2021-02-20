@@ -8,15 +8,11 @@
 #include "java_instance_wrapper.h"
 
 class KtObject : public JavaInstanceWrapper<KtObject> {
-private:
-    StringName kt_class_name;
 public:
-    KtObject(jni::JObject p_wrapped, jni::JObject p_class_loader, const StringName& p_ktClass);
+    KtObject(jni::JObject p_wrapped, jni::JObject p_class_loader);
     ~KtObject();
 
     const jni::JObject& get_wrapped() const;
-
-    const StringName& get_class_name() const;
 
 DECLARE_JNI_METHODS(
         JNI_METHOD(ON_DESTROY, "_onDestroy", "()V")

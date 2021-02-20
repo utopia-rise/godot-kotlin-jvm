@@ -3,8 +3,8 @@
 
 JNI_INIT_STATICS_FOR_CLASS(KtObject)
 
-KtObject::KtObject(jni::JObject p_wrapped, jni::JObject p_class_loader, const StringName& p_ktClass)
-        : JavaInstanceWrapper("godot.core.KtObject", p_wrapped, p_class_loader), kt_class_name(p_ktClass) {
+KtObject::KtObject(jni::JObject p_wrapped, jni::JObject p_class_loader)
+        : JavaInstanceWrapper("godot.core.KtObject", p_wrapped, p_class_loader) {
     jni::Env env { jni::Jvm::current_env() };
     p_wrapped.delete_local_ref(env);
 }
@@ -17,8 +17,4 @@ KtObject::~KtObject() {
 
 const jni::JObject &KtObject::get_wrapped() const {
     return wrapped;
-}
-
-const StringName& KtObject::get_class_name() const {
-    return kt_class_name;
 }

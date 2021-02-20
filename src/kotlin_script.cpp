@@ -21,8 +21,8 @@ Ref<Script> KotlinScript::get_base_script() const {
 }
 
 StringName KotlinScript::get_instance_base_type() const {
-    if (KtClass* kotlin_class{get_kotlin_class()}) {
-        return kotlin_class->base_godot_class;
+    if (KtClass* kt_class{get_kotlin_class()}) {
+        return kt_class->base_godot_class;
     }
     // not found
     return StringName();
@@ -35,7 +35,7 @@ ScriptInstance* KotlinScript::instance_create(Object* p_this) {
 #endif
     jni::Env env = jni::Jvm::current_env();
     KtObject *wrapped = kt_class->create_instance(env, nullptr, 0, p_this);
-    return memnew(KotlinInstance(wrapped, p_this, kt_class));
+    return memnew(KotlinInstance(wrapped, p_this, kt_class, this));
 }
 
 bool KotlinScript::instance_has(const Object* p_this) const {

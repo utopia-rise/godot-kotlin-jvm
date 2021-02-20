@@ -9,10 +9,10 @@ private:
     KtObject *wrapped_object;
     Object *owner;
     KtClass* kt_class;
+    Ref<Script> script;
 
 public:
-    explicit KotlinInstance(KtObject *p_wrapped_object, KtClass* p_kt_class);
-    KotlinInstance(KtObject *p_wrapped_object, Object *p_owner, KtClass* p_kt_class);
+    KotlinInstance(KtObject* p_wrapped_object, Object* p_owner, KtClass* p_kt_class, Script* p_script);
     ~KotlinInstance() override;
 
     bool set(const StringName& p_name, const Variant& p_value) override;
