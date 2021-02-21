@@ -7,7 +7,7 @@ class KtClass<T : KtObject>(
         val name: String,
         val registeredName: String,
         val superClass: String,
-        private val constructors: Map<Int, KtConstructor<T>>,
+        private val constructors: Array<KtConstructor<T>?>,
         private val _properties: Map<String, KtProperty<T, *>>,
         private val _functions: Map<String, KtFunction<T, *>>,
         private val _signalInfos: Map<String, KtSignalInfo>,

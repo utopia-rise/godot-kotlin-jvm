@@ -4,6 +4,8 @@ import godot.core.*
 import godot.util.camelToSnakeCase
 import kotlin.reflect.*
 
+const val CONSTRUCTOR_MAX_ARGS = 5
+
 class KtPropertyInfoBuilderDsl {
     var type: VariantType? = null
     var name: String = ""
@@ -47,6 +49,9 @@ class ClassBuilderDsl<T : KtObject>(
     fun constructor(constructor: KtConstructor<T>) {
         require(!constructors.containsKey(constructor.parameterCount)) {
             "A constructor with ${constructor.parameterCount} argument(s) already exists."
+        }
+        require(constructor.parameterCount <= CONSTRUCTOR_MAX_ARGS) {
+            "Cannot register a constructor with ${constructor.parameterCount} arguments, max argument count is $CONSTRUCTOR_MAX_ARGS"
         }
         constructors[constructor.parameterCount] = constructor
     }
@@ -650,7 +655,12 @@ class ClassBuilderDsl<T : KtObject>(
 
     internal fun build(): KtClass<T> {
         check(constructors.isNotEmpty()) { "Please provide at least one constructor." }
-        return KtClass(name, registeredName, superClass, constructors, properties, functions, signals, baseGodotClass)
+        // CONSTRUCTOR_MAX_ARGS + 1 because we have no arg constructor.
+        val constructorArray = arrayOfNulls<KtConstructor<T>>(CONSTRUCTOR_MAX_ARGS + 1)
+        constructors.forEach {
+            constructorArray[it.key] = it.value
+        }
+        return KtClass(name, registeredName, superClass, constructorArray, properties, functions, signals, baseGodotClass)
     }
 
     @PublishedApi
