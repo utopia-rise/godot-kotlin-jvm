@@ -57,6 +57,7 @@ class RegisterClassAnnotator : Annotator {
                     }
                 } else {
                     checkConstructorParameterCount(element, holder)
+                    checkConstructorOverloading(element, holder)
                     checkRegisteredClassName(element, holder)
                     checkOneRegisteredClassPerFile(element, holder)
                     checkFileName(element, holder)
@@ -92,6 +93,29 @@ class RegisterClassAnnotator : Annotator {
                         ?: ktConstructor.navigationElement
                 )
             }
+        }
+    }
+
+    private fun checkConstructorOverloading(ktClass: KtClass, holder: AnnotationHolder) {
+        val constructors = ktClass.allConstructors
+
+        val constructorsByArgCount = constructors
+            .groupBy { it.valueParameters.size }
+
+        if (constructorsByArgCount.size != constructors.size) {
+            constructorsByArgCount
+                .filter { it.value.size > 1 }
+                .flatMap { it.value }
+                .forEach { ktConstructor ->
+                    holder.registerProblem(
+                        GodotPluginBundle.message("problem.class.constructor.overloading"),
+                        ktConstructor
+                            .valueParameterList
+                            ?.psiOrParent
+                            ?: ktConstructor.nameIdentifier
+                            ?: ktConstructor.navigationElement
+                    )
+                }
         }
     }
 
