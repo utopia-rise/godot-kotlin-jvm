@@ -21,6 +21,10 @@ open class Signal(
             binds: VariantArray<Any?>?,
             flags: Long
     ) {
+        println("D: instance: $instance")
+        println("D: signal: $name")
+        println("D: target: $target")
+        println("D: method: $method")
         instance.connect(name, target, method, binds ?: VariantArray(), flags)
     }
 }
