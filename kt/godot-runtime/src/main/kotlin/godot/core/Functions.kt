@@ -58,7 +58,7 @@ abstract class KtFunction<T : KtObject, R : Any?>(
         val functionInfo: KtFunctionInfo,
         val parameterCount: Int,
         val variantType: VariantType,
-        private vararg val parameterTypes: VariantType
+        private vararg val parameterTypes: Pair<VariantType, Boolean>
 ) {
     val registrationName = functionInfo.name.camelToSnakeCase()
 
@@ -68,14 +68,14 @@ abstract class KtFunction<T : KtObject, R : Any?>(
         readArguments(argsSize)
         val ret = invokeKt(instance)
         resetParamsArray()
-        //TODO: manage nullable returns of registered methods (only for objects)
+
         TransferContext.writeReturnValue(ret, variantType)
     }
 
     private fun readArguments(argsSize: Int) {
         for (i in 0 until argsSize) {
-            //TODO: manage nullable arguments of registered methods (only for objects)
-            paramsArray[i] = TransferContext.readSingleArgument(parameterTypes[i])
+            val (type, isNullable) = parameterTypes[i]
+            paramsArray[i] = TransferContext.readSingleArgument(type, isNullable)
         }
         TransferContext.buffer.rewind()
     }
@@ -103,7 +103,7 @@ class KtFunction1<T : KtObject, P0 : Any?, R : Any?>(
         functionInfo: KtFunctionInfo,
         private val function: (T, P0) -> R,
         variantType: VariantType,
-        p0Type: VariantType
+        p0Type: Pair<VariantType, Boolean>
 ) : KtFunction<T, R>(functionInfo, 1, variantType, p0Type) {
     override fun invokeKt(instance: T): R {
         return function(
@@ -117,8 +117,8 @@ class KtFunction2<T : KtObject, P0 : Any?, P1 : Any?, R : Any?>(
         functionInfo: KtFunctionInfo,
         private val function: (T, P0, P1) -> R,
         variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType
+        p0Type: Pair<VariantType, Boolean>,
+        p1Type: Pair<VariantType, Boolean>
 ) : KtFunction<T, R>(
         functionInfo,
         2,
@@ -137,9 +137,9 @@ class KtFunction3<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, R : Any?>(
         functionInfo: KtFunctionInfo,
         private val function: (T, P0, P1, P2) -> R,
         variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
-        p2Type: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
+        p1Type: Pair<VariantType, Boolean>,
+        p2Type: Pair<VariantType, Boolean>,
 ) : KtFunction<T, R>(
         functionInfo,
         3,
@@ -160,10 +160,10 @@ class KtFunction4<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, R : 
         functionInfo: KtFunctionInfo,
         private val function: (T, P0, P1, P2, P3) -> R,
         variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
-        p2Type: VariantType,
-        p3Type: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
+        p1Type: Pair<VariantType, Boolean>,
+        p2Type: Pair<VariantType, Boolean>,
+        p3Type: Pair<VariantType, Boolean>,
 ) : KtFunction<T, R>(
         functionInfo,
         4,
@@ -186,11 +186,11 @@ class KtFunction5<T : KtObject, P0 : Any?, P1 : Any?, P2 : Any?, P3 : Any?, P4 :
         functionInfo: KtFunctionInfo,
         private val function: (T, P0, P1, P2, P3, P4) -> R,
         variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
-        p2Type: VariantType,
-        p3Type: VariantType,
-        p4Type: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
+        p1Type: Pair<VariantType, Boolean>,
+        p2Type: Pair<VariantType, Boolean>,
+        p3Type: Pair<VariantType, Boolean>,
+        p4Type: Pair<VariantType, Boolean>,
 ) : KtFunction<T, R>(
         functionInfo,
         5,
