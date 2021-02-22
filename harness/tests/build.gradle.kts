@@ -11,3 +11,8 @@ repositories {
 dependencies {
     implementation("joda-time:joda-time:2.10.6") //external dependency to test dependency inclusion in dummyCompilation
 }
+
+
+kotlin.sourceSets.main {
+    kotlin.srcDirs("scripts")
+}
