@@ -7,6 +7,10 @@
 #include "kt_function.h"
 #include "kt_signal_info.h"
 #include "java_instance_wrapper.h"
+#include "kt_constructor.h"
+
+const int CONSTRUCTOR_MAX_ARGS_SIZE = 5;
+const int MAX_CONSTRUCTOR_SIZE = CONSTRUCTOR_MAX_ARGS_SIZE + 1;
 
 class KtClass : public JavaInstanceWrapper<KtClass> {
 
@@ -38,6 +42,7 @@ private:
     HashMap<StringName, KtFunction*> methods;
     HashMap<StringName, KtProperty*> properties;
     HashMap<StringName, KtSignalInfo*> signal_infos;
+    KtConstructor* constructors[MAX_CONSTRUCTOR_SIZE];
 
     StringName get_name(jni::Env& env);
 
@@ -52,6 +57,8 @@ private:
     void fetch_properties(jni::Env& env);
 
     void fetch_signals(jni::Env& env);
+
+    void fetch_constructors(jni::Env& env);
 
     template<typename F, typename T>
     void get_member_list(List<F>* p_list, HashMap<StringName, T*>& members) {
@@ -76,7 +83,6 @@ private:
     }
 
 DECLARE_JNI_METHODS(
-        JNI_METHOD(NEW, "new", "(JJI)Lgodot/core/KtObject;")
         JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/String;")
         JNI_METHOD(GET_REGISTERED_NAME, "getRegisteredName", "()Ljava/lang/String;")
         JNI_METHOD(GET_SUPER_CLASS, "getSuperClass", "()Ljava/lang/String;")
@@ -84,6 +90,7 @@ DECLARE_JNI_METHODS(
         JNI_METHOD(GET_FUNCTIONS, "getFunctions", "()[Lgodot/core/KtFunction;")
         JNI_METHOD(GET_PROPERTIES, "getProperties", "()[Lgodot/core/KtProperty;")
         JNI_METHOD(GET_SIGNAL_INFOS, "getSignalInfos", "()[Lgodot/core/KtSignalInfo;")
+        JNI_METHOD(GET_CONSTRUCTORS, "getConstructors", "()[Lgodot/core/KtConstructor;")
 )
 };
 

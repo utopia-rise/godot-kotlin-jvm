@@ -2,7 +2,9 @@
 
 package godot.core
 
-abstract class KtConstructor<T: KtObject?>(
+import godot.util.VoidPtr
+
+abstract class KtConstructor<T: KtObject>(
     vararg argsTypes: Pair<VariantType, Boolean>
 ) {
     val parameterCount: Int = argsTypes.size
@@ -10,9 +12,17 @@ abstract class KtConstructor<T: KtObject?>(
     val parameterNullables: Array<Boolean> = argsTypes.map { it.second }.toTypedArray()
 
     abstract operator fun invoke(vararg args: Any?): T
+
+    fun construct(rawPtr: VoidPtr, instanceId: Long) = KtObject.instantiateWith(rawPtr, instanceId) {
+        val arguments = Array(parameterCount) {
+            TransferContext.readSingleArgument(parameterTypes[it], parameterNullables[it])
+        }
+        TransferContext.buffer.rewind()
+        invoke(arguments)
+    }
 }
 
-class KtConstructor0<T: KtObject?>(
+class KtConstructor0<T: KtObject>(
     private val constructor: () -> T
 ) : KtConstructor<T>() {
     override fun invoke(vararg args: Any?): T {
@@ -20,7 +30,7 @@ class KtConstructor0<T: KtObject?>(
     }
 }
 
-class KtConstructor1<T: KtObject?, P0: Any?>(
+class KtConstructor1<T: KtObject, P0: Any?>(
     private val constructor: (P0) -> T,
     p0Type: Pair<VariantType, Boolean>
 ) : KtConstructor<T>(p0Type) {
@@ -31,7 +41,7 @@ class KtConstructor1<T: KtObject?, P0: Any?>(
     }
 }
 
-class KtConstructor2<T: KtObject?, P0: Any?, P1: Any?>(
+class KtConstructor2<T: KtObject, P0: Any?, P1: Any?>(
     private val constructor: (P0, P1) -> T,
     p0Type: Pair<VariantType, Boolean>,
     p1Type: Pair<VariantType, Boolean>
@@ -44,7 +54,7 @@ class KtConstructor2<T: KtObject?, P0: Any?, P1: Any?>(
     }
 }
 
-class KtConstructor3<T: KtObject?, P0: Any?, P1: Any?, P2: Any?>(
+class KtConstructor3<T: KtObject, P0: Any?, P1: Any?, P2: Any?>(
     private val constructor: (P0, P1, P2) -> T,
     p0Type: Pair<VariantType, Boolean>,
     p1Type: Pair<VariantType, Boolean>,
@@ -59,7 +69,7 @@ class KtConstructor3<T: KtObject?, P0: Any?, P1: Any?, P2: Any?>(
     }
 }
 
-class KtConstructor4<T: KtObject?, P0: Any?, P1: Any?, P2: Any?, P3: Any?>(
+class KtConstructor4<T: KtObject, P0: Any?, P1: Any?, P2: Any?, P3: Any?>(
     private val constructor: (P0, P1, P2, P3) -> T,
     p0Type: Pair<VariantType, Boolean>,
     p1Type: Pair<VariantType, Boolean>,
@@ -76,7 +86,7 @@ class KtConstructor4<T: KtObject?, P0: Any?, P1: Any?, P2: Any?, P3: Any?>(
     }
 }
 
-class KtConstructor5<T: KtObject?, P0: Any?, P1: Any?, P2: Any?, P3: Any?, P4: Any?>(
+class KtConstructor5<T: KtObject, P0: Any?, P1: Any?, P2: Any?, P3: Any?, P4: Any?>(
     private val constructor: (P0, P1, P2, P3, P4) -> T,
     p0Type: Pair<VariantType, Boolean>,
     p1Type: Pair<VariantType, Boolean>,
