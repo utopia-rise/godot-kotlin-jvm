@@ -393,7 +393,7 @@ void GDKotlin::unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes) 
 
 KtClass* GDKotlin::find_class(const StringName& p_script_path) {
 #ifdef DEBUG_ENABLED
-    //FIXME: this crashes the editor when creating a kotlin script through the godot editor. Cause: this function gets called for the newly created script but of course it's not compiled yet as it was just added now...
+    //FIXME: https://github.com/utopia-rise/godot-jvm/issues/76
     JVM_ERR_FAIL_COND_V_MSG(!classes.has(p_script_path), nullptr,
                    vformat("Failed to find class for path: %s", p_script_path));
 #endif
