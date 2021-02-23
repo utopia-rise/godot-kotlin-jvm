@@ -15,9 +15,9 @@ class SignalDelegate<T : Signal>(val factory: () -> T) {
     }
 }
 
-class SignalDelegateProvider<T : Signal>(private val factory: (String) -> T) {
+class SignalDelegateProvider<T : Signal>(private val factory: (Object, String) -> T) {
     operator fun provideDelegate(thisRef: Object, property: KProperty<*>): SignalDelegate<T> {
-        return SignalDelegate { factory(property.name) }
+        return SignalDelegate { factory(thisRef, property.name) }
     }
 }
 

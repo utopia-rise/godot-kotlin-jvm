@@ -14,11 +14,6 @@ _global_script_classes=[ {
 "language": "Kotlin",
 "path": "res://src/main/kotlin/godot/tests/Invocation.kt"
 }, {
-"base": "Spatial",
-"class": "godot_tests_TestingClass",
-"language": "Kotlin",
-"path": "res://src/main/kotlin/godot/tests/TestingClass.kt"
-}, {
 "base": "Node",
 "class": "godot_tests_inheritance_ClassInheritanceChild",
 "language": "Kotlin",
@@ -36,7 +31,6 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "godot_tests_Invocation": "",
-"godot_tests_TestingClass": "",
 "godot_tests_inheritance_ClassInheritanceChild": "",
 "godot_tests_inheritance_ClassInheritanceParent": "",
 "godot_tests_subpackage_OtherScript": ""
@@ -54,7 +48,7 @@ settings/stdout/verbose_stdout=true
 
 [editor_plugins]
 
-enabled=PoolStringArray( "gut" )
+enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
 
 [rendering]
 

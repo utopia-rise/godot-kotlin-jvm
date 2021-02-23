@@ -22,3 +22,12 @@ lateinit_string = "works also from inspector"
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.974354, 0.225019, 0, -0.225019, 0.974354, 0, 1.2131, 2.47241 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+margin_right = 12.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
