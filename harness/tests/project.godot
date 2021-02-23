@@ -48,7 +48,7 @@ settings/stdout/verbose_stdout=true
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
+enabled=PoolStringArray( "gut" )
 
 [rendering]
 
