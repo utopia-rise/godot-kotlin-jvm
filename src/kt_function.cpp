@@ -79,7 +79,7 @@ MethodInfo KtFunctionInfo::to_method_info() const {
     MethodInfo methodInfo;
     methodInfo.name = name;
     List<PropertyInfo> pInfoList;
-    for (int i = 0; i < arguments.size(); i++) {
+    for (int i = 0; i < arguments.size(); ++i) {
         pInfoList.push_back(arguments[i]->toPropertyInfo());
     }
     methodInfo.arguments = pInfoList;

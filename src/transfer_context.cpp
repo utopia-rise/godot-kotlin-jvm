@@ -112,7 +112,6 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jint p
     }
 
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
-    const jni::JObject& class_loader = GDKotlin::get_instance().get_class_loader();
     jni::Env env(rawEnv);
 
     SharedBuffer* buffer {transfer_context->get_buffer(env)};
