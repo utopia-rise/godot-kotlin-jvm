@@ -10,4 +10,7 @@
 * [Advanced]()
     * [Custom Src dirs](src/doc/advanced/custom-src-dirs.md)
     * [Commandline args](src/doc/advanced/commandline-args.md)
-* [API differences](src/doc/api-differences.m
+* [API differences](src/doc/api-differences.md)
+* [Versioning](src/doc/versioning.md)
+* [Supported platforms](src/doc/supported-platforms.md)
+* [Contribution](src/doc/contribution.md)
