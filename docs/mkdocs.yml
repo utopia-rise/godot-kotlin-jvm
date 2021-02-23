@@ -37,7 +37,7 @@ nav:
   - Advanced:
     - Custom Src dirs: advanced/custom-src-dirs.md
     - Commandline args: advanced/commandline-args.md
-  - API differences: api-differenc
+  - API differences: api-differences.md
   - Versioning: versioning.md
   - Supported platforms: supported-platforms.md
   - Contribution: contribution.md
