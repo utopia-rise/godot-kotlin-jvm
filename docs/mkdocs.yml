@@ -34,7 +34,7 @@ nav:
     - Properties: user-guide/properties.md
     - Signals: user-guide/signals.md
     - Functions: user-guide/functions.md
-  - API differences: api-differences.md
-  - Versioning: versioning.md
-  - Supported platforms: supported-platforms.md
-  - Contribution: contribution.md
+  - Advanced:
+    - Custom Src dirs: advanced/custom-src-dirs.md
+    - Commandline args: advanced/commandline-args.md
+  - API differences: api-differenc

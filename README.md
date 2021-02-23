@@ -11,12 +11,8 @@ You also don't have to worry about any binding logic. Just write your game scrip
 
 ## Important notes
 
-This version of the binding is currently **WIP**! It cannot be used to build games yet.  
-For a more stable, yet much less performant binding using Kotlin Native instead of Kotlin on the JVM, visit [godot-kotlin](https://github.com/utopia-rise/godot-kotlin).  
-
-## Documentation
-
-Documentation will be added once the binding reaches the **Alpha** state.
+This version of the binding is currently **Pre-Alpha**!  
+For more information see [Pre-Alpha instructions](docs/src/doc/pre-alpha.md) in the docs.
 
 ## Developer discussion
 
@@ -37,7 +33,7 @@ Each Issue has a Maintainer that is the "supervisor" for the general topic the i
 
 2. In `godot/`, run the following command: `git submodule add git@github.com:utopia-rise/godot-jvm.git modules/kotlin_jvm`
 
-3. Pull submodules of our project (currently only the entry generator): 
+3. Pull submodules of our project: 
     - `cd modules/kotlin_jvm`
     - `git submodule update --init --recursive`
 
