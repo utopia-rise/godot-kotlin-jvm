@@ -11,7 +11,7 @@ KtConstructor::KtConstructor(jni::JObject p_wrapped, jni::JObject &p_class_loade
     parameter_count = static_cast<int>(wrapped.call_int_method(env, get_parameter_count_method));
 }
 
-KtObject *KtConstructor::create_instance(const Variant **p_args, Object *p_owner) {
+KtObject* KtConstructor::create_instance(const Variant **p_args, Object *p_owner) {
     jni::Env env{jni::Jvm::current_env()};
     GDKotlin::get_instance().transfer_context->write_args(env, p_args, parameter_count);
     jvalue args[2] = {
