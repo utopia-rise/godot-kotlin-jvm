@@ -245,7 +245,6 @@ void GDKotlin::init() {
     jni::Jvm::init(args);
     LOG_INFO("Starting JVM ...")
     auto project_settings = ProjectSettings::get_singleton();
-    scripts_root = "res://src/main/kotlin/";
     String bootstrap_jar = OS::get_singleton()->get_executable_path().get_base_dir() + "/godot-bootstrap.jar";
     JVM_CRASH_COND_MSG(!FileAccess::exists(bootstrap_jar),
                    "No godot-bootstrap.jar found! This file needs to stay alongside the godot editor executable!")
@@ -394,6 +393,7 @@ void GDKotlin::unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes) 
 
 KtClass* GDKotlin::find_class(const StringName& p_script_path) {
 #ifdef DEBUG_ENABLED
+    //FIXME: https://github.com/utopia-rise/godot-jvm/issues/76
     JVM_ERR_FAIL_COND_V_MSG(!classes.has(p_script_path), nullptr,
                    vformat("Failed to find class for path: %s", p_script_path));
 #endif

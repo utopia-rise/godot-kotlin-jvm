@@ -147,11 +147,11 @@ void KotlinLanguage::get_string_delimiters(List<String>* p_delimiters) const {
 
 Ref<Script> KotlinLanguage::get_template(const String& p_class_name, const String& p_base_class_name) const {
     String kotlinClassTemplate {
-        "package " GODOT_KOTLIN_PACKAGE "\n"
+        "package fixme\n"
         "\n"
         "import " GODOT_KOTLIN_PACKAGE ".%BASE%"
         "\n"
-        "class %CLASS% : %BASE% {\n"
+        "class %CLASS% : %BASE%() {\n"
         "\n"
         "    // Declare member variables here. Examples:\n"
         "    // val a = 2;\n"
@@ -163,7 +163,7 @@ Ref<Script> KotlinLanguage::get_template(const String& p_class_name, const Strin
         "    }\n"
         "\n"
         "    // Called every frame. 'delta' is the elapsed time since the previous frame.\n"
-        "    override fun _process(float delta) {\n"
+        "    override fun _process(delta: Double) {\n"
         "        \n"
         "    }\n"
         "}\n"
@@ -200,9 +200,6 @@ String KotlinLanguage::validate_path(const String& p_path) const {
     get_reserved_words(&keywords);
     if (keywords.find(p_path.get_file().get_basename())) {
         return TTR("Please don't use reserved keywords as file name.");
-    }
-    if (!p_path.begins_with(GDKotlin::get_instance().scripts_root)) {
-        return TTR("Kotlin classes must be placed at src/main/kotlin.");
     }
     return "";
 }
