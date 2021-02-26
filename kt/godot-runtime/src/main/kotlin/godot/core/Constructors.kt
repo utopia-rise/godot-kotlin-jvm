@@ -5,6 +5,8 @@ package godot.core
 import godot.util.VoidPtr
 import godot.util.threadLocal
 
+const val CONSTRUCTOR_MAX_ARGS = 5
+
 abstract class KtConstructor<T: KtObject>(
     vararg argsTypes: Pair<VariantType, Boolean>
 ) {
@@ -29,7 +31,7 @@ abstract class KtConstructor<T: KtObject>(
     }
 
     companion object {
-        val paramsArray by threadLocal { arrayOf<Any?>(null, null, null, null, null) }
+        val paramsArray by threadLocal { arrayOfNulls<Any>(CONSTRUCTOR_MAX_ARGS) }
 
         fun resetParamsArray() {
             paramsArray.fill(null)

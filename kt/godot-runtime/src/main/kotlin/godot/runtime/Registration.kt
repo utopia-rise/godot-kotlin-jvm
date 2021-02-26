@@ -4,8 +4,6 @@ import godot.core.*
 import godot.util.camelToSnakeCase
 import kotlin.reflect.*
 
-const val CONSTRUCTOR_MAX_ARGS = 5
-
 class KtPropertyInfoBuilderDsl {
     var type: VariantType? = null
     var name: String = ""
