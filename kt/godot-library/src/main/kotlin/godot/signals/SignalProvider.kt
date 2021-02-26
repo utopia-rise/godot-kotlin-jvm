@@ -15,10 +15,9 @@ class SignalDelegate<T : Signal>(val factory: () -> T) {
     }
 }
 
-class SignalDelegateProvider<T : Signal>(private val factory: (String) -> T) {
+class SignalDelegateProvider<T : Signal>(private val factory: (Object, String) -> T) {
     operator fun provideDelegate(thisRef: Object, property: KProperty<*>): SignalDelegate<T> {
-        // not using `camelcaseToUnderscore` to prevent a call to godot for each signal emission
-        return SignalDelegate { factory(property.name.camelToSnakeCase()) }
+        return SignalDelegate { factory(thisRef, property.name) }
     }
 }
 
