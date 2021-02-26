@@ -58,9 +58,11 @@ abstract class KtFunction<T : KtObject, R : Any?>(
         val functionInfo: KtFunctionInfo,
         val parameterCount: Int,
         val variantType: VariantType,
-        private vararg val parameterTypes: Pair<VariantType, Boolean>
+        vararg parameterTypes: Pair<VariantType, Boolean>
 ) {
     val registrationName = functionInfo.name.camelToSnakeCase()
+    private val types: List<VariantType> = parameterTypes.map { it.first }
+    private val isNullables: List<Boolean> = parameterTypes.map { it.second }
 
     fun invoke(instance: T) {
         val argsSize = TransferContext.buffer.int
@@ -74,8 +76,7 @@ abstract class KtFunction<T : KtObject, R : Any?>(
 
     private fun readArguments(argsSize: Int) {
         for (i in 0 until argsSize) {
-            val (type, isNullable) = parameterTypes[i]
-            paramsArray[i] = TransferContext.readSingleArgument(type, isNullable)
+            paramsArray[i] = TransferContext.readSingleArgument(types[i], isNullables[i])
         }
         TransferContext.buffer.rewind()
     }
