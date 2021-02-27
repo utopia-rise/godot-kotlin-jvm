@@ -84,7 +84,7 @@ class RegisterClassAnnotator : Annotator {
 
     private fun checkDefaultConstructorExistence(ktClass: KtClass, holder: AnnotationHolder) {
         if (ktClass.allConstructors.isNotEmpty() && ktClass.allConstructors.filter { it.valueParameters.isEmpty() }.size != 1) {
-            //TODO: create quick fix (not trivial to create a secondary constructor from a primary one, i failed miserably)
+            // TODO: create quick fix (not trivial to create a secondary constructor from a primary one, i failed miserably)
             holder.registerProblem(
                 GodotPluginBundle.message("problem.class.constructor.defaultConstructorMissing"),
                 ktClass.nameIdentifier
