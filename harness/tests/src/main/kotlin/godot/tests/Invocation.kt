@@ -291,7 +291,8 @@ class Invocation : Spatial() {
 		signalNoParam.connect(invocation, invocation::hookNoParam)
 		signalOneParam.connect(invocation, invocation::hookOneParam)
 		signalTwoParam.connect(invocation, invocation::hookTwoParam)
-		(getNodeOrNull(NodePath("CanvasLayer/Button")) as Button?)?.signalPressed?.connect(invocation, invocation::hookNoParam)signalNoParam.emit()
+		(getNodeOrNull(NodePath("CanvasLayer/Button")) as Button?)?.signalPressed?.connect(invocation, invocation::hookNoParam)
+        signalNoParam.emit()
 		signalOneParam.emit(false)
 		signalTwoParam.emit("My Awesome param !", this)
 
