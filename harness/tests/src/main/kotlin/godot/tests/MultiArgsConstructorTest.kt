@@ -4,6 +4,7 @@ import godot.NavigationMesh
 import godot.Node
 import godot.Object
 import godot.annotation.RegisterClass
+import godot.annotation.RegisterConstructor
 import godot.annotation.RegisterProperty
 import godot.core.VariantArray
 
@@ -19,20 +20,28 @@ class MultiArgsConstructorTest : Node {
     @RegisterProperty
     var threeArgsConstructorHasBeenCalled = false
 
+    @RegisterConstructor
     constructor() : super() {
         defaultConstructorHasBeenCalled = true
     }
 
+    @RegisterConstructor
     constructor(i: Int) : this() {
         oneArgConstructorHasBeenCalled = true
     }
 
+    @RegisterConstructor
     constructor(i: Int, s: String) : this() {
         threeArgsConstructorHasBeenCalled = true
     }
 
+    @RegisterConstructor
     constructor(i: Int, s: String, obj: Object?) : this()
+
+    @RegisterConstructor
     constructor(i: Int, s: String, obj: Object?, variantArray: VariantArray<Any?>) : this()
+
+    @RegisterConstructor
     constructor(i: Int, s: String, obj: Object?, variantArray: VariantArray<Any?>?, navMesh: NavigationMesh) : this()
 
     // constructors which should fail:
