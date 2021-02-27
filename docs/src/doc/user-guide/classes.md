@@ -68,7 +68,11 @@ You can define additional constructors but for them to be registered, you have t
 Default constructor on the other hand are always registered, regardless of the annotation. But we recommend to add it anyways, if you have multiple constructors, so it serves a documentation purpose in your scripts and it's consistent.  
 
 Constructors also can have a maximum of 5 arguments.  
-Each constructor must have a unique argument count. Constructor overloading is not yet supported.
+Each constructor must have a unique argument count. Constructor overloading is not yet supported.  
+
+If you call your constructors from GDScript note this limitation:  
+You can only call the default constructor with the named syntax: `package_YourClass.new()`  
+Constructors with arguments you have to call using the `load` function: `load("res://package/YourClass").new(oneArg, anotherArg)`  
 
 ## Registration Configuration
 You can customize to some extent how your class should be registered in Godot:
