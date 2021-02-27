@@ -7,3 +7,6 @@ An embedded JRE will be shipped with your application to ensure it runs on syste
 
 If you are new to this language module, it is recommended to read through the [Versioning](versioning.md) and the [Getting started](getting-started/gradle.md) sections first.
 Please also note the [API differences](api-differences.md) section which covers some important difference to the scripting and workflow compared to GDScript.
+
+# State
+This binding is currently in Pre-Alpha state. For more information see [Pre-Alpha instructions](pre-alpha.md)
