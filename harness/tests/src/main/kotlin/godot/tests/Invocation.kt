@@ -34,12 +34,7 @@ enum class TestEnum {
 }
 
 @RegisterClass
-class Invocation() : Spatial() {
-
-    constructor(hehe: String) : this()
-
-    @RegisterConstructor
-    constructor(hehe: String, blubb: Int) : this()
+class Invocation : Spatial() {
 
     @RegisterProperty
     var testNullable: Int? = null
