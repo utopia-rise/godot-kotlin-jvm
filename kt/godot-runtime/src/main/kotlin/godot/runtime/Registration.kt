@@ -185,7 +185,7 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P: Any> property(
+    fun <P: Any?> property(
         kProperty: KMutableProperty1<T, P>,
         variantType: VariantType,
         setValueConverter: ((Any?) -> P),
@@ -203,7 +203,7 @@ class ClassBuilderDsl<T : KtObject>(
         properties[property.name] = KtProperty(property, kProperty, variantType, defaultArgument, isRef)
     }
 
-    fun <R: Any> function(
+    fun <R: Any?> function(
         func: KFunction1<T, R>,
         variantType: VariantType,
         returnType: KtFunctionArgument
@@ -227,7 +227,7 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <R: Any> function(
+    fun <R: Any?> function(
         func: KFunction1<T, R>,
         variantType: VariantType,
         returns: KtPropertyInfoBuilderDsl.() -> Unit
@@ -243,10 +243,10 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, R: Any> function(
+    fun <P0, R: Any?> function(
         func: KFunction2<T, P0, R>,
         variantType: VariantType,
-        p0Type: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
         p0: KtFunctionArgument,
         returnType: KtFunctionArgument
     ) {
@@ -266,10 +266,10 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, R: Any> function(
+    fun <P0, R: Any?> function(
         func: KFunction2<T, P0, R>,
         variantType: VariantType,
-        p0Type: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
         arg: KtPropertyInfoBuilderDsl.() -> Unit,
         returns: KtPropertyInfoBuilderDsl.() -> Unit
     ) {
@@ -284,11 +284,11 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, P1, R: Any> function(
+    fun <P0, P1, R: Any?> function(
         func: KFunction3<T, P0, P1, R>,
         variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
+        p1Type: Pair<VariantType, Boolean>,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         returnType: KtFunctionArgument
@@ -311,11 +311,11 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, P1, R: Any> function(
+    fun <P0, P1, R: Any?> function(
         func: KFunction3<T, P0, P1, R>,
         variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
+        p1Type: Pair<VariantType, Boolean>,
         args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
         returns: KtPropertyInfoBuilderDsl.() -> Unit
     ) {
@@ -334,12 +334,12 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, P1, P2, R: Any> function(
+    fun <P0, P1, P2, R: Any?> function(
         func: KFunction4<T, P0, P1, P2, R>,
         variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
-        p2Type: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
+        p1Type: Pair<VariantType, Boolean>,
+        p2Type: Pair<VariantType, Boolean>,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -365,12 +365,12 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, P1, P2, R: Any> function(
+    fun <P0, P1, P2, R: Any?> function(
         func: KFunction4<T, P0, P1, P2, R>,
         variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
-        p2Type: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
+        p1Type: Pair<VariantType, Boolean>,
+        p2Type: Pair<VariantType, Boolean>,
         args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
         returns: KtPropertyInfoBuilderDsl.() -> Unit
     ) {
@@ -390,13 +390,13 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, P1, P2, P3, R: Any> function(
+    fun <P0, P1, P2, P3, R: Any?> function(
         func: KFunction5<T, P0, P1, P2, P3, R>,
         variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
-        p2Type: VariantType,
-        p3Type: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
+        p1Type: Pair<VariantType, Boolean>,
+        p2Type: Pair<VariantType, Boolean>,
+        p3Type: Pair<VariantType, Boolean>,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -425,13 +425,13 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, P1, P2, P3, R: Any> function(
+    fun <P0, P1, P2, P3, R: Any?> function(
         func: KFunction5<T, P0, P1, P2, P3, R>,
         variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
-        p2Type: VariantType,
-        p3Type: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
+        p1Type: Pair<VariantType, Boolean>,
+        p2Type: Pair<VariantType, Boolean>,
+        p3Type: Pair<VariantType, Boolean>,
         args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
         returns: KtPropertyInfoBuilderDsl.() -> Unit
     ) {
@@ -452,14 +452,14 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, P1, P2, P3, P4, R: Any> function(
+    fun <P0, P1, P2, P3, P4, R: Any?> function(
         func: KFunction6<T, P0, P1, P2, P3, P4, R>,
         variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
-        p2Type: VariantType,
-        p3Type: VariantType,
-        p4Type: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
+        p1Type: Pair<VariantType, Boolean>,
+        p2Type: Pair<VariantType, Boolean>,
+        p3Type: Pair<VariantType, Boolean>,
+        p4Type: Pair<VariantType, Boolean>,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -491,14 +491,14 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, P1, P2, P3, P4, R: Any> function(
+    fun <P0, P1, P2, P3, P4, R: Any?> function(
         func: KFunction6<T, P0, P1, P2, P3, P4, R>,
         variantType: VariantType,
-        p0Type: VariantType,
-        p1Type: VariantType,
-        p2Type: VariantType,
-        p3Type: VariantType,
-        p4Type: VariantType,
+        p0Type: Pair<VariantType, Boolean>,
+        p1Type: Pair<VariantType, Boolean>,
+        p2Type: Pair<VariantType, Boolean>,
+        p3Type: Pair<VariantType, Boolean>,
+        p4Type: Pair<VariantType, Boolean>,
         args: Array<KtPropertyInfoBuilderDsl.() -> Unit>,
         returns: KtPropertyInfoBuilderDsl.() -> Unit
     ) {
@@ -633,7 +633,7 @@ class ClassBuilderDsl<T : KtObject>(
         return args.applyArgumentsDsl() to returnInfo
     }
 
-    private fun <R: Any> appendFunction(function: KtFunction<T, R>) {
+    private fun <R: Any?> appendFunction(function: KtFunction<T, R>) {
         require(!functions.containsKey(function.functionInfo.name)) {
             "A method with ${function.functionInfo.name} already exists."
         }
