@@ -63,8 +63,8 @@ override fun _ready() {
 ```
 
 ## Constructors
-Currently only no arg constructors are supported for registered classes.  
-This will change in future releases though.
+Godot requires to have a default constructor on your classes.  
+You can define additional constructors but for them to be registered, you have to annotate them with `@RegisterConstructor`
 
 ## Registration Configuration
 You can customize to some extent how your class should be registered in Godot:

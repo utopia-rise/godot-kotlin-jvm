@@ -5,24 +5,9 @@ import godot.Button
 import godot.NavigationMesh
 import godot.Object
 import godot.Spatial
-import godot.annotation.ColorNoAlpha
-import godot.annotation.Dir
-import godot.annotation.DoubleRange
-import godot.annotation.EnumFlag
-import godot.annotation.EnumTypeHint
-import godot.annotation.ExpEasing
-import godot.annotation.ExpRange
-import godot.annotation.File
-import godot.annotation.FloatRange
-import godot.annotation.IntFlag
+import godot.annotation.*
 import godot.annotation.IntRange
 import godot.annotation.LongRange
-import godot.annotation.MultilineText
-import godot.annotation.PlaceHolderText
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
-import godot.annotation.RegisterProperty
-import godot.annotation.RegisterSignal
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.NodePath
@@ -49,9 +34,14 @@ enum class TestEnum {
 }
 
 @RegisterClass
-class Invocation : Spatial() {
-	@RegisterProperty
-	var testNullable: Int? = null
+class Invocation() : Spatial() {
+
+    constructor(hehe: String): this()
+    @RegisterConstructor
+    constructor(hehe: String, blubb: Int): this()
+
+    @RegisterProperty
+    var testNullable: Int? = null
 
 	private var hasInitializedLateInits = false
 
