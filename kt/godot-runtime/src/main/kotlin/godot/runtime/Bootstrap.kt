@@ -24,6 +24,7 @@ class Bootstrap {
     private lateinit var serviceLoader: ServiceLoader<Entry>
     private var executor: ScheduledExecutorService? = null
     private var watchService: WatchService? = null
+    private var engineTypesRegistered: Boolean = false
 
     fun init(isEditor: Boolean, projectDir: String) {
         val libsDir = Paths.get(projectDir, "build/libs")
@@ -96,13 +97,17 @@ class Bootstrap {
         if (entry.isPresent) {
             with(entry.get()) {
                 val context = Entry.Context(registry!!)
-                context.initEngineTypes()
-                registerManagedEngineTypes(
-                    TypeManager.engineTypeNames.toTypedArray(),
-                    TypeManager.engineSingletonsNames.toTypedArray(),
-                    TypeManager.engineTypeMethod.map { it.second }.toTypedArray(),
-                    TypeManager.engineTypeMethod.map { it.first }.toTypedArray()
-                )
+
+                if (!engineTypesRegistered) {
+                    context.initEngineTypes()
+                    registerManagedEngineTypes(
+                        TypeManager.engineTypeNames.toTypedArray(),
+                        TypeManager.engineSingletonsNames.toTypedArray(),
+                        TypeManager.engineTypeMethod.map { it.second }.toTypedArray(),
+                        TypeManager.engineTypeMethod.map { it.first }.toTypedArray()
+                    )
+                    engineTypesRegistered = true
+                }
 
                 context.init()
             }
