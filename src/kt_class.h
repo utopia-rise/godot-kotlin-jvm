@@ -9,6 +9,7 @@
 #include "java_instance_wrapper.h"
 #include "kt_constructor.h"
 
+// Change also in Constructors.kt when changing it.
 const int CONSTRUCTOR_MAX_ARGS_SIZE = 5;
 const int MAX_CONSTRUCTOR_SIZE = CONSTRUCTOR_MAX_ARGS_SIZE + 1;
 

@@ -5,6 +5,7 @@ package godot.core
 import godot.util.VoidPtr
 import godot.util.threadLocal
 
+// Change also in kt_class.h when changing it.
 const val CONSTRUCTOR_MAX_ARGS = 5
 
 abstract class KtConstructor<T: KtObject>(
