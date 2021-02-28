@@ -69,6 +69,7 @@ Default constructor on the other hand are always registered, regardless of the a
 
 Constructors also can have a maximum of 5 arguments.  
 Each constructor must have a unique argument count. Constructor overloading is not yet supported.  
+This limitation is only valid for registered constructor's though. If you have two constructors with 3 args and only one of them is registered, it's valid and will work.
 
 If you call your constructors from GDScript note this limitation:  
 You can only call the default constructor with the named syntax: `package_YourClass.new()`  

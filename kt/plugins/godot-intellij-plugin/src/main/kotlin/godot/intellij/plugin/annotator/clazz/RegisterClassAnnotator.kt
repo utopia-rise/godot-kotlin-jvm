@@ -6,6 +6,7 @@ import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCacheProvider
 import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
+import godot.intellij.plugin.data.model.REGISTER_CONSTRUCTOR_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_SIGNAL_ANNOTATION
@@ -94,7 +95,10 @@ class RegisterClassAnnotator : Annotator {
     }
 
     private fun checkConstructorParameterCount(ktClass: KtClass, holder: AnnotationHolder) {
-        ktClass.allConstructors.forEach { ktConstructor ->
+        ktClass
+            .allConstructors
+            .filter { it.findAnnotation(FqName(REGISTER_CONSTRUCTOR_ANNOTATION)) != null }
+            .forEach { ktConstructor ->
             if (ktConstructor.valueParameters.size > MAX_CONSTRUCTOR_ARGS) {
                 holder.registerProblem(
                     GodotPluginBundle.message("problem.class.constructor.toManyParams"),
@@ -109,9 +113,10 @@ class RegisterClassAnnotator : Annotator {
     }
 
     private fun checkConstructorOverloading(ktClass: KtClass, holder: AnnotationHolder) {
-        val constructors = ktClass.allConstructors
+        val constructors = ktClass.allConstructors.filter { it.findAnnotation(FqName(REGISTER_CONSTRUCTOR_ANNOTATION)) != null }
 
         val constructorsByArgCount = constructors
+            .filter { it.findAnnotation(FqName(REGISTER_CONSTRUCTOR_ANNOTATION)) != null }
             .groupBy { it.valueParameters.size }
 
         if (constructorsByArgCount.size != constructors.size) {
