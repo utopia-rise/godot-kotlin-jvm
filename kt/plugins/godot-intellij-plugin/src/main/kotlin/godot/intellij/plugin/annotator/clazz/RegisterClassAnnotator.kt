@@ -99,21 +99,23 @@ class RegisterClassAnnotator : Annotator {
             .allConstructors
             .filter { it.findAnnotation(FqName(REGISTER_CONSTRUCTOR_ANNOTATION)) != null }
             .forEach { ktConstructor ->
-            if (ktConstructor.valueParameters.size > MAX_CONSTRUCTOR_ARGS) {
-                holder.registerProblem(
-                    GodotPluginBundle.message("problem.class.constructor.toManyParams"),
-                    ktConstructor
-                        .valueParameterList
-                        ?.psiOrParent
-                        ?: ktConstructor.nameIdentifier
-                        ?: ktConstructor.navigationElement
-                )
+                if (ktConstructor.valueParameters.size > MAX_CONSTRUCTOR_ARGS) {
+                    holder.registerProblem(
+                        GodotPluginBundle.message("problem.class.constructor.toManyParams"),
+                        ktConstructor
+                            .valueParameterList
+                            ?.psiOrParent
+                            ?: ktConstructor.nameIdentifier
+                            ?: ktConstructor.navigationElement
+                    )
+                }
             }
-        }
     }
 
     private fun checkConstructorOverloading(ktClass: KtClass, holder: AnnotationHolder) {
-        val constructors = ktClass.allConstructors.filter { it.findAnnotation(FqName(REGISTER_CONSTRUCTOR_ANNOTATION)) != null }
+        val constructors = ktClass
+            .allConstructors
+            .filter { it.findAnnotation(FqName(REGISTER_CONSTRUCTOR_ANNOTATION)) != null }
 
         val constructorsByArgCount = constructors
             .filter { it.findAnnotation(FqName(REGISTER_CONSTRUCTOR_ANNOTATION)) != null }
