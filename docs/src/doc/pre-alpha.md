@@ -14,7 +14,7 @@ If you want to try the binding at it's current state, you will have to build the
     - `git submodule update --init --recursive`
    
 # Build
-**Note:** this needs to be done each time you pull the latest changes from this project until we ship a pre-built engine. There this jar will be included.
+**Note:** this needs to be done each time you pull the latest changes from this project until we ship a pre-built engine.
 
 1. From the godot root folder build the engine with: `scons -j$(nproc) platform=x11 # your platform`
 2. Build `godot-bootstrap.jar`
