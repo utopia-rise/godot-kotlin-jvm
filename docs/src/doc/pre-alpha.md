@@ -32,7 +32,7 @@ To run the documentation locally you need:
 - `pip install mkdocs-material`
 
 # Setup your project
-At this state it's higly recommended to just put you project in the `harness` folder so you can more or less copy the gradle configuration from our sample projects.
+At this state it's highly recommended to just put you project in the `harness` folder so you can more or less copy the gradle configuration from our sample projects.
 
 Most important is the configuration inside the `settings.gradle.kts` file as it includes the necessary build includes as long as we don't provide published artefacts.
 
