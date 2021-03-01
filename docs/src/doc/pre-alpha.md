@@ -12,6 +12,12 @@ If you want to try the binding at it's current state, you will have to build the
 3. Pull the submodules of our project: 
     - `cd modules/kotlin_jvm`
     - `git submodule update --init --recursive`
+   
+# Build
+1. From the godot root folder build the engine with: `scons -j$(nproc) platform=x11 # your platform`
+2. Build `godot-bootstrap.jar`
+   - navigate to `kt/`
+   - `./gradlew build`
 
 # Documentation
 The documentation is currently not deployed. Once you have set up the project (see [setup](#setup)), you can launch the documentation in a local webserver. Just run the `run.sh` script in the `docs` folder.
@@ -22,16 +28,6 @@ To run the documentation locally you need:
 - Phython 3 installed
 - `pip install mkdocs`
 - `pip install mkdocs-material`
-
-
-# Build
-1. Build the engine with our module: `scons -j$(nproc) platform=x11 # your platform`
-2. Build `godot-bootstrap.jar`
-    - navigate to `kt/godot-library`
-    - `./gradlew build`
-3. Copy `godot-bootstrap.jar`:
-    - `cp build/libs/godot-bootstrap.jar ../../../../bin`
-    - **Note:** this needs to be done each time you pull the latest changes from this project until we ship a pre-built engine. There this jar will be included.
 
 # Setup your project
 At this state it's higly recommended to just put you project in the `harness` folder so you can more or less copy the gradle configuration from our sample projects.
