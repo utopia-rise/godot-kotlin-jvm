@@ -393,9 +393,9 @@ void GDKotlin::unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes) 
 
 KtClass* GDKotlin::find_class(const StringName& p_script_path) {
 #ifdef DEBUG_ENABLED
-    //FIXME: https://github.com/utopia-rise/godot-jvm/issues/76
-    JVM_ERR_FAIL_COND_V_MSG(!classes.has(p_script_path), nullptr,
-                   vformat("Failed to find class for path: %s", p_script_path));
+    if (!classes.has(p_script_path)) {
+        return nullptr;
+    }
 #endif
     return classes[p_script_path];
 }
