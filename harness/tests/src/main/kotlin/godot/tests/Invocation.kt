@@ -272,7 +272,6 @@ class Invocation : Spatial() {
         name = "TestName"
         println("Name is: $name")
         name = formerName
-
         val test = DateTime.now() //external dependency to test dependency inclusion in dummyCompilation
 
         signalNoParam.connect(invocation, invocation::hookNoParam)
