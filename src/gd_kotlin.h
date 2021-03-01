@@ -8,6 +8,7 @@
 #include "transfer_context.h"
 #include "modules/kotlin_jvm/src/bridges/memory_bridge.h"
 #include "kotlin_script.h"
+#include "gd_print_glue.h"
 
 class GDKotlin {
 private:
@@ -18,6 +19,7 @@ private:
 
     jni::JObject class_loader;
     Bootstrap* bootstrap;
+    GDPrintGlue* gd_print_glue;
 
     bool is_gc_started;
 

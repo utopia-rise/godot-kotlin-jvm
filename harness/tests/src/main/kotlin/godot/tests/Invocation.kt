@@ -24,6 +24,7 @@ import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.dictionaryOf
 import godot.core.variantArrayOf
+import godot.global.GD
 import godot.signals.signal
 import godot.tests.subpackage.OtherScript
 import godot.util.RealT
@@ -260,6 +261,12 @@ class Invocation : Spatial() {
 
     @RegisterFunction
     override fun _enterTree() {
+        GD.print("Hello", "Hello")
+        GD.printErr("Hello", "Hello")
+        GD.printRaw("Hello", "Hello")
+        GD.printStack()
+        GD.prints("1", "2")
+        GD.printt("1", "2")
         println("Enter tree !")
         println("Instance id: ${getInstanceId()}")
         println("CustomName is $customName")

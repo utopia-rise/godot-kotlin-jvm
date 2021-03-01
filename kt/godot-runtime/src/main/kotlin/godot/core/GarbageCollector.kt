@@ -98,7 +98,7 @@ object GarbageCollector {
                                 append("Leaked references:")
                                 append(System.lineSeparator())
                                 for (entry in refWrappedMap) {
-                                    append("    ${entry.key}: ${entry.value}")
+                                    append("    ${entry.key}: ${entry.value.get()}")
                                     append(System.lineSeparator())
                                 }
                                 append("Leaked objects:")
@@ -110,7 +110,7 @@ object GarbageCollector {
                                 append("Leaked native core types:")
                                 append(System.lineSeparator())
                                 for (entry in nativeCoreTypeMap) {
-                                    append("    ${entry.key}: ${entry.value}")
+                                    append("    ${entry.key}: ${entry.value.get()}")
                                     append(System.lineSeparator())
                                 }
                             }
