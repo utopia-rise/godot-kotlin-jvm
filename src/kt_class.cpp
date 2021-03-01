@@ -5,7 +5,7 @@
 JNI_INIT_STATICS_FOR_CLASS(KtClass)
 
 KtClass::KtClass(jni::JObject p_wrapped, jni::JObject& p_class_loader) :
-    JavaInstanceWrapper("godot.core.KtClass", p_wrapped, p_class_loader) {
+    JavaInstanceWrapper("godot.core.KtClass", p_wrapped, p_class_loader), constructors{} {
     jni::Env env { jni::Jvm::current_env() };
     name = get_name(env);
     registered_class_name = get_registered_name(env);
@@ -14,27 +14,42 @@ KtClass::KtClass(jni::JObject p_wrapped, jni::JObject& p_class_loader) :
     fetch_methods(env);
     fetch_properties(env);
     fetch_signals(env);
+    fetch_constructors(env);
 }
 
 KtClass::~KtClass() {
     delete_members(methods);
     delete_members(properties);
     delete_members(signal_infos);
+    for (auto& constructor : constructors) {
+        delete constructor;
+    }
 }
 
 KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_arg_count, Object* p_owner) {
-    jni::MethodId new_method { get_method_id(env, jni_methods.NEW) };
-    // TODO: send args
-    jvalue args[3] = {
-            jni::to_jni_arg(p_owner),
-            jni::to_jni_arg(p_owner->get_instance_id()),
-            jni::to_jni_arg(p_arg_count)
-    };
-    jni::JObject j_kt_object{wrapped.call_object_method(env, new_method, args)};
+#ifdef DEBUG_ENABLED
+    JVM_CRASH_COND_MSG(
+            p_arg_count > MAX_CONSTRUCTOR_SIZE,
+            vformat("Cannot call constructor with %s, max arg count is %s", p_arg_count, MAX_CONSTRUCTOR_SIZE)
+    )
+#endif
+
+    KtConstructor* constructor{constructors[p_arg_count]};
+
+#ifdef DEBUG_ENABLED
+    JVM_CRASH_COND_MSG(
+            constructor == nullptr,
+            vformat("Cannot find constructor with %s parameters for class %s", p_arg_count, name)
+    )
+#endif
+
+    KtObject* jvm_instance{constructor->create_instance(p_args, p_owner)};
+
 #ifdef DEBUG_ENABLED
     LOG_VERBOSE(vformat("Instantiated an object of type %s", name))
 #endif
-    return new KtObject(j_kt_object, class_loader);
+
+    return jvm_instance;
 }
 
 KtFunction* KtClass::get_method(const StringName& methodName) {
@@ -111,6 +126,22 @@ void KtClass::fetch_signals(jni::Env& env) {
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE(vformat("Fetched signal %s for class %s", kt_signal_info->name, name))
 #endif
+    }
+}
+
+void KtClass::fetch_constructors(jni::Env &env) {
+    jni::MethodId get_constructors_method{get_method_id(env, jni_methods.GET_CONSTRUCTORS)};
+    jni::JObjectArray constructors_array{wrapped.call_object_method(env, get_constructors_method)};
+    for (int i = 0; i < constructors_array.length(env); ++i) {
+        const jni::JObject& constructor{constructors_array.get(env, i)};
+        KtConstructor* kt_constructor{nullptr};
+        if (constructor.obj != nullptr) {
+            kt_constructor = new KtConstructor(constructor, GDKotlin::get_instance().get_class_loader());
+#ifdef DEBUG_ENABLED
+            LOG_VERBOSE(vformat("Fetched constructor with %s parameters for class %s", i, name))
+#endif
+        }
+        constructors[i] = kt_constructor;
     }
 }
 

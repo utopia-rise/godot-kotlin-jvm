@@ -58,7 +58,7 @@ We recommend you build and install our intellij plugin located in `kt/plugins/go
 # What's not working:
 The items in this list are explicitly mentioned here as these will be implemented in future versions. Also consider the [Api differences](api-differences.md) section for general differences and limitations which will not be or cannot be adressed in the near forseable future or ever.
 
-- Only default constructors are supported (no args)
+- Each registered constructor must have a unique number of arguments. Constructor overloading is not yet supported
 - No networking functionality (Rpc annotations do exist but they do not work yet)
 - No tool mode (you can set it already in the `@RegisterClass` annotation but it has no effect yet)
 - No plugin support -> You cannot use Godot-Jvm to write plugins and addons yet

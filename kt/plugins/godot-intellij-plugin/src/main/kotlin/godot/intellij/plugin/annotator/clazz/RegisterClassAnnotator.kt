@@ -6,6 +6,7 @@ import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCacheProvider
 import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
+import godot.intellij.plugin.data.model.REGISTER_CONSTRUCTOR_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_SIGNAL_ANNOTATION
@@ -56,7 +57,9 @@ class RegisterClassAnnotator : Annotator {
                         )
                     }
                 } else {
+                    checkDefaultConstructorExistence(element, holder)
                     checkConstructorParameterCount(element, holder)
+                    checkConstructorOverloading(element, holder)
                     checkRegisteredClassName(element, holder)
                     checkOneRegisteredClassPerFile(element, holder)
                     checkFileName(element, holder)
@@ -80,18 +83,58 @@ class RegisterClassAnnotator : Annotator {
         }
     }
 
+    private fun checkDefaultConstructorExistence(ktClass: KtClass, holder: AnnotationHolder) {
+        if (ktClass.allConstructors.isNotEmpty() && ktClass.allConstructors.filter { it.valueParameters.isEmpty() }.size != 1) {
+            // TODO: create quick fix (not trivial to create a secondary constructor from a primary one, i failed miserably)
+            holder.registerProblem(
+                GodotPluginBundle.message("problem.class.constructor.defaultConstructorMissing"),
+                ktClass.nameIdentifier
+                    ?: ktClass.navigationElement
+            )
+        }
+    }
+
     private fun checkConstructorParameterCount(ktClass: KtClass, holder: AnnotationHolder) {
-        ktClass.allConstructors.forEach { ktConstructor ->
-            if (ktConstructor.valueParameters.size > MAX_CONSTRUCTOR_ARGS) {
-                holder.registerProblem(
-                    GodotPluginBundle.message("problem.class.constructor.toManyParams"),
-                    ktConstructor
-                        .valueParameterList
-                        ?.psiOrParent
-                        ?: ktConstructor.nameIdentifier
-                        ?: ktConstructor.navigationElement
-                )
+        ktClass
+            .allConstructors
+            .filter { it.findAnnotation(FqName(REGISTER_CONSTRUCTOR_ANNOTATION)) != null }
+            .forEach { ktConstructor ->
+                if (ktConstructor.valueParameters.size > MAX_CONSTRUCTOR_ARGS) {
+                    holder.registerProblem(
+                        GodotPluginBundle.message("problem.class.constructor.toManyParams"),
+                        ktConstructor
+                            .valueParameterList
+                            ?.psiOrParent
+                            ?: ktConstructor.nameIdentifier
+                            ?: ktConstructor.navigationElement
+                    )
+                }
             }
+    }
+
+    private fun checkConstructorOverloading(ktClass: KtClass, holder: AnnotationHolder) {
+        val constructors = ktClass
+            .allConstructors
+            .filter { it.findAnnotation(FqName(REGISTER_CONSTRUCTOR_ANNOTATION)) != null }
+
+        val constructorsByArgCount = constructors
+            .filter { it.findAnnotation(FqName(REGISTER_CONSTRUCTOR_ANNOTATION)) != null }
+            .groupBy { it.valueParameters.size }
+
+        if (constructorsByArgCount.size != constructors.size) {
+            constructorsByArgCount
+                .filter { it.value.size > 1 }
+                .flatMap { it.value }
+                .forEach { ktConstructor ->
+                    holder.registerProblem(
+                        GodotPluginBundle.message("problem.class.constructor.overloading"),
+                        ktConstructor
+                            .valueParameterList
+                            ?.psiOrParent
+                            ?: ktConstructor.nameIdentifier
+                            ?: ktConstructor.navigationElement
+                    )
+                }
         }
     }
 

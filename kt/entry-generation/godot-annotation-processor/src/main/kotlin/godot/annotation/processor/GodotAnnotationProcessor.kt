@@ -95,11 +95,6 @@ class GodotAnnotationProcessor(
     }
 
     private fun performSanityChecks() {
-        classes.forEach {
-            if (it.constructors.size > 1) {
-                throw IllegalClassFormatException("A Class annotated with \"@RegisterClass\" can only have a default constructor!\nBut ${it.name} contains ${it.constructors.size} constructors")
-            }
-        }
         functions.forEach {
             if (!classes.contains(it.containingDeclaration)) {
                 throw Exception("${it.containingDeclaration.name.asString()} contains a registered function: ${it.name} but is not annotated with @RegisterClass! Classes containing functions which are registered, also have to be registered!")

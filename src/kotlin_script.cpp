@@ -29,12 +29,16 @@ StringName KotlinScript::get_instance_base_type() const {
 }
 
 ScriptInstance* KotlinScript::instance_create(Object* p_this) {
+    return _instance_create(nullptr, 0, p_this);
+}
+
+ScriptInstance* KotlinScript::_instance_create(const Variant** p_args, int p_argcount, Object* p_this) {
     KtClass* kt_class { get_kotlin_class() };
 #ifdef DEBUG_ENABLED
     LOG_VERBOSE(vformat("Try to create %s instance.", kt_class->name))
 #endif
     jni::Env env = jni::Jvm::current_env();
-    KtObject *wrapped = kt_class->create_instance(env, nullptr, 0, p_this);
+    KtObject *wrapped = kt_class->create_instance(env, p_args, p_argcount, p_this);
     return memnew(KotlinInstance(wrapped, p_this, kt_class, this));
 }
 
@@ -142,7 +146,7 @@ Variant KotlinScript::_new(const Variant **p_args, int p_argcount, Variant::Call
         ref = REF(r);
     }
 
-    ScriptInstance* instance{instance_create(owner)};
+    ScriptInstance* instance{_instance_create(p_args, p_argcount, owner)};
     owner->set_script_instance(instance);
     if (!instance) {
         if (ref.is_null()) {

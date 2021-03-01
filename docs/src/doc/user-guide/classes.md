@@ -63,8 +63,20 @@ override fun _ready() {
 ```
 
 ## Constructors
-Currently only no arg constructors are supported for registered classes.  
-This will change in future releases though.
+Godot requires to have a default constructor on your classes.  
+You can define additional constructors but for them to be registered, you have to annotate them with `@RegisterConstructor`.  
+Default constructors on the other hand are always registered, regardless of the annotation. But we recommend to add it anyways, if you have multiple constructors, so it serves a documentation purpose in your scripts and it's consistent.  
+
+Constructors also can have a maximum of 5 arguments.  
+Each constructor must have a unique argument count. Constructor overloading is not yet supported.  
+This limitation is only valid for registered constructor's though. If you have two constructors with 3 args and only one of them is registered, it's valid and will work.
+
+If you call your constructors from GDScript note this limitation:  
+You can only call the default constructor with the named syntax: `package_YourClass.new()`  
+Constructors with arguments you have to call using the `load` function: `load("res://package/YourClass").new(oneArg, anotherArg)`  
+
+!!! note ""
+    The limitation of max 5 arguments for constructors is arbitrary. We decided to introduce this limitation to prevent performance bottlenecks for creating objects as each argument passed to a constructor needs to be unpacked in the binding. The more arguments, the more unpacking is needed so the performance cost increases.
 
 ## Registration Configuration
 You can customize to some extent how your class should be registered in Godot:
