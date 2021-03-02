@@ -17,7 +17,6 @@ class RpcTests: Node() {
 
     @RegisterFunction(rpcMode = MultiplayerAPI.RPCMode.REMOTESYNC)
     fun remoteSyncTest(called: Boolean) {
-        println("i was called with $called")
         remoteSyncCalled = called
     }
 
