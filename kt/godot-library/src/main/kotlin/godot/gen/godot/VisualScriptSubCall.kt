@@ -16,7 +16,7 @@ import kotlin.Suppress
 open class VisualScriptSubCall : VisualScriptNode() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTSUBCALL)
 
-  open fun _subcall(arguments: Any): Any? {
+  open fun _subcall(arguments: Any?): Any? {
     throw NotImplementedError("_subcall is not implemented for VisualScriptSubCall")
   }
 }

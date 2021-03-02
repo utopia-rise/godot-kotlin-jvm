@@ -16,6 +16,7 @@ nav_meshes_dictionary = {
 "AwesomeNavmesh": SubResource( 2 )
 }
 any_to_any_dictionary = {
+
 }
 test_nullable = 2
 lateinit_string = "works also from inspector"

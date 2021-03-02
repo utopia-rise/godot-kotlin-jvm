@@ -50,7 +50,8 @@ enum class PropertyHint {
 data class KtFunctionInfo(
         val name: String,
         val _arguments: List<KtPropertyInfo>,
-        val returnVal: KtPropertyInfo
+        val returnVal: KtPropertyInfo,
+        val rpcModeId: Int
 ) {
     val arguments: Array<KtPropertyInfo>
         get() = _arguments.toTypedArray()

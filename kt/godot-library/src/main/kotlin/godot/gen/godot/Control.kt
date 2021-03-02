@@ -504,14 +504,14 @@ open class Control : CanvasItem() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_ADD_STYLEBOX_OVERRIDE, NIL)
   }
 
-  open fun _canDropData(position: Vector2, data: Any): Boolean {
+  open fun _canDropData(position: Vector2, data: Any?): Boolean {
     throw NotImplementedError("can_drop_data is not implemented for Control")
   }
 
-  open fun _dropData(position: Vector2, data: Any) {
+  open fun _dropData(position: Vector2, data: Any?) {
   }
 
-  open fun forceDrag(data: Any, preview: Control) {
+  open fun forceDrag(data: Any?, preview: Control) {
     TransferContext.writeArguments(ANY to data, OBJECT to preview)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_FORCE_DRAG, NIL)
   }

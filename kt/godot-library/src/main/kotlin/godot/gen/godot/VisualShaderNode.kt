@@ -58,7 +58,7 @@ open class VisualShaderNode : Resource() {
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
-  open fun setInputPortDefaultValue(port: Long, value: Any) {
+  open fun setInputPortDefaultValue(port: Long, value: Any?) {
     TransferContext.writeArguments(LONG to port, ANY to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_SET_INPUT_PORT_DEFAULT_VALUE, NIL)

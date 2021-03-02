@@ -30,7 +30,7 @@ object JSON : Object() {
   }
 
   fun print(
-    value: Any,
+    value: Any?,
     indent: String = "",
     sortKeys: Boolean = false
   ): String {

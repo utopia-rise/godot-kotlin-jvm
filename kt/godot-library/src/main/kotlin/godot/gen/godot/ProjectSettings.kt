@@ -106,7 +106,7 @@ object ProjectSettings : Object() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  fun setInitialValue(name: String, value: Any) {
+  fun setInitialValue(name: String, value: Any?) {
     TransferContext.writeArguments(STRING to name, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_INITIAL_VALUE,
         NIL)
@@ -117,7 +117,7 @@ object ProjectSettings : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_ORDER, NIL)
   }
 
-  fun setSetting(name: String, value: Any) {
+  fun setSetting(name: String, value: Any?) {
     TransferContext.writeArguments(STRING to name, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_SETTING, NIL)
   }

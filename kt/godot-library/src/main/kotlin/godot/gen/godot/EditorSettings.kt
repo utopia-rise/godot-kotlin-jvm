@@ -113,7 +113,7 @@ open class EditorSettings : Resource() {
 
   open fun setInitialValue(
     name: String,
-    value: Any,
+    value: Any?,
     updateCurrent: Boolean
   ) {
     TransferContext.writeArguments(STRING to name, ANY to value, BOOL to updateCurrent)
@@ -124,7 +124,7 @@ open class EditorSettings : Resource() {
   open fun setProjectMetadata(
     section: String,
     key: String,
-    data: Any
+    data: Any?
   ) {
     TransferContext.writeArguments(STRING to section, STRING to key, ANY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_PROJECT_METADATA,
@@ -136,7 +136,7 @@ open class EditorSettings : Resource() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_RECENT_DIRS, NIL)
   }
 
-  open fun setSetting(name: String, value: Any) {
+  open fun setSetting(name: String, value: Any?) {
     TransferContext.writeArguments(STRING to name, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_SETTING, NIL)
   }

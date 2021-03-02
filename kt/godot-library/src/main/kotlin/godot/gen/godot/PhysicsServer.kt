@@ -423,7 +423,7 @@ object PhysicsServer : Object() {
   fun areaSetParam(
     area: RID,
     param: Long,
-    value: Any
+    value: Any?
   ) {
     TransferContext.writeArguments(_RID to area, LONG to param, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER_AREA_SET_PARAM, NIL)
@@ -806,7 +806,7 @@ object PhysicsServer : Object() {
   fun bodySetState(
     body: RID,
     state: Long,
-    value: Any
+    value: Any?
   ) {
     TransferContext.writeArguments(_RID to body, LONG to state, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER_BODY_SET_STATE, NIL)
@@ -1069,7 +1069,7 @@ object PhysicsServer : Object() {
     return PhysicsServer.ShapeType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  fun shapeSetData(shape: RID, data: Any) {
+  fun shapeSetData(shape: RID, data: Any?) {
     TransferContext.writeArguments(_RID to shape, ANY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER_SHAPE_SET_DATA, NIL)
   }

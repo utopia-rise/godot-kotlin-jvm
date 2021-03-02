@@ -202,12 +202,12 @@ open class MeshDataTool : Reference() {
     return TransferContext.readReturnValue(POOL_REAL_ARRAY, false) as PoolRealArray
   }
 
-  open fun setEdgeMeta(idx: Long, meta: Any) {
+  open fun setEdgeMeta(idx: Long, meta: Any?) {
     TransferContext.writeArguments(LONG to idx, ANY to meta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_EDGE_META, NIL)
   }
 
-  open fun setFaceMeta(idx: Long, meta: Any) {
+  open fun setFaceMeta(idx: Long, meta: Any?) {
     TransferContext.writeArguments(LONG to idx, ANY to meta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_FACE_META, NIL)
   }
@@ -232,7 +232,7 @@ open class MeshDataTool : Reference() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_VERTEX_COLOR, NIL)
   }
 
-  open fun setVertexMeta(idx: Long, meta: Any) {
+  open fun setVertexMeta(idx: Long, meta: Any?) {
     TransferContext.writeArguments(LONG to idx, ANY to meta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHDATATOOL_SET_VERTEX_META, NIL)
   }

@@ -45,7 +45,7 @@ open class RegExMatch : Reference() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_REGEXMATCH)
 
-  open fun getEnd(name: Any = 0): Long {
+  open fun getEnd(name: Any? = null): Long {
     TransferContext.writeArguments(ANY to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_END, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -57,13 +57,13 @@ open class RegExMatch : Reference() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  open fun getStart(name: Any = 0): Long {
+  open fun getStart(name: Any? = null): Long {
     TransferContext.writeArguments(ANY to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_START, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  open fun getString(name: Any = 0): String {
+  open fun getString(name: Any? = null): String {
     TransferContext.writeArguments(ANY to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_STRING, STRING)
     return TransferContext.readReturnValue(STRING, false) as String

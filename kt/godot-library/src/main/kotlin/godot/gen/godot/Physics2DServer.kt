@@ -309,7 +309,7 @@ object Physics2DServer : Object() {
   fun areaSetParam(
     area: RID,
     param: Long,
-    value: Any
+    value: Any?
   ) {
     TransferContext.writeArguments(_RID to area, LONG to param, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICS2DSERVER_AREA_SET_PARAM, NIL)
@@ -662,7 +662,7 @@ object Physics2DServer : Object() {
   fun bodySetShapeMetadata(
     body: RID,
     shapeIdx: Long,
-    metadata: Any
+    metadata: Any?
   ) {
     TransferContext.writeArguments(_RID to body, LONG to shapeIdx, ANY to metadata)
     TransferContext.callMethod(rawPtr,
@@ -687,7 +687,7 @@ object Physics2DServer : Object() {
   fun bodySetState(
     body: RID,
     state: Long,
-    value: Any
+    value: Any?
   ) {
     TransferContext.writeArguments(_RID to body, LONG to state, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICS2DSERVER_BODY_SET_STATE, NIL)
@@ -873,7 +873,7 @@ object Physics2DServer : Object() {
     return Physics2DServer.ShapeType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  fun shapeSetData(shape: RID, data: Any) {
+  fun shapeSetData(shape: RID, data: Any?) {
     TransferContext.writeArguments(_RID to shape, ANY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICS2DSERVER_SHAPE_SET_DATA, NIL)
   }

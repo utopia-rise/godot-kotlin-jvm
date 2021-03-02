@@ -72,7 +72,7 @@ open class FileSystemDock : VBoxContainer() {
     arg0: String,
     arg1: Texture,
     arg2: Texture,
-    arg3: Any
+    arg3: Any?
   ) {
   }
 
@@ -159,7 +159,7 @@ open class FileSystemDock : VBoxContainer() {
     arg0: String,
     arg1: Texture,
     arg2: Texture,
-    arg3: Any
+    arg3: Any?
   ) {
   }
 
@@ -176,7 +176,7 @@ open class FileSystemDock : VBoxContainer() {
 
   open fun canDropDataFw(
     arg0: Vector2,
-    arg1: Any,
+    arg1: Any?,
     arg2: Control
   ): Boolean {
     TransferContext.writeArguments(VECTOR2 to arg0, ANY to arg1, OBJECT to arg2)
@@ -187,7 +187,7 @@ open class FileSystemDock : VBoxContainer() {
 
   open fun dropDataFw(
     arg0: Vector2,
-    arg1: Any,
+    arg1: Any?,
     arg2: Control
   ) {
     TransferContext.writeArguments(VECTOR2 to arg0, ANY to arg1, OBJECT to arg2)

@@ -36,7 +36,7 @@ open class MainLoop : Object() {
   open fun _finalize() {
   }
 
-  open fun _globalMenuAction(id: Any, meta: Any) {
+  open fun _globalMenuAction(id: Any?, meta: Any?) {
   }
 
   open fun _idle(delta: Double): Boolean {

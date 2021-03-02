@@ -394,7 +394,7 @@ open class ItemList : Control() {
         NIL)
   }
 
-  open fun setItemMetadata(idx: Long, metadata: Any) {
+  open fun setItemMetadata(idx: Long, metadata: Any?) {
     TransferContext.writeArguments(LONG to idx, ANY to metadata)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_METADATA, NIL)
   }

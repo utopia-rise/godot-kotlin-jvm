@@ -53,7 +53,7 @@ open class VisualScriptNode : Resource() {
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTNODE_PORTS_CHANGED_NOTIFY, NIL)
   }
 
-  open fun setDefaultInputValue(portIdx: Long, value: Any) {
+  open fun setDefaultInputValue(portIdx: Long, value: Any?) {
     TransferContext.writeArguments(LONG to portIdx, ANY to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTNODE_SET_DEFAULT_INPUT_VALUE, NIL)

@@ -57,7 +57,7 @@ open class ShaderMaterial : Material() {
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
-  open fun setShaderParam(param: String, value: Any) {
+  open fun setShaderParam(param: String, value: Any?) {
     TransferContext.writeArguments(STRING to param, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER_PARAM,
         NIL)

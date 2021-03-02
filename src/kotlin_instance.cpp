@@ -130,11 +130,22 @@ Variant KotlinInstance::property_get_fallback(const StringName& p_name, bool* r_
 }
 
 MultiplayerAPI::RPCMode KotlinInstance::get_rpc_mode(const StringName& p_method) const {
-    return MultiplayerAPI::RPC_MODE_DISABLED;
+    KtFunction* function { kt_class->get_method(p_method) };
+
+    if (function) {
+        return function->get_rpc_mode();
+    } else {
+        return MultiplayerAPI::RPC_MODE_DISABLED;
+    }
 }
 
 MultiplayerAPI::RPCMode KotlinInstance::get_rset_mode(const StringName& p_variable) const {
-    return MultiplayerAPI::RPC_MODE_DISABLED;
+    KtProperty* ktProperty { kt_class->get_property(p_variable) };
+    if (ktProperty) {
+        return ktProperty->get_rpc_mode();
+    } else {
+        return MultiplayerAPI::RPC_MODE_DISABLED;
+    }
 }
 
 ScriptLanguage* KotlinInstance::get_language() {

@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "RPCTests",
+"language": "Kotlin",
+"path": "res://src/main/kotlin/godot/tests/rpctests/RpcTests.kt"
+}, {
+"base": "Node",
 "class": "ScriptInOtherSourceDir",
 "language": "Kotlin",
 "path": "res://scripts/ScriptInOtherSourceDir.kt"
@@ -40,6 +45,7 @@ _global_script_classes=[ {
 "path": "res://src/main/kotlin/godot/tests/subpackage/OtherScript.kt"
 } ]
 _global_script_class_icons={
+"RPCTests": "",
 "ScriptInOtherSourceDir": "",
 "godot_tests_Invocation": "",
 "godot_tests_MultiArgsConstructorTest": "",

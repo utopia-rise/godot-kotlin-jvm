@@ -91,7 +91,7 @@ open class EditorSpatialGizmo : SpatialGizmo() {
 
   open fun _commitHandle(
     index: Long,
-    restore: Any,
+    restore: Any?,
     cancel: Boolean
   ) {
   }

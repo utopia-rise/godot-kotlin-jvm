@@ -6,6 +6,7 @@
 #include "kt_property.h"
 #include "kt_object.h"
 #include "java_instance_wrapper.h"
+#include <core/io/multiplayer_api.h>
 
 struct KtFunctionInfo : public JavaInstanceWrapper<KtFunctionInfo> {
     KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader);
@@ -14,6 +15,7 @@ struct KtFunctionInfo : public JavaInstanceWrapper<KtFunctionInfo> {
     String name;
     List<KtPropertyInfo*> arguments;
     KtPropertyInfo* return_val;
+    MultiplayerAPI::RPCMode rpc_mode;
 
     MethodInfo to_method_info() const;
 
@@ -21,6 +23,7 @@ DECLARE_JNI_METHODS(
         JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/String;")
         JNI_METHOD(GET_ARGUMENTS, "getArguments", "()[Lgodot/core/KtPropertyInfo;")
         JNI_METHOD(GET_RETURN_VAL, "getReturnVal", "()Lgodot/core/KtPropertyInfo;")
+        JNI_METHOD(GET_RPC_MODE_ID, "getRpcModeId", "()I")
 )
 };
 
@@ -36,6 +39,7 @@ public:
 
     StringName get_name() const;
     int get_parameter_count() const;
+    MultiplayerAPI::RPCMode get_rpc_mode() const;
 
     MethodInfo get_member_info();
     KtFunctionInfo* get_kt_function_info();

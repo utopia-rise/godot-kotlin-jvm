@@ -55,7 +55,7 @@ object Marshalls : Object() {
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  fun variantToBase64(variant: Any, fullObjects: Boolean = false): String {
+  fun variantToBase64(variant: Any?, fullObjects: Boolean = false): String {
     TransferContext.writeArguments(ANY to variant, BOOL to fullObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__MARSHALLS_VARIANT_TO_BASE64,
         STRING)

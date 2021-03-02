@@ -60,7 +60,7 @@ open class EditorInspector : ScrollContainer() {
 
   open fun _propertyChanged(
     arg0: String,
-    arg1: Any,
+    arg1: Any?,
     arg2: String = "",
     arg3: Boolean = false
   ) {
@@ -68,7 +68,7 @@ open class EditorInspector : ScrollContainer() {
 
   open fun _propertyChangedUpdateAll(
     arg0: String,
-    arg1: Any,
+    arg1: Any?,
     arg2: String,
     arg3: Boolean
   ) {
@@ -82,7 +82,7 @@ open class EditorInspector : ScrollContainer() {
 
   open fun _propertyKeyedWithValue(
     arg0: String,
-    arg1: Any,
+    arg1: Any?,
     arg2: Boolean
   ) {
   }

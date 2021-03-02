@@ -165,7 +165,7 @@ open class OptionButton : Button() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ITEM_ID, NIL)
   }
 
-  open fun setItemMetadata(idx: Long, metadata: Any) {
+  open fun setItemMetadata(idx: Long, metadata: Any?) {
     TransferContext.writeArguments(LONG to idx, ANY to metadata)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ITEM_METADATA, NIL)
   }
