@@ -10,6 +10,10 @@
 #include "logging.h"
 #include <core/io/resource_loader.h>
 
+#ifndef TOOLS_ENABLED
+#include <core/os/dir_access.h>
+#endif
+
 // If changed, remember to change also TransferContext::bufferCapacity on JVM side
 const int DEFAULT_SHARED_BUFFER_SIZE{20'000'000};
 
@@ -242,12 +246,42 @@ void GDKotlin::init() {
 #endif
     }
 
+#ifndef TOOLS_ENABLED
+
+#ifdef DEBUG_ENABLED
+    LOG_INFO("Will copy bootstrap jar from res...");
+#endif
+
+    Error err;
+    DirAccess* dir_access{
+            DirAccess::open("res://build/libs/", &err)
+    };
+
+#ifdef DEBUG_ENABLED
+    JVM_CRASH_COND_MSG(err != OK, "Cannot open bootstrap jar in res.")
+#endif
+
+    dir_access->copy("godot-bootstrap.jar", "user://godot-bootstrap.jar");
+    memdelete(dir_access);
+#endif
+
     jni::Jvm::init(args);
+
     LOG_INFO("Starting JVM ...")
     auto project_settings = ProjectSettings::get_singleton();
-    String bootstrap_jar = OS::get_singleton()->get_executable_path().get_base_dir() + "/godot-bootstrap.jar";
+
+#ifdef TOOLS_ENABLED
+    String bootstrap_jar{OS::get_singleton()->get_executable_path().get_base_dir() + "/godot-bootstrap.jar"};
+#else
+    String bootstrap_jar{ProjectSettings::get_singleton()->globalize_path(vformat("user://%s", "godot-bootstrap.jar"))};
+#endif
+
+#ifdef TOOLS_ENABLED
     JVM_CRASH_COND_MSG(!FileAccess::exists(bootstrap_jar),
                    "No godot-bootstrap.jar found! This file needs to stay alongside the godot editor executable!")
+#elif DEBUG_ENABLED
+    JVM_CRASH_COND_MSG(!FileAccess::exists(bootstrap_jar),"No godot-bootstrap.jar found!")
+#endif
 
     LOG_INFO(vformat("Loading bootstrap jar: %s", bootstrap_jar))
     jni::Env env{jni::Jvm::current_env()};

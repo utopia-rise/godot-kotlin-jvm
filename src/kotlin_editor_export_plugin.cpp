@@ -1,3 +1,4 @@
+#ifdef TOOLS_ENABLED
 #include "kotlin_editor_export_plugin.h"
 #include "core/os/file_access.h"
 #include "logging.h"
@@ -27,5 +28,8 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
     } else {
         LOG_ERROR(vformat("Cannot copy JRE folder to %s, error is %s", p_path, error))
     }
+    memdelete(dir_access);
 #endif
 }
+
+#endif

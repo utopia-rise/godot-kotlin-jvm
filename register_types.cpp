@@ -1,5 +1,9 @@
 #include <editor/editor_node.h>
+
+#ifdef TOOLS_ENABLED
 #include <modules/kotlin_jvm/src/kotlin_editor_export_plugin.h>
+#endif
+
 #include "register_types.h"
 
 #include "src/kotlin_language.h"
@@ -10,11 +14,13 @@
 Ref<KtResourceFormatLoader> resource_format_loader;
 Ref<KtResourceFormatSaver> resource_format_saver;
 
+#ifdef TOOLS_ENABLED
 static void editor_init() {
     Ref<KotlinEditorExportPlugin> export_plugin;
     export_plugin.instance();
     EditorExport::get_singleton()->add_export_plugin(export_plugin);
 }
+#endif
 
 void register_kotlin_jvm_types() {
     ClassDB::register_class<KotlinScript>();
@@ -24,7 +30,9 @@ void register_kotlin_jvm_types() {
     resource_format_saver.instance();
     ResourceSaver::add_resource_format_saver(resource_format_saver);
 
+#ifdef TOOLS_ENABLED
     EditorNode::add_init_callback(editor_init);
+#endif
 }
 
 void unregister_kotlin_jvm_types() {
