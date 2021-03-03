@@ -248,21 +248,33 @@ void GDKotlin::init() {
 
 #ifndef TOOLS_ENABLED
 
+    String bootstrap_jar_name{"godot-bootstrap.jar"};
+    String bootstrap_user_path{vformat("user://%s", bootstrap_jar_name)};
+    String libs_res_path{"res://build/libs"};
+    String bootstrap_res_path{vformat("%s/%s", libs_res_path, bootstrap_jar_name)};
+
+    if (!FileAccess::exists(bootstrap_user_path)
+            || FileAccess::get_md5(bootstrap_user_path) != FileAccess::get_md5(bootstrap_res_path)) {
+        LOG_INFO(FileAccess::exists(bootstrap_user_path))
+        LOG_INFO(FileAccess::get_md5(bootstrap_user_path))
+        LOG_INFO(FileAccess::get_md5(vformat("%s/godot-bootstrap.jar", libs_res_path)))
+
 #ifdef DEBUG_ENABLED
-    LOG_INFO("Will copy bootstrap jar from res...");
+        LOG_INFO("Will copy bootstrap jar from res...");
 #endif
 
-    Error err;
-    DirAccess* dir_access{
-            DirAccess::open("res://build/libs/", &err)
-    };
+        Error err;
+        DirAccess* dir_access{
+                DirAccess::open(libs_res_path, &err)
+        };
 
 #ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(err != OK, "Cannot open bootstrap jar in res.")
+        JVM_CRASH_COND_MSG(err != OK, "Cannot open bootstrap jar in res.")
 #endif
 
-    dir_access->copy("godot-bootstrap.jar", "user://godot-bootstrap.jar");
-    memdelete(dir_access);
+        dir_access->copy(bootstrap_res_path, bootstrap_user_path);
+        memdelete(dir_access);
+    }
 #endif
 
     jni::Jvm::init(args);
