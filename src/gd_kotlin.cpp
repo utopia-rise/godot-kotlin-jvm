@@ -2,13 +2,10 @@
 #include <cassert>
 #include <main/main.h>
 #include "gd_kotlin.h"
-#include "core/os/os.h"
 #include "core/project_settings.h"
-#include "bootstrap.h"
-#include "type_manager.h"
 #include "bridges_manager.h"
-#include "logging.h"
 #include <core/io/resource_loader.h>
+#include "logging.h"
 
 #ifndef TOOLS_ENABLED
 #include <core/os/dir_access.h>
@@ -246,36 +243,8 @@ void GDKotlin::init() {
 #endif
     }
 
-#ifndef TOOLS_ENABLED
-
-    String bootstrap_jar_name{"godot-bootstrap.jar"};
-    String bootstrap_user_path{vformat("user://%s", bootstrap_jar_name)};
-    String libs_res_path{"res://build/libs"};
-    String bootstrap_res_path{vformat("%s/%s", libs_res_path, bootstrap_jar_name)};
-
-    if (!FileAccess::exists(bootstrap_user_path)
-            || FileAccess::get_md5(bootstrap_user_path) != FileAccess::get_md5(bootstrap_res_path)) {
-        LOG_INFO(FileAccess::exists(bootstrap_user_path))
-        LOG_INFO(FileAccess::get_md5(bootstrap_user_path))
-        LOG_INFO(FileAccess::get_md5(vformat("%s/godot-bootstrap.jar", libs_res_path)))
-
-#ifdef DEBUG_ENABLED
-        LOG_INFO("Will copy bootstrap jar from res...");
-#endif
-
-        Error err;
-        DirAccess* dir_access{
-                DirAccess::open(libs_res_path, &err)
-        };
-
-#ifdef DEBUG_ENABLED
-        JVM_CRASH_COND_MSG(err != OK, "Cannot open bootstrap jar in res.")
-#endif
-
-        dir_access->copy(bootstrap_res_path, bootstrap_user_path);
-        memdelete(dir_access);
-    }
-#endif
+    check_and_copy_jar("godot-bootstrap.jar");
+    check_and_copy_jar("main.jar");
 
     jni::Jvm::init(args);
 
@@ -354,7 +323,12 @@ void GDKotlin::init() {
     bootstrap->register_hooks(env, load_classes_hook, unload_classes_hook, register_engine_types_hook,
                               register_user_types_hook);
     bool is_editor = Engine::get_singleton()->is_editor_hint();
-    String project_path = project_settings->globalize_path("res://");
+
+#ifdef TOOLS_ENABLED
+    String project_path{project_settings->globalize_path("res://build/libs/")};
+#else
+    String project_path{project_settings->globalize_path("user://")};
+#endif
 
     bootstrap->init(env, is_editor, project_path);
 }
@@ -461,6 +435,33 @@ Error GDKotlin::split_jvm_debug_argument(const String& cmd_arg, String& result) 
         return FAILED;
     }
     return OK;
+}
+
+void GDKotlin::check_and_copy_jar(const String& jar_name) {
+#ifndef TOOLS_ENABLED
+    String libs_res_path{"res://build/libs"};
+    String jar_user_path{vformat("user://%s", jar_name)};
+    String jar_res_path{vformat("%s/%s", libs_res_path, jar_name)};
+
+    if (!FileAccess::exists(jar_user_path)
+        || FileAccess::get_md5(jar_user_path) != FileAccess::get_md5(jar_res_path)) {
+#ifdef DEBUG_ENABLED
+        LOG_INFO(vformat("%s jar has changed, will copy it from res...", jar_name));
+#endif
+
+        Error err;
+        DirAccess* dir_access{
+                DirAccess::open(libs_res_path, &err)
+        };
+
+#ifdef DEBUG_ENABLED
+        JVM_CRASH_COND_MSG(err != OK, vformat("Cannot open %s jar in res.", jar_name))
+#endif
+
+        dir_access->copy(jar_res_path, jar_user_path);
+        memdelete(dir_access);
+    }
+#endif
 }
 
 GDKotlin::GDKotlin() : bootstrap(nullptr), is_gc_started(false), transfer_context(nullptr) {

@@ -26,8 +26,8 @@ class Bootstrap {
     private var watchService: WatchService? = null
     private var engineTypesRegistered: Boolean = false
 
-    fun init(isEditor: Boolean, projectDir: String) {
-        val libsDir = Paths.get(projectDir, "build/libs")
+    fun init(isEditor: Boolean, jarRootDir: String) {
+        val libsDir = Paths.get(jarRootDir)
         val mainJarPath = libsDir.resolve("main.jar")
 
         if (File(mainJarPath.toString()).exists()) {
@@ -42,7 +42,7 @@ class Bootstrap {
 
         if (isEditor) {
             watchService = FileSystems.getDefault().newWatchService()
-            val watchKey = getBuildLockDir(projectDir).toPath().register(
+            val watchKey = getBuildLockDir(jarRootDir).toPath().register(
                 watchService,
                 StandardWatchEventKinds.ENTRY_CREATE,
                 StandardWatchEventKinds.ENTRY_DELETE,
@@ -58,7 +58,7 @@ class Bootstrap {
             executor!!.scheduleAtFixedRate({
                 val events = watchKey.pollEvents()
                 if (events.isNotEmpty()) {
-                    if (File(getBuildLockDir(projectDir), "buildLock.lock").exists()) {
+                    if (File(getBuildLockDir(jarRootDir), "buildLock.lock").exists()) {
                         return@scheduleAtFixedRate
                     }
                     info("Changes detected, reloading classes ...")
