@@ -15,10 +15,13 @@
 #include <modules/kotlin_jvm/src/bridges/pool_string_array_bridge.h>
 #include <modules/kotlin_jvm/src/bridges/pool_vector2_array_bridge.h>
 #include <modules/kotlin_jvm/src/bridges/pool_vector3_array_bridge.h>
+#include <modules/kotlin_jvm/src/bridges/gd_print_bridge.h>
 
 class BridgesManager {
 private:
     bridges::MemoryBridge* memory_bridge;
+
+    bridges::GDPrintBridge* gd_print_bridge;
 
     bridges::VariantArrayBridge* variant_array_bridge;
     bridges::DictionaryBridge* dictionary_bridge;

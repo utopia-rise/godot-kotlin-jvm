@@ -8,7 +8,6 @@
 #include "type_manager.h"
 #include "bridges_manager.h"
 #include "logging.h"
-#include "gd_print_glue.h"
 #include <core/io/resource_loader.h>
 
 // If changed, remember to change also TransferContext::bufferCapacity on JVM side
@@ -306,12 +305,6 @@ void GDKotlin::init() {
     jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
     bootstrap = new Bootstrap(instance, class_loader);
 
-    jni::JClass gd_print_glue_cls = env.load_class("godot.core.GDPrintGlue", class_loader);
-    jni::FieldId gd_print_glue_instance_field = gd_print_glue_cls.get_static_field_id(env, "INSTANCE",
-                                                                                    "Lgodot/core/GDPrintGlue;");
-    jni::JObject gd_print_glue_instance = gd_print_glue_cls.get_static_object_field(env, gd_print_glue_instance_field);
-    JVM_CRASH_COND_MSG(gd_print_glue_instance.is_null(), "Failed to retrieve GDPrintGlue instance")
-    gd_print_glue = new GDPrintGlue(gd_print_glue_instance, class_loader);
     bootstrap->register_hooks(env, load_classes_hook, unload_classes_hook, register_engine_types_hook,
                               register_user_types_hook);
     bool is_editor = Engine::get_singleton()->is_editor_hint();
@@ -334,8 +327,6 @@ void GDKotlin::finish() {
     bootstrap->finish(env);
     delete bootstrap;
     bootstrap = nullptr;
-    delete gd_print_glue;
-    gd_print_glue = nullptr;
 
     if (is_gc_started) {
         jni::JClass garbage_collector_cls{env.load_class("godot.core.GarbageCollector", class_loader)};
