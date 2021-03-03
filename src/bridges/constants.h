@@ -4,6 +4,8 @@
 namespace bridges {
     static const char* MEMORY_BRIDGE_CLASS_NAME = "godot.core.GarbageCollector$MemoryBridge";
 
+    static const char* GD_PRINT_BRIDGE_CLASS_NAME = "godot.global.GDPrint$Bridge";
+
     static const char* VARIANT_ARRAY_BRIDGE_CLASS_NAME = "godot.core.VariantArray$Bridge";
     static const char* DICTIONARY_BRIDGE_CLASS_NAME = "godot.core.Dictionary$Bridge";
     static const char* RID_BRIDGE_CLASS_NAME = "godot.core.RID$Bridge";

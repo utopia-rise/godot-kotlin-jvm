@@ -304,6 +304,7 @@ void GDKotlin::init() {
     jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");
     jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
     bootstrap = new Bootstrap(instance, class_loader);
+
     bootstrap->register_hooks(env, load_classes_hook, unload_classes_hook, register_engine_types_hook,
                               register_user_types_hook);
     bool is_editor = Engine::get_singleton()->is_editor_hint();

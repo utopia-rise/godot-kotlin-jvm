@@ -8,6 +8,8 @@ BridgesManager& BridgesManager::get_instance() {
 
 void BridgesManager::initialize_bridges(jni::Env& env, jni::JObject class_loader) {
     initialize_bridge(env, class_loader, bridges::MEMORY_BRIDGE_CLASS_NAME, memory_bridge);
+    
+    initialize_bridge(env, class_loader, bridges::GD_PRINT_BRIDGE_CLASS_NAME, gd_print_bridge);
 
     initialize_bridge(env, class_loader, bridges::VARIANT_ARRAY_BRIDGE_CLASS_NAME, variant_array_bridge);
     initialize_bridge(env, class_loader, bridges::DICTIONARY_BRIDGE_CLASS_NAME, dictionary_bridge);
@@ -23,7 +25,7 @@ void BridgesManager::initialize_bridges(jni::Env& env, jni::JObject class_loader
     initialize_bridge(env, class_loader, bridges::POOL_VECTOR3_ARRAY_BRIDGE_CLASS_NAME, pool_vector3_array_bridge);
 }
 
-BridgesManager::BridgesManager() : memory_bridge(nullptr), variant_array_bridge(nullptr), dictionary_bridge(nullptr),
+BridgesManager::BridgesManager() : memory_bridge(nullptr), gd_print_bridge(nullptr), variant_array_bridge(nullptr), dictionary_bridge(nullptr),
                                    rid_bridge(nullptr), node_path_bridge(nullptr), pool_byte_array_bridge(nullptr),
                                    pool_color_array_bridge(nullptr), pool_int_array_bridge(nullptr),
                                    pool_real_array_bridge(nullptr), pool_string_array_bridge(nullptr),
@@ -34,6 +36,9 @@ BridgesManager::BridgesManager() : memory_bridge(nullptr), variant_array_bridge(
 void BridgesManager::delete_bridges() {
     delete memory_bridge;
     memory_bridge = nullptr;
+
+    delete gd_print_bridge;
+    gd_print_bridge = nullptr;
 
     delete variant_array_bridge;
     variant_array_bridge = nullptr;
