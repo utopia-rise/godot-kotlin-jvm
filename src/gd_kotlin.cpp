@@ -325,12 +325,12 @@ void GDKotlin::init() {
     bool is_editor = Engine::get_singleton()->is_editor_hint();
 
 #ifdef TOOLS_ENABLED
-    String project_path{project_settings->globalize_path("res://build/libs/")};
+    String jar_path{project_settings->globalize_path("res://build/libs/")};
 #else
-    String project_path{project_settings->globalize_path("user://")};
+    String jar_path{project_settings->globalize_path("user://")};
 #endif
 
-    bootstrap->init(env, is_editor, project_path);
+    bootstrap->init(env, is_editor, jar_path);
 }
 
 void GDKotlin::finish() {
