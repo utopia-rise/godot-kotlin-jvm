@@ -5,14 +5,20 @@ jobs:
   build-editor-release:
     strategy:
       matrix:
-        os: [ ubuntu-latest, macos-latest, windows-latest ]
+        os: [ ubuntu-latest, macos-latest, windows-latest, macos-latest ]
         include:
           - os: ubuntu-latest
             platform: x11
+            arch: x64
           - os: macos-latest
             platform: osx
+            arch: x64
           - os: windows-latest
             platform: windows
+            arch: x64
+          - os: macos-latest
+            platform: osx
+            arch: arm64
     runs-on: ${{ matrix.os }}
     steps:
       - name: Configure dependencies
@@ -41,4 +47,4 @@ jobs:
           python -m pip install scons
       - name: Build with editor release
         run: |
-          scons platform=${{ matrix.platform }} target=release_debug
+          scons platform=${{ matrix.platform }} arch=${{ matrix.arch }} target=release_debug
