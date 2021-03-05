@@ -17,6 +17,8 @@ object GarbageCollector {
     private val wrappedSuppressBuffer = mutableListOf<VoidPtr>()
     private val nativeCoreTypeSuppressBuffer = mutableListOf<VoidPtr>()
 
+    private val staticInstances = mutableListOf<GodotStatic>()
+
     private val executor = Executors.newSingleThreadScheduledExecutor()
 
     private var forceJvmGarbageCollector = false
@@ -52,6 +54,10 @@ object GarbageCollector {
         }
     }
 
+    fun registerStatic(instance: GodotStatic) {
+        staticInstances.add(instance)
+    }
+
     fun getObjectInstance(ptr: VoidPtr) = synchronized(wrappedMap) {
         val ktObject = wrappedMap[ptr]
         if (ktObject != null) {
@@ -84,6 +90,10 @@ object GarbageCollector {
     }
 
     fun cleanUp() {
+        for(instance in staticInstances){
+            instance.collect()
+        }
+
         val begin = Instant.now()
         while (refWrappedMap.isNotEmpty() || wrappedMap.isNotEmpty() || nativeCoreTypeMap.isNotEmpty()) {
             forceJvmGc()
@@ -201,4 +211,13 @@ object GarbageCollector {
     }
 
     private class GCEndException(message: String) : Exception(message)
+}
+
+interface GodotStatic{
+
+    fun registerToGC(){
+        GarbageCollector.registerStatic(this)
+    }
+
+    fun collect();
 }

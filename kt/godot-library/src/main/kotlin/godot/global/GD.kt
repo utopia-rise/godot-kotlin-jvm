@@ -4,22 +4,22 @@ import godot.Object
 import godot.RandomNumberGenerator
 import godot.Resource
 import godot.ResourceLoader
+import godot.core.*
 import godot.core.Dictionary
-import godot.core.GarbageCollector
-import godot.core.NodePath
-import godot.core.PoolByteArray
-import godot.core.PoolColorArray
-import godot.core.PoolIntArray
-import godot.core.PoolRealArray
-import godot.core.PoolStringArray
-import godot.core.PoolVector2Array
-import godot.core.PoolVector3Array
-import godot.core.VariantArray
 import godot.util.nullptr
+import java.util.*
 
 
-object GD : GDMath, GDCore, GDRandom, GDPrint {
-    override val rng = RandomNumberGenerator()
+object GD : GDMath, GDCore, GDRandom, GDPrint, GodotStatic {
+    override var rng: RandomNumberGenerator? = RandomNumberGenerator()
+
+    init{
+        registerToGC()
+    }
+
+    override fun collect(){
+        rng = null
+    }
 
     /** Asserts that the condition is true.
     If the condition is false, an error is generated and the program is halted until you resume it.
