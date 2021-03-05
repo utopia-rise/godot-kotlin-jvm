@@ -16,8 +16,7 @@ For more information see [Pre-Alpha instructions](docs/src/doc/pre-alpha.md) in 
 
 ## Developer discussion
 
-Ask questions and collaborate on Discord:
-https://discord.gg/qSU2EQs
+Ask questions and collaborate on [Discord](https://discord.gg/zpb5Ru7v9x)
 
 ## Contribution Guidelines:
 - **CodeStyle:**  

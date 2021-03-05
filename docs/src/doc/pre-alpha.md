@@ -65,5 +65,5 @@ The items in this list are explicitly mentioned here as these will be implemente
 
 # Bug reporting and Questions
 If you find bugs, please report an [issue on github](https://github.com/utopia-rise/godot-jvm/issues). But check for duplicates first.  
-If you have questions or need help, you can ask on [discord](https://discord.gg/qSU2EQs) in the channels `questions` and `help` respectively.  
+If you have questions or need help, you can ask on [discord](https://discord.gg/zpb5Ru7v9x) in the channels `questions` and `help` respectively.  
 If you don't have discord or don't want to use it, make a issue on github.
