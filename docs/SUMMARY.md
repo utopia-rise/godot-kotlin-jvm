@@ -7,6 +7,7 @@
     * [Properties](src/doc/user-guide/properties.md)
     * [Signals](src/doc/user-guide/signals.md)
     * [Functions](src/doc/user-guide/functions.md)
+    * [Exporting](src/doc/user-guide/exporting.md)
 * [Advanced]()
     * [Custom Src dirs](src/doc/advanced/custom-src-dirs.md)
     * [Commandline args](src/doc/advanced/commandline-args.md)
