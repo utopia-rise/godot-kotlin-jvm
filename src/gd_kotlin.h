@@ -22,6 +22,8 @@ private:
     bool is_gc_started;
 
     Error split_jvm_debug_argument(const String& cmd_arg, String& result);
+
+    static void check_and_copy_jar(const String& jar_name);
 public:
     TransferContext* transfer_context;
     Vector<StringName> engine_type_names;

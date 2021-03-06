@@ -48,7 +48,8 @@ When you create new classes, you need to rebuild your project for godot to see y
 If you rebuild while the editor is open, it should automatically reload your classes.
 
 # Exporting
-We currently do not explicitly support exporting of your projects, but generally it works. You just need to manually place the `godot-bootstrap.jar` and the `main.jar` alongside the exported executable.
+To export projects you should first build Godot exports like described [here](https://docs.godotengine.org/fr/stable/development/compiling/compiling_for_windows.html#creating-windows-export-templates) for Windows. Same Doc apply for other platforms.  
+Then you can export your project as you would do for usual Godot projects.
 
 # Intellij plugin
 We recommend you build and install our intellij plugin located in `kt/plugins/godot-intellij-plugin` as it provides many code insight features to verify your registration code.
