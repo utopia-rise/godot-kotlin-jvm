@@ -13,8 +13,14 @@ import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Suppress
 
+/**
+ *
+ */
 @GodotBaseType
 open class InputEventMagnifyGesture : InputEventGesture() {
+  /**
+   *
+   */
   open var factor: Double
     get() {
       TransferContext.writeArguments()

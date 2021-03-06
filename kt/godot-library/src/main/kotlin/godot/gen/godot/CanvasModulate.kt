@@ -14,8 +14,16 @@ import godot.util.VoidPtr
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Tint the entire canvas.
+ *
+ * [godot.CanvasModulate] tints the canvas elements using its assigned [color].
+ */
 @GodotBaseType
 open class CanvasModulate : Node2D() {
+  /**
+   * The tint color to apply.
+   */
   open var color: Color
     get() {
       TransferContext.writeArguments()

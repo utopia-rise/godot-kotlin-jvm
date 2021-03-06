@@ -10,6 +10,9 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ *
+ */
 @GodotBaseType
 open class RootMotionView : VisualInstance() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ROOTMOTIONVIEW)

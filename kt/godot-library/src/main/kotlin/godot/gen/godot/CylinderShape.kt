@@ -13,8 +13,16 @@ import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Suppress
 
+/**
+ * Cylinder shape for collisions.
+ *
+ * Cylinder shape for collisions.
+ */
 @GodotBaseType
 open class CylinderShape : Shape() {
+  /**
+   * The cylinder's height.
+   */
   open var height: Double
     get() {
       TransferContext.writeArguments()
@@ -26,6 +34,9 @@ open class CylinderShape : Shape() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERSHAPE_SET_HEIGHT, NIL)
     }
 
+  /**
+   * The cylinder's radius.
+   */
   open var radius: Double
     get() {
       TransferContext.writeArguments()

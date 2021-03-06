@@ -10,6 +10,11 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Provides an opaque background for [godot.Control] children.
+ *
+ * Panel is a [godot.Control] that displays an opaque background. It's commonly used as a parent and container for other types of [godot.Control] nodes.
+ */
 @GodotBaseType
 open class Panel : Control() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PANEL)

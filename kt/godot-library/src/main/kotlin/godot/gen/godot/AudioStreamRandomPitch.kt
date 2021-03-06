@@ -14,8 +14,16 @@ import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Suppress
 
+/**
+ * Plays audio with random pitch shifting.
+ *
+ * Randomly varies pitch on each start.
+ */
 @GodotBaseType
 open class AudioStreamRandomPitch : AudioStream() {
+  /**
+   * The current [godot.AudioStream].
+   */
   open var audioStream: AudioStream?
     get() {
       TransferContext.writeArguments()
@@ -29,6 +37,9 @@ open class AudioStreamRandomPitch : AudioStream() {
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMPITCH_SET_AUDIO_STREAM, NIL)
     }
 
+  /**
+   * The intensity of random pitch variation.
+   */
   open var randomPitch: Double
     get() {
       TransferContext.writeArguments()

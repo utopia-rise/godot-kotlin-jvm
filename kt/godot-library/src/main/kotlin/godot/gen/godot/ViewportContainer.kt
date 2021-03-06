@@ -15,8 +15,18 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Control for holding [godot.Viewport]s.
+ *
+ * A [godot.Container] node that holds a [godot.Viewport], automatically setting its size.
+ *
+ * **Note:** Changing a ViewportContainer's [godot.Control.rectScale] will cause its contents to appear distorted. To change its visual size without causing distortion, adjust the node's margins instead (if it's not already in a container).
+ */
 @GodotBaseType
 open class ViewportContainer : Container() {
+  /**
+   * If `true`, the viewport will be scaled to the control's size.
+   */
   open var stretch: Boolean
     get() {
       TransferContext.writeArguments()
@@ -30,6 +40,13 @@ open class ViewportContainer : Container() {
           NIL)
     }
 
+  /**
+   * Divides the viewport's effective resolution by this value while preserving its scale. This can be used to speed up rendering.
+   *
+   * For example, a 1280×720 viewport with [stretchShrink] set to `2` will be rendered at 640×360 while occupying the same size in the container.
+   *
+   * **Note:** [stretch] must be `true` for this property to work.
+   */
   open var stretchShrink: Long
     get() {
       TransferContext.writeArguments()

@@ -13,8 +13,14 @@ import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ *
+ */
 @GodotBaseType
 open class InputEventMIDI : InputEvent() {
+  /**
+   *
+   */
   open var channel: Long
     get() {
       TransferContext.writeArguments()
@@ -26,6 +32,9 @@ open class InputEventMIDI : InputEvent() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMIDI_SET_CHANNEL, NIL)
     }
 
+  /**
+   *
+   */
   open var controllerNumber: Long
     get() {
       TransferContext.writeArguments()
@@ -39,6 +48,9 @@ open class InputEventMIDI : InputEvent() {
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTMIDI_SET_CONTROLLER_NUMBER, NIL)
     }
 
+  /**
+   *
+   */
   open var controllerValue: Long
     get() {
       TransferContext.writeArguments()
@@ -52,6 +64,9 @@ open class InputEventMIDI : InputEvent() {
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTMIDI_SET_CONTROLLER_VALUE, NIL)
     }
 
+  /**
+   *
+   */
   open var instrument: Long
     get() {
       TransferContext.writeArguments()
@@ -65,6 +80,9 @@ open class InputEventMIDI : InputEvent() {
           NIL)
     }
 
+  /**
+   *
+   */
   open var message: Long
     get() {
       TransferContext.writeArguments()
@@ -76,6 +94,9 @@ open class InputEventMIDI : InputEvent() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMIDI_SET_MESSAGE, NIL)
     }
 
+  /**
+   *
+   */
   open var pitch: Long
     get() {
       TransferContext.writeArguments()
@@ -87,6 +108,9 @@ open class InputEventMIDI : InputEvent() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMIDI_SET_PITCH, NIL)
     }
 
+  /**
+   *
+   */
   open var pressure: Long
     get() {
       TransferContext.writeArguments()
@@ -98,6 +122,9 @@ open class InputEventMIDI : InputEvent() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMIDI_SET_PRESSURE, NIL)
     }
 
+  /**
+   *
+   */
   open var velocity: Long
     get() {
       TransferContext.writeArguments()

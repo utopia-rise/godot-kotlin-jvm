@@ -17,6 +17,11 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 
+/**
+ * A hinge between two 3D bodies.
+ *
+ * A HingeJoint normally uses the Z axis of body A as the hinge axis, another axis can be specified when adding it manually though.
+ */
 @GodotBaseType
 open class HingeJoint : Joint() {
   open var angularLimit_bias: Double
@@ -139,22 +144,49 @@ open class HingeJoint : Joint() {
   enum class Param(
     id: Long
   ) {
+    /**
+     * The speed with which the two bodies get pulled together when they move in different directions.
+     */
     PARAM_BIAS(0),
 
+    /**
+     * The maximum rotation. Only active if [angularLimit/enable] is `true`.
+     */
     PARAM_LIMIT_UPPER(1),
 
+    /**
+     * The minimum rotation. Only active if [angularLimit/enable] is `true`.
+     */
     PARAM_LIMIT_LOWER(2),
 
+    /**
+     * The speed with which the rotation across the axis perpendicular to the hinge gets corrected.
+     */
     PARAM_LIMIT_BIAS(3),
 
+    /**
+     *
+     */
     PARAM_LIMIT_SOFTNESS(4),
 
+    /**
+     * The lower this value, the more the rotation gets slowed down.
+     */
     PARAM_LIMIT_RELAXATION(5),
 
+    /**
+     * Target speed for the motor.
+     */
     PARAM_MOTOR_TARGET_VELOCITY(6),
 
+    /**
+     * Maximum acceleration for the motor.
+     */
     PARAM_MOTOR_MAX_IMPULSE(7),
 
+    /**
+     * Represents the size of the [enum Param] enum.
+     */
     PARAM_MAX(8);
 
     val id: Long
@@ -170,10 +202,19 @@ open class HingeJoint : Joint() {
   enum class Flag(
     id: Long
   ) {
+    /**
+     * If `true`, the hinges maximum and minimum rotation, defined by [angularLimit/lower] and [angularLimit/upper] has effects.
+     */
     FLAG_USE_LIMIT(0),
 
+    /**
+     * When activated, a motor turns the hinge.
+     */
     FLAG_ENABLE_MOTOR(1),
 
+    /**
+     * Represents the size of the [enum Flag] enum.
+     */
     FLAG_MAX(2);
 
     val id: Long
@@ -187,28 +228,64 @@ open class HingeJoint : Joint() {
   }
 
   companion object {
+    /**
+     * When activated, a motor turns the hinge.
+     */
     final const val FLAG_ENABLE_MOTOR: Long = 1
 
+    /**
+     * Represents the size of the [enum Flag] enum.
+     */
     final const val FLAG_MAX: Long = 2
 
+    /**
+     * If `true`, the hinges maximum and minimum rotation, defined by [angularLimit/lower] and [angularLimit/upper] has effects.
+     */
     final const val FLAG_USE_LIMIT: Long = 0
 
+    /**
+     * The speed with which the two bodies get pulled together when they move in different directions.
+     */
     final const val PARAM_BIAS: Long = 0
 
+    /**
+     * The speed with which the rotation across the axis perpendicular to the hinge gets corrected.
+     */
     final const val PARAM_LIMIT_BIAS: Long = 3
 
+    /**
+     * The minimum rotation. Only active if [angularLimit/enable] is `true`.
+     */
     final const val PARAM_LIMIT_LOWER: Long = 2
 
+    /**
+     * The lower this value, the more the rotation gets slowed down.
+     */
     final const val PARAM_LIMIT_RELAXATION: Long = 5
 
+    /**
+     *
+     */
     final const val PARAM_LIMIT_SOFTNESS: Long = 4
 
+    /**
+     * The maximum rotation. Only active if [angularLimit/enable] is `true`.
+     */
     final const val PARAM_LIMIT_UPPER: Long = 1
 
+    /**
+     * Represents the size of the [enum Param] enum.
+     */
     final const val PARAM_MAX: Long = 8
 
+    /**
+     * Maximum acceleration for the motor.
+     */
     final const val PARAM_MOTOR_MAX_IMPULSE: Long = 7
 
+    /**
+     * Target speed for the motor.
+     */
     final const val PARAM_MOTOR_TARGET_VELOCITY: Long = 6
   }
 }

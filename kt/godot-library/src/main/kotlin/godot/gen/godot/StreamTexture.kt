@@ -16,8 +16,16 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * A `.stex` texture.
+ *
+ * A texture that is loaded from a `.stex` file.
+ */
 @GodotBaseType
 open class StreamTexture : Texture() {
+  /**
+   * The StreamTexture's file path to a `.stex` file.
+   */
   open val loadPath: String
     get() {
       TransferContext.writeArguments()
@@ -28,6 +36,9 @@ open class StreamTexture : Texture() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_STREAMTEXTURE)
 
+  /**
+   * Loads the texture from the given path.
+   */
   open fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMTEXTURE_LOAD, LONG)

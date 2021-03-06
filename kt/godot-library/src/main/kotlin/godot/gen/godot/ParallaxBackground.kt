@@ -17,8 +17,16 @@ import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * A node used to create a parallax scrolling background.
+ *
+ * A ParallaxBackground uses one or more [godot.ParallaxLayer] child nodes to create a parallax effect. Each [godot.ParallaxLayer] can move at a different speed using [godot.ParallaxLayer.motionOffset]. This creates an illusion of depth in a 2D game. If not used with a [godot.Camera2D], you must manually calculate the [scrollOffset].
+ */
 @GodotBaseType
 open class ParallaxBackground : CanvasLayer() {
+  /**
+   * The base position offset for all [godot.ParallaxLayer] children.
+   */
   open var scrollBaseOffset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -32,6 +40,9 @@ open class ParallaxBackground : CanvasLayer() {
           ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_SCROLL_BASE_OFFSET, NIL)
     }
 
+  /**
+   * The base motion scale for all [godot.ParallaxLayer] children.
+   */
   open var scrollBaseScale: Vector2
     get() {
       TransferContext.writeArguments()
@@ -45,6 +56,9 @@ open class ParallaxBackground : CanvasLayer() {
           ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_SCROLL_BASE_SCALE, NIL)
     }
 
+  /**
+   * If `true`, elements in [godot.ParallaxLayer] child aren't affected by the zoom level of the camera.
+   */
   open var scrollIgnoreCameraZoom: Boolean
     get() {
       TransferContext.writeArguments()
@@ -58,6 +72,9 @@ open class ParallaxBackground : CanvasLayer() {
           ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_SCROLL_IGNORE_CAMERA_ZOOM, NIL)
     }
 
+  /**
+   * Top-left limits for scrolling to begin. If the camera is outside of this limit, the background will stop scrolling. Must be lower than [scrollLimitEnd] to work.
+   */
   open var scrollLimitBegin: Vector2
     get() {
       TransferContext.writeArguments()
@@ -71,6 +88,9 @@ open class ParallaxBackground : CanvasLayer() {
           ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_SCROLL_LIMIT_BEGIN, NIL)
     }
 
+  /**
+   * Bottom-right limits for scrolling to end. If the camera is outside of this limit, the background will stop scrolling. Must be higher than [scrollLimitBegin] to work.
+   */
   open var scrollLimitEnd: Vector2
     get() {
       TransferContext.writeArguments()
@@ -84,6 +104,9 @@ open class ParallaxBackground : CanvasLayer() {
           ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_SCROLL_LIMIT_END, NIL)
     }
 
+  /**
+   * The ParallaxBackground's scroll value. Calculated automatically when using a [godot.Camera2D], but can be used to manually manage scrolling when no camera is present.
+   */
   open var scrollOffset: Vector2
     get() {
       TransferContext.writeArguments()

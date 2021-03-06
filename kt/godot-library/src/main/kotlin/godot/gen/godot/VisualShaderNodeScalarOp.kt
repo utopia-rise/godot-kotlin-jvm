@@ -13,8 +13,14 @@ import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ *
+ */
 @GodotBaseType
 open class VisualShaderNodeScalarOp : VisualShaderNode() {
+  /**
+   *
+   */
   open var operator: Long
     get() {
       TransferContext.writeArguments()
@@ -34,24 +40,54 @@ open class VisualShaderNodeScalarOp : VisualShaderNode() {
   enum class Operator(
     id: Long
   ) {
+    /**
+     *
+     */
     OP_ADD(0),
 
+    /**
+     *
+     */
     OP_SUB(1),
 
+    /**
+     *
+     */
     OP_MUL(2),
 
+    /**
+     *
+     */
     OP_DIV(3),
 
+    /**
+     *
+     */
     OP_MOD(4),
 
+    /**
+     *
+     */
     OP_POW(5),
 
+    /**
+     *
+     */
     OP_MAX(6),
 
+    /**
+     *
+     */
     OP_MIN(7),
 
+    /**
+     *
+     */
     OP_ATAN2(8),
 
+    /**
+     *
+     */
     OP_STEP(9);
 
     val id: Long
@@ -65,24 +101,54 @@ open class VisualShaderNodeScalarOp : VisualShaderNode() {
   }
 
   companion object {
+    /**
+     *
+     */
     final const val OP_ADD: Long = 0
 
+    /**
+     *
+     */
     final const val OP_ATAN2: Long = 8
 
+    /**
+     *
+     */
     final const val OP_DIV: Long = 3
 
+    /**
+     *
+     */
     final const val OP_MAX: Long = 6
 
+    /**
+     *
+     */
     final const val OP_MIN: Long = 7
 
+    /**
+     *
+     */
     final const val OP_MOD: Long = 4
 
+    /**
+     *
+     */
     final const val OP_MUL: Long = 2
 
+    /**
+     *
+     */
     final const val OP_POW: Long = 5
 
+    /**
+     *
+     */
     final const val OP_STEP: Long = 9
 
+    /**
+     *
+     */
     final const val OP_SUB: Long = 1
   }
 }

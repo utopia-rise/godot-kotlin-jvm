@@ -13,8 +13,16 @@ import godot.core.VariantType.POOL_VECTOR3_ARRAY
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Convex polygon shape for 3D physics.
+ *
+ * Convex polygon shape resource, which can be added to a [godot.PhysicsBody] or area.
+ */
 @GodotBaseType
 open class ConvexPolygonShape : Shape() {
+  /**
+   * The list of 3D points forming the convex polygon shape.
+   */
   open var points: PoolVector3Array
     get() {
       TransferContext.writeArguments()

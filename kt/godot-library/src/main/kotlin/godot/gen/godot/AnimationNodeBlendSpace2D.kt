@@ -25,10 +25,28 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Blends linearly between three [godot.AnimationNode] of any type placed in a 2D space.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
+ *
+ * A resource to add to an [godot.AnimationNodeBlendTree].
+ *
+ * This node allows you to blend linearly between three animations using a [godot.core.Vector2] weight.
+ *
+ * You can add vertices to the blend space with [addBlendPoint] and automatically triangulate it by setting [autoTriangles] to `true`. Otherwise, use [addTriangle] and [removeTriangle] to create up the blend space by hand.
+ */
 @GodotBaseType
 open class AnimationNodeBlendSpace2D : AnimationRootNode() {
+  /**
+   * Emitted every time the blend space's triangles are created, removed, or when one of their vertices changes position.
+   */
   val trianglesUpdated: Signal0 by signal()
 
+  /**
+   * If `true`, the blend space is triangulated automatically. The mesh updates every time you add or remove points with [addBlendPoint] and [removeBlendPoint].
+   */
   open var autoTriangles: Boolean
     get() {
       TransferContext.writeArguments()
@@ -42,6 +60,9 @@ open class AnimationNodeBlendSpace2D : AnimationRootNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_AUTO_TRIANGLES, NIL)
     }
 
+  /**
+   * Controls the interpolation between animations. See [enum BlendMode] constants.
+   */
   open var blendMode: Long
     get() {
       TransferContext.writeArguments()
@@ -1399,6 +1420,9 @@ open class AnimationNodeBlendSpace2D : AnimationRootNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_BLEND_POINT_9_POS, NIL)
     }
 
+  /**
+   * The blend space's X and Y axes' upper limit for the points' position. See [addBlendPoint].
+   */
   open var maxSpace: Vector2
     get() {
       TransferContext.writeArguments()
@@ -1412,6 +1436,9 @@ open class AnimationNodeBlendSpace2D : AnimationRootNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_MAX_SPACE, NIL)
     }
 
+  /**
+   * The blend space's X and Y axes' lower limit for the points' position. See [addBlendPoint].
+   */
   open var minSpace: Vector2
     get() {
       TransferContext.writeArguments()
@@ -1425,6 +1452,9 @@ open class AnimationNodeBlendSpace2D : AnimationRootNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_MIN_SPACE, NIL)
     }
 
+  /**
+   * Position increment to snap to when moving a point.
+   */
   open var snap: Vector2
     get() {
       TransferContext.writeArguments()
@@ -1438,6 +1468,9 @@ open class AnimationNodeBlendSpace2D : AnimationRootNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_SNAP, NIL)
     }
 
+  /**
+   * Name of the blend space's X axis.
+   */
   open var xLabel: String
     get() {
       TransferContext.writeArguments()
@@ -1451,6 +1484,9 @@ open class AnimationNodeBlendSpace2D : AnimationRootNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_X_LABEL, NIL)
     }
 
+  /**
+   * Name of the blend space's Y axis.
+   */
   open var yLabel: String
     get() {
       TransferContext.writeArguments()
@@ -1885,6 +1921,9 @@ open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   open fun _updateTriangles() {
   }
 
+  /**
+   * Adds a new point that represents a `node` at the position set by `pos`. You can insert it at a specific index using the `at_index` argument. If you use the default value for `at_index`, the point is inserted at the end of the blend points array.
+   */
   open fun addBlendPoint(
     node: AnimationRootNode,
     pos: Vector2,
@@ -1895,6 +1934,9 @@ open class AnimationNodeBlendSpace2D : AnimationRootNode() {
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_ADD_BLEND_POINT, NIL)
   }
 
+  /**
+   * Creates a new triangle using three points `x`, `y`, and `z`. Triangles can overlap. You can insert the triangle at a specific index using the `at_index` argument. If you use the default value for `at_index`, the point is inserted at the end of the blend points array.
+   */
   open fun addTriangle(
     x: Long,
     y: Long,
@@ -1906,6 +1948,9 @@ open class AnimationNodeBlendSpace2D : AnimationRootNode() {
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_ADD_TRIANGLE, NIL)
   }
 
+  /**
+   * Returns the number of points in the blend space.
+   */
   open fun getBlendPointCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -1913,6 +1958,9 @@ open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   * Returns the number of triangles in the blend space.
+   */
   open fun getTriangleCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -1920,6 +1968,9 @@ open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   * Returns the position of the point at index `point` in the triangle of index `triangle`.
+   */
   open fun getTrianglePoint(triangle: Long, point: Long): Long {
     TransferContext.writeArguments(LONG to triangle, LONG to point)
     TransferContext.callMethod(rawPtr,
@@ -1927,18 +1978,27 @@ open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   * Removes the point at index `point` from the blend space.
+   */
   open fun removeBlendPoint(point: Long) {
     TransferContext.writeArguments(LONG to point)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_REMOVE_BLEND_POINT, NIL)
   }
 
+  /**
+   * Removes the triangle at index `triangle` from the blend space.
+   */
   open fun removeTriangle(triangle: Long) {
     TransferContext.writeArguments(LONG to triangle)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_REMOVE_TRIANGLE, NIL)
   }
 
+  /**
+   * Changes the [godot.AnimationNode] referenced by the point at index `point`.
+   */
   open fun setBlendPointNode(point: Long, node: AnimationRootNode) {
     TransferContext.writeArguments(LONG to point, OBJECT to node)
     TransferContext.callMethod(rawPtr,
@@ -1948,10 +2008,19 @@ open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   enum class BlendMode(
     id: Long
   ) {
+    /**
+     * The interpolation between animations is linear.
+     */
     BLEND_MODE_INTERPOLATED(0),
 
+    /**
+     * The blend space plays the animation of the node the blending position is closest to. Useful for frame-by-frame 2D animations.
+     */
     BLEND_MODE_DISCRETE(1),
 
+    /**
+     * Similar to [BLEND_MODE_DISCRETE], but starts the new animation at the last animation's playback position.
+     */
     BLEND_MODE_DISCRETE_CARRY(2);
 
     val id: Long
@@ -1965,10 +2034,19 @@ open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   companion object {
+    /**
+     * The blend space plays the animation of the node the blending position is closest to. Useful for frame-by-frame 2D animations.
+     */
     final const val BLEND_MODE_DISCRETE: Long = 1
 
+    /**
+     * Similar to [BLEND_MODE_DISCRETE], but starts the new animation at the last animation's playback position.
+     */
     final const val BLEND_MODE_DISCRETE_CARRY: Long = 2
 
+    /**
+     * The interpolation between animations is linear.
+     */
     final const val BLEND_MODE_INTERPOLATED: Long = 0
   }
 }

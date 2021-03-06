@@ -10,6 +10,11 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Decomposes a [godot.core.Vector3] into three scalars within the visual shader graph.
+ *
+ * Takes a `vec3` and decomposes it into three scalar values that can be used as separate inputs.
+ */
 @GodotBaseType
 open class VisualShaderNodeVectorDecompose : VisualShaderNode() {
   override fun __new(): VoidPtr =

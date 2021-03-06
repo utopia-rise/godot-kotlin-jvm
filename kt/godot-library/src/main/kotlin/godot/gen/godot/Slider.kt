@@ -15,8 +15,18 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Base class for GUI sliders.
+ *
+ * Base class for GUI sliders.
+ *
+ * **Note:** The [godot.Range.changed] and [godot.Range.valueChanged] signals are part of the [godot.Range] class which this class inherits from.
+ */
 @GodotBaseType
 open class Slider : Range() {
+  /**
+   * If `true`, the slider can be interacted with. If `false`, the value can be changed only by code.
+   */
   open var editable: Boolean
     get() {
       TransferContext.writeArguments()
@@ -28,6 +38,9 @@ open class Slider : Range() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_SET_EDITABLE, NIL)
     }
 
+  /**
+   * If `true`, the value can be changed using the mouse wheel.
+   */
   open var scrollable: Boolean
     get() {
       TransferContext.writeArguments()
@@ -39,6 +52,9 @@ open class Slider : Range() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_SET_SCROLLABLE, NIL)
     }
 
+  /**
+   * Number of ticks displayed on the slider, including border ticks. Ticks are uniformly-distributed value markers.
+   */
   open var tickCount: Long
     get() {
       TransferContext.writeArguments()
@@ -50,6 +66,9 @@ open class Slider : Range() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SLIDER_SET_TICK_COUNT, NIL)
     }
 
+  /**
+   * If `true`, the slider will display ticks for minimum and maximum values.
+   */
   open var ticksOnBorders: Boolean
     get() {
       TransferContext.writeArguments()

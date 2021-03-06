@@ -14,8 +14,20 @@ import godot.util.VoidPtr
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Colored rectangle.
+ *
+ * Displays a colored rectangle.
+ */
 @GodotBaseType
 open class ColorRect : Control() {
+  /**
+   * The fill color.
+   *
+   * ```
+   * 			$ColorRect.color = Color(1, 0, 0, 1) # Set ColorRect's color to red.
+   * 			```
+   */
   open var color: Color
     get() {
       TransferContext.writeArguments()

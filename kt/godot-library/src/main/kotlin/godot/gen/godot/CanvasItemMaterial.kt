@@ -15,8 +15,16 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * A material for [godot.CanvasItem]s.
+ *
+ * [godot.CanvasItemMaterial]s provide a means of modifying the textures associated with a CanvasItem. They specialize in describing blend and lighting behaviors for textures. Use a [godot.ShaderMaterial] to more fully customize a material's interactions with a [godot.CanvasItem].
+ */
 @GodotBaseType
 open class CanvasItemMaterial : Material() {
+  /**
+   * The manner in which a material's rendering is applied to underlying textures.
+   */
   open var blendMode: Long
     get() {
       TransferContext.writeArguments()
@@ -30,6 +38,9 @@ open class CanvasItemMaterial : Material() {
           NIL)
     }
 
+  /**
+   * The manner in which material reacts to lighting.
+   */
   open var lightMode: Long
     get() {
       TransferContext.writeArguments()
@@ -43,6 +54,11 @@ open class CanvasItemMaterial : Material() {
           NIL)
     }
 
+  /**
+   * The number of columns in the spritesheet assigned as [godot.Texture] for a [godot.Particles2D] or [godot.CPUParticles2D].
+   *
+   * **Note:** This property is only used and visible in the editor if [particlesAnimation] is `true`.
+   */
   open var particlesAnimHFrames: Long
     get() {
       TransferContext.writeArguments()
@@ -56,6 +72,11 @@ open class CanvasItemMaterial : Material() {
           ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_SET_PARTICLES_ANIM_H_FRAMES, NIL)
     }
 
+  /**
+   * If `true`, the particles animation will loop.
+   *
+   * **Note:** This property is only used and visible in the editor if [particlesAnimation] is `true`.
+   */
   open var particlesAnimLoop: Boolean
     get() {
       TransferContext.writeArguments()
@@ -69,6 +90,11 @@ open class CanvasItemMaterial : Material() {
           ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_SET_PARTICLES_ANIM_LOOP, NIL)
     }
 
+  /**
+   * The number of rows in the spritesheet assigned as [godot.Texture] for a [godot.Particles2D] or [godot.CPUParticles2D].
+   *
+   * **Note:** This property is only used and visible in the editor if [particlesAnimation] is `true`.
+   */
   open var particlesAnimVFrames: Long
     get() {
       TransferContext.writeArguments()
@@ -82,6 +108,11 @@ open class CanvasItemMaterial : Material() {
           ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_SET_PARTICLES_ANIM_V_FRAMES, NIL)
     }
 
+  /**
+   * If `true`, enable spritesheet-based animation features when assigned to [godot.Particles2D] and [godot.CPUParticles2D] nodes. The [godot.ParticlesMaterial.animSpeed] or [godot.CPUParticles2D.animSpeed] should also be set to a positive value for the animation to play.
+   *
+   * This property (and other `particles_anim_*` properties that depend on it) has no effect on other types of nodes.
+   */
   open var particlesAnimation: Boolean
     get() {
       TransferContext.writeArguments()
@@ -100,10 +131,19 @@ open class CanvasItemMaterial : Material() {
   enum class LightMode(
     id: Long
   ) {
+    /**
+     * Render the material using both light and non-light sensitive material properties.
+     */
     LIGHT_MODE_NORMAL(0),
 
+    /**
+     * Render the material as if there were no light.
+     */
     LIGHT_MODE_UNSHADED(1),
 
+    /**
+     * Render the material as if there were only light.
+     */
     LIGHT_MODE_LIGHT_ONLY(2);
 
     val id: Long
@@ -119,14 +159,29 @@ open class CanvasItemMaterial : Material() {
   enum class BlendMode(
     id: Long
   ) {
+    /**
+     * Mix blending mode. Colors are assumed to be independent of the alpha (opacity) value.
+     */
     BLEND_MODE_MIX(0),
 
+    /**
+     * Additive blending mode.
+     */
     BLEND_MODE_ADD(1),
 
+    /**
+     * Subtractive blending mode.
+     */
     BLEND_MODE_SUB(2),
 
+    /**
+     * Multiplicative blending mode.
+     */
     BLEND_MODE_MUL(3),
 
+    /**
+     * Mix blending mode. Colors are assumed to be premultiplied by the alpha (opacity) value.
+     */
     BLEND_MODE_PREMULT_ALPHA(4);
 
     val id: Long
@@ -140,20 +195,44 @@ open class CanvasItemMaterial : Material() {
   }
 
   companion object {
+    /**
+     * Additive blending mode.
+     */
     final const val BLEND_MODE_ADD: Long = 1
 
+    /**
+     * Mix blending mode. Colors are assumed to be independent of the alpha (opacity) value.
+     */
     final const val BLEND_MODE_MIX: Long = 0
 
+    /**
+     * Multiplicative blending mode.
+     */
     final const val BLEND_MODE_MUL: Long = 3
 
+    /**
+     * Mix blending mode. Colors are assumed to be premultiplied by the alpha (opacity) value.
+     */
     final const val BLEND_MODE_PREMULT_ALPHA: Long = 4
 
+    /**
+     * Subtractive blending mode.
+     */
     final const val BLEND_MODE_SUB: Long = 2
 
+    /**
+     * Render the material as if there were only light.
+     */
     final const val LIGHT_MODE_LIGHT_ONLY: Long = 2
 
+    /**
+     * Render the material using both light and non-light sensitive material properties.
+     */
     final const val LIGHT_MODE_NORMAL: Long = 0
 
+    /**
+     * Render the material as if there were no light.
+     */
     final const val LIGHT_MODE_UNSHADED: Long = 1
   }
 }

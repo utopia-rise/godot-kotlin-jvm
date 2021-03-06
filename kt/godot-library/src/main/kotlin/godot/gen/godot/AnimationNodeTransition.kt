@@ -19,6 +19,14 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * A generic animation transition node for [godot.AnimationTree].
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
+ *
+ * Simple state machine for cases which don't require a more advanced [godot.AnimationNodeStateMachine]. Animations can be connected to the inputs and transition times can be specified.
+ */
 @GodotBaseType
 open class AnimationNodeTransition : AnimationNode() {
   open var input0_autoAdvance: Boolean
@@ -853,6 +861,9 @@ open class AnimationNodeTransition : AnimationNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_SET_INPUT_9_NAME, NIL)
     }
 
+  /**
+   * The number of available input ports for this node.
+   */
   open var inputPortsCount: Long
     get() {
       TransferContext.writeArguments()
@@ -866,6 +877,9 @@ open class AnimationNodeTransition : AnimationNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_SET_INPUT_COUNT, NIL)
     }
 
+  /**
+   * Cross-fading time (in seconds) between each animation connected to the inputs.
+   */
   open var xfadeTime: Double
     get() {
       TransferContext.writeArguments()

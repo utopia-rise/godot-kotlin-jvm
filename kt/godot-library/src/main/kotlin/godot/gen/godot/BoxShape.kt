@@ -14,8 +14,16 @@ import godot.util.VoidPtr
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Box shape resource.
+ *
+ * 3D box shape that can be a child of a [godot.PhysicsBody] or [godot.Area].
+ */
 @GodotBaseType
 open class BoxShape : Shape() {
+  /**
+   * The box's half extents. The width, height and depth of this shape is twice the half extents.
+   */
   open var extents: Vector3
     get() {
       TransferContext.writeArguments()

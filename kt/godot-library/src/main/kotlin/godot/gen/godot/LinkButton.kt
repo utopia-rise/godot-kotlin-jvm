@@ -15,8 +15,16 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * Simple button used to represent a link to some resource.
+ *
+ * This kind of button is primarily used when the interaction with the button causes a context change (like linking to a web page).
+ */
 @GodotBaseType
 open class LinkButton : BaseButton() {
+  /**
+   * The button's text that will be displayed inside the button's area.
+   */
   open var text: String
     get() {
       TransferContext.writeArguments()
@@ -28,6 +36,9 @@ open class LinkButton : BaseButton() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_SET_TEXT, NIL)
     }
 
+  /**
+   * Determines when to show the underline. See [enum UnderlineMode] for options.
+   */
   open var underline: Long
     get() {
       TransferContext.writeArguments()
@@ -44,10 +55,19 @@ open class LinkButton : BaseButton() {
   enum class UnderlineMode(
     id: Long
   ) {
+    /**
+     * The LinkButton will always show an underline at the bottom of its text.
+     */
     UNDERLINE_MODE_ALWAYS(0),
 
+    /**
+     * The LinkButton will show an underline at the bottom of its text when the mouse cursor is over it.
+     */
     UNDERLINE_MODE_ON_HOVER(1),
 
+    /**
+     * The LinkButton will never show an underline at the bottom of its text.
+     */
     UNDERLINE_MODE_NEVER(2);
 
     val id: Long
@@ -61,10 +81,19 @@ open class LinkButton : BaseButton() {
   }
 
   companion object {
+    /**
+     * The LinkButton will always show an underline at the bottom of its text.
+     */
     final const val UNDERLINE_MODE_ALWAYS: Long = 0
 
+    /**
+     * The LinkButton will never show an underline at the bottom of its text.
+     */
     final const val UNDERLINE_MODE_NEVER: Long = 2
 
+    /**
+     * The LinkButton will show an underline at the bottom of its text when the mouse cursor is over it.
+     */
     final const val UNDERLINE_MODE_ON_HOVER: Long = 1
   }
 }

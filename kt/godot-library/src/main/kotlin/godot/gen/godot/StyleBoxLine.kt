@@ -20,8 +20,16 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * [godot.StyleBox] that displays a single line.
+ *
+ * [godot.StyleBox] that displays a single line of a given color and thickness. It can be used to draw things like separators.
+ */
 @GodotBaseType
 open class StyleBoxLine : StyleBox() {
+  /**
+   * The line's color.
+   */
   open var color: Color
     get() {
       TransferContext.writeArguments()
@@ -33,6 +41,9 @@ open class StyleBoxLine : StyleBox() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_COLOR, NIL)
     }
 
+  /**
+   * The number of pixels the line will extend before the [godot.StyleBoxLine]'s bounds. If set to a negative value, the line will begin inside the [godot.StyleBoxLine]'s bounds.
+   */
   open var growBegin: Double
     get() {
       TransferContext.writeArguments()
@@ -45,6 +56,9 @@ open class StyleBoxLine : StyleBox() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_GROW_BEGIN, NIL)
     }
 
+  /**
+   * The number of pixels the line will extend past the [godot.StyleBoxLine]'s bounds. If set to a negative value, the line will end inside the [godot.StyleBoxLine]'s bounds.
+   */
   open var growEnd: Double
     get() {
       TransferContext.writeArguments()
@@ -56,6 +70,9 @@ open class StyleBoxLine : StyleBox() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_GROW_END, NIL)
     }
 
+  /**
+   * The line's thickness in pixels.
+   */
   open var thickness: Long
     get() {
       TransferContext.writeArguments()
@@ -67,6 +84,9 @@ open class StyleBoxLine : StyleBox() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_THICKNESS, NIL)
     }
 
+  /**
+   * If `true`, the line will be vertical. If `false`, the line will be horizontal.
+   */
   open var vertical: Boolean
     get() {
       TransferContext.writeArguments()

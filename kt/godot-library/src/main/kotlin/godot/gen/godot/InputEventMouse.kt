@@ -16,8 +16,19 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Base input event type for mouse events.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html)
+ *
+ * Stores general mouse events information.
+ */
 @GodotBaseType
 open class InputEventMouse : InputEventWithModifiers() {
+  /**
+   * The mouse button mask identifier, one of or a bitwise combination of the [enum ButtonList] button masks.
+   */
   open var buttonMask: Long
     get() {
       TransferContext.writeArguments()
@@ -31,6 +42,9 @@ open class InputEventMouse : InputEventWithModifiers() {
           NIL)
     }
 
+  /**
+   * The global mouse position relative to the current [godot.Viewport] when used in [godot.Control.GuiInput], otherwise is at 0,0.
+   */
   open var globalPosition: Vector2
     get() {
       TransferContext.writeArguments()
@@ -44,6 +58,9 @@ open class InputEventMouse : InputEventWithModifiers() {
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSE_SET_GLOBAL_POSITION, NIL)
     }
 
+  /**
+   * The local mouse position relative to the [godot.Viewport]. If used in [godot.Control.GuiInput], the position is relative to the current [godot.Control] which is under the mouse.
+   */
   open var position: Vector2
     get() {
       TransferContext.writeArguments()

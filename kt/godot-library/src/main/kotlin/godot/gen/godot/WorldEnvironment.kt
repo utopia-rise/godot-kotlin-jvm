@@ -12,8 +12,23 @@ import godot.core.VariantType.OBJECT
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Default environment properties for the entire scene (post-processing effects, lighting and background settings).
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/3d/environment_and_post_processing.html](https://docs.godotengine.org/en/latest/tutorials/3d/environment_and_post_processing.html)
+ *
+ * The [godot.WorldEnvironment] node is used to configure the default [godot.Environment] for the scene.
+ *
+ * The parameters defined in the [godot.WorldEnvironment] can be overridden by an [godot.Environment] node set on the current [godot.Camera]. Additionally, only one [godot.WorldEnvironment] may be instanced in a given scene at a time.
+ *
+ * The [godot.WorldEnvironment] allows the user to specify default lighting parameters (e.g. ambient lighting), various post-processing effects (e.g. SSAO, DOF, Tonemapping), and how to draw the background (e.g. solid color, skybox). Usually, these are added in order to improve the realism/color balance of the scene.
+ */
 @GodotBaseType
 open class WorldEnvironment : Node() {
+  /**
+   * The [godot.Environment] resource used by this [godot.WorldEnvironment], defining the default properties.
+   */
   open var environment: Environment?
     get() {
       TransferContext.writeArguments()

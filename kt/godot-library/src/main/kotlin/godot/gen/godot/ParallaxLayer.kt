@@ -14,8 +14,20 @@ import godot.util.VoidPtr
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * A parallax scrolling layer to be used with [godot.ParallaxBackground].
+ *
+ * A ParallaxLayer must be the child of a [godot.ParallaxBackground] node. Each ParallaxLayer can be set to move at different speeds relative to the camera movement or the [godot.ParallaxBackground.scrollOffset] value.
+ *
+ * This node's children will be affected by its scroll offset.
+ *
+ * **Note:** Any changes to this node's position and scale made after it enters the scene will be ignored.
+ */
 @GodotBaseType
 open class ParallaxLayer : Node2D() {
+  /**
+   * The ParallaxLayer's [godot.Texture] mirroring. Useful for creating an infinite scrolling background. If an axis is set to `0`, the [godot.Texture] will not be mirrored.
+   */
   open var motionMirroring: Vector2
     get() {
       TransferContext.writeArguments()
@@ -29,6 +41,9 @@ open class ParallaxLayer : Node2D() {
           ENGINEMETHOD_ENGINECLASS_PARALLAXLAYER_SET_MOTION_MIRRORING, NIL)
     }
 
+  /**
+   * The ParallaxLayer's offset relative to the parent ParallaxBackground's [godot.ParallaxBackground.scrollOffset].
+   */
   open var motionOffset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -42,6 +57,9 @@ open class ParallaxLayer : Node2D() {
           NIL)
     }
 
+  /**
+   * Multiplies the ParallaxLayer's motion. If an axis is set to `0`, it will not scroll.
+   */
   open var motionScale: Vector2
     get() {
       TransferContext.writeArguments()

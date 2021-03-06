@@ -18,16 +18,40 @@ import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Detects approximately when the node is visible on screen.
+ *
+ * The VisibilityNotifier detects when it is visible on the screen. It also notifies when its bounding rectangle enters or exits the screen or a [godot.Camera]'s view.
+ *
+ * If you want nodes to be disabled automatically when they exit the screen, use [godot.VisibilityEnabler] instead.
+ *
+ * **Note:** VisibilityNotifier uses an approximate heuristic for performance reasons. It does't take walls and other occlusion into account. The heuristic is an implementation detail and may change in future versions. If you need precise visibility checking, use another method such as adding an [godot.Area] node as a child of a [godot.Camera] node and/or [godot.Vector3.dot].
+ */
 @GodotBaseType
 open class VisibilityNotifier : Spatial() {
+  /**
+   * Emitted when the VisibilityNotifier enters a [godot.Camera]'s view.
+   */
   val cameraEntered: Signal1<Camera> by signal("camera")
 
+  /**
+   * Emitted when the VisibilityNotifier exits a [godot.Camera]'s view.
+   */
   val cameraExited: Signal1<Camera> by signal("camera")
 
+  /**
+   * Emitted when the VisibilityNotifier enters the screen.
+   */
   val screenEntered: Signal0 by signal()
 
+  /**
+   * Emitted when the VisibilityNotifier exits the screen.
+   */
   val screenExited: Signal0 by signal()
 
+  /**
+   * The VisibilityNotifier's bounding box.
+   */
   open var aabb: AABB
     get() {
       TransferContext.writeArguments()
@@ -48,6 +72,11 @@ open class VisibilityNotifier : Spatial() {
   }
 
 
+  /**
+   * If `true`, the bounding box is on the screen.
+   *
+   * **Note:** It takes one frame for the node's visibility to be assessed once added to the scene tree, so this method will return `false` right after it is instantiated, even if it will be on screen in the draw pass.
+   */
   open fun isOnScreen(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISIBILITYNOTIFIER_IS_ON_SCREEN,

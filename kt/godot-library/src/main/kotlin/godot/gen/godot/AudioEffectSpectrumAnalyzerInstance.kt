@@ -16,11 +16,17 @@ import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ *
+ */
 @GodotBaseType
 open class AudioEffectSpectrumAnalyzerInstance : AudioEffectInstance() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZERINSTANCE)
 
+  /**
+   *
+   */
   open fun getMagnitudeForFrequencyRange(
     fromHz: Double,
     toHz: Double,
@@ -36,8 +42,14 @@ open class AudioEffectSpectrumAnalyzerInstance : AudioEffectInstance() {
   enum class MagnitudeMode(
     id: Long
   ) {
+    /**
+     * Use the average value as magnitude.
+     */
     MAGNITUDE_AVERAGE(0),
 
+    /**
+     * Use the maximum value as magnitude.
+     */
     MAGNITUDE_MAX(1);
 
     val id: Long
@@ -51,8 +63,14 @@ open class AudioEffectSpectrumAnalyzerInstance : AudioEffectInstance() {
   }
 
   companion object {
+    /**
+     * Use the average value as magnitude.
+     */
     final const val MAGNITUDE_AVERAGE: Long = 0
 
+    /**
+     * Use the maximum value as magnitude.
+     */
     final const val MAGNITUDE_MAX: Long = 1
   }
 }

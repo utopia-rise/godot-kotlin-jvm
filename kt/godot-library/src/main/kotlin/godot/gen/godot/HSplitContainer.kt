@@ -10,6 +10,11 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Horizontal split container.
+ *
+ * Horizontal split container. See [godot.SplitContainer]. This goes from left to right.
+ */
 @GodotBaseType
 open class HSplitContainer : SplitContainer() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_HSPLITCONTAINER)

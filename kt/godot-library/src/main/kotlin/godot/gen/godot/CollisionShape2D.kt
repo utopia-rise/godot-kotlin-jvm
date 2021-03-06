@@ -16,8 +16,19 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Suppress
 
+/**
+ * Node that represents collision shape data in 2D space.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html)
+ *
+ * Editor facility for creating and editing collision shapes in 2D space. You can use this node to represent all sorts of collision shapes, for example, add this to an [godot.Area2D] to give it a detection shape, or add it to a [godot.PhysicsBody2D] to create a solid object. **IMPORTANT**: this is an Editor-only helper to create shapes, use [godot.CollisionObject2D.shapeOwnerGetShape] to get the actual shape.
+ */
 @GodotBaseType
 open class CollisionShape2D : Node2D() {
+  /**
+   * A disabled collision shape has no effect in the world. This property should be changed with [godot.Object.setDeferred].
+   */
   open var disabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -31,6 +42,9 @@ open class CollisionShape2D : Node2D() {
           NIL)
     }
 
+  /**
+   * Sets whether this collision shape should only detect collision on one side (top or bottom).
+   */
   open var oneWayCollision: Boolean
     get() {
       TransferContext.writeArguments()
@@ -44,6 +58,9 @@ open class CollisionShape2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_SET_ONE_WAY_COLLISION, NIL)
     }
 
+  /**
+   * The margin used for one-way collision (in pixels). Higher values will make the shape thicker, and work better for colliders that enter the shape at a high velocity.
+   */
   open var oneWayCollisionMargin: Double
     get() {
       TransferContext.writeArguments()
@@ -57,6 +74,9 @@ open class CollisionShape2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_SET_ONE_WAY_COLLISION_MARGIN, NIL)
     }
 
+  /**
+   * The actual shape owned by this collision shape.
+   */
   open var shape: Shape2D?
     get() {
       TransferContext.writeArguments()

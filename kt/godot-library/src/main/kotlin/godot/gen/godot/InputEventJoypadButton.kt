@@ -18,8 +18,19 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.UninitializedPropertyAccessException
 
+/**
+ * Input event for gamepad buttons.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html)
+ *
+ * Input event type for gamepad buttons. For gamepad analog sticks and joysticks, see [godot.InputEventJoypadMotion].
+ */
 @GodotBaseType
 open class InputEventJoypadButton : InputEvent() {
+  /**
+   * Button identifier. One of the [enum JoystickList] button constants.
+   */
   open var buttonIndex: Long
     get() {
       TransferContext.writeArguments()
@@ -33,6 +44,9 @@ open class InputEventJoypadButton : InputEvent() {
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTJOYPADBUTTON_SET_BUTTON_INDEX, NIL)
     }
 
+  /**
+   * If `true`, the button's state is pressed. If `false`, the button's state is released.
+   */
   open var pressed: Boolean
     get() {
       throw UninitializedPropertyAccessException("Cannot access property pressed: has no getter")
@@ -43,6 +57,9 @@ open class InputEventJoypadButton : InputEvent() {
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTJOYPADBUTTON_SET_PRESSED, NIL)
     }
 
+  /**
+   * Represents the pressure the user puts on the button with his finger, if the controller supports it. Ranges from `0` to `1`.
+   */
   open var pressure: Double
     get() {
       TransferContext.writeArguments()

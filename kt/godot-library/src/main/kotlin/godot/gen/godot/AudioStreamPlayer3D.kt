@@ -23,10 +23,26 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * Plays 3D sound in 3D space.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/audio/audio_streams.html](https://docs.godotengine.org/en/latest/tutorials/audio/audio_streams.html)
+ *
+ * Plays a sound effect with directed sound effects, dampens with distance if needed, generates effect of hearable position in space.
+ *
+ * By default, audio is heard from the camera position. This can be changed by adding a [godot.Listener] node to the scene and enabling it by calling [godot.Listener.makeCurrent] on it.
+ */
 @GodotBaseType
 open class AudioStreamPlayer3D : Spatial() {
+  /**
+   * Emitted when the audio stops playing.
+   */
   val finished: Signal0 by signal()
 
+  /**
+   * Areas in which this sound plays.
+   */
   open var areaMask: Long
     get() {
       TransferContext.writeArguments()
@@ -40,6 +56,9 @@ open class AudioStreamPlayer3D : Spatial() {
           NIL)
     }
 
+  /**
+   * Dampens audio above this frequency, in Hz.
+   */
   open var attenuationFilterCutoffHz: Double
     get() {
       TransferContext.writeArguments()
@@ -53,6 +72,9 @@ open class AudioStreamPlayer3D : Spatial() {
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_SET_ATTENUATION_FILTER_CUTOFF_HZ, NIL)
     }
 
+  /**
+   * Amount how much the filter affects the loudness, in dB.
+   */
   open var attenuationFilterDb: Double
     get() {
       TransferContext.writeArguments()
@@ -66,6 +88,9 @@ open class AudioStreamPlayer3D : Spatial() {
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_SET_ATTENUATION_FILTER_DB, NIL)
     }
 
+  /**
+   * Decides if audio should get quieter with distance linearly, quadratically, logarithmically, or not be affected by distance, effectively disabling attenuation.
+   */
   open var attenuationModel: Long
     get() {
       TransferContext.writeArguments()
@@ -79,6 +104,9 @@ open class AudioStreamPlayer3D : Spatial() {
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_SET_ATTENUATION_MODEL, NIL)
     }
 
+  /**
+   * If `true`, audio plays when added to scene tree.
+   */
   open var autoplay: Boolean
     get() {
       TransferContext.writeArguments()
@@ -92,6 +120,9 @@ open class AudioStreamPlayer3D : Spatial() {
           NIL)
     }
 
+  /**
+   * Bus on which this audio is playing.
+   */
   open var bus: String
     get() {
       TransferContext.writeArguments()
@@ -104,6 +135,9 @@ open class AudioStreamPlayer3D : Spatial() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_SET_BUS, NIL)
     }
 
+  /**
+   * Decides in which step the Doppler effect should be calculated.
+   */
   open var dopplerTracking: Long
     get() {
       TransferContext.writeArguments()
@@ -117,6 +151,9 @@ open class AudioStreamPlayer3D : Spatial() {
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_SET_DOPPLER_TRACKING, NIL)
     }
 
+  /**
+   * The angle in which the audio reaches cameras undampened.
+   */
   open var emissionAngleDegrees: Double
     get() {
       TransferContext.writeArguments()
@@ -130,6 +167,9 @@ open class AudioStreamPlayer3D : Spatial() {
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_SET_EMISSION_ANGLE_DEGREES, NIL)
     }
 
+  /**
+   * If `true`, the audio should be dampened according to the direction of the sound.
+   */
   open var emissionAngleEnabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -143,6 +183,9 @@ open class AudioStreamPlayer3D : Spatial() {
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_SET_EMISSION_ANGLE_ENABLED, NIL)
     }
 
+  /**
+   * Dampens audio if camera is outside of [emissionAngleDegrees] and [emissionAngleEnabled] is set by this factor, in dB.
+   */
   open var emissionAngleFilterAttenuationDb: Double
     get() {
       TransferContext.writeArguments()
@@ -158,6 +201,9 @@ open class AudioStreamPlayer3D : Spatial() {
           NIL)
     }
 
+  /**
+   * Sets the absolute maximum of the soundlevel, in dB.
+   */
   open var maxDb: Double
     get() {
       TransferContext.writeArguments()
@@ -171,6 +217,9 @@ open class AudioStreamPlayer3D : Spatial() {
           NIL)
     }
 
+  /**
+   * Sets the distance from which the [outOfRangeMode] takes effect. Has no effect if set to 0.
+   */
   open var maxDistance: Double
     get() {
       TransferContext.writeArguments()
@@ -184,6 +233,9 @@ open class AudioStreamPlayer3D : Spatial() {
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_SET_MAX_DISTANCE, NIL)
     }
 
+  /**
+   * Decides if audio should pause when source is outside of [maxDistance] range.
+   */
   open var outOfRangeMode: Long
     get() {
       TransferContext.writeArguments()
@@ -197,6 +249,9 @@ open class AudioStreamPlayer3D : Spatial() {
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_SET_OUT_OF_RANGE_MODE, NIL)
     }
 
+  /**
+   * The pitch and the tempo of the audio, as a multiplier of the audio sample's sample rate.
+   */
   open var pitchScale: Double
     get() {
       TransferContext.writeArguments()
@@ -210,6 +265,9 @@ open class AudioStreamPlayer3D : Spatial() {
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_SET_PITCH_SCALE, NIL)
     }
 
+  /**
+   * If `true`, audio is playing.
+   */
   open val playing: Boolean
     get() {
       TransferContext.writeArguments()
@@ -218,6 +276,9 @@ open class AudioStreamPlayer3D : Spatial() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
+  /**
+   * The [godot.AudioStream] object to be played.
+   */
   open var stream: AudioStream?
     get() {
       TransferContext.writeArguments()
@@ -231,6 +292,9 @@ open class AudioStreamPlayer3D : Spatial() {
           NIL)
     }
 
+  /**
+   * If `true`, the playback is paused. You can resume it by setting `stream_paused` to `false`.
+   */
   open var streamPaused: Boolean
     get() {
       TransferContext.writeArguments()
@@ -244,6 +308,9 @@ open class AudioStreamPlayer3D : Spatial() {
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_SET_STREAM_PAUSED, NIL)
     }
 
+  /**
+   * Base sound level unaffected by dampening, in dB.
+   */
   open var unitDb: Double
     get() {
       TransferContext.writeArguments()
@@ -257,6 +324,9 @@ open class AudioStreamPlayer3D : Spatial() {
           NIL)
     }
 
+  /**
+   * Factor for the attenuation effect.
+   */
   open var unitSize: Double
     get() {
       TransferContext.writeArguments()
@@ -282,6 +352,9 @@ open class AudioStreamPlayer3D : Spatial() {
   open fun _setPlaying(enable: Boolean) {
   }
 
+  /**
+   * Returns the position in the [godot.AudioStream].
+   */
   open fun getPlaybackPosition(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -289,6 +362,9 @@ open class AudioStreamPlayer3D : Spatial() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
+  /**
+   * Returns the [godot.AudioStreamPlayback] object associated with this [godot.AudioStreamPlayer3D].
+   */
   open fun getStreamPlayback(): AudioStreamPlayback? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -296,16 +372,25 @@ open class AudioStreamPlayer3D : Spatial() {
     return TransferContext.readReturnValue(OBJECT, true) as AudioStreamPlayback?
   }
 
+  /**
+   * Plays the audio from the given position `from_position`, in seconds.
+   */
   open fun play(fromPosition: Double = 0.0) {
     TransferContext.writeArguments(DOUBLE to fromPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_PLAY, NIL)
   }
 
+  /**
+   * Sets the position from which audio will be played, in seconds.
+   */
   open fun seek(toPosition: Double) {
     TransferContext.writeArguments(DOUBLE to toPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_SEEK, NIL)
   }
 
+  /**
+   * Stops the audio.
+   */
   open fun stop() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_STOP, NIL)
@@ -314,12 +399,24 @@ open class AudioStreamPlayer3D : Spatial() {
   enum class AttenuationModel(
     id: Long
   ) {
+    /**
+     * Linear dampening of loudness according to distance.
+     */
     ATTENUATION_INVERSE_DISTANCE(0),
 
+    /**
+     * Squared dampening of loudness according to distance.
+     */
     ATTENUATION_INVERSE_SQUARE_DISTANCE(1),
 
+    /**
+     * Logarithmic dampening of loudness according to distance.
+     */
     ATTENUATION_LOGARITHMIC(2),
 
+    /**
+     * No dampening of loudness according to distance.
+     */
     ATTENUATION_DISABLED(3);
 
     val id: Long
@@ -335,8 +432,14 @@ open class AudioStreamPlayer3D : Spatial() {
   enum class OutOfRangeMode(
     id: Long
   ) {
+    /**
+     * Mix this audio in, even when it's out of range.
+     */
     OUT_OF_RANGE_MIX(0),
 
+    /**
+     * Pause this audio when it gets out of range.
+     */
     OUT_OF_RANGE_PAUSE(1);
 
     val id: Long
@@ -352,10 +455,19 @@ open class AudioStreamPlayer3D : Spatial() {
   enum class DopplerTracking(
     id: Long
   ) {
+    /**
+     * Disables doppler tracking.
+     */
     DOPPLER_TRACKING_DISABLED(0),
 
+    /**
+     * Executes doppler tracking in idle step.
+     */
     DOPPLER_TRACKING_IDLE_STEP(1),
 
+    /**
+     * Executes doppler tracking in physics step.
+     */
     DOPPLER_TRACKING_PHYSICS_STEP(2);
 
     val id: Long
@@ -369,22 +481,49 @@ open class AudioStreamPlayer3D : Spatial() {
   }
 
   companion object {
+    /**
+     * No dampening of loudness according to distance.
+     */
     final const val ATTENUATION_DISABLED: Long = 3
 
+    /**
+     * Linear dampening of loudness according to distance.
+     */
     final const val ATTENUATION_INVERSE_DISTANCE: Long = 0
 
+    /**
+     * Squared dampening of loudness according to distance.
+     */
     final const val ATTENUATION_INVERSE_SQUARE_DISTANCE: Long = 1
 
+    /**
+     * Logarithmic dampening of loudness according to distance.
+     */
     final const val ATTENUATION_LOGARITHMIC: Long = 2
 
+    /**
+     * Disables doppler tracking.
+     */
     final const val DOPPLER_TRACKING_DISABLED: Long = 0
 
+    /**
+     * Executes doppler tracking in idle step.
+     */
     final const val DOPPLER_TRACKING_IDLE_STEP: Long = 1
 
+    /**
+     * Executes doppler tracking in physics step.
+     */
     final const val DOPPLER_TRACKING_PHYSICS_STEP: Long = 2
 
+    /**
+     * Mix this audio in, even when it's out of range.
+     */
     final const val OUT_OF_RANGE_MIX: Long = 0
 
+    /**
+     * Pause this audio when it gets out of range.
+     */
     final const val OUT_OF_RANGE_PAUSE: Long = 1
   }
 }

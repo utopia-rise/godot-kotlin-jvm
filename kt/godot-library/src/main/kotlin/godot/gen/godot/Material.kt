@@ -14,8 +14,18 @@ import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Abstract base [godot.Resource] for coloring and shading geometry.
+ *
+ * Material is a base [godot.Resource] used for coloring and shading geometry. All materials inherit from it and almost all [godot.VisualInstance] derived nodes carry a Material. A few flags and parameters are shared between all material types and are configured here.
+ */
 @GodotBaseType
 open class Material : Resource() {
+  /**
+   * Sets the [godot.Material] to be used for the next pass. This renders the object again using a different material.
+   *
+   * **Note:** only applies to [godot.SpatialMaterial]s and [godot.ShaderMaterial]s with type "Spatial".
+   */
   open var nextPass: Material?
     get() {
       TransferContext.writeArguments()
@@ -27,6 +37,11 @@ open class Material : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MATERIAL_SET_NEXT_PASS, NIL)
     }
 
+  /**
+   * Sets the render priority for transparent objects in 3D scenes. Higher priority objects will be sorted in front of lower priority objects.
+   *
+   * **Note:** this only applies to sorting of transparent objects. This will not impact how transparent objects are sorted relative to opaque objects. This is because opaque objects are not sorted, while transparent objects are sorted from back to front (subject to priority).
+   */
   open var renderPriority: Long
     get() {
       TransferContext.writeArguments()
@@ -42,8 +57,14 @@ open class Material : Resource() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_MATERIAL)
 
   companion object {
+    /**
+     * Maximum value for the [renderPriority] parameter.
+     */
     final const val RENDER_PRIORITY_MAX: Long = 127
 
+    /**
+     * Minimum value for the [renderPriority] parameter.
+     */
     final const val RENDER_PRIORITY_MIN: Long = -128
   }
 }

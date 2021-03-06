@@ -14,8 +14,16 @@ import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Gradient-filled texture.
+ *
+ * GradientTexture uses a [godot.Gradient] to fill the texture data. The gradient will be filled from left to right using colors obtained from the gradient. This means the texture does not necessarily represent an exact copy of the gradient, but instead an interpolation of samples obtained from the gradient at fixed steps (see [width]).
+ */
 @GodotBaseType
 open class GradientTexture : Texture() {
+  /**
+   * The [godot.Gradient] that will be used to fill the texture.
+   */
   open var gradient: Gradient?
     get() {
       TransferContext.writeArguments()
@@ -28,6 +36,9 @@ open class GradientTexture : Texture() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE_SET_GRADIENT, NIL)
     }
 
+  /**
+   * The number of color samples that will be obtained from the [godot.Gradient].
+   */
   open var width: Long
     get() = super.getTextureWidth()
     set(value) {

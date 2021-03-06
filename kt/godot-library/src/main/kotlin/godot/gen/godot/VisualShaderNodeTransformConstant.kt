@@ -14,8 +14,16 @@ import godot.util.VoidPtr
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * A [godot.core.Transform] constant for use within the visual shader graph.
+ *
+ * A constant [godot.core.Transform], which can be used as an input node.
+ */
 @GodotBaseType
 open class VisualShaderNodeTransformConstant : VisualShaderNode() {
+  /**
+   * A [godot.core.Transform] constant which represents the state of this node.
+   */
   open var constant: Transform
     get() {
       TransferContext.writeArguments()

@@ -15,8 +15,16 @@ import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Adds a chorus audio effect.
+ *
+ * Adds a chorus audio effect. The effect applies a filter with voices to duplicate the audio source and manipulate it through the filter.
+ */
 @GodotBaseType
 open class AudioEffectChorus : AudioEffect() {
+  /**
+   * The effect's raw signal.
+   */
   open var dry: Double
     get() {
       TransferContext.writeArguments()
@@ -340,6 +348,9 @@ open class AudioEffectChorus : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCHORUS_SET_VOICE_4_RATE_HZ, NIL)
     }
 
+  /**
+   * The amount of voices in the effect.
+   */
   open var voiceCount: Long
     get() {
       TransferContext.writeArguments()
@@ -353,6 +364,9 @@ open class AudioEffectChorus : AudioEffect() {
           NIL)
     }
 
+  /**
+   * The effect's processed signal.
+   */
   open var wet: Double
     get() {
       TransferContext.writeArguments()

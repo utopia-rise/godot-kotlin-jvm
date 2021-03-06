@@ -17,8 +17,16 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * Used with [godot.DynamicFont] to describe the location of a font file.
+ *
+ * Used with [godot.DynamicFont] to describe the location of a vector font file for dynamic rendering at runtime.
+ */
 @GodotBaseType
 open class DynamicFontData : Resource() {
+  /**
+   * If `true`, the font is rendered with anti-aliasing. This property applies both to the main font and its outline (if it has one).
+   */
   open var antialiased: Boolean
     get() {
       TransferContext.writeArguments()
@@ -32,6 +40,9 @@ open class DynamicFontData : Resource() {
           NIL)
     }
 
+  /**
+   * The path to the vector font file.
+   */
   open var fontPath: String
     get() {
       TransferContext.writeArguments()
@@ -45,6 +56,9 @@ open class DynamicFontData : Resource() {
           NIL)
     }
 
+  /**
+   * The font hinting mode used by FreeType. See [enum Hinting] for options.
+   */
   open var hinting: Long
     get() {
       TransferContext.writeArguments()
@@ -61,10 +75,19 @@ open class DynamicFontData : Resource() {
   enum class Hinting(
     id: Long
   ) {
+    /**
+     * Disables font hinting (smoother but less crisp).
+     */
     HINTING_NONE(0),
 
+    /**
+     * Use the light font hinting mode.
+     */
     HINTING_LIGHT(1),
 
+    /**
+     * Use the default font hinting mode (crisper but less smooth).
+     */
     HINTING_NORMAL(2);
 
     val id: Long
@@ -78,10 +101,19 @@ open class DynamicFontData : Resource() {
   }
 
   companion object {
+    /**
+     * Use the light font hinting mode.
+     */
     final const val HINTING_LIGHT: Long = 1
 
+    /**
+     * Disables font hinting (smoother but less crisp).
+     */
     final const val HINTING_NONE: Long = 0
 
+    /**
+     * Use the default font hinting mode (crisper but less smooth).
+     */
     final const val HINTING_NORMAL: Long = 2
   }
 }

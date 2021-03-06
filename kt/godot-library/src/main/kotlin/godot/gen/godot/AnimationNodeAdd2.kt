@@ -13,8 +13,19 @@ import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Suppress
 
+/**
+ * Blends two animations additively inside of an [godot.AnimationNodeBlendTree].
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
+ *
+ * A resource to add to an [godot.AnimationNodeBlendTree]. Blends two animations additively based on an amount value in the `[0.0, 1.0]` range.
+ */
 @GodotBaseType
 open class AnimationNodeAdd2 : AnimationNode() {
+  /**
+   * If `true`, sets the `optimization` to `false` when calling [godot.AnimationNode.blendInput], forcing the blended animations to update every frame.
+   */
   open var sync: Boolean
     get() {
       TransferContext.writeArguments()

@@ -27,8 +27,18 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * A custom shader program with a visual editor.
+ *
+ * This class allows you to define a custom shader program that can be used for various materials to render objects.
+ *
+ * The visual shader editor creates the shader.
+ */
 @GodotBaseType
 open class VisualShader : Shader() {
+  /**
+   * The offset vector of the whole graph.
+   */
   open var graphOffset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -59,6 +69,9 @@ open class VisualShader : Shader() {
   open fun _updateShader() {
   }
 
+  /**
+   * Adds the specified node to the shader.
+   */
   open fun addNode(
     type: Long,
     node: VisualShaderNode,
@@ -69,6 +82,9 @@ open class VisualShader : Shader() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_ADD_NODE, NIL)
   }
 
+  /**
+   * Returns `true` if the specified nodes and ports can be connected together.
+   */
   open fun canConnectNodes(
     type: Long,
     fromNode: Long,
@@ -83,6 +99,9 @@ open class VisualShader : Shader() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   * Connects the specified nodes and ports.
+   */
   open fun connectNodes(
     type: Long,
     fromNode: Long,
@@ -96,6 +115,9 @@ open class VisualShader : Shader() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
+  /**
+   * Connects the specified nodes and ports, even if they can't be connected. Such connection is invalid and will not function properly.
+   */
   open fun connectNodesForced(
     type: Long,
     fromNode: Long,
@@ -109,6 +131,9 @@ open class VisualShader : Shader() {
         NIL)
   }
 
+  /**
+   * Connects the specified nodes and ports.
+   */
   open fun disconnectNodes(
     type: Long,
     fromNode: Long,
@@ -121,12 +146,18 @@ open class VisualShader : Shader() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_DISCONNECT_NODES, NIL)
   }
 
+  /**
+   * Returns the shader node instance with specified `type` and `id`.
+   */
   open fun getNode(type: Long, id: Long): VisualShaderNode? {
     TransferContext.writeArguments(LONG to type, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as VisualShaderNode?
   }
 
+  /**
+   * Returns the list of connected nodes with the specified type.
+   */
   open fun getNodeConnections(type: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to type)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE_CONNECTIONS,
@@ -134,6 +165,9 @@ open class VisualShader : Shader() {
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
+  /**
+   * Returns the list of all nodes in the shader with the specified type.
+   */
   open fun getNodeList(type: Long): PoolIntArray {
     TransferContext.writeArguments(LONG to type)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE_LIST,
@@ -141,6 +175,9 @@ open class VisualShader : Shader() {
     return TransferContext.readReturnValue(POOL_INT_ARRAY, false) as PoolIntArray
   }
 
+  /**
+   * Returns the position of the specified node within the shader graph.
+   */
   open fun getNodePosition(type: Long, id: Long): Vector2 {
     TransferContext.writeArguments(LONG to type, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE_POSITION,
@@ -148,6 +185,9 @@ open class VisualShader : Shader() {
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
+  /**
+   *
+   */
   open fun getValidNodeId(type: Long): Long {
     TransferContext.writeArguments(LONG to type)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_VALID_NODE_ID,
@@ -155,6 +195,9 @@ open class VisualShader : Shader() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   * Returns `true` if the specified node and port connection exist.
+   */
   open fun isNodeConnection(
     type: Long,
     fromNode: Long,
@@ -169,16 +212,25 @@ open class VisualShader : Shader() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   * Removes the specified node from the shader.
+   */
   open fun removeNode(type: Long, id: Long) {
     TransferContext.writeArguments(LONG to type, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_REMOVE_NODE, NIL)
   }
 
+  /**
+   * Sets the mode of this shader.
+   */
   open fun setMode(mode: Long) {
     TransferContext.writeArguments(LONG to mode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_SET_MODE, NIL)
   }
 
+  /**
+   * Sets the position of the specified node.
+   */
   open fun setNodePosition(
     type: Long,
     id: Long,
@@ -191,12 +243,24 @@ open class VisualShader : Shader() {
   enum class Type(
     id: Long
   ) {
+    /**
+     * A vertex shader, operating on vertices.
+     */
     TYPE_VERTEX(0),
 
+    /**
+     * A fragment shader, operating on fragments (pixels).
+     */
     TYPE_FRAGMENT(1),
 
+    /**
+     * A shader for light calculations.
+     */
     TYPE_LIGHT(2),
 
+    /**
+     * Represents the size of the [enum Type] enum.
+     */
     TYPE_MAX(3);
 
     val id: Long
@@ -210,16 +274,34 @@ open class VisualShader : Shader() {
   }
 
   companion object {
+    /**
+     *
+     */
     final const val NODE_ID_INVALID: Long = -1
 
+    /**
+     *
+     */
     final const val NODE_ID_OUTPUT: Long = 0
 
+    /**
+     * A fragment shader, operating on fragments (pixels).
+     */
     final const val TYPE_FRAGMENT: Long = 1
 
+    /**
+     * A shader for light calculations.
+     */
     final const val TYPE_LIGHT: Long = 2
 
+    /**
+     * Represents the size of the [enum Type] enum.
+     */
     final const val TYPE_MAX: Long = 3
 
+    /**
+     * A vertex shader, operating on vertices.
+     */
     final const val TYPE_VERTEX: Long = 0
   }
 }

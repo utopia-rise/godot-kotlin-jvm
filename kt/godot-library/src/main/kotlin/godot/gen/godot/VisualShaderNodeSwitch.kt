@@ -10,6 +10,11 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * A boolean/vector function for use within the visual shader graph.
+ *
+ * Returns an associated vector if the provided boolean value is `true` or `false`.
+ */
 @GodotBaseType
 open class VisualShaderNodeSwitch : VisualShaderNode() {
   override fun __new(): VoidPtr =

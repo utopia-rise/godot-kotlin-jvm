@@ -19,8 +19,18 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * Helper to generate previews of resources or files.
+ *
+ * This object is used to generate previews for resources of files.
+ *
+ * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getResourcePreviewer].
+ */
 @GodotBaseType
 open class EditorResourcePreview : Node() {
+  /**
+   * Emitted if a preview was invalidated (changed). `path` corresponds to the path of the preview.
+   */
   val previewInvalidated: Signal1<String> by signal("path")
 
   override fun __new(): VoidPtr =
@@ -36,18 +46,27 @@ open class EditorResourcePreview : Node() {
   ) {
   }
 
+  /**
+   * Create an own, custom preview generator.
+   */
   open fun addPreviewGenerator(generator: EditorResourcePreviewGenerator) {
     TransferContext.writeArguments(OBJECT to generator)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_ADD_PREVIEW_GENERATOR, NIL)
   }
 
+  /**
+   * Check if the resource changed, if so, it will be invalidated and the corresponding signal emitted.
+   */
   open fun checkForInvalidation(path: String) {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_CHECK_FOR_INVALIDATION, NIL)
   }
 
+  /**
+   * Queue a resource being edited for preview (using an instance). Once the preview is ready, your receiver.receiver_func will be called either containing the preview texture or an empty texture (if no preview was possible). Callback must have the format: (path,texture,userdata). Userdata can be anything.
+   */
   open fun queueEditedResourcePreview(
     resource: Resource,
     receiver: Object,
@@ -60,6 +79,9 @@ open class EditorResourcePreview : Node() {
         ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_QUEUE_EDITED_RESOURCE_PREVIEW, NIL)
   }
 
+  /**
+   * Queue a resource file for preview (using a path). Once the preview is ready, your receiver.receiver_func will be called either containing the preview texture or an empty texture (if no preview was possible). Callback must have the format: (path,texture,userdata). Userdata can be anything.
+   */
   open fun queueResourcePreview(
     path: String,
     receiver: Object,
@@ -72,6 +94,9 @@ open class EditorResourcePreview : Node() {
         ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_QUEUE_RESOURCE_PREVIEW, NIL)
   }
 
+  /**
+   * Removes a custom preview generator.
+   */
   open fun removePreviewGenerator(generator: EditorResourcePreviewGenerator) {
     TransferContext.writeArguments(OBJECT to generator)
     TransferContext.callMethod(rawPtr,

@@ -26,11 +26,92 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * A node with the ability to send HTTP(S) requests.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/networking/http_request_class.html](https://docs.godotengine.org/en/latest/tutorials/networking/http_request_class.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/networking/ssl_certificates.html](https://docs.godotengine.org/en/latest/tutorials/networking/ssl_certificates.html)
+ *
+ * A node with the ability to send HTTP requests. Uses [godot.HTTPClient] internally.
+ *
+ * Can be used to make HTTP requests, i.e. download or upload files or web content via HTTP.
+ *
+ * **Example of contacting a REST API and printing one of its returned fields:**
+ *
+ * ```
+ * 		func _ready():
+ * 		    # Create an HTTP request node and connect its completion signal.
+ * 		    var http_request = HTTPRequest.new()
+ * 		    add_child(http_request)
+ * 		    http_request.connect("request_completed", self, "_http_request_completed")
+ *
+ * 		    # Perform a GET request. The URL below returns JSON as of writing.
+ * 		    var error = http_request.request("https://httpbin.org/get")
+ * 		    if error != OK:
+ * 		        push_error("An error occurred in the HTTP request.")
+ *
+ * 		    # Perform a POST request. The URL below returns JSON as of writing.
+ * 		    # Note: Don't make simultaneous requests using a single HTTPRequest node.
+ * 		    # The snippet below is provided for reference only.
+ * 		    var body = {"name": "Godette"}
+ * 		    var error = http_request.request("https://httpbin.org/post", [], true, HTTPClient.METHOD_POST, body)
+ * 		    if error != OK:
+ * 		        push_error("An error occurred in the HTTP request.")
+ *
+ *
+ * 		# Called when the HTTP request is completed.
+ * 		func _http_request_completed(result, response_code, headers, body):
+ * 		    var response = parse_json(body.get_string_from_utf8())
+ *
+ * 		    # Will print the user agent string used by the HTTPRequest node (as recognized by httpbin.org).
+ * 		    print(response.headers["User-Agent"])
+ * 		```
+ *
+ * **Example of loading and displaying an image using HTTPRequest:**
+ *
+ * ```
+ * 		func _ready():
+ * 		    # Create an HTTP request node and connect its completion signal.
+ * 		    var http_request = HTTPRequest.new()
+ * 		    add_child(http_request)
+ * 		    http_request.connect("request_completed", self, "_http_request_completed")
+ *
+ * 		    # Perform the HTTP request. The URL below returns a PNG image as of writing.
+ * 		    var error = http_request.request("https://via.placeholder.com/512")
+ * 		    if error != OK:
+ * 		        push_error("An error occurred in the HTTP request.")
+ *
+ *
+ * 		# Called when the HTTP request is completed.
+ * 		func _http_request_completed(result, response_code, headers, body):
+ * 		    var image = Image.new()
+ * 		    var error = image.load_png_from_buffer(body)
+ * 		    if error != OK:
+ * 		        push_error("Couldn't load the image.")
+ *
+ * 		    var texture = ImageTexture.new()
+ * 		    texture.create_from_image(image)
+ *
+ * 		    # Display the image in a TextureRect node.
+ * 		    var texture_rect = TextureRect.new()
+ * 		    add_child(texture_rect)
+ * 		    texture_rect.texture = texture
+ * 		```
+ *
+ * **Note:** When performing HTTP requests from a project exported to HTML5, keep in mind the remote server may not allow requests from foreign origins due to [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS). If you host the server in question, you should modify its backend to allow requests from foreign origins by adding the `Access-Control-Allow-Origin: *` HTTP header.
+ */
 @GodotBaseType
 open class HTTPRequest : Node() {
+  /**
+   * Emitted when a request is completed.
+   */
   val requestCompleted: Signal4<Long, Long, PoolStringArray, PoolByteArray> by signal("result",
       "response_code", "headers", "body")
 
+  /**
+   * Maximum allowed size for response bodies.
+   */
   open var bodySizeLimit: Long
     get() {
       TransferContext.writeArguments()
@@ -44,6 +125,11 @@ open class HTTPRequest : Node() {
           NIL)
     }
 
+  /**
+   * The size of the buffer used and maximum bytes to read per iteration. See [godot.HTTPClient.readChunkSize].
+   *
+   * Set this to a higher value (e.g. 65536 for 64 KiB) when downloading large files to achieve better speeds at the cost of memory.
+   */
   open var downloadChunkSize: Long
     get() {
       TransferContext.writeArguments()
@@ -57,6 +143,9 @@ open class HTTPRequest : Node() {
           ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_DOWNLOAD_CHUNK_SIZE, NIL)
     }
 
+  /**
+   * The file to download into. Will output any received file into it.
+   */
   open var downloadFile: String
     get() {
       TransferContext.writeArguments()
@@ -70,6 +159,9 @@ open class HTTPRequest : Node() {
           NIL)
     }
 
+  /**
+   * Maximum number of allowed redirects.
+   */
   open var maxRedirects: Long
     get() {
       TransferContext.writeArguments()
@@ -83,6 +175,9 @@ open class HTTPRequest : Node() {
           NIL)
     }
 
+  /**
+   *
+   */
   open var timeout: Long
     get() {
       TransferContext.writeArguments()
@@ -94,6 +189,9 @@ open class HTTPRequest : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_TIMEOUT, NIL)
     }
 
+  /**
+   * If `true`, multithreading is used to improve performance.
+   */
   open var useThreads: Boolean
     get() {
       TransferContext.writeArguments()
@@ -121,17 +219,28 @@ open class HTTPRequest : Node() {
   open fun _timeout() {
   }
 
+  /**
+   * Cancels the current request.
+   */
   open fun cancelRequest() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_CANCEL_REQUEST, NIL)
   }
 
+  /**
+   * Returns the response body length.
+   *
+   * **Note:** Some Web servers may not send a body length. In this case, the value returned will be `-1`. If using chunked transfer encoding, the body length will also be `-1`.
+   */
   open fun getBodySize(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_BODY_SIZE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   * Returns the amount of bytes this HTTPRequest downloaded.
+   */
   open fun getDownloadedBytes(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_DOWNLOADED_BYTES,
@@ -139,6 +248,9 @@ open class HTTPRequest : Node() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   * Returns the current status of the underlying [godot.HTTPClient]. See [enum HTTPClient.Status].
+   */
   open fun getHttpClientStatus(): HTTPClient.Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_HTTP_CLIENT_STATUS,
@@ -146,6 +258,13 @@ open class HTTPRequest : Node() {
     return HTTPClient.Status.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
+  /**
+   * Creates request on the underlying [godot.HTTPClient]. If there is no configuration errors, it tries to connect using [godot.HTTPClient.connectToHost] and passes parameters onto [godot.HTTPClient.request].
+   *
+   * Returns [OK] if request is successfully created. (Does not imply that the server has responded), [ERR_UNCONFIGURED] if not in the tree, [ERR_BUSY] if still processing previous request, [ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [ERR_CANT_CONNECT] if not using thread and the [godot.HTTPClient] cannot connect to host.
+   *
+   * **Note:** The `request_data` parameter is ignored if `method` is [godot.HTTPClient.METHOD_GET]. This is because GET methods can't contain request data. As a workaround, you can pass request data as a query string in the URL. See [godot.String.httpEscape] for an example.
+   */
   open fun request(
     url: String,
     customHeaders: PoolStringArray = PoolStringArray(),
@@ -162,30 +281,69 @@ open class HTTPRequest : Node() {
   enum class Result(
     id: Long
   ) {
+    /**
+     * Request successful.
+     */
     RESULT_SUCCESS(0),
 
+    /**
+     *
+     */
     RESULT_CHUNKED_BODY_SIZE_MISMATCH(1),
 
+    /**
+     * Request failed while connecting.
+     */
     RESULT_CANT_CONNECT(2),
 
+    /**
+     * Request failed while resolving.
+     */
     RESULT_CANT_RESOLVE(3),
 
+    /**
+     * Request failed due to connection (read/write) error.
+     */
     RESULT_CONNECTION_ERROR(4),
 
+    /**
+     * Request failed on SSL handshake.
+     */
     RESULT_SSL_HANDSHAKE_ERROR(5),
 
+    /**
+     * Request does not have a response (yet).
+     */
     RESULT_NO_RESPONSE(6),
 
+    /**
+     * Request exceeded its maximum size limit, see [bodySizeLimit].
+     */
     RESULT_BODY_SIZE_LIMIT_EXCEEDED(7),
 
+    /**
+     * Request failed (currently unused).
+     */
     RESULT_REQUEST_FAILED(8),
 
+    /**
+     * HTTPRequest couldn't open the download file.
+     */
     RESULT_DOWNLOAD_FILE_CANT_OPEN(9),
 
+    /**
+     * HTTPRequest couldn't write to the download file.
+     */
     RESULT_DOWNLOAD_FILE_WRITE_ERROR(10),
 
+    /**
+     * Request reached its maximum redirect limit, see [maxRedirects].
+     */
     RESULT_REDIRECT_LIMIT_REACHED(11),
 
+    /**
+     *
+     */
     RESULT_TIMEOUT(12);
 
     val id: Long
@@ -199,30 +357,69 @@ open class HTTPRequest : Node() {
   }
 
   companion object {
+    /**
+     * Request exceeded its maximum size limit, see [bodySizeLimit].
+     */
     final const val RESULT_BODY_SIZE_LIMIT_EXCEEDED: Long = 7
 
+    /**
+     * Request failed while connecting.
+     */
     final const val RESULT_CANT_CONNECT: Long = 2
 
+    /**
+     * Request failed while resolving.
+     */
     final const val RESULT_CANT_RESOLVE: Long = 3
 
+    /**
+     *
+     */
     final const val RESULT_CHUNKED_BODY_SIZE_MISMATCH: Long = 1
 
+    /**
+     * Request failed due to connection (read/write) error.
+     */
     final const val RESULT_CONNECTION_ERROR: Long = 4
 
+    /**
+     * HTTPRequest couldn't open the download file.
+     */
     final const val RESULT_DOWNLOAD_FILE_CANT_OPEN: Long = 9
 
+    /**
+     * HTTPRequest couldn't write to the download file.
+     */
     final const val RESULT_DOWNLOAD_FILE_WRITE_ERROR: Long = 10
 
+    /**
+     * Request does not have a response (yet).
+     */
     final const val RESULT_NO_RESPONSE: Long = 6
 
+    /**
+     * Request reached its maximum redirect limit, see [maxRedirects].
+     */
     final const val RESULT_REDIRECT_LIMIT_REACHED: Long = 11
 
+    /**
+     * Request failed (currently unused).
+     */
     final const val RESULT_REQUEST_FAILED: Long = 8
 
+    /**
+     * Request failed on SSL handshake.
+     */
     final const val RESULT_SSL_HANDSHAKE_ERROR: Long = 5
 
+    /**
+     * Request successful.
+     */
     final const val RESULT_SUCCESS: Long = 0
 
+    /**
+     *
+     */
     final const val RESULT_TIMEOUT: Long = 12
   }
 }

@@ -23,8 +23,14 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ *
+ */
 @GodotBaseType
 open class GIProbeData : Resource() {
+  /**
+   *
+   */
   open var bias: Double
     get() {
       TransferContext.writeArguments()
@@ -36,6 +42,9 @@ open class GIProbeData : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GIPROBEDATA_SET_BIAS, NIL)
     }
 
+  /**
+   *
+   */
   open var bounds: AABB
     get() {
       TransferContext.writeArguments()
@@ -48,6 +57,9 @@ open class GIProbeData : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GIPROBEDATA_SET_BOUNDS, NIL)
     }
 
+  /**
+   *
+   */
   open var cellSize: Double
     get() {
       TransferContext.writeArguments()
@@ -59,6 +71,9 @@ open class GIProbeData : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GIPROBEDATA_SET_CELL_SIZE, NIL)
     }
 
+  /**
+   *
+   */
   open var compress: Boolean
     get() {
       TransferContext.writeArguments()
@@ -70,6 +85,9 @@ open class GIProbeData : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GIPROBEDATA_SET_COMPRESS, NIL)
     }
 
+  /**
+   *
+   */
   open var dynamicData: PoolIntArray
     get() {
       TransferContext.writeArguments()
@@ -82,6 +100,9 @@ open class GIProbeData : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GIPROBEDATA_SET_DYNAMIC_DATA, NIL)
     }
 
+  /**
+   *
+   */
   open var dynamicRange: Long
     get() {
       TransferContext.writeArguments()
@@ -95,6 +116,9 @@ open class GIProbeData : Resource() {
           NIL)
     }
 
+  /**
+   *
+   */
   open var energy: Double
     get() {
       TransferContext.writeArguments()
@@ -106,6 +130,9 @@ open class GIProbeData : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GIPROBEDATA_SET_ENERGY, NIL)
     }
 
+  /**
+   *
+   */
   open var interior: Boolean
     get() {
       TransferContext.writeArguments()
@@ -117,6 +144,9 @@ open class GIProbeData : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GIPROBEDATA_SET_INTERIOR, NIL)
     }
 
+  /**
+   *
+   */
   open var normalBias: Double
     get() {
       TransferContext.writeArguments()
@@ -129,6 +159,9 @@ open class GIProbeData : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GIPROBEDATA_SET_NORMAL_BIAS, NIL)
     }
 
+  /**
+   *
+   */
   open var propagation: Double
     get() {
       TransferContext.writeArguments()
@@ -141,6 +174,9 @@ open class GIProbeData : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GIPROBEDATA_SET_PROPAGATION, NIL)
     }
 
+  /**
+   *
+   */
   open var toCellXform: Transform
     get() {
       TransferContext.writeArguments()

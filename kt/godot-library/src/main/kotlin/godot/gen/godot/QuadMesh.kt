@@ -14,8 +14,16 @@ import godot.util.VoidPtr
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Class representing a square mesh.
+ *
+ * Class representing a square [godot.PrimitiveMesh]. This flat mesh does not have a thickness. By default, this mesh is aligned on the X and Y axes; this default rotation is more suited for use with billboarded materials. Unlike [godot.PlaneMesh], this mesh doesn't provide subdivision options.
+ */
 @GodotBaseType
 open class QuadMesh : PrimitiveMesh() {
+  /**
+   * Size on the X and Y axes.
+   */
   open var size: Vector2
     get() {
       TransferContext.writeArguments()

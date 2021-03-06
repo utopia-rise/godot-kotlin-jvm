@@ -23,8 +23,18 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * A camera feed gives you access to a single physical camera attached to your device.
+ *
+ * A camera feed gives you access to a single physical camera attached to your device. When enabled, Godot will start capturing frames from the camera which can then be used.
+ *
+ * **Note:** Many cameras will return YCbCr images which are split into two textures and need to be combined in a shader. Godot does this automatically for you if you set the environment to show the camera image in the background.
+ */
 @GodotBaseType
 open class CameraFeed : Reference() {
+  /**
+   * If `true`, the feed is active.
+   */
   open var feedIsActive: Boolean
     get() {
       TransferContext.writeArguments()
@@ -38,6 +48,9 @@ open class CameraFeed : Reference() {
           NIL)
     }
 
+  /**
+   * The transform applied to the camera's image.
+   */
   open var feedTransform: Transform2D
     get() {
       TransferContext.writeArguments()
@@ -83,18 +96,27 @@ open class CameraFeed : Reference() {
   open fun _setPosition(position: Long) {
   }
 
+  /**
+   * Returns the unique ID for this feed.
+   */
   open fun getId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_ID, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   * Returns the camera's name.
+   */
   open fun getName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
+  /**
+   * Returns the position of camera on the device.
+   */
   open fun getPosition(): CameraFeed.FeedPosition {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERAFEED_GET_POSITION, LONG)
@@ -104,12 +126,24 @@ open class CameraFeed : Reference() {
   enum class FeedDataType(
     id: Long
   ) {
+    /**
+     * No image set for the feed.
+     */
     FEED_NOIMAGE(0),
 
+    /**
+     * Feed supplies RGB images.
+     */
     FEED_RGB(1),
 
+    /**
+     * Feed supplies YCbCr images that need to be converted to RGB.
+     */
     FEED_YCBCR(2),
 
+    /**
+     * Feed supplies separate Y and CbCr images that need to be combined and converted to RGB.
+     */
     FEED_YCBCR_SEP(3);
 
     val id: Long
@@ -125,10 +159,19 @@ open class CameraFeed : Reference() {
   enum class FeedPosition(
     id: Long
   ) {
+    /**
+     * Unspecified position.
+     */
     FEED_UNSPECIFIED(0),
 
+    /**
+     * Camera is mounted at the front of the device.
+     */
     FEED_FRONT(1),
 
+    /**
+     * Camera is mounted at the back of the device.
+     */
     FEED_BACK(2);
 
     val id: Long
@@ -142,18 +185,39 @@ open class CameraFeed : Reference() {
   }
 
   companion object {
+    /**
+     * Camera is mounted at the back of the device.
+     */
     final const val FEED_BACK: Long = 2
 
+    /**
+     * Camera is mounted at the front of the device.
+     */
     final const val FEED_FRONT: Long = 1
 
+    /**
+     * No image set for the feed.
+     */
     final const val FEED_NOIMAGE: Long = 0
 
+    /**
+     * Feed supplies RGB images.
+     */
     final const val FEED_RGB: Long = 1
 
+    /**
+     * Unspecified position.
+     */
     final const val FEED_UNSPECIFIED: Long = 0
 
+    /**
+     * Feed supplies YCbCr images that need to be converted to RGB.
+     */
     final const val FEED_YCBCR: Long = 2
 
+    /**
+     * Feed supplies separate Y and CbCr images that need to be combined and converted to RGB.
+     */
     final const val FEED_YCBCR_SEP: Long = 3
   }
 }

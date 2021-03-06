@@ -18,8 +18,18 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Type of [godot.Sky] that is generated procedurally based on user input parameters.
+ *
+ * ProceduralSky provides a way to create an effective background quickly by defining procedural parameters for the sun, the sky and the ground. The sky and ground are very similar, they are defined by a color at the horizon, another color, and finally an easing curve to interpolate between these two colors. Similarly, the sun is described by a position in the sky, a color, and an easing curve. However, the sun also defines a minimum and maximum angle, these two values define at what distance the easing curve begins and ends from the sun, and thus end up defining the size of the sun in the sky.
+ *
+ * The ProceduralSky is updated on the CPU after the parameters change. It is stored in a texture and then displayed as a background in the scene. This makes it relatively unsuitable for real-time updates during gameplay. However, with a small enough texture size, it can still be updated relatively frequently, as it is updated on a background thread when multi-threading is available.
+ */
 @GodotBaseType
 open class ProceduralSky : Sky() {
+  /**
+   * Color of the ground at the bottom.
+   */
   open var groundBottomColor: Color
     get() {
       TransferContext.writeArguments()
@@ -33,6 +43,9 @@ open class ProceduralSky : Sky() {
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKY_SET_GROUND_BOTTOM_COLOR, NIL)
     }
 
+  /**
+   * How quickly the [groundHorizonColor] fades into the [groundBottomColor].
+   */
   open var groundCurve: Double
     get() {
       TransferContext.writeArguments()
@@ -46,6 +59,9 @@ open class ProceduralSky : Sky() {
           NIL)
     }
 
+  /**
+   * Amount of energy contribution from the ground.
+   */
   open var groundEnergy: Double
     get() {
       TransferContext.writeArguments()
@@ -59,6 +75,9 @@ open class ProceduralSky : Sky() {
           NIL)
     }
 
+  /**
+   * Color of the ground at the horizon.
+   */
   open var groundHorizonColor: Color
     get() {
       TransferContext.writeArguments()
@@ -72,6 +91,9 @@ open class ProceduralSky : Sky() {
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKY_SET_GROUND_HORIZON_COLOR, NIL)
     }
 
+  /**
+   * How quickly the [skyHorizonColor] fades into the [skyTopColor].
+   */
   open var skyCurve: Double
     get() {
       TransferContext.writeArguments()
@@ -84,6 +106,9 @@ open class ProceduralSky : Sky() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROCEDURALSKY_SET_SKY_CURVE, NIL)
     }
 
+  /**
+   * Amount of energy contribution from the sky.
+   */
   open var skyEnergy: Double
     get() {
       TransferContext.writeArguments()
@@ -96,6 +121,9 @@ open class ProceduralSky : Sky() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROCEDURALSKY_SET_SKY_ENERGY, NIL)
     }
 
+  /**
+   * Color of the sky at the horizon.
+   */
   open var skyHorizonColor: Color
     get() {
       TransferContext.writeArguments()
@@ -109,6 +137,9 @@ open class ProceduralSky : Sky() {
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKY_SET_SKY_HORIZON_COLOR, NIL)
     }
 
+  /**
+   * Color of the sky at the top.
+   */
   open var skyTopColor: Color
     get() {
       TransferContext.writeArguments()
@@ -122,6 +153,9 @@ open class ProceduralSky : Sky() {
           NIL)
     }
 
+  /**
+   * Distance from center of sun where it fades out completely.
+   */
   open var sunAngleMax: Double
     get() {
       TransferContext.writeArguments()
@@ -135,6 +169,9 @@ open class ProceduralSky : Sky() {
           NIL)
     }
 
+  /**
+   * Distance from sun where it goes from solid to starting to fade.
+   */
   open var sunAngleMin: Double
     get() {
       TransferContext.writeArguments()
@@ -148,6 +185,9 @@ open class ProceduralSky : Sky() {
           NIL)
     }
 
+  /**
+   * The sun's color.
+   */
   open var sunColor: Color
     get() {
       TransferContext.writeArguments()
@@ -160,6 +200,9 @@ open class ProceduralSky : Sky() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROCEDURALSKY_SET_SUN_COLOR, NIL)
     }
 
+  /**
+   * How quickly the sun fades away between [sunAngleMin] and [sunAngleMax].
+   */
   open var sunCurve: Double
     get() {
       TransferContext.writeArguments()
@@ -172,6 +215,9 @@ open class ProceduralSky : Sky() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROCEDURALSKY_SET_SUN_CURVE, NIL)
     }
 
+  /**
+   * Amount of energy contribution from the sun.
+   */
   open var sunEnergy: Double
     get() {
       TransferContext.writeArguments()
@@ -184,6 +230,9 @@ open class ProceduralSky : Sky() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROCEDURALSKY_SET_SUN_ENERGY, NIL)
     }
 
+  /**
+   * The sun's height using polar coordinates.
+   */
   open var sunLatitude: Double
     get() {
       TransferContext.writeArguments()
@@ -197,6 +246,9 @@ open class ProceduralSky : Sky() {
           NIL)
     }
 
+  /**
+   * The direction of the sun using polar coordinates.
+   */
   open var sunLongitude: Double
     get() {
       TransferContext.writeArguments()
@@ -210,6 +262,9 @@ open class ProceduralSky : Sky() {
           NIL)
     }
 
+  /**
+   * Size of [godot.Texture] that the ProceduralSky will generate. The size is set using [enum TextureSize].
+   */
   open var textureSize: Long
     get() {
       TransferContext.writeArguments()
@@ -264,16 +319,34 @@ open class ProceduralSky : Sky() {
   enum class TextureSize(
     id: Long
   ) {
+    /**
+     * Sky texture will be 256x128.
+     */
     TEXTURE_SIZE_256(0),
 
+    /**
+     * Sky texture will be 512x256.
+     */
     TEXTURE_SIZE_512(1),
 
+    /**
+     * Sky texture will be 1024x512. This is the default size.
+     */
     TEXTURE_SIZE_1024(2),
 
+    /**
+     * Sky texture will be 2048x1024.
+     */
     TEXTURE_SIZE_2048(3),
 
+    /**
+     * Sky texture will be 4096x2048.
+     */
     TEXTURE_SIZE_4096(4),
 
+    /**
+     * Represents the size of the [enum TextureSize] enum.
+     */
     TEXTURE_SIZE_MAX(5);
 
     val id: Long
@@ -287,16 +360,34 @@ open class ProceduralSky : Sky() {
   }
 
   companion object {
+    /**
+     * Sky texture will be 1024x512. This is the default size.
+     */
     final const val TEXTURE_SIZE_1024: Long = 2
 
+    /**
+     * Sky texture will be 2048x1024.
+     */
     final const val TEXTURE_SIZE_2048: Long = 3
 
+    /**
+     * Sky texture will be 256x128.
+     */
     final const val TEXTURE_SIZE_256: Long = 0
 
+    /**
+     * Sky texture will be 4096x2048.
+     */
     final const val TEXTURE_SIZE_4096: Long = 4
 
+    /**
+     * Sky texture will be 512x256.
+     */
     final const val TEXTURE_SIZE_512: Long = 1
 
+    /**
+     * Represents the size of the [enum TextureSize] enum.
+     */
     final const val TEXTURE_SIZE_MAX: Long = 5
   }
 }

@@ -23,10 +23,21 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * 2D sprite node in a 3D world.
+ *
+ * A node that displays a 2D texture in a 3D environment. The texture displayed can be a region from a larger atlas texture, or a frame from a sprite sheet animation.
+ */
 @GodotBaseType
 open class Sprite3D : SpriteBase3D() {
+  /**
+   * Emitted when the [frame] changes.
+   */
   val frameChanged: Signal0 by signal()
 
+  /**
+   * Current frame to display from sprite sheet. [vframes] or [hframes] must be greater than 1.
+   */
   open var frame: Long
     get() {
       TransferContext.writeArguments()
@@ -38,6 +49,9 @@ open class Sprite3D : SpriteBase3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_SET_FRAME, NIL)
     }
 
+  /**
+   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame] property. [vframes] or [hframes] must be greater than 1.
+   */
   open var frameCoords: Vector2
     get() {
       TransferContext.writeArguments()
@@ -50,6 +64,9 @@ open class Sprite3D : SpriteBase3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_SET_FRAME_COORDS, NIL)
     }
 
+  /**
+   * The number of columns in the sprite sheet.
+   */
   open var hframes: Long
     get() {
       TransferContext.writeArguments()
@@ -61,6 +78,9 @@ open class Sprite3D : SpriteBase3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_SET_HFRAMES, NIL)
     }
 
+  /**
+   * If `true`, texture will be cut from a larger atlas texture. See [regionRect].
+   */
   open var regionEnabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -72,6 +92,9 @@ open class Sprite3D : SpriteBase3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_SET_REGION_ENABLED, NIL)
     }
 
+  /**
+   * The region of the atlas texture to display. [regionEnabled] must be `true`.
+   */
   open var regionRect: Rect2
     get() {
       TransferContext.writeArguments()
@@ -83,6 +106,9 @@ open class Sprite3D : SpriteBase3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_SET_REGION_RECT, NIL)
     }
 
+  /**
+   * [godot.Texture] object to draw. If [godot.GeometryInstance.materialOverride] is used, this will be overridden.
+   */
   open var texture: Texture?
     get() {
       TransferContext.writeArguments()
@@ -94,6 +120,9 @@ open class Sprite3D : SpriteBase3D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_SET_TEXTURE, NIL)
     }
 
+  /**
+   * The number of rows in the sprite sheet.
+   */
   open var vframes: Long
     get() {
       TransferContext.writeArguments()

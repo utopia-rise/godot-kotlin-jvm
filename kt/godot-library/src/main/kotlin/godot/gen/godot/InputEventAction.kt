@@ -18,8 +18,19 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.UninitializedPropertyAccessException
 
+/**
+ * Input event type for actions.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html#actions](https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html#actions)
+ *
+ * Contains a generic action which can be targeted from several types of inputs. Actions can be created from the **Input Map** tab in the **Project > Project Settings** menu. See [godot.Node.Input].
+ */
 @GodotBaseType
 open class InputEventAction : InputEvent() {
+  /**
+   * The action's name. Actions are accessed via this [godot.String].
+   */
   open var action: String
     get() {
       TransferContext.writeArguments()
@@ -32,6 +43,9 @@ open class InputEventAction : InputEvent() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTACTION_SET_ACTION, NIL)
     }
 
+  /**
+   * If `true`, the action's state is pressed. If `false`, the action's state is released.
+   */
   open var pressed: Boolean
     get() {
       throw UninitializedPropertyAccessException("Cannot access property pressed: has no getter")
@@ -41,6 +55,9 @@ open class InputEventAction : InputEvent() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTACTION_SET_PRESSED, NIL)
     }
 
+  /**
+   * The action's strength between 0 and 1. This value is considered as equal to 0 if pressed is `false`. The event strength allows faking analog joypad motion events, by precising how strongly is the joypad axis bent or pressed.
+   */
   open var strength: Double
     get() {
       TransferContext.writeArguments()

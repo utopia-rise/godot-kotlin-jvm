@@ -13,8 +13,18 @@ import godot.core.VariantType.NODE_PATH
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Texture which displays the content of a [godot.Viewport].
+ *
+ * Displays the content of a [godot.Viewport] node as a dynamic [godot.Texture]. This can be used to mix controls, 2D, and 3D elements in the same scene.
+ *
+ * To create a ViewportTexture in code, use the [godot.Viewport.getTexture] method on the target viewport.
+ */
 @GodotBaseType
 open class ViewportTexture : Texture() {
+  /**
+   * The path to the [godot.Viewport] node to display. This is relative to the scene root, not to the node which uses the texture.
+   */
   open var viewportPath: NodePath
     get() {
       TransferContext.writeArguments()

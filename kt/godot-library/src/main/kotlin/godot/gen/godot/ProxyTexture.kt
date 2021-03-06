@@ -12,8 +12,14 @@ import godot.core.VariantType.OBJECT
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ *
+ */
 @GodotBaseType
 open class ProxyTexture : Texture() {
+  /**
+   *
+   */
   open var base: Texture?
     get() {
       TransferContext.writeArguments()

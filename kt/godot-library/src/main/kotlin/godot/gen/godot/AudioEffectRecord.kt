@@ -16,8 +16,19 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Audio effect used for recording sound from a microphone.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/audio/recording_with_microphone.html](https://docs.godotengine.org/en/latest/tutorials/audio/recording_with_microphone.html)
+ *
+ * Allows the user to record sound from a microphone. It sets and gets the format in which the audio file will be recorded (8-bit, 16-bit, or compressed). It checks whether or not the recording is active, and if it is, records the sound. It then returns the recorded sample.
+ */
 @GodotBaseType
 open class AudioEffectRecord : AudioEffect() {
+  /**
+   * Specifies the format in which the sample will be recorded. See [enum AudioStreamSample.Format] for available formats.
+   */
   open var format: Long
     get() {
       TransferContext.writeArguments()
@@ -32,6 +43,9 @@ open class AudioEffectRecord : AudioEffect() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTRECORD)
 
+  /**
+   * Returns the recorded sample.
+   */
   open fun getRecording(): AudioStreamSample? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTRECORD_GET_RECORDING,
@@ -39,6 +53,9 @@ open class AudioEffectRecord : AudioEffect() {
     return TransferContext.readReturnValue(OBJECT, true) as AudioStreamSample?
   }
 
+  /**
+   * Returns whether the recording is active or not.
+   */
   open fun isRecordingActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -46,6 +63,9 @@ open class AudioEffectRecord : AudioEffect() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   * If `true`, the sound will be recorded. Note that restarting the recording will remove the previously recorded sample.
+   */
   open fun setRecordingActive(record: Boolean) {
     TransferContext.writeArguments(BOOL to record)
     TransferContext.callMethod(rawPtr,

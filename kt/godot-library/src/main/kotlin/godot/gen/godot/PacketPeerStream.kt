@@ -14,8 +14,16 @@ import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Wrapper to use a PacketPeer over a StreamPeer.
+ *
+ * PacketStreamPeer provides a wrapper for working using packets over a stream. This allows for using packet based code with StreamPeers. PacketPeerStream implements a custom protocol over the StreamPeer, so the user should not read or write to the wrapped StreamPeer directly.
+ */
 @GodotBaseType
 open class PacketPeerStream : PacketPeer() {
+  /**
+   *
+   */
   open var inputBufferMaxSize: Long
     get() {
       TransferContext.writeArguments()
@@ -29,6 +37,9 @@ open class PacketPeerStream : PacketPeer() {
           ENGINEMETHOD_ENGINECLASS_PACKETPEERSTREAM_SET_INPUT_BUFFER_MAX_SIZE, NIL)
     }
 
+  /**
+   *
+   */
   open var outputBufferMaxSize: Long
     get() {
       TransferContext.writeArguments()
@@ -42,6 +53,9 @@ open class PacketPeerStream : PacketPeer() {
           ENGINEMETHOD_ENGINECLASS_PACKETPEERSTREAM_SET_OUTPUT_BUFFER_MAX_SIZE, NIL)
     }
 
+  /**
+   * The wrapped [godot.StreamPeer] object.
+   */
   open var streamPeer: StreamPeer?
     get() {
       TransferContext.writeArguments()

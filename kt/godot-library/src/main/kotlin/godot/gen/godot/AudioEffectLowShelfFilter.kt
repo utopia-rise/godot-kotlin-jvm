@@ -10,6 +10,9 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ *
+ */
 @GodotBaseType
 open class AudioEffectLowShelfFilter : AudioEffectFilter() {
   override fun __new(): VoidPtr =

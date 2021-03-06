@@ -14,8 +14,22 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Enables certain nodes only when approximately visible.
+ *
+ * The VisibilityEnabler will disable [godot.RigidBody] and [godot.AnimationPlayer] nodes when they are not visible. It will only affect other nodes within the same scene as the VisibilityEnabler itself.
+ *
+ * If you just want to receive notifications, use [godot.VisibilityNotifier] instead.
+ *
+ * **Note:** VisibilityEnabler uses an approximate heuristic for performance reasons. It doesn't take walls and other occlusion into account. The heuristic is an implementation detail and may change in future versions. If you need precise visibility checking, use another method such as adding an [godot.Area] node as a child of a [godot.Camera] node and/or [godot.Vector3.dot].
+ *
+ * **Note:** VisibilityEnabler will not affect nodes added after scene initialization.
+ */
 @GodotBaseType
 open class VisibilityEnabler : VisibilityNotifier() {
+  /**
+   * If `true`, [godot.RigidBody] nodes will be paused.
+   */
   open var freezeBodies: Boolean
     get() {
       TransferContext.writeArguments()
@@ -29,6 +43,9 @@ open class VisibilityEnabler : VisibilityNotifier() {
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER_SET_FREEZE_BODIES, NIL)
     }
 
+  /**
+   * If `true`, [godot.AnimationPlayer] nodes will be paused.
+   */
   open var pauseAnimations: Boolean
     get() {
       TransferContext.writeArguments()
@@ -50,10 +67,19 @@ open class VisibilityEnabler : VisibilityNotifier() {
   enum class Enabler(
     id: Long
   ) {
+    /**
+     * This enabler will pause [godot.AnimationPlayer] nodes.
+     */
     ENABLER_PAUSE_ANIMATIONS(0),
 
+    /**
+     * This enabler will freeze [godot.RigidBody] nodes.
+     */
     ENABLER_FREEZE_BODIES(1),
 
+    /**
+     * Represents the size of the [enum Enabler] enum.
+     */
     ENABLER_MAX(2);
 
     val id: Long
@@ -67,10 +93,19 @@ open class VisibilityEnabler : VisibilityNotifier() {
   }
 
   companion object {
+    /**
+     * This enabler will freeze [godot.RigidBody] nodes.
+     */
     final const val ENABLER_FREEZE_BODIES: Long = 1
 
+    /**
+     * Represents the size of the [enum Enabler] enum.
+     */
     final const val ENABLER_MAX: Long = 2
 
+    /**
+     * This enabler will pause [godot.AnimationPlayer] nodes.
+     */
     final const val ENABLER_PAUSE_ANIMATIONS: Long = 0
   }
 }

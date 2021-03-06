@@ -27,8 +27,14 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ *
+ */
 @GodotBaseType
 open class BakedLightmapData : Resource() {
+  /**
+   *
+   */
   open var bounds: AABB
     get() {
       TransferContext.writeArguments()
@@ -41,6 +47,9 @@ open class BakedLightmapData : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_SET_BOUNDS, NIL)
     }
 
+  /**
+   *
+   */
   open var cellSpaceTransform: Transform
     get() {
       TransferContext.writeArguments()
@@ -54,6 +63,9 @@ open class BakedLightmapData : Resource() {
           ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_SET_CELL_SPACE_TRANSFORM, NIL)
     }
 
+  /**
+   *
+   */
   open var cellSubdiv: Long
     get() {
       TransferContext.writeArguments()
@@ -67,6 +79,9 @@ open class BakedLightmapData : Resource() {
           NIL)
     }
 
+  /**
+   *
+   */
   open var energy: Double
     get() {
       TransferContext.writeArguments()
@@ -79,6 +94,9 @@ open class BakedLightmapData : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_SET_ENERGY, NIL)
     }
 
+  /**
+   *
+   */
   open var octree: PoolByteArray
     get() {
       TransferContext.writeArguments()
@@ -112,6 +130,9 @@ open class BakedLightmapData : Resource() {
   open fun _setUserData(data: VariantArray<Any?>) {
   }
 
+  /**
+   *
+   */
   open fun addUser(
     path: NodePath,
     lightmap: Texture,
@@ -121,11 +142,17 @@ open class BakedLightmapData : Resource() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_ADD_USER, NIL)
   }
 
+  /**
+   *
+   */
   open fun clearUsers() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_CLEAR_USERS, NIL)
   }
 
+  /**
+   *
+   */
   open fun getUserCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_GET_USER_COUNT,
@@ -133,6 +160,9 @@ open class BakedLightmapData : Resource() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   *
+   */
   open fun getUserLightmap(userIdx: Long): Texture? {
     TransferContext.writeArguments(LONG to userIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_GET_USER_LIGHTMAP,
@@ -140,6 +170,9 @@ open class BakedLightmapData : Resource() {
     return TransferContext.readReturnValue(OBJECT, true) as Texture?
   }
 
+  /**
+   *
+   */
   open fun getUserPath(userIdx: Long): NodePath {
     TransferContext.writeArguments(LONG to userIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_GET_USER_PATH,

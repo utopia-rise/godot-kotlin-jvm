@@ -14,8 +14,14 @@ import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Suppress
 
+/**
+ *
+ */
 @GodotBaseType
 open class NavigationPolygonInstance : Node2D() {
+  /**
+   *
+   */
   open var enabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -29,6 +35,9 @@ open class NavigationPolygonInstance : Node2D() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGONINSTANCE_SET_ENABLED, NIL)
     }
 
+  /**
+   *
+   */
   open var navpoly: NavigationPolygon?
     get() {
       TransferContext.writeArguments()

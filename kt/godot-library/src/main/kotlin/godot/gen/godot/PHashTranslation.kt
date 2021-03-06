@@ -12,10 +12,18 @@ import godot.core.VariantType.OBJECT
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Optimized translation.
+ *
+ * Optimized translation. Uses real-time compressed translations, which results in very small dictionaries.
+ */
 @GodotBaseType
 open class PHashTranslation : Translation() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PHASHTRANSLATION)
 
+  /**
+   * Generates and sets an optimized translation from the given [godot.Translation] resource.
+   */
   open fun generate(from: Translation) {
     TransferContext.writeArguments(OBJECT to from)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHASHTRANSLATION_GENERATE, NIL)

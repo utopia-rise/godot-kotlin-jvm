@@ -25,8 +25,16 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * 2D sprite node in 3D environment.
+ *
+ * A node that displays 2D texture information in a 3D environment.
+ */
 @GodotBaseType
 open class SpriteBase3D : GeometryInstance() {
+  /**
+   *
+   */
   open var alphaCut: Long
     get() {
       TransferContext.writeArguments()
@@ -38,6 +46,9 @@ open class SpriteBase3D : GeometryInstance() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_ALPHA_CUT, NIL)
     }
 
+  /**
+   * The direction in which the front of the texture faces.
+   */
   open var axis: Long
     get() {
       TransferContext.writeArguments()
@@ -49,6 +60,9 @@ open class SpriteBase3D : GeometryInstance() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_AXIS, NIL)
     }
 
+  /**
+   *
+   */
   open var billboard: Long
     get() {
       TransferContext.writeArguments()
@@ -60,6 +74,9 @@ open class SpriteBase3D : GeometryInstance() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_BILLBOARD, NIL)
     }
 
+  /**
+   * If `true`, texture will be centered.
+   */
   open var centered: Boolean
     get() {
       TransferContext.writeArguments()
@@ -71,6 +88,9 @@ open class SpriteBase3D : GeometryInstance() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_CENTERED, NIL)
     }
 
+  /**
+   * If `true`, texture can be seen from the back as well, if `false`, it is invisible when looking at it from behind.
+   */
   open var doubleSided: Boolean
     get() {
       TransferContext.writeArguments()
@@ -84,6 +104,9 @@ open class SpriteBase3D : GeometryInstance() {
           NIL)
     }
 
+  /**
+   * If `true`, texture is flipped horizontally.
+   */
   open var flipH: Boolean
     get() {
       TransferContext.writeArguments()
@@ -95,6 +118,9 @@ open class SpriteBase3D : GeometryInstance() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_FLIP_H, NIL)
     }
 
+  /**
+   * If `true`, texture is flipped vertically.
+   */
   open var flipV: Boolean
     get() {
       TransferContext.writeArguments()
@@ -106,6 +132,9 @@ open class SpriteBase3D : GeometryInstance() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_FLIP_V, NIL)
     }
 
+  /**
+   * A color value that gets multiplied on, could be used for mood-coloring or to simulate the color of light.
+   */
   open var modulate: Color
     get() {
       TransferContext.writeArguments()
@@ -117,6 +146,9 @@ open class SpriteBase3D : GeometryInstance() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_MODULATE, NIL)
     }
 
+  /**
+   * The texture's drawing offset.
+   */
   open var offset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -128,6 +160,9 @@ open class SpriteBase3D : GeometryInstance() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_OFFSET, NIL)
     }
 
+  /**
+   * The objects visibility on a scale from `0` fully invisible to `1` fully visible.
+   */
   open var opacity: Double
     get() {
       TransferContext.writeArguments()
@@ -139,6 +174,9 @@ open class SpriteBase3D : GeometryInstance() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_OPACITY, NIL)
     }
 
+  /**
+   * The size of one pixel's width on the sprite to scale it in 3D.
+   */
   open var pixelSize: Double
     get() {
       TransferContext.writeArguments()
@@ -151,6 +189,9 @@ open class SpriteBase3D : GeometryInstance() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_PIXEL_SIZE, NIL)
     }
 
+  /**
+   * If `true`, the [godot.Light] in the [godot.Environment] has effects on the sprite.
+   */
   open var shaded: Boolean
     get() {
       TransferContext.writeArguments()
@@ -162,6 +203,9 @@ open class SpriteBase3D : GeometryInstance() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_SET_SHADED, NIL)
     }
 
+  /**
+   * If `true`, the texture's transparency and the opacity are used to make those parts of the sprite invisible.
+   */
   open var transparent: Boolean
     get() {
       TransferContext.writeArguments()
@@ -194,6 +238,9 @@ open class SpriteBase3D : GeometryInstance() {
   open fun _queueUpdate() {
   }
 
+  /**
+   *
+   */
   open fun generateTriangleMesh(): TriangleMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GENERATE_TRIANGLE_MESH,
@@ -201,6 +248,9 @@ open class SpriteBase3D : GeometryInstance() {
     return TransferContext.readReturnValue(OBJECT, true) as TriangleMesh?
   }
 
+  /**
+   * Returns the rectangle representing this sprite.
+   */
   open fun getItemRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITEBASE3D_GET_ITEM_RECT, RECT2)
@@ -210,12 +260,24 @@ open class SpriteBase3D : GeometryInstance() {
   enum class DrawFlags(
     id: Long
   ) {
+    /**
+     * If set, the texture's transparency and the opacity are used to make those parts of the sprite invisible.
+     */
     FLAG_TRANSPARENT(0),
 
+    /**
+     * If set, lights in the environment affect the sprite.
+     */
     FLAG_SHADED(1),
 
+    /**
+     * If set, texture can be seen from the back as well, if not, it is invisible when looking at it from behind.
+     */
     FLAG_DOUBLE_SIDED(2),
 
+    /**
+     * Represents the size of the [enum DrawFlags] enum.
+     */
     FLAG_MAX(3);
 
     val id: Long
@@ -231,10 +293,19 @@ open class SpriteBase3D : GeometryInstance() {
   enum class AlphaCutMode(
     id: Long
   ) {
+    /**
+     *
+     */
     ALPHA_CUT_DISABLED(0),
 
+    /**
+     *
+     */
     ALPHA_CUT_DISCARD(1),
 
+    /**
+     *
+     */
     ALPHA_CUT_OPAQUE_PREPASS(2);
 
     val id: Long
@@ -248,18 +319,39 @@ open class SpriteBase3D : GeometryInstance() {
   }
 
   companion object {
+    /**
+     *
+     */
     final const val ALPHA_CUT_DISABLED: Long = 0
 
+    /**
+     *
+     */
     final const val ALPHA_CUT_DISCARD: Long = 1
 
+    /**
+     *
+     */
     final const val ALPHA_CUT_OPAQUE_PREPASS: Long = 2
 
+    /**
+     * If set, texture can be seen from the back as well, if not, it is invisible when looking at it from behind.
+     */
     final const val FLAG_DOUBLE_SIDED: Long = 2
 
+    /**
+     * Represents the size of the [enum DrawFlags] enum.
+     */
     final const val FLAG_MAX: Long = 3
 
+    /**
+     * If set, lights in the environment affect the sprite.
+     */
     final const val FLAG_SHADED: Long = 1
 
+    /**
+     * If set, the texture's transparency and the opacity are used to make those parts of the sprite invisible.
+     */
     final const val FLAG_TRANSPARENT: Long = 0
   }
 }

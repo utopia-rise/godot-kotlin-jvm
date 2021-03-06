@@ -19,8 +19,16 @@ import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Base class for all primitive meshes. Handles applying a [godot.Material] to a primitive mesh.
+ *
+ * Base class for all primitive meshes. Handles applying a [godot.Material] to a primitive mesh. Examples include [godot.CapsuleMesh], [godot.CubeMesh], [godot.CylinderMesh], [godot.PlaneMesh], [godot.PrismMesh], [godot.QuadMesh], and [godot.SphereMesh].
+ */
 @GodotBaseType
 open class PrimitiveMesh : Mesh() {
+  /**
+   * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unnexpected culling when  using a shader to offset vertices.
+   */
   open var customAabb: AABB
     get() {
       TransferContext.writeArguments()
@@ -34,6 +42,11 @@ open class PrimitiveMesh : Mesh() {
           NIL)
     }
 
+  /**
+   * If set, the order of the vertices in each triangle are reversed resulting in the backside of the mesh being drawn.
+   *
+   * This gives the same result as using [godot.SpatialMaterial.CULL_BACK] in [godot.SpatialMaterial.paramsCullMode].
+   */
   open var flipFaces: Boolean
     get() {
       TransferContext.writeArguments()
@@ -46,6 +59,9 @@ open class PrimitiveMesh : Mesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_SET_FLIP_FACES, NIL)
     }
 
+  /**
+   * The current [godot.Material] of the primitive mesh.
+   */
   open var material: Material?
     get() {
       TransferContext.writeArguments()
@@ -69,6 +85,15 @@ open class PrimitiveMesh : Mesh() {
   open fun _update() {
   }
 
+  /**
+   * Returns mesh arrays used to constitute surface of [godot.Mesh]. The result can be passed to [godot.ArrayMesh.addSurfaceFromArrays] to create a new surface. For example:
+   *
+   * ```
+   * 				var c := CylinderMesh.new()
+   * 				var arr_mesh := ArrayMesh.new()
+   * 				arr_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, c.get_mesh_arrays())
+   * 				```
+   */
   open fun getMeshArrays(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_GET_MESH_ARRAYS,

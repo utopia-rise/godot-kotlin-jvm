@@ -10,6 +10,11 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Adds a low-pass filter to the Audio bus.
+ *
+ * Cuts frequencies higher than the [godot.AudioEffectFilter.cutoffHz] and allows lower frequencies to pass.
+ */
 @GodotBaseType
 open class AudioEffectLowPassFilter : AudioEffectFilter() {
   override fun __new(): VoidPtr =

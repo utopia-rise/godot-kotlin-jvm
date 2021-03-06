@@ -13,8 +13,19 @@ import godot.util.VoidPtr
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * Input animation to use in an [godot.AnimationNodeBlendTree].
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
+ *
+ * A resource to add to an [godot.AnimationNodeBlendTree]. Only features one output set using the [animation] property. Use it as an input for [godot.AnimationNode] that blend animations together.
+ */
 @GodotBaseType
 open class AnimationNodeAnimation : AnimationRootNode() {
+  /**
+   * Animation to use as an output. It is one of the animations provided by [godot.AnimationTree.animPlayer].
+   */
   open var animation: String
     get() {
       TransferContext.writeArguments()

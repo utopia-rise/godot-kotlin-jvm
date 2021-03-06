@@ -10,6 +10,11 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Internal mesh type.
+ *
+ * Mesh type used internally for collision calculations.
+ */
 @GodotBaseType
 open class TriangleMesh : Reference() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_TRIANGLEMESH)

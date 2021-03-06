@@ -18,8 +18,16 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * Data class wrapper for decoded JSON.
+ *
+ * Returned by [godot.JSON.parse], [godot.JSONParseResult] contains the decoded JSON or error information if the JSON source wasn't successfully parsed. You can check if the JSON source was successfully parsed with `if json_result.error == OK`.
+ */
 @GodotBaseType
 open class JSONParseResult : Reference() {
+  /**
+   * The error type if the JSON source was not successfully parsed. See the [enum Error] constants.
+   */
   open var error: Object?
     get() {
       TransferContext.writeArguments()
@@ -31,6 +39,9 @@ open class JSONParseResult : Reference() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONPARSERESULT_SET_ERROR, NIL)
     }
 
+  /**
+   * The line number where the error occurred if the JSON source was not successfully parsed.
+   */
   open var errorLine: Long
     get() {
       TransferContext.writeArguments()
@@ -44,6 +55,9 @@ open class JSONParseResult : Reference() {
           NIL)
     }
 
+  /**
+   * The error message if the JSON source was not successfully parsed. See the [enum Error] constants.
+   */
   open var errorString: String
     get() {
       TransferContext.writeArguments()
@@ -57,6 +71,21 @@ open class JSONParseResult : Reference() {
           NIL)
     }
 
+  /**
+   * A [Variant] containing the parsed JSON. Use [@GDScript.typeof] or the `is` keyword to check if it is what you expect. For example, if the JSON source starts with curly braces (`{}`), a [godot.core.Dictionary] will be returned. If the JSON source starts with brackets (`[]`), an [godot.Array] will be returned.
+   *
+   * **Note:** The JSON specification does not define integer or float types, but only a *number* type. Therefore, parsing a JSON text will convert all numerical values to [float] types.
+   *
+   * **Note:** JSON objects do not preserve key order like Godot dictionaries, thus, you should not rely on keys being in a certain order if a dictionary is constructed from JSON. In contrast, JSON arrays retain the order of their elements:
+   *
+   * ```
+   * 			var p = JSON.parse('["hello", "world", "!"]')
+   * 			if typeof(p.result) == TYPE_ARRAY:
+   * 			    print(p.result[0]) # Prints "hello"
+   * 			else:
+   * 			    push_error("Unexpected results.")
+   * 			```
+   */
   open var result: Any?
     get() {
       TransferContext.writeArguments()

@@ -15,8 +15,18 @@ import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Suppress
 
+/**
+ * RemoteTransform2D pushes its own [godot.core.Transform2D] to another [godot.CanvasItem] derived Node in the scene.
+ *
+ * RemoteTransform2D pushes its own [godot.core.Transform2D] to another [godot.CanvasItem] derived Node (called the remote node) in the scene.
+ *
+ * It can be set to update another Node's position, rotation and/or scale. It can use either global or local coordinates.
+ */
 @GodotBaseType
 open class RemoteTransform2D : Node2D() {
+  /**
+   * The [godot.core.NodePath] to the remote node, relative to the RemoteTransform2D's position in the scene.
+   */
   open var remotePath: NodePath
     get() {
       TransferContext.writeArguments()
@@ -30,6 +40,9 @@ open class RemoteTransform2D : Node2D() {
           NIL)
     }
 
+  /**
+   * If `true`, the remote node's position is updated.
+   */
   open var updatePosition: Boolean
     get() {
       TransferContext.writeArguments()
@@ -43,6 +56,9 @@ open class RemoteTransform2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_SET_UPDATE_POSITION, NIL)
     }
 
+  /**
+   * If `true`, the remote node's rotation is updated.
+   */
   open var updateRotation: Boolean
     get() {
       TransferContext.writeArguments()
@@ -56,6 +72,9 @@ open class RemoteTransform2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_SET_UPDATE_ROTATION, NIL)
     }
 
+  /**
+   * If `true`, the remote node's scale is updated.
+   */
   open var updateScale: Boolean
     get() {
       TransferContext.writeArguments()
@@ -69,6 +88,9 @@ open class RemoteTransform2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_SET_UPDATE_SCALE, NIL)
     }
 
+  /**
+   * If `true`, global coordinates are used. If `false`, local coordinates are used.
+   */
   open var useGlobalCoordinates: Boolean
     get() {
       TransferContext.writeArguments()
@@ -84,6 +106,9 @@ open class RemoteTransform2D : Node2D() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_REMOTETRANSFORM2D)
 
+  /**
+   * [godot.RemoteTransform2D] caches the remote node. It may not notice if the remote node disappears; [forceUpdateCache] forces it to update the cache again.
+   */
   open fun forceUpdateCache() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,

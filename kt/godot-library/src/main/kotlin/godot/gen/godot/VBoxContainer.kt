@@ -10,6 +10,11 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Vertical box container.
+ *
+ * Vertical box container. See [godot.BoxContainer].
+ */
 @GodotBaseType
 open class VBoxContainer : BoxContainer() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VBOXCONTAINER)

@@ -17,8 +17,18 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Suppress
 
+/**
+ * *Deprecated.* Camera which moves toward another node.
+ *
+ * *Deprecated (will be removed in Godot 4.0).* InterpolatedCamera is a [godot.Camera] which smoothly moves to match a target node's position and rotation.
+ *
+ * If it is not [enabled] or does not have a valid target set, InterpolatedCamera acts like a normal Camera.
+ */
 @GodotBaseType
 open class InterpolatedCamera : Camera() {
+  /**
+   * If `true`, and a target is set, the camera will move automatically.
+   */
   open var enabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -32,6 +42,9 @@ open class InterpolatedCamera : Camera() {
           NIL)
     }
 
+  /**
+   * How quickly the camera moves toward its target. Higher values will result in tighter camera motion.
+   */
   open var speed: Double
     get() {
       TransferContext.writeArguments()
@@ -44,6 +57,9 @@ open class InterpolatedCamera : Camera() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INTERPOLATEDCAMERA_SET_SPEED, NIL)
     }
 
+  /**
+   * The target's [godot.core.NodePath].
+   */
   open var target: NodePath
     get() {
       TransferContext.writeArguments()

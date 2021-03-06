@@ -19,8 +19,21 @@ import kotlin.Suppress
 import kotlin.UninitializedPropertyAccessException
 import kotlin.Unit
 
+/**
+ * Input event type for screen touch events.
+ *
+ * (only available on mobile devices)
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html)
+ *
+ * Stores multi-touch press/release information. Supports touch press, touch release and [index] for multi-touch count and order.
+ */
 @GodotBaseType
 open class InputEventScreenTouch : InputEvent() {
+  /**
+   * The touch index in the case of a multi-touch event. One index = one finger.
+   */
   open var index: Long
     get() {
       TransferContext.writeArguments()
@@ -34,6 +47,9 @@ open class InputEventScreenTouch : InputEvent() {
           NIL)
     }
 
+  /**
+   * The touch position.
+   */
   open var position: Vector2
     get() {
       TransferContext.writeArguments()
@@ -47,6 +63,9 @@ open class InputEventScreenTouch : InputEvent() {
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENTOUCH_SET_POSITION, NIL)
     }
 
+  /**
+   * If `true`, the touch's state is pressed. If `false`, the touch's state is released.
+   */
   open var pressed: Boolean
     get() {
       throw UninitializedPropertyAccessException("Cannot access property pressed: has no getter")

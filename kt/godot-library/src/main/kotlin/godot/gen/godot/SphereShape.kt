@@ -13,8 +13,16 @@ import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Suppress
 
+/**
+ * Sphere shape for 3D collisions.
+ *
+ * Sphere shape for 3D collisions, which can be set into a [godot.PhysicsBody] or [godot.Area]. This shape is useful for modeling sphere-like 3D objects.
+ */
 @GodotBaseType
 open class SphereShape : Shape() {
+  /**
+   * The sphere's radius. The shape's diameter is double the radius.
+   */
   open var radius: Double
     get() {
       TransferContext.writeArguments()

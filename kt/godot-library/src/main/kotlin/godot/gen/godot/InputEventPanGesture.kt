@@ -14,8 +14,14 @@ import godot.util.VoidPtr
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ *
+ */
 @GodotBaseType
 open class InputEventPanGesture : InputEventGesture() {
+  /**
+   *
+   */
   open var delta: Vector2
     get() {
       TransferContext.writeArguments()

@@ -15,8 +15,29 @@ import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * A class for generating pseudo-random numbers.
+ *
+ * RandomNumberGenerator is a class for generating pseudo-random numbers. It currently uses [godot.PCG32](http://www.pcg-random.org/).
+ *
+ * **Note:** The underlying algorithm is an implementation detail. As a result, it should not be depended upon for reproducible random streams across Godot versions.
+ *
+ * To generate a random float number (within a given range) based on a time-dependant seed:
+ *
+ * ```
+ * 		var rng = RandomNumberGenerator.new()
+ * 		func _ready():
+ * 		    rng.randomize()
+ * 		    var my_random_number = rng.randf_range(-10.0, 10.0)
+ * 		```
+ */
 @GodotBaseType
 open class RandomNumberGenerator : Reference() {
+  /**
+   * The seed used by the random number generator. A given seed will give a reproducible sequence of pseudo-random numbers.
+   *
+   * **Note:** The RNG does not have an avalanche effect, and can output similar random streams given similar seeds. Consider using a hash function to improve your seed quality if they're sourced externally.
+   */
   open var seed: Long
     get() {
       TransferContext.writeArguments()
@@ -33,12 +54,18 @@ open class RandomNumberGenerator : Reference() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_RANDOMNUMBERGENERATOR)
 
+  /**
+   * Generates a pseudo-random float between `0.0` and `1.0` (inclusive).
+   */
   open fun randf(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDF, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
+  /**
+   * Generates a pseudo-random float between `from` and `to` (inclusive).
+   */
   open fun randfRange(from: Double, to: Double): Double {
     TransferContext.writeArguments(DOUBLE to from, DOUBLE to to)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDF_RANGE,
@@ -46,6 +73,9 @@ open class RandomNumberGenerator : Reference() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
+  /**
+   * Generates a [normally-distributed](https://en.wikipedia.org/wiki/Normal_distribution) pseudo-random number, using Box-Muller transform with the specified `mean` and a standard `deviation`. This is also called Gaussian distribution.
+   */
   open fun randfn(mean: Double = 0.0, deviation: Double = 1.0): Double {
     TransferContext.writeArguments(DOUBLE to mean, DOUBLE to deviation)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDFN,
@@ -53,12 +83,18 @@ open class RandomNumberGenerator : Reference() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
+  /**
+   * Generates a pseudo-random 32-bit unsigned integer between `0` and `4294967295` (inclusive).
+   */
   open fun randi(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDI, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   * Generates a pseudo-random 32-bit signed integer between `from` and `to` (inclusive).
+   */
   open fun randiRange(from: Long, to: Long): Long {
     TransferContext.writeArguments(LONG to from, LONG to to)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDI_RANGE,
@@ -66,6 +102,9 @@ open class RandomNumberGenerator : Reference() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   * Setups a time-based seed to generator.
+   */
   open fun randomize() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDOMIZE,

@@ -20,8 +20,16 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Base class for a family of nodes with variable amount of input and output ports within the visual shader graph.
+ *
+ * Currently, has no direct usage, use the derived classes instead.
+ */
 @GodotBaseType
 open class VisualShaderNodeGroupBase : VisualShaderNode() {
+  /**
+   * The size of the node in the visual shader graph.
+   */
   open var size: Vector2
     get() {
       TransferContext.writeArguments()
@@ -44,6 +52,9 @@ open class VisualShaderNodeGroupBase : VisualShaderNode() {
   }
 
 
+  /**
+   * Adds an input port with the specified `type` (see [enum VisualShaderNode.PortType]) and `name`.
+   */
   open fun addInputPort(
     id: Long,
     type: Long,
@@ -54,6 +65,9 @@ open class VisualShaderNodeGroupBase : VisualShaderNode() {
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_ADD_INPUT_PORT, NIL)
   }
 
+  /**
+   * Adds an output port with the specified `type` (see [enum VisualShaderNode.PortType]) and `name`.
+   */
   open fun addOutputPort(
     id: Long,
     type: Long,
@@ -64,18 +78,27 @@ open class VisualShaderNodeGroupBase : VisualShaderNode() {
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_ADD_OUTPUT_PORT, NIL)
   }
 
+  /**
+   * Removes all previously specified input ports.
+   */
   open fun clearInputPorts() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_CLEAR_INPUT_PORTS, NIL)
   }
 
+  /**
+   * Removes all previously specified output ports.
+   */
   open fun clearOutputPorts() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_CLEAR_OUTPUT_PORTS, NIL)
   }
 
+  /**
+   * Returns a free input port ID which can be used in [addInputPort].
+   */
   open fun getFreeInputPortId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -83,6 +106,9 @@ open class VisualShaderNodeGroupBase : VisualShaderNode() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   * Returns a free output port ID which can be used in [addOutputPort].
+   */
   open fun getFreeOutputPortId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -90,6 +116,9 @@ open class VisualShaderNodeGroupBase : VisualShaderNode() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   * Returns the number of input ports in use. Alternative for [getFreeInputPortId].
+   */
   open fun getInputPortCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -97,6 +126,9 @@ open class VisualShaderNodeGroupBase : VisualShaderNode() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   * Returns a [godot.String] description of the input ports as as colon-separated list using the format `id,type,name;` (see [addInputPort]).
+   */
   open fun getInputs(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -104,6 +136,9 @@ open class VisualShaderNodeGroupBase : VisualShaderNode() {
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
+  /**
+   * Returns the number of output ports in use. Alternative for [getFreeOutputPortId].
+   */
   open fun getOutputPortCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -111,6 +146,9 @@ open class VisualShaderNodeGroupBase : VisualShaderNode() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   * Returns a [godot.String] description of the output ports as as colon-separated list using the format `id,type,name;` (see [addOutputPort]).
+   */
   open fun getOutputs(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -118,6 +156,9 @@ open class VisualShaderNodeGroupBase : VisualShaderNode() {
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
+  /**
+   * Returns `true` if the specified input port exists.
+   */
   open fun hasInputPort(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr,
@@ -125,6 +166,9 @@ open class VisualShaderNodeGroupBase : VisualShaderNode() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   * Returns `true` if the specified output port exists.
+   */
   open fun hasOutputPort(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr,
@@ -132,6 +176,9 @@ open class VisualShaderNodeGroupBase : VisualShaderNode() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   * Returns `true` if the specified port name does not override an existed port name and is valid within the shader.
+   */
   open fun isValidPortName(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr,
@@ -139,48 +186,72 @@ open class VisualShaderNodeGroupBase : VisualShaderNode() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   * Removes the specified input port.
+   */
   open fun removeInputPort(id: Long) {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_REMOVE_INPUT_PORT, NIL)
   }
 
+  /**
+   * Removes the specified output port.
+   */
   open fun removeOutputPort(id: Long) {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_REMOVE_OUTPUT_PORT, NIL)
   }
 
+  /**
+   * Renames the specified input port.
+   */
   open fun setInputPortName(id: Long, name: String) {
     TransferContext.writeArguments(LONG to id, STRING to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_INPUT_PORT_NAME, NIL)
   }
 
+  /**
+   * Sets the specified input port's type (see [enum VisualShaderNode.PortType]).
+   */
   open fun setInputPortType(id: Long, type: Long) {
     TransferContext.writeArguments(LONG to id, LONG to type)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_INPUT_PORT_TYPE, NIL)
   }
 
+  /**
+   * Defines all input ports using a [godot.String] formatted as a colon-separated list: `id,type,name;` (see [addInputPort]).
+   */
   open fun setInputs(inputs: String) {
     TransferContext.writeArguments(STRING to inputs)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_INPUTS, NIL)
   }
 
+  /**
+   * Renames the specified output port.
+   */
   open fun setOutputPortName(id: Long, name: String) {
     TransferContext.writeArguments(LONG to id, STRING to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_OUTPUT_PORT_NAME, NIL)
   }
 
+  /**
+   * Sets the specified output port's type (see [enum VisualShaderNode.PortType]).
+   */
   open fun setOutputPortType(id: Long, type: Long) {
     TransferContext.writeArguments(LONG to id, LONG to type)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEGROUPBASE_SET_OUTPUT_PORT_TYPE, NIL)
   }
 
+  /**
+   * Defines all output ports using a [godot.String] formatted as a colon-separated list: `id,type,name;` (see [addOutputPort]).
+   */
   open fun setOutputs(outputs: String) {
     TransferContext.writeArguments(STRING to outputs)
     TransferContext.callMethod(rawPtr,

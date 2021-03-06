@@ -18,8 +18,22 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Joint used with [godot.Skeleton2D] to control and animate other nodes.
+ *
+ * Use a hierarchy of `Bone2D` bound to a [godot.Skeleton2D] to control, and animate other [godot.Node2D] nodes.
+ *
+ * You can use `Bone2D` and `Skeleton2D` nodes to animate 2D meshes created with the Polygon 2D UV editor.
+ *
+ * Each bone has a [rest] transform that you can reset to with [applyRest]. These rest poses are relative to the bone's parent.
+ *
+ * If in the editor, you can set the rest pose of an entire skeleton using a menu option, from the code, you need to iterate over the bones to set their individual rest poses.
+ */
 @GodotBaseType
 open class Bone2D : Node2D() {
+  /**
+   * Length of the bone's representation drawn in the editor's viewport in pixels.
+   */
   open var defaultLength: Double
     get() {
       TransferContext.writeArguments()
@@ -31,6 +45,9 @@ open class Bone2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_SET_DEFAULT_LENGTH, NIL)
     }
 
+  /**
+   * Rest transform of the bone. You can reset the node's transforms to this value using [applyRest].
+   */
   open var rest: Transform2D
     get() {
       TransferContext.writeArguments()
@@ -50,17 +67,26 @@ open class Bone2D : Node2D() {
   }
 
 
+  /**
+   * Stores the node's current transforms in [rest].
+   */
   open fun applyRest() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_APPLY_REST, NIL)
   }
 
+  /**
+   * Returns the node's index as part of the entire skeleton. See [godot.Skeleton2D].
+   */
   open fun getIndexInSkeleton(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_INDEX_IN_SKELETON, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   * Returns the node's [rest] `Transform2D` if it doesn't have a parent, or its rest pose relative to its parent.
+   */
   open fun getSkeletonRest(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_SKELETON_REST,

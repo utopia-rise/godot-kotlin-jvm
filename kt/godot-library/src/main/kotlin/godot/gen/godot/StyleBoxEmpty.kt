@@ -10,6 +10,11 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Empty stylebox (does not display anything).
+ *
+ * Empty stylebox (really does not display anything).
+ */
 @GodotBaseType
 open class StyleBoxEmpty : StyleBox() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_STYLEBOXEMPTY)

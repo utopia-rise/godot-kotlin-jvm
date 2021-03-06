@@ -32,8 +32,18 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.UninitializedPropertyAccessException
 
+/**
+ * Renders text using fonts under the [godot.BMFont](https://www.angelcode.com/products/bmfont/) format.
+ *
+ * Handles files with the `.fnt` extension.
+ *
+ * Renders text using `*.fnt` fonts containing texture atlases. Supports distance fields. For using vector font files like TTF directly, see [godot.DynamicFont].
+ */
 @GodotBaseType
 open class BitmapFont : Font() {
+  /**
+   * Ascent (number of pixels above the baseline).
+   */
   open var ascent: Double
     get() = super.getFontAscent()
     set(value) {
@@ -41,6 +51,9 @@ open class BitmapFont : Font() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAPFONT_SET_ASCENT, NIL)
     }
 
+  /**
+   * If `true`, distance field hint is enabled.
+   */
   open var distanceField: Boolean
     get() {
       throw
@@ -52,6 +65,9 @@ open class BitmapFont : Font() {
           NIL)
     }
 
+  /**
+   * The fallback font.
+   */
   open var fallback: BitmapFont?
     get() {
       TransferContext.writeArguments()
@@ -63,6 +79,9 @@ open class BitmapFont : Font() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAPFONT_SET_FALLBACK, NIL)
     }
 
+  /**
+   * Total font height (ascent plus descent) in pixels.
+   */
   open var height: Double
     get() = super.getFontHeight()
     set(value) {
@@ -93,6 +112,9 @@ open class BitmapFont : Font() {
   open fun _setTextures(arg0: VariantArray<Any?>) {
   }
 
+  /**
+   * Adds a character to the font, where `character` is the Unicode value, `texture` is the texture index, `rect` is the region in the texture (in pixels!), `align` is the (optional) alignment for the character and `advance` is the (optional) advance.
+   */
   open fun addChar(
     character: Long,
     texture: Long,
@@ -105,6 +127,9 @@ open class BitmapFont : Font() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAPFONT_ADD_CHAR, NIL)
   }
 
+  /**
+   * Adds a kerning pair to the [godot.BitmapFont] as a difference. Kerning pairs are special cases where a typeface advance is determined by the next character.
+   */
   open fun addKerningPair(
     charA: Long,
     charB: Long,
@@ -114,16 +139,25 @@ open class BitmapFont : Font() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAPFONT_ADD_KERNING_PAIR, NIL)
   }
 
+  /**
+   * Adds a texture to the [godot.BitmapFont].
+   */
   open fun addTexture(texture: Texture) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAPFONT_ADD_TEXTURE, NIL)
   }
 
+  /**
+   * Clears all the font data and settings.
+   */
   open fun clear() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAPFONT_CLEAR, NIL)
   }
 
+  /**
+   * Creates a BitmapFont from the `*.fnt` file at `path`.
+   */
   open fun createFromFnt(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAPFONT_CREATE_FROM_FNT, LONG)
@@ -136,18 +170,27 @@ open class BitmapFont : Font() {
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
+  /**
+   * Returns a kerning pair as a difference.
+   */
   open fun getKerningPair(charA: Long, charB: Long): Long {
     TransferContext.writeArguments(LONG to charA, LONG to charB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAPFONT_GET_KERNING_PAIR, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   * Returns the font atlas texture at index `idx`.
+   */
   open fun getTexture(idx: Long): Texture? {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAPFONT_GET_TEXTURE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Texture?
   }
 
+  /**
+   * Returns the number of textures in the BitmapFont atlas.
+   */
   open fun getTextureCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAPFONT_GET_TEXTURE_COUNT, LONG)

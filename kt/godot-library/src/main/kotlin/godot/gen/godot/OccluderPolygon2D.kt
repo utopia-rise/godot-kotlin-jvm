@@ -17,8 +17,16 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Defines a 2D polygon for LightOccluder2D.
+ *
+ * Editor facility that helps you draw a 2D polygon used as resource for [godot.LightOccluder2D].
+ */
 @GodotBaseType
 open class OccluderPolygon2D : Resource() {
+  /**
+   * If `true`, closes the polygon. A closed OccluderPolygon2D occludes the light coming from any direction. An opened OccluderPolygon2D occludes the light only at its outline's direction.
+   */
   open var closed: Boolean
     get() {
       TransferContext.writeArguments()
@@ -31,6 +39,9 @@ open class OccluderPolygon2D : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERPOLYGON2D_SET_CLOSED, NIL)
     }
 
+  /**
+   * The culling mode to use.
+   */
   open var cullMode: Long
     get() {
       TransferContext.writeArguments()
@@ -44,6 +55,11 @@ open class OccluderPolygon2D : Resource() {
           NIL)
     }
 
+  /**
+   * A [godot.core.Vector2] array with the index for polygon's vertices positions.
+   *
+   * **Note:** The returned value is a copy of the underlying array, rather than a reference.
+   */
   open var polygon: PoolVector2Array
     get() {
       TransferContext.writeArguments()
@@ -62,10 +78,19 @@ open class OccluderPolygon2D : Resource() {
   enum class CullMode(
     id: Long
   ) {
+    /**
+     * Culling is disabled. See [cullMode].
+     */
     CULL_DISABLED(0),
 
+    /**
+     * Culling is performed in the clockwise direction. See [cullMode].
+     */
     CULL_CLOCKWISE(1),
 
+    /**
+     * Culling is performed in the counterclockwise direction. See [cullMode].
+     */
     CULL_COUNTER_CLOCKWISE(2);
 
     val id: Long
@@ -79,10 +104,19 @@ open class OccluderPolygon2D : Resource() {
   }
 
   companion object {
+    /**
+     * Culling is performed in the clockwise direction. See [cullMode].
+     */
     final const val CULL_CLOCKWISE: Long = 1
 
+    /**
+     * Culling is performed in the counterclockwise direction. See [cullMode].
+     */
     final const val CULL_COUNTER_CLOCKWISE: Long = 2
 
+    /**
+     * Culling is disabled. See [cullMode].
+     */
     final const val CULL_DISABLED: Long = 0
   }
 }

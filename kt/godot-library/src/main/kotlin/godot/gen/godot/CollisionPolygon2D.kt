@@ -19,8 +19,16 @@ import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Defines a 2D collision polygon.
+ *
+ * Provides a 2D collision polygon to a [godot.CollisionObject2D] parent. Polygons can be drawn in the editor or specified by a list of vertices.
+ */
 @GodotBaseType
 open class CollisionPolygon2D : Node2D() {
+  /**
+   * Collision build mode. Use one of the [enum BuildMode] constants.
+   */
   open var buildMode: Long
     get() {
       TransferContext.writeArguments()
@@ -34,6 +42,9 @@ open class CollisionPolygon2D : Node2D() {
           NIL)
     }
 
+  /**
+   * If `true`, no collisions will be detected.
+   */
   open var disabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -47,6 +58,9 @@ open class CollisionPolygon2D : Node2D() {
           NIL)
     }
 
+  /**
+   * If `true`, only edges that face up, relative to [godot.CollisionPolygon2D]'s rotation, will collide with other objects.
+   */
   open var oneWayCollision: Boolean
     get() {
       TransferContext.writeArguments()
@@ -60,6 +74,9 @@ open class CollisionPolygon2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_SET_ONE_WAY_COLLISION, NIL)
     }
 
+  /**
+   * The margin used for one-way collision (in pixels). Higher values will make the shape thicker, and work better for colliders that enter the polygon at a high velocity.
+   */
   open var oneWayCollisionMargin: Double
     get() {
       TransferContext.writeArguments()
@@ -73,6 +90,9 @@ open class CollisionPolygon2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_SET_ONE_WAY_COLLISION_MARGIN, NIL)
     }
 
+  /**
+   * The polygon's list of vertices. The final point will be connected to the first. The returned value is a clone of the [godot.core.PoolVector2Array], not a reference.
+   */
   open var polygon: PoolVector2Array
     get() {
       TransferContext.writeArguments()
@@ -91,8 +111,14 @@ open class CollisionPolygon2D : Node2D() {
   enum class BuildMode(
     id: Long
   ) {
+    /**
+     * Collisions will include the polygon and its contained area.
+     */
     BUILD_SOLIDS(0),
 
+    /**
+     * Collisions will only include the polygon edges.
+     */
     BUILD_SEGMENTS(1);
 
     val id: Long
@@ -106,8 +132,14 @@ open class CollisionPolygon2D : Node2D() {
   }
 
   companion object {
+    /**
+     * Collisions will only include the polygon edges.
+     */
     final const val BUILD_SEGMENTS: Long = 1
 
+    /**
+     * Collisions will include the polygon and its contained area.
+     */
     final const val BUILD_SOLIDS: Long = 0
   }
 }

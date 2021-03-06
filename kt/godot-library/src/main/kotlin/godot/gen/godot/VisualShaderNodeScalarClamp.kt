@@ -10,6 +10,11 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Clamps a scalar value within the visual shader graph.
+ *
+ * Constrains a value to lie between `min` and `max` values.
+ */
 @GodotBaseType
 open class VisualShaderNodeScalarClamp : VisualShaderNode() {
   override fun __new(): VoidPtr =

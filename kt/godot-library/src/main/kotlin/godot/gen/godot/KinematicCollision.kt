@@ -17,8 +17,18 @@ import kotlin.Any
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Collision data for [godot.KinematicBody] collisions.
+ *
+ * Contains collision data for [godot.KinematicBody] collisions. When a [godot.KinematicBody] is moved using [godot.KinematicBody.moveAndCollide], it stops if it detects a collision with another body. If a collision is detected, a KinematicCollision object is returned.
+ *
+ * This object contains information about the collision, including the colliding object, the remaining motion, and the collision position. This information can be used to calculate a collision response.
+ */
 @GodotBaseType
 open class KinematicCollision : Reference() {
+  /**
+   * The colliding body.
+   */
   open val collider: Object?
     get() {
       TransferContext.writeArguments()
@@ -27,6 +37,9 @@ open class KinematicCollision : Reference() {
       return TransferContext.readReturnValue(OBJECT, true) as Object?
     }
 
+  /**
+   * The colliding body's unique instance ID. See [godot.Object.getInstanceId].
+   */
   open val colliderId: Long
     get() {
       TransferContext.writeArguments()
@@ -35,6 +48,9 @@ open class KinematicCollision : Reference() {
       return TransferContext.readReturnValue(LONG, false) as Long
     }
 
+  /**
+   * The colliding body's metadata. See [godot.Object].
+   */
   open val colliderMetadata: Any?
     get() {
       TransferContext.writeArguments()
@@ -43,6 +59,9 @@ open class KinematicCollision : Reference() {
       return TransferContext.readReturnValue(ANY, true) as Any?
     }
 
+  /**
+   * The colliding body's shape.
+   */
   open val colliderShape: Object?
     get() {
       TransferContext.writeArguments()
@@ -51,6 +70,9 @@ open class KinematicCollision : Reference() {
       return TransferContext.readReturnValue(OBJECT, true) as Object?
     }
 
+  /**
+   * The colliding shape's index. See [godot.CollisionObject].
+   */
   open val colliderShapeIndex: Long
     get() {
       TransferContext.writeArguments()
@@ -59,6 +81,9 @@ open class KinematicCollision : Reference() {
       return TransferContext.readReturnValue(LONG, false) as Long
     }
 
+  /**
+   * The colliding object's velocity.
+   */
   open val colliderVelocity: Vector3
     get() {
       TransferContext.writeArguments()
@@ -67,6 +92,9 @@ open class KinematicCollision : Reference() {
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
 
+  /**
+   * The moving object's colliding shape.
+   */
   open val localShape: Object?
     get() {
       TransferContext.writeArguments()
@@ -75,6 +103,9 @@ open class KinematicCollision : Reference() {
       return TransferContext.readReturnValue(OBJECT, true) as Object?
     }
 
+  /**
+   * The colliding body's shape's normal at the point of collision.
+   */
   open val normal: Vector3
     get() {
       TransferContext.writeArguments()
@@ -83,6 +114,9 @@ open class KinematicCollision : Reference() {
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
 
+  /**
+   * The point of collision, in global coordinates.
+   */
   open val position: Vector3
     get() {
       TransferContext.writeArguments()
@@ -91,6 +125,9 @@ open class KinematicCollision : Reference() {
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
 
+  /**
+   * The moving object's remaining movement vector.
+   */
   open val remainder: Vector3
     get() {
       TransferContext.writeArguments()
@@ -99,6 +136,9 @@ open class KinematicCollision : Reference() {
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
 
+  /**
+   * The distance the moving object traveled before collision.
+   */
   open val travel: Vector3
     get() {
       TransferContext.writeArguments()

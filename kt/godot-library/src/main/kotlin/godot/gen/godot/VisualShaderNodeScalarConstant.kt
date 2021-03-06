@@ -13,8 +13,14 @@ import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Suppress
 
+/**
+ *
+ */
 @GodotBaseType
 open class VisualShaderNodeScalarConstant : VisualShaderNode() {
+  /**
+   *
+   */
   open var constant: Double
     get() {
       TransferContext.writeArguments()

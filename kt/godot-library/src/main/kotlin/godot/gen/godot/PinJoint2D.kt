@@ -13,8 +13,16 @@ import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Suppress
 
+/**
+ * Pin Joint for 2D shapes.
+ *
+ * Pin Joint for 2D rigid bodies. It pins two bodies (rigid or static) together.
+ */
 @GodotBaseType
 open class PinJoint2D : Joint2D() {
+  /**
+   * The higher this value, the more the bond to the pinned partner can flex.
+   */
   open var softness: Double
     get() {
       TransferContext.writeArguments()

@@ -18,8 +18,23 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * The Editor's popup dialog for creating new [godot.Script] files.
+ *
+ * The [godot.ScriptCreateDialog] creates script files according to a given template for a given scripting language. The standard use is to configure its fields prior to calling one of the [godot.Popup.popup] methods.
+ *
+ * ```
+ * 		func _ready():
+ * 		    dialog.config("Node", "res://new_node.gd") # For in-engine types
+ * 		    dialog.config("\"res://base_node.gd\"", "res://derived_node.gd") # For script types
+ * 		    dialog.popup_centered()
+ * 		```
+ */
 @GodotBaseType
 open class ScriptCreateDialog : ConfirmationDialog() {
+  /**
+   * Emitted when the user clicks the OK button.
+   */
   val scriptCreated: Signal1<Script> by signal("script")
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SCRIPTCREATEDIALOG)
@@ -60,6 +75,9 @@ open class ScriptCreateDialog : ConfirmationDialog() {
   open fun _templateChanged(arg0: Long) {
   }
 
+  /**
+   * Prefills required fields to configure the ScriptCreateDialog for use.
+   */
   open fun config(
     inherits: String,
     path: String,

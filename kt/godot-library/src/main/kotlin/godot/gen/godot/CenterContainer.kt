@@ -13,8 +13,16 @@ import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Suppress
 
+/**
+ * Keeps children controls centered.
+ *
+ * CenterContainer keeps children controls centered. This container keeps all children to their minimum size, in the center.
+ */
 @GodotBaseType
 open class CenterContainer : Container() {
+  /**
+   * If `true`, centers children relative to the [godot.CenterContainer]'s top left corner.
+   */
   open var useTopLeft: Boolean
     get() {
       TransferContext.writeArguments()

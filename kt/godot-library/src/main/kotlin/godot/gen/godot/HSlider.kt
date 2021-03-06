@@ -10,6 +10,13 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Horizontal slider.
+ *
+ * Horizontal slider. See [godot.Slider]. This one goes from left (min) to right (max).
+ *
+ * **Note:** The [godot.Range.changed] and [godot.Range.valueChanged] signals are part of the [godot.Range] class which this class inherits from.
+ */
 @GodotBaseType
 open class HSlider : Slider() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_HSLIDER)

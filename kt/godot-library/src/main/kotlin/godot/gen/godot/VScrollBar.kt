@@ -10,6 +10,11 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Vertical scroll bar.
+ *
+ * Vertical version of [godot.ScrollBar], which goes from top (min) to bottom (max).
+ */
 @GodotBaseType
 open class VScrollBar : ScrollBar() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VSCROLLBAR)

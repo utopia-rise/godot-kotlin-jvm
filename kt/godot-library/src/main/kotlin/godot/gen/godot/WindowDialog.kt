@@ -16,8 +16,16 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * Base class for window dialogs.
+ *
+ * Windowdialog is the base class for all window-based dialogs. It's a by-default toplevel [godot.Control] that draws a window decoration and allows motion and resizing.
+ */
 @GodotBaseType
 open class WindowDialog : Popup() {
+  /**
+   * If `true`, the user can resize the window.
+   */
   open var resizable: Boolean
     get() {
       TransferContext.writeArguments()
@@ -29,6 +37,9 @@ open class WindowDialog : Popup() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOWDIALOG_SET_RESIZABLE, NIL)
     }
 
+  /**
+   * The text displayed in the window's title bar.
+   */
   open var windowTitle: String
     get() {
       TransferContext.writeArguments()
@@ -50,6 +61,9 @@ open class WindowDialog : Popup() {
   override fun _guiInput(event: InputEvent) {
   }
 
+  /**
+   * Returns the close [godot.TextureButton].
+   */
   open fun getCloseButton(): TextureButton? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOWDIALOG_GET_CLOSE_BUTTON,

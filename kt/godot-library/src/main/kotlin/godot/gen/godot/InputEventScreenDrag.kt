@@ -16,8 +16,19 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Input event type for screen drag events. Only available on mobile devices.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html)
+ *
+ * Contains screen drag information. See [godot.Node.Input].
+ */
 @GodotBaseType
 open class InputEventScreenDrag : InputEvent() {
+  /**
+   * The drag event index in the case of a multi-drag event.
+   */
   open var index: Long
     get() {
       TransferContext.writeArguments()
@@ -31,6 +42,9 @@ open class InputEventScreenDrag : InputEvent() {
           NIL)
     }
 
+  /**
+   * The drag position.
+   */
   open var position: Vector2
     get() {
       TransferContext.writeArguments()
@@ -44,6 +58,9 @@ open class InputEventScreenDrag : InputEvent() {
           NIL)
     }
 
+  /**
+   * The drag position relative to its start position.
+   */
   open var relative: Vector2
     get() {
       TransferContext.writeArguments()
@@ -57,6 +74,9 @@ open class InputEventScreenDrag : InputEvent() {
           NIL)
     }
 
+  /**
+   * The drag speed.
+   */
   open var speed: Vector2
     get() {
       TransferContext.writeArguments()

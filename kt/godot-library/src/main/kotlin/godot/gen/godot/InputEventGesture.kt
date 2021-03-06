@@ -14,8 +14,14 @@ import godot.util.VoidPtr
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Base class for touch control gestures.
+ */
 @GodotBaseType
 open class InputEventGesture : InputEventWithModifiers() {
+  /**
+   * The local gesture position relative to the [godot.Viewport]. If used in [godot.Control.GuiInput], the position is relative to the current [godot.Control] that received this gesture.
+   */
   open var position: Vector2
     get() {
       TransferContext.writeArguments()
