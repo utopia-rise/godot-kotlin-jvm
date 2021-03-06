@@ -1,7 +1,7 @@
-[![GitHub](https://img.shields.io/github/license/utopia-rise/godot-jvm?style=flat-square)](LICENSE)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/utopia-rise/godot-jvm/CI?style=flat-square)](https://github.com/utopia-rise/godot-jvm/actions?query=workflow%3ACI)
+[![GitHub](https://img.shields.io/github/license/utopia-rise/godot-kotlin-jvm?style=flat-square)](LICENSE)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/utopia-rise/godot-kotlin-jvm/CI?style=flat-square)](https://github.com/utopia-rise/godot-kotlin-jvm/actions?query=workflow%3ACI)
 
-Godot-Jvm is a Godot module which allows you to write your game or application logic in Kotlin on the JVM.
+Godot Kotlin/JVM is a Godot module which allows you to write your game or application logic in Kotlin on the JVM.
 
 An embedded JRE will be shipped with your application to ensure it runs on systems that don't have java installed.
 

@@ -8,7 +8,7 @@ If you want to try the binding at it's current state, you will have to build the
 
 # Setup
 1. Clone godot repo with 3.2 branch. `git clone git@github.com:godotengine/godot.git -b 3.2 --recursive`
-2. In `godot/`, run the following command: `git submodule add git@github.com:utopia-rise/godot-jvm.git modules/kotlin_jvm`
+2. In `godot/`, run the following command: `git submodule add git@github.com:utopia-rise/godot-kotlin-jvm.git modules/kotlin_jvm`
 3. Pull the submodules of our project: 
     - `cd modules/kotlin_jvm`
     - `git submodule update --init --recursive`
@@ -59,11 +59,11 @@ The items in this list are explicitly mentioned here as these will be implemente
 - Each registered constructor must have a unique number of arguments. Constructor overloading is not yet supported
 - No networking functionality (Rpc annotations do exist but they do not work yet)
 - No tool mode (you can set it already in the `@RegisterClass` annotation but it has no effect yet)
-- No plugin support -> You cannot use Godot-Jvm to write plugins and addons yet
+- No plugin support -> You cannot use Godot Kotlin/JVM to write plugins and addons yet
 - No export support (but as mentioned in the [export](#export) section, it is generally already possible)
 - Only desktop OS are supported for now (Linux, MacOS, Windows)
 
 # Bug reporting and Questions
-If you find bugs, please report an [issue on github](https://github.com/utopia-rise/godot-jvm/issues). But check for duplicates first.  
+If you find bugs, please report an [issue on github](https://github.com/utopia-rise/godot-kotlin-jvm/issues). But check for duplicates first.  
 If you have questions or need help, you can ask on [discord](https://discord.gg/qSU2EQs) in the channels `questions` and `help` respectively.  
 If you don't have discord or don't want to use it, make a issue on github.
