@@ -2,6 +2,8 @@
 
 # Kotlin/JVM binding for the Godot Game Engine
 
+![godot-kotlin-jvm-icon](.README/godot-kotlin-jvm-icon.svg)
+
 ## Overview
 
 This is a **Kotlin** language binding for the [**Godot**](https://godotengine.org/) game engine. It is built as a module (like the C# binding) to interact with **Godot**'s core internally. The binding provides you Godot API's as Kotlin classes, so you can write your game logic completely in Kotlin. Your code will be compiled into a .jar which is then executed by an embedded JVM, so you don't have to worry that your users have Java installed. It's already embedded in your games executable.
