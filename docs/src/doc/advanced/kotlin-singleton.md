@@ -5,7 +5,7 @@ Then you just need to use the "registerAsSingleton" so it will be hooked to the 
 
 `MySingleton.kt`:
 ```kotlin
-object GD : GDMath, GDCore, GDRandom, GDPrint, GodotStatic {
+object MySingleton : GodotStatic {
     var ref: MyReference? = MyReference()
     var obj: MyObject = MyObject()
 
