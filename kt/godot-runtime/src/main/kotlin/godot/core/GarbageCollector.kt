@@ -9,7 +9,10 @@ import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 object GarbageCollector {
-    private var current_delay = 0
+    private const val MIN_DELAY = 100L
+    private const val MAX_DELAY = 2000L
+    private const val INC_DELAY = 100L
+    private var current_delay = 0L
 
     private val wrappedMap = mutableMapOf<VoidPtr, KtObject>()
 
@@ -82,18 +85,35 @@ object GarbageCollector {
     fun start(forceJvmGarbageCollector: Boolean, period: Long) {
         this.forceJvmGarbageCollector = forceJvmGarbageCollector
         gcState = GCState.STARTED
-        current_delay = period.toInt()
+        current_delay = period
         executor.schedule(GarbageCollector::run, 0, TimeUnit.MILLISECONDS)
     }
 
     private fun run() {
-        if (forceJvmGarbageCollector) {
-            forceJvmGc()
+        while(gcState != GCState.CLOSED){
+            if (forceJvmGarbageCollector) {
+                forceJvmGc()
+            }
+            val isActive = checkAndClean()
+
+            if(isActive){
+                current_delay -= INC_DELAY
+                current_delay = current_delay.coerceAtLeast(MIN_DELAY)
+            } else {
+                current_delay += INC_DELAY
+                current_delay = current_delay.coerceAtMost(MAX_DELAY)
+            }
+            Thread.sleep(current_delay)
         }
-        checkAndClean()
     }
 
-    private fun checkAndClean() {
+    /**
+     * Remove the Object pointers that died since the last GC.
+     * Decrease the counter of the References and NativeCoreType that are not reachable anymore.
+     * Return true if something has been deleted.
+     */
+    private fun checkAndClean(): Boolean {
+        var isActive = false
         // A native reference cannot die while a jvm instance exists (because counter > 0). When we don't need the
         // jvm instance anymore, we decrease the counter.
         synchronized(refWrappedMap) {
@@ -101,6 +121,7 @@ object GarbageCollector {
                 if (entry.value.get() == null) {
                     if (MemoryBridge.unref(entry.key)) {
                         suppressBuffer.add(entry.key)
+                        isActive = true
                     }
                 }
             }
@@ -116,6 +137,7 @@ object GarbageCollector {
             for (entry in wrappedMap) {
                 if (!MemoryBridge.checkInstance(entry.key, entry.value.godotInstanceId)) {
                     suppressBuffer.add(entry.key)
+                    isActive = true
                 }
             }
             for (ptr in suppressBuffer) {
@@ -130,6 +152,7 @@ object GarbageCollector {
                 if (nativeCoreTypeReference.get() == null) {
                     if (MemoryBridge.unrefNativeCoreType(entry.key, nativeCoreTypeReference.coreVariantType.baseOrdinal)) {
                         suppressBuffer.add(entry.key)
+                        isActive = true
                     }
                 }
             }
@@ -138,6 +161,8 @@ object GarbageCollector {
             }
         }
         suppressBuffer.clear()
+
+        return isActive
     }
 
     fun close() {
