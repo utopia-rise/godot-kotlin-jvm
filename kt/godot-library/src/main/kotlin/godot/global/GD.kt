@@ -7,14 +7,13 @@ import godot.ResourceLoader
 import godot.core.*
 import godot.core.Dictionary
 import godot.util.nullptr
-import java.util.*
 
 
 object GD : GDMath, GDCore, GDRandom, GDPrint, GodotStatic {
     override var rng: RandomNumberGenerator? = RandomNumberGenerator()
 
     init{
-        registerToGC()
+        registerAsSingleton()
     }
 
     override fun collect(){

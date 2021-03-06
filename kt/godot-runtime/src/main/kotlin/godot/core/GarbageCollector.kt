@@ -11,8 +11,8 @@ import java.util.concurrent.TimeUnit
 object GarbageCollector {
     private val refWrappedMap = mutableMapOf<VoidPtr, WeakReference<KtObject>>()
     private val wrappedMap = mutableMapOf<VoidPtr, KtObject>()
-    private val nativeCoreTypeMap =
-            mutableMapOf<VoidPtr, NativeCoreTypeWeakReference>()
+    private val nativeCoreTypeMap = mutableMapOf<VoidPtr, NativeCoreTypeWeakReference>()
+
     private val refWrappedSuppressBuffer = mutableListOf<VoidPtr>()
     private val wrappedSuppressBuffer = mutableListOf<VoidPtr>()
     private val nativeCoreTypeSuppressBuffer = mutableListOf<VoidPtr>()
@@ -26,6 +26,7 @@ object GarbageCollector {
     var shouldDisplayLeakInstancesOnClose = true
 
     private var gcState = GCState.NONE
+
     val isClosed: Boolean
         get() = gcState == GCState.CLOSED
 
@@ -215,7 +216,7 @@ object GarbageCollector {
 
 interface GodotStatic{
 
-    fun registerToGC(){
+    fun registerAsSingleton(){
         GarbageCollector.registerStatic(this)
     }
 

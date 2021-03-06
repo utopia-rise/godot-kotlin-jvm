@@ -4,6 +4,7 @@ import godot.RandomNumberGenerator
 
 internal interface GDRandom {
     /** Global RandomNumberGenerator for all the rand functions, it should have the same behaviour than GdScript.*/
+    /** Must be a nullable because we have to set it to null to have the reference collected when the JVM is closing*/
     var rng: RandomNumberGenerator?
 
     /** Random range, any floating point value between from and to. */
