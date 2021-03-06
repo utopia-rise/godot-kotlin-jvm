@@ -2,7 +2,7 @@
 
 # Kotlin/JVM binding for the Godot Game Engine
 
-![godot-kotlin-jvm-icon](.README/godot-kotlin-jvm-icon.svg)
+![godot-kotlin-jvm-icon](.README/icon.png)
 
 ## Overview
 
