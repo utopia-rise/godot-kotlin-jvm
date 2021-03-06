@@ -24,8 +24,7 @@ That said it is possible to support other Jvm based languages in the future. If 
 
 ## Developer discussion
 
-Ask questions and collaborate on Discord:
-https://discord.gg/qSU2EQs
+Ask questions and collaborate on [Discord](https://discord.gg/zpb5Ru7v9x)
 
 ## Contribution Guidelines:
 - **CodeStyle:**  

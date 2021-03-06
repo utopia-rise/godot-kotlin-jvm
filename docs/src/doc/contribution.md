@@ -17,7 +17,7 @@ Before you start to invest your precious time in writing code that you want to c
 
 
 ## Discussions
-Most of our discussions are happening on Discord. So if you have Discord or don't mind starting using it, feel free to [join](https://discord.gg/qSU2EQs) our server.  
+Most of our discussions are happening on Discord. So if you have Discord or don't mind starting using it, feel free to [join](https://discord.gg/zpb5Ru7v9x) our server.  
 But don't worry if you don't have or want to use Discord. Then the discussions are just in the corresponding issue.  
 If you discuss on Discord though: don't forget to document all relevant outcome in the corresponding issue.  
 
