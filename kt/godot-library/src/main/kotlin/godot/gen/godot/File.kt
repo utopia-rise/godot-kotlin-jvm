@@ -308,12 +308,24 @@ open class File : Reference() {
   enum class CompressionMode(
     id: Long
   ) {
+    /**
+     * Uses the [godot.FastLZ](http://fastlz.org/) compression method.
+     */
     COMPRESSION_FASTLZ(0),
 
+    /**
+     * Uses the [DEFLATE](https://en.wikipedia.org/wiki/DEFLATE) compression method.
+     */
     COMPRESSION_DEFLATE(1),
 
+    /**
+     * Uses the [godot.Zstandard](https://facebook.github.io/zstd/) compression method.
+     */
     COMPRESSION_ZSTD(2),
 
+    /**
+     * Uses the [gzip](https://www.gzip.org/) compression method.
+     */
     COMPRESSION_GZIP(3);
 
     val id: Long
@@ -329,12 +341,24 @@ open class File : Reference() {
   enum class ModeFlags(
     id: Long
   ) {
+    /**
+     * Opens the file for read operations. The cursor is positioned at the beginning of the file.
+     */
     READ(1),
 
+    /**
+     * Opens the file for write operations. The file is created if it does not exist, and truncated if it does.
+     */
     WRITE(2),
 
+    /**
+     * Opens the file for read and write operations. Does not truncate the file. The cursor is positioned at the beginning of the file.
+     */
     READ_WRITE(3),
 
+    /**
+     * Opens the file for read and write operations. The file is created if it does not exist, and truncated if it does. The cursor is positioned at the beginning of the file.
+     */
     WRITE_READ(7);
 
     val id: Long

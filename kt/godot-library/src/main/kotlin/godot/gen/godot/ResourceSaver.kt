@@ -98,18 +98,39 @@ object ResourceSaver : Object() {
   enum class SaverFlags(
     id: Long
   ) {
+    /**
+     * Save the resource with a path relative to the scene which uses it.
+     */
     FLAG_RELATIVE_PATHS(1),
 
+    /**
+     * Bundles external resources.
+     */
     FLAG_BUNDLE_RESOURCES(2),
 
+    /**
+     * Changes the [godot.Resource.resourcePath] of the saved resource to match its new location.
+     */
     FLAG_CHANGE_PATH(4),
 
+    /**
+     * Do not save editor-specific metadata (identified by their `__editor` prefix).
+     */
     FLAG_OMIT_EDITOR_PROPERTIES(8),
 
+    /**
+     * Save as big endian (see [godot.File.endianSwap]).
+     */
     FLAG_SAVE_BIG_ENDIAN(16),
 
+    /**
+     * Compress the resource on save using [godot.File.COMPRESSION_ZSTD]. Only available for binary resource types.
+     */
     FLAG_COMPRESS(32),
 
+    /**
+     * Take over the paths of the saved subresources (see [godot.Resource.takeOverPath]).
+     */
     FLAG_REPLACE_SUBRESOURCE_PATHS(64);
 
     val id: Long

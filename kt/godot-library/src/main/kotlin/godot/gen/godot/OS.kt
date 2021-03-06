@@ -1686,8 +1686,14 @@ object OS : Object() {
   enum class VideoDriver(
     id: Long
   ) {
+    /**
+     * The GLES3 rendering backend. It uses OpenGL ES 3.0 on mobile devices, OpenGL 3.3 on desktop platforms and WebGL 2.0 on the web.
+     */
     VIDEO_DRIVER_GLES3(0),
 
+    /**
+     * The GLES2 rendering backend. It uses OpenGL ES 2.0 on mobile devices, OpenGL 2.1 on desktop platforms and WebGL 1.0 on the web.
+     */
     VIDEO_DRIVER_GLES2(1);
 
     val id: Long
@@ -1703,20 +1709,44 @@ object OS : Object() {
   enum class SystemDir(
     id: Long
   ) {
+    /**
+     * Desktop directory path.
+     */
     SYSTEM_DIR_DESKTOP(0),
 
+    /**
+     * DCIM (Digital Camera Images) directory path.
+     */
     SYSTEM_DIR_DCIM(1),
 
+    /**
+     * Documents directory path.
+     */
     SYSTEM_DIR_DOCUMENTS(2),
 
+    /**
+     * Downloads directory path.
+     */
     SYSTEM_DIR_DOWNLOADS(3),
 
+    /**
+     * Movies directory path.
+     */
     SYSTEM_DIR_MOVIES(4),
 
+    /**
+     * Music directory path.
+     */
     SYSTEM_DIR_MUSIC(5),
 
+    /**
+     * Pictures directory path.
+     */
     SYSTEM_DIR_PICTURES(6),
 
+    /**
+     * Ringtones directory path.
+     */
     SYSTEM_DIR_RINGTONES(7);
 
     val id: Long
@@ -1732,18 +1762,39 @@ object OS : Object() {
   enum class ScreenOrientation(
     id: Long
   ) {
+    /**
+     * Landscape screen orientation.
+     */
     SCREEN_ORIENTATION_LANDSCAPE(0),
 
+    /**
+     * Portrait screen orientation.
+     */
     SCREEN_ORIENTATION_PORTRAIT(1),
 
+    /**
+     * Reverse landscape screen orientation.
+     */
     SCREEN_ORIENTATION_REVERSE_LANDSCAPE(2),
 
+    /**
+     * Reverse portrait screen orientation.
+     */
     SCREEN_ORIENTATION_REVERSE_PORTRAIT(3),
 
+    /**
+     * Uses landscape or reverse landscape based on the hardware sensor.
+     */
     SCREEN_ORIENTATION_SENSOR_LANDSCAPE(4),
 
+    /**
+     * Uses portrait or reverse portrait based on the hardware sensor.
+     */
     SCREEN_ORIENTATION_SENSOR_PORTRAIT(5),
 
+    /**
+     * Uses most suitable orientation based on the hardware sensor.
+     */
     SCREEN_ORIENTATION_SENSOR(6);
 
     val id: Long
@@ -1759,14 +1810,29 @@ object OS : Object() {
   enum class PowerState(
     id: Long
   ) {
+    /**
+     * Unknown powerstate.
+     */
     POWERSTATE_UNKNOWN(0),
 
+    /**
+     * Unplugged, running on battery.
+     */
     POWERSTATE_ON_BATTERY(1),
 
+    /**
+     * Plugged in, no battery available.
+     */
     POWERSTATE_NO_BATTERY(2),
 
+    /**
+     * Plugged in, battery charging.
+     */
     POWERSTATE_CHARGING(3),
 
+    /**
+     * Plugged in, battery fully charged.
+     */
     POWERSTATE_CHARGED(4);
 
     val id: Long
@@ -1782,28 +1848,64 @@ object OS : Object() {
   enum class Month(
     id: Long
   ) {
+    /**
+     * January.
+     */
     MONTH_JANUARY(1),
 
+    /**
+     * February.
+     */
     MONTH_FEBRUARY(2),
 
+    /**
+     * March.
+     */
     MONTH_MARCH(3),
 
+    /**
+     * April.
+     */
     MONTH_APRIL(4),
 
+    /**
+     * May.
+     */
     MONTH_MAY(5),
 
+    /**
+     * June.
+     */
     MONTH_JUNE(6),
 
+    /**
+     * July.
+     */
     MONTH_JULY(7),
 
+    /**
+     * August.
+     */
     MONTH_AUGUST(8),
 
+    /**
+     * September.
+     */
     MONTH_SEPTEMBER(9),
 
+    /**
+     * October.
+     */
     MONTH_OCTOBER(10),
 
+    /**
+     * November.
+     */
     MONTH_NOVEMBER(11),
 
+    /**
+     * December.
+     */
     MONTH_DECEMBER(12);
 
     val id: Long
@@ -1819,18 +1921,39 @@ object OS : Object() {
   enum class Weekday(
     id: Long
   ) {
+    /**
+     * Sunday.
+     */
     DAY_SUNDAY(0),
 
+    /**
+     * Monday.
+     */
     DAY_MONDAY(1),
 
+    /**
+     * Tuesday.
+     */
     DAY_TUESDAY(2),
 
+    /**
+     * Wednesday.
+     */
     DAY_WEDNESDAY(3),
 
+    /**
+     * Thursday.
+     */
     DAY_THURSDAY(4),
 
+    /**
+     * Friday.
+     */
     DAY_FRIDAY(5),
 
+    /**
+     * Saturday.
+     */
     DAY_SATURDAY(6);
 
     val id: Long

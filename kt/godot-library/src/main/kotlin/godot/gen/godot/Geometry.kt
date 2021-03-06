@@ -589,14 +589,29 @@ object Geometry : Object() {
   enum class PolyEndType(
     id: Long
   ) {
+    /**
+     * Endpoints are joined using the [enum PolyJoinType] value and the path filled as a polygon.
+     */
     END_POLYGON(0),
 
+    /**
+     * Endpoints are joined using the [enum PolyJoinType] value and the path filled as a polyline.
+     */
     END_JOINED(1),
 
+    /**
+     * Endpoints are squared off with no extension.
+     */
     END_BUTT(2),
 
+    /**
+     * Endpoints are squared off and extended by `delta` units.
+     */
     END_SQUARE(3),
 
+    /**
+     * Endpoints are rounded off and extended by `delta` units.
+     */
     END_ROUND(4);
 
     val id: Long
@@ -612,12 +627,24 @@ object Geometry : Object() {
   enum class PolyBooleanOperation(
     id: Long
   ) {
+    /**
+     * Create regions where either subject or clip polygons (or both) are filled.
+     */
     OPERATION_UNION(0),
 
+    /**
+     * Create regions where subject polygons are filled except where clip polygons are filled.
+     */
     OPERATION_DIFFERENCE(1),
 
+    /**
+     * Create regions where both subject and clip polygons are filled.
+     */
     OPERATION_INTERSECTION(2),
 
+    /**
+     * Create regions where either subject or clip polygons are filled but not where both are filled.
+     */
     OPERATION_XOR(3);
 
     val id: Long
@@ -633,10 +660,19 @@ object Geometry : Object() {
   enum class PolyJoinType(
     id: Long
   ) {
+    /**
+     * Squaring is applied uniformally at all convex edge joins at `1 * delta`.
+     */
     JOIN_SQUARE(0),
 
+    /**
+     * While flattened paths can never perfectly trace an arc, they are approximated by a series of arc chords.
+     */
     JOIN_ROUND(1),
 
+    /**
+     * There's a necessary limit to mitered joins since offsetting edges that join at very acute angles will produce excessively long and narrow "spikes". For any given edge join, when miter offsetting would exceed that maximum distance, "square" joining is applied.
+     */
     JOIN_MITER(2);
 
     val id: Long

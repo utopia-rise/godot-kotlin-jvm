@@ -83,10 +83,19 @@ open class Thread : Reference() {
   enum class Priority(
     id: Long
   ) {
+    /**
+     * A thread running with lower priority than normally.
+     */
     PRIORITY_LOW(0),
 
+    /**
+     * A thread with a standard priority.
+     */
     PRIORITY_NORMAL(1),
 
+    /**
+     * A thread running with higher priority than normally.
+     */
     PRIORITY_HIGH(2);
 
     val id: Long
