@@ -22,4 +22,5 @@ On desktop platforms, this also copies the jre folder of your project in the exp
 
 `godot-bootstrap.jar` and `main.jar` are set into `pck` during the export process. Also, as a real file path is needed to
 handle them, they are copied on the first game version start from `res://` to `user://` (We check if exists and also md5)
-to only update when needed.
+to only update when needed.  
+Don't forget to remove them when uninstalling the game.
