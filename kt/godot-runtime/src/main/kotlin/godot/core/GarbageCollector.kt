@@ -9,20 +9,20 @@ import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 object GarbageCollector {
-    private val refWrappedMap = mutableMapOf<VoidPtr, WeakReference<KtObject>>()
+    private var current_delay = 0
+
     private val wrappedMap = mutableMapOf<VoidPtr, KtObject>()
+
+    private val refWrappedMap = mutableMapOf<VoidPtr, WeakReference<KtObject>>()
     private val nativeCoreTypeMap = mutableMapOf<VoidPtr, NativeCoreTypeWeakReference>()
 
-    private val refWrappedSuppressBuffer = mutableListOf<VoidPtr>()
-    private val wrappedSuppressBuffer = mutableListOf<VoidPtr>()
-    private val nativeCoreTypeSuppressBuffer = mutableListOf<VoidPtr>()
+    private val suppressBuffer = mutableListOf<VoidPtr>()
 
     private val staticInstances = mutableListOf<GodotStatic>()
 
     private val executor = Executors.newSingleThreadScheduledExecutor()
 
     private var forceJvmGarbageCollector = false
-
     var shouldDisplayLeakInstancesOnClose = true
 
     private var gcState = GCState.NONE
@@ -45,8 +45,6 @@ object GarbageCollector {
             }
         }
     }
-
-    fun isInstanceValid(ktObject: KtObject) = MemoryBridge.checkInstance(ktObject.rawPtr, ktObject.godotInstanceId)
 
     fun registerNativeCoreType(nativeCoreType: NativeCoreType) {
         val rawPtr = nativeCoreType._handle
@@ -78,10 +76,68 @@ object GarbageCollector {
         MemoryBridge.unref(ptr)
     }
 
+    fun isInstanceValid(ktObject: KtObject) = MemoryBridge.checkInstance(ktObject.rawPtr, ktObject.godotInstanceId)
+
+
     fun start(forceJvmGarbageCollector: Boolean, period: Long) {
         this.forceJvmGarbageCollector = forceJvmGarbageCollector
         gcState = GCState.STARTED
-        executor.scheduleAtFixedRate(GarbageCollector::run, 0, period, TimeUnit.MILLISECONDS)
+        current_delay = period.toInt()
+        executor.schedule(GarbageCollector::run, 0, TimeUnit.MILLISECONDS)
+    }
+
+    private fun run() {
+        if (forceJvmGarbageCollector) {
+            forceJvmGc()
+        }
+        checkAndClean()
+    }
+
+    private fun checkAndClean() {
+        // A native reference cannot die while a jvm instance exists (because counter > 0). When we don't need the
+        // jvm instance anymore, we decrease the counter.
+        synchronized(refWrappedMap) {
+            for (entry in refWrappedMap) {
+                if (entry.value.get() == null) {
+                    if (MemoryBridge.unref(entry.key)) {
+                        suppressBuffer.add(entry.key)
+                    }
+                }
+            }
+            for (ptr in suppressBuffer) {
+                refWrappedMap.remove(ptr)
+            }
+        }
+        suppressBuffer.clear()
+
+        // Check validity of cpp pointer for classic godot Object, if not valid, then remove jvm instance.
+        // This binds jvm instance lifecycle to native object's one.
+        synchronized(wrappedMap) {
+            for (entry in wrappedMap) {
+                if (!MemoryBridge.checkInstance(entry.key, entry.value.godotInstanceId)) {
+                    suppressBuffer.add(entry.key)
+                }
+            }
+            for (ptr in suppressBuffer) {
+                wrappedMap.remove(ptr)
+            }
+        }
+        suppressBuffer.clear()
+
+        synchronized(nativeCoreTypeMap) {
+            for (entry in nativeCoreTypeMap) {
+                val nativeCoreTypeReference = entry.value
+                if (nativeCoreTypeReference.get() == null) {
+                    if (MemoryBridge.unrefNativeCoreType(entry.key, nativeCoreTypeReference.coreVariantType.baseOrdinal)) {
+                        suppressBuffer.add(entry.key)
+                    }
+                }
+            }
+            for (ptr in suppressBuffer) {
+                nativeCoreTypeMap.remove(ptr)
+            }
+        }
+        suppressBuffer.clear()
     }
 
     fun close() {
@@ -102,88 +158,34 @@ object GarbageCollector {
             val finish = Instant.now()
             if (Duration.between(begin, finish).toMillis() > 5000) {
                 throw GCEndException(
-                        buildString {
-                            append("Some JVM godot instances are leaked.")
+                    buildString {
+                        append("Some JVM godot instances are leaked.")
+                        append(System.lineSeparator())
+                        if (shouldDisplayLeakInstancesOnClose) {
+                            append("Leaked references:")
                             append(System.lineSeparator())
-                            if (shouldDisplayLeakInstancesOnClose) {
-                                append("Leaked references:")
+                            for (entry in refWrappedMap) {
+                                append("    ${entry.key}: ${entry.value}")
                                 append(System.lineSeparator())
-                                for (entry in refWrappedMap) {
-                                    append("    ${entry.key}: ${entry.value}")
-                                    append(System.lineSeparator())
-                                }
-                                append("Leaked objects:")
+                            }
+                            append("Leaked objects:")
+                            append(System.lineSeparator())
+                            for (entry in wrappedMap) {
+                                append("    ${entry.key}: ${entry.value}")
                                 append(System.lineSeparator())
-                                for (entry in wrappedMap) {
-                                    append("    ${entry.key}: ${entry.value}")
-                                    append(System.lineSeparator())
-                                }
-                                append("Leaked native core types:")
+                            }
+                            append("Leaked native core types:")
+                            append(System.lineSeparator())
+                            for (entry in nativeCoreTypeMap) {
+                                append("    ${entry.key}: ${entry.value}")
                                 append(System.lineSeparator())
-                                for (entry in nativeCoreTypeMap) {
-                                    append("    ${entry.key}: ${entry.value}")
-                                    append(System.lineSeparator())
-                                }
                             }
                         }
+                    }
                 )
             }
         }
 
-    }
-
-    private fun run() {
-        if (forceJvmGarbageCollector) {
-            forceJvmGc()
-        }
-        checkAndClean()
-    }
-
-    private fun checkAndClean() {
-        // A native reference cannot die while a jvm instance exists (because counter > 0). When we don't need the
-        // jvm instance anymore, we decrease the counter.
-        synchronized(refWrappedMap) {
-            for (entry in refWrappedMap) {
-                if (entry.value.get() == null) {
-                    if (MemoryBridge.unref(entry.key)) {
-                        refWrappedSuppressBuffer.add(entry.key)
-                    }
-                }
-            }
-            for (ptr in refWrappedSuppressBuffer) {
-                refWrappedMap.remove(ptr)
-            }
-        }
-        refWrappedSuppressBuffer.clear()
-
-        // Check validity of cpp pointer for classic godot Object, if not valid, then remove jvm instance.
-        // This binds jvm instance lifecycle to native object's one.
-        synchronized(wrappedMap) {
-            for (entry in wrappedMap) {
-                if (!MemoryBridge.checkInstance(entry.key, entry.value.godotInstanceId)) {
-                    wrappedSuppressBuffer.add(entry.key)
-                }
-            }
-            for (ptr in wrappedSuppressBuffer) {
-                wrappedMap.remove(ptr)
-            }
-        }
-        wrappedSuppressBuffer.clear()
-
-        synchronized(nativeCoreTypeMap) {
-            for (entry in nativeCoreTypeMap) {
-                val nativeCoreTypeReference = entry.value
-                if (nativeCoreTypeReference.get() == null) {
-                    if (MemoryBridge.unrefNativeCoreType(entry.key, nativeCoreTypeReference.coreVariantType.baseOrdinal)) {
-                        nativeCoreTypeSuppressBuffer.add(entry.key)
-                    }
-                }
-            }
-            for (ptr in nativeCoreTypeSuppressBuffer) {
-                nativeCoreTypeMap.remove(ptr)
-            }
-        }
-        nativeCoreTypeSuppressBuffer.clear()
     }
 
     /**
