@@ -112,6 +112,7 @@ object GarbageCollector {
             if (forceJvmGarbageCollector) {
                 forceJvmGc()
             }
+            
             val isActive = checkAndClean()
 
             if (isActive) {
@@ -121,12 +122,11 @@ object GarbageCollector {
                 current_delay += INC_DELAY
                 current_delay = current_delay.coerceAtMost(MAX_DELAY)
             }
-            info(current_delay.toString())
+
             if (current_delay > 0L) {
                 Thread.sleep(current_delay)
             }
         }
-        info("GC Thead is closed")
     }
 
     /**
