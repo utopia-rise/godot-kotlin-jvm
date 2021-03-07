@@ -7,9 +7,9 @@
 namespace jni {
     class InitArgs {
     public:
-        jint version = JNI_VERSION_1_8;
+        jint version;
 
-        InitArgs() = default;
+        InitArgs();
         InitArgs(const InitArgs&) = default;
 
         void option(const std::string& option);

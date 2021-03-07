@@ -144,8 +144,11 @@ void GDKotlin::init() {
 #endif
         return;
     }
+
     jni::InitArgs args;
+#ifndef __ANDROID__
     args.version = JNI_VERSION_1_8;
+#endif
 #ifdef DEBUG_ENABLED
     args.option("-Xcheck:jni");
 #endif
@@ -237,10 +240,10 @@ void GDKotlin::init() {
 #endif
     }
 
+    jni::Jvm::init(args);
+
     check_and_copy_jar("godot-bootstrap.jar");
     check_and_copy_jar("main.jar");
-
-    jni::Jvm::init(args);
 
     LOG_INFO("Starting JVM ...")
     auto project_settings = ProjectSettings::get_singleton();
