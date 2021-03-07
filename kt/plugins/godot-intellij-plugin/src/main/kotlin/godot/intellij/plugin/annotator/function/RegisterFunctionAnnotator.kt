@@ -4,6 +4,7 @@ import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
+import godot.intellij.plugin.data.cache.godotroot.isInGodotRoot
 import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
 import godot.intellij.plugin.extension.registerProblem
@@ -17,6 +18,8 @@ class RegisterFunctionAnnotator : Annotator {
     private val notificationFunctionNotRegisteredQuickFix by lazy { NotificationFunctionNotRegisteredQuickFix() }
 
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
+        if (!element.isInGodotRoot()) return
+
         if (element is KtNamedFunction) {
             if (
                 element.containingClass()?.findAnnotation(FqName(REGISTER_CLASS_ANNOTATION)) != null &&

@@ -11,6 +11,8 @@ import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.util.indexing.FileBasedIndex
 import godot.intellij.plugin.ProjectDisposable
 import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCacheProvider
+import godot.intellij.plugin.data.cache.godotroot.getGodotRoot
+import godot.intellij.plugin.data.cache.godotroot.isInGodotRoot
 import godot.intellij.plugin.refactor.SceneAction
 import godot.intellij.plugin.wrapper.PsiTreeChangeListenerKt
 import org.jetbrains.kotlin.idea.KotlinFileType
@@ -35,6 +37,7 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
                 object : PsiTreeChangeListenerKt {
                     override fun beforeChildRemoval(event: PsiTreeChangeEvent) {
                         val child = event.child
+                        if (!child.isInGodotRoot()) return
                         when {
                             // whole file removed
                             child is KtFile && event.file == null -> psiFileRemoved(child)
@@ -44,30 +47,28 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
                     }
 
                     override fun beforeChildrenChange(event: PsiTreeChangeEvent) {
-                        event
-                            .file
-                            ?.let { psiFile ->
-                                if (psiFile.language == KotlinLanguage.INSTANCE) {
-                                    // remove class names (will be re registered in [childrenChanged])
-                                    // needed because [childrenChanged] gets triggered for each char typed. So for class name's a "new" class gets registered for each typed char
-                                    // no way to delete those obsolete class names again after [childrenChanged] as they simply don't exist anymore
-                                    psiFileRemoved(psiFile)
-                                }
-                            }
+                        val psiFile = event.file
+                        if (psiFile == null || !psiFile.isInGodotRoot()) return
+                        if (psiFile.language == KotlinLanguage.INSTANCE) {
+                            // remove class names (will be re registered in [childrenChanged])
+                            // needed because [childrenChanged] gets triggered for each char typed. So for class name's a "new" class gets registered for each typed char
+                            // no way to delete those obsolete class names again after [childrenChanged] as they simply don't exist anymore
+                            psiFileRemoved(psiFile)
+                        }
                     }
 
                     override fun childrenChanged(event: PsiTreeChangeEvent) {
-                        event
-                            .file
-                            ?.let { psiFile ->
-                                if (psiFile.language == KotlinLanguage.INSTANCE) {
-                                    psiFileChanged(psiFile)
-                                }
-                            }
+                        val psiFile = event.file
+                        if (psiFile == null || !psiFile.isInGodotRoot()) return
+                        if (psiFile.language == KotlinLanguage.INSTANCE) {
+                            psiFileChanged(psiFile)
+                        }
                     }
 
                     override fun childMoved(event: PsiTreeChangeEvent) {
                         val containingFile = event.child.containingFile
+                        if (!containingFile.isInGodotRoot()) return
+
                         if (containingFile.language == KotlinLanguage.INSTANCE && containingFile is KtFile) {
                             val isAnyClassRegisteredInFile = containingFile
                                 .classes
@@ -103,6 +104,7 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
                 GlobalSearchScope.projectScope(project)
             )
             .forEach { vFile ->
+                if (!vFile.isInGodotRoot(project)) return
                 PsiManager.getInstance(project).findFile(vFile)?.let { psiFile ->
                     psiFileChanged(psiFile)
                 }
@@ -110,11 +112,13 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
     }
 
     private fun psiFileRemoved(psiFile: PsiFile) {
-        RegisteredClassNameCacheProvider.provide(project).psiFileRemoved(psiFile)
+        val godotRoot = psiFile.getGodotRoot() ?: return
+        RegisteredClassNameCacheProvider.provide(project, godotRoot).psiFileRemoved(psiFile)
     }
 
     private fun psiFileChanged(psiFile: PsiFile) {
-        RegisteredClassNameCacheProvider.provide(project).psiFileChanged(psiFile)
+        val godotRoot = psiFile.getGodotRoot() ?: return
+        RegisteredClassNameCacheProvider.provide(project, godotRoot).psiFileChanged(psiFile)
     }
 
     override fun dispose(project: Project) {

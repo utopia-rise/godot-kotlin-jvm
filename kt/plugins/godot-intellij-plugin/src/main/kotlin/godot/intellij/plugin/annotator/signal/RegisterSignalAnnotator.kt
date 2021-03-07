@@ -5,6 +5,7 @@ import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
+import godot.intellij.plugin.data.cache.godotroot.isInGodotRoot
 import godot.intellij.plugin.data.model.REGISTER_SIGNAL_ANNOTATION
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.RegisterSignalInitializerQuickFix
@@ -20,6 +21,8 @@ class RegisterSignalAnnotator : Annotator {
     private val useDelegateQuickFix by lazy { RegisterSignalInitializerQuickFix() }
 
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
+        if (!element.isInGodotRoot()) return
+
         if (element is KtProperty && element.findAnnotation(FqName(REGISTER_SIGNAL_ANNOTATION)) != null) {
             checkMutability(element, holder)
             checkRegisteredType(element, holder)

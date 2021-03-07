@@ -6,6 +6,7 @@ import com.intellij.openapi.editor.markup.GutterIconRenderer
 import com.intellij.openapi.util.IconLoader
 import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.LeafPsiElement
+import godot.intellij.plugin.data.cache.godotroot.getGodotRoot
 import godot.intellij.plugin.data.cache.signalconnection.SignalConnectionCacheProvider
 import godot.intellij.plugin.extension.isSignal
 import godot.intellij.plugin.ui.dialog.IncomingSignalConnectionsDialog
@@ -19,16 +20,17 @@ import kotlin.text.Typography.nbsp
 
 class SignalConnectionLineMarker : LineMarkerProvider {
     override fun getLineMarkerInfo(element: PsiElement): LineMarkerInfo<*>? {
+        val godotRoot = element.getGodotRoot() ?: return null
+
         if (element !is LeafPsiElement || element.elementType != KtTokens.IDENTIFIER) {
             return null
         }
 
         val parent = element.parent
         if (parent is KtProperty && parent.type().isSignal()) {
-            val project = parent.project
             val containingClassFqName = parent.containingClass()?.fqName?.asString() ?: return null
             val propertyName = parent.name ?: return null
-            val signalConnectionHandler = SignalConnectionCacheProvider.provide(project)
+            val signalConnectionHandler = SignalConnectionCacheProvider.provide(parent.project, godotRoot)
 
             val signalConnections = signalConnectionHandler
                 .getOutgoingKtSignalConnection(
@@ -67,10 +69,9 @@ class SignalConnectionLineMarker : LineMarkerProvider {
         }
 
         if (parent is KtFunction) {
-            val project = parent.project
             val containingClassFqName = parent.containingClass()?.fqName?.asString() ?: return null
             val functionName = parent.name ?: return null
-            val signalConnectionHandler = SignalConnectionCacheProvider.provide(project)
+            val signalConnectionHandler = SignalConnectionCacheProvider.provide(parent.project, godotRoot)
 
             val signalConnections = signalConnectionHandler
                 .getIncomingKtSignalConnection(

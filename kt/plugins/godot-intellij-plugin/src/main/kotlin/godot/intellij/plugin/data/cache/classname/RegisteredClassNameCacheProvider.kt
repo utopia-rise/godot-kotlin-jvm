@@ -1,15 +1,22 @@
 package godot.intellij.plugin.data.cache.classname
 
 import com.intellij.openapi.project.Project
+import godot.intellij.plugin.data.cache.godotroot.GodotRoot
 
 object RegisteredClassNameCacheProvider {
-    private val registeredClassNameCaches: MutableMap<Project, RegisteredClassNameCache> = mutableMapOf()
+    private val registeredClassNameCaches: MutableMap<Project, MutableMap<GodotRoot, RegisteredClassNameCache>> =
+        mutableMapOf()
 
-    fun provide(project: Project): RegisteredClassNameCache {
-        var checker = registeredClassNameCaches[project]
+    fun provide(project: Project, godotRoot: GodotRoot): RegisteredClassNameCache {
+        val projectCaches = registeredClassNameCaches[project] ?: run {
+            registeredClassNameCaches[project] = mutableMapOf()
+            registeredClassNameCaches[project]!!
+        }
+
+        var checker = projectCaches[godotRoot]
         if (checker == null) {
-            registeredClassNameCaches[project] = RegisteredClassNameCache()
-            checker = registeredClassNameCaches[project]
+            projectCaches[godotRoot] = RegisteredClassNameCache()
+            checker = projectCaches[godotRoot]
         }
         return requireNotNull(checker)
     }

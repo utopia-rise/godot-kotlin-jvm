@@ -5,6 +5,8 @@ import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCacheProvider
+import godot.intellij.plugin.data.cache.godotroot.getGodotRoot
+import godot.intellij.plugin.data.cache.godotroot.isInGodotRoot
 import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_CONSTRUCTOR_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
@@ -17,7 +19,7 @@ import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.ClassAlreadyRegisteredQuickFix
 import godot.intellij.plugin.quickfix.ClassNotRegisteredQuickFix
 import org.jetbrains.kotlin.idea.util.findAnnotation
-import org.jetbrains.kotlin.idea.util.module
+import org.jetbrains.kotlin.idea.util.projectStructure.module
 import org.jetbrains.kotlin.idea.util.sourceRoots
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClass
@@ -31,6 +33,8 @@ class RegisterClassAnnotator : Annotator {
     private val classNotRegisteredQuickFix by lazy { ClassNotRegisteredQuickFix() }
 
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
+        if (!element.isInGodotRoot()) return
+
         when (element) {
             is KtClass -> {
                 if (element.findAnnotation(FqName(REGISTER_CLASS_ANNOTATION)) == null) {
@@ -140,7 +144,8 @@ class RegisterClassAnnotator : Annotator {
 
     private fun checkRegisteredClassName(ktClass: KtClass, holder: AnnotationHolder) {
         val (fqName, registeredName) = ktClass.getRegisteredClassName() ?: return
-        val fqNames = RegisteredClassNameCacheProvider.provide(ktClass.project)
+        val godotRoot = ktClass.getGodotRoot() ?: return
+        val fqNames = RegisteredClassNameCacheProvider.provide(ktClass.project, godotRoot)
             .getContainersByName(registeredName)
             .map { container -> container.fqName }
 
