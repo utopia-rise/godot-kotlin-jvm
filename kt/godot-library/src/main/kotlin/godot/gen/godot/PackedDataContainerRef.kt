@@ -25,7 +25,7 @@ open class PackedDataContainerRef : Reference() {
     throw NotImplementedError("_is_dictionary is not implemented for PackedDataContainerRef")
   }
 
-  open fun _iterGet(arg0: Any): Any? {
+  open fun _iterGet(arg0: Any?): Any? {
     throw NotImplementedError("_iter_get is not implemented for PackedDataContainerRef")
   }
 

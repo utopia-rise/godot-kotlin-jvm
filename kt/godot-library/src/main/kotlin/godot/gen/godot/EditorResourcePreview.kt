@@ -32,7 +32,7 @@ open class EditorResourcePreview : Node() {
     arg2: Texture,
     arg3: Long,
     arg4: String,
-    arg5: Any
+    arg5: Any?
   ) {
   }
 
@@ -52,7 +52,7 @@ open class EditorResourcePreview : Node() {
     resource: Resource,
     receiver: Object,
     receiverFunc: String,
-    userdata: Any
+    userdata: Any?
   ) {
     TransferContext.writeArguments(OBJECT to resource, OBJECT to receiver, STRING to receiverFunc,
         ANY to userdata)
@@ -64,7 +64,7 @@ open class EditorResourcePreview : Node() {
     path: String,
     receiver: Object,
     receiverFunc: String,
-    userdata: Any
+    userdata: Any?
   ) {
     TransferContext.writeArguments(STRING to path, OBJECT to receiver, STRING to receiverFunc, ANY
         to userdata)

@@ -212,7 +212,7 @@ open class StreamPeer : Reference() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_UTF8_STRING, NIL)
   }
 
-  open fun putVar(value: Any, fullObjects: Boolean = false) {
+  open fun putVar(value: Any?, fullObjects: Boolean = false) {
     TransferContext.writeArguments(ANY to value, BOOL to fullObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEER_PUT_VAR, NIL)
   }

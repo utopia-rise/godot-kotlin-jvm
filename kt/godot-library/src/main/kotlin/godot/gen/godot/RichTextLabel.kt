@@ -261,7 +261,7 @@ open class RichTextLabel : Control() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  open fun installEffect(effect: Any) {
+  open fun installEffect(effect: Any?) {
     TransferContext.writeArguments(ANY to effect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_INSTALL_EFFECT, NIL)
   }
@@ -335,7 +335,7 @@ open class RichTextLabel : Control() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_LIST, NIL)
   }
 
-  open fun pushMeta(data: Any) {
+  open fun pushMeta(data: Any?) {
     TransferContext.writeArguments(ANY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_META, NIL)
   }

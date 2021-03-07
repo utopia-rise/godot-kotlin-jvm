@@ -341,7 +341,7 @@ open class Object : KtObject() {
   open fun _notification(what: Long) {
   }
 
-  open fun _set(property: String, value: Any): Boolean {
+  open fun _set(property: String, value: Any?): Boolean {
     throw NotImplementedError("_set is not implemented for Object")
   }
 
@@ -547,7 +547,7 @@ open class Object : KtObject() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_REMOVE_META, NIL)
   }
 
-  open fun set(property: String, value: Any) {
+  open fun set(property: String, value: Any?) {
     TransferContext.writeArguments(STRING to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET, NIL)
   }
@@ -557,12 +557,12 @@ open class Object : KtObject() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET_BLOCK_SIGNALS, NIL)
   }
 
-  open fun setDeferred(property: String, value: Any) {
+  open fun setDeferred(property: String, value: Any?) {
     TransferContext.writeArguments(STRING to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET_DEFERRED, NIL)
   }
 
-  open fun setIndexed(property: NodePath, value: Any) {
+  open fun setIndexed(property: NodePath, value: Any?) {
     TransferContext.writeArguments(NODE_PATH to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET_INDEXED, NIL)
   }
@@ -572,7 +572,7 @@ open class Object : KtObject() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET_MESSAGE_TRANSLATION, NIL)
   }
 
-  open fun setMeta(name: String, value: Any) {
+  open fun setMeta(name: String, value: Any?) {
     TransferContext.writeArguments(STRING to name, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET_META, NIL)
   }

@@ -84,7 +84,7 @@ open class PacketPeer : Reference() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  open fun putVar(_var: Any, fullObjects: Boolean = false): GodotError {
+  open fun putVar(_var: Any?, fullObjects: Boolean = false): GodotError {
     TransferContext.writeArguments(ANY to _var, BOOL to fullObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEER_PUT_VAR, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

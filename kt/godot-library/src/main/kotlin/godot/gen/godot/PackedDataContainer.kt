@@ -28,7 +28,7 @@ open class PackedDataContainer : Resource() {
     throw NotImplementedError("_get_data is not implemented for PackedDataContainer")
   }
 
-  open fun _iterGet(arg0: Any): Any? {
+  open fun _iterGet(arg0: Any?): Any? {
     throw NotImplementedError("_iter_get is not implemented for PackedDataContainer")
   }
 
@@ -43,7 +43,7 @@ open class PackedDataContainer : Resource() {
   open fun _setData(arg0: PoolByteArray) {
   }
 
-  open fun pack(value: Any): GodotError {
+  open fun pack(value: Any?): GodotError {
     TransferContext.writeArguments(ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDDATACONTAINER_PACK, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

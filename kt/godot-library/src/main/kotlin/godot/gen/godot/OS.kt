@@ -747,8 +747,8 @@ object OS : Object() {
   fun globalMenuAddItem(
     menu: String,
     label: String,
-    id: Any,
-    meta: Any
+    id: Any?,
+    meta: Any?
   ) {
     TransferContext.writeArguments(STRING to menu, STRING to label, ANY to id, ANY to meta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GLOBAL_MENU_ADD_ITEM, NIL)

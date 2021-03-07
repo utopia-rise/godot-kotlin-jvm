@@ -362,7 +362,7 @@ open class SceneTree : MainLoop() {
   open fun setGroup(
     group: String,
     property: String,
-    value: Any
+    value: Any?
   ) {
     TransferContext.writeArguments(STRING to group, STRING to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_GROUP, NIL)
@@ -372,7 +372,7 @@ open class SceneTree : MainLoop() {
     callFlags: Long,
     group: String,
     property: String,
-    value: Any
+    value: Any?
   ) {
     TransferContext.writeArguments(LONG to callFlags, STRING to group, STRING to property, ANY to
         value)

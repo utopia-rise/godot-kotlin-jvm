@@ -74,10 +74,10 @@ open class ProximityGroup : Spatial() {
   }
 
 
-  open fun _proximityGroupBroadcast(name: String, params: Any) {
+  open fun _proximityGroupBroadcast(name: String, params: Any?) {
   }
 
-  open fun broadcast(name: String, parameters: Any) {
+  open fun broadcast(name: String, parameters: Any?) {
     TransferContext.writeArguments(STRING to name, ANY to parameters)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROXIMITYGROUP_BROADCAST, NIL)
   }

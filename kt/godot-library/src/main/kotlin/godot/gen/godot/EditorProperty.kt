@@ -126,7 +126,7 @@ open class EditorProperty : Container() {
 
   open fun emitChanged(
     property: String,
-    value: Any,
+    value: Any?,
     field: String = "",
     changing: Boolean = false
   ) {

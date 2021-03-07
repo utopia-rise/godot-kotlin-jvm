@@ -217,7 +217,7 @@ open class ScriptEditor : PanelContainer() {
 
   open fun canDropDataFw(
     point: Vector2,
-    data: Any,
+    data: Any?,
     from: Control
   ): Boolean {
     TransferContext.writeArguments(VECTOR2 to point, ANY to data, OBJECT to from)
@@ -227,7 +227,7 @@ open class ScriptEditor : PanelContainer() {
 
   open fun dropDataFw(
     point: Vector2,
-    data: Any,
+    data: Any?,
     from: Control
   ) {
     TransferContext.writeArguments(VECTOR2 to point, ANY to data, OBJECT to from)

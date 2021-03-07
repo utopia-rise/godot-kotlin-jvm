@@ -397,7 +397,7 @@ open class TreeItem : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_ICON_REGION, NIL)
   }
 
-  open fun setMetadata(column: Long, meta: Any) {
+  open fun setMetadata(column: Long, meta: Any?) {
     TransferContext.writeArguments(LONG to column, ANY to meta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_METADATA, NIL)
   }

@@ -366,7 +366,7 @@ open class Animation : Resource() {
   open fun trackInsertKey(
     trackIdx: Long,
     time: Double,
-    key: Any,
+    key: Any?,
     transition: Double = 1.0
   ) {
     TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, ANY to key, DOUBLE to
@@ -456,7 +456,7 @@ open class Animation : Resource() {
   open fun trackSetKeyValue(
     trackIdx: Long,
     key: Long,
-    value: Any
+    value: Any?
   ) {
     TransferContext.writeArguments(LONG to trackIdx, LONG to key, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_TRACK_SET_KEY_VALUE, NIL)

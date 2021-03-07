@@ -300,7 +300,7 @@ open class File : Reference() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__FILE_STORE_STRING, NIL)
   }
 
-  open fun storeVar(value: Any, fullObjects: Boolean = false) {
+  open fun storeVar(value: Any?, fullObjects: Boolean = false) {
     TransferContext.writeArguments(ANY to value, BOOL to fullObjects)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__FILE_STORE_VAR, NIL)
   }

@@ -348,7 +348,7 @@ open class VisualScript : Script() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_SET_NODE_POSITION, NIL)
   }
 
-  open fun setVariableDefaultValue(name: String, value: Any) {
+  open fun setVariableDefaultValue(name: String, value: Any?) {
     TransferContext.writeArguments(STRING to name, ANY to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_SET_VARIABLE_DEFAULT_VALUE, NIL)

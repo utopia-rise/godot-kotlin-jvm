@@ -126,7 +126,7 @@ object ClassDB : Object() {
   fun classSetProperty(
     _object: Object,
     property: String,
-    value: Any
+    value: Any?
   ): GodotError {
     TransferContext.writeArguments(OBJECT to _object, STRING to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__CLASSDB_CLASS_SET_PROPERTY, LONG)

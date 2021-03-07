@@ -41,7 +41,7 @@ open class UndoRedo : Object() {
   open fun addDoProperty(
     _object: Object,
     property: String,
-    value: Any
+    value: Any?
   ) {
     TransferContext.writeArguments(OBJECT to _object, STRING to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_DO_PROPERTY, NIL)
@@ -65,7 +65,7 @@ open class UndoRedo : Object() {
   open fun addUndoProperty(
     _object: Object,
     property: String,
-    value: Any
+    value: Any?
   ) {
     TransferContext.writeArguments(OBJECT to _object, STRING to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_UNDO_PROPERTY, NIL)

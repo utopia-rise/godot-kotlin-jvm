@@ -18,6 +18,8 @@ KtPropertyInfo::KtPropertyInfo(jni::JObject p_wrapped, jni::JObject& p_class_loa
     hint = static_cast<PropertyHint>(wrapped.call_int_method(env, getPropertyHintMethod));
     jni::MethodId getHintStringMethod{get_method_id(env, jni_methods.GET_HINT_STRING)};
     hint_string = env.from_jstring(wrapped.call_object_method(env, getHintStringMethod));
+    jni::MethodId getRpcModeMethod{get_method_id(env, jni_methods.GET_RPC_MODE)};
+    rpc_mode = static_cast<MultiplayerAPI::RPCMode>(wrapped.call_int_method(env, getRpcModeMethod));
 }
 
 PropertyInfo KtPropertyInfo::toPropertyInfo() {
@@ -48,6 +50,10 @@ KtProperty::~KtProperty() {
 
 StringName KtProperty::get_name() const {
     return propertyInfo->name;
+}
+
+MultiplayerAPI::RPCMode KtProperty::get_rpc_mode() const {
+    return propertyInfo->rpc_mode;
 }
 
 PropertyInfo KtProperty::get_member_info() {

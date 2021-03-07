@@ -40,7 +40,7 @@ open class EditorSpatialGizmoPlugin : Resource() {
   open fun _commitHandle(
     gizmo: EditorSpatialGizmo,
     index: Long,
-    restore: Any,
+    restore: Any?,
     cancel: Boolean
   ) {
   }

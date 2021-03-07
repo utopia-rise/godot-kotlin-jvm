@@ -209,7 +209,7 @@ open class EditorFileDialog : ConfirmationDialog() {
     arg0: String,
     arg1: Texture,
     arg2: Texture,
-    arg3: Any
+    arg3: Any?
   ) {
   }
 
@@ -217,7 +217,7 @@ open class EditorFileDialog : ConfirmationDialog() {
     arg0: String,
     arg1: Texture,
     arg2: Texture,
-    arg3: Any
+    arg3: Any?
   ) {
   }
 

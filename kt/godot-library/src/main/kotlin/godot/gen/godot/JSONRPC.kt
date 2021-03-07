@@ -26,7 +26,7 @@ import kotlin.Suppress
 open class JSONRPC : Object() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_JSONRPC)
 
-  open fun makeNotification(method: String, params: Any): Dictionary<Any?, Any?> {
+  open fun makeNotification(method: String, params: Any?): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to method, ANY to params)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_NOTIFICATION,
         DICTIONARY)
@@ -35,15 +35,15 @@ open class JSONRPC : Object() {
 
   open fun makeRequest(
     method: String,
-    params: Any,
-    id: Any
+    params: Any?,
+    id: Any?
   ): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to method, ANY to params, ANY to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_REQUEST, DICTIONARY)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
-  open fun makeResponse(result: Any, id: Any): Dictionary<Any?, Any?> {
+  open fun makeResponse(result: Any?, id: Any?): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(ANY to result, ANY to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_RESPONSE, DICTIONARY)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
@@ -60,7 +60,7 @@ open class JSONRPC : Object() {
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
-  open fun processAction(action: Any, recurse: Boolean = false): Any? {
+  open fun processAction(action: Any?, recurse: Boolean = false): Any? {
     TransferContext.writeArguments(ANY to action, BOOL to recurse)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_PROCESS_ACTION, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?

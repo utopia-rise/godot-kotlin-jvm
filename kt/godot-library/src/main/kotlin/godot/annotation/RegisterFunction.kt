@@ -1,5 +1,7 @@
 package godot.annotation
 
+import godot.MultiplayerAPI
+
 /**
  * Registeres a function in godot so it can be called through another language or from godot
  *
@@ -12,5 +14,5 @@ package godot.annotation
 @Target(AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class RegisterFunction(
-    val rpcMode: RPCMode = RPCMode.DISABLED
+    val rpcMode: MultiplayerAPI.RPCMode = MultiplayerAPI.RPCMode.DISABLED
 )

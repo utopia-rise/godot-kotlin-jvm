@@ -160,23 +160,23 @@ open class MultiplayerAPI : Reference() {
   enum class RPCMode(
     id: Long
   ) {
-    RPC_MODE_DISABLED(0),
+    DISABLED(0),
 
-    RPC_MODE_REMOTE(1),
+    REMOTE(1),
 
-    RPC_MODE_MASTER(2),
+    MASTER(2),
 
-    RPC_MODE_PUPPET(3),
+    PUPPET(3),
 
-    RPC_MODE_SLAVE(3),
+    SLAVE(3),
 
-    RPC_MODE_REMOTESYNC(4),
+    REMOTESYNC(4),
 
-    RPC_MODE_SYNC(4),
+    SYNC(4),
 
-    RPC_MODE_MASTERSYNC(5),
+    MASTERSYNC(5),
 
-    RPC_MODE_PUPPETSYNC(6);
+    PUPPETSYNC(6);
 
     val id: Long
     init {

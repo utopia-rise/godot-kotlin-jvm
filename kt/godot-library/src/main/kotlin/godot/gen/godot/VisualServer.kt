@@ -2054,7 +2054,7 @@ object VisualServer : Object() {
   fun materialSetParam(
     material: RID,
     parameter: String,
-    value: Any
+    value: Any?
   ) {
     TransferContext.writeArguments(_RID to material, STRING to parameter, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSERVER_MATERIAL_SET_PARAM,
@@ -2640,7 +2640,7 @@ object VisualServer : Object() {
   fun requestFrameDrawnCallback(
     where: Object,
     method: String,
-    userdata: Any
+    userdata: Any?
   ) {
     TransferContext.writeArguments(OBJECT to where, STRING to method, ANY to userdata)
     TransferContext.callMethod(rawPtr,
