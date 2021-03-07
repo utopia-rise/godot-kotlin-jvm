@@ -5,6 +5,8 @@
 #include <core/project_settings.h>
 #include <modules/kotlin_jvm/src/logging.h>
 
+#ifndef __ANDROID__
+
 void* jni::JvmLoader::jvmLib{nullptr};
 
 void jni::JvmLoader::load_jvm_lib() {
@@ -86,3 +88,5 @@ String jni::JvmLoader::get_path_to_locally_installed_jvm() {
     }
     return pathToLocallyInstalledJvmLib;
 }
+
+#endif
