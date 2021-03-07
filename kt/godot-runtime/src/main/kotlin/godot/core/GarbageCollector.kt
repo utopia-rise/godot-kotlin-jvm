@@ -11,11 +11,13 @@ import java.util.concurrent.TimeUnit
 object GarbageCollector {
     private val refWrappedMap = mutableMapOf<VoidPtr, WeakReference<KtObject>>()
     private val wrappedMap = mutableMapOf<VoidPtr, KtObject>()
-    private val nativeCoreTypeMap =
-            mutableMapOf<VoidPtr, NativeCoreTypeWeakReference>()
+    private val nativeCoreTypeMap = mutableMapOf<VoidPtr, NativeCoreTypeWeakReference>()
+
     private val refWrappedSuppressBuffer = mutableListOf<VoidPtr>()
     private val wrappedSuppressBuffer = mutableListOf<VoidPtr>()
     private val nativeCoreTypeSuppressBuffer = mutableListOf<VoidPtr>()
+
+    private val staticInstances = mutableListOf<GodotStatic>()
 
     private val executor = Executors.newSingleThreadScheduledExecutor()
 
@@ -24,6 +26,7 @@ object GarbageCollector {
     var shouldDisplayLeakInstancesOnClose = true
 
     private var gcState = GCState.NONE
+
     val isClosed: Boolean
         get() = gcState == GCState.CLOSED
 
@@ -50,6 +53,10 @@ object GarbageCollector {
         synchronized(nativeCoreTypeMap) {
             nativeCoreTypeMap[rawPtr] = NativeCoreTypeWeakReference(nativeCoreType)
         }
+    }
+
+    fun registerStatic(instance: GodotStatic) {
+        staticInstances.add(instance)
     }
 
     fun getObjectInstance(ptr: VoidPtr) = synchronized(wrappedMap) {
@@ -84,6 +91,10 @@ object GarbageCollector {
     }
 
     fun cleanUp() {
+        for(instance in staticInstances){
+            instance.collect()
+        }
+
         val begin = Instant.now()
         while (refWrappedMap.isNotEmpty() || wrappedMap.isNotEmpty() || nativeCoreTypeMap.isNotEmpty()) {
             forceJvmGc()
@@ -201,4 +212,13 @@ object GarbageCollector {
     }
 
     private class GCEndException(message: String) : Exception(message)
+}
+
+interface GodotStatic{
+
+    fun registerAsSingleton(){
+        GarbageCollector.registerStatic(this)
+    }
+
+    fun collect();
 }

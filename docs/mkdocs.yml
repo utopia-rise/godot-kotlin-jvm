@@ -37,6 +37,7 @@ nav:
   - Advanced:
     - Custom Src dirs: advanced/custom-src-dirs.md
     - Commandline args: advanced/commandline-args.md
+    - Kotlin singletons: advanced/kotlin-singleton.md
   - API differences: api-differences.md
   - Versioning: versioning.md
   - Supported platforms: supported-platforms.md
