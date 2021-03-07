@@ -11,24 +11,30 @@ jobs:
             java-version: 11
     runs-on: ${{ matrix.os }}
     steps:
+      - name: Clone Godot Engine
+        uses: actions/checkout@v2
+        with:
+          repository: godotengine/godot
+          ref: 3.2.3-stable
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
-      - name: Checkout submodules
-        uses: snickerbockers/submodules-init@v4
+        with:
+          path: modules/kotlin_jvm
+          submodules: recursive
       - name: Set up JDK ${{ matrix.java-version }}
         uses: actions/setup-java@v1
         with:
           java-version: ${{ matrix.java-version }}
       - uses: eskatos/gradle-command-action@v1
         with:
-          wrapper-directory: kt/
-          build-root-directory: kt/
+          wrapper-directory: modules/kotlin_jvm/kt/
+          build-root-directory: modules/kotlin_jvm/kt/
           arguments: godot-library:build
       - name: Upload godot-bootstrap jar
         uses: actions/upload-artifact@v1
         with:
           name: godot-bootstrap
-          path: kt/godot-library/build/libs/godot-bootstrap.jar
+          path: modules/kotlin_jvm/kt/godot-library/build/libs/godot-bootstrap.jar
   build-editor-debug:
     strategy:
       matrix:
@@ -88,9 +94,15 @@ jobs:
             java-version: 11
     runs-on: ${{ matrix.os }}
     steps:
+      - name: Clone Godot Engine
+        uses: actions/checkout@v2
+        with:
+          repository: godotengine/godot
+          ref: 3.2.3-stable
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
         with:
+          path: modules/kotlin_jvm
           submodules: recursive
       - name: Set up JDK ${{ matrix.java-version }}
         uses: actions/setup-java@v1
@@ -99,8 +111,8 @@ jobs:
       - name: Build tests project
         uses: eskatos/gradle-command-action@v1
         with:
-          wrapper-directory: harness/tests/
-          build-root-directory: harness/tests/
+          wrapper-directory: modules/kotlin_jvm/harness/tests/
+          build-root-directory: modules/kotlin_jvm/harness/tests/
           arguments: build
       - name: Download OSX Editor Debug App
         uses: actions/download-artifact@v1
@@ -113,8 +125,8 @@ jobs:
       - name: Run Tests
         run: |
           cp godot-bootstrap/godot-bootstrap.jar osx-editor-debug-app/
-          cd harness/tests/
+          cd modules/kotlin_jvm/harness/tests/
           chmod +x run_godot_kotlin_tests.sh
-          chmod +x ../../osx-editor-debug-app/godot.osx.tools.64
+          chmod +x ../../../../osx-editor-debug-app/godot.osx.tools.64
           jlink --add-modules java.base,java.logging --output jre
-          ./run_godot_kotlin_tests.sh ../../osx-editor-debug-app/godot.osx.tools.64
+          ./run_godot_kotlin_tests.sh ../../../../osx-editor-debug-app/godot.osx.tools.64
