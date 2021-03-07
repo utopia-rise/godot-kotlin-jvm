@@ -20,12 +20,12 @@ object GarbageCollector {
     private const val INC_DELAY = 100L
     private var current_delay = 0L
 
-    //Number of Objects to be check each loop
+    //Number of objects to check each loop
     private const val CHECK_NUMBER = 256
     private const val CHECK_PER_CENT = 0.2f
     private var current_index = 0
 
-    //Contain the pointer of different Godot types
+    //Contain the pointerd of different Godot types
     private val wrappedMap = mutableMapOf<VoidPtr, KtObject>()
     private val refWrappedMap = mutableMapOf<VoidPtr, ReferenceWeakReference>()
     private val nativeCoreTypeMap = mutableMapOf<VoidPtr, NativeCoreWeakReference>()
@@ -35,10 +35,10 @@ object GarbageCollector {
     private val nativeReferenceQueue = ReferenceQueue<NativeCoreType>()
     private var wrapperList: List<Pair<VoidPtr, KtObject>>? = null
 
-    //A list to store the pointer to delete after we iterate the maps(to avoid concurrent modifications)
+    //A list to store the pointers to delete after we iterate the maps(to avoid concurrent modifications)
     private val suppressBuffer = mutableListOf<VoidPtr>()
 
-    //Holds the instance to clean up when the JVM stops.
+    //Holds the instances to clean up when the JVM stops.
     private val staticInstances = mutableListOf<GodotStatic>()
 
     private val executor = Executors.newSingleThreadScheduledExecutor()
