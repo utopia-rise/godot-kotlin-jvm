@@ -15,20 +15,25 @@ import java.util.concurrent.TimeUnit
 object GarbageCollector {
 
     //Handle the rate of the GC
-    private const val MIN_DELAY = 100L
+    private const val MIN_DELAY = 0L
     private const val MAX_DELAY = 2000L
     private const val INC_DELAY = 100L
     private var current_delay = 0L
 
+    //Number of Objects to be check each loop
+    private const val CHECK_NUMBER = 256
+    private const val CHECK_PER_CENT = 0.2f
+    private var current_index = 0
+
     //Contain the pointer of different Godot types
     private val wrappedMap = mutableMapOf<VoidPtr, KtObject>()
-
     private val refWrappedMap = mutableMapOf<VoidPtr, ReferenceWeakReference>()
     private val nativeCoreTypeMap = mutableMapOf<VoidPtr, NativeCoreWeakReference>()
 
     //Queues so we are notified when the GC runs on references
     private val refReferenceQueue = ReferenceQueue<KtObject>()
     private val nativeReferenceQueue = ReferenceQueue<NativeCoreType>()
+    private var wrapperList: List<Pair<VoidPtr, KtObject>>? = null
 
     //A list to store the pointer to delete after we iterate the maps(to avoid concurrent modifications)
     private val suppressBuffer = mutableListOf<VoidPtr>()
@@ -116,7 +121,9 @@ object GarbageCollector {
                 current_delay += INC_DELAY
                 current_delay = current_delay.coerceAtMost(MAX_DELAY)
             }
-            Thread.sleep(current_delay)
+            if (current_delay > 0L) {
+                Thread.sleep(current_delay)
+            }
         }
     }
 
@@ -127,34 +134,55 @@ object GarbageCollector {
      */
     private fun checkAndClean(): Boolean {
         var isActive = false
+        var counter = 0
 
         // Check validity of cpp pointer for classic godot Object, if not valid, then remove jvm instance.
         // This binds jvm instance lifecycle to native object's one.
-        val wrapIterable = synchronized(wrappedMap) {
-            //We only create a single List in this block so we don't block the whole map for the duration of the checking
-            wrappedMap.toList()
+        if (wrapperList == null) {
+            wrapperList = synchronized(wrappedMap) {
+                //We only create a single List in this block so we don't block the whole map for the duration of the checking
+                wrappedMap.toList()
+            }
         }
-        for (entry in wrapIterable) {
+
+        val size = wrapperList!!.size
+
+        //Number of check is a % of the total list of object, which at least the regular number of check per iteration.
+        val limit = (CHECK_PER_CENT * size)
+            .toInt()
+            .coerceAtLeast(CHECK_NUMBER)
+            .coerceAtMost(size - current_index)
+
+        while (counter < limit) {
+            val entry = wrapperList!![current_index++]
             if (!MemoryBridge.checkInstance(entry.first, entry.second.godotInstanceId)) {
                 suppressBuffer.add(entry.first)
                 isActive = true
             }
+            counter++
         }
+        if(current_index == size){
+            wrapperList = null
+            current_index = 0
+        }
+
         synchronized(wrappedMap) {
             for (ptr in suppressBuffer) {
                 wrappedMap.remove(ptr)
             }
         }
         suppressBuffer.clear()
+        counter = 0
 
         // A native reference cannot die while a jvm instance exists (because counter > 0). When we don't need the
         // jvm instance anymore, we decrease the counter.
-        while (true) {
+        while (counter < CHECK_NUMBER) {
             val ref = (refReferenceQueue.poll() ?: break) as ReferenceWeakReference
             if (MemoryBridge.unref(ref.ptr)) {
                 suppressBuffer.add(ref.ptr)
                 isActive = true
             }
+            counter++
         }
         synchronized(refWrappedMap) {
             for (ptr in suppressBuffer) {
@@ -162,15 +190,16 @@ object GarbageCollector {
             }
         }
         suppressBuffer.clear()
+        counter = 0
 
         // Same as before for NativeCoreTypes
-        while (true) {
+        while (counter < CHECK_NUMBER) {
             val ref = (nativeReferenceQueue.poll() ?: break) as NativeCoreWeakReference
             if (MemoryBridge.unrefNativeCoreType(ref.ptr, ref.variantType.baseOrdinal)) {
                 suppressBuffer.add(ref.ptr)
                 isActive = true
             }
-
+            counter++
         }
         synchronized(nativeCoreTypeMap) {
             for (ptr in suppressBuffer) {
