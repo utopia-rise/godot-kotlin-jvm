@@ -121,10 +121,12 @@ object GarbageCollector {
                 current_delay += INC_DELAY
                 current_delay = current_delay.coerceAtMost(MAX_DELAY)
             }
+            info(current_delay.toString())
             if (current_delay > 0L) {
                 Thread.sleep(current_delay)
             }
         }
+        info("GC Thead is closed")
     }
 
     /**
@@ -214,6 +216,7 @@ object GarbageCollector {
     fun close() {
         executor.shutdown()
         gcState = GCState.CLOSED
+        executor.awaitTermination(5000, TimeUnit.MILLISECONDS)
         info("Closing GC thread")
     }
 
