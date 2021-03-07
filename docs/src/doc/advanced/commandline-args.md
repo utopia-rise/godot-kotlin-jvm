@@ -1,4 +1,4 @@
-The following command line args can be supplied to customize the behaviour or the Godot-Jvm binding:
+The following command line args can be supplied to customize the behaviour or the Godot Kotlin/JVM binding:
 
 | arg | default value | description |
 | --- | --- | ---|

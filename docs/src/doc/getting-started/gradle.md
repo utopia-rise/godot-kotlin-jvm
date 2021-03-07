@@ -4,7 +4,7 @@ You will also need to have Java 9 or higher installed for development. But don't
 Open a terminal and `cd` to root directory of your Godot project.
 
 ## Wrapper
-On this step, we will be setting up a Gradle [wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html). The wrapper will ensure that anyone who wants to build your project from source will use the same gradle version.
+On this step, we will be setting up a gradle [wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html). The wrapper will ensure that anyone who wants to build your project from source will use the same gradle version.
 
 ```shell
 touch build.gradle.kts gradle.properties settings.gradle.kts
@@ -61,8 +61,7 @@ class Simple: Spatial() {
 The [classes](../user-guide/classes.md) section covers in detail what we did here, but for now `@RegisterClass` will register the annotated class to Godot so Godot knows our class exist.
 
 !!! note ""
-    The plugin automatically generates the registration code which registers your class. We do not recommend that you check these files into source control.  
-    The [manual registration](TODO()) section covers how you can do this manually if you so desire.
+    The plugin automatically generates the registration code which registers your class. We do not recommend that you check these files into source control.
     
 Now we can trigger a build.
 
@@ -72,10 +71,10 @@ Now we can trigger a build.
 
 Once the build completes, you are able to use your scripts in Godot. Simply attach the `kt` files containing registered classes to nodes like you do with GDScript. If you rebuild the project while the editor is open, your classes will be reloaded automatically in Godot and you can use them.
 
+![Attach Node Script](../assets/img/attach.png)
+
 !!! note ""
     You can only use newly created classes after you have built them! Otherwise Godot cannot find them.
-
-![Attach Node Script](../assets/img/attach.png)
 
 ## Configuring dependencies
 You can use almost the whole jvm ecosystem. Just add a dependency like you would in a normal java based project in the `build.gradle.kts`:

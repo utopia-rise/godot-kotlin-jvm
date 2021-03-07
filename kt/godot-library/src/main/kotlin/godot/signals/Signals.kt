@@ -20,9 +20,7 @@ open class Signal(
         method: String,
         binds: VariantArray<Any?>?,
         flags: Long
-    ) {
-        instance.connect(name, target, method, binds ?: VariantArray(), flags)
-    }
+    ) = instance.connect(name, target, method, binds ?: VariantArray(), flags)
 }
 
 class Signal0(instance: Object, name: String) : Signal(instance, name) {

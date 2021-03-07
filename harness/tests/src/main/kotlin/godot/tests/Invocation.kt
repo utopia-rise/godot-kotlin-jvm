@@ -260,6 +260,13 @@ class Invocation : Spatial() {
 
     @RegisterFunction
     override fun _enterTree() {
+        //TODO: uncomment once https://github.com/utopia-rise/godot-jvm/issues/86 is fixed
+//        GD.print("Hello", "Hello")
+//        GD.printErr("Hello", "Hello")
+//        GD.printRaw("Hello", "Hello")
+//        GD.printStack()
+//        GD.prints("1", "2")
+//        GD.printt("1", "2")
         println("Enter tree !")
         println("Instance id: ${getInstanceId()}")
         println("CustomName is $customName")

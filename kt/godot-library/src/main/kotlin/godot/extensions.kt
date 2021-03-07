@@ -7,10 +7,10 @@ import godot.util.camelToSnakeCase
 import kotlin.reflect.KFunction
 
 @Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
-inline fun <T : Node> Node.getNode(path: String) = getNode(NodePath(path)) as T
+inline fun <T : Node?> Node.getNode(path: String) = getNode(NodePath(path)) as T
 
 @Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
-inline fun <T : Node> Node.getNode(nodePath: NodePath) = getNode(nodePath) as T
+inline fun <T : Node?> Node.getNode(nodePath: NodePath) = getNode(nodePath) as T
 
 /**
  * **Note:** The function name is converted to snake_case

@@ -8,10 +8,18 @@ If you want to try the binding at it's current state, you will have to build the
 
 # Setup
 1. Clone godot repo with 3.2 branch. `git clone git@github.com:godotengine/godot.git -b 3.2 --recursive`
-2. In `godot/`, run the following command: `git submodule add git@github.com:utopia-rise/godot-jvm.git modules/kotlin_jvm`
+2. In `godot/`, run the following command: `git submodule add git@github.com:utopia-rise/godot-kotlin-jvm.git modules/kotlin_jvm`
 3. Pull the submodules of our project: 
     - `cd modules/kotlin_jvm`
     - `git submodule update --init --recursive`
+   
+# Build
+**Note:** this needs to be done each time you pull the latest changes from this project until we ship a pre-built engine.
+
+1. From the godot root folder build the engine with: `scons -j$(nproc) platform=x11 # your platform`
+2. Build `godot-bootstrap.jar`
+   - navigate to `kt/`
+   - `./gradlew build`
 
 # Documentation
 The documentation is currently not deployed. Once you have set up the project (see [setup](#setup)), you can launch the documentation in a local webserver. Just run the `run.sh` script in the `docs` folder.
@@ -23,18 +31,8 @@ To run the documentation locally you need:
 - `pip install mkdocs`
 - `pip install mkdocs-material`
 
-
-# Build
-1. Build the engine with our module: `scons -j$(nproc) platform=x11 # your platform`
-2. Build `godot-bootstrap.jar`
-    - navigate to `kt/godot-library`
-    - `./gradlew build`
-3. Copy `godot-bootstrap.jar`:
-    - `cp build/libs/godot-bootstrap.jar ../../../../bin`
-    - **Note:** this needs to be done each time you pull the latest changes from this project until we ship a pre-built engine. There this jar will be included.
-
 # Setup your project
-At this state it's higly recommended to just put you project in the `harness` folder so you can more or less copy the gradle configuration from our sample projects.
+At this state it's highly recommended to just put you project in the `harness` folder so you can more or less copy the gradle configuration from our sample projects.
 
 Most important is the configuration inside the `settings.gradle.kts` file as it includes the necessary build includes as long as we don't provide published artefacts.
 
@@ -50,7 +48,8 @@ When you create new classes, you need to rebuild your project for godot to see y
 If you rebuild while the editor is open, it should automatically reload your classes.
 
 # Exporting
-We currently do not explicitly support exporting of your projects, but generally it works. You just need to manually place the `godot-bootstrap.jar` and the `main.jar` alongside the exported executable.
+To export projects you should first build Godot exports like described [here](https://docs.godotengine.org/fr/stable/development/compiling/compiling_for_windows.html#creating-windows-export-templates) for Windows. Same Doc apply for other platforms.  
+Then you can export your project as you would do for usual Godot projects.
 
 # Intellij plugin
 We recommend you build and install our intellij plugin located in `kt/plugins/godot-intellij-plugin` as it provides many code insight features to verify your registration code.
@@ -61,11 +60,11 @@ The items in this list are explicitly mentioned here as these will be implemente
 - Each registered constructor must have a unique number of arguments. Constructor overloading is not yet supported
 - No networking functionality (Rpc annotations do exist but they do not work yet)
 - No tool mode (you can set it already in the `@RegisterClass` annotation but it has no effect yet)
-- No plugin support -> You cannot use Godot-Jvm to write plugins and addons yet
+- No plugin support -> You cannot use Godot Kotlin/JVM to write plugins and addons yet
 - No export support (but as mentioned in the [export](#export) section, it is generally already possible)
 - Only desktop OS are supported for now (Linux, MacOS, Windows)
 
 # Bug reporting and Questions
-If you find bugs, please report an [issue on github](https://github.com/utopia-rise/godot-jvm/issues). But check for duplicates first.  
-If you have questions or need help, you can ask on [discord](https://discord.gg/qSU2EQs) in the channels `questions` and `help` respectively.  
+If you find bugs, please report an [issue on github](https://github.com/utopia-rise/godot-kotlin-jvm/issues). But check for duplicates first.  
+If you have questions or need help, you can ask on [discord](https://discord.gg/zpb5Ru7v9x) in the channels `questions` and `help` respectively.  
 If you don't have discord or don't want to use it, make a issue on github.

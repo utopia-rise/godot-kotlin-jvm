@@ -2,13 +2,14 @@
 #include <cassert>
 #include <main/main.h>
 #include "gd_kotlin.h"
-#include "core/os/os.h"
 #include "core/project_settings.h"
-#include "bootstrap.h"
-#include "type_manager.h"
 #include "bridges_manager.h"
-#include "logging.h"
 #include <core/io/resource_loader.h>
+#include "logging.h"
+
+#ifndef TOOLS_ENABLED
+#include <core/os/dir_access.h>
+#endif
 
 // If changed, remember to change also TransferContext::bufferCapacity on JVM side
 const int DEFAULT_SHARED_BUFFER_SIZE{20'000'000};
@@ -242,12 +243,26 @@ void GDKotlin::init() {
 #endif
     }
 
+    check_and_copy_jar("godot-bootstrap.jar");
+    check_and_copy_jar("main.jar");
+
     jni::Jvm::init(args);
+
     LOG_INFO("Starting JVM ...")
     auto project_settings = ProjectSettings::get_singleton();
-    String bootstrap_jar = OS::get_singleton()->get_executable_path().get_base_dir() + "/godot-bootstrap.jar";
+
+#ifdef TOOLS_ENABLED
+    String bootstrap_jar{OS::get_singleton()->get_executable_path().get_base_dir() + "/godot-bootstrap.jar"};
+#else
+    String bootstrap_jar{ProjectSettings::get_singleton()->globalize_path(vformat("user://%s", "godot-bootstrap.jar"))};
+#endif
+
+#ifdef TOOLS_ENABLED
     JVM_CRASH_COND_MSG(!FileAccess::exists(bootstrap_jar),
                    "No godot-bootstrap.jar found! This file needs to stay alongside the godot editor executable!")
+#elif DEBUG_ENABLED
+    JVM_CRASH_COND_MSG(!FileAccess::exists(bootstrap_jar),"No godot-bootstrap.jar found!")
+#endif
 
     LOG_INFO(vformat("Loading bootstrap jar: %s", bootstrap_jar))
     jni::Env env{jni::Jvm::current_env()};
@@ -304,12 +319,18 @@ void GDKotlin::init() {
     jni::MethodId ctor = bootstrap_cls.get_constructor_method_id(env, "()V");
     jni::JObject instance = bootstrap_cls.new_instance(env, ctor);
     bootstrap = new Bootstrap(instance, class_loader);
+
     bootstrap->register_hooks(env, load_classes_hook, unload_classes_hook, register_engine_types_hook,
                               register_user_types_hook);
     bool is_editor = Engine::get_singleton()->is_editor_hint();
-    String project_path = project_settings->globalize_path("res://");
 
-    bootstrap->init(env, is_editor, project_path);
+#ifdef TOOLS_ENABLED
+    String jar_path{project_settings->globalize_path("res://build/libs/")};
+#else
+    String jar_path{project_settings->globalize_path("user://")};
+#endif
+
+    bootstrap->init(env, is_editor, jar_path);
 }
 
 void GDKotlin::finish() {
@@ -414,6 +435,33 @@ Error GDKotlin::split_jvm_debug_argument(const String& cmd_arg, String& result) 
         return FAILED;
     }
     return OK;
+}
+
+void GDKotlin::check_and_copy_jar(const String& jar_name) {
+#ifndef TOOLS_ENABLED
+    String libs_res_path{"res://build/libs"};
+    String jar_user_path{vformat("user://%s", jar_name)};
+    String jar_res_path{vformat("%s/%s", libs_res_path, jar_name)};
+
+    if (!FileAccess::exists(jar_user_path)
+        || FileAccess::get_md5(jar_user_path) != FileAccess::get_md5(jar_res_path)) {
+#ifdef DEBUG_ENABLED
+        LOG_INFO(vformat("%s jar has changed, will copy it from res...", jar_name));
+#endif
+
+        Error err;
+        DirAccess* dir_access{
+                DirAccess::open(libs_res_path, &err)
+        };
+
+#ifdef DEBUG_ENABLED
+        JVM_CRASH_COND_MSG(err != OK, vformat("Cannot open %s jar in res.", jar_name))
+#endif
+
+        dir_access->copy(jar_res_path, jar_user_path);
+        memdelete(dir_access);
+    }
+#endif
 }
 
 GDKotlin::GDKotlin() : bootstrap(nullptr), is_gc_started(false), transfer_context(nullptr) {

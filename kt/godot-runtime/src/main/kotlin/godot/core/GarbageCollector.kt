@@ -41,6 +41,8 @@ object GarbageCollector {
     //Holds the instances to clean up when the JVM stops.
     private val staticInstances = mutableListOf<GodotStatic>()
 
+    private val staticInstances = mutableListOf<GodotStatic>()
+
     private val executor = Executors.newSingleThreadScheduledExecutor()
 
     private var forceJvmGarbageCollector = false
@@ -222,6 +224,7 @@ object GarbageCollector {
 
     fun cleanUp() {
         for (instance in staticInstances) {
+
             instance.collect()
         }
 
@@ -246,6 +249,7 @@ object GarbageCollector {
                             append(System.lineSeparator())
                             for (entry in wrappedMap) {
                                 append("    ${entry.key}: ${entry.value}")
+
                                 append(System.lineSeparator())
                             }
                             append("Leaked native core types:")
@@ -289,5 +293,3 @@ object GarbageCollector {
 
     private class GCEndException(message: String) : Exception(message)
 }
-
-
