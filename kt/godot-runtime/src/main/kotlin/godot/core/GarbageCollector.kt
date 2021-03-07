@@ -41,8 +41,6 @@ object GarbageCollector {
     //Holds the instances to clean up when the JVM stops.
     private val staticInstances = mutableListOf<GodotStatic>()
 
-    private val staticInstances = mutableListOf<GodotStatic>()
-
     private val executor = Executors.newSingleThreadScheduledExecutor()
 
     private var forceJvmGarbageCollector = false
