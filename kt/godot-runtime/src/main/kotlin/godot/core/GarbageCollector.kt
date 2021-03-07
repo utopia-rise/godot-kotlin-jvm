@@ -1,5 +1,8 @@
 package godot.core
 
+import godot.core.memory.GodotStatic
+import godot.core.memory.NativeCoreWeakReference
+import godot.core.memory.ReferenceWeakReference
 import godot.util.VoidPtr
 import godot.util.info
 import java.lang.ref.ReferenceQueue
@@ -20,8 +23,8 @@ object GarbageCollector {
     //Contain the pointer of different Godot types
     private val wrappedMap = mutableMapOf<VoidPtr, KtObject>()
 
-    private val refWrappedMap = mutableMapOf<VoidPtr, WeakReference<KtObject>>()
-    private val nativeCoreTypeMap = mutableMapOf<VoidPtr, WeakReference<NativeCoreType>>()
+    private val refWrappedMap = mutableMapOf<VoidPtr, ReferenceWeakReference>()
+    private val nativeCoreTypeMap = mutableMapOf<VoidPtr, NativeCoreWeakReference>()
 
     //Queues so we are notified when the GC runs on references
     private val refReferenceQueue = ReferenceQueue<KtObject>()
@@ -47,7 +50,7 @@ object GarbageCollector {
         val rawPtr = instance.rawPtr
         if (instance.____DO_NOT_TOUCH_THIS_isRef____()) {
             synchronized(refWrappedMap) {
-                refWrappedMap[rawPtr] = WeakReference(instance, refReferenceQueue)
+                refWrappedMap[rawPtr] = ReferenceWeakReference(instance, refReferenceQueue)
                 if (!hasRefCountBeenIncremented) {
                     MemoryBridge.ref(rawPtr)
                 }
@@ -59,10 +62,10 @@ object GarbageCollector {
         }
     }
 
-    fun registerNativeCoreType(nativeCoreType: NativeCoreType) {
+    fun registerNativeCoreType(nativeCoreType: NativeCoreType, variantType: VariantType) {
         val rawPtr = nativeCoreType._handle
         synchronized(nativeCoreTypeMap) {
-            nativeCoreTypeMap[rawPtr] = WeakReference(nativeCoreType, nativeReferenceQueue)
+            nativeCoreTypeMap[rawPtr] = NativeCoreWeakReference(nativeCoreType, nativeReferenceQueue, variantType)
         }
     }
 
@@ -100,13 +103,13 @@ object GarbageCollector {
     }
 
     private fun run() {
-        while(gcState != GCState.CLOSED){
+        while (gcState != GCState.CLOSED) {
             if (forceJvmGarbageCollector) {
                 forceJvmGc()
             }
             val isActive = checkAndClean()
 
-            if(isActive){
+            if (isActive) {
                 current_delay -= INC_DELAY
                 current_delay = current_delay.coerceAtLeast(MIN_DELAY)
             } else {
@@ -137,7 +140,7 @@ object GarbageCollector {
                 isActive = true
             }
         }
-        synchronized(wrappedMap){
+        synchronized(wrappedMap) {
             for (ptr in suppressBuffer) {
                 wrappedMap.remove(ptr)
             }
@@ -146,14 +149,11 @@ object GarbageCollector {
 
         // A native reference cannot die while a jvm instance exists (because counter > 0). When we don't need the
         // jvm instance anymore, we decrease the counter.
-        while(true){
-            val ref = refReferenceQueue.poll() ?: break
-            val value = ref.get()?.rawPtr
-            if (value != null) {
-                if (MemoryBridge.unref(value)) {
-                    suppressBuffer.add(value)
-                    isActive = true
-                }
+        while (true) {
+            val ref = (refReferenceQueue.poll() ?: break) as ReferenceWeakReference
+            if (MemoryBridge.unref(ref.ptr)) {
+                suppressBuffer.add(ref.ptr)
+                isActive = true
             }
         }
         synchronized(refWrappedMap) {
@@ -164,15 +164,13 @@ object GarbageCollector {
         suppressBuffer.clear()
 
         // Same as before for NativeCoreTypes
-        while(true){
-            val ref = nativeReferenceQueue.poll() ?: break
-            val value = ref.get()
-            if (value != null) {
-                if (MemoryBridge.unrefNativeCoreType(value._handle, value.coreVariantType.baseOrdinal)) {
-                    suppressBuffer.add(value._handle)
-                    isActive = true
-                }
+        while (true) {
+            val ref = (nativeReferenceQueue.poll() ?: break) as NativeCoreWeakReference
+            if (MemoryBridge.unrefNativeCoreType(ref.ptr, ref.variantType.baseOrdinal)) {
+                suppressBuffer.add(ref.ptr)
+                isActive = true
             }
+
         }
         synchronized(nativeCoreTypeMap) {
             for (ptr in suppressBuffer) {
@@ -191,7 +189,7 @@ object GarbageCollector {
     }
 
     fun cleanUp() {
-        for(instance in staticInstances){
+        for (instance in staticInstances) {
             instance.collect()
         }
 
@@ -260,11 +258,4 @@ object GarbageCollector {
     private class GCEndException(message: String) : Exception(message)
 }
 
-interface GodotStatic{
 
-    fun registerAsSingleton(){
-        GarbageCollector.registerStatic(this)
-    }
-
-    fun collect();
-}
