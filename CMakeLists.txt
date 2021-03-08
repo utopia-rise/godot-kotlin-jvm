@@ -21,7 +21,7 @@ target_include_directories(${PROJECT_NAME}
 )
 
 # Uncomment to pass auto completion in TOOLS mode
-add_compile_definitions(TOOLS_ENABLED)
+#add_compile_definitions(TOOLS_ENABLED)
 add_compile_definitions(DEBUG_ENABLED)
 
 # platforms

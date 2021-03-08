@@ -26,9 +26,9 @@ class Bootstrap {
     private var watchService: WatchService? = null
     private var engineTypesRegistered: Boolean = false
 
-    fun init(isEditor: Boolean, jarRootDir: String) {
+    fun init(isEditor: Boolean, jarRootDir: String, jarFile: String) {
         val libsDir = Paths.get(jarRootDir)
-        val mainJarPath = libsDir.resolve("main.jar")
+        val mainJarPath = libsDir.resolve(jarFile)
 
         if (File(mainJarPath.toString()).exists()) {
             doInit(mainJarPath.toUri().toURL())

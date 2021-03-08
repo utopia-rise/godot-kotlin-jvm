@@ -252,8 +252,16 @@ void GDKotlin::init() {
 
     jni::Jvm::init(args);
 
-    check_and_copy_jar("godot-bootstrap.jar");
-    check_and_copy_jar("main.jar");
+#ifdef __ANDROID__
+    String bootstrap_jar_file{"godot-bootstrap-dex.jar"};
+    String main_jar_file{"main-dex.jar"};
+#else
+    String bootstrap_jar_file{"godot-bootstrap.jar"};
+    String main_jar_file{"main.jar"};
+#endif
+
+    check_and_copy_jar(bootstrap_jar_file);
+    check_and_copy_jar(main_jar_file);
 
     LOG_INFO("Starting JVM ...")
     auto project_settings = ProjectSettings::get_singleton();
@@ -261,7 +269,7 @@ void GDKotlin::init() {
 #ifdef TOOLS_ENABLED
     String bootstrap_jar{OS::get_singleton()->get_executable_path().get_base_dir() + "/godot-bootstrap.jar"};
 #else
-    String bootstrap_jar{ProjectSettings::get_singleton()->globalize_path(vformat("user://%s", "godot-bootstrap.jar"))};
+    String bootstrap_jar{ProjectSettings::get_singleton()->globalize_path(vformat("user://%s", bootstrap_jar_file))};
 #endif
 
 #ifdef TOOLS_ENABLED
@@ -337,7 +345,7 @@ void GDKotlin::init() {
     String jar_path{project_settings->globalize_path("user://")};
 #endif
 
-    bootstrap->init(env, is_editor, jar_path);
+    bootstrap->init(env, is_editor, jar_path, main_jar_file);
 }
 
 void GDKotlin::finish() {
