@@ -98,6 +98,7 @@ fun Project.setupConfigurationsAndCompilations(jvm: KotlinJvmProjectExtension) {
         val bootstrapJar by creating(ShadowJar::class) {
             archiveBaseName.set("godot-bootstrap")
             configurations.add(bootstrap)
+            exclude("**/module-info.class") //for android support: excludes java 9+ module info which cannot be parsed by the dx tool
 
             dependsOn(createBuildLock)
         }
@@ -107,6 +108,7 @@ fun Project.setupConfigurationsAndCompilations(jvm: KotlinJvmProjectExtension) {
             archiveVersion.set("")
             archiveClassifier.set("")
             configurations.clear()
+            exclude("**/module-info.class") //for android support: excludes java 9+ module info which cannot be parsed by the dx tool
             configurations.add(gameConfiguration)
             from(gameCompilation.compileDependencyFiles + gameCompilation.output.classesDirs)
 

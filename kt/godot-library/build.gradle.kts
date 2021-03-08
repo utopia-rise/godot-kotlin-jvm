@@ -30,6 +30,7 @@ tasks {
         archiveBaseName.set("godot-bootstrap")
         archiveVersion.set("")
         archiveClassifier.set("")
+        exclude("**/module-info.class") //for android support: excludes java 9+ module info which cannot be parsed by the dx tool
         finalizedBy(copyBootstrapJar)
     }
 
