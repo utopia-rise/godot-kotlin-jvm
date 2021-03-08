@@ -116,7 +116,7 @@ object GarbageCollector {
     }
 
     private fun run() {
-        while (gcState != GCState.CLOSED) {
+        while (gcState == GCState.STARTED) {
             if (forceJvmGarbageCollector) {
                 forceJvmGc()
             }
@@ -135,6 +135,7 @@ object GarbageCollector {
                 Thread.sleep(current_delay)
             }
         }
+        gcState = GCState.CLOSED
     }
 
     /**
@@ -201,10 +202,10 @@ object GarbageCollector {
     }
 
     fun close() {
-        executor.shutdown()
-        gcState = GCState.CLOSED
-        executor.awaitTermination(5000, TimeUnit.MILLISECONDS)
         info("Closing GC thread")
+        gcState = GCState.CLOSING
+        executor.shutdown()
+        executor.awaitTermination(5000, TimeUnit.MILLISECONDS)
     }
 
     fun cleanUp() {
@@ -273,6 +274,7 @@ object GarbageCollector {
     private enum class GCState {
         NONE,
         STARTED,
+        CLOSING,
         CLOSED
     }
 
