@@ -17,10 +17,7 @@ class Memory : Object() {
     val cores = VariantArray<RID?>()
     val size = 100
 
-    var rand_index = Array(size) {
-        GD.randRange(0, size - 1)
-    }
-    
+
     init {
         for (i in 0 until size) {
             objs.append(Node())
@@ -33,7 +30,7 @@ class Memory : Object() {
     fun benchmarkObjAccess() {
         var obj: Node
         for (i in 0 until size) {
-            obj = objs[rand_index[i]]
+            obj = objs[i]
         }
     }
 
@@ -41,7 +38,7 @@ class Memory : Object() {
     fun benchmarkRefAccess() {
         var ref: File?
         for (i in 0 until size) {
-            ref = refs[rand_index[i]]
+            ref = refs[i]
         }
     }
 
@@ -49,7 +46,7 @@ class Memory : Object() {
     fun benchmarkCoreAccess() {
         var core: RID?
         for (i in 0 until size) {
-            core = cores[rand_index[i]]
+            core = cores[i]
         }
     }
 
