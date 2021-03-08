@@ -43,11 +43,11 @@ object GarbageCollector {
     private val nativeReferenceQueue = ReferenceQueue<NativeCoreType>()
     /** List mirroring the content of the Object HashMap.*/
     private var wrapperList: List<Pair<VoidPtr, KtObject>>? = null
-    
+
     /** A list to store the pointers to delete after we iterate the maps(to avoid concurrent modifications).*/
     private val suppressBuffer = mutableListOf<VoidPtr>()
 
-    /** Holds the instances to clean up when the JVM stops..*/
+    /** Holds the instances to clean up when the JVM stops.*/
     private val staticInstances = mutableListOf<GodotStatic>()
 
     private val executor = Executors.newSingleThreadScheduledExecutor()
