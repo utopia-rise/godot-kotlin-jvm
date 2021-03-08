@@ -203,14 +203,13 @@ object GarbageCollector {
 
     fun close() {
         info("Closing GC thread")
-        gcState = GCState.CLOSING
         executor.shutdown()
+        gcState = GCState.CLOSING
         executor.awaitTermination(5000, TimeUnit.MILLISECONDS)
     }
 
     fun cleanUp() {
         for (instance in staticInstances) {
-
             instance.collect()
         }
 
