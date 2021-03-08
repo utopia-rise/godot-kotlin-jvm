@@ -15,14 +15,15 @@ class Memory : Object() {
     val refs = VariantArray<File?>()
     val size = 100
 
-    var rand_index = VariantArray<Int>()
+    var rand_index = Array(size){
+        GD.randRange(0, size - 1)
+    }
 
 
     init {
         for (i in 0 until size) {
             objs.append(Node())
             refs.append(File())
-            rand_index.append(GD.randRange(0, size - 1))
         }
     }
 
