@@ -7,7 +7,6 @@ import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.core.RID
 import godot.core.VariantArray
-import godot.global.GD
 
 @RegisterClass
 class Memory : Object() {
@@ -15,7 +14,7 @@ class Memory : Object() {
     val objs = VariantArray<Node>()
     val refs = VariantArray<File?>()
     val cores = VariantArray<RID?>()
-    val size = 100
+    val size = 1000
 
 
     init {
@@ -34,13 +33,14 @@ class Memory : Object() {
         }
     }
 
+    /**
     @RegisterFunction
     fun benchmarkRefAccess() {
         var ref: File?
         for (i in 0 until size) {
             ref = refs[i]
         }
-    }
+    } **/
 
     @RegisterFunction
     fun benchmarkCoreAccess() {
@@ -59,13 +59,14 @@ class Memory : Object() {
         }
     }
 
+    /**
     @RegisterFunction
     fun benchmarkStressReference() {
         var ref: File?
         for (i in 0 until size) {
             ref = File()
         }
-    }
+    } **/
 
     @RegisterFunction
     fun benchmarkStressCore() {

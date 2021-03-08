@@ -2,7 +2,7 @@ var objs = Array()
 var refs = Array()
 var cores = Array()
 
-var size = 100
+var size = 1000
 
 func _init():
 	for i in range(size):
