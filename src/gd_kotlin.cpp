@@ -43,7 +43,22 @@ jni::JObject to_java_url(jni::Env& env, const String& bootstrapJar) {
 jni::JObject create_class_loader(jni::Env& env, const String& bootstrapJar) {
 #ifdef __ANDROID__
     auto* android_os{reinterpret_cast<OS_Android*>(OS::get_singleton())};
-    return jni::JObject(android_os->get_godot_java()->get_class_loader());
+    jni::JObject parent_class_loader{android_os->get_godot_java()->get_class_loader()};
+    jni::JClass class_loader_cls{env.find_class("dalvik/system/DexClassLoader")};
+    jni::MethodId ctor{
+        class_loader_cls.get_constructor_method_id(
+                env,
+                "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/ClassLoader;)V"
+        )
+    };
+    jni::JObject boostrap_path{env.new_string(bootstrapJar.utf8().get_data())};
+    jvalue args[4] = {
+            jni::to_jni_arg(boostrap_path),
+            jni::to_jni_arg(jni::JObject(nullptr)),
+            jni::to_jni_arg(jni::JObject(nullptr)),
+            jni::to_jni_arg(parent_class_loader)
+    };
+    return class_loader_cls.new_instance(env, ctor, args);
 #else
     jni::JObject url = to_java_url(env, bootstrapJar);
     jni::JClass url_cls = env.find_class("java/net/URL");
