@@ -1,4 +1,4 @@
-#if defined _WIN32 || defined _WIN64 || defined __linux__ || defined __APPLE__
+#if defined WINDOWS_ENABLED || defined X11_ENABLED || defined OSX_ENABLED
 
 #include "../init_args.h"
 

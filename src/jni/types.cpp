@@ -1,4 +1,5 @@
 #include <vector>
+#include <modules/kotlin_jvm/src/logging.h>
 #include "types.h"
 #include "env.h"
 
@@ -93,27 +94,21 @@ namespace jni {
 
     MethodId JClass::get_method_id(Env &env, const char *name, const char *signature) {
         auto id = env.env->GetMethodID((jclass) obj, name, signature);
-        if (id == nullptr) {
-            throw MethodNotFoundError(name, signature);
-        }
+        JVM_CRASH_COND_MSG(id == nullptr, vformat("Method not found: %s with signature: %s", name, signature))
         env.check_exceptions();
         return id;
     }
 
     MethodId JClass::get_static_method_id(Env &env, const char *name, const char *signature) {
         auto id = env.env->GetStaticMethodID((jclass) obj, name, signature);
-        if (id == nullptr) {
-            throw MethodNotFoundError(name, signature);
-        }
+        JVM_CRASH_COND_MSG(id == nullptr, vformat("Method not found: %s with signature: %s", name, signature))
         env.check_exceptions();
         return id;
     }
 
     FieldId JClass::get_static_field_id(Env& env, const char* name, const char* signature) {
         auto id = env.env->GetStaticFieldID((jclass) obj, name, signature);
-        if (id == nullptr) {
-            throw FieldNotFoundError(name, signature);
-        }
+        JVM_CRASH_COND_MSG(id == nullptr, vformat("Field not found: %s with signature: %s", name, signature))
         env.check_exceptions();
         return id;
     }
@@ -129,9 +124,7 @@ namespace jni {
 
     JObject JClass::new_instance(Env &env, MethodId ctor, jvalue* args) {
         auto ret = env.env->NewObjectA((jclass) obj, ctor, args);
-        if (ret == nullptr) {
-            throw JniError("Failed to instantiated object!");
-        }
+        JVM_CRASH_COND_MSG(ret == nullptr, "Failed to instantiated object!")
         env.check_exceptions();
         return JObject(ret);
     }
@@ -150,9 +143,7 @@ namespace jni {
 
     JObjectArray JClass::new_object_array(Env& env, int size, JObject initial) {
         auto ret = env.env->NewObjectArray(size, (jclass) obj, initial.obj);
-        if (ret == nullptr) {
-            throw JniError("Failed to instantiated object array!");
-        }
+        JVM_CRASH_COND_MSG(ret == nullptr, "Failed to instantiated object array!")
         return JObjectArray(ret);
     }
 

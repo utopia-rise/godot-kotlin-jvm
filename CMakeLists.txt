@@ -21,8 +21,11 @@ target_include_directories(${PROJECT_NAME}
 )
 
 # Uncomment to pass auto completion in TOOLS mode
-#add_compile_definitions(TOOLS_ENABLED)
+add_compile_definitions(TOOLS_ENABLED)
 add_compile_definitions(DEBUG_ENABLED)
 
-# Uncomment to pass on android
+# platforms
+#add_compile_definitions(WINDOWS_ENABLED)
+#add_compile_definitions(X11_ENABLED)
+#add_compile_definitions(OSX_ENABLED)
 add_compile_definitions(__ANDROID__)

@@ -2,7 +2,6 @@
 #define GODOT_LOADER_ENV_H
 #include <jni.h>
 #include "types.h"
-#include "exceptions.h"
 #include "core/ustring.h"
 
 namespace jni {

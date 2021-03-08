@@ -1,6 +1,7 @@
-#if defined _WIN32 || defined _WIN64 || defined __linux__ || defined __APPLE__
+#if defined WINDOWS_ENABLED || defined X11_ENABLED || defined OSX_ENABLED
 
 #include <cassert>
+#include <modules/kotlin_jvm/src/logging.h>
 #include "../jvm_loader.h"
 #include "../jvm.h"
 
@@ -41,9 +42,7 @@ namespace jni {
         JNIEnv* env;
         auto result = JvmLoader::get_create_jvm_function()(&vm, (void**) &env, (void*) &args);
         delete[] options;
-        if (result != JNI_OK) {
-            throw JniError("Failed to create a new vm!");
-        }
+        JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to create a new vm!")
         return vm;
     }
 
@@ -51,9 +50,7 @@ namespace jni {
         JavaVM* buffer[1];
         jsize count;
         auto result = JvmLoader::get_get_created_java_vm_function()(buffer, 1, &count);
-        if (result != JNI_OK) {
-            throw JniError("Failed to retrieve existing vm!");
-        }
+        JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to retrieve existing vm!")
         if (count > 0) {
             return buffer[0];
         }
@@ -65,9 +62,7 @@ namespace jni {
         auto result = vm->GetEnv((void**) &r_env, version);
         if (result == JNI_EDETACHED) {
             result = vm->AttachCurrentThread((void**) &r_env, nullptr);
-            if (result != JNI_OK) {
-                throw JniError("Failed to attach vm to current thread!");
-            }
+            JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to attach vm to current thread!")
         }
         Jvm::env = new Env(r_env);
         return Env(r_env);
@@ -75,9 +70,7 @@ namespace jni {
 
     void Jvm::detach() {
         auto result = vm->DetachCurrentThread();
-        if (result != JNI_OK) {
-            throw JniError("Failed to detach vm to current thread!");
-        }
+        JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to detach vm to current thread!")
         delete Jvm::env;
         Jvm::env = nullptr;
     }
@@ -85,9 +78,7 @@ namespace jni {
     Env Jvm::current_env() {
         JNIEnv* r_env;
         auto result = vm->GetEnv((void**) &r_env, version);
-        if (result == JNI_EDETACHED) {
-            throw JniError("Current thread is not attached!");
-        }
+        JVM_CRASH_COND_MSG(result == JNI_EDETACHED, "Current thread is not attached!")
         return Env(r_env);
     }
 }

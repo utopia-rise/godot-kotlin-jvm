@@ -11,6 +11,11 @@
 #include <core/os/dir_access.h>
 #endif
 
+#ifdef __ANDROID__
+#include <platform/android/os_android.h>
+#include <platform/android/java_godot_wrapper.h>
+#endif
+
 // If changed, remember to change also TransferContext::bufferCapacity on JVM side
 const int DEFAULT_SHARED_BUFFER_SIZE{20'000'000};
 
@@ -36,6 +41,10 @@ jni::JObject to_java_url(jni::Env& env, const String& bootstrapJar) {
 }
 
 jni::JObject create_class_loader(jni::Env& env, const String& bootstrapJar) {
+#ifdef __ANDROID__
+    auto* android_os{reinterpret_cast<OS_Android*>(OS::get_singleton())};
+    return jni::JObject(android_os->get_godot_java()->get_class_loader());
+#else
     jni::JObject url = to_java_url(env, bootstrapJar);
     jni::JClass url_cls = env.find_class("java/net/URL");
     jni::JObjectArray urls = url_cls.new_object_array(env, 1, {url});
@@ -45,13 +54,14 @@ jni::JObject create_class_loader(jni::Env& env, const String& bootstrapJar) {
     jni::JObject class_loader = class_loader_cls.new_instance(env, ctor, args);
     assert(!class_loader_cls.is_null());
     return class_loader;
+#endif
 }
 
 void set_context_class_loader(jni::Env& env, jni::JObject thread, jni::JObject classLoader) {
     auto cls = env.find_class("java/lang/Thread");
     auto setContextClassLoaderMethod = cls.get_method_id(env, "setContextClassLoader", "(Ljava/lang/ClassLoader;)V");
     jvalue args[1] = {jni::to_jni_arg(classLoader)};
-    thread.call_object_method(env, setContextClassLoaderMethod, args);
+    thread.call_void_method(env, setContextClassLoaderMethod, args);
 }
 
 GDKotlin& GDKotlin::get_instance() {

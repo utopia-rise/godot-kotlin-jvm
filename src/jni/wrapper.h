@@ -3,7 +3,6 @@
 
 #include "env.h"
 #include "types.h"
-#include "exceptions.h"
 #include "init_args.h"
 #include "jvm.h"
 

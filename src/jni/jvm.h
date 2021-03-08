@@ -2,7 +2,6 @@
 #define GODOT_LOADER_JVM_H
 #include "jni.h"
 #include "init_args.h"
-#include "exceptions.h"
 #include "env.h"
 
 namespace jni {

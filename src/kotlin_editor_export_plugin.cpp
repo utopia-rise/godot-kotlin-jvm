@@ -12,7 +12,7 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
     add_file(bootstrap_jar, FileAccess::get_file_as_array(bootstrap_jar), false);
 
     // Copy JRE for desktop platforms
-#if defined _WIN32 || defined _WIN64 || defined __linux__ || defined __APPLE__
+#if defined WINDOWS_ENABLED || defined X11_ENABLED || defined OSX_ENABLED
     const Vector<String>& path_split = p_path.split("/");
     String export_dir{p_path.replace(path_split[path_split.size() - 1], "")};
     Error error;

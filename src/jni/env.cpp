@@ -1,3 +1,4 @@
+#include <modules/kotlin_jvm/src/logging.h>
 #include "env.h"
 
 namespace jni {
@@ -7,9 +8,7 @@ namespace jni {
 
     void Env::push_local_frame(int capacity) {
         auto result = env->PushLocalFrame(capacity);
-        if (result != JNI_OK) {
-            throw JniError("Failed to push local frame!");
-        }
+        JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to push local frame!")
     }
 
     void Env::pop_local_frame() {
@@ -22,9 +21,7 @@ namespace jni {
 
     JClass Env::find_class(const char *name) {
         auto cls = env->FindClass(name);
-        if (cls == nullptr) {
-            throw ClassNotFoundError(name);
-        }
+        JVM_CRASH_COND_MSG(cls == nullptr, vformat("Class not found: %s", name))
         return JClass(cls);
     }
 
@@ -62,7 +59,7 @@ namespace jni {
         if (exception_check()) {
             exception_describe();
             exception_clear();
-            throw JniError("An exception has occurred!");
+            JVM_CRASH_COND_MSG(true, "An exception has occurred!")
         }
     }
 
