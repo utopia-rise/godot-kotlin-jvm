@@ -157,7 +157,6 @@ void GDKotlin::init() {
     String jvm_jmx_port;
     bool is_gc_force_mode{false};
     bool is_gc_activated{true};
-    long gc_thread_period_interval{500};
     int jvm_to_engine_shared_buffer_size{DEFAULT_SHARED_BUFFER_SIZE};
     bool should_display_leaked_jvm_instances_on_close{true};
     const List<String>& cmdline_args{OS::get_singleton()->get_cmdline_args()};
@@ -184,11 +183,6 @@ void GDKotlin::init() {
                 if (jvm_jmx_port.empty()) {
                     jvm_jmx_port = "9010";
                 }
-            }
-        } else if (cmd_arg.find("--jvm-gc-thread-period-millis") >= 0) {
-            String result;
-            if (split_jvm_debug_argument(cmd_arg, result) == OK) {
-                gc_thread_period_interval = result.to_int64();
             }
         } else if (cmd_arg.find("--jvm-to-engine-shared-buffer-size") >= 0) {
             String result;
@@ -299,8 +293,8 @@ void GDKotlin::init() {
             LOG_VERBOSE("Starting GC thread with force mode.")
 #endif
         }
-        jni::MethodId start_method_id{garbage_collector_cls.get_method_id(env, "start", "(ZJ)V")};
-        jvalue start_args[2] = {jni::to_jni_arg(is_gc_force_mode), jni::to_jni_arg(gc_thread_period_interval)};
+        jni::MethodId start_method_id{garbage_collector_cls.get_method_id(env, "start", "(Z)V")};
+        jvalue start_args[2] = {jni::to_jni_arg(is_gc_force_mode)};
         garbage_collector_instance.call_void_method(env, start_method_id, start_args);
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE("GC thread started.")

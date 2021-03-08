@@ -14,31 +14,40 @@ import java.util.concurrent.TimeUnit
 
 object GarbageCollector {
 
-    //Handle the rate of the GC
+    /** Minimum time before 2 iterations of the thread.*/
     private const val MIN_DELAY = 0L
+    /** Maximum time before 2 iterations of the thread.*/
     private const val MAX_DELAY = 2000L
+    /** The delay between iterations can be increased or decreased by this value.*/
     private const val INC_DELAY = 100L
-    private var current_delay = 0L
+    /** Current time between 2 iterations of the thread. */
+    private var current_delay =  (MIN_DELAY + MAX_DELAY) / 2L
 
-    //Number of objects to check each loop
+    /** Number of references to check each loop.*/
     private const val CHECK_NUMBER = 256
+    /** Percentage of objects to check each loop.*/
     private const val CHECK_PER_CENT = 0.2f
+    /** Index of the last Object checked.*/
     private var current_index = 0
 
-    //Contain the pointerd of different Godot types
+    /** Pointers to Objects.*/
     private val wrappedMap = mutableMapOf<VoidPtr, KtObject>()
+    /** Pointers to References.*/
     private val refWrappedMap = mutableMapOf<VoidPtr, ReferenceWeakReference>()
+    /** Pointers to NativeCoreType.*/
     private val nativeCoreTypeMap = mutableMapOf<VoidPtr, NativeCoreWeakReference>()
 
-    //Queues so we are notified when the GC runs on references
+    /** Queues so we are notified when the GC runs on References.*/
     private val refReferenceQueue = ReferenceQueue<KtObject>()
+    /** Queues so we are notified when the GC runs on NativeCoreTypes.*/
     private val nativeReferenceQueue = ReferenceQueue<NativeCoreType>()
+    /** List mirroring the content of the Object HashMap.*/
     private var wrapperList: List<Pair<VoidPtr, KtObject>>? = null
-
-    //A list to store the pointers to delete after we iterate the maps(to avoid concurrent modifications)
+    
+    /** A list to store the pointers to delete after we iterate the maps(to avoid concurrent modifications).*/
     private val suppressBuffer = mutableListOf<VoidPtr>()
 
-    //Holds the instances to clean up when the JVM stops.
+    /** Holds the instances to clean up when the JVM stops..*/
     private val staticInstances = mutableListOf<GodotStatic>()
 
     private val executor = Executors.newSingleThreadScheduledExecutor()
@@ -100,10 +109,9 @@ object GarbageCollector {
     fun isInstanceValid(ktObject: KtObject) = MemoryBridge.checkInstance(ktObject.rawPtr, ktObject.godotInstanceId)
 
 
-    fun start(forceJvmGarbageCollector: Boolean, period: Long) {
+    fun start(forceJvmGarbageCollector: Boolean) {
         this.forceJvmGarbageCollector = forceJvmGarbageCollector
         gcState = GCState.STARTED
-        current_delay = period
         executor.schedule(GarbageCollector::run, 0, TimeUnit.MILLISECONDS)
     }
 
@@ -132,7 +140,7 @@ object GarbageCollector {
     /**
      * Remove the Object pointers that died since the last GC.
      * Decrease the counter of the References and NativeCoreType that are not reachable anymore.
-     * Return true if something has been deleted.
+     * @return True if something has been deleted.
      */
     private fun checkAndClean(): Boolean {
         var isActive = false
