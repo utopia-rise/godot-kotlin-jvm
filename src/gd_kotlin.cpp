@@ -40,25 +40,32 @@ jni::JObject to_java_url(jni::Env& env, const String& bootstrapJar) {
     return url;
 }
 
-jni::JObject create_class_loader(jni::Env& env, const String& bootstrapJar) {
+jni::JObject create_android_class_loader(jni::Env& env, const String& full_jar_path,
+                                         const jni::JObject& p_parent_loader) {
 #ifdef __ANDROID__
-    auto* android_os{reinterpret_cast<OS_Android*>(OS::get_singleton())};
-    jni::JObject parent_class_loader{android_os->get_godot_java()->get_class_loader()};
     jni::JClass class_loader_cls{env.find_class("dalvik/system/DexClassLoader")};
     jni::MethodId ctor{
-        class_loader_cls.get_constructor_method_id(
-                env,
-                "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/ClassLoader;)V"
-        )
+            class_loader_cls.get_constructor_method_id(
+                    env,
+                    "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/ClassLoader;)V"
+            )
     };
-    jni::JObject boostrap_path{env.new_string(bootstrapJar.utf8().get_data())};
+    jni::JObject jar_path{env.new_string(full_jar_path.utf8().get_data())};
     jvalue args[4] = {
-            jni::to_jni_arg(boostrap_path),
+            jni::to_jni_arg(jar_path),
             jni::to_jni_arg(jni::JObject(nullptr)),
             jni::to_jni_arg(jni::JObject(nullptr)),
-            jni::to_jni_arg(parent_class_loader)
+            jni::to_jni_arg(p_parent_loader)
     };
     return class_loader_cls.new_instance(env, ctor, args);
+#else
+    return jni::JObject(nullptr);
+#endif
+}
+
+jni::JObject create_class_loader(jni::Env& env, const String& bootstrapJar) {
+#ifdef __ANDROID__
+    return create_android_class_loader(env, bootstrapJar, jni::JObject(nullptr));
 #else
     jni::JObject url = to_java_url(env, bootstrapJar);
     jni::JClass url_cls = env.find_class("java/net/URL");
@@ -360,7 +367,15 @@ void GDKotlin::init() {
     String jar_path{project_settings->globalize_path("user://")};
 #endif
 
-    bootstrap->init(env, is_editor, jar_path, main_jar_file);
+    String main_jar{ProjectSettings::get_singleton()->globalize_path(vformat("user://%s", main_jar_file))};
+
+    bootstrap->init(
+            env,
+            is_editor,
+            jar_path,
+            main_jar_file,
+            create_android_class_loader(env, main_jar, class_loader)
+    );
 }
 
 void GDKotlin::finish() {

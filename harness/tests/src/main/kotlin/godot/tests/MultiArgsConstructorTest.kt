@@ -44,8 +44,22 @@ class MultiArgsConstructorTest : Node {
     @RegisterConstructor
     constructor(i: Int, s: String, obj: Object?, variantArray: VariantArray<Any?>?, navMesh: NavigationMesh) : this()
 
-    constructor(iShouldNOTFailAsImNotRegistered: String, s: Int, obj: Object?, variantArray: VariantArray<Any?>?, navMesh: NavigationMesh) : this()
-    constructor(i: Int, s: String, obj: Object?, variantArray: VariantArray<Any?>?, navMesh: NavigationMesh, tooManyArgsShouldWorkIfNotRegistered: String) : this()
+    constructor(
+        iShouldNOTFailAsImNotRegistered: String,
+        s: Int,
+        obj: Object?,
+        variantArray: VariantArray<Any?>?,
+        navMesh: NavigationMesh
+    ) : this()
+
+    constructor(
+        i: Int,
+        s: String,
+        obj: Object?,
+        variantArray: VariantArray<Any?>?,
+        navMesh: NavigationMesh,
+        tooManyArgsShouldWorkIfNotRegistered: String
+    ) : this()
 
     // constructors which should fail:
 //    @RegisterConstructor
