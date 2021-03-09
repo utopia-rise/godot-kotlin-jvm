@@ -78,6 +78,9 @@ Constructors with arguments you have to call using the `load` function: `load("r
 !!! note ""
     The limitation of max 5 arguments for constructors is arbitrary. We decided to introduce this limitation to prevent performance bottlenecks for creating objects as each argument passed to a constructor needs to be unpacked in the binding. The more arguments, the more unpacking is needed so the performance cost increases.
 
+!!! warning "Note:"
+    Also note the instatiation limitations described in [Instantiation limitations](../api-differences.md#instantiation-limitations)
+
 ## Registration Configuration
 You can customize to some extent how your class should be registered in Godot:
 
@@ -86,7 +89,7 @@ The `@RegisterClass` annotation can take two arguments:
 - **className**: If set, the class will be registered with the name you provide
 - **isTool**: If set to true, this class is treated as a tool class. Similar to the `tool` of GDScript. **Default:** false
 
-!!! note ""
+!!! warning "Unique class names"
     If you specify the `className` in the annotation, you have to make sure that this name is unique!  
     We implemented compilation checks to make sure the compilation fails if more than two classes are registered with the same name, but we cannot check class names from other scripting languages like GDScript or C#!  
     It is also recommended installing our intellij plugin as it shows duplicated registered class names in the editor as an error. See the section [IDE](../getting-started/ide.md) for more information about the plugin.
