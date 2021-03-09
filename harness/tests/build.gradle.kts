@@ -1,3 +1,4 @@
+import kotlin.io.println
 
 plugins {
     kotlin("jvm") version "1.4.10"
@@ -11,7 +12,7 @@ repositories {
 godot {
     //uncomment to test android
 //    isAndroidExportEnabled.set(true)
-//    dxToolPath.set("${System.getenv("HOME")}/Android/Sdk/build-tools/30.0.3/dx")
+//    dxToolPath.set("${System.getenv("ANDROID_HOME")}/build-tools/30.0.3/dx")
 }
 
 dependencies {
