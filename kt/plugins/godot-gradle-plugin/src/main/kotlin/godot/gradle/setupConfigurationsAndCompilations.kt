@@ -6,6 +6,7 @@ import godot.gradle.util.absolutePathFixedForWindows
 import godot.gradle.util.mapOfNonNullValuesOf
 import godot.utils.GodotBuildProperties
 import org.gradle.api.Project
+import org.gradle.api.tasks.Exec
 import org.gradle.kotlin.dsl.creating
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getValue
@@ -13,6 +14,7 @@ import org.gradle.kotlin.dsl.getting
 import org.gradle.kotlin.dsl.invoke
 import org.gradle.kotlin.dsl.kotlin
 import org.gradle.kotlin.dsl.named
+import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import java.io.File
 
@@ -42,7 +44,7 @@ import java.io.File
  *
  * We also not used a normal annotation processor to be able to use the full information the compiler has at compile time for the entry generation process. Again increasing maintainability.
  */
-fun Project.setupConfigurationsAndCompilations(jvm: KotlinJvmProjectExtension) {
+fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, jvm: KotlinJvmProjectExtension) {
     //bootstrap jar containing all glue code
     val bootstrap = configurations.create("bootstrap") {
         dependencies {
@@ -139,9 +141,69 @@ fun Project.setupConfigurationsAndCompilations(jvm: KotlinJvmProjectExtension) {
             }
         }
 
+        val checkDxToolAccessible by creating {
+            group = "godot-jvm"
+            description = "Checks if the dx tool is accessible and executable. Needed for android builds only"
+
+            doLast {
+                try {
+                    val result = exec {
+                        workingDir = projectDir
+                        isIgnoreExitValue = true
+
+                        if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows) {
+                            commandLine("cmd", "/c", godotExtension.dxToolPath.get(), "--version")
+                        } else {
+                            commandLine(godotExtension.dxToolPath.get(), "--version")
+                        }
+                    }
+                    if (result.exitValue != 0) {
+                        throw IllegalArgumentException("dx tool not found! Make sure the dx tool is in you PATH variable or set \"dxToolPath\" to the absolute path of the dx tool. Normally the dx tool resides in <android-sdk-root>/build-tools/<version>/dx. For more information visit the docs. Provided path: ${godotExtension.dxToolPath.get()}") //TODO: add url once doc ist hosted
+                    }
+                } catch (e: Throwable) {
+                    throw IllegalArgumentException("dx tool not found! Make sure the dx tool is in you PATH variable or set \"dxToolPath\" to the absolute path of the dx tool. Normally the dx tool resides in <android-sdk-root>/build-tools/<version>/dx. For more information visit the docs. Provided path: ${godotExtension.dxToolPath.get()}") //TODO: add url once doc ist hosted
+                }
+            }
+        }
+
+        val createGodotBootstrapDexJar by creating(Exec::class) {
+            group = "godot-jvm"
+            description = "Converts the godot-bootstrap.jar to an android compatible version. Needed for android builds only"
+
+            dependsOn(checkDxToolAccessible, shadowJar, bootstrapJar)
+            val libsDir = project.buildDir.resolve("libs")
+            val godotBootstrapJar = File(libsDir, "godot-bootstrap.jar")
+
+            workingDir = libsDir
+            if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows) {
+                commandLine("cmd", "/c", godotExtension.dxToolPath.get(), "--dex", "--output=\"godot-bootstrap-dex.jar\"", "\"${godotBootstrapJar.absolutePath}\"")
+            } else {
+                commandLine(godotExtension.dxToolPath.get(), "--dex", "--output=godot-bootstrap-dex.jar", godotBootstrapJar.absolutePath)
+            }
+        }
+
+        val createMainDexJar by creating(Exec::class) {
+            group = "godot-jvm"
+            description = "Converts the main.jar to an android compatible version. Needed for android builds only"
+
+            dependsOn(checkDxToolAccessible, shadowJar, bootstrapJar)
+            val libsDir = project.buildDir.resolve("libs")
+            val mainJar = File(libsDir, "main.jar")
+
+            workingDir = libsDir
+            if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows) {
+                commandLine("cmd", "/c", godotExtension.dxToolPath.get(), "--dex", "--output=\"main-dex.jar\"", "\"${mainJar.absolutePath}\"")
+            } else {
+                commandLine(godotExtension.dxToolPath.get(), "--dex", "--output=main-dex.jar", mainJar.absolutePath)
+            }
+        }
+
         val build by getting {
             dependsOn(cleanupEntryFiles, bootstrapJar, shadowJar)
             finalizedBy(deleteBuildLock)
+            if(godotExtension.isAndroidExportEnabled.get()) {
+                finalizedBy(createGodotBootstrapDexJar, createMainDexJar)
+            }
         }
 
         val clean by getting {

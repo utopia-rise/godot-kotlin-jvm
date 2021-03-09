@@ -8,6 +8,12 @@ repositories {
     jcenter()
 }
 
+godot {
+    //uncomment to test android
+//    isAndroidExportEnabled.set(true)
+//    dxToolPath.set("${System.getenv("HOME")}/Android/Sdk/build-tools/30.0.3/dx")
+}
+
 dependencies {
     implementation("joda-time:joda-time:2.10.6") //external dependency to test dependency inclusion in dummyCompilation
 }

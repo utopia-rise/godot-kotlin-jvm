@@ -34,6 +34,7 @@ nav:
     - Properties: user-guide/properties.md
     - Signals: user-guide/signals.md
     - Functions: user-guide/functions.md
+    - Exporting: user-guide/exporting.md
   - Advanced:
     - Custom Src dirs: advanced/custom-src-dirs.md
     - Commandline args: advanced/commandline-args.md
