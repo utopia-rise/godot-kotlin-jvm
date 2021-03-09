@@ -151,7 +151,7 @@ object GarbageCollector {
         // This binds jvm instance lifecycle to native object's one.
         if (wrapperList == null) {
             //We only create a single List in this block so we don't block the whole map for the duration of the checking
-            wrappedMap.toList()
+            wrapperList = wrappedMap.toList()
         }
 
         val size = wrapperList!!.size
@@ -197,14 +197,13 @@ object GarbageCollector {
             }
             counter++
         }
-
         return isActive
     }
 
     fun close() {
         info("Closing GC thread")
-        executor.shutdown()
         gcState = GCState.CLOSING
+        executor.shutdown()
         executor.awaitTermination(5000, TimeUnit.MILLISECONDS)
     }
 
