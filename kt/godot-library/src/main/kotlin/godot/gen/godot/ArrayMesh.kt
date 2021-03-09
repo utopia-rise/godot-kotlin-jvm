@@ -95,7 +95,7 @@ open class ArrayMesh : Mesh() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_ARRAYMESH, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_ARRAYMESH)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

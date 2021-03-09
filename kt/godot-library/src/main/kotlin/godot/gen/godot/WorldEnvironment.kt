@@ -42,8 +42,7 @@ open class WorldEnvironment : Node() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_WORLDENVIRONMENT,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_WORLDENVIRONMENT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

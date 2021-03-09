@@ -17,7 +17,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class CheckBox : Button() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_CHECKBOX, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_CHECKBOX)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

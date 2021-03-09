@@ -282,7 +282,7 @@ open class SliderJoint : Joint() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_SLIDERJOINT, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_SLIDERJOINT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

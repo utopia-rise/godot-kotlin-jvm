@@ -45,8 +45,7 @@ open class AnimationNodeAdd3 : AnimationNode() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODEADD3,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODEADD3)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

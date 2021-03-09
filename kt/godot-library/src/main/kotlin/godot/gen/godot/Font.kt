@@ -36,7 +36,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class Font : Resource() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_FONT, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_FONT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

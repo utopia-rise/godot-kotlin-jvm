@@ -29,7 +29,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class FuncRef : Reference() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_FUNCREF, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_FUNCREF)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

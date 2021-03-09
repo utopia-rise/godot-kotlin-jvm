@@ -12,8 +12,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class StreamPeerGDNative : StreamPeer() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_STREAMPEERGDNATIVE,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_STREAMPEERGDNATIVE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

@@ -33,8 +33,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class VisualShaderNodeCustom : VisualShaderNode() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODECUSTOM,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODECUSTOM)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

@@ -19,8 +19,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class VisualShaderNodeVectorScalarSmoothStep : VisualShaderNode() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEVECTORSCALARSMOOTHSTEP,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEVECTORSCALARSMOOTHSTEP)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

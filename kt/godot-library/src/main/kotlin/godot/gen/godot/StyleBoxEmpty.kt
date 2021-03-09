@@ -17,7 +17,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class StyleBoxEmpty : StyleBox() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_STYLEBOXEMPTY, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_STYLEBOXEMPTY)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

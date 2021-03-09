@@ -38,8 +38,7 @@ open class AudioEffectAmplify : AudioEffect() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTAMPLIFY,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTAMPLIFY)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

@@ -35,7 +35,7 @@ open class CanvasModulate : Node2D() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_CANVASMODULATE, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_CANVASMODULATE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

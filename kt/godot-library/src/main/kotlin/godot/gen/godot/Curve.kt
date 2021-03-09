@@ -79,7 +79,7 @@ open class Curve : Resource() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_CURVE, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_CURVE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

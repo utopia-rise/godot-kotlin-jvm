@@ -48,7 +48,7 @@ open class CylinderShape : Shape() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_CYLINDERSHAPE, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_CYLINDERSHAPE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

@@ -208,7 +208,7 @@ open class BakedLightmap : VisualInstance() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_BAKEDLIGHTMAP, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_BAKEDLIGHTMAP)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

@@ -66,7 +66,7 @@ open class PhysicsBody : CollisionObject() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_PHYSICSBODY, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_PHYSICSBODY)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

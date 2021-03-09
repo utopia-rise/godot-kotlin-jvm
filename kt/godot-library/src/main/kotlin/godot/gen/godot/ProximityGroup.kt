@@ -83,7 +83,7 @@ open class ProximityGroup : Spatial() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_PROXIMITYGROUP, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_PROXIMITYGROUP)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

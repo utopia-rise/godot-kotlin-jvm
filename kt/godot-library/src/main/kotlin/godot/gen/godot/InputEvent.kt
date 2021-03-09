@@ -51,7 +51,7 @@ open class InputEvent : Resource() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_INPUTEVENT, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_INPUTEVENT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

@@ -15,7 +15,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class JNISingleton : Object() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_JNISINGLETON, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_JNISINGLETON)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

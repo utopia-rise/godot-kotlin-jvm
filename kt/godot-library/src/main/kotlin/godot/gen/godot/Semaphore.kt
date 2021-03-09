@@ -24,7 +24,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class Semaphore : Reference() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS__SEMAPHORE, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS__SEMAPHORE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

@@ -34,7 +34,7 @@ open class VisualScript : Script() {
   val nodePortsChanged: Signal2<String, Long> by signal("function", "id")
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPT, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

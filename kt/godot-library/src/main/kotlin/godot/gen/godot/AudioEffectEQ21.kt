@@ -63,8 +63,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class AudioEffectEQ21 : AudioEffectEQ() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTEQ21,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTEQ21)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

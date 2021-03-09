@@ -51,8 +51,7 @@ open class EditorFileSystem : Node() {
   val sourcesChanged: Signal1<Boolean> by signal("exist")
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_EDITORFILESYSTEM,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_EDITORFILESYSTEM)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

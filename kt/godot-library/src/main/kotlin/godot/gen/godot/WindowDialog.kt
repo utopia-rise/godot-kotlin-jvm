@@ -53,7 +53,7 @@ open class WindowDialog : Popup() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_WINDOWDIALOG, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_WINDOWDIALOG)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

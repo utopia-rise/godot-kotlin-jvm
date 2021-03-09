@@ -40,8 +40,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class EditorSceneImporterAssimp : EditorSceneImporter() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_EDITORSCENEIMPORTERASSIMP,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_EDITORSCENEIMPORTERASSIMP)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

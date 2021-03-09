@@ -125,7 +125,7 @@ open class HingeJoint : Joint() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_HINGEJOINT, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_HINGEJOINT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

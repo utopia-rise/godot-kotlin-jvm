@@ -56,8 +56,7 @@ open class VisualScriptComment : VisualScriptNode() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTCOMMENT,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTCOMMENT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

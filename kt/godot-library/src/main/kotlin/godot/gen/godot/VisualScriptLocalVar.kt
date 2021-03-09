@@ -43,8 +43,7 @@ open class VisualScriptLocalVar : VisualScriptNode() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTLOCALVAR,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTLOCALVAR)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

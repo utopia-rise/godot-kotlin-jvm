@@ -121,8 +121,7 @@ open class Physics2DTestMotionResult : Reference() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_PHYSICS2DTESTMOTIONRESULT,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_PHYSICS2DTESTMOTIONRESULT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

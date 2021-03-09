@@ -52,7 +52,7 @@ open class CollisionShape : Spatial() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_COLLISIONSHAPE, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_COLLISIONSHAPE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

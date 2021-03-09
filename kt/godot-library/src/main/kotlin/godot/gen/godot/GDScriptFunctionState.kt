@@ -21,8 +21,7 @@ open class GDScriptFunctionState : Reference() {
   val completed: Signal1<Any> by signal("result")
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_GDSCRIPTFUNCTIONSTATE,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_GDSCRIPTFUNCTIONSTATE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

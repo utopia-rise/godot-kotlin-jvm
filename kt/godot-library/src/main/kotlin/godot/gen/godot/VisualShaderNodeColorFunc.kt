@@ -36,8 +36,7 @@ open class VisualShaderNodeColorFunc : VisualShaderNode() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODECOLORFUNC,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODECOLORFUNC)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

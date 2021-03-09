@@ -27,7 +27,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class CryptoKey : Resource() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_CRYPTOKEY, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_CRYPTOKEY)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

@@ -439,7 +439,7 @@ open class RigidBody : PhysicsBody() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_RIGIDBODY, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_RIGIDBODY)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

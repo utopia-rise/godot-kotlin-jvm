@@ -17,7 +17,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class PanelContainer : Container() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_PANELCONTAINER, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_PANELCONTAINER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

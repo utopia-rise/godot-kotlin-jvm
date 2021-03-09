@@ -179,7 +179,7 @@ open class SkeletonIK : Node() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_SKELETONIK, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_SKELETONIK)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

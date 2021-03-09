@@ -44,7 +44,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class TileSet : Resource() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_TILESET, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_TILESET)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

@@ -22,8 +22,7 @@ open class WebSocketMultiplayerPeer : NetworkedMultiplayerPeer() {
   val peerPacket: Signal1<Long> by signal("peer_source")
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_WEBSOCKETMULTIPLAYERPEER,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_WEBSOCKETMULTIPLAYERPEER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

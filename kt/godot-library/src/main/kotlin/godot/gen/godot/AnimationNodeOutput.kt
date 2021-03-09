@@ -18,8 +18,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class AnimationNodeOutput : AnimationNode() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODEOUTPUT,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODEOUTPUT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

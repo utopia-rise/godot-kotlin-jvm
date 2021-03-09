@@ -37,8 +37,7 @@ open class VisualShaderNodeVec3Constant : VisualShaderNode() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEVEC3CONSTANT,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEVEC3CONSTANT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

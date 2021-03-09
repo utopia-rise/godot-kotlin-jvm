@@ -36,8 +36,7 @@ open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMVECMULT,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMVECMULT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

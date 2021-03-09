@@ -1055,8 +1055,7 @@ open class Generic6DOFJoint : Joint() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_GENERIC6DOFJOINT,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_GENERIC6DOFJOINT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

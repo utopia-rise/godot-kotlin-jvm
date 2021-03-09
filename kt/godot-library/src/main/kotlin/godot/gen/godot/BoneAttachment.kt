@@ -35,7 +35,7 @@ open class BoneAttachment : Spatial() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_BONEATTACHMENT, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_BONEATTACHMENT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

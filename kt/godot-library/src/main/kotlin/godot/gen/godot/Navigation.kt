@@ -44,7 +44,7 @@ open class Navigation : Spatial() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_NAVIGATION, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_NAVIGATION)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

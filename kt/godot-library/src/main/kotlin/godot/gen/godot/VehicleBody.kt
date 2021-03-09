@@ -71,7 +71,7 @@ open class VehicleBody : RigidBody() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_VEHICLEBODY, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_VEHICLEBODY)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

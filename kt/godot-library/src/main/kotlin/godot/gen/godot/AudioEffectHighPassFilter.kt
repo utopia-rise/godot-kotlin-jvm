@@ -17,8 +17,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class AudioEffectHighPassFilter : AudioEffectFilter() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTHIGHPASSFILTER,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTHIGHPASSFILTER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

@@ -893,8 +893,7 @@ open class AnimationNodeTransition : AnimationNode() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODETRANSITION,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODETRANSITION)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

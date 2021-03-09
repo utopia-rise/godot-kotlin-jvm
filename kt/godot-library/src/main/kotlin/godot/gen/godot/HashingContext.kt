@@ -50,7 +50,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class HashingContext : Reference() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_HASHINGCONTEXT, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_HASHINGCONTEXT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

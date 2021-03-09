@@ -46,8 +46,7 @@ open class GradientTexture : Texture() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_GRADIENTTEXTURE,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_GRADIENTTEXTURE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

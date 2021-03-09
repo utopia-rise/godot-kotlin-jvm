@@ -15,7 +15,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class RootMotionView : VisualInstance() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_ROOTMOTIONVIEW, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_ROOTMOTIONVIEW)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

@@ -31,7 +31,7 @@ open class Container : Control() {
   val sortChildren: Signal0 by signal()
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_CONTAINER, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_CONTAINER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

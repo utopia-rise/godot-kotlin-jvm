@@ -42,8 +42,7 @@ open class MultiMeshInstance : GeometryInstance() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_MULTIMESHINSTANCE,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_MULTIMESHINSTANCE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

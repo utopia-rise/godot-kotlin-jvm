@@ -153,7 +153,7 @@ open class ColorPicker : BoxContainer() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_COLORPICKER, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_COLORPICKER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

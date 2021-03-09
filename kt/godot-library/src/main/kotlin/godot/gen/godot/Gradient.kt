@@ -58,7 +58,7 @@ open class Gradient : Resource() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_GRADIENT, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_GRADIENT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

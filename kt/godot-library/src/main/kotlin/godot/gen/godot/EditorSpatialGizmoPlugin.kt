@@ -32,8 +32,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class EditorSpatialGizmoPlugin : Resource() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_EDITORSPATIALGIZMOPLUGIN,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_EDITORSPATIALGIZMOPLUGIN)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

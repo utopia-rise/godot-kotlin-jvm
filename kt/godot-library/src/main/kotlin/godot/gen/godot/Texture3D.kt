@@ -17,7 +17,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class Texture3D : TextureLayered() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_TEXTURE3D, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_TEXTURE3D)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

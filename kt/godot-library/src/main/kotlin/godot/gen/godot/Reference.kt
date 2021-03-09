@@ -28,7 +28,7 @@ open class Reference : Object() {
   override fun ____DO_NOT_TOUCH_THIS_isRef____() = true
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_REFERENCE, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_REFERENCE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

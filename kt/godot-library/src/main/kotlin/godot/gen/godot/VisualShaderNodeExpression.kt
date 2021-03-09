@@ -38,8 +38,7 @@ open class VisualShaderNodeExpression : VisualShaderNodeGroupBase() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEEXPRESSION,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEEXPRESSION)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

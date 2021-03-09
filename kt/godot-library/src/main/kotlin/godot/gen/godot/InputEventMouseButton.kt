@@ -89,8 +89,7 @@ open class InputEventMouseButton : InputEventMouse() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_INPUTEVENTMOUSEBUTTON,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_INPUTEVENTMOUSEBUTTON)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

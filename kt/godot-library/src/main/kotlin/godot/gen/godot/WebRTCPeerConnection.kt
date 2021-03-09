@@ -35,8 +35,7 @@ open class WebRTCPeerConnection : Reference() {
   val sessionDescriptionCreated: Signal2<String, String> by signal("type", "sdp")
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_WEBRTCPEERCONNECTION,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_WEBRTCPEERCONNECTION)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

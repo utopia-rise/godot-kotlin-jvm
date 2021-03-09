@@ -67,7 +67,7 @@ open class HeightMapShape : Shape() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_HEIGHTMAPSHAPE, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_HEIGHTMAPSHAPE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

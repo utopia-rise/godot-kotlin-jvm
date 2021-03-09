@@ -17,8 +17,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class AudioEffectBandLimitFilter : AudioEffectFilter() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTBANDLIMITFILTER,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTBANDLIMITFILTER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

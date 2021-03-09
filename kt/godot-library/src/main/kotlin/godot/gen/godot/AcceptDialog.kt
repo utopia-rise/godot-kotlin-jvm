@@ -85,7 +85,7 @@ open class AcceptDialog : WindowDialog() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_ACCEPTDIALOG, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_ACCEPTDIALOG)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

@@ -109,8 +109,7 @@ open class BakedLightmapData : Resource() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_BAKEDLIGHTMAPDATA,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_BAKEDLIGHTMAPDATA)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

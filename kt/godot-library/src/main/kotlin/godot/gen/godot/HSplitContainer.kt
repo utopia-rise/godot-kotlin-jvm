@@ -17,8 +17,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class HSplitContainer : SplitContainer() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_HSPLITCONTAINER,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_HSPLITCONTAINER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

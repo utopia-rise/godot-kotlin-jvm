@@ -218,7 +218,7 @@ open class SpriteBase3D : GeometryInstance() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_SPRITEBASE3D, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_SPRITEBASE3D)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

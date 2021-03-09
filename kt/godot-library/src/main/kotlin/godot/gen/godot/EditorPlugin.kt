@@ -54,7 +54,7 @@ open class EditorPlugin : Node() {
   val sceneClosed: Signal1<String> by signal("filepath")
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_EDITORPLUGIN, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_EDITORPLUGIN)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

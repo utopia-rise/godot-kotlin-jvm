@@ -100,8 +100,7 @@ open class MobileVRInterface : ARVRInterface() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_MOBILEVRINTERFACE,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_MOBILEVRINTERFACE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

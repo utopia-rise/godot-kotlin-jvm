@@ -159,7 +159,7 @@ open class Spatial : Node() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_SPATIAL, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_SPATIAL)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

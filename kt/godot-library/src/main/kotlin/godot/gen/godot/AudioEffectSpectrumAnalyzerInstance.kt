@@ -21,8 +21,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class AudioEffectSpectrumAnalyzerInstance : AudioEffectInstance() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZERINSTANCE,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZERINSTANCE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

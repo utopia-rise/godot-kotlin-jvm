@@ -50,7 +50,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class Directory : Reference() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS__DIRECTORY, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS__DIRECTORY)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

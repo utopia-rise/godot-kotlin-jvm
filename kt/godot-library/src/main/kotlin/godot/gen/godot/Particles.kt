@@ -305,7 +305,7 @@ open class Particles : GeometryInstance() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_PARTICLES, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_PARTICLES)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

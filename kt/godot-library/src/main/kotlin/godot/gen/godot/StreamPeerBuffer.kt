@@ -37,8 +37,7 @@ open class StreamPeerBuffer : StreamPeer() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_STREAMPEERBUFFER,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_STREAMPEERBUFFER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

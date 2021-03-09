@@ -77,7 +77,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class DTLSServer : Reference() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_DTLSSERVER, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_DTLSSERVER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

@@ -17,8 +17,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class VisualShaderNodeTransformCompose : VisualShaderNode() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMCOMPOSE,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMCOMPOSE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

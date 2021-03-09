@@ -38,7 +38,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class Skeleton : Spatial() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_SKELETON, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_SKELETON)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

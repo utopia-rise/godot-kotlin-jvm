@@ -656,7 +656,7 @@ open class Node : Object() {
   ) = rsetUnreliableId(id, property.name.camelToSnakeCase(), value)
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_NODE, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_NODE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

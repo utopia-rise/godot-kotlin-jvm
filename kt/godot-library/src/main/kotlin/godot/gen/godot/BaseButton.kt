@@ -196,7 +196,7 @@ open class BaseButton : Control() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_BASEBUTTON, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_BASEBUTTON)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

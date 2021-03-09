@@ -15,8 +15,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class VisualShaderNodeScalarUniform : VisualShaderNodeUniform() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODESCALARUNIFORM,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODESCALARUNIFORM)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

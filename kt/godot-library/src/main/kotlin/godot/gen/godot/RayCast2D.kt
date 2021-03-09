@@ -129,7 +129,7 @@ open class RayCast2D : Node2D() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_RAYCAST2D, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_RAYCAST2D)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

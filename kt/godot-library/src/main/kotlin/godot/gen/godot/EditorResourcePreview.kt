@@ -33,8 +33,7 @@ open class EditorResourcePreview : Node() {
   val previewInvalidated: Signal1<String> by signal("path")
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_EDITORRESOURCEPREVIEW,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_EDITORRESOURCEPREVIEW)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

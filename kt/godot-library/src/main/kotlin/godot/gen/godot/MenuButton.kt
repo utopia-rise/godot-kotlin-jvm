@@ -49,7 +49,7 @@ open class MenuButton : Button() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_MENUBUTTON, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_MENUBUTTON)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

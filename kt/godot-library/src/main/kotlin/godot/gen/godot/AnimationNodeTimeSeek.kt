@@ -20,8 +20,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class AnimationNodeTimeSeek : AnimationNode() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODETIMESEEK,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODETIMESEEK)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

@@ -29,8 +29,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class EditorFeatureProfile : Reference() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_EDITORFEATUREPROFILE,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_EDITORFEATUREPROFILE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

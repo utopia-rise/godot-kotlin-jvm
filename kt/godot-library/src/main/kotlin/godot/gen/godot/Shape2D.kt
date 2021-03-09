@@ -49,7 +49,7 @@ open class Shape2D : Resource() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_SHAPE2D, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_SHAPE2D)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

@@ -34,7 +34,7 @@ open class SphereShape : Shape() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_SPHERESHAPE, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_SPHERESHAPE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

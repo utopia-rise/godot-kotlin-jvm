@@ -50,7 +50,7 @@ open class LinkButton : BaseButton() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_LINKBUTTON, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_LINKBUTTON)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

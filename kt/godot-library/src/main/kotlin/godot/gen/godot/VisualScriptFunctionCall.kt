@@ -154,8 +154,7 @@ open class VisualScriptFunctionCall : VisualScriptNode() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTFUNCTIONCALL,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTFUNCTIONCALL)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

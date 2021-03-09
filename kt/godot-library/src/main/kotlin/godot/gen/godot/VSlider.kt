@@ -19,7 +19,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class VSlider : Slider() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_VSLIDER, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_VSLIDER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

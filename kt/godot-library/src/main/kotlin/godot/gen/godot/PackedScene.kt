@@ -65,7 +65,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class PackedScene : Resource() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_PACKEDSCENE, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_PACKEDSCENE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

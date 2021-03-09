@@ -17,7 +17,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class PopupDialog : Popup() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_POPUPDIALOG, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_POPUPDIALOG)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

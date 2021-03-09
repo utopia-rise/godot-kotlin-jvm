@@ -144,7 +144,7 @@ open class PhysicalBone : PhysicsBody() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_PHYSICALBONE, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_PHYSICALBONE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

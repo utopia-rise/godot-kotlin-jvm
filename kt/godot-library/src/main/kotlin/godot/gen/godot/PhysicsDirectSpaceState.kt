@@ -32,8 +32,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class PhysicsDirectSpaceState : Object() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_PHYSICSDIRECTSPACESTATE,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_PHYSICSDIRECTSPACESTATE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

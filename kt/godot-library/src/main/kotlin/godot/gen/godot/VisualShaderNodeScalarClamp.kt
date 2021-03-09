@@ -17,8 +17,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class VisualShaderNodeScalarClamp : VisualShaderNode() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODESCALARCLAMP,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODESCALARCLAMP)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

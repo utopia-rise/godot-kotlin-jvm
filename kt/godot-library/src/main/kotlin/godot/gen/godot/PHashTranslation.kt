@@ -19,8 +19,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class PHashTranslation : Translation() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_PHASHTRANSLATION,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_PHASHTRANSLATION)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

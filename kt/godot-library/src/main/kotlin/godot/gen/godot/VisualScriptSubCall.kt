@@ -14,8 +14,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class VisualScriptSubCall : VisualScriptNode() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTSUBCALL,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTSUBCALL)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

@@ -41,7 +41,7 @@ open class TextureLayered : Resource() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_TEXTURELAYERED, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_TEXTURELAYERED)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

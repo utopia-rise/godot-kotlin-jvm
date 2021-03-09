@@ -24,8 +24,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class ConfirmationDialog : AcceptDialog() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_CONFIRMATIONDIALOG,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_CONFIRMATIONDIALOG)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long
