@@ -4,6 +4,7 @@
 #include <cstdint>
 #include "core/hash_map.h"
 #include "core/reference.h"
+#include "core/list.h"
 
 class RefDB {
 private:
@@ -15,6 +16,7 @@ private:
     };
 
     HashMap<uintptr_t, RefIndex> ref_map;
+    List<RefIndex> freeIds;
 
 public:
     uint64_t get_ref_id(Reference* ref);

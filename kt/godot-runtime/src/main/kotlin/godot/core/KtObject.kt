@@ -63,22 +63,27 @@ abstract class KtObject {
     companion object {
         private val shouldInit = ThreadLocal.withInitial { true }
 
-        fun <T : KtObject> instantiateWith(rawPtr: VoidPtr, Id: Long, isRef: Boolean, constructor: () -> T): T {
+        fun <T : KtObject> instantiateWith(rawPtr: VoidPtr, Id: Long, constructor: () -> T): T {
             shouldInit.set(false)
-            return constructor().also {
+            val obj = try {
+                constructor()
+            }
+            finally{
+                shouldInit.set(true)
+            }
+
+            return obj.also {
                 it.rawPtr = rawPtr
                 it.id = Id
                 if (!it.____DO_NOT_TOUCH_THIS_isSingleton____()) {
-                    if (isRef) {
+                    if (it.____DO_NOT_TOUCH_THIS_isRef____()) {
                         GarbageCollector.registerReference(it)
                     } else {
                         GarbageCollector.registerObject(it)
                     }
                 }
                 it._onInit()
-                shouldInit.set(true)
             }
-
         }
     }
 }
