@@ -12,6 +12,31 @@ Godot singletons are mapped as Kotlin objects.
 Physics2DServer.areaGetTransform(area)
 ```
 
+## Instantiation limitations
+You cannot interact with the Godot Api from within your constructors!  
+This limitation is present because we need a pointer to your object which we only have once it's instanced.
+
+So this won't work and will crash:
+```kotlin
+constructor() {
+    val tree = getTree()
+    //...
+}
+```
+
+Do such things inside the `_onInit()` function:
+```kotlin
+constructor() {
+    //...
+}
+
+override fun _onInit() {
+    val tree = getTree()
+}
+```
+
+The same applies of course for `init {}`.
+
 ## Enums and constants
 Godot enums are mapped to Kotlin enums, the generated enum exposes a `value` property that represents the value in Godot. Constants in Godot classes that represent an enum value (such as `Node.PAUSE_MODE_INHERIT`) are not present in this module, please use the generated enum instead (`Node.PauseMode.INHERIT`).
 
