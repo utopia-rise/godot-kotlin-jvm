@@ -16,7 +16,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class GDScript : Script() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_GDSCRIPT, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_GDSCRIPT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

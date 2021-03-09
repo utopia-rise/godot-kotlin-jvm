@@ -27,7 +27,7 @@ open class ARVROrigin : Spatial() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_ARVRORIGIN, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_ARVRORIGIN)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

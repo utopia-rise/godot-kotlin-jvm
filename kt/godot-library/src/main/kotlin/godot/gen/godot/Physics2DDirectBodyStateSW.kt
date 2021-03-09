@@ -12,8 +12,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class Physics2DDirectBodyStateSW : Physics2DDirectBodyState() {
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_PHYSICS2DDIRECTBODYSTATESW,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_PHYSICS2DDIRECTBODYSTATESW)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

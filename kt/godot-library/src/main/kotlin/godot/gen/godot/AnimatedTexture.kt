@@ -6733,8 +6733,7 @@ open class AnimatedTexture : Texture() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_ANIMATEDTEXTURE,
-        ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_ANIMATEDTEXTURE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

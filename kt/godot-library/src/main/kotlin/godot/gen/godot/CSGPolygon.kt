@@ -175,7 +175,7 @@ open class CSGPolygon : CSGPrimitive() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_CSGPOLYGON, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_CSGPOLYGON)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

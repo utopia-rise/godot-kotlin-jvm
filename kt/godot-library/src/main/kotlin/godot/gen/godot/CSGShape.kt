@@ -91,7 +91,7 @@ open class CSGShape : GeometryInstance() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_CSGSHAPE, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_CSGSHAPE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

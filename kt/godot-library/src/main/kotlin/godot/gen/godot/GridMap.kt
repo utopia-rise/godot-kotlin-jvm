@@ -132,7 +132,7 @@ open class GridMap : Spatial() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_GRIDMAP, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_GRIDMAP)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long

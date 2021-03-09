@@ -55,7 +55,7 @@ open class PlaneMesh : PrimitiveMesh() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_PLANEMESH, ____DO_NOT_TOUCH_THIS_isRef____())
+    TransferContext.invokeConstructor(ENGINECLASS_PLANEMESH)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
     id = buffer.long
