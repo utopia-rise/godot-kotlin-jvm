@@ -30,7 +30,7 @@ open class VisualScriptPreload : VisualScriptNode() {
     TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTPRELOAD)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

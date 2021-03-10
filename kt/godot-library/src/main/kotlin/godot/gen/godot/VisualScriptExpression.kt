@@ -15,7 +15,7 @@ open class VisualScriptExpression : VisualScriptNode() {
     TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTEXPRESSION)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

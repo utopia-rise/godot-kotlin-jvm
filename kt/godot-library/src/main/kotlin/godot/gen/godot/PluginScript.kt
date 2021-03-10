@@ -17,7 +17,7 @@ open class PluginScript : Script() {
     TransferContext.invokeConstructor(ENGINECLASS_PLUGINSCRIPT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

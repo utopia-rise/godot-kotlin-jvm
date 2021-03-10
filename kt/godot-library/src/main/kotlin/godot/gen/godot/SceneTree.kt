@@ -203,7 +203,7 @@ open class SceneTree : MainLoop() {
     TransferContext.invokeConstructor(ENGINECLASS_SCENETREE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

@@ -17,11 +17,19 @@ class Memory : Object() {
     val size = 1000
 
 
-    init {
+    override fun _onInit() {
         for (i in 0 until size) {
             objs.append(Node())
             refs.append(File())
             cores.append(RID())
+        }
+    }
+
+    override fun _onDestroy() {
+        for (i in 0 until size) {
+            objs[i].free()
+            refs[i] = null
+            cores[i] = null
         }
     }
 
@@ -33,14 +41,13 @@ class Memory : Object() {
         }
     }
 
-    /**
     @RegisterFunction
     fun benchmarkRefAccess() {
         var ref: File?
         for (i in 0 until size) {
             ref = refs[i]
         }
-    } **/
+    }
 
     @RegisterFunction
     fun benchmarkCoreAccess() {
@@ -59,14 +66,13 @@ class Memory : Object() {
         }
     }
 
-    /**
     @RegisterFunction
     fun benchmarkStressReference() {
         var ref: File?
         for (i in 0 until size) {
             ref = File()
         }
-    } **/
+    }
 
     @RegisterFunction
     fun benchmarkStressCore() {

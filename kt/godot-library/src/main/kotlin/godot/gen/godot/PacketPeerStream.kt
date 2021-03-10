@@ -58,7 +58,7 @@ open class PacketPeerStream : PacketPeer() {
     TransferContext.invokeConstructor(ENGINECLASS_PACKETPEERSTREAM)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

@@ -25,7 +25,7 @@ open class WebSocketPeer : PacketPeer() {
     TransferContext.invokeConstructor(ENGINECLASS_WEBSOCKETPEER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

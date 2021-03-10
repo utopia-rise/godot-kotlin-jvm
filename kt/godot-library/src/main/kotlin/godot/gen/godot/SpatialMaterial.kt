@@ -1336,7 +1336,7 @@ open class SpatialMaterial : Material() {
     TransferContext.invokeConstructor(ENGINECLASS_SPATIALMATERIAL)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

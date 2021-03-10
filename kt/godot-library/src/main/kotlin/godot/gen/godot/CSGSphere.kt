@@ -80,7 +80,7 @@ open class CSGSphere : CSGPrimitive() {
     TransferContext.invokeConstructor(ENGINECLASS_CSGSPHERE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

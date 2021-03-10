@@ -33,7 +33,7 @@ open class SpatialVelocityTracker : Reference() {
     TransferContext.invokeConstructor(ENGINECLASS_SPATIALVELOCITYTRACKER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

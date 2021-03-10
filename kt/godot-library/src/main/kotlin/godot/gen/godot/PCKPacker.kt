@@ -24,7 +24,7 @@ open class PCKPacker : Reference() {
     TransferContext.invokeConstructor(ENGINECLASS_PCKPACKER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

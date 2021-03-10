@@ -88,7 +88,7 @@ open class Timer : Node() {
     TransferContext.invokeConstructor(ENGINECLASS_TIMER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

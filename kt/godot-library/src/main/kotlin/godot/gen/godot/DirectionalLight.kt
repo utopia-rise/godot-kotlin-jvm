@@ -59,7 +59,7 @@ open class DirectionalLight : Light() {
     TransferContext.invokeConstructor(ENGINECLASS_DIRECTIONALLIGHT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

@@ -74,7 +74,7 @@ open class VisualScriptYieldSignal : VisualScriptNode() {
     TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTYIELDSIGNAL)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

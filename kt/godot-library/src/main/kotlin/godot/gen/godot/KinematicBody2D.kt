@@ -53,7 +53,7 @@ open class KinematicBody2D : PhysicsBody2D() {
     TransferContext.invokeConstructor(ENGINECLASS_KINEMATICBODY2D)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

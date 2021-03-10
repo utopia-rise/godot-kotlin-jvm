@@ -15,7 +15,7 @@ open class WebRTCDataChannelGDNative : WebRTCDataChannel() {
     TransferContext.invokeConstructor(ENGINECLASS_WEBRTCDATACHANNELGDNATIVE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

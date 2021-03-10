@@ -33,7 +33,7 @@ open class RandomNumberGenerator : Reference() {
     TransferContext.invokeConstructor(ENGINECLASS_RANDOMNUMBERGENERATOR)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

@@ -239,7 +239,7 @@ open class Particles : GeometryInstance() {
     TransferContext.invokeConstructor(ENGINECLASS_PARTICLES)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

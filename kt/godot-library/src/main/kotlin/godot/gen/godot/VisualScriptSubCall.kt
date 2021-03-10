@@ -17,7 +17,7 @@ open class VisualScriptSubCall : VisualScriptNode() {
     TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTSUBCALL)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

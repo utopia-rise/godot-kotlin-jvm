@@ -31,7 +31,7 @@ open class EditorSettings : Resource() {
     TransferContext.invokeConstructor(ENGINECLASS_EDITORSETTINGS)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

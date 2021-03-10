@@ -21,7 +21,7 @@ open class ResourceFormatLoader : Reference() {
     TransferContext.invokeConstructor(ENGINECLASS_RESOURCEFORMATLOADER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

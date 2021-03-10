@@ -9,13 +9,14 @@ import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.String
 import kotlin.Suppress
 
 @GodotBaseType
 object JavaClassWrapper : Object() {
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_JAVACLASSWRAPPER)
+  override fun __new() {
+    rawPtr = TransferContext.getSingleton(ENGINESINGLETON_JAVACLASSWRAPPER)
+  }
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

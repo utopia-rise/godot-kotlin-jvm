@@ -31,7 +31,7 @@ open class CSGPrimitive : CSGShape() {
     TransferContext.invokeConstructor(ENGINECLASS_CSGPRIMITIVE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

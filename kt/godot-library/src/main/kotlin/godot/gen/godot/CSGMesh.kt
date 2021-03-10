@@ -39,7 +39,7 @@ open class CSGMesh : CSGPrimitive() {
     TransferContext.invokeConstructor(ENGINECLASS_CSGMESH)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

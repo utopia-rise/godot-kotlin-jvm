@@ -882,7 +882,7 @@ open class AnimationNodeTransition : AnimationNode() {
     TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODETRANSITION)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

@@ -89,7 +89,7 @@ open class CSGTorus : CSGPrimitive() {
     TransferContext.invokeConstructor(ENGINECLASS_CSGTORUS)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

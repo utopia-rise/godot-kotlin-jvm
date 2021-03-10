@@ -46,7 +46,7 @@ open class InputEventJoypadMotion : InputEvent() {
     TransferContext.invokeConstructor(ENGINECLASS_INPUTEVENTJOYPADMOTION)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

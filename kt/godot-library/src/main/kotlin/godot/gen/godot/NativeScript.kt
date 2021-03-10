@@ -70,7 +70,7 @@ open class NativeScript : Script() {
     TransferContext.invokeConstructor(ENGINECLASS_NATIVESCRIPT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

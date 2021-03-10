@@ -143,7 +143,7 @@ open class VideoPlayer : Control() {
     TransferContext.invokeConstructor(ENGINECLASS_VIDEOPLAYER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

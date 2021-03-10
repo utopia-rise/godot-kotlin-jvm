@@ -30,7 +30,7 @@ open class Expression : Reference() {
     TransferContext.invokeConstructor(ENGINECLASS_EXPRESSION)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

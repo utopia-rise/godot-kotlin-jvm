@@ -168,6 +168,7 @@ void TransferContext::invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, 
 
     buffer->increment_position(encode_uint64(raw_ptr, buffer->get_cursor()));
     buffer->increment_position(encode_uint64(id, buffer->get_cursor()));
+    buffer->rewind();
 }
 
 jlong TransferContext::get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index) {

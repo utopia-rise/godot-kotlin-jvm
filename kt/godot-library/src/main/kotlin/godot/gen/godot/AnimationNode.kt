@@ -51,7 +51,7 @@ open class AnimationNode : Resource() {
     TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

@@ -198,7 +198,7 @@ open class VehicleWheel : Spatial() {
     TransferContext.invokeConstructor(ENGINECLASS_VEHICLEWHEEL)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

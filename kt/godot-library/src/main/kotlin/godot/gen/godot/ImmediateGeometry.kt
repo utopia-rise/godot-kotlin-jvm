@@ -31,7 +31,7 @@ open class ImmediateGeometry : GeometryInstance() {
     TransferContext.invokeConstructor(ENGINECLASS_IMMEDIATEGEOMETRY)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

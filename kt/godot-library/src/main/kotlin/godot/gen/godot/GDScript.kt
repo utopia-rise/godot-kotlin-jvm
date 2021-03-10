@@ -19,7 +19,7 @@ open class GDScript : Script() {
     TransferContext.invokeConstructor(ENGINECLASS_GDSCRIPT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

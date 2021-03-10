@@ -31,7 +31,7 @@ open class AudioEffectAmplify : AudioEffect() {
     TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTAMPLIFY)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }
