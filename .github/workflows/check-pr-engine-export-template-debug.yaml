@@ -61,7 +61,7 @@ jobs:
         if: matrix.platform == 'android'
         run: |
           scons platform=${{ matrix.platform }} target=release_debug android_arch=armv7
-      - name: Build android debug binary armv7
+      - name: Build android debug binary arm64v8
         if: matrix.platform == 'android'
         run: |
           scons platform=${{ matrix.platform }} target=release_debug android_arch=arm64v8
