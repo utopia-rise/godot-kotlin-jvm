@@ -12,7 +12,7 @@ repositories {
 godot {
     //uncomment to test android
 //    isAndroidExportEnabled.set(true)
-//    dxToolPath.set("${System.getenv("ANDROID_HOME")}/build-tools/30.0.3/dx")
+//    dxToolPath.set("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/30.0.3/dx")
 }
 
 dependencies {

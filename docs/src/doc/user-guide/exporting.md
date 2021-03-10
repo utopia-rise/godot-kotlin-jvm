@@ -42,7 +42,7 @@ Our gradle plugin will handle this for you, but you need to fulfill the followin
 ```kotlin
     godot {
         isAndroidExportEnabled.set(true)
-        dxToolPath.set("${System.getenv("HOME")}/Android/Sdk/build-tools/30.0.3/dx")
+        dxToolPath.set("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/30.0.3/dx")
     }
 ```
 
