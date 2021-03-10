@@ -19,7 +19,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.signals.Signal0
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -107,7 +106,9 @@ object AudioServer : Object() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_AUDIOSERVER)
+  override fun __new() {
+    rawPtr = TransferContext.getSingleton(ENGINESINGLETON_AUDIOSERVER)
+  }
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

@@ -127,7 +127,7 @@ open class Button : BaseButton() {
     TransferContext.invokeConstructor(ENGINECLASS_BUTTON)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

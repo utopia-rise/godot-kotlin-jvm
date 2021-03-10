@@ -52,7 +52,7 @@ open class SegmentShape2D : Shape2D() {
     TransferContext.invokeConstructor(ENGINECLASS_SEGMENTSHAPE2D)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

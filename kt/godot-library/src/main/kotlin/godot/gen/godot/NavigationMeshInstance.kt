@@ -54,7 +54,7 @@ open class NavigationMeshInstance : Spatial() {
     TransferContext.invokeConstructor(ENGINECLASS_NAVIGATIONMESHINSTANCE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

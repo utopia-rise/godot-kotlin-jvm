@@ -70,7 +70,7 @@ open class HeightMapShape : Shape() {
     TransferContext.invokeConstructor(ENGINECLASS_HEIGHTMAPSHAPE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

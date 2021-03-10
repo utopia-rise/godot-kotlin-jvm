@@ -18,7 +18,7 @@ open class AnimationTrackEditPlugin : Reference() {
     TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONTRACKEDITPLUGIN)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

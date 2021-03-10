@@ -22,7 +22,7 @@ open class VisualShaderNodeVectorDistance : VisualShaderNode() {
     TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEVECTORDISTANCE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

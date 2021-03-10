@@ -35,7 +35,7 @@ open class Physics2DDirectSpaceState : Object() {
     TransferContext.invokeConstructor(ENGINECLASS_PHYSICS2DDIRECTSPACESTATE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

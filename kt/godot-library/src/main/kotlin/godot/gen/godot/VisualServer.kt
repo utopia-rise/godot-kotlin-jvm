@@ -50,7 +50,6 @@ import godot.core.Vector2
 import godot.core.Vector3
 import godot.signals.Signal0
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -1192,7 +1191,9 @@ object VisualServer : Object() {
    */
   val framePreDraw: Signal0 by signal()
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_VISUALSERVER)
+  override fun __new() {
+    rawPtr = TransferContext.getSingleton(ENGINESINGLETON_VISUALSERVER)
+  }
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

@@ -50,7 +50,7 @@ open class Curve2D : Resource() {
     TransferContext.invokeConstructor(ENGINECLASS_CURVE2D)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

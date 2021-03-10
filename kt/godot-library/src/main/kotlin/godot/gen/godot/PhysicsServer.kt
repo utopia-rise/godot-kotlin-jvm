@@ -22,7 +22,6 @@ import godot.core.VariantType.TRANSFORM
 import godot.core.VariantType.VECTOR3
 import godot.core.VariantType._RID
 import godot.core.Vector3
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -677,7 +676,9 @@ object PhysicsServer : Object() {
    */
   final const val SPACE_PARAM_TEST_MOTION_MIN_CONTACT_DEPTH: Long = 8
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_PHYSICSSERVER)
+  override fun __new() {
+    rawPtr = TransferContext.getSingleton(ENGINESINGLETON_PHYSICSSERVER)
+  }
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

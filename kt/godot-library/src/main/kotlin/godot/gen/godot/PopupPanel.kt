@@ -20,7 +20,7 @@ open class PopupPanel : Popup() {
     TransferContext.invokeConstructor(ENGINECLASS_POPUPPANEL)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

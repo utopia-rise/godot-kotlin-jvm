@@ -193,7 +193,7 @@ open class DynamicFont : Font() {
     TransferContext.invokeConstructor(ENGINECLASS_DYNAMICFONT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

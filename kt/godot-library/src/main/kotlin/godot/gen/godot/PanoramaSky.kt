@@ -40,7 +40,7 @@ open class PanoramaSky : Sky() {
     TransferContext.invokeConstructor(ENGINECLASS_PANORAMASKY)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

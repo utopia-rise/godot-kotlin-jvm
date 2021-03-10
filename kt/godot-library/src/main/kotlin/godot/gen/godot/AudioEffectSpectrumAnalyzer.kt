@@ -71,7 +71,7 @@ open class AudioEffectSpectrumAnalyzer : AudioEffect() {
     TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

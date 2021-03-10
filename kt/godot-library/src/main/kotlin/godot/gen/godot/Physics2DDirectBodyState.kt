@@ -170,7 +170,7 @@ open class Physics2DDirectBodyState : Object() {
     TransferContext.invokeConstructor(ENGINECLASS_PHYSICS2DDIRECTBODYSTATE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

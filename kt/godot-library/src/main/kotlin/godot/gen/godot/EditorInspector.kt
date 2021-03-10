@@ -71,7 +71,7 @@ open class EditorInspector : ScrollContainer() {
     TransferContext.invokeConstructor(ENGINECLASS_EDITORINSPECTOR)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

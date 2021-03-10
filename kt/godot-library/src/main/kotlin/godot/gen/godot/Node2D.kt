@@ -223,7 +223,7 @@ open class Node2D : CanvasItem() {
     TransferContext.invokeConstructor(ENGINECLASS_NODE2D)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

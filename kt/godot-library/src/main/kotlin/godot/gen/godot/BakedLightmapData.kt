@@ -112,7 +112,7 @@ open class BakedLightmapData : Resource() {
     TransferContext.invokeConstructor(ENGINECLASS_BAKEDLIGHTMAPDATA)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

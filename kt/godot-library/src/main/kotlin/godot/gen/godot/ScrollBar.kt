@@ -44,7 +44,7 @@ open class ScrollBar : Range() {
     TransferContext.invokeConstructor(ENGINECLASS_SCROLLBAR)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

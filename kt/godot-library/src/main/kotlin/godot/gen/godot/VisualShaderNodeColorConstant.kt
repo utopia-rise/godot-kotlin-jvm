@@ -42,7 +42,7 @@ open class VisualShaderNodeColorConstant : VisualShaderNode() {
     TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODECOLORCONSTANT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

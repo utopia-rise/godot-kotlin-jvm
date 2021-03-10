@@ -17,8 +17,6 @@ namespace bridges {
 
         static bool unref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
 
-        static bool ref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-
         static bool unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint var_type);
 
     DECLARE_JNI_METHODS()

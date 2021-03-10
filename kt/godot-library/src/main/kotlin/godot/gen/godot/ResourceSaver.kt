@@ -14,7 +14,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_STRING_ARRAY
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -64,7 +63,9 @@ object ResourceSaver : Object() {
    */
   final const val FLAG_SAVE_BIG_ENDIAN: Long = 16
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_RESOURCESAVER)
+  override fun __new() {
+    rawPtr = TransferContext.getSingleton(ENGINESINGLETON_RESOURCESAVER)
+  }
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

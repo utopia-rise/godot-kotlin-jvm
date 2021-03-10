@@ -85,7 +85,7 @@ open class PhysicsMaterial : Resource() {
     TransferContext.invokeConstructor(ENGINECLASS_PHYSICSMATERIAL)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

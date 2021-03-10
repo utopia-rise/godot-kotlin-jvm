@@ -15,7 +15,7 @@ open class WebRTCPeerConnectionGDNative : WebRTCPeerConnection() {
     TransferContext.invokeConstructor(ENGINECLASS_WEBRTCPEERCONNECTIONGDNATIVE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

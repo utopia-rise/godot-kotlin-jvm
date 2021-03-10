@@ -30,7 +30,7 @@ open class VideoStreamTheora : VideoStream() {
     TransferContext.invokeConstructor(ENGINECLASS_VIDEOSTREAMTHEORA)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

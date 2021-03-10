@@ -20,7 +20,7 @@ open class VisualShaderNodeFresnel : VisualShaderNode() {
     TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEFRESNEL)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

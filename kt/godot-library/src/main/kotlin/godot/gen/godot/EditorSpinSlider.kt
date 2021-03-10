@@ -68,7 +68,7 @@ open class EditorSpinSlider : Range() {
     TransferContext.invokeConstructor(ENGINECLASS_EDITORSPINSLIDER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

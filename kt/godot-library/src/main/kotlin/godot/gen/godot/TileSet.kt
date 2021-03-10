@@ -47,7 +47,7 @@ open class TileSet : Resource() {
     TransferContext.invokeConstructor(ENGINECLASS_TILESET)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

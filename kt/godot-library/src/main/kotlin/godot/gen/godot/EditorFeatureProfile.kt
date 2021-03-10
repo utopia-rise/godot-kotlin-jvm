@@ -32,7 +32,7 @@ open class EditorFeatureProfile : Reference() {
     TransferContext.invokeConstructor(ENGINECLASS_EDITORFEATUREPROFILE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

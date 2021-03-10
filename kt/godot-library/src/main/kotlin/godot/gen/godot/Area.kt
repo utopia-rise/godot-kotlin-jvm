@@ -349,7 +349,7 @@ open class Area : CollisionObject() {
     TransferContext.invokeConstructor(ENGINECLASS_AREA)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

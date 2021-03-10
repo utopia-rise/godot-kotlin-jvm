@@ -129,7 +129,7 @@ open class CanvasItemMaterial : Material() {
     TransferContext.invokeConstructor(ENGINECLASS_CANVASITEMMATERIAL)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

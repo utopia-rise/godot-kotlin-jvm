@@ -18,7 +18,7 @@ open class JNISingleton : Object() {
     TransferContext.invokeConstructor(ENGINECLASS_JNISINGLETON)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

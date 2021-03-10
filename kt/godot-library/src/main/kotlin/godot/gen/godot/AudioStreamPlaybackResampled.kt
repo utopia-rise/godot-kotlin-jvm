@@ -18,7 +18,7 @@ open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
     TransferContext.invokeConstructor(ENGINECLASS_AUDIOSTREAMPLAYBACKRESAMPLED)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

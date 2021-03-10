@@ -170,7 +170,7 @@ open class GraphNode : Container() {
     TransferContext.invokeConstructor(ENGINECLASS_GRAPHNODE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

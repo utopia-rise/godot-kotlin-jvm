@@ -37,7 +37,7 @@ open class SphereShape : Shape() {
     TransferContext.invokeConstructor(ENGINECLASS_SPHERESHAPE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

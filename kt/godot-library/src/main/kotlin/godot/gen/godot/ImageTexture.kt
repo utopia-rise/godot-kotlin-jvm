@@ -67,7 +67,7 @@ open class ImageTexture : Texture() {
     TransferContext.invokeConstructor(ENGINECLASS_IMAGETEXTURE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

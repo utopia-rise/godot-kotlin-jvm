@@ -17,7 +17,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -106,7 +105,9 @@ object Engine : Object() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_SET_TIME_SCALE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_ENGINE)
+  override fun __new() {
+    rawPtr = TransferContext.getSingleton(ENGINESINGLETON_ENGINE)
+  }
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

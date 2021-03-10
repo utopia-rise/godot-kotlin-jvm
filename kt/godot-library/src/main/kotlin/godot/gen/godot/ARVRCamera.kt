@@ -25,7 +25,7 @@ open class ARVRCamera : Camera() {
     TransferContext.invokeConstructor(ENGINECLASS_ARVRCAMERA)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

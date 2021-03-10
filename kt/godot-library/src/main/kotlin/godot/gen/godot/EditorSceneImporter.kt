@@ -26,7 +26,7 @@ open class EditorSceneImporter : Reference() {
     TransferContext.invokeConstructor(ENGINECLASS_EDITORSCENEIMPORTER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

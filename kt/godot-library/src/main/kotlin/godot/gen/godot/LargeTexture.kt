@@ -31,7 +31,7 @@ open class LargeTexture : Texture() {
     TransferContext.invokeConstructor(ENGINECLASS_LARGETEXTURE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

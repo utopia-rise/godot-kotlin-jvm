@@ -27,7 +27,7 @@ open class WebRTCMultiplayer : NetworkedMultiplayerPeer() {
     TransferContext.invokeConstructor(ENGINECLASS_WEBRTCMULTIPLAYER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

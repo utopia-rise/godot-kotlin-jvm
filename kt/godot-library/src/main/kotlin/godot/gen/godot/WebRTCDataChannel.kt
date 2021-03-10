@@ -39,7 +39,7 @@ open class WebRTCDataChannel : PacketPeer() {
     TransferContext.invokeConstructor(ENGINECLASS_WEBRTCDATACHANNEL)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

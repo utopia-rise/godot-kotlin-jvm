@@ -51,7 +51,7 @@ open class StreamPeerSSL : StreamPeer() {
     TransferContext.invokeConstructor(ENGINECLASS_STREAMPEERSSL)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

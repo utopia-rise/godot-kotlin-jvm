@@ -76,7 +76,7 @@ open class InterpolatedCamera : Camera() {
     TransferContext.invokeConstructor(ENGINECLASS_INTERPOLATEDCAMERA)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

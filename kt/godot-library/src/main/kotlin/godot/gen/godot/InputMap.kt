@@ -14,7 +14,6 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -31,7 +30,9 @@ import kotlin.Suppress
  */
 @GodotBaseType
 object InputMap : Object() {
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_INPUTMAP)
+  override fun __new() {
+    rawPtr = TransferContext.getSingleton(ENGINESINGLETON_INPUTMAP)
+  }
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

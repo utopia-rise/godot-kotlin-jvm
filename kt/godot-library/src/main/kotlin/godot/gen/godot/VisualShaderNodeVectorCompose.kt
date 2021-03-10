@@ -20,7 +20,7 @@ open class VisualShaderNodeVectorCompose : VisualShaderNode() {
     TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEVECTORCOMPOSE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

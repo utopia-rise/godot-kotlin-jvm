@@ -38,7 +38,7 @@ open class QuadMesh : PrimitiveMesh() {
     TransferContext.invokeConstructor(ENGINECLASS_QUADMESH)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

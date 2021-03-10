@@ -23,7 +23,7 @@ open class AnimationNodeTimeSeek : AnimationNode() {
     TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODETIMESEEK)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

@@ -57,7 +57,7 @@ open class ARVRAnchor : Spatial() {
     TransferContext.invokeConstructor(ENGINECLASS_ARVRANCHOR)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

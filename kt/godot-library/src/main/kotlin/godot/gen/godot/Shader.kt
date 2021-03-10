@@ -65,7 +65,7 @@ open class Shader : Resource() {
     TransferContext.invokeConstructor(ENGINECLASS_SHADER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

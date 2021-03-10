@@ -25,7 +25,7 @@ open class ToolButton : Button() {
     TransferContext.invokeConstructor(ENGINECLASS_TOOLBUTTON)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

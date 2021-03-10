@@ -169,7 +169,7 @@ open class FileDialog : ConfirmationDialog() {
     TransferContext.invokeConstructor(ENGINECLASS_FILEDIALOG)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

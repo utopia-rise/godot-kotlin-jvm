@@ -20,7 +20,7 @@ open class TriangleMesh : Reference() {
     TransferContext.invokeConstructor(ENGINECLASS_TRIANGLEMESH)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

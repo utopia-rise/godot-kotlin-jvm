@@ -149,7 +149,7 @@ open class AudioEffectCompressor : AudioEffect() {
     TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTCOMPRESSOR)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

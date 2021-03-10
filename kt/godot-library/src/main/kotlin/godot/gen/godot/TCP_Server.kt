@@ -31,7 +31,7 @@ open class TCP_Server : Reference() {
     TransferContext.invokeConstructor(ENGINECLASS_TCP_SERVER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

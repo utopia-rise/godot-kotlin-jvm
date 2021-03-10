@@ -136,7 +136,7 @@ open class Tabs : Control() {
     TransferContext.invokeConstructor(ENGINECLASS_TABS)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

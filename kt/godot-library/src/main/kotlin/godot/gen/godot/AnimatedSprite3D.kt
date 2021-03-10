@@ -84,7 +84,7 @@ open class AnimatedSprite3D : SpriteBase3D() {
     TransferContext.invokeConstructor(ENGINECLASS_ANIMATEDSPRITE3D)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

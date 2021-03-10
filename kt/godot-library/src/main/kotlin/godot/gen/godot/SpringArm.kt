@@ -102,7 +102,7 @@ open class SpringArm : Spatial() {
     TransferContext.invokeConstructor(ENGINECLASS_SPRINGARM)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

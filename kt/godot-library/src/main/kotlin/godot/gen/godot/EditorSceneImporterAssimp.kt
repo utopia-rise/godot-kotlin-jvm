@@ -43,7 +43,7 @@ open class EditorSceneImporterAssimp : EditorSceneImporter() {
     TransferContext.invokeConstructor(ENGINECLASS_EDITORSCENEIMPORTERASSIMP)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

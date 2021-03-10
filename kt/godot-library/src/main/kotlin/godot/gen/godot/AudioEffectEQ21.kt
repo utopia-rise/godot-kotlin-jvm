@@ -66,7 +66,7 @@ open class AudioEffectEQ21 : AudioEffectEQ() {
     TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTEQ21)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

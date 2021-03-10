@@ -150,7 +150,7 @@ open class KinematicCollision : Reference() {
     TransferContext.invokeConstructor(ENGINECLASS_KINEMATICCOLLISION)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

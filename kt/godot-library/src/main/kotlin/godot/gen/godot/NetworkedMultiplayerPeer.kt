@@ -91,7 +91,7 @@ open class NetworkedMultiplayerPeer : PacketPeer() {
     TransferContext.invokeConstructor(ENGINECLASS_NETWORKEDMULTIPLAYERPEER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

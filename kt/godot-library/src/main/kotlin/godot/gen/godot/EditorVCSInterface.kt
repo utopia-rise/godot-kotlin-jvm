@@ -31,7 +31,7 @@ open class EditorVCSInterface : Object() {
     TransferContext.invokeConstructor(ENGINECLASS_EDITORVCSINTERFACE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

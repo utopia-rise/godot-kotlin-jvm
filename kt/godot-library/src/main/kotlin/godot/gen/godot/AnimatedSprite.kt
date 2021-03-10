@@ -167,7 +167,7 @@ open class AnimatedSprite : Node2D() {
     TransferContext.invokeConstructor(ENGINECLASS_ANIMATEDSPRITE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

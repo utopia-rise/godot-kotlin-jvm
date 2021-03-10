@@ -472,7 +472,7 @@ open class TextEdit : Control() {
     TransferContext.invokeConstructor(ENGINECLASS_TEXTEDIT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

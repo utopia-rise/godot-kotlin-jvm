@@ -75,7 +75,7 @@ open class AudioEffectPitchShift : AudioEffect() {
     TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTPITCHSHIFT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

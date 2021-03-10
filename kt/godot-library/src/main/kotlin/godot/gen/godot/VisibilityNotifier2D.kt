@@ -69,7 +69,7 @@ open class VisibilityNotifier2D : Node2D() {
     TransferContext.invokeConstructor(ENGINECLASS_VISIBILITYNOTIFIER2D)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

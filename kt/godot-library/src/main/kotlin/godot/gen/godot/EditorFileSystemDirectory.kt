@@ -27,7 +27,7 @@ open class EditorFileSystemDirectory : Object() {
     TransferContext.invokeConstructor(ENGINECLASS_EDITORFILESYSTEMDIRECTORY)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

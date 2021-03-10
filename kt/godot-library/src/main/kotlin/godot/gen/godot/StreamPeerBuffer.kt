@@ -40,7 +40,7 @@ open class StreamPeerBuffer : StreamPeer() {
     TransferContext.invokeConstructor(ENGINECLASS_STREAMPEERBUFFER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

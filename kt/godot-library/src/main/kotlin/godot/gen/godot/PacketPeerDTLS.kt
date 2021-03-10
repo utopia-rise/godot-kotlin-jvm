@@ -32,7 +32,7 @@ open class PacketPeerDTLS : PacketPeer() {
     TransferContext.invokeConstructor(ENGINECLASS_PACKETPEERDTLS)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

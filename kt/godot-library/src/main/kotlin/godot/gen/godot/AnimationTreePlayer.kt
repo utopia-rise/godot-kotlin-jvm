@@ -115,7 +115,7 @@ open class AnimationTreePlayer : Node() {
     TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONTREEPLAYER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

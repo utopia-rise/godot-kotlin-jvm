@@ -20,7 +20,7 @@ open class AudioEffectBandLimitFilter : AudioEffectFilter() {
     TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTBANDLIMITFILTER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

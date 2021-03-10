@@ -27,7 +27,6 @@ import godot.core.VariantType.RECT2
 import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -550,7 +549,9 @@ object OS : Object() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_WINDOW_SIZE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_OS)
+  override fun __new() {
+    rawPtr = TransferContext.getSingleton(ENGINESINGLETON_OS)
+  }
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

@@ -76,7 +76,7 @@ open class ColorPickerButton : Button() {
     TransferContext.invokeConstructor(ENGINECLASS_COLORPICKERBUTTON)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

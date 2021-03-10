@@ -35,6 +35,8 @@ object GarbageCollector {
     private val wrappedMap = ConcurrentHashMap<VoidPtr, KtObject>(CHECK_NUMBER)
     /** Pointers to References.*/
     private val refWrappedList = ArrayList<ReferenceWeakReference?>(CHECK_NUMBER)
+    /** CurrentSize of the List, so we can grow it a lot chunk instead of one by one */
+    private var current_size = CHECK_NUMBER
     /** Pointers to NativeCoreType.*/
     private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreWeakReference>(CHECK_NUMBER)
 
@@ -68,12 +70,18 @@ object GarbageCollector {
 
     fun registerReference(instance: KtObject) {
         synchronized(refWrappedList) {
-            val index = instance.id.toInt()
+            val index = instance.__id.toInt()
             //It will throw an Exception if the size is too small so we have to grow the list.
-            if (refWrappedList.size <= index) {
-                refWrappedList.ensureCapacity(refWrappedList.size * 2)
+            if (refWrappedList.size == index) {
+                if(refWrappedList.size == current_size){
+                    current_size *= 2
+                    refWrappedList.ensureCapacity(current_size)
+                }
+                //index is size of the list, this means we can add it at the end of it.
+                refWrappedList.add(ReferenceWeakReference(instance, refReferenceQueue, index))
+            } else {
+                refWrappedList[index] = ReferenceWeakReference(instance, refReferenceQueue, index)
             }
-            refWrappedList[index] = ReferenceWeakReference(instance, refReferenceQueue, index)
         }
     }
 
@@ -89,7 +97,7 @@ object GarbageCollector {
     fun getObjectInstance(ptr: VoidPtr): KtObject? {
         val ktObject = wrappedMap[ptr]
         return if (ktObject != null) {
-            if (MemoryBridge.checkInstance(ptr, ktObject.id)) {
+            if (MemoryBridge.checkInstance(ptr, ktObject.__id)) {
                 ktObject
             } else {
                 null
@@ -113,7 +121,7 @@ object GarbageCollector {
         return nativeCoreTypeMap[ptr]?.get()
     }
 
-    fun isInstanceValid(ktObject: KtObject) = MemoryBridge.checkInstance(ktObject.rawPtr, ktObject.id)
+    fun isInstanceValid(ktObject: KtObject) = MemoryBridge.checkInstance(ktObject.rawPtr, ktObject.__id)
 
 
     fun start(forceJvmGarbageCollector: Boolean) {
@@ -127,7 +135,6 @@ object GarbageCollector {
             if (forceJvmGarbageCollector) {
                 forceJvmGc()
             }
-
             val isActive = checkAndClean()
 
             if (isActive) {
@@ -171,7 +178,7 @@ object GarbageCollector {
 
         while (counter < limit) {
             val entry = wrapperList!![current_index++]
-            if (!MemoryBridge.checkInstance(entry.first, entry.second.id)) {
+            if (!MemoryBridge.checkInstance(entry.first, entry.second.__id)) {
                 wrappedMap.remove(entry.first)
                 isActive = true
             }
@@ -193,8 +200,8 @@ object GarbageCollector {
             }
             counter++
         }
-        synchronized(refWrappedList){
-            for(index in deleteQueue){
+        synchronized(refWrappedList) {
+            for (index in deleteQueue) {
                 refWrappedList[index] = null
             }
         }

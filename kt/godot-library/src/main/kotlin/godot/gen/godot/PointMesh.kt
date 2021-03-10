@@ -24,7 +24,7 @@ open class PointMesh : PrimitiveMesh() {
     TransferContext.invokeConstructor(ENGINECLASS_POINTMESH)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

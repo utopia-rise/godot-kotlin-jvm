@@ -361,7 +361,7 @@ open class Object : KtObject() {
     TransferContext.invokeConstructor(ENGINECLASS_OBJECT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

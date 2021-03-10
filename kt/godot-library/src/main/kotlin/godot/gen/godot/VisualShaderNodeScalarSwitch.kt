@@ -20,7 +20,7 @@ open class VisualShaderNodeScalarSwitch : VisualShaderNodeSwitch() {
     TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODESCALARSWITCH)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

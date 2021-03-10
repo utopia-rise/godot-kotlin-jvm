@@ -83,7 +83,7 @@ open class InputEventKey : InputEventWithModifiers() {
     TransferContext.invokeConstructor(ENGINECLASS_INPUTEVENTKEY)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

@@ -195,7 +195,7 @@ open class AudioStreamPlayer2D : Node2D() {
     TransferContext.invokeConstructor(ENGINECLASS_AUDIOSTREAMPLAYER2D)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

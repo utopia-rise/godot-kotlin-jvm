@@ -22,7 +22,7 @@ open class VSlider : Slider() {
     TransferContext.invokeConstructor(ENGINECLASS_VSLIDER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

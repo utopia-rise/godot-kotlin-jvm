@@ -76,7 +76,7 @@ open class CollisionPolygon : Spatial() {
     TransferContext.invokeConstructor(ENGINECLASS_COLLISIONPOLYGON)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

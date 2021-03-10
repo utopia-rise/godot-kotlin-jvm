@@ -55,7 +55,7 @@ open class CollisionShape : Spatial() {
     TransferContext.invokeConstructor(ENGINECLASS_COLLISIONSHAPE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

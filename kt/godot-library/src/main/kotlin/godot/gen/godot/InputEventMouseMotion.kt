@@ -97,7 +97,7 @@ open class InputEventMouseMotion : InputEventMouse() {
     TransferContext.invokeConstructor(ENGINECLASS_INPUTEVENTMOUSEMOTION)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

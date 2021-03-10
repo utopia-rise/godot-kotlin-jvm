@@ -76,7 +76,7 @@ open class File : Reference() {
     TransferContext.invokeConstructor(ENGINECLASS__FILE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

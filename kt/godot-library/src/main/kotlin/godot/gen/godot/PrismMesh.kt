@@ -105,7 +105,7 @@ open class PrismMesh : PrimitiveMesh() {
     TransferContext.invokeConstructor(ENGINECLASS_PRISMMESH)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

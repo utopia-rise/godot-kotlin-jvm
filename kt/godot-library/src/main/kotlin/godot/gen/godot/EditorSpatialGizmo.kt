@@ -35,7 +35,7 @@ open class EditorSpatialGizmo : SpatialGizmo() {
     TransferContext.invokeConstructor(ENGINECLASS_EDITORSPATIALGIZMO)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

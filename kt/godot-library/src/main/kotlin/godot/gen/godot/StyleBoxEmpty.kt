@@ -20,7 +20,7 @@ open class StyleBoxEmpty : StyleBox() {
     TransferContext.invokeConstructor(ENGINECLASS_STYLEBOXEMPTY)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

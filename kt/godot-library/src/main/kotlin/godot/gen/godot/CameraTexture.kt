@@ -74,7 +74,7 @@ open class CameraTexture : Texture() {
     TransferContext.invokeConstructor(ENGINECLASS_CAMERATEXTURE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

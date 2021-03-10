@@ -14,7 +14,6 @@ import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long
@@ -78,7 +77,9 @@ object IP : Object() {
    */
   final const val TYPE_NONE: Long = 0
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_IP)
+  override fun __new() {
+    rawPtr = TransferContext.getSingleton(ENGINESINGLETON_IP)
+  }
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

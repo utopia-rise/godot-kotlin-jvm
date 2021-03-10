@@ -58,7 +58,7 @@ open class OmniLight : Light() {
     TransferContext.invokeConstructor(ENGINECLASS_OMNILIGHT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

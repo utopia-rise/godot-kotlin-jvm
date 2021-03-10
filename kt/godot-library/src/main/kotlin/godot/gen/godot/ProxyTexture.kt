@@ -34,7 +34,7 @@ open class ProxyTexture : Texture() {
     TransferContext.invokeConstructor(ENGINECLASS_PROXYTEXTURE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

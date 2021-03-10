@@ -44,7 +44,7 @@ open class AudioEffectEQ10 : AudioEffectEQ() {
     TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTEQ10)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

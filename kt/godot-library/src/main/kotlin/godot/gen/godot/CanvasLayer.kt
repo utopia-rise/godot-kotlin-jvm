@@ -174,7 +174,7 @@ open class CanvasLayer : Node() {
     TransferContext.invokeConstructor(ENGINECLASS_CANVASLAYER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

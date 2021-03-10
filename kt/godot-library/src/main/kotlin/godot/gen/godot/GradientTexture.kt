@@ -49,7 +49,7 @@ open class GradientTexture : Texture() {
     TransferContext.invokeConstructor(ENGINECLASS_GRADIENTTEXTURE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

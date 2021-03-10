@@ -41,7 +41,7 @@ open class Skeleton : Spatial() {
     TransferContext.invokeConstructor(ENGINECLASS_SKELETON)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

@@ -14,7 +14,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.signals.Signal1
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Long
 import kotlin.Suppress
@@ -58,7 +57,9 @@ object CameraServer : Object() {
    */
   val cameraFeedRemoved: Signal1<Long> by signal("id")
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_CAMERASERVER)
+  override fun __new() {
+    rawPtr = TransferContext.getSingleton(ENGINESINGLETON_CAMERASERVER)
+  }
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

@@ -37,7 +37,7 @@ open class AStar2D : Reference() {
     TransferContext.invokeConstructor(ENGINECLASS_ASTAR2D)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

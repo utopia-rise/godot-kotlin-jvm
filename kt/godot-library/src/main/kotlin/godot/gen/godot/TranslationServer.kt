@@ -12,7 +12,6 @@ import godot.core.VariantType.ARRAY
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.String
 import kotlin.Suppress
@@ -28,7 +27,9 @@ import kotlin.Suppress
  */
 @GodotBaseType
 object TranslationServer : Object() {
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_TRANSLATIONSERVER)
+  override fun __new() {
+    rawPtr = TransferContext.getSingleton(ENGINESINGLETON_TRANSLATIONSERVER)
+  }
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

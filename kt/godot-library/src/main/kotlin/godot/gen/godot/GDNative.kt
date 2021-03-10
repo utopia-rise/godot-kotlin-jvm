@@ -36,7 +36,7 @@ open class GDNative : Reference() {
     TransferContext.invokeConstructor(ENGINECLASS_GDNATIVE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

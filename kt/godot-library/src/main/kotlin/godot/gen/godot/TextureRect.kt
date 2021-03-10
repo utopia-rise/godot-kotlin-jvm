@@ -99,7 +99,7 @@ open class TextureRect : Control() {
     TransferContext.invokeConstructor(ENGINECLASS_TEXTURERECT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

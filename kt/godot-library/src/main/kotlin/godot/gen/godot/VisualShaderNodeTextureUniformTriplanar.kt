@@ -20,7 +20,7 @@ open class VisualShaderNodeTextureUniformTriplanar : VisualShaderNodeTextureUnif
     TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODETEXTUREUNIFORMTRIPLANAR)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

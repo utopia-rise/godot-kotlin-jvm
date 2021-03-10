@@ -30,7 +30,7 @@ open class JSONRPC : Object() {
     TransferContext.invokeConstructor(ENGINECLASS_JSONRPC)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

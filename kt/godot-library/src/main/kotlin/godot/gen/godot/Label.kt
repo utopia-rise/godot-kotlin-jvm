@@ -172,7 +172,7 @@ open class Label : Control() {
     TransferContext.invokeConstructor(ENGINECLASS_LABEL)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

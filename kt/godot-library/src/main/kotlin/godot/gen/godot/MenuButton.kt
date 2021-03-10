@@ -52,7 +52,7 @@ open class MenuButton : Button() {
     TransferContext.invokeConstructor(ENGINECLASS_MENUBUTTON)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

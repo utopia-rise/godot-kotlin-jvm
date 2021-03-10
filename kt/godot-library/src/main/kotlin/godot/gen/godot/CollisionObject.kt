@@ -85,7 +85,7 @@ open class CollisionObject : Spatial() {
     TransferContext.invokeConstructor(ENGINECLASS_COLLISIONOBJECT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

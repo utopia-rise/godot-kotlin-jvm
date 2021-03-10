@@ -221,7 +221,7 @@ open class SpriteBase3D : GeometryInstance() {
     TransferContext.invokeConstructor(ENGINECLASS_SPRITEBASE3D)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

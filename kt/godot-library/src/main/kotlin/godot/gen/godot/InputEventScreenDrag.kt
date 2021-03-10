@@ -93,7 +93,7 @@ open class InputEventScreenDrag : InputEvent() {
     TransferContext.invokeConstructor(ENGINECLASS_INPUTEVENTSCREENDRAG)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

@@ -59,7 +59,7 @@ open class UPNP : Reference() {
     TransferContext.invokeConstructor(ENGINECLASS_UPNP)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

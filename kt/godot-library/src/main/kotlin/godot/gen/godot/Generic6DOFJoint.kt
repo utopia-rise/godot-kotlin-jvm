@@ -1058,7 +1058,7 @@ open class Generic6DOFJoint : Joint() {
     TransferContext.invokeConstructor(ENGINECLASS_GENERIC6DOFJOINT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

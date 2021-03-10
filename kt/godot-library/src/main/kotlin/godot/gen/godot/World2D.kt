@@ -57,7 +57,7 @@ open class World2D : Resource() {
     TransferContext.invokeConstructor(ENGINECLASS_WORLD2D)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

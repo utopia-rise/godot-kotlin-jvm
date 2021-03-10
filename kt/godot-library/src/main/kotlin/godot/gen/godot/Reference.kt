@@ -31,7 +31,7 @@ open class Reference : Object() {
     TransferContext.invokeConstructor(ENGINECLASS_REFERENCE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

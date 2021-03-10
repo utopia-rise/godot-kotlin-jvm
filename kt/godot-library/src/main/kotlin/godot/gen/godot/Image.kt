@@ -47,7 +47,7 @@ open class Image : Resource() {
     TransferContext.invokeConstructor(ENGINECLASS_IMAGE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

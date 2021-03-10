@@ -38,7 +38,7 @@ open class InputEventGesture : InputEventWithModifiers() {
     TransferContext.invokeConstructor(ENGINECLASS_INPUTEVENTGESTURE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

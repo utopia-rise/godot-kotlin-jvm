@@ -85,7 +85,7 @@ open class ARVRInterface : Reference() {
     TransferContext.invokeConstructor(ENGINECLASS_ARVRINTERFACE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

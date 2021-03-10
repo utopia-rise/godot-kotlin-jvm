@@ -40,7 +40,7 @@ open class ScriptCreateDialog : ConfirmationDialog() {
     TransferContext.invokeConstructor(ENGINECLASS_SCRIPTCREATEDIALOG)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

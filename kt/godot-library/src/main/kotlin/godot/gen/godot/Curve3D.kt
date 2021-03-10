@@ -68,7 +68,7 @@ open class Curve3D : Resource() {
     TransferContext.invokeConstructor(ENGINECLASS_CURVE3D)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

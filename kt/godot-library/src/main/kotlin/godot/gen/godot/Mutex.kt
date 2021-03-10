@@ -28,7 +28,7 @@ open class Mutex : Reference() {
     TransferContext.invokeConstructor(ENGINECLASS__MUTEX)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

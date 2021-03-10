@@ -34,7 +34,7 @@ open class Container : Control() {
     TransferContext.invokeConstructor(ENGINECLASS_CONTAINER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

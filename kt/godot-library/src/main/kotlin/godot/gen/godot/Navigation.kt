@@ -47,7 +47,7 @@ open class Navigation : Spatial() {
     TransferContext.invokeConstructor(ENGINECLASS_NAVIGATION)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

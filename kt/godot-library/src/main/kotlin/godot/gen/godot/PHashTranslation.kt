@@ -22,7 +22,7 @@ open class PHashTranslation : Translation() {
     TransferContext.invokeConstructor(ENGINECLASS_PHASHTRANSLATION)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

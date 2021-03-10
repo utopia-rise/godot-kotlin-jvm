@@ -20,7 +20,7 @@ open class VisualShaderNodeVec3Uniform : VisualShaderNodeUniform() {
     TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEVEC3UNIFORM)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

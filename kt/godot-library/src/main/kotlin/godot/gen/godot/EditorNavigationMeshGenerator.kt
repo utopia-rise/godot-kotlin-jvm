@@ -20,7 +20,7 @@ open class EditorNavigationMeshGenerator : Object() {
     TransferContext.invokeConstructor(ENGINECLASS_EDITORNAVIGATIONMESHGENERATOR)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

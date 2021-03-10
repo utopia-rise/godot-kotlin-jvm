@@ -56,7 +56,7 @@ open class AudioStreamGenerator : AudioStream() {
     TransferContext.invokeConstructor(ENGINECLASS_AUDIOSTREAMGENERATOR)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

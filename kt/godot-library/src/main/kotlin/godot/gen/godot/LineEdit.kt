@@ -344,7 +344,7 @@ open class LineEdit : Control() {
     TransferContext.invokeConstructor(ENGINECLASS_LINEEDIT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

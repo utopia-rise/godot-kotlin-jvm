@@ -54,7 +54,7 @@ open class AStar : Reference() {
     TransferContext.invokeConstructor(ENGINECLASS_ASTAR)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

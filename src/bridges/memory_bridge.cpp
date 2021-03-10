@@ -23,11 +23,6 @@ MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) 
             (void*) MemoryBridge::unref
     };
 
-    jni::JNativeMethod ref_method{
-            "ref",
-            "(J)Z",
-            (void*) MemoryBridge::ref
-    };
 
     jni::JNativeMethod unref_native_core_type_method{
             "unrefNativeCoreType",
@@ -38,7 +33,6 @@ MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) 
     Vector<jni::JNativeMethod> methods;
     methods.push_back(check_instance_method);
     methods.push_back(unref_method);
-    methods.push_back(ref_method);
     methods.push_back(unref_native_core_type_method);
 
     jni::Env env{jni::Jvm::current_env()};
@@ -56,11 +50,6 @@ bool MemoryBridge::unref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr)
         RefDB::get_instance().remove_ref(reference);
     }
     return true;
-}
-
-bool MemoryBridge::ref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    auto* reference{reinterpret_cast<Reference*>(static_cast<uintptr_t>(p_raw_ptr))};
-    return reference->init_ref();
 }
 
 bool MemoryBridge::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint var_type) {

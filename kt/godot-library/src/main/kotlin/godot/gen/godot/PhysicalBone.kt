@@ -147,7 +147,7 @@ open class PhysicalBone : PhysicsBody() {
     TransferContext.invokeConstructor(ENGINECLASS_PHYSICALBONE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

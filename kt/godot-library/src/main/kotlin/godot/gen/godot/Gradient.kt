@@ -61,7 +61,7 @@ open class Gradient : Resource() {
     TransferContext.invokeConstructor(ENGINECLASS_GRADIENT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

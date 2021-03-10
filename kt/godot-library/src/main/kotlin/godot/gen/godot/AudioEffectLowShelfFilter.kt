@@ -18,7 +18,7 @@ open class AudioEffectLowShelfFilter : AudioEffectFilter() {
     TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTLOWSHELFFILTER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

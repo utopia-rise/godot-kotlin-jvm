@@ -54,7 +54,7 @@ open class SceneTreeTimer : Reference() {
     TransferContext.invokeConstructor(ENGINECLASS_SCENETREETIMER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

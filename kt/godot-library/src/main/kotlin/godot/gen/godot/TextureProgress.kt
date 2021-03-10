@@ -277,7 +277,7 @@ open class TextureProgress : Range() {
     TransferContext.invokeConstructor(ENGINECLASS_TEXTUREPROGRESS)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

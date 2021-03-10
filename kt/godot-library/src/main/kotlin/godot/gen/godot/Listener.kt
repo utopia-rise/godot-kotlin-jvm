@@ -27,7 +27,7 @@ open class Listener : Spatial() {
     TransferContext.invokeConstructor(ENGINECLASS_LISTENER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

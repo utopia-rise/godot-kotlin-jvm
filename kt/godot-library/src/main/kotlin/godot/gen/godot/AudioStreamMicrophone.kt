@@ -18,7 +18,7 @@ open class AudioStreamMicrophone : AudioStream() {
     TransferContext.invokeConstructor(ENGINECLASS_AUDIOSTREAMMICROPHONE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

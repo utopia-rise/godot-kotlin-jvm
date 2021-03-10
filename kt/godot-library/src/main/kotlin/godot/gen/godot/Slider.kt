@@ -83,7 +83,7 @@ open class Slider : Range() {
     TransferContext.invokeConstructor(ENGINECLASS_SLIDER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

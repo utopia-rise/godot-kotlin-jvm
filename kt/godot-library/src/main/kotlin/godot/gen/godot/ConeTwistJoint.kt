@@ -76,7 +76,7 @@ open class ConeTwistJoint : Joint() {
     TransferContext.invokeConstructor(ENGINECLASS_CONETWISTJOINT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

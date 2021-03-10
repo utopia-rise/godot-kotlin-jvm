@@ -15,7 +15,7 @@ open class BulletPhysicsDirectBodyState : PhysicsDirectBodyState() {
     TransferContext.invokeConstructor(ENGINECLASS_BULLETPHYSICSDIRECTBODYSTATE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

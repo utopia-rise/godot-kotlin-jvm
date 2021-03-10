@@ -219,7 +219,7 @@ open class Light : VisualInstance() {
     TransferContext.invokeConstructor(ENGINECLASS_LIGHT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

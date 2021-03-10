@@ -299,7 +299,7 @@ open class StyleBoxTexture : StyleBox() {
     TransferContext.invokeConstructor(ENGINECLASS_STYLEBOXTEXTURE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

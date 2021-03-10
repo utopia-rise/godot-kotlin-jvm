@@ -101,7 +101,7 @@ open class StyleBoxLine : StyleBox() {
     TransferContext.invokeConstructor(ENGINECLASS_STYLEBOXLINE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

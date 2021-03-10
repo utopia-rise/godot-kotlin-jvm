@@ -20,7 +20,7 @@ open class VSplitContainer : SplitContainer() {
     TransferContext.invokeConstructor(ENGINECLASS_VSPLITCONTAINER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

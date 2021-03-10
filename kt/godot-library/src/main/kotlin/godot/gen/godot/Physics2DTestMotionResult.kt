@@ -124,7 +124,7 @@ open class Physics2DTestMotionResult : Reference() {
     TransferContext.invokeConstructor(ENGINECLASS_PHYSICS2DTESTMOTIONRESULT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

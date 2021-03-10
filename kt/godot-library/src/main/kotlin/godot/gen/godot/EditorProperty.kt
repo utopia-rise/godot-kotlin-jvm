@@ -161,7 +161,7 @@ open class EditorProperty : Container() {
     TransferContext.invokeConstructor(ENGINECLASS_EDITORPROPERTY)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

@@ -25,7 +25,7 @@ open class Physics2DShapeQueryResult : Reference() {
     TransferContext.invokeConstructor(ENGINECLASS_PHYSICS2DSHAPEQUERYRESULT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

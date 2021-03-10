@@ -27,7 +27,6 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -101,7 +100,9 @@ object Geometry : Object() {
    */
   final const val OPERATION_XOR: Long = 3
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_GEOMETRY)
+  override fun __new() {
+    rawPtr = TransferContext.getSingleton(ENGINESINGLETON_GEOMETRY)
+  }
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

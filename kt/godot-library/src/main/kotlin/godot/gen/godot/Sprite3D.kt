@@ -137,7 +137,7 @@ open class Sprite3D : SpriteBase3D() {
     TransferContext.invokeConstructor(ENGINECLASS_SPRITE3D)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

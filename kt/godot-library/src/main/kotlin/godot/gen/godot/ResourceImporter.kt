@@ -18,7 +18,7 @@ open class ResourceImporter : Reference() {
     TransferContext.invokeConstructor(ENGINECLASS_RESOURCEIMPORTER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

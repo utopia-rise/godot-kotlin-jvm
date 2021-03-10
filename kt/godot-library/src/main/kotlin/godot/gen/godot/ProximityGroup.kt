@@ -86,7 +86,7 @@ open class ProximityGroup : Spatial() {
     TransferContext.invokeConstructor(ENGINECLASS_PROXIMITYGROUP)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

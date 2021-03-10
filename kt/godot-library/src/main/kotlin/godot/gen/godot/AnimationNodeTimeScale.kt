@@ -23,7 +23,7 @@ open class AnimationNodeTimeScale : AnimationNode() {
     TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODETIMESCALE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

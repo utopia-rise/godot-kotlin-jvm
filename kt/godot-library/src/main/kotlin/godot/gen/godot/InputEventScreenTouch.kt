@@ -79,7 +79,7 @@ open class InputEventScreenTouch : InputEvent() {
     TransferContext.invokeConstructor(ENGINECLASS_INPUTEVENTSCREENTOUCH)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

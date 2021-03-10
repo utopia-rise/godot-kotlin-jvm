@@ -108,7 +108,7 @@ open class ClippedCamera : Camera() {
     TransferContext.invokeConstructor(ENGINECLASS_CLIPPEDCAMERA)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

@@ -38,7 +38,7 @@ open class PlaneShape : Shape() {
     TransferContext.invokeConstructor(ENGINECLASS_PLANESHAPE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

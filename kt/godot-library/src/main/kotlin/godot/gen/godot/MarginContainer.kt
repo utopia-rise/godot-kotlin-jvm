@@ -30,7 +30,7 @@ open class MarginContainer : Container() {
     TransferContext.invokeConstructor(ENGINECLASS_MARGINCONTAINER)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

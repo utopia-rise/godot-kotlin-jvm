@@ -15,7 +15,7 @@ open class PacketPeerGDNative : PacketPeer() {
     TransferContext.invokeConstructor(ENGINECLASS_PACKETPEERGDNATIVE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

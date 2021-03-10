@@ -69,7 +69,7 @@ open class PhysicsBody2D : CollisionObject2D() {
     TransferContext.invokeConstructor(ENGINECLASS_PHYSICSBODY2D)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

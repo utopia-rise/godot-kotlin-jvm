@@ -170,7 +170,7 @@ open class EditorFileDialog : ConfirmationDialog() {
     TransferContext.invokeConstructor(ENGINECLASS_EDITORFILEDIALOG)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

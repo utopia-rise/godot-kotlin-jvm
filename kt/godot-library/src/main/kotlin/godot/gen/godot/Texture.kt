@@ -52,7 +52,7 @@ open class Texture : Resource() {
     TransferContext.invokeConstructor(ENGINECLASS_TEXTURE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

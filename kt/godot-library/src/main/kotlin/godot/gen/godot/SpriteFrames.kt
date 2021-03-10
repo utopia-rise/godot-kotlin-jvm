@@ -37,7 +37,7 @@ open class SpriteFrames : Resource() {
     TransferContext.invokeConstructor(ENGINECLASS_SPRITEFRAMES)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

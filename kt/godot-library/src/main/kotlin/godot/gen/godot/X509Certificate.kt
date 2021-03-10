@@ -30,7 +30,7 @@ open class X509Certificate : Resource() {
     TransferContext.invokeConstructor(ENGINECLASS_X509CERTIFICATE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

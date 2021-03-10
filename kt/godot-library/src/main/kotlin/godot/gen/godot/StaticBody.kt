@@ -111,7 +111,7 @@ open class StaticBody : PhysicsBody() {
     TransferContext.invokeConstructor(ENGINECLASS_STATICBODY)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

@@ -20,7 +20,6 @@ import godot.core.VariantType.TRANSFORM
 import godot.signals.Signal1
 import godot.signals.Signal3
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -134,7 +133,9 @@ object ARVRServer : Object() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRSERVER_SET_WORLD_SCALE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_ARVRSERVER)
+  override fun __new() {
+    rawPtr = TransferContext.getSingleton(ENGINESINGLETON_ARVRSERVER)
+  }
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

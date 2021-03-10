@@ -21,7 +21,7 @@ open class SkinReference : Reference() {
     TransferContext.invokeConstructor(ENGINECLASS_SKINREFERENCE)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 

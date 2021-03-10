@@ -42,7 +42,7 @@ open class AnimationNodeAnimation : AnimationRootNode() {
     TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODEANIMATION)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 }

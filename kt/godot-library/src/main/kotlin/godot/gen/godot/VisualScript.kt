@@ -37,7 +37,7 @@ open class VisualScript : Script() {
     TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPT)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
-    id = buffer.long
+    __id = buffer.long
     buffer.rewind()
   }
 
