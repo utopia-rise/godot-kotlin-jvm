@@ -40,8 +40,7 @@ jni::JObject to_java_url(jni::Env& env, const String& bootstrapJar) {
     return url;
 }
 
-jni::JObject create_android_class_loader(jni::Env& env, const String& full_jar_path,
-                                         const jni::JObject& p_parent_loader) {
+jni::JObject create_class_loader(jni::Env& env, const String& full_jar_path, const jni::JObject& p_parent_loader) {
 #ifdef __ANDROID__
     jni::JClass class_loader_cls{env.find_class("dalvik/system/DexClassLoader")};
     jni::MethodId ctor{
@@ -59,15 +58,7 @@ jni::JObject create_android_class_loader(jni::Env& env, const String& full_jar_p
     };
     return class_loader_cls.new_instance(env, ctor, args);
 #else
-    return jni::JObject(nullptr);
-#endif
-}
-
-jni::JObject create_class_loader(jni::Env& env, const String& bootstrapJar) {
-#ifdef __ANDROID__
-    return create_android_class_loader(env, bootstrapJar, jni::JObject(nullptr));
-#else
-    jni::JObject url = to_java_url(env, bootstrapJar);
+    jni::JObject url = to_java_url(env, full_jar_path);
     jni::JClass url_cls = env.find_class("java/net/URL");
     jni::JObjectArray urls = url_cls.new_object_array(env, 1, {url});
     jni::JClass class_loader_cls = env.find_class("java/net/URLClassLoader");
@@ -304,7 +295,7 @@ void GDKotlin::init() {
     LOG_INFO(vformat("Loading bootstrap jar: %s", bootstrap_jar))
     jni::Env env{jni::Jvm::current_env()};
     jni::JObject current_thread = get_current_thread(env);
-    class_loader = create_class_loader(env, bootstrap_jar).new_global_ref<jni::JObject>(env);
+    class_loader = create_class_loader(env, bootstrap_jar, jni::JObject(nullptr)).new_global_ref<jni::JObject>(env);
     set_context_class_loader(env, current_thread, class_loader);
 
     jni::JClass transfer_ctx_cls = env.load_class("godot.core.TransferContext", class_loader);
@@ -374,7 +365,11 @@ void GDKotlin::init() {
             is_editor,
             jar_path,
             main_jar_file,
-            create_android_class_loader(env, main_jar, class_loader)
+#ifdef __ANDROID__
+            create_class_loader(env, main_jar, class_loader)
+#else
+            jni::JObject(nullptr)
+#endif
     );
 }
 
