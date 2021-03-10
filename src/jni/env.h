@@ -3,8 +3,22 @@
 #include <jni.h>
 #include "types.h"
 #include "core/ustring.h"
+#include <modules/kotlin_jvm/src/logging.h>
+
+
+#ifdef TOOLS_ENABLED
+#define HANDLE_JVM_EXCEPTIONS(condition, message) \
+    JVM_ERR_FAIL_COND_MSG(condition, message)
+#elif DEBUG_ENABLED
+#define HANDLE_JVM_EXCEPTIONS(condition, message) \
+    JVM_CRASH_COND_MSG(condition, message)
+#else
+#define HANDLE_JVM_EXCEPTIONS(condition, message) \
+    JVM_ERR_FAIL_COND_MSG(condition, message)
+#endif
 
 namespace jni {
+
     class Env {
     public:
         explicit Env(JNIEnv*);

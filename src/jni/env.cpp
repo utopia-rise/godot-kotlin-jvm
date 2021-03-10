@@ -1,4 +1,3 @@
-#include <modules/kotlin_jvm/src/logging.h>
 #include "env.h"
 
 namespace jni {
@@ -59,7 +58,7 @@ namespace jni {
         if (exception_check()) {
             exception_describe();
             exception_clear();
-            JVM_CRASH_COND_MSG(true, "An exception has occurred!")
+            HANDLE_JVM_EXCEPTIONS(true, "An exception has occurred!")
         }
     }
 
