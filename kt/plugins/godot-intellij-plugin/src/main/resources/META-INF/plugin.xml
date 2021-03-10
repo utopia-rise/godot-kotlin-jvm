@@ -25,4 +25,5 @@
 
     <depends>com.intellij.modules.java</depends>
     <depends>org.jetbrains.kotlin</depends>
+    <depends>com.intellij.gradle</depends>
 </idea-plugin>

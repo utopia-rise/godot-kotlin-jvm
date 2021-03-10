@@ -4,9 +4,9 @@ import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
-import godot.intellij.plugin.data.cache.godotroot.isInGodotRoot
 import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
+import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.NotificationFunctionNotRegisteredQuickFix
 import org.jetbrains.kotlin.idea.util.findAnnotation

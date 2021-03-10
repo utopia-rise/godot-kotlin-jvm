@@ -5,17 +5,8 @@ import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCacheProvider
-import godot.intellij.plugin.data.cache.godotroot.getGodotRoot
-import godot.intellij.plugin.data.cache.godotroot.isInGodotRoot
-import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
-import godot.intellij.plugin.data.model.REGISTER_CONSTRUCTOR_ANNOTATION
-import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
-import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
-import godot.intellij.plugin.data.model.REGISTER_SIGNAL_ANNOTATION
-import godot.intellij.plugin.extension.anyFunctionHasAnnotation
-import godot.intellij.plugin.extension.anyPropertyHasAnnotation
-import godot.intellij.plugin.extension.getRegisteredClassName
-import godot.intellij.plugin.extension.registerProblem
+import godot.intellij.plugin.data.model.*
+import godot.intellij.plugin.extension.*
 import godot.intellij.plugin.quickfix.ClassAlreadyRegisteredQuickFix
 import godot.intellij.plugin.quickfix.ClassNotRegisteredQuickFix
 import org.jetbrains.kotlin.idea.util.findAnnotation
@@ -145,7 +136,7 @@ class RegisterClassAnnotator : Annotator {
     private fun checkRegisteredClassName(ktClass: KtClass, holder: AnnotationHolder) {
         val (fqName, registeredName) = ktClass.getRegisteredClassName() ?: return
         val godotRoot = ktClass.getGodotRoot() ?: return
-        val fqNames = RegisteredClassNameCacheProvider.provide(ktClass.project, godotRoot)
+        val fqNames = RegisteredClassNameCacheProvider.provide(godotRoot)
             .getContainersByName(registeredName)
             .map { container -> container.fqName }
 

@@ -11,8 +11,8 @@ import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.util.indexing.FileBasedIndex
 import godot.intellij.plugin.ProjectDisposable
 import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCacheProvider
-import godot.intellij.plugin.data.cache.godotroot.getGodotRoot
-import godot.intellij.plugin.data.cache.godotroot.isInGodotRoot
+import godot.intellij.plugin.extension.getGodotRoot
+import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.refactor.SceneAction
 import godot.intellij.plugin.wrapper.PsiTreeChangeListenerKt
 import org.jetbrains.kotlin.idea.KotlinFileType
@@ -113,12 +113,12 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
 
     private fun psiFileRemoved(psiFile: PsiFile) {
         val godotRoot = psiFile.getGodotRoot() ?: return
-        RegisteredClassNameCacheProvider.provide(project, godotRoot).psiFileRemoved(psiFile)
+        RegisteredClassNameCacheProvider.provide(godotRoot).psiFileRemoved(psiFile)
     }
 
     private fun psiFileChanged(psiFile: PsiFile) {
         val godotRoot = psiFile.getGodotRoot() ?: return
-        RegisteredClassNameCacheProvider.provide(project, godotRoot).psiFileChanged(psiFile)
+        RegisteredClassNameCacheProvider.provide(godotRoot).psiFileChanged(psiFile)
     }
 
     override fun dispose(project: Project) {

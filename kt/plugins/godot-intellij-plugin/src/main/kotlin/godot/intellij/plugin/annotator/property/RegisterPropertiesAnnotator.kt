@@ -4,8 +4,8 @@ import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
-import godot.intellij.plugin.data.cache.godotroot.isInGodotRoot
 import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
+import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.RegisterPropertyMutabilityQuickFix
 import org.jetbrains.kotlin.idea.intentions.loopToCallChain.isConstant

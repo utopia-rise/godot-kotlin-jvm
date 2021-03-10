@@ -12,17 +12,13 @@ import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.util.indexing.FileBasedIndex
 import com.utopiarise.serialization.godot.scene.sceneFromTscn
 import godot.intellij.plugin.ProjectDisposable
-import godot.intellij.plugin.data.cache.godotroot.GodotRootsCache
-import godot.intellij.plugin.data.cache.godotroot.getGodotRoot
 import godot.intellij.plugin.data.cache.signalconnection.SignalConnectionCacheProvider
+import godot.intellij.plugin.extension.getGodotRoot
 
 class GodotSceneBulkFileListener(private val project: Project) : BulkFileListener, ProjectDisposable {
 
     init {
         DumbService.getInstance(project).runWhenSmart {
-            // has to be done first so the following are indexed correctly
-            // as we cannot control the order in which we receive the files
-            initialGodotRootIndexing()
             initialIndexing()
         }
     }
@@ -39,13 +35,6 @@ class GodotSceneBulkFileListener(private val project: Project) : BulkFileListene
             }
     }
 
-    private fun initialGodotRootIndexing() = getContainingFiles()
-        .forEach { vFile ->
-            if (vFile.name == "project.godot") {
-                indexGodotRoot(vFile)
-            }
-        }
-
     private fun initialIndexing() = getContainingFiles()
         .forEach { vFile ->
             virtualFileChanged(vFile)
@@ -59,20 +48,7 @@ class GodotSceneBulkFileListener(private val project: Project) : BulkFileListene
             GlobalSearchScope.projectScope(project)
         )
 
-    private fun indexGodotRoot(file: VirtualFile) {
-        if (file.isValid && file.isInLocalFileSystem) {
-            GodotRootsCache.addGodotRoot(project, file.parent.path)
-        } else {
-            GodotRootsCache.removeGodotRoot(project, file.path)
-        }
-    }
-
     private fun virtualFileChanged(file: VirtualFile) {
-        if (file.name == "project.godot") {
-            indexGodotRoot(file)
-            return
-        }
-
         val godotRoot = file.getGodotRoot(project) ?: return
 
         if (file.extension == "tscn" && file.isValid && file.isInLocalFileSystem) {
@@ -87,7 +63,7 @@ class GodotSceneBulkFileListener(private val project: Project) : BulkFileListene
                 ?: return
 
             SignalConnectionCacheProvider
-                .provide(project, godotRoot)
+                .provide(godotRoot)
                 .updateSignalConnections(
                     project,
                     path,
@@ -96,7 +72,7 @@ class GodotSceneBulkFileListener(private val project: Project) : BulkFileListene
         } else {
             val path = file.canonicalPath ?: return
             SignalConnectionCacheProvider
-                .provide(project, godotRoot)
+                .provide(godotRoot)
                 .removeSignalConnections(
                     path
                 )

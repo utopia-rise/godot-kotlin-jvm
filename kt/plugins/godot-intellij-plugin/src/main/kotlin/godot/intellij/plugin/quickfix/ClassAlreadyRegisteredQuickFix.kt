@@ -8,8 +8,8 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.popup.JBPopupFactory
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCacheProvider
-import godot.intellij.plugin.data.cache.godotroot.getGodotRoot
 import godot.intellij.plugin.data.model.RegisteredClassDataContainer
+import godot.intellij.plugin.extension.getGodotRoot
 import org.jetbrains.kotlin.idea.core.util.getLineNumber
 import org.jetbrains.kotlin.idea.core.util.toPsiFile
 import org.jetbrains.kotlin.idea.inspections.findExistingEditor
@@ -33,7 +33,7 @@ class ClassAlreadyRegisteredQuickFix(private val registeredClassName: String) : 
         val godotRoot = psiElement.getGodotRoot() ?: return
 
         val containers = RegisteredClassNameCacheProvider
-            .provide(psiElement.project, godotRoot)
+            .provide(godotRoot)
             .getContainersByName(registeredClassName)
 
         val containingClassFqName = if (psiElement is KtElement) {
@@ -57,7 +57,7 @@ class ClassAlreadyRegisteredQuickFix(private val registeredClassName: String) : 
                 .getInstance()
                 .createPopupChooserBuilder(
                     RegisteredClassNameCacheProvider
-                        .provide(psiElement.project, godotRoot)
+                        .provide(godotRoot)
                         .getContainersByName(registeredClassName)
                         .map { container -> container.fqName }
                         .toList()
@@ -65,7 +65,7 @@ class ClassAlreadyRegisteredQuickFix(private val registeredClassName: String) : 
                 .setTitle(GodotPluginBundle.message("quickFix.class.alreadyRegistered.popup.title"))
                 .setItemChosenCallback { chosenFqName ->
                     val container = RegisteredClassNameCacheProvider
-                        .provide(psiElement.project, godotRoot)
+                        .provide(godotRoot)
                         .getContainerByFqName(chosenFqName) ?: return@setItemChosenCallback
 
                     val line = getSourceCodeLineOfClassDefinition(container, project)

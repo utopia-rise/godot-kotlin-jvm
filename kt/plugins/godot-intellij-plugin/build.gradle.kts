@@ -25,7 +25,7 @@ val buildMatrix: Map<String, BuildConfig> = mapOf(
         "IJ183",
         VersionRange("203.1", "203.*"),
         listOf("2020.1.4", "2020.2.3", "2020.3"),
-        listOf("java", "org.jetbrains.kotlin:1.4.0-release-IJ2020.2-1")
+        listOf("java", "org.jetbrains.kotlin:1.4.0-release-IJ2020.2-1", "gradle")
     )
 )
 
