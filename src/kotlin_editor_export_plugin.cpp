@@ -19,7 +19,7 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
     add_file(bootstrap_jar, FileAccess::get_file_as_array(bootstrap_jar), false);
 
     // Copy JRE for desktop platforms
-    if (!p_path.ends_with(".apk")) {
+    if (!p_path.ends_with(".apk") && !p_path.ends_with(".aar")) {
         const Vector<String>& path_split = p_path.split("/");
         String export_dir{p_path.replace(path_split[path_split.size() - 1], "")};
         Error error;
