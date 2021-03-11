@@ -20,6 +20,9 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 
+/**
+ *
+ */
 @GodotBaseType
 open class PackedDataContainer : Resource() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PACKEDDATACONTAINER)
@@ -43,12 +46,18 @@ open class PackedDataContainer : Resource() {
   open fun _setData(arg0: PoolByteArray) {
   }
 
+  /**
+   *
+   */
   open fun pack(value: Any?): GodotError {
     TransferContext.writeArguments(ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDDATACONTAINER_PACK, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
+  /**
+   *
+   */
   open fun size(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDDATACONTAINER_SIZE, LONG)

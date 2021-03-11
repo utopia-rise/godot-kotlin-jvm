@@ -23,10 +23,21 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * General-purpose proximity detection node.
+ *
+ * General-purpose proximity detection node.
+ */
 @GodotBaseType
 open class ProximityGroup : Spatial() {
+  /**
+   *
+   */
   val broadcast: Signal2<String, VariantArray<Any?>> by signal("group_name", "parameters")
 
+  /**
+   *
+   */
   open var dispatchMode: Long
     get() {
       TransferContext.writeArguments()
@@ -40,6 +51,9 @@ open class ProximityGroup : Spatial() {
           NIL)
     }
 
+  /**
+   *
+   */
   open var gridRadius: Vector3
     get() {
       TransferContext.writeArguments()
@@ -53,6 +67,9 @@ open class ProximityGroup : Spatial() {
           NIL)
     }
 
+  /**
+   *
+   */
   open var groupName: String
     get() {
       TransferContext.writeArguments()
@@ -77,6 +94,9 @@ open class ProximityGroup : Spatial() {
   open fun _proximityGroupBroadcast(name: String, params: Any?) {
   }
 
+  /**
+   *
+   */
   open fun broadcast(name: String, parameters: Any?) {
     TransferContext.writeArguments(STRING to name, ANY to parameters)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROXIMITYGROUP_BROADCAST, NIL)
@@ -85,8 +105,14 @@ open class ProximityGroup : Spatial() {
   enum class DispatchMode(
     id: Long
   ) {
+    /**
+     *
+     */
     MODE_PROXY(0),
 
+    /**
+     *
+     */
     MODE_SIGNAL(1);
 
     val id: Long
@@ -100,8 +126,14 @@ open class ProximityGroup : Spatial() {
   }
 
   companion object {
+    /**
+     *
+     */
     final const val MODE_PROXY: Long = 0
 
+    /**
+     *
+     */
     final const val MODE_SIGNAL: Long = 1
   }
 }
