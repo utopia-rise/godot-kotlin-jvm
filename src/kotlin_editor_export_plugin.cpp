@@ -8,7 +8,8 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
     // Add mandatory jars to pck
     String main_jar;
     String bootstrap_jar;
-    if (p_path.ends_with(".apk")) {
+    bool is_android_export{p_path.ends_with(".apk") || p_path.ends_with(".aar")};
+    if (is_android_export) {
         main_jar = "res://build/libs/main-dex.jar";
         bootstrap_jar = "res://build/libs/godot-bootstrap-dex.jar";
     } else {
@@ -19,7 +20,7 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
     add_file(bootstrap_jar, FileAccess::get_file_as_array(bootstrap_jar), false);
 
     // Copy JRE for desktop platforms
-    if (!p_path.ends_with(".apk") && !p_path.ends_with(".aar")) {
+    if (!is_android_export) {
         const Vector<String>& path_split = p_path.split("/");
         String export_dir{p_path.replace(path_split[path_split.size() - 1], "")};
         Error error;
