@@ -1,20 +1,25 @@
 package godot.intellij.plugin.data.cache.signalconnection
 
+import com.intellij.openapi.module.ModuleManager
 import com.intellij.openapi.project.Project
+import godot.intellij.plugin.extension.GodotRoot
+import godot.intellij.plugin.extension.getGodotRoot
 
 object SignalConnectionCacheProvider {
-    private val signalConnectionCache: MutableMap<Project, SignalConnectionCache> = mutableMapOf()
+    private val signalConnectionCache: MutableMap<GodotRoot, SignalConnectionCache> = mutableMapOf()
 
-    fun provide(project: Project): SignalConnectionCache {
-        var checker = signalConnectionCache[project]
+    fun provide(godotRoot: GodotRoot): SignalConnectionCache {
+        var checker = signalConnectionCache[godotRoot]
         if (checker == null) {
-            signalConnectionCache[project] = SignalConnectionCache()
-            checker = signalConnectionCache[project]
+            signalConnectionCache[godotRoot] = SignalConnectionCache()
+            checker = signalConnectionCache[godotRoot]
         }
         return requireNotNull(checker)
     }
 
     fun disposeForProject(project: Project) {
-        signalConnectionCache.remove(project)
+        ModuleManager.getInstance(project).modules.forEach {
+            signalConnectionCache.remove(it.getGodotRoot())
+        }
     }
 }

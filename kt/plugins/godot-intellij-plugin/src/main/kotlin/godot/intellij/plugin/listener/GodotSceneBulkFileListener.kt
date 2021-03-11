@@ -13,6 +13,7 @@ import com.intellij.util.indexing.FileBasedIndex
 import com.utopiarise.serialization.godot.scene.sceneFromTscn
 import godot.intellij.plugin.ProjectDisposable
 import godot.intellij.plugin.data.cache.signalconnection.SignalConnectionCacheProvider
+import godot.intellij.plugin.extension.getGodotRoot
 
 class GodotSceneBulkFileListener(private val project: Project) : BulkFileListener, ProjectDisposable {
 
@@ -34,20 +35,22 @@ class GodotSceneBulkFileListener(private val project: Project) : BulkFileListene
             }
     }
 
-    private fun initialIndexing() {
-        FileBasedIndex
-            .getInstance()
-            .getContainingFiles(
-                FileTypeIndex.NAME,
-                PlainTextFileType.INSTANCE,
-                GlobalSearchScope.projectScope(project)
-            )
-            .forEach { vFile ->
-                virtualFileChanged(vFile)
-            }
-    }
+    private fun initialIndexing() = getContainingFiles()
+        .forEach { vFile ->
+            virtualFileChanged(vFile)
+        }
+
+    private fun getContainingFiles() = FileBasedIndex
+        .getInstance()
+        .getContainingFiles(
+            FileTypeIndex.NAME,
+            PlainTextFileType.INSTANCE,
+            GlobalSearchScope.projectScope(project)
+        )
 
     private fun virtualFileChanged(file: VirtualFile) {
+        val godotRoot = file.getGodotRoot(project) ?: return
+
         if (file.extension == "tscn" && file.isValid && file.isInLocalFileSystem) {
             val path = file.canonicalPath ?: return
             val signals = try {
@@ -60,7 +63,7 @@ class GodotSceneBulkFileListener(private val project: Project) : BulkFileListene
                 ?: return
 
             SignalConnectionCacheProvider
-                .provide(project)
+                .provide(godotRoot)
                 .updateSignalConnections(
                     project,
                     path,
@@ -69,7 +72,7 @@ class GodotSceneBulkFileListener(private val project: Project) : BulkFileListene
         } else {
             val path = file.canonicalPath ?: return
             SignalConnectionCacheProvider
-                .provide(project)
+                .provide(godotRoot)
                 .removeSignalConnections(
                     path
                 )
