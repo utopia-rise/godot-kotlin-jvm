@@ -18,6 +18,7 @@ import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.ClassAlreadyRegisteredQuickFix
 import godot.intellij.plugin.quickfix.ClassNotRegisteredQuickFix
+import org.jetbrains.kotlin.idea.caches.resolve.resolveToDescriptorIfAny
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.idea.util.projectStructure.module
 import org.jetbrains.kotlin.idea.util.sourceRoots
@@ -25,6 +26,8 @@ import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtPackageDirective
 import org.jetbrains.kotlin.psi.allConstructors
+import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
+import org.jetbrains.kotlin.resolve.descriptorUtil.getAllSuperclassesWithoutAny
 import java.io.File
 
 private const val MAX_CONSTRUCTOR_ARGS = 5
@@ -61,6 +64,7 @@ class RegisterClassAnnotator : Annotator {
                         )
                     }
                 } else {
+                    checkExtendsGodotType(element, holder)
                     checkDefaultConstructorExistence(element, holder)
                     checkConstructorParameterCount(element, holder)
                     checkConstructorOverloading(element, holder)
@@ -84,6 +88,16 @@ class RegisterClassAnnotator : Annotator {
                     checkPackagePath(element, holder)
                 }
             }
+        }
+    }
+
+    private fun checkExtendsGodotType(ktClass: KtClass, holder: AnnotationHolder) {
+        if (ktClass.resolveToDescriptorIfAny()?.getAllSuperclassesWithoutAny()?.any { it.fqNameSafe.asString() == "godot.core.KtObject" } != true) {
+            holder.registerProblem(
+                GodotPluginBundle.message("problem.class.inheritance.notInheritingGodotObject"),
+                ktClass.nameIdentifier
+                    ?: ktClass.navigationElement
+            )
         }
     }
 
