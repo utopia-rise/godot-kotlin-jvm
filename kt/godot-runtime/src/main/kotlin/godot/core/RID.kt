@@ -5,8 +5,6 @@ import godot.util.VoidPtr
 @Suppress("MemberVisibilityCanBePrivate")
 class RID : NativeCoreType, Comparable<RID> {
 
-    override val coreVariantType: VariantType = VariantType._RID
-
     val id: Int
         get() = getID()
 
@@ -18,12 +16,12 @@ class RID : NativeCoreType, Comparable<RID> {
     //CONSTRUCTOR
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        GarbageCollector.registerNativeCoreType(this)
+        GarbageCollector.registerNativeCoreType(this, VariantType._RID)
     }
 
     constructor(from: KtObject) {
         _handle = Bridge.engine_call_constructor(from.rawPtr)
-        GarbageCollector.registerNativeCoreType(this)
+        GarbageCollector.registerNativeCoreType(this, VariantType._RID)
     }
 
     //API

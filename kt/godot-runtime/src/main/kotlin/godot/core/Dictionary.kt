@@ -6,7 +6,6 @@ import godot.util.MapIterator
 import godot.util.VoidPtr
 
 class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
-    override val coreVariantType = VariantType.DICTIONARY
 
     internal var keyVariantType = VariantType.NIL
     internal var valueVariantType = VariantType.NIL
@@ -16,7 +15,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
         keyVariantType = VariantType.ANY
         valueVariantType = VariantType.ANY
         _handle = handle
-        GarbageCollector.registerNativeCoreType(this)
+        GarbageCollector.registerNativeCoreType(this, VariantType.DICTIONARY)
     }
 
     @PublishedApi
@@ -24,7 +23,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
         this.keyVariantType = keyVariantType
         this.valueVariantType = valueVariantType
         _handle = Bridge.engine_call_constructor()
-        GarbageCollector.registerNativeCoreType(this)
+        GarbageCollector.registerNativeCoreType(this, VariantType.DICTIONARY)
     }
 
     //########################PUBLIC###############################
@@ -135,7 +134,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
         keyVariantType = other.keyVariantType
         valueVariantType = other.valueVariantType
         _handle = other._handle
-        GarbageCollector.registerNativeCoreType(this)
+        GarbageCollector.registerNativeCoreType(this, VariantType.DICTIONARY)
     }
 
 

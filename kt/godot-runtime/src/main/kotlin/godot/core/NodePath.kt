@@ -5,8 +5,6 @@ import godot.util.VoidPtr
 @Suppress("MemberVisibilityCanBePrivate")
 class NodePath : NativeCoreType {
 
-    override val coreVariantType: VariantType = VariantType.NODE_PATH
-
     //PROPERTIES
     val path: String
         get() {
@@ -17,26 +15,26 @@ class NodePath : NativeCoreType {
     //INTERNAL
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        GarbageCollector.registerNativeCoreType(this)
+        GarbageCollector.registerNativeCoreType(this, VariantType.NODE_PATH)
     }
 
     //CONSTRUCTORS
 
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        GarbageCollector.registerNativeCoreType(this)
+        GarbageCollector.registerNativeCoreType(this, VariantType.NODE_PATH)
     }
 
     constructor(from: String) {
         TransferContext.writeArguments(VariantType.STRING to from)
         _handle = Bridge.engine_call_constructor(true)
-        GarbageCollector.registerNativeCoreType(this)
+        GarbageCollector.registerNativeCoreType(this, VariantType.NODE_PATH)
     }
 
     constructor(from: NodePath) {
         TransferContext.writeArguments(VariantType.STRING to from.path)
         _handle = Bridge.engine_call_constructor(true)
-        GarbageCollector.registerNativeCoreType(this)
+        GarbageCollector.registerNativeCoreType(this, VariantType.NODE_PATH)
     }
 
     //API

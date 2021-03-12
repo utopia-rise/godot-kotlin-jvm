@@ -7,22 +7,20 @@ import godot.util.VoidPtr
 @Suppress("unused")
 class VariantArray<T> : NativeCoreType, MutableCollection<T> {
 
-    override val coreVariantType: VariantType = VariantType.ARRAY
-
     internal var variantType: VariantType = VariantType.NIL
 
     @PublishedApi
     internal constructor(handle: VoidPtr) {
         variantType = VariantType.ANY
         _handle = handle
-        GarbageCollector.registerNativeCoreType(this)
+        GarbageCollector.registerNativeCoreType(this, VariantType.ARRAY)
     }
 
     @PublishedApi
     internal constructor(variantType: VariantType) {
         this.variantType = variantType;
         _handle = Bridge.engine_call_constructor()
-        GarbageCollector.registerNativeCoreType(this)
+        GarbageCollector.registerNativeCoreType(this, VariantType.ARRAY)
     }
 
 //########################PUBLIC###############################
@@ -42,7 +40,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     constructor(other: VariantArray<T>) {
         this.variantType = other.variantType
         this._handle = other._handle
-        GarbageCollector.registerNativeCoreType(this)
+        GarbageCollector.registerNativeCoreType(this, VariantType.ARRAY)
     }
 
     //COMMON API

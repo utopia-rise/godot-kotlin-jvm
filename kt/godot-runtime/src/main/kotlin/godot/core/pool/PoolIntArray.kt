@@ -8,9 +8,6 @@ import godot.util.VoidPtr
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 class PoolIntArray : NativeCoreType, Iterable<Int> {
 
-
-    override val coreVariantType: VariantType = VariantType.POOL_INT_ARRAY
-
     //PROPERTIES
     val size: Int
         get() {
@@ -21,12 +18,12 @@ class PoolIntArray : NativeCoreType, Iterable<Int> {
     //CONSTRUCTOR
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        GarbageCollector.registerNativeCoreType(this)
+        GarbageCollector.registerNativeCoreType(this, VariantType.POOL_INT_ARRAY)
     }
 
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        GarbageCollector.registerNativeCoreType(this)
+        GarbageCollector.registerNativeCoreType(this, VariantType.POOL_INT_ARRAY)
     }
 
 

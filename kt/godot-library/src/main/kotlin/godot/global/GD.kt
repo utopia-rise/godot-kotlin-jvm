@@ -6,6 +6,7 @@ import godot.Resource
 import godot.ResourceLoader
 import godot.core.*
 import godot.core.Dictionary
+import godot.core.memory.GodotStatic
 import godot.util.nullptr
 
 
