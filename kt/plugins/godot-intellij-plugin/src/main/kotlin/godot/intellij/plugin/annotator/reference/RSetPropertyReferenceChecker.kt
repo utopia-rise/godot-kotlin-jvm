@@ -5,6 +5,7 @@ import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.TargetFunctionNotRegisteredQuickFix
+import godot.intellij.plugin.quickfix.TargetPropertyNotRegisteredQuickFix
 import org.jetbrains.kotlin.idea.refactoring.fqName.getKotlinFqName
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
@@ -45,7 +46,7 @@ object RSetPropertyReferenceChecker {
                 holder.registerProblem(
                     GodotPluginBundle.message("problem.rpc.calledPropertyNotRegistered"),
                     element,
-                    TargetFunctionNotRegisteredQuickFix()
+                    TargetPropertyNotRegisteredQuickFix()
                 )
             } else {
                 if (
