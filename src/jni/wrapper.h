@@ -3,10 +3,13 @@
 
 #include "env.h"
 #include "types.h"
-#include "exceptions.h"
 #include "init_args.h"
 #include "jvm.h"
+
+#ifndef __ANDROID__
 #include "jvm_loader.h"
+#endif
+
 #include "types.h"
 #include "local_frame.h"
 #include "java_method_signature.h"

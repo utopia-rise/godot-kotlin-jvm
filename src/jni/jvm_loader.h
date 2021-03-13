@@ -2,6 +2,8 @@
 // Created by cedric on 19.08.20.
 //
 
+#ifndef __ANDROID__
+
 #ifndef GODOT_LOADER_JVM_LOADER_H
 #define GODOT_LOADER_JVM_LOADER_H
 
@@ -38,3 +40,5 @@ namespace jni {
 
 
 #endif //GODOT_LOADER_JVM_LOADER_H
+
+#endif

@@ -1,0 +1,86 @@
+#if defined WINDOWS_ENABLED || defined X11_ENABLED || defined OSX_ENABLED
+
+#include <cassert>
+#include <modules/kotlin_jvm/src/logging.h>
+#include "../jvm_loader.h"
+#include "../jvm.h"
+
+namespace jni {
+    JavaVM* Jvm::vm = nullptr;
+    Env* Jvm::env = nullptr;
+    jint Jvm::version = 0;
+
+    void Jvm::init(const InitArgs& initArgs) {
+        auto res = get_existing();
+        if (res == nullptr) {
+            res = create(initArgs);
+        }
+        assert(res != nullptr);
+        vm = res;
+        version = initArgs.version;
+    }
+
+    void Jvm::destroy() {
+        vm->DetachCurrentThread();
+        vm->DestroyJavaVM();
+        JvmLoader::close_jvm_lib();
+    }
+
+    JavaVM* Jvm::create(const InitArgs& initArgs) {
+        size_t nOptions { initArgs.options.size() };
+        auto *options = new JavaVMOption[nOptions];
+        JavaVMInitArgs args;
+        args.version = initArgs.version;
+        args.nOptions = nOptions;
+        args.options = options;
+
+        for (auto i = 0; i < nOptions; i++) {
+            args.options[i].optionString = (char*) initArgs.options[i].c_str();
+        }
+
+        JavaVM* vm;
+        JNIEnv* env;
+        auto result = JvmLoader::get_create_jvm_function()(&vm, (void**) &env, (void*) &args);
+        delete[] options;
+        JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to create a new vm!")
+        return vm;
+    }
+
+    JavaVM* Jvm::get_existing() {
+        JavaVM* buffer[1];
+        jsize count;
+        auto result = JvmLoader::get_get_created_java_vm_function()(buffer, 1, &count);
+        JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to retrieve existing vm!")
+        if (count > 0) {
+            return buffer[0];
+        }
+        return nullptr;
+    }
+
+    Env Jvm::attach() {
+        JNIEnv* r_env;
+        auto result = vm->GetEnv((void**) &r_env, version);
+        if (result == JNI_EDETACHED) {
+            result = vm->AttachCurrentThread((void**) &r_env, nullptr);
+            JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to attach vm to current thread!")
+        }
+        Jvm::env = new Env(r_env);
+        return Env(r_env);
+    }
+
+    void Jvm::detach() {
+        auto result = vm->DetachCurrentThread();
+        JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to detach vm to current thread!")
+        delete Jvm::env;
+        Jvm::env = nullptr;
+    }
+
+    Env Jvm::current_env() {
+        JNIEnv* r_env;
+        auto result = vm->GetEnv((void**) &r_env, version);
+        JVM_CRASH_COND_MSG(result == JNI_EDETACHED, "Current thread is not attached!")
+        return Env(r_env);
+    }
+}
+
+#endif

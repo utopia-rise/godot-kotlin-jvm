@@ -11,6 +11,11 @@
 #include <core/os/dir_access.h>
 #endif
 
+#ifdef __ANDROID__
+#include <platform/android/os_android.h>
+#include <platform/android/java_godot_wrapper.h>
+#endif
+
 // If changed, remember to change also TransferContext::bufferCapacity on JVM side
 const int DEFAULT_SHARED_BUFFER_SIZE{20'000'000};
 
@@ -35,23 +40,44 @@ jni::JObject to_java_url(jni::Env& env, const String& bootstrapJar) {
     return url;
 }
 
-jni::JObject create_class_loader(jni::Env& env, const String& bootstrapJar) {
-    jni::JObject url = to_java_url(env, bootstrapJar);
+jni::JObject create_class_loader(jni::Env& env, const String& full_jar_path, const jni::JObject& p_parent_loader) {
+#ifdef __ANDROID__
+    jni::JClass class_loader_cls{env.find_class("dalvik/system/DexClassLoader")};
+    jni::MethodId ctor{
+            class_loader_cls.get_constructor_method_id(
+                    env,
+                    "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/ClassLoader;)V"
+            )
+    };
+    jni::JObject jar_path{env.new_string(full_jar_path.utf8().get_data())};
+    jvalue args[4] = {
+            jni::to_jni_arg(jar_path),
+            jni::to_jni_arg(jni::JObject(nullptr)),
+            jni::to_jni_arg(jni::JObject(nullptr)),
+            jni::to_jni_arg(p_parent_loader)
+    };
+    return class_loader_cls.new_instance(env, ctor, args);
+#else
+    jni::JObject url = to_java_url(env, full_jar_path);
     jni::JClass url_cls = env.find_class("java/net/URL");
     jni::JObjectArray urls = url_cls.new_object_array(env, 1, {url});
     jni::JClass class_loader_cls = env.find_class("java/net/URLClassLoader");
-    jni::MethodId ctor = class_loader_cls.get_constructor_method_id(env, "([Ljava/net/URL;)V");
-    jvalue args[1] = {jni::to_jni_arg(urls)};
+    jni::MethodId ctor = class_loader_cls.get_constructor_method_id(
+            env,
+            "([Ljava/net/URL;Ljava/lang/ClassLoader;)V"
+    );
+    jvalue args[2] = {jni::to_jni_arg(urls), jni::to_jni_arg(p_parent_loader)};
     jni::JObject class_loader = class_loader_cls.new_instance(env, ctor, args);
     assert(!class_loader_cls.is_null());
     return class_loader;
+#endif
 }
 
 void set_context_class_loader(jni::Env& env, jni::JObject thread, jni::JObject classLoader) {
     auto cls = env.find_class("java/lang/Thread");
     auto setContextClassLoaderMethod = cls.get_method_id(env, "setContextClassLoader", "(Ljava/lang/ClassLoader;)V");
     jvalue args[1] = {jni::to_jni_arg(classLoader)};
-    thread.call_object_method(env, setContextClassLoaderMethod, args);
+    thread.call_void_method(env, setContextClassLoaderMethod, args);
 }
 
 GDKotlin& GDKotlin::get_instance() {
@@ -144,8 +170,11 @@ void GDKotlin::init() {
 #endif
         return;
     }
+
     jni::InitArgs args;
+#ifndef __ANDROID__
     args.version = JNI_VERSION_1_8;
+#endif
 #ifdef DEBUG_ENABLED
     args.option("-Xcheck:jni");
 #endif
@@ -237,10 +266,18 @@ void GDKotlin::init() {
 #endif
     }
 
-    check_and_copy_jar("godot-bootstrap.jar");
-    check_and_copy_jar("main.jar");
-
     jni::Jvm::init(args);
+
+#ifdef __ANDROID__
+    String bootstrap_jar_file{"godot-bootstrap-dex.jar"};
+    String main_jar_file{"main-dex.jar"};
+#else
+    String bootstrap_jar_file{"godot-bootstrap.jar"};
+    String main_jar_file{"main.jar"};
+#endif
+
+    check_and_copy_jar(bootstrap_jar_file);
+    check_and_copy_jar(main_jar_file);
 
     LOG_INFO("Starting JVM ...")
     auto project_settings = ProjectSettings::get_singleton();
@@ -248,7 +285,7 @@ void GDKotlin::init() {
 #ifdef TOOLS_ENABLED
     String bootstrap_jar{OS::get_singleton()->get_executable_path().get_base_dir() + "/godot-bootstrap.jar"};
 #else
-    String bootstrap_jar{ProjectSettings::get_singleton()->globalize_path(vformat("user://%s", "godot-bootstrap.jar"))};
+    String bootstrap_jar{ProjectSettings::get_singleton()->globalize_path(vformat("user://%s", bootstrap_jar_file))};
 #endif
 
 #ifdef TOOLS_ENABLED
@@ -261,7 +298,7 @@ void GDKotlin::init() {
     LOG_INFO(vformat("Loading bootstrap jar: %s", bootstrap_jar))
     jni::Env env{jni::Jvm::current_env()};
     jni::JObject current_thread = get_current_thread(env);
-    class_loader = create_class_loader(env, bootstrap_jar).new_global_ref<jni::JObject>(env);
+    class_loader = create_class_loader(env, bootstrap_jar, jni::JObject(nullptr)).new_global_ref<jni::JObject>(env);
     set_context_class_loader(env, current_thread, class_loader);
 
     jni::JClass transfer_ctx_cls = env.load_class("godot.core.TransferContext", class_loader);
@@ -324,7 +361,19 @@ void GDKotlin::init() {
     String jar_path{project_settings->globalize_path("user://")};
 #endif
 
-    bootstrap->init(env, is_editor, jar_path);
+    String main_jar{ProjectSettings::get_singleton()->globalize_path(vformat("user://%s", main_jar_file))};
+
+    bootstrap->init(
+            env,
+            is_editor,
+            jar_path,
+            main_jar_file,
+#ifdef __ANDROID__
+            create_class_loader(env, main_jar, class_loader)
+#else
+            jni::JObject(nullptr)
+#endif
+    );
 }
 
 void GDKotlin::finish() {

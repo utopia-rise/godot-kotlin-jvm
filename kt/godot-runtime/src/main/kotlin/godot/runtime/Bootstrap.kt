@@ -20,18 +20,18 @@ import java.util.concurrent.TimeUnit
 
 class Bootstrap {
     private var registry: ClassRegistry? = null
-    private lateinit var classloader: URLClassLoader
+    private lateinit var classloader: ClassLoader
     private lateinit var serviceLoader: ServiceLoader<Entry>
     private var executor: ScheduledExecutorService? = null
     private var watchService: WatchService? = null
     private var engineTypesRegistered: Boolean = false
 
-    fun init(isEditor: Boolean, jarRootDir: String) {
+    fun init(isEditor: Boolean, jarRootDir: String, jarFile: String, loader: ClassLoader?) {
         val libsDir = Paths.get(jarRootDir)
-        val mainJarPath = libsDir.resolve("main.jar")
+        val mainJarPath = libsDir.resolve(jarFile)
 
         if (File(mainJarPath.toString()).exists()) {
-            doInit(mainJarPath.toUri().toURL())
+            doInit(mainJarPath.toUri().toURL(), loader)
         } else {
             if (isEditor) {
                 ::warning
@@ -65,7 +65,7 @@ class Bootstrap {
                     clearClassesCache()
 
                     if (File(mainJarPath.toString()).exists()) {
-                        doInit(mainJarPath.toUri().toURL())
+                        doInit(mainJarPath.toUri().toURL(), classloader)
                     } else {
                         warning("No main.jar detected. No classes will be loaded. Build the project to load classes")
                     }
@@ -87,15 +87,14 @@ class Bootstrap {
         Thread.currentThread().contextClassLoader = classloader
     }
 
-    private fun doInit(mainJar: URL) {
+    private fun doInit(mainJar: URL, classLoader: ClassLoader?) {
         registry = ClassRegistry()
-        classloader = URLClassLoader(arrayOf(mainJar), this::class.java.classLoader)
+        classloader = classLoader ?: URLClassLoader(arrayOf(mainJar), this::class.java.classLoader)
         Thread.currentThread().contextClassLoader = classloader
         serviceLoader = ServiceLoader.load(Entry::class.java, classloader)
-        val entry = serviceLoader.findFirst()
-
-        if (entry.isPresent) {
-            with(entry.get()) {
+        val entryIterator = serviceLoader.iterator()
+        if (entryIterator.hasNext()) {
+            with(entryIterator.next()) {
                 val context = Entry.Context(registry!!)
 
                 if (!engineTypesRegistered) {

@@ -5,13 +5,16 @@ jobs:
   build-editor-release:
     strategy:
       matrix:
-        os: [ ubuntu-latest, macos-latest, windows-latest ]
+        name: [ Linux, OSX, Windows ]
         include:
-          - os: ubuntu-latest
+          - name: Linux
+            os: ubuntu-latest
             platform: x11
-          - os: macos-latest
+          - name: OSX
+            os: macos-latest
             platform: osx
-          - os: windows-latest
+          - name: Windows
+            os: windows-latest
             platform: windows
     runs-on: ${{ matrix.os }}
     steps:

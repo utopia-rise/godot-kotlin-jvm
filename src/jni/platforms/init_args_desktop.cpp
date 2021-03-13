@@ -1,4 +1,6 @@
-#include "init_args.h"
+#if defined WINDOWS_ENABLED || defined X11_ENABLED || defined OSX_ENABLED
+
+#include "../init_args.h"
 
 namespace jni {
     void InitArgs::option(const char *option) {
@@ -8,4 +10,10 @@ namespace jni {
     void InitArgs::option(const std::string& option) {
         options.emplace_back(option);
     }
+
+    InitArgs::InitArgs() : version(JNI_VERSION_1_8) {
+
+    }
 }
+
+#endif

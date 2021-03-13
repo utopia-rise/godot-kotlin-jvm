@@ -18,15 +18,25 @@ import java.io.File
 
 class GodotPlugin : KotlinCompilerPluginSupportPlugin {
     override fun apply(target: Project) {
+        require(target.rootProject == target) { "godot-jvm plugin can only be applied on the root project!" }
+        val godotExtension = target.extensions.create("godot", GodotExtension::class.java)
         val jvm = target.extensions.getByType<KotlinJvmProjectExtension>()
         target.pluginManager.apply(ShadowPlugin::class)
         target.pluginManager.apply("org.jetbrains.kotlin.kapt")
-        setupPlugin(target, jvm)
+        setupPlugin(target, godotExtension, jvm)
     }
 
-    private fun setupPlugin(project: Project, jvm: KotlinJvmProjectExtension) {
+    private fun setupPlugin(project: Project, godotExtension: GodotExtension, jvm: KotlinJvmProjectExtension) {
+        configureExtensionDefaults(godotExtension)
         project.afterEvaluate {
-            setupConfigurationsAndCompilations(jvm)
+            setupConfigurationsAndCompilations(godotExtension, jvm)
+        }
+    }
+
+    private fun configureExtensionDefaults(godotExtension: GodotExtension) {
+        godotExtension.apply {
+            isAndroidExportEnabled.set(false)
+            dxToolPath.set("dx") //default assumes that it's in $PATH
         }
     }
 
