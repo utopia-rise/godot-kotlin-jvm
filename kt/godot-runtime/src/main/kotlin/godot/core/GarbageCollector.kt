@@ -32,17 +32,18 @@ object GarbageCollector {
     private var current_index = 0
 
     /** Pointers to Objects.*/
-    private val wrappedMap = ConcurrentHashMap<VoidPtr, KtObject>()
+    private val wrappedMap = ConcurrentHashMap<VoidPtr, KtObject>(CHECK_NUMBER)
     /** Pointers to References.*/
-    private val refWrappedMap = ArrayList<ReferenceWeakReference?>()
+    private val refWrappedList = ArrayList<ReferenceWeakReference?>(CHECK_NUMBER)
     /** Pointers to NativeCoreType.*/
-    private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreWeakReference>()
+    private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreWeakReference>(CHECK_NUMBER)
 
     /** Queues so we are notified when the GC runs on References.*/
     private val refReferenceQueue = ReferenceQueue<KtObject>()
-
     /** Queues so we are notified when the GC runs on NativeCoreTypes.*/
     private val nativeReferenceQueue = ReferenceQueue<NativeCoreType>()
+    /** List of element to remove from RefWrapperList*/
+    private val deleteQueue = ArrayList<Int>()
 
     /** List mirroring the content of the Object HashMap.*/
     private var wrapperList: List<Pair<VoidPtr, KtObject>>? = null
@@ -66,9 +67,14 @@ object GarbageCollector {
     }
 
     fun registerReference(instance: KtObject) {
-        val rawPtr = instance.rawPtr
-        val index = instance.id.toInt()
-        refWrappedMap[index] = ReferenceWeakReference(instance, refReferenceQueue, index)
+        synchronized(refWrappedList) {
+            val index = instance.id.toInt()
+            //It will throw an Exception if the size is too small so we have to grow the list.
+            if (refWrappedList.size <= index) {
+                refWrappedList.ensureCapacity(refWrappedList.size * 2)
+            }
+            refWrappedList[index] = ReferenceWeakReference(instance, refReferenceQueue, index)
+        }
     }
 
     fun registerNativeCoreType(nativeCoreType: NativeCoreType, variantType: VariantType) {
@@ -94,7 +100,13 @@ object GarbageCollector {
     }
 
     fun getRefInstance(index: Int): KtObject? {
-        return refWrappedMap[index]!!.get()
+        synchronized(refWrappedList) {
+            if (refWrappedList.size <= index) {
+                //If the list is too small, it means the ref we want is not there yet.
+                return null
+            }
+            return refWrappedList[index]!!.get()
+        }
     }
 
     fun getNativeCoreTypeInstance(ptr: VoidPtr): NativeCoreType? {
@@ -176,11 +188,17 @@ object GarbageCollector {
         while (counter < CHECK_NUMBER) {
             val ref = (refReferenceQueue.poll() ?: break) as ReferenceWeakReference
             if (MemoryBridge.unref(ref.ptr)) {
-                refWrappedMap[ref.index] = null
+                deleteQueue.add(ref.index)
                 isActive = true
             }
             counter++
         }
+        synchronized(refWrappedList){
+            for(index in deleteQueue){
+                refWrappedList[index] = null
+            }
+        }
+        deleteQueue.clear()
         counter = 0
 
         // Same as before for NativeCoreTypes
@@ -208,7 +226,7 @@ object GarbageCollector {
         }
 
         val begin = Instant.now()
-        while (refWrappedMap.isNotEmpty() || wrappedMap.isNotEmpty() || nativeCoreTypeMap.isNotEmpty()) {
+        while (refWrappedList.isNotEmpty() || wrappedMap.isNotEmpty() || nativeCoreTypeMap.isNotEmpty()) {
             forceJvmGc()
             checkAndClean()
             val finish = Instant.now()
@@ -220,8 +238,8 @@ object GarbageCollector {
                         if (shouldDisplayLeakInstancesOnClose) {
                             append("Leaked references:")
                             append(System.lineSeparator())
-                            for (entry in refWrappedMap) {
-                                if(entry != null){
+                            for (entry in refWrappedList) {
+                                if (entry != null) {
                                     append("    ${entry.get()}")
                                     append(System.lineSeparator())
                                 }

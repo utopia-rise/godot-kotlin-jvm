@@ -26,6 +26,9 @@
 #define JVM_ERR_FAIL_COND_V_MSG(condition, ret_var, message) \
     ERR_FAIL_COND_V_MSG(condition, ret_var, vformat("Godot-JVM: %s", message))
 
+#define JVM_ERR_FAIL_COND_MSG(condition, message) \
+    ERR_FAIL_COND_MSG(condition, vformat("Godot-JVM: %s", message))
+
 #define JVM_CRASH_COND_MSG(condition, message) \
     CRASH_COND_MSG(condition, vformat("Godot-JVM: %s", message))
 

@@ -152,16 +152,14 @@ void TransferContext::invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, 
     auto raw_ptr = Variant(reinterpret_cast<uintptr_t>(ptr));
     Variant id = -1;
 
-    if (!ptr) {
 #ifdef DEBUG_ENABLED
-        LOG_ERROR(vformat("Failed to instantiate class %s", class_name))
+    JVM_ERR_FAIL_COND_MSG(!ptr, vformat("Failed to instantiate class %s", class_name))
 #endif
+
+    if (Variant(ptr).is_ref()) {
+        id = RefDB::get_instance().get_ref_id(reinterpret_cast<Reference*>(ptr));
     } else {
-        if (Variant(ptr).is_ref()) {
-            id = GDKotlin::get_ref_id();
-        } else {
-            id = ptr->get_instance_id();
-        }
+        id = ptr->get_instance_id();
     }
 
     jni::Env env(p_raw_env);
