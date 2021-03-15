@@ -20,7 +20,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.signals.Signal0
 import godot.signals.signal
-import godot.util.VoidPtr
 import godot.util.camelToSnakeCase
 import kotlin.Any
 import kotlin.Boolean
