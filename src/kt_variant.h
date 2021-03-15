@@ -9,6 +9,7 @@
 #include "shared_buffer.h"
 #include "type_manager.h"
 #include "ref_db.h"
+#include "logging.h"
 
 namespace ktvariant {
 
@@ -249,8 +250,9 @@ namespace ktvariant {
         bool is_ref{src.is_ref()};
         uint64_t id;
         if (is_ref) {
-            Reference* ref = reinterpret_cast<Reference*>(ptr);
+            auto* ref = reinterpret_cast<Reference*>(ptr);
             id = RefDB::get_instance().get_ref_id(ref);
+
         } else {
             id = ptr->get_instance_id();
         }

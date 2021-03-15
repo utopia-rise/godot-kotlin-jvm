@@ -13,7 +13,8 @@ private:
     ~RefDB() = default;
 
     struct RefIndex{
-        uint64_t index = -1;
+        uint64_t index = 0;
+        uint32_t counter = 0;
     };
 
     Mutex* mut;
@@ -22,7 +23,7 @@ private:
 
 public:
     uint64_t get_ref_id(Reference* ref);
-    void remove_ref(Reference* ref);
+    void remove_ref(Reference* ref, uint32_t counter);
     static RefDB& get_instance();
 
 };

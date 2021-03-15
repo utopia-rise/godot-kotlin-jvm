@@ -32,4 +32,7 @@
 #define JVM_CRASH_COND_MSG(condition, message) \
     CRASH_COND_MSG(condition, vformat("Godot-JVM: %s", message))
 
+#define JVM_CRASH_NOW_MSG(message) \
+    CRASH_NOW_MSG(vformat("Godot-JVM: %s", message))
+
 #endif //GODOT_JVM_LOGGING_H

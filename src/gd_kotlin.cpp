@@ -88,8 +88,10 @@ GDKotlin& GDKotlin::get_instance() {
 void load_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
     jni::Env env(p_env);
     jni::JObjectArray classes{jni::JObjectArray(p_classes)};
-    GDKotlin::get_instance().register_classes(env, classes);
     jni::JObject j_object{p_this};
+
+    GDKotlin::get_instance().register_classes(env, classes);
+
     j_object.delete_local_ref(env);
     classes.delete_local_ref(env);
 }
@@ -97,8 +99,10 @@ void load_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
 void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
     jni::Env env(p_env);
     jni::JObjectArray classes{jni::JObjectArray(p_classes)};
-    GDKotlin::get_instance().unregister_classes(env, classes);
     jni::JObject j_object{p_this};
+
+    GDKotlin::get_instance().unregister_classes(env, classes);
+
     j_object.delete_local_ref(env);
     classes.delete_local_ref(env);
 }
@@ -112,18 +116,22 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
 
     jni::JObjectArray engine_types{p_engine_types};
     for (int i = 0; i < engine_types.length(env); ++i) {
-        const String& class_name = env.from_jstring(static_cast<jni::JString>(engine_types.get(env, i)));
+        jni::JObject type = engine_types.get(env, i);
+        const String& class_name = env.from_jstring(static_cast<jni::JString>(type));
         GDKotlin::get_instance().engine_type_names.insert(i, class_name);
         TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name] = i;
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE(vformat("Registered %s engine type with index %s.", class_name, i))
 #endif
+    type.delete_local_ref(env);
     }
 
     jni::JObjectArray singleton_names{p_singleton_names};
     for (int i = 0; i < singleton_names.length(env); ++i) {
-        const String& singleton_name{env.from_jstring(static_cast<jni::JString>(singleton_names.get(env, i)))};
+        jni::JObject name = singleton_names.get(env, i);
+        const String& singleton_name{env.from_jstring(static_cast<jni::JString>(name))};
         GDKotlin::get_instance().engine_singleton_names.insert(i, singleton_name);
+        name.delete_local_ref(env);
     }
 
     jni::JObjectArray method_names{p_method_names};
@@ -131,19 +139,26 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
     jni::JClass integer_class{env.load_class("java.lang.Integer", GDKotlin::get_instance().get_class_loader())};
     jni::MethodId integer_get_value_method{integer_class.get_method_id(env, "intValue", "()I")};
     for (int i = 0; i < method_names.length(env); i++) {
-        int type_of_method{static_cast<int>(types_of_methods.get(env, i).call_int_method(env, integer_get_value_method))};
+        jni::JObject type = types_of_methods.get(env, i);
+        jni::JObject name = method_names.get(env, i);
+        int type_of_method{static_cast<int>(type.call_int_method(env, integer_get_value_method))};
         GDKotlin::get_instance().engine_type_method.insert(
                 i,
                 ClassDB::get_method(
                         GDKotlin::get_instance().engine_type_names[type_of_method],
-                        env.from_jstring(method_names.get(env, i))
+                        env.from_jstring(name)
                 )
         );
+        name.delete_local_ref(env);
+        type.delete_local_ref(env);
     }
     jni::JObject j_object{p_this};
     j_object.delete_local_ref(env);
     engine_types.delete_local_ref(env);
+    singleton_names.delete_local_ref(env);
     method_names.delete_local_ref(env);
+    types_of_methods.delete_local_ref(env);
+    integer_class.delete_local_ref(env);
 #ifdef DEBUG_ENABLED
     LOG_VERBOSE("Done registering managed engine types...")
 #endif
@@ -430,12 +445,14 @@ void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
     LOG_INFO("Loading classes ...")
 #endif
     for (auto i = 0; i < p_classes.length(p_env); i++) {
-        auto kt_class = new KtClass(p_classes.get(p_env, i), class_loader);
+        jni::JObject clazz = p_classes.get(p_env, i);
+        auto kt_class = new KtClass(clazz, class_loader);
         classes[kt_class->name] = kt_class;
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE(vformat("Loaded class %s : %s, as %s", kt_class->name, kt_class->super_class,
                               kt_class->registered_class_name))
 #endif
+        clazz.delete_local_ref(p_env);
     }
 }
 

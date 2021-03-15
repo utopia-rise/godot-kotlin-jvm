@@ -5,6 +5,7 @@ import godot.core.memory.NativeCoreWeakReference
 import godot.core.memory.ReferenceWeakReference
 import godot.util.VoidPtr
 import godot.util.info
+import godot.util.warning
 import java.lang.ref.ReferenceQueue
 import java.lang.ref.WeakReference
 import java.time.Duration
@@ -17,35 +18,45 @@ object GarbageCollector {
 
     /** Minimum time before 2 iterations of the thread.*/
     private const val MIN_DELAY = 0L
+
     /** Maximum time before 2 iterations of the thread.*/
     private const val MAX_DELAY = 2000L
+
     /** The delay between iterations can be increased or decreased by this value.*/
     private const val INC_DELAY = 100L
+
     /** Current time between 2 iterations of the thread. */
     private var current_delay = (MIN_DELAY + MAX_DELAY) / 2L
 
     /** Number of references to check each loop.*/
     private const val CHECK_NUMBER = 256
+
     /** Percentage of objects to check each loop.*/
     private const val CHECK_PER_CENT = 0.2f
+
     /** Index of the last Object checked.*/
     private var current_index = 0
 
     /** Pointers to Objects.*/
     private val wrappedMap = ConcurrentHashMap<VoidPtr, KtObject>(CHECK_NUMBER)
+
     /** Pointers to References.*/
     private val refWrappedList = ArrayList<ReferenceWeakReference?>(CHECK_NUMBER)
+
     /** CurrentSize of the List, so we can grow it a lot chunk instead of one by one */
     private var current_size = CHECK_NUMBER
+
     /** Pointers to NativeCoreType.*/
     private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreWeakReference>(CHECK_NUMBER)
 
     /** Queues so we are notified when the GC runs on References.*/
     private val refReferenceQueue = ReferenceQueue<KtObject>()
+
     /** Queues so we are notified when the GC runs on NativeCoreTypes.*/
     private val nativeReferenceQueue = ReferenceQueue<NativeCoreType>()
+
     /** List of element to remove from RefWrapperList*/
-    private val deleteQueue = ArrayList<Int>()
+    private val deleteQueue = ArrayList<ReferenceWeakReference>()
 
     /** List mirroring the content of the Object HashMap.*/
     private var wrapperList: List<Pair<VoidPtr, KtObject>>? = null
@@ -57,6 +68,7 @@ object GarbageCollector {
 
     private var forceJvmGarbageCollector = false
     private var shouldDisplayLeakInstancesOnClose = true
+    private var isCleanup = false
 
     private var gcState = GCState.NONE
 
@@ -69,11 +81,11 @@ object GarbageCollector {
     }
 
     fun registerReference(instance: KtObject) {
+        val index = instance.__id.toInt()
         synchronized(refWrappedList) {
-            val index = instance.__id.toInt()
             //It will throw an Exception if the size is too small so we have to grow the list.
             if (refWrappedList.size == index) {
-                if(refWrappedList.size == current_size){
+                if (refWrappedList.size == current_size) {
                     current_size *= 2
                     refWrappedList.ensureCapacity(current_size)
                 }
@@ -94,17 +106,14 @@ object GarbageCollector {
         staticInstances.add(instance)
     }
 
-    fun getObjectInstance(ptr: VoidPtr): KtObject? {
+    fun getObjectInstance(ptr: VoidPtr, id: Long): KtObject? {
         val ktObject = wrappedMap[ptr]
-        return if (ktObject != null) {
-            if (MemoryBridge.checkInstance(ptr, ktObject.__id)) {
-                ktObject
-            } else {
-                null
+        if (ktObject != null) {
+            if (id == ktObject.__id) {
+                return ktObject
             }
-        } else {
-            null
         }
+        return null
     }
 
     fun getRefInstance(index: Int): KtObject? {
@@ -113,7 +122,13 @@ object GarbageCollector {
                 //If the list is too small, it means the ref we want is not there yet.
                 return null
             }
-            return refWrappedList[index]!!.get()
+            val ref = refWrappedList[index]
+            val instance = ref?.get()
+            if(instance != null){
+                ref.counter++
+                return instance
+            }
+            return null
         }
     }
 
@@ -123,10 +138,10 @@ object GarbageCollector {
 
     fun isInstanceValid(ktObject: KtObject) = MemoryBridge.checkInstance(ktObject.rawPtr, ktObject.__id)
 
-
     fun start(forceJvmGarbageCollector: Boolean) {
         this.forceJvmGarbageCollector = forceJvmGarbageCollector
         gcState = GCState.STARTED
+        info("Starting GC thread")
         executor.schedule(GarbageCollector::run, 0, TimeUnit.MILLISECONDS)
     }
 
@@ -192,24 +207,35 @@ object GarbageCollector {
 
         // A native reference cannot die while a jvm instance exists (because counter > 0). When we don't need the
         // jvm instance anymore, we decrease the counter.
-        while (counter < CHECK_NUMBER) {
+        while (counter < CHECK_NUMBER || isCleanup) {
             val ref = (refReferenceQueue.poll() ?: break) as ReferenceWeakReference
-            if (MemoryBridge.unref(ref.ptr)) {
-                deleteQueue.add(ref.index)
-                isActive = true
-            }
+            //We first add the ref to the deleteQueue
+            deleteQueue.add(ref)
+            isActive = true
             counter++
         }
         synchronized(refWrappedList) {
-            for (index in deleteQueue) {
-                refWrappedList[index] = null
+            //we remove the element from the map
+            for (ref in deleteQueue) {
+                val otherRef = refWrappedList[ref.index]
+                //Check if the ref in the hashmap hasn't been modified by another thread
+                if(otherRef == ref){
+                    refWrappedList[ref.index] = null
+                }
             }
         }
+
+        //Lastly, we call unref after removing elements from the map.
+        // We don't want an index to be reused when there is cleaning to do.
+        for (ref in deleteQueue) {
+            MemoryBridge.unref(ref.ptr, ref.counter)
+        }
+
         deleteQueue.clear()
         counter = 0
 
         // Same as before for NativeCoreTypes
-        while (counter < CHECK_NUMBER) {
+        while (counter < CHECK_NUMBER || isCleanup) {
             val ref = (nativeReferenceQueue.poll() ?: break) as NativeCoreWeakReference
             if (MemoryBridge.unrefNativeCoreType(ref.ptr, ref.variantType.baseOrdinal)) {
                 nativeCoreTypeMap.remove(ref.ptr)
@@ -232,13 +258,18 @@ object GarbageCollector {
             instance.collect()
         }
 
-        val begin = Instant.now()
-        while (refWrappedList.isNotEmpty() || wrappedMap.isNotEmpty() || nativeCoreTypeMap.isNotEmpty()) {
+        isCleanup = true
+        var begin = Instant.now()
+        while (refWrappedList.any { it != null } || wrappedMap.isNotEmpty() || nativeCoreTypeMap.isNotEmpty()) {
+
             forceJvmGc()
-            checkAndClean()
+            if (checkAndClean()) {
+                begin = Instant.now()
+            }
+
             val finish = Instant.now()
-            if (Duration.between(begin, finish).toMillis() > 5000) {
-                throw GCEndException(
+            if (Duration.between(begin, finish).toMillis() > 10000) {
+                warning(
                     buildString {
                         append("Some JVM godot instances are leaked.")
                         append(System.lineSeparator())
@@ -255,7 +286,6 @@ object GarbageCollector {
                             append(System.lineSeparator())
                             for (entry in wrappedMap) {
                                 append("    ${entry.key}: ${entry.value}")
-
                                 append(System.lineSeparator())
                             }
                             append("Leaked native core types:")
@@ -267,9 +297,10 @@ object GarbageCollector {
                         }
                     }
                 )
+                MemoryBridge.notifyLeak()
+                break
             }
         }
-
     }
 
     /**
@@ -286,8 +317,9 @@ object GarbageCollector {
 
     private object MemoryBridge {
         external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
-        external fun unref(ptr: VoidPtr): Boolean
+        external fun unref(ptr: VoidPtr, counter: Int): Boolean
         external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
+        external fun notifyLeak()
     }
 
     private enum class GCState {
@@ -297,5 +329,4 @@ object GarbageCollector {
         CLOSED
     }
 
-    private class GCEndException(message: String) : Exception(message)
 }

@@ -149,15 +149,15 @@ void TransferContext::invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, 
     const StringName &class_name{GDKotlin::get_instance().engine_type_names[static_cast<int>(p_class_index)]};
     Object* ptr = ClassDB::instance(class_name);
 
-    auto raw_ptr = Variant(reinterpret_cast<uintptr_t>(ptr));
-    Variant id = -1;
+    auto raw_ptr = reinterpret_cast<uintptr_t>(ptr);
+    int id;
 
 #ifdef DEBUG_ENABLED
     JVM_ERR_FAIL_COND_MSG(!ptr, vformat("Failed to instantiate class %s", class_name))
 #endif
 
-    if (Variant(ptr).is_ref()) {
-        id = RefDB::get_instance().get_ref_id(reinterpret_cast<Reference*>(ptr));
+    if (auto* ref = Object::cast_to<Reference>(ptr)) {
+        id = RefDB::get_instance().get_ref_id(ref);
     } else {
         id = ptr->get_instance_id();
     }

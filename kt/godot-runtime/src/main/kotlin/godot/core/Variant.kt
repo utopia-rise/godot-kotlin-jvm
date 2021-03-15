@@ -296,7 +296,7 @@ enum class VariantType(
                 val existingInstance = if (isRef) {
                     GarbageCollector.getRefInstance(id.toInt())
                 } else {
-                    GarbageCollector.getObjectInstance(ptr)
+                    GarbageCollector.getObjectInstance(ptr, id)
                 }
 
                 existingInstance ?: KtObject.instantiateWith(

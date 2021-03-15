@@ -4,7 +4,8 @@ var warmups: int = 3000
 var commit: String
 
 var classes = [
-	"Simple"
+	"Simple",
+	"Memory"
 ]
 
 var languages = [
@@ -43,6 +44,9 @@ func _init():
 	print("Benchmark tests are over!")
 	__save_report(report)
 
+func _idle(delta):
+	return true
+
 
 func __run_benchmark(benchmark: Benchmark, report: Report):
 	var stats = Stats.new()
@@ -54,6 +58,7 @@ func __run_benchmark(benchmark: Benchmark, report: Report):
 	var results: Array = stats.get_result_array()
 	prints("%s:" % benchmark.lang.name, results[0], results[1], results[2], results[3], results[4], results[5])
 	report.add(benchmark, stats.get_results())
+	benchmark.instance.free()
 
 
 func __do_run(iteration: int, benchmark: Benchmark, stats: Stats, is_warmup: bool):

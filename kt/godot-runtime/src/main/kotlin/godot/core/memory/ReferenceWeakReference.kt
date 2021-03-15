@@ -10,4 +10,5 @@ internal class ReferenceWeakReference(
     val index: Int) :
     WeakReference<KtObject>(ref, queue) {
     val ptr = ref.rawPtr
+    var counter = 1
 }
