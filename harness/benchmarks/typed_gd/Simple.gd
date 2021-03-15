@@ -1,3 +1,5 @@
+extends Object
+
 func benchmark_simple_add() -> int:
 	var a: int  = 1
 	var b: int = 2
