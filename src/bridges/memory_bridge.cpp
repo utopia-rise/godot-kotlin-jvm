@@ -1,6 +1,7 @@
 #include <core/object.h>
 #include <core/reference.h>
 #include <modules/kotlin_jvm/src/logging.h>
+#include <modules/kotlin_jvm/src/ref_db.h>
 #include "memory_bridge.h"
 #include "constants.h"
 
@@ -52,13 +53,7 @@ bool MemoryBridge::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p
 
 bool MemoryBridge::unref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     if (auto* reference{reinterpret_cast<Reference*>(static_cast<uintptr_t>(p_raw_ptr))}) {
-        if (reference->unreference()) {
-            memdelete(reference);
-        } else {
-#ifdef DEBUG_ENABLED
-            LOG_VERBOSE(vformat("Will not memdelete %s", String::num_int64(static_cast<uintptr_t>(p_raw_ptr))))
-#endif
-        }
+        RefDB::get_instance().remove_ref(reference);
     }
     return true;
 }

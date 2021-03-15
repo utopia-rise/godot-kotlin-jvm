@@ -19,32 +19,28 @@ abstract class KtObject {
     var id: Long = -1
 
     init {
-        try {
-            if (shouldInit.get()) {
-                // user types shouldn't override this method
-                __new()
+        if (shouldInit.get()) {
+            // user types shouldn't override this method
+            __new()
 
-                if (!____DO_NOT_TOUCH_THIS_isSingleton____()) {
-                    if (____DO_NOT_TOUCH_THIS_isRef____()) {
-                        GarbageCollector.registerReference(this)
-                    } else {
-                        GarbageCollector.registerObject(this)
-                    }
-                }
-
-                // inheritance in Godot is faked, a script is attached to an Object allow
-                // the script to see all methods of the owning Object.
-                // For user types, we need to make sure to attach this script to the Object
-                // rawPtr is pointing to.
-                val classIndex = TypeManager.userTypeToId[this::class]
-                // If user type
-                if (classIndex != null) {
-                    TransferContext.setScript(rawPtr, classIndex, this, this::class.java.classLoader)
-                    _onInit()
+            if (!____DO_NOT_TOUCH_THIS_isSingleton____()) {
+                if (____DO_NOT_TOUCH_THIS_isRef____()) {
+                    GarbageCollector.registerReference(this)
+                } else {
+                    GarbageCollector.registerObject(this)
                 }
             }
-        } finally {
-            shouldInit.set(true)
+
+            // inheritance in Godot is faked, a script is attached to an Object allow
+            // the script to see all methods of the owning Object.
+            // For user types, we need to make sure to attach this script to the Object
+            // rawPtr is pointing to.
+            val classIndex = TypeManager.userTypeToId[this::class]
+            // If user type
+            if (classIndex != null) {
+                TransferContext.setScript(rawPtr, classIndex, this, this::class.java.classLoader)
+                _onInit()
+            }
         }
     }
 
@@ -67,20 +63,22 @@ abstract class KtObject {
     companion object {
         private val shouldInit = ThreadLocal.withInitial { true }
 
-        fun <T : KtObject> instantiateWith(rawPtr: VoidPtr, Id: Long, constructor: () -> T): T {
+        fun <T : KtObject> instantiateWith(rawPtr: VoidPtr, Id: Long, isRef: Boolean, constructor: () -> T): T {
             shouldInit.set(false)
             return constructor().also {
                 it.rawPtr = rawPtr
                 it.id = Id
                 if (!it.____DO_NOT_TOUCH_THIS_isSingleton____()) {
-                    if (it.____DO_NOT_TOUCH_THIS_isRef____()) {
+                    if (isRef) {
                         GarbageCollector.registerReference(it)
                     } else {
                         GarbageCollector.registerObject(it)
                     }
                 }
                 it._onInit()
+                shouldInit.set(true)
             }
+
         }
     }
 }

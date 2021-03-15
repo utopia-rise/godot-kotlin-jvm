@@ -8,8 +8,7 @@
 #include "jni/wrapper.h"
 #include "shared_buffer.h"
 #include "type_manager.h"
-#include "gd_kotlin.h"
-#include "kt_variant.h"
+#include "ref_db.h"
 
 namespace ktvariant {
 
@@ -27,62 +26,62 @@ namespace ktvariant {
         des->increment_position(encode_uint32(variant_type, des->get_cursor()));
     }
 
-    static void to_kvariant_fromNIL(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromNIL(SharedBuffer* des, const Variant &src) {
         set_variant_type(des, Variant::Type::NIL);
     }
 
-    static void to_kvariant_fromINT(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromINT(SharedBuffer* des, const Variant &src) {
         set_variant_type(des, Variant::Type::INT);
         des->increment_position(encode_uint64(static_cast<int64_t>(src), des->get_cursor()));
     }
 
-    static void to_kvariant_fromREAL(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromREAL(SharedBuffer* des, const Variant &src) {
         set_variant_type(des, Variant::Type::REAL);
         des->increment_position(encode_double(src.operator double_t(), des->get_cursor()));
     }
 
-    static void to_kvariant_fromSTRING(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromSTRING(SharedBuffer* des, const Variant &src) {
         String str{src};
-        const CharString& char_string{str.utf8()};
+        const CharString &char_string{str.utf8()};
         set_variant_type(des, Variant::Type::STRING);
         des->increment_position(encode_uint32(char_string.size(), des->get_cursor()));
         des->increment_position(encode_cstring(char_string, des->get_cursor()));
     }
 
-    static void to_kvariant_fromBOOL(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromBOOL(SharedBuffer* des, const Variant &src) {
         set_variant_type(des, Variant::Type::BOOL);
         des->increment_position(encode_uint32(src.operator bool(), des->get_cursor()));
     }
 
-    static inline void append_vector2(SharedBuffer* des, const Vector2& from) {
+    static inline void append_vector2(SharedBuffer* des, const Vector2 &from) {
         des->increment_position(encode_float(from.x, des->get_cursor()));
         des->increment_position(encode_float(from.y, des->get_cursor()));
     }
 
-    static void to_kvariant_fromVECTOR2(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromVECTOR2(SharedBuffer* des, const Variant &src) {
         set_variant_type(des, Variant::Type::VECTOR2);
         append_vector2(des, src);
     }
 
-    static void to_kvariant_fromRECT2(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromRECT2(SharedBuffer* des, const Variant &src) {
         Rect2 src_rect2{src};
         set_variant_type(des, Variant::Type::RECT2);
         append_vector2(des, src_rect2.position);
         append_vector2(des, src_rect2.size);
     }
 
-    static inline void append_vector3(SharedBuffer* des, const Vector3& from) {
+    static inline void append_vector3(SharedBuffer* des, const Vector3 &from) {
         des->increment_position(encode_float(from.x, des->get_cursor()));
         des->increment_position(encode_float(from.y, des->get_cursor()));
         des->increment_position(encode_float(from.z, des->get_cursor()));
     }
 
-    static void to_kvariant_fromVECTOR3(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromVECTOR3(SharedBuffer* des, const Variant &src) {
         set_variant_type(des, Variant::Type::VECTOR3);
         append_vector3(des, src);
     }
 
-    static void to_kvariant_fromTRANSFORM2D(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromTRANSFORM2D(SharedBuffer* des, const Variant &src) {
         Transform2D src_transform_2d{src};
         set_variant_type(des, Variant::Type::TRANSFORM2D);
         append_vector2(des, src_transform_2d.get_axis(0));
@@ -90,14 +89,14 @@ namespace ktvariant {
         append_vector2(des, src_transform_2d.get_origin());
     }
 
-    static void to_kvariant_fromPLANE(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromPLANE(SharedBuffer* des, const Variant &src) {
         Plane src_plane{src};
         set_variant_type(des, Variant::Type::PLANE);
         append_vector3(des, src_plane.normal);
         des->increment_position(encode_float(src_plane.d, des->get_cursor()));
     }
 
-    static void to_kvariant_fromQUAT(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromQUAT(SharedBuffer* des, const Variant &src) {
         Quat src_quat{src.operator Quat()};
         des->increment_position(encode_float(src_quat.x, des->get_cursor()));
         des->increment_position(encode_float(src_quat.y, des->get_cursor()));
@@ -105,32 +104,32 @@ namespace ktvariant {
         des->increment_position(encode_float(src_quat.w, des->get_cursor()));
     }
 
-    static void to_kvariant_fromAABB(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromAABB(SharedBuffer* des, const Variant &src) {
         AABB src_aabb{src};
         set_variant_type(des, Variant::Type::AABB);
         append_vector3(des, src_aabb.position);
         append_vector3(des, src_aabb.size);
     }
 
-    static inline void append_basis(SharedBuffer* des, const Basis& data) {
+    static inline void append_basis(SharedBuffer* des, const Basis &data) {
         append_vector3(des, data.get_axis(0));
         append_vector3(des, data.get_axis(1));
         append_vector3(des, data.get_axis(2));
     }
 
-    static void to_kvariant_fromBASIS(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromBASIS(SharedBuffer* des, const Variant &src) {
         set_variant_type(des, Variant::Type::BASIS);
         append_basis(des, src);
     }
 
-    static void to_kvariant_fromTRANSFORM(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromTRANSFORM(SharedBuffer* des, const Variant &src) {
         Transform src_transform{src.operator Transform()};
         set_variant_type(des, Variant::Type::TRANSFORM);
         append_basis(des, src_transform.basis);
         append_vector3(des, src_transform.origin);
     }
 
-    static void to_kvariant_fromCOLOR(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromCOLOR(SharedBuffer* des, const Variant &src) {
         Color src_color{src.operator Color()};
         set_variant_type(des, Variant::Type::COLOR);
         des->increment_position(encode_float(src_color.r, des->get_cursor()));
@@ -139,7 +138,7 @@ namespace ktvariant {
         des->increment_position(encode_float(src_color.a, des->get_cursor()));
     }
 
-    static void to_kvariant_fromDICTIONARY(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromDICTIONARY(SharedBuffer* des, const Variant &src) {
         set_variant_type(des, Variant::Type::DICTIONARY);
         des->increment_position(
                 encode_uint64(reinterpret_cast<uintptr_t>(memnew(Dictionary(src.operator Dictionary()))),
@@ -147,28 +146,28 @@ namespace ktvariant {
         );
     }
 
-    static void to_kvariant_fromARRAY(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromARRAY(SharedBuffer* des, const Variant &src) {
         set_variant_type(des, Variant::Type::ARRAY);
         des->increment_position(
                 encode_uint64(reinterpret_cast<uintptr_t>(memnew(Array(src.operator Array()))), des->get_cursor())
         );
     }
 
-    static void to_kvariant_fromNODEPATH(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromNODEPATH(SharedBuffer* des, const Variant &src) {
         set_variant_type(des, Variant::Type::NODE_PATH);
         des->increment_position(
                 encode_uint64(reinterpret_cast<uintptr_t>(memnew(NodePath(src.operator NodePath()))), des->get_cursor())
         );
     }
 
-    static void to_kvariant_fromRID(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromRID(SharedBuffer* des, const Variant &src) {
         set_variant_type(des, Variant::Type::_RID);
         des->increment_position(
                 encode_uint64(reinterpret_cast<uintptr_t>(memnew(RID(src.operator RID()))), des->get_cursor())
         );
     }
 
-    static void to_kvariant_fromPOOLBYTEARRAY(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromPOOLBYTEARRAY(SharedBuffer* des, const Variant &src) {
         set_variant_type(des, Variant::Type::POOL_BYTE_ARRAY);
         des->increment_position(
                 encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolByteArray(src.operator PoolByteArray()))),
@@ -176,7 +175,7 @@ namespace ktvariant {
         );
     }
 
-    static void to_kvariant_fromPOOLINTARRAY(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromPOOLINTARRAY(SharedBuffer* des, const Variant &src) {
         set_variant_type(des, Variant::Type::POOL_INT_ARRAY);
         des->increment_position(
                 encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolIntArray(src.operator PoolIntArray()))),
@@ -184,7 +183,7 @@ namespace ktvariant {
         );
     }
 
-    static void to_kvariant_fromPOOLREALARRAY(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromPOOLREALARRAY(SharedBuffer* des, const Variant &src) {
         set_variant_type(des, Variant::Type::POOL_REAL_ARRAY);
         des->increment_position(
                 encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolRealArray(src.operator PoolRealArray()))),
@@ -192,7 +191,7 @@ namespace ktvariant {
         );
     }
 
-    static void to_kvariant_fromPOOLSTRINGARRAY(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromPOOLSTRINGARRAY(SharedBuffer* des, const Variant &src) {
         set_variant_type(des, Variant::Type::POOL_STRING_ARRAY);
         des->increment_position(
                 encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolStringArray(src.operator PoolStringArray()))),
@@ -200,7 +199,7 @@ namespace ktvariant {
         );
     }
 
-    static void to_kvariant_fromPOOLVECTOR2ARRAY(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromPOOLVECTOR2ARRAY(SharedBuffer* des, const Variant &src) {
         set_variant_type(des, Variant::Type::POOL_VECTOR2_ARRAY);
         des->increment_position(
                 encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolVector2Array(src.operator PoolVector2Array()))),
@@ -208,7 +207,7 @@ namespace ktvariant {
         );
     }
 
-    static void to_kvariant_fromPOOLVECTOR3ARRAY(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromPOOLVECTOR3ARRAY(SharedBuffer* des, const Variant &src) {
         set_variant_type(des, Variant::Type::POOL_VECTOR3_ARRAY);
         des->increment_position(
                 encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolVector3Array(src.operator PoolVector3Array()))),
@@ -216,7 +215,7 @@ namespace ktvariant {
         );
     }
 
-    static void to_kvariant_fromPOOLCOLORARRAY(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromPOOLCOLORARRAY(SharedBuffer* des, const Variant &src) {
         set_variant_type(des, Variant::Type::POOL_COLOR_ARRAY);
         des->increment_position(
                 encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolColorArray(src.operator PoolColorArray()))),
@@ -224,7 +223,7 @@ namespace ktvariant {
         );
     }
 
-    static void to_kvariant_fromOBJECT(SharedBuffer* des, const Variant& src) {
+    static void to_kvariant_fromOBJECT(SharedBuffer* des, const Variant &src) {
         Object* ptr{src};
 
         // TODO : Investigate on nullable management of Godot. Is Object the only nullable type ?
@@ -232,11 +231,6 @@ namespace ktvariant {
             to_kvariant_fromNIL(des, src);
             return;
         }
-
-        set_variant_type(des, Variant::Type::OBJECT);
-
-        //TODO: Manage 32 bits systems.
-        des->increment_position(encode_uint64(reinterpret_cast<uintptr_t>(ptr), des->get_cursor()));
 
         StringName class_name{ptr->get_class_name()};
 
@@ -254,19 +248,31 @@ namespace ktvariant {
 
         bool is_ref{src.is_ref()};
         uint64_t id;
-        if(is_ref){
-            reinterpret_cast<Reference*>(ptr)->reference();
-            id = GDKotlin::get_ref_id()
-        }else{
-            id = ptr->get_instance_id()
+        if (is_ref) {
+            Reference* ref = reinterpret_cast<Reference*>(ptr);
+            id = RefDB::get_instance().get_ref_id(ref);
+        } else {
+            id = ptr->get_instance_id();
         }
 
-        des->increment_position(encode_uint32(TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name], des->get_cursor()));
-        des->increment_position(encode_uint32(is_ref, des->get_cursor()));
-        des->increment_position(encode_uint64(ptr->get_instance_id(), des->get_cursor()));
+        set_variant_type(des, Variant::Type::OBJECT);
+
+        //TODO: Manage 32 bits systems.
+        des->increment_position(encode_uint64(
+                reinterpret_cast<uintptr_t>(ptr),
+                des->get_cursor()));
+        des->increment_position(encode_uint32(
+                TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name],
+                des->get_cursor()));
+        des->increment_position(encode_uint32(
+                is_ref,
+                des->get_cursor()));
+        des->increment_position(encode_uint64(
+                id,
+                des->get_cursor()));
     }
 
-    static void init_to_kt_methods(void (* to_kt_array[Variant::Type::VARIANT_MAX])(SharedBuffer*, const Variant&)) {
+    static void init_to_kt_methods(void (* to_kt_array[Variant::Type::VARIANT_MAX])(SharedBuffer*, const Variant &)) {
         to_kt_array[Variant::NIL] = to_kvariant_fromNIL;
         to_kt_array[Variant::BOOL] = to_kvariant_fromBOOL;
         to_kt_array[Variant::INT] = to_kvariant_fromINT;
@@ -296,9 +302,9 @@ namespace ktvariant {
         to_kt_array[Variant::OBJECT] = to_kvariant_fromOBJECT;
     }
 
-    static void send_variant_to_buffer(const Variant& variant, SharedBuffer* byte_buffer) {
+    static void send_variant_to_buffer(const Variant &variant, SharedBuffer* byte_buffer) {
         // must match the value order of godot_variant_type
-        static void (* TO_KT_VARIANT_FROM[Variant::Type::VARIANT_MAX])(SharedBuffer*, const Variant&);
+        static void (* TO_KT_VARIANT_FROM[Variant::Type::VARIANT_MAX])(SharedBuffer*, const Variant &);
         if (unlikely(!TO_KT_VARIANT_FROM[0])) {
             init_to_kt_methods(TO_KT_VARIANT_FROM);
         }
@@ -435,7 +441,7 @@ namespace ktvariant {
         return Variant(Color(r, g, b, a));
     }
 
-    template <class T>
+    template<class T>
     static Variant from_kvariant_tokVariantNativeCoreTypeValue(SharedBuffer* byte_buffer) {
         auto ptr{static_cast<uintptr_t>(decode_uint64(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(PTR_SIZE);
@@ -485,7 +491,7 @@ namespace ktvariant {
         to_gd_array[Variant::OBJECT] = from_kvariant_toKObjectValue;
     }
 
-    static void get_variant_from_buffer(SharedBuffer* byte_buffer, Variant& res) {
+    static void get_variant_from_buffer(SharedBuffer* byte_buffer, Variant &res) {
         static Variant (* TO_GODOT_VARIANT_FROM[Variant::Type::VARIANT_MAX])(SharedBuffer* byte_buffer);
         if (unlikely(!TO_GODOT_VARIANT_FROM[0])) {
             init_to_gd_methods(TO_GODOT_VARIANT_FROM);
