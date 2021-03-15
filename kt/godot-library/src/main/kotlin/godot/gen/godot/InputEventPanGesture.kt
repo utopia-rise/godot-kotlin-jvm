@@ -10,7 +10,6 @@ import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -35,8 +34,14 @@ open class InputEventPanGesture : InputEventGesture() {
           NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_INPUTEVENTPANGESTURE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_INPUTEVENTPANGESTURE,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun delta(schedule: Vector2.() -> Unit): Vector2 = delta.apply{
       schedule(this)

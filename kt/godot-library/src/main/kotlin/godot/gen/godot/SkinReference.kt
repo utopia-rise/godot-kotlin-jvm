@@ -10,7 +10,6 @@ import godot.core.RID
 import godot.core.TransferContext
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType._RID
-import godot.util.VoidPtr
 import kotlin.Suppress
 
 /**
@@ -18,7 +17,13 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class SkinReference : Reference() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SKINREFERENCE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_SKINREFERENCE, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _skinChanged() {
   }

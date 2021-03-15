@@ -23,7 +23,6 @@ import godot.core.Vector2
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Long
@@ -524,7 +523,13 @@ open class Viewport : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_WORLD_2D, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VIEWPORT)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_VIEWPORT, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun canvasTransform(schedule: Transform2D.() -> Unit): Transform2D = canvasTransform.apply{
       schedule(this)

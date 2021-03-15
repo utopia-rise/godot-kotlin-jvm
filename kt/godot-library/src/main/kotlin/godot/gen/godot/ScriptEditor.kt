@@ -20,7 +20,6 @@ import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.signals.Signal1
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -46,7 +45,13 @@ open class ScriptEditor : PanelContainer() {
    */
   val scriptClose: Signal1<Script> by signal("script")
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SCRIPTEDITOR)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_SCRIPTEDITOR, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _addCallback(
     arg0: Object,

@@ -13,7 +13,6 @@ import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long
@@ -25,7 +24,14 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class PackedDataContainer : Resource() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PACKEDDATACONTAINER)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_PACKEDDATACONTAINER,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _getData(): PoolByteArray {
     throw NotImplementedError("_get_data is not implemented for PackedDataContainer")

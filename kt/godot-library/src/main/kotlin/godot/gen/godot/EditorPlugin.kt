@@ -16,7 +16,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.signals.Signal1
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Long
@@ -54,7 +53,13 @@ open class EditorPlugin : Node() {
    */
   val sceneClosed: Signal1<String> by signal("filepath")
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_EDITORPLUGIN)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_EDITORPLUGIN, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Adds a script at `path` to the Autoload list as `name`.

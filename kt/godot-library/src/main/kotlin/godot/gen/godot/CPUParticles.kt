@@ -20,7 +20,6 @@ import godot.core.VariantType.POOL_COLOR_ARRAY
 import godot.core.VariantType.POOL_VECTOR3_ARRAY
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -1027,7 +1026,13 @@ open class CPUParticles : GeometryInstance() {
           ENGINEMETHOD_ENGINECLASS_CPUPARTICLES_SET_TANGENTIAL_ACCEL_RANDOM, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CPUPARTICLES)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_CPUPARTICLES, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun color(schedule: Color.() -> Unit): Color = color.apply{
       schedule(this)

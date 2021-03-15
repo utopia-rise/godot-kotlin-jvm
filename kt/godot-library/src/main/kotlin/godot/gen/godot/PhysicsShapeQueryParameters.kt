@@ -18,7 +18,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.TRANSFORM
 import godot.core.VariantType._RID
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -145,8 +144,14 @@ open class PhysicsShapeQueryParameters : Reference() {
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_SET_TRANSFORM, NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun transform(schedule: Transform.() -> Unit): Transform = transform.apply{
       schedule(this)

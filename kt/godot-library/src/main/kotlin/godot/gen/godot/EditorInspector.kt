@@ -14,7 +14,6 @@ import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -68,7 +67,14 @@ open class EditorInspector : ScrollContainer() {
    */
   val restartRequested: Signal0 by signal()
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_EDITORINSPECTOR)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_EDITORINSPECTOR,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _editRequestChange(arg0: Object, arg1: String) {
   }

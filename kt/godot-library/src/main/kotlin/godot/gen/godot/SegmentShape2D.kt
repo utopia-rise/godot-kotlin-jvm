@@ -10,7 +10,6 @@ import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -49,7 +48,13 @@ open class SegmentShape2D : Shape2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEGMENTSHAPE2D_SET_B, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SEGMENTSHAPE2D)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_SEGMENTSHAPE2D, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun a(schedule: Vector2.() -> Unit): Vector2 = a.apply{
       schedule(this)

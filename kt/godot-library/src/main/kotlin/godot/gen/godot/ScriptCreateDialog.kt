@@ -12,7 +12,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.signals.Signal1
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.String
@@ -37,7 +36,14 @@ open class ScriptCreateDialog : ConfirmationDialog() {
    */
   val scriptCreated: Signal1<Script> by signal("script")
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SCRIPTCREATEDIALOG)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_SCRIPTCREATEDIALOG,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _browseClassInTree() {
   }

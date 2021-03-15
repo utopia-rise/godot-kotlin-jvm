@@ -14,7 +14,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.signals.Signal0
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Long
 import kotlin.Suppress
@@ -61,7 +60,14 @@ open class VisualShaderNode : Resource() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_SET_OUTPUT_PORT_FOR_PREVIEW, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODE,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Returns the default value of the input `port`.

@@ -11,7 +11,6 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.String
@@ -24,8 +23,14 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class EditorFileSystemDirectory : Object() {
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_EDITORFILESYSTEMDIRECTORY)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_EDITORFILESYSTEMDIRECTORY,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Returns the index of the directory with name `name` or `-1` if not found.

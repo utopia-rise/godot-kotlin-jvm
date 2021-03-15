@@ -13,17 +13,23 @@ abstract class KtObject {
             field = value
         }
 
-    var godotInstanceId: Long = -1
+    /** Godot ID in the case of an Object.
+     *  Index in the case of a Reference.
+     */
+    var id: Long = -1
 
     init {
         try {
             if (shouldInit.get()) {
                 // user types shouldn't override this method
-                rawPtr = __new()
-                godotInstanceId = getInstanceId()
+                __new()
 
                 if (!____DO_NOT_TOUCH_THIS_isSingleton____()) {
-                    GarbageCollector.registerInstance(this, false)
+                    if (____DO_NOT_TOUCH_THIS_isRef____()) {
+                        GarbageCollector.registerReference(this)
+                    } else {
+                        GarbageCollector.registerObject(this)
+                    }
                 }
 
                 // inheritance in Godot is faked, a script is attached to an Object allow
@@ -48,7 +54,7 @@ abstract class KtObject {
     @Suppress("FunctionName")
     open fun ____DO_NOT_TOUCH_THIS_isSingleton____() = false
 
-    abstract fun __new(): VoidPtr
+    abstract fun __new()
     abstract fun getInstanceId(): Long
 
     open fun _onInit() = Unit
@@ -61,13 +67,17 @@ abstract class KtObject {
     companion object {
         private val shouldInit = ThreadLocal.withInitial { true }
 
-        fun <T: KtObject> instantiateWith(rawPtr: VoidPtr, instanceId: Long, hasRefCountBeenIncremented: Boolean = false, constructor: () -> T): T {
+        fun <T : KtObject> instantiateWith(rawPtr: VoidPtr, Id: Long, constructor: () -> T): T {
             shouldInit.set(false)
             return constructor().also {
                 it.rawPtr = rawPtr
-                it.godotInstanceId = instanceId
+                it.id = Id
                 if (!it.____DO_NOT_TOUCH_THIS_isSingleton____()) {
-                    GarbageCollector.registerInstance(it, hasRefCountBeenIncremented)
+                    if (it.____DO_NOT_TOUCH_THIS_isRef____()) {
+                        GarbageCollector.registerReference(it)
+                    } else {
+                        GarbageCollector.registerObject(it)
+                    }
                 }
                 it._onInit()
             }

@@ -15,7 +15,6 @@ import godot.core.VariantType.NIL
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -88,8 +87,14 @@ open class NetworkedMultiplayerPeer : PacketPeer() {
           ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERPEER_SET_TRANSFER_MODE, NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_NETWORKEDMULTIPLAYERPEER)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_NETWORKEDMULTIPLAYERPEER,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Returns the current state of the connection. See [enum ConnectionStatus].

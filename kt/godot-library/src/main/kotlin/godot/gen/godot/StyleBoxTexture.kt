@@ -18,7 +18,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.RECT2
 import godot.signals.Signal0
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -296,7 +295,14 @@ open class StyleBoxTexture : StyleBox() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXTEXTURE_SET_TEXTURE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_STYLEBOXTEXTURE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_STYLEBOXTEXTURE,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun modulateColor(schedule: Color.() -> Unit): Color = modulateColor.apply{
       schedule(this)

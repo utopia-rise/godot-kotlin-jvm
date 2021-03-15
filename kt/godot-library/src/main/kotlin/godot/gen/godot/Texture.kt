@@ -19,7 +19,6 @@ import godot.core.VariantType.RECT2
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
@@ -49,7 +48,13 @@ open class Texture : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE_SET_FLAGS, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_TEXTURE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_TEXTURE, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Draws the texture using a [godot.CanvasItem] with the [godot.VisualServer] API at the specified `position`. Equivalent to [godot.VisualServer.canvasItemAddTextureRect] with a rect at `position` and the size of this [godot.Texture].

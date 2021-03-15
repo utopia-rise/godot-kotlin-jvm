@@ -25,7 +25,6 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -44,7 +43,13 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class TileSet : Resource() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_TILESET)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_TILESET, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    *

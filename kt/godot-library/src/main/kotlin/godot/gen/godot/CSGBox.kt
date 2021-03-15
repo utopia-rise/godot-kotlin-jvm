@@ -10,7 +10,6 @@ import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Suppress
 
@@ -60,5 +59,11 @@ open class CSGBox : CSGPrimitive() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGBOX_SET_WIDTH, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CSGBOX)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_CSGBOX, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 }

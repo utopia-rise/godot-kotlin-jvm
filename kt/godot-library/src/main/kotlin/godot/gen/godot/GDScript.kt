@@ -10,13 +10,18 @@ import godot.core.PoolByteArray
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.POOL_BYTE_ARRAY
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Suppress
 
 @GodotBaseType
 open class GDScript : Script() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_GDSCRIPT)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_GDSCRIPT, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun getAsByteCode(): PoolByteArray {
     TransferContext.writeArguments()

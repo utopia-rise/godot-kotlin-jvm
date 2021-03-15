@@ -9,7 +9,6 @@ import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.Suppress
 
@@ -52,8 +51,14 @@ open class VisualShaderNodeTextureUniform : VisualShaderNodeUniform() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREUNIFORM_SET_TEXTURE_TYPE, NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODETEXTUREUNIFORM)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODETEXTUREUNIFORM,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   enum class TextureType(
     id: Long

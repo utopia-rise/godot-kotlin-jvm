@@ -7,7 +7,6 @@ package godot
 
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
-import godot.util.VoidPtr
 import kotlin.Suppress
 
 /**
@@ -17,6 +16,12 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class VisualShaderNodeBooleanUniform : VisualShaderNodeUniform() {
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 }

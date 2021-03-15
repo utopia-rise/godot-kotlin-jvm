@@ -16,7 +16,6 @@ import godot.core.VariantType.STRING
 import godot.core.Vector2
 import godot.signals.Signal1
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Long
@@ -167,7 +166,14 @@ open class EditorFileDialog : ConfirmationDialog() {
           ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_SET_SHOW_HIDDEN_FILES, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_EDITORFILEDIALOG)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_EDITORFILEDIALOG,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _actionPressed() {
   }

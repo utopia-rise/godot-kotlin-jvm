@@ -14,7 +14,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.POOL_BYTE_ARRAY
 import godot.core.VariantType.POOL_STRING_ARRAY
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.String
@@ -25,7 +24,14 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class EditorExportPlugin : Reference() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_EDITOREXPORTPLUGIN)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_EDITOREXPORTPLUGIN,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Virtual method to be overridden by the user. It is called when the export starts and provides all information about the export.

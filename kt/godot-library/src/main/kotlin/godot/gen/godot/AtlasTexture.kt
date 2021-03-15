@@ -12,7 +12,6 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.RECT2
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
@@ -81,7 +80,13 @@ open class AtlasTexture : Texture() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_SET_REGION, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ATLASTEXTURE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_ATLASTEXTURE, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun margin(schedule: Rect2.() -> Unit): Rect2 = margin.apply{
       schedule(this)

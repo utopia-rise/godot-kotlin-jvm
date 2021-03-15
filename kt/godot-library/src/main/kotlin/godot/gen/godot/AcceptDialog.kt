@@ -14,7 +14,6 @@ import godot.core.VariantType.STRING
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
@@ -85,7 +84,13 @@ open class AcceptDialog : WindowDialog() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_SET_DIALOG_TEXT, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ACCEPTDIALOG)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_ACCEPTDIALOG, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _builtinTextEntered(arg0: String) {
   }

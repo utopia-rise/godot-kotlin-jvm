@@ -13,7 +13,6 @@ import godot.core.VariantType.COLOR
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
@@ -190,7 +189,13 @@ open class DynamicFont : Font() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_SET_USE_MIPMAPS, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_DYNAMICFONT)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_DYNAMICFONT, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun outlineColor(schedule: Color.() -> Unit): Color = outlineColor.apply{
       schedule(this)

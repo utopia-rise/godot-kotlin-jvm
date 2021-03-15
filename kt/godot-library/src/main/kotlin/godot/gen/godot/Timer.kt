@@ -13,7 +13,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.signals.Signal0
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -117,7 +116,13 @@ open class Timer : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_SET_WAIT_TIME, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_TIMER)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_TIMER, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Returns `true` if the timer is stopped.

@@ -27,7 +27,6 @@ import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -297,7 +296,13 @@ open class SceneTree : MainLoop() {
           ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_USE_FONT_OVERSAMPLING, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SCENETREE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_SCENETREE, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _changeScene(arg0: Node) {
   }

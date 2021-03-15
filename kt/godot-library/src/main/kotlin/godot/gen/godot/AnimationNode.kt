@@ -20,7 +20,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.signals.Signal0
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -67,7 +66,13 @@ open class AnimationNode : Resource() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODE, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _getFilters(): VariantArray<Any?> {
     throw NotImplementedError("_get_filters is not implemented for AnimationNode")

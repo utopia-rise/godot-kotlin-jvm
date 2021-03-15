@@ -16,7 +16,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Long
@@ -32,8 +31,14 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class Physics2DDirectSpaceState : Object() {
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_PHYSICS2DDIRECTSPACESTATE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_PHYSICS2DDIRECTSPACESTATE,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Checks how far the shape can travel toward a point. If the shape can not move, the array will be empty.

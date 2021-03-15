@@ -22,7 +22,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_REAL_ARRAY
 import godot.core.VariantType.TRANSFORM
 import godot.core.VariantType.TRANSFORM2D
-import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -135,7 +134,13 @@ open class MultiMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_VISIBLE_INSTANCE_COUNT, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_MULTIMESH)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_MULTIMESH, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _getColorArray(): PoolColorArray {
     throw NotImplementedError("_get_color_array is not implemented for MultiMesh")

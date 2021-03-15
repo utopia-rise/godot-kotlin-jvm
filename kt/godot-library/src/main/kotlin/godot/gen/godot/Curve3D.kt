@@ -18,7 +18,6 @@ import godot.core.VariantType.POOL_REAL_ARRAY
 import godot.core.VariantType.POOL_VECTOR3_ARRAY
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -65,7 +64,13 @@ open class Curve3D : Resource() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CURVE3D)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_CURVE3D, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _getData(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_data is not implemented for Curve3D")

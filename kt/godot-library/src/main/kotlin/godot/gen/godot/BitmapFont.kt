@@ -21,7 +21,6 @@ import godot.core.VariantType.RECT2
 import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -89,7 +88,13 @@ open class BitmapFont : Font() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAPFONT_SET_HEIGHT, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_BITMAPFONT)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_BITMAPFONT, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _getChars(): PoolIntArray {
     throw NotImplementedError("_get_chars is not implemented for BitmapFont")

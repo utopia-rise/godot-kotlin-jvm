@@ -50,7 +50,7 @@ object TransferContext {
     }
 
     external fun setScript(rawPtr: VoidPtr, classNameIndex: Int, obj: KtObject, classLoader: ClassLoader);
-    external fun invokeConstructor(classIndex: Int): VoidPtr
+    external fun invokeConstructor(classIndex: Int)
     external fun getSingleton(classIndex: Int): VoidPtr
     external fun freeObject(rawPtr: VoidPtr)
 

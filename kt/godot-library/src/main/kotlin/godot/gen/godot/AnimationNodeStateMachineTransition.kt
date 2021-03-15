@@ -14,7 +14,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.signals.Signal0
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -135,8 +134,14 @@ open class AnimationNodeStateMachineTransition : Resource() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_SET_XFADE_TIME, NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   enum class SwitchMode(
     id: Long

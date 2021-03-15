@@ -19,7 +19,6 @@ import godot.core.VariantType.POOL_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.signals.Signal4
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -203,7 +202,13 @@ open class HTTPRequest : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_USE_THREADS, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_HTTPREQUEST)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_HTTPREQUEST, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _redirectRequest(arg0: String) {
   }

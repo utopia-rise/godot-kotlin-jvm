@@ -12,7 +12,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_STRING_ARRAY
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -38,8 +37,14 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class EditorInspectorPlugin : Reference() {
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_EDITORINSPECTORPLUGIN)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_EDITORINSPECTORPLUGIN,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Adds a custom control, not necessarily a property editor.

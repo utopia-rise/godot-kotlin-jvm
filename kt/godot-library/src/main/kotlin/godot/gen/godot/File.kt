@@ -19,7 +19,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.POOL_BYTE_ARRAY
 import godot.core.VariantType.POOL_STRING_ARRAY
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -73,7 +72,13 @@ open class File : Reference() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__FILE_SET_ENDIAN_SWAP, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS__FILE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS__FILE, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Closes the currently opened file.

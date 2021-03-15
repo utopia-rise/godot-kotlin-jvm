@@ -20,7 +20,6 @@ import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -163,8 +162,14 @@ open class Physics2DShapeQueryParameters : Reference() {
           ENGINEMETHOD_ENGINECLASS_PHYSICS2DSHAPEQUERYPARAMETERS_SET_TRANSFORM, NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_PHYSICS2DSHAPEQUERYPARAMETERS)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_PHYSICS2DSHAPEQUERYPARAMETERS,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun motion(schedule: Vector2.() -> Unit): Vector2 = motion.apply{
       schedule(this)

@@ -19,7 +19,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.VariantType.TRANSFORM
 import godot.core.VariantType._RID
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -38,7 +37,13 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class Skeleton : Spatial() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SKELETON)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_SKELETON, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Adds a bone, with name `name`. [getBoneCount] will become the bone index.

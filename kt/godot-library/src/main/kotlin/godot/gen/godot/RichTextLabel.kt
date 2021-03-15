@@ -26,7 +26,6 @@ import godot.core.VariantType.POOL_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.signals.Signal1
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -260,7 +259,13 @@ open class RichTextLabel : Control() {
           ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_VISIBLE_CHARACTERS, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_RICHTEXTLABEL)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_RICHTEXTLABEL, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   override fun _guiInput(event: InputEvent) {
   }

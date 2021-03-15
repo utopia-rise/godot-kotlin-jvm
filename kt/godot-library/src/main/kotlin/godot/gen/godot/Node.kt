@@ -655,7 +655,13 @@ open class Node : Object() {
     value: TYPE
   ) = rsetUnreliableId(id, property.name.camelToSnakeCase(), value)
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_NODE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_NODE, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Called when the node enters the [godot.SceneTree] (e.g. upon instancing, scene changing, or after calling [addChild] in a script). If the node has children, its [_enterTree] callback will be called first, and then that of the children.

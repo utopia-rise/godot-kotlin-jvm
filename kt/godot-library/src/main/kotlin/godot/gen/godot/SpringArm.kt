@@ -14,7 +14,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType._RID
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -99,7 +98,13 @@ open class SpringArm : Spatial() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM_SET_SPRING_LENGTH, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SPRINGARM)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_SPRINGARM, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Adds the [godot.PhysicsBody] object with the given [RID] to the list of [godot.PhysicsBody] objects excluded from the collision check.

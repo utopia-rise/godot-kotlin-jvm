@@ -20,7 +20,6 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -39,7 +38,14 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class ImmediateGeometry : GeometryInstance() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_IMMEDIATEGEOMETRY)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_IMMEDIATEGEOMETRY,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Simple helper to draw an UV sphere with given latitude, longitude and radius.

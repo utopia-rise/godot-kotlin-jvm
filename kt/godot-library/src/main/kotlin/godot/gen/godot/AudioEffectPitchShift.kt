@@ -10,7 +10,6 @@ import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
@@ -72,8 +71,14 @@ open class AudioEffectPitchShift : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTPITCHSHIFT_SET_PITCH_SCALE, NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTPITCHSHIFT)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTPITCHSHIFT,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   enum class FFT_Size(
     id: Long

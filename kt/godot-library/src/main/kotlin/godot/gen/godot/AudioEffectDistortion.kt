@@ -10,7 +10,6 @@ import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
@@ -109,8 +108,14 @@ open class AudioEffectDistortion : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_SET_PRE_GAIN, NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTDISTORTION)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTDISTORTION,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   enum class Mode(
     id: Long

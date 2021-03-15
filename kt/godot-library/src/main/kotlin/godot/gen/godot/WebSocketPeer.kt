@@ -13,7 +13,6 @@ import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -22,7 +21,13 @@ import kotlin.Suppress
 
 @GodotBaseType
 open class WebSocketPeer : PacketPeer() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_WEBSOCKETPEER)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_WEBSOCKETPEER, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun close(code: Long = 1000, reason: String = "") {
     TransferContext.writeArguments(LONG to code, STRING to reason)

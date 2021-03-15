@@ -7,7 +7,6 @@ package godot
 
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
-import godot.util.VoidPtr
 import kotlin.Suppress
 
 /**
@@ -17,5 +16,11 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class AudioBusLayout : Resource() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_AUDIOBUSLAYOUT)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_AUDIOBUSLAYOUT, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 }

@@ -10,7 +10,6 @@ import godot.core.GodotError
 import godot.core.TransferContext
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 
@@ -24,7 +23,13 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class Semaphore : Reference() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS__SEMAPHORE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS__SEMAPHORE, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Lowers the [godot.Semaphore], allowing one more thread in. Returns [OK] on success, [ERR_BUSY] otherwise.

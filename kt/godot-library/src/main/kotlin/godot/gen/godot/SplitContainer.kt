@@ -12,7 +12,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.signals.Signal1
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
@@ -76,7 +75,13 @@ open class SplitContainer : Container() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SPLITCONTAINER)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_SPLITCONTAINER, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   override fun _guiInput(event: InputEvent) {
   }

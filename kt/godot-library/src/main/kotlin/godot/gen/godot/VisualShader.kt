@@ -19,7 +19,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_INT_ARRAY
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -52,7 +51,13 @@ open class VisualShader : Shader() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADER)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADER, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun graphOffset(schedule: Vector2.() -> Unit): Vector2 = graphOffset.apply{
       schedule(this)

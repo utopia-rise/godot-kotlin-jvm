@@ -20,7 +20,6 @@ import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.Signal3
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -87,7 +86,14 @@ open class WebSocketServer : WebSocketMultiplayerPeer() {
           ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_SET_SSL_CERTIFICATE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_WEBSOCKETSERVER)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_WEBSOCKETSERVER,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun disconnectPeer(
     id: Long,

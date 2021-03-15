@@ -15,7 +15,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -29,7 +28,13 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class PacketPeerDTLS : PacketPeer() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PACKETPEERDTLS)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_PACKETPEERDTLS, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Connects a `peer` beginning the DTLS handshake using the underlying [godot.PacketPeerUDP] which must be connected (see [godot.PacketPeerUDP.connectToHost]). If `validate_certs` is `true`, [godot.PacketPeerDTLS] will validate that the certificate presented by the remote peer and match it with the `for_hostname` argument. You can specify a custom [godot.X509Certificate] to use for validation via the `valid_certificate` argument.

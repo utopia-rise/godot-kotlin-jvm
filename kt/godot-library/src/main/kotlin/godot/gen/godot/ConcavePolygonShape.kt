@@ -10,7 +10,6 @@ import godot.core.PoolVector3Array
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.POOL_VECTOR3_ARRAY
-import godot.util.VoidPtr
 import kotlin.Suppress
 
 /**
@@ -34,5 +33,12 @@ open class ConcavePolygonShape : Shape() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE_SET_DATA, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CONCAVEPOLYGONSHAPE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_CONCAVEPOLYGONSHAPE,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 }

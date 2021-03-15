@@ -21,7 +21,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_BYTE_ARRAY
 import godot.core.VariantType.POOL_STRING_ARRAY
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -94,7 +93,13 @@ open class HTTPClient : Reference() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_HTTPCLIENT)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_HTTPCLIENT, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Closes the current connection, allowing reuse of this [godot.HTTPClient].

@@ -14,7 +14,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -78,7 +77,13 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class UDPServer : Reference() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_UDPSERVER)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_UDPSERVER, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Returns `true` if a packet with a new address/port combination was received on the socket.

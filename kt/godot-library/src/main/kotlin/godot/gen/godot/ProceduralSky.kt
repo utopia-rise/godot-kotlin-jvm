@@ -12,7 +12,6 @@ import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
@@ -278,7 +277,13 @@ open class ProceduralSky : Sky() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PROCEDURALSKY)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_PROCEDURALSKY, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun groundBottomColor(schedule: Color.() -> Unit): Color = groundBottomColor.apply{
       schedule(this)

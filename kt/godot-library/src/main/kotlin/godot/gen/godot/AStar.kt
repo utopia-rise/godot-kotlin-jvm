@@ -19,7 +19,6 @@ import godot.core.VariantType.POOL_INT_ARRAY
 import godot.core.VariantType.POOL_VECTOR3_ARRAY
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -51,7 +50,13 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class AStar : Reference() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ASTAR)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_ASTAR, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Called when computing the cost between two connected points.

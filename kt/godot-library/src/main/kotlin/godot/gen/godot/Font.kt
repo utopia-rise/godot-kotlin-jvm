@@ -18,7 +18,6 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -36,7 +35,13 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class Font : Resource() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_FONT)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_FONT, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Draw `string` into a canvas item using the font at a given position, with `modulate` color, and optionally clipping the width. `position` specifies the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.

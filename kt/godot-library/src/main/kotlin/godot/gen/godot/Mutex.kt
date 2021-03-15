@@ -11,7 +11,6 @@ import godot.core.TransferContext
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 
@@ -25,7 +24,13 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class Mutex : Reference() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS__MUTEX)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS__MUTEX, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Locks this [godot.Mutex], blocks until it is unlocked by the current owner.

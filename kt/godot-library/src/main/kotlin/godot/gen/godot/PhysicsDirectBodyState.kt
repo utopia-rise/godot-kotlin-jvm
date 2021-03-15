@@ -20,7 +20,6 @@ import godot.core.VariantType.TRANSFORM
 import godot.core.VariantType.VECTOR3
 import godot.core.VariantType._RID
 import godot.core.Vector3
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -186,8 +185,14 @@ open class PhysicsDirectBodyState : Object() {
           ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE_SET_TRANSFORM, NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_PHYSICSDIRECTBODYSTATE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_PHYSICSDIRECTBODYSTATE,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun angularVelocity(schedule: Vector3.() -> Unit): Vector3 = angularVelocity.apply{
       schedule(this)

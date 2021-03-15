@@ -11,7 +11,6 @@ import godot.core.TransferContext
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -23,8 +22,14 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class ResourceInteractiveLoader : Reference() {
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_RESOURCEINTERACTIVELOADER)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_RESOURCEINTERACTIVELOADER,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Returns the loaded resource if the load operation completed successfully, `null` otherwise.

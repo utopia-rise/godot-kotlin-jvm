@@ -9,7 +9,6 @@ import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.LONG
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Long
@@ -21,8 +20,14 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class PackedDataContainerRef : Reference() {
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_PACKEDDATACONTAINERREF)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_PACKEDDATACONTAINERREF,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _isDictionary(): Boolean {
     throw NotImplementedError("_is_dictionary is not implemented for PackedDataContainerRef")

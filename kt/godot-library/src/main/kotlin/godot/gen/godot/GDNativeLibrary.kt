@@ -13,7 +13,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_STRING_ARRAY
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
@@ -85,7 +84,14 @@ open class GDNativeLibrary : Resource() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_GDNATIVELIBRARY)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_GDNATIVELIBRARY,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun getCurrentDependencies(): PoolStringArray {
     TransferContext.writeArguments()

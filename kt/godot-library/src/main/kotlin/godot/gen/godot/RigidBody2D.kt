@@ -20,7 +20,6 @@ import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal4
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -388,7 +387,13 @@ open class RigidBody2D : PhysicsBody2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY2D_SET_WEIGHT, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_RIGIDBODY2D)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_RIGIDBODY2D, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun appliedForce(schedule: Vector2.() -> Unit): Vector2 = appliedForce.apply{
       schedule(this)

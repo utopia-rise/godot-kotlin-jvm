@@ -11,7 +11,6 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Suppress
 import kotlin.Unit
@@ -51,7 +50,13 @@ open class LineShape2D : Shape2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINESHAPE2D_SET_NORMAL, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_LINESHAPE2D)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_LINESHAPE2D, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun normal(schedule: Vector2.() -> Unit): Vector2 = normal.apply{
       schedule(this)

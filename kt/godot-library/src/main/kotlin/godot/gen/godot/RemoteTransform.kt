@@ -11,7 +11,6 @@ import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Suppress
 
@@ -104,7 +103,14 @@ open class RemoteTransform : Spatial() {
           ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM_SET_USE_GLOBAL_COORDINATES, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_REMOTETRANSFORM)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_REMOTETRANSFORM,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * [godot.RemoteTransform] caches the remote node. It may not notice if the remote node disappears; [forceUpdateCache] forces it to update the cache again.

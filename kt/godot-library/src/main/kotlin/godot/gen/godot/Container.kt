@@ -13,7 +13,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.RECT2
 import godot.signals.Signal0
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.Suppress
 
@@ -31,7 +30,13 @@ open class Container : Control() {
    */
   val sortChildren: Signal0 by signal()
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CONTAINER)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_CONTAINER, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _childMinsizeChanged() {
   }

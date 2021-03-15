@@ -14,7 +14,6 @@ import godot.core.VariantType.RECT2
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
@@ -66,8 +65,14 @@ open class VisibilityNotifier2D : Node2D() {
           NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_VISIBILITYNOTIFIER2D)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_VISIBILITYNOTIFIER2D,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun rect(schedule: Rect2.() -> Unit): Rect2 = rect.apply{
       schedule(this)

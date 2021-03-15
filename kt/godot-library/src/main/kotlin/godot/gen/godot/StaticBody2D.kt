@@ -12,7 +12,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Suppress
 import kotlin.Unit
@@ -108,7 +107,13 @@ open class StaticBody2D : PhysicsBody2D() {
           ENGINEMETHOD_ENGINECLASS_STATICBODY2D_SET_PHYSICS_MATERIAL_OVERRIDE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_STATICBODY2D)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_STATICBODY2D, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun constantLinearVelocity(schedule: Vector2.() -> Unit): Vector2 =
       constantLinearVelocity.apply{

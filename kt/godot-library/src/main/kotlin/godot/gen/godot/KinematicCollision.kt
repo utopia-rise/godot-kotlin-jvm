@@ -12,7 +12,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Long
 import kotlin.Suppress
@@ -147,5 +146,12 @@ open class KinematicCollision : Reference() {
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_KINEMATICCOLLISION)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_KINEMATICCOLLISION,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 }

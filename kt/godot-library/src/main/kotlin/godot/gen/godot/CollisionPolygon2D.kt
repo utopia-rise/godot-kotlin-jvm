@@ -13,7 +13,6 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.POOL_VECTOR2_ARRAY
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -106,7 +105,14 @@ open class CollisionPolygon2D : Node2D() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_COLLISIONPOLYGON2D)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_COLLISIONPOLYGON2D,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   enum class BuildMode(
     id: Long

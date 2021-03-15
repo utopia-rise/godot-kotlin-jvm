@@ -16,7 +16,6 @@ import godot.core.VariantType.STRING
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.String
@@ -51,7 +50,14 @@ open class EditorFileSystem : Node() {
    */
   val sourcesChanged: Signal1<Boolean> by signal("exist")
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_EDITORFILESYSTEM)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_EDITORFILESYSTEM,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Gets the type of the file, given the full path.

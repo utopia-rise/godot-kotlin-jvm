@@ -11,7 +11,6 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -1055,7 +1054,14 @@ open class Generic6DOFJoint : Joint() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_GENERIC6DOFJOINT)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_GENERIC6DOFJOINT,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _getAngularHiLimitX(): Double {
     throw NotImplementedError("_get_angular_hi_limit_x is not implemented for Generic6DOFJoint")

@@ -13,7 +13,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.signals.Signal1
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -22,8 +21,14 @@ import kotlin.Suppress
 open class WebSocketMultiplayerPeer : NetworkedMultiplayerPeer() {
   val peerPacket: Signal1<Long> by signal("peer_source")
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_WEBSOCKETMULTIPLAYERPEER)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_WEBSOCKETMULTIPLAYERPEER,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun getPeer(peerId: Long): WebSocketPeer? {
     TransferContext.writeArguments(LONG to peerId)

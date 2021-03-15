@@ -8,7 +8,6 @@ package godot
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Suppress
 
@@ -28,7 +27,13 @@ import kotlin.Suppress
 open class Reference : Object() {
   override fun ____DO_NOT_TOUCH_THIS_isRef____() = true
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_REFERENCE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_REFERENCE, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Initializes the internal reference counter. Use this only if you really know what you are doing.

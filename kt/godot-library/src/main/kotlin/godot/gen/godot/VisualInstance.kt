@@ -13,7 +13,6 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType._RID
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -42,7 +41,13 @@ open class VisualInstance : Spatial() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE_SET_LAYERS, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VISUALINSTANCE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALINSTANCE, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _getVisualInstanceRid(): RID {
     throw NotImplementedError("_get_visual_instance_rid is not implemented for VisualInstance")

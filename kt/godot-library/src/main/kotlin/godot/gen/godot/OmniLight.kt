@@ -9,7 +9,6 @@ import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.Suppress
 
@@ -55,7 +54,13 @@ open class OmniLight : Light() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_OMNILIGHT)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_OMNILIGHT, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   enum class ShadowMode(
     id: Long

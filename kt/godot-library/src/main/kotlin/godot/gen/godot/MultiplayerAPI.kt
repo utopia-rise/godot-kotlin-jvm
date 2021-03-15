@@ -21,7 +21,6 @@ import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -118,7 +117,13 @@ open class MultiplayerAPI : Reference() {
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SET_REFUSE_NEW_NETWORK_CONNECTIONS, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_MULTIPLAYERAPI)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_MULTIPLAYERAPI, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _addPeer(id: Long) {
   }

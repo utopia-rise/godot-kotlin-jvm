@@ -22,7 +22,6 @@ import godot.core.VariantType.VECTOR3
 import godot.core.VariantType._RID
 import godot.core.Vector2
 import godot.core.Vector3
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -220,7 +219,13 @@ open class Camera : Spatial() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_SET_V_OFFSET, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CAMERA)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_CAMERA, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun frustumOffset(schedule: Vector2.() -> Unit): Vector2 = frustumOffset.apply{
       schedule(this)

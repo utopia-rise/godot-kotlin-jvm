@@ -13,7 +13,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.signals.Signal0
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Suppress
 
@@ -31,7 +30,14 @@ open class EditorSelection : Object() {
    */
   val selectionChanged: Signal0 by signal()
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_EDITORSELECTION)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_EDITORSELECTION,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _emitChange() {
   }

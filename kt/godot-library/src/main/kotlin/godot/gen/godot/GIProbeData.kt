@@ -16,7 +16,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.POOL_INT_ARRAY
 import godot.core.VariantType.TRANSFORM
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -190,7 +189,13 @@ open class GIProbeData : Resource() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_GIPROBEDATA)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_GIPROBEDATA, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun bounds(schedule: AABB.() -> Unit): AABB = bounds.apply{
       schedule(this)

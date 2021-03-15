@@ -16,7 +16,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -62,7 +61,14 @@ open class KinematicBody2D : PhysicsBody2D() {
           ENGINEMETHOD_ENGINECLASS_KINEMATICBODY2D_SET_MOTION_SYNC_TO_PHYSICS, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_KINEMATICBODY2D)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_KINEMATICBODY2D,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _directStateChanged(arg0: Object) {
   }

@@ -18,7 +18,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Int
 import kotlin.Long
@@ -64,7 +63,13 @@ open class ImageTexture : Texture() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_SET_STORAGE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_IMAGETEXTURE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_IMAGETEXTURE, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _reloadHook(rid: RID) {
   }

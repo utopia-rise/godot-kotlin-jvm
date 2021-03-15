@@ -13,7 +13,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.signals.Signal1
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Long
 import kotlin.String
@@ -33,8 +32,14 @@ open class EditorResourcePreview : Node() {
    */
   val previewInvalidated: Signal1<String> by signal("path")
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_EDITORRESOURCEPREVIEW)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_EDITORRESOURCEPREVIEW,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _previewReady(
     arg0: String,

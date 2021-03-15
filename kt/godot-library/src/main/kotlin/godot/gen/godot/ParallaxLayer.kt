@@ -10,7 +10,6 @@ import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -73,7 +72,13 @@ open class ParallaxLayer : Node2D() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PARALLAXLAYER)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_PARALLAXLAYER, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun motionMirroring(schedule: Vector2.() -> Unit): Vector2 = motionMirroring.apply{
       schedule(this)

@@ -21,7 +21,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.POOL_BYTE_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.VariantType.TRANSFORM
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Double
 import kotlin.Int
@@ -95,7 +94,13 @@ open class ArrayMesh : Mesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SET_CUSTOM_AABB, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ARRAYMESH)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_ARRAYMESH, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun customAabb(schedule: AABB.() -> Unit): AABB = customAabb.apply{
       schedule(this)

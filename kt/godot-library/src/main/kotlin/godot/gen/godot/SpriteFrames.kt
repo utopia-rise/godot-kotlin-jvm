@@ -16,7 +16,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_STRING_ARRAY
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -34,7 +33,13 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class SpriteFrames : Resource() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SPRITEFRAMES)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_SPRITEFRAMES, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _getAnimations(): VariantArray<Any?> {
     throw NotImplementedError("_get_animations is not implemented for SpriteFrames")

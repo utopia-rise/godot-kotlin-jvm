@@ -14,7 +14,6 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.NotImplementedError
@@ -28,7 +27,14 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class EditorVCSInterface : Object() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_EDITORVCSINTERFACE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_EDITORVCSINTERFACE,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _commit(msg: String) {
   }

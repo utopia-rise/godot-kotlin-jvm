@@ -15,7 +15,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.POOL_COLOR_ARRAY
 import godot.signals.Signal1
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -153,7 +152,13 @@ open class ColorPicker : BoxContainer() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_RAW_MODE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_COLORPICKER)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_COLORPICKER, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun color(schedule: Color.() -> Unit): Color = color.apply{
       schedule(this)

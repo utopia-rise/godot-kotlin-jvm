@@ -7,7 +7,6 @@ package godot
 
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -19,7 +18,13 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class Position2D : Node2D() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_POSITION2D)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_POSITION2D, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _getGizmoExtents(): Double {
     throw NotImplementedError("_get_gizmo_extents is not implemented for Position2D")

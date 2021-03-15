@@ -11,7 +11,6 @@ import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType._RID
-import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.Suppress
 
@@ -22,8 +21,14 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class PhysicsShapeQueryResult : Reference() {
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_PHYSICSSHAPEQUERYRESULT)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_PHYSICSSHAPEQUERYRESULT,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Returns the number of objects that intersected with the shape.

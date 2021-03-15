@@ -15,7 +15,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.VariantType.TRANSFORM2D
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -64,7 +63,13 @@ open class CameraFeed : Reference() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CAMERAFEED)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_CAMERAFEED, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun feedTransform(schedule: Transform2D.() -> Unit): Transform2D = feedTransform.apply{
       schedule(this)

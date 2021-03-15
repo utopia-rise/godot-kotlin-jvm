@@ -10,7 +10,6 @@ import godot.core.Color
 import godot.core.TransferContext
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.NIL
-import godot.util.VoidPtr
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -39,8 +38,14 @@ open class VisualShaderNodeColorConstant : VisualShaderNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOLORCONSTANT_SET_CONSTANT, NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODECOLORCONSTANT)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODECOLORCONSTANT,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun constant(schedule: Color.() -> Unit): Color = constant.apply{
       schedule(this)

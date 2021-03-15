@@ -8,7 +8,6 @@ package godot
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.NotImplementedError
 import kotlin.String
@@ -21,8 +20,14 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class EditorResourcePreviewGenerator : Reference() {
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_EDITORRESOURCEPREVIEWGENERATOR)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_EDITORRESOURCEPREVIEWGENERATOR,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * If this function returns `true`, the generator will call [generate] or [generateFromPath] for small previews as well.

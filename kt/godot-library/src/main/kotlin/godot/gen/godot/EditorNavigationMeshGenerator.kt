@@ -9,7 +9,6 @@ import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.util.VoidPtr
 import kotlin.Suppress
 
 /**
@@ -17,8 +16,14 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class EditorNavigationMeshGenerator : Object() {
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_EDITORNAVIGATIONMESHGENERATOR)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_EDITORNAVIGATIONMESHGENERATOR,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    *

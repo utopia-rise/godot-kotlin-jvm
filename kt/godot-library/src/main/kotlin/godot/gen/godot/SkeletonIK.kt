@@ -19,7 +19,6 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.TRANSFORM
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -179,7 +178,13 @@ open class SkeletonIK : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK_SET_USE_MAGNET, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SKELETONIK)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_SKELETONIK, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun magnet(schedule: Vector3.() -> Unit): Vector3 = magnet.apply{
       schedule(this)

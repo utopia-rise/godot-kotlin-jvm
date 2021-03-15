@@ -20,7 +20,6 @@ import godot.core.VariantType.POOL_COLOR_ARRAY
 import godot.core.VariantType.POOL_VECTOR2_ARRAY
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -1014,7 +1013,13 @@ open class CPUParticles2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_TEXTURE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CPUPARTICLES2D)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_CPUPARTICLES2D, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun color(schedule: Color.() -> Unit): Color = color.apply{
       schedule(this)

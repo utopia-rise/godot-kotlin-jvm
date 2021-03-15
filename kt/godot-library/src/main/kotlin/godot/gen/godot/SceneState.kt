@@ -18,7 +18,6 @@ import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_STRING_ARRAY
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Long
@@ -34,7 +33,13 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class SceneState : Reference() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SCENESTATE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_SCENESTATE, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Returns the list of bound parameters for the signal at `idx`.

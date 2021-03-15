@@ -34,7 +34,6 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Long
@@ -66,7 +65,13 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class SurfaceTool : Reference() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SURFACETOOL)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_SURFACETOOL, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Adds an array of bones for the next vertex to use. `bones` must contain 4 integers.

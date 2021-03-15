@@ -13,7 +13,6 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -65,7 +64,13 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class PackedScene : Resource() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PACKEDSCENE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_PACKEDSCENE, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _getBundledScene(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_bundled_scene is not implemented for PackedScene")

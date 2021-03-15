@@ -15,7 +15,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.TRANSFORM
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -144,7 +143,13 @@ open class PhysicalBone : PhysicsBody() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE_SET_WEIGHT, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PHYSICALBONE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_PHYSICALBONE, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun bodyOffset(schedule: Transform.() -> Unit): Transform = bodyOffset.apply{
       schedule(this)

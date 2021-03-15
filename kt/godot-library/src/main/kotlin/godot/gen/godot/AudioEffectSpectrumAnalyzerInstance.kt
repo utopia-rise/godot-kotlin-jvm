@@ -11,7 +11,6 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
@@ -21,8 +20,14 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class AudioEffectSpectrumAnalyzerInstance : AudioEffectInstance() {
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZERINSTANCE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZERINSTANCE,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    *

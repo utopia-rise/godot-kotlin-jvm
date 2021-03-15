@@ -30,7 +30,6 @@ import godot.core.VariantType._RID
 import godot.core.Vector2
 import godot.signals.Signal0
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -186,7 +185,13 @@ open class CanvasItem : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_VISIBLE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CANVASITEM)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_CANVASITEM, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun modulate(schedule: Color.() -> Unit): Color = modulate.apply{
       schedule(this)

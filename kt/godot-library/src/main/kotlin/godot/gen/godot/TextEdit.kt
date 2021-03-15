@@ -24,7 +24,6 @@ import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.Signal3
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -469,7 +468,13 @@ open class TextEdit : Control() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_WRAP_ENABLED, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_TEXTEDIT)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_TEXTEDIT, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _clickSelectionHeld() {
   }

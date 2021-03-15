@@ -11,7 +11,6 @@ import godot.core.TransferContext
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -27,7 +26,14 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class X509Certificate : Resource() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_X509CERTIFICATE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_X509CERTIFICATE,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Loads a certificate from `path` ("*.crt" file).

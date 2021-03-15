@@ -13,7 +13,6 @@ import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -27,7 +26,13 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class PacketPeerUDP : PacketPeer() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PACKETPEERUDP)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_PACKETPEERUDP, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Closes the UDP socket the [godot.PacketPeerUDP] is currently listening on.

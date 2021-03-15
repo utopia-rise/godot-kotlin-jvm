@@ -11,7 +11,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -66,7 +65,13 @@ open class MeshTexture : Texture() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHTEXTURE_SET_MESH, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_MESHTEXTURE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_MESHTEXTURE, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun imageSize(schedule: Vector2.() -> Unit): Vector2 = imageSize.apply{
       schedule(this)

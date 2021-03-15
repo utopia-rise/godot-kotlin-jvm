@@ -15,7 +15,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -82,7 +81,13 @@ open class ARVRInterface : Reference() {
           ENGINEMETHOD_ENGINECLASS_ARVRINTERFACE_SET_INTERFACE_IS_PRIMARY, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ARVRINTERFACE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_ARVRINTERFACE, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * If this is an AR interface that requires displaying a camera feed as the background, this method returns the feed ID in the [godot.CameraServer] for this interface.

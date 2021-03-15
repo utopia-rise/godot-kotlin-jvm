@@ -18,7 +18,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -1354,7 +1353,13 @@ open class Environment : Resource() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ENVIRONMENT)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_ENVIRONMENT, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun ambientLightColor(schedule: Color.() -> Unit): Color = ambientLightColor.apply{
       schedule(this)

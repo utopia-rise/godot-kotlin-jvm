@@ -11,7 +11,6 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Suppress
 
@@ -36,8 +35,14 @@ open class SpatialVelocityTracker : Reference() {
           ENGINEMETHOD_ENGINECLASS_SPATIALVELOCITYTRACKER_SET_TRACK_PHYSICS_STEP, NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_SPATIALVELOCITYTRACKER)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_SPATIALVELOCITYTRACKER,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    *

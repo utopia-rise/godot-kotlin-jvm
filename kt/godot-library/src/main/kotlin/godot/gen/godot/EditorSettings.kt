@@ -17,7 +17,6 @@ import godot.core.VariantType.POOL_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.signals.Signal0
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Long
@@ -52,7 +51,13 @@ open class EditorSettings : Resource() {
    */
   val settingsChanged: Signal0 by signal()
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_EDITORSETTINGS)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_EDITORSETTINGS, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   /**
    * Adds a custom property info to a property. The dictionary must contain:

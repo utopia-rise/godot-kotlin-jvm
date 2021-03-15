@@ -14,7 +14,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.RECT2
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -270,7 +269,13 @@ open class Particles2D : Node2D() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PARTICLES2D)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_PARTICLES2D, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun visibilityRect(schedule: Rect2.() -> Unit): Rect2 = visibilityRect.apply{
       schedule(this)

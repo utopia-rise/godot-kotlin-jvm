@@ -18,7 +18,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_INT_ARRAY
 import godot.core.VariantType.POOL_VECTOR3_ARRAY
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -318,7 +317,13 @@ open class NavigationMesh : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_VERTICES, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_NAVIGATIONMESH)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_NAVIGATIONMESH, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _getPolygons(): VariantArray<Any?> {
     throw NotImplementedError("_get_polygons is not implemented for NavigationMesh")

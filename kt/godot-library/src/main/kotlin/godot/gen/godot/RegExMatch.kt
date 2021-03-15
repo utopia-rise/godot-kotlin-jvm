@@ -14,7 +14,6 @@ import godot.core.VariantType.ARRAY
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Long
 import kotlin.String
@@ -43,7 +42,13 @@ open class RegExMatch : Reference() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_REGEXMATCH)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_REGEXMATCH, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun getEnd(name: Any? = null): Long {
     TransferContext.writeArguments(ANY to name)

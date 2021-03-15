@@ -17,7 +17,6 @@ import godot.core.VariantType.POOL_VECTOR3_ARRAY
 import godot.core.VariantType.TRANSFORM
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
@@ -44,7 +43,13 @@ open class Navigation : Spatial() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION_SET_UP_VECTOR, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_NAVIGATION)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_NAVIGATION, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun upVector(schedule: Vector3.() -> Unit): Vector3 = upVector.apply{
       schedule(this)

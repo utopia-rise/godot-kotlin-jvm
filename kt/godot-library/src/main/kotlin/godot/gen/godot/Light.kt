@@ -13,7 +13,6 @@ import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -216,7 +215,13 @@ open class Light : VisualInstance() {
           ENGINEMETHOD_ENGINECLASS_LIGHT_SET_SHADOW_REVERSE_CULL_FACE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_LIGHT)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_LIGHT, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun lightColor(schedule: Color.() -> Unit): Color = lightColor.apply{
       schedule(this)
