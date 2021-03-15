@@ -1,11 +1,16 @@
 package godot.core
 
 import godot.util.VoidPtr
-import godot.util.info
 import godot.util.nullptr
 
 @Suppress("LeakingThis")
 abstract class KtObject {
+
+    private class initChoice {
+        var current = 0
+        var limit = 0
+    }
+
     var rawPtr: VoidPtr = nullptr
         set(value) {
             require(field == nullptr || field == value) {
@@ -20,12 +25,11 @@ abstract class KtObject {
     var __id: Long = -1
 
     init {
-        val value = current.get()
-        val new_curent = value + 1
-        val limit = limit.get()
+        val choice = initChoice.get()
+        val current = choice.current
 
-        if (new_curent > limit) {
-            current.set(new_curent)
+        if (current + 1 > choice.limit) {
+            choice.current++
             // user types shouldn't override this method
             __new()
             if (!____DO_NOT_TOUCH_THIS_isSingleton____()) {
@@ -49,7 +53,7 @@ abstract class KtObject {
             try {
                 _onInit()
             } finally {
-                current.set(value)
+                choice.current--
             }
         }
     }
@@ -71,17 +75,16 @@ abstract class KtObject {
     }
 
     companion object {
-        private val current = ThreadLocal.withInitial { 0 }
-        private val limit = ThreadLocal.withInitial { 0 }
+        private val initChoice = ThreadLocal.withInitial { initChoice()}
 
         fun <T : KtObject> instantiateWith(rawPtr: VoidPtr, Id: Long, constructor: () -> T): T {
-            val value = current.get()
-            val old_limit = limit.get()
-            limit.set(value + 1)
+            val choice = initChoice.get()
+            val oldLimit = choice.limit
+            choice.limit = choice.current + 1
             val obj = try {
                 constructor()
             } finally {
-                limit.set(old_limit)
+                choice.limit = oldLimit
             }
 
             return obj.also {
