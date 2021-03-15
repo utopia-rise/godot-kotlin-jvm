@@ -15,7 +15,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -37,7 +36,13 @@ open class StreamPeerSSL : StreamPeer() {
           ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_SET_BLOCKING_HANDSHAKE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_STREAMPEERSSL)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_STREAMPEERSSL, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun acceptStream(
     stream: StreamPeer,

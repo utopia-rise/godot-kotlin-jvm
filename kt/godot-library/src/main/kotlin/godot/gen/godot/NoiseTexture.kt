@@ -12,7 +12,6 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -83,7 +82,13 @@ open class NoiseTexture : Texture() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_WIDTH, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_NOISETEXTURE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_NOISETEXTURE, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _generateTexture(): Image? {
     throw NotImplementedError("_generate_texture is not implemented for NoiseTexture")

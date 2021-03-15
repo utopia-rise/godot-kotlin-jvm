@@ -1,6 +1,7 @@
 package godot.core
 
 import godot.core.VariantType.*
+import godot.core.VariantType.AABB
 import godot.util.toRealT
 import java.nio.ByteBuffer
 
@@ -290,24 +291,18 @@ enum class VariantType(
                 val ptr = buffer.long
                 val constructorIndex = buffer.int
                 val isRef = buffer.bool
-                val instanceId = buffer.long
-                val hasRefCountBeenIncremented = buffer.bool
+                val id = buffer.long
+
                 val existingInstance = if (isRef) {
-                    GarbageCollector.getRefInstance(ptr)
+                    GarbageCollector.getRefInstance(id.toInt())
                 } else {
                     GarbageCollector.getObjectInstance(ptr)
                 }
 
-                if (existingInstance != null && hasRefCountBeenIncremented) {
-                    GarbageCollector.unrefRefInstance(ptr)
-                }
-
                 existingInstance ?: KtObject.instantiateWith(
-                        ptr,
-                        instanceId,
-                        hasRefCountBeenIncremented,
-                        TypeManager.engineTypesConstructors[constructorIndex]
-                )
+                    ptr,
+                    id,
+                    TypeManager.engineTypesConstructors[constructorIndex])
             },
             { buffer: ByteBuffer, any: Any ->
                 buffer.variantType = OBJECT.ordinal

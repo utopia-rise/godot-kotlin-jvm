@@ -16,7 +16,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_VECTOR2_ARRAY
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -175,7 +174,13 @@ open class CSGPolygon : CSGPrimitive() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON_SET_SPIN_SIDES, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CSGPOLYGON)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_CSGPOLYGON, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _hasEditable3dPolygonNoDepth(): Boolean {
     throw NotImplementedError("_has_editable_3d_polygon_no_depth is not implemented for CSGPolygon")

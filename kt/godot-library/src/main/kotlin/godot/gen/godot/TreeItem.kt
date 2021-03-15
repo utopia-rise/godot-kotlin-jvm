@@ -22,7 +22,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.RECT2
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -69,7 +68,13 @@ open class TreeItem : Object() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREEITEM_SET_DISABLE_FOLDING, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_TREEITEM)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_TREEITEM, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun addButton(
     column: Long,

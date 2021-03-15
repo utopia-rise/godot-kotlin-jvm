@@ -35,6 +35,7 @@ public:
     GDKotlin(const GDKotlin&) = delete;
 
     static GDKotlin& get_instance();
+    static uint64_t get_ref_id();
 
     GDKotlin& operator=(const GDKotlin&) = delete;
 

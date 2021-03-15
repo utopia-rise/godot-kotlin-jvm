@@ -17,7 +17,6 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -37,7 +36,13 @@ open class InputEvent : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_SET_DEVICE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_INPUTEVENT)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_INPUTEVENT, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun accumulate(withEvent: InputEvent): Boolean {
     TransferContext.writeArguments(OBJECT to withEvent)

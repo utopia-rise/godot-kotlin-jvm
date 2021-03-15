@@ -7,10 +7,15 @@ package godot
 
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
-import godot.util.VoidPtr
 import kotlin.Suppress
 
 @GodotBaseType
 open class Position3D : Spatial() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_POSITION3D)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_POSITION3D, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 }

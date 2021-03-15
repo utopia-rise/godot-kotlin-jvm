@@ -10,7 +10,6 @@ import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -43,6 +42,12 @@ open class VisualScriptBasicTypeConstant : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTBASICTYPECONSTANT_SET_CONSTANT, NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTBASICTYPECONSTANT)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTBASICTYPECONSTANT,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 }

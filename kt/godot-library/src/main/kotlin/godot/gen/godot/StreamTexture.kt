@@ -11,7 +11,6 @@ import godot.core.TransferContext
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -26,7 +25,13 @@ open class StreamTexture : Texture() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_STREAMTEXTURE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_STREAMTEXTURE, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)

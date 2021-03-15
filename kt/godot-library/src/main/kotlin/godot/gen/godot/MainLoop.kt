@@ -15,7 +15,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.signals.Signal2
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -28,7 +27,13 @@ import kotlin.Suppress
 open class MainLoop : Object() {
   val onRequestPermissionsResult: Signal2<String, Boolean> by signal("permission", "granted")
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_MAINLOOP)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_MAINLOOP, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _dropFiles(files: PoolStringArray, fromScreen: Long) {
   }

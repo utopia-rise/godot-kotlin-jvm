@@ -11,7 +11,6 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.String
@@ -93,7 +92,13 @@ open class UPNPDevice : Reference() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNPDEVICE_SET_SERVICE_TYPE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_UPNPDEVICE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_UPNPDEVICE, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun addPortMapping(
     port: Long,

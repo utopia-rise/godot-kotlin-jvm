@@ -22,7 +22,6 @@ import godot.core.VariantType.POOL_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -84,7 +83,14 @@ open class AnimationTreePlayer : Node() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_SET_PLAYBACK_PROCESS_MODE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONTREEPLAYER)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONTREEPLAYER,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun addNode(type: Long, id: String) {
     TransferContext.writeArguments(LONG to type, STRING to id)

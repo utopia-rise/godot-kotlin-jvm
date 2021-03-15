@@ -12,15 +12,20 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.POOL_STRING_ARRAY
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
 
 @GodotBaseType
 open class AnimationNodeStateMachinePlayback : Resource() {
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun getCurrentNode(): String {
     TransferContext.writeArguments()

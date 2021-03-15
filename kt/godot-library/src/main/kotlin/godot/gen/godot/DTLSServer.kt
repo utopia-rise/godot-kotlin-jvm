@@ -11,13 +11,18 @@ import godot.core.TransferContext
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 
 @GodotBaseType
 open class DTLSServer : Reference() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_DTLSSERVER)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_DTLSSERVER, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun setup(
     key: CryptoKey,

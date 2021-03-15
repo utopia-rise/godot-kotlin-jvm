@@ -25,7 +25,6 @@ import godot.core.VariantType.VECTOR2
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long
@@ -33,7 +32,13 @@ import kotlin.Suppress
 
 @GodotBaseType
 open class MeshDataTool : Reference() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_MESHDATATOOL)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_MESHDATATOOL, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun clear() {
     TransferContext.writeArguments()

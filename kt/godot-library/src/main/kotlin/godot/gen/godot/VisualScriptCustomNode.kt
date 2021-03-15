@@ -8,7 +8,6 @@ package godot
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantArray
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Long
@@ -18,8 +17,14 @@ import kotlin.Suppress
 
 @GodotBaseType
 open class VisualScriptCustomNode : VisualScriptNode() {
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTCUSTOMNODE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTCUSTOMNODE,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _getCaption(): String {
     throw NotImplementedError("_get_caption is not implemented for VisualScriptCustomNode")

@@ -16,7 +16,6 @@ import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.signals.Signal0
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -39,7 +38,13 @@ open class Popup : Control() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUP_SET_POPUP_EXCLUSIVE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_POPUP)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_POPUP, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun popup(bounds: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0)) {
     TransferContext.writeArguments(RECT2 to bounds)

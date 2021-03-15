@@ -11,7 +11,6 @@ import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.signals.Signal1
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.NotImplementedError
@@ -21,8 +20,14 @@ import kotlin.Suppress
 open class GDScriptFunctionState : Reference() {
   val completed: Signal1<Any> by signal("result")
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_GDSCRIPTFUNCTIONSTATE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_GDSCRIPTFUNCTIONSTATE,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _signalCallback(vararg __var_args: Any?): Any? {
     throw NotImplementedError("_signal_callback is not implemented for GDScriptFunctionState")

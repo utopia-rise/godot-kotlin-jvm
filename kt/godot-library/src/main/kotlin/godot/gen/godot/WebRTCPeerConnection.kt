@@ -20,7 +20,6 @@ import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.Signal3
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long
@@ -35,8 +34,14 @@ open class WebRTCPeerConnection : Reference() {
 
   val sessionDescriptionCreated: Signal2<String, String> by signal("type", "sdp")
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_WEBRTCPEERCONNECTION)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_WEBRTCPEERCONNECTION,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun addIceCandidate(
     media: String,

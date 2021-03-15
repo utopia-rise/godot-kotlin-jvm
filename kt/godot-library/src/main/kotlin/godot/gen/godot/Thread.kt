@@ -14,7 +14,6 @@ import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -24,7 +23,13 @@ import kotlin.Suppress
 
 @GodotBaseType
 open class Thread : Reference() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS__THREAD)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS__THREAD, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun getId(): String {
     TransferContext.writeArguments()

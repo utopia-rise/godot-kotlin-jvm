@@ -9,7 +9,6 @@ import godot.annotation.GodotBaseType
 import godot.core.Dictionary
 import godot.core.TransferContext
 import godot.core.VariantArray
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -20,7 +19,14 @@ import kotlin.Suppress
 
 @GodotBaseType
 open class EditorImportPlugin : ResourceImporter() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_EDITORIMPORTPLUGIN)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_EDITORIMPORTPLUGIN,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _getImportOptions(preset: Long): VariantArray<Any?> {
     throw NotImplementedError("get_import_options is not implemented for EditorImportPlugin")

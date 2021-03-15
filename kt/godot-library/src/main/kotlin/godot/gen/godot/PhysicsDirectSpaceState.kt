@@ -16,7 +16,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Long
@@ -24,8 +23,14 @@ import kotlin.Suppress
 
 @GodotBaseType
 open class PhysicsDirectSpaceState : Object() {
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_PHYSICSDIRECTSPACESTATE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_PHYSICSDIRECTSPACESTATE,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun castMotion(shape: PhysicsShapeQueryParameters, motion: Vector3): VariantArray<Any?> {
     TransferContext.writeArguments(OBJECT to shape, VECTOR3 to motion)

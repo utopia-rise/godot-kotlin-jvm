@@ -10,7 +10,6 @@ import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Suppress
@@ -195,7 +194,13 @@ open class VehicleWheel : Spatial() {
           ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL_SET_WHEEL_ROLL_INFLUENCE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VEHICLEWHEEL)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_VEHICLEWHEEL, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun getRpm(): Double {
     TransferContext.writeArguments()

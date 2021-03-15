@@ -14,7 +14,6 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.String
@@ -22,7 +21,13 @@ import kotlin.Suppress
 
 @GodotBaseType
 open class FuncRef : Reference() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_FUNCREF)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_FUNCREF, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun callFunc(vararg __var_args: Any?): Any? {
     TransferContext.writeArguments( *__var_args.map { ANY to it }.toTypedArray())

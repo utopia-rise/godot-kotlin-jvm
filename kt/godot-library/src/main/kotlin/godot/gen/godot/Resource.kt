@@ -15,7 +15,6 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType._RID
 import godot.signals.Signal0
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
@@ -61,7 +60,13 @@ open class Resource : Reference() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_SET_RESOURCE_PATH, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_RESOURCE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_RESOURCE, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _setupLocalToScene() {
   }

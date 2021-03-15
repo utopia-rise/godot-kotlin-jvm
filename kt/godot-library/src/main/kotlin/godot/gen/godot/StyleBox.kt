@@ -18,7 +18,6 @@ import godot.core.VariantType.RECT2
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -78,7 +77,13 @@ open class StyleBox : Resource() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_STYLEBOX)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_STYLEBOX, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun draw(canvasItem: RID, rect: Rect2) {
     TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect)

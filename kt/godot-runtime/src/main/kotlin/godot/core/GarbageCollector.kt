@@ -34,7 +34,7 @@ object GarbageCollector {
     /** Pointers to Objects.*/
     private val wrappedMap = ConcurrentHashMap<VoidPtr, KtObject>()
     /** Pointers to References.*/
-    private val refWrappedMap = ConcurrentHashMap<VoidPtr, ReferenceWeakReference>()
+    private val refWrappedMap = ArrayList<ReferenceWeakReference?>()
     /** Pointers to NativeCoreType.*/
     private val nativeCoreTypeMap = ConcurrentHashMap<VoidPtr, NativeCoreWeakReference>()
 
@@ -53,23 +53,22 @@ object GarbageCollector {
     private val executor = Executors.newSingleThreadScheduledExecutor()
 
     private var forceJvmGarbageCollector = false
-    var shouldDisplayLeakInstancesOnClose = true
+    private var shouldDisplayLeakInstancesOnClose = true
 
     private var gcState = GCState.NONE
 
     val isClosed: Boolean
         get() = gcState == GCState.CLOSED
 
-    fun registerInstance(instance: KtObject, hasRefCountBeenIncremented: Boolean) {
+    fun registerObject(instance: KtObject) {
         val rawPtr = instance.rawPtr
-        if (instance.____DO_NOT_TOUCH_THIS_isRef____()) {
-            refWrappedMap[rawPtr] = ReferenceWeakReference(instance, refReferenceQueue)
-            if (!hasRefCountBeenIncremented) {
-                MemoryBridge.ref(rawPtr)
-            }
-        } else {
-            wrappedMap[rawPtr] = instance
-        }
+        wrappedMap[rawPtr] = instance
+    }
+
+    fun registerReference(instance: KtObject) {
+        val rawPtr = instance.rawPtr
+        val index = instance.id.toInt()
+        refWrappedMap[index] = ReferenceWeakReference(instance, refReferenceQueue, index)
     }
 
     fun registerNativeCoreType(nativeCoreType: NativeCoreType, variantType: VariantType) {
@@ -83,30 +82,26 @@ object GarbageCollector {
 
     fun getObjectInstance(ptr: VoidPtr): KtObject? {
         val ktObject = wrappedMap[ptr]
-        if (ktObject != null) {
-            if (MemoryBridge.checkInstance(ptr, ktObject.godotInstanceId)) {
-                return ktObject
+        return if (ktObject != null) {
+            if (MemoryBridge.checkInstance(ptr, ktObject.id)) {
+                ktObject
             } else {
-                return null
+                null
             }
         } else {
-            return null
+            null
         }
     }
 
-    fun getRefInstance(ptr: VoidPtr): KtObject? {
-        return refWrappedMap[ptr]?.get()
+    fun getRefInstance(index: Int): KtObject? {
+        return refWrappedMap[index]!!.get()
     }
 
     fun getNativeCoreTypeInstance(ptr: VoidPtr): NativeCoreType? {
         return nativeCoreTypeMap[ptr]?.get()
     }
 
-    internal fun unrefRefInstance(ptr: VoidPtr) {
-        MemoryBridge.unref(ptr)
-    }
-
-    fun isInstanceValid(ktObject: KtObject) = MemoryBridge.checkInstance(ktObject.rawPtr, ktObject.godotInstanceId)
+    fun isInstanceValid(ktObject: KtObject) = MemoryBridge.checkInstance(ktObject.rawPtr, ktObject.id)
 
 
     fun start(forceJvmGarbageCollector: Boolean) {
@@ -164,7 +159,7 @@ object GarbageCollector {
 
         while (counter < limit) {
             val entry = wrapperList!![current_index++]
-            if (!MemoryBridge.checkInstance(entry.first, entry.second.godotInstanceId)) {
+            if (!MemoryBridge.checkInstance(entry.first, entry.second.id)) {
                 wrappedMap.remove(entry.first)
                 isActive = true
             }
@@ -181,7 +176,7 @@ object GarbageCollector {
         while (counter < CHECK_NUMBER) {
             val ref = (refReferenceQueue.poll() ?: break) as ReferenceWeakReference
             if (MemoryBridge.unref(ref.ptr)) {
-                refWrappedMap.remove(ref.ptr)
+                refWrappedMap[ref.index] = null
                 isActive = true
             }
             counter++
@@ -226,8 +221,10 @@ object GarbageCollector {
                             append("Leaked references:")
                             append(System.lineSeparator())
                             for (entry in refWrappedMap) {
-                                append("    ${entry.key}: ${entry.value}")
-                                append(System.lineSeparator())
+                                if(entry != null){
+                                    append("    ${entry.get()}")
+                                    append(System.lineSeparator())
+                                }
                             }
                             append("Leaked objects:")
                             append(System.lineSeparator())
@@ -265,7 +262,6 @@ object GarbageCollector {
     private object MemoryBridge {
         external fun checkInstance(ptr: VoidPtr, instanceId: Long): Boolean
         external fun unref(ptr: VoidPtr): Boolean
-        external fun ref(ptr: VoidPtr): Boolean
         external fun unrefNativeCoreType(ptr: VoidPtr, variantType: Int): Boolean
     }
 

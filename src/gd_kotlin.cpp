@@ -85,6 +85,11 @@ GDKotlin& GDKotlin::get_instance() {
     return instance;
 }
 
+uint64_t GDKotlin::get_ref_id() {
+    static uint64_t id = 0;
+    return id++;
+}
+
 void load_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) {
     jni::Env env(p_env);
     jni::JObjectArray classes{jni::JObjectArray(p_classes)};

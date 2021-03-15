@@ -23,7 +23,7 @@ public:
 
     static void icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jint p_method_index, jint expectedReturnType);
 
-    static jlong invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index);
+    static void invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index);
     static jlong get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index);
     static void set_script(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint p_class_index, jobject p_object,
                            jobject p_class_loader);
@@ -44,7 +44,7 @@ private:
         buffer->rewind();
     }
     _FORCE_INLINE_ static void write_return_value(SharedBuffer* buffer, const Variant& r_ret) {
-        ktvariant::send_variant_to_buffer(r_ret, buffer, true);
+        ktvariant::send_variant_to_buffer(r_ret, buffer);
         buffer->rewind();
     }
 

@@ -14,7 +14,6 @@ import godot.core.VariantType.OBJECT
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Suppress
@@ -135,7 +134,13 @@ open class Range : Control() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_VALUE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_RANGE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_RANGE, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun share(with: Node) {
     TransferContext.writeArguments(OBJECT to with)

@@ -17,7 +17,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -38,7 +37,13 @@ open class Shape2D : Resource() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SHAPE2D)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_SHAPE2D, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun collide(
     localXform: Transform2D,

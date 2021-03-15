@@ -9,7 +9,6 @@ import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.Suppress
 
@@ -26,5 +25,12 @@ open class VisualScriptSelect : VisualScriptNode() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTSELECT_SET_TYPE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTSELECT)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTSELECT,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 }

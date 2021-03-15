@@ -8,7 +8,6 @@ package godot
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantArray
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -17,8 +16,14 @@ import kotlin.Suppress
 
 @GodotBaseType
 open class VisualShaderNodeCustom : VisualShaderNode() {
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODECUSTOM)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODECUSTOM,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _getCategory(): String {
     throw NotImplementedError("_get_category is not implemented for VisualShaderNodeCustom")

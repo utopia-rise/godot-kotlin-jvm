@@ -16,7 +16,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -26,7 +25,14 @@ import kotlin.Suppress
 
 @GodotBaseType
 open class EditorInterface : Node() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_EDITORINTERFACE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_EDITORINTERFACE,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun editResource(resource: Resource) {
     TransferContext.writeArguments(OBJECT to resource)

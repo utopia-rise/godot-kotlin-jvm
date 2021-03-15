@@ -14,7 +14,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.signals.Signal0
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -24,7 +23,14 @@ import kotlin.Suppress
 open class VisualScriptNode : Resource() {
   val portsChanged: Signal0 by signal()
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTNODE)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTNODE,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _getDefaultInputValues(): VariantArray<Any?> {
     throw NotImplementedError("_get_default_input_values is not implemented for VisualScriptNode")

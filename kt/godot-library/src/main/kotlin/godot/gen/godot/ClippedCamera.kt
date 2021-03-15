@@ -14,7 +14,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType._RID
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -85,7 +84,13 @@ open class ClippedCamera : Camera() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CLIPPEDCAMERA)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_CLIPPEDCAMERA, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun addException(node: Object) {
     TransferContext.writeArguments(OBJECT to node)

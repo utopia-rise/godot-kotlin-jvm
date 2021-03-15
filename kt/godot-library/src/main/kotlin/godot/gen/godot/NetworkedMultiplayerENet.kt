@@ -14,7 +14,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -114,8 +113,14 @@ open class NetworkedMultiplayerENet : NetworkedMultiplayerPeer() {
           ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_SET_USE_DTLS, NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_NETWORKEDMULTIPLAYERENET)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_NETWORKEDMULTIPLAYERENET,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun closeConnection(waitUsec: Long = 100) {
     TransferContext.writeArguments(LONG to waitUsec)

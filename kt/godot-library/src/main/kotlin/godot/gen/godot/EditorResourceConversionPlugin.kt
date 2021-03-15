@@ -7,15 +7,20 @@ package godot
 
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
-import godot.util.VoidPtr
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 
 @GodotBaseType
 open class EditorResourceConversionPlugin : Reference() {
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_EDITORRESOURCECONVERSIONPLUGIN)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_EDITORRESOURCECONVERSIONPLUGIN,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _convert(resource: Resource): Resource? {
     throw NotImplementedError("_convert is not implemented for EditorResourceConversionPlugin")

@@ -10,7 +10,6 @@ import godot.core.PoolVector2Array
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.POOL_VECTOR2_ARRAY
-import godot.util.VoidPtr
 import kotlin.Suppress
 
 @GodotBaseType
@@ -28,8 +27,14 @@ open class ConvexPolygonShape2D : Shape2D() {
           NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_CONVEXPOLYGONSHAPE2D)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_CONVEXPOLYGONSHAPE2D,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun setPointCloud(pointCloud: PoolVector2Array) {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to pointCloud)

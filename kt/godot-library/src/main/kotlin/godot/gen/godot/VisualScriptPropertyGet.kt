@@ -13,7 +13,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
@@ -112,8 +111,14 @@ open class VisualScriptPropertyGet : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_SET_SET_MODE, NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTPROPERTYGET)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTPROPERTYGET,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _getTypeCache(): VariantType {
     throw NotImplementedError("_get_type_cache is not implemented for VisualScriptPropertyGet")

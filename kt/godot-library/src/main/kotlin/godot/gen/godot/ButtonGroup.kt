@@ -10,13 +10,18 @@ import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.OBJECT
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Suppress
 
 @GodotBaseType
 open class ButtonGroup : Resource() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_BUTTONGROUP)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_BUTTONGROUP, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun getButtons(): VariantArray<Any?> {
     TransferContext.writeArguments()

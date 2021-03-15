@@ -12,14 +12,19 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_BYTE_ARRAY
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 
 @GodotBaseType
 open class Crypto : Reference() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CRYPTO)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_CRYPTO, ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun generateRandomBytes(size: Long): PoolByteArray {
     TransferContext.writeArguments(LONG to size)

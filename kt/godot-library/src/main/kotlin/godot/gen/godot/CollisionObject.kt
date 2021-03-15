@@ -21,7 +21,6 @@ import godot.core.Vector3
 import godot.signals.Signal0
 import godot.signals.Signal5
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Long
@@ -62,7 +61,14 @@ open class CollisionObject : Spatial() {
           ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_SET_INPUT_RAY_PICKABLE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_COLLISIONOBJECT)
+  override fun __new() {
+    TransferContext.invokeConstructor(ENGINECLASS_COLLISIONOBJECT,
+        ____DO_NOT_TOUCH_THIS_isRef____())
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    id = buffer.long
+    buffer.rewind()
+  }
 
   open fun _inputEvent(
     camera: Object,
