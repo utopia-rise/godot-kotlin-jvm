@@ -18,7 +18,7 @@ private:
     };
 
     Mutex* mut;
-    HashMap<uintptr_t, RefIndex> ref_map;
+    HashMap<uint64_t , RefIndex> ref_map;
     List<RefIndex> freeIds;
 
 public:
