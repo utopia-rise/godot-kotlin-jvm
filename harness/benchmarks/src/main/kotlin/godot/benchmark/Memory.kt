@@ -17,7 +17,7 @@ class Memory : Object() {
     private val accessSize = 1000
     private val stressSize = 100
 
-    override fun _onInit() {
+    init{
         for (i in 0 until accessSize) {
             objs.append(Node())
             refs.append(File())
