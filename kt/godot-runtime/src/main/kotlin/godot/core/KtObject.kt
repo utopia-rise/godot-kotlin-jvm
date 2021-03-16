@@ -43,6 +43,15 @@ abstract class KtObject {
         } else {
             // user types shouldn't override this method
             __new()
+            // inheritance in Godot is faked, a script is attached to an Object allow
+            // the script to see all methods of the owning Object.
+            // For user types, we need to make sure to attach this script to the Object
+            // rawPtr is pointing to.
+            val classIndex = TypeManager.userTypeToId[this::class]
+            // If user type
+            if (classIndex != null) {
+                TransferContext.setScript(rawPtr, classIndex, this, this::class.java.classLoader)
+            }
         }
 
         if (!____DO_NOT_TOUCH_THIS_isSingleton____()) {
@@ -51,16 +60,6 @@ abstract class KtObject {
             } else {
                 GarbageCollector.registerObject(this)
             }
-        }
-
-        // inheritance in Godot is faked, a script is attached to an Object allow
-        // the script to see all methods of the owning Object.
-        // For user types, we need to make sure to attach this script to the Object
-        // rawPtr is pointing to.
-        val classIndex = TypeManager.userTypeToId[this::class]
-        // If user type
-        if (classIndex != null) {
-            TransferContext.setScript(rawPtr, classIndex, this, this::class.java.classLoader)
         }
     }
 
