@@ -10,13 +10,13 @@ abstract class KtObject {
      * Instead we use the values set in that class  */
     private class InitConfiguration {
         var shouldOverride = false
-        var ptr: VoidPtr = 0
-        var id: Long = 0L
+        var ptr: VoidPtr = nullptr
+        var id: Long = -1
 
         fun reset() {
             shouldOverride = false
-            ptr = 0
-            id = 0
+            ptr = nullptr
+            id = -1
         }
     }
 
