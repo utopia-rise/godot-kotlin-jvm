@@ -54,12 +54,12 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
 }
 
 TransferContext::~TransferContext() {
-    for (auto &variant_arg : variant_args) {
+    for (auto& variant_arg : variant_args) {
         variant_arg = Variant();
     }
 }
 
-SharedBuffer* TransferContext::get_buffer(jni::Env &p_env) {
+SharedBuffer* TransferContext::get_buffer(jni::Env& p_env) {
     thread_local static SharedBuffer shared_buffer;
 
     if (unlikely(!shared_buffer.is_init())) {
@@ -78,13 +78,13 @@ SharedBuffer* TransferContext::get_buffer(jni::Env &p_env) {
     return &shared_buffer;
 }
 
-void TransferContext::read_return_value(jni::Env &p_env, Variant &r_ret) {
+void TransferContext::read_return_value(jni::Env& p_env, Variant& r_ret) {
     SharedBuffer* buffer{get_buffer(p_env)};
     ktvariant::get_variant_from_buffer(buffer, r_ret);
     buffer->rewind();
 }
 
-void TransferContext::write_args(jni::Env &p_env, const Variant** p_args, int args_size) {
+void TransferContext::write_args(jni::Env& p_env, const Variant** p_args, int args_size) {
     SharedBuffer* buffer{get_buffer(p_env)};
     buffer->increment_position(encode_uint32(args_size, buffer->get_cursor()));
     for (auto i = 0; i < args_size; ++i) {
@@ -93,7 +93,7 @@ void TransferContext::write_args(jni::Env &p_env, const Variant** p_args, int ar
     buffer->rewind();
 }
 
-void TransferContext::read_args(jni::Env &p_env, Variant* args) {
+void TransferContext::read_args(jni::Env& p_env, Variant* args) {
     SharedBuffer* buffer{get_buffer(p_env)};
     uint32_t size{decode_uint32(buffer->get_cursor())};
     buffer->increment_position(4);
@@ -135,7 +135,7 @@ TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jint p_meth
 #endif
 
     Variant::CallError r_error{Variant::CallError::CALL_OK};
-    const Variant &ret_value{methodBind->call(ptr, variant_args_ptr, args_size, r_error)};
+    const Variant& ret_value{methodBind->call(ptr, variant_args_ptr, args_size, r_error)};
 
 #ifdef DEBUG_ENABLED
     JVM_CRASH_COND_MSG(r_error.error != Variant::CallError::CALL_OK,
@@ -146,7 +146,7 @@ TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jint p_meth
 }
 
 void TransferContext::invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index) {
-    const StringName &class_name{GDKotlin::get_instance().engine_type_names[static_cast<int>(p_class_index)]};
+    const StringName& class_name{GDKotlin::get_instance().engine_type_names[static_cast<int>(p_class_index)]};
     Object* ptr = ClassDB::instance(class_name);
 
     auto raw_ptr = reinterpret_cast<uintptr_t>(ptr);
@@ -199,6 +199,6 @@ void TransferContext::free_object(JNIEnv* p_raw_env, jobject p_instance, jlong p
     memdelete(owner);
 }
 
-void TransferContext::write_return_value(jni::Env &p_env, Variant &variant) {
+void TransferContext::write_return_value(jni::Env& p_env, Variant& variant) {
     write_return_value(get_buffer(p_env), variant);
 }
