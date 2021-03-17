@@ -1,10 +1,11 @@
 #ifndef GODOT_JVM_KOTLIN_SCRIPT_H
 #define GODOT_JVM_KOTLIN_SCRIPT_H
+
 #include "core/script_language.h"
 #include "kt_class.h"
 
 class KotlinScript : public Script {
-    GDCLASS(KotlinScript, Script);
+GDCLASS(KotlinScript, Script);
 
 private:
     String source;
@@ -12,15 +13,16 @@ private:
     // Stored kotlin_class should be nullptr when in TOOL
     KtClass* kotlin_class;
 
-    ScriptInstance* _instance_create(const Variant **p_args, int p_argcount, Object* p_this);
+    ScriptInstance* _instance_create(const Variant** p_args, int p_argcount, Object* p_this);
 
 public:
     KotlinScript();
+
     ~KotlinScript() override = default;
 
     KtClass* get_kotlin_class() const;
 
-    Variant _new(const Variant **p_args, int p_argcount, Variant::CallError &r_error);
+    Variant _new(const Variant** p_args, int p_argcount, Variant::CallError& r_error);
 
     bool can_instance() const override;
 
@@ -60,7 +62,7 @@ public:
 
     void get_script_property_list(List<PropertyInfo>* p_list) const override;
 
-    void set_path(const String &p_path, bool p_take_over) override;
+    void set_path(const String& p_path, bool p_take_over) override;
 
 
 // This concerns placeholders script instances only
@@ -68,9 +70,12 @@ private:
     Set<PlaceHolderScriptInstance*> placeholders;
 
     void _placeholder_erased(PlaceHolderScriptInstance* p_placeholder) override;
+
     void _update_exports(PlaceHolderScriptInstance* placeholder) const;
+
 public:
-    PlaceHolderScriptInstance* placeholder_instance_create(Object *p_this) override;
+    PlaceHolderScriptInstance* placeholder_instance_create(Object* p_this) override;
+
     void update_exports() override;
 
 // JNI methods

@@ -10,6 +10,8 @@
 class RefDB {
 private:
     RefDB();
+    RefDB(RefDB const &other) = delete;
+    RefDB& operator=(const RefDB&)= delete;
     ~RefDB() = default;
 
     struct RefIndex{

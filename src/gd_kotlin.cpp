@@ -8,12 +8,16 @@
 #include "logging.h"
 
 #ifndef TOOLS_ENABLED
+
 #include <core/os/dir_access.h>
+
 #endif
 
 #ifdef __ANDROID__
+
 #include <platform/android/os_android.h>
 #include <platform/android/java_godot_wrapper.h>
+
 #endif
 
 // If changed, remember to change also TransferContext::bufferCapacity on JVM side
@@ -107,8 +111,9 @@ void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) 
     classes.delete_local_ref(env);
 }
 
-void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types, jobjectArray p_singleton_names,
-                                jobjectArray p_method_names, jobjectArray p_types_of_methods) {
+void
+register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types, jobjectArray p_singleton_names,
+                           jobjectArray p_method_names, jobjectArray p_types_of_methods) {
 #ifdef DEBUG_ENABLED
     LOG_VERBOSE("Starting to register managed engine types...")
 #endif
@@ -123,7 +128,7 @@ void register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_en
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE(vformat("Registered %s engine type with index %s.", class_name, i))
 #endif
-    type.delete_local_ref(env);
+        type.delete_local_ref(env);
     }
 
     jni::JObjectArray singleton_names{p_singleton_names};
@@ -307,7 +312,7 @@ void GDKotlin::init() {
     JVM_CRASH_COND_MSG(!FileAccess::exists(bootstrap_jar),
                    "No godot-bootstrap.jar found! This file needs to stay alongside the godot editor executable!")
 #elif DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(!FileAccess::exists(bootstrap_jar),"No godot-bootstrap.jar found!")
+    JVM_CRASH_COND_MSG(!FileAccess::exists(bootstrap_jar), "No godot-bootstrap.jar found!")
 #endif
 
     LOG_INFO(vformat("Loading bootstrap jar: %s", bootstrap_jar))
@@ -446,11 +451,11 @@ void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
 #endif
     for (auto i = 0; i < p_classes.length(p_env); i++) {
         jni::JObject clazz = p_classes.get(p_env, i);
-        auto kt_class = new KtClass(clazz, class_loader);
+        auto* kt_class = new KtClass(clazz, class_loader);
         classes[kt_class->name] = kt_class;
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE(vformat("Loaded class %s : %s, as %s", kt_class->name, kt_class->super_class,
-                              kt_class->registered_class_name))
+                            kt_class->registered_class_name))
 #endif
         clazz.delete_local_ref(p_env);
     }
