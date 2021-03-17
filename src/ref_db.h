@@ -10,8 +10,6 @@
 class RefDB {
 private:
     RefDB();
-    RefDB(RefDB const &other) = delete;
-    RefDB& operator=(const RefDB&)= delete;
     ~RefDB() = default;
 
     struct RefIndex{
@@ -24,6 +22,9 @@ private:
     List<RefIndex> freeIds;
 
 public:
+    RefDB(RefDB const &other) = delete;
+    RefDB& operator=(const RefDB&)= delete;
+    
     uint64_t get_ref_id(Reference* ref);
     void remove_ref(Reference* ref, uint32_t counter);
     static RefDB& get_instance();
