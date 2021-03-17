@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -32,11 +32,7 @@ open class Skeleton2D : Node2D() {
   val boneSetupChanged: Signal0 by signal()
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_SKELETON2D)
-    val buffer = TransferContext.buffer
-    rawPtr = buffer.long
-    __id = buffer.long
-    buffer.rewind()
+    callConstructor(ENGINECLASS_SKELETON2D)
   }
 
   open fun _updateBoneSetup() {

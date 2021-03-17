@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -134,11 +134,7 @@ open class Sprite3D : SpriteBase3D() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_SPRITE3D)
-    val buffer = TransferContext.buffer
-    rawPtr = buffer.long
-    __id = buffer.long
-    buffer.rewind()
+    callConstructor(ENGINECLASS_SPRITE3D)
   }
 
   open fun frameCoords(schedule: Vector2.() -> Unit): Vector2 = frameCoords.apply{

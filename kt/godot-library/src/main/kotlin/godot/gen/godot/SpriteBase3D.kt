@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -218,11 +218,7 @@ open class SpriteBase3D : GeometryInstance() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_SPRITEBASE3D)
-    val buffer = TransferContext.buffer
-    rawPtr = buffer.long
-    __id = buffer.long
-    buffer.rewind()
+    callConstructor(ENGINECLASS_SPRITEBASE3D)
   }
 
   open fun modulate(schedule: Color.() -> Unit): Color = modulate.apply{

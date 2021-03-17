@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -340,11 +340,7 @@ open class AudioStreamPlayer3D : Spatial() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_AUDIOSTREAMPLAYER3D)
-    val buffer = TransferContext.buffer
-    rawPtr = buffer.long
-    __id = buffer.long
-    buffer.rewind()
+    callConstructor(ENGINECLASS_AUDIOSTREAMPLAYER3D)
   }
 
   open fun _busLayoutChanged() {

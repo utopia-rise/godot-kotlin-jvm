@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -81,6 +81,14 @@ open class Object : KtObject() {
    * Emitted whenever the object's script is changed.
    */
   val scriptChanged: Signal0 by signal()
+
+  internal inline fun callConstructor(classIndex: Int) {
+    TransferContext.invokeConstructor(classIndex)
+    val buffer = TransferContext.buffer
+    rawPtr = buffer.long
+    __id = buffer.long
+    buffer.rewind()
+  }
 
   fun Signal0.emit() {
     emit(this@Object)
@@ -358,11 +366,7 @@ open class Object : KtObject() {
   }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_OBJECT)
-    val buffer = TransferContext.buffer
-    rawPtr = buffer.long
-    __id = buffer.long
-    buffer.rewind()
+    callConstructor(ENGINECLASS_OBJECT)
   }
 
   /**
@@ -590,7 +594,7 @@ open class Object : KtObject() {
    *
    * This ID can be saved in [godot.EncodedObjectAsID], and can be used to retrieve the object instance with [@GDScript.instanceFromId].
    */
-  open override fun getInstanceId(): Long {
+  open fun getInstanceId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_INSTANCE_ID, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long

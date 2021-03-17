@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -60,11 +60,7 @@ open class ARVRPositionalTracker : Object() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_ARVRPOSITIONALTRACKER)
-    val buffer = TransferContext.buffer
-    rawPtr = buffer.long
-    __id = buffer.long
-    buffer.rewind()
+    callConstructor(ENGINECLASS_ARVRPOSITIONALTRACKER)
   }
 
   open fun _setJoyId(joyId: Long) {

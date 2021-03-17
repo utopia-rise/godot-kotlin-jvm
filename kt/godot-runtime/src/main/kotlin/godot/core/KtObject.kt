@@ -70,7 +70,6 @@ abstract class KtObject {
     open fun ____DO_NOT_TOUCH_THIS_isSingleton____() = false
 
     abstract fun __new()
-    abstract fun getInstanceId(): Long
 
     open fun _onDestroy() = Unit
 

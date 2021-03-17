@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -175,11 +175,7 @@ open class NinePatchRect : Control() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_NINEPATCHRECT)
-    val buffer = TransferContext.buffer
-    rawPtr = buffer.long
-    __id = buffer.long
-    buffer.rewind()
+    callConstructor(ENGINECLASS_NINEPATCHRECT)
   }
 
   open fun regionRect(schedule: Rect2.() -> Unit): Rect2 = regionRect.apply{

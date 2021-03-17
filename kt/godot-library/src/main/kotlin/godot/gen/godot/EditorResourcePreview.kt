@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -33,11 +33,7 @@ open class EditorResourcePreview : Node() {
   val previewInvalidated: Signal1<String> by signal("path")
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_EDITORRESOURCEPREVIEW)
-    val buffer = TransferContext.buffer
-    rawPtr = buffer.long
-    __id = buffer.long
-    buffer.rewind()
+    callConstructor(ENGINECLASS_EDITORRESOURCEPREVIEW)
   }
 
   open fun _previewReady(

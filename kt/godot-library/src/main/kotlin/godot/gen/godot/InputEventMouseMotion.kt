@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -94,11 +94,7 @@ open class InputEventMouseMotion : InputEventMouse() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_INPUTEVENTMOUSEMOTION)
-    val buffer = TransferContext.buffer
-    rawPtr = buffer.long
-    __id = buffer.long
-    buffer.rewind()
+    callConstructor(ENGINECLASS_INPUTEVENTMOUSEMOTION)
   }
 
   open fun relative(schedule: Vector2.() -> Unit): Vector2 = relative.apply{

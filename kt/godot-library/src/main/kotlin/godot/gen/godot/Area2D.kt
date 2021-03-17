@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -292,11 +292,7 @@ open class Area2D : CollisionObject2D() {
     }
 
   override fun __new() {
-    TransferContext.invokeConstructor(ENGINECLASS_AREA2D)
-    val buffer = TransferContext.buffer
-    rawPtr = buffer.long
-    __id = buffer.long
-    buffer.rewind()
+    callConstructor(ENGINECLASS_AREA2D)
   }
 
   open fun gravityVec(schedule: Vector2.() -> Unit): Vector2 = gravityVec.apply{
