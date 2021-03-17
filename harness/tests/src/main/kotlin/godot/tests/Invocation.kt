@@ -299,7 +299,7 @@ class Invocation : Spatial() {
         println("NavMesh instance id after re-re-assign: ${resourceTest.getInstanceId()}")
     }
 
-    init{
+    init {
         println("Hello Invocation!")
     }
 
