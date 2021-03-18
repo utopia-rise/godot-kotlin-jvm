@@ -16,16 +16,31 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * An X509 certificate (e.g. for SSL).
+ *
+ * The X509Certificate class represents an X509 certificate. Certificates can be loaded and saved like any other [godot.Resource].
+ *
+ * They can be used as the server certificate in [godot.StreamPeerSSL.acceptStream] (along with the proper [godot.CryptoKey]), and to specify the only certificate that should be accepted when connecting to an SSL server via [godot.StreamPeerSSL.connectToStream].
+ *
+ * **Note:** Not available in HTML5 exports.
+ */
 @GodotBaseType
 open class X509Certificate : Resource() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_X509CERTIFICATE)
 
+  /**
+   * Loads a certificate from `path` ("*.crt" file).
+   */
   open fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_X509CERTIFICATE_LOAD, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
+  /**
+   * Saves a certificate to the given `path` (should be a "*.crt" file).
+   */
   open fun save(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_X509CERTIFICATE_SAVE, LONG)

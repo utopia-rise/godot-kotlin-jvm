@@ -14,16 +14,30 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 
+/**
+ * A synchronization semaphore.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/threads/using_multiple_threads.html](https://docs.godotengine.org/en/latest/tutorials/threads/using_multiple_threads.html)
+ *
+ * A synchronization semaphore which can be used to synchronize multiple [godot.Thread]s. Initialized to zero on creation. Be careful to avoid deadlocks. For a binary version, see [godot.Mutex].
+ */
 @GodotBaseType
 open class Semaphore : Reference() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS__SEMAPHORE)
 
+  /**
+   * Lowers the [godot.Semaphore], allowing one more thread in. Returns [OK] on success, [ERR_BUSY] otherwise.
+   */
   open fun post(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__SEMAPHORE_POST, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
+  /**
+   * Tries to wait for the [godot.Semaphore], if its value is zero, blocks until non-zero. Returns [OK] on success, [ERR_BUSY] otherwise.
+   */
   open fun wait(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__SEMAPHORE_WAIT, LONG)

@@ -12,15 +12,24 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ *
+ */
 @GodotBaseType
 open class EditorResourceConversionPlugin : Reference() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_EDITORRESOURCECONVERSIONPLUGIN)
 
+  /**
+   *
+   */
   open fun _convert(resource: Resource): Resource? {
     throw NotImplementedError("_convert is not implemented for EditorResourceConversionPlugin")
   }
 
+  /**
+   *
+   */
   open fun _convertsTo(): String {
     throw NotImplementedError("_converts_to is not implemented for EditorResourceConversionPlugin")
   }

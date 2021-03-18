@@ -15,8 +15,14 @@ import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Suppress
 
+/**
+ *
+ */
 @GodotBaseType
 open class SpatialVelocityTracker : Reference() {
+  /**
+   *
+   */
   open var trackPhysicsStep: Boolean
     get() {
       TransferContext.writeArguments()
@@ -33,6 +39,9 @@ open class SpatialVelocityTracker : Reference() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_SPATIALVELOCITYTRACKER)
 
+  /**
+   *
+   */
   open fun getTrackedLinearVelocity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -40,11 +49,17 @@ open class SpatialVelocityTracker : Reference() {
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
+  /**
+   *
+   */
   open fun reset(position: Vector3) {
     TransferContext.writeArguments(VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALVELOCITYTRACKER_RESET, NIL)
   }
 
+  /**
+   *
+   */
   open fun updatePosition(position: Vector3) {
     TransferContext.writeArguments(VECTOR3 to position)
     TransferContext.callMethod(rawPtr,

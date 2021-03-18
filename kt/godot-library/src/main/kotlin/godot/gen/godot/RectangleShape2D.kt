@@ -14,8 +14,16 @@ import godot.util.VoidPtr
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Rectangle shape for 2D collisions.
+ *
+ * Rectangle shape for 2D collisions. This shape is useful for modeling box-like 2D objects.
+ */
 @GodotBaseType
 open class RectangleShape2D : Shape2D() {
+  /**
+   * The rectangle's half extents. The width and height of this shape is twice the half extents.
+   */
   open var extents: Vector2
     get() {
       TransferContext.writeArguments()

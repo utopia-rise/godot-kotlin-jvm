@@ -17,8 +17,16 @@ import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Class representing a spherical [godot.PrimitiveMesh].
+ *
+ * Class representing a spherical [godot.PrimitiveMesh].
+ */
 @GodotBaseType
 open class SphereMesh : PrimitiveMesh() {
+  /**
+   * Full height of the sphere.
+   */
   open var height: Double
     get() {
       TransferContext.writeArguments()
@@ -30,6 +38,11 @@ open class SphereMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPHEREMESH_SET_HEIGHT, NIL)
     }
 
+  /**
+   * If `true`, a hemisphere is created rather than a full sphere.
+   *
+   * **Note:** To get a regular hemisphere, the height and radius of the sphere must be equal.
+   */
   open var isHemisphere: Boolean
     get() {
       TransferContext.writeArguments()
@@ -42,6 +55,9 @@ open class SphereMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPHEREMESH_SET_IS_HEMISPHERE, NIL)
     }
 
+  /**
+   * Number of radial segments on the sphere.
+   */
   open var radialSegments: Long
     get() {
       TransferContext.writeArguments()
@@ -55,6 +71,9 @@ open class SphereMesh : PrimitiveMesh() {
           NIL)
     }
 
+  /**
+   * Radius of sphere.
+   */
   open var radius: Double
     get() {
       TransferContext.writeArguments()
@@ -66,6 +85,9 @@ open class SphereMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPHEREMESH_SET_RADIUS, NIL)
     }
 
+  /**
+   * Number of segments along the height of the sphere.
+   */
   open var rings: Long
     get() {
       TransferContext.writeArguments()

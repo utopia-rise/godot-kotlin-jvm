@@ -10,6 +10,11 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Horizontal scroll bar.
+ *
+ * Horizontal version of [godot.ScrollBar], which goes from left (min) to right (max).
+ */
 @GodotBaseType
 open class HScrollBar : ScrollBar() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_HSCROLLBAR)

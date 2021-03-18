@@ -18,6 +18,11 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 
+/**
+ * The generic 6-degrees-of-freedom joint can implement a variety of joint types by locking certain axes' rotation or translation.
+ *
+ * The first 3 DOF axes are linear axes, which represent translation of Bodies, and the latter 3 DOF axes represent the angular motion. Each axis can be either locked, or limited.
+ */
 @GodotBaseType
 open class Generic6DOFJoint : Joint() {
   open var angularLimitX_damping: Double
@@ -1034,6 +1039,9 @@ open class Generic6DOFJoint : Joint() {
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_SPRING_Z_STIFFNESS, NIL)
     }
 
+  /**
+   *
+   */
   open var precision: Long
     get() {
       TransferContext.writeArguments()
@@ -1094,50 +1102,119 @@ open class Generic6DOFJoint : Joint() {
   enum class Param(
     id: Long
   ) {
+    /**
+     * The minimum difference between the pivot points' axes.
+     */
     PARAM_LINEAR_LOWER_LIMIT(0),
 
+    /**
+     * The maximum difference between the pivot points' axes.
+     */
     PARAM_LINEAR_UPPER_LIMIT(1),
 
+    /**
+     * A factor applied to the movement across the axes. The lower, the slower the movement.
+     */
     PARAM_LINEAR_LIMIT_SOFTNESS(2),
 
+    /**
+     * The amount of restitution on the axes' movement. The lower, the more momentum gets lost.
+     */
     PARAM_LINEAR_RESTITUTION(3),
 
+    /**
+     * The amount of damping that happens at the linear motion across the axes.
+     */
     PARAM_LINEAR_DAMPING(4),
 
+    /**
+     * The velocity the linear motor will try to reach.
+     */
     PARAM_LINEAR_MOTOR_TARGET_VELOCITY(5),
 
+    /**
+     * The maximum force the linear motor will apply while trying to reach the velocity target.
+     */
     PARAM_LINEAR_MOTOR_FORCE_LIMIT(6),
 
+    /**
+     *
+     */
     PARAM_LINEAR_SPRING_STIFFNESS(7),
 
+    /**
+     *
+     */
     PARAM_LINEAR_SPRING_DAMPING(8),
 
+    /**
+     *
+     */
     PARAM_LINEAR_SPRING_EQUILIBRIUM_POINT(9),
 
+    /**
+     * The minimum rotation in negative direction to break loose and rotate around the axes.
+     */
     PARAM_ANGULAR_LOWER_LIMIT(10),
 
+    /**
+     * The minimum rotation in positive direction to break loose and rotate around the axes.
+     */
     PARAM_ANGULAR_UPPER_LIMIT(11),
 
+    /**
+     * The speed of all rotations across the axes.
+     */
     PARAM_ANGULAR_LIMIT_SOFTNESS(12),
 
+    /**
+     * The amount of rotational damping across the axes. The lower, the more dampening occurs.
+     */
     PARAM_ANGULAR_DAMPING(13),
 
+    /**
+     * The amount of rotational restitution across the axes. The lower, the more restitution occurs.
+     */
     PARAM_ANGULAR_RESTITUTION(14),
 
+    /**
+     * The maximum amount of force that can occur, when rotating around the axes.
+     */
     PARAM_ANGULAR_FORCE_LIMIT(15),
 
+    /**
+     * When rotating across the axes, this error tolerance factor defines how much the correction gets slowed down. The lower, the slower.
+     */
     PARAM_ANGULAR_ERP(16),
 
+    /**
+     * Target speed for the motor at the axes.
+     */
     PARAM_ANGULAR_MOTOR_TARGET_VELOCITY(17),
 
+    /**
+     * Maximum acceleration for the motor at the axes.
+     */
     PARAM_ANGULAR_MOTOR_FORCE_LIMIT(18),
 
+    /**
+     *
+     */
     PARAM_ANGULAR_SPRING_STIFFNESS(19),
 
+    /**
+     *
+     */
     PARAM_ANGULAR_SPRING_DAMPING(20),
 
+    /**
+     *
+     */
     PARAM_ANGULAR_SPRING_EQUILIBRIUM_POINT(21),
 
+    /**
+     * Represents the size of the [enum Param] enum.
+     */
     PARAM_MAX(22);
 
     val id: Long
@@ -1153,18 +1230,39 @@ open class Generic6DOFJoint : Joint() {
   enum class Flag(
     id: Long
   ) {
+    /**
+     * If enabled, linear motion is possible within the given limits.
+     */
     FLAG_ENABLE_LINEAR_LIMIT(0),
 
+    /**
+     * If enabled, rotational motion is possible within the given limits.
+     */
     FLAG_ENABLE_ANGULAR_LIMIT(1),
 
+    /**
+     *
+     */
     FLAG_ENABLE_ANGULAR_SPRING(2),
 
+    /**
+     *
+     */
     FLAG_ENABLE_LINEAR_SPRING(3),
 
+    /**
+     * If enabled, there is a rotational motor across these axes.
+     */
     FLAG_ENABLE_MOTOR(4),
 
+    /**
+     * If enabled, there is a linear motor across these axes.
+     */
     FLAG_ENABLE_LINEAR_MOTOR(5),
 
+    /**
+     * Represents the size of the [enum Flag] enum.
+     */
     FLAG_MAX(6);
 
     val id: Long
@@ -1178,64 +1276,154 @@ open class Generic6DOFJoint : Joint() {
   }
 
   companion object {
+    /**
+     * If enabled, rotational motion is possible within the given limits.
+     */
     final const val FLAG_ENABLE_ANGULAR_LIMIT: Long = 1
 
+    /**
+     *
+     */
     final const val FLAG_ENABLE_ANGULAR_SPRING: Long = 2
 
+    /**
+     * If enabled, linear motion is possible within the given limits.
+     */
     final const val FLAG_ENABLE_LINEAR_LIMIT: Long = 0
 
+    /**
+     * If enabled, there is a linear motor across these axes.
+     */
     final const val FLAG_ENABLE_LINEAR_MOTOR: Long = 5
 
+    /**
+     *
+     */
     final const val FLAG_ENABLE_LINEAR_SPRING: Long = 3
 
+    /**
+     * If enabled, there is a rotational motor across these axes.
+     */
     final const val FLAG_ENABLE_MOTOR: Long = 4
 
+    /**
+     * Represents the size of the [enum Flag] enum.
+     */
     final const val FLAG_MAX: Long = 6
 
+    /**
+     * The amount of rotational damping across the axes. The lower, the more dampening occurs.
+     */
     final const val PARAM_ANGULAR_DAMPING: Long = 13
 
+    /**
+     * When rotating across the axes, this error tolerance factor defines how much the correction gets slowed down. The lower, the slower.
+     */
     final const val PARAM_ANGULAR_ERP: Long = 16
 
+    /**
+     * The maximum amount of force that can occur, when rotating around the axes.
+     */
     final const val PARAM_ANGULAR_FORCE_LIMIT: Long = 15
 
+    /**
+     * The speed of all rotations across the axes.
+     */
     final const val PARAM_ANGULAR_LIMIT_SOFTNESS: Long = 12
 
+    /**
+     * The minimum rotation in negative direction to break loose and rotate around the axes.
+     */
     final const val PARAM_ANGULAR_LOWER_LIMIT: Long = 10
 
+    /**
+     * Maximum acceleration for the motor at the axes.
+     */
     final const val PARAM_ANGULAR_MOTOR_FORCE_LIMIT: Long = 18
 
+    /**
+     * Target speed for the motor at the axes.
+     */
     final const val PARAM_ANGULAR_MOTOR_TARGET_VELOCITY: Long = 17
 
+    /**
+     * The amount of rotational restitution across the axes. The lower, the more restitution occurs.
+     */
     final const val PARAM_ANGULAR_RESTITUTION: Long = 14
 
+    /**
+     *
+     */
     final const val PARAM_ANGULAR_SPRING_DAMPING: Long = 20
 
+    /**
+     *
+     */
     final const val PARAM_ANGULAR_SPRING_EQUILIBRIUM_POINT: Long = 21
 
+    /**
+     *
+     */
     final const val PARAM_ANGULAR_SPRING_STIFFNESS: Long = 19
 
+    /**
+     * The minimum rotation in positive direction to break loose and rotate around the axes.
+     */
     final const val PARAM_ANGULAR_UPPER_LIMIT: Long = 11
 
+    /**
+     * The amount of damping that happens at the linear motion across the axes.
+     */
     final const val PARAM_LINEAR_DAMPING: Long = 4
 
+    /**
+     * A factor applied to the movement across the axes. The lower, the slower the movement.
+     */
     final const val PARAM_LINEAR_LIMIT_SOFTNESS: Long = 2
 
+    /**
+     * The minimum difference between the pivot points' axes.
+     */
     final const val PARAM_LINEAR_LOWER_LIMIT: Long = 0
 
+    /**
+     * The maximum force the linear motor will apply while trying to reach the velocity target.
+     */
     final const val PARAM_LINEAR_MOTOR_FORCE_LIMIT: Long = 6
 
+    /**
+     * The velocity the linear motor will try to reach.
+     */
     final const val PARAM_LINEAR_MOTOR_TARGET_VELOCITY: Long = 5
 
+    /**
+     * The amount of restitution on the axes' movement. The lower, the more momentum gets lost.
+     */
     final const val PARAM_LINEAR_RESTITUTION: Long = 3
 
+    /**
+     *
+     */
     final const val PARAM_LINEAR_SPRING_DAMPING: Long = 8
 
+    /**
+     *
+     */
     final const val PARAM_LINEAR_SPRING_EQUILIBRIUM_POINT: Long = 9
 
+    /**
+     *
+     */
     final const val PARAM_LINEAR_SPRING_STIFFNESS: Long = 7
 
+    /**
+     * The maximum difference between the pivot points' axes.
+     */
     final const val PARAM_LINEAR_UPPER_LIMIT: Long = 1
 
+    /**
+     * Represents the size of the [enum Param] enum.
+     */
     final const val PARAM_MAX: Long = 22
   }
 }

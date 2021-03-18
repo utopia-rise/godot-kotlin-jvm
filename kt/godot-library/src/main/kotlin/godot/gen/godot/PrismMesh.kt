@@ -18,8 +18,16 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Class representing a prism-shaped [godot.PrimitiveMesh].
+ *
+ * Class representing a prism-shaped [godot.PrimitiveMesh].
+ */
 @GodotBaseType
 open class PrismMesh : PrimitiveMesh() {
+  /**
+   * Displacement of the upper edge along the X axis. 0.0 positions edge straight above the bottom-left edge.
+   */
   open var leftToRight: Double
     get() {
       TransferContext.writeArguments()
@@ -32,6 +40,9 @@ open class PrismMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRISMMESH_SET_LEFT_TO_RIGHT, NIL)
     }
 
+  /**
+   * Size of the prism.
+   */
   open var size: Vector3
     get() {
       TransferContext.writeArguments()
@@ -43,6 +54,9 @@ open class PrismMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRISMMESH_SET_SIZE, NIL)
     }
 
+  /**
+   * Number of added edge loops along the Z axis.
+   */
   open var subdivideDepth: Long
     get() {
       TransferContext.writeArguments()
@@ -56,6 +70,9 @@ open class PrismMesh : PrimitiveMesh() {
           NIL)
     }
 
+  /**
+   * Number of added edge loops along the Y axis.
+   */
   open var subdivideHeight: Long
     get() {
       TransferContext.writeArguments()
@@ -69,6 +86,9 @@ open class PrismMesh : PrimitiveMesh() {
           NIL)
     }
 
+  /**
+   * Number of added edge loops along the X axis.
+   */
   open var subdivideWidth: Long
     get() {
       TransferContext.writeArguments()

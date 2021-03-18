@@ -28,8 +28,16 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Parameters to be sent to a 2D shape physics query.
+ *
+ * This class contains the shape and other parameters for 2D intersection/collision queries. See also [godot.Physics2DShapeQueryResult].
+ */
 @GodotBaseType
 open class Physics2DShapeQueryParameters : Reference() {
+  /**
+   * If `true`, the query will take [godot.Area2D]s into account.
+   */
   open var collideWithAreas: Boolean
     get() {
       TransferContext.writeArguments()
@@ -43,6 +51,9 @@ open class Physics2DShapeQueryParameters : Reference() {
           ENGINEMETHOD_ENGINECLASS_PHYSICS2DSHAPEQUERYPARAMETERS_SET_COLLIDE_WITH_AREAS, NIL)
     }
 
+  /**
+   * If `true`, the query will take [godot.PhysicsBody2D]s into account.
+   */
   open var collideWithBodies: Boolean
     get() {
       TransferContext.writeArguments()
@@ -56,6 +67,9 @@ open class Physics2DShapeQueryParameters : Reference() {
           ENGINEMETHOD_ENGINECLASS_PHYSICS2DSHAPEQUERYPARAMETERS_SET_COLLIDE_WITH_BODIES, NIL)
     }
 
+  /**
+   * The physics layer(s) the query will take into account (as a bitmask). See [godot.Collision layers and masks](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   */
   open var collisionLayer: Long
     get() {
       TransferContext.writeArguments()
@@ -69,6 +83,9 @@ open class Physics2DShapeQueryParameters : Reference() {
           ENGINEMETHOD_ENGINECLASS_PHYSICS2DSHAPEQUERYPARAMETERS_SET_COLLISION_LAYER, NIL)
     }
 
+  /**
+   * The list of objects or object [RID]s that will be excluded from collisions.
+   */
   open var exclude: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
@@ -82,6 +99,9 @@ open class Physics2DShapeQueryParameters : Reference() {
           ENGINEMETHOD_ENGINECLASS_PHYSICS2DSHAPEQUERYPARAMETERS_SET_EXCLUDE, NIL)
     }
 
+  /**
+   * The collision margin for the shape.
+   */
   open var margin: Double
     get() {
       TransferContext.writeArguments()
@@ -95,6 +115,9 @@ open class Physics2DShapeQueryParameters : Reference() {
           ENGINEMETHOD_ENGINECLASS_PHYSICS2DSHAPEQUERYPARAMETERS_SET_MARGIN, NIL)
     }
 
+  /**
+   * The motion of the shape being queried for.
+   */
   open var motion: Vector2
     get() {
       TransferContext.writeArguments()
@@ -108,6 +131,9 @@ open class Physics2DShapeQueryParameters : Reference() {
           ENGINEMETHOD_ENGINECLASS_PHYSICS2DSHAPEQUERYPARAMETERS_SET_MOTION, NIL)
     }
 
+  /**
+   * The queried shape's [RID]. See also [setShape].
+   */
   open var shapeRid: RID
     get() {
       TransferContext.writeArguments()
@@ -121,6 +147,9 @@ open class Physics2DShapeQueryParameters : Reference() {
           ENGINEMETHOD_ENGINECLASS_PHYSICS2DSHAPEQUERYPARAMETERS_SET_SHAPE_RID, NIL)
     }
 
+  /**
+   * The queried shape's transform matrix.
+   */
   open var transform: Transform2D
     get() {
       TransferContext.writeArguments()
@@ -149,6 +178,9 @@ open class Physics2DShapeQueryParameters : Reference() {
   }
 
 
+  /**
+   * Sets the [godot.Shape2D] that will be used for collision/intersection queries.
+   */
   open fun setShape(shape: Resource) {
     TransferContext.writeArguments(OBJECT to shape)
     TransferContext.callMethod(rawPtr,

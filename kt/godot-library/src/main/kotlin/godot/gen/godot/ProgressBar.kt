@@ -13,8 +13,16 @@ import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Suppress
 
+/**
+ * General-purpose progress bar.
+ *
+ * General-purpose progress bar. Shows fill percentage from right to left.
+ */
 @GodotBaseType
 open class ProgressBar : Range() {
+  /**
+   * If `true`, the fill percentage is displayed on the bar.
+   */
   open var percentVisible: Boolean
     get() {
       TransferContext.writeArguments()

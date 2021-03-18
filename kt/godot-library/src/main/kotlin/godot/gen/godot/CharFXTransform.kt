@@ -25,8 +25,20 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Controls how an individual character will be displayed in a [godot.RichTextEffect].
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/gui/bbcode_in_richtextlabel.html](https://docs.godotengine.org/en/latest/tutorials/gui/bbcode_in_richtextlabel.html)
+ * [https://github.com/Eoin-ONeill-Yokai/Godot-Rich-Text-Effect-Test-Project](https://github.com/Eoin-ONeill-Yokai/Godot-Rich-Text-Effect-Test-Project)
+ *
+ * By setting various properties on this object, you can control how individual characters will be displayed in a [godot.RichTextEffect].
+ */
 @GodotBaseType
 open class CharFXTransform : Reference() {
+  /**
+   * The index of the current character (starting from 0). Setting this property won't affect drawing.
+   */
   open var absoluteIndex: Long
     get() {
       TransferContext.writeArguments()
@@ -40,6 +52,15 @@ open class CharFXTransform : Reference() {
           ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_ABSOLUTE_INDEX, NIL)
     }
 
+  /**
+   * The Unicode codepoint the character will use. This only affects non-whitespace characters. [@GDScript.ord] can be useful here. For example, the following will replace all characters with asterisks:
+   *
+   * ```
+   * 			# `char_fx` is the CharFXTransform parameter from `_process_custom_fx()`.
+   * 			# See the RichTextEffect documentation for details.
+   * 			char_fx.character = ord("*")
+   * 			```
+   */
   open var character: Long
     get() {
       TransferContext.writeArguments()
@@ -53,6 +74,9 @@ open class CharFXTransform : Reference() {
           NIL)
     }
 
+  /**
+   * The color the character will be drawn with.
+   */
   open var color: Color
     get() {
       TransferContext.writeArguments()
@@ -64,6 +88,11 @@ open class CharFXTransform : Reference() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_COLOR, NIL)
     }
 
+  /**
+   * The time elapsed since the [godot.RichTextLabel] was added to the scene tree (in seconds). Time stops when the project is paused, unless the [godot.RichTextLabel]'s [godot.Node.pauseMode] is set to [godot.Node.PAUSE_MODE_PROCESS].
+   *
+   * **Note:** Time still passes while the [godot.RichTextLabel] is hidden.
+   */
   open var elapsedTime: Double
     get() {
       TransferContext.writeArguments()
@@ -77,6 +106,15 @@ open class CharFXTransform : Reference() {
           NIL)
     }
 
+  /**
+   * Contains the arguments passed in the opening BBCode tag. By default, arguments are strings; if their contents match a type such as [bool], [int] or [float], they will be converted automatically. Color codes in the form `#rrggbb` or `#rgb` will be converted to an opaque [godot.core.Color]. String arguments may not contain spaces, even if they're quoted. If present, quotes will also be present in the final string.
+   *
+   * For example, the opening BBCode tag `[example foo=hello bar=true baz=42 color=#ffffff]` will map to the following [godot.core.Dictionary]:
+   *
+   * ```
+   * 			{"foo": "hello", "bar": true, "baz": 42, "color": Color(1, 1, 1, 1)}
+   * 			```
+   */
   open var env: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
@@ -89,6 +127,9 @@ open class CharFXTransform : Reference() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_ENV, NIL)
     }
 
+  /**
+   * The position offset the character will be drawn with (in pixels).
+   */
   open var offset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -101,6 +142,9 @@ open class CharFXTransform : Reference() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_OFFSET, NIL)
     }
 
+  /**
+   * The index of the current character (starting from 0). Setting this property won't affect drawing.
+   */
   open var relativeIndex: Long
     get() {
       TransferContext.writeArguments()
@@ -114,6 +158,9 @@ open class CharFXTransform : Reference() {
           ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_RELATIVE_INDEX, NIL)
     }
 
+  /**
+   * If `true`, the character will be drawn. If `false`, the character will be hidden. Characters around hidden characters will reflow to take the space of hidden characters. If this is not desired, set their [color] to `Color(1, 1, 1, 0)` instead.
+   */
   open var visible: Boolean
     get() {
       TransferContext.writeArguments()

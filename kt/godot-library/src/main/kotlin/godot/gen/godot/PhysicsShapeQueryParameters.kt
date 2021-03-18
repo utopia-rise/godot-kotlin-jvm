@@ -26,8 +26,16 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Parameters to be sent to a 3D shape physics query.
+ *
+ * This class contains the shape and other parameters for 3D intersection/collision queries. See also [godot.PhysicsShapeQueryResult].
+ */
 @GodotBaseType
 open class PhysicsShapeQueryParameters : Reference() {
+  /**
+   * If `true`, the query will take [godot.Area]s into account.
+   */
   open var collideWithAreas: Boolean
     get() {
       TransferContext.writeArguments()
@@ -41,6 +49,9 @@ open class PhysicsShapeQueryParameters : Reference() {
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_SET_COLLIDE_WITH_AREAS, NIL)
     }
 
+  /**
+   * If `true`, the query will take [godot.PhysicsBody]s into account.
+   */
   open var collideWithBodies: Boolean
     get() {
       TransferContext.writeArguments()
@@ -54,6 +65,9 @@ open class PhysicsShapeQueryParameters : Reference() {
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_SET_COLLIDE_WITH_BODIES, NIL)
     }
 
+  /**
+   * The physics layer(s) the query will take into account (as a bitmask). See [godot.Collision layers and masks](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   */
   open var collisionMask: Long
     get() {
       TransferContext.writeArguments()
@@ -67,6 +81,9 @@ open class PhysicsShapeQueryParameters : Reference() {
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_SET_COLLISION_MASK, NIL)
     }
 
+  /**
+   * The list of objects or object [RID]s that will be excluded from collisions.
+   */
   open var exclude: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
@@ -80,6 +97,9 @@ open class PhysicsShapeQueryParameters : Reference() {
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_SET_EXCLUDE, NIL)
     }
 
+  /**
+   * The collision margin for the shape.
+   */
   open var margin: Double
     get() {
       TransferContext.writeArguments()
@@ -93,6 +113,9 @@ open class PhysicsShapeQueryParameters : Reference() {
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_SET_MARGIN, NIL)
     }
 
+  /**
+   * The queried shape's [RID]. See also [setShape].
+   */
   open var shapeRid: RID
     get() {
       TransferContext.writeArguments()
@@ -106,6 +129,9 @@ open class PhysicsShapeQueryParameters : Reference() {
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_SET_SHAPE_RID, NIL)
     }
 
+  /**
+   * The queried shape's transform matrix.
+   */
   open var transform: Transform
     get() {
       TransferContext.writeArguments()
@@ -128,6 +154,9 @@ open class PhysicsShapeQueryParameters : Reference() {
   }
 
 
+  /**
+   * Sets the [godot.Shape] that will be used for collision/intersection queries.
+   */
   open fun setShape(shape: Resource) {
     TransferContext.writeArguments(OBJECT to shape)
     TransferContext.callMethod(rawPtr,

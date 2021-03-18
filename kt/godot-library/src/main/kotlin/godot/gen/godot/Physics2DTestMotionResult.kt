@@ -17,8 +17,14 @@ import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ *
+ */
 @GodotBaseType
 open class Physics2DTestMotionResult : Reference() {
+  /**
+   *
+   */
   open val collider: Object?
     get() {
       TransferContext.writeArguments()
@@ -27,6 +33,9 @@ open class Physics2DTestMotionResult : Reference() {
       return TransferContext.readReturnValue(OBJECT, true) as Object?
     }
 
+  /**
+   *
+   */
   open val colliderId: Long
     get() {
       TransferContext.writeArguments()
@@ -35,6 +44,9 @@ open class Physics2DTestMotionResult : Reference() {
       return TransferContext.readReturnValue(LONG, false) as Long
     }
 
+  /**
+   *
+   */
   open val colliderRid: RID
     get() {
       TransferContext.writeArguments()
@@ -43,6 +55,9 @@ open class Physics2DTestMotionResult : Reference() {
       return TransferContext.readReturnValue(_RID, false) as RID
     }
 
+  /**
+   *
+   */
   open val colliderShape: Long
     get() {
       TransferContext.writeArguments()
@@ -51,6 +66,9 @@ open class Physics2DTestMotionResult : Reference() {
       return TransferContext.readReturnValue(LONG, false) as Long
     }
 
+  /**
+   *
+   */
   open val colliderVelocity: Vector2
     get() {
       TransferContext.writeArguments()
@@ -59,6 +77,9 @@ open class Physics2DTestMotionResult : Reference() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
+  /**
+   *
+   */
   open val collisionNormal: Vector2
     get() {
       TransferContext.writeArguments()
@@ -67,6 +88,9 @@ open class Physics2DTestMotionResult : Reference() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
+  /**
+   *
+   */
   open val collisionPoint: Vector2
     get() {
       TransferContext.writeArguments()
@@ -75,6 +99,9 @@ open class Physics2DTestMotionResult : Reference() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
+  /**
+   *
+   */
   open val motion: Vector2
     get() {
       TransferContext.writeArguments()
@@ -83,6 +110,9 @@ open class Physics2DTestMotionResult : Reference() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
+  /**
+   *
+   */
   open val motionRemainder: Vector2
     get() {
       TransferContext.writeArguments()

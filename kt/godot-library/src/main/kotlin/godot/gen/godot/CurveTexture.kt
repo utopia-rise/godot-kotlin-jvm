@@ -14,8 +14,16 @@ import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * A texture that shows a curve.
+ *
+ * Renders a given [godot.Curve] provided to it. Simplifies the task of drawing curves and/or saving them as image files.
+ */
 @GodotBaseType
 open class CurveTexture : Texture() {
+  /**
+   * The `curve` rendered onto the texture.
+   */
   open var curve: Curve?
     get() {
       TransferContext.writeArguments()
@@ -27,6 +35,9 @@ open class CurveTexture : Texture() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_SET_CURVE, NIL)
     }
 
+  /**
+   * The width of the texture.
+   */
   open var width: Long
     get() = super.getTextureWidth()
     set(value) {

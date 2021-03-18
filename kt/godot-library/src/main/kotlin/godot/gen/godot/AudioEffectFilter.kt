@@ -15,8 +15,19 @@ import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Adds a filter to the audio bus.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/audio/audio_buses.html](https://docs.godotengine.org/en/latest/tutorials/audio/audio_buses.html)
+ *
+ * Allows frequencies other than the [cutoffHz] to pass.
+ */
 @GodotBaseType
 open class AudioEffectFilter : AudioEffect() {
+  /**
+   * Threshold frequency for the filter, in Hz.
+   */
   open var cutoffHz: Double
     get() {
       TransferContext.writeArguments()
@@ -30,6 +41,9 @@ open class AudioEffectFilter : AudioEffect() {
           NIL)
     }
 
+  /**
+   *
+   */
   open var db: Long
     get() {
       TransferContext.writeArguments()
@@ -41,6 +55,9 @@ open class AudioEffectFilter : AudioEffect() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTFILTER_SET_DB, NIL)
     }
 
+  /**
+   * Gain amount of the frequencies after the filter.
+   */
   open var gain: Double
     get() {
       TransferContext.writeArguments()
@@ -53,6 +70,9 @@ open class AudioEffectFilter : AudioEffect() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTFILTER_SET_GAIN, NIL)
     }
 
+  /**
+   * Amount of boost in the frequency range near the cutoff frequency.
+   */
   open var resonance: Double
     get() {
       TransferContext.writeArguments()
@@ -71,12 +91,24 @@ open class AudioEffectFilter : AudioEffect() {
   enum class FilterDB(
     id: Long
   ) {
+    /**
+     *
+     */
     FILTER_6DB(0),
 
+    /**
+     *
+     */
     FILTER_12DB(1),
 
+    /**
+     *
+     */
     FILTER_18DB(2),
 
+    /**
+     *
+     */
     FILTER_24DB(3);
 
     val id: Long
@@ -90,12 +122,24 @@ open class AudioEffectFilter : AudioEffect() {
   }
 
   companion object {
+    /**
+     *
+     */
     final const val FILTER_12DB: Long = 1
 
+    /**
+     *
+     */
     final const val FILTER_18DB: Long = 2
 
+    /**
+     *
+     */
     final const val FILTER_24DB: Long = 3
 
+    /**
+     *
+     */
     final const val FILTER_6DB: Long = 0
   }
 }

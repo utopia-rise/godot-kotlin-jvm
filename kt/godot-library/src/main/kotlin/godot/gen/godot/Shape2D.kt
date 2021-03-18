@@ -23,8 +23,19 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Suppress
 
+/**
+ * Base class for all 2D shapes.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html)
+ *
+ * Base class for all 2D shapes. All 2D shape types inherit from this.
+ */
 @GodotBaseType
 open class Shape2D : Resource() {
+  /**
+   * The shape's custom solver bias.
+   */
   open var customSolverBias: Double
     get() {
       TransferContext.writeArguments()
@@ -40,6 +51,11 @@ open class Shape2D : Resource() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SHAPE2D)
 
+  /**
+   * Returns `true` if this shape is colliding with another.
+   *
+   * This method needs the transformation matrix for this shape (`local_xform`), the shape to check collisions with (`with_shape`), and the transformation matrix of that shape (`shape_xform`).
+   */
   open fun collide(
     localXform: Transform2D,
     withShape: Shape2D,
@@ -51,6 +67,11 @@ open class Shape2D : Resource() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   * Returns a list of the points where this shape touches another. If there are no collisions the list is empty.
+   *
+   * This method needs the transformation matrix for this shape (`local_xform`), the shape to check collisions with (`with_shape`), and the transformation matrix of that shape (`shape_xform`).
+   */
   open fun collideAndGetContacts(
     localXform: Transform2D,
     withShape: Shape2D,
@@ -63,6 +84,11 @@ open class Shape2D : Resource() {
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
+  /**
+   * Returns whether this shape would collide with another, if a given movement was applied.
+   *
+   * This method needs the transformation matrix for this shape (`local_xform`), the movement to test on this shape (`local_motion`), the shape to check collisions with (`with_shape`), the transformation matrix of that shape (`shape_xform`), and the movement to test onto the other object (`shape_motion`).
+   */
   open fun collideWithMotion(
     localXform: Transform2D,
     localMotion: Vector2,
@@ -76,6 +102,11 @@ open class Shape2D : Resource() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   * Returns a list of the points where this shape would touch another, if a given movement was applied. If there are no collisions the list is empty.
+   *
+   * This method needs the transformation matrix for this shape (`local_xform`), the movement to test on this shape (`local_motion`), the shape to check collisions with (`with_shape`), the transformation matrix of that shape (`shape_xform`), and the movement to test onto the other object (`shape_motion`).
+   */
   open fun collideWithMotionAndGetContacts(
     localXform: Transform2D,
     localMotion: Vector2,

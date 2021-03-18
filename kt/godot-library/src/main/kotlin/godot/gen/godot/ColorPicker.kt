@@ -23,14 +23,31 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Color picker control.
+ *
+ * [godot.Control] node displaying a color picker widget. It's useful for selecting a color from an RGB/RGBA colorspace.
+ */
 @GodotBaseType
 open class ColorPicker : BoxContainer() {
+  /**
+   * Emitted when the color is changed.
+   */
   val colorChanged: Signal1<Color> by signal("color")
 
+  /**
+   * Emitted when a preset is added.
+   */
   val presetAdded: Signal1<Color> by signal("color")
 
+  /**
+   * Emitted when a preset is removed.
+   */
   val presetRemoved: Signal1<Color> by signal("color")
 
+  /**
+   * The currently selected color.
+   */
   open var color: Color
     get() {
       TransferContext.writeArguments()
@@ -42,6 +59,9 @@ open class ColorPicker : BoxContainer() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_COLOR, NIL)
     }
 
+  /**
+   * If `true`, the color will apply only after the user releases the mouse button, otherwise it will apply immediately even in mouse motion event (which can cause performance issues).
+   */
   open var deferredMode: Boolean
     get() {
       TransferContext.writeArguments()
@@ -55,6 +75,9 @@ open class ColorPicker : BoxContainer() {
           NIL)
     }
 
+  /**
+   * If `true`, shows an alpha channel slider (transparency).
+   */
   open var editAlpha: Boolean
     get() {
       TransferContext.writeArguments()
@@ -66,6 +89,11 @@ open class ColorPicker : BoxContainer() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_EDIT_ALPHA, NIL)
     }
 
+  /**
+   * If `true`, allows editing the color with Hue/Saturation/Value sliders.
+   *
+   * **Note:** Cannot be enabled if raw mode is on.
+   */
   open var hsvMode: Boolean
     get() {
       TransferContext.writeArguments()
@@ -77,6 +105,9 @@ open class ColorPicker : BoxContainer() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_HSV_MODE, NIL)
     }
 
+  /**
+   * If `true`, the "add preset" button is enabled.
+   */
   open var presetsEnabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -90,6 +121,9 @@ open class ColorPicker : BoxContainer() {
           NIL)
     }
 
+  /**
+   * If `true`, saved color presets are visible.
+   */
   open var presetsVisible: Boolean
     get() {
       TransferContext.writeArguments()
@@ -103,6 +137,11 @@ open class ColorPicker : BoxContainer() {
           NIL)
     }
 
+  /**
+   * If `true`, allows the color R, G, B component values to go beyond 1.0, which can be used for certain special operations that require it (like tinting without darkening or rendering sprites in HDR).
+   *
+   * **Note:** Cannot be enabled if HSV mode is on.
+   */
   open var rawMode: Boolean
     get() {
       TransferContext.writeArguments()
@@ -167,16 +206,27 @@ open class ColorPicker : BoxContainer() {
   open fun _wInput(arg0: InputEvent) {
   }
 
+  /**
+   * Adds the given color to a list of color presets. The presets are displayed in the color picker and the user will be able to select them.
+   *
+   * **Note:** the presets list is only for *this* color picker.
+   */
   open fun addPreset(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_ADD_PRESET, NIL)
   }
 
+  /**
+   * Removes the given color from the list of color presets of this color picker.
+   */
   open fun erasePreset(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_ERASE_PRESET, NIL)
   }
 
+  /**
+   * Returns the list of colors in the presets of the color picker.
+   */
   open fun getPresets(): PoolColorArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_PRESETS,

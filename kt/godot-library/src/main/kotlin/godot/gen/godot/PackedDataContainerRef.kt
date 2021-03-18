@@ -16,6 +16,9 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 
+/**
+ * Reference version of [godot.PackedDataContainer].
+ */
 @GodotBaseType
 open class PackedDataContainerRef : Reference() {
   override fun __new(): VoidPtr =
@@ -37,6 +40,9 @@ open class PackedDataContainerRef : Reference() {
     throw NotImplementedError("_iter_next is not implemented for PackedDataContainerRef")
   }
 
+  /**
+   *
+   */
   open fun size(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDDATACONTAINERREF_SIZE, LONG)

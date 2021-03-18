@@ -13,8 +13,18 @@ import godot.core.VariantType.POOL_VECTOR2_ARRAY
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Convex polygon shape for 2D physics.
+ *
+ * Convex polygon shape for 2D physics. A convex polygon, whatever its shape, is internally decomposed into as many convex polygons as needed to ensure all collision checks against it are always done on convex polygons (which are faster to check).
+ *
+ * The main difference between a [godot.ConvexPolygonShape2D] and a [godot.ConcavePolygonShape2D] is that a concave polygon assumes it is concave and uses a more complex method of collision detection, and a convex one forces itself to be convex in order to speed up collision detection.
+ */
 @GodotBaseType
 open class ConvexPolygonShape2D : Shape2D() {
+  /**
+   * The polygon's list of vertices. Can be in either clockwise or counterclockwise order.
+   */
   open var points: PoolVector2Array
     get() {
       TransferContext.writeArguments()
@@ -31,6 +41,9 @@ open class ConvexPolygonShape2D : Shape2D() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_CONVEXPOLYGONSHAPE2D)
 
+  /**
+   * Based on the set of points provided, this creates and assigns the [points] property using the convex hull algorithm. Removing all unneeded points. See [godot.Geometry.convexHull2d] for details.
+   */
   open fun setPointCloud(pointCloud: PoolVector2Array) {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to pointCloud)
     TransferContext.callMethod(rawPtr,

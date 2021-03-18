@@ -15,8 +15,16 @@ import godot.util.VoidPtr
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Simple texture that uses a mesh to draw itself.
+ *
+ * Simple texture that uses a mesh to draw itself. It's limited because flags can't be changed and region drawing is not supported.
+ */
 @GodotBaseType
 open class MeshTexture : Texture() {
+  /**
+   * Sets the base texture that the Mesh will use to draw.
+   */
   open var baseTexture: Texture?
     get() {
       TransferContext.writeArguments()
@@ -29,6 +37,9 @@ open class MeshTexture : Texture() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHTEXTURE_SET_BASE_TEXTURE, NIL)
     }
 
+  /**
+   * Sets the size of the image, needed for reference.
+   */
   open var imageSize: Vector2
     get() {
       TransferContext.writeArguments()
@@ -41,6 +52,9 @@ open class MeshTexture : Texture() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHTEXTURE_SET_IMAGE_SIZE, NIL)
     }
 
+  /**
+   * Sets the mesh used to draw. It must be a mesh using 2D vertices.
+   */
   open var mesh: Mesh?
     get() {
       TransferContext.writeArguments()

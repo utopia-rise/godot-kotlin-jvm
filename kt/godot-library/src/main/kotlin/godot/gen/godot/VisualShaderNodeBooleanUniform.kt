@@ -10,6 +10,11 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * A boolean uniform to be used within the visual shader graph.
+ *
+ * Translated to `uniform bool` in the shader language.
+ */
 @GodotBaseType
 open class VisualShaderNodeBooleanUniform : VisualShaderNodeUniform() {
   override fun __new(): VoidPtr =

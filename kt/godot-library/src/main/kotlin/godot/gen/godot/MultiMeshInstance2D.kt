@@ -14,10 +14,23 @@ import godot.signals.signal
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Node that instances a [godot.MultiMesh] in 2D.
+ *
+ * [godot.MultiMeshInstance2D] is a specialized node to instance a [godot.MultiMesh] resource in 2D.
+ *
+ * Usage is the same as [godot.MultiMeshInstance].
+ */
 @GodotBaseType
 open class MultiMeshInstance2D : Node2D() {
+  /**
+   * Emitted when the [texture] is changed.
+   */
   val textureChanged: Signal0 by signal()
 
+  /**
+   * The [godot.MultiMesh] that will be drawn by the [godot.MultiMeshInstance2D].
+   */
   open var multimesh: MultiMesh?
     get() {
       TransferContext.writeArguments()
@@ -31,6 +44,11 @@ open class MultiMeshInstance2D : Node2D() {
           NIL)
     }
 
+  /**
+   * The normal map that will be used if using the default [godot.CanvasItemMaterial].
+   *
+   * **Note:** Godot expects the normal map to use X+, Y-, and Z+ coordinates. See [this page](http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates) for a comparison of normal map coordinates expected by popular engines.
+   */
   open var normalMap: Texture?
     get() {
       TransferContext.writeArguments()
@@ -44,6 +62,9 @@ open class MultiMeshInstance2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_MULTIMESHINSTANCE2D_SET_NORMAL_MAP, NIL)
     }
 
+  /**
+   * The [godot.Texture] that will be used if using the default [godot.CanvasItemMaterial]. Can be accessed as `TEXTURE` in CanvasItem shader.
+   */
   open var texture: Texture?
     get() {
       TransferContext.writeArguments()

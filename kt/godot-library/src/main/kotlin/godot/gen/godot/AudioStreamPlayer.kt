@@ -23,10 +23,24 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * Plays back audio non-positionally.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/audio/audio_streams.html](https://docs.godotengine.org/en/latest/tutorials/audio/audio_streams.html)
+ *
+ * Plays an audio stream non-positionally.
+ */
 @GodotBaseType
 open class AudioStreamPlayer : Node() {
+  /**
+   * Emitted when the audio stops playing.
+   */
   val finished: Signal0 by signal()
 
+  /**
+   * If `true`, audio plays when added to scene tree.
+   */
   open var autoplay: Boolean
     get() {
       TransferContext.writeArguments()
@@ -40,6 +54,9 @@ open class AudioStreamPlayer : Node() {
           NIL)
     }
 
+  /**
+   * Bus on which this audio is playing.
+   */
   open var bus: String
     get() {
       TransferContext.writeArguments()
@@ -51,6 +68,9 @@ open class AudioStreamPlayer : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_SET_BUS, NIL)
     }
 
+  /**
+   * If the audio configuration has more than two speakers, this sets the target channels. See [enum MixTarget] constants.
+   */
   open var mixTarget: Long
     get() {
       TransferContext.writeArguments()
@@ -64,6 +84,9 @@ open class AudioStreamPlayer : Node() {
           NIL)
     }
 
+  /**
+   * The pitch and the tempo of the audio, as a multiplier of the audio sample's sample rate.
+   */
   open var pitchScale: Double
     get() {
       TransferContext.writeArguments()
@@ -77,6 +100,9 @@ open class AudioStreamPlayer : Node() {
           NIL)
     }
 
+  /**
+   * If `true`, audio is playing.
+   */
   open val playing: Boolean
     get() {
       TransferContext.writeArguments()
@@ -85,6 +111,9 @@ open class AudioStreamPlayer : Node() {
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
+  /**
+   * The [godot.AudioStream] object to be played.
+   */
   open var stream: AudioStream?
     get() {
       TransferContext.writeArguments()
@@ -97,6 +126,9 @@ open class AudioStreamPlayer : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_SET_STREAM, NIL)
     }
 
+  /**
+   * If `true`, the playback is paused. You can resume it by setting `stream_paused` to `false`.
+   */
   open var streamPaused: Boolean
     get() {
       TransferContext.writeArguments()
@@ -110,6 +142,9 @@ open class AudioStreamPlayer : Node() {
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_SET_STREAM_PAUSED, NIL)
     }
 
+  /**
+   * Volume of sound, in dB.
+   */
   open var volumeDb: Double
     get() {
       TransferContext.writeArguments()
@@ -135,6 +170,9 @@ open class AudioStreamPlayer : Node() {
   open fun _setPlaying(enable: Boolean) {
   }
 
+  /**
+   * Returns the position in the [godot.AudioStream] in seconds.
+   */
   open fun getPlaybackPosition(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -142,6 +180,9 @@ open class AudioStreamPlayer : Node() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
+  /**
+   * Returns the [godot.AudioStreamPlayback] object associated with this [godot.AudioStreamPlayer].
+   */
   open fun getStreamPlayback(): AudioStreamPlayback? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -149,16 +190,25 @@ open class AudioStreamPlayer : Node() {
     return TransferContext.readReturnValue(OBJECT, true) as AudioStreamPlayback?
   }
 
+  /**
+   * Plays the audio from the given `from_position`, in seconds.
+   */
   open fun play(fromPosition: Double = 0.0) {
     TransferContext.writeArguments(DOUBLE to fromPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_PLAY, NIL)
   }
 
+  /**
+   * Sets the position from which audio will be played, in seconds.
+   */
   open fun seek(toPosition: Double) {
     TransferContext.writeArguments(DOUBLE to toPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_SEEK, NIL)
   }
 
+  /**
+   * Stops the audio.
+   */
   open fun stop() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_STOP, NIL)
@@ -167,10 +217,19 @@ open class AudioStreamPlayer : Node() {
   enum class MixTarget(
     id: Long
   ) {
+    /**
+     * The audio will be played only on the first channel.
+     */
     MIX_TARGET_STEREO(0),
 
+    /**
+     * The audio will be played on all surround channels.
+     */
     MIX_TARGET_SURROUND(1),
 
+    /**
+     * The audio will be played on the second channel, which is usually the center.
+     */
     MIX_TARGET_CENTER(2);
 
     val id: Long
@@ -184,10 +243,19 @@ open class AudioStreamPlayer : Node() {
   }
 
   companion object {
+    /**
+     * The audio will be played on the second channel, which is usually the center.
+     */
     final const val MIX_TARGET_CENTER: Long = 2
 
+    /**
+     * The audio will be played only on the first channel.
+     */
     final const val MIX_TARGET_STEREO: Long = 0
 
+    /**
+     * The audio will be played on all surround channels.
+     */
     final const val MIX_TARGET_SURROUND: Long = 1
   }
 }

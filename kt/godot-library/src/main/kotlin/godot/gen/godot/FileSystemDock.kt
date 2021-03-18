@@ -26,20 +26,44 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ *
+ */
 @GodotBaseType
 open class FileSystemDock : VBoxContainer() {
+  /**
+   *
+   */
   val displayModeChanged: Signal0 by signal()
 
+  /**
+   *
+   */
   val fileRemoved: Signal1<String> by signal("file")
 
+  /**
+   *
+   */
   val filesMoved: Signal2<String, String> by signal("old_file", "new_file")
 
+  /**
+   *
+   */
   val folderMoved: Signal2<String, String> by signal("old_folder", "new_file")
 
+  /**
+   *
+   */
   val folderRemoved: Signal1<String> by signal("folder")
 
+  /**
+   *
+   */
   val inherit: Signal1<String> by signal("file")
 
+  /**
+   *
+   */
   val instance: Signal1<PoolStringArray> by signal("files")
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_FILESYSTEMDOCK)
@@ -174,6 +198,9 @@ open class FileSystemDock : VBoxContainer() {
   ) {
   }
 
+  /**
+   *
+   */
   open fun canDropDataFw(
     arg0: Vector2,
     arg1: Any?,
@@ -185,6 +212,9 @@ open class FileSystemDock : VBoxContainer() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   *
+   */
   open fun dropDataFw(
     arg0: Vector2,
     arg1: Any?,
@@ -194,6 +224,9 @@ open class FileSystemDock : VBoxContainer() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILESYSTEMDOCK_DROP_DATA_FW, NIL)
   }
 
+  /**
+   *
+   */
   open fun getDragDataFw(arg0: Vector2, arg1: Control): Any? {
     TransferContext.writeArguments(VECTOR2 to arg0, OBJECT to arg1)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILESYSTEMDOCK_GET_DRAG_DATA_FW,
@@ -201,6 +234,9 @@ open class FileSystemDock : VBoxContainer() {
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
+  /**
+   *
+   */
   open fun navigateToPath(arg0: String) {
     TransferContext.writeArguments(STRING to arg0)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILESYSTEMDOCK_NAVIGATE_TO_PATH,

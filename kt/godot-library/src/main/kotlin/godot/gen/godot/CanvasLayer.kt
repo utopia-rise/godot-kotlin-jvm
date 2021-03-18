@@ -25,8 +25,20 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Canvas drawing layer.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/2d/2d_transforms.html](https://docs.godotengine.org/en/latest/tutorials/2d/2d_transforms.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/2d/canvas_layers.html](https://docs.godotengine.org/en/latest/tutorials/2d/canvas_layers.html)
+ *
+ * Canvas drawing layer. [godot.CanvasItem] nodes that are direct or indirect children of a [godot.CanvasLayer] will be drawn in that layer. The layer is a numeric index that defines the draw order. The default 2D scene renders with index 0, so a [godot.CanvasLayer] with index -1 will be drawn below, and one with index 1 will be drawn above. This is very useful for HUDs (in layer 1+ or above), or backgrounds (in layer -1 or below).
+ */
 @GodotBaseType
 open class CanvasLayer : Node() {
+  /**
+   * The custom [godot.Viewport] node assigned to the [godot.CanvasLayer]. If `null`, uses the default viewport instead.
+   */
   open var customViewport: Node?
     get() {
       TransferContext.writeArguments()
@@ -40,6 +52,9 @@ open class CanvasLayer : Node() {
           NIL)
     }
 
+  /**
+   * Sets the layer to follow the viewport in order to simulate a pseudo 3D effect.
+   */
   open var followViewportEnable: Boolean
     get() {
       TransferContext.writeArguments()
@@ -53,6 +68,9 @@ open class CanvasLayer : Node() {
           ENGINEMETHOD_ENGINECLASS_CANVASLAYER_SET_FOLLOW_VIEWPORT_ENABLE, NIL)
     }
 
+  /**
+   * Scales the layer when using [followViewportEnable]. Layers moving into the foreground should have increasing scales, while layers moving into the background should have decreasing scales.
+   */
   open var followViewportScale: Double
     get() {
       TransferContext.writeArguments()
@@ -66,6 +84,9 @@ open class CanvasLayer : Node() {
           ENGINEMETHOD_ENGINECLASS_CANVASLAYER_SET_FOLLOW_VIEWPORT_SCALE, NIL)
     }
 
+  /**
+   * Layer index for draw order. Lower values are drawn first.
+   */
   open var layer: Long
     get() {
       TransferContext.writeArguments()
@@ -77,6 +98,9 @@ open class CanvasLayer : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_SET_LAYER, NIL)
     }
 
+  /**
+   * The layer's base offset.
+   */
   open var offset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -88,6 +112,9 @@ open class CanvasLayer : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_SET_OFFSET, NIL)
     }
 
+  /**
+   * The layer's rotation in radians.
+   */
   open var rotation: Double
     get() {
       TransferContext.writeArguments()
@@ -99,6 +126,9 @@ open class CanvasLayer : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_SET_ROTATION, NIL)
     }
 
+  /**
+   * The layer's rotation in degrees.
+   */
   open var rotationDegrees: Double
     get() {
       TransferContext.writeArguments()
@@ -112,6 +142,9 @@ open class CanvasLayer : Node() {
           NIL)
     }
 
+  /**
+   * The layer's scale.
+   */
   open var scale: Vector2
     get() {
       TransferContext.writeArguments()
@@ -123,6 +156,9 @@ open class CanvasLayer : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_SET_SCALE, NIL)
     }
 
+  /**
+   * The layer's transform.
+   */
   open var transform: Transform2D
     get() {
       TransferContext.writeArguments()
@@ -155,6 +191,9 @@ open class CanvasLayer : Node() {
   }
 
 
+  /**
+   * Returns the RID of the canvas used by this layer.
+   */
   open fun getCanvas(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASLAYER_GET_CANVAS, _RID)

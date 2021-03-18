@@ -19,11 +19,20 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ *
+ *
+ * Tutorials:
+ * [https://github.com/godotengine/godot-demo-projects/tree/master/audio/generator](https://github.com/godotengine/godot-demo-projects/tree/master/audio/generator)
+ */
 @GodotBaseType
 open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK)
 
+  /**
+   *
+   */
   open fun canPushBuffer(amount: Long): Boolean {
     TransferContext.writeArguments(LONG to amount)
     TransferContext.callMethod(rawPtr,
@@ -31,12 +40,18 @@ open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   *
+   */
   open fun clearBuffer() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_CLEAR_BUFFER, NIL)
   }
 
+  /**
+   *
+   */
   open fun getFramesAvailable(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -44,6 +59,9 @@ open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   *
+   */
   open fun getSkips(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -51,6 +69,9 @@ open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   *
+   */
   open fun pushBuffer(frames: PoolVector2Array): Boolean {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to frames)
     TransferContext.callMethod(rawPtr,
@@ -58,6 +79,9 @@ open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   *
+   */
   open fun pushFrame(frame: Vector2): Boolean {
     TransferContext.writeArguments(VECTOR2 to frame)
     TransferContext.callMethod(rawPtr,

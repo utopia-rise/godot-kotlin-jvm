@@ -15,11 +15,19 @@ import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Result of a 2D shape query in [godot.Physics2DServer].
+ *
+ * The result of a 2D shape query in [godot.Physics2DServer]. See also [godot.Physics2DShapeQueryParameters].
+ */
 @GodotBaseType
 open class Physics2DShapeQueryResult : Reference() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_PHYSICS2DSHAPEQUERYRESULT)
 
+  /**
+   * Returns the number of objects that intersected with the shape.
+   */
   open fun getResultCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -27,6 +35,9 @@ open class Physics2DShapeQueryResult : Reference() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   * Returns the [godot.Object] that intersected with the shape at index `idx`.
+   */
   open fun getResultObject(idx: Long): Object? {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr,
@@ -34,6 +45,9 @@ open class Physics2DShapeQueryResult : Reference() {
     return TransferContext.readReturnValue(OBJECT, true) as Object?
   }
 
+  /**
+   * Returns the instance ID of the [godot.Object] that intersected with the shape at index `idx`.
+   */
   open fun getResultObjectId(idx: Long): Long {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr,
@@ -41,6 +55,9 @@ open class Physics2DShapeQueryResult : Reference() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   * Returns the child index of the object's [godot.Shape] that intersected with the shape at index `idx`.
+   */
   open fun getResultObjectShape(idx: Long): Long {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr,
@@ -48,6 +65,9 @@ open class Physics2DShapeQueryResult : Reference() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   * Returns the [RID] of the object that intersected with the shape at index `idx`.
+   */
   open fun getResultRid(idx: Long): RID {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr,

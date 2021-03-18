@@ -15,8 +15,16 @@ import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Class representing a cylindrical [godot.PrimitiveMesh].
+ *
+ * Class representing a cylindrical [godot.PrimitiveMesh]. This class can be used to create cones by setting either the [topRadius] or [bottomRadius] properties to 0.0.
+ */
 @GodotBaseType
 open class CylinderMesh : PrimitiveMesh() {
+  /**
+   * Bottom radius of the cylinder.
+   */
   open var bottomRadius: Double
     get() {
       TransferContext.writeArguments()
@@ -30,6 +38,9 @@ open class CylinderMesh : PrimitiveMesh() {
           NIL)
     }
 
+  /**
+   * Full height of the cylinder.
+   */
   open var height: Double
     get() {
       TransferContext.writeArguments()
@@ -41,6 +52,9 @@ open class CylinderMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERMESH_SET_HEIGHT, NIL)
     }
 
+  /**
+   * Number of radial segments on the cylinder.
+   */
   open var radialSegments: Long
     get() {
       TransferContext.writeArguments()
@@ -54,6 +68,9 @@ open class CylinderMesh : PrimitiveMesh() {
           NIL)
     }
 
+  /**
+   * Number of edge rings along the height of the cylinder.
+   */
   open var rings: Long
     get() {
       TransferContext.writeArguments()
@@ -65,6 +82,9 @@ open class CylinderMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERMESH_SET_RINGS, NIL)
     }
 
+  /**
+   * Top radius of the cylinder.
+   */
   open var topRadius: Double
     get() {
       TransferContext.writeArguments()

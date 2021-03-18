@@ -13,8 +13,16 @@ import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * A boolean comparison operator to be used within the visual shader graph.
+ *
+ * Returns the boolean result of the comparison between `INF` or `NaN` and a scalar parameter.
+ */
 @GodotBaseType
 open class VisualShaderNodeIs : VisualShaderNode() {
+  /**
+   * The comparison function. See [enum Function] for options.
+   */
   open var function: Long
     get() {
       TransferContext.writeArguments()
@@ -33,8 +41,14 @@ open class VisualShaderNodeIs : VisualShaderNode() {
   enum class Function(
     id: Long
   ) {
+    /**
+     * Comparison with `INF` (Infinity).
+     */
     FUNC_IS_INF(0),
 
+    /**
+     * Comparison with `NaN` (Not a Number; denotes invalid numeric results, e.g. division by zero).
+     */
     FUNC_IS_NAN(1);
 
     val id: Long
@@ -48,8 +62,14 @@ open class VisualShaderNodeIs : VisualShaderNode() {
   }
 
   companion object {
+    /**
+     * Comparison with `INF` (Infinity).
+     */
     final const val FUNC_IS_INF: Long = 0
 
+    /**
+     * Comparison with `NaN` (Not a Number; denotes invalid numeric results, e.g. division by zero).
+     */
     final const val FUNC_IS_NAN: Long = 1
   }
 }

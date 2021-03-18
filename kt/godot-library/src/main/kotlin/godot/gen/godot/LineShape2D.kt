@@ -16,8 +16,16 @@ import kotlin.Double
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Line shape for 2D collisions.
+ *
+ * Line shape for 2D collisions. It works like a 2D plane and will not allow any physics body to go to the negative side. Not recommended for rigid bodies, and usually not recommended for static bodies either because it forces checks against it on every frame.
+ */
 @GodotBaseType
 open class LineShape2D : Shape2D() {
+  /**
+   * The line's distance from the origin.
+   */
   open var d: Double
     get() {
       TransferContext.writeArguments()
@@ -29,6 +37,9 @@ open class LineShape2D : Shape2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINESHAPE2D_SET_D, NIL)
     }
 
+  /**
+   * The line's normal.
+   */
   open var normal: Vector2
     get() {
       TransferContext.writeArguments()

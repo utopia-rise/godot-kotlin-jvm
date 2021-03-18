@@ -21,6 +21,13 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * Resource Preloader Node.
+ *
+ * This node is used to preload sub-resources inside a scene, so when the scene is loaded, all the resources are ready to use and can be retrieved from the preloader.
+ *
+ * GDScript has a simplified [@GDScript.preload] built-in method which can be used in most situations, leaving the use of [godot.ResourcePreloader] for more advanced scenarios.
+ */
 @GodotBaseType
 open class ResourcePreloader : Node() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_RESOURCEPRELOADER)
@@ -32,11 +39,17 @@ open class ResourcePreloader : Node() {
   open fun _setResources(arg0: VariantArray<Any?>) {
   }
 
+  /**
+   * Adds a resource to the preloader with the given `name`. If a resource with the given `name` already exists, the new resource will be renamed to "`name` N" where N is an incrementing number starting from 2.
+   */
   open fun addResource(name: String, resource: Resource) {
     TransferContext.writeArguments(STRING to name, OBJECT to resource)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEPRELOADER_ADD_RESOURCE, NIL)
   }
 
+  /**
+   * Returns the resource associated to `name`.
+   */
   open fun getResource(name: String): Resource? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEPRELOADER_GET_RESOURCE,
@@ -44,6 +57,9 @@ open class ResourcePreloader : Node() {
     return TransferContext.readReturnValue(OBJECT, true) as Resource?
   }
 
+  /**
+   * Returns the list of resources inside the preloader.
+   */
   open fun getResourceList(): PoolStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEPRELOADER_GET_RESOURCE_LIST,
@@ -51,6 +67,9 @@ open class ResourcePreloader : Node() {
     return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
   }
 
+  /**
+   * Returns `true` if the preloader contains a resource associated to `name`.
+   */
   open fun hasResource(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEPRELOADER_HAS_RESOURCE,
@@ -58,12 +77,18 @@ open class ResourcePreloader : Node() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   * Removes the resource associated to `name` from the preloader.
+   */
   open fun removeResource(name: String) {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEPRELOADER_REMOVE_RESOURCE,
         NIL)
   }
 
+  /**
+   * Renames a resource inside the preloader from `name` to `newname`.
+   */
   open fun renameResource(name: String, newname: String) {
     TransferContext.writeArguments(STRING to name, STRING to newname)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEPRELOADER_RENAME_RESOURCE,

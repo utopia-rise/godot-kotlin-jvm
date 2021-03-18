@@ -13,8 +13,16 @@ import godot.util.VoidPtr
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * A node that will attach to a bone.
+ *
+ * This node must be the child of a [godot.Skeleton] node. You can then select a bone for this node to attach to. The BoneAttachment node will copy the transform of the selected bone.
+ */
 @GodotBaseType
 open class BoneAttachment : Spatial() {
+  /**
+   * The name of the attached bone.
+   */
   open var boneName: String
     get() {
       TransferContext.writeArguments()

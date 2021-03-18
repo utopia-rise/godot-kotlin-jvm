@@ -10,6 +10,11 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Linearly interpolates between two vectors using a scalar. For use within the visual shader graph.
+ *
+ * Translates to `mix(a, b, weight)` in the shader language, where `a` and `b` are vectors and `weight` is a scalar.
+ */
 @GodotBaseType
 open class VisualShaderNodeVectorScalarMix : VisualShaderNode() {
   override fun __new(): VoidPtr =

@@ -10,6 +10,11 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Audio effect for audio.
+ *
+ * Base resource for audio bus. Applies an audio effect on the bus that the resource is applied on.
+ */
 @GodotBaseType
 open class AudioEffect : Resource() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_AUDIOEFFECT)

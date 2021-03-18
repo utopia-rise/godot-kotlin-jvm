@@ -14,8 +14,14 @@ import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Suppress
 
+/**
+ *
+ */
 @GodotBaseType
 open class NavigationMeshInstance : Spatial() {
+  /**
+   *
+   */
   open var enabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -29,6 +35,9 @@ open class NavigationMeshInstance : Spatial() {
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESHINSTANCE_SET_ENABLED, NIL)
     }
 
+  /**
+   *
+   */
   open var navmesh: NavigationMesh?
     get() {
       TransferContext.writeArguments()

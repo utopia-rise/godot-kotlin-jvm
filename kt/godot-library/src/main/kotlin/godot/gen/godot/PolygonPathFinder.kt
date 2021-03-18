@@ -28,6 +28,9 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 
+/**
+ *
+ */
 @GodotBaseType
 open class PolygonPathFinder : Resource() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_POLYGONPATHFINDER)
@@ -39,6 +42,9 @@ open class PolygonPathFinder : Resource() {
   open fun _setData(arg0: Dictionary<Any?, Any?>) {
   }
 
+  /**
+   *
+   */
   open fun findPath(from: Vector2, to: Vector2): PoolVector2Array {
     TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_FIND_PATH,
@@ -46,12 +52,18 @@ open class PolygonPathFinder : Resource() {
     return TransferContext.readReturnValue(POOL_VECTOR2_ARRAY, false) as PoolVector2Array
   }
 
+  /**
+   *
+   */
   open fun getBounds(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_GET_BOUNDS, RECT2)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
   }
 
+  /**
+   *
+   */
   open fun getClosestPoint(point: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to point)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_GET_CLOSEST_POINT,
@@ -59,6 +71,9 @@ open class PolygonPathFinder : Resource() {
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
+  /**
+   *
+   */
   open fun getIntersections(from: Vector2, to: Vector2): PoolVector2Array {
     TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_GET_INTERSECTIONS,
@@ -66,6 +81,9 @@ open class PolygonPathFinder : Resource() {
     return TransferContext.readReturnValue(POOL_VECTOR2_ARRAY, false) as PoolVector2Array
   }
 
+  /**
+   *
+   */
   open fun getPointPenalty(idx: Long): Double {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_GET_POINT_PENALTY,
@@ -73,6 +91,9 @@ open class PolygonPathFinder : Resource() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
+  /**
+   *
+   */
   open fun isPointInside(point: Vector2): Boolean {
     TransferContext.writeArguments(VECTOR2 to point)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_IS_POINT_INSIDE,
@@ -80,12 +101,18 @@ open class PolygonPathFinder : Resource() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   *
+   */
   open fun setPointPenalty(idx: Long, penalty: Double) {
     TransferContext.writeArguments(LONG to idx, DOUBLE to penalty)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_SET_POINT_PENALTY,
         NIL)
   }
 
+  /**
+   *
+   */
   open fun setup(points: PoolVector2Array, connections: PoolIntArray) {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to points, POOL_INT_ARRAY to connections)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_SETUP, NIL)

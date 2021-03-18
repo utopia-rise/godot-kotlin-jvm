@@ -16,8 +16,21 @@ import kotlin.Double
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Input event type for mouse motion events.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/inputs/mouse_and_input_coordinates.html](https://docs.godotengine.org/en/latest/tutorials/inputs/mouse_and_input_coordinates.html)
+ *
+ * Contains mouse and pen motion information. Supports relative, absolute positions and speed. See [godot.Node.Input].
+ *
+ * **Note:** By default, this event is only emitted once per frame rendered at most. If you need more precise input reporting, call [godot.Input.setUseAccumulatedInput] with `false` to make events emitted as often as possible. If you use InputEventMouseMotion to draw lines, consider implementing [godot.Bresenham's line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm) as well to avoid visible gaps in lines if the user is moving the mouse quickly.
+ */
 @GodotBaseType
 open class InputEventMouseMotion : InputEventMouse() {
+  /**
+   * Represents the pressure the user puts on the pen. Ranges from `0.0` to `1.0`.
+   */
   open var pressure: Double
     get() {
       TransferContext.writeArguments()
@@ -31,6 +44,11 @@ open class InputEventMouseMotion : InputEventMouse() {
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_SET_PRESSURE, NIL)
     }
 
+  /**
+   * The mouse position relative to the previous position (position at the last frame).
+   *
+   * **Note:** Since [godot.InputEventMouseMotion] is only emitted when the mouse moves, the last event won't have a relative position of `Vector2(0, 0)` when the user stops moving the mouse.
+   */
   open var relative: Vector2
     get() {
       TransferContext.writeArguments()
@@ -44,6 +62,9 @@ open class InputEventMouseMotion : InputEventMouse() {
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_SET_RELATIVE, NIL)
     }
 
+  /**
+   * The mouse speed in pixels per second.
+   */
   open var speed: Vector2
     get() {
       TransferContext.writeArguments()
@@ -57,6 +78,9 @@ open class InputEventMouseMotion : InputEventMouse() {
           NIL)
     }
 
+  /**
+   * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0` for both axes.
+   */
   open var tilt: Vector2
     get() {
       TransferContext.writeArguments()

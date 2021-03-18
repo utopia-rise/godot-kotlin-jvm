@@ -18,8 +18,31 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * Standard themed Button.
+ *
+ * Button is the standard themed button. It can contain text and an icon, and will display them according to the current [godot.Theme].
+ *
+ * **Example of creating a button and assigning an action when pressed by code:**
+ *
+ * ```
+ * 		func _ready():
+ * 		    var button = Button.new()
+ * 		    button.text = "Click me"
+ * 		    button.connect("pressed", self, "_button_pressed")
+ * 		    add_child(button)
+ *
+ * 		func _button_pressed():
+ * 		    print("Hello world!")
+ * 		```
+ *
+ * Buttons (like all Control nodes) can also be created in the editor, but some situations may require creating them from code.
+ */
 @GodotBaseType
 open class Button : BaseButton() {
+  /**
+   * Text alignment policy for the button's text, use one of the [enum TextAlign] constants.
+   */
   open var align: Long
     get() {
       TransferContext.writeArguments()
@@ -31,6 +54,9 @@ open class Button : BaseButton() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_ALIGN, NIL)
     }
 
+  /**
+   * When this property is enabled, text that is too large to fit the button is clipped, when disabled the Button will always be wide enough to hold the text.
+   */
   open var clipText: Boolean
     get() {
       TransferContext.writeArguments()
@@ -42,6 +68,9 @@ open class Button : BaseButton() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_CLIP_TEXT, NIL)
     }
 
+  /**
+   * When enabled, the button's icon will expand/shrink to fit the button's size while keeping its aspect.
+   */
   open var expandIcon: Boolean
     get() {
       TransferContext.writeArguments()
@@ -53,6 +82,9 @@ open class Button : BaseButton() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_EXPAND_ICON, NIL)
     }
 
+  /**
+   * Flat buttons don't display decoration.
+   */
   open var flat: Boolean
     get() {
       TransferContext.writeArguments()
@@ -64,6 +96,9 @@ open class Button : BaseButton() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_FLAT, NIL)
     }
 
+  /**
+   * Button's icon, if text is present the icon will be placed before the text.
+   */
   open var icon: Texture?
     get() {
       TransferContext.writeArguments()
@@ -75,6 +110,9 @@ open class Button : BaseButton() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_ICON, NIL)
     }
 
+  /**
+   * The button's text that will be displayed inside the button's area.
+   */
   open var text: String
     get() {
       TransferContext.writeArguments()
@@ -91,10 +129,19 @@ open class Button : BaseButton() {
   enum class TextAlign(
     id: Long
   ) {
+    /**
+     * Align the text to the left.
+     */
     ALIGN_LEFT(0),
 
+    /**
+     * Align the text to the center.
+     */
     ALIGN_CENTER(1),
 
+    /**
+     * Align the text to the right.
+     */
     ALIGN_RIGHT(2);
 
     val id: Long
@@ -108,10 +155,19 @@ open class Button : BaseButton() {
   }
 
   companion object {
+    /**
+     * Align the text to the center.
+     */
     final const val ALIGN_CENTER: Long = 1
 
+    /**
+     * Align the text to the left.
+     */
     final const val ALIGN_LEFT: Long = 0
 
+    /**
+     * Align the text to the right.
+     */
     final const val ALIGN_RIGHT: Long = 2
   }
 }

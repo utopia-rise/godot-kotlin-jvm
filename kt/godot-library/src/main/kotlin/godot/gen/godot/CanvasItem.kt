@@ -40,16 +40,50 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Base class of anything 2D.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/2d/2d_transforms.html](https://docs.godotengine.org/en/latest/tutorials/2d/2d_transforms.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/2d/custom_drawing_in_2d.html](https://docs.godotengine.org/en/latest/tutorials/2d/custom_drawing_in_2d.html)
+ *
+ * Base class of anything 2D. Canvas items are laid out in a tree; children inherit and extend their parent's transform. [godot.CanvasItem] is extended by [godot.Control] for anything GUI-related, and by [godot.Node2D] for anything related to the 2D engine.
+ *
+ * Any [godot.CanvasItem] can draw. For this, [update] must be called, then [NOTIFICATION_DRAW] will be received on idle time to request redraw. Because of this, canvas items don't need to be redrawn on every frame, improving the performance significantly. Several functions for drawing on the [godot.CanvasItem] are provided (see `draw_*` functions). However, they can only be used inside the [godot.Object.Notification], signal or [_draw] virtual functions.
+ *
+ * Canvas items are drawn in tree order. By default, children are on top of their parents so a root [godot.CanvasItem] will be drawn behind everything. This behavior can be changed on a per-item basis.
+ *
+ * A [godot.CanvasItem] can also be hidden, which will also hide its children. It provides many ways to change parameters such as modulation (for itself and its children) and self modulation (only for itself), as well as its blend mode.
+ *
+ * Ultimately, a transform notification can be requested, which will notify the node that its global position changed in case the parent tree changed.
+ *
+ * **Note:** Unless otherwise specified, all methods that have angle parameters must have angles specified as *radians*. To convert degrees to radians, use [@GDScript.deg2rad].
+ */
 @GodotBaseType
 open class CanvasItem : Node() {
+  /**
+   * Emitted when the [godot.CanvasItem] must redraw. This can only be connected realtime, as deferred will not allow drawing.
+   */
   val draw: Signal0 by signal()
 
+  /**
+   * Emitted when becoming hidden.
+   */
   val hide: Signal0 by signal()
 
+  /**
+   * Emitted when the item rect has changed.
+   */
   val itemRectChanged: Signal0 by signal()
 
+  /**
+   * Emitted when the visibility (hidden/visible) changes.
+   */
   val visibilityChanged: Signal0 by signal()
 
+  /**
+   * The rendering layers in which this [godot.CanvasItem] responds to [godot.Light2D] nodes.
+   */
   open var lightMask: Long
     get() {
       TransferContext.writeArguments()
@@ -61,6 +95,9 @@ open class CanvasItem : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_LIGHT_MASK, NIL)
     }
 
+  /**
+   * The material applied to textures on this [godot.CanvasItem].
+   */
   open var material: Material?
     get() {
       TransferContext.writeArguments()
@@ -72,6 +109,9 @@ open class CanvasItem : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_MATERIAL, NIL)
     }
 
+  /**
+   * The color applied to textures on this [godot.CanvasItem].
+   */
   open var modulate: Color
     get() {
       TransferContext.writeArguments()
@@ -83,6 +123,9 @@ open class CanvasItem : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_MODULATE, NIL)
     }
 
+  /**
+   * The color applied to textures on this [godot.CanvasItem]. This is not inherited by children [godot.CanvasItem]s.
+   */
   open var selfModulate: Color
     get() {
       TransferContext.writeArguments()
@@ -95,6 +138,9 @@ open class CanvasItem : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_SELF_MODULATE, NIL)
     }
 
+  /**
+   * If `true`, the object draws behind its parent.
+   */
   open var showBehindParent: Boolean
     get() {
       TransferContext.writeArguments()
@@ -108,6 +154,9 @@ open class CanvasItem : Node() {
           NIL)
     }
 
+  /**
+   * If `true`, the parent [godot.CanvasItem]'s [material] property is used as this one's material.
+   */
   open var useParentMaterial: Boolean
     get() {
       TransferContext.writeArguments()
@@ -121,6 +170,11 @@ open class CanvasItem : Node() {
           ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_USE_PARENT_MATERIAL, NIL)
     }
 
+  /**
+   * If `true`, this [godot.CanvasItem] is drawn. The node is only visible if all of its antecedents are visible as well (in other words, [isVisibleInTree] must return `true`).
+   *
+   * **Note:** For controls that inherit [godot.Popup], the correct way to make them visible is to call one of the multiple `popup*()` functions instead.
+   */
   open var visible: Boolean
     get() {
       TransferContext.writeArguments()
@@ -146,6 +200,9 @@ open class CanvasItem : Node() {
   }
 
 
+  /**
+   * Overridable function called by the engine (if defined) to draw the canvas item.
+   */
   open fun _draw() {
   }
 
@@ -220,6 +277,9 @@ open class CanvasItem : Node() {
   open fun _updateCallback() {
   }
 
+  /**
+   * Draws an arc between the given angles. The larger the value of `point_count`, the smoother the curve.
+   */
   open fun drawArc(
     center: Vector2,
     radius: Double,
@@ -235,6 +295,9 @@ open class CanvasItem : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_ARC, NIL)
   }
 
+  /**
+   * Draws a string character using a custom font. Returns the advance, depending on the character width and kerning with an optional next character.
+   */
   open fun drawChar(
     font: Font,
     position: Vector2,
@@ -248,6 +311,9 @@ open class CanvasItem : Node() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
+  /**
+   * Draws a colored circle.
+   */
   open fun drawCircle(
     position: Vector2,
     radius: Double,
@@ -257,6 +323,9 @@ open class CanvasItem : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_CIRCLE, NIL)
   }
 
+  /**
+   * Draws a colored polygon of any amount of points, convex or concave.
+   */
   open fun drawColoredPolygon(
     points: PoolVector2Array,
     color: Color,
@@ -271,6 +340,9 @@ open class CanvasItem : Node() {
         NIL)
   }
 
+  /**
+   * Draws a line from a 2D point to another, with a given color and width. It can be optionally antialiased.
+   */
   open fun drawLine(
     from: Vector2,
     to: Vector2,
@@ -283,6 +355,9 @@ open class CanvasItem : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_LINE, NIL)
   }
 
+  /**
+   * Draws a [godot.Mesh] in 2D, using the provided texture. See [godot.MeshInstance2D] for related documentation.
+   */
   open fun drawMesh(
     mesh: Mesh,
     texture: Texture,
@@ -295,6 +370,11 @@ open class CanvasItem : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_MESH, NIL)
   }
 
+  /**
+   * Draws multiple, parallel lines with a uniform `color`.
+   *
+   * **Note:** `width` and `antialiased` are currently not implemented and have no effect.
+   */
   open fun drawMultiline(
     points: PoolVector2Array,
     color: Color,
@@ -306,6 +386,11 @@ open class CanvasItem : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_MULTILINE, NIL)
   }
 
+  /**
+   * Draws multiple, parallel lines with a uniform `width` and segment-by-segment coloring. Colors assigned to line segments match by index between `points` and `colors`.
+   *
+   * **Note:** `width` and `antialiased` are currently not implemented and have no effect.
+   */
   open fun drawMultilineColors(
     points: PoolVector2Array,
     colors: PoolColorArray,
@@ -318,6 +403,9 @@ open class CanvasItem : Node() {
         NIL)
   }
 
+  /**
+   * Draws a [godot.MultiMesh] in 2D with the provided texture. See [godot.MultiMeshInstance2D] for related documentation.
+   */
   open fun drawMultimesh(
     multimesh: MultiMesh,
     texture: Texture,
@@ -327,6 +415,9 @@ open class CanvasItem : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_MULTIMESH, NIL)
   }
 
+  /**
+   * Draws a polygon of any amount of points, convex or concave.
+   */
   open fun drawPolygon(
     points: PoolVector2Array,
     colors: PoolColorArray,
@@ -340,6 +431,9 @@ open class CanvasItem : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_POLYGON, NIL)
   }
 
+  /**
+   * Draws interconnected line segments with a uniform `color` and `width` and optional antialiasing.
+   */
   open fun drawPolyline(
     points: PoolVector2Array,
     color: Color,
@@ -351,6 +445,9 @@ open class CanvasItem : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_POLYLINE, NIL)
   }
 
+  /**
+   * Draws interconnected line segments with a uniform `width`, segment-by-segment coloring, and optional antialiasing. Colors assigned to line segments match by index between `points` and `colors`.
+   */
   open fun drawPolylineColors(
     points: PoolVector2Array,
     colors: PoolColorArray,
@@ -363,6 +460,9 @@ open class CanvasItem : Node() {
         NIL)
   }
 
+  /**
+   * Draws a custom primitive. 1 point for a point, 2 points for a line, 3 points for a triangle and 4 points for a quad.
+   */
   open fun drawPrimitive(
     points: PoolVector2Array,
     colors: PoolColorArray,
@@ -376,6 +476,11 @@ open class CanvasItem : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_PRIMITIVE, NIL)
   }
 
+  /**
+   * Draws a rectangle. If `filled` is `true`, the rectangle will be filled with the `color` specified. If `filled` is `false`, the rectangle will be drawn as a stroke with the `color` and `width` specified. If `antialiased` is `true`, the lines will be antialiased.
+   *
+   * **Note:** `width` and `antialiased` are only effective if `filled` is `false`.
+   */
   open fun drawRect(
     rect: Rect2,
     color: Color,
@@ -388,6 +493,9 @@ open class CanvasItem : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_RECT, NIL)
   }
 
+  /**
+   * Sets a custom transform for drawing via components. Anything drawn afterwards will be transformed by this.
+   */
   open fun drawSetTransform(
     position: Vector2,
     rotation: Double,
@@ -397,12 +505,30 @@ open class CanvasItem : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_SET_TRANSFORM, NIL)
   }
 
+  /**
+   * Sets a custom transform for drawing via matrix. Anything drawn afterwards will be transformed by this.
+   */
   open fun drawSetTransformMatrix(xform: Transform2D) {
     TransferContext.writeArguments(TRANSFORM2D to xform)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_SET_TRANSFORM_MATRIX, NIL)
   }
 
+  /**
+   * Draws `text` using the specified `font` at the `position` (top-left corner). The text will have its color multiplied by `modulate`. If `clip_w` is greater than or equal to 0, the text will be clipped if it exceeds the specified width.
+   *
+   * **Example using the default project font:**
+   *
+   * ```
+   * 				# If using this method in a script that redraws constantly, move the
+   * 				# `default_font` declaration to a member variable assigned in `_ready()`
+   * 				# so the Control is only created once.
+   * 				var default_font = Control.new().get_font("font")
+   * 				draw_string(default_font, Vector2(64, 64), "Hello world")
+   * 				```
+   *
+   * See also [godot.Font.draw].
+   */
   open fun drawString(
     font: Font,
     position: Vector2,
@@ -415,11 +541,17 @@ open class CanvasItem : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_STRING, NIL)
   }
 
+  /**
+   * Draws a styled rectangle.
+   */
   open fun drawStyleBox(styleBox: StyleBox, rect: Rect2) {
     TransferContext.writeArguments(OBJECT to styleBox, RECT2 to rect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_STYLE_BOX, NIL)
   }
 
+  /**
+   * Draws a texture at a given position.
+   */
   open fun drawTexture(
     texture: Texture,
     position: Vector2,
@@ -431,6 +563,9 @@ open class CanvasItem : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_TEXTURE, NIL)
   }
 
+  /**
+   * Draws a textured rectangle at a given position, optionally modulated by a color. If `transpose` is `true`, the texture will have its X and Y coordinates swapped.
+   */
   open fun drawTextureRect(
     texture: Texture,
     rect: Rect2,
@@ -444,6 +579,9 @@ open class CanvasItem : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_TEXTURE_RECT, NIL)
   }
 
+  /**
+   * Draws a textured rectangle region at a given position, optionally modulated by a color. If `transpose` is `true`, the texture will have its X and Y coordinates swapped.
+   */
   open fun drawTextureRectRegion(
     texture: Texture,
     rect: Rect2,
@@ -459,24 +597,36 @@ open class CanvasItem : Node() {
         NIL)
   }
 
+  /**
+   * Forces the transform to update. Transform changes in physics are not instant for performance reasons. Transforms are accumulated and then set. Use this if you need an up-to-date transform when doing physics operations.
+   */
   open fun forceUpdateTransform() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_FORCE_UPDATE_TRANSFORM,
         NIL)
   }
 
+  /**
+   * Returns the [RID] of the [godot.World2D] canvas where this item is in.
+   */
   open fun getCanvas(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_CANVAS, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
+  /**
+   * Returns the canvas item RID used by [godot.VisualServer] for this item.
+   */
   open fun getCanvasItem(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_CANVAS_ITEM, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
+  /**
+   * Returns the transform matrix of this item's canvas.
+   */
   open fun getCanvasTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_CANVAS_TRANSFORM,
@@ -484,6 +634,9 @@ open class CanvasItem : Node() {
     return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
   }
 
+  /**
+   * Returns the global position of the mouse.
+   */
   open fun getGlobalMousePosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -491,6 +644,9 @@ open class CanvasItem : Node() {
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
+  /**
+   * Returns the global transform matrix of this item.
+   */
   open fun getCanvasItemGlobalTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_GLOBAL_TRANSFORM,
@@ -498,6 +654,9 @@ open class CanvasItem : Node() {
     return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
   }
 
+  /**
+   * Returns the global transform matrix of this item in relation to the canvas.
+   */
   open fun getGlobalTransformWithCanvas(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -505,6 +664,9 @@ open class CanvasItem : Node() {
     return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
   }
 
+  /**
+   * Returns the mouse position relative to this item's position.
+   */
   open fun getLocalMousePosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_LOCAL_MOUSE_POSITION,
@@ -512,6 +674,9 @@ open class CanvasItem : Node() {
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
+  /**
+   * Returns the transform matrix of this item.
+   */
   open fun getCanvasItemTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_TRANSFORM,
@@ -519,12 +684,18 @@ open class CanvasItem : Node() {
     return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
   }
 
+  /**
+   * Returns the viewport's boundaries as a [godot.core.Rect2].
+   */
   open fun getViewportRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_VIEWPORT_RECT, RECT2)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
   }
 
+  /**
+   * Returns this item's transform in relation to the viewport.
+   */
   open fun getViewportTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_VIEWPORT_TRANSFORM,
@@ -532,17 +703,26 @@ open class CanvasItem : Node() {
     return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
   }
 
+  /**
+   * Returns the [godot.World2D] where this item is in.
+   */
   open fun getWorld2d(): World2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_WORLD_2D, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as World2D?
   }
 
+  /**
+   * Hide the [godot.CanvasItem] if it's currently visible.
+   */
   open fun hide() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_HIDE, NIL)
   }
 
+  /**
+   * Returns `true` if local transform notifications are communicated to children.
+   */
   open fun isLocalTransformNotificationEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -550,12 +730,18 @@ open class CanvasItem : Node() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   * Returns `true` if the node is set as top-level. See [setAsToplevel].
+   */
   open fun isSetAsToplevel(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_IS_SET_AS_TOPLEVEL, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   * Returns `true` if global transform notifications are communicated to children.
+   */
   open fun isTransformNotificationEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -563,12 +749,18 @@ open class CanvasItem : Node() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   * Returns `true` if the node is present in the [godot.SceneTree], its [visible] property is `true` and all its antecedents are also visible. If any antecedent is hidden, this node will not be visible in the scene tree.
+   */
   open fun isVisibleInTree(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_IS_VISIBLE_IN_TREE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   * Assigns `screen_point` as this node's new local transform.
+   */
   open fun makeCanvasPositionLocal(screenPoint: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
     TransferContext.callMethod(rawPtr,
@@ -576,34 +768,52 @@ open class CanvasItem : Node() {
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
+  /**
+   * Transformations issued by `event`'s inputs are applied in local space instead of global space.
+   */
   open fun makeInputLocal(event: InputEvent): InputEvent? {
     TransferContext.writeArguments(OBJECT to event)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_MAKE_INPUT_LOCAL, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as InputEvent?
   }
 
+  /**
+   * If `enable` is `true`, the node won't inherit its transform from parent canvas items.
+   */
   open fun setAsToplevel(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_AS_TOPLEVEL, NIL)
   }
 
+  /**
+   * If `enable` is `true`, children will be updated with local transform data.
+   */
   open fun setNotifyLocalTransform(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_NOTIFY_LOCAL_TRANSFORM, NIL)
   }
 
+  /**
+   * If `enable` is `true`, children will be updated with global transform data.
+   */
   open fun setNotifyTransform(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_NOTIFY_TRANSFORM,
         NIL)
   }
 
+  /**
+   * Show the [godot.CanvasItem] if it's currently hidden. For controls that inherit [godot.Popup], the correct way to make them visible is to call one of the multiple `popup*()` functions instead.
+   */
   open fun show() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SHOW, NIL)
   }
 
+  /**
+   * Queue the [godot.CanvasItem] for update. [NOTIFICATION_DRAW] will be called on idle time to request redraw.
+   */
   open fun update() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_UPDATE, NIL)
@@ -612,16 +822,34 @@ open class CanvasItem : Node() {
   enum class BlendMode(
     id: Long
   ) {
+    /**
+     * Mix blending mode. Colors are assumed to be independent of the alpha (opacity) value.
+     */
     BLEND_MODE_MIX(0),
 
+    /**
+     * Additive blending mode.
+     */
     BLEND_MODE_ADD(1),
 
+    /**
+     * Subtractive blending mode.
+     */
     BLEND_MODE_SUB(2),
 
+    /**
+     * Multiplicative blending mode.
+     */
     BLEND_MODE_MUL(3),
 
+    /**
+     * Mix blending mode. Colors are assumed to be premultiplied by the alpha (opacity) value.
+     */
     BLEND_MODE_PREMULT_ALPHA(4),
 
+    /**
+     * Disables blending mode. Colors including alpha are written as-is. Only applicable for render targets with a transparent background. No lighting will be applied.
+     */
     BLEND_MODE_DISABLED(5);
 
     val id: Long
@@ -635,26 +863,59 @@ open class CanvasItem : Node() {
   }
 
   companion object {
+    /**
+     * Additive blending mode.
+     */
     final const val BLEND_MODE_ADD: Long = 1
 
+    /**
+     * Disables blending mode. Colors including alpha are written as-is. Only applicable for render targets with a transparent background. No lighting will be applied.
+     */
     final const val BLEND_MODE_DISABLED: Long = 5
 
+    /**
+     * Mix blending mode. Colors are assumed to be independent of the alpha (opacity) value.
+     */
     final const val BLEND_MODE_MIX: Long = 0
 
+    /**
+     * Multiplicative blending mode.
+     */
     final const val BLEND_MODE_MUL: Long = 3
 
+    /**
+     * Mix blending mode. Colors are assumed to be premultiplied by the alpha (opacity) value.
+     */
     final const val BLEND_MODE_PREMULT_ALPHA: Long = 4
 
+    /**
+     * Subtractive blending mode.
+     */
     final const val BLEND_MODE_SUB: Long = 2
 
+    /**
+     * The [godot.CanvasItem] is requested to draw.
+     */
     final const val NOTIFICATION_DRAW: Long = 30
 
+    /**
+     * The [godot.CanvasItem] has entered the canvas.
+     */
     final const val NOTIFICATION_ENTER_CANVAS: Long = 32
 
+    /**
+     * The [godot.CanvasItem] has exited the canvas.
+     */
     final const val NOTIFICATION_EXIT_CANVAS: Long = 33
 
+    /**
+     * The [godot.CanvasItem]'s transform has changed. This notification is only received if enabled by [setNotifyTransform] or [setNotifyLocalTransform].
+     */
     final const val NOTIFICATION_TRANSFORM_CHANGED: Long = 2000
 
+    /**
+     * The [godot.CanvasItem]'s visibility has changed.
+     */
     final const val NOTIFICATION_VISIBILITY_CHANGED: Long = 31
   }
 }

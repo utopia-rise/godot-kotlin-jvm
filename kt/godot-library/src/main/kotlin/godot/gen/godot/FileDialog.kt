@@ -22,14 +22,33 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * Dialog for selecting files or directories in the filesystem.
+ *
+ * FileDialog is a preset dialog used to choose files and directories in the filesystem. It supports filter masks. The FileDialog automatically sets its window title according to the [mode]. If you want to use a custom title, disable this by setting [modeOverridesTitle] to `false`.
+ */
 @GodotBaseType
 open class FileDialog : ConfirmationDialog() {
+  /**
+   * Emitted when the user selects a directory.
+   */
   val dirSelected: Signal1<String> by signal("dir")
 
+  /**
+   * Emitted when the user selects a file by double-clicking it or pressing the **OK** button.
+   */
   val fileSelected: Signal1<String> by signal("path")
 
+  /**
+   * Emitted when the user selects multiple files.
+   */
   val filesSelected: Signal1<PoolStringArray> by signal("paths")
 
+  /**
+   * The file system access scope. See enum `Access` constants.
+   *
+   * **Warning:** Currently, in sandboxed environments such as HTML5 builds or sandboxed macOS apps, FileDialog cannot access the host file system. See [godot-proposals#1123](https://github.com/godotengine/godot-proposals/issues/1123).
+   */
   open var access: Long
     get() {
       TransferContext.writeArguments()
@@ -41,6 +60,9 @@ open class FileDialog : ConfirmationDialog() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_ACCESS, NIL)
     }
 
+  /**
+   * The current working directory of the file dialog.
+   */
   open var currentDir: String
     get() {
       TransferContext.writeArguments()
@@ -53,6 +75,9 @@ open class FileDialog : ConfirmationDialog() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_CURRENT_DIR, NIL)
     }
 
+  /**
+   * The currently selected file of the file dialog.
+   */
   open var currentFile: String
     get() {
       TransferContext.writeArguments()
@@ -65,6 +90,9 @@ open class FileDialog : ConfirmationDialog() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_CURRENT_FILE, NIL)
     }
 
+  /**
+   * The currently selected file path of the file dialog.
+   */
   open var currentPath: String
     get() {
       TransferContext.writeArguments()
@@ -77,6 +105,9 @@ open class FileDialog : ConfirmationDialog() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_CURRENT_PATH, NIL)
     }
 
+  /**
+   * The available file type filters. For example, this shows only `.png` and `.gd` files: `set_filters(PoolStringArray(["*.png ; PNG Images","*.gd ; GDScript Files"]))`.
+   */
   open var filters: PoolStringArray
     get() {
       TransferContext.writeArguments()
@@ -89,6 +120,9 @@ open class FileDialog : ConfirmationDialog() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_FILTERS, NIL)
     }
 
+  /**
+   * The dialog's open or save mode, which affects the selection behavior. See enum `Mode` constants.
+   */
   open var mode: Long
     get() {
       TransferContext.writeArguments()
@@ -100,6 +134,9 @@ open class FileDialog : ConfirmationDialog() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_MODE, NIL)
     }
 
+  /**
+   * If `true`, changing the `Mode` property will set the window title accordingly (e.g. setting mode to [MODE_OPEN_FILE] will change the window title to "Open a File").
+   */
   open var modeOverridesTitle: Boolean
     get() {
       TransferContext.writeArguments()
@@ -113,6 +150,9 @@ open class FileDialog : ConfirmationDialog() {
           ENGINEMETHOD_ENGINECLASS_FILEDIALOG_SET_MODE_OVERRIDES_TITLE, NIL)
     }
 
+  /**
+   * If `true`, the dialog will show hidden files.
+   */
   open var showHiddenFiles: Boolean
     get() {
       TransferContext.writeArguments()
@@ -183,33 +223,51 @@ open class FileDialog : ConfirmationDialog() {
   open fun _updateFileName() {
   }
 
+  /**
+   * Adds `filter` as a custom filter; `filter` should be of the form `"filename.extension ; Description"`. For example, `"*.png ; PNG Images"`.
+   */
   open fun addFilter(filter: String) {
     TransferContext.writeArguments(STRING to filter)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_ADD_FILTER, NIL)
   }
 
+  /**
+   * Clear all the added filters in the dialog.
+   */
   open fun clearFilters() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_CLEAR_FILTERS, NIL)
   }
 
+  /**
+   * Clear currently selected items in the dialog.
+   */
   open fun deselectItems() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_DESELECT_ITEMS, NIL)
   }
 
+  /**
+   * Returns the LineEdit for the selected file.
+   */
   open fun getLineEdit(): LineEdit? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_LINE_EDIT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as LineEdit?
   }
 
+  /**
+   * Returns the vertical box container of the dialog, custom controls can be added to it.
+   */
   open fun getVbox(): VBoxContainer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_VBOX, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as VBoxContainer?
   }
 
+  /**
+   * Invalidate and update the current dialog content list.
+   */
   open fun invalidate() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_INVALIDATE, NIL)
@@ -218,14 +276,29 @@ open class FileDialog : ConfirmationDialog() {
   enum class Mode(
     id: Long
   ) {
+    /**
+     * The dialog allows selecting one, and only one file.
+     */
     MODE_OPEN_FILE(0),
 
+    /**
+     * The dialog allows selecting multiple files.
+     */
     MODE_OPEN_FILES(1),
 
+    /**
+     * The dialog only allows selecting a directory, disallowing the selection of any file.
+     */
     MODE_OPEN_DIR(2),
 
+    /**
+     * The dialog allows selecting one file or directory.
+     */
     MODE_OPEN_ANY(3),
 
+    /**
+     * The dialog will warn when a file exists.
+     */
     MODE_SAVE_FILE(4);
 
     val id: Long
@@ -241,10 +314,19 @@ open class FileDialog : ConfirmationDialog() {
   enum class Access(
     id: Long
   ) {
+    /**
+     * The dialog only allows accessing files under the [godot.Resource] path (`res://`).
+     */
     ACCESS_RESOURCES(0),
 
+    /**
+     * The dialog only allows accessing files under user data path (`user://`).
+     */
     ACCESS_USERDATA(1),
 
+    /**
+     * The dialog allows accessing files on the whole file system.
+     */
     ACCESS_FILESYSTEM(2);
 
     val id: Long
@@ -258,20 +340,44 @@ open class FileDialog : ConfirmationDialog() {
   }
 
   companion object {
+    /**
+     * The dialog allows accessing files on the whole file system.
+     */
     final const val ACCESS_FILESYSTEM: Long = 2
 
+    /**
+     * The dialog only allows accessing files under the [godot.Resource] path (`res://`).
+     */
     final const val ACCESS_RESOURCES: Long = 0
 
+    /**
+     * The dialog only allows accessing files under user data path (`user://`).
+     */
     final const val ACCESS_USERDATA: Long = 1
 
+    /**
+     * The dialog allows selecting one file or directory.
+     */
     final const val MODE_OPEN_ANY: Long = 3
 
+    /**
+     * The dialog only allows selecting a directory, disallowing the selection of any file.
+     */
     final const val MODE_OPEN_DIR: Long = 2
 
+    /**
+     * The dialog allows selecting one, and only one file.
+     */
     final const val MODE_OPEN_FILE: Long = 0
 
+    /**
+     * The dialog allows selecting multiple files.
+     */
     final const val MODE_OPEN_FILES: Long = 1
 
+    /**
+     * The dialog will warn when a file exists.
+     */
     final const val MODE_SAVE_FILE: Long = 4
   }
 }

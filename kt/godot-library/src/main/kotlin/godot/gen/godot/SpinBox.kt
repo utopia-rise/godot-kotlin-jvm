@@ -18,8 +18,30 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * Numerical input text field.
+ *
+ * SpinBox is a numerical input text field. It allows entering integers and floats.
+ *
+ * **Example:**
+ *
+ * ```
+ * 		var spin_box = SpinBox.new()
+ * 		add_child(spin_box)
+ * 		var line_edit = spin_box.get_line_edit()
+ * 		line_edit.context_menu_enabled = false
+ * 		spin_box.align = LineEdit.ALIGN_RIGHT
+ * 		```
+ *
+ * The above code will create a [godot.SpinBox], disable context menu on it and set the text alignment to right.
+ *
+ * See [godot.Range] class for more options over the [godot.SpinBox].
+ */
 @GodotBaseType
 open class SpinBox : Range() {
+  /**
+   * Sets the text alignment of the [godot.SpinBox].
+   */
   open var align: Long
     get() {
       TransferContext.writeArguments()
@@ -31,6 +53,9 @@ open class SpinBox : Range() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_ALIGN, NIL)
     }
 
+  /**
+   * If `true`, the [godot.SpinBox] will be editable. Otherwise, it will be read only.
+   */
   open var editable: Boolean
     get() {
       TransferContext.writeArguments()
@@ -42,6 +67,9 @@ open class SpinBox : Range() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_EDITABLE, NIL)
     }
 
+  /**
+   * Adds the specified `prefix` string before the numerical value of the [godot.SpinBox].
+   */
   open var prefix: String
     get() {
       TransferContext.writeArguments()
@@ -53,6 +81,9 @@ open class SpinBox : Range() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_PREFIX, NIL)
     }
 
+  /**
+   * Adds the specified `suffix` string after the numerical value of the [godot.SpinBox].
+   */
   open var suffix: String
     get() {
       TransferContext.writeArguments()
@@ -81,11 +112,17 @@ open class SpinBox : Range() {
   open fun _textEntered(arg0: String) {
   }
 
+  /**
+   * Applies the current value of this [godot.SpinBox].
+   */
   open fun apply() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_APPLY, NIL)
   }
 
+  /**
+   * Returns the [godot.LineEdit] instance from this [godot.SpinBox]. You can use it to access properties and methods of [godot.LineEdit].
+   */
   open fun getLineEdit(): LineEdit? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_LINE_EDIT, OBJECT)

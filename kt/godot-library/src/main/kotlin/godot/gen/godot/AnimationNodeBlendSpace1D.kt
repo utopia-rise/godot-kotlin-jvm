@@ -18,6 +18,20 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * Blends linearly between two of any number of [godot.AnimationNode] of any type placed on a virtual axis.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
+ *
+ * A resource to add to an [godot.AnimationNodeBlendTree].
+ *
+ * This is a virtual axis on which you can add any type of [godot.AnimationNode] using [addBlendPoint].
+ *
+ * Outputs the linear blend of the two [godot.AnimationNode]s closest to the node's current value.
+ *
+ * You can set the extents of the axis using the [minSpace] and [maxSpace].
+ */
 @GodotBaseType
 open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   open val blendPoint0_node: AnimationRootNode?
@@ -1364,6 +1378,9 @@ open class AnimationNodeBlendSpace1D : AnimationRootNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_SET_BLEND_POINT_9_POS, NIL)
     }
 
+  /**
+   * The blend space's axis's upper limit for the points' position. See [addBlendPoint].
+   */
   open var maxSpace: Double
     get() {
       TransferContext.writeArguments()
@@ -1377,6 +1394,9 @@ open class AnimationNodeBlendSpace1D : AnimationRootNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_SET_MAX_SPACE, NIL)
     }
 
+  /**
+   * The blend space's axis's lower limit for the points' position. See [addBlendPoint].
+   */
   open var minSpace: Double
     get() {
       TransferContext.writeArguments()
@@ -1390,6 +1410,9 @@ open class AnimationNodeBlendSpace1D : AnimationRootNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_SET_MIN_SPACE, NIL)
     }
 
+  /**
+   * Position increment to snap to when moving a point on the axis.
+   */
   open var snap: Double
     get() {
       TransferContext.writeArguments()
@@ -1403,6 +1426,9 @@ open class AnimationNodeBlendSpace1D : AnimationRootNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_SET_SNAP, NIL)
     }
 
+  /**
+   * Label of the virtual axis of the blend space.
+   */
   open var valueLabel: String
     get() {
       TransferContext.writeArguments()
@@ -1425,6 +1451,9 @@ open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   open fun _treeChanged() {
   }
 
+  /**
+   * Adds a new point that represents a `node` on the virtual axis at a given position set by `pos`. You can insert it at a specific index using the `at_index` argument. If you use the default value for `at_index`, the point is inserted at the end of the blend points array.
+   */
   open fun addBlendPoint(
     node: AnimationRootNode,
     pos: Double,
@@ -1435,6 +1464,9 @@ open class AnimationNodeBlendSpace1D : AnimationRootNode() {
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_ADD_BLEND_POINT, NIL)
   }
 
+  /**
+   * Returns the number of points on the blend axis.
+   */
   open fun getBlendPointCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -1442,12 +1474,18 @@ open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   * Removes the point at index `point` from the blend axis.
+   */
   open fun removeBlendPoint(point: Long) {
     TransferContext.writeArguments(LONG to point)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_REMOVE_BLEND_POINT, NIL)
   }
 
+  /**
+   * Changes the [godot.AnimationNode] referenced by the point at index `point`.
+   */
   open fun setBlendPointNode(point: Long, node: AnimationRootNode) {
     TransferContext.writeArguments(LONG to point, OBJECT to node)
     TransferContext.callMethod(rawPtr,

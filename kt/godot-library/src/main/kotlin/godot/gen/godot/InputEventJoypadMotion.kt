@@ -15,8 +15,19 @@ import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Input event type for gamepad joysticks and other motions. For buttons, see `InputEventJoypadButton`.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html)
+ *
+ * Stores information about joystick motions. One [godot.InputEventJoypadMotion] represents one axis at a time.
+ */
 @GodotBaseType
 open class InputEventJoypadMotion : InputEvent() {
+  /**
+   * Axis identifier. Use one of the [enum JoystickList] axis constants.
+   */
   open var axis: Long
     get() {
       TransferContext.writeArguments()
@@ -30,6 +41,9 @@ open class InputEventJoypadMotion : InputEvent() {
           NIL)
     }
 
+  /**
+   * Current position of the joystick on the given axis. The value ranges from `-1.0` to `1.0`. A value of `0` means the axis is in its resting position.
+   */
   open var axisValue: Double
     get() {
       TransferContext.writeArguments()

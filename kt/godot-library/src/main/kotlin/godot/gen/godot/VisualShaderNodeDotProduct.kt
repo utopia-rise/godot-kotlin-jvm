@@ -10,6 +10,11 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Calculates a dot product of two vectors within the visual shader graph.
+ *
+ * Translates to `dot(a, b)` in the shader language.
+ */
 @GodotBaseType
 open class VisualShaderNodeDotProduct : VisualShaderNode() {
   override fun __new(): VoidPtr =

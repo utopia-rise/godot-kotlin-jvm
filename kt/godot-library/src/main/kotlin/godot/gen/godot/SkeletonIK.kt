@@ -27,8 +27,14 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ *
+ */
 @GodotBaseType
 open class SkeletonIK : Node() {
+  /**
+   *
+   */
   open var interpolation: Double
     get() {
       TransferContext.writeArguments()
@@ -41,6 +47,9 @@ open class SkeletonIK : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK_SET_INTERPOLATION, NIL)
     }
 
+  /**
+   *
+   */
   open var magnet: Vector3
     get() {
       TransferContext.writeArguments()
@@ -52,6 +61,9 @@ open class SkeletonIK : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK_SET_MAGNET, NIL)
     }
 
+  /**
+   *
+   */
   open var maxIterations: Long
     get() {
       TransferContext.writeArguments()
@@ -65,6 +77,9 @@ open class SkeletonIK : Node() {
           NIL)
     }
 
+  /**
+   *
+   */
   open var minDistance: Double
     get() {
       TransferContext.writeArguments()
@@ -77,6 +92,9 @@ open class SkeletonIK : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK_SET_MIN_DISTANCE, NIL)
     }
 
+  /**
+   *
+   */
   open var overrideTipBasis: Boolean
     get() {
       TransferContext.writeArguments()
@@ -90,6 +108,9 @@ open class SkeletonIK : Node() {
           NIL)
     }
 
+  /**
+   *
+   */
   open var rootBone: String
     get() {
       TransferContext.writeArguments()
@@ -101,6 +122,9 @@ open class SkeletonIK : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK_SET_ROOT_BONE, NIL)
     }
 
+  /**
+   *
+   */
   open var target: Transform
     get() {
       TransferContext.writeArguments()
@@ -112,6 +136,9 @@ open class SkeletonIK : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK_SET_TARGET, NIL)
     }
 
+  /**
+   *
+   */
   open var targetNode: NodePath
     get() {
       TransferContext.writeArguments()
@@ -124,6 +151,9 @@ open class SkeletonIK : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK_SET_TARGET_NODE, NIL)
     }
 
+  /**
+   *
+   */
   open var tipBone: String
     get() {
       TransferContext.writeArguments()
@@ -135,6 +165,9 @@ open class SkeletonIK : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK_SET_TIP_BONE, NIL)
     }
 
+  /**
+   *
+   */
   open var useMagnet: Boolean
     get() {
       TransferContext.writeArguments()
@@ -160,6 +193,9 @@ open class SkeletonIK : Node() {
   }
 
 
+  /**
+   *
+   */
   open fun getParentSkeleton(): Skeleton? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK_GET_PARENT_SKELETON,
@@ -167,17 +203,26 @@ open class SkeletonIK : Node() {
     return TransferContext.readReturnValue(OBJECT, true) as Skeleton?
   }
 
+  /**
+   *
+   */
   open fun isRunning(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK_IS_RUNNING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   *
+   */
   open fun start(oneTime: Boolean = false) {
     TransferContext.writeArguments(BOOL to oneTime)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK_START, NIL)
   }
 
+  /**
+   *
+   */
   open fun stop() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK_STOP, NIL)

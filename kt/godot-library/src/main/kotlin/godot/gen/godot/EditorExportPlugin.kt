@@ -20,10 +20,16 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * A script that is executed when exporting projects.
+ */
 @GodotBaseType
 open class EditorExportPlugin : Reference() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_EDITOREXPORTPLUGIN)
 
+  /**
+   * Virtual method to be overridden by the user. It is called when the export starts and provides all information about the export.
+   */
   open fun _exportBegin(
     features: PoolStringArray,
     isDebug: Boolean,
@@ -32,9 +38,15 @@ open class EditorExportPlugin : Reference() {
   ) {
   }
 
+  /**
+   * Virtual method to be overridden by the user. Called when the export is finished.
+   */
   open fun _exportEnd() {
   }
 
+  /**
+   *
+   */
   open fun _exportFile(
     path: String,
     type: String,
@@ -42,6 +54,9 @@ open class EditorExportPlugin : Reference() {
   ) {
   }
 
+  /**
+   *
+   */
   open fun addFile(
     path: String,
     file: PoolByteArray,
@@ -51,48 +66,72 @@ open class EditorExportPlugin : Reference() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_FILE, NIL)
   }
 
+  /**
+   *
+   */
   open fun addIosBundleFile(path: String) {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_BUNDLE_FILE, NIL)
   }
 
+  /**
+   *
+   */
   open fun addIosCppCode(code: String) {
     TransferContext.writeArguments(STRING to code)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_CPP_CODE,
         NIL)
   }
 
+  /**
+   * Adds a static library (*.a) or dynamic library (*.dylib, *.framework) to Linking Phase in iOS's Xcode project.
+   */
   open fun addIosFramework(path: String) {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_FRAMEWORK, NIL)
   }
 
+  /**
+   *
+   */
   open fun addIosLinkerFlags(flags: String) {
     TransferContext.writeArguments(STRING to flags)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_LINKER_FLAGS, NIL)
   }
 
+  /**
+   *
+   */
   open fun addIosPlistContent(plistContent: String) {
     TransferContext.writeArguments(STRING to plistContent)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_PLIST_CONTENT, NIL)
   }
 
+  /**
+   *
+   */
   open fun addIosProjectStaticLib(path: String) {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_PROJECT_STATIC_LIB, NIL)
   }
 
+  /**
+   *
+   */
   open fun addSharedObject(path: String, tags: PoolStringArray) {
     TransferContext.writeArguments(STRING to path, POOL_STRING_ARRAY to tags)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_SHARED_OBJECT, NIL)
   }
 
+  /**
+   *
+   */
   open fun skip() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_SKIP, NIL)

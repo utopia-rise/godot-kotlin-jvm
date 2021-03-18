@@ -15,8 +15,14 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ *
+ */
 @GodotBaseType
 open class EditorSpinSlider : Range() {
+  /**
+   *
+   */
   open var flat: Boolean
     get() {
       TransferContext.writeArguments()
@@ -28,6 +34,9 @@ open class EditorSpinSlider : Range() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_SET_FLAT, NIL)
     }
 
+  /**
+   *
+   */
   open var label: String
     get() {
       TransferContext.writeArguments()
@@ -40,6 +49,9 @@ open class EditorSpinSlider : Range() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_SET_LABEL, NIL)
     }
 
+  /**
+   *
+   */
   open var readOnly: Boolean
     get() {
       TransferContext.writeArguments()

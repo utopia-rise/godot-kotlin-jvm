@@ -10,6 +10,11 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Composes a [godot.core.Vector3] from three scalars within the visual shader graph.
+ *
+ * Creates a `vec3` using three scalar values that can be provided from separate inputs.
+ */
 @GodotBaseType
 open class VisualShaderNodeVectorCompose : VisualShaderNode() {
   override fun __new(): VoidPtr =

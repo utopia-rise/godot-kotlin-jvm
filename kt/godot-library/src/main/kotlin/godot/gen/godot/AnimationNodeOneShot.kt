@@ -20,8 +20,19 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Plays an animation once in [godot.AnimationNodeBlendTree].
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
+ *
+ * A resource to add to an [godot.AnimationNodeBlendTree]. This node will execute a sub-animation and return once it finishes. Blend times for fading in and out can be customized, as well as filters.
+ */
 @GodotBaseType
 open class AnimationNodeOneShot : AnimationNode() {
+  /**
+   * If `true`, the sub-animation will restart automatically after finishing.
+   */
   open var autorestart: Boolean
     get() {
       TransferContext.writeArguments()
@@ -35,6 +46,9 @@ open class AnimationNodeOneShot : AnimationNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_AUTORESTART, NIL)
     }
 
+  /**
+   * The delay after which the automatic restart is triggered, in seconds.
+   */
   open var autorestartDelay: Double
     get() {
       TransferContext.writeArguments()
@@ -48,6 +62,9 @@ open class AnimationNodeOneShot : AnimationNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_AUTORESTART_DELAY, NIL)
     }
 
+  /**
+   * If [autorestart] is `true`, a random additional delay (in seconds) between 0 and this value will be added to [autorestartDelay].
+   */
   open var autorestartRandomDelay: Double
     get() {
       TransferContext.writeArguments()
@@ -61,6 +78,9 @@ open class AnimationNodeOneShot : AnimationNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_AUTORESTART_RANDOM_DELAY, NIL)
     }
 
+  /**
+   *
+   */
   open var fadeinTime: Double
     get() {
       TransferContext.writeArguments()
@@ -74,6 +94,9 @@ open class AnimationNodeOneShot : AnimationNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_FADEIN_TIME, NIL)
     }
 
+  /**
+   *
+   */
   open var fadeoutTime: Double
     get() {
       TransferContext.writeArguments()
@@ -87,6 +110,9 @@ open class AnimationNodeOneShot : AnimationNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_FADEOUT_TIME, NIL)
     }
 
+  /**
+   *
+   */
   open var sync: Boolean
     get() {
       TransferContext.writeArguments()
@@ -103,6 +129,9 @@ open class AnimationNodeOneShot : AnimationNode() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODEONESHOT)
 
+  /**
+   *
+   */
   open fun getMixMode(): AnimationNodeOneShot.MixMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_MIX_MODE,
@@ -110,6 +139,9 @@ open class AnimationNodeOneShot : AnimationNode() {
     return AnimationNodeOneShot.MixMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
+  /**
+   *
+   */
   open fun setMixMode(mode: Long) {
     TransferContext.writeArguments(LONG to mode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_MIX_MODE,
@@ -119,8 +151,14 @@ open class AnimationNodeOneShot : AnimationNode() {
   enum class MixMode(
     id: Long
   ) {
+    /**
+     *
+     */
     MIX_MODE_BLEND(0),
 
+    /**
+     *
+     */
     MIX_MODE_ADD(1);
 
     val id: Long
@@ -134,8 +172,14 @@ open class AnimationNodeOneShot : AnimationNode() {
   }
 
   companion object {
+    /**
+     *
+     */
     final const val MIX_MODE_ADD: Long = 1
 
+    /**
+     *
+     */
     final const val MIX_MODE_BLEND: Long = 0
   }
 }

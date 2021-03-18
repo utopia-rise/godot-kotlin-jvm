@@ -15,10 +15,24 @@ import godot.util.VoidPtr
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ *
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/stable/tutorials/shading/shading_reference/index.html](https://docs.godotengine.org/en/stable/tutorials/shading/shading_reference/index.html)
+ *
+ * Gives access to input variables (built-ins) available for the shader. See the shading reference for the list of available built-ins for each shader type (check `Tutorials` section for link).
+ */
 @GodotBaseType
 open class VisualShaderNodeInput : VisualShaderNode() {
+  /**
+   *
+   */
   val inputTypeChanged: Signal0 by signal()
 
+  /**
+   * One of the several input constants in lower-case style like: "vertex"(`VERTEX`) or "point_size"(`POINT_SIZE`).
+   */
   open var inputName: String
     get() {
       TransferContext.writeArguments()
@@ -35,6 +49,9 @@ open class VisualShaderNodeInput : VisualShaderNode() {
   override fun __new(): VoidPtr =
       TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEINPUT)
 
+  /**
+   *
+   */
   open fun getInputRealName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,

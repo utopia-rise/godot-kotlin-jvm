@@ -14,8 +14,19 @@ import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Occludes light cast by a Light2D, casting shadows.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/2d/2d_lights_and_shadows.html](https://docs.godotengine.org/en/latest/tutorials/2d/2d_lights_and_shadows.html)
+ *
+ * Occludes light cast by a Light2D, casting shadows. The LightOccluder2D must be provided with an [godot.OccluderPolygon2D] in order for the shadow to be computed.
+ */
 @GodotBaseType
 open class LightOccluder2D : Node2D() {
+  /**
+   * The LightOccluder2D's light mask. The LightOccluder2D will cast shadows only from Light2D(s) that have the same light mask(s).
+   */
   override var lightMask: Long
     get() {
       TransferContext.writeArguments()
@@ -29,6 +40,9 @@ open class LightOccluder2D : Node2D() {
           NIL)
     }
 
+  /**
+   * The [godot.OccluderPolygon2D] used to compute the shadow.
+   */
   open var occluder: OccluderPolygon2D?
     get() {
       TransferContext.writeArguments()

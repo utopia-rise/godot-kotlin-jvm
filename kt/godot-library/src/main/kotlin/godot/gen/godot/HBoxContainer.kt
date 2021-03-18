@@ -10,6 +10,11 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Horizontal box container.
+ *
+ * Horizontal box container. See [godot.BoxContainer].
+ */
 @GodotBaseType
 open class HBoxContainer : BoxContainer() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_HBOXCONTAINER)

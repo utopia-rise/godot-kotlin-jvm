@@ -16,8 +16,20 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * A shortcut for binding input.
+ *
+ * A shortcut for binding input.
+ *
+ * Shortcuts are commonly used for interacting with a [godot.Control] element from a [godot.InputEvent].
+ */
 @GodotBaseType
 open class ShortCut : Resource() {
+  /**
+   * The shortcut's [godot.InputEvent].
+   *
+   * Generally the [godot.InputEvent] is a keyboard key, though it can be any [godot.InputEvent].
+   */
   open var shortcut: InputEvent?
     get() {
       TransferContext.writeArguments()
@@ -31,18 +43,27 @@ open class ShortCut : Resource() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SHORTCUT)
 
+  /**
+   * Returns the shortcut's [godot.InputEvent] as a [godot.String].
+   */
   open fun getAsText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHORTCUT_GET_AS_TEXT, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
+  /**
+   * Returns `true` if the shortcut's [godot.InputEvent] equals `event`.
+   */
   open fun isShortcut(event: InputEvent): Boolean {
     TransferContext.writeArguments(OBJECT to event)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHORTCUT_IS_SHORTCUT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   * If `true`, this shortcut is valid.
+   */
   open fun isValid(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHORTCUT_IS_VALID, BOOL)

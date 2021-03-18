@@ -13,6 +13,9 @@ import godot.core.VariantType._RID
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ *
+ */
 @GodotBaseType
 open class SkinReference : Reference() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SKINREFERENCE)
@@ -20,12 +23,18 @@ open class SkinReference : Reference() {
   open fun _skinChanged() {
   }
 
+  /**
+   *
+   */
   open fun getSkeleton(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKINREFERENCE_GET_SKELETON, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
+  /**
+   *
+   */
   open fun getSkin(): Skin? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKINREFERENCE_GET_SKIN, OBJECT)

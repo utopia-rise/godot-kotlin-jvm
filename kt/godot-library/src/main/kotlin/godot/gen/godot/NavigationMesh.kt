@@ -27,6 +27,9 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ *
+ */
 @GodotBaseType
 open class NavigationMesh : Resource() {
   open var agent_height: Double
@@ -324,22 +327,34 @@ open class NavigationMesh : Resource() {
   open fun _setPolygons(polygons: VariantArray<Any?>) {
   }
 
+  /**
+   *
+   */
   open fun addPolygon(polygon: PoolIntArray) {
     TransferContext.writeArguments(POOL_INT_ARRAY to polygon)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_ADD_POLYGON, NIL)
   }
 
+  /**
+   *
+   */
   open fun clearPolygons() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_CLEAR_POLYGONS, NIL)
   }
 
+  /**
+   *
+   */
   open fun createFromMesh(mesh: Mesh) {
     TransferContext.writeArguments(OBJECT to mesh)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_CREATE_FROM_MESH,
         NIL)
   }
 
+  /**
+   *
+   */
   open fun getCollisionMaskBit(bit: Long): Boolean {
     TransferContext.writeArguments(LONG to bit)
     TransferContext.callMethod(rawPtr,
@@ -347,6 +362,9 @@ open class NavigationMesh : Resource() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   *
+   */
   open fun getPolygon(idx: Long): PoolIntArray {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_POLYGON,
@@ -354,6 +372,9 @@ open class NavigationMesh : Resource() {
     return TransferContext.readReturnValue(POOL_INT_ARRAY, false) as PoolIntArray
   }
 
+  /**
+   *
+   */
   open fun getPolygonCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_POLYGON_COUNT,
@@ -361,6 +382,9 @@ open class NavigationMesh : Resource() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   *
+   */
   open fun setCollisionMaskBit(bit: Long, value: Boolean) {
     TransferContext.writeArguments(LONG to bit, BOOL to value)
     TransferContext.callMethod(rawPtr,
@@ -368,16 +392,34 @@ open class NavigationMesh : Resource() {
   }
 
   companion object {
+    /**
+     *
+     */
     final const val PARSED_GEOMETRY_BOTH: Long = 2
 
+    /**
+     *
+     */
     final const val PARSED_GEOMETRY_MESH_INSTANCES: Long = 0
 
+    /**
+     *
+     */
     final const val PARSED_GEOMETRY_STATIC_COLLIDERS: Long = 1
 
+    /**
+     *
+     */
     final const val SAMPLE_PARTITION_LAYERS: Long = 2
 
+    /**
+     *
+     */
     final const val SAMPLE_PARTITION_MONOTONE: Long = 1
 
+    /**
+     *
+     */
     final const val SAMPLE_PARTITION_WATERSHED: Long = 0
   }
 }

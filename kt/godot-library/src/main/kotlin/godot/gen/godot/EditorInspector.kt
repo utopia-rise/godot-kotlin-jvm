@@ -22,20 +22,50 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * A tab used to edit properties of the selected node.
+ *
+ * The editor inspector is by default located on the right-hand side of the editor. It's used to edit the properties of the selected node. For example, you can select a node such as [godot.Sprite] then edit its transform through the inspector tool. The editor inspector is an essential tool in the game development workflow.
+ *
+ * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getInspector].
+ */
 @GodotBaseType
 open class EditorInspector : ScrollContainer() {
+  /**
+   * Emitted when the Edit button of an [godot.Object] has been pressed in the inspector. This is mainly used in the remote scene tree inspector.
+   */
   val objectIdSelected: Signal1<Long> by signal("id")
 
+  /**
+   * Emitted when a property is edited in the inspector.
+   */
   val propertyEdited: Signal1<String> by signal("property")
 
+  /**
+   * Emitted when a property is keyed in the inspector. Properties can be keyed by clicking the "key" icon next to a property when the Animation panel is toggled.
+   */
   val propertyKeyed: Signal1<String> by signal("property")
 
+  /**
+   * Emitted when a property is selected in the inspector.
+   */
   val propertySelected: Signal1<String> by signal("property")
 
+  /**
+   * Emitted when a boolean property is toggled in the inspector.
+   *
+   * **Note:** This signal is never emitted if the internal `autoclear` property enabled. Since this property is always enabled in the editor inspector, this signal is never emitted by the editor itself.
+   */
   val propertyToggled: Signal2<String, Boolean> by signal("property", "checked")
 
+  /**
+   * Emitted when a resource is selected in the inspector.
+   */
   val resourceSelected: Signal2<Object, String> by signal("res", "prop")
 
+  /**
+   * Emitted when a property that requires a restart to be applied is edited in the inspector. This is only used in the Project Settings and Editor Settings.
+   */
   val restartRequested: Signal0 by signal()
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_EDITORINSPECTOR)
@@ -96,6 +126,11 @@ open class EditorInspector : ScrollContainer() {
   open fun _vscrollChanged(arg0: Double) {
   }
 
+  /**
+   * Refreshes the inspector.
+   *
+   * **Note:** To save on CPU resources, calling this method will do nothing if the time specified in `docks/property_editor/auto_refresh_interval` editor setting hasn't passed yet since this method was last called. (By default, this interval is set to 0.3 seconds.)
+   */
   open fun refresh() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINSPECTOR_REFRESH, NIL)

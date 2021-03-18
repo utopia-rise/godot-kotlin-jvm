@@ -17,8 +17,20 @@ import kotlin.Double
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Static body for 2D physics.
+ *
+ * Static body for 2D physics. A StaticBody2D is a body that is not intended to move. It is ideal for implementing objects in the environment, such as walls or platforms.
+ *
+ * Additionally, a constant linear or angular velocity can be set for the static body, which will affect colliding bodies as if it were moving (for example, a conveyor belt).
+ */
 @GodotBaseType
 open class StaticBody2D : PhysicsBody2D() {
+  /**
+   * The body's bounciness. Values range from `0` (no bounce) to `1` (full bounciness).
+   *
+   * Deprecated, use [godot.PhysicsMaterial.bounce] instead via [physicsMaterialOverride].
+   */
   open var bounce: Double
     get() {
       TransferContext.writeArguments()
@@ -30,6 +42,9 @@ open class StaticBody2D : PhysicsBody2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STATICBODY2D_SET_BOUNCE, NIL)
     }
 
+  /**
+   * The body's constant angular velocity. This does not rotate the body, but affects colliding bodies, as if it were rotating.
+   */
   open var constantAngularVelocity: Double
     get() {
       TransferContext.writeArguments()
@@ -43,6 +58,9 @@ open class StaticBody2D : PhysicsBody2D() {
           ENGINEMETHOD_ENGINECLASS_STATICBODY2D_SET_CONSTANT_ANGULAR_VELOCITY, NIL)
     }
 
+  /**
+   * The body's constant linear velocity. This does not move the body, but affects colliding bodies, as if it were moving.
+   */
   open var constantLinearVelocity: Vector2
     get() {
       TransferContext.writeArguments()
@@ -56,6 +74,11 @@ open class StaticBody2D : PhysicsBody2D() {
           ENGINEMETHOD_ENGINECLASS_STATICBODY2D_SET_CONSTANT_LINEAR_VELOCITY, NIL)
     }
 
+  /**
+   * The body's friction. Values range from `0` (no friction) to `1` (full friction).
+   *
+   * Deprecated, use [godot.PhysicsMaterial.friction] instead via [physicsMaterialOverride].
+   */
   open var friction: Double
     get() {
       TransferContext.writeArguments()
@@ -67,6 +90,11 @@ open class StaticBody2D : PhysicsBody2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STATICBODY2D_SET_FRICTION, NIL)
     }
 
+  /**
+   * The physics material override for the body.
+   *
+   * If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.
+   */
   open var physicsMaterialOverride: PhysicsMaterial?
     get() {
       TransferContext.writeArguments()

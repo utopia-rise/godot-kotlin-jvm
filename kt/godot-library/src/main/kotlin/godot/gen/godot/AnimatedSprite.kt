@@ -26,12 +26,31 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Sprite node that can use multiple textures for animation.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/2d/2d_sprite_animation.html](https://docs.godotengine.org/en/latest/tutorials/2d/2d_sprite_animation.html)
+ *
+ * Animations are created using a [godot.SpriteFrames] resource, which can be configured in the editor via the SpriteFrames panel.
+ *
+ * **Note:** You can associate a set of normal maps by creating additional [godot.SpriteFrames] resources with a `_normal` suffix. For example, having 2 [godot.SpriteFrames] resources `run` and `run_normal` will make it so the `run` animation uses the normal map.
+ */
 @GodotBaseType
 open class AnimatedSprite : Node2D() {
+  /**
+   * Emitted when the animation is finished (when it plays the last frame). If the animation is looping, this signal is emitted every time the last frame is drawn.
+   */
   val animationFinished: Signal0 by signal()
 
+  /**
+   * Emitted when [frame] changed.
+   */
   val frameChanged: Signal0 by signal()
 
+  /**
+   * The current animation from the `frames` resource. If this value changes, the `frame` counter is reset.
+   */
   open var animation: String
     get() {
       TransferContext.writeArguments()
@@ -44,6 +63,9 @@ open class AnimatedSprite : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_SET_ANIMATION, NIL)
     }
 
+  /**
+   * If `true`, texture will be centered.
+   */
   open var centered: Boolean
     get() {
       TransferContext.writeArguments()
@@ -55,6 +77,9 @@ open class AnimatedSprite : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_SET_CENTERED, NIL)
     }
 
+  /**
+   * If `true`, texture is flipped horizontally.
+   */
   open var flipH: Boolean
     get() {
       TransferContext.writeArguments()
@@ -66,6 +91,9 @@ open class AnimatedSprite : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_SET_FLIP_H, NIL)
     }
 
+  /**
+   * If `true`, texture is flipped vertically.
+   */
   open var flipV: Boolean
     get() {
       TransferContext.writeArguments()
@@ -77,6 +105,9 @@ open class AnimatedSprite : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_SET_FLIP_V, NIL)
     }
 
+  /**
+   * The displayed animation frame's index.
+   */
   open var frame: Long
     get() {
       TransferContext.writeArguments()
@@ -88,6 +119,9 @@ open class AnimatedSprite : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_SET_FRAME, NIL)
     }
 
+  /**
+   * The [godot.SpriteFrames] resource containing the animation(s).
+   */
   open var frames: SpriteFrames?
     get() {
       TransferContext.writeArguments()
@@ -99,6 +133,9 @@ open class AnimatedSprite : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_SET_FRAMES, NIL)
     }
 
+  /**
+   * The texture's drawing offset.
+   */
   open var offset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -111,6 +148,9 @@ open class AnimatedSprite : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_SET_OFFSET, NIL)
     }
 
+  /**
+   * The animation speed is multiplied by this value.
+   */
   open var speedScale: Double
     get() {
       TransferContext.writeArguments()
@@ -142,17 +182,26 @@ open class AnimatedSprite : Node2D() {
   open fun _setPlaying(playing: Boolean) {
   }
 
+  /**
+   * Returns `true` if an animation is currently being played.
+   */
   open fun isPlaying(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_IS_PLAYING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   * Plays the animation named `anim`. If no `anim` is provided, the current animation is played. If `backwards` is `true`, the animation will be played in reverse.
+   */
   open fun play(anim: String = "", backwards: Boolean = false) {
     TransferContext.writeArguments(STRING to anim, BOOL to backwards)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_PLAY, NIL)
   }
 
+  /**
+   * Stops the current animation (does not reset the frame counter).
+   */
   open fun stop() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_STOP, NIL)

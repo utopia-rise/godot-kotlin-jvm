@@ -13,8 +13,19 @@ import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Suppress
 
+/**
+ * Base class for all 3D shape resources.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html)
+ *
+ * Base class for all 3D shape resources. Nodes that inherit from this can be used as shapes for a [godot.PhysicsBody] or [godot.Area] objects.
+ */
 @GodotBaseType
 open class Shape : Resource() {
+  /**
+   * The collision margin for the shape.
+   */
   open var margin: Double
     get() {
       TransferContext.writeArguments()

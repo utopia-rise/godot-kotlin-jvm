@@ -21,10 +21,21 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Scalable texture-based frame that tiles the texture's centers and sides, but keeps the corners' original size. Perfect for panels and dialog boxes.
+ *
+ * Also known as 9-slice panels, NinePatchRect produces clean panels of any size, based on a small texture. To do so, it splits the texture in a 3×3 grid. When you scale the node, it tiles the texture's sides horizontally or vertically, the center on both axes but it doesn't scale or tile the corners.
+ */
 @GodotBaseType
 open class NinePatchRect : Control() {
+  /**
+   * Emitted when the node's texture changes.
+   */
   val textureChanged: Signal0 by signal()
 
+  /**
+   * Doesn't do anything at the time of writing.
+   */
   open var axisStretchHorizontal: Long
     get() {
       TransferContext.writeArguments()
@@ -38,6 +49,9 @@ open class NinePatchRect : Control() {
           ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_AXIS_STRETCH_HORIZONTAL, NIL)
     }
 
+  /**
+   * Doesn't do anything at the time of writing.
+   */
   open var axisStretchVertical: Long
     get() {
       TransferContext.writeArguments()
@@ -51,6 +65,9 @@ open class NinePatchRect : Control() {
           ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_AXIS_STRETCH_VERTICAL, NIL)
     }
 
+  /**
+   * If `true`, draw the panel's center. Else, only draw the 9-slice's borders.
+   */
   open var drawCenter: Boolean
     get() {
       TransferContext.writeArguments()
@@ -64,6 +81,9 @@ open class NinePatchRect : Control() {
           NIL)
     }
 
+  /**
+   * The height of the 9-slice's bottom row. A margin of 16 means the 9-slice's bottom corners and side will have a height of 16 pixels. You can set all 4 margin values individually to create panels with non-uniform borders.
+   */
   open var patchMarginBottom: Long
     get() {
       TransferContext.writeArguments()
@@ -77,6 +97,9 @@ open class NinePatchRect : Control() {
           ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_PATCH_MARGIN_BOTTOM, NIL)
     }
 
+  /**
+   * The height of the 9-slice's left column.
+   */
   open var patchMarginLeft: Long
     get() {
       TransferContext.writeArguments()
@@ -90,6 +113,9 @@ open class NinePatchRect : Control() {
           ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_PATCH_MARGIN_LEFT, NIL)
     }
 
+  /**
+   * The height of the 9-slice's right column.
+   */
   open var patchMarginRight: Long
     get() {
       TransferContext.writeArguments()
@@ -103,6 +129,9 @@ open class NinePatchRect : Control() {
           ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_PATCH_MARGIN_RIGHT, NIL)
     }
 
+  /**
+   * The height of the 9-slice's top row.
+   */
   open var patchMarginTop: Long
     get() {
       TransferContext.writeArguments()
@@ -116,6 +145,9 @@ open class NinePatchRect : Control() {
           ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_PATCH_MARGIN_TOP, NIL)
     }
 
+  /**
+   * Rectangular region of the texture to sample from. If you're working with an atlas, use this property to define the area the 9-slice should use. All other properties are relative to this one. If the rect is empty, NinePatchRect will use the whole texture.
+   */
   open var regionRect: Rect2
     get() {
       TransferContext.writeArguments()
@@ -129,6 +161,9 @@ open class NinePatchRect : Control() {
           NIL)
     }
 
+  /**
+   * The node's texture resource.
+   */
   open var texture: Texture?
     get() {
       TransferContext.writeArguments()
@@ -151,10 +186,19 @@ open class NinePatchRect : Control() {
   enum class AxisStretchMode(
     id: Long
   ) {
+    /**
+     * Doesn't do anything at the time of writing.
+     */
     AXIS_STRETCH_MODE_STRETCH(0),
 
+    /**
+     * Doesn't do anything at the time of writing.
+     */
     AXIS_STRETCH_MODE_TILE(1),
 
+    /**
+     * Doesn't do anything at the time of writing.
+     */
     AXIS_STRETCH_MODE_TILE_FIT(2);
 
     val id: Long
@@ -168,10 +212,19 @@ open class NinePatchRect : Control() {
   }
 
   companion object {
+    /**
+     * Doesn't do anything at the time of writing.
+     */
     final const val AXIS_STRETCH_MODE_STRETCH: Long = 0
 
+    /**
+     * Doesn't do anything at the time of writing.
+     */
     final const val AXIS_STRETCH_MODE_TILE: Long = 1
 
+    /**
+     * Doesn't do anything at the time of writing.
+     */
     final const val AXIS_STRETCH_MODE_TILE_FIT: Long = 2
   }
 }

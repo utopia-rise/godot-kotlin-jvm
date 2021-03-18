@@ -10,6 +10,11 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Returns the length of a [godot.core.Vector3] within the visual shader graph.
+ *
+ * Translated to `length(p0)` in the shader language.
+ */
 @GodotBaseType
 open class VisualShaderNodeVectorLen : VisualShaderNode() {
   override fun __new(): VoidPtr =

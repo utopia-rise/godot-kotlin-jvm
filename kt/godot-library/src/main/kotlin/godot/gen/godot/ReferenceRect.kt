@@ -16,8 +16,16 @@ import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Reference frame for GUI.
+ *
+ * A rectangle box that displays only a [borderColor] border color around its rectangle. [godot.ReferenceRect] has no fill [godot.core.Color].
+ */
 @GodotBaseType
 open class ReferenceRect : Control() {
+  /**
+   * Sets the border [godot.core.Color] of the [godot.ReferenceRect].
+   */
   open var borderColor: Color
     get() {
       TransferContext.writeArguments()
@@ -31,6 +39,9 @@ open class ReferenceRect : Control() {
           NIL)
     }
 
+  /**
+   * If set to `true`, the [godot.ReferenceRect] will only be visible while in editor. Otherwise, [godot.ReferenceRect] will be visible in game.
+   */
   open var editorOnly: Boolean
     get() {
       TransferContext.writeArguments()

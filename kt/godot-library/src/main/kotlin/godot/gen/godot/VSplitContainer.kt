@@ -10,6 +10,11 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Vertical split container.
+ *
+ * Vertical split container. See [godot.SplitContainer]. This goes from top to bottom.
+ */
 @GodotBaseType
 open class VSplitContainer : SplitContainer() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VSPLITCONTAINER)

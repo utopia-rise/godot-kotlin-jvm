@@ -17,8 +17,18 @@ import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Base node for containers.
+ *
+ * Base node for containers. A [godot.Container] contains other controls and automatically arranges them in a certain way.
+ *
+ * A Control can inherit this to create custom container classes.
+ */
 @GodotBaseType
 open class Container : Control() {
+  /**
+   * Emitted when sorting the children is needed.
+   */
   val sortChildren: Signal0 by signal()
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CONTAINER)
@@ -29,17 +39,26 @@ open class Container : Control() {
   open fun _sortChildren() {
   }
 
+  /**
+   * Fit a child control in a given rect. This is mainly a helper for creating custom container classes.
+   */
   open fun fitChildInRect(child: Control, rect: Rect2) {
     TransferContext.writeArguments(OBJECT to child, RECT2 to rect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTAINER_FIT_CHILD_IN_RECT, NIL)
   }
 
+  /**
+   * Queue resort of the contained children. This is called automatically anyway, but can be called upon request.
+   */
   open fun queueSort() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTAINER_QUEUE_SORT, NIL)
   }
 
   companion object {
+    /**
+     * Notification for when sorting the children, it must be obeyed immediately.
+     */
     final const val NOTIFICATION_SORT_CHILDREN: Long = 50
   }
 }

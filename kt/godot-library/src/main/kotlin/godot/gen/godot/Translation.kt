@@ -18,8 +18,20 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * Language Translation.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/i18n/internationalizing_games.html](https://docs.godotengine.org/en/latest/tutorials/i18n/internationalizing_games.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/i18n/locales.html](https://docs.godotengine.org/en/latest/tutorials/i18n/locales.html)
+ *
+ * Translations are resources that can be loaded and unloaded on demand. They map a string to another string.
+ */
 @GodotBaseType
 open class Translation : Resource() {
+  /**
+   * The locale of the translation.
+   */
   open var locale: String
     get() {
       TransferContext.writeArguments()
@@ -40,28 +52,43 @@ open class Translation : Resource() {
   open fun _setMessages(arg0: PoolStringArray) {
   }
 
+  /**
+   * Adds a message if nonexistent, followed by its translation.
+   */
   open fun addMessage(srcMessage: String, xlatedMessage: String) {
     TransferContext.writeArguments(STRING to srcMessage, STRING to xlatedMessage)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_ADD_MESSAGE, NIL)
   }
 
+  /**
+   * Erases a message.
+   */
   open fun eraseMessage(srcMessage: String) {
     TransferContext.writeArguments(STRING to srcMessage)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_ERASE_MESSAGE, NIL)
   }
 
+  /**
+   * Returns a message's translation.
+   */
   open fun getMessage(srcMessage: String): String {
     TransferContext.writeArguments(STRING to srcMessage)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_GET_MESSAGE, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
+  /**
+   * Returns the number of existing messages.
+   */
   open fun getMessageCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_GET_MESSAGE_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   * Returns all the messages (keys).
+   */
   open fun getMessageList(): PoolStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_GET_MESSAGE_LIST,

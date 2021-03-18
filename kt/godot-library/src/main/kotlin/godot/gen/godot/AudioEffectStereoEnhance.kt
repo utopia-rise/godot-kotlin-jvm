@@ -13,8 +13,14 @@ import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Suppress
 
+/**
+ *
+ */
 @GodotBaseType
 open class AudioEffectStereoEnhance : AudioEffect() {
+  /**
+   *
+   */
   open var panPullout: Double
     get() {
       TransferContext.writeArguments()
@@ -28,6 +34,9 @@ open class AudioEffectStereoEnhance : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSTEREOENHANCE_SET_PAN_PULLOUT, NIL)
     }
 
+  /**
+   *
+   */
   open var surround: Double
     get() {
       TransferContext.writeArguments()
@@ -41,6 +50,9 @@ open class AudioEffectStereoEnhance : AudioEffect() {
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSTEREOENHANCE_SET_SURROUND, NIL)
     }
 
+  /**
+   *
+   */
   open var timePulloutMs: Double
     get() {
       TransferContext.writeArguments()

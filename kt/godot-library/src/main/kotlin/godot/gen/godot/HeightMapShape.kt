@@ -15,8 +15,16 @@ import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Height map shape for 3D physics (Bullet only).
+ *
+ * Height map shape resource, which can be added to a [godot.PhysicsBody] or [godot.Area].
+ */
 @GodotBaseType
 open class HeightMapShape : Shape() {
+  /**
+   * Height map data, pool array must be of [mapWidth] * [mapDepth] size.
+   */
   open var mapData: PoolRealArray
     get() {
       TransferContext.writeArguments()
@@ -29,6 +37,9 @@ open class HeightMapShape : Shape() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HEIGHTMAPSHAPE_SET_MAP_DATA, NIL)
     }
 
+  /**
+   * Depth of the height map data. Changing this will resize the [mapData].
+   */
   open var mapDepth: Long
     get() {
       TransferContext.writeArguments()
@@ -41,6 +52,9 @@ open class HeightMapShape : Shape() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HEIGHTMAPSHAPE_SET_MAP_DEPTH, NIL)
     }
 
+  /**
+   * Width of the height map data. Changing this will resize the [mapData].
+   */
   open var mapWidth: Long
     get() {
       TransferContext.writeArguments()

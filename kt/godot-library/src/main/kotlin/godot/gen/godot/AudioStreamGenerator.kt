@@ -13,8 +13,17 @@ import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Suppress
 
+/**
+ *
+ *
+ * Tutorials:
+ * [https://github.com/godotengine/godot-demo-projects/tree/master/audio/generator](https://github.com/godotengine/godot-demo-projects/tree/master/audio/generator)
+ */
 @GodotBaseType
 open class AudioStreamGenerator : AudioStream() {
+  /**
+   *
+   */
   open var bufferLength: Double
     get() {
       TransferContext.writeArguments()
@@ -28,6 +37,9 @@ open class AudioStreamGenerator : AudioStream() {
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATOR_SET_BUFFER_LENGTH, NIL)
     }
 
+  /**
+   *
+   */
   open var mixRate: Double
     get() {
       TransferContext.writeArguments()

@@ -16,8 +16,18 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Enable OpenGL ES external texture extension.
+ *
+ * Enable support for the OpenGL ES external texture extension as defined by [godot.OES_EGL_image_external](https://www.khronos.org/registry/OpenGL/extensions/OES/OES_EGL_image_external.txt).
+ *
+ * **Note:** This is only supported for Android platforms.
+ */
 @GodotBaseType
 open class ExternalTexture : Texture() {
+  /**
+   * External texture size.
+   */
   open var size: Vector2
     get() = super.getTextureSize()
     set(value) {
@@ -33,6 +43,9 @@ open class ExternalTexture : Texture() {
   }
 
 
+  /**
+   * Returns the external texture name.
+   */
   open fun getExternalTextureId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,

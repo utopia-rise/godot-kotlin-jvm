@@ -14,8 +14,19 @@ import godot.core.VariantType._RID
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Class that has everything pertaining to a world.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/physics/ray-casting.html](https://docs.godotengine.org/en/latest/tutorials/physics/ray-casting.html)
+ *
+ * Class that has everything pertaining to a world. A physics space, a visual scenario and a sound space. Spatial nodes register their resources into the current world.
+ */
 @GodotBaseType
 open class World : Resource() {
+  /**
+   * Direct access to the world's physics 3D space state. Used for querying current and potential collisions. Must only be accessed from within `_physics_process(delta)`.
+   */
   open val directSpaceState: PhysicsDirectSpaceState?
     get() {
       TransferContext.writeArguments()
@@ -24,6 +35,9 @@ open class World : Resource() {
       return TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState?
     }
 
+  /**
+   * The World's [godot.Environment].
+   */
   open var environment: Environment?
     get() {
       TransferContext.writeArguments()
@@ -35,6 +49,9 @@ open class World : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD_SET_ENVIRONMENT, NIL)
     }
 
+  /**
+   * The World's fallback_environment will be used if the World's [godot.Environment] fails or is missing.
+   */
   open var fallbackEnvironment: Environment?
     get() {
       TransferContext.writeArguments()
@@ -48,6 +65,9 @@ open class World : Resource() {
           NIL)
     }
 
+  /**
+   * The World's visual scenario.
+   */
   open val scenario: RID
     get() {
       TransferContext.writeArguments()
@@ -55,6 +75,9 @@ open class World : Resource() {
       return TransferContext.readReturnValue(_RID, false) as RID
     }
 
+  /**
+   * The World's physics space.
+   */
   open val space: RID
     get() {
       TransferContext.writeArguments()

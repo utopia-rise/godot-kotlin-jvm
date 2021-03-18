@@ -15,8 +15,16 @@ import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Class representing a capsule-shaped [godot.PrimitiveMesh].
+ *
+ * Class representing a capsule-shaped [godot.PrimitiveMesh].
+ */
 @GodotBaseType
 open class CapsuleMesh : PrimitiveMesh() {
+  /**
+   * Height of the capsule mesh from the center point.
+   */
   open var midHeight: Double
     get() {
       TransferContext.writeArguments()
@@ -29,6 +37,9 @@ open class CapsuleMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULEMESH_SET_MID_HEIGHT, NIL)
     }
 
+  /**
+   * Number of radial segments on the capsule mesh.
+   */
   open var radialSegments: Long
     get() {
       TransferContext.writeArguments()
@@ -42,6 +53,9 @@ open class CapsuleMesh : PrimitiveMesh() {
           NIL)
     }
 
+  /**
+   * Radius of the capsule mesh.
+   */
   open var radius: Double
     get() {
       TransferContext.writeArguments()
@@ -53,6 +67,9 @@ open class CapsuleMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULEMESH_SET_RADIUS, NIL)
     }
 
+  /**
+   * Number of rings along the height of the capsule.
+   */
   open var rings: Long
     get() {
       TransferContext.writeArguments()

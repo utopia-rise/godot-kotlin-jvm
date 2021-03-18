@@ -13,8 +13,16 @@ import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Suppress
 
+/**
+ * Capsule shape for 2D collisions.
+ *
+ * Capsule shape for 2D collisions.
+ */
 @GodotBaseType
 open class CapsuleShape2D : Shape2D() {
+  /**
+   * The capsule's height.
+   */
   open var height: Double
     get() {
       TransferContext.writeArguments()
@@ -26,6 +34,9 @@ open class CapsuleShape2D : Shape2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULESHAPE2D_SET_HEIGHT, NIL)
     }
 
+  /**
+   * The capsule's radius.
+   */
   open var radius: Double
     get() {
       TransferContext.writeArguments()

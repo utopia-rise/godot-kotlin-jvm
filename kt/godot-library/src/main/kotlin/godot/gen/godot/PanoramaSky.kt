@@ -12,8 +12,20 @@ import godot.core.VariantType.OBJECT
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * A type of [godot.Sky] used to draw a background texture.
+ *
+ * A resource referenced in an [godot.Environment] that is used to draw a background. The Panorama sky functions similar to skyboxes in other engines, except it uses an equirectangular sky map instead of a cube map.
+ *
+ * Using an HDR panorama is strongly recommended for accurate, high-quality reflections. Godot supports the Radiance HDR (`.hdr`) and OpenEXR (`.exr`) image formats for this purpose.
+ *
+ * You can use [this tool](https://danilw.github.io/GLSL-howto/cubemap_to_panorama_js/cubemap_to_panorama.html) to convert a cube map to an equirectangular sky map.
+ */
 @GodotBaseType
 open class PanoramaSky : Sky() {
+  /**
+   * [godot.Texture] to be applied to the PanoramaSky.
+   */
   open var panorama: Texture?
     get() {
       TransferContext.writeArguments()

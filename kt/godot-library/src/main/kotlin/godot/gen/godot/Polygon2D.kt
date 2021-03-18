@@ -35,8 +35,18 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * A 2D polygon.
+ *
+ * A Polygon2D is defined by a set of points. Each point is connected to the next, with the final point being connected to the first, resulting in a closed polygon. Polygon2Ds can be filled with color (solid or gradient) or filled with a given texture.
+ *
+ * **Note:** By default, Godot can only draw up to 4,096 polygon points at a time. To increase this limit, open the Project Settings and increase [godot.ProjectSettings.rendering/limits/buffers/canvasPolygonBufferSizeKb] and [godot.ProjectSettings.rendering/limits/buffers/canvasPolygonIndexBufferSizeKb].
+ */
 @GodotBaseType
 open class Polygon2D : Node2D() {
+  /**
+   * If `true`, polygon edges will be anti-aliased.
+   */
   open var antialiased: Boolean
     get() {
       TransferContext.writeArguments()
@@ -48,6 +58,9 @@ open class Polygon2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_ANTIALIASED, NIL)
     }
 
+  /**
+   * The polygon's fill color. If `texture` is defined, it will be multiplied by this color. It will also be the default color for vertices not set in `vertex_colors`.
+   */
   open var color: Color
     get() {
       TransferContext.writeArguments()
@@ -59,6 +72,9 @@ open class Polygon2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_COLOR, NIL)
     }
 
+  /**
+   *
+   */
   open var internalVertexCount: Long
     get() {
       TransferContext.writeArguments()
@@ -72,6 +88,9 @@ open class Polygon2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_INTERNAL_VERTEX_COUNT, NIL)
     }
 
+  /**
+   * Added padding applied to the bounding box when using `invert`. Setting this value too small may result in a "Bad Polygon" error.
+   */
   open var invertBorder: Double
     get() {
       TransferContext.writeArguments()
@@ -84,6 +103,9 @@ open class Polygon2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_INVERT_BORDER, NIL)
     }
 
+  /**
+   * If `true`, polygon will be inverted, containing the area outside the defined points and extending to the `invert_border`.
+   */
   open var invertEnable: Boolean
     get() {
       TransferContext.writeArguments()
@@ -95,6 +117,9 @@ open class Polygon2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_INVERT_ENABLE, NIL)
     }
 
+  /**
+   * The offset applied to each vertex.
+   */
   open var offset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -106,6 +131,11 @@ open class Polygon2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_OFFSET, NIL)
     }
 
+  /**
+   * The polygon's list of vertices. The final point will be connected to the first.
+   *
+   * **Note:** This returns a copy of the [godot.core.PoolVector2Array] rather than a reference.
+   */
   open var polygon: PoolVector2Array
     get() {
       TransferContext.writeArguments()
@@ -118,6 +148,9 @@ open class Polygon2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_POLYGON, NIL)
     }
 
+  /**
+   *
+   */
   open var polygons: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
@@ -129,6 +162,9 @@ open class Polygon2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_POLYGONS, NIL)
     }
 
+  /**
+   *
+   */
   open var skeleton: NodePath
     get() {
       TransferContext.writeArguments()
@@ -140,6 +176,9 @@ open class Polygon2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_SKELETON, NIL)
     }
 
+  /**
+   * The polygon's fill texture. Use `uv` to set texture coordinates.
+   */
   open var texture: Texture?
     get() {
       TransferContext.writeArguments()
@@ -151,6 +190,9 @@ open class Polygon2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_TEXTURE, NIL)
     }
 
+  /**
+   * Amount to offset the polygon's `texture`. If `(0, 0)` the texture's origin (its top-left corner) will be placed at the polygon's `position`.
+   */
   open var textureOffset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -163,6 +205,9 @@ open class Polygon2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_TEXTURE_OFFSET, NIL)
     }
 
+  /**
+   * The texture's rotation in radians.
+   */
   open var textureRotation: Double
     get() {
       TransferContext.writeArguments()
@@ -176,6 +221,9 @@ open class Polygon2D : Node2D() {
           NIL)
     }
 
+  /**
+   * The texture's rotation in degrees.
+   */
   open var textureRotationDegrees: Double
     get() {
       TransferContext.writeArguments()
@@ -189,6 +237,9 @@ open class Polygon2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_TEXTURE_ROTATION_DEGREES, NIL)
     }
 
+  /**
+   * Amount to multiply the `uv` coordinates when using a `texture`. Larger values make the texture smaller, and vice versa.
+   */
   open var textureScale: Vector2
     get() {
       TransferContext.writeArguments()
@@ -201,6 +252,9 @@ open class Polygon2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_TEXTURE_SCALE, NIL)
     }
 
+  /**
+   * Texture coordinates for each vertex of the polygon. There should be one `uv` per polygon vertex. If there are fewer, undefined vertices will use `(0, 0)`.
+   */
   open var uv: PoolVector2Array
     get() {
       TransferContext.writeArguments()
@@ -213,6 +267,9 @@ open class Polygon2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_UV, NIL)
     }
 
+  /**
+   * Color for each vertex. Colors are interpolated between vertices, resulting in smooth gradients. There should be one per polygon vertex. If there are fewer, undefined vertices will use `color`.
+   */
   open var vertexColors: PoolColorArray
     get() {
       TransferContext.writeArguments()
@@ -261,33 +318,51 @@ open class Polygon2D : Node2D() {
   open fun _skeletonBoneSetupChanged() {
   }
 
+  /**
+   * Adds a bone with the specified `path` and `weights`.
+   */
   open fun addBone(path: NodePath, weights: PoolRealArray) {
     TransferContext.writeArguments(NODE_PATH to path, POOL_REAL_ARRAY to weights)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_ADD_BONE, NIL)
   }
 
+  /**
+   * Removes all bones from this [godot.Polygon2D].
+   */
   open fun clearBones() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_CLEAR_BONES, NIL)
   }
 
+  /**
+   * Removes the specified bone from this [godot.Polygon2D].
+   */
   open fun eraseBone(index: Long) {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_ERASE_BONE, NIL)
   }
 
+  /**
+   * Returns the number of bones in this [godot.Polygon2D].
+   */
   open fun getBoneCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_BONE_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   * Returns the path to the node associated with the specified bone.
+   */
   open fun getBonePath(index: Long): NodePath {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_BONE_PATH, NODE_PATH)
     return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
   }
 
+  /**
+   * Returns the height values of the specified bone.
+   */
   open fun getBoneWeights(index: Long): PoolRealArray {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_BONE_WEIGHTS,
@@ -295,11 +370,17 @@ open class Polygon2D : Node2D() {
     return TransferContext.readReturnValue(POOL_REAL_ARRAY, false) as PoolRealArray
   }
 
+  /**
+   * Sets the path to the node associated with the specified bone.
+   */
   open fun setBonePath(index: Long, path: NodePath) {
     TransferContext.writeArguments(LONG to index, NODE_PATH to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_BONE_PATH, NIL)
   }
 
+  /**
+   * Sets the weight values for the specified bone.
+   */
   open fun setBoneWeights(index: Long, weights: PoolRealArray) {
     TransferContext.writeArguments(LONG to index, POOL_REAL_ARRAY to weights)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_BONE_WEIGHTS, NIL)

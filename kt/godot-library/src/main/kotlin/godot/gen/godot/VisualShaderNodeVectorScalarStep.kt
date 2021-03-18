@@ -10,6 +10,13 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Calculates a vector Step function within the visual shader graph.
+ *
+ * Translates to `step(edge, x)` in the shader language.
+ *
+ * Returns `0.0` if `x` is smaller than `edge` and `1.0` otherwise.
+ */
 @GodotBaseType
 open class VisualShaderNodeVectorScalarStep : VisualShaderNode() {
   override fun __new(): VoidPtr =

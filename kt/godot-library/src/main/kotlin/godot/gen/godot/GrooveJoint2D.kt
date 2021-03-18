@@ -13,8 +13,16 @@ import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Suppress
 
+/**
+ * Groove constraint for 2D physics.
+ *
+ * Groove constraint for 2D physics. This is useful for making a body "slide" through a segment placed in another.
+ */
 @GodotBaseType
 open class GrooveJoint2D : Joint2D() {
+  /**
+   * The body B's initial anchor position defined by the joint's origin and a local offset [initialOffset] along the joint's Y axis (along the groove).
+   */
   open var initialOffset: Double
     get() {
       TransferContext.writeArguments()
@@ -28,6 +36,9 @@ open class GrooveJoint2D : Joint2D() {
           NIL)
     }
 
+  /**
+   * The groove's length. The groove is from the joint's origin towards [length] along the joint's local Y axis.
+   */
   open var length: Double
     get() {
       TransferContext.writeArguments()

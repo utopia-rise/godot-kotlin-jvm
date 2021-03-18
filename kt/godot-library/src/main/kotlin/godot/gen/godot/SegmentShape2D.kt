@@ -14,8 +14,16 @@ import godot.util.VoidPtr
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * Segment shape for 2D collisions.
+ *
+ * Segment shape for 2D collisions. Consists of two points, `a` and `b`.
+ */
 @GodotBaseType
 open class SegmentShape2D : Shape2D() {
+  /**
+   * The segment's first point position.
+   */
   open var a: Vector2
     get() {
       TransferContext.writeArguments()
@@ -27,6 +35,9 @@ open class SegmentShape2D : Shape2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEGMENTSHAPE2D_SET_A, NIL)
     }
 
+  /**
+   * The segment's second point position.
+   */
   open var b: Vector2
     get() {
       TransferContext.writeArguments()

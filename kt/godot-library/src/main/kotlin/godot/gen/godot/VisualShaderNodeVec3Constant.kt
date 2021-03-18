@@ -14,8 +14,16 @@ import godot.util.VoidPtr
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * A [godot.core.Vector3] constant to be used within the visual shader graph.
+ *
+ * A constant [godot.core.Vector3], which can be used as an input node.
+ */
 @GodotBaseType
 open class VisualShaderNodeVec3Constant : VisualShaderNode() {
+  /**
+   * A [godot.core.Vector3] constant which represents the state of this node.
+   */
   open var constant: Vector3
     get() {
       TransferContext.writeArguments()

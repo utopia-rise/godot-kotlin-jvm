@@ -13,8 +13,16 @@ import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Multiplies a [godot.core.Transform] and a [godot.core.Vector3] within the visual shader graph.
+ *
+ * A multiplication operation on a transform (4x4 matrix) and a vector, with support for different multiplication operators.
+ */
 @GodotBaseType
 open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
+  /**
+   * The multiplication type to be performed. See [enum Operator] for options.
+   */
   open var operator: Long
     get() {
       TransferContext.writeArguments()
@@ -34,12 +42,24 @@ open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
   enum class Operator(
     id: Long
   ) {
+    /**
+     * Multiplies transform `a` by the vector `b`.
+     */
     OP_AxB(0),
 
+    /**
+     * Multiplies vector `b` by the transform `a`.
+     */
     OP_BxA(1),
 
+    /**
+     * Multiplies transform `a` by the vector `b`, skipping the last row and column of the transform.
+     */
     OP_3x3_AxB(2),
 
+    /**
+     * Multiplies vector `b` by the transform `a`, skipping the last row and column of the transform.
+     */
     OP_3x3_BxA(3);
 
     val id: Long
@@ -53,12 +73,24 @@ open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
   }
 
   companion object {
+    /**
+     * Multiplies transform `a` by the vector `b`, skipping the last row and column of the transform.
+     */
     final const val OP_3x3_AxB: Long = 2
 
+    /**
+     * Multiplies vector `b` by the transform `a`, skipping the last row and column of the transform.
+     */
     final const val OP_3x3_BxA: Long = 3
 
+    /**
+     * Multiplies transform `a` by the vector `b`.
+     */
     final const val OP_AxB: Long = 0
 
+    /**
+     * Multiplies vector `b` by the transform `a`.
+     */
     final const val OP_BxA: Long = 1
   }
 }

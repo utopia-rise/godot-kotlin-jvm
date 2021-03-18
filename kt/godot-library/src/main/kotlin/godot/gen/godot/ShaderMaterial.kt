@@ -18,8 +18,19 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * A material that uses a custom [godot.Shader] program.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/shading/index.html](https://docs.godotengine.org/en/latest/tutorials/shading/index.html)
+ *
+ * A material that uses a custom [godot.Shader] program to render either items to screen or process particles. You can create multiple materials for the same shader but configure different values for the uniforms defined in the shader.
+ */
 @GodotBaseType
 open class ShaderMaterial : Material() {
+  /**
+   * The [godot.Shader] program used to render this material.
+   */
   open var shader: Shader?
     get() {
       TransferContext.writeArguments()
@@ -36,6 +47,9 @@ open class ShaderMaterial : Material() {
   open fun _shaderChanged() {
   }
 
+  /**
+   * Returns the current value set for this material of a uniform in the shader.
+   */
   open fun getShaderParam(param: String): Any? {
     TransferContext.writeArguments(STRING to param)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_GET_SHADER_PARAM,
@@ -43,6 +57,9 @@ open class ShaderMaterial : Material() {
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
+  /**
+   * Returns `true` if the property identified by `name` can be reverted to a default value.
+   */
   open fun propertyCanRevert(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_PROPERTY_CAN_REVERT,
@@ -50,6 +67,9 @@ open class ShaderMaterial : Material() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   * Returns the default value of the material property with given `name`.
+   */
   open fun propertyGetRevert(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_PROPERTY_GET_REVERT,
@@ -57,6 +77,9 @@ open class ShaderMaterial : Material() {
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
+  /**
+   * Changes the value set for this material of a uniform in the shader. **Note:** `param` must match the name of the uniform in the code exactly.
+   */
   open fun setShaderParam(param: String, value: Any?) {
     TransferContext.writeArguments(STRING to param, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER_PARAM,

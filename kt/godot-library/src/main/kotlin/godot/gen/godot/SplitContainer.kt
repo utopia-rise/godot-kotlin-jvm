@@ -17,10 +17,21 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Container for splitting and adjusting.
+ *
+ * Container for splitting two [godot.Control]s vertically or horizontally, with a grabber that allows adjusting the split offset or ratio.
+ */
 @GodotBaseType
 open class SplitContainer : Container() {
+  /**
+   * Emitted when the dragger is dragged by user.
+   */
   val dragged: Signal1<Long> by signal("offset")
 
+  /**
+   * If `true`, the area of the first [godot.Control] will be collapsed and the dragger will be disabled.
+   */
   open var collapsed: Boolean
     get() {
       TransferContext.writeArguments()
@@ -33,6 +44,9 @@ open class SplitContainer : Container() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_SET_COLLAPSED, NIL)
     }
 
+  /**
+   * Determines the dragger's visibility. See [enum DraggerVisibility] for details.
+   */
   open var draggerVisibility: Long
     get() {
       TransferContext.writeArguments()
@@ -46,6 +60,9 @@ open class SplitContainer : Container() {
           ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_SET_DRAGGER_VISIBILITY, NIL)
     }
 
+  /**
+   * The initial offset of the splitting between the two [godot.Control]s, with `0` being at the end of the first [godot.Control].
+   */
   open var splitOffset: Long
     get() {
       TransferContext.writeArguments()
@@ -64,6 +81,9 @@ open class SplitContainer : Container() {
   override fun _guiInput(event: InputEvent) {
   }
 
+  /**
+   * Clamps the [splitOffset] value to not go outside the currently possible minimal and maximum values.
+   */
   open fun clampSplitOffset() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_CLAMP_SPLIT_OFFSET,
@@ -73,10 +93,19 @@ open class SplitContainer : Container() {
   enum class DraggerVisibility(
     id: Long
   ) {
+    /**
+     * The split dragger is visible when the cursor hovers it.
+     */
     DRAGGER_VISIBLE(0),
 
+    /**
+     * The split dragger is never visible.
+     */
     DRAGGER_HIDDEN(1),
 
+    /**
+     * The split dragger is never visible and its space collapsed.
+     */
     DRAGGER_HIDDEN_COLLAPSED(2);
 
     val id: Long
@@ -90,10 +119,19 @@ open class SplitContainer : Container() {
   }
 
   companion object {
+    /**
+     * The split dragger is never visible.
+     */
     final const val DRAGGER_HIDDEN: Long = 1
 
+    /**
+     * The split dragger is never visible and its space collapsed.
+     */
     final const val DRAGGER_HIDDEN_COLLAPSED: Long = 2
 
+    /**
+     * The split dragger is visible when the cursor hovers it.
+     */
     final const val DRAGGER_VISIBLE: Long = 0
   }
 }

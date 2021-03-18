@@ -17,8 +17,16 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Suppress
 
+/**
+ * Base node for all joint constraints in 2D physics.
+ *
+ * Base node for all joint constraints in 2D physics. Joints take 2 bodies and apply a custom constraint.
+ */
 @GodotBaseType
 open class Joint2D : Node2D() {
+  /**
+   * When [nodeA] and [nodeB] move in different directions the `bias` controls how fast the joint pulls them back to their original position. The lower the `bias` the more the two bodies can pull on the joint.
+   */
   open var bias: Double
     get() {
       TransferContext.writeArguments()
@@ -30,6 +38,9 @@ open class Joint2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT2D_SET_BIAS, NIL)
     }
 
+  /**
+   * If `true`, [nodeA] and [nodeB] can not collide.
+   */
   open var disableCollision: Boolean
     get() {
       TransferContext.writeArguments()
@@ -43,6 +54,9 @@ open class Joint2D : Node2D() {
           NIL)
     }
 
+  /**
+   * The first body attached to the joint. Must derive from [godot.PhysicsBody2D].
+   */
   open var nodeA: NodePath
     get() {
       TransferContext.writeArguments()
@@ -54,6 +68,9 @@ open class Joint2D : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT2D_SET_NODE_A, NIL)
     }
 
+  /**
+   * The second body attached to the joint. Must derive from [godot.PhysicsBody2D].
+   */
   open var nodeB: NodePath
     get() {
       TransferContext.writeArguments()

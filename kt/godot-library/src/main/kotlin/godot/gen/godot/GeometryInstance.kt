@@ -19,8 +19,16 @@ import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Base node for geometry-based visual instances.
+ *
+ * Base node for geometry-based visual instances. Shares some common functionality like visibility and custom materials.
+ */
 @GodotBaseType
 open class GeometryInstance : VisualInstance() {
+  /**
+   * The selected shadow casting flag. See [enum ShadowCastingSetting] for possible values.
+   */
   open var castShadow: Long
     get() {
       TransferContext.writeArguments()
@@ -34,6 +42,9 @@ open class GeometryInstance : VisualInstance() {
           NIL)
     }
 
+  /**
+   * The extra distance added to the GeometryInstance's bounding box ([AABB]) to increase its cull box.
+   */
   open var extraCullMargin: Double
     get() {
       TransferContext.writeArguments()
@@ -47,6 +58,11 @@ open class GeometryInstance : VisualInstance() {
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE_SET_EXTRA_CULL_MARGIN, NIL)
     }
 
+  /**
+   * The GeometryInstance's max LOD distance.
+   *
+   * **Note:** This property currently has no effect.
+   */
   open var lodMaxDistance: Double
     get() {
       TransferContext.writeArguments()
@@ -60,6 +76,11 @@ open class GeometryInstance : VisualInstance() {
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE_SET_LOD_MAX_DISTANCE, NIL)
     }
 
+  /**
+   * The GeometryInstance's max LOD margin.
+   *
+   * **Note:** This property currently has no effect.
+   */
   open var lodMaxHysteresis: Double
     get() {
       TransferContext.writeArguments()
@@ -73,6 +94,11 @@ open class GeometryInstance : VisualInstance() {
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE_SET_LOD_MAX_HYSTERESIS, NIL)
     }
 
+  /**
+   * The GeometryInstance's min LOD distance.
+   *
+   * **Note:** This property currently has no effect.
+   */
   open var lodMinDistance: Double
     get() {
       TransferContext.writeArguments()
@@ -86,6 +112,11 @@ open class GeometryInstance : VisualInstance() {
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE_SET_LOD_MIN_DISTANCE, NIL)
     }
 
+  /**
+   * The GeometryInstance's min LOD margin.
+   *
+   * **Note:** This property currently has no effect.
+   */
   open var lodMinHysteresis: Double
     get() {
       TransferContext.writeArguments()
@@ -99,6 +130,11 @@ open class GeometryInstance : VisualInstance() {
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE_SET_LOD_MIN_HYSTERESIS, NIL)
     }
 
+  /**
+   * The material override for the whole geometry.
+   *
+   * If a material is assigned to this property, it will be used instead of any material set in any material slot of the mesh.
+   */
   open var materialOverride: Material?
     get() {
       TransferContext.writeArguments()
@@ -112,6 +148,9 @@ open class GeometryInstance : VisualInstance() {
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE_SET_MATERIAL_OVERRIDE, NIL)
     }
 
+  /**
+   * If `true`, this GeometryInstance will be used when baking lights using a [godot.GIProbe] or [godot.BakedLightmap].
+   */
   open var useInBakedLight: Boolean
     get() {
       TransferContext.writeArguments()
@@ -127,6 +166,9 @@ open class GeometryInstance : VisualInstance() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_GEOMETRYINSTANCE)
 
+  /**
+   * Overrides the bounding box of this node with a custom one. To remove it, set an [AABB] with all fields set to zero.
+   */
   open fun setCustomAabb(aabb: AABB) {
     TransferContext.writeArguments(godot.core.VariantType.AABB to aabb)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE_SET_CUSTOM_AABB,
@@ -136,10 +178,19 @@ open class GeometryInstance : VisualInstance() {
   enum class Flags(
     id: Long
   ) {
+    /**
+     * Will allow the GeometryInstance to be used when baking lights using a [godot.GIProbe] or [godot.BakedLightmap].
+     */
     FLAG_USE_BAKED_LIGHT(0),
 
+    /**
+     * Unused in this class, exposed for consistency with [enum VisualServer.InstanceFlags].
+     */
     FLAG_DRAW_NEXT_FRAME_IF_VISIBLE(1),
 
+    /**
+     * Represents the size of the [enum Flags] enum.
+     */
     FLAG_MAX(2);
 
     val id: Long
@@ -155,12 +206,30 @@ open class GeometryInstance : VisualInstance() {
   enum class ShadowCastingSetting(
     id: Long
   ) {
+    /**
+     * Will not cast any shadows.
+     */
     SHADOW_CASTING_SETTING_OFF(0),
 
+    /**
+     * Will cast shadows from all visible faces in the GeometryInstance.
+     *
+     * Will take culling into account, so faces not being rendered will not be taken into account when shadow casting.
+     */
     SHADOW_CASTING_SETTING_ON(1),
 
+    /**
+     * Will cast shadows from all visible faces in the GeometryInstance.
+     *
+     * Will not take culling into account, so all faces will be taken into account when shadow casting.
+     */
     SHADOW_CASTING_SETTING_DOUBLE_SIDED(2),
 
+    /**
+     * Will only show the shadows casted from this object.
+     *
+     * In other words, the actual mesh will not be visible, only the shadows casted from the mesh will be.
+     */
     SHADOW_CASTING_SETTING_SHADOWS_ONLY(3);
 
     val id: Long
@@ -174,18 +243,45 @@ open class GeometryInstance : VisualInstance() {
   }
 
   companion object {
+    /**
+     * Unused in this class, exposed for consistency with [enum VisualServer.InstanceFlags].
+     */
     final const val FLAG_DRAW_NEXT_FRAME_IF_VISIBLE: Long = 1
 
+    /**
+     * Represents the size of the [enum Flags] enum.
+     */
     final const val FLAG_MAX: Long = 2
 
+    /**
+     * Will allow the GeometryInstance to be used when baking lights using a [godot.GIProbe] or [godot.BakedLightmap].
+     */
     final const val FLAG_USE_BAKED_LIGHT: Long = 0
 
+    /**
+     * Will cast shadows from all visible faces in the GeometryInstance.
+     *
+     * Will not take culling into account, so all faces will be taken into account when shadow casting.
+     */
     final const val SHADOW_CASTING_SETTING_DOUBLE_SIDED: Long = 2
 
+    /**
+     * Will not cast any shadows.
+     */
     final const val SHADOW_CASTING_SETTING_OFF: Long = 0
 
+    /**
+     * Will cast shadows from all visible faces in the GeometryInstance.
+     *
+     * Will take culling into account, so faces not being rendered will not be taken into account when shadow casting.
+     */
     final const val SHADOW_CASTING_SETTING_ON: Long = 1
 
+    /**
+     * Will only show the shadows casted from this object.
+     *
+     * In other words, the actual mesh will not be visible, only the shadows casted from the mesh will be.
+     */
     final const val SHADOW_CASTING_SETTING_SHADOWS_ONLY: Long = 3
   }
 }

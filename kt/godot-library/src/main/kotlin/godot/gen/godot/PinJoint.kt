@@ -14,6 +14,11 @@ import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Pin joint for 3D shapes.
+ *
+ * Pin joint for 3D rigid bodies. It pins 2 bodies (rigid or static) together.
+ */
 @GodotBaseType
 open class PinJoint : Joint() {
   open var params_bias: Double
@@ -57,10 +62,19 @@ open class PinJoint : Joint() {
   enum class Param(
     id: Long
   ) {
+    /**
+     * The force with which the pinned objects stay in positional relation to each other. The higher, the stronger.
+     */
     PARAM_BIAS(0),
 
+    /**
+     * The force with which the pinned objects stay in velocity relation to each other. The higher, the stronger.
+     */
     PARAM_DAMPING(1),
 
+    /**
+     * If above 0, this value is the maximum value for an impulse that this Joint produces.
+     */
     PARAM_IMPULSE_CLAMP(2);
 
     val id: Long
@@ -74,10 +88,19 @@ open class PinJoint : Joint() {
   }
 
   companion object {
+    /**
+     * The force with which the pinned objects stay in positional relation to each other. The higher, the stronger.
+     */
     final const val PARAM_BIAS: Long = 0
 
+    /**
+     * The force with which the pinned objects stay in velocity relation to each other. The higher, the stronger.
+     */
     final const val PARAM_DAMPING: Long = 1
 
+    /**
+     * If above 0, this value is the maximum value for an impulse that this Joint produces.
+     */
     final const val PARAM_IMPULSE_CLAMP: Long = 2
   }
 }

@@ -29,10 +29,21 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * Godot editor's script editor.
+ *
+ * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getScriptEditor].
+ */
 @GodotBaseType
 open class ScriptEditor : PanelContainer() {
+  /**
+   * Emitted when user changed active script. Argument is a freshly activated [godot.Script].
+   */
   val editorScriptChanged: Signal1<Script> by signal("script")
 
+  /**
+   * Emitted when editor is about to close the active script. Argument is a [godot.Script] that is going to be closed.
+   */
   val scriptClose: Signal1<Script> by signal("script")
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SCRIPTEDITOR)
@@ -215,6 +226,9 @@ open class ScriptEditor : PanelContainer() {
   open fun _updateScriptNames() {
   }
 
+  /**
+   *
+   */
   open fun canDropDataFw(
     point: Vector2,
     data: Any?,
@@ -225,6 +239,9 @@ open class ScriptEditor : PanelContainer() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   *
+   */
   open fun dropDataFw(
     point: Vector2,
     data: Any?,
@@ -234,6 +251,9 @@ open class ScriptEditor : PanelContainer() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_DROP_DATA_FW, NIL)
   }
 
+  /**
+   * Returns a [godot.Script] that is currently active in editor.
+   */
   open fun getCurrentScript(): Script? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_CURRENT_SCRIPT,
@@ -241,12 +261,18 @@ open class ScriptEditor : PanelContainer() {
     return TransferContext.readReturnValue(OBJECT, true) as Script?
   }
 
+  /**
+   *
+   */
   open fun getDragDataFw(point: Vector2, from: Control): Any? {
     TransferContext.writeArguments(VECTOR2 to point, OBJECT to from)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_DRAG_DATA_FW, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
+  /**
+   * Returns an array with all [godot.Script] objects which are currently open in editor.
+   */
   open fun getOpenScripts(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_OPEN_SCRIPTS,
@@ -254,11 +280,17 @@ open class ScriptEditor : PanelContainer() {
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
+  /**
+   * Goes to the specified line in the current script.
+   */
   open fun gotoLine(lineNumber: Long) {
     TransferContext.writeArguments(LONG to lineNumber)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GOTO_LINE, NIL)
   }
 
+  /**
+   *
+   */
   open fun openScriptCreateDialog(baseName: String, basePath: String) {
     TransferContext.writeArguments(STRING to baseName, STRING to basePath)
     TransferContext.callMethod(rawPtr,

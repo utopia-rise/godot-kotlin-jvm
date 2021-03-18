@@ -23,12 +23,26 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ * General-purpose sprite node.
+ *
+ * A node that displays a 2D texture. The texture displayed can be a region from a larger atlas texture, or a frame from a sprite sheet animation.
+ */
 @GodotBaseType
 open class Sprite : Node2D() {
+  /**
+   * Emitted when the [frame] changes.
+   */
   val frameChanged: Signal0 by signal()
 
+  /**
+   * Emitted when the [texture] changes.
+   */
   val textureChanged: Signal0 by signal()
 
+  /**
+   * If `true`, texture is centered.
+   */
   open var centered: Boolean
     get() {
       TransferContext.writeArguments()
@@ -40,6 +54,9 @@ open class Sprite : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE_SET_CENTERED, NIL)
     }
 
+  /**
+   * If `true`, texture is flipped horizontally.
+   */
   open var flipH: Boolean
     get() {
       TransferContext.writeArguments()
@@ -51,6 +68,9 @@ open class Sprite : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE_SET_FLIP_H, NIL)
     }
 
+  /**
+   * If `true`, texture is flipped vertically.
+   */
   open var flipV: Boolean
     get() {
       TransferContext.writeArguments()
@@ -62,6 +82,9 @@ open class Sprite : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE_SET_FLIP_V, NIL)
     }
 
+  /**
+   * Current frame to display from sprite sheet. [vframes] or [hframes] must be greater than 1.
+   */
   open var frame: Long
     get() {
       TransferContext.writeArguments()
@@ -73,6 +96,9 @@ open class Sprite : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE_SET_FRAME, NIL)
     }
 
+  /**
+   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame] property. [vframes] or [hframes] must be greater than 1.
+   */
   open var frameCoords: Vector2
     get() {
       TransferContext.writeArguments()
@@ -84,6 +110,9 @@ open class Sprite : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE_SET_FRAME_COORDS, NIL)
     }
 
+  /**
+   * The number of columns in the sprite sheet.
+   */
   open var hframes: Long
     get() {
       TransferContext.writeArguments()
@@ -95,6 +124,11 @@ open class Sprite : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE_SET_HFRAMES, NIL)
     }
 
+  /**
+   * The normal map gives depth to the Sprite.
+   *
+   * **Note:** Godot expects the normal map to use X+, Y-, and Z+ coordinates. See [this page](http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates) for a comparison of normal map coordinates expected by popular engines.
+   */
   open var normalMap: Texture?
     get() {
       TransferContext.writeArguments()
@@ -106,6 +140,9 @@ open class Sprite : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE_SET_NORMAL_MAP, NIL)
     }
 
+  /**
+   * The texture's drawing offset.
+   */
   open var offset: Vector2
     get() {
       TransferContext.writeArguments()
@@ -117,6 +154,9 @@ open class Sprite : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE_SET_OFFSET, NIL)
     }
 
+  /**
+   * If `true`, texture is cut from a larger atlas texture. See [regionRect].
+   */
   open var regionEnabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -128,6 +168,9 @@ open class Sprite : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE_SET_REGION_ENABLED, NIL)
     }
 
+  /**
+   * If `true`, the outermost pixels get blurred out.
+   */
   open var regionFilterClip: Boolean
     get() {
       TransferContext.writeArguments()
@@ -141,6 +184,9 @@ open class Sprite : Node2D() {
           NIL)
     }
 
+  /**
+   * The region of the atlas texture to display. [regionEnabled] must be `true`.
+   */
   open var regionRect: Rect2
     get() {
       TransferContext.writeArguments()
@@ -152,6 +198,9 @@ open class Sprite : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE_SET_REGION_RECT, NIL)
     }
 
+  /**
+   * [godot.Texture] object to draw.
+   */
   open var texture: Texture?
     get() {
       TransferContext.writeArguments()
@@ -163,6 +212,9 @@ open class Sprite : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE_SET_TEXTURE, NIL)
     }
 
+  /**
+   * The number of rows in the sprite sheet.
+   */
   open var vframes: Long
     get() {
       TransferContext.writeArguments()
@@ -197,12 +249,27 @@ open class Sprite : Node2D() {
   open fun _textureChanged() {
   }
 
+  /**
+   * Returns a [godot.core.Rect2] representing the Sprite's boundary in local coordinates. Can be used to detect if the Sprite was clicked. Example:
+   *
+   * ```
+   * 				func _input(event):
+   * 				    if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
+   * 				        if get_rect().has_point(to_local(event.position)):
+   * 				            print("A click!")
+   * 				```
+   */
   open fun getRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE_GET_RECT, RECT2)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
   }
 
+  /**
+   * Returns `true`, if the pixel at the given position is opaque and `false` in other case.
+   *
+   * **Note:** It also returns `false`, if the sprite's texture is `null` or if the given position is invalid.
+   */
   open fun isPixelOpaque(pos: Vector2): Boolean {
     TransferContext.writeArguments(VECTOR2 to pos)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE_IS_PIXEL_OPAQUE, BOOL)

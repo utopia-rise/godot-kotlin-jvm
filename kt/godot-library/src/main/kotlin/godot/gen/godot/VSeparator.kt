@@ -10,6 +10,11 @@ import godot.core.TransferContext
 import godot.util.VoidPtr
 import kotlin.Suppress
 
+/**
+ * Vertical version of [godot.Separator].
+ *
+ * Vertical version of [godot.Separator]. Even though it looks vertical, it is used to separate objects horizontally.
+ */
 @GodotBaseType
 open class VSeparator : Separator() {
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VSEPARATOR)

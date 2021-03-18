@@ -13,8 +13,19 @@ import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Suppress
 
+/**
+ * Base class for keys events with modifiers.
+ *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html)
+ *
+ * Contains keys events information with modifiers support like `Shift` or `Alt`. See [godot.Node.Input].
+ */
 @GodotBaseType
 open class InputEventWithModifiers : InputEvent() {
+  /**
+   * State of the `Alt` modifier.
+   */
   open var alt: Boolean
     get() {
       TransferContext.writeArguments()
@@ -28,6 +39,9 @@ open class InputEventWithModifiers : InputEvent() {
           NIL)
     }
 
+  /**
+   * State of the `Command` modifier.
+   */
   open var command: Boolean
     get() {
       TransferContext.writeArguments()
@@ -41,6 +55,9 @@ open class InputEventWithModifiers : InputEvent() {
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_SET_COMMAND, NIL)
     }
 
+  /**
+   * State of the `Ctrl` modifier.
+   */
   open var control: Boolean
     get() {
       TransferContext.writeArguments()
@@ -54,6 +71,9 @@ open class InputEventWithModifiers : InputEvent() {
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_SET_CONTROL, NIL)
     }
 
+  /**
+   * State of the `Meta` modifier.
+   */
   open var meta: Boolean
     get() {
       TransferContext.writeArguments()
@@ -67,6 +87,9 @@ open class InputEventWithModifiers : InputEvent() {
           NIL)
     }
 
+  /**
+   * State of the `Shift` modifier.
+   */
   open var shift: Boolean
     get() {
       TransferContext.writeArguments()

@@ -18,8 +18,22 @@ import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ * Proxy texture for simple frame-based animations.
+ *
+ * [godot.AnimatedTexture] is a resource format for frame-based animations, where multiple textures can be chained automatically with a predefined delay for each frame. Unlike [godot.AnimationPlayer] or [godot.AnimatedSprite], it isn't a [godot.Node], but has the advantage of being usable anywhere a [godot.Texture] resource can be used, e.g. in a [godot.TileSet].
+ *
+ * The playback of the animation is controlled by the [fps] property as well as each frame's optional delay (see [setFrameDelay]). The animation loops, i.e. it will restart at frame 0 automatically after playing the last frame.
+ *
+ * [godot.AnimatedTexture] currently requires all frame textures to have the same size, otherwise the bigger ones will be cropped to match the smallest one.
+ *
+ * **Note:** AnimatedTexture doesn't support using [godot.AtlasTexture]s. Each frame needs to be a separate [godot.Texture].
+ */
 @GodotBaseType
 open class AnimatedTexture : Texture() {
+  /**
+   * Sets the currently visible frame of the texture.
+   */
   open var currentFrame: Long
     get() {
       TransferContext.writeArguments()
@@ -33,6 +47,11 @@ open class AnimatedTexture : Texture() {
           NIL)
     }
 
+  /**
+   * Animation speed in frames per second. This value defines the default time interval between two frames of the animation, and thus the overall duration of the animation loop based on the [frames] property. A value of 0 means no predefined number of frames per second, the animation will play according to each frame's frame delay (see [setFrameDelay]).
+   *
+   * For example, an animation with 8 frames, no frame delay and a `fps` value of 2 will run for 4 seconds, with each frame lasting 0.5 seconds.
+   */
   open var fps: Double
     get() {
       TransferContext.writeArguments()
@@ -6700,6 +6719,9 @@ open class AnimatedTexture : Texture() {
           ENGINEMETHOD_ENGINECLASS_ANIMATEDTEXTURE_SET_FRAME_99_TEXTURE, NIL)
     }
 
+  /**
+   * Number of frames to use in the animation. While you can create the frames independently with [setFrameTexture], you need to set this value for the animation to take new frames into account. The maximum number of frames is [MAX_FRAMES].
+   */
   open var frames: Long
     get() {
       TransferContext.writeArguments()
@@ -6711,6 +6733,9 @@ open class AnimatedTexture : Texture() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDTEXTURE_SET_FRAMES, NIL)
     }
 
+  /**
+   * If `true`, the animation will only play once and will not loop back to the first frame after reaching the end. Note that reaching the end will not set [pause] to `true`.
+   */
   open var oneshot: Boolean
     get() {
       TransferContext.writeArguments()
@@ -6722,6 +6747,9 @@ open class AnimatedTexture : Texture() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDTEXTURE_SET_ONESHOT, NIL)
     }
 
+  /**
+   * If `true`, the animation will pause where it currently is (i.e. at [currentFrame]). The animation will continue from where it was paused when changing this property to `false`.
+   */
   open var pause: Boolean
     get() {
       TransferContext.writeArguments()
@@ -6739,6 +6767,9 @@ open class AnimatedTexture : Texture() {
   }
 
   companion object {
+    /**
+     * The maximum number of frames supported by [godot.AnimatedTexture]. If you need more frames in your animation, use [godot.AnimationPlayer] or [godot.AnimatedSprite].
+     */
     final const val MAX_FRAMES: Long = 256
   }
 }

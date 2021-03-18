@@ -16,8 +16,14 @@ import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.Suppress
 
+/**
+ *
+ */
 @GodotBaseType
 open class StreamPeerBuffer : StreamPeer() {
+  /**
+   *
+   */
   open var dataArray: PoolByteArray
     get() {
       TransferContext.writeArguments()
@@ -33,34 +39,52 @@ open class StreamPeerBuffer : StreamPeer() {
 
   override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_STREAMPEERBUFFER)
 
+  /**
+   *
+   */
   open fun clear() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_CLEAR, NIL)
   }
 
+  /**
+   *
+   */
   open fun duplicate(): StreamPeerBuffer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_DUPLICATE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as StreamPeerBuffer?
   }
 
+  /**
+   *
+   */
   open fun getPosition(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_GET_POSITION, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   *
+   */
   open fun getSize(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_GET_SIZE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  /**
+   *
+   */
   open fun resize(size: Long) {
     TransferContext.writeArguments(LONG to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_RESIZE, NIL)
   }
 
+  /**
+   *
+   */
   open fun seek(position: Long) {
     TransferContext.writeArguments(LONG to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERBUFFER_SEEK, NIL)

@@ -15,8 +15,16 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Suppress
 
+/**
+ * Ray shape for 3D collisions.
+ *
+ * Ray shape for 3D collisions, which can be set into a [godot.PhysicsBody] or [godot.Area]. A ray is not really a collision body; instead, it tries to separate itself from whatever is touching its far endpoint. It's often useful for characters.
+ */
 @GodotBaseType
 open class RayShape : Shape() {
+  /**
+   * The ray's length.
+   */
   open var length: Double
     get() {
       TransferContext.writeArguments()
@@ -28,6 +36,9 @@ open class RayShape : Shape() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYSHAPE_SET_LENGTH, NIL)
     }
 
+  /**
+   * If `true`, allow the shape to return the correct normal.
+   */
   open var slipsOnSlope: Boolean
     get() {
       TransferContext.writeArguments()
