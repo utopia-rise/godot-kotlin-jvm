@@ -21,12 +21,23 @@ public:
     void write_args(jni::Env& p_env, const Variant** p_args, int args_size);
     void read_args(jni::Env& p_env, Variant* args);
 
-    static void icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jint p_method_index, jint expectedReturnType);
+    static void icall(JNIEnv* rawEnv,
+                      jobject instance,
+                      jlong jPtr,
+                      jint p_method_index,
+                      jint expectedReturnType);
 
     static void invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index);
+
     static jlong get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index);
-    static void set_script(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint p_class_index, jobject p_object,
+
+    static void set_script(JNIEnv* p_raw_env,
+                           jobject p_instance,
+                           jlong p_raw_ptr, jint
+                           p_class_index,
+                           jobject p_object,
                            jobject p_class_loader);
+
     static void free_object(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
 
 private:

@@ -112,8 +112,13 @@ void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) 
 }
 
 void
-register_engine_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_engine_types, jobjectArray p_singleton_names,
-                           jobjectArray p_method_names, jobjectArray p_types_of_methods) {
+register_engine_types_hook(
+        JNIEnv* p_env,
+        jobject p_this,
+        jobjectArray p_engine_types,
+        jobjectArray p_singleton_names,
+        jobjectArray p_method_names,
+        jobjectArray p_types_of_methods) {
 #ifdef DEBUG_ENABLED
     LOG_VERBOSE("Starting to register managed engine types...")
 #endif

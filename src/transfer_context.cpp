@@ -104,7 +104,12 @@ void TransferContext::read_args(jni::Env& p_env, Variant* args) {
 }
 
 void
-TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong jPtr, jint p_method_index, jint expectedReturnType) {
+TransferContext::icall(
+        JNIEnv* rawEnv,
+        jobject instance,
+        jlong jPtr,
+        jint p_method_index,
+        jint expectedReturnType) {
     if (unlikely(!icall_args_init)) {
         for (int i = 0; i < MAX_ARGS_SIZE; i++) {
             variant_args_ptr[i] = &variant_args[i];
@@ -179,8 +184,13 @@ jlong TransferContext::get_singleton(JNIEnv* p_raw_env, jobject p_instance, jint
     );
 }
 
-void TransferContext::set_script(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint p_class_index,
-                                 jobject p_object, jobject p_class_loader) {
+void TransferContext::set_script(
+        JNIEnv* p_raw_env,
+        jobject p_instance,
+        jlong p_raw_ptr,
+        jint p_class_index,
+        jobject p_object,
+        jobject p_class_loader) {
     jni::Env env(p_raw_env);
     Ref<KotlinScript> kotlin_script{GDKotlin::get_instance().user_scripts[static_cast<int>(p_class_index)]};
     auto* owner{reinterpret_cast<Object*>(p_raw_ptr)};
