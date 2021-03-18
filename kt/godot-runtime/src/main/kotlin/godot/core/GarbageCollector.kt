@@ -268,28 +268,24 @@ object GarbageCollector {
             }
 
             val finish = Instant.now()
-            if (Duration.between(begin, finish).toMillis() > 10000) {
+            if (Duration.between(begin, finish).toMillis() > 5000) {
                 warning(
                     buildString {
-                        append("Some JVM godot instances are leaked.")
-                        append(System.lineSeparator())
+                        appendLine("Some JVM godot instances are leaked.")
                         if (shouldDisplayLeakInstancesOnClose) {
-                            append("Leaked references:")
-                            append(System.lineSeparator())
+                            appendLine("Leaked references:")
                             for (entry in refWrappedList) {
                                 if (entry != null) {
                                     append("    ${entry.get()}")
                                     append(System.lineSeparator())
                                 }
                             }
-                            append("Leaked objects:")
-                            append(System.lineSeparator())
+                            appendLine("Leaked objects:")
                             for (entry in wrappedMap) {
                                 append("    ${entry.key}: ${entry.value}")
                                 append(System.lineSeparator())
                             }
-                            append("Leaked native core types:")
-                            append(System.lineSeparator())
+                            appendLine("Leaked native core types:")
                             for (entry in nativeCoreTypeMap) {
                                 append("    ${entry.key}: ${entry.value}")
                                 append(System.lineSeparator())
