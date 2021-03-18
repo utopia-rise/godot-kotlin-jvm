@@ -1,6 +1,9 @@
 name: Check PR - Engine Editor Debug And Tests
 on: [pull_request]
 
+env:
+  GODOT_BASE_VERSION: 3.2.3
+
 jobs:
   build-godot-library:
     strategy:
@@ -72,11 +75,11 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{github.workspace}}/${{matrix.platform}}/.scons_cache/
-          key: ${{github.job}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
+          key: ${{github.job}}-${{env.GODOT_BASE_VERSION}}-${{github.ref}}-${{github.sha}}
           restore-keys: |
-            ${{github.job}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
-            ${{github.job}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}
-            ${{github.job}}-${{env.GODOT_BASE_BRANCH}}
+            ${{github.job}}-${{env.GODOT_BASE_VERSION}}-${{github.ref}}-${{github.sha}}
+            ${{github.job}}-${{env.GODOT_BASE_VERSION}}-${{github.ref}}
+            ${{github.job}}-${{env.GODOT_BASE_VERSION}}
       - name: Set up Python 3.x
         uses: actions/setup-python@v2
         with:
