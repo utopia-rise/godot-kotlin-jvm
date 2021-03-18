@@ -68,10 +68,10 @@ jobs:
           submodules: recursive
       # Upload cache on completion and check it out now
       - name: Load .scons_cache directory
-        id: ${{ matrix.os }}-editor-debug-cache
+        id: editor-debug-cache
         uses: actions/cache@v2
         with:
-          path: ${{github.workspace}}/.scons_cache/
+          path: ${{github.workspace}}/${{matrix.platform}}/.scons_cache/
           key: ${{github.job}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
           restore-keys: |
             ${{github.job}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
@@ -88,7 +88,7 @@ jobs:
           python -m pip install scons
       - name: Build with editor debug
         env:
-          SCONS_CACHE: ${{github.workspace}}/.scons_cache/
+          SCONS_CACHE: ${{github.workspace}}/${{matrix.platform}}/.scons_cache/
         run: |
           scons platform=${{ matrix.platform }}
       - name: Upload OSX binary
