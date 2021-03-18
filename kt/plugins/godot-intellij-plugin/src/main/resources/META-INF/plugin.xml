@@ -17,6 +17,7 @@
         <annotator implementationClass="godot.intellij.plugin.annotator.function.RegisterFunctionAnnotator" language="JVM" />
         <annotator implementationClass="godot.intellij.plugin.annotator.property.RegisterPropertiesAnnotator" language="JVM" />
         <annotator implementationClass="godot.intellij.plugin.annotator.signal.RegisterSignalAnnotator" language="JVM" />
+        <annotator implementationClass="godot.intellij.plugin.annotator.reference.FunctionReferenceAnnotator" language="JVM" />
         <codeInsight.lineMarkerProvider language="JVM"
             implementationClass="godot.intellij.plugin.linemarker.SignalConnectionLineMarker"/>
     </extensions>
