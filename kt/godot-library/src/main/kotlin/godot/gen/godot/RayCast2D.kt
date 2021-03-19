@@ -22,10 +22,10 @@ import kotlin.Unit
 
 /**
  * Query the closest object intersecting a ray.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/physics/ray-casting.html](https://docs.godotengine.org/en/latest/tutorials/physics/ray-casting.html)
- *
+ * 
  * A RayCast represents a line from its origin to its destination position, `cast_to`. It is used to query the 2D space in order to find the closest object along the path of the ray.
  *
  * RayCast2D can ignore some objects by adding them to the exception list via `add_exception`, by setting proper filtering with collision layers, or by filtering object types with type masks.

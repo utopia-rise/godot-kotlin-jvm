@@ -23,7 +23,7 @@ import kotlin.Suppress
 
 /**
  * Resource filesystem, as the editor sees it.
- *
+ * 
  * This object holds information of all resources in the filesystem, their types, etc.
  *
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getResourceFilesystem].

@@ -15,7 +15,7 @@ import kotlin.Suppress
 
 /**
  * Enables certain nodes only when approximately visible.
- *
+ * 
  * The VisibilityEnabler2D will disable [godot.RigidBody2D], [godot.AnimationPlayer], and other nodes when they are not visible. It will only affect nodes with the same root node as the VisibilityEnabler2D, and the root node itself.
  *
  * If you just want to receive notifications, use [godot.VisibilityNotifier2D] instead.

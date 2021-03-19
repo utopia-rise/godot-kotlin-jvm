@@ -15,7 +15,7 @@ import kotlin.Unit
 
 /**
  * Segment shape for 2D collisions.
- *
+ * 
  * Segment shape for 2D collisions. Consists of two points, `a` and `b`.
  */
 @GodotBaseType

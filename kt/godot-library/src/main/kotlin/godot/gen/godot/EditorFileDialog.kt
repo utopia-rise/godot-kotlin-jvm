@@ -24,6 +24,8 @@ import kotlin.Suppress
 
 /**
  * A modified version of [godot.FileDialog] used by the editor.
+ * 
+ * 
  */
 @GodotBaseType
 open class EditorFileDialog : ConfirmationDialog() {

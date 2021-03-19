@@ -32,7 +32,7 @@ import kotlin.Suppress
 
 /**
  * Control for a single item inside a [godot.Tree].
- *
+ * 
  * Control for a single item inside a [godot.Tree]. May have child [godot.TreeItem]s and be styled as well as contain buttons.
  *
  * You can remove a [godot.TreeItem] by using [godot.Object.free].

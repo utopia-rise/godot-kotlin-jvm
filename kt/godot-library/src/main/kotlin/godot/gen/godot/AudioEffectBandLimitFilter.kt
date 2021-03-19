@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * Adds a band limit filter to the audio bus.
- *
+ * 
  * Limits the frequencies in a range around the [godot.AudioEffectFilter.cutoffHz] and allows frequencies outside of this range to pass.
  */
 @GodotBaseType

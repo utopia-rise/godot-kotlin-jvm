@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * Pin Joint for 2D shapes.
- *
+ * 
  * Pin Joint for 2D rigid bodies. It pins two bodies (rigid or static) together.
  */
 @GodotBaseType

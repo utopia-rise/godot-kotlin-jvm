@@ -15,7 +15,7 @@ import kotlin.Suppress
 
 /**
  * Group of Buttons.
- *
+ * 
  * Group of [godot.Button]. All direct and indirect children buttons become radios. Only one allows being pressed.
  *
  * [godot.BaseButton.toggleMode] should be `true`.

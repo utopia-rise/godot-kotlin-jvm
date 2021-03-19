@@ -13,7 +13,9 @@ import kotlin.Double
 import kotlin.Suppress
 
 /**
- *
+ * 
+ * 
+ * 
  */
 @GodotBaseType
 open class AudioEffectStereoEnhance : AudioEffect() {

@@ -17,7 +17,7 @@ import kotlin.Suppress
 
 /**
  * A `.stex` texture.
- *
+ * 
  * A texture that is loaded from a `.stex` file.
  */
 @GodotBaseType

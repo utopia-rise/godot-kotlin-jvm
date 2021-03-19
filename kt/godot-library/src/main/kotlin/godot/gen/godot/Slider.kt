@@ -16,7 +16,7 @@ import kotlin.Suppress
 
 /**
  * Base class for GUI sliders.
- *
+ * 
  * Base class for GUI sliders.
  *
  * **Note:** The [godot.Range.changed] and [godot.Range.valueChanged] signals are part of the [godot.Range] class which this class inherits from.

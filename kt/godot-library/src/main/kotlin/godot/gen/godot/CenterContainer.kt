@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * Keeps children controls centered.
- *
+ * 
  * CenterContainer keeps children controls centered. This container keeps all children to their minimum size, in the center.
  */
 @GodotBaseType

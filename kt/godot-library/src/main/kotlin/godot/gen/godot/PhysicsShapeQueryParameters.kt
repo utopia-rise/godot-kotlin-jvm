@@ -27,7 +27,7 @@ import kotlin.Unit
 
 /**
  * Parameters to be sent to a 3D shape physics query.
- *
+ * 
  * This class contains the shape and other parameters for 3D intersection/collision queries. See also [godot.PhysicsShapeQueryResult].
  */
 @GodotBaseType

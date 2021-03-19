@@ -16,7 +16,7 @@ import kotlin.Suppress
 
 /**
  * One-shot timer.
- *
+ * 
  * A one-shot timer managed by the scene tree, which emits [timeout] on completion. See also [godot.SceneTree.createTimer].
  *
  * As opposed to [godot.Timer], it does not require the instantiation of a node. Commonly used to create a one-shot delay timer as in the following example:

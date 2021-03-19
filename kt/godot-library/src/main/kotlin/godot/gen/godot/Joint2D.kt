@@ -18,7 +18,7 @@ import kotlin.Suppress
 
 /**
  * Base node for all joint constraints in 2D physics.
- *
+ * 
  * Base node for all joint constraints in 2D physics. Joints take 2 bodies and apply a custom constraint.
  */
 @GodotBaseType

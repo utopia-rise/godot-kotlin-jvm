@@ -34,10 +34,10 @@ import kotlin.Unit
 
 /**
  * Node for 2D tile-based maps.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/2d/using_tilemaps.html](https://docs.godotengine.org/en/latest/tutorials/2d/using_tilemaps.html)
- *
+ * 
  * Node for 2D tile-based maps. Tilemaps use a [godot.TileSet] which contain a list of tiles (textures plus optional collision, navigation, and/or occluder shapes) which are used to create grid-based maps.
  */
 @GodotBaseType

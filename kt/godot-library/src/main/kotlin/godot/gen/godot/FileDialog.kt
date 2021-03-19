@@ -23,7 +23,7 @@ import kotlin.Suppress
 
 /**
  * Dialog for selecting files or directories in the filesystem.
- *
+ * 
  * FileDialog is a preset dialog used to choose files and directories in the filesystem. It supports filter masks. The FileDialog automatically sets its window title according to the [mode]. If you want to use a custom title, disable this by setting [modeOverridesTitle] to `false`.
  */
 @GodotBaseType

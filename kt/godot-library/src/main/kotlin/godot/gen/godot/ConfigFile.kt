@@ -26,7 +26,7 @@ import kotlin.Suppress
 
 /**
  * Helper class to handle INI-style files.
- *
+ * 
  * This helper class can be used to store [Variant] values on the filesystem using INI-style formatting. The stored values are identified by a section and a key:
  *
  * ```

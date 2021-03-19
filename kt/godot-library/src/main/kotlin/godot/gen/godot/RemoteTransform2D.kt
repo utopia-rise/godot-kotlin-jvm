@@ -16,7 +16,7 @@ import kotlin.Suppress
 
 /**
  * RemoteTransform2D pushes its own [godot.core.Transform2D] to another [godot.CanvasItem] derived Node in the scene.
- *
+ * 
  * RemoteTransform2D pushes its own [godot.core.Transform2D] to another [godot.CanvasItem] derived Node (called the remote node) in the scene.
  *
  * It can be set to update another Node's position, rotation and/or scale. It can use either global or local coordinates.

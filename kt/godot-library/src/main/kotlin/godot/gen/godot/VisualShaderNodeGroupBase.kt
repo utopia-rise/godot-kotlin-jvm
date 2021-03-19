@@ -21,7 +21,7 @@ import kotlin.Unit
 
 /**
  * Base class for a family of nodes with variable amount of input and output ports within the visual shader graph.
- *
+ * 
  * Currently, has no direct usage, use the derived classes instead.
  */
 @GodotBaseType

@@ -24,10 +24,10 @@ import kotlin.Unit
 
 /**
  * Default 3D rendering material.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/3d/spatial_material.html](https://docs.godotengine.org/en/latest/tutorials/3d/spatial_material.html)
- *
+ * 
  * This provides a default material with a wide variety of rendering features and properties without the need to write shader code. See the tutorial below for details.
  */
 @GodotBaseType

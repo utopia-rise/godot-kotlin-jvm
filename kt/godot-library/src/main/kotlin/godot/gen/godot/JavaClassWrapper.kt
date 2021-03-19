@@ -13,7 +13,9 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- *
+ * 
+ * 
+ * 
  */
 @GodotBaseType
 object JavaClassWrapper : Object() {

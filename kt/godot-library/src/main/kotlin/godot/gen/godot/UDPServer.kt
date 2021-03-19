@@ -22,7 +22,7 @@ import kotlin.Suppress
 
 /**
  * Helper class to implement a UDP server.
- *
+ * 
  * A simple server that opens a UDP socket and returns connected [godot.PacketPeerUDP] upon receiving new packets. See also [godot.PacketPeerUDP.connectToHost].
  *
  * After starting the server ([listen]), you will need to [poll] it at regular intervals (e.g. inside [godot.Node.Process]) for it to process new packets, delivering them to the appropriate [godot.PacketPeerUDP], and taking new connections.

@@ -13,10 +13,10 @@ import kotlin.Suppress
 
 /**
  * Base class for audio streams.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/audio/audio_streams.html](https://docs.godotengine.org/en/latest/tutorials/audio/audio_streams.html)
- *
+ * 
  * Base class for audio streams. Audio streams are used for sound effects and music playback, and support WAV (via [godot.AudioStreamSample]) and OGG (via [godot.AudioStreamOGGVorbis]) file formats.
  */
 @GodotBaseType

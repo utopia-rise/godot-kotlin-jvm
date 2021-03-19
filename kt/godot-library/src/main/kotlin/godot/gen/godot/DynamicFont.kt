@@ -20,7 +20,7 @@ import kotlin.Unit
 
 /**
  * DynamicFont renders vector font files at runtime.
- *
+ * 
  * DynamicFont renders vector font files (such as TTF or OTF) dynamically at runtime instead of using a prerendered texture atlas like [godot.BitmapFont]. This trades the faster loading time of [godot.BitmapFont]s for the ability to change font parameters like size and spacing during runtime. [godot.DynamicFontData] is used for referencing the font file paths. DynamicFont also supports defining one or more fallback fonts, which will be used when displaying a character not supported by the main font.
  *
  * DynamicFont uses the [godot.FreeType](https://www.freetype.org/) library for rasterization.

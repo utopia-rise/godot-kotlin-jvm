@@ -15,10 +15,10 @@ import kotlin.Suppress
 
 /**
  * Class that has everything pertaining to a world.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/physics/ray-casting.html](https://docs.godotengine.org/en/latest/tutorials/physics/ray-casting.html)
- *
+ * 
  * Class that has everything pertaining to a world. A physics space, a visual scenario and a sound space. Spatial nodes register their resources into the current world.
  */
 @GodotBaseType

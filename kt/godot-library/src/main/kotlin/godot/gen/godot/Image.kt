@@ -36,7 +36,7 @@ import kotlin.Suppress
 
 /**
  * Image datatype.
- *
+ * 
  * Native image datatype. Contains image data, which can be converted to a [godot.Texture], and several functions to interact with it. The maximum width and height for an [godot.Image] are [MAX_WIDTH] and [MAX_HEIGHT].
  *
  * **Note:** The maximum image size is 16384×16384 pixels due to graphics hardware limitations. Larger images will fail to import.

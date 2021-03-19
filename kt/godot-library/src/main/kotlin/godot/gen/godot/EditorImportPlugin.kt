@@ -18,10 +18,10 @@ import kotlin.Suppress
 
 /**
  * Registers a custom resource importer in the editor. Use the class to parse any file and import it as a new resource type.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/plugins/editor/import_plugins.html](https://docs.godotengine.org/en/latest/tutorials/plugins/editor/import_plugins.html)
- *
+ * 
  * EditorImportPlugins provide a way to extend the editor's resource import functionality. Use them to import resources from custom files or to provide alternatives to the editor's existing importers. Register your [godot.EditorPlugin] with [godot.EditorPlugin.addImportPlugin].
  *
  * EditorImportPlugins work by associating with specific file extensions and a resource type. See [getRecognizedExtensions] and [getResourceType]. They may optionally specify some import presets that affect the import process. EditorImportPlugins are responsible for creating the resources and saving them in the `.import` directory.

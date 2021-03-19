@@ -30,10 +30,10 @@ import kotlin.Suppress
 
 /**
  * Base resource for [godot.AnimationTree] nodes.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
- *
+ * 
  * Base resource for [godot.AnimationTree] nodes. In general, it's not used directly, but you can create custom ones with custom blending formulas.
  *
  * Inherit this when creating nodes mainly for use in [godot.AnimationNodeBlendTree], otherwise [godot.AnimationRootNode] should be used instead.

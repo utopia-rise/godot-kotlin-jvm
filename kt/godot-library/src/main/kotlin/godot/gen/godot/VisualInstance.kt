@@ -20,7 +20,7 @@ import kotlin.Suppress
 
 /**
  * Parent of all visual 3D nodes.
- *
+ * 
  * The [godot.VisualInstance] is used to connect a resource to a visual representation. All visual 3D nodes inherit from the [godot.VisualInstance]. In general, you should not access the [godot.VisualInstance] properties directly as they are accessed and managed by the nodes that inherit from [godot.VisualInstance]. [godot.VisualInstance] is the node representation of the [godot.VisualServer] instance.
  */
 @GodotBaseType

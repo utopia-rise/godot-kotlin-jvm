@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * Multiplies a [godot.core.Transform] and a [godot.core.Vector3] within the visual shader graph.
- *
+ * 
  * A multiplication operation on a transform (4x4 matrix) and a vector, with support for different multiplication operators.
  */
 @GodotBaseType

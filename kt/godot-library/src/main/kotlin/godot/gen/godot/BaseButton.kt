@@ -23,7 +23,7 @@ import kotlin.Suppress
 
 /**
  * Base class for different kinds of buttons.
- *
+ * 
  * BaseButton is the abstract base class for buttons, so it shouldn't be used directly (it doesn't display anything). Other types of buttons inherit from it.
  */
 @GodotBaseType

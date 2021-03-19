@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * A [godot.core.Vector3] uniform to be used within the visual shader graph.
- *
+ * 
  * Translated to `uniform vec3` in the shader language.
  */
 @GodotBaseType

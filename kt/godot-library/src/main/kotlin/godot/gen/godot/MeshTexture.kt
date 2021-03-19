@@ -16,7 +16,7 @@ import kotlin.Unit
 
 /**
  * Simple texture that uses a mesh to draw itself.
- *
+ * 
  * Simple texture that uses a mesh to draw itself. It's limited because flags can't be changed and region drawing is not supported.
  */
 @GodotBaseType

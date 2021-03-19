@@ -26,7 +26,7 @@ import kotlin.Suppress
 
 /**
  * Custom gizmo for editing Spatial objects.
- *
+ * 
  * Custom gizmo that is used for providing custom visualization and editing (handles) for 3D Spatial objects. See [godot.EditorSpatialGizmoPlugin] for more information.
  */
 @GodotBaseType

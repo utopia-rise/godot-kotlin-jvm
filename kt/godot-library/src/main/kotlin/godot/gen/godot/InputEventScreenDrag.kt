@@ -17,10 +17,10 @@ import kotlin.Unit
 
 /**
  * Input event type for screen drag events. Only available on mobile devices.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html)
- *
+ * 
  * Contains screen drag information. See [godot.Node.Input].
  */
 @GodotBaseType

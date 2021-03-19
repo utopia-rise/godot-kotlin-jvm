@@ -26,7 +26,7 @@ import kotlin.Suppress
 
 /**
  * A [godot.Texture] based on an [godot.Image].
- *
+ * 
  * A [godot.Texture] based on an [godot.Image]. Can be created from an [godot.Image] with [createFromImage].
  *
  * **Note:** The maximum image size is 16384×16384 pixels due to graphics hardware limitations. Larger images will fail to import.

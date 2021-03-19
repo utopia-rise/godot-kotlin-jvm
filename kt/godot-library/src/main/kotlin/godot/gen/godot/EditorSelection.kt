@@ -18,7 +18,7 @@ import kotlin.Suppress
 
 /**
  * Manages the SceneTree selection in the editor.
- *
+ * 
  * This object manages the SceneTree selection in the editor.
  *
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getSelection].

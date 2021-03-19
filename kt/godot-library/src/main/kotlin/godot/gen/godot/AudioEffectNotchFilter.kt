@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * Adds a notch filter to the Audio bus.
- *
+ * 
  * Attenuates frequencies in a narrow band around the [godot.AudioEffectFilter.cutoffHz] and cuts frequencies outside of this range.
  */
 @GodotBaseType

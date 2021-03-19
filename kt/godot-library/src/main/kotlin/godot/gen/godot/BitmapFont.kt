@@ -35,7 +35,7 @@ import kotlin.UninitializedPropertyAccessException
  * Renders text using fonts under the [godot.BMFont](https://www.angelcode.com/products/bmfont/) format.
  *
  * Handles files with the `.fnt` extension.
- *
+ * 
  * Renders text using `*.fnt` fonts containing texture atlases. Supports distance fields. For using vector font files like TTF directly, see [godot.DynamicFont].
  */
 @GodotBaseType

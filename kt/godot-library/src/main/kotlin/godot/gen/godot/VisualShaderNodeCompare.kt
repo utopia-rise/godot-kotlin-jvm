@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * A comparison function for common types within the visual shader graph.
- *
+ * 
  * Compares `a` and `b` of [type] by [function]. Returns a boolean scalar. Translates to `if` instruction in shader code.
  */
 @GodotBaseType

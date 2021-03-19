@@ -22,10 +22,10 @@ import kotlin.Unit
  * Input event type for screen touch events.
  *
  * (only available on mobile devices)
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html)
- *
+ * 
  * Stores multi-touch press/release information. Supports touch press, touch release and [index] for multi-touch count and order.
  */
 @GodotBaseType

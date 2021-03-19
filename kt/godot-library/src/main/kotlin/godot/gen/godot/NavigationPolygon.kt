@@ -21,7 +21,7 @@ import kotlin.Suppress
 
 /**
  * A node that has methods to draw outlines or use indices of vertices to create navigation polygons.
- *
+ * 
  * There are two ways to create polygons. Either by using the [addOutline] method, or using the [addPolygon] method.
  *
  * Using [addOutline]:

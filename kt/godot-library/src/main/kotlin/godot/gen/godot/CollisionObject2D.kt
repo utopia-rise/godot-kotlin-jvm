@@ -29,7 +29,7 @@ import kotlin.Suppress
 
 /**
  * Base node for 2D collision objects.
- *
+ * 
  * CollisionObject2D is the base class for 2D physics objects. It can hold any number of 2D collision [godot.Shape2D]s. Each shape must be assigned to a *shape owner*. The CollisionObject2D can have any number of shape owners. Shape owners are not nodes and do not appear in the editor, but are accessible through code using the `shape_owner_*` methods.
  */
 @GodotBaseType

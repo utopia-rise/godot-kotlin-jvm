@@ -18,7 +18,7 @@ import kotlin.Suppress
 
 /**
  * A hinge between two 3D bodies.
- *
+ * 
  * A HingeJoint normally uses the Z axis of body A as the hinge axis, another axis can be specified when adding it manually though.
  */
 @GodotBaseType

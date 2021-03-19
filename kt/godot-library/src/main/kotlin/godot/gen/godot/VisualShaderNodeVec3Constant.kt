@@ -15,7 +15,7 @@ import kotlin.Unit
 
 /**
  * A [godot.core.Vector3] constant to be used within the visual shader graph.
- *
+ * 
  * A constant [godot.core.Vector3], which can be used as an input node.
  */
 @GodotBaseType

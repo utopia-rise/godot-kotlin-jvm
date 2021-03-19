@@ -23,10 +23,10 @@ import kotlin.Suppress
 
 /**
  * Direct access object to a space in the [godot.PhysicsServer].
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/physics/ray-casting.html](https://docs.godotengine.org/en/latest/tutorials/physics/ray-casting.html)
- *
+ * 
  * Direct access object to a space in the [godot.PhysicsServer]. It's used mainly to do queries against objects and areas residing in a given space.
  */
 @GodotBaseType

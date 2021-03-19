@@ -18,7 +18,7 @@ import kotlin.Suppress
 
 /**
  * Helper class for parsing JSON data.
- *
+ * 
  * Helper class for parsing JSON data. For usage example and other important hints, see [godot.JSONParseResult].
  */
 @GodotBaseType

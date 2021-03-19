@@ -16,7 +16,7 @@ import kotlin.Suppress
 
 /**
  * Base class for scroll bars.
- *
+ * 
  * Scrollbars are a [godot.Range]-based [godot.Control], that display a draggable area (the size of the page). Horizontal ([godot.HScrollBar]) and Vertical ([godot.VScrollBar]) versions are available.
  */
 @GodotBaseType

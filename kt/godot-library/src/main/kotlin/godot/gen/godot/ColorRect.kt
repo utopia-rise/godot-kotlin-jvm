@@ -15,7 +15,7 @@ import kotlin.Unit
 
 /**
  * Colored rectangle.
- *
+ * 
  * Displays a colored rectangle.
  */
 @GodotBaseType

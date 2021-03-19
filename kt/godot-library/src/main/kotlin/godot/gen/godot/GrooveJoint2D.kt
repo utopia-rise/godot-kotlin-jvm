@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * Groove constraint for 2D physics.
- *
+ * 
  * Groove constraint for 2D physics. This is useful for making a body "slide" through a segment placed in another.
  */
 @GodotBaseType

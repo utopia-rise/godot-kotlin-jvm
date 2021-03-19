@@ -23,7 +23,7 @@ import kotlin.Unit
 
 /**
  * Customizable [godot.StyleBox] with a given set of parameters (no texture required).
- *
+ * 
  * This [godot.StyleBox] can be used to achieve all kinds of looks without the need of a texture. Those properties are customizable:
  *
  * - Color

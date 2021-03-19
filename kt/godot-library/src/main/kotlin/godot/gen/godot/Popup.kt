@@ -23,7 +23,7 @@ import kotlin.Suppress
 
 /**
  * Base container control for popups and dialogs.
- *
+ * 
  * Popup is a base [godot.Control] used to show dialogs and popups. It's a subwindow and modal by default (see [godot.Control]) and has helpers for custom popup behavior. All popup methods ensure correct placement within the viewport.
  */
 @GodotBaseType

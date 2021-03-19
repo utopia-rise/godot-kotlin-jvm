@@ -20,7 +20,7 @@ import kotlin.Suppress
 
 /**
  * Plugin for adding custom property editors on inspector.
- *
+ * 
  * This plugins allows adding custom property editors to [godot.EditorInspector].
  *
  * Plugins are registered via [godot.EditorPlugin.addInspectorPlugin].

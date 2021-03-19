@@ -20,7 +20,7 @@ import kotlin.Suppress
 
 /**
  * Creates packages that can be loaded into a running project.
- *
+ * 
  * The [godot.PCKPacker] is used to create packages that can be loaded into a running project using [godot.ProjectSettings.loadResourcePack].
  *
  * ```

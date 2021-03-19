@@ -23,7 +23,7 @@ import kotlin.Suppress
 
 /**
  * Stores audio data loaded from WAV files.
- *
+ * 
  * AudioStreamSample stores sound samples loaded from WAV files. To play the stored sound, use an [godot.AudioStreamPlayer] (for non-positional audio) or [godot.AudioStreamPlayer2D]/[godot.AudioStreamPlayer3D] (for positional audio). The sound can be looped.
  *
  * This class can also be used to store dynamically-generated PCM audio data.

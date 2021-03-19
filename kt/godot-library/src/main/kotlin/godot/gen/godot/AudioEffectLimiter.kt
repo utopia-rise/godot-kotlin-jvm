@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * Adds a soft-clip limiter audio effect to an Audio bus.
- *
+ * 
  * A limiter is similar to a compressor, but it's less flexible and designed to disallow sound going over a given dB threshold. Adding one in the Master bus is always recommended to reduce the effects of clipping.
  *
  * Soft clipping starts to reduce the peaks a little below the threshold level and progressively increases its effect as the input level increases such that the threshold is never exceeded.

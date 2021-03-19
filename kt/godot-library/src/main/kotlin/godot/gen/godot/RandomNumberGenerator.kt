@@ -16,7 +16,7 @@ import kotlin.Suppress
 
 /**
  * A class for generating pseudo-random numbers.
- *
+ * 
  * RandomNumberGenerator is a class for generating pseudo-random numbers. It currently uses [godot.PCG32](http://www.pcg-random.org/).
  *
  * **Note:** The underlying algorithm is an implementation detail. As a result, it should not be depended upon for reproducible random streams across Godot versions.

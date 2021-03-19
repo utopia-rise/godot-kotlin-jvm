@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * Texture with 3 dimensions.
- *
+ * 
  * Texture3D is a 3-dimensional texture that has a width, height, and depth.
  */
 @GodotBaseType

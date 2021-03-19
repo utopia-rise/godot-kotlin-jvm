@@ -12,11 +12,11 @@ import kotlin.Suppress
 
 /**
  * A custom effect for use with [godot.RichTextLabel].
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/gui/bbcode_in_richtextlabel.html](https://docs.godotengine.org/en/latest/tutorials/gui/bbcode_in_richtextlabel.html)
  * [https://github.com/Eoin-ONeill-Yokai/Godot-Rich-Text-Effect-Test-Project](https://github.com/Eoin-ONeill-Yokai/Godot-Rich-Text-Effect-Test-Project)
- *
+ * 
  * A custom effect for use with [godot.RichTextLabel].
  *
  * **Note:** For a [godot.RichTextEffect] to be usable, a BBCode tag must be defined as a member variable called `bbcode` in the script.

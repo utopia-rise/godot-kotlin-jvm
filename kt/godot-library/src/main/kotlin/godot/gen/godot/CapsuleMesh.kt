@@ -16,7 +16,7 @@ import kotlin.Suppress
 
 /**
  * Class representing a capsule-shaped [godot.PrimitiveMesh].
- *
+ * 
  * Class representing a capsule-shaped [godot.PrimitiveMesh].
  */
 @GodotBaseType

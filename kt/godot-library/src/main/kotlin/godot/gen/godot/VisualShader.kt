@@ -28,7 +28,7 @@ import kotlin.Unit
 
 /**
  * A custom shader program with a visual editor.
- *
+ * 
  * This class allows you to define a custom shader program that can be used for various materials to render objects.
  *
  * The visual shader editor creates the shader.

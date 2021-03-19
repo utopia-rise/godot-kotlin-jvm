@@ -19,7 +19,7 @@ import kotlin.Suppress
 
 /**
  * Editor-only class for defining a collision polygon in 3D space.
- *
+ * 
  * Allows editing a collision polygon's vertices on a selected plane. Can also set a depth perpendicular to that plane. This class is only available in the editor. It will not appear in the scene tree at run-time. Creates a [godot.Shape] for gameplay. Properties modified during gameplay will have no effect.
  */
 @GodotBaseType

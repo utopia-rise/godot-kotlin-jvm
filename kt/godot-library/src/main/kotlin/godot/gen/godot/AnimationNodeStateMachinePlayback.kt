@@ -18,10 +18,10 @@ import kotlin.Suppress
 
 /**
  * Playback control for [godot.AnimationNodeStateMachine].
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
- *
+ * 
  * Allows control of [godot.AnimationTree] state machines created with [godot.AnimationNodeStateMachine]. Retrieve with `$AnimationTree.get("parameters/playback")`.
  *
  * **Example:**

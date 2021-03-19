@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * Generic 3D position hint for editing.
- *
+ * 
  * Generic 3D position hint for editing. It's just like a plain [godot.Spatial], but it displays as a cross in the 3D editor at all times.
  */
 @GodotBaseType

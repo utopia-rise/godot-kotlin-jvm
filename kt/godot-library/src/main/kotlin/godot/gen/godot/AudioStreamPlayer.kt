@@ -24,10 +24,10 @@ import kotlin.Suppress
 
 /**
  * Plays back audio non-positionally.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/audio/audio_streams.html](https://docs.godotengine.org/en/latest/tutorials/audio/audio_streams.html)
- *
+ * 
  * Plays an audio stream non-positionally.
  */
 @GodotBaseType

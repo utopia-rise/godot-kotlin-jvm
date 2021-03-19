@@ -18,10 +18,10 @@ import kotlin.Suppress
  * Adds a distortion audio effect to an Audio bus.
  *
  * Modify the sound to make it distorted.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/audio/audio_buses.html](https://docs.godotengine.org/en/latest/tutorials/audio/audio_buses.html)
- *
+ * 
  * Different types are available: clip, tan, lo-fi (bit crushing), overdrive, or waveshape.
  *
  * By distorting the waveform the frequency content change, which will often make the sound "crunchy" or "abrasive". For games, it can simulate sound coming from some saturated device or speaker very efficiently.

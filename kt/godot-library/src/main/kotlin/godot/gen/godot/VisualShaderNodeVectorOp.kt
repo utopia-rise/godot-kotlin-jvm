@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * A vector operator to be used within the visual shader graph.
- *
+ * 
  * A visual shader node for use of vector operators. Operates on vector `a` and vector `b`.
  */
 @GodotBaseType

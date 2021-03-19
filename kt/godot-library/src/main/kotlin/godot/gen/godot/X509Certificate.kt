@@ -17,7 +17,7 @@ import kotlin.Suppress
 
 /**
  * An X509 certificate (e.g. for SSL).
- *
+ * 
  * The X509Certificate class represents an X509 certificate. Certificates can be loaded and saved like any other [godot.Resource].
  *
  * They can be used as the server certificate in [godot.StreamPeerSSL.acceptStream] (along with the proper [godot.CryptoKey]), and to specify the only certificate that should be accepted when connecting to an SSL server via [godot.StreamPeerSSL.connectToStream].

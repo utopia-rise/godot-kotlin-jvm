@@ -25,7 +25,7 @@ import kotlin.Suppress
 
 /**
  * Base class for drawing stylized boxes for the UI.
- *
+ * 
  * StyleBox is [godot.Resource] that provides an abstract base class for drawing stylized boxes for the UI. StyleBoxes are used for drawing the styles of buttons, line edit backgrounds, tree backgrounds, etc. and also for testing a transparency mask for pointer signals. If mask test fails on a StyleBox assigned as mask to a control, clicks and motion signals will go through it to the one below.
  */
 @GodotBaseType

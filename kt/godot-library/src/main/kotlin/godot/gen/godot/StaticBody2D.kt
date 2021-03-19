@@ -18,7 +18,7 @@ import kotlin.Unit
 
 /**
  * Static body for 2D physics.
- *
+ * 
  * Static body for 2D physics. A StaticBody2D is a body that is not intended to move. It is ideal for implementing objects in the environment, such as walls or platforms.
  *
  * Additionally, a constant linear or angular velocity can be set for the static body, which will affect colliding bodies as if it were moving (for example, a conveyor belt).

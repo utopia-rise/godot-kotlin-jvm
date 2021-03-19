@@ -28,7 +28,7 @@ import kotlin.Suppress
 
 /**
  * Skeleton for characters and animated objects.
- *
+ * 
  * Skeleton provides a hierarchical interface for managing bones, including pose, rest and animation (see [godot.Animation]). It can also use ragdoll physics.
  *
  * The overall transform of a bone with respect to the skeleton is determined by the following hierarchical order: rest pose, custom pose and pose.

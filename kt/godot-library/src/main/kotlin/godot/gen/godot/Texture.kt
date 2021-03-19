@@ -25,7 +25,7 @@ import kotlin.Suppress
 
 /**
  * Texture for 2D and 3D.
- *
+ * 
  * A texture works by registering an image in the video hardware, which then can be used in 3D models or 2D [godot.Sprite] or GUI [godot.Control].
  *
  * Textures are often created by loading them from a file. See [@GDScript.load].

@@ -24,7 +24,7 @@ import kotlin.Suppress
 
 /**
  * Control that provides single-line string editing.
- *
+ * 
  * LineEdit provides a single-line string editor, used for text fields.
  *
  * It features many built-in shortcuts which will always be available (`Ctrl` here maps to `Command` on macOS):

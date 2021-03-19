@@ -36,10 +36,10 @@ import kotlin.Suppress
 
 /**
  * Label that displays rich text.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/gui/bbcode_in_richtextlabel.html](https://docs.godotengine.org/en/latest/tutorials/gui/bbcode_in_richtextlabel.html)
- *
+ * 
  * Rich text can contain custom text, fonts, images and some basic formatting. The label manages these as an internal tag stack. It also adapts itself to given width/heights.
  *
  * **Note:** Assignments to [bbcodeText] clear the tag stack and reconstruct it from the property's contents. Any edits made to [bbcodeText] will erase previous edits made from other manual sources such as [appendBbcode] and the `push_*` / [pop] methods.

@@ -22,10 +22,10 @@ import kotlin.Suppress
 
 /**
  * A high-level network interface to simplify multiplayer interactions.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/networking/high_level_multiplayer.html](https://docs.godotengine.org/en/latest/tutorials/networking/high_level_multiplayer.html)
- *
+ * 
  * Manages the connection to network peers. Assigns unique IDs to each client connected to the server.
  */
 @GodotBaseType

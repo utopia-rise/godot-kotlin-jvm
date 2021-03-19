@@ -15,7 +15,7 @@ import kotlin.Unit
 
 /**
  * Infinite plane shape for 3D collisions.
- *
+ * 
  * An infinite plane shape for 3D collisions. Note that the [godot.core.Plane]'s normal matters; anything "below" the plane will collide with it. If the [godot.PlaneShape] is used in a [godot.PhysicsBody], it will cause colliding objects placed "below" it to teleport "above" the plane.
  */
 @GodotBaseType

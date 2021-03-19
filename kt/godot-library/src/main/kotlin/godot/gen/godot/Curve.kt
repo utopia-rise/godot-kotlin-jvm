@@ -26,7 +26,7 @@ import kotlin.Suppress
 
 /**
  * A mathematic curve.
- *
+ * 
  * A curve that can be saved and re-used for other objects. By default, it ranges between `0` and `1` on the Y axis and positions points relative to the `0.5` Y position.
  */
 @GodotBaseType

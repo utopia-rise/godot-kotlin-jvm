@@ -17,10 +17,10 @@ import kotlin.Suppress
 
 /**
  * Singleton that connects the engine with the browser's JavaScript context in HTML5 export.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/getting_started/workflow/export/exporting_for_web.html#calling-javascript-from-script](https://docs.godotengine.org/en/latest/getting_started/workflow/export/exporting_for_web.html#calling-javascript-from-script)
- *
+ * 
  * The JavaScript singleton is implemented only in the HTML5 export. It's used to access the browser's JavaScript context. This allows interaction with embedding pages or calling third-party JavaScript APIs.
  */
 @GodotBaseType

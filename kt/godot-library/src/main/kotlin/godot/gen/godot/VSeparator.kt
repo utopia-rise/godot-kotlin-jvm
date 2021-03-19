@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * Vertical version of [godot.Separator].
- *
+ * 
  * Vertical version of [godot.Separator]. Even though it looks vertical, it is used to separate objects horizontally.
  */
 @GodotBaseType

@@ -18,7 +18,7 @@ import kotlin.Unit
 
 /**
  * Packs multiple small textures in a single, bigger one. Helps to optimize video memory costs and render calls.
- *
+ * 
  * [godot.Texture] resource aimed at managing big textures files that pack multiple smaller textures. Consists of a [godot.Texture], a margin that defines the border width, and a region that defines the actual area of the AtlasTexture.
  */
 @GodotBaseType

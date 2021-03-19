@@ -18,7 +18,7 @@ import kotlin.Suppress
 
 /**
  * Defines a 2D polygon for LightOccluder2D.
- *
+ * 
  * Editor facility that helps you draw a 2D polygon used as resource for [godot.LightOccluder2D].
  */
 @GodotBaseType

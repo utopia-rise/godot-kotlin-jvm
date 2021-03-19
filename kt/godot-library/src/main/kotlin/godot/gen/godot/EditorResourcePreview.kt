@@ -20,7 +20,7 @@ import kotlin.Suppress
 
 /**
  * Helper to generate previews of resources or files.
- *
+ * 
  * This object is used to generate previews for resources of files.
  *
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getResourcePreviewer].

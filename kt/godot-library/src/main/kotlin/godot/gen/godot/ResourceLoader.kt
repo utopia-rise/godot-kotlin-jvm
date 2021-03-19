@@ -19,7 +19,7 @@ import kotlin.Suppress
 
 /**
  * Singleton used to load resource files.
- *
+ * 
  * Singleton used to load resource files from the filesystem.
  *
  * It uses the many [godot.ResourceFormatLoader] classes registered in the engine (either built-in or from a plugin) to load files into memory and convert them to a format that can be used by the engine.

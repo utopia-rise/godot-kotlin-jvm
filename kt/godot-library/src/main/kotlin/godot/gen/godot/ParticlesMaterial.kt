@@ -24,7 +24,7 @@ import kotlin.Unit
 
 /**
  * Particle properties for [godot.Particles] and [godot.Particles2D] nodes.
- *
+ * 
  * ParticlesMaterial defines particle properties and behavior. It is used in the `process_material` of [godot.Particles] and [godot.Particles2D] emitter nodes.
  *
  * Some of this material's properties are applied to each particle when emitted, while others can have a [godot.CurveTexture] applied to vary values over the lifetime of the particle.

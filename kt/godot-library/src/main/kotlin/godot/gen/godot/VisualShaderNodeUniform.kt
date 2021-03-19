@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * A base type for the uniforms within the visual shader graph.
- *
+ * 
  * A uniform represents a variable in the shader which is set externally, i.e. from the [godot.ShaderMaterial]. Uniforms are exposed as properties in the [godot.ShaderMaterial] and can be assigned from the inspector or from a script.
  */
 @GodotBaseType

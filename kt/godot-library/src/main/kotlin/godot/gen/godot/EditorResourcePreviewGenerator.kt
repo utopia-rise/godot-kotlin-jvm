@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * Custom generator of previews.
- *
+ * 
  * Custom code to generate previews. Please check `file_dialog/thumbnail_size` in [godot.EditorSettings] to find out the right size to do previews at.
  */
 @GodotBaseType

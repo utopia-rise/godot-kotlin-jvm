@@ -20,7 +20,7 @@ import kotlin.Suppress
 
 /**
  * Base node for geometry-based visual instances.
- *
+ * 
  * Base node for geometry-based visual instances. Shares some common functionality like visibility and custom materials.
  */
 @GodotBaseType

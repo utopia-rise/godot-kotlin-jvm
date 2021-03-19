@@ -14,7 +14,9 @@ import kotlin.Boolean
 import kotlin.Suppress
 
 /**
- *
+ * 
+ * 
+ * 
  */
 @GodotBaseType
 open class NavigationPolygonInstance : Node2D() {

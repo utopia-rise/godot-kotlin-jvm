@@ -25,7 +25,7 @@ import kotlin.Suppress
 
 /**
  * Abstract base class for the game's main loop.
- *
+ * 
  * [godot.MainLoop] is the abstract base class for a Godot project's game loop. It is inherited by [godot.SceneTree], which is the default game loop implementation used in Godot projects, though it is also possible to write and use one's own [godot.MainLoop] subclass instead of the scene tree.
  *
  * Upon the application start, a [godot.MainLoop] implementation must be provided to the OS; otherwise, the application will exit. This happens automatically (and a [godot.SceneTree] is created) unless a main [godot.Script] is provided from the command line (with e.g. `godot -s my_loop.gd`, which should then be a [godot.MainLoop] implementation.

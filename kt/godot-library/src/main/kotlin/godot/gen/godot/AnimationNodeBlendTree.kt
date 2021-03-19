@@ -22,10 +22,10 @@ import kotlin.Unit
 
 /**
  * [godot.AnimationTree] node resource that contains many blend type nodes.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
- *
+ * 
  * This node may contain a sub-tree of any other blend type nodes, such as mix, blend2, blend3, one shot, etc. This is one of the most commonly used roots.
  */
 @GodotBaseType

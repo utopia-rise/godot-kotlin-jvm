@@ -29,10 +29,10 @@ import kotlin.Suppress
 
 /**
  * Server for AR and VR features.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/vr/index.html](https://docs.godotengine.org/en/latest/tutorials/vr/index.html)
- *
+ * 
  * The AR/VR server is the heart of our Advanced and Virtual Reality solution and handles all the processing.
  */
 @GodotBaseType

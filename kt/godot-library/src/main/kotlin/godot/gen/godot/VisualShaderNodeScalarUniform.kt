@@ -9,7 +9,9 @@ import godot.annotation.GodotBaseType
 import kotlin.Suppress
 
 /**
- *
+ * 
+ * 
+ * 
  */
 @GodotBaseType
 open class VisualShaderNodeScalarUniform : VisualShaderNodeUniform() {

@@ -28,7 +28,7 @@ import kotlin.Unit
 
 /**
  * CPU-based 3D particle emitter.
- *
+ * 
  * CPU-based 3D particle node used to create a variety of particle systems and effects.
  *
  * See also [godot.Particles], which provides the same functionality with hardware acceleration, but may not run on older devices.

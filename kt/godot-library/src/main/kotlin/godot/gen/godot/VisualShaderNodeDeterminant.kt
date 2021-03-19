@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * Calculates the determinant of a [godot.core.Transform] within the visual shader graph.
- *
+ * 
  * Translates to `deteminant(x)` in the shader language.
  */
 @GodotBaseType

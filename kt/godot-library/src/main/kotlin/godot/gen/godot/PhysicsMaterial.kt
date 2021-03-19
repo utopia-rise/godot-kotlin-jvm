@@ -16,7 +16,7 @@ import kotlin.Suppress
 
 /**
  * A material for physics properties.
- *
+ * 
  * Provides a means of modifying the collision properties of a [godot.PhysicsBody].
  */
 @GodotBaseType

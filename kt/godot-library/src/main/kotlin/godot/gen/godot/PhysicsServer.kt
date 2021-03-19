@@ -32,7 +32,7 @@ import kotlin.Suppress
 
 /**
  * Server interface for low-level physics access.
- *
+ * 
  * PhysicsServer is the server responsible for all 3D physics. It can create many kinds of physics objects, but does not insert them on the node tree.
  */
 @GodotBaseType

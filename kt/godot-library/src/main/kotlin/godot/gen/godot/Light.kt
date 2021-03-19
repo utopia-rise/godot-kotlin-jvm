@@ -21,10 +21,10 @@ import kotlin.Unit
 
 /**
  * Provides a base class for different kinds of light nodes.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/3d/lights_and_shadows.html](https://docs.godotengine.org/en/latest/tutorials/3d/lights_and_shadows.html)
- *
+ * 
  * Light is the *abstract* base class for light nodes. As it can't be instanced, it shouldn't be used directly. Other types of light nodes inherit from it. Light contains the common variables and parameters used for lighting.
  */
 @GodotBaseType

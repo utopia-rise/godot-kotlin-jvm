@@ -13,7 +13,9 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- *
+ * 
+ * 
+ * 
  */
 @GodotBaseType
 open class VisualShaderNodeScalarOp : VisualShaderNode() {

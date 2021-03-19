@@ -17,7 +17,7 @@ import kotlin.Suppress
 
 /**
  * Node that instances meshes into a scenario.
- *
+ * 
  * MeshInstance is a node that takes a [godot.Mesh] resource and adds it to the current scenario by creating an instance of it. This is the class most often used to get 3D geometry rendered and can be used to instance a single [godot.Mesh] in many places. This allows to reuse geometry and save on resources. When a [godot.Mesh] has to be instanced more than thousands of times at close proximity, consider using a [godot.MultiMesh] in a [godot.MultiMeshInstance] instead.
  */
 @GodotBaseType

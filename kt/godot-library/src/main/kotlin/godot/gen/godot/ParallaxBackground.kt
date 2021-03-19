@@ -18,7 +18,7 @@ import kotlin.Unit
 
 /**
  * A node used to create a parallax scrolling background.
- *
+ * 
  * A ParallaxBackground uses one or more [godot.ParallaxLayer] child nodes to create a parallax effect. Each [godot.ParallaxLayer] can move at a different speed using [godot.ParallaxLayer.motionOffset]. This creates an illusion of depth in a 2D game. If not used with a [godot.Camera2D], you must manually calculate the [scrollOffset].
  */
 @GodotBaseType

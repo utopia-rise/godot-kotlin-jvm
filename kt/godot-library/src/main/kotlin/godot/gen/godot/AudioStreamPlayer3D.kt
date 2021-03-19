@@ -24,10 +24,10 @@ import kotlin.Suppress
 
 /**
  * Plays 3D sound in 3D space.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/audio/audio_streams.html](https://docs.godotengine.org/en/latest/tutorials/audio/audio_streams.html)
- *
+ * 
  * Plays a sound effect with directed sound effects, dampens with distance if needed, generates effect of hearable position in space.
  *
  * By default, audio is heard from the camera position. This can be changed by adding a [godot.Listener] node to the scene and enabling it by calling [godot.Listener.makeCurrent] on it.

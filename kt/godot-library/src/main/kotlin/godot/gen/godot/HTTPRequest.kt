@@ -27,11 +27,11 @@ import kotlin.Suppress
 
 /**
  * A node with the ability to send HTTP(S) requests.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/networking/http_request_class.html](https://docs.godotengine.org/en/latest/tutorials/networking/http_request_class.html)
  * [https://docs.godotengine.org/en/latest/tutorials/networking/ssl_certificates.html](https://docs.godotengine.org/en/latest/tutorials/networking/ssl_certificates.html)
- *
+ * 
  * A node with the ability to send HTTP requests. Uses [godot.HTTPClient] internally.
  *
  * Can be used to make HTTP requests, i.e. download or upload files or web content via HTTP.

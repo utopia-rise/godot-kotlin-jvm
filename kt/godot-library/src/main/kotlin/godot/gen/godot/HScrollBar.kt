@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * Horizontal scroll bar.
- *
+ * 
  * Horizontal version of [godot.ScrollBar], which goes from left (min) to right (max).
  */
 @GodotBaseType

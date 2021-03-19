@@ -25,7 +25,7 @@ import kotlin.Suppress
 
 /**
  * Object that holds the project-independent editor settings.
- *
+ * 
  * Object that holds the project-independent editor settings. These settings are generally visible in the **Editor > Editor Settings** menu.
  *
  * Property names use slash delimiters to distinguish sections. Setting values can be of any [Variant] type. It's recommended to use `snake_case` for editor settings to be consistent with the Godot editor itself.

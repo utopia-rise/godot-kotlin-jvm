@@ -15,10 +15,10 @@ import kotlin.Suppress
 
 /**
  * A synchronization semaphore.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/threads/using_multiple_threads.html](https://docs.godotengine.org/en/latest/tutorials/threads/using_multiple_threads.html)
- *
+ * 
  * A synchronization semaphore which can be used to synchronize multiple [godot.Thread]s. Initialized to zero on creation. Be careful to avoid deadlocks. For a binary version, see [godot.Mutex].
  */
 @GodotBaseType

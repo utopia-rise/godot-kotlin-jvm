@@ -14,10 +14,10 @@ import kotlin.Suppress
 
 /**
  * Base class for keys events with modifiers.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html)
- *
+ * 
  * Contains keys events information with modifiers support like `Shift` or `Alt`. See [godot.Node.Input].
  */
 @GodotBaseType

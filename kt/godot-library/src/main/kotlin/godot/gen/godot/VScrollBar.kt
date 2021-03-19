@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * Vertical scroll bar.
- *
+ * 
  * Vertical version of [godot.ScrollBar], which goes from top (min) to bottom (max).
  */
 @GodotBaseType

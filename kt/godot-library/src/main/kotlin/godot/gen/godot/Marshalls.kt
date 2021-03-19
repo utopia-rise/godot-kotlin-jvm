@@ -19,7 +19,7 @@ import kotlin.Suppress
 
 /**
  * Data transformation (marshalling) and encoding helpers.
- *
+ * 
  * Provides data transformation and encoding utility functions.
  */
 @GodotBaseType

@@ -20,7 +20,7 @@ import kotlin.Unit
 
 /**
  * Detects approximately when the node is visible on screen.
- *
+ * 
  * The VisibilityNotifier2D detects when it is visible on the screen. It also notifies when its bounding rectangle enters or exits the screen or a viewport.
  *
  * If you want nodes to be disabled automatically when they exit the screen, use [godot.VisibilityEnabler2D] instead.

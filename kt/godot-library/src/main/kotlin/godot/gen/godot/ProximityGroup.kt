@@ -24,7 +24,7 @@ import kotlin.Unit
 
 /**
  * General-purpose proximity detection node.
- *
+ * 
  * General-purpose proximity detection node.
  */
 @GodotBaseType

@@ -16,7 +16,7 @@ import kotlin.Suppress
 
 /**
  * Ray shape for 2D collisions.
- *
+ * 
  * Ray shape for 2D collisions. A ray is not really a collision body; instead, it tries to separate itself from whatever is touching its far endpoint. It's often useful for characters.
  */
 @GodotBaseType

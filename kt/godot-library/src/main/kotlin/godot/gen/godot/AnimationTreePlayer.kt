@@ -31,10 +31,10 @@ import kotlin.Suppress
 
 /**
  * *Deprecated.* Animation player that uses a node graph for blending animations. Superseded by [godot.AnimationTree].
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
- *
+ * 
  * *Deprecated.* A node graph tool for blending multiple animations bound to an [godot.AnimationPlayer]. Especially useful for animating characters or other skeleton-based rigs. It can combine several animations to form a desired pose.
  *
  * It takes [godot.Animation]s from an [godot.AnimationPlayer] node and mixes them depending on the graph.

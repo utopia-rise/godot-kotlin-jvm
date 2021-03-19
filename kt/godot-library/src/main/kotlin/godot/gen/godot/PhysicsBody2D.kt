@@ -21,10 +21,10 @@ import kotlin.Suppress
 
 /**
  * Base class for all objects affected by physics in 2D space.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html)
- *
+ * 
  * PhysicsBody2D is an abstract base class for implementing a physics body. All *Body2D types inherit from it.
  */
 @GodotBaseType

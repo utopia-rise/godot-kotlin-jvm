@@ -29,7 +29,7 @@ import kotlin.Suppress
 
 /**
  * Abstraction and base class for stream-based protocols.
- *
+ * 
  * StreamPeer is an abstraction and base class for stream-based protocols (such as TCP or UNIX sockets). It provides an API for sending and receiving data through streams as raw data or strings.
  */
 @GodotBaseType

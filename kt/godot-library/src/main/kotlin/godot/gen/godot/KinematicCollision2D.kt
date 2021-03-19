@@ -18,7 +18,7 @@ import kotlin.Suppress
 
 /**
  * Collision data for [godot.KinematicBody2D] collisions.
- *
+ * 
  * Contains collision data for [godot.KinematicBody2D] collisions. When a [godot.KinematicBody2D] is moved using [godot.KinematicBody2D.moveAndCollide], it stops if it detects a collision with another body. If a collision is detected, a KinematicCollision2D object is returned.
  *
  * This object contains information about the collision, including the colliding object, the remaining motion, and the collision position. This information can be used to calculate a collision response.

@@ -24,10 +24,10 @@ import kotlin.Suppress
 
 /**
  * A soft mesh physics body.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/physics/soft_body.html](https://docs.godotengine.org/en/latest/tutorials/physics/soft_body.html)
- *
+ * 
  * A deformable physics body. Used to create elastic or deformable objects such as cloth, rubber, or other flexible materials.
  */
 @GodotBaseType

@@ -47,10 +47,10 @@ import kotlin.reflect.KCallable
 
 /**
  * Base class for all non built-in types.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/getting_started/workflow/best_practices/node_alternatives.html](https://docs.godotengine.org/en/latest/getting_started/workflow/best_practices/node_alternatives.html)
- *
+ * 
  * Every class which is not a built-in type inherits from this class.
  *
  * You can construct Objects from scripting languages, using `Object.new()` in GDScript, `new Object` in C#, or the "Construct Object" node in VisualScript.

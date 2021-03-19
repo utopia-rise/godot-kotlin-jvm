@@ -14,10 +14,10 @@ import kotlin.Suppress
 
 /**
  * Class that has everything pertaining to a 2D world.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/physics/ray-casting.html](https://docs.godotengine.org/en/latest/tutorials/physics/ray-casting.html)
- *
+ * 
  * Class that has everything pertaining to a 2D world. A physics space, a visual scenario and a sound space. 2D nodes register their resources into the current 2D world.
  */
 @GodotBaseType

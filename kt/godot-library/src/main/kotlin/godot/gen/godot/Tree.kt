@@ -28,7 +28,7 @@ import kotlin.Suppress
 
 /**
  * Control to show a tree of items.
- *
+ * 
  * This shows a tree of items that can be selected, expanded and collapsed. The tree can have multiple columns with custom controls like text editing, buttons and popups. It can be useful for structured displays and interactions.
  *
  * Trees are built via code, using [godot.TreeItem] objects to create the structure. They have a single root but multiple roots can be simulated if a dummy hidden root is added.

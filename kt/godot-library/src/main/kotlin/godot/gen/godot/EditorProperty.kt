@@ -25,7 +25,7 @@ import kotlin.Suppress
 
 /**
  * Custom control to edit properties for adding into the inspector.
- *
+ * 
  * This control allows property editing for one or multiple properties into [godot.EditorInspector]. It is added via [godot.EditorInspectorPlugin].
  */
 @GodotBaseType

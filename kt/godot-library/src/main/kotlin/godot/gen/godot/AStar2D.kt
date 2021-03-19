@@ -28,7 +28,7 @@ import kotlin.Suppress
 
 /**
  * AStar class representation that uses 2D vectors as edges.
- *
+ * 
  * This is a wrapper for the [godot.AStar] class which uses 2D vectors instead of 3D vectors.
  */
 @GodotBaseType

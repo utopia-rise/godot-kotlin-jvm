@@ -26,7 +26,7 @@ import kotlin.Suppress
 
 /**
  * A script interface to a scene file's data.
- *
+ * 
  * Maintains a list of resources, nodes, exported, and overridden properties, and built-in scripts associated with a scene.
  *
  * This class cannot be instantiated directly, it is retrieved for a given scene as the result of [godot.PackedScene.getState].

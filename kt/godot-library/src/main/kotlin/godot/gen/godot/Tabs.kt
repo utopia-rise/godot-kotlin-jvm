@@ -23,7 +23,7 @@ import kotlin.Suppress
 
 /**
  * Tabs control.
- *
+ * 
  * Simple tabs control, similar to [godot.TabContainer] but is only in charge of drawing tabs, not interact with children.
  */
 @GodotBaseType

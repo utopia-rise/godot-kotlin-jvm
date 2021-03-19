@@ -40,10 +40,10 @@ import kotlin.Suppress
 
 /**
  * Contains data used to animate everything in the engine.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/animation/index.html](https://docs.godotengine.org/en/latest/tutorials/animation/index.html)
- *
+ * 
  * An Animation resource contains data used to animate everything in the engine. Animations are divided into tracks, and each track must be linked to a node. The state of that node can be changed through time, by adding timed keys (events) to the track.
  *
  * ```

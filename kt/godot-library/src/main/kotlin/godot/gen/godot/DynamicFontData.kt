@@ -18,7 +18,7 @@ import kotlin.Suppress
 
 /**
  * Used with [godot.DynamicFont] to describe the location of a font file.
- *
+ * 
  * Used with [godot.DynamicFont] to describe the location of a vector font file for dynamic rendering at runtime.
  */
 @GodotBaseType

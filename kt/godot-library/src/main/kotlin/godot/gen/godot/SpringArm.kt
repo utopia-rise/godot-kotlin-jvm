@@ -21,7 +21,7 @@ import kotlin.Suppress
 
 /**
  * A helper node, mostly used in 3rd person cameras.
- *
+ * 
  * The SpringArm node is a node that casts a ray (or collision shape) along its z axis and moves all its direct children to the collision point, minus a margin.
  *
  * The most common use case for this is to make a 3rd person camera that reacts to collisions in the environment.

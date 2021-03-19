@@ -15,7 +15,7 @@ import kotlin.Unit
 
 /**
  * Box shape resource.
- *
+ * 
  * 3D box shape that can be a child of a [godot.PhysicsBody] or [godot.Area].
  */
 @GodotBaseType

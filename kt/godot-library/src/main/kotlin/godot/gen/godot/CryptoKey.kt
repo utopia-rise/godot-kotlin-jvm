@@ -17,7 +17,7 @@ import kotlin.Suppress
 
 /**
  * A cryptographic key (RSA).
- *
+ * 
  * The CryptoKey class represents a cryptographic key. Keys can be loaded and saved like any other [godot.Resource].
  *
  * They can be used to generate a self-signed [godot.X509Certificate] via [godot.Crypto.generateSelfSignedCertificate] and as private key in [godot.StreamPeerSSL.acceptStream] along with the appropriate certificate.

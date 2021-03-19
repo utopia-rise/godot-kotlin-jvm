@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * The base class for [godot.PanoramaSky] and [godot.ProceduralSky].
- *
+ * 
  * The base class for [godot.PanoramaSky] and [godot.ProceduralSky].
  */
 @GodotBaseType

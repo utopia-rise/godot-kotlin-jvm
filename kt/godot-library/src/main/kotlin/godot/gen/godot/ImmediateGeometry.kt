@@ -27,7 +27,7 @@ import kotlin.Suppress
 
 /**
  * Draws simple geometry from code.
- *
+ * 
  * Draws simple geometry from code. Uses a drawing mode similar to OpenGL 1.x.
  *
  * See also [godot.ArrayMesh], [godot.MeshDataTool] and [godot.SurfaceTool] for procedural geometry generation.

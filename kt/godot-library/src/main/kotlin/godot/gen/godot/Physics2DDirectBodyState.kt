@@ -28,10 +28,10 @@ import kotlin.Unit
 
 /**
  * Direct access object to a physics body in the [godot.Physics2DServer].
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/physics/ray-casting.html](https://docs.godotengine.org/en/latest/tutorials/physics/ray-casting.html)
- *
+ * 
  * Provides direct access to a physics body in the [godot.Physics2DServer], allowing safe changes to physics properties. This object is passed via the direct state callback of rigid/character bodies, and is intended for changing the direct state of that body. See [godot.RigidBody2D.IntegrateForces].
  */
 @GodotBaseType

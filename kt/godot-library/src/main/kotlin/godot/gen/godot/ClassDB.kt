@@ -29,7 +29,7 @@ import kotlin.Suppress
 
 /**
  * Class information repository.
- *
+ * 
  * Provides access to metadata stored for every available class.
  */
 @GodotBaseType

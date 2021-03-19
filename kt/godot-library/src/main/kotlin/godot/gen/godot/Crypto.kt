@@ -18,7 +18,7 @@ import kotlin.Suppress
 
 /**
  * Access to advanced cryptographic functionalities.
- *
+ * 
  * The Crypto class allows you to access some more advanced cryptographic functionalities in Godot.
  *
  * For now, this includes generating cryptographically secure random bytes, and RSA keys and self-signed X509 certificates generation. More functionalities are planned for future releases.

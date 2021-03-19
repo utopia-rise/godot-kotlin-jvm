@@ -36,7 +36,7 @@ import kotlin.Unit
 
 /**
  * A 2D polygon.
- *
+ * 
  * A Polygon2D is defined by a set of points. Each point is connected to the next, with the final point being connected to the first, resulting in a closed polygon. Polygon2Ds can be filled with color (solid or gradient) or filled with a given texture.
  *
  * **Note:** By default, Godot can only draw up to 4,096 polygon points at a time. To increase this limit, open the Project Settings and increase [godot.ProjectSettings.rendering/limits/buffers/canvasPolygonBufferSizeKb] and [godot.ProjectSettings.rendering/limits/buffers/canvasPolygonIndexBufferSizeKb].

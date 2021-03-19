@@ -29,10 +29,10 @@ import kotlin.Suppress
 
 /**
  * Type to handle file reading and writing operations.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/getting_started/step_by_step/filesystem.html](https://docs.godotengine.org/en/latest/getting_started/step_by_step/filesystem.html)
- *
+ * 
  * File type. This is used to permanently store data into the user device's file system and to read from it. This can be used to store game save data or player configuration files, for example.
  *
  * Here's a sample on how to write and read from a file:

@@ -19,10 +19,10 @@ import kotlin.UninitializedPropertyAccessException
 
 /**
  * Input event type for actions.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html#actions](https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html#actions)
- *
+ * 
  * Contains a generic action which can be targeted from several types of inputs. Actions can be created from the **Input Map** tab in the **Project > Project Settings** menu. See [godot.Node.Input].
  */
 @GodotBaseType

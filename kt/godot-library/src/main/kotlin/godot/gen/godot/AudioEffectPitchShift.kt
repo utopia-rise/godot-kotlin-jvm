@@ -18,7 +18,7 @@ import kotlin.Suppress
  * Adds a pitch-shifting audio effect to an Audio bus.
  *
  * Raises or lowers the pitch of original sound.
- *
+ * 
  * Allows modulation of pitch independently of tempo. All frequencies can be increased/decreased with minimal effect on transients.
  */
 @GodotBaseType

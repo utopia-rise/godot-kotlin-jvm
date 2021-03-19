@@ -16,7 +16,7 @@ import kotlin.Suppress
  * Adds an amplifying audio effect to an audio bus.
  *
  * Increases or decreases the volume of the selected audio bus.
- *
+ * 
  * Increases or decreases the volume being routed through the audio bus.
  */
 @GodotBaseType

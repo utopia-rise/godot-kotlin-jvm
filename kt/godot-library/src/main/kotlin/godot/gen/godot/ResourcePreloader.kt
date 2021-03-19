@@ -22,7 +22,7 @@ import kotlin.Suppress
 
 /**
  * Resource Preloader Node.
- *
+ * 
  * This node is used to preload sub-resources inside a scene, so when the scene is loaded, all the resources are ready to use and can be retrieved from the preloader.
  *
  * GDScript has a simplified [@GDScript.preload] built-in method which can be used in most situations, leaving the use of [godot.ResourcePreloader] for more advanced scenarios.

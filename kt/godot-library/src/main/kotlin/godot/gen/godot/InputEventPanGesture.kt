@@ -14,7 +14,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- *
+ * 
+ * 
+ * 
  */
 @GodotBaseType
 open class InputEventPanGesture : InputEventGesture() {

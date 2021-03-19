@@ -13,7 +13,7 @@ import kotlin.Suppress
 
 /**
  * Base script that can be used to add extension functions to the editor.
- *
+ * 
  * Scripts extending this class and implementing its [_run] method can be executed from the Script Editor's **File > Run** menu option (or by pressing `Ctrl+Shift+X`) while the editor is running. This is useful for adding custom in-editor functionality to Godot. For more complex additions, consider using [godot.EditorPlugin]s instead.
  *
  * **Note:** Extending scripts need to have `tool` mode enabled.

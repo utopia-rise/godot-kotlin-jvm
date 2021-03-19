@@ -24,10 +24,10 @@ import kotlin.Suppress
 
 /**
  * Base class for all 2D shapes.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html)
- *
+ * 
  * Base class for all 2D shapes. All 2D shape types inherit from this.
  */
 @GodotBaseType

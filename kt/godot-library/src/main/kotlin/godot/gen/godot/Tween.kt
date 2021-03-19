@@ -29,7 +29,7 @@ import kotlin.Suppress
 
 /**
  * Smoothly animates a node's properties over time.
- *
+ * 
  * Tweens are useful for animations requiring a numerical property to be interpolated over a range of values. The name *tween* comes from *in-betweening*, an animation technique where you specify *keyframes* and the computer interpolates the frames that appear between them.
  *
  * [godot.Tween] is more suited than [godot.AnimationPlayer] for animations where you don't know the final values in advance. For example, interpolating a dynamically-chosen camera zoom value is best done with a [godot.Tween] node; it would be difficult to do the same thing with an [godot.AnimationPlayer] node.

@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * Cylinder shape for collisions.
- *
+ * 
  * Cylinder shape for collisions.
  */
 @GodotBaseType

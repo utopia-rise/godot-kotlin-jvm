@@ -17,7 +17,7 @@ import kotlin.Suppress
 
 /**
  * A shortcut for binding input.
- *
+ * 
  * A shortcut for binding input.
  *
  * Shortcuts are commonly used for interacting with a [godot.Control] element from a [godot.InputEvent].

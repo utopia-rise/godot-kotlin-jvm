@@ -15,7 +15,9 @@ import kotlin.Boolean
 import kotlin.Suppress
 
 /**
- *
+ * 
+ * 
+ * 
  */
 @GodotBaseType
 open class SpatialVelocityTracker : Reference() {

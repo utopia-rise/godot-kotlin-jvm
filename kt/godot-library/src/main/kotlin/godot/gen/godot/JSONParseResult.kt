@@ -19,7 +19,7 @@ import kotlin.Suppress
 
 /**
  * Data class wrapper for decoded JSON.
- *
+ * 
  * Returned by [godot.JSON.parse], [godot.JSONParseResult] contains the decoded JSON or error information if the JSON source wasn't successfully parsed. You can check if the JSON source was successfully parsed with `if json_result.error == OK`.
  */
 @GodotBaseType

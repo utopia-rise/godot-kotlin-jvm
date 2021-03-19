@@ -19,7 +19,7 @@ import kotlin.Suppress
 
 /**
  * Standard themed Button.
- *
+ * 
  * Button is the standard themed button. It can contain text and an icon, and will display them according to the current [godot.Theme].
  *
  * **Example of creating a button and assigning an action when pressed by code:**

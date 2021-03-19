@@ -17,7 +17,7 @@ import kotlin.Suppress
 
 /**
  * Interactive [godot.Resource] loader.
- *
+ * 
  * Interactive [godot.Resource] loader. This object is returned by [godot.ResourceLoader] when performing an interactive load. It allows loading resources with high granularity, which makes it mainly useful for displaying loading bars or percentages.
  */
 @GodotBaseType

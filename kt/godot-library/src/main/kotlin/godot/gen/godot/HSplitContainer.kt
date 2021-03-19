@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * Horizontal split container.
- *
+ * 
  * Horizontal split container. See [godot.SplitContainer]. This goes from left to right.
  */
 @GodotBaseType

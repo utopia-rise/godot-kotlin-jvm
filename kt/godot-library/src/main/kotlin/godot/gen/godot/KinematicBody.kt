@@ -23,10 +23,10 @@ import kotlin.Suppress
 
 /**
  * Kinematic body 3D node.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/physics/kinematic_character_2d.html](https://docs.godotengine.org/en/latest/tutorials/physics/kinematic_character_2d.html)
- *
+ * 
  * Kinematic bodies are special types of bodies that are meant to be user-controlled. They are not affected by physics at all; to other types of bodies, such as a character or a rigid body, these are the same as a static body. However, they have two main uses:
  *
  * **Simulated motion:** When these bodies are moved manually, either from code or from an [godot.AnimationPlayer] (with [godot.AnimationPlayer.playbackProcessMode] set to "physics"), the physics will automatically compute an estimate of their linear and angular velocity. This makes them very useful for moving platforms or other AnimationPlayer-controlled objects (like a door, a bridge that opens, etc).

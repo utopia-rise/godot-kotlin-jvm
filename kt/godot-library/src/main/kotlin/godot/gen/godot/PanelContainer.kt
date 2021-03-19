@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * Panel container type.
- *
+ * 
  * Panel container type. This container fits controls inside of the delimited area of a stylebox. It's useful for giving controls an outline.
  */
 @GodotBaseType

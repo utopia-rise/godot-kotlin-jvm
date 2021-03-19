@@ -15,7 +15,7 @@ import kotlin.Unit
 
 /**
  * Rectangle shape for 2D collisions.
- *
+ * 
  * Rectangle shape for 2D collisions. This shape is useful for modeling box-like 2D objects.
  */
 @GodotBaseType

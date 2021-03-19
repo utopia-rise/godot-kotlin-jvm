@@ -26,7 +26,7 @@ import kotlin.Suppress
 
 /**
  * A class that stores an expression you can execute.
- *
+ * 
  * An expression can be made of any arithmetic operation, built-in math function call, method call of a passed instance, or built-in type construction call.
  *
  * An example expression text using the built-in math functions could be `sqrt(pow(3,2) + pow(4,2))`.

@@ -22,10 +22,10 @@ import kotlin.Unit
 
 /**
  * Real-time global illumination (GI) probe.
- *
+ * 
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/3d/gi_probes.html](https://docs.godotengine.org/en/latest/tutorials/3d/gi_probes.html)
- *
+ * 
  * [godot.GIProbe]s are used to provide high-quality real-time indirect light to scenes. They precompute the effect of objects that emit light and the effect of static geometry to simulate the behavior of complex light in real-time. [godot.GIProbe]s need to be baked before using, however, once baked, dynamic objects will receive light from them. Further, lights can be fully dynamic or baked.
  *
  * Having [godot.GIProbe]s in a scene can be expensive, the quality of the probe can be turned down in exchange for better performance in the [godot.ProjectSettings] using [godot.ProjectSettings.rendering/quality/voxelConeTracing/highQuality].

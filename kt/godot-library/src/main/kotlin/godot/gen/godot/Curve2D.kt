@@ -25,7 +25,7 @@ import kotlin.Suppress
 
 /**
  * Describes a Bézier curve in 2D space.
- *
+ * 
  * This class describes a Bézier curve in 2D space. It is mainly used to give a shape to a [godot.Path2D], but can be manually sampled for other purposes.
  *
  * It keeps a cache of precalculated points along the curve, to speed up further calculations.
