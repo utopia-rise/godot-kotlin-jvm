@@ -16,7 +16,7 @@ import kotlin.Suppress
 
 /**
  * Loads a specific resource type from a file.
- * 
+ *
  * Godot loads resources in the editor or in exported games using ResourceFormatLoaders. They are queried automatically via the [godot.ResourceLoader] singleton, or when a resource with internal dependencies is loaded. Each file type may load as a different resource type, so multiple ResourceFormatLoaders are registered in the engine.
  *
  * Extending this class allows you to define your own loader. Be sure to respect the documented return types and values. You should give it a global class name with `class_name` for it to be registered. Like built-in ResourceFormatLoaders, it will be called automatically when loading resources of its handled type(s). You may also implement a [godot.ResourceFormatSaver].

@@ -28,7 +28,7 @@ import kotlin.Suppress
 
 /**
  * High-level multiplayer API.
- * 
+ *
  * This class implements most of the logic behind the high-level multiplayer API.
  *
  * By default, [godot.SceneTree] has a reference to this class that is used to provide multiplayer capabilities (i.e. RPC/RSET) across the whole scene.

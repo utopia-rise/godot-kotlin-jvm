@@ -16,7 +16,7 @@ import kotlin.Suppress
 
 /**
  * Result of a 2D shape query in [godot.Physics2DServer].
- * 
+ *
  * The result of a 2D shape query in [godot.Physics2DServer]. See also [godot.Physics2DShapeQueryParameters].
  */
 @GodotBaseType

@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * Decomposes a [godot.core.Vector3] into three scalars within the visual shader graph.
- * 
+ *
  * Takes a `vec3` and decomposes it into three scalar values that can be used as separate inputs.
  */
 @GodotBaseType

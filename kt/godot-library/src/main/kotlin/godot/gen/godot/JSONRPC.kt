@@ -22,9 +22,7 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * 
- * 
- * 
+ *
  */
 @GodotBaseType
 open class JSONRPC : Object() {

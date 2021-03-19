@@ -33,10 +33,10 @@ import kotlin.Suppress
 
 /**
  * A singleton that deals with inputs.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/inputs/index.html](https://docs.godotengine.org/en/latest/tutorials/inputs/index.html)
- * 
+ *
  * A singleton that deals with inputs. This includes key presses, mouse buttons and movement, joypads, and input actions. Actions and their events can be set in the **Input Map** tab in the **Project > Project Settings**, or with the [godot.InputMap] class.
  */
 @GodotBaseType

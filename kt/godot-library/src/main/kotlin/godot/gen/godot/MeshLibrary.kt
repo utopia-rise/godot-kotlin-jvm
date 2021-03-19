@@ -24,7 +24,7 @@ import kotlin.Suppress
 
 /**
  * Library of meshes.
- * 
+ *
  * A library of meshes. Contains a list of [godot.Mesh] resources, each with a name and ID. Each item can also include collision and navigation shapes. This resource is used in [godot.GridMap].
  */
 @GodotBaseType

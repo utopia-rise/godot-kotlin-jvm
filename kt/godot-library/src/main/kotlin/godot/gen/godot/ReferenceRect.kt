@@ -17,7 +17,7 @@ import kotlin.Unit
 
 /**
  * Reference frame for GUI.
- * 
+ *
  * A rectangle box that displays only a [borderColor] border color around its rectangle. [godot.ReferenceRect] has no fill [godot.core.Color].
  */
 @GodotBaseType

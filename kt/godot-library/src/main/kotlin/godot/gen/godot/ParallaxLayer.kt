@@ -15,7 +15,7 @@ import kotlin.Unit
 
 /**
  * A parallax scrolling layer to be used with [godot.ParallaxBackground].
- * 
+ *
  * A ParallaxLayer must be the child of a [godot.ParallaxBackground] node. Each ParallaxLayer can be set to move at different speeds relative to the camera movement or the [godot.ParallaxBackground.scrollOffset] value.
  *
  * This node's children will be affected by its scroll offset.

@@ -32,7 +32,7 @@ import kotlin.Suppress
 
 /**
  * Helper tool to access and edit [godot.Mesh] data.
- * 
+ *
  * MeshDataTool provides access to individual vertices in a [godot.Mesh]. It allows users to read and edit vertex data of meshes. It also creates an array of faces and edges.
  *
  * To use MeshDataTool, load a mesh with [createFromSurface]. When you are finished editing the data commit the data to a mesh with [commitToSurface].

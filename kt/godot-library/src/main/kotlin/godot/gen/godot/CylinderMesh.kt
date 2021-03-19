@@ -16,7 +16,7 @@ import kotlin.Suppress
 
 /**
  * Class representing a cylindrical [godot.PrimitiveMesh].
- * 
+ *
  * Class representing a cylindrical [godot.PrimitiveMesh]. This class can be used to create cones by setting either the [topRadius] or [bottomRadius] properties to 0.0.
  */
 @GodotBaseType

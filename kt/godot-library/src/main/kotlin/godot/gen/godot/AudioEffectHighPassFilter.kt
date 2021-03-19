@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * Adds a high-pass filter to the Audio Bus.
- * 
+ *
  * Cuts frequencies lower than the [godot.AudioEffectFilter.cutoffHz] and allows higher frequencies to pass.
  */
 @GodotBaseType

@@ -15,9 +15,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * 
- * 
- * 
+ *
  */
 @GodotBaseType
 open class AudioEffectSpectrumAnalyzer : AudioEffect() {

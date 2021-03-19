@@ -15,7 +15,7 @@ import kotlin.Suppress
 
 /**
  * A [godot.CubeMap] sampling node to be used within the visual shader graph.
- * 
+ *
  * Translated to `texture(cubemap, vec3)` in the shader language. Returns a color vector and alpha channel as scalar.
  */
 @GodotBaseType

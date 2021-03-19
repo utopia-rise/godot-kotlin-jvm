@@ -31,7 +31,7 @@ import kotlin.Unit
 
 /**
  * Camera node, displays from a point of view.
- * 
+ *
  * Camera is a special node that displays what is visible from its current location. Cameras register themselves in the nearest [godot.Viewport] node (when ascending the tree). Only one camera can be active per viewport. If no viewport is available ascending the tree, the camera will register in the global viewport. In other words, a camera just provides 3D display capabilities to a [godot.Viewport], and, without one, a scene registered in that [godot.Viewport] (or higher viewports) can't be displayed.
  */
 @GodotBaseType

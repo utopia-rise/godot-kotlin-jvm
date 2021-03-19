@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * A [godot.core.Transform] uniform for use within the visual shader graph.
- * 
+ *
  * Translated to `uniform mat4` in the shader language.
  */
 @GodotBaseType

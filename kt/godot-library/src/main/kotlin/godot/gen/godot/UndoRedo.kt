@@ -23,7 +23,7 @@ import kotlin.Suppress
 
 /**
  * Helper to manage undo/redo operations in the editor or custom tools.
- * 
+ *
  * Helper to manage undo/redo operations in the editor or custom tools. It works by registering methods and property changes inside "actions".
  *
  * Common behavior is to create an action, then add do/undo calls to functions or property changes, then committing the action.

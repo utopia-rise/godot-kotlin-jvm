@@ -21,10 +21,10 @@ import kotlin.Suppress
 
 /**
  * State machine for control of animations.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
- * 
+ *
  * Contains multiple nodes representing animation states, connected in a graph. Node transitions can be configured to happen automatically or via code, using a shortest-path algorithm. Retrieve the [godot.AnimationNodeStateMachinePlayback] object from the [godot.AnimationTree] node to control it programmatically.
  *
  * **Example:**

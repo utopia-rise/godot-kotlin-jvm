@@ -23,10 +23,10 @@ import kotlin.Unit
 
 /**
  * Captures its surroundings to create reflections.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/3d/reflection_probes.html](https://docs.godotengine.org/en/latest/tutorials/3d/reflection_probes.html)
- * 
+ *
  * Capture its surroundings as a dual paraboloid image, and stores versions of it with increasing levels of blur to simulate different material roughnesses.
  *
  * The [godot.ReflectionProbe] is used to create high-quality reflections at the cost of performance. It can be combined with [godot.GIProbe]s and Screen Space Reflections to achieve high quality reflections. [godot.ReflectionProbe]s render all objects within their [cullMask], so updating them can be quite expensive. It is best to update them once with the important static objects and then leave them.

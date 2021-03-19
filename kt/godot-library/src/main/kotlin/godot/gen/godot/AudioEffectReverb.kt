@@ -16,7 +16,7 @@ import kotlin.Suppress
  * Adds a reverberation audio effect to an Audio bus.
  *
  * Simulates the sound of acoustic environments such as rooms, concert halls, caverns, or an open spaces.
- * 
+ *
  * Simulates rooms of different sizes. Its parameters can be adjusted to simulate the sound of a specific room.
  */
 @GodotBaseType

@@ -16,7 +16,7 @@ import kotlin.Suppress
 
 /**
  * RemoteTransform pushes its own [godot.core.Transform] to another [godot.Spatial] derived Node in the scene.
- * 
+ *
  * RemoteTransform pushes its own [godot.core.Transform] to another [godot.Spatial] derived Node (called the remote node) in the scene.
  *
  * It can be set to update another Node's position, rotation and/or scale. It can use either global or local coordinates.

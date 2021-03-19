@@ -43,10 +43,10 @@ import kotlin.reflect.KMutableProperty
 
 /**
  * Base class for all *scene* objects.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/getting_started/step_by_step/scenes_and_nodes.html](https://docs.godotengine.org/en/latest/getting_started/step_by_step/scenes_and_nodes.html)
- * 
+ *
  * Nodes are Godot's building blocks. They can be assigned as the child of another node, resulting in a tree arrangement. A given node can contain any number of nodes as children with the requirement that all siblings (direct children of a node) should have unique names.
  *
  * A tree of nodes is called a *scene*. Scenes can be saved to the disk and then instanced into other scenes. This allows for very high flexibility in the architecture and data model of Godot projects.

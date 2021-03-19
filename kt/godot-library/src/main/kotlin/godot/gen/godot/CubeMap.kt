@@ -17,7 +17,7 @@ import kotlin.Suppress
 
 /**
  * A CubeMap is a 6-sided 3D texture.
- * 
+ *
  * A 6-sided 3D texture typically used for faking reflections. It can be used to make an object look as if it's reflecting its surroundings. This usually delivers much better performance than other reflection methods.
  */
 @GodotBaseType

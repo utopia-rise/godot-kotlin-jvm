@@ -12,9 +12,7 @@ import godot.core.VariantType.OBJECT
 import kotlin.Suppress
 
 /**
- * 
- * 
- * 
+ *
  */
 @GodotBaseType
 open class EditorNavigationMeshGenerator : Object() {

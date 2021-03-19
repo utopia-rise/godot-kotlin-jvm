@@ -20,10 +20,10 @@ import kotlin.Suppress
 
 /**
  * A generic animation transition node for [godot.AnimationTree].
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
- * 
+ *
  * Simple state machine for cases which don't require a more advanced [godot.AnimationNodeStateMachine]. Animations can be connected to the inputs and transition times can be specified.
  */
 @GodotBaseType

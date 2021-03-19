@@ -24,7 +24,7 @@ import kotlin.Unit
 
 /**
  * Mesh-based navigation and pathfinding node.
- * 
+ *
  * Provides navigation and pathfinding within a collection of [godot.NavigationMesh]es. By default, these will be automatically collected from child [godot.NavigationMeshInstance] nodes, but they can also be added on the fly with [navmeshAdd]. In addition to basic pathfinding, this class also assists with aligning navigation agents with the meshes they are navigating on.
  */
 @GodotBaseType

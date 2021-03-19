@@ -22,9 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * 
- * 
- * 
+ *
  */
 @GodotBaseType
 open class PhysicalBone : PhysicsBody() {

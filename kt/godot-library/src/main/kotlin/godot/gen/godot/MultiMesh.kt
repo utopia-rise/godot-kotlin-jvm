@@ -28,11 +28,11 @@ import kotlin.Suppress
 
 /**
  * Provides high-performance mesh instancing.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/3d/vertex_animation/animating_thousands_of_fish.html](https://docs.godotengine.org/en/latest/tutorials/3d/vertex_animation/animating_thousands_of_fish.html)
  * [https://docs.godotengine.org/en/latest/tutorials/optimization/using_multimesh.html](https://docs.godotengine.org/en/latest/tutorials/optimization/using_multimesh.html)
- * 
+ *
  * MultiMesh provides low-level mesh instancing. Drawing thousands of [godot.MeshInstance] nodes can be slow, since each object is submitted to the GPU then drawn individually.
  *
  * MultiMesh is much faster as it can draw thousands of instances with a single draw call, resulting in less API overhead.

@@ -23,7 +23,7 @@ import kotlin.Suppress
 
 /**
  * Control for playing video streams.
- * 
+ *
  * Control node for playing video streams using [godot.VideoStream] resources.
  *
  * Supported video formats are [godot.WebM](https://www.webmproject.org/) ([godot.VideoStreamWebm]), [godot.Ogg Theora](https://www.theora.org/) ([godot.VideoStreamTheora]), and any format exposed via a GDNative plugin using [godot.VideoStreamGDNative].

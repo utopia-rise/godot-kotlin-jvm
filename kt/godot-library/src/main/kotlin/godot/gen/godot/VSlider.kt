@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * Vertical slider.
- * 
+ *
  * Vertical slider. See [godot.Slider]. This one goes from bottom (min) to top (max).
  *
  * **Note:** The [godot.Range.changed] and [godot.Range.valueChanged] signals are part of the [godot.Range] class which this class inherits from.

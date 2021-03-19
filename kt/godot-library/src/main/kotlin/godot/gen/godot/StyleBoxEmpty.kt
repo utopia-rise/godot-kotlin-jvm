@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * Empty stylebox (does not display anything).
- * 
+ *
  * Empty stylebox (really does not display anything).
  */
 @GodotBaseType

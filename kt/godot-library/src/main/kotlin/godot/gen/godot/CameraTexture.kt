@@ -16,7 +16,7 @@ import kotlin.Suppress
 
 /**
  * Texture provided by a [godot.CameraFeed].
- * 
+ *
  * This texture gives access to the camera texture provided by a [godot.CameraFeed].
  *
  * **Note:** Many cameras supply YCbCr images which need to be converted in a shader.

@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * Physics body that simulates the behavior of a car.
- * 
+ *
  * This node implements all the physics logic needed to simulate a car. It is based on the raycast vehicle system commonly found in physics engines. You will need to add a [godot.CollisionShape] for the main body of your vehicle and add [godot.VehicleWheel] nodes for the wheels. You should also add a [godot.MeshInstance] to this node for the 3D model of your car but this model should not include meshes for the wheels. You should control the vehicle by using the [brake], [engineForce], and [steering] properties and not change the position or orientation of this node directly.
  *
  * **Note:** The origin point of your VehicleBody will determine the center of gravity of your vehicle so it is better to keep this low and move the [godot.CollisionShape] and [godot.MeshInstance] upwards.

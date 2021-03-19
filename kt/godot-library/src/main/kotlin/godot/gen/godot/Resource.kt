@@ -21,10 +21,10 @@ import kotlin.Suppress
 
 /**
  * Base class for all resources.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/getting_started/workflow/best_practices/node_alternatives.html](https://docs.godotengine.org/en/latest/getting_started/workflow/best_practices/node_alternatives.html)
- * 
+ *
  * Resource is the base class for all Godot-specific resource types, serving primarily as data containers. Unlike [godot.Object]s, they are reference-counted and freed when no longer in use. They are also cached once loaded from disk, so that any further attempts to load a resource from a given path will return the same reference (all this in contrast to a [godot.Node], which is not reference-counted and can be instanced from disk as many times as desired). Resources can be saved externally on disk or bundled into another object, such as a [godot.Node] or another resource.
  */
 @GodotBaseType

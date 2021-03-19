@@ -15,7 +15,7 @@ import kotlin.Suppress
 
 /**
  * A texture that shows a curve.
- * 
+ *
  * Renders a given [godot.Curve] provided to it. Simplifies the task of drawing curves and/or saving them as image files.
  */
 @GodotBaseType

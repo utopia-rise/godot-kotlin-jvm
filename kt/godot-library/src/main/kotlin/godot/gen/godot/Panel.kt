@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * Provides an opaque background for [godot.Control] children.
- * 
+ *
  * Panel is a [godot.Control] that displays an opaque background. It's commonly used as a parent and container for other types of [godot.Control] nodes.
  */
 @GodotBaseType

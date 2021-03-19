@@ -23,10 +23,10 @@ import kotlin.Suppress
 
 /**
  * A unit of execution in a process.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/threads/thread_safe_apis.html](https://docs.godotengine.org/en/latest/tutorials/threads/thread_safe_apis.html)
- * 
+ *
  * A unit of execution in a process. Can run methods on [godot.Object]s simultaneously. The use of synchronization via [godot.Mutex] or [godot.Semaphore] is advised if working with shared objects.
  *
  * **Note:** Breakpoints won't break on code if it's running in a thread. This is a current limitation of the GDScript debugger.

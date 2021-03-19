@@ -24,7 +24,7 @@ import kotlin.Unit
 
 /**
  * 2D sprite node in a 3D world.
- * 
+ *
  * A node that displays a 2D texture in a 3D environment. The texture displayed can be a region from a larger atlas texture, or a frame from a sprite sheet animation.
  */
 @GodotBaseType

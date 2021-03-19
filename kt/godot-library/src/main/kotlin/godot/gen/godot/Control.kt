@@ -40,11 +40,11 @@ import kotlin.Unit
 
 /**
  * All user interface nodes inherit from Control. A control's anchors and margins adapt its position and size relative to its parent.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/gui/index.html](https://docs.godotengine.org/en/latest/tutorials/gui/index.html)
  * [https://docs.godotengine.org/en/latest/tutorials/2d/custom_drawing_in_2d.html](https://docs.godotengine.org/en/latest/tutorials/2d/custom_drawing_in_2d.html)
- * 
+ *
  * Base class for all UI-related nodes. [godot.Control] features a bounding rectangle that defines its extents, an anchor position relative to its parent control or the current viewport, and margins that represent an offset to the anchor. The margins update automatically when the node, any of its parents, or the screen size change.
  *
  * For more information on Godot's UI system, anchors, margins, and containers, see the related tutorials in the manual. To build flexible UIs, you'll need a mix of UI elements that inherit from [godot.Control] and [godot.Container] nodes.

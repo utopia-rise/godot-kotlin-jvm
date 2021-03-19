@@ -21,10 +21,10 @@ import kotlin.Suppress
 
 /**
  * Type used to handle the filesystem.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/getting_started/step_by_step/filesystem.html](https://docs.godotengine.org/en/latest/getting_started/step_by_step/filesystem.html)
- * 
+ *
  * Directory type. It is used to manage directories and their content (not restricted to the project folder).
  *
  * When creating a new [godot.Directory], its default opened directory will be `res://`. This may change in the future, so it is advised to always use [open] to initialize your [godot.Directory] where you want to operate, with explicit error checking.

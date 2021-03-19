@@ -21,7 +21,7 @@ import kotlin.Suppress
 
 /**
  * A [godot.Camera] that includes collision.
- * 
+ *
  * This node extends [godot.Camera] to add collisions with [godot.Area] and/or [godot.PhysicsBody] nodes. The camera cannot move through colliding objects.
  */
 @GodotBaseType

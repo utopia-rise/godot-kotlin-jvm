@@ -16,7 +16,7 @@ import kotlin.Suppress
 
 /**
  * A twist joint between two 3D bodies.
- * 
+ *
  * The joint can rotate the bodies across an axis defined by the local x-axes of the [godot.Joint].
  *
  * The twist axis is initiated as the X axis of the [godot.Joint].

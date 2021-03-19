@@ -16,7 +16,7 @@ import kotlin.Suppress
 
 /**
  * Piston kind of slider between two bodies in 3D.
- * 
+ *
  * Slides across the X axis of the pivot object.
  */
 @GodotBaseType

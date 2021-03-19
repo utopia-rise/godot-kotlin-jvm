@@ -15,7 +15,7 @@ import kotlin.Suppress
 
 /**
  * Node that instances a [godot.MultiMesh] in 2D.
- * 
+ *
  * [godot.MultiMeshInstance2D] is a specialized node to instance a [godot.MultiMesh] resource in 2D.
  *
  * Usage is the same as [godot.MultiMeshInstance].

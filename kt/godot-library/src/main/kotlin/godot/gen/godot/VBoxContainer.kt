@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * Vertical box container.
- * 
+ *
  * Vertical box container. See [godot.BoxContainer].
  */
 @GodotBaseType

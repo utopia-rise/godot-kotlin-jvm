@@ -15,7 +15,7 @@ import kotlin.Unit
 
 /**
  * A [godot.core.Transform] constant for use within the visual shader graph.
- * 
+ *
  * A constant [godot.core.Transform], which can be used as an input node.
  */
 @GodotBaseType

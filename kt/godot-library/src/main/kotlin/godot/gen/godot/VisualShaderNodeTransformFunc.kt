@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * Computes a [godot.core.Transform] function within the visual shader graph.
- * 
+ *
  * Computes an inverse or transpose function on the provided [godot.core.Transform].
  */
 @GodotBaseType

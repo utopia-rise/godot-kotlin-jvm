@@ -31,10 +31,10 @@ import kotlin.Unit
 
 /**
  * 2D area for detection and 2D physics influence.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/physics/using_area_2d.html](https://docs.godotengine.org/en/latest/tutorials/physics/using_area_2d.html)
- * 
+ *
  * 2D area that detects [godot.CollisionObject2D] nodes overlapping, entering, or exiting. Can also alter or override local physics parameters (gravity, damping).
  */
 @GodotBaseType

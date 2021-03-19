@@ -17,10 +17,10 @@ import kotlin.Unit
 
 /**
  * Base input event type for mouse events.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html)
- * 
+ *
  * Stores general mouse events information.
  */
 @GodotBaseType

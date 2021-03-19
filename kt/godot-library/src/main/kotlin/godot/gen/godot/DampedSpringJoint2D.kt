@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * Damped spring constraint for 2D physics.
- * 
+ *
  * Damped spring constraint for 2D physics. This resembles a spring joint that always wants to go back to a given length.
  */
 @GodotBaseType

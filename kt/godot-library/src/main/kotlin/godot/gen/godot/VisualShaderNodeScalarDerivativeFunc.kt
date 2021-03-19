@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * Calculates a scalar derivative within the visual shader graph.
- * 
+ *
  * This node is only available in `Fragment` and `Light` visual shaders.
  */
 @GodotBaseType

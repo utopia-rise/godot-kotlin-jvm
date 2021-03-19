@@ -15,8 +15,6 @@ import kotlin.Unit
 
 /**
  * Base class for touch control gestures.
- * 
- * 
  */
 @GodotBaseType
 open class InputEventGesture : InputEventWithModifiers() {

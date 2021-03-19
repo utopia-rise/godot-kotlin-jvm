@@ -42,7 +42,7 @@ import kotlin.Suppress
 
 /**
  * Helper tool to create geometry.
- * 
+ *
  * The [godot.SurfaceTool] is used to construct a [godot.Mesh] by specifying vertex attributes individually. It can be used to construct a [godot.Mesh] from a script. All properties except indices need to be added before calling [addVertex]. For example, to add vertex colors and UVs:
  *
  * ```

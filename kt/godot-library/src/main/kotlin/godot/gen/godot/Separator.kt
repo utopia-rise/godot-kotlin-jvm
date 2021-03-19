@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * Base class for separators.
- * 
+ *
  * Separator is a [godot.Control] used for separating other controls. It's purely a visual decoration. Horizontal ([godot.HSeparator]) and Vertical ([godot.VSeparator]) versions are available.
  */
 @GodotBaseType

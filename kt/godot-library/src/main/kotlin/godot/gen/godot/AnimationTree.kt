@@ -25,11 +25,11 @@ import kotlin.Suppress
 
 /**
  * A node to be used for advanced animation transitions in an [godot.AnimationPlayer].
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
  * [https://github.com/godotengine/tps-demo](https://github.com/godotengine/tps-demo)
- * 
+ *
  * Note: When linked with an [godot.AnimationPlayer], several properties and methods of the corresponding [godot.AnimationPlayer] will not function as expected. Playback and transitions should be handled using only the [godot.AnimationTree] and its constituent [godot.AnimationNode](s). The [godot.AnimationPlayer] node should be used solely for adding, deleting, and editing animations.
  */
 @GodotBaseType

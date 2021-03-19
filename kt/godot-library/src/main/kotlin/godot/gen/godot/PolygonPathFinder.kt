@@ -28,9 +28,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 
 /**
- * 
- * 
- * 
+ *
  */
 @GodotBaseType
 open class PolygonPathFinder : Resource() {

@@ -41,11 +41,11 @@ import kotlin.Unit
 
 /**
  * Base class of anything 2D.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/2d/2d_transforms.html](https://docs.godotengine.org/en/latest/tutorials/2d/2d_transforms.html)
  * [https://docs.godotengine.org/en/latest/tutorials/2d/custom_drawing_in_2d.html](https://docs.godotengine.org/en/latest/tutorials/2d/custom_drawing_in_2d.html)
- * 
+ *
  * Base class of anything 2D. Canvas items are laid out in a tree; children inherit and extend their parent's transform. [godot.CanvasItem] is extended by [godot.Control] for anything GUI-related, and by [godot.Node2D] for anything related to the 2D engine.
  *
  * Any [godot.CanvasItem] can draw. For this, [update] must be called, then [NOTIFICATION_DRAW] will be received on idle time to request redraw. Because of this, canvas items don't need to be redrawn on every frame, improving the performance significantly. Several functions for drawing on the [godot.CanvasItem] are provided (see `draw_*` functions). However, they can only be used inside the [godot.Object.Notification], signal or [_draw] virtual functions.

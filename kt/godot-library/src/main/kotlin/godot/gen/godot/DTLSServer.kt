@@ -16,7 +16,7 @@ import kotlin.Suppress
 
 /**
  * Helper class to implement a DTLS server.
- * 
+ *
  * This class is used to store the state of a DTLS server. Upon [setup] it converts connected [godot.PacketPeerUDP] to [godot.PacketPeerDTLS] accepting them via [takeConnection] as DTLS clients. Under the hood, this class is used to store the DTLS state and cookies of the server. The reason of why the state and cookies are needed is outside of the scope of this documentation.
  *
  * Below a small example of how to use it:

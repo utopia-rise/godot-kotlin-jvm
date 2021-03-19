@@ -20,7 +20,7 @@ import kotlin.Suppress
 
 /**
  * Server keeping track of different cameras accessible in Godot.
- * 
+ *
  * The [godot.CameraServer] keeps track of different cameras accessible in Godot. These are external cameras such as webcams or the cameras on your phone.
  *
  * It is notably used to provide AR modules with a video feed from the camera.

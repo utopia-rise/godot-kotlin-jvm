@@ -20,7 +20,7 @@ import kotlin.Suppress
 
 /**
  * Abstract base class for range-based controls.
- * 
+ *
  * Range is a base class for [godot.Control] nodes that change a floating-point *value* between a *minimum* and a *maximum*, using *step* and *page*, for example a [godot.ScrollBar].
  */
 @GodotBaseType

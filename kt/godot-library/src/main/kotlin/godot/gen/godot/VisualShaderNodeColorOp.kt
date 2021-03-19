@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * A [godot.core.Color] operator to be used within the visual shader graph.
- * 
+ *
  * Applies [operator] to two color inputs.
  */
 @GodotBaseType

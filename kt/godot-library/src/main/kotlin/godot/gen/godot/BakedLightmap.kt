@@ -27,10 +27,10 @@ import kotlin.Unit
 
 /**
  * Prerendered indirect light map for a scene.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/3d/baked_lightmaps.html](https://docs.godotengine.org/en/latest/tutorials/3d/baked_lightmaps.html)
- * 
+ *
  * Baked lightmaps are an alternative workflow for adding indirect (or baked) lighting to a scene. Unlike the [godot.GIProbe] approach, baked lightmaps work fine on low-end PCs and mobile devices as they consume almost no resources in run-time.
  *
  * **Note:** This node has many known bugs and will be [rewritten for Godot 4.0](https://godotengine.org/article/godot-40-will-get-new-modernized-lightmapper). See [godot.GitHub issue #30929](https://github.com/godotengine/godot/issues/30929).

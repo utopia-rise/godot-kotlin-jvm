@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * Adds a panner audio effect to an Audio bus. Pans sound left or right.
- * 
+ *
  * Determines how much of an audio signal is sent to the left and right buses.
  */
 @GodotBaseType

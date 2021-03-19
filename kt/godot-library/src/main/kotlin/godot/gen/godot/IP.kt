@@ -22,7 +22,7 @@ import kotlin.Suppress
 
 /**
  * Internet protocol (IP) support functions such as DNS resolution.
- * 
+ *
  * IP contains support functions for the Internet Protocol (IP). TCP/IP support is in different classes (see [godot.StreamPeerTCP] and [godot.TCP_Server]). IP provides DNS hostname resolution support, both blocking and threaded.
  */
 @GodotBaseType

@@ -27,7 +27,7 @@ import kotlin.Suppress
 
 /**
  * PopupMenu displays a list of options.
- * 
+ *
  * [godot.PopupMenu] is a [godot.Control] that displays a list of options. They are popular in toolbars or context menus.
  */
 @GodotBaseType

@@ -19,8 +19,6 @@ import kotlin.Suppress
 
 /**
  * Imports scenes from third-parties' 3D files.
- * 
- * 
  */
 @GodotBaseType
 open class EditorSceneImporter : Reference() {

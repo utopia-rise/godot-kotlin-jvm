@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * A boolean comparison operator to be used within the visual shader graph.
- * 
+ *
  * Returns the boolean result of the comparison between `INF` or `NaN` and a scalar parameter.
  */
 @GodotBaseType

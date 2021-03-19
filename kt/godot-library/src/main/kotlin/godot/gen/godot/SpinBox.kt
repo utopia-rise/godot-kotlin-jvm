@@ -19,7 +19,7 @@ import kotlin.Suppress
 
 /**
  * Numerical input text field.
- * 
+ *
  * SpinBox is a numerical input text field. It allows entering integers and floats.
  *
  * **Example:**

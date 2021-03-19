@@ -13,7 +13,7 @@ import kotlin.Suppress
 
 /**
  * Optimized translation.
- * 
+ *
  * Optimized translation. Uses real-time compressed translations, which results in very small dictionaries.
  */
 @GodotBaseType

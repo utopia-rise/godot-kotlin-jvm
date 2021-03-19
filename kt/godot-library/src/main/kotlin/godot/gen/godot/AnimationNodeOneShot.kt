@@ -21,10 +21,10 @@ import kotlin.Suppress
 
 /**
  * Plays an animation once in [godot.AnimationNodeBlendTree].
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
- * 
+ *
  * A resource to add to an [godot.AnimationNodeBlendTree]. This node will execute a sub-animation and return once it finishes. Blend times for fading in and out can be customized, as well as filters.
  */
 @GodotBaseType

@@ -22,7 +22,7 @@ import kotlin.Suppress
 
 /**
  * TCP stream peer.
- * 
+ *
  * TCP stream peer. This object can be used to connect to TCP servers, or also is returned by a TCP server.
  */
 @GodotBaseType

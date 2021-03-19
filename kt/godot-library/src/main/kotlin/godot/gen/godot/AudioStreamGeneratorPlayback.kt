@@ -19,12 +19,10 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * 
- * 
+ *
+ *
  * Tutorials:
  * [https://github.com/godotengine/godot-demo-projects/tree/master/audio/generator](https://github.com/godotengine/godot-demo-projects/tree/master/audio/generator)
- * 
- * 
  */
 @GodotBaseType
 open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() {

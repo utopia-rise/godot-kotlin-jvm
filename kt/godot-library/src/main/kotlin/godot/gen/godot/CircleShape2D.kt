@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * Circular shape for 2D collisions.
- * 
+ *
  * Circular shape for 2D collisions. This shape is useful for modeling balls or small characters and its collision detection with everything else is very fast.
  */
 @GodotBaseType

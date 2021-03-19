@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * Base class for popup dialogs.
- * 
+ *
  * PopupDialog is a base class for popup dialogs, along with [godot.WindowDialog].
  */
 @GodotBaseType

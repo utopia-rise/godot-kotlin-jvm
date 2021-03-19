@@ -15,7 +15,7 @@ import kotlin.Suppress
 
 /**
  * Contains a [godot.Curve3D] path for [godot.PathFollow] nodes to follow.
- * 
+ *
  * Can have [godot.PathFollow] child nodes moving along the [godot.Curve3D]. See [godot.PathFollow] for more information on the usage.
  *
  * Note that the path is considered as relative to the moved nodes (children of [godot.PathFollow]). As such, the curve should usually start with a zero vector `(0, 0, 0)`.

@@ -27,10 +27,10 @@ import kotlin.Suppress
 
 /**
  * A class stored as a resource.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/getting_started/step_by_step/scripting.html](https://docs.godotengine.org/en/latest/getting_started/step_by_step/scripting.html)
- * 
+ *
  * A class stored as a resource. A script extends the functionality of all objects that instance it.
  *
  * The `new` method of a script subclass creates a new instance. [godot.Object.setScript] extends an existing object, if that object's class matches one of the script's base classes.

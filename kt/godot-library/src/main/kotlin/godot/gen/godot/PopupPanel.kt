@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * Class for displaying popups with a panel background.
- * 
+ *
  * Class for displaying popups with a panel background. In some cases it might be simpler to use than [godot.Popup], since it provides a configurable background. If you are making windows, better check [godot.WindowDialog].
  */
 @GodotBaseType

@@ -21,7 +21,7 @@ import kotlin.Unit
 
 /**
  * Button that pops out a [godot.ColorPicker].
- * 
+ *
  * Encapsulates a [godot.ColorPicker] making it accessible by pressing a button. Pressing the button will toggle the [godot.ColorPicker] visibility.
  */
 @GodotBaseType

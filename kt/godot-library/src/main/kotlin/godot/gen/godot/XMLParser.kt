@@ -24,7 +24,7 @@ import kotlin.Suppress
 
 /**
  * Low-level class for creating parsers for [XML](https://en.wikipedia.org/wiki/XML) files.
- * 
+ *
  * This class can serve as base to make custom XML parsers. Since XML is a very flexible standard, this interface is low-level so it can be applied to any possible schema.
  */
 @GodotBaseType

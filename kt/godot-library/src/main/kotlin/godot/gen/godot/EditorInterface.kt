@@ -25,7 +25,7 @@ import kotlin.Suppress
 
 /**
  * Godot editor's interface.
- * 
+ *
  * EditorInterface gives you control over Godot editor's window. It allows customizing the window, saving and (re-)loading scenes, rendering mesh previews, inspecting and editing resources and objects, and provides access to [godot.EditorSettings], [godot.EditorFileSystem], [godot.EditorResourcePreview], [godot.ScriptEditor], the editor viewport, and information about scenes.
  *
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorPlugin.getEditorInterface].

@@ -19,7 +19,7 @@ import kotlin.Unit
 
 /**
  * Joint used with [godot.Skeleton2D] to control and animate other nodes.
- * 
+ *
  * Use a hierarchy of `Bone2D` bound to a [godot.Skeleton2D] to control, and animate other [godot.Node2D] nodes.
  *
  * You can use `Bone2D` and `Skeleton2D` nodes to animate 2D meshes created with the Polygon 2D UV editor.

@@ -25,10 +25,10 @@ import kotlin.Unit
 
 /**
  * Most basic 3D game object, parent of all 3D-related nodes.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/3d/introduction_to_3d.html](https://docs.godotengine.org/en/latest/tutorials/3d/introduction_to_3d.html)
- * 
+ *
  * Most basic 3D game object, with a 3D [godot.core.Transform] and visibility settings. All other 3D game objects inherit from Spatial. Use [godot.Spatial] as a parent node to move, scale, rotate and show/hide children in a 3D project.
  *
  * Affine operations (rotate, scale, translate) happen in parent's local coordinate system, unless the [godot.Spatial] object is set as top-level. Affine operations in this coordinate system correspond to direct affine operations on the [godot.Spatial]'s transform. The word local below refers to this coordinate system. The coordinate system that is attached to the [godot.Spatial] object itself is referred to as object-local coordinate system.

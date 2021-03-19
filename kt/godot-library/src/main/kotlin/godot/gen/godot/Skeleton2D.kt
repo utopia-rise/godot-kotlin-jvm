@@ -18,10 +18,10 @@ import kotlin.Suppress
 
 /**
  * Skeleton for 2D characters and animated objects.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/animation/2d_skeletons.html](https://docs.godotengine.org/en/latest/tutorials/animation/2d_skeletons.html)
- * 
+ *
  * Skeleton2D parents a hierarchy of [godot.Bone2D] objects. It is a requirement of [godot.Bone2D]. Skeleton2D holds a reference to the rest pose of its children and acts as a single point of access to its bones.
  */
 @GodotBaseType

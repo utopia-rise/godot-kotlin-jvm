@@ -16,10 +16,10 @@ import kotlin.Suppress
 
 /**
  * A synchronization mutex (mutual exclusion).
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/threads/using_multiple_threads.html](https://docs.godotengine.org/en/latest/tutorials/threads/using_multiple_threads.html)
- * 
+ *
  * A synchronization mutex (mutual exclusion). This is used to synchronize multiple [godot.Thread]s, and is equivalent to a binary [godot.Semaphore]. It guarantees that only one thread can ever acquire the lock at a time. A mutex can be used to protect a critical section; however, be careful to avoid deadlocks.
  */
 @GodotBaseType

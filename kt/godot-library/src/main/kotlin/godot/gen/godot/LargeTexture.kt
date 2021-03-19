@@ -20,7 +20,7 @@ import kotlin.Suppress
 
 /**
  * A [godot.Texture] capable of storing many smaller textures with offsets.
- * 
+ *
  * A [godot.Texture] capable of storing many smaller textures with offsets.
  *
  * You can dynamically add pieces ([godot.Texture]s) to this [godot.LargeTexture] using different offsets.

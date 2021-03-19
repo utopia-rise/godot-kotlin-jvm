@@ -26,7 +26,7 @@ import kotlin.Suppress
 
 /**
  * Internationalized font and text drawing support.
- * 
+ *
  * Font contains a Unicode-compatible character set, as well as the ability to draw it with variable width, ascent, descent and kerning. For creating fonts from TTF files (or other font formats), see the editor support for fonts.
  *
  * **Note:** If a DynamicFont doesn't contain a character used in a string, the character in question will be replaced with codepoint `0xfffd` if it's available in the DynamicFont. If this replacement character isn't available in the DynamicFont, the character will be hidden without displaying any replacement character in the string.

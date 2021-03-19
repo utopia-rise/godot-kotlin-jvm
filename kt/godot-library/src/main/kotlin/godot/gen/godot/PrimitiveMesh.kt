@@ -20,7 +20,7 @@ import kotlin.Unit
 
 /**
  * Base class for all primitive meshes. Handles applying a [godot.Material] to a primitive mesh.
- * 
+ *
  * Base class for all primitive meshes. Handles applying a [godot.Material] to a primitive mesh. Examples include [godot.CapsuleMesh], [godot.CubeMesh], [godot.CylinderMesh], [godot.PlaneMesh], [godot.PrismMesh], [godot.QuadMesh], and [godot.SphereMesh].
  */
 @GodotBaseType

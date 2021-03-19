@@ -22,10 +22,10 @@ import kotlin.Unit
 
 /**
  * 2D particle emitter.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/2d/particle_systems_2d.html](https://docs.godotengine.org/en/latest/tutorials/2d/particle_systems_2d.html)
- * 
+ *
  * 2D particle node used to create a variety of particle systems and effects. [godot.Particles2D] features an emitter that generates some number of particles at a given rate.
  *
  * Use the `process_material` property to add a [godot.ParticlesMaterial] to configure particle appearance and behavior. Alternatively, you can add a [godot.ShaderMaterial] which will be applied to all particles.

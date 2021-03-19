@@ -16,7 +16,7 @@ import kotlin.Suppress
 
 /**
  * Base class for box containers.
- * 
+ *
  * Arranges child controls vertically or horizontally, and rearranges the controls automatically when their minimum size changes.
  */
 @GodotBaseType

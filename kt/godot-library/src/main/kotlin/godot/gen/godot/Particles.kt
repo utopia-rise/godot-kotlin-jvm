@@ -21,10 +21,10 @@ import kotlin.Unit
 
 /**
  * 3D particle emitter.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/3d/vertex_animation/controlling_thousands_of_fish.html](https://docs.godotengine.org/en/latest/tutorials/3d/vertex_animation/controlling_thousands_of_fish.html)
- * 
+ *
  * 3D particle node used to create a variety of particle systems and effects. [godot.Particles] features an emitter that generates some number of particles at a given rate.
  *
  * Use the `process_material` property to add a [godot.ParticlesMaterial] to configure particle appearance and behavior. Alternatively, you can add a [godot.ShaderMaterial] which will be applied to all particles.

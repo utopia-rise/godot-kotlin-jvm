@@ -31,10 +31,10 @@ import kotlin.Suppress
 
 /**
  * A tracked object.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/vr/index.html](https://docs.godotengine.org/en/latest/tutorials/vr/index.html)
- * 
+ *
  * An instance of this object represents a device that is tracked, such as a controller or anchor point. HMDs aren't represented here as they are handled internally.
  *
  * As controllers are turned on and the AR/VR interface detects them, instances of this object are automatically added to this list of active tracking objects accessible through the [godot.ARVRServer].

@@ -38,7 +38,7 @@ import kotlin.Unit
 
 /**
  * Control that provides a list of selectable items (and/or icons) in a single column, or optionally in multiple columns.
- * 
+ *
  * This control provides a selectable list of items that may be in a single (or multiple columns) with option of text, icons, or both text and icon. Tooltips are supported and may be different for every item in the list.
  *
  * Selectable items in the list may be selected or deselected and multiple selection may be enabled. Selection with right mouse button may also be enabled to allow use of popup context menus. Items may also be "activated" by double-clicking them or by pressing Enter.

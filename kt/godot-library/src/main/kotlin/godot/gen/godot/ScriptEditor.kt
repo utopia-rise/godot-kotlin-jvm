@@ -30,7 +30,7 @@ import kotlin.Suppress
 
 /**
  * Godot editor's script editor.
- * 
+ *
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getScriptEditor].
  */
 @GodotBaseType

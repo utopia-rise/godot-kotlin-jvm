@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * FBX 3D asset importer based on [godot.Assimp](http://assimp.org/).
- * 
+ *
  * This is an FBX 3D asset importer based on [godot.Assimp](http://assimp.org/). It currently has many known limitations and works best with static meshes. Most animated meshes won't import correctly.
  *
  * If exporting a FBX scene from Autodesk Maya, use these FBX export settings:

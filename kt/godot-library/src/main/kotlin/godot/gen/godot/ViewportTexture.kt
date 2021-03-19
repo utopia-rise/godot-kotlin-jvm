@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * Texture which displays the content of a [godot.Viewport].
- * 
+ *
  * Displays the content of a [godot.Viewport] node as a dynamic [godot.Texture]. This can be used to mix controls, 2D, and 3D elements in the same scene.
  *
  * To create a ViewportTexture in code, use the [godot.Viewport.getTexture] method on the target viewport.

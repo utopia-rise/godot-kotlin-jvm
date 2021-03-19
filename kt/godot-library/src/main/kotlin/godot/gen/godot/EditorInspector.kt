@@ -23,7 +23,7 @@ import kotlin.Suppress
 
 /**
  * A tab used to edit properties of the selected node.
- * 
+ *
  * The editor inspector is by default located on the right-hand side of the editor. It's used to edit the properties of the selected node. For example, you can select a node such as [godot.Sprite] then edit its transform through the inspector tool. The editor inspector is an essential tool in the game development workflow.
  *
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getInspector].

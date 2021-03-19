@@ -18,7 +18,7 @@ import kotlin.Suppress
 
 /**
  * A directory for the resource filesystem.
- * 
+ *
  * A more generalized, low-level variation of the directory concept.
  */
 @GodotBaseType

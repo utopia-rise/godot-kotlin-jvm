@@ -26,10 +26,10 @@ import kotlin.Unit
 
 /**
  * Blends linearly between three [godot.AnimationNode] of any type placed in a 2D space.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
- * 
+ *
  * A resource to add to an [godot.AnimationNodeBlendTree].
  *
  * This node allows you to blend linearly between three animations using a [godot.core.Vector2] weight.

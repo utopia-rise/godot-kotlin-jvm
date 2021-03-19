@@ -12,7 +12,7 @@ import kotlin.Suppress
  * Adds a 10-band equalizer audio effect to an Audio bus. Gives you control over frequencies from 31 Hz to 16000 Hz.
  *
  * Each frequency can be modulated between -60/+24 dB.
- * 
+ *
  * Frequency bands:
  *
  * Band 1: 31 Hz

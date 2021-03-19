@@ -21,7 +21,7 @@ import kotlin.Suppress
 
 /**
  * UDP packet peer.
- * 
+ *
  * UDP packet peer. Can be used to send raw UDP packets as well as [Variant]s.
  */
 @GodotBaseType

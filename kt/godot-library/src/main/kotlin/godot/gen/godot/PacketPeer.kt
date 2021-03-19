@@ -23,7 +23,7 @@ import kotlin.Suppress
 
 /**
  * Abstraction and base class for packet-based protocols.
- * 
+ *
  * PacketPeer is an abstraction and base class for packet-based protocols (such as UDP). It provides an API for sending and receiving packets both as raw data or variables. This makes it easy to transfer data over a protocol, without having to encode data as low-level bytes or having to worry about network ordering.
  */
 @GodotBaseType

@@ -21,7 +21,7 @@ import kotlin.Suppress
 
 /**
  * Reference to a function in an object.
- * 
+ *
  * In GDScript, functions are not *first-class objects*. This means it is impossible to store them directly as variables, return them from another function, or pass them as arguments.
  *
  * However, by creating a [godot.FuncRef] using the [@GDScript.funcref] function, a reference to a function in a given object can be created, passed around and called.

@@ -33,7 +33,7 @@ import kotlin.Suppress
 
 /**
  * Multiline text editing control.
- * 
+ *
  * TextEdit is meant for editing large, multiline text. It also has facilities for editing code, such as syntax highlighting support and multiple levels of undo/redo.
  */
 @GodotBaseType

@@ -20,7 +20,7 @@ import kotlin.Suppress
 
 /**
  * Defines a 2D collision polygon.
- * 
+ *
  * Provides a 2D collision polygon to a [godot.CollisionObject2D] parent. Polygons can be drawn in the editor or specified by a list of vertices.
  */
 @GodotBaseType

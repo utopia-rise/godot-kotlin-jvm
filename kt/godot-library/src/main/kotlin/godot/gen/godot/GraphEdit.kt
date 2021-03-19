@@ -35,7 +35,7 @@ import kotlin.Unit
 
 /**
  * GraphEdit is an area capable of showing various GraphNodes. It manages connection events between them.
- * 
+ *
  * GraphEdit manages the showing of GraphNodes it contains, as well as connections and disconnections between them. Signals are sent for each of these two events. Disconnection between GraphNode slots is disabled by default.
  *
  * It is greatly advised to enable low-processor usage mode (see [godot.OS.lowProcessorUsageMode]) when using GraphEdits.

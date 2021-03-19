@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * Concave polygon shape.
- * 
+ *
  * Concave polygon shape resource, which can be set into a [godot.PhysicsBody] or area. This shape is created by feeding a list of triangles.
  *
  * Note: when used for collision, [godot.ConcavePolygonShape] is intended to work with static [godot.PhysicsBody] nodes like [godot.StaticBody] and will not work with [godot.KinematicBody] or [godot.RigidBody] with a mode other than Static.

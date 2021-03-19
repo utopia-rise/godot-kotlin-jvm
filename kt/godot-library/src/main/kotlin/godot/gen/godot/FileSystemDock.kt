@@ -26,9 +26,7 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * 
- * 
- * 
+ *
  */
 @GodotBaseType
 open class FileSystemDock : VBoxContainer() {

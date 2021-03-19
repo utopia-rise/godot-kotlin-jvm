@@ -31,7 +31,7 @@ import kotlin.Unit
 
 /**
  * General-purpose area node for detection and 3D physics influence.
- * 
+ *
  * 3D area that detects [godot.CollisionObject] nodes overlapping, entering, or exiting. Can also alter or override local physics parameters (gravity, damping).
  */
 @GodotBaseType

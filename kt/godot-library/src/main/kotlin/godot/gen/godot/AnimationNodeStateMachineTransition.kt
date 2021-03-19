@@ -21,12 +21,10 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * 
- * 
+ *
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
- * 
- * 
  */
 @GodotBaseType
 open class AnimationNodeStateMachineTransition : Resource() {

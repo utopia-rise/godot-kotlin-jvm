@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * Flat button helper class.
- * 
+ *
  * This is a helper class to generate a flat [godot.Button] (see [godot.Button.flat]), creating a [godot.ToolButton] is equivalent to:
  *
  * ```

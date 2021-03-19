@@ -25,7 +25,7 @@ import kotlin.Suppress
 
 /**
  * Contains global variables accessible from everywhere.
- * 
+ *
  * Contains global variables accessible from everywhere. Use [getSetting], [setSetting] or [hasSetting] to access them. Variables stored in `project.godot` are also loaded into ProjectSettings, making this object very useful for reading custom game configuration options.
  *
  * When naming a Project Settings property, use the full path to the setting including the category. For example, `"application/config/name"` for the project name. Category and property names can be viewed in the Project Settings dialog.

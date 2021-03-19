@@ -16,7 +16,7 @@ import kotlin.Suppress
 
 /**
  * Physics object that simulates the behavior of a wheel.
- * 
+ *
  * This node needs to be used as a child node of [godot.VehicleBody] and simulates the behavior of one of its wheels. This node also acts as a collider to detect if the wheel is touching a surface.
  *
  * **Note:** This class has known issues and isn't designed to provide realistic 3D vehicle physics. If you want advanced vehicle physics, you will probably have to write your own physics integration using another [godot.PhysicsBody] class.

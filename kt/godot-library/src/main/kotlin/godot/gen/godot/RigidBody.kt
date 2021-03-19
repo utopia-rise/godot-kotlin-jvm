@@ -29,10 +29,10 @@ import kotlin.Unit
 
 /**
  * Physics Body whose position is determined through physics simulation in 3D space.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html)
- * 
+ *
  * This is the node that implements full 3D physics. This means that you do not control a RigidBody directly. Instead, you can apply forces to it (gravity, impulses, etc.), and the physics simulation will calculate the resulting movement, collision, bouncing, rotating, etc.
  *
  * A RigidBody has 4 behavior [mode]s: Rigid, Static, Character, and Kinematic.

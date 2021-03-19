@@ -22,7 +22,7 @@ import kotlin.Suppress
 
 /**
  * A TCP server.
- * 
+ *
  * A TCP server. Listens to connections on a port and returns a [godot.StreamPeerTCP] when it gets an incoming connection.
  */
 @GodotBaseType

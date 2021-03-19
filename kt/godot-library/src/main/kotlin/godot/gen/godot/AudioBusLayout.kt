@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * Stores information about the audio buses.
- * 
+ *
  * Stores position, muting, solo, bypass, effects, effect position, volume, and the connections between buses. See [godot.AudioServer] for usage.
  */
 @GodotBaseType

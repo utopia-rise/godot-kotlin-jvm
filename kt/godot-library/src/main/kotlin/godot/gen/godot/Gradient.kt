@@ -22,7 +22,7 @@ import kotlin.Suppress
 
 /**
  * A color interpolator resource which can be used to generate colors between user-defined color points.
- * 
+ *
  * Given a set of colors, this resource will interpolate them in order. This means that if you have color 1, color 2 and color 3, the ramp will interpolate from color 1 to color 2 and from color 2 to color 3. The ramp will initially have 2 colors (black and white), one (black) at ramp lower offset 0 and the other (white) at the ramp higher offset 1.
  */
 @GodotBaseType

@@ -17,7 +17,7 @@ import kotlin.Suppress
 
 /**
  * Base class for window dialogs.
- * 
+ *
  * Windowdialog is the base class for all window-based dialogs. It's a by-default toplevel [godot.Control] that draws a window decoration and allows motion and resizing.
  */
 @GodotBaseType

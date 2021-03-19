@@ -29,7 +29,7 @@ import kotlin.Unit
 
 /**
  * A body that is controlled by the 2D physics engine.
- * 
+ *
  * This node implements simulated 2D physics. You do not control a RigidBody2D directly. Instead you apply forces to it (gravity, impulses, etc.) and the physics simulation calculates the resulting movement based on its mass, friction, and other physical properties.
  *
  * A RigidBody2D has 4 behavior [mode]s: Rigid, Static, Character, and Kinematic.

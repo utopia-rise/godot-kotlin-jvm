@@ -14,10 +14,10 @@ import kotlin.Suppress
 
 /**
  * The origin point in AR/VR.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/vr/index.html](https://docs.godotengine.org/en/latest/tutorials/vr/index.html)
- * 
+ *
  * This is a special node within the AR/VR system that maps the physical location of the center of our tracking space to the virtual location within our game world.
  *
  * There should be only one of these nodes in your scene and you must have one. All the ARVRCamera, ARVRController and ARVRAnchor nodes should be direct children of this node for spatial tracking to work correctly.

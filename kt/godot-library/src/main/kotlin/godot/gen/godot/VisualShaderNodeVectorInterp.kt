@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * Linearly interpolates between two vectors within the visual shader graph.
- * 
+ *
  * Translates to `mix(a, b, weight)` in the shader language, where `weight` is a [godot.core.Vector3] with weights for each component.
  */
 @GodotBaseType

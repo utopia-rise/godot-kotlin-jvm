@@ -13,10 +13,10 @@ import kotlin.Suppress
 
 /**
  * Base class for reference-counted objects.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/getting_started/workflow/best_practices/node_alternatives.html](https://docs.godotengine.org/en/latest/getting_started/workflow/best_practices/node_alternatives.html)
- * 
+ *
  * Base class for any object that keeps a reference count. [godot.Resource] and many other helper objects inherit this class.
  *
  * Unlike [godot.Object]s, References keep an internal reference counter so that they are automatically released when no longer in use, and only then. References therefore do not need to be freed manually with [godot.Object.free].

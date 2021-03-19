@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * A [godot.core.Color] function to be used within the visual shader graph.
- * 
+ *
  * Accept a [godot.core.Color] to the input port and transform it according to [function].
  */
 @GodotBaseType

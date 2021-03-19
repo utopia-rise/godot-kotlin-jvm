@@ -23,7 +23,7 @@ import kotlin.Suppress
 
 /**
  * DTLS packet peer.
- * 
+ *
  * This class represents a DTLS peer connection. It can be used to connect to a DTLS server, and is returned by [godot.DTLSServer.takeConnection].
  */
 @GodotBaseType

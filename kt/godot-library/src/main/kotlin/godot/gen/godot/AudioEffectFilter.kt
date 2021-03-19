@@ -16,10 +16,10 @@ import kotlin.Suppress
 
 /**
  * Adds a filter to the audio bus.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/audio/audio_buses.html](https://docs.godotengine.org/en/latest/tutorials/audio/audio_buses.html)
- * 
+ *
  * Allows frequencies other than the [cutoffHz] to pass.
  */
 @GodotBaseType

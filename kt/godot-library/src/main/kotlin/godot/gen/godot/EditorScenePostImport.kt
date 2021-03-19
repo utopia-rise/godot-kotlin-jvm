@@ -14,10 +14,10 @@ import kotlin.Suppress
 
 /**
  * Post-processes scenes after import.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/getting_started/workflow/assets/importing_scenes.html#custom-script](https://docs.godotengine.org/en/latest/getting_started/workflow/assets/importing_scenes.html#custom-script)
- * 
+ *
  * Imported scenes can be automatically modified right after import by setting their **Custom Script** Import property to a `tool` script that inherits from this class.
  *
  * The [postImport] callback receives the imported scene's root node and returns the modified version of the scene. Usage example:

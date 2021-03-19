@@ -20,7 +20,7 @@ import kotlin.Suppress
 
 /**
  * Base dialog for user notification.
- * 
+ *
  * This dialog is useful for small notifications to the user about an event. It can only be accepted or closed, with the same result.
  */
 @GodotBaseType

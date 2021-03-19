@@ -28,10 +28,10 @@ import kotlin.Unit
 
 /**
  * CPU-based 2D particle emitter.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/2d/particle_systems_2d.html](https://docs.godotengine.org/en/latest/tutorials/2d/particle_systems_2d.html)
- * 
+ *
  * CPU-based 2D particle node used to create a variety of particle systems and effects.
  *
  * See also [godot.Particles2D], which provides the same functionality with hardware acceleration, but may not run on older devices.

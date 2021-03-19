@@ -16,7 +16,7 @@ import kotlin.Suppress
 
 /**
  * Adds a chorus audio effect.
- * 
+ *
  * Adds a chorus audio effect. The effect applies a filter with voices to duplicate the audio source and manipulate it through the filter.
  */
 @GodotBaseType

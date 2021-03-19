@@ -19,7 +19,7 @@ import kotlin.Suppress
 
 /**
  * Proxy texture for simple frame-based animations.
- * 
+ *
  * [godot.AnimatedTexture] is a resource format for frame-based animations, where multiple textures can be chained automatically with a predefined delay for each frame. Unlike [godot.AnimationPlayer] or [godot.AnimatedSprite], it isn't a [godot.Node], but has the advantage of being usable anywhere a [godot.Texture] resource can be used, e.g. in a [godot.TileSet].
  *
  * The playback of the animation is controlled by the [fps] property as well as each frame's optional delay (see [setFrameDelay]). The animation loops, i.e. it will restart at frame 0 automatically after playing the last frame.

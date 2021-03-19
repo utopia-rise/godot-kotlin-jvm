@@ -21,7 +21,7 @@ import kotlin.Suppress
 
 /**
  * Singleton for saving Godot-specific resource types.
- * 
+ *
  * Singleton for saving Godot-specific resource types to the filesystem.
  *
  * It uses the many [godot.ResourceFormatSaver] classes registered in the engine (either built-in or from a plugin) to save engine-specific resource data to text-based (e.g. `.tres` or `.tscn`) or binary files (e.g. `.res` or `.scn`).

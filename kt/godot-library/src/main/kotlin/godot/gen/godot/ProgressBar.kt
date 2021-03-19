@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * General-purpose progress bar.
- * 
+ *
  * General-purpose progress bar. Shows fill percentage from right to left.
  */
 @GodotBaseType

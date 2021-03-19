@@ -17,9 +17,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * 
- * 
- * 
+ *
  */
 @GodotBaseType
 open class Physics2DTestMotionResult : Reference() {

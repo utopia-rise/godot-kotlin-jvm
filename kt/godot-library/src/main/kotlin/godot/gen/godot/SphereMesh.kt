@@ -18,7 +18,7 @@ import kotlin.Suppress
 
 /**
  * Class representing a spherical [godot.PrimitiveMesh].
- * 
+ *
  * Class representing a spherical [godot.PrimitiveMesh].
  */
 @GodotBaseType

@@ -16,7 +16,7 @@ import kotlin.Suppress
  * Adds a phaser audio effect to an Audio bus.
  *
  * Combines the original signal with a copy that is slightly out of phase with the original.
- * 
+ *
  * Combines phase-shifted signals with the original signal. The movement of the phase-shifted signals is controlled using a low-frequency oscillator.
  */
 @GodotBaseType

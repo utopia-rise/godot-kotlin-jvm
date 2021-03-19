@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * Capsule shape for 2D collisions.
- * 
+ *
  * Capsule shape for 2D collisions.
  */
 @GodotBaseType

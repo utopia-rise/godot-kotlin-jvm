@@ -17,7 +17,7 @@ import kotlin.Suppress
 
 /**
  * Texture-based button. Supports Pressed, Hover, Disabled and Focused states.
- * 
+ *
  * [godot.TextureButton] has the same functionality as [godot.Button], except it uses sprites instead of Godot's [godot.Theme] resource. It is faster to create, but it doesn't support localization like more complex [godot.Control]s.
  *
  * The "normal" state must contain a texture ([textureNormal]); other textures are optional.

@@ -15,10 +15,10 @@ import kotlin.Suppress
 
 /**
  * Virtual class to define custom [godot.VisualShaderNode]s for use in the Visual Shader Editor.
- * 
+ *
  * Tutorials:
  * [https://docs.godotengine.org/en/latest/tutorials/plugins/editor/visual_shader_plugins.html](https://docs.godotengine.org/en/latest/tutorials/plugins/editor/visual_shader_plugins.html)
- * 
+ *
  * By inheriting this class you can create a custom [godot.VisualShader] script addon which will be automatically added to the Visual Shader Editor. The [godot.VisualShaderNode]'s behavior is defined by overriding the provided virtual methods.
  *
  * In order for the node to be registered as an editor addon, you must use the `tool` keyword and provide a `class_name` for your custom script. For example:

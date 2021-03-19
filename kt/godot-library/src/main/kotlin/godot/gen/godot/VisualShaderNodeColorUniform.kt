@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * A [godot.core.Color] uniform to be used within the visual shader graph.
- * 
+ *
  * Translated to `uniform vec4` in the shader language.
  */
 @GodotBaseType

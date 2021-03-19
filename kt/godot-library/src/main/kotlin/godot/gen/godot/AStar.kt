@@ -28,7 +28,7 @@ import kotlin.Suppress
 
 /**
  * An implementation of A* to find shortest paths among connected points in space.
- * 
+ *
  * A* (A star) is a computer algorithm that is widely used in pathfinding and graph traversal, the process of plotting short paths among vertices (points), passing through a given set of edges (segments). It enjoys widespread use due to its performance and accuracy. Godot's A* implementation uses points in three-dimensional space and Euclidean distances by default.
  *
  * You must add points manually with [addPoint] and create segments manually with [connectPoints]. Then you can test if there is a path between two points with the [arePointsConnected] function, get a path containing indices by [getIdPath], or one containing actual coordinates with [getPointPath].

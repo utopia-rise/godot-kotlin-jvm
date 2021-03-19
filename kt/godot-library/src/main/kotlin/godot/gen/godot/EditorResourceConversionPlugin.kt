@@ -11,9 +11,7 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * 
- * 
- * 
+ *
  */
 @GodotBaseType
 open class EditorResourceConversionPlugin : Reference() {

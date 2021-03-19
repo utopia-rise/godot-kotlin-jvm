@@ -24,7 +24,7 @@ import kotlin.Unit
 
 /**
  * Texture-based progress bar. Useful for loading screens and life or stamina bars.
- * 
+ *
  * TextureProgress works like [godot.ProgressBar], but uses up to 3 textures instead of Godot's [godot.Theme] resource. It can be used to create horizontal, vertical and radial progress bars.
  */
 @GodotBaseType

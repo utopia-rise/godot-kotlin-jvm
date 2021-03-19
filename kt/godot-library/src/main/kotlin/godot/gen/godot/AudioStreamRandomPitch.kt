@@ -15,7 +15,7 @@ import kotlin.Suppress
 
 /**
  * Plays audio with random pitch shifting.
- * 
+ *
  * Randomly varies pitch on each start.
  */
 @GodotBaseType

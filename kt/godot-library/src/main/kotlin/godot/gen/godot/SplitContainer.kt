@@ -18,7 +18,7 @@ import kotlin.Suppress
 
 /**
  * Container for splitting and adjusting.
- * 
+ *
  * Container for splitting two [godot.Control]s vertically or horizontally, with a grabber that allows adjusting the split offset or ratio.
  */
 @GodotBaseType

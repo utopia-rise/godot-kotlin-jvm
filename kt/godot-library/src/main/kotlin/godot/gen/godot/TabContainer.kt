@@ -22,7 +22,7 @@ import kotlin.Suppress
 
 /**
  * Tabbed container.
- * 
+ *
  * Sets the active tab's `visible` property to the value `true`. Sets all other children's to `false`.
  *
  * Ignores non-[godot.Control] children.

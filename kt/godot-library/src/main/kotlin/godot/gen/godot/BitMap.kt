@@ -28,7 +28,7 @@ import kotlin.Suppress
 
 /**
  * Boolean matrix.
- * 
+ *
  * A two-dimensional array of boolean values, can be used to efficiently store a binary matrix (every matrix element takes only one bit) and query the values using natural cartesian coordinates.
  */
 @GodotBaseType

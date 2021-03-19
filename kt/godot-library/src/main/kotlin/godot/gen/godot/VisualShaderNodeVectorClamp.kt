@@ -10,7 +10,7 @@ import kotlin.Suppress
 
 /**
  * Clamps a vector value within the visual shader graph.
- * 
+ *
  * Constrains a value to lie between `min` and `max` values. The operation is performed on each component of the vector individually.
  */
 @GodotBaseType

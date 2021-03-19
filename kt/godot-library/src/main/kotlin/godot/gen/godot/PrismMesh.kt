@@ -19,7 +19,7 @@ import kotlin.Unit
 
 /**
  * Class representing a prism-shaped [godot.PrimitiveMesh].
- * 
+ *
  * Class representing a prism-shaped [godot.PrimitiveMesh].
  */
 @GodotBaseType

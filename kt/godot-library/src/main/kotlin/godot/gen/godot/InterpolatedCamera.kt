@@ -18,7 +18,7 @@ import kotlin.Suppress
 
 /**
  * *Deprecated.* Camera which moves toward another node.
- * 
+ *
  * *Deprecated (will be removed in Godot 4.0).* InterpolatedCamera is a [godot.Camera] which smoothly moves to match a target node's position and rotation.
  *
  * If it is not [enabled] or does not have a valid target set, InterpolatedCamera acts like a normal Camera.

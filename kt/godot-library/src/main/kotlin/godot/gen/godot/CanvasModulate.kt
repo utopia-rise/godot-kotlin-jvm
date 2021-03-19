@@ -15,7 +15,7 @@ import kotlin.Unit
 
 /**
  * Tint the entire canvas.
- * 
+ *
  * [godot.CanvasModulate] tints the canvas elements using its assigned [color].
  */
 @GodotBaseType

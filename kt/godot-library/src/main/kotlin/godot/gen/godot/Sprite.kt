@@ -24,7 +24,7 @@ import kotlin.Unit
 
 /**
  * General-purpose sprite node.
- * 
+ *
  * A node that displays a 2D texture. The texture displayed can be a region from a larger atlas texture, or a frame from a sprite sheet animation.
  */
 @GodotBaseType

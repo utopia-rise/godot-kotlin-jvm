@@ -14,7 +14,7 @@ import kotlin.Suppress
 
 /**
  * A vector function to be used within the visual shader graph.
- * 
+ *
  * A visual shader node able to perform different functions using vectors.
  */
 @GodotBaseType
