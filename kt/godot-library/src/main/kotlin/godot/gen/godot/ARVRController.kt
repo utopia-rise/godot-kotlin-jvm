@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -17,7 +17,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.signals.Signal1
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -92,7 +91,9 @@ open class ARVRController : Spatial() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRCONTROLLER_SET_RUMBLE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ARVRCONTROLLER)
+  override fun __new() {
+    callConstructor(ENGINECLASS_ARVRCONTROLLER)
+  }
 
   /**
    * If active, returns the name of the associated controller if provided by the AR/VR SDK used.

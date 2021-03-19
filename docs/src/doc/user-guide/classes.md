@@ -78,8 +78,6 @@ Constructors with arguments you have to call using the `load` function: `load("r
 !!! note ""
     The limitation of max 5 arguments for constructors is arbitrary. We decided to introduce this limitation to prevent performance bottlenecks for creating objects as each argument passed to a constructor needs to be unpacked in the binding. The more arguments, the more unpacking is needed so the performance cost increases.
 
-!!! warning "Note:"
-    Also note the instantiation limitations described in [Instantiation limitations](../api-differences.md#instantiation-limitations)
 
 ## Registration Configuration
 You can customize to some extent how your class should be registered in Godot:

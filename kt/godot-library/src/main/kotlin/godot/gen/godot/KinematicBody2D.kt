@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -16,7 +16,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -62,7 +61,9 @@ open class KinematicBody2D : PhysicsBody2D() {
           ENGINEMETHOD_ENGINECLASS_KINEMATICBODY2D_SET_MOTION_SYNC_TO_PHYSICS, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_KINEMATICBODY2D)
+  override fun __new() {
+    callConstructor(ENGINECLASS_KINEMATICBODY2D)
+  }
 
   open fun _directStateChanged(arg0: Object) {
   }

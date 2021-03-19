@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -19,7 +19,6 @@ import godot.core.VariantType.RECT2
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
@@ -49,7 +48,9 @@ open class Texture : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE_SET_FLAGS, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_TEXTURE)
+  override fun __new() {
+    callConstructor(ENGINECLASS_TEXTURE)
+  }
 
   /**
    * Draws the texture using a [godot.CanvasItem] with the [godot.VisualServer] API at the specified `position`. Equivalent to [godot.VisualServer.canvasItemAddTextureRect] with a rect at `position` and the size of this [godot.Texture].

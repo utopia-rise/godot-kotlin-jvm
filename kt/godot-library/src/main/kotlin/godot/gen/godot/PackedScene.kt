@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -13,7 +13,6 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -65,7 +64,9 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class PackedScene : Resource() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PACKEDSCENE)
+  override fun __new() {
+    callConstructor(ENGINECLASS_PACKEDSCENE)
+  }
 
   open fun _getBundledScene(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_bundled_scene is not implemented for PackedScene")

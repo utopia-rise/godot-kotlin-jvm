@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -17,7 +17,6 @@ import godot.core.VariantType.POOL_VECTOR2_ARRAY
 import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
@@ -29,7 +28,9 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class Navigation2D : Node2D() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_NAVIGATION2D)
+  override fun __new() {
+    callConstructor(ENGINECLASS_NAVIGATION2D)
+  }
 
   /**
    * Returns the navigation point closest to the point given. Points are in local coordinate space.

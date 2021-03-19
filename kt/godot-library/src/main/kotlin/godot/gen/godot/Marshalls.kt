@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -12,7 +12,6 @@ import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.POOL_BYTE_ARRAY
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.String
@@ -25,7 +24,9 @@ import kotlin.Suppress
  */
 @GodotBaseType
 object Marshalls : Object() {
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_MARSHALLS)
+  override fun __new() {
+    rawPtr = TransferContext.getSingleton(ENGINESINGLETON_MARSHALLS)
+  }
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

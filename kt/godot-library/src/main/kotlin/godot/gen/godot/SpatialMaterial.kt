@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -16,7 +16,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -1654,7 +1653,9 @@ open class SpatialMaterial : Material() {
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_VERTEX_COLOR_USE_AS_ALBEDO, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SPATIALMATERIAL)
+  override fun __new() {
+    callConstructor(ENGINECLASS_SPATIALMATERIAL)
+  }
 
   open fun albedoColor(schedule: Color.() -> Unit): Color = albedoColor.apply{
       schedule(this)

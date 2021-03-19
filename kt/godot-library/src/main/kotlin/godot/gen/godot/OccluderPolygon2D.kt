@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -12,7 +12,6 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.POOL_VECTOR2_ARRAY
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
@@ -73,7 +72,9 @@ open class OccluderPolygon2D : Resource() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_OCCLUDERPOLYGON2D)
+  override fun __new() {
+    callConstructor(ENGINECLASS_OCCLUDERPOLYGON2D)
+  }
 
   enum class CullMode(
     id: Long

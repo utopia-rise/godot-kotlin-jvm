@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -18,7 +18,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.TRANSFORM
 import godot.core.VariantType._RID
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -145,8 +144,9 @@ open class PhysicsShapeQueryParameters : Reference() {
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_SET_TRANSFORM, NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS)
+  override fun __new() {
+    callConstructor(ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS)
+  }
 
   open fun transform(schedule: Transform.() -> Unit): Transform = transform.apply{
       schedule(this)

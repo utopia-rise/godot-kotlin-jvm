@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -13,7 +13,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.signals.Signal1
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -22,8 +21,9 @@ import kotlin.Suppress
 open class WebSocketMultiplayerPeer : NetworkedMultiplayerPeer() {
   val peerPacket: Signal1<Long> by signal("peer_source")
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_WEBSOCKETMULTIPLAYERPEER)
+  override fun __new() {
+    callConstructor(ENGINECLASS_WEBSOCKETMULTIPLAYERPEER)
+  }
 
   open fun getPeer(peerId: Long): WebSocketPeer? {
     TransferContext.writeArguments(LONG to peerId)

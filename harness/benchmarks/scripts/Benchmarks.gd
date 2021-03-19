@@ -21,7 +21,7 @@ static func create(langs: Array, name: String) -> Array:
 		
 		
 		#[Script Instance, List of method names, Language instance]
-		scripts.append([cls.new(), method_list, lang])
+		scripts.append([cls, method_list, lang])
 		
 		for method_dict in method_dict_list:
 			var method_name = method_dict["name"]

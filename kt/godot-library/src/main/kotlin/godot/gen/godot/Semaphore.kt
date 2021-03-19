@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -10,7 +10,6 @@ import godot.core.GodotError
 import godot.core.TransferContext
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 
@@ -24,7 +23,9 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class Semaphore : Reference() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS__SEMAPHORE)
+  override fun __new() {
+    callConstructor(ENGINECLASS__SEMAPHORE)
+  }
 
   /**
    * Lowers the [godot.Semaphore], allowing one more thread in. Returns [OK] on success, [ERR_BUSY] otherwise.

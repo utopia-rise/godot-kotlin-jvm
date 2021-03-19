@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -15,7 +15,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.signals.Signal0
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -180,7 +179,9 @@ open class VideoPlayer : Control() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_SET_VOLUME_DB, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VIDEOPLAYER)
+  override fun __new() {
+    callConstructor(ENGINECLASS_VIDEOPLAYER)
+  }
 
   /**
    * Returns the video stream's name, or `"<No Stream>"` if no video stream is assigned.

@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -9,7 +9,6 @@ import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -282,7 +281,9 @@ open class SliderJoint : Joint() {
           ENGINEMETHOD_ENGINECLASS_SLIDERJOINT_SET_LINEAR_ORTHO_SOFTNESS, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SLIDERJOINT)
+  override fun __new() {
+    callConstructor(ENGINECLASS_SLIDERJOINT)
+  }
 
   open fun _getLowerLimitAngular(): Double {
     throw NotImplementedError("_get_lower_limit_angular is not implemented for SliderJoint")

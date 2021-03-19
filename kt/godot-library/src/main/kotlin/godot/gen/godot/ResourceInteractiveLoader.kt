@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -11,7 +11,6 @@ import godot.core.TransferContext
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
-import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -23,8 +22,9 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class ResourceInteractiveLoader : Reference() {
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_RESOURCEINTERACTIVELOADER)
+  override fun __new() {
+    callConstructor(ENGINECLASS_RESOURCEINTERACTIVELOADER)
+  }
 
   /**
    * Returns the loaded resource if the load operation completed successfully, `null` otherwise.

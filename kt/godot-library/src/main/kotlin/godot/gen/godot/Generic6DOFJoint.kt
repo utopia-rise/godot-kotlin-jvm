@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -11,7 +11,6 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -1055,7 +1054,9 @@ open class Generic6DOFJoint : Joint() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_GENERIC6DOFJOINT)
+  override fun __new() {
+    callConstructor(ENGINECLASS_GENERIC6DOFJOINT)
+  }
 
   open fun _getAngularHiLimitX(): Double {
     throw NotImplementedError("_get_angular_hi_limit_x is not implemented for Generic6DOFJoint")

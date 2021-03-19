@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -14,7 +14,6 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.NotImplementedError
@@ -28,7 +27,9 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class EditorVCSInterface : Object() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_EDITORVCSINTERFACE)
+  override fun __new() {
+    callConstructor(ENGINECLASS_EDITORVCSINTERFACE)
+  }
 
   open fun _commit(msg: String) {
   }

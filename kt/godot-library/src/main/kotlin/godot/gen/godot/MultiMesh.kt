@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -22,7 +22,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_REAL_ARRAY
 import godot.core.VariantType.TRANSFORM
 import godot.core.VariantType.TRANSFORM2D
-import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -135,7 +134,9 @@ open class MultiMesh : Resource() {
           ENGINEMETHOD_ENGINECLASS_MULTIMESH_SET_VISIBLE_INSTANCE_COUNT, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_MULTIMESH)
+  override fun __new() {
+    callConstructor(ENGINECLASS_MULTIMESH)
+  }
 
   open fun _getColorArray(): PoolColorArray {
     throw NotImplementedError("_get_color_array is not implemented for MultiMesh")

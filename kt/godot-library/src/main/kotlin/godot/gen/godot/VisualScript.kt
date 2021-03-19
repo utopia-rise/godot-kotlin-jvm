@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -21,7 +21,6 @@ import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.signals.Signal2
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -34,7 +33,9 @@ import kotlin.Suppress
 open class VisualScript : Script() {
   val nodePortsChanged: Signal2<String, Long> by signal("function", "id")
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPT)
+  override fun __new() {
+    callConstructor(ENGINECLASS_VISUALSCRIPT)
+  }
 
   open fun _getData(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_data is not implemented for VisualScript")

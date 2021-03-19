@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -10,7 +10,6 @@ import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
-import godot.util.VoidPtr
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -37,8 +36,9 @@ open class VisualShaderNodeVec3Constant : VisualShaderNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVEC3CONSTANT_SET_CONSTANT, NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODEVEC3CONSTANT)
+  override fun __new() {
+    callConstructor(ENGINECLASS_VISUALSHADERNODEVEC3CONSTANT)
+  }
 
   open fun constant(schedule: Vector3.() -> Unit): Vector3 = constant.apply{
       schedule(this)

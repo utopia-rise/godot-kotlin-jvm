@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -21,7 +21,6 @@ import godot.core.Vector3
 import godot.signals.Signal0
 import godot.signals.Signal5
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Long
@@ -82,7 +81,9 @@ open class CollisionObject : Spatial() {
           ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_SET_INPUT_RAY_PICKABLE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_COLLISIONOBJECT)
+  override fun __new() {
+    callConstructor(ENGINECLASS_COLLISIONOBJECT)
+  }
 
   /**
    * Accepts unhandled [godot.InputEvent]s. `click_position` is the clicked location in world space and `click_normal` is the normal vector extending from the clicked surface of the [godot.Shape] at `shape_idx`. Connect to the `input_event` signal to easily pick up these events.

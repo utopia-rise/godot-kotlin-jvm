@@ -42,7 +42,9 @@ JavaInstanceWrapper<Derived>::JavaInstanceWrapper(const char* p_class_name, jni:
     wrapped = p_wrapped.new_global_ref<jni::JObject>(env);
     class_loader = p_class_loader.new_global_ref<jni::JObject>(env);
     if (unlikely(!j_class.obj)) {
-        j_class = env.load_class(p_class_name, class_loader).template new_global_ref<jni::JClass>(env);
+        jni::JObject local_j_class = env.load_class(p_class_name, class_loader);
+        j_class = local_j_class.template new_global_ref<jni::JClass>(env);
+        local_j_class.delete_local_ref(env);
     }
 }
 

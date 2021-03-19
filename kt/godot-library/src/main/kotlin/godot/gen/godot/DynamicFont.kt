@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -13,7 +13,6 @@ import godot.core.VariantType.COLOR
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
@@ -190,7 +189,9 @@ open class DynamicFont : Font() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_SET_USE_MIPMAPS, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_DYNAMICFONT)
+  override fun __new() {
+    callConstructor(ENGINECLASS_DYNAMICFONT)
+  }
 
   open fun outlineColor(schedule: Color.() -> Unit): Color = outlineColor.apply{
       schedule(this)

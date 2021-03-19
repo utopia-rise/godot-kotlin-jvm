@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -11,7 +11,6 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Suppress
 import kotlin.Unit
@@ -94,8 +93,9 @@ open class InputEventMouseMotion : InputEventMouse() {
           NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_INPUTEVENTMOUSEMOTION)
+  override fun __new() {
+    callConstructor(ENGINECLASS_INPUTEVENTMOUSEMOTION)
+  }
 
   open fun relative(schedule: Vector2.() -> Unit): Vector2 = relative.apply{
       schedule(this)

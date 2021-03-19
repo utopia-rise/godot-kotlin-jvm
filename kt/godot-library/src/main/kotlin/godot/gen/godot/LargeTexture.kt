@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -13,7 +13,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -28,7 +27,9 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class LargeTexture : Texture() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_LARGETEXTURE)
+  override fun __new() {
+    callConstructor(ENGINECLASS_LARGETEXTURE)
+  }
 
   open fun _getData(): VariantArray<Any?> {
     throw NotImplementedError("_get_data is not implemented for LargeTexture")

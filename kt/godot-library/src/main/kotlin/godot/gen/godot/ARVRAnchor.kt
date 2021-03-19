@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -18,7 +18,6 @@ import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.signals.Signal1
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.String
@@ -54,7 +53,9 @@ open class ARVRAnchor : Spatial() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRANCHOR_SET_ANCHOR_ID, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ARVRANCHOR)
+  override fun __new() {
+    callConstructor(ENGINECLASS_ARVRANCHOR)
+  }
 
   /**
    * Returns the name given to this anchor.

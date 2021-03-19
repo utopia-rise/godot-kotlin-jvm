@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -9,7 +9,6 @@ import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
@@ -185,7 +184,9 @@ object Performance : Object() {
    */
   final const val TIME_PROCESS: Long = 1
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_PERFORMANCE)
+  override fun __new() {
+    rawPtr = TransferContext.getSingleton(ENGINESINGLETON_PERFORMANCE)
+  }
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

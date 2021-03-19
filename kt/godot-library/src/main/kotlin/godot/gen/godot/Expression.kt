@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -18,7 +18,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_STRING_ARRAY
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -52,7 +51,9 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class Expression : Reference() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_EXPRESSION)
+  override fun __new() {
+    callConstructor(ENGINECLASS_EXPRESSION)
+  }
 
   /**
    * Executes the expression that was previously parsed by [parse] and returns the result. Before you use the returned object, you should check if the method failed by calling [hasExecuteFailed].

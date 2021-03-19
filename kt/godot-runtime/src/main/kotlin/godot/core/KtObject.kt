@@ -5,6 +5,21 @@ import godot.util.nullptr
 
 @Suppress("LeakingThis")
 abstract class KtObject {
+
+    /** Used to prevent the __new method to be executed when called from instantiateWith
+     * Instead we use the values set in that class  */
+    private class InitConfiguration {
+        var shouldOverride = false
+        var ptr: VoidPtr = nullptr
+        var id: Long = -1
+
+        fun reset() {
+            shouldOverride = false
+            ptr = nullptr
+            id = -1
+        }
+    }
+
     var rawPtr: VoidPtr = nullptr
         set(value) {
             require(field == nullptr || field == value) {
@@ -13,32 +28,38 @@ abstract class KtObject {
             field = value
         }
 
-    var godotInstanceId: Long = -1
+    /** Godot ID in the case of an Object.
+     *  Index in the case of a Reference.
+     */
+    var __id: Long = -1
 
     init {
-        try {
-            if (shouldInit.get()) {
-                // user types shouldn't override this method
-                rawPtr = __new()
-                godotInstanceId = getInstanceId()
+        val config = initConfig.get()
 
-                if (!____DO_NOT_TOUCH_THIS_isSingleton____()) {
-                    GarbageCollector.registerInstance(this, false)
-                }
-
-                // inheritance in Godot is faked, a script is attached to an Object allow
-                // the script to see all methods of the owning Object.
-                // For user types, we need to make sure to attach this script to the Object
-                // rawPtr is pointing to.
-                val classIndex = TypeManager.userTypeToId[this::class]
-                // If user type
-                if (classIndex != null) {
-                    TransferContext.setScript(rawPtr, classIndex, this, this::class.java.classLoader)
-                    _onInit()
-                }
+        if (config.shouldOverride) {
+            rawPtr = config.ptr
+            __id = config.id
+            config.reset()
+        } else {
+            // user types shouldn't override this method
+            __new()
+            // inheritance in Godot is faked, a script is attached to an Object allow
+            // the script to see all methods of the owning Object.
+            // For user types, we need to make sure to attach this script to the Object
+            // rawPtr is pointing to.
+            val classIndex = TypeManager.userTypeToId[this::class]
+            // If user type
+            if (classIndex != null) {
+                TransferContext.setScript(rawPtr, classIndex, this, this::class.java.classLoader)
             }
-        } finally {
-            shouldInit.set(true)
+        }
+
+        if (!____DO_NOT_TOUCH_THIS_isSingleton____()) {
+            if (____DO_NOT_TOUCH_THIS_isRef____()) {
+                GarbageCollector.registerReference(this)
+            } else {
+                GarbageCollector.registerObject(this)
+            }
         }
     }
 
@@ -48,10 +69,8 @@ abstract class KtObject {
     @Suppress("FunctionName")
     open fun ____DO_NOT_TOUCH_THIS_isSingleton____() = false
 
-    abstract fun __new(): VoidPtr
-    abstract fun getInstanceId(): Long
+    abstract fun __new()
 
-    open fun _onInit() = Unit
     open fun _onDestroy() = Unit
 
     fun free() {
@@ -59,18 +78,14 @@ abstract class KtObject {
     }
 
     companion object {
-        private val shouldInit = ThreadLocal.withInitial { true }
+        private val initConfig = ThreadLocal.withInitial { InitConfiguration() }
 
-        fun <T: KtObject> instantiateWith(rawPtr: VoidPtr, instanceId: Long, hasRefCountBeenIncremented: Boolean = false, constructor: () -> T): T {
-            shouldInit.set(false)
-            return constructor().also {
-                it.rawPtr = rawPtr
-                it.godotInstanceId = instanceId
-                if (!it.____DO_NOT_TOUCH_THIS_isSingleton____()) {
-                    GarbageCollector.registerInstance(it, hasRefCountBeenIncremented)
-                }
-                it._onInit()
-            }
+        fun <T : KtObject> instantiateWith(rawPtr: VoidPtr, id: Long, constructor: () -> T): T {
+            val config = initConfig.get()
+            config.ptr = rawPtr
+            config.id = id
+            config.shouldOverride = true
+            return constructor()
         }
     }
 }

@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -22,7 +22,6 @@ import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -358,7 +357,9 @@ object Physics2DServer : Object() {
    */
   final const val SPACE_PARAM_TEST_MOTION_MIN_CONTACT_DEPTH: Long = 7
 
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_PHYSICS2DSERVER)
+  override fun __new() {
+    rawPtr = TransferContext.getSingleton(ENGINESINGLETON_PHYSICS2DSERVER)
+  }
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 

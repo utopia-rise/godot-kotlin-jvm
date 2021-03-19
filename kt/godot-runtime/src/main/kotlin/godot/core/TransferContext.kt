@@ -23,13 +23,12 @@ object TransferContext {
         buffer.rewind()
     }
 
-    fun readSingleArgument(variantType: VariantType, isNullable: Boolean = false)
-            = variantType.toKotlin(buffer, isNullable)
+    fun readSingleArgument(variantType: VariantType, isNullable: Boolean = false) = variantType.toKotlin(buffer, isNullable)
 
-   fun writeReturnValue(value: Any?, type: VariantType) {
-       type.toGodot(buffer, value)
-       buffer.rewind()
-   }
+    fun writeReturnValue(value: Any?, type: VariantType) {
+        type.toGodot(buffer, value)
+        buffer.rewind()
+    }
 
     fun readReturnValue(type: VariantType, isNullable: Boolean = false): Any? {
         val ret = type.toKotlin(buffer, isNullable)
@@ -39,9 +38,9 @@ object TransferContext {
 
     fun callMethod(ptr: VoidPtr, methodIndex: Int, expectedReturnType: VariantType) {
         icall(
-                ptr,
-                methodIndex,
-                expectedReturnType.ordinal
+            ptr,
+            methodIndex,
+            expectedReturnType.ordinal
         )
     }
 
@@ -50,7 +49,7 @@ object TransferContext {
     }
 
     external fun setScript(rawPtr: VoidPtr, classNameIndex: Int, obj: KtObject, classLoader: ClassLoader);
-    external fun invokeConstructor(classIndex: Int): VoidPtr
+    external fun invokeConstructor(classIndex: Int)
     external fun getSingleton(classIndex: Int): VoidPtr
     external fun freeObject(rawPtr: VoidPtr)
 

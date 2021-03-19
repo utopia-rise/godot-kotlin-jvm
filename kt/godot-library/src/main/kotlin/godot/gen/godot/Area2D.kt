@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -21,7 +21,6 @@ import godot.core.Vector2
 import godot.signals.Signal1
 import godot.signals.Signal4
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -292,7 +291,9 @@ open class Area2D : CollisionObject2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_SPACE_OVERRIDE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_AREA2D)
+  override fun __new() {
+    callConstructor(ENGINECLASS_AREA2D)
+  }
 
   open fun gravityVec(schedule: Vector2.() -> Unit): Vector2 = gravityVec.apply{
       schedule(this)

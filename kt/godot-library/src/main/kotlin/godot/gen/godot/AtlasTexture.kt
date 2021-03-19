@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -12,7 +12,6 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.RECT2
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
@@ -81,7 +80,9 @@ open class AtlasTexture : Texture() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_SET_REGION, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ATLASTEXTURE)
+  override fun __new() {
+    callConstructor(ENGINECLASS_ATLASTEXTURE)
+  }
 
   open fun margin(schedule: Rect2.() -> Unit): Rect2 = margin.apply{
       schedule(this)

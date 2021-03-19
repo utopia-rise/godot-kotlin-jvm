@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -11,7 +11,6 @@ import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.signals.Signal1
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.NotImplementedError
@@ -21,8 +20,9 @@ import kotlin.Suppress
 open class GDScriptFunctionState : Reference() {
   val completed: Signal1<Any> by signal("result")
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_GDSCRIPTFUNCTIONSTATE)
+  override fun __new() {
+    callConstructor(ENGINECLASS_GDSCRIPTFUNCTIONSTATE)
+  }
 
   open fun _signalCallback(vararg __var_args: Any?): Any? {
     throw NotImplementedError("_signal_callback is not implemented for GDScriptFunctionState")

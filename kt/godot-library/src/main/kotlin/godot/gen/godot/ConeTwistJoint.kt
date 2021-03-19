@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -9,7 +9,6 @@ import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
-import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -73,7 +72,9 @@ open class ConeTwistJoint : Joint() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONETWISTJOINT_SET_SOFTNESS, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CONETWISTJOINT)
+  override fun __new() {
+    callConstructor(ENGINECLASS_CONETWISTJOINT)
+  }
 
   open fun _getSwingSpan(): Double {
     throw NotImplementedError("_get_swing_span is not implemented for ConeTwistJoint")

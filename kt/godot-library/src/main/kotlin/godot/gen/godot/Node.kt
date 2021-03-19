@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -20,7 +20,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.signals.Signal0
 import godot.signals.signal
-import godot.util.VoidPtr
 import godot.util.camelToSnakeCase
 import kotlin.Any
 import kotlin.Boolean
@@ -655,7 +654,9 @@ open class Node : Object() {
     value: TYPE
   ) = rsetUnreliableId(id, property.name.camelToSnakeCase(), value)
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_NODE)
+  override fun __new() {
+    callConstructor(ENGINECLASS_NODE)
+  }
 
   /**
    * Called when the node enters the [godot.SceneTree] (e.g. upon instancing, scene changing, or after calling [addChild] in a script). If the node has children, its [_enterTree] callback will be called first, and then that of the children.

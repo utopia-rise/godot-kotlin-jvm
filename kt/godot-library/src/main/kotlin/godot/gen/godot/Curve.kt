@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -17,7 +17,6 @@ import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.signals.Signal0
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Double
 import kotlin.Int
@@ -79,7 +78,9 @@ open class Curve : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE_SET_MIN_VALUE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CURVE)
+  override fun __new() {
+    callConstructor(ENGINECLASS_CURVE)
+  }
 
   open fun _getData(): VariantArray<Any?> {
     throw NotImplementedError("_get_data is not implemented for Curve")

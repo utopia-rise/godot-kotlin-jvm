@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -27,7 +27,6 @@ import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -297,7 +296,9 @@ open class SceneTree : MainLoop() {
           ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_USE_FONT_OVERSAMPLING, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_SCENETREE)
+  override fun __new() {
+    callConstructor(ENGINECLASS_SCENETREE)
+  }
 
   open fun _changeScene(arg0: Node) {
   }

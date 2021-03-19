@@ -1,15 +1,13 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
 import godot.annotation.GodotBaseType
 import godot.core.Dictionary
-import godot.core.TransferContext
 import godot.core.VariantArray
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -73,7 +71,9 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class EditorImportPlugin : ResourceImporter() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_EDITORIMPORTPLUGIN)
+  override fun __new() {
+    callConstructor(ENGINECLASS_EDITORIMPORTPLUGIN)
+  }
 
   /**
    * Gets the options and default values for the preset at this index. Returns an Array of Dictionaries with the following keys: `name`, `default_value`, `property_hint` (optional), `hint_string` (optional), `usage` (optional).

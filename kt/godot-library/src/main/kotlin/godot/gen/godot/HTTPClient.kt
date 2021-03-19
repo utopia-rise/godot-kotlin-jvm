@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -21,7 +21,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_BYTE_ARRAY
 import godot.core.VariantType.POOL_STRING_ARRAY
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -94,7 +93,9 @@ open class HTTPClient : Reference() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_HTTPCLIENT)
+  override fun __new() {
+    callConstructor(ENGINECLASS_HTTPCLIENT)
+  }
 
   /**
    * Closes the current connection, allowing reuse of this [godot.HTTPClient].

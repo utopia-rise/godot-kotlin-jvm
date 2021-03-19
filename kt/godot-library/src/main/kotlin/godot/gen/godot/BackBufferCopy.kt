@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -11,7 +11,6 @@ import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.RECT2
-import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -54,7 +53,9 @@ open class BackBufferCopy : Node2D() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BACKBUFFERCOPY_SET_RECT, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_BACKBUFFERCOPY)
+  override fun __new() {
+    callConstructor(ENGINECLASS_BACKBUFFERCOPY)
+  }
 
   open fun rect(schedule: Rect2.() -> Unit): Rect2 = rect.apply{
       schedule(this)

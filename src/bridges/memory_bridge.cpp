@@ -1,6 +1,7 @@
 #include <core/object.h>
 #include <core/reference.h>
 #include <modules/kotlin_jvm/src/logging.h>
+#include <modules/kotlin_jvm/src/ref_db.h>
 #include "memory_bridge.h"
 #include "constants.h"
 
@@ -18,15 +19,10 @@ MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) 
 
     jni::JNativeMethod unref_method{
             "unref",
-            "(J)Z",
+            "(JI)Z",
             (void*) MemoryBridge::unref
     };
 
-    jni::JNativeMethod ref_method{
-            "ref",
-            "(J)Z",
-            (void*) MemoryBridge::ref
-    };
 
     jni::JNativeMethod unref_native_core_type_method{
             "unrefNativeCoreType",
@@ -34,10 +30,15 @@ MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) 
             (void*) MemoryBridge::unref_native_core_type
     };
 
+    jni::JNativeMethod notify_leak_method{
+            "notifyLeak",
+            "()V",
+            (void*) MemoryBridge::notify_leak
+    };
+
     Vector<jni::JNativeMethod> methods;
     methods.push_back(check_instance_method);
     methods.push_back(unref_method);
-    methods.push_back(ref_method);
     methods.push_back(unref_native_core_type_method);
 
     jni::Env env{jni::Jvm::current_env()};
@@ -50,22 +51,12 @@ bool MemoryBridge::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p
     return ObjectDB::instance_validate(instance) && instance->get_instance_id() == static_cast<ObjectID>(instance_id);
 }
 
-bool MemoryBridge::unref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+bool MemoryBridge::unref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint p_counter) {
     if (auto* reference{reinterpret_cast<Reference*>(static_cast<uintptr_t>(p_raw_ptr))}) {
-        if (reference->unreference()) {
-            memdelete(reference);
-        } else {
-#ifdef DEBUG_ENABLED
-            LOG_VERBOSE(vformat("Will not memdelete %s", String::num_int64(static_cast<uintptr_t>(p_raw_ptr))))
-#endif
-        }
+        auto counter = static_cast<uint32_t>(p_counter);
+        RefDB::get_instance().remove_ref(reference, counter);
     }
     return true;
-}
-
-bool MemoryBridge::ref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    auto* reference{reinterpret_cast<Reference*>(static_cast<uintptr_t>(p_raw_ptr))};
-    return reference->init_ref();
 }
 
 bool MemoryBridge::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint var_type) {
@@ -124,4 +115,10 @@ bool MemoryBridge::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance,
     jni::JObject local_ref{p_instance};
     local_ref.delete_local_ref(env);
     return has_free;
+}
+
+void MemoryBridge::notify_leak(JNIEnv* p_raw_env, jobject p_instance) {
+#ifdef DEBUG_ENABLED
+    JVM_CRASH_NOW_MSG("JVM instances are leaking.")
+#endif
 }

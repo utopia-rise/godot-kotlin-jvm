@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -20,7 +20,6 @@ import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal4
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -439,7 +438,9 @@ open class RigidBody : PhysicsBody() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY_SET_WEIGHT, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_RIGIDBODY)
+  override fun __new() {
+    callConstructor(ENGINECLASS_RIGIDBODY)
+  }
 
   open fun angularVelocity(schedule: Vector3.() -> Unit): Vector3 = angularVelocity.apply{
       schedule(this)

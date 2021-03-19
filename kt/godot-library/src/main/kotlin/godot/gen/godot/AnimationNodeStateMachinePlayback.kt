@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -12,7 +12,6 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.POOL_STRING_ARRAY
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
@@ -34,8 +33,9 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class AnimationNodeStateMachinePlayback : Resource() {
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK)
+  override fun __new() {
+    callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK)
+  }
 
   /**
    * Returns the currently playing animation state.

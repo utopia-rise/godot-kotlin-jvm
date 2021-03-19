@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -16,7 +16,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_VECTOR2_ARRAY
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -175,7 +174,9 @@ open class CSGPolygon : CSGPrimitive() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON_SET_SPIN_SIDES, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CSGPOLYGON)
+  override fun __new() {
+    callConstructor(ENGINECLASS_CSGPOLYGON)
+  }
 
   open fun _hasEditable3dPolygonNoDepth(): Boolean {
     throw NotImplementedError("_has_editable_3d_polygon_no_depth is not implemented for CSGPolygon")

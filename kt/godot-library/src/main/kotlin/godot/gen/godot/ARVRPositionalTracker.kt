@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -22,7 +22,6 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.TRANSFORM
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -60,8 +59,9 @@ open class ARVRPositionalTracker : Object() {
           NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_ARVRPOSITIONALTRACKER)
+  override fun __new() {
+    callConstructor(ENGINECLASS_ARVRPOSITIONALTRACKER)
+  }
 
   open fun _setJoyId(joyId: Long) {
   }

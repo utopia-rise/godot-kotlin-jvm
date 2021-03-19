@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -20,7 +20,6 @@ import godot.core.VariantType.TRANSFORM
 import godot.core.VariantType.VECTOR3
 import godot.core.VariantType._RID
 import godot.core.Vector3
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -186,8 +185,9 @@ open class PhysicsDirectBodyState : Object() {
           ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE_SET_TRANSFORM, NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_PHYSICSDIRECTBODYSTATE)
+  override fun __new() {
+    callConstructor(ENGINECLASS_PHYSICSDIRECTBODYSTATE)
+  }
 
   open fun angularVelocity(schedule: Vector3.() -> Unit): Vector3 = angularVelocity.apply{
       schedule(this)

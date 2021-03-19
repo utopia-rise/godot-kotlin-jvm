@@ -1,14 +1,12 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
 import godot.annotation.GodotBaseType
-import godot.core.TransferContext
 import godot.core.VariantArray
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -33,8 +31,9 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class VisualShaderNodeCustom : VisualShaderNode() {
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_VISUALSHADERNODECUSTOM)
+  override fun __new() {
+    callConstructor(ENGINECLASS_VISUALSHADERNODECUSTOM)
+  }
 
   /**
    * Override this method to define the category of the associated custom node in the Visual Shader Editor's members dialog.

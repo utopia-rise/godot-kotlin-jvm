@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -15,7 +15,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR3
 import godot.core.VariantType._RID
 import godot.core.Vector3
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
@@ -127,7 +126,9 @@ open class RayCast : Spatial() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_SET_EXCLUDE_PARENT, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_RAYCAST)
+  override fun __new() {
+    callConstructor(ENGINECLASS_RAYCAST)
+  }
 
   open fun castTo(schedule: Vector3.() -> Unit): Vector3 = castTo.apply{
       schedule(this)

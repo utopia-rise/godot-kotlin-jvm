@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -18,7 +18,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.POOL_BYTE_ARRAY
 import godot.core.VariantType.POOL_STRING_ARRAY
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -60,7 +59,9 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class ConfigFile : Reference() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CONFIGFILE)
+  override fun __new() {
+    callConstructor(ENGINECLASS_CONFIGFILE)
+  }
 
   /**
    * Deletes the specified section along with all the key-value pairs inside. Raises an error if the section does not exist.

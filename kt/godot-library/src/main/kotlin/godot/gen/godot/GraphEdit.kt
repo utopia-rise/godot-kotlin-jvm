@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -24,7 +24,6 @@ import godot.signals.Signal1
 import godot.signals.Signal3
 import godot.signals.Signal4
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -190,7 +189,9 @@ open class GraphEdit : Control() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_ZOOM, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_GRAPHEDIT)
+  override fun __new() {
+    callConstructor(ENGINECLASS_GRAPHEDIT)
+  }
 
   open fun scrollOffset(schedule: Vector2.() -> Unit): Vector2 = scrollOffset.apply{
       schedule(this)

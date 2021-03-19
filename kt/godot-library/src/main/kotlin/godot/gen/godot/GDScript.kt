@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -10,13 +10,14 @@ import godot.core.PoolByteArray
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.POOL_BYTE_ARRAY
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Suppress
 
 @GodotBaseType
 open class GDScript : Script() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_GDSCRIPT)
+  override fun __new() {
+    callConstructor(ENGINECLASS_GDSCRIPT)
+  }
 
   open fun getAsByteCode(): PoolByteArray {
     TransferContext.writeArguments()

@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -14,7 +14,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.POOL_INT_ARRAY
 import godot.core.VariantType.POOL_VECTOR2_ARRAY
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -61,7 +60,9 @@ open class NavigationPolygon : Resource() {
           NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_NAVIGATIONPOLYGON)
+  override fun __new() {
+    callConstructor(ENGINECLASS_NAVIGATIONPOLYGON)
+  }
 
   open fun _getOutlines(): VariantArray<Any?> {
     throw NotImplementedError("_get_outlines is not implemented for NavigationPolygon")

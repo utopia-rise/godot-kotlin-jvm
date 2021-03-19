@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -10,7 +10,6 @@ import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.OBJECT
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Suppress
 
@@ -23,7 +22,9 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class ButtonGroup : Resource() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_BUTTONGROUP)
+  override fun __new() {
+    callConstructor(ENGINECLASS_BUTTONGROUP)
+  }
 
   /**
    * Returns an [godot.Array] of [godot.Button]s who have this as their [godot.ButtonGroup] (see [godot.BaseButton.group]).

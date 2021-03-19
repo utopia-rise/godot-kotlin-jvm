@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -13,7 +13,6 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -164,7 +163,9 @@ open class GeometryInstance : VisualInstance() {
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE_SET_USE_IN_BAKED_LIGHT, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_GEOMETRYINSTANCE)
+  override fun __new() {
+    callConstructor(ENGINECLASS_GEOMETRYINSTANCE)
+  }
 
   /**
    * Overrides the bounding box of this node with a custom one. To remove it, set an [AABB] with all fields set to zero.

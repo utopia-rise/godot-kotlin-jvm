@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -15,7 +15,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.signals.Signal2
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -73,7 +72,9 @@ open class MainLoop : Object() {
    */
   val onRequestPermissionsResult: Signal2<String, Boolean> by signal("permission", "granted")
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_MAINLOOP)
+  override fun __new() {
+    callConstructor(ENGINECLASS_MAINLOOP)
+  }
 
   /**
    * Called when files are dragged from the OS file manager and dropped in the game window. The arguments are a list of file paths and the identifier of the screen where the drag originated.

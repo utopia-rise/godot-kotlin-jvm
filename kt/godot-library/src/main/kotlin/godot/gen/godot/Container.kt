@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -13,7 +13,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.RECT2
 import godot.signals.Signal0
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.Suppress
 
@@ -31,7 +30,9 @@ open class Container : Control() {
    */
   val sortChildren: Signal0 by signal()
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_CONTAINER)
+  override fun __new() {
+    callConstructor(ENGINECLASS_CONTAINER)
+  }
 
   open fun _childMinsizeChanged() {
   }

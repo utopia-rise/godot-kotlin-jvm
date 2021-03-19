@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -14,7 +14,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import godot.signals.Signal0
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -135,8 +134,9 @@ open class AnimationNodeStateMachineTransition : Resource() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_SET_XFADE_TIME, NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION)
+  override fun __new() {
+    callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION)
+  }
 
   enum class SwitchMode(
     id: Long

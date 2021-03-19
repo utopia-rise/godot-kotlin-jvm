@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -13,7 +13,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.signals.Signal1
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Long
 import kotlin.String
@@ -33,8 +32,9 @@ open class EditorResourcePreview : Node() {
    */
   val previewInvalidated: Signal1<String> by signal("path")
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_EDITORRESOURCEPREVIEW)
+  override fun __new() {
+    callConstructor(ENGINECLASS_EDITORRESOURCEPREVIEW)
+  }
 
   open fun _previewReady(
     arg0: String,

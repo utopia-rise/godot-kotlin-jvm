@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -17,7 +17,6 @@ import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.signals.Signal0
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -1500,8 +1499,9 @@ open class AnimationNodeBlendSpace2D : AnimationRootNode() {
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE2D_SET_Y_LABEL, NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_ANIMATIONNODEBLENDSPACE2D)
+  override fun __new() {
+    callConstructor(ENGINECLASS_ANIMATIONNODEBLENDSPACE2D)
+  }
 
   open fun blendPoint0_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint0_pos.apply{
       schedule(this)

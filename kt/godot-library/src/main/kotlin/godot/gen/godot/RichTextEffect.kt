@@ -1,13 +1,11 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
 import godot.annotation.GodotBaseType
-import godot.core.TransferContext
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -32,7 +30,9 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class RichTextEffect : Resource() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_RICHTEXTEFFECT)
+  override fun __new() {
+    callConstructor(ENGINECLASS_RICHTEXTEFFECT)
+  }
 
   /**
    * Override this method to modify properties in `char_fx`. The method must return `true` if the character could be transformed successfully. If the method returns `false`, it will skip transformation to avoid displaying broken text.

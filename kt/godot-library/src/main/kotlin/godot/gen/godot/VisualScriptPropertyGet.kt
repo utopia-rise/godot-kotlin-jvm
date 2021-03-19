@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -13,7 +13,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
@@ -112,8 +111,9 @@ open class VisualScriptPropertyGet : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_SET_SET_MODE, NIL)
     }
 
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_VISUALSCRIPTPROPERTYGET)
+  override fun __new() {
+    callConstructor(ENGINECLASS_VISUALSCRIPTPROPERTYGET)
+  }
 
   open fun _getTypeCache(): VariantType {
     throw NotImplementedError("_get_type_cache is not implemented for VisualScriptPropertyGet")

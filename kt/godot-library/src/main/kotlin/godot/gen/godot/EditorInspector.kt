@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -14,7 +14,6 @@ import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal2
 import godot.signals.signal
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -68,7 +67,9 @@ open class EditorInspector : ScrollContainer() {
    */
   val restartRequested: Signal0 by signal()
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_EDITORINSPECTOR)
+  override fun __new() {
+    callConstructor(ENGINECLASS_EDITORINSPECTOR)
+  }
 
   open fun _editRequestChange(arg0: Object, arg1: String) {
   }

@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -13,7 +13,6 @@ import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
 import kotlin.Long
@@ -25,7 +24,9 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class PackedDataContainer : Resource() {
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PACKEDDATACONTAINER)
+  override fun __new() {
+    callConstructor(ENGINECLASS_PACKEDDATACONTAINER)
+  }
 
   open fun _getData(): PoolByteArray {
     throw NotImplementedError("_get_data is not implemented for PackedDataContainer")

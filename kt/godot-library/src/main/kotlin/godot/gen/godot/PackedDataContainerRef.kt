@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -9,7 +9,6 @@ import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.LONG
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Long
@@ -21,8 +20,9 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class PackedDataContainerRef : Reference() {
-  override fun __new(): VoidPtr =
-      TransferContext.invokeConstructor(ENGINECLASS_PACKEDDATACONTAINERREF)
+  override fun __new() {
+    callConstructor(ENGINECLASS_PACKEDDATACONTAINERREF)
+  }
 
   open fun _isDictionary(): Boolean {
     throw NotImplementedError("_is_dictionary is not implemented for PackedDataContainerRef")

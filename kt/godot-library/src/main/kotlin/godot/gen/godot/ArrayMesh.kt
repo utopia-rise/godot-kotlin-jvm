@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -21,7 +21,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.POOL_BYTE_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.VariantType.TRANSFORM
-import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Double
 import kotlin.Int
@@ -95,7 +94,9 @@ open class ArrayMesh : Mesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SET_CUSTOM_AABB, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_ARRAYMESH)
+  override fun __new() {
+    callConstructor(ENGINECLASS_ARRAYMESH)
+  }
 
   open fun customAabb(schedule: AABB.() -> Unit): AABB = customAabb.apply{
       schedule(this)

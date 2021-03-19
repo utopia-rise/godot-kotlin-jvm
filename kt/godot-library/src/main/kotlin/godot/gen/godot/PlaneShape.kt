@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -10,7 +10,6 @@ import godot.core.Plane
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.PLANE
-import godot.util.VoidPtr
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -35,7 +34,9 @@ open class PlaneShape : Shape() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PLANESHAPE_SET_PLANE, NIL)
     }
 
-  override fun __new(): VoidPtr = TransferContext.invokeConstructor(ENGINECLASS_PLANESHAPE)
+  override fun __new() {
+    callConstructor(ENGINECLASS_PLANESHAPE)
+  }
 
   open fun plane(schedule: Plane.() -> Unit): Plane = plane.apply{
       schedule(this)

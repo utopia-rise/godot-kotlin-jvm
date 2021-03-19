@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
 
 package godot
 
@@ -13,7 +13,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_STRING_ARRAY
 import godot.core.VariantType.STRING
-import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
@@ -29,7 +28,9 @@ import kotlin.Suppress
  */
 @GodotBaseType
 object ResourceLoader : Object() {
-  override fun __new(): VoidPtr = TransferContext.getSingleton(ENGINESINGLETON_RESOURCELOADER)
+  override fun __new() {
+    rawPtr = TransferContext.getSingleton(ENGINESINGLETON_RESOURCELOADER)
+  }
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
