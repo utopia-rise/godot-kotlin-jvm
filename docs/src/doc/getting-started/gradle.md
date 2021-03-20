@@ -55,7 +55,7 @@ class Simple: Spatial() {
 }
 ```
 
-The [classes](../user-guide/classes.md) section covers in detail what we did here, but for now `@RegisterClass` will register the annotated class to Godot so Godot knows our class exist.
+The [classes](../user-guide/classes.md) section covers in detail what we did here, but for now `@RegisterClass` will register the annotated class to Godot so Godot knows our class exists.
 
 !!! note ""
     The plugin automatically generates the registration code which registers your class. We do not recommend that you check these files into source control.
@@ -71,7 +71,7 @@ Once the build completes, you are able to use your scripts in Godot. Simply atta
 ![Attach Node Script](../assets/img/attach.png)
 
 !!! note ""
-    You can only use newly created classes after you have built them! Otherwise Godot cannot find them.
+    As kotlin is a compiled language, you can only use newly created classes after you have built them! Otherwise Godot cannot find them.
 
 ## Configuring dependencies
 You can use almost the whole jvm ecosystem. Just add a dependency like you would in a normal java based project in the `build.gradle.kts`:

@@ -26,7 +26,7 @@ You can and should name your properties kotlin style camelCase. But for a more n
 If you define a default value for a property and `visibleInEditor` (more on that later) is set to `true`, the default value will be set in the `inspector`.
 
 !!! note ""
-    If you set a default value in code and a different value in the `inspector` the value of the `inspector` will override the value in code after `_init` and before `_ready`!
+    If you set a default value in code and a different value in the `inspector` the value of the `inspector` will override the value in code after `init` and before `_ready`!
     A default value can **only** contain compile time constants and only References to compile time constants! Better you only use refs where you have no other choice like for Enums.
     We try to catch all wrong references during compilation and throw a corresponding exception, but we may have missed some cases which then only occur during runtime.
     We also strongly recommend using our Intellij plugin as it can warn you about many wrongly registered properties while you write your code. See the section [IDE](../getting-started/ide.md) for more information about the plugin.
