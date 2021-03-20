@@ -11,10 +11,13 @@ Before you start to invest your precious time in writing code that you want to c
 - If the issue exists, but no one is assigned. You are free to state your interest in implementing/fixing the issue. But don't just start working. To prevent multiple people working on the same issue, we need to know you're working on it. Write in the issue, so we can assign it to you.
 - If the issue does not yet exist, open one and describe as best as you can, what your idea/what the bug is you want to tackle. The provided templates are a good starting point.
 
-## Discussions
-Most of our discussions are happening on Discord. So if you have Discord or don't mind starting using it, feel free to [join](https://discord.gg/zpb5Ru7v9x) our server.
-But don't worry if you don't have or want to use Discord. Then the discussions are just in the corresponding issue.
-If you discuss on Discord though: don't forget to document all relevant outcome in the corresponding issue.
-
-If you have critique or an opinion on a discussed topic, please be kind and give valuable feedback.
-If you are on the receiving end of the critique: don't take it personally. Many people are no native english speaker and it can happen that something which is not rude at all in the language of the writer, might sound rude in english.
+## Code
+- **CodeStyle:**  
+We enforce the code style to match the official Kotlin [coding conventions](https://kotlinlang.org/docs/reference/coding-conventions.html). Read there on how to set those up for your IDE.
+We will enforce this later on through CI and linting.  
+- **Branching:**  
+We do branching like described in `git-flow`.
+- **Code Owner:**
+We are working with the Code Owners feature of GitHub.  
+This means each piece of code in our module has a maintainer who is the "Owner" of said code. This maintainer is usually the one who implemented it or has the most knowledge about that particular part of the module.  
+General code may not have a specific "Owner". In this case the fallback is: all Maintainers.  

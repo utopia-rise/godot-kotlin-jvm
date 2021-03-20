@@ -1,8 +1,8 @@
-site_name: Godot-Jvm
+site_name: Godot-Kotlin-Jvm
 docs_dir: src/doc
 
-repo_name: 'utopia-rise/godot-jvm'
-repo_url: 'https://github.com/utopia-rise/godot-jvm'
+repo_name: 'utopia-rise/godot-kotlin-jvm'
+repo_url: 'https://github.com/utopia-rise/godot-kotlin-jvm'
 
 theme:
   name: material
@@ -43,11 +43,16 @@ nav:
     - Signals: user-guide/signals.md
     - Functions: user-guide/functions.md
     - Exporting: user-guide/exporting.md
+    - API differences: user-guide/api-differences.md
   - Advanced:
     - Custom Src dirs: advanced/custom-src-dirs.md
     - Commandline args: advanced/commandline-args.md
     - Kotlin singletons: advanced/kotlin-singleton.md
-  - API differences: api-differences.md
+  - Contribution:
+    - General: contribution/general.md
+    - Guidelines: contribution/guidelines.md
+    - Setup: contribution/setup.md
+    - Build with C# support: contribution/build-with-csharp-support.md
+    - Entry generation: contribution/entry-generation.md
   - Versioning: versioning.md
   - Supported platforms: supported-platforms.md
-  - Contribution: contribution.md
