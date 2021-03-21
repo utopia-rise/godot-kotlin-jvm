@@ -13,13 +13,18 @@
     </applicationListeners>
 
     <extensions defaultExtensionNs="com.intellij">
-        <annotator implementationClass="godot.intellij.plugin.annotator.clazz.RegisterClassAnnotator" language="JVM" />
-        <annotator implementationClass="godot.intellij.plugin.annotator.function.RegisterFunctionAnnotator" language="JVM" />
-        <annotator implementationClass="godot.intellij.plugin.annotator.property.RegisterPropertiesAnnotator" language="JVM" />
-        <annotator implementationClass="godot.intellij.plugin.annotator.signal.RegisterSignalAnnotator" language="JVM" />
-        <annotator implementationClass="godot.intellij.plugin.annotator.reference.FunctionReferenceAnnotator" language="JVM" />
+        <moduleType id="MY_MODULE" implementationClass="godot.intellij.plugin.module.GodotModuleType"/>
+        <moduleBuilder builderClass="godot.intellij.plugin.module.GodotModuleBuilder"/>
+        <annotator implementationClass="godot.intellij.plugin.annotator.clazz.RegisterClassAnnotator" language="JVM"/>
+        <annotator implementationClass="godot.intellij.plugin.annotator.function.RegisterFunctionAnnotator"
+                   language="JVM"/>
+        <annotator implementationClass="godot.intellij.plugin.annotator.property.RegisterPropertiesAnnotator"
+                   language="JVM"/>
+        <annotator implementationClass="godot.intellij.plugin.annotator.signal.RegisterSignalAnnotator" language="JVM"/>
+        <annotator implementationClass="godot.intellij.plugin.annotator.reference.FunctionReferenceAnnotator"
+                   language="JVM"/>
         <codeInsight.lineMarkerProvider language="JVM"
-            implementationClass="godot.intellij.plugin.linemarker.SignalConnectionLineMarker"/>
+                                        implementationClass="godot.intellij.plugin.linemarker.SignalConnectionLineMarker"/>
     </extensions>
 
     <resource-bundle>messages.generalLabels</resource-bundle>
