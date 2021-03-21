@@ -3,13 +3,18 @@ This module uses [Gradle](https://gradle.org) as its build tool and you will nee
 ## Wrapper
 On this step, we will be setting up a gradle [wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html). The wrapper will ensure that anyone who wants to build your project from source will use the same gradle version.
 
-```shell
+Windows: ```shell
+fsutil file createnew build.gradle.kts 0
+fsutil file createnew gradle.properties 0
+fsutil file createnew settings.gradle.kts 0
+```
+Unix: ```shell
 touch build.gradle.kts gradle.properties settings.gradle.kts
 ```
 
 The above command will create three files, which will be empty for now.
 
-```shell
+All plaforms: ```shell
 gradle wrapper --gradle-version=6.8
 ```
 
@@ -62,7 +67,10 @@ The [classes](../user-guide/classes.md) section covers in detail what we did her
 
 Now we can trigger a build.
 
-```shell
+Windows: ```shell
+gradlew build
+```
+Unix: ```shell
 ./gradlew build
 ```
 
