@@ -18,10 +18,12 @@ Make sure that Java is installed and its PATH set in your system as well(at leas
     - create embedded JVM: `jlink --add-modules java.base,java.logging --output jre`
         - If you want to remote debug add module `jdk.jdwp.agent` to command.
         - If you want to enable jmx, add `jdk.management.agent` to command.
-    - Windows: ```shell
+    - Windows: 
+	```shell
 		gradlew build
 	```
-	Unix: ```shell
+	-Unix: 
+	```shell
 		./gradlew build
 	``` 
 
