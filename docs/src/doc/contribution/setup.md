@@ -18,14 +18,8 @@ Make sure that Java is installed and its PATH set in your system as well(at leas
     - create embedded JVM: `jlink --add-modules java.base,java.logging --output jre`
         - If you want to remote debug add module `jdk.jdwp.agent` to command.
         - If you want to enable jmx, add `jdk.management.agent` to command.
-    - Windows: 
-	```shell
-		gradlew build
-	```
-	-Unix: 
-	```shell
-		./gradlew build
-	``` 
+    - Windows: `gradlew build`
+	- Unix: `./gradlew build`
 
 6. In order to run the engine, run `godot.x11.tools.64` located in the `bin` folder of `godot-root`
 
