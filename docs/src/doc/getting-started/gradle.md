@@ -14,7 +14,7 @@ touch build.gradle.kts gradle.properties settings.gradle.kts
 
 The above command will create three files, which will be empty for now.
 
-All plaforms: ```shell
+All platforms: ```shell
 gradle wrapper --gradle-version=6.8
 ```
 
