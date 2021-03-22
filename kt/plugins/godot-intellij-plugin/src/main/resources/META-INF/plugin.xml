@@ -8,23 +8,18 @@
     <depends>com.intellij.modules.platform</depends>
 
     <applicationListeners>
-        <listener class="godot.intellij.plugin.listener.GodotProjectManagerListener"
-            topic="com.intellij.openapi.project.ProjectManagerListener" />
+        <listener class="godot.intellij.plugin.listener.GodotProjectManagerListener" topic="com.intellij.openapi.project.ProjectManagerListener" />
     </applicationListeners>
 
     <extensions defaultExtensionNs="com.intellij">
         <moduleType id="MY_MODULE" implementationClass="godot.intellij.plugin.module.GodotModuleType"/>
         <moduleBuilder builderClass="godot.intellij.plugin.module.GodotModuleBuilder"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.clazz.RegisterClassAnnotator" language="JVM"/>
-        <annotator implementationClass="godot.intellij.plugin.annotator.function.RegisterFunctionAnnotator"
-                   language="JVM"/>
-        <annotator implementationClass="godot.intellij.plugin.annotator.property.RegisterPropertiesAnnotator"
-                   language="JVM"/>
+        <annotator implementationClass="godot.intellij.plugin.annotator.function.RegisterFunctionAnnotator" language="JVM"/>
+        <annotator implementationClass="godot.intellij.plugin.annotator.property.RegisterPropertiesAnnotator" language="JVM"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.signal.RegisterSignalAnnotator" language="JVM"/>
-        <annotator implementationClass="godot.intellij.plugin.annotator.reference.FunctionReferenceAnnotator"
-                   language="JVM"/>
-        <codeInsight.lineMarkerProvider language="JVM"
-                                        implementationClass="godot.intellij.plugin.linemarker.SignalConnectionLineMarker"/>
+        <annotator implementationClass="godot.intellij.plugin.annotator.reference.FunctionReferenceAnnotator" language="JVM"/>
+        <codeInsight.lineMarkerProvider language="JVM" implementationClass="godot.intellij.plugin.linemarker.SignalConnectionLineMarker"/>
     </extensions>
 
     <resource-bundle>messages.generalLabels</resource-bundle>
