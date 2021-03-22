@@ -1,6 +1,9 @@
 name: Check PR - Engine Editor Release
 on: [pull_request]
 
+env:
+  GODOT_BASE_VERSION: 3.2.3
+
 jobs:
   build-editor-release:
     strategy:
@@ -33,6 +36,17 @@ jobs:
         with:
           path: modules/kotlin_jvm
           submodules: recursive
+      # Upload cache on completion and check it out now
+      - name: Load .scons_cache directory
+        id: editor-release-cache
+        uses: actions/cache@v2
+        with:
+          path: ${{github.workspace}}/${{matrix.platform}}/.scons_cache/
+          key: ${{github.job}}-${{env.GODOT_BASE_VERSION}}-${{github.ref}}-${{github.sha}}
+          restore-keys: |
+            ${{github.job}}-${{env.GODOT_BASE_VERSION}}-${{github.ref}}-${{github.sha}}
+            ${{github.job}}-${{env.GODOT_BASE_VERSION}}-${{github.ref}}
+            ${{github.job}}-${{env.GODOT_BASE_VERSION}}
       - name: Set up Python 3.x
         uses: actions/setup-python@v2
         with:
@@ -43,5 +57,7 @@ jobs:
           python -c "import sys; print(sys.version)"
           python -m pip install scons
       - name: Build with editor release
+        env:
+          SCONS_CACHE: ${{github.workspace}}/${{matrix.platform}}/.scons_cache/
         run: |
           scons platform=${{ matrix.platform }} target=release_debug
