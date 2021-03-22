@@ -162,7 +162,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
         val fileName = filePath.substringAfterLast("/")
         val parentDir = filePath.substringBeforeLast("/")
 
-        val parentFile = if (parentDir.isEmpty() && parentDir != fileName) {
+        val parentFile = if (parentDir.isNotEmpty() && parentDir != fileName) {
             File(baseDir, parentDir).apply {
                 mkdirs()
             }
