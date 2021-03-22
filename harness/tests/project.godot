@@ -19,6 +19,11 @@ _global_script_classes=[ {
 "language": "Kotlin",
 "path": "res://scripts/ScriptInOtherSourceDir.kt"
 }, {
+"base": "Node",
+"class": "godot_tests_FuncRefTest",
+"language": "Kotlin",
+"path": "res://src/main/kotlin/godot/tests/FuncRefTest.kt"
+}, {
 "base": "Spatial",
 "class": "godot_tests_Invocation",
 "language": "Kotlin",
@@ -47,6 +52,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "RPCTests": "",
 "ScriptInOtherSourceDir": "",
+"godot_tests_FuncRefTest": "",
 "godot_tests_Invocation": "",
 "godot_tests_MultiArgsConstructorTest": "",
 "godot_tests_inheritance_ClassInheritanceChild": "",
