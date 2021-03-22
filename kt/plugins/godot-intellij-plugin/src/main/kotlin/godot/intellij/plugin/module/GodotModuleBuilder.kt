@@ -15,6 +15,7 @@ import com.intellij.ui.layout.GrowPolicy
 import com.intellij.ui.layout.panel
 import com.intellij.ui.layout.selected
 import godot.intellij.plugin.GodotPluginBundle
+import godot.utils.GodotBuildProperties
 import java.io.File
 import javax.swing.JCheckBox
 import javax.swing.JComponent
@@ -25,7 +26,6 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
     private val artifactIdKey = Key<String>("ARTIFACT_ID")
     private val versionKey = Key<String>("VERSION")
     private val kotlinVersionKey = Key<String>("KOTLIN_VERSION")
-    private val godotKotlinJvmVersionKey = Key<String>("GODOT_KOTLIN_JVM_VERSION")
     private val androidEnabledKey = Key<Boolean>("ANDROID_ENABLED")
     private val dxToolPathKey = Key<String>("DX_TOOL_PATH")
 
@@ -57,7 +57,6 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
             val artifactIdTextField = JTextField("game")
             val versionTextField = JTextField("0.0.1-SNAPSHOT")
             val kotlinVersionTextField = JTextField("1.4.31")
-            val godotKotlinJvmVersionTextField = JTextField("0.1.0-3.2")
             lateinit var androidEnabledCheckBox: JCheckBox
             lateinit var dxToolPathTextField: TextFieldWithBrowseButton
 
@@ -77,9 +76,6 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                     titledRow(GodotPluginBundle.message("wizard.projectSettings.dependencySettings.title")) {
                         row(GodotPluginBundle.message("wizard.projectSettings.dependencySettings.kotlinVersion")) {
                             kotlinVersionTextField().growPolicy(GrowPolicy.MEDIUM_TEXT)
-                        }
-                        row(GodotPluginBundle.message("wizard.projectSettings.dependencySettings.godotKotlinJvmVersion")) {
-                            godotKotlinJvmVersionTextField().growPolicy(GrowPolicy.MEDIUM_TEXT)
                         }
                     }
                     titledRow(GodotPluginBundle.message("wizard.projectSettings.buildSettings.title")) {
@@ -111,7 +107,6 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                 context.putUserData(artifactIdKey, artifactIdTextField.text)
                 context.putUserData(versionKey, versionTextField.text)
                 context.putUserData(kotlinVersionKey, kotlinVersionTextField.text)
-                context.putUserData(godotKotlinJvmVersionKey, godotKotlinJvmVersionTextField.text)
                 context.putUserData(androidEnabledKey, androidEnabledCheckBox.isSelected)
                 context.putUserData(dxToolPathKey, dxToolPathTextField.text)
             }
@@ -137,7 +132,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                     .replace("KOTLIN_VERSION", wizardContext.getUserData(kotlinVersionKey) ?: "1.4.31")
                     .replace(
                         "GODOT_KOTLIN_JVM_VERSION",
-                        wizardContext.getUserData(godotKotlinJvmVersionKey) ?: "0.1.0-3.2"
+                        GodotBuildProperties.godotKotlinVersion
                     )
                     .replace("ANDROID_ENABLED", wizardContext.getUserData(androidEnabledKey)?.toString() ?: "false")
                     .replace("DX_TOOL_PATH", wizardContext.getUserData(dxToolPathKey) ?: "dx")
