@@ -41,6 +41,7 @@ jobs:
           submodules: recursive
       # Upload cache on completion and check it out now
       - name: Load .scons_cache directory
+        if: matrix.platform != 'android'
         id: template-debug-cache
         uses: actions/cache@v2
         with:
@@ -92,7 +93,7 @@ jobs:
       - name: Build debug export template
         if: matrix.platform != 'android'
         env:
-          SCONS_CACHE: ${{github.workspace}}/${{matrix.platform}}/.scons_cache/
+          SCONS_CACHE: ${{github.workspace}}/${{matrix.platform}}/armv7/.scons_cache/
         run: |
           scons platform=${{ matrix.platform }} tools=no target=release_debug bits=64
       - name: Build android debug binary armv7
@@ -102,7 +103,7 @@ jobs:
       - name: Build android debug binary arm64v8
         if: matrix.platform == 'android'
         env:
-          SCONS_CACHE: ${{github.workspace}}/${{matrix.platform}}/.scons_cache/
+          SCONS_CACHE: ${{github.workspace}}/${{matrix.platform}}/arm64-v8/.scons_cache/
         run: |
           scons platform=${{ matrix.platform }} target=release_debug android_arch=arm64v8
       - name: Build android debug export template
