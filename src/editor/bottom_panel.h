@@ -11,12 +11,9 @@
 class BottomPanel: public VBoxContainer {
 private:
     EditorInterface* editor_interface = nullptr;
-    TabContainer panel_tabs;
-    VBoxContainer build_tab;
-    ScrollContainer log_scroll_container;
-    Label log_label;
+    Label* log_label;
 
-    void add_builds_tab();
+    void add_builds_tab(TabContainer *pContainer);
 
 
 public:

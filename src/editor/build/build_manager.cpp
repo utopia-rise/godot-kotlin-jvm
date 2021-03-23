@@ -34,7 +34,7 @@ BuildOutput BuildManager::build_project_blocking() {
 
 void BuildManager::show_build_error_dialog() {
     GodotKotlinJvmEditor::get_instance()->show_error_dialog("An error occurred during building.\nConsult the error output in the bottom panel", "Build error");
-    GodotKotlinJvmEditor::get_instance()->bottom_panel.show_build_tab();
+    GodotKotlinJvmEditor::get_instance()->bottom_panel->show_build_tab();
 }
 
 BuildOutput BuildManager::build() {

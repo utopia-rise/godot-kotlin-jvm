@@ -20,26 +20,28 @@ void BottomPanel::_notificationv(int p_notification, bool p_reversed) {
         set_anchors_and_margins_preset(LayoutPreset::PRESET_WIDE);
 
 
-        add_child(&panel_tabs);
-        panel_tabs.set_tab_align(TabContainer::ALIGN_LEFT);
-        panel_tabs.set_custom_minimum_size(Size2{0, 288} * EDSCALE);
-        panel_tabs.set_v_size_flags(SizeFlags::SIZE_EXPAND_FILL);
-        panel_tabs.add_style_override("panel", base_control->get_stylebox("DebuggerPanel", "EditorStyles"));
-        panel_tabs.add_style_override("tab_fg", base_control->get_stylebox("DebuggerTabFG", "EditorStyles"));
-        panel_tabs.add_style_override("tab_bg", base_control->get_stylebox("DebuggerTabBG", "EditorStyles"));
+        TabContainer* panel_tabs = memnew(TabContainer);
+        add_child(panel_tabs);
+        panel_tabs->set_tab_align(TabContainer::ALIGN_LEFT);
+        panel_tabs->set_custom_minimum_size(Size2{0, 288} * EDSCALE);
+        panel_tabs->set_v_size_flags(SizeFlags::SIZE_EXPAND_FILL);
+        panel_tabs->add_style_override("panel", base_control->get_stylebox("DebuggerPanel", "EditorStyles"));
+        panel_tabs->add_style_override("tab_fg", base_control->get_stylebox("DebuggerTabFG", "EditorStyles"));
+        panel_tabs->add_style_override("tab_bg", base_control->get_stylebox("DebuggerTabBG", "EditorStyles"));
 
-        add_builds_tab();
+        add_builds_tab(panel_tabs);
     }
 }
 
-void BottomPanel::add_builds_tab() {
-    build_tab.set_name("Build");
-    panel_tabs.add_child(&build_tab);
-    set_h_size_flags(SizeFlags::SIZE_EXPAND_FILL);
+void BottomPanel::add_builds_tab(TabContainer *panel_tabs) {
+    VBoxContainer* build_tab = memnew(VBoxContainer);
+    build_tab->set_name("Build");
+    panel_tabs->add_child(build_tab);
+    build_tab->set_h_size_flags(SizeFlags::SIZE_EXPAND_FILL);
 
     //toolbar
     HBoxContainer *toolbar_hbox = memnew(HBoxContainer);
-    build_tab.add_child(toolbar_hbox);
+    build_tab->add_child(toolbar_hbox);
     toolbar_hbox->set_h_size_flags(SizeFlags::SIZE_EXPAND_FILL);
 
     //toolbar - build button
@@ -59,12 +61,14 @@ void BottomPanel::add_builds_tab() {
     clear_log_button->connect("pressed", this, "on_clear_log_button_pressed");
 
     //build output label
-    build_tab.add_child(&log_scroll_container);
-    log_scroll_container.set_h_size_flags(SizeFlags::SIZE_EXPAND_FILL);
-    log_scroll_container.set_v_size_flags(SizeFlags::SIZE_EXPAND_FILL);
+    ScrollContainer* log_scroll_container = memnew(ScrollContainer);
+    build_tab->add_child(log_scroll_container);
+    log_scroll_container->set_h_size_flags(SizeFlags::SIZE_EXPAND_FILL);
+    log_scroll_container->set_v_size_flags(SizeFlags::SIZE_EXPAND_FILL);
 
-    log_scroll_container.add_child(&log_label);
-    log_label.set_h_size_flags(SizeFlags::SIZE_EXPAND_FILL);
+    log_label = memnew(Label);
+    log_scroll_container->add_child(log_label);
+    log_label->set_h_size_flags(SizeFlags::SIZE_EXPAND_FILL);
 }
 
 void BottomPanel::on_build_button_pressed() {
@@ -72,13 +76,13 @@ void BottomPanel::on_build_button_pressed() {
 }
 
 void BottomPanel::on_clear_log_button_pressed() {
-    log_label.set_text("");
+    log_label->set_text("");
 }
 
 void BottomPanel::update_log_output(const BuildOutput &build_output) {
-    if (!log_label.get_text().empty()) {
-        log_label.set_text(String{vformat("%s\n\n%s", log_label.get_text(), build_output.output)});
+    if (!log_label->get_text().empty()) {
+        log_label->set_text(String{vformat("%s\n\n%s", log_label->get_text(), build_output.output)});
     } else {
-        log_label.set_text(build_output.output);
+        log_label->set_text(build_output.output);
     }
 }

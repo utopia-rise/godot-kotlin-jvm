@@ -32,8 +32,8 @@ void GodotKotlinJvmEditor::file_system_dock_folder_moved(const String& folder, c
 
 void GodotKotlinJvmEditor::show_about_dialog() {
     bool show_on_start = editor_settings.ptr()->get_setting("kotlinjvm/editor/show_info_on_start");
-    about_dialog_check_box.set_pressed(show_on_start);
-    about_dialog.popup_centered_minsize();
+    about_dialog_check_box->set_pressed(show_on_start);
+    about_dialog->popup_centered_minsize();
 }
 
 void GodotKotlinJvmEditor::toggle_about_dialog_on_start(bool enabled) {
@@ -55,7 +55,7 @@ void GodotKotlinJvmEditor::menu_option_pressed(int menu_option) {
 
 void GodotKotlinJvmEditor::build_project_pressed() {
     BuildOutput build_output = BuildManager::editor_build_callback();
-    bottom_panel.update_log_output(build_output);
+    bottom_panel->update_log_output(build_output);
 }
 
 void GodotKotlinJvmEditor::_notificationv(int p_notification, bool p_reversed) {
@@ -64,9 +64,9 @@ void GodotKotlinJvmEditor::_notificationv(int p_notification, bool p_reversed) {
     if (p_notification == NOTIFICATION_READY) {
         bool show_info_dialog = editor_settings.ptr()->get_setting("kotlinjvm/editor/show_info_on_start");
         if (show_info_dialog) {
-            about_dialog.set_exclusive(true);
+            about_dialog->set_exclusive(true);
             show_about_dialog();
-            about_dialog.set_exclusive(false);
+            about_dialog->set_exclusive(false);
         }
         // Once shown a first time, it can be seen again via the Kotlin JVM menu - it doesn't have to be exclusive from that time on.
 
@@ -78,14 +78,14 @@ void GodotKotlinJvmEditor::_notificationv(int p_notification, bool p_reversed) {
 }
 
 void GodotKotlinJvmEditor::show_error_dialog(const String& message, const String& title) {
-    error_dialog.set_title(title);
-    error_dialog.set_text(message);
-    error_dialog.popup_centered_minsize();
+    error_dialog->set_title(title);
+    error_dialog->set_text(message);
+    error_dialog->popup_centered_minsize();
 }
 
 bool GodotKotlinJvmEditor::build() {
     BuildOutput build_output = BuildManager::editor_build_callback();
-    bottom_panel.update_log_output(build_output);
+    bottom_panel->update_log_output(build_output);
     return build_output.result == Error::OK;
 }
 
@@ -114,30 +114,35 @@ GodotKotlinJvmEditor::GodotKotlinJvmEditor() {
     Control* editor_base_control = editor_interface->get_base_control();
     editor_settings = editor_interface->get_editor_settings();
 
-    editor_base_control->add_child(&error_dialog);
+    error_dialog = memnew(AcceptDialog);
+    editor_base_control->add_child(error_dialog);
 
-    add_control_to_bottom_panel(&bottom_panel, "Kotlin/JVM");
+    bottom_panel = memnew(BottomPanel);
+    add_control_to_bottom_panel(bottom_panel, "Kotlin/JVM");
 
-    menu_pop_up.hide();
-    menu_pop_up.set_as_toplevel(true);
-    menu_pop_up.connect("id_pressed", this, "menu_option_pressed");
+    PopupMenu* menu_pop_up = memnew(PopupMenu);
+    menu_pop_up->hide();
+    menu_pop_up->set_as_toplevel(true);
+    menu_pop_up->connect("id_pressed", this, "menu_option_pressed");
 
-    add_tool_submenu_item("Kotlin/JVM", &menu_pop_up);
+    add_tool_submenu_item("Kotlin/JVM", menu_pop_up);
 
-    tool_bar_button.set_text("Build");
-    tool_bar_button.set_tooltip("Build gradle project");
-    tool_bar_button.set_focus_mode(Control::FOCUS_NONE);
-    tool_bar_button.connect("pressed", this, "build_project_pressed");
+    ToolButton* tool_bar_button = memnew(ToolButton);
+    tool_bar_button->set_text("Build");
+    tool_bar_button->set_tooltip("Build gradle project");
+    tool_bar_button->set_focus_mode(Control::FOCUS_NONE);
+    tool_bar_button->connect("pressed", this, "build_project_pressed");
 
-    add_control_to_container(CustomControlContainer::CONTAINER_TOOLBAR, &tool_bar_button);
+    add_control_to_container(CustomControlContainer::CONTAINER_TOOLBAR, tool_bar_button);
 
-    menu_pop_up.add_item("About Godot Kotlin JVM");
-    editor_base_control->add_child(&about_dialog);
-    about_dialog.set_title("About Godot Kotlin JVM");
+    about_dialog = memnew(AcceptDialog);
+    menu_pop_up->add_item("About Godot Kotlin JVM");
+    editor_base_control->add_child(about_dialog);
+    about_dialog->set_title("About Godot Kotlin JVM");
 
     // Main VBoxContainer (icon + label on top, checkbox at bottom)
     VBoxContainer* about_vbox = memnew(VBoxContainer);
-    about_dialog.add_child(about_vbox);
+    about_dialog->add_child(about_vbox);
 
     // HBoxContainer for icon + label
     HBoxContainer* about_hbox = memnew(HBoxContainer);
@@ -161,9 +166,10 @@ GodotKotlinJvmEditor::GodotKotlinJvmEditor() {
     about_label->set_use_bbcode(true);
     about_label->connect("meta_clicked", this, "on_about_issue_tracker_url_clicked");
 
-    about_vbox->add_child(&about_dialog_check_box);
-    about_dialog_check_box.set_text("Show this info when starting the editor");
-    about_dialog_check_box.connect("toggled", this, "toggle_about_dialog_on_start");
+    about_dialog_check_box = memnew(CheckBox);
+    about_vbox->add_child(about_dialog_check_box);
+    about_dialog_check_box->set_text("Show this info when starting the editor");
+    about_dialog_check_box->connect("toggled", this, "toggle_about_dialog_on_start");
 }
 
 void GodotKotlinJvmEditor::on_about_issue_tracker_url_clicked(const String& meta) {

@@ -12,19 +12,15 @@ private:
     GodotKotlinJvmEditor();
 
     Ref<EditorSettings> editor_settings;
-    PopupMenu menu_pop_up;
-    AcceptDialog error_dialog;
-    AcceptDialog about_dialog;
-    CheckBox about_dialog_check_box;
+    AcceptDialog* error_dialog;
+    AcceptDialog* about_dialog;
+    CheckBox* about_dialog_check_box;
 
-    ToolButton bottom_panel_button;
-
-    ToolButton tool_bar_button;
     void show_about_dialog();
     void build_project_pressed();
 
 public:
-    BottomPanel bottom_panel;
+    BottomPanel* bottom_panel;
     void _notificationv(int p_notification, bool p_reversed) override;
     void show_error_dialog(const String& message, const String& title = "Error");
     bool build() override;
