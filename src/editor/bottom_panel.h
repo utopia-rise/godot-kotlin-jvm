@@ -11,7 +11,9 @@
 class BottomPanel: public VBoxContainer {
 private:
     EditorInterface* editor_interface = nullptr;
+    ScrollContainer *log_scroll_container;
     Label* log_label;
+    Button* build_button;
 
     void add_builds_tab(TabContainer *pContainer);
 
@@ -21,7 +23,9 @@ public:
     void _notificationv(int p_notification, bool p_reversed) override;
     void on_build_button_pressed();
     void on_clear_log_button_pressed();
-    void update_log_output(const BuildOutput& build_output);
+    void update_log_output();
+    void on_build_check();
+
 };
 
 

@@ -45,7 +45,7 @@ void BottomPanel::add_builds_tab(TabContainer *panel_tabs) {
     toolbar_hbox->set_h_size_flags(SizeFlags::SIZE_EXPAND_FILL);
 
     //toolbar - build button
-    Button *build_button = memnew(Button);
+    build_button = memnew(Button);
     toolbar_hbox->add_child(build_button);
     build_button->set_text(TTR("Build Project"));
     build_button->set_focus_mode(FocusMode::FOCUS_NONE);
@@ -61,7 +61,7 @@ void BottomPanel::add_builds_tab(TabContainer *panel_tabs) {
     clear_log_button->connect("pressed", this, "on_clear_log_button_pressed");
 
     //build output label
-    ScrollContainer* log_scroll_container = memnew(ScrollContainer);
+    log_scroll_container = memnew(ScrollContainer);
     build_tab->add_child(log_scroll_container);
     log_scroll_container->set_h_size_flags(SizeFlags::SIZE_EXPAND_FILL);
     log_scroll_container->set_v_size_flags(SizeFlags::SIZE_EXPAND_FILL);
@@ -72,17 +72,36 @@ void BottomPanel::add_builds_tab(TabContainer *panel_tabs) {
 }
 
 void BottomPanel::on_build_button_pressed() {
-    BuildManager::editor_build_callback();
+    BuildManager::build_project_non_blocking();
 }
 
 void BottomPanel::on_clear_log_button_pressed() {
     log_label->set_text("");
+    DirAccess::create(DirAccess::ACCESS_RESOURCES)->remove(ProjectSettings::get_singleton()->globalize_path("res://build/build_output.txt"));
 }
 
-void BottomPanel::update_log_output(const BuildOutput &build_output) {
-    if (!log_label->get_text().empty()) {
-        log_label->set_text(String{vformat("%s\n\n%s", log_label->get_text(), build_output.output)});
+void BottomPanel::update_log_output() {
+    //set at beginning because once at bottom it should stay at the bottom. even if new input is added
+    log_scroll_container->set_v_scroll(static_cast<int>(log_scroll_container->get_v_scrollbar()->get_max()));
+    GodotKotlinJvmEditor::get_instance()->build_dialog_scroll_container->set_v_scroll(static_cast<int>(GodotKotlinJvmEditor::get_instance()->build_dialog_scroll_container->get_v_scrollbar()->get_max()));
+
+    FileAccess* file_access = FileAccess::open(ProjectSettings::get_singleton()->globalize_path("res://build/build_output.txt"), FileAccess::ModeFlags::READ);
+    if (file_access) {
+        String log = file_access->get_as_utf8_string();
+        log_label->set_text(log);
+        GodotKotlinJvmEditor::get_instance()->build_dialog_log->set_text(log);
+        file_access->close();
     } else {
-        log_label->set_text(build_output.output);
+        log_label->set_text("");
+        GodotKotlinJvmEditor::get_instance()->build_dialog_log->set_text("");
+    }
+}
+
+void BottomPanel::on_build_check() {
+    if (BuildManager::can_build_project()) {
+        build_button->set_disabled(false);
+    } else {
+        build_button->set_disabled(true);
+        update_log_output();
     }
 }

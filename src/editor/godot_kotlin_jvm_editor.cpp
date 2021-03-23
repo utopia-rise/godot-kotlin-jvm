@@ -54,8 +54,9 @@ void GodotKotlinJvmEditor::menu_option_pressed(int menu_option) {
 }
 
 void GodotKotlinJvmEditor::build_project_pressed() {
-    BuildOutput build_output = BuildManager::editor_build_callback();
-    bottom_panel->update_log_output(build_output);
+    build_dialog_log->set_text("");
+    BuildManager::build_project_non_blocking();
+    build_dialog->popup_centered_minsize();
 }
 
 void GodotKotlinJvmEditor::_notificationv(int p_notification, bool p_reversed) {
@@ -84,8 +85,8 @@ void GodotKotlinJvmEditor::show_error_dialog(const String& message, const String
 }
 
 bool GodotKotlinJvmEditor::build() {
-    BuildOutput build_output = BuildManager::editor_build_callback();
-    bottom_panel->update_log_output(build_output);
+    BuildOutput build_output = BuildManager::build_project_blocking();
+    bottom_panel->update_log_output();
     return build_output.result == Error::OK;
 }
 
@@ -105,6 +106,9 @@ GodotKotlinJvmEditor::GodotKotlinJvmEditor() {
     ClassDB::bind_method(D_METHOD("file_system_dock_file_removed", "file"), &GodotKotlinJvmEditor::file_system_dock_file_removed);
     ClassDB::bind_method(D_METHOD("file_system_dock_folder_moved", "folder", "new_folder"), &GodotKotlinJvmEditor::file_system_dock_folder_moved);
     ClassDB::bind_method(D_METHOD("on_about_issue_tracker_url_clicked", "meta"), &GodotKotlinJvmEditor::on_about_issue_tracker_url_clicked);
+    ClassDB::bind_method(D_METHOD("on_build_check"), &GodotKotlinJvmEditor::on_build_check);
+    ClassDB::bind_method(D_METHOD("cancel_build"), &GodotKotlinJvmEditor::cancel_build);
+    ClassDB::bind_method(D_METHOD("on_build_dialog_hide"), &GodotKotlinJvmEditor::on_build_dialog_hide);
     ClassDB::bind_method(D_METHOD("on_build_button_pressed"), &BottomPanel::on_build_button_pressed);
     ClassDB::bind_method(D_METHOD("on_clear_log_button_pressed"), &BottomPanel::on_clear_log_button_pressed);
 
@@ -113,6 +117,13 @@ GodotKotlinJvmEditor::GodotKotlinJvmEditor() {
     EditorInterface* editor_interface = get_editor_interface();
     Control* editor_base_control = editor_interface->get_base_control();
     editor_settings = editor_interface->get_editor_settings();
+
+    build_check_timer = memnew(Timer);
+    build_check_timer->set_autostart(false);
+    build_check_timer->set_wait_time(0.1);
+    build_check_timer->set_one_shot(false);
+    editor_base_control->get_root_parent_control()->add_child(build_check_timer);
+    build_check_timer->connect("timeout", this, "on_build_check");
 
     error_dialog = memnew(AcceptDialog);
     editor_base_control->add_child(error_dialog);
@@ -127,13 +138,27 @@ GodotKotlinJvmEditor::GodotKotlinJvmEditor() {
 
     add_tool_submenu_item("Kotlin/JVM", menu_pop_up);
 
-    ToolButton* tool_bar_button = memnew(ToolButton);
-    tool_bar_button->set_text("Build");
-    tool_bar_button->set_tooltip("Build gradle project");
-    tool_bar_button->set_focus_mode(Control::FOCUS_NONE);
-    tool_bar_button->connect("pressed", this, "build_project_pressed");
+    tool_bar_build_button = memnew(ToolButton);
+    tool_bar_build_button->set_text("Build");
+    tool_bar_build_button->set_tooltip("Build gradle project");
+    tool_bar_build_button->set_focus_mode(Control::FOCUS_NONE);
+    tool_bar_build_button->connect("pressed", this, "build_project_pressed");
 
-    add_control_to_container(CustomControlContainer::CONTAINER_TOOLBAR, tool_bar_button);
+    add_control_to_container(CustomControlContainer::CONTAINER_TOOLBAR, tool_bar_build_button);
+
+    build_dialog = memnew(AcceptDialog);
+    editor_base_control->add_child(build_dialog);
+    build_dialog->add_cancel("Cancel")->connect("pressed", this, "cancel_build");
+    build_dialog->set_title("Building...");
+    build_dialog->connect("popup_hide", this, "on_build_dialog_hide");
+
+    build_dialog_scroll_container = memnew(ScrollContainer);
+    build_dialog_scroll_container->set_custom_minimum_size(Size2{600, 150} * EDSCALE);
+    build_dialog->add_child(build_dialog_scroll_container);
+
+    build_dialog_log = memnew(Label);
+    build_dialog_log->set_h_size_flags(Control::SizeFlags::SIZE_EXPAND_FILL);
+    build_dialog_scroll_container->add_child(build_dialog_log);
 
     about_dialog = memnew(AcceptDialog);
     menu_pop_up->add_item("About Godot Kotlin JVM");
@@ -174,4 +199,24 @@ GodotKotlinJvmEditor::GodotKotlinJvmEditor() {
 
 void GodotKotlinJvmEditor::on_about_issue_tracker_url_clicked(const String& meta) {
     OS::get_singleton()->shell_open(meta);
+}
+
+void GodotKotlinJvmEditor::on_build_check() {
+    BuildManager::update_build_state();
+    bottom_panel->on_build_check();
+    if (BuildManager::can_build_project()) {
+        build_dialog->hide();
+        tool_bar_build_button->set_disabled(false);
+    } else {
+        tool_bar_build_button->set_disabled(true);
+    }
+}
+
+void GodotKotlinJvmEditor::cancel_build() {
+    build_dialog->hide();
+    BuildManager::cancel_build();
+}
+
+void GodotKotlinJvmEditor::on_build_dialog_hide() {
+    build_dialog_log->set_text("");
 }
