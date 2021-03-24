@@ -1,4 +1,6 @@
 
+#ifdef TOOLS_ENABLED
+
 #include <scene/gui/texture_rect.h>
 #include <scene/gui/rich_text_label.h>
 #include <scene/gui/check_box.h>
@@ -8,7 +10,7 @@
 #include "about_dialog.h"
 
 AboutDialog::AboutDialog() {
-    _EDITOR_DEF("kotlinjvm/editor/show_info_on_start", true, false);
+    _EDITOR_DEF("kotlin_jvm/editor/show_info_on_start", true, false);
     ClassDB::bind_method(D_METHOD("on_about_to_show"), &AboutDialog::on_about_to_show);
     ClassDB::bind_method(D_METHOD("on_checkbox_toggled"), &AboutDialog::on_checkbox_toggled);
     ClassDB::bind_method(D_METHOD("on_url_clicked"), &AboutDialog::on_url_clicked);
@@ -50,18 +52,29 @@ AboutDialog::AboutDialog() {
 }
 
 void AboutDialog::on_about_to_show() {
-    bool show_on_start = GodotKotlinJvmEditor::get_instance()->get_editor_interface()->get_editor_settings()->get_setting("kotlinjvm/editor/show_info_on_start");
+    bool show_on_start = GodotKotlinJvmEditor::get_instance()
+            ->get_editor_interface()
+            ->get_editor_settings()
+            ->get_setting("kotlin_jvm/editor/show_info_on_start");
+
     about_dialog_check_box->set_pressed(show_on_start);
 }
 
 void AboutDialog::on_checkbox_toggled(bool is_selected) {
-    bool show_on_start = GodotKotlinJvmEditor::get_instance()->get_editor_interface()->get_editor_settings()->get_setting("kotlinjvm/editor/show_info_on_start");
+    bool show_on_start = GodotKotlinJvmEditor::get_instance()
+            ->get_editor_interface()
+            ->get_editor_settings()
+            ->get_setting("kotlin_jvm/editor/show_info_on_start");
+
     if (show_on_start != is_selected) {
-        GodotKotlinJvmEditor::get_instance()->get_editor_interface()->get_editor_settings()->set_setting("kotlinjvm/editor/show_info_on_start", is_selected);
+        GodotKotlinJvmEditor::get_instance()
+                ->get_editor_interface()
+                ->get_editor_settings()
+                ->set_setting("kotlin_jvm/editor/show_info_on_start", is_selected);
     }
 }
 
-void AboutDialog::on_url_clicked(const String &url) { // NOLINT(readability-convert-member-functions-to-static)
+void AboutDialog::on_url_clicked(const String& url) { // NOLINT(readability-convert-member-functions-to-static)
     OS::get_singleton()->shell_open(url);
 }
 
@@ -69,7 +82,11 @@ void AboutDialog::_notificationv(int p_notification, bool p_reversed) {
     AcceptDialog::_notificationv(p_notification, p_reversed);
 
     if (p_notification == NOTIFICATION_READY) {
-        bool show_on_start = GodotKotlinJvmEditor::get_instance()->get_editor_interface()->get_editor_settings()->get_setting("kotlinjvm/editor/show_info_on_start");
+        bool show_on_start = GodotKotlinJvmEditor::get_instance()
+                ->get_editor_interface()
+                ->get_editor_settings()
+                ->get_setting("kotlin_jvm/editor/show_info_on_start");
+
         if (show_on_start) {
             // Once shown a first time, it can be seen again via the Kotlin JVM menu - it doesn't have to be exclusive from that time on.
             set_exclusive(true);
@@ -78,3 +95,5 @@ void AboutDialog::_notificationv(int p_notification, bool p_reversed) {
         }
     }
 }
+
+#endif //TOOLS_ENABLED

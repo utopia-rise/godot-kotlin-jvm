@@ -1,4 +1,6 @@
 
+#ifdef TOOLS_ENABLED
+
 #ifndef GODOT_JVM_MENU_OPTION_H
 #define GODOT_JVM_MENU_OPTION_H
 
@@ -9,3 +11,5 @@ enum MenuOption {
 
 
 #endif //GODOT_JVM_MENU_OPTION_H
+
+#endif //TOOLS_ENABLED

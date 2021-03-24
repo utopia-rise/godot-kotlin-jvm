@@ -1,16 +1,20 @@
 
+#ifdef TOOLS_ENABLED
+
 #include <core/variant_parser.h>
 #include <editor/editor_node.h>
 
 #ifdef __linux__
+
 #include <wait.h>
+
 #elif __APPLE__
 #include <TargetConditionals.h>
-    #if TARGET_OS_MAC
-        TODO()
-    #endif
+#if TARGET_OS_MAC
+TODO()
+#endif
 #elif defined _WIN32 || defined _WIN64
-    TODO()
+TODO()
 #endif
 
 #include "../godot_kotlin_jvm_editor.h"
@@ -27,55 +31,19 @@ bool BuildManager::build_project_blocking() {
     EditorNode::progress_add_task("build_godot_kotlin_jvm", "Building with gradle...", 2);
     EditorNode::progress_task_step("build_godot_kotlin_jvm", "Building gradle project", 1);
 
-    List<String> args{};
-    String gradleCommand{ ProjectSettings::get_singleton()->globalize_path("res://gradlew") };
-    if (OS::get_singleton()->get_name() == "Windows") {
-        gradleCommand = String{ ProjectSettings::get_singleton()->globalize_path("res://gradlew.bat") };
-    }
-    args.push_back("build");
-    String output;
-    Error result = OS::get_singleton()->execute(
-            gradleCommand,
-            args,
-            true,
-            nullptr,
-            &output
-    );
+    Error result = build(true);
+    pull_log();
 
-    String args_string{};
-    for (int i = 0; i < args.size(); i++) {
-        args_string += vformat(" %s", args[i]);
-    }
-
-    EditorNode::progress_task_step("build_godot_kotlin_jvm", "Done", 2); //dummy to not start at 100%
+    EditorNode::progress_task_step("build_godot_kotlin_jvm", "Done", 2); //dummy to not start at 0% or 100%
     EditorNode::progress_end_task("build_godot_kotlin_jvm");
 
-    return result == Error::OK;
+    GodotKotlinJvmEditor::get_instance()->on_build_check_timeout(); //manually call what timer would call to update ui
+    return result == Error::OK && last_build_successful();
 }
 
 void BuildManager::build_project_non_blocking() {
     GodotKotlinJvmEditor::get_instance()->build_check_timer->start();
-    if (!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists("build.gradle.kts")) {
-        return;
-    }
-    List<String> args{};
-    String gradle_command{ProjectSettings::get_singleton()->globalize_path("res://gradlew") };
-    if (OS::get_singleton()->get_name() == "Windows") {
-        gradle_command = String{ProjectSettings::get_singleton()->globalize_path("res://gradlew.bat") };
-    }
-    String build_dir = ProjectSettings::get_singleton()->globalize_path("res://build");
-    DirAccess::create(DirAccess::ACCESS_RESOURCES)->make_dir_recursive(build_dir);
-
-    // the same on windows and unix:
-    args.push_back("-c");
-    args.push_back(vformat("%s build > %s/build_output.txt 2>&1", gradle_command, build_dir));
-
-    OS::get_singleton()->execute(
-            "bash",
-            args,
-            false,
-            &build_process_pid
-    );
+    build(false);
 }
 
 bool BuildManager::can_build_project() {
@@ -83,7 +51,7 @@ bool BuildManager::can_build_project() {
 }
 
 // convenience function for better readability in some places
-bool BuildManager::build_finished() {
+bool BuildManager::is_build_finished() {
     return can_build_project();
 }
 
@@ -102,12 +70,12 @@ void BuildManager::update_build_state() {
     }
     bool process_running = ret != -1;
 #elif __APPLE__
-    #include <TargetConditionals.h>
-    #if TARGET_OS_MAC
-        TODO()
-    #endif
-#elif defined _WIN32 || defined _WIN64
+#include <TargetConditionals.h>
+#if TARGET_OS_MAC
     TODO()
+#endif
+#elif defined _WIN32 || defined _WIN64
+TODO()
 #endif
 
 //    String pidCheck{ "ps" };
@@ -140,12 +108,17 @@ String& BuildManager::get_log() {
 }
 
 void BuildManager::clear_log() {
-    DirAccess::create(DirAccess::ACCESS_RESOURCES)->remove(ProjectSettings::get_singleton()->globalize_path("res://build/build_output.txt"));
+    DirAccess::create(DirAccess::ACCESS_RESOURCES)
+            ->remove(ProjectSettings::get_singleton()->globalize_path("res://build/build_output.txt"));
     build_log.clear();
 }
 
 void BuildManager::pull_log() {
-    FileAccess* file_access = FileAccess::open(ProjectSettings::get_singleton()->globalize_path("res://build/build_output.txt"), FileAccess::ModeFlags::READ);
+    FileAccess* file_access = FileAccess::open(
+            ProjectSettings::get_singleton()->globalize_path("res://build/build_output.txt"),
+            FileAccess::ModeFlags::READ
+    );
+
     if (file_access) {
         build_log = file_access->get_as_utf8_string();
         file_access->close();
@@ -153,3 +126,42 @@ void BuildManager::pull_log() {
         build_log.clear();
     }
 }
+
+Error BuildManager::build(bool blocking) {
+    if (!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists("build.gradle.kts")) {
+        return Error::OK;
+    }
+    List<String> args{};
+    String gradle_command{ProjectSettings::get_singleton()->globalize_path("res://gradlew")};
+    if (OS::get_singleton()->get_name() == "Windows") {
+        gradle_command = String{ProjectSettings::get_singleton()->globalize_path("res://gradlew.bat")};
+    }
+    String build_dir = ProjectSettings::get_singleton()->globalize_path("res://build");
+    DirAccess::create(DirAccess::ACCESS_RESOURCES)->make_dir_recursive(build_dir);
+
+    // the same on windows and unix:
+    args.push_back("-c");
+    args.push_back(vformat("%s build > %s/build_output.txt 2>&1", gradle_command, build_dir));
+
+    if (blocking) {
+        return OS::get_singleton()->execute(
+                "bash",
+                args,
+                true
+        );
+    } else {
+        return OS::get_singleton()->execute(
+                "bash",
+                args,
+                false,
+                &build_process_pid
+        );
+    }
+}
+
+bool BuildManager::last_build_successful() {
+    //TODO: find a better way. We cannot use the exit code of the task as it's successful also for failed builds because of the way we have to execute composite commands in godot. See: https://docs.godotengine.org/en/stable/classes/class_os.html#class-os-method-execute
+    return build_log.find("BUILD FAILED") < 0;
+}
+
+#endif //TOOLS_ENABLED

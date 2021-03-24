@@ -1,4 +1,6 @@
 
+#ifdef TOOLS_ENABLED
+
 #include <editor/editor_scale.h>
 #include <modules/kotlin_jvm/src/editor/build/build_manager.h>
 #include "bottom_panel.h"
@@ -21,13 +23,13 @@ BottomPanel::BottomPanel() { // NOLINT(cppcoreguidelines-pro-type-member-init)
     add_builds_tab(panel_tabs);
 }
 
-void BottomPanel::add_builds_tab(TabContainer *panel_tabs) {
+void BottomPanel::add_builds_tab(TabContainer* panel_tabs) {
     VBoxContainer* build_tab = memnew(VBoxContainer);
     panel_tabs->add_child(build_tab);
     build_tab->set_h_size_flags(SizeFlags::SIZE_EXPAND_FILL);
 
     //toolbar
-    HBoxContainer *toolbar_hbox = memnew(HBoxContainer);
+    HBoxContainer* toolbar_hbox = memnew(HBoxContainer);
     build_tab->add_child(toolbar_hbox);
     toolbar_hbox->set_h_size_flags(SizeFlags::SIZE_EXPAND_FILL);
 
@@ -41,7 +43,7 @@ void BottomPanel::add_builds_tab(TabContainer *panel_tabs) {
     toolbar_hbox->add_spacer();
 
     //toolbar - clear log button
-    Button *clear_log_button = memnew(Button);
+    Button* clear_log_button = memnew(Button);
     toolbar_hbox->add_child(clear_log_button);
     clear_log_button->set_text(TTR("Clear Output"));
     clear_log_button->set_focus_mode(FocusMode::FOCUS_NONE);
@@ -73,7 +75,8 @@ void BottomPanel::update_log_output() {
     log_label->set_text(BuildManager::get_log());
 }
 
-void BottomPanel::show_panel() {
+void BottomPanel::make_visible() {
+    update_log_output();
     GodotKotlinJvmEditor::get_instance()->make_bottom_panel_item_visible(this);
 }
 
@@ -85,3 +88,5 @@ void BottomPanel::update_state() {
         update_log_output();
     }
 }
+
+#endif //TOOLS_ENABLED
