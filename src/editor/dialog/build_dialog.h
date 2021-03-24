@@ -18,8 +18,6 @@ private:
     ScrollContainer* scroll_container;
     Label* log_label;
 
-    void cancel_build();
-
     void on_build_dialog_hide();
 };
 

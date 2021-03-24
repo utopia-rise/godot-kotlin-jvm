@@ -6,30 +6,37 @@
 
 #include <core/error_list.h>
 #include <core/os/os.h>
+#include <core/os/thread.h>
 
 class BuildManager {
 public:
-    static bool build_project_blocking();
+    static BuildManager& get_instance();
 
-    static void build_project_non_blocking();
+    bool build_project_blocking();
 
-    static bool can_build_project();
+    void build_project_non_blocking();
 
-    static bool is_build_finished();
+    bool can_build_project();
 
-    static void update_build_state();
+    bool is_build_finished();
 
-    static void cancel_build();
+    void update_build_state();
 
-    static String& get_log();
+    String get_log();
 
-    static void clear_log();
+    void clear_log();
 
-    static bool last_build_successful();
+    bool last_build_successful();
+
+    Error build_blocking();
 
 private:
-    static void pull_log();
-    static Error build(bool blocking);
+    BuildManager();
+    String build_log;
+    Thread* build_thread = nullptr;
+    bool build_finished = false;
+    Mutex* build_mutex;
+
 };
 
 

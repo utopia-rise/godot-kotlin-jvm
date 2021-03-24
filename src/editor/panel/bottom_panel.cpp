@@ -15,6 +15,7 @@ BottomPanel::BottomPanel() { // NOLINT(cppcoreguidelines-pro-type-member-init)
     set_anchors_and_margins_preset(LayoutPreset::PRESET_WIDE);
 
     TabContainer* panel_tabs = memnew(TabContainer);
+    panel_tabs->set_name(TTR("Build"));
     add_child(panel_tabs);
     panel_tabs->set_tab_align(TabContainer::ALIGN_LEFT);
     panel_tabs->set_custom_minimum_size(Size2{0, 288} * EDSCALE);
@@ -61,18 +62,18 @@ void BottomPanel::add_builds_tab(TabContainer* panel_tabs) {
 }
 
 void BottomPanel::on_build_button_pressed() { // NOLINT(readability-convert-member-functions-to-static)
-    BuildManager::build_project_non_blocking();
+    BuildManager::get_instance().build_project_non_blocking();
 }
 
 void BottomPanel::on_clear_log_button_pressed() {
     log_label->set_text("");
-    BuildManager::clear_log();
+    BuildManager::get_instance().clear_log();
 }
 
 void BottomPanel::update_log_output() {
     //set at beginning because once at bottom it should stay at the bottom. even if new input is added
     log_scroll_container->set_v_scroll(static_cast<int>(log_scroll_container->get_v_scrollbar()->get_max()));
-    log_label->set_text(BuildManager::get_log());
+    log_label->set_text(BuildManager::get_instance().get_log());
 }
 
 void BottomPanel::make_visible() {
@@ -81,7 +82,7 @@ void BottomPanel::make_visible() {
 }
 
 void BottomPanel::update_state() {
-    if (BuildManager::can_build_project()) {
+    if (BuildManager::get_instance().can_build_project()) {
         build_button->set_disabled(false);
     } else {
         build_button->set_disabled(true);

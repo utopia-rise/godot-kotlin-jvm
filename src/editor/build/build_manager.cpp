@@ -4,35 +4,28 @@
 #include <core/variant_parser.h>
 #include <editor/editor_node.h>
 
-#ifdef __linux__
-
-#include <wait.h>
-
-#elif __APPLE__
-#include <TargetConditionals.h>
-#if TARGET_OS_MAC
-TODO()
-#endif
-#elif defined _WIN32 || defined _WIN64
-TODO()
-#endif
-
 #include "../godot_kotlin_jvm_editor.h"
 #include "build_manager.h"
 
-static OS::ProcessID build_process_pid;
-static String build_log{};
+void background_trigger_build(void* p_userdata) {
+    BuildManager::get_instance().build_blocking();
+}
+
+BuildManager::BuildManager() {
+    build_mutex = Mutex::create();
+}
 
 bool BuildManager::build_project_blocking() {
     if (!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists("build.gradle.kts")) {
         return true;
     }
 
+    clear_log();
+
     EditorNode::progress_add_task("build_godot_kotlin_jvm", "Building with gradle...", 2);
     EditorNode::progress_task_step("build_godot_kotlin_jvm", "Building gradle project", 1);
 
-    Error result = build(true);
-    pull_log();
+    Error result = build_blocking();
 
     EditorNode::progress_task_step("build_godot_kotlin_jvm", "Done", 2); //dummy to not start at 0% or 100%
     EditorNode::progress_end_task("build_godot_kotlin_jvm");
@@ -42,12 +35,18 @@ bool BuildManager::build_project_blocking() {
 }
 
 void BuildManager::build_project_non_blocking() {
-    GodotKotlinJvmEditor::get_instance()->build_check_timer->start();
-    build(false);
+    if (build_thread == nullptr) {
+        clear_log();
+        GodotKotlinJvmEditor::get_instance()->build_check_timer->start();
+        build_thread = Thread::create(background_trigger_build, nullptr);
+    }
 }
 
 bool BuildManager::can_build_project() {
-    return build_process_pid == 0;
+    build_mutex->lock();
+    bool result = build_finished;
+    build_mutex->unlock();
+    return result;
 }
 
 // convenience function for better readability in some places
@@ -56,112 +55,79 @@ bool BuildManager::is_build_finished() {
 }
 
 void BuildManager::update_build_state() {
-    if (build_process_pid == 0) {
+    if (build_thread == nullptr) {
         GodotKotlinJvmEditor::get_instance()->build_check_timer->stop();
         return;
     }
 
-#ifdef __linux__
-    int ret = ::kill(build_process_pid, 0); //see: https://linux.die.net/man/2/kill
-    if (!ret) {
-        //avoid zombie process
-        int st;
-        ::waitpid(build_process_pid, &st, WNOHANG); //WNOHANG -> does not wait which is desired as we check frequently
+    build_mutex->lock();
+    if (build_finished) {
+        Thread::wait_to_finish(build_thread);
+        build_thread = nullptr;
     }
-    bool process_running = ret != -1;
-#elif __APPLE__
-#include <TargetConditionals.h>
-#if TARGET_OS_MAC
-    TODO()
-#endif
-#elif defined _WIN32 || defined _WIN64
-TODO()
-#endif
-
-//    String pidCheck{ "ps" };
-//    if (OS::get_singleton()->get_name() == "Windows") {
-//        //something like this on windows: OpenProcess(  PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, processID );
-//        //or
-//        //tasklist /FI "PID eq 1234"
-//        pidCheck = String{ "tasklist" };
-//    }
-//    List<String> args{};
-//    args.push_back(vformat("%s", build_process_pid));
-//    if (OS::get_singleton()->execute(pidCheck, args, true) != Error::OK) {
-//        build_process_pid = 0;
-//    }
-
-    if (!process_running) {
-        build_process_pid = 0;
-    }
-    pull_log();
+    build_mutex->unlock();
 }
 
-void BuildManager::cancel_build() {
-    if (build_process_pid != 0) {
-        OS::get_singleton()->kill(build_process_pid);
-    }
-}
-
-String& BuildManager::get_log() {
-    return build_log;
+String BuildManager::get_log() {
+    build_mutex->lock();
+    String result = build_log;
+    build_mutex->unlock();
+    return result;
 }
 
 void BuildManager::clear_log() {
-    DirAccess::create(DirAccess::ACCESS_RESOURCES)
-            ->remove(ProjectSettings::get_singleton()->globalize_path("res://build/build_output.txt"));
+    build_mutex->lock();
     build_log.clear();
+    build_mutex->unlock();
 }
 
-void BuildManager::pull_log() {
-    FileAccess* file_access = FileAccess::open(
-            ProjectSettings::get_singleton()->globalize_path("res://build/build_output.txt"),
-            FileAccess::ModeFlags::READ
-    );
-
-    if (file_access) {
-        build_log = file_access->get_as_utf8_string();
-        file_access->close();
-    } else {
-        build_log.clear();
-    }
-}
-
-Error BuildManager::build(bool blocking) {
+Error BuildManager::build_blocking() {
     if (!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists("build.gradle.kts")) {
         return Error::OK;
     }
+    clear_log();
+    build_mutex->lock();
+    build_finished = false;
+    build_mutex->unlock();
+
     List<String> args{};
+    args.push_back("build");
+
+#if defined _WIN32 || defined _WIN64
+    String gradle_command{ProjectSettings::get_singleton()->globalize_path("res://gradlew.bat")};
+#else
     String gradle_command{ProjectSettings::get_singleton()->globalize_path("res://gradlew")};
-    if (OS::get_singleton()->get_name() == "Windows") {
-        gradle_command = String{ProjectSettings::get_singleton()->globalize_path("res://gradlew.bat")};
-    }
-    String build_dir = ProjectSettings::get_singleton()->globalize_path("res://build");
-    DirAccess::create(DirAccess::ACCESS_RESOURCES)->make_dir_recursive(build_dir);
+#endif
 
-    // the same on windows and unix:
-    args.push_back("-c");
-    args.push_back(vformat("%s build > %s/build_output.txt 2>&1", gradle_command, build_dir));
+    Error result = OS::get_singleton()->execute(
+            gradle_command,
+            args,
+            true,
+            nullptr,
+            &build_log,
+            nullptr,
+            true,
+            build_mutex
+    );
 
-    if (blocking) {
-        return OS::get_singleton()->execute(
-                "bash",
-                args,
-                true
-        );
-    } else {
-        return OS::get_singleton()->execute(
-                "bash",
-                args,
-                false,
-                &build_process_pid
-        );
-    }
+    build_mutex->lock();
+    build_finished = true;
+    build_mutex->unlock();
+
+    return result;
 }
 
 bool BuildManager::last_build_successful() {
+    build_mutex->lock();
     //TODO: find a better way. We cannot use the exit code of the task as it's successful also for failed builds because of the way we have to execute composite commands in godot. See: https://docs.godotengine.org/en/stable/classes/class_os.html#class-os-method-execute
-    return build_log.find("BUILD FAILED") < 0;
+    bool successful = build_log.find("BUILD FAILED") < 0;
+    build_mutex->unlock();
+    return successful;
+}
+
+BuildManager& BuildManager::get_instance() {
+    static BuildManager instance;
+    return instance;
 }
 
 #endif //TOOLS_ENABLED

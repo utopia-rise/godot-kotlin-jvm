@@ -60,7 +60,7 @@ void AboutDialog::on_about_to_show() {
     about_dialog_check_box->set_pressed(show_on_start);
 }
 
-void AboutDialog::on_checkbox_toggled(bool is_selected) {
+void AboutDialog::on_checkbox_toggled(bool is_selected) { // NOLINT(readability-convert-member-functions-to-static)
     bool show_on_start = GodotKotlinJvmEditor::get_instance()
             ->get_editor_interface()
             ->get_editor_settings()

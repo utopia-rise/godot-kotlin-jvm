@@ -59,7 +59,7 @@ void GodotKotlinJvmEditor::on_menu_option_pressed(int menu_option) {
 }
 
 void GodotKotlinJvmEditor::on_build_project_pressed() {
-    BuildManager::build_project_non_blocking();
+    BuildManager::get_instance().build_project_non_blocking();
     build_dialog->popup_centered_minsize();
 }
 
@@ -152,7 +152,7 @@ bool GodotKotlinJvmEditor::build() {
             ->get_setting("kotlin_jvm/editor/build_gradle_before_start");
 
     if (build_gradle_before_start) {
-        bool is_successful = BuildManager::build_project_blocking();
+        bool is_successful = BuildManager::get_instance().build_project_blocking();
         if (!is_successful) {
             bottom_panel->make_visible();
         }
@@ -168,7 +168,7 @@ GodotKotlinJvmEditor* GodotKotlinJvmEditor::get_instance() {
 }
 
 void GodotKotlinJvmEditor::on_build_check_timeout() { // NOLINT(readability-convert-member-functions-to-static)
-    BuildManager::update_build_state();
+    BuildManager::get_instance().update_build_state();
     bottom_panel->update_state();
     build_dialog->update_state();
 }
