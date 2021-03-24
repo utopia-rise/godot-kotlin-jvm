@@ -4,19 +4,20 @@
 
 #include <core/error_list.h>
 #include <core/os/os.h>
-#include "build_output.h"
 
 class BuildManager {
 public:
-    static BuildOutput build_project_blocking();
+    static bool build_project_blocking();
     static void build_project_non_blocking();
     static bool can_build_project();
+    static bool build_finished();
     static void update_build_state();
     static void cancel_build();
+    static String& get_log();
+    static void clear_log();
 
 private:
-    static void show_build_error_dialog();
-    static BuildOutput build();
+    static void pull_log();
 };
 
 

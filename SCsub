@@ -23,4 +23,6 @@ module_env.add_source_files(module_env.modules_sources, "src/jni/platforms/*.cpp
 module_env.add_source_files(module_env.modules_sources, "src/bridges/*.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/editor/*.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/editor/build/*.cpp")
+module_env.add_source_files(module_env.modules_sources, "src/editor/dialog/*.cpp")
+module_env.add_source_files(module_env.modules_sources, "src/editor/panel/*.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/*.cpp")

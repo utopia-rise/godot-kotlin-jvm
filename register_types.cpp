@@ -23,10 +23,6 @@ static void editor_init() {
 }
 
 static EditorPlugin* godot_kotlin_jvm_editor_plugin_creator_func(EditorNode* editor_node) {
-//    int i = 0;
-//    while (i == 0) {
-//        int blubb = 1;
-//    }
     return GodotKotlinJvmEditor::get_instance();
 }
 #endif

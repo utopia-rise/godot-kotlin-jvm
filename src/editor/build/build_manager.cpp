@@ -15,13 +15,13 @@
 
 #include "../godot_kotlin_jvm_editor.h"
 #include "build_manager.h"
-#include "build_output.h"
 
 static OS::ProcessID build_process_pid;
+static String build_log{};
 
-BuildOutput BuildManager::build_project_blocking() {
+bool BuildManager::build_project_blocking() {
     if (!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists("build.gradle.kts")) {
-        return BuildOutput{};
+        return true;
     }
 
     EditorNode::progress_add_task("build_godot_kotlin_jvm", "Building with gradle...", 2);
@@ -46,45 +46,11 @@ BuildOutput BuildManager::build_project_blocking() {
     for (int i = 0; i < args.size(); i++) {
         args_string += vformat(" %s", args[i]);
     }
-    BuildOutput build_output{result, vformat("%s%s\n%s", gradleCommand, args_string, output)};
 
     EditorNode::progress_task_step("build_godot_kotlin_jvm", "Done", 2); //dummy to not start at 100%
     EditorNode::progress_end_task("build_godot_kotlin_jvm");
 
-    if (build_output.result != Error::OK) {
-        show_build_error_dialog();
-        return build_output;
-    }
-
-    return build_output;
-}
-
-void BuildManager::show_build_error_dialog() {
-    GodotKotlinJvmEditor::get_instance()->show_error_dialog("An error occurred during building.\nConsult the error output in the bottom panel", "Build error");
-    GodotKotlinJvmEditor::get_instance()->bottom_panel->show_build_tab();
-}
-
-BuildOutput BuildManager::build() {
-    List<String> args{};
-    String gradleCommand{ ProjectSettings::get_singleton()->globalize_path("res://gradlew") };
-    if (OS::get_singleton()->get_name() == "Windows") {
-        gradleCommand = String{ ProjectSettings::get_singleton()->globalize_path("res://gradlew.bat") };
-    }
-    args.push_back("build");
-    String output;
-    Error result = OS::get_singleton()->execute(
-            gradleCommand,
-            args,
-            true,
-            nullptr,
-            &output
-    );
-
-    String args_string{};
-    for (int i = 0; i < args.size(); i++) {
-        args_string += vformat(" %s", args[i]);
-    }
-    return BuildOutput {result, vformat("%s%s\n%s", gradleCommand, args_string, output)};
+    return result == Error::OK;
 }
 
 void BuildManager::build_project_non_blocking() {
@@ -114,6 +80,11 @@ void BuildManager::build_project_non_blocking() {
 
 bool BuildManager::can_build_project() {
     return build_process_pid == 0;
+}
+
+// convenience function for better readability in some places
+bool BuildManager::build_finished() {
+    return can_build_project();
 }
 
 void BuildManager::update_build_state() {
@@ -155,10 +126,30 @@ void BuildManager::update_build_state() {
     if (!process_running) {
         build_process_pid = 0;
     }
+    pull_log();
 }
 
 void BuildManager::cancel_build() {
     if (build_process_pid != 0) {
         OS::get_singleton()->kill(build_process_pid);
+    }
+}
+
+String& BuildManager::get_log() {
+    return build_log;
+}
+
+void BuildManager::clear_log() {
+    DirAccess::create(DirAccess::ACCESS_RESOURCES)->remove(ProjectSettings::get_singleton()->globalize_path("res://build/build_output.txt"));
+    build_log.clear();
+}
+
+void BuildManager::pull_log() {
+    FileAccess* file_access = FileAccess::open(ProjectSettings::get_singleton()->globalize_path("res://build/build_output.txt"), FileAccess::ModeFlags::READ);
+    if (file_access) {
+        build_log = file_access->get_as_utf8_string();
+        file_access->close();
+    } else {
+        build_log.clear();
     }
 }
