@@ -35,7 +35,7 @@ bool BuildManager::build_project_blocking() {
 }
 
 void BuildManager::build_project_non_blocking() {
-    if (build_thread) {
+    if (!build_thread) {
         clear_log();
         GodotKotlinJvmEditor::get_instance()->build_check_timer->start();
         build_thread = Thread::create(background_trigger_build, nullptr);
@@ -55,7 +55,7 @@ bool BuildManager::is_build_finished() {
 }
 
 void BuildManager::update_build_state() {
-    if (build_thread) {
+    if (!build_thread) {
         GodotKotlinJvmEditor::get_instance()->build_check_timer->stop();
         return;
     }
