@@ -6,3 +6,6 @@ build
 
 # Ignore Intellij directory
 .idea
+
+# Ignore embedded jre
+jre
