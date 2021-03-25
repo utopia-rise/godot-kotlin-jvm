@@ -18,10 +18,10 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
 
         val ossrhUser = target.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_USERNAME")
         val ossrhPassword = target.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_PASSWORD")
-        val signingKey = target.propOrEnv("GODOT_KOTLIN_SIGNING_KEY")
-        val signingPassword = target.propOrEnv("GODOT_KOTLIN_SIGNING_PASSWORD")
+        val signingKey = target.propOrEnv("GODOT_KOTLIN_GPG_KEY_ID")
+        val signingPassword = target.propOrEnv("GODOT_KOTLIN_GPG_KEY_PASSPHRASE")
 
-        val releaseMode = target.extra["releaseMode"] == true
+        val releaseMode = !(target.version as String).endsWith("-SNAPSHOT")
 
         @Suppress("UNCHECKED_CAST")
         val artifacts = target.extra["artifacts"] as Array<String>
