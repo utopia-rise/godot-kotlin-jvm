@@ -30,7 +30,7 @@ public:
 
     void clear_log();
 
-    bool last_build_successful();
+    bool last_build_successful() const;
 
     Error build_blocking();
 
@@ -41,7 +41,7 @@ private:
     Thread* build_thread = nullptr;
     bool build_finished = false;
     Mutex* build_mutex;
-
+    int last_build_exit_code = 0;
 };
 
 

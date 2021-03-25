@@ -99,30 +99,31 @@ Error BuildManager::build_blocking() {
     String gradle_command{ProjectSettings::get_singleton()->globalize_path("res://gradlew")};
 #endif
 
+    int exit_code;
     Error result = OS::get_singleton()->execute(
             gradle_command,
             args,
             true,
             nullptr,
             &build_log,
-            nullptr,
+            &exit_code,
             true,
             build_mutex
     );
 
     build_mutex->lock();
+    last_build_exit_code = exit_code;
     build_finished = true;
     build_mutex->unlock();
 
     return result;
 }
 
-bool BuildManager::last_build_successful() {
+bool BuildManager::last_build_successful() const {
     build_mutex->lock();
-    //TODO: find a better way. We cannot use the exit code of the task as it's successful also for failed builds because of the way we have to execute composite commands in godot. See: https://docs.godotengine.org/en/stable/classes/class_os.html#class-os-method-execute
-    bool successful = build_log.find("BUILD FAILED") < 0;
+    bool result = last_build_exit_code == 0;
     build_mutex->unlock();
-    return successful;
+    return result;
 }
 
 BuildManager& BuildManager::get_instance() {
