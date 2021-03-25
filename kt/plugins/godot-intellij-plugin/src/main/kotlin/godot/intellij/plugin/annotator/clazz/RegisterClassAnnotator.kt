@@ -28,7 +28,6 @@ import org.jetbrains.kotlin.psi.KtPackageDirective
 import org.jetbrains.kotlin.psi.allConstructors
 import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
 import org.jetbrains.kotlin.resolve.descriptorUtil.getAllSuperclassesWithoutAny
-import java.io.File
 
 private const val MAX_CONSTRUCTOR_ARGS = 5
 
@@ -221,8 +220,8 @@ class RegisterClassAnnotator : Annotator {
             containingFilePath = containingFilePath.removePrefix(srcDir)
         }
         containingFilePath =
-            containingFilePath.substringBeforeLast("/").removePrefix("/").removeSuffix(".kt") //not File.separator as the virtual file path is platform independent with "/"
-        val packagePath = ktPackageDirective.fqName.asString().replace(".", "/") //not File.separator as the virtual file path is platform independent with "/"
+            containingFilePath.substringBeforeLast("/").removePrefix("/").removeSuffix(".kt") // not File.separator as the virtual file path is platform independent with "/"
+        val packagePath = ktPackageDirective.fqName.asString().replace(".", "/") // not File.separator as the virtual file path is platform independent with "/"
 
         if (packagePath != containingFilePath) {
             holder.registerProblem(
