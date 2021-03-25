@@ -19,7 +19,6 @@ BottomPanel::BottomPanel() :
     set_anchors_and_margins_preset(LayoutPreset::PRESET_WIDE);
 
     TabContainer* panel_tabs{memnew(TabContainer)};
-    panel_tabs->set_name(TTR("Build"));
     add_child(panel_tabs);
     panel_tabs->set_tab_align(TabContainer::ALIGN_LEFT);
     panel_tabs->set_custom_minimum_size(Size2{0, 288} * EDSCALE);
@@ -30,6 +29,7 @@ BottomPanel::BottomPanel() :
 
 void BottomPanel::add_builds_tab(TabContainer* panel_tabs) {
     VBoxContainer* build_tab{memnew(VBoxContainer)};
+    build_tab->set_name(TTR("Build"));
     panel_tabs->add_child(build_tab);
     build_tab->set_h_size_flags(SizeFlags::SIZE_EXPAND_FILL);
 
