@@ -221,8 +221,8 @@ class RegisterClassAnnotator : Annotator {
             containingFilePath = containingFilePath.removePrefix(srcDir)
         }
         containingFilePath =
-            containingFilePath.substringBeforeLast(File.separator).removePrefix(File.separator).removeSuffix(".kt")
-        val packagePath = ktPackageDirective.fqName.asString().replace(".", File.separator)
+            containingFilePath.substringBeforeLast("/").removePrefix("/").removeSuffix(".kt") //not File.separator as the virtual file path is platform independent with "/"
+        val packagePath = ktPackageDirective.fqName.asString().replace(".", "/") //not File.separator as the virtual file path is platform independent with "/"
 
         if (packagePath != containingFilePath) {
             holder.registerProblem(
