@@ -12,6 +12,10 @@ class BuildManager {
 public:
     static BuildManager& get_instance();
 
+    BuildManager(const BuildManager&) = delete;
+
+    BuildManager& operator=(const BuildManager&) = delete;
+
     bool build_project_blocking();
 
     void build_project_non_blocking();
@@ -32,6 +36,7 @@ public:
 
 private:
     BuildManager();
+
     String build_log;
     Thread* build_thread = nullptr;
     bool build_finished = false;

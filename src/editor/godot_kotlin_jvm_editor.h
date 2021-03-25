@@ -15,6 +15,10 @@ class GodotKotlinJvmEditor : public EditorPlugin {
 public:
     static GodotKotlinJvmEditor* get_instance();
 
+    GodotKotlinJvmEditor(const GodotKotlinJvmEditor&) = delete;
+
+    GodotKotlinJvmEditor& operator=(const GodotKotlinJvmEditor&) = delete;
+
     Timer* build_check_timer;
 
     void on_build_check_timeout();
