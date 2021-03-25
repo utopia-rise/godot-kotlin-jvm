@@ -107,24 +107,21 @@ void GodotKotlinJvmEditor::_notificationv(int p_notification, bool p_reversed) {
 
         Control* editor_base_control = get_editor_interface()->get_base_control();
 
-        build_check_timer = memnew(Timer);
         build_check_timer->set_autostart(false);
         build_check_timer->set_wait_time(0.2);
         build_check_timer->set_one_shot(false);
         build_check_timer->connect("timeout", this, "on_build_check_timeout");
         add_child(build_check_timer);
 
-        bottom_panel = memnew(BottomPanel);
         add_control_to_bottom_panel(bottom_panel, "Kotlin/JVM");
 
-        PopupMenu* menu_pop_up = memnew(PopupMenu);
+        PopupMenu* menu_pop_up{memnew(PopupMenu)};
         menu_pop_up->hide();
         menu_pop_up->set_as_toplevel(true);
         menu_pop_up->connect("id_pressed", this, "on_menu_option_pressed");
 
         add_tool_submenu_item("Kotlin/JVM", menu_pop_up);
 
-        tool_bar_build_button = memnew(ToolButton);
         tool_bar_build_button->set_text("Build");
         tool_bar_build_button->set_tooltip("Build gradle project");
         tool_bar_build_button->set_focus_mode(Control::FOCUS_NONE);
@@ -132,10 +129,8 @@ void GodotKotlinJvmEditor::_notificationv(int p_notification, bool p_reversed) {
 
         add_control_to_container(CustomControlContainer::CONTAINER_TOOLBAR, tool_bar_build_button);
 
-        build_dialog = memnew(BuildDialog);
         editor_base_control->add_child(build_dialog);
 
-        about_dialog = memnew(AboutDialog);
         menu_pop_up->add_item("About Godot Kotlin JVM");
         editor_base_control->add_child(about_dialog);
 
@@ -171,6 +166,15 @@ void GodotKotlinJvmEditor::on_build_check_timeout() { // NOLINT(readability-conv
     BuildManager::get_instance().update_build_state();
     bottom_panel->update_state();
     build_dialog->update_state();
+}
+
+GodotKotlinJvmEditor::GodotKotlinJvmEditor() :
+        build_check_timer(memnew(Timer)),
+        bottom_panel(memnew(BottomPanel)),
+        tool_bar_build_button(memnew(ToolButton)),
+        build_dialog(memnew(BuildDialog)),
+        about_dialog(memnew(AboutDialog)) {
+
 }
 
 #endif //TOOLS_ENABLED

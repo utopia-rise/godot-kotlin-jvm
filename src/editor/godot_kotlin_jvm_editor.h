@@ -25,6 +25,7 @@ protected:
     bool build() override;
 
 private:
+    GodotKotlinJvmEditor();
     AboutDialog* about_dialog;
     BuildDialog* build_dialog;
     ToolButton* tool_bar_build_button;

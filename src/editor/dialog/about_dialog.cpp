@@ -9,7 +9,7 @@
 #include <modules/kotlin_jvm/src/editor/godot_kotlin_jvm_editor.h>
 #include "about_dialog.h"
 
-AboutDialog::AboutDialog() {
+AboutDialog::AboutDialog(): about_dialog_check_box(memnew(CheckBox)) {
     _EDITOR_DEF("kotlin_jvm/editor/show_info_on_start", true, false);
     ClassDB::bind_method(D_METHOD("on_about_to_show"), &AboutDialog::on_about_to_show);
     ClassDB::bind_method(D_METHOD("on_checkbox_toggled"), &AboutDialog::on_checkbox_toggled);
@@ -20,18 +20,18 @@ AboutDialog::AboutDialog() {
     connect("about_to_show", this, "on_about_to_show");
 
     // Main VBoxContainer (icon + label on top, checkbox at bottom)
-    VBoxContainer* about_vbox = memnew(VBoxContainer);
+    VBoxContainer* about_vbox{memnew(VBoxContainer)};
     add_child(about_vbox);
 
     // HBoxContainer for icon + label
-    HBoxContainer* about_hbox = memnew(HBoxContainer);
+    HBoxContainer* about_hbox{memnew(HBoxContainer)};
     about_vbox->add_child(about_hbox);
 
-    TextureRect* about_icon = memnew(TextureRect);
+    TextureRect* about_icon{memnew(TextureRect)};
     about_icon->set_texture(about_icon->get_icon("NodeWarning", "EditorIcons"));
     about_hbox->add_child(about_icon);
 
-    RichTextLabel* about_label = memnew(RichTextLabel);
+    RichTextLabel* about_label{memnew(RichTextLabel)};
     about_hbox->add_child(about_label);
     about_label->set_custom_minimum_size(Size2{600, 150} * EDSCALE);
     about_label->set_v_size_flags(Control::SizeFlags::SIZE_EXPAND_FILL);
@@ -45,7 +45,6 @@ AboutDialog::AboutDialog() {
     about_label->set_use_bbcode(true);
     about_label->connect("meta_clicked", this, "on_url_clicked");
 
-    about_dialog_check_box = memnew(CheckBox);
     about_vbox->add_child(about_dialog_check_box);
     about_dialog_check_box->set_text("Show this info when starting the editor");
     about_dialog_check_box->connect("toggled", this, "on_checkbox_toggled");

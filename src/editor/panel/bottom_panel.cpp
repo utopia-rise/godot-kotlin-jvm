@@ -6,7 +6,11 @@
 #include "bottom_panel.h"
 #include "modules/kotlin_jvm/src/editor/godot_kotlin_jvm_editor.h"
 
-BottomPanel::BottomPanel() { // NOLINT(cppcoreguidelines-pro-type-member-init)
+BottomPanel::BottomPanel() :
+        build_button(memnew(Button)),
+        log_scroll_container(memnew(ScrollContainer)),
+        log_label(memnew(Label)) {
+
     ClassDB::bind_method(D_METHOD("on_build_button_pressed"), &BottomPanel::on_build_button_pressed);
     ClassDB::bind_method(D_METHOD("on_clear_log_button_pressed"), &BottomPanel::on_clear_log_button_pressed);
 
@@ -14,7 +18,7 @@ BottomPanel::BottomPanel() { // NOLINT(cppcoreguidelines-pro-type-member-init)
     set_v_size_flags(SizeFlags::SIZE_EXPAND_FILL);
     set_anchors_and_margins_preset(LayoutPreset::PRESET_WIDE);
 
-    TabContainer* panel_tabs = memnew(TabContainer);
+    TabContainer* panel_tabs{memnew(TabContainer)};
     panel_tabs->set_name(TTR("Build"));
     add_child(panel_tabs);
     panel_tabs->set_tab_align(TabContainer::ALIGN_LEFT);
@@ -25,17 +29,16 @@ BottomPanel::BottomPanel() { // NOLINT(cppcoreguidelines-pro-type-member-init)
 }
 
 void BottomPanel::add_builds_tab(TabContainer* panel_tabs) {
-    VBoxContainer* build_tab = memnew(VBoxContainer);
+    VBoxContainer* build_tab{memnew(VBoxContainer)};
     panel_tabs->add_child(build_tab);
     build_tab->set_h_size_flags(SizeFlags::SIZE_EXPAND_FILL);
 
     //toolbar
-    HBoxContainer* toolbar_hbox = memnew(HBoxContainer);
+    HBoxContainer* toolbar_hbox{memnew(HBoxContainer)};
     build_tab->add_child(toolbar_hbox);
     toolbar_hbox->set_h_size_flags(SizeFlags::SIZE_EXPAND_FILL);
 
     //toolbar - build button
-    build_button = memnew(Button);
     toolbar_hbox->add_child(build_button);
     build_button->set_text(TTR("Build Project"));
     build_button->set_focus_mode(FocusMode::FOCUS_NONE);
@@ -44,19 +47,17 @@ void BottomPanel::add_builds_tab(TabContainer* panel_tabs) {
     toolbar_hbox->add_spacer();
 
     //toolbar - clear log button
-    Button* clear_log_button = memnew(Button);
+    Button* clear_log_button{memnew(Button)};
     toolbar_hbox->add_child(clear_log_button);
     clear_log_button->set_text(TTR("Clear Output"));
     clear_log_button->set_focus_mode(FocusMode::FOCUS_NONE);
     clear_log_button->connect("pressed", this, "on_clear_log_button_pressed");
 
     //build output label
-    log_scroll_container = memnew(ScrollContainer);
     build_tab->add_child(log_scroll_container);
     log_scroll_container->set_h_size_flags(SizeFlags::SIZE_EXPAND_FILL);
     log_scroll_container->set_v_size_flags(SizeFlags::SIZE_EXPAND_FILL);
 
-    log_label = memnew(Label);
     log_scroll_container->add_child(log_label);
     log_label->set_h_size_flags(SizeFlags::SIZE_EXPAND_FILL);
 }
