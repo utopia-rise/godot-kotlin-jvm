@@ -4,6 +4,7 @@ plugins {
     kotlin("jvm")
     id("com.utopia-rise.api-generator")
     id("com.github.johnrengelman.shadow") version "6.1.0"
+    id("com.utopia-rise.godot-publish")
 }
 
 apiGenerator {
@@ -37,5 +38,15 @@ tasks {
 
     compileKotlin {
         dependsOn(generateAPI)
+    }
+}
+
+publishing {
+    publications {
+        val godotLibraryPublication by creating(MavenPublication::class) {
+            artifactId = "godot-library"
+            description = "blubb"
+            shadow.component(this)
+        }
     }
 }

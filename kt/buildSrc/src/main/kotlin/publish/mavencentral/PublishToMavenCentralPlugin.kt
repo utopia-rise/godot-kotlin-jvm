@@ -63,7 +63,6 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
                             artifactId = target.name
                             version = target.version as String
 
-                            from(target.components["java"])
                             artifact(stubJavaDocJar.get())
                             artifact(sourceJar.get())
 
