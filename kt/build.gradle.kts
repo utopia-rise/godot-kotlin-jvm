@@ -12,8 +12,7 @@ var releaseMode = tagOnCurrentCommit != null
 version = if (!releaseMode) {
     "$godotKotlinJvmVersion-${currentCommit.abbreviatedId}-SNAPSHOT"
 } else {
-    val godotKotlinJvmTagVersion = requireNotNull(tagOnCurrentCommit).name
-    "$godotKotlinJvmTagVersion-${DependenciesVersions.godotVersion}"
+    requireNotNull(tagOnCurrentCommit).name
 }
 
 val versionString = project.version.toString()
