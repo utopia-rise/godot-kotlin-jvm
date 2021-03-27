@@ -1,0 +1,13 @@
+plugins {
+    kotlin("jvm") version "KOTLIN_VERSION"
+    id("com.utopia-rise.godot-jvm") version "GODOT_KOTLIN_JVM_VERSION"
+}
+
+repositories {
+    mavenCentral()
+}
+
+godot {
+    isAndroidExportEnabled.set(ANDROID_ENABLED)
+    dxToolPath.set("DX_TOOL_PATH")
+}
