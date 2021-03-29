@@ -14,9 +14,16 @@ KtConstructor::KtConstructor(jni::JObject p_wrapped, jni::JObject &p_class_loade
 KtObject* KtConstructor::create_instance(const Variant **p_args, Object *p_owner) {
     jni::Env env{jni::Jvm::current_env()};
     GDKotlin::get_instance().transfer_context->write_args(env, p_args, parameter_count);
+
+    uint64_t id;
+    if (auto* ref{dynamic_cast<Reference*>(p_owner)}) {
+        id = RefDB::get_instance().get_ref_id(ref);
+    } else {
+        id = p_owner->get_instance_id();
+    }
     jvalue args[2] = {
             jni::to_jni_arg(p_owner),
-            jni::to_jni_arg(p_owner->get_instance_id())
+            jni::to_jni_arg(id)
     };
     jni::MethodId constructor_method{get_method_id(env, jni_methods.CONSTRUCT)};
     jni::JObject j_kt_object{wrapped.call_object_method(env, constructor_method, args)};
