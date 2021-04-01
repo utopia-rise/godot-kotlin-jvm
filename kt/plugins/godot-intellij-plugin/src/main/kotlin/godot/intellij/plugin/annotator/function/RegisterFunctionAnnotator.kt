@@ -38,12 +38,12 @@ class RegisterFunctionAnnotator : Annotator {
     // TODO: find a better way of checking all -> maybe add godot-library as a dependency and query notification functions through reflection or generate during compilation of the plugin
     private val notificationFunctions = listOf(
         "_ready",
-        "_enter_tree",
-        "_exit_tree",
+        "_enterTree",
+        "_exitTree",
         "_process",
-        "_physics_process",
+        "_physicsProcess",
         "_input",
-        "_unhandled_input",
+        "_unhandledInput",
         "_draw",
     )
 }
