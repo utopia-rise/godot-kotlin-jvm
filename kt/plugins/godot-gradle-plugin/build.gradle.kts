@@ -48,11 +48,7 @@ tasks {
 publishing {
     publications {
         val godotGradlePlugin by creating(MavenPublication::class) {
-            pom {
-                groupId = "${project.group}"
-                artifactId = project.name
-                version = "${project.version}"
-            }
+            artifactId = project.name
             description = "Godot gradle plugin for kotlin language support."
             from(components.getByName("java"))
         }
