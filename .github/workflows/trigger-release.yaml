@@ -1,0 +1,28 @@
+name: publish
+on:
+  push:
+    tags:
+      - '^\d+.\d+.\d+-\d+.\d+.\d+(-SNAPSHOT)?$'
+
+jobs:
+  create-draft-release:
+    name: Create Github Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Draft Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ GITHUB_REF/refs\/tags\// }}
+          release_name: ${{ GITHUB_REF/refs\/tags\// }}
+          draft: true
+          prerelease: false
+      - name: Output Release URL File
+        run: echo "${{ steps.create_release.outputs.upload_url }}" > release_url.txt
+      - name: Save Release URL File for publish
+        uses: actions/upload-artifact@v1
+        with:
+          name: release_url
+          path: release_url.txt
