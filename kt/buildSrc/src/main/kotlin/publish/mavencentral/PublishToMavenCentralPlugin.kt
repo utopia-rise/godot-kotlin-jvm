@@ -19,7 +19,7 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
         target.afterEvaluate {
             val ossrhUser = target.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_USERNAME")
             val ossrhPassword = target.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_PASSWORD")
-            val signingKey = target.propOrEnv("GODOT_KOTLIN_GPG_KEY_ID")
+            val signingKey = target.propOrEnv("GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII")
             val signingPassword = target.propOrEnv("GODOT_KOTLIN_GPG_KEY_PASSPHRASE")
 
             val releaseMode = !(target.version as String).endsWith("-SNAPSHOT")
@@ -45,9 +45,9 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
                 repositories {
                     maven {
                         val targetRepo = if (releaseMode) {
-                            "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+                            "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
                         } else {
-                            "https://oss.sonatype.org/content/repositories/snapshots/"
+                            "https://s01.oss.sonatype.org/content/repositories/snapshots/"
                         }
                         setUrl(targetRepo)
 

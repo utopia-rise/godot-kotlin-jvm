@@ -1,4 +1,4 @@
-name: publish
+name: Create Draft Release
 on:
   push:
     tags:

@@ -2,6 +2,7 @@ plugins {
     `kotlin-dsl`
     `maven-publish`
     id("com.gradle.plugin-publish") version "0.10.1"
+    id("com.utopia-rise.godot-publish")
 }
 
 gradlePlugin {
@@ -39,13 +40,6 @@ dependencies {
 }
 
 tasks {
-    val sourceJar by creating(Jar::class) {
-        archiveBaseName.set(project.name)
-        archiveVersion.set(project.version.toString())
-        archiveClassifier.set("sources")
-        from(sourceSets["main"].allSource)
-    }
-
     build {
         finalizedBy(publishToMavenLocal)
     }
@@ -53,15 +47,14 @@ tasks {
 
 publishing {
     publications {
-        // this is only used for publishing locally.
         val godotGradlePlugin by creating(MavenPublication::class) {
             pom {
                 groupId = "${project.group}"
                 artifactId = project.name
                 version = "${project.version}"
             }
+            description = "Godot gradle plugin for kotlin language support."
             from(components.getByName("java"))
-            artifact(tasks.getByName("sourceJar"))
         }
     }
 }
