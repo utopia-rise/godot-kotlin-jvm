@@ -2,7 +2,8 @@ name: publish
 on:
   push:
     tags:
-      - '^\d+.\d+.\d+-\d+.\d+.\d+(-SNAPSHOT)?$'
+      - '\d+.\d+.\d+-\d+.\d+.\d+-SNAPSHOT'
+      - '\d+.\d+.\d+-\d+.\d+.\d+'
 
 jobs:
   create-draft-release:
@@ -15,8 +16,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ GITHUB_REF/refs\/tags\// }}
-          release_name: ${{ GITHUB_REF/refs\/tags\// }}
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
           draft: true
           prerelease: false
       - name: Output Release URL File
