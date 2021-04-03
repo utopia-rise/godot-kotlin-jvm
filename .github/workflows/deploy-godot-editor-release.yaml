@@ -52,7 +52,7 @@ jobs:
       - name: Get godot version from tag
         id: get_godot_version
         run: |
-          ref=${{ steps.save_release_info.outputs.upload_url }}
+          ref=${{ steps.save_release_info.outputs.upload_tag }}
           echo ::set-output name=GODOT_VERSION::$(echo "$ref" | grep -Po '^(?:refs\/tags\/\d+.\d+.\d+-)\K(\d+.\d+.\d+)((?=-SNAPSHOT$)|$)')
 
       - name: Clone Godot Engine
