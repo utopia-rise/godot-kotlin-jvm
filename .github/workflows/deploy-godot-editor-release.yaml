@@ -47,7 +47,10 @@ jobs:
 
       - name: Get godot version from tag
         id: get_godot_version
-        run: echo ::set-output name=GODOT_VERSION::$(echo "$GITHUB_REF" | grep -Po '^(?:refs\/tags\/\d+.\d+.\d+-)\K(\d+.\d+.\d+)((?=-SNAPSHOT$)|$)')
+        run: |
+          echo $GITHUB_REF
+          echo "$GITHUB_REF" | grep -Po '^(?:refs\/tags\/\d+.\d+.\d+-)\K(\d+.\d+.\d+)((?=-SNAPSHOT$)|$)'
+          echo ::set-output name=GODOT_VERSION::$(echo "$GITHUB_REF" | grep -Po '^(?:refs\/tags\/\d+.\d+.\d+-)\K(\d+.\d+.\d+)((?=-SNAPSHOT$)|$)')
 
       - name: Clone Godot Engine
         uses: actions/checkout@v2
