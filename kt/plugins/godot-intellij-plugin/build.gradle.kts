@@ -29,6 +29,13 @@ val buildMatrix: Map<String, BuildConfig> = mapOf(
     )
 )
 
+repositories {
+    // TODO: Remove when sync to maven central is done.
+    maven {
+        url = uri("https://s01.oss.sonatype.org/content/repositories/releases/")
+    }
+}
+
 group = "com.utopia-rise"
 version = "0.0.1"
 val sdkVersion = project.properties["godot.plugins.intellij.version"] ?: "IJ203"
@@ -49,7 +56,7 @@ intellij {
 dependencies {
     implementation(project(":godot-build-props"))
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.14.2")
-    implementation("com.utopia-rise:jvm-godot-resource-serialization")
+    implementation("com.utopia-rise:jvm-godot-resource-serialization:0.1.0")
 }
 
 // Configure detekt plugin.
