@@ -10,20 +10,12 @@ jobs:
   deploy-editor-release:
     strategy:
       matrix:
-        name: [ Linux, OSX, Windows ]
+        name: [ Linux ]
         include:
           - name: Linux
             os: ubuntu-latest
             platform: x11
             binary: bin/godot.x11.tools.64
-          - name: OSX
-            os: macos-latest
-            platform: osx
-            binary: bin/godot.osx.tools.64
-          - name: Windows
-            os: windows-latest
-            platform: windows
-            binary: bin/godot.windows.tools.64.exe
     runs-on: ${{ matrix.os }}
     steps:
       # has to be the first step as the download url is only valid for 1 minute! See: https://stackoverflow.com/a/65049722
