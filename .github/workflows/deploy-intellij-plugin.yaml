@@ -1,0 +1,27 @@
+name: Deploy Intellij' Idea Plugin
+
+on:
+  push:
+    tags:
+      - '\d+.\d+.\d+-\d+.\d+.\d+-SNAPSHOT'
+      - '\d+.\d+.\d+-\d+.\d+.\d+'
+
+jobs:
+  deploy_godot_gradle_plugin:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Set up JDK ${{ matrix.java-version }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - uses: eskatos/gradle-command-action@v1
+        with:
+          wrapper-directory: kt/
+          build-root-directory: kt/
+          arguments: godot-intellij-plugin:publishPlugin
+        env:
+          GODOT_KOTLIN_INTELLIJ_PLUGIN_PUBLISH: ${{ secrets.GODOT_KOTLIN_INTELLIJ_PLUGIN_PUBLISH }}
