@@ -35,8 +35,16 @@ jobs:
 
       - name: Save release url as variable
         id: save_release_info
+        if: matrix.platform != 'windows'
         run: |
           value=`cat release_url/release_url.txt`
+          echo ::set-output name=upload_url::$value
+
+      - name: Save release url as variable
+        id: save_release_info
+        if: matrix.platform == 'windows'
+        run: |
+          value=`type release_url/release_url.txt`
           echo ::set-output name=upload_url::$value
 
       - name: Configure dependencies
