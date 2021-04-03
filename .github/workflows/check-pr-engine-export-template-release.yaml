@@ -1,6 +1,10 @@
 name: Check PR - Engine Export Template Release
 on: [pull_request]
 
+env:
+  SCONS_CACHE_MSVC_CONFIG: true
+  GODOT_BASE_VERSION: 3.2.3
+
 jobs:
   build-export-release:
     strategy:

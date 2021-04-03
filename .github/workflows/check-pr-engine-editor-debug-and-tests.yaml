@@ -2,6 +2,7 @@ name: Check PR - Engine Editor Debug And Tests
 on: [pull_request]
 
 env:
+  SCONS_CACHE_MSVC_CONFIG: true
   GODOT_BASE_VERSION: 3.2.3
 
 jobs:
