@@ -30,3 +30,6 @@ jobs:
           wrapper-directory: modules/kotlin_jvm/kt/
           build-root-directory: modules/kotlin_jvm/kt/
           arguments: godot-library:build
+        env:
+          GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII: ${{ secrets.GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII }}
+          GODOT_KOTLIN_GPG_KEY_PASSPHRASE: ${{ secrets.GODOT_KOTLIN_GPG_KEY_PASSPHRASE }}
