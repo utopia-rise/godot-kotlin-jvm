@@ -1,5 +1,5 @@
 #This workflow can only run on master! See the limitation mentioned in "Note:" here: https://docs.github.com/en/actions/reference/events-that-trigger-workflows#workflow_run
-name: Deploy Godot Editor Release
+name: Deploy Export Template Debug
 on:
   workflow_run:
     workflows: [ "Create Draft Release" ]
@@ -18,18 +18,23 @@ jobs:
           - name: Linux
             os: ubuntu-latest
             platform: x11
-            binary: bin/godot.x11.opt.tools.64
+            binary: bin/godot.x11.opt.64
             cat_command: cat
           - name: OSX
             os: macos-latest
             platform: osx
-            binary: bin/godot.osx.opt.tools.64
+            binary: bin/godot.osx.opt.64
             cat_command: cat
           - name: Windows
             os: windows-latest
             platform: windows
-            binary: bin/godot.windows.opt.tools.64.exe
+            binary: bin/godot.windows.opt.64.exe
             cat_command: type
+          - name: Android
+            os: ubuntu-latest
+            platform: android
+            binary: bin/android_debug.apk
+            cat_command: cat
     runs-on: ${{ matrix.os }}
     steps:
       # has to be the first step as the download url is only valid for 1 minute! See: https://stackoverflow.com/a/65049722
@@ -66,10 +71,23 @@ jobs:
 
       # Upload cache on completion and check it out now
       - name: Load .scons_cache directory
+        if: matrix.platform != 'android'
         id: template-release-cache
         uses: actions/cache@v2
         with:
           path: ${{github.workspace}}/${{matrix.platform}}/.scons_cache/
+          key: ${{github.job}}-${{ steps.save_release_info.outputs.godot_version }}-${{github.ref}}-${{github.sha}}
+          restore-keys: |
+            ${{github.job}}-${{ steps.save_release_info.outputs.godot_version }}-${{github.ref}}-${{github.sha}}
+            ${{github.job}}-${{ steps.save_release_info.outputs.godot_version }}-${{github.ref}}
+            ${{github.job}}-${{ steps.save_release_info.outputs.godot_version }}
+
+      - name: Load .scons_cache directory for Android arm64-v8
+        if: matrix.platform == 'android'
+        id: template-release-cache-android-arm64-v8
+        uses: actions/cache@v2
+        with:
+          path: ${{github.workspace}}/${{matrix.platform}}/arm64-v8/.scons_cache/
           key: ${{github.job}}-${{ steps.save_release_info.outputs.godot_version }}-${{github.ref}}-${{github.sha}}
           restore-keys: |
             ${{github.job}}-${{ steps.save_release_info.outputs.godot_version }}-${{github.ref}}-${{github.sha}}
@@ -92,34 +110,36 @@ jobs:
         with:
           java-version: 11
 
+      - name: Setup Android SDK
+        if: matrix.platform == 'android'
+        uses: android-actions/setup-android@v2
+
       - name: Get number of CPU cores
         id: cpu-cores
         uses: SimenB/github-actions-cpu-cores@v1
 
-      - name: Build with editor release
+      - name: Build debug export template
+        if: matrix.platform != 'android'
         env:
           SCONS_CACHE: ${{github.workspace}}/${{matrix.platform}}/.scons_cache/
-        run: scons platform=${{ matrix.platform }} target=release_debug -j${{ steps.cpu-cores.outputs.count }}
+        run: scons platform=${{ matrix.platform }} tools=no target=release_debug bits=64 -j${{ steps.cpu-cores.outputs.count }}
 
-      - name: Build godot-library
-        uses: eskatos/gradle-command-action@v1
-        with:
-          wrapper-directory: modules/kotlin_jvm/kt/
-          build-root-directory: modules/kotlin_jvm/kt/
-          arguments: godot-library:build
+      - name: Build android debug binary arm64v8
+        if: matrix.platform == 'android'
+        env:
+          SCONS_CACHE: ${{github.workspace}}/${{matrix.platform}}/arm64-v8/.scons_cache/
+        run: scons platform=${{ matrix.platform }} target=release_debug android_arch=arm64v8 -j${{ steps.cpu-cores.outputs.count }}
 
-      - name: Zip release
-        uses: papeloto/action-zip@v1
-        with:
-          files: ${{ matrix.binary }} modules/kotlin_jvm/kt/godot-library/build/libs/godot-bootstrap.jar
-          dest: godot-kotlin-jvm_editor_${{ matrix.platform }}_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.zip
+      - name: Build android debug export template
+        if: matrix.platform == 'android'
+        run: cd platform/android/java/ && ./gradlew generateGodotTemplates
 
-      - name: Upload zip release
+      - name: Upload export template debug
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.save_release_info.outputs.upload_url }}
-          asset_path: godot-kotlin-jvm_editor_${{ matrix.platform }}_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.zip
-          asset_name: godot-kotlin-jvm_editor_${{ matrix.platform }}_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.zip
-          asset_content_type: application/zip
+          asset_path: ${{ matrix.binary }}
+          asset_name: ${{ matrix.binary }}
+          asset_content_type: application/octet-stream
