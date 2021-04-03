@@ -28,7 +28,7 @@ jobs:
             os: windows-latest
             platform: windows
             binary: bin/godot.windows.tools.64.exe
-            nproc_command: %NUMBER_OF_PROCESSORS%
+            nproc_command: %%NUMBER_OF_PROCESSORS%%
             cat_command: type
     runs-on: ${{ matrix.os }}
     steps:
