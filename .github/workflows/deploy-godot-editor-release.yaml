@@ -41,7 +41,7 @@ jobs:
           echo ::set-output name=upload_url::$value
 
       - name: Save release url as variable
-        id: save_release_info
+        id: save_release_info_windows
         if: matrix.platform == 'windows'
         run: |
           value=`type release_url/release_url.txt`
@@ -88,9 +88,20 @@ jobs:
 
       - name: Upload editor binary
         uses: actions/upload-release-asset@v1.0.1
+        if: matrix.platform != 'windows'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.save_release_info.outputs.upload_url }}
+          asset_path: bin/${{ matrix.binary }}
+          asset_name: ${{ matrix.binary }}
+
+      - name: Upload editor binary
+        uses: actions/upload-release-asset@v1.0.1
+        if: matrix.platform == 'windows'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.save_release_info_windows.outputs.upload_url }}
           asset_path: bin/${{ matrix.binary }}
           asset_name: ${{ matrix.binary }}
