@@ -42,10 +42,8 @@ jobs:
       - name: Save release infos as variables
         id: save_release_info
         run: |
-          value=`${{ matrix.cat_command }} release_url/release_url.txt`
-          echo ::set-output name=upload_url::$value
-          value=`${{ matrix.cat_command }} godot_version/godot_version.txt`
-          echo ::set-output name=godot_version::$value
+          echo ::set-output name=upload_url::$(${{ matrix.cat_command }} release_url/release_url.txt)
+          echo ::set-output name=godot_version::$(${{ matrix.cat_command }} godot_version/godot_version.txt)
 
       - name: Configure dependencies
         if: matrix.platform == 'x11'
