@@ -90,11 +90,14 @@ jobs:
         run: |
           python -c "import sys; print(sys.version)"
           python -m pip install scons
+      - name: Get number of CPU cores
+        id: cpu-cores
+        uses: SimenB/github-actions-cpu-cores@v1
       - name: Build with editor debug
         env:
           SCONS_CACHE: ${{github.workspace}}/${{matrix.platform}}/.scons_cache/
         run: |
-          scons platform=${{ matrix.platform }}
+          scons platform=${{ matrix.platform }} -j${{ steps.cpu-cores.outputs.count }}
       - name: Upload OSX binary
         if: matrix.platform == 'osx'
         uses: actions/upload-artifact@v1

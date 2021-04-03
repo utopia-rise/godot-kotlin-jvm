@@ -91,24 +91,27 @@ jobs:
       - name: Setup Android SDK
         if: matrix.platform == 'android'
         uses: android-actions/setup-android@v2
+      - name: Get number of CPU cores
+        id: cpu-cores
+        uses: SimenB/github-actions-cpu-cores@v1
       - name: Build debug export template
         if: matrix.platform != 'android'
         env:
           SCONS_CACHE: ${{github.workspace}}/${{matrix.platform}}/.scons_cache/
         run: |
-          scons platform=${{ matrix.platform }} tools=no target=release_debug bits=64
+          scons platform=${{ matrix.platform }} tools=no target=release_debug bits=64 -j${{ steps.cpu-cores.outputs.count }}
       - name: Build android debug binary armv7
         if: matrix.platform == 'android'
         env:
           SCONS_CACHE: ${{github.workspace}}/${{matrix.platform}}/armv7/.scons_cache/
         run: |
-          scons platform=${{ matrix.platform }} target=release_debug android_arch=armv7
+          scons platform=${{ matrix.platform }} target=release_debug android_arch=armv7 -j${{ steps.cpu-cores.outputs.count }}
       - name: Build android debug binary arm64v8
         if: matrix.platform == 'android'
         env:
           SCONS_CACHE: ${{github.workspace}}/${{matrix.platform}}/arm64-v8/.scons_cache/
         run: |
-          scons platform=${{ matrix.platform }} target=release_debug android_arch=arm64v8
+          scons platform=${{ matrix.platform }} target=release_debug android_arch=arm64v8 -j${{ steps.cpu-cores.outputs.count }}
       - name: Build android debug export template
         if: matrix.platform == 'android'
         run: |
