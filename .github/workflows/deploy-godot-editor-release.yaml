@@ -16,32 +16,36 @@ jobs:
             os: ubuntu-latest
             platform: x11
             binary: bin/godot.x11.tools.64
+            nproc_command: $(nproc)
+            cat_command: cat
+          - name: OSX
+            os: macos-latest
+            platform: osx
+            binary: bin/godot.osx.tools.64
+            nproc_command: $(sysctl -n hw.logicalcpu)
+            cat_command: cat
+          - name: Windows
+            os: windows-latest
+            platform: windows
+            binary: bin/godot.windows.tools.64.exe
+            nproc_command: %NUMBER_OF_PROCESSORS%
+            cat_command: type
     runs-on: ${{ matrix.os }}
     steps:
       # has to be the first step as the download url is only valid for 1 minute! See: https://stackoverflow.com/a/65049722
-      - name: Get release file Name & upload URL
+      - name: Get release infos from draft release
         uses: dawidd6/action-download-artifact@v2
         with:
           workflow: create-draft-release.yaml
           workflow_conclusion: success
 
-      - name: Save release url as variable
+      - name: Save release infos as variables
         id: save_release_info
-        if: matrix.platform != 'windows'
         run: |
-          value=`cat release_url/release_url.txt`
+          value=`${{ matrix.cat_command }} release_url/release_url.txt`
           echo ::set-output name=upload_url::$value
-          value=`cat release_tag/release_tag.txt`
-          echo ::set-output name=upload_tag::$value
-
-      - name: Save release url as variable
-        id: save_release_info_windows
-        if: matrix.platform == 'windows'
-        run: |
-          value=`type release_url/release_url.txt`
-          echo ::set-output name=upload_url::$value
-          value=`type release_tag/release_tag.txt`
-          echo ::set-output name=upload_tag::$value
+          value=`${{ matrix.cat_command }} godot_version/godot_version.txt`
+          echo ::set-output name=godot_version::$value
 
       - name: Configure dependencies
         if: matrix.platform == 'x11'
@@ -49,17 +53,11 @@ jobs:
           sudo apt-get update && sudo apt-get install build-essential pkg-config libx11-dev libxcursor-dev \
             libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm
 
-      - name: Get godot version from tag
-        id: get_godot_version
-        run: |
-          ref=${{ steps.save_release_info.outputs.upload_tag }}
-          echo ::set-output name=GODOT_VERSION::$(echo "$ref" | grep -Po '^(?:refs\/tags\/\d+.\d+.\d+-)\K(\d+.\d+.\d+)((?=-SNAPSHOT$)|$)')
-
       - name: Clone Godot Engine
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: ${{ steps.get_godot_version.outputs.GODOT_VERSION }}-stable
+          ref: ${{ steps.save_release_info.outputs.godot_version }}-stable
 
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
@@ -79,24 +77,14 @@ jobs:
           python -m pip install scons
 
       - name: Build with editor release
-        run: scons platform=${{ matrix.platform }} target=release_debug
+        run: scons platform=${{ matrix.platform }} target=release_debug -j${{ matrix.nproc_command }}
 
       - name: Upload editor binary
         uses: actions/upload-release-asset@v1.0.1
-        if: matrix.platform != 'windows'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.save_release_info.outputs.upload_url }}
           asset_path: bin/${{ matrix.binary }}
           asset_name: ${{ matrix.binary }}
-
-      - name: Upload editor binary
-        uses: actions/upload-release-asset@v1.0.1
-        if: matrix.platform == 'windows'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.save_release_info_windows.outputs.upload_url }}
-          asset_path: bin/${{ matrix.binary }}
-          asset_name: ${{ matrix.binary }}
+          asset_content_type: application/octet-stream

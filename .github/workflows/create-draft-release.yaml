@@ -10,7 +10,7 @@ jobs:
     name: Create Github Release
     runs-on: ubuntu-latest
     steps:
-      - name: Create Draft Release
+      - name: Create draft release
         id: create_release
         uses: actions/create-release@v1
         env:
@@ -21,11 +21,11 @@ jobs:
           draft: true
           prerelease: false
 
-      - name: Output Release URL File
+      - name: Output release url file
         run: echo "${{ steps.create_release.outputs.upload_url }}" > release_url.txt
 
-      - name: Output tag file
-        run: echo "$GITHUB_REF" > release_tag.txt
+      - name: Output supported godot version file
+        run: echo $(echo "$GITHUB_REF" | grep -Po '^(?:refs\/tags\/\d+.\d+.\d+-)\K(\d+.\d+.\d+)((?=-SNAPSHOT$)|$)') > godot_version.txt
 
       - name: Save Release URL File for publish
         uses: actions/upload-artifact@v1
@@ -33,8 +33,8 @@ jobs:
           name: release_url
           path: release_url.txt
 
-      - name: Save Release Tag File for publish
+      - name: Save supported godot version for publish
         uses: actions/upload-artifact@v1
         with:
-          name: release_tag
-          path: release_tag.txt
+          name: godot_version
+          path: godot_version.txt
