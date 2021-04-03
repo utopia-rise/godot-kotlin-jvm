@@ -30,10 +30,7 @@ val buildMatrix: Map<String, BuildConfig> = mapOf(
 )
 
 repositories {
-    // TODO: Remove when sync to maven central is done.
-    maven {
-        url = uri("https://s01.oss.sonatype.org/content/repositories/releases/")
-    }
+    mavenCentral()
 }
 
 group = "com.utopia-rise"
