@@ -1,5 +1,6 @@
 package godot.intellij.plugin.listener
 
+import com.intellij.openapi.fileTypes.FileType
 import com.intellij.openapi.fileTypes.PlainTextFileType
 import com.intellij.openapi.project.DumbService
 import com.intellij.openapi.project.Project
@@ -7,9 +8,9 @@ import com.intellij.openapi.roots.ProjectFileIndex
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.newvfs.BulkFileListener
 import com.intellij.openapi.vfs.newvfs.events.VFileEvent
-import com.intellij.psi.search.FileTypeIndex
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.util.indexing.FileBasedIndex
+import com.intellij.util.indexing.ID
 import com.utopiarise.serialization.godot.scene.sceneFromTscn
 import godot.intellij.plugin.ProjectDisposable
 import godot.intellij.plugin.data.cache.signalconnection.SignalConnectionCacheProvider
@@ -43,7 +44,7 @@ class GodotSceneBulkFileListener(private val project: Project) : BulkFileListene
     private fun getContainingFiles() = FileBasedIndex
         .getInstance()
         .getContainingFiles(
-            FileTypeIndex.NAME,
+            ID.create<FileType, Void>("filetypes"),
             PlainTextFileType.INSTANCE,
             GlobalSearchScope.projectScope(project)
         )

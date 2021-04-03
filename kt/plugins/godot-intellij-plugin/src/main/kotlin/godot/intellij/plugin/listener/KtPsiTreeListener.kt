@@ -1,14 +1,15 @@
 package godot.intellij.plugin.listener
 
+import com.intellij.openapi.fileTypes.FileType
 import com.intellij.openapi.project.DumbService
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiDirectory
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiManager
 import com.intellij.psi.PsiTreeChangeEvent
-import com.intellij.psi.search.FileTypeIndex
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.util.indexing.FileBasedIndex
+import com.intellij.util.indexing.ID
 import godot.intellij.plugin.ProjectDisposable
 import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCacheProvider
 import godot.intellij.plugin.extension.getGodotRoot
@@ -99,7 +100,7 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
         FileBasedIndex
             .getInstance()
             .getContainingFiles(
-                FileTypeIndex.NAME,
+                ID.create<FileType, Void>("filetypes"),
                 KotlinFileType.INSTANCE,
                 GlobalSearchScope.projectScope(project)
             )
