@@ -99,12 +99,14 @@ jobs:
           scons platform=${{ matrix.platform }} tools=no target=release bits=64
       - name: Build android release binary armv7
         if: matrix.platform == 'android'
+        env:
+          SCONS_CACHE: ${{github.workspace}}/${{matrix.platform}}/armv7/.scons_cache/
         run: |
           scons platform=${{ matrix.platform }} target=release android_arch=armv7
       - name: Build android release binary arm64v8
         if: matrix.platform == 'android'
         env:
-          SCONS_CACHE: ${{github.workspace}}/${{matrix.platform}}/.scons_cache/
+          SCONS_CACHE: ${{github.workspace}}/${{matrix.platform}}/arm64-v8/.scons_cache/
         run: |
           scons platform=${{ matrix.platform }} target=release android_arch=arm64v8
       - name: Build android release export template
