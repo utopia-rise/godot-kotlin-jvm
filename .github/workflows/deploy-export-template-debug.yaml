@@ -10,7 +10,7 @@ env:
   SCONS_CACHE_MSVC_CONFIG: true
 
 jobs:
-  deploy-editor-release:
+  deploy-export-template-debug:
     strategy:
       matrix:
         name: [ Linux ]
@@ -18,22 +18,22 @@ jobs:
           - name: Linux
             os: ubuntu-latest
             platform: x11
-            binary: bin/godot.x11.opt.64
+            binary: godot.x11.opt.debug.64
             cat_command: cat
           - name: OSX
             os: macos-latest
             platform: osx
-            binary: bin/godot.osx.opt.64
+            binary: godot.osx.opt.debug.64
             cat_command: cat
           - name: Windows
             os: windows-latest
             platform: windows
-            binary: bin/godot.windows.opt.64.exe
+            binary: godot.windows.opt.debug.64.exe
             cat_command: type
           - name: Android
             os: ubuntu-latest
             platform: android
-            binary: bin/android_debug.apk
+            binary: android_debug.apk
             cat_command: cat
     runs-on: ${{ matrix.os }}
     steps:
@@ -140,6 +140,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.save_release_info.outputs.upload_url }}
-          asset_path: ${{ matrix.binary }}
+          asset_path: bin/${{ matrix.binary }}
           asset_name: ${{ matrix.binary }}
           asset_content_type: application/octet-stream

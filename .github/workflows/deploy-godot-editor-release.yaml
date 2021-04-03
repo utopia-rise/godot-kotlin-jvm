@@ -18,17 +18,17 @@ jobs:
           - name: Linux
             os: ubuntu-latest
             platform: x11
-            binary: bin/godot.x11.opt.tools.64
+            binary: godot.x11.opt.tools.64
             cat_command: cat
           - name: OSX
             os: macos-latest
             platform: osx
-            binary: bin/godot.osx.opt.tools.64
+            binary: godot.osx.opt.tools.64
             cat_command: cat
           - name: Windows
             os: windows-latest
             platform: windows
-            binary: bin/godot.windows.opt.tools.64.exe
+            binary: godot.windows.opt.tools.64.exe
             cat_command: type
     runs-on: ${{ matrix.os }}
     steps:
@@ -111,7 +111,7 @@ jobs:
       - name: Zip release
         uses: papeloto/action-zip@v1
         with:
-          files: ${{ matrix.binary }} modules/kotlin_jvm/kt/godot-library/build/libs/godot-bootstrap.jar
+          files: bin/${{ matrix.binary }} modules/kotlin_jvm/kt/godot-library/build/libs/godot-bootstrap.jar
           dest: godot-kotlin-jvm_editor_${{ matrix.platform }}_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.zip
 
       - name: Upload zip release
