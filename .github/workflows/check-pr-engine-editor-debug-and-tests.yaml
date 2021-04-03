@@ -1,0 +1,149 @@
+name: Check PR - Engine Editor Debug And Tests
+on: [pull_request]
+
+env:
+  SCONS_CACHE_MSVC_CONFIG: true
+  GODOT_BASE_VERSION: 3.2.3
+
+jobs:
+  build-godot-library:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        include:
+          - os: ubuntu-latest
+            java-version: 11
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Clone Godot Engine
+        uses: actions/checkout@v2
+        with:
+          repository: godotengine/godot
+          ref: 3.2.3-stable
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v2
+        with:
+          path: modules/kotlin_jvm
+          submodules: recursive
+      - name: Set up JDK ${{ matrix.java-version }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java-version }}
+      - uses: eskatos/gradle-command-action@v1
+        with:
+          wrapper-directory: modules/kotlin_jvm/kt/
+          build-root-directory: modules/kotlin_jvm/kt/
+          arguments: godot-library:build
+      - name: Upload godot-bootstrap jar
+        uses: actions/upload-artifact@v1
+        with:
+          name: godot-bootstrap
+          path: modules/kotlin_jvm/kt/godot-library/build/libs/godot-bootstrap.jar
+  build-editor-debug:
+    strategy:
+      matrix:
+        name: [ Linux, OSX, Windows ]
+        include:
+          - name: Linux
+            os: ubuntu-latest
+            platform: x11
+          - name: OSX
+            os: macos-latest
+            platform: osx
+          - name: Windows
+            os: windows-latest
+            platform: windows
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Configure dependencies
+        if: matrix.platform == 'x11'
+        run: |
+          sudo apt-get update && sudo apt-get install build-essential pkg-config libx11-dev libxcursor-dev \
+            libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm
+      - name: Clone Godot Engine
+        uses: actions/checkout@v2
+        with:
+          repository: godotengine/godot
+          ref: 3.2.3-stable
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v2
+        with:
+          path: modules/kotlin_jvm
+          submodules: recursive
+      # Upload cache on completion and check it out now
+      - name: Load .scons_cache directory
+        id: editor-debug-cache
+        uses: actions/cache@v2
+        with:
+          path: ${{github.workspace}}/${{matrix.platform}}/.scons_cache/
+          key: ${{github.job}}-${{env.GODOT_BASE_VERSION}}-${{github.ref}}-${{github.sha}}
+          restore-keys: |
+            ${{github.job}}-${{env.GODOT_BASE_VERSION}}-${{github.ref}}-${{github.sha}}
+            ${{github.job}}-${{env.GODOT_BASE_VERSION}}-${{github.ref}}
+            ${{github.job}}-${{env.GODOT_BASE_VERSION}}
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
+      - name: Configuring Python packages
+        run: |
+          python -c "import sys; print(sys.version)"
+          python -m pip install scons
+      - name: Build with editor debug
+        env:
+          SCONS_CACHE: ${{github.workspace}}/${{matrix.platform}}/.scons_cache/
+        run: |
+          scons platform=${{ matrix.platform }}
+      - name: Upload OSX binary
+        if: matrix.platform == 'osx'
+        uses: actions/upload-artifact@v1
+        with:
+          name: osx-editor-debug-app
+          path: bin/godot.osx.tools.64
+  test-editor-debug:
+    needs: [build-editor-debug, build-godot-library]
+    strategy:
+      matrix:
+        os: [macos-latest]
+        include:
+          - os: macos-latest
+            java-version: 11
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Clone Godot Engine
+        uses: actions/checkout@v2
+        with:
+          repository: godotengine/godot
+          ref: 3.2.3-stable
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v2
+        with:
+          path: modules/kotlin_jvm
+          submodules: recursive
+      - name: Set up JDK ${{ matrix.java-version }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java-version }}
+      - name: Build tests project
+        uses: eskatos/gradle-command-action@v1
+        with:
+          wrapper-directory: modules/kotlin_jvm/harness/tests/
+          build-root-directory: modules/kotlin_jvm/harness/tests/
+          arguments: build
+      - name: Download OSX Editor Debug App
+        uses: actions/download-artifact@v1
+        with:
+          name: osx-editor-debug-app
+      - name: Download godot-bootstrap
+        uses: actions/download-artifact@v1
+        with:
+          name: godot-bootstrap
+      - name: Run Tests
+        run: |
+          cp godot-bootstrap/godot-bootstrap.jar osx-editor-debug-app/
+          cd modules/kotlin_jvm/harness/tests/
+          chmod +x run_godot_kotlin_tests.sh
+          chmod +x ../../../../osx-editor-debug-app/godot.osx.tools.64
+          jlink --add-modules java.base,java.logging --output jre
+          ./run_godot_kotlin_tests.sh ../../../../osx-editor-debug-app/godot.osx.tools.64
