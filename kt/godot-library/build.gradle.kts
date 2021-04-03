@@ -44,6 +44,10 @@ tasks {
 publishing {
     publications {
         val godotLibraryPublication by creating(MavenPublication::class) {
+            pom {
+                name.set(project.name)
+                description.set("Contains godot api as kotlin classes and jvm cpp interaction code.")
+            }
             artifactId = "godot-library"
             description = "Contains godot api as kotlin classes and jvm cpp interaction code."
             shadow.component(this)
