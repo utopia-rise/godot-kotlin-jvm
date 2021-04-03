@@ -3,9 +3,6 @@ name: Deploy Godot Editor Release
 on:
   workflow_run:
     workflows: [ "Create Draft Release" ]
-    tags:
-      - '\d+.\d+.\d+-\d+.\d+.\d+-SNAPSHOT'
-      - '\d+.\d+.\d+-\d+.\d+.\d+'
     types:
       - completed
 
