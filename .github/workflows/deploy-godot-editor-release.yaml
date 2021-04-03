@@ -76,7 +76,7 @@ jobs:
         uses: SimenB/github-actions-cpu-cores@v1
 
       - name: Build with editor release
-        run: scons platform=${{ matrix.platform }} target=release_debug -j${{ steps.cpu-cores.output.count }}
+        run: scons platform=${{ matrix.platform }} target=release_debug -j${{ steps.cpu-cores.outputs.count }}
 
       - name: Upload editor binary
         uses: actions/upload-release-asset@v1.0.1
