@@ -30,7 +30,7 @@ jobs:
       - name: Get release file Name & upload URL
         uses: dawidd6/action-download-artifact@v2
         with:
-          workflow: create-draft-release.yml
+          workflow: create-draft-release.yaml
           workflow_conclusion: success
 
       - name: Save release url as variable
