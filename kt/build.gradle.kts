@@ -1,3 +1,4 @@
+
 version = "0.1.0-${DependenciesVersions.godotVersion}"
 val versionString = project.version.toString()
 
