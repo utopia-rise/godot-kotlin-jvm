@@ -1,4 +1,5 @@
-<idea-plugin>
+<idea-plugin
+        require-restart="false">
     <id>com.utopia-rise.godotjvmideaplugin</id>
     <name>Godot-Jvm</name>
     <vendor>utopia-rise</vendor>
@@ -8,7 +9,8 @@
     <depends>com.intellij.modules.platform</depends>
 
     <applicationListeners>
-        <listener class="godot.intellij.plugin.listener.GodotProjectManagerListener" topic="com.intellij.openapi.project.ProjectManagerListener" />
+        <listener class="godot.intellij.plugin.listener.GodotProjectManagerListener"
+                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
 
     <extensions defaultExtensionNs="com.intellij">
