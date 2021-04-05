@@ -108,8 +108,8 @@ tasks {
         // pluginVersion is based on the SemVer (https://semver.org) and supports pre-release labels, like 2.1.7-alpha.3
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://jetbrains.org/intellij/sdk/docs/tutorials/build_system/deployment.html#specifying-a-release-channel
-        //TODO: change back to commented variant once we're out of alpha/beta
-        channels("alpha") //version.toString().split('-').getOrElse(1) { "default" }.split('.').first()
+        // TODO: change back to commented variant once we're out of alpha/beta
+        channels("alpha") // version.toString().split('-').getOrElse(1) { "default" }.split('.').first()
     }
 
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
