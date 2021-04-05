@@ -24,7 +24,7 @@ includeBuild("../../kt/entry-generation/godot-kotlin-entry-generator") {
 
 pluginManagement {
     repositories {
-        jcenter()
+        mavenCentral()
         gradlePluginPortal()
     }
     resolutionStrategy.eachPlugin {
