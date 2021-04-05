@@ -23,6 +23,7 @@ subprojects {
     version = versionString
     repositories {
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 
