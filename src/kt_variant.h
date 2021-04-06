@@ -408,17 +408,18 @@ namespace ktvariant {
     }
 
     static Variant from_kvariant_tokAabbValue(SharedBuffer* byte_buffer) {
+        const Vector3& pos{to_godot_vector3(byte_buffer)};
+        const Vector3& size{to_godot_vector3(byte_buffer)};
         return Variant(
-                AABB(to_godot_vector3(byte_buffer), to_godot_vector3(byte_buffer))
+                AABB(pos, size)
         );
     }
 
     static inline Basis to_godot_basis(SharedBuffer* byte_buffer) {
-        return {
-                to_godot_vector3(byte_buffer),
-                to_godot_vector3(byte_buffer),
-                to_godot_vector3(byte_buffer)
-        };
+        const Vector3& row0 = to_godot_vector3(byte_buffer);
+        const Vector3& row1 = to_godot_vector3(byte_buffer);
+        const Vector3& row2 = to_godot_vector3(byte_buffer);
+        return {row0, row1, row2};
     }
 
     static Variant from_kvariant_tokBasisValue(SharedBuffer* byte_buffer) {
@@ -426,8 +427,10 @@ namespace ktvariant {
     }
 
     static Variant from_kvariant_tokTransformValue(SharedBuffer* byte_buffer) {
+        const Basis& basis{to_godot_basis(byte_buffer)};
+        const Vector3& origin{to_godot_vector3(byte_buffer)};
         return Variant(
-                Transform(to_godot_basis(byte_buffer), to_godot_vector3(byte_buffer))
+                Transform(basis, origin)
         );
     }
 
