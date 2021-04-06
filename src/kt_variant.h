@@ -358,9 +358,9 @@ namespace ktvariant {
     }
 
     static Variant from_kvariant_tokRect2Value(SharedBuffer* byte_buffer) {
-        return Variant(
-                Rect2(to_godot_vector2(byte_buffer), to_godot_vector2(byte_buffer))
-        );
+        const Vector2& pos{to_godot_vector2(byte_buffer)};
+        const Vector2& size{to_godot_vector2(byte_buffer)};
+        return Variant({pos, size});
     }
 
     static inline Vector3 to_godot_vector3(SharedBuffer* byte_buffer) {
