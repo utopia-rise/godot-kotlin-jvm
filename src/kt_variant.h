@@ -360,7 +360,9 @@ namespace ktvariant {
     static Variant from_kvariant_tokRect2Value(SharedBuffer* byte_buffer) {
         const Vector2& pos{to_godot_vector2(byte_buffer)};
         const Vector2& size{to_godot_vector2(byte_buffer)};
-        return Variant({pos, size});
+        return Variant(
+                Rect2(pos, size)
+        );
     }
 
     static inline Vector3 to_godot_vector3(SharedBuffer* byte_buffer) {
@@ -369,6 +371,7 @@ namespace ktvariant {
         float y{decode_float(byte_buffer->get_cursor())};
         byte_buffer->increment_position(4);
         float z{decode_float(byte_buffer->get_cursor())};
+        byte_buffer->increment_position(4);
         return {x, y, z};
     }
 
