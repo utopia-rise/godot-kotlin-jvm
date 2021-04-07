@@ -18,7 +18,6 @@ import java.io.File
 
 class GodotPlugin : KotlinCompilerPluginSupportPlugin {
     override fun apply(target: Project) {
-        require(target.rootProject == target) { "godot-jvm plugin can only be applied on the root project!" }
         val godotExtension = target.extensions.create("godot", GodotExtension::class.java)
         val jvm = target.extensions.getByType<KotlinJvmProjectExtension>()
         target.pluginManager.apply(ShadowPlugin::class)
