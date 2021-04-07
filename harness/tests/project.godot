@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://scripts/ScriptInOtherSourceDir.kt"
 }, {
 "base": "Node",
+"class": "godot_tests_CoreTypesIdentityTest",
+"language": "Kotlin",
+"path": "res://src/main/kotlin/godot/tests/CoreTypesIdentityTest.kt"
+}, {
+"base": "Node",
 "class": "godot_tests_FuncRefTest",
 "language": "Kotlin",
 "path": "res://src/main/kotlin/godot/tests/FuncRefTest.kt"
@@ -52,6 +57,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "RPCTests": "",
 "ScriptInOtherSourceDir": "",
+"godot_tests_CoreTypesIdentityTest": "",
 "godot_tests_FuncRefTest": "",
 "godot_tests_Invocation": "",
 "godot_tests_MultiArgsConstructorTest": "",
