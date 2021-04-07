@@ -2,6 +2,7 @@
 
 #ifdef TOOLS_ENABLED
 #include <modules/kotlin_jvm/src/kotlin_editor_export_plugin.h>
+#include "src/editor/godot_kotlin_jvm_editor.h"
 #endif
 
 #include "register_types.h"
@@ -20,6 +21,10 @@ static void editor_init() {
     export_plugin.instance();
     EditorExport::get_singleton()->add_export_plugin(export_plugin);
 }
+
+static EditorPlugin* godot_kotlin_jvm_editor_plugin_creator_func(EditorNode* editor_node) {
+    return GodotKotlinJvmEditor::get_instance();
+}
 #endif
 
 void register_kotlin_jvm_types() {
@@ -32,6 +37,7 @@ void register_kotlin_jvm_types() {
 
 #ifdef TOOLS_ENABLED
     EditorNode::add_init_callback(editor_init);
+    EditorPlugins::add_create_func(godot_kotlin_jvm_editor_plugin_creator_func);
 #endif
 }
 
