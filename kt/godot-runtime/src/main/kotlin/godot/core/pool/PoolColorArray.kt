@@ -144,9 +144,8 @@ class PoolColorArray : NativeCoreType, Iterable<Color> {
     }
 
     override fun hashCode(): Int {
-        return hashCode()
+        return _handle.hashCode()
     }
-
 
 
     @Suppress("FunctionName")

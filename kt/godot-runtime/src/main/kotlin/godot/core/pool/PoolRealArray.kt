@@ -146,9 +146,8 @@ class PoolRealArray : NativeCoreType, Iterable<RealT> {
     }
 
     override fun hashCode(): Int {
-        return hashCode()
+        return _handle.hashCode()
     }
-
 
 
     @Suppress("FunctionName")

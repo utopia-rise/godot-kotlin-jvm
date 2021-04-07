@@ -25,6 +25,36 @@ PoolByteArrayBridge::PoolByteArrayBridge(jni::JObject p_wrapped, jni::JObject p_
             "(J)V",
             (void*) PoolByteArrayBridge::engine_call_appendArray
     };
+    jni::JNativeMethod engine_call_compress_method{
+            "engine_call_compress",
+            "(J)V",
+            (void*) PoolByteArrayBridge::engine_call_compress
+    };
+    jni::JNativeMethod engine_call_decompress_method{
+            "engine_call_decompress",
+            "(J)V",
+            (void*) PoolByteArrayBridge::engine_call_decompress
+    };
+    jni::JNativeMethod engine_call_empty_method{
+            "engine_call_empty",
+            "(J)V",
+            (void*) PoolByteArrayBridge::engine_call_empty
+    };
+    jni::JNativeMethod engine_call_get_string_from_ascii_method{
+            "engine_call_get_string_from_ascii",
+            "(J)V",
+            (void*) PoolByteArrayBridge::engine_call_get_string_from_ascii
+    };
+    jni::JNativeMethod engine_call_get_string_from_utf8_method{
+            "engine_call_get_string_from_utf8",
+            "(J)V",
+            (void*) PoolByteArrayBridge::engine_call_get_string_from_utf8
+    };
+    jni::JNativeMethod engine_call_hex_encode_method{
+            "engine_call_hex_encode",
+            "(J)V",
+            (void*) PoolByteArrayBridge::engine_call_hex_encode
+    };
     jni::JNativeMethod engine_call_get_method{
             "engine_call_get",
             "(J)V",
@@ -70,6 +100,12 @@ PoolByteArrayBridge::PoolByteArrayBridge(jni::JObject p_wrapped, jni::JObject p_
     methods.push_back(engine_call_constructor_method);
     methods.push_back(engine_call_append_method);
     methods.push_back(engine_call_appendArray_method);
+    methods.push_back(engine_call_compress_method);
+    methods.push_back(engine_call_decompress_method);
+    methods.push_back(engine_call_empty_method);
+    methods.push_back(engine_call_get_string_from_ascii_method);
+    methods.push_back(engine_call_get_string_from_utf8_method);
+    methods.push_back(engine_call_hex_encode_method);
     methods.push_back(engine_call_get_method);
     methods.push_back(engine_call_insert_method);
     methods.push_back(engine_call_invert_method);
@@ -102,6 +138,117 @@ void PoolByteArrayBridge::engine_call_appendArray(JNIEnv* p_raw_env, jobject p_i
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
     from_uint_to_ptr<PoolByteArray>(p_raw_ptr)->append_array(args[0].operator PoolByteArray());
+}
+
+void PoolByteArrayBridge::engine_call_compress(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env{p_raw_env};
+    Variant args[1] = {};
+    TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
+    transfer_context->read_args(env, args);
+
+    auto pool = Variant(from_uint_to_ptr<PoolByteArray>(p_raw_ptr));
+    static StringName func_name = _scs_create("compress");
+    const Variant* args2[1] = {&args[0]};
+    Variant ret = Variant();
+    Variant::CallError error = Variant::CallError();
+
+    pool.call_ptr(
+            func_name,
+            args2,
+            1,
+            &ret,
+            error);
+
+    transfer_context->write_return_value(env, ret);
+}
+
+void PoolByteArrayBridge::engine_call_decompress(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env{p_raw_env};
+    Variant args[2] = {};
+    TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
+    transfer_context->read_args(env, args);
+
+    auto pool = Variant(from_uint_to_ptr<PoolByteArray>(p_raw_ptr));
+    static StringName func_name = _scs_create("decompress");
+    const Variant* args2[2] = {&args[0], &args[1]};
+    Variant ret = Variant();
+    Variant::CallError error = Variant::CallError();
+
+    pool.call_ptr(
+            func_name,
+            args2,
+            2,
+            &ret,
+            error);
+
+    transfer_context->write_return_value(env, ret);
+}
+
+void PoolByteArrayBridge::engine_call_empty(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env{p_raw_env};
+    TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
+    Variant variant{from_uint_to_ptr<PoolByteArray>(p_raw_ptr)->empty()};
+    transfer_context->write_return_value(env, variant);
+}
+
+void PoolByteArrayBridge::engine_call_get_string_from_ascii(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env{p_raw_env};
+    TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
+
+    auto pool = Variant(from_uint_to_ptr<PoolByteArray>(p_raw_ptr));
+    static StringName func_name = _scs_create("get_string_from_ascii");
+    const Variant* args2[0] = {};
+    Variant ret = Variant();
+    Variant::CallError error = Variant::CallError();
+
+    pool.call_ptr(
+            func_name,
+            args2,
+            0,
+            &ret,
+            error);
+
+    transfer_context->write_return_value(env, ret);
+}
+
+void PoolByteArrayBridge::engine_call_get_string_from_utf8(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env{p_raw_env};
+    TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
+
+    auto pool = Variant(from_uint_to_ptr<PoolByteArray>(p_raw_ptr));
+    static StringName func_name = _scs_create("get_string_from_utf8");
+    const Variant* args2[0] = {};
+    Variant ret = Variant();
+    Variant::CallError error = Variant::CallError();
+
+    pool.call_ptr(
+            func_name,
+            args2,
+            0,
+            &ret,
+            error);
+
+    transfer_context->write_return_value(env, ret);
+}
+
+void PoolByteArrayBridge::engine_call_hex_encode(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env{p_raw_env};
+    TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
+
+    auto pool = Variant(from_uint_to_ptr<PoolByteArray>(p_raw_ptr));
+    static StringName func_name = _scs_create("hex_encode");
+    const Variant* args2[0] = {};
+    Variant ret = Variant();
+    Variant::CallError error = Variant::CallError();
+
+    pool.call_ptr(
+            func_name,
+            args2,
+            0,
+            &ret,
+            error);
+
+    transfer_context->write_return_value(env, ret);
 }
 
 void PoolByteArrayBridge::engine_call_get(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {

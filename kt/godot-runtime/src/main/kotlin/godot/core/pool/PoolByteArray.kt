@@ -8,12 +8,35 @@ import godot.util.VoidPtr
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 class PoolByteArray : NativeCoreType, Iterable<Byte> {
 
+    enum class CompressionMode {
+        /**
+         * Uses the FastLZ compression method.
+         */
+        COMPRESSION_FASTLZ,
+
+        /**
+         * Uses the DEFLATE compression method.
+         */
+        COMPRESSION_DEFLATE,
+
+        /**
+         * Uses the Zstandard compression method.
+         */
+        COMPRESSION_ZSTD,
+
+        /**
+         * Uses the gzip compression method.
+         */
+        COMPRESSION_GZIP
+    }
+
+
     //PROPERTIES
     val size: Int
         get() {
-		    Bridge.engine_call_size(_handle)
-			return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
-		}
+            Bridge.engine_call_size(_handle)
+            return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
+        }
 
     //CONSTRUCTOR
     constructor() {
@@ -46,11 +69,66 @@ class PoolByteArray : NativeCoreType, Iterable<Byte> {
     }
 
     /**
+     * Returns a new PoolByteArray with the data compressed.
+     * Set the compression mode using one of CompressionMode's constants.
+     */
+    fun compress(compressionMode: CompressionMode = CompressionMode.COMPRESSION_FASTLZ): PoolByteArray {
+        TransferContext.writeArguments(VariantType.JVM_INT to compressionMode.ordinal)
+        Bridge.engine_call_compress(_handle)
+        return TransferContext.readReturnValue(VariantType.POOL_BYTE_ARRAY) as PoolByteArray
+    }
+
+    /**
+     * Returns a new PoolByteArray with the data decompressed.
+     * Set buffer_size to the size of the uncompressed data.
+     * Set the compression mode using one of CompressionMode's constants.
+     */
+    fun decompress(bufferSize: Int, compressionMode: CompressionMode = CompressionMode.COMPRESSION_FASTLZ): PoolByteArray {
+        TransferContext.writeArguments(
+            VariantType.JVM_INT to bufferSize,
+            VariantType.JVM_INT to compressionMode.ordinal
+        )
+        Bridge.engine_call_decompress(_handle)
+        return TransferContext.readReturnValue(VariantType.POOL_BYTE_ARRAY) as PoolByteArray
+    }
+
+    /**
      * Returns true if the array is empty.
      */
     fun empty(): Boolean {
         Bridge.engine_call_empty(_handle)
         return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+    }
+
+    /**
+     * Returns a copy of the array's contents as String.
+     * Fast alternative to get_string_from_utf8 if the content is ASCII-only.
+     * Unlike the UTF-8 function this function maps every byte to a character in the array.
+     * Multibyte sequences will not be interpreted correctly.
+     * For parsing user input always use get_string_from_utf8.
+     */
+    fun getStringFromAscii(): String {
+        Bridge.engine_call_get_string_from_ascii(_handle)
+        return TransferContext.readReturnValue(VariantType.STRING) as String
+    }
+
+    /**
+     * Returns a copy of the array's contents as String.
+     * Slower than get_string_from_ascii but supports UTF-8 encoded data.
+     * Use this function if you are unsure about the source of the data.
+     * For user input this function should always be preferred.
+     */
+    fun getStringFromUtf8(): String {
+        Bridge.engine_call_get_string_from_utf8(_handle)
+        return TransferContext.readReturnValue(VariantType.STRING) as String
+    }
+
+    /**
+     * Returns a hexadecimal representation of this array as a String.
+     */
+    fun hexEncode(): String {
+        Bridge.engine_call_hex_encode(_handle)
+        return TransferContext.readReturnValue(VariantType.STRING) as String
     }
 
     /**
@@ -144,9 +222,8 @@ class PoolByteArray : NativeCoreType, Iterable<Byte> {
     }
 
     override fun hashCode(): Int {
-        return hashCode()
+        return _handle.hashCode()
     }
-
 
 
     @Suppress("FunctionName")
@@ -155,7 +232,12 @@ class PoolByteArray : NativeCoreType, Iterable<Byte> {
 
         external fun engine_call_append(_handle: VoidPtr)
         external fun engine_call_appendArray(_handle: VoidPtr)
+        external fun engine_call_compress(_handle: VoidPtr)
+        external fun engine_call_decompress(_handle: VoidPtr)
         external fun engine_call_empty(_handle: VoidPtr)
+        external fun engine_call_get_string_from_ascii (_handle: VoidPtr)
+        external fun engine_call_get_string_from_utf8 (_handle: VoidPtr)
+        external fun engine_call_hex_encode(_handle: VoidPtr)
         external fun engine_call_get(_handle: VoidPtr)
         external fun engine_call_insert(_handle: VoidPtr)
         external fun engine_call_invert(_handle: VoidPtr)
@@ -163,6 +245,6 @@ class PoolByteArray : NativeCoreType, Iterable<Byte> {
         external fun engine_call_remove(_handle: VoidPtr)
         external fun engine_call_resize(_handle: VoidPtr)
         external fun engine_call_set(_handle: VoidPtr)
-		external fun engine_call_size(_handle: VoidPtr)
+        external fun engine_call_size(_handle: VoidPtr)
     }
 }

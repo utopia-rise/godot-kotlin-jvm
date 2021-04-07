@@ -24,6 +24,11 @@ PoolStringArrayBridge::PoolStringArrayBridge(jni::JObject p_wrapped, jni::JObjec
             "(J)V",
             (void*) PoolStringArrayBridge::engine_call_appendArray
     };
+    jni::JNativeMethod engine_call_empty_method{
+            "engine_call_empty",
+            "(J)V",
+            (void*) PoolStringArrayBridge::engine_call_empty
+    };
     jni::JNativeMethod engine_call_get_method{
             "engine_call_get",
             "(J)V",
@@ -38,6 +43,11 @@ PoolStringArrayBridge::PoolStringArrayBridge(jni::JObject p_wrapped, jni::JObjec
             "engine_call_invert",
             "(J)V",
             (void*) PoolStringArrayBridge::engine_call_invert
+    };
+    jni::JNativeMethod engine_call_join_method{
+            "engine_call_join",
+            "(J)V",
+            (void*) PoolStringArrayBridge::engine_call_join
     };
     jni::JNativeMethod engine_call_pushback_method{
             "engine_call_pushback",
@@ -69,9 +79,11 @@ PoolStringArrayBridge::PoolStringArrayBridge(jni::JObject p_wrapped, jni::JObjec
     methods.push_back(engine_call_constructor_method);
     methods.push_back(engine_call_append_method);
     methods.push_back(engine_call_appendArray_method);
+    methods.push_back(engine_call_empty_method);
     methods.push_back(engine_call_get_method);
     methods.push_back(engine_call_insert_method);
     methods.push_back(engine_call_invert_method);
+    methods.push_back(engine_call_join_method);
     methods.push_back(engine_call_pushback_method);
     methods.push_back(engine_call_remove_method);
     methods.push_back(engine_call_resize_method);
@@ -103,6 +115,13 @@ void PoolStringArrayBridge::engine_call_appendArray(JNIEnv* p_raw_env, jobject p
     from_uint_to_ptr<PoolStringArray>(p_raw_ptr)->append_array(args[0].operator PoolStringArray());
 }
 
+void PoolStringArrayBridge::engine_call_empty(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env{p_raw_env};
+    TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
+    Variant variant{from_uint_to_ptr<PoolByteArray>(p_raw_ptr)->empty()};
+    transfer_context->write_return_value(env, variant);
+}
+
 void PoolStringArrayBridge::engine_call_get(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{p_raw_env};
     Variant args[1] = {};
@@ -123,6 +142,15 @@ void PoolStringArrayBridge::engine_call_insert(JNIEnv* p_raw_env, jobject p_inst
 void PoolStringArrayBridge::engine_call_invert(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{p_raw_env};
     from_uint_to_ptr<PoolStringArray>(p_raw_ptr)->invert();
+}
+
+void PoolStringArrayBridge::engine_call_join(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env{p_raw_env};
+    Variant args[1] = {};
+    TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
+    transfer_context->read_args(env, args);
+    Variant variant{from_uint_to_ptr<PoolStringArray>(p_raw_ptr)->join(args[0].operator String())};
+    transfer_context->write_return_value(env, variant);
 }
 
 void PoolStringArrayBridge::engine_call_pushback(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {

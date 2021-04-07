@@ -144,9 +144,8 @@ class PoolVector3Array : NativeCoreType, Iterable<Vector3> {
     }
 
     override fun hashCode(): Int {
-        return hashCode()
+        return _handle.hashCode()
     }
-
 
 
     @Suppress("FunctionName")

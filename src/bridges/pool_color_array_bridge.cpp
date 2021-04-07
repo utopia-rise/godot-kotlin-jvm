@@ -24,6 +24,11 @@ PoolColorArrayBridge::PoolColorArrayBridge(jni::JObject p_wrapped, jni::JObject 
             "(J)V",
             (void*) PoolColorArrayBridge::engine_call_appendArray
     };
+    jni::JNativeMethod engine_call_empty_method{
+            "engine_call_empty",
+            "(J)V",
+            (void*) PoolColorArrayBridge::engine_call_empty
+    };
     jni::JNativeMethod engine_call_get_method{
             "engine_call_get",
             "(J)V",
@@ -69,6 +74,7 @@ PoolColorArrayBridge::PoolColorArrayBridge(jni::JObject p_wrapped, jni::JObject 
     methods.push_back(engine_call_constructor_method);
     methods.push_back(engine_call_append_method);
     methods.push_back(engine_call_appendArray_method);
+    methods.push_back(engine_call_empty_method);
     methods.push_back(engine_call_get_method);
     methods.push_back(engine_call_insert_method);
     methods.push_back(engine_call_invert_method);
@@ -101,6 +107,13 @@ void PoolColorArrayBridge::engine_call_appendArray(JNIEnv* p_raw_env, jobject p_
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
     from_uint_to_ptr<PoolColorArray>(p_raw_ptr)->append_array(args[0].operator PoolColorArray());
+}
+
+void PoolColorArrayBridge::engine_call_empty(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env{p_raw_env};
+    TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
+    Variant variant{from_uint_to_ptr<PoolByteArray>(p_raw_ptr)->empty()};
+    transfer_context->write_return_value(env, variant);
 }
 
 void PoolColorArrayBridge::engine_call_get(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {

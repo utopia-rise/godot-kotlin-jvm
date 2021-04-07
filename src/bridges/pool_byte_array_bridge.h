@@ -13,6 +13,12 @@ namespace bridges {
 
         static void engine_call_append(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_appendArray(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_compress(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_decompress(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_empty(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_get_string_from_ascii(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_get_string_from_utf8(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_hex_encode(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_get(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_insert(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_invert(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
