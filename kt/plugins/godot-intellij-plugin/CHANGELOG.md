@@ -2,10 +2,11 @@
 
 # godot-kotlin-idea-plugin Changelog
 
-## [Unreleased]
+## [0.1.0-3.2.3]
 ### Add initial code inspection and quick fix support
 - Adds code inspections for classes, properties and functions annotated with:
     - `@RegisterClass`
+    - `@RegisterConstructor`
     - `@RegisterProperty`
     - `@RegisterFunction`
     - `@RegisterSignal`
@@ -14,6 +15,10 @@
     - Replacing wrong initializer for signals with proper signal delegate
     - Replacing `var` with `val` for registered signals
     - Replacing `val` with `var` for registered properties
+- Adds code insight checks for basic `rpc` and `call` usage
+- Adds gutter icons and dialogs for in editor connected signals throughout the whole project (not only the currently opened scene)
+- Adds refactor support for scene files (when classes are moved/renamed)
+- Adds project wizard to create new godot kotlin jvm projects
 
 ### Created Plugin
 - Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
