@@ -5,10 +5,20 @@
 namespace bridges {
 
     class PoolByteArrayBridge : JavaInstanceWrapper<PoolByteArrayBridge> {
+    private:
+
+        static struct {
+            StringName func_compress_name;
+            StringName func_decompress_name;
+            StringName func_get_string_from_ascii_name;
+            StringName func_get_string_from_utf8_name;
+            StringName func_hex_encode_name;
+        } string_names;
+
     public:
         PoolByteArrayBridge(jni::JObject p_wrapped, jni::JObject p_class_loader);
 
-        ~PoolByteArrayBridge() = default;
+        ~PoolByteArrayBridge();
 
         static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance);
 
