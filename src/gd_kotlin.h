@@ -35,14 +35,6 @@ public:
 
     Vector<Ref<KotlinScript>> user_scripts;
 
-    struct {
-        StringName func_compress_name;
-        StringName func_decompress_name;
-        StringName func_get_string_from_ascii_name;
-        StringName func_get_string_from_utf8_name;
-        StringName func_hex_encode_name;
-    } string_names;
-
     GDKotlin(const GDKotlin&) = delete;
 
     static GDKotlin& get_instance();
