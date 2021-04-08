@@ -170,7 +170,6 @@ void PoolByteArrayBridge::engine_call_decompress(JNIEnv* p_raw_env, jobject p_in
     transfer_context->read_args(env, args);
 
     Variant pool{*from_uint_to_ptr<PoolByteArray>(p_raw_ptr)};
-    static StringName func_name{_scs_create("decompress")};
 
     Variant ret = pool.call(
             string_names.func_decompress_name,
