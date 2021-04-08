@@ -95,3 +95,10 @@ func test_pool_vector3_array_add_delete() -> void:
 	invocation_script.delete_vector3_from_pool_array(0)
 	assert_eq(invocation_script.pool_vector3_array.size(), 2, "PoolVector3Array have 2 elements")
 	invocation_script.free()
+
+func test_pool_byte_array_string_conversion() -> void:
+	var invocation_script = godot_tests_Invocation.new()
+	invocation_script.read_string_from_byte_array()
+	assert_eq(invocation_script.test_string, invocation_script.ascii_string, "The ascii String read from the pool should be equal to the test String")
+	assert_eq(invocation_script.test_string, invocation_script.utf8_string, "The utf8 String read from the pool should be equal to the test String")
+	invocation_script.free()

@@ -147,10 +147,9 @@ void PoolByteArrayBridge::engine_call_compress(JNIEnv* p_raw_env, jobject p_inst
     transfer_context->read_args(env, args);
 
     Variant pool{*from_uint_to_ptr<PoolByteArray>(p_raw_ptr)};
-    static StringName func_name{_scs_create("compress")};
 
     Variant ret = pool.call(
-            func_name,
+            GDKotlin::get_instance().string_names.func_compress_name,
             &args[0]);
 
     transfer_context->write_return_value(env, ret);
@@ -166,7 +165,7 @@ void PoolByteArrayBridge::engine_call_decompress(JNIEnv* p_raw_env, jobject p_in
     static StringName func_name{_scs_create("decompress")};
 
     Variant ret = pool.call(
-            func_name,
+            GDKotlin::get_instance().string_names.func_decompress_name,
             &args[0],
             &args[1]);
 
@@ -185,9 +184,8 @@ void PoolByteArrayBridge::engine_call_get_string_from_ascii(JNIEnv* p_raw_env, j
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
 
     Variant pool{*from_uint_to_ptr<PoolByteArray>(p_raw_ptr)};
-    static StringName func_name{_scs_create("get_string_from_ascii")};
 
-    Variant ret = pool.call(func_name);
+    Variant ret = pool.call(GDKotlin::get_instance().string_names.func_get_string_from_ascii_name);
 
     transfer_context->write_return_value(env, ret);
 }
@@ -197,9 +195,8 @@ void PoolByteArrayBridge::engine_call_get_string_from_utf8(JNIEnv* p_raw_env, jo
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
 
     Variant pool{*from_uint_to_ptr<PoolByteArray>(p_raw_ptr)};
-    static StringName func_name{_scs_create("get_string_from_utf8")};
 
-    Variant ret = pool.call(func_name);
+    Variant ret = pool.call(GDKotlin::get_instance().string_names.func_get_string_from_utf8_name);
 
     transfer_context->write_return_value(env, ret);
 }
@@ -209,9 +206,8 @@ void PoolByteArrayBridge::engine_call_hex_encode(JNIEnv* p_raw_env, jobject p_in
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
 
     Variant pool{*from_uint_to_ptr<PoolByteArray>(p_raw_ptr)};
-    static StringName func_name{_scs_create("hex_encode")};
 
-    Variant ret = pool.call(func_name);
+    Variant ret = pool.call(GDKotlin::get_instance().string_names.func_hex_encode_name);
 
     transfer_context->write_return_value(env, ret);
 }

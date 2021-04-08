@@ -534,6 +534,13 @@ void GDKotlin::check_and_copy_jar(const String& jar_name) {
 #endif
 }
 
-GDKotlin::GDKotlin() : bootstrap(nullptr), is_gc_started(false), transfer_context(nullptr) {
-
+GDKotlin::GDKotlin() :
+        bootstrap(nullptr),
+        is_gc_started(false),
+        transfer_context(nullptr) {
+    string_names.func_compress_name = _scs_create("compress");
+    string_names.func_decompress_name = _scs_create("decompress");
+    string_names.func_get_string_from_ascii_name = _scs_create("get_string_from_ascii");
+    string_names.func_get_string_from_utf8_name = _scs_create("get_string_from_utf8");
+    string_names.func_hex_encode_name = _scs_create("hex_encode");
 }
