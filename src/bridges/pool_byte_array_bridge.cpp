@@ -8,6 +8,8 @@ using namespace bridges;
 
 JNI_INIT_STATICS_FOR_CLASS(PoolByteArrayBridge)
 
+PoolByteArrayBridge::StringNames PoolByteArrayBridge::string_names;
+
 PoolByteArrayBridge::PoolByteArrayBridge(jni::JObject p_wrapped, jni::JObject p_class_loader)
         : JavaInstanceWrapper(POOL_BYTE_ARRAY_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
     jni::JNativeMethod engine_call_constructor_method{
