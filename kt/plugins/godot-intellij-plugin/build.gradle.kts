@@ -33,8 +33,26 @@ repositories {
     mavenCentral()
 }
 
+val currentCommit: org.ajoberstar.grgit.Commit = grgit.head()
+// check if the current commit is tagged
+var tagOnCurrentCommit = grgit.tag.list().firstOrNull { tag -> tag.commit.id == currentCommit.id }
+var releaseMode = tagOnCurrentCommit != null
+
+val isSnapshot = !releaseMode || requireNotNull(tagOnCurrentCommit).name.contains("-SNAPSHOT")
+
+version = if (!releaseMode) {
+    "$godotKotlinIntellijPluginVersion-${DependenciesVersions.godotVersion}-${currentCommit.abbreviatedId}-SNAPSHOT"
+} else {
+    val baseVersion = "$godotKotlinIntellijPluginVersion-${DependenciesVersions.godotVersion}"
+    if (isSnapshot) {
+        "$baseVersion-SNAPSHOT"
+    } else {
+        baseVersion
+    }
+}
+
 group = "com.utopia-rise"
-version = "0.0.1"
+
 val sdkVersion = project.properties["godot.plugins.intellij.version"] ?: "IJ203"
 val settings = checkNotNull(buildMatrix[sdkVersion])
 
@@ -71,7 +89,12 @@ detekt {
 
 tasks {
     patchPluginXml {
-        version("${project.version}-${settings.prefix}")
+        if (isSnapshot) {
+            val projectVersion = project.version as String
+            version("${projectVersion.removeSuffix("-SNAPSHOT")}-${settings.prefix}-SNAPSHOT")
+        } else {
+            version("${project.version}-${settings.prefix}")
+        }
         sinceBuild(settings.version.since)
         untilBuild(settings.version.until)
 
@@ -109,7 +132,11 @@ tasks {
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://jetbrains.org/intellij/sdk/docs/tutorials/build_system/deployment.html#specifying-a-release-channel
         // TODO: change back to commented variant once we're out of alpha/beta
-        channels("alpha") // version.toString().split('-').getOrElse(1) { "default" }.split('.').first()
+        if (isSnapshot) {
+            channels("alpha")
+        } else {
+            channels("stable")
+        }
     }
 
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {

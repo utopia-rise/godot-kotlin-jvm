@@ -11,7 +11,7 @@ var tagOnCurrentCommit = grgit.tag.list().firstOrNull { tag -> tag.commit.id == 
 var releaseMode = tagOnCurrentCommit != null
 
 version = if (!releaseMode) {
-    "$godotKotlinJvmVersion-${currentCommit.abbreviatedId}-SNAPSHOT"
+    "$godotKotlinJvmVersion-${DependenciesVersions.godotVersion}-${currentCommit.abbreviatedId}-SNAPSHOT"
 } else {
     requireNotNull(tagOnCurrentCommit).name
 }
