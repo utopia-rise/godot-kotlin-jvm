@@ -8,6 +8,8 @@ using namespace bridges;
 
 JNI_INIT_STATICS_FOR_CLASS(PoolByteArrayBridge)
 
+PoolByteArrayBridge::StringNames PoolByteArrayBridge::string_names;
+
 PoolByteArrayBridge::PoolByteArrayBridge(jni::JObject p_wrapped, jni::JObject p_class_loader)
         : JavaInstanceWrapper(POOL_BYTE_ARRAY_BRIDGE_CLASS_NAME, p_wrapped, p_class_loader) {
     jni::JNativeMethod engine_call_constructor_method{
@@ -24,6 +26,36 @@ PoolByteArrayBridge::PoolByteArrayBridge(jni::JObject p_wrapped, jni::JObject p_
             "engine_call_appendArray",
             "(J)V",
             (void*) PoolByteArrayBridge::engine_call_appendArray
+    };
+    jni::JNativeMethod engine_call_compress_method{
+            "engine_call_compress",
+            "(J)V",
+            (void*) PoolByteArrayBridge::engine_call_compress
+    };
+    jni::JNativeMethod engine_call_decompress_method{
+            "engine_call_decompress",
+            "(J)V",
+            (void*) PoolByteArrayBridge::engine_call_decompress
+    };
+    jni::JNativeMethod engine_call_empty_method{
+            "engine_call_empty",
+            "(J)V",
+            (void*) PoolByteArrayBridge::engine_call_empty
+    };
+    jni::JNativeMethod engine_call_get_string_from_ascii_method{
+            "engine_call_get_string_from_ascii",
+            "(J)V",
+            (void*) PoolByteArrayBridge::engine_call_get_string_from_ascii
+    };
+    jni::JNativeMethod engine_call_get_string_from_utf8_method{
+            "engine_call_get_string_from_utf8",
+            "(J)V",
+            (void*) PoolByteArrayBridge::engine_call_get_string_from_utf8
+    };
+    jni::JNativeMethod engine_call_hex_encode_method{
+            "engine_call_hex_encode",
+            "(J)V",
+            (void*) PoolByteArrayBridge::engine_call_hex_encode
     };
     jni::JNativeMethod engine_call_get_method{
             "engine_call_get",
@@ -70,6 +102,12 @@ PoolByteArrayBridge::PoolByteArrayBridge(jni::JObject p_wrapped, jni::JObject p_
     methods.push_back(engine_call_constructor_method);
     methods.push_back(engine_call_append_method);
     methods.push_back(engine_call_appendArray_method);
+    methods.push_back(engine_call_compress_method);
+    methods.push_back(engine_call_decompress_method);
+    methods.push_back(engine_call_empty_method);
+    methods.push_back(engine_call_get_string_from_ascii_method);
+    methods.push_back(engine_call_get_string_from_utf8_method);
+    methods.push_back(engine_call_hex_encode_method);
     methods.push_back(engine_call_get_method);
     methods.push_back(engine_call_insert_method);
     methods.push_back(engine_call_invert_method);
@@ -78,6 +116,12 @@ PoolByteArrayBridge::PoolByteArrayBridge(jni::JObject p_wrapped, jni::JObject p_
     methods.push_back(engine_call_resize_method);
     methods.push_back(engine_call_set_method);
     methods.push_back(engine_call_size_method);
+
+    string_names.func_compress_name = _scs_create("compress");
+    string_names.func_decompress_name = _scs_create("decompress");
+    string_names.func_get_string_from_ascii_name = _scs_create("get_string_from_ascii");
+    string_names.func_get_string_from_utf8_name = _scs_create("get_string_from_utf8");
+    string_names.func_hex_encode_name = _scs_create("hex_encode");
 
     jni::Env env{jni::Jvm::current_env()};
     j_class.register_natives(env, methods);
@@ -102,6 +146,77 @@ void PoolByteArrayBridge::engine_call_appendArray(JNIEnv* p_raw_env, jobject p_i
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
     from_uint_to_ptr<PoolByteArray>(p_raw_ptr)->append_array(args[0].operator PoolByteArray());
+}
+
+void PoolByteArrayBridge::engine_call_compress(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env{p_raw_env};
+    Variant args[1] = {};
+    TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
+    transfer_context->read_args(env, args);
+
+    Variant pool{*from_uint_to_ptr<PoolByteArray>(p_raw_ptr)};
+
+    Variant ret = pool.call(
+            string_names.func_compress_name,
+            &args[0]);
+
+    transfer_context->write_return_value(env, ret);
+}
+
+void PoolByteArrayBridge::engine_call_decompress(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env{p_raw_env};
+    Variant args[2] = {};
+    TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
+    transfer_context->read_args(env, args);
+
+    Variant pool{*from_uint_to_ptr<PoolByteArray>(p_raw_ptr)};
+
+    Variant ret = pool.call(
+            string_names.func_decompress_name,
+            &args[0],
+            &args[1]);
+
+    transfer_context->write_return_value(env, ret);
+}
+
+void PoolByteArrayBridge::engine_call_empty(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env{p_raw_env};
+    TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
+    Variant variant{from_uint_to_ptr<PoolByteArray>(p_raw_ptr)->empty()};
+    transfer_context->write_return_value(env, variant);
+}
+
+void PoolByteArrayBridge::engine_call_get_string_from_ascii(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env{p_raw_env};
+    TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
+
+    Variant pool{*from_uint_to_ptr<PoolByteArray>(p_raw_ptr)};
+
+    Variant ret = pool.call(string_names.func_get_string_from_ascii_name);
+
+    transfer_context->write_return_value(env, ret);
+}
+
+void PoolByteArrayBridge::engine_call_get_string_from_utf8(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env{p_raw_env};
+    TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
+
+    Variant pool{*from_uint_to_ptr<PoolByteArray>(p_raw_ptr)};
+
+    Variant ret = pool.call(string_names.func_get_string_from_utf8_name);
+
+    transfer_context->write_return_value(env, ret);
+}
+
+void PoolByteArrayBridge::engine_call_hex_encode(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env{p_raw_env};
+    TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
+
+    Variant pool{*from_uint_to_ptr<PoolByteArray>(p_raw_ptr)};
+
+    Variant ret = pool.call(string_names.func_hex_encode_name);
+
+    transfer_context->write_return_value(env, ret);
 }
 
 void PoolByteArrayBridge::engine_call_get(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
@@ -162,4 +277,12 @@ void PoolByteArrayBridge::engine_call_size(JNIEnv* p_raw_env, jobject p_instance
     jni::Env env{p_raw_env};
     Variant variant{from_uint_to_ptr<PoolByteArray>(p_raw_ptr)->size()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
+}
+
+PoolByteArrayBridge::~PoolByteArrayBridge() {
+    string_names.func_compress_name = StringName();
+    string_names.func_decompress_name = StringName();
+    string_names.func_get_string_from_ascii_name = StringName();
+    string_names.func_get_string_from_utf8_name = StringName();
+    string_names.func_hex_encode_name = StringName();
 }

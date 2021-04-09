@@ -534,6 +534,8 @@ void GDKotlin::check_and_copy_jar(const String& jar_name) {
 #endif
 }
 
-GDKotlin::GDKotlin() : bootstrap(nullptr), is_gc_started(false), transfer_context(nullptr) {
-
+GDKotlin::GDKotlin() :
+        bootstrap(nullptr),
+        is_gc_started(false),
+        transfer_context(nullptr) {
 }

@@ -1,29 +1,11 @@
 package godot.tests
 
-import godot.ARVRServer
-import godot.Button
-import godot.NavigationMesh
-import godot.Object
-import godot.Spatial
+import godot.*
 import godot.annotation.*
+import godot.annotation.File
 import godot.annotation.IntRange
 import godot.annotation.LongRange
-import godot.core.Color
-import godot.core.Dictionary
-import godot.core.NodePath
-import godot.core.PoolByteArray
-import godot.core.PoolColorArray
-import godot.core.PoolIntArray
-import godot.core.PoolRealArray
-import godot.core.PoolStringArray
-import godot.core.PoolVector2Array
-import godot.core.PoolVector3Array
-import godot.core.RID
-import godot.core.VariantArray
-import godot.core.Vector2
-import godot.core.Vector3
-import godot.core.dictionaryOf
-import godot.core.variantArrayOf
+import godot.core.*
 import godot.signals.signal
 import godot.tests.subpackage.OtherScript
 import godot.util.RealT
@@ -218,6 +200,15 @@ class Invocation : Spatial() {
 
     @RegisterProperty
     var stringtemplation = "blubb ${17 + 25}"
+
+    @RegisterProperty
+    var testString = "Two eggs in a boiler. One says: it's hot here, isn't ? The other: oh my god, an egg talking!"
+
+    @RegisterProperty
+    var asciiString = ""
+
+    @RegisterProperty
+    var utf8String = ""
 
     @RegisterSignal
     val signalNoParam by signal()
@@ -477,6 +468,24 @@ class Invocation : Spatial() {
 
     @RegisterFunction
     fun addRealArrayToPoolArray(realArray: PoolRealArray) = poolRealArray.appendArray(realArray)
+
+    @RegisterFunction
+    fun readStringFromByteArray() {
+
+        val asciiArray = testString.toByteArray(Charsets.US_ASCII)
+        val pool1 = PoolByteArray()
+        for (char in asciiArray) {
+            pool1.append(char)
+        }
+        asciiString = pool1.getStringFromAscii()
+
+        val utf8Array = testString.toByteArray(Charsets.UTF_8)
+        val pool2 = PoolByteArray()
+        for (char in utf8Array) {
+            pool2.append(char)
+        }
+        utf8String = pool2.getStringFromUtf8()
+    }
 
     @RegisterFunction
     fun deleteRealFromPoolArray(index: Int) = poolRealArray.remove(index)

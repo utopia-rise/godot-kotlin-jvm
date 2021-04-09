@@ -13,9 +13,9 @@ class PoolRealArray : NativeCoreType, Iterable<RealT> {
     //PROPERTIES
     val size: Int
         get() {
-		    Bridge.engine_call_size(_handle)
-			return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
-		}
+            Bridge.engine_call_size(_handle)
+            return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
+        }
 
     //CONSTRUCTOR
     constructor() {
@@ -146,9 +146,8 @@ class PoolRealArray : NativeCoreType, Iterable<RealT> {
     }
 
     override fun hashCode(): Int {
-        return hashCode()
+        return _handle.hashCode()
     }
-
 
 
     @Suppress("FunctionName")
@@ -165,6 +164,6 @@ class PoolRealArray : NativeCoreType, Iterable<RealT> {
         external fun engine_call_remove(_handle: VoidPtr)
         external fun engine_call_resize(_handle: VoidPtr)
         external fun engine_call_set(_handle: VoidPtr)
-		external fun engine_call_size(_handle: VoidPtr)
+        external fun engine_call_size(_handle: VoidPtr)
     }
 }

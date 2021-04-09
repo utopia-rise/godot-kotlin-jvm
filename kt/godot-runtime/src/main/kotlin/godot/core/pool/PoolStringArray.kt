@@ -9,9 +9,9 @@ class PoolStringArray : NativeCoreType, Iterable<String> {
     //PROPERTIES
     val size: Int
         get() {
-		    Bridge.engine_call_size(_handle)
-			return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
-		}
+            Bridge.engine_call_size(_handle)
+            return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
+        }
 
     //CONSTRUCTOR
     constructor() {
@@ -74,6 +74,15 @@ class PoolStringArray : NativeCoreType, Iterable<String> {
      */
     fun invert() {
         Bridge.engine_call_invert(_handle)
+    }
+
+    /**
+     * Returns a String with each element of the array joined with the given delimiter.
+     */
+    fun join(delimiter: String): String {
+        TransferContext.writeArguments(VariantType.STRING to delimiter)
+        Bridge.engine_call_join(_handle)
+        return TransferContext.readReturnValue(VariantType.STRING) as String
     }
 
     /**
@@ -142,9 +151,8 @@ class PoolStringArray : NativeCoreType, Iterable<String> {
     }
 
     override fun hashCode(): Int {
-        return hashCode()
+        return _handle.hashCode()
     }
-
 
 
     @Suppress("FunctionName")
@@ -157,10 +165,11 @@ class PoolStringArray : NativeCoreType, Iterable<String> {
         external fun engine_call_get(_handle: VoidPtr)
         external fun engine_call_insert(_handle: VoidPtr)
         external fun engine_call_invert(_handle: VoidPtr)
+        external fun engine_call_join(_handle: VoidPtr)
         external fun engine_call_pushback(_handle: VoidPtr)
         external fun engine_call_remove(_handle: VoidPtr)
         external fun engine_call_resize(_handle: VoidPtr)
         external fun engine_call_set(_handle: VoidPtr)
-		external fun engine_call_size(_handle: VoidPtr)
+        external fun engine_call_size(_handle: VoidPtr)
     }
 }

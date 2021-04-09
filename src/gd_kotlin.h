@@ -1,5 +1,6 @@
 #ifndef GODOT_JVM_GD_KOTLIN_H
 #define GODOT_JVM_GD_KOTLIN_H
+
 #include "jni/wrapper.h"
 #include "bootstrap.h"
 #include "kt_class.h"
@@ -12,6 +13,7 @@
 class GDKotlin {
 private:
     GDKotlin();
+
     ~GDKotlin() = default;
 
     Map<StringName, KtClass*> classes;
@@ -24,6 +26,7 @@ private:
     Error split_jvm_debug_argument(const String& cmd_arg, String& result);
 
     static void check_and_copy_jar(const String& jar_name);
+
 public:
     TransferContext* transfer_context;
     Vector<StringName> engine_type_names;
@@ -39,11 +42,13 @@ public:
     GDKotlin& operator=(const GDKotlin&) = delete;
 
     void init();
+
     void finish();
 
     jni::JObject& get_class_loader();
 
     void register_classes(jni::Env& p_env, jni::JObjectArray p_classes);
+
     void unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes);
 
     KtClass* find_class(const StringName& p_script_path);
