@@ -6,7 +6,7 @@
        The optional "url" attribute specifies the URL of the vendor homepage.
        The optional "email" attribute specifies the e-mail address of the vendor.
        Displayed in the "Plugins" settings dialog and the plugin repository Web interface. -->
-    <vendor url="https://godot-kotlin.utopia-rise.com" email="meisels27@yahoo.fr">Utopia-Rise</vendor>
+    <vendor url="https://github.com/utopia-rise/" email="meisels27@yahoo.fr">Utopia-Rise</vendor>
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
