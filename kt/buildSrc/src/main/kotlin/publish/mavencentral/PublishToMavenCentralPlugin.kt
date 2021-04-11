@@ -28,7 +28,9 @@ class PublishToMavenCentralPlugin: Plugin<Project> {
                 @Suppress("UnstableApiUsage")
                 useInMemoryPgpKeys(signingKey, signingPassword)
                 target.extensions.findByType(PublishingExtension::class.java)?.publications?.all {
-                    sign(this)
+                    if (signingKey != null && signingPassword != null) { // for local development, If missing in CI it will fail later on deploy so we would notice the issue then
+                        sign(this)
+                    }
                 }
             }
 
