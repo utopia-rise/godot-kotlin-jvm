@@ -18,10 +18,18 @@ extra:
       link: https://github.com/utopia-rise
 
 markdown_extensions:
-  - codehilite:
+  - pymdownx.highlight:
       linenums: true
   - pymdownx.inlinehilite
+  - pymdownx.highlight
+  - pymdownx.superfences
   - admonition
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js
+  - javascripts/config.js
+extra_css:
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css
 
 
 nav:

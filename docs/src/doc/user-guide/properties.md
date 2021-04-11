@@ -1,17 +1,17 @@
-Any property of a registered class can be registered as long as it meets all of the following requirements:  
- 
- - Defined inside a registered class  
- - Mutable  
- - Annotated with `@RegisterProperty`  
- - Type can be converted to `Variant`  
- 
+Any property of a registered class can be registered as long as it meets all of the following requirements:
+
+ - Defined inside a registered class
+ - Mutable
+ - Annotated with `@RegisterProperty`
+ - Type can be converted to `Variant`
+
 
 
 ```kotlin
 @RegisterClass
 class RotatingCube: Spatial() {
-    
-    @RegisterProperty  
+
+    @RegisterProperty
     lateinit var lateInitProperty: NodePath
 
     @RegisterProperty
@@ -20,16 +20,15 @@ class RotatingCube: Spatial() {
 ```
 
 ## Naming
-You can and should name your properties kotlin style camelCase. But for a more natural feel and more consistent code in GDScript when using kotlin properties from GDScript, your properties are actually registered as snake_case.  
-So if you want to use your kotlin property `someFlag` use it from GDScript with `some_flag`.
+You can and should name your properties kotlin style camelCase. But for a more natural feel and more consistent code in GDScript when using kotlin properties from GDScript, your properties are actually registered as snake_case. So if you want to use your kotlin property `someFlag` use it from GDScript with `some_flag`.
 
 ## Default Values
 If you define a default value for a property and `visibleInEditor` (more on that later) is set to `true`, the default value will be set in the `inspector`.
 
 !!! note ""
-    If you set a default value in code and a different value in the `inspector` the value of the `inspector` will override the value in code after `_init` and before `_ready`!  
-    A default value can **only** contain compile time constants and only References to compile time constants! Better you only use refs where you have no other choice like for Enums.  
-    We try to catch all wrong references during compilation and throw a corresponding exception, but we may have missed some cases which then only occur during runtime.  
+    If you set a default value in code and a different value in the `inspector` the value of the `inspector` will override the value in code after `_init` and before `_ready`!
+    A default value can **only** contain compile time constants and only References to compile time constants! Better you only use refs where you have no other choice like for Enums.
+    We try to catch all wrong references during compilation and throw a corresponding exception, but we may have missed some cases which then only occur during runtime.
     We also strongly recommend using our Intellij plugin as it can warn you about many wrongly registered properties while you write your code. See the section [IDE](../getting-started/ide.md) for more information about the plugin.
 
 
@@ -42,9 +41,9 @@ The `@RegisterProperty` annotation takes two arguments:
 - **rpcMode**: Default: `RPCMode.DISABLED`
 
 ## Type Hint Registration
-This module provides a plethora of annotations for defining Property Type Hints. These annotations are for the `inspector` to provide proper hints and editors to set and change values from within the inspector (like a color wheel, checkboxes, file dialogs, and so on...).  
-Each property hint annotation can only be added to certain types of properties. If you use such an annotation wrongly, we will let your compilation fail. If you want warnings about wrong type hint annotation usage, install our intellij IDE plugin.  
-Below is a list of currently implemented type hints:  
+This module provides a plethora of annotations for defining Property Type Hints. These annotations are for the `inspector` to provide proper hints and editors to set and change values from within the inspector (like a color wheel, checkboxes, file dialogs, and so on...).
+Each property hint annotation can only be added to certain types of properties. If you use such an annotation wrongly, we will let your compilation fail. If you want warnings about wrong type hint annotation usage, install our intellij IDE plugin.
+Below is a list of currently implemented type hints:
 
 | Annotation      | Type of Property           | Arguments                                                             | Short Description                                                                                                                                |
 |-----------------|----------------------------|-----------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
