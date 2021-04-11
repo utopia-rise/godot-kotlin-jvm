@@ -26,6 +26,14 @@ val buildMatrix: Map<String, BuildConfig> = mapOf(
         VersionRange("203.1", "203.*"),
         listOf("2020.1.4", "2020.2.3", "2020.3"),
         listOf("java", "org.jetbrains.kotlin:203-1.4.32-release-IJ7148.5", "gradle")
+    ),
+    "IJ211" to BuildConfig(
+        "211.6693.111",
+        "IJ2021.1",
+        "IJ183",
+        VersionRange("211.1", "211.*"),
+        listOf("2021.1.1"),
+        listOf("java", "org.jetbrains.kotlin:211-1.4.32-release-IJ6693.72", "gradle")
     )
 )
 
@@ -53,7 +61,7 @@ version = if (!releaseMode) {
 
 group = "com.utopia-rise"
 
-val sdkVersion = project.properties["godot.plugins.intellij.version"] ?: "IJ203"
+val sdkVersion = project.properties["godot.plugins.intellij.version"] ?: "IJ211"
 val settings = checkNotNull(buildMatrix[sdkVersion])
 
 // Configure gradle-intellij-plugin plugin.
