@@ -35,7 +35,7 @@ dependencies {
     implementation("com.github.jengelman.gradle.plugins:shadow:${DependenciesVersions.shadowJarPluginVersion}")
 
     implementation(project(":godot-build-props"))
-    implementation("com.utopia-rise:godot-kotlin-entry-generator")
+    implementation("com.utopia-rise:godot-kotlin-entry-generator:${DependenciesVersions.entryGeneratorVersion}")
     compileOnly(project(":godot-kotlin-compiler-plugin-common"))
 }
 
