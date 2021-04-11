@@ -32,10 +32,11 @@ publishing {
         // this is only used for publishing locally.
         val buildProps by creating(MavenPublication::class) {
             pom {
-                groupId = "${project.group}"
-                artifactId = project.name
-                version = "${project.version}"
+                name.set(project.name)
+                description.set("Properties for Godot Kotlin building.")
             }
+            artifactId = project.name
+            description = "Properties for Godot Kotlin building."
             from(components.getByName("java"))
         }
     }
