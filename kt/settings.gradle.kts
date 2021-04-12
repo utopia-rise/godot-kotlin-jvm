@@ -1,5 +1,6 @@
 include("godot-runtime")
 include("godot-library")
+include("godot-bootstrap")
 
 pluginManagement {
     resolutionStrategy.eachPlugin {
