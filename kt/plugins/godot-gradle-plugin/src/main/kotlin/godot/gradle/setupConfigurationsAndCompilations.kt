@@ -114,6 +114,10 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
             configurations.add(gameConfiguration)
             from(gameCompilation.compileDependencyFiles + gameCompilation.output.classesDirs)
 
+            dependencies {
+                exclude(dependency("org.jetbrains.kotlin:kotlin-stdlib.*"))
+            }
+
             dependsOn(createBuildLock)
         }
 
