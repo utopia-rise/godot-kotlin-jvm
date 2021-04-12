@@ -8,6 +8,7 @@ import com.intellij.openapi.roots.ProjectFileIndex
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.newvfs.BulkFileListener
 import com.intellij.openapi.vfs.newvfs.events.VFileEvent
+import com.intellij.psi.search.FileTypeIndex
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.util.indexing.FileBasedIndex
 import com.intellij.util.indexing.ID
@@ -41,10 +42,11 @@ class GodotSceneBulkFileListener(private val project: Project) : BulkFileListene
             virtualFileChanged(vFile)
         }
 
+    @Suppress("UnstableApiUsage")
     private fun getContainingFiles() = FileBasedIndex
         .getInstance()
         .getContainingFiles(
-            ID.create<FileType, Void>("filetypes"),
+            FileTypeIndex.NAME,
             PlainTextFileType.INSTANCE,
             GlobalSearchScope.projectScope(project)
         )

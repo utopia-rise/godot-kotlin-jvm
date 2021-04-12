@@ -7,6 +7,7 @@ import com.intellij.psi.PsiDirectory
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiManager
 import com.intellij.psi.PsiTreeChangeEvent
+import com.intellij.psi.search.FileTypeIndex
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.util.indexing.FileBasedIndex
 import com.intellij.util.indexing.ID
@@ -97,10 +98,11 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
     }
 
     private fun initialIndexing() {
+        @Suppress("UnstableApiUsage")
         FileBasedIndex
             .getInstance()
             .getContainingFiles(
-                ID.create<FileType, Void>("filetypes"),
+                FileTypeIndex.NAME,
                 KotlinFileType.INSTANCE,
                 GlobalSearchScope.projectScope(project)
             )

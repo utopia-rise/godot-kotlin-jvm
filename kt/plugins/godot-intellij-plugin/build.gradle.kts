@@ -38,10 +38,10 @@ val buildMatrix: Map<String, BuildConfig> = mapOf(
 )
 
 repositories {
-    mavenCentral()
     maven {
         url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
     }
+    mavenCentral()
 }
 
 val currentCommit: org.ajoberstar.grgit.Commit = grgit.head()
@@ -80,7 +80,6 @@ intellij {
 }
 
 dependencies {
-    implementation(project(":godot-build-props"))
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.14.2")
     implementation("com.utopia-rise:jvm-godot-resource-serialization:0.1.0")
 }
