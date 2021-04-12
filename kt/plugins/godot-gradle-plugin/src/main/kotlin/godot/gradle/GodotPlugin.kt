@@ -21,7 +21,7 @@ class GodotPlugin : KotlinCompilerPluginSupportPlugin {
         val godotExtension = target.extensions.create("godot", GodotExtension::class.java)
         val jvm = target.extensions.getByType<KotlinJvmProjectExtension>()
         target.pluginManager.apply(ShadowPlugin::class)
-        target.pluginManager.apply("org.jetbrains.kotlin.kapt")
+//        target.pluginManager.apply("org.jetbrains.kotlin.kapt")
         setupPlugin(target, godotExtension, jvm)
     }
 

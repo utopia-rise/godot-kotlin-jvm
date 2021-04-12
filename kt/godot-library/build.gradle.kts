@@ -32,6 +32,9 @@ tasks {
         archiveBaseName.set("godot-bootstrap")
         archiveVersion.set("")
         archiveClassifier.set("")
+        dependencies {
+            exclude(dependency("org.jetbrains.kotlin:.*"))
+        }
         exclude("**/module-info.class") //for android support: excludes java 9+ module info which cannot be parsed by the dx tool
         finalizedBy(copyBootstrapJar)
     }
