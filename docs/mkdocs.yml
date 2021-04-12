@@ -36,8 +36,8 @@ nav:
   - Overview: index.md
   - Getting started:
       - Project Setup: getting-started/project-setup.md
-      - Gradle: getting-started/gradle.md
       - IDE: getting-started/ide.md
+      - Gradle: getting-started/gradle.md
       - Add first class: getting-started/add-first-class.md
   - User guide:
     - Classes: user-guide/classes.md
