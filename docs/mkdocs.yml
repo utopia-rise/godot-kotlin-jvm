@@ -56,7 +56,7 @@ nav:
     - Setup: contribution/setup.md
     - Build with C# support: contribution/build-with-csharp-support.md
     - Knowledge base:
-        - Artefact differentiation: contribution/knowlegde-base/artefact-differentiation.mb
-        - Entry generation: contribution/knowlegde-base/entry-generation.md
+        - Artefact differentiation: contribution/knowledge-base/artefact-differentiation.md
+        - Entry generation: contribution/knowledge-base/entry-generation.md
   - Versioning: versioning.md
   - Supported platforms: supported-platforms.md
