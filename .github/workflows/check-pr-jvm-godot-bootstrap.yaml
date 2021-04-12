@@ -1,8 +1,8 @@
-name: Check PR - JVM Godot Library
+name: Check PR - JVM Godot Bootstrap
 on: [pull_request]
 
 jobs:
-  build-godot-library:
+  build-godot-bootstrap:
     strategy:
       matrix:
         os: [ubuntu-latest]
@@ -29,7 +29,7 @@ jobs:
         with:
           wrapper-directory: modules/kotlin_jvm/kt/
           build-root-directory: modules/kotlin_jvm/kt/
-          arguments: godot-library:build
+          arguments: godot-bootstrap:build
         env:
           GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII: ${{ secrets.GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII }}
           GODOT_KOTLIN_GPG_KEY_PASSPHRASE: ${{ secrets.GODOT_KOTLIN_GPG_KEY_PASSPHRASE }}
