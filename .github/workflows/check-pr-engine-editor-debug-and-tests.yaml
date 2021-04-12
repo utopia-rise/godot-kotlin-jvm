@@ -6,7 +6,7 @@ env:
   GODOT_BASE_VERSION: 3.2.3
 
 jobs:
-  build-godot-library:
+  build-godot-bootstrap:
     strategy:
       matrix:
         os: [ ubuntu-latest ]
@@ -33,12 +33,12 @@ jobs:
         with:
           wrapper-directory: modules/kotlin_jvm/kt/
           build-root-directory: modules/kotlin_jvm/kt/
-          arguments: godot-library:build
+          arguments: godot-bootstrap:build
       - name: Upload godot-bootstrap jar
         uses: actions/upload-artifact@v1
         with:
           name: godot-bootstrap
-          path: modules/kotlin_jvm/kt/godot-library/build/libs/godot-bootstrap.jar
+          path: modules/kotlin_jvm/kt/godot-bootstrap/build/libs/godot-bootstrap.jar
   build-editor-debug:
     strategy:
       matrix:
@@ -105,7 +105,7 @@ jobs:
           name: osx-editor-debug-app
           path: bin/godot.osx.tools.64
   test-editor-debug:
-    needs: [build-editor-debug, build-godot-library]
+    needs: [build-editor-debug, build-godot-bootstrap]
     strategy:
       matrix:
         os: [macos-latest]
