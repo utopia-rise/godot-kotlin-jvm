@@ -132,7 +132,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                     .replace("KOTLIN_VERSION", wizardContext.getUserData(kotlinVersionKey) ?: "1.4.32")
                     .replace(
                         "GODOT_KOTLIN_JVM_VERSION",
-                        "0.1.0-3.2.3-SNAPSHOT"
+                        "0.1.0-3.2.3"
                     )
                     .replace("ANDROID_ENABLED", wizardContext.getUserData(androidEnabledKey)?.toString() ?: "false")
                     .replace("DX_TOOL_PATH", wizardContext.getUserData(dxToolPathKey) ?: "dx")
