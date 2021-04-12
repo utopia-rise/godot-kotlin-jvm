@@ -39,6 +39,9 @@ val buildMatrix: Map<String, BuildConfig> = mapOf(
 
 repositories {
     mavenCentral()
+    maven {
+        url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+    }
 }
 
 val currentCommit: org.ajoberstar.grgit.Commit = grgit.head()
