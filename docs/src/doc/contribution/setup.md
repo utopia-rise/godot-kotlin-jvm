@@ -1,7 +1,6 @@
-To build our module, you need to same dependencies as the ones described in the official Godot documentation:
-https://docs.godotengine.org/en/stable/development/compiling/index.html
+To build our module, you need to same dependencies as the ones described in the [official Godot documentation](https://docs.godotengine.org/en/stable/development/compiling/index.html).
 
-Make sure that Java is installed and its PATH set in your system as well(at least Java 9 is needed!).
+Make sure that Java is installed and its PATH set in your system as well (at least Java 9 is needed!).
 
 1. Clone godot repo with the stable tag you want do deveop for (3.2.3-stable in this example). `git clone git@github.com:godotengine/godot.git 3.2.3-stable --recursive`
 

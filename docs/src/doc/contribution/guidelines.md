@@ -1,5 +1,3 @@
-We encourage you to contribute to the project if you want. Even if you don't have any idea how the module works or if it seems overwhelming at first, we're here to help you getting started.
-
 ## General
 We are working with the Code Owners feature of GitHub. This means each piece of code in our module has a maintainer who is the "Owner" of said code. This maintainer is usually the one who implemented it or has the most knowledge about that particular part of the module. General code may not have a specific "Owner". In this case the fallback is: all Maintainers.
 
@@ -17,7 +15,3 @@ We enforce the code style to match the official Kotlin [coding conventions](http
 We will enforce this later on through CI and linting.  
 - **Branching:**  
 We do branching like described in `git-flow`.
-- **Code Owner:**
-We are working with the Code Owners feature of GitHub.  
-This means each piece of code in our module has a maintainer who is the "Owner" of said code. This maintainer is usually the one who implemented it or has the most knowledge about that particular part of the module.  
-General code may not have a specific "Owner". In this case the fallback is: all Maintainers.  
