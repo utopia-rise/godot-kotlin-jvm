@@ -31,7 +31,7 @@ godot {
     isAndroidExportEnabled.set(true)
 }
 ```
-On android we do not embedd a JVM. We use the existing DalvikVM of android.  
+On android we do not embedd a JVM. We use the existing ART of android.  
 In order for your game to load the necessary jar files, they need to be converted into dex format.  
 Our gradle plugin will handle this for you, but you need to fulfill the following requirements:
 
