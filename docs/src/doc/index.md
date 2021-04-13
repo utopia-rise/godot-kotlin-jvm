@@ -7,6 +7,8 @@ An embedded JRE will be shipped with your application to ensure it runs on syste
 If you are new to this language module, it is recommended to read through the [Versioning](versioning.md) and the [Project setup](getting-started/project-setup.md) sections first.
 Please also note the [API differences](api-differences.md) section which covers some important difference to the scripting and workflow compared to GDScript.
 
+If you are looking for the documentation for Godot Kotlin/Native; you can find it [here](https://godot-kotlin.readthedocs.io/en/latest/).
+
 # State
 This binding is currently in Alpha state and not production ready as some breaking API changes might still occure.  
 Please note the [alpha](alpha.md) docs page to see limitations present in the latest alpha release.
