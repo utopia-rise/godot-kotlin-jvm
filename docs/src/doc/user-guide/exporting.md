@@ -1,4 +1,3 @@
-## Exporting games
 
 To export the game, you should copy exports into the correct template folder, which should be:  
 - Windows: `%APPDATA%\Godot\templates\<godot-version>`
@@ -17,6 +16,12 @@ On osx use the script mentioned in [this issue](https://github.com/godotengine/g
 Then you can export your game as usual, your game `jar` will be included in `pck`.  
 On desktop platforms, this also copies the jre folder of your project in the exported game folder.
 
+## Requirements
+To export your game, you need to have an embedded JRE created:  
+To create an embedded jre run the following command from the root of your project: `jlink --add-modules java.base,java.logging --output jre`  
+If you want to remote debug add the module `jdk.jdwp.agent` to the command.  
+If you want to enable jmx, add `jdk.management.agent` to the command.
+
 ## Particularities
 
 `godot-bootstrap.jar` and `main.jar` are set into `pck` during the export process. As a real file path is needed to
@@ -31,7 +36,7 @@ godot {
     isAndroidExportEnabled.set(true)
 }
 ```
-On android we do not embedd a JVM. We use the existing ART of android.  
+On android we do not embed a JVM. We use the existing ART of android.  
 In order for your game to load the necessary jar files, they need to be converted into dex format.  
 Our gradle plugin will handle this for you, but you need to fulfill the following requirements:
 
