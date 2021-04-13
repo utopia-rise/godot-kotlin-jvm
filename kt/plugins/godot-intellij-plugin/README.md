@@ -16,7 +16,7 @@
 ## Description
 [comment]: <> (To keep everything working, do not remove `<!-- ... -->` sections. These are added to the plugin description through gradle during build)
 <!-- Plugin description -->
-Adds additional source code checks specific to Godot-Jvm.  
+Adds additional source code checks specific to Godot-Kotlin-Jvm.  
 
 Features:
   - Adds code insight checks for registering classes, properties, functions and signals
