@@ -11,6 +11,7 @@ gradlePlugin {
             id = "com.utopia-rise.godot-jvm"
             displayName = "Gradle plugin for godot-jvm"
             implementationClass = "godot.gradle.GodotPlugin"
+            description = "Automatically setup of godot kotlin jvm specific project configurations"
         }
     }
     isAutomatedPublishing = false
