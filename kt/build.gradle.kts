@@ -76,11 +76,16 @@ tasks {
 
         when {
             DefaultNativePlatform.getCurrentOperatingSystem().isWindows ->
-                commandLine("cmd", "/c", "godot.windows.tools.64.exe", "-v")
+                commandLine(
+                    "cmd",
+                    "/c",
+                    "${workingDir.absolutePath}${File.pathSeparator}godot.windows.tools.64.exe",
+                    "-v"
+                )
             DefaultNativePlatform.getCurrentOperatingSystem().isMacOsX ->
-                commandLine("scons", "godot.osx.tools.64", "-v")
+                commandLine("${workingDir.absolutePath}/godot.osx.tools.64", "-v")
             DefaultNativePlatform.getCurrentOperatingSystem().isLinux ->
-                commandLine("scons", "godot.x11.tools.64", "-v")
+                commandLine("${workingDir.absolutePath}/godot.x11.tools.64", "-v")
         }
     }
     val runEngineReleaseDebug by creating(Exec::class) {
