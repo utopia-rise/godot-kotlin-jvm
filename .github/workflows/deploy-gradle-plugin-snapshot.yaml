@@ -1,4 +1,4 @@
-name: Deploy Gradle Plugin
+name: Deploy Gradle Plugin Snapshot
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - '\d+.\d+.\d+-\d+.\d+.\d+-SNAPSHOT'
 
 jobs:
-  deploy_godot_gradle_plugin:
+  deploy_godot_gradle_plugin_snapshot:
     runs-on: ubuntu-latest
     steps:
       - name: Clone Godot JVM module.
