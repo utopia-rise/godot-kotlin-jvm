@@ -3,7 +3,7 @@ plugins {
     `maven-publish`
     id("com.gradle.plugin-publish") version "0.14.0"
     id("com.utopia-rise.godot-publish")
-    id("org.ajoberstar.grgit") version "4.1.0"
+    id("org.ajoberstar.grgit")
 }
 
 gradlePlugin {
