@@ -14,7 +14,7 @@ tasks {
     build.get().finalizedBy(shadowJar)
 
     val copyBootstrapJar by creating(Copy::class.java) {
-        group = "godot-jvm"
+        group = "godot-kotlin-jvm"
         from(shadowJar)
         destinationDir = File("${projectDir.absolutePath}/../../../../bin/")
         dependsOn(shadowJar)

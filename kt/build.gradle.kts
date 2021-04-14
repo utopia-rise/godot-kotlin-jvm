@@ -29,7 +29,7 @@ subprojects {
 
 tasks {
     val buildEngineDebug by creating(Exec::class) {
-        group = "godot-jvm"
+        group = "godot-kotlin-jvm"
 
         workingDir = File(rootProject.projectDir, "../../..")
         environment("JAVA_HOME", System.getProperty("java.home"))
@@ -49,7 +49,7 @@ tasks {
         }
     }
     val buildEngineReleaseDebug by creating(Exec::class) {
-        group = "godot-jvm"
+        group = "godot-kotlin-jvm"
 
         workingDir = File(rootProject.projectDir, "../../..")
         environment("JAVA_HOME", System.getProperty("java.home"))
@@ -69,7 +69,7 @@ tasks {
         }
     }
     val runEngineDebug by creating(Exec::class) {
-        group = "godot-jvm"
+        group = "godot-kotlin-jvm"
 
         workingDir = File(rootProject.projectDir, "../../../bin")
         environment("JAVA_HOME", System.getProperty("java.home"))
@@ -84,7 +84,7 @@ tasks {
         }
     }
     val runEngineReleaseDebug by creating(Exec::class) {
-        group = "godot-jvm"
+        group = "godot-kotlin-jvm"
 
         workingDir = File(rootProject.projectDir, "../../../bin")
         environment("JAVA_HOME", System.getProperty("java.home"))
@@ -104,12 +104,12 @@ tasks {
         }
     }
     val buildAndRunEngineDebug by creating {
-        group = "godot-jvm"
+        group = "godot-kotlin-jvm"
         dependsOn(buildEngineDebug, getTasksByName("copyBootstrapJar", true).first())
         finalizedBy(runEngineDebug)
     }
     val buildAndRunEngineReleaseDebug by creating {
-        group = "godot-jvm"
+        group = "godot-kotlin-jvm"
         dependsOn(buildEngineReleaseDebug, getTasksByName("copyBootstrapJar", true).first())
         finalizedBy(runEngineReleaseDebug)
     }

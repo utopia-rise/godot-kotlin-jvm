@@ -128,7 +128,7 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
          * This task deletes and regenerates the MainEntry file for each build without the need of a recompilation.
          */
         val cleanupEntryFiles by creating {
-            group = "godot-jvm"
+            group = "godot-kotlin-jvm"
             description = "Cleanup of old entry files. No need to run manually"
             doLast {
                 EntryGenerator.deleteOldEntryFilesAndReGenerateMainEntryFile(
@@ -146,7 +146,7 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
         }
 
         val checkDxToolAccessible by creating {
-            group = "godot-jvm"
+            group = "godot-kotlin-jvm"
             description = "Checks if the dx tool is accessible and executable. Needed for android builds only"
 
             doLast {
@@ -171,7 +171,7 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
         }
 
         val createGodotBootstrapDexJar by creating(Exec::class) {
-            group = "godot-jvm"
+            group = "godot-kotlin-jvm"
             description = "Converts the godot-bootstrap.jar to an android compatible version. Needed for android builds only"
 
             dependsOn(checkDxToolAccessible, shadowJar, bootstrapJar)
@@ -187,7 +187,7 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
         }
 
         val createMainDexJar by creating(Exec::class) {
-            group = "godot-jvm"
+            group = "godot-kotlin-jvm"
             description = "Converts the main.jar to an android compatible version. Needed for android builds only"
 
             dependsOn(checkDxToolAccessible, shadowJar, bootstrapJar)

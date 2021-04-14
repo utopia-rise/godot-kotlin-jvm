@@ -251,7 +251,7 @@ class Invocation : Spatial() {
 
     @RegisterFunction
     override fun _enterTree() {
-        //TODO: uncomment once https://github.com/utopia-rise/godot-jvm/issues/86 is fixed
+        //TODO: uncomment once https://github.com/utopia-rise/godot-kotlin-jvm/issues/86 is fixed
 //        GD.print("Hello", "Hello")
 //        GD.printErr("Hello", "Hello")
 //        GD.printRaw("Hello", "Hello")

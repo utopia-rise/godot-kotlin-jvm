@@ -9,8 +9,8 @@ plugins {
 gradlePlugin {
     plugins {
         create("godotPlugin") {
-            id = "com.utopia-rise.godot-jvm"
-            displayName = "Gradle plugin for godot-jvm"
+            id = "com.utopia-rise.godot-kotlin-jvm"
+            displayName = "Gradle plugin for godot-kotlin-jvm"
             implementationClass = "godot.gradle.GodotPlugin"
             description = "Automatically setup of godot kotlin jvm specific project configurations"
         }
@@ -19,8 +19,8 @@ gradlePlugin {
 }
 
 pluginBundle {
-    website = "https://github.com/utopia-rise/godot-jvm"
-    vcsUrl = "https://github.com/utopia-rise/godot-jvm.git"
+    website = "https://github.com/utopia-rise/godot-kotlin-jvm"
+    vcsUrl = "https://github.com/utopia-rise/godot-kotlin-jvm.git"
     tags = listOf("kotlin", "godot", "gamedev")
 
     mavenCoordinates {
