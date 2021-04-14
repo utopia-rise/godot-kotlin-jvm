@@ -47,6 +47,7 @@ tasks {
     }
 
     val deploy by creating {
+        group = "godot-kotlin-jvm"
         if (releaseMode) {
             if (isSnapshotBuild()) {
                 finalizedBy(getByName("publish"))
