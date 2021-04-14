@@ -112,10 +112,11 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
             configurations.clear()
             exclude("**/module-info.class") //for android support: excludes java 9+ module info which cannot be parsed by the dx tool
             configurations.add(gameConfiguration)
-            from(gameCompilation.compileDependencyFiles + gameCompilation.output.classesDirs)
+            from(gameCompilation.output.classesDirs)
 
             dependencies {
                 exclude(dependency("org.jetbrains.kotlin:kotlin-stdlib.*"))
+                exclude(dependency("com.utopia-rise:godot-library:.*"))
             }
 
             dependsOn(createBuildLock)
