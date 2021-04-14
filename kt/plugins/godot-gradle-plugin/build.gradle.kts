@@ -3,6 +3,7 @@ plugins {
     `maven-publish`
     id("com.gradle.plugin-publish") version "0.14.0"
     id("com.utopia-rise.godot-publish")
+    id("org.ajoberstar.grgit") version "4.1.0"
 }
 
 gradlePlugin {
@@ -44,6 +45,16 @@ tasks {
     build {
         finalizedBy(publishToMavenLocal)
     }
+
+    val deploy by creating {
+        if (releaseMode) {
+            if (isSnapshotBuild()) {
+                finalizedBy(getByName("publish"))
+            } else {
+                finalizedBy(getByName("publish"), getByName("publishPlugins"))
+            }
+        }
+    }
 }
 
 publishing {
@@ -61,3 +72,10 @@ publishing {
 }
 
 project.extra["artifacts"] = arrayOf("godotGradlePlugin")
+
+val currentCommit: org.ajoberstar.grgit.Commit = grgit.head()
+// check if the current commit is tagged
+var tagOnCurrentCommit = grgit.tag.list().firstOrNull { tag -> tag.commit.id == currentCommit.id }
+var releaseMode = tagOnCurrentCommit != null
+
+fun isSnapshotBuild(): Boolean = tagOnCurrentCommit?.name?.endsWith("SNAPSHOT") == true
