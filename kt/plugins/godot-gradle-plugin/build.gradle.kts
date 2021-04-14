@@ -48,6 +48,16 @@ tasks {
 
     val deploy by creating {
         group = "godot-kotlin-jvm"
+        doLast {
+            if (releaseMode) {
+                if (isSnapshotBuild()) {
+                    println("Snapshot: Deploying to mavenCentral only")
+                } else {
+                    println("Release: Deploying to mavenCentral and gradle plugin repo")
+                }
+            }
+            println("Not tagged... will not deploy")
+        }
         if (releaseMode) {
             if (isSnapshotBuild()) {
                 finalizedBy(getByName("publish"))
