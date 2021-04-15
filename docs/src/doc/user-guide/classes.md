@@ -8,20 +8,23 @@ class RotatingCube: Spatial() {
 ```
 
 ## Naming
-Classes need to be registered with a unique name as Godot does not support namespaces (or packages in this case) for script classes.
-This is why this module registers your classes with the fully qualified name. But as GDScript does not support `.` in the type name, `.` are converted to `_`.
+Classes need to be registered with a unique name as Godot does not support namespaces (or packages in this case) for script classes.  
+This is why this module registers your classes with the fully qualified name. But as GDScript does not support `.` in the type name, `.` are converted to `_`.  
 
-A little example:
+A little example:  
+A class with fqname `com.company.game.RotatingCube` will be registered as `com_company_game_RotatingCube` and can be used with that name from GDScript as well:  
+`var instance := com_company_game_RotatingCube.new()`  
 
-A class with fqname `com.company.game.RotatingCube` will be registered as `com_company_game_RotatingCube` and can be used from with that name from GDScript as well: `var instance := com_company_game_RotatingCube.new()`. As this can get quite long and convoluted, you can register classes with a custom class name. See the section [Registration Configuration](#registration-configuration) in this page for more information's about that.
+
+. As this can get quite long and convoluted, you can register classes with a custom class name. See the section [Registration Configuration](#registration-configuration) in this page for more information's about that.
 
 ## Lifecycle
-If you want to be notified when initialization and destruction of your class happens, override `_onInit` and `_onDestroy` functions, respectively.
+If you want to be notified when initialization and destruction of your class happens, use the `init` block and override the `_onDestroy` function respectively.
 
 ```kotlin
 @RegisterClass
 class RotatingCube: Spatial() {
-    override fun _onInit() {
+    init {
         println("Initializing RotatingCube!")
     }
 
@@ -31,7 +34,7 @@ class RotatingCube: Spatial() {
 }
 ```
 
-`_onInit` is equivalent to GDScript's constructor `_init`, however, `_onInit` and `_onDestroy` are handled directly by this module, not Godot. Hence these are the only functions you don't need to register to make them work.
+`init` is equivalent to GDScript's constructor `_init`, however, `init` and `_onDestroy` are handled directly by this module, not Godot. Hence these are the only functions you don't need to register to make them work.
 
 ## Instance checks
 Checking if an object is an instance of a particular type can be done via the `is` operator.

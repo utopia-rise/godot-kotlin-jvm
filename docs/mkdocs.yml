@@ -1,8 +1,8 @@
-site_name: Godot-Jvm
+site_name: Godot Kotlin/Jvm
 docs_dir: src/doc
 
-repo_name: 'utopia-rise/godot-jvm'
-repo_url: 'https://github.com/utopia-rise/godot-jvm'
+repo_name: 'utopia-rise/godot-kotlin-jvm'
+repo_url: 'https://github.com/utopia-rise/godot-kotlin-jvm'
 
 theme:
   name: material
@@ -35,19 +35,28 @@ extra_css:
 nav:
   - Overview: index.md
   - Getting started:
-      - Gradle: getting-started/gradle.md
+      - Project Setup: getting-started/project-setup.md
       - IDE: getting-started/ide.md
+      - Gradle: getting-started/gradle.md
+      - Add first class: getting-started/add-first-class.md
   - User guide:
     - Classes: user-guide/classes.md
     - Properties: user-guide/properties.md
     - Signals: user-guide/signals.md
     - Functions: user-guide/functions.md
     - Exporting: user-guide/exporting.md
+    - API differences: user-guide/api-differences.md
   - Advanced:
     - Custom Src dirs: advanced/custom-src-dirs.md
     - Commandline args: advanced/commandline-args.md
     - Kotlin singletons: advanced/kotlin-singleton.md
-  - API differences: api-differences.md
+  - Contribution:
+    - General: contribution/general.md
+    - Guidelines: contribution/guidelines.md
+    - Setup: contribution/setup.md
+    - Build with C# support: contribution/build-with-csharp-support.md
+    - Knowledge base:
+        - Artefact differentiation: contribution/knowledge-base/artefact-differentiation.md
+        - Entry generation: contribution/knowledge-base/entry-generation.md
   - Versioning: versioning.md
   - Supported platforms: supported-platforms.md
-  - Contribution: contribution.md

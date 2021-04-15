@@ -1,0 +1,39 @@
+name: Deploy Godot-Library
+
+on:
+  push:
+    tags:
+      - '\d+.\d+.\d+-\d+.\d+.\d+-SNAPSHOT'
+      - '\d+.\d+.\d+-\d+.\d+.\d+'
+
+jobs:
+  deploy_godot_library:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get godot version from tag
+        id: get_godot_version
+        run: echo ::set-output name=GODOT_VERSION::$(echo "$GITHUB_REF" | grep -Po '^(?:refs\/tags\/\d+.\d+.\d+-)\K(\d+.\d+.\d+)((?=-SNAPSHOT$)|$)')
+      - name: Clone Godot Engine
+        uses: actions/checkout@v2
+        with:
+          repository: godotengine/godot
+          ref: ${{ steps.get_godot_version.outputs.GODOT_VERSION }}-stable
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v2
+        with:
+          path: modules/kotlin_jvm
+          submodules: recursive
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - uses: eskatos/gradle-command-action@v1
+        with:
+          wrapper-directory: modules/kotlin_jvm/kt/
+          build-root-directory: modules/kotlin_jvm/kt/
+          arguments: godot-library:publish
+        env:
+          GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII: ${{ secrets.GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII }}
+          GODOT_KOTLIN_GPG_KEY_PASSPHRASE: ${{ secrets.GODOT_KOTLIN_GPG_KEY_PASSPHRASE }}
+          GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_USERNAME: ${{ secrets.GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_USERNAME }}
+          GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_PASSWORD: ${{ secrets.GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_PASSWORD }}

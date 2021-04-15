@@ -24,3 +24,6 @@ jobs:
           wrapper-directory: kt/
           build-root-directory: kt/
           arguments: godot-gradle-plugin:build
+        env:
+          GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII: ${{ secrets.GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII }}
+          GODOT_KOTLIN_GPG_KEY_PASSPHRASE: ${{ secrets.GODOT_KOTLIN_GPG_KEY_PASSPHRASE }}

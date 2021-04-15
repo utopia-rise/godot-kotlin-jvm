@@ -2,12 +2,10 @@ package godot.intellij.plugin.quickfix
 
 import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemDescriptor
-import com.intellij.notification.NotificationDisplayType
-import com.intellij.notification.NotificationGroup
+import com.intellij.notification.NotificationGroupManager
 import com.intellij.notification.NotificationType
 import com.intellij.notification.Notifications
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.util.NotNullLazyValue
 import godot.intellij.plugin.GodotPluginBundle
 import org.jetbrains.kotlin.psi.KtPsiFactory
 
@@ -20,8 +18,11 @@ class RegisterPropertyMutabilityQuickFix : LocalQuickFix {
             descriptor.psiElement.replace(factory.createVarKeyword())
         } else {
             val propertyName = descriptor.psiElement.nextSibling.text
+            @Suppress("DialogTitleCapitalization")
             Notifications.Bus.notify(
-                NOTIFICATION_GROUP.value
+                NotificationGroupManager
+                    .getInstance()
+                    .getNotificationGroup(GodotPluginBundle.message("notification.group.error"))
                     .createNotification(
                         GodotPluginBundle.message("notification.property.mutability.error.title"),
                         GodotPluginBundle.message("notification.property.mutability.error.content", propertyName),
@@ -29,18 +30,6 @@ class RegisterPropertyMutabilityQuickFix : LocalQuickFix {
                         null
                     )
             )
-        }
-    }
-
-    companion object {
-        private val NOTIFICATION_GROUP = object : NotNullLazyValue<NotificationGroup>() {
-            override fun compute(): NotificationGroup {
-                return NotificationGroup(
-                    GodotPluginBundle.message("notification.group.error"),
-                    NotificationDisplayType.STICKY_BALLOON,
-                    true
-                )
-            }
         }
     }
 }

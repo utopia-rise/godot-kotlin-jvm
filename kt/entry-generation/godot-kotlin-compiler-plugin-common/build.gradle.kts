@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm")
     `maven-publish`
+    id("com.utopia-rise.godot-publish")
 }
 
 dependencies {
@@ -8,13 +9,6 @@ dependencies {
 }
 
 tasks {
-    val sourceJar by creating(Jar::class) {
-        archiveBaseName.set(project.name)
-        archiveVersion.set(project.version.toString())
-        archiveClassifier.set("sources")
-        from(sourceSets["main"].allSource)
-    }
-
     build {
         finalizedBy(publishToMavenLocal)
     }
@@ -25,14 +19,12 @@ publishing {
     publications {
         val godotKotlinCompilerPluginCommon by creating(MavenPublication::class) {
             pom {
-                groupId = "${project.group}"
-                artifactId = project.name
-                version = "${project.version}"
+                name.set(project.name)
+                description.set("Common library for godot compiler plugin")
             }
+            artifactId = project.name
+            description = "Common library for godot compiler plugin"
             from(components.getByName("java"))
-            artifact(tasks.getByName("sourceJar"))
         }
     }
 }
-
-project.extra["artifacts"] = arrayOf("godotKotlinCompilerPluginCommon")

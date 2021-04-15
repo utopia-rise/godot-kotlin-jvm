@@ -15,7 +15,6 @@ import com.intellij.ui.layout.GrowPolicy
 import com.intellij.ui.layout.panel
 import com.intellij.ui.layout.selected
 import godot.intellij.plugin.GodotPluginBundle
-import godot.utils.GodotBuildProperties
 import java.io.File
 import javax.swing.JCheckBox
 import javax.swing.JComponent
@@ -56,7 +55,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
             val groupIdTextField = JTextField("com.example")
             val artifactIdTextField = JTextField("game")
             val versionTextField = JTextField("0.0.1-SNAPSHOT")
-            val kotlinVersionTextField = JTextField("1.4.31")
+            val kotlinVersionTextField = JTextField("1.4.32")
             lateinit var androidEnabledCheckBox: JCheckBox
             lateinit var dxToolPathTextField: TextFieldWithBrowseButton
 
@@ -103,6 +102,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
             }
 
             override fun updateDataModel() {
+                context.projectName = artifactIdTextField.text
                 context.putUserData(groupIdKey, groupIdTextField.text)
                 context.putUserData(artifactIdKey, artifactIdTextField.text)
                 context.putUserData(versionKey, versionTextField.text)
@@ -129,10 +129,10 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
             outFile.writeText(
                 outFile
                     .readText()
-                    .replace("KOTLIN_VERSION", wizardContext.getUserData(kotlinVersionKey) ?: "1.4.31")
+                    .replace("KOTLIN_VERSION", wizardContext.getUserData(kotlinVersionKey) ?: "1.4.32")
                     .replace(
                         "GODOT_KOTLIN_JVM_VERSION",
-                        GodotBuildProperties.godotKotlinVersion
+                        "0.1.0-3.2.3"
                     )
                     .replace("ANDROID_ENABLED", wizardContext.getUserData(androidEnabledKey)?.toString() ?: "false")
                     .replace("DX_TOOL_PATH", wizardContext.getUserData(dxToolPathKey) ?: "dx")

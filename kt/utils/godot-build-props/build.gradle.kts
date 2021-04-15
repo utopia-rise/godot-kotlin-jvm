@@ -3,6 +3,7 @@ import org.apache.tools.ant.filters.ReplaceTokens
 plugins {
     kotlin("jvm")
     `maven-publish`
+    id("com.utopia-rise.godot-publish")
 }
 
 dependencies {
@@ -10,13 +11,6 @@ dependencies {
 }
 
 tasks {
-    val sourceJar by creating(Jar::class) {
-        archiveBaseName.set(project.name)
-        archiveVersion.set(project.version.toString())
-        archiveClassifier.set("sources")
-        from(sourceSets["main"].allSource)
-    }
-
     val processResources by getting(Copy::class) {
         outputs.upToDateWhen { false }
         val tokens = mapOf(
@@ -38,12 +32,12 @@ publishing {
         // this is only used for publishing locally.
         val buildProps by creating(MavenPublication::class) {
             pom {
-                groupId = "${project.group}"
-                artifactId = project.name
-                version = "${project.version}"
+                name.set(project.name)
+                description.set("Properties for Godot Kotlin building.")
             }
+            artifactId = project.name
+            description = "Properties for Godot Kotlin building."
             from(components.getByName("java"))
-            artifact(tasks.getByName("sourceJar"))
         }
     }
 }

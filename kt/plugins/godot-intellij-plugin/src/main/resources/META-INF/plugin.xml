@@ -1,19 +1,26 @@
-<idea-plugin>
+<idea-plugin
+        require-restart="false">
     <id>com.utopia-rise.godotjvmideaplugin</id>
-    <name>Godot-Jvm</name>
-    <vendor>utopia-rise</vendor>
+    <name>Godot Kotlin/Jvm</name>
+    <!-- The vendor of the plugin.
+       The optional "url" attribute specifies the URL of the vendor homepage.
+       The optional "email" attribute specifies the e-mail address of the vendor.
+       Displayed in the "Plugins" settings dialog and the plugin repository Web interface. -->
+    <vendor url="https://github.com/utopia-rise/" email="meisels27@yahoo.fr">Utopia-Rise</vendor>
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
 
     <applicationListeners>
-        <listener class="godot.intellij.plugin.listener.GodotProjectManagerListener" topic="com.intellij.openapi.project.ProjectManagerListener" />
+        <listener class="godot.intellij.plugin.listener.GodotProjectManagerListener"
+                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
 
     <extensions defaultExtensionNs="com.intellij">
         <moduleType id="MY_MODULE" implementationClass="godot.intellij.plugin.module.GodotModuleType"/>
         <moduleBuilder builderClass="godot.intellij.plugin.module.GodotModuleBuilder"/>
+        <notificationGroup id="Error message" displayType="STICKY_BALLOON" key="notification.group.error" isLogByDefault="true"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.clazz.RegisterClassAnnotator" language="JVM"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.function.RegisterFunctionAnnotator" language="JVM"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.property.RegisterPropertiesAnnotator" language="JVM"/>

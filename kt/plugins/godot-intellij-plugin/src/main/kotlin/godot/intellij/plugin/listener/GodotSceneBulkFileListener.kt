@@ -26,7 +26,7 @@ class GodotSceneBulkFileListener(private val project: Project) : BulkFileListene
     override fun after(events: MutableList<out VFileEvent>) {
         events
             .filter {
-                it.file?.let { vFile -> ProjectFileIndex.getInstance(project).isInContent(vFile) } ?: false
+                !project.isDisposed && it.file?.let { vFile -> ProjectFileIndex.getInstance(project).isInContent(vFile) } ?: false
             }
             .forEach { event ->
                 event.file?.let { file ->
@@ -40,6 +40,7 @@ class GodotSceneBulkFileListener(private val project: Project) : BulkFileListene
             virtualFileChanged(vFile)
         }
 
+    @Suppress("UnstableApiUsage")
     private fun getContainingFiles() = FileBasedIndex
         .getInstance()
         .getContainingFiles(

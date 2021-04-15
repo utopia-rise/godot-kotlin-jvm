@@ -96,6 +96,7 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
     }
 
     private fun initialIndexing() {
+        @Suppress("UnstableApiUsage")
         FileBasedIndex
             .getInstance()
             .getContainingFiles(

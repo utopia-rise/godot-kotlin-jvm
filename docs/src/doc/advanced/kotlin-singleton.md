@@ -3,7 +3,6 @@ This can cause some leaks when the program ends because you have to manually fre
 The GodotStatic interface lets you implement the function "collect" so you can write the appropriate cleanup code.
 Then you just need to use the "registerAsSingleton" so it will be hooked to the Garbage Collector. 
 
-`MySingleton.kt`:
 ```kotlin
 object MySingleton : GodotStatic {
     var ref: MyReference? = MyReference()

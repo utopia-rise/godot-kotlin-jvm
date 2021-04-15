@@ -42,9 +42,9 @@ private fun highlightSeverityFromHighlightType(problemHighlightType: ProblemHigh
         ProblemHighlightType.ERROR -> HighlightSeverity.ERROR
         ProblemHighlightType.WARNING -> HighlightSeverity.WARNING
         ProblemHighlightType.GENERIC_ERROR -> HighlightSeverity.ERROR
-        ProblemHighlightType.INFO -> HighlightSeverity.INFO
         ProblemHighlightType.WEAK_WARNING -> HighlightSeverity.WEAK_WARNING
         ProblemHighlightType.INFORMATION -> HighlightSeverity.INFORMATION
         ProblemHighlightType.LIKE_MARKED_FOR_REMOVAL -> HighlightSeverity.WARNING
+        else -> HighlightSeverity.INFORMATION
     }
 }

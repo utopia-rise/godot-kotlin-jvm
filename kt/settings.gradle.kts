@@ -1,5 +1,6 @@
 include("godot-runtime")
 include("godot-library")
+include("godot-bootstrap")
 
 pluginManagement {
     resolutionStrategy.eachPlugin {
@@ -18,12 +19,6 @@ includeBuild("api-generator") {
 includeBuild("entry-generation/godot-kotlin-entry-generator") {
     dependencySubstitution {
         substitute(module("com.utopia-rise:godot-kotlin-entry-generator")).with(project(":")) // assuming godot-kotlin-entry-generator is the root project of entry-generator/godot-kotlin-entry-generator
-    }
-}
-
-includeBuild("utils/jvm-godot-resource-serialization") {
-    dependencySubstitution {
-        substitute(module("com.utopia-rise:jvm-godot-resource-serialization")).with(project(":")) // assuming jvm-godot-resource-serialization is the root project of utils/jvm-godot-resource-serialization
     }
 }
 

@@ -22,12 +22,6 @@ includeBuild("../../kt/entry-generation/godot-kotlin-entry-generator") {
     }
 }
 
-includeBuild("../../kt/utils/jvm-godot-resource-serialization") {
-    dependencySubstitution {
-        substitute(module("com.utopia-rise:jvm-godot-resource-serialization")).with(project(":")) // assuming jvm-godot-resource-serialization is the root project of utils/jvm-godot-resource-serialization
-    }
-}
-
 pluginManagement {
     repositories {
         jcenter()
@@ -35,7 +29,7 @@ pluginManagement {
     }
     resolutionStrategy.eachPlugin {
         if (requested.id.id == "com.utopia-rise.godot-jvm") {
-            useModule("com.utopia-rise:godot-gradle-plugin:0.1.0-3.2")
+            useModule("com.utopia-rise:godot-gradle-plugin:0.1.0-3.2.3")
         }
         if (requested.id.id == "com.utopia-rise.api-generator") {
             useModule("com.utopia-rise:api-generator:0.0.1")

@@ -24,6 +24,8 @@ style:
 exceptions:
   TooGenericExceptionCaught:
     active: false
+  SwallowedException:
+    active: false
 
 complexity:
   ComplexMethod:
