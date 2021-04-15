@@ -5,5 +5,5 @@ object DependenciesVersions {
 
     // Remember to upgrade this version when releasing a new entry generator version and want to use
     // it.
-    const val entryGeneratorVersion = "0.1.0-3.2.3-SNAPSHOT"
+    const val entryGeneratorVersion = "0.1.1-3.2.3"
 }
