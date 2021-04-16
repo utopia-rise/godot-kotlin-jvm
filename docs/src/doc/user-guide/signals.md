@@ -1,5 +1,5 @@
 Use the delegate `signal` to create a signal and annotate it with `@RegisterSignal`. Note that the name of
-the signal must start with a prefix `signal` (see [API differences](../api-differences.md) section for an explanation).
+the signal must start with a prefix `signal` (see [API differences](api-differences.md) section for an explanation).
 This module only supports signals with at most 10 parameters at the moment.
 
 ```kotlin

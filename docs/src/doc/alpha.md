@@ -1,7 +1,7 @@
 **Please note:** This is a Alpha. It is by no means production ready.
 
 # What's not working:
-The items in this list are explicitly mentioned here as these will be implemented in future versions. Also consider the [Api differences](api-differences.md) section for general differences and limitations which will not be or cannot be adressed in the near forseable future or ever.
+The items in this list are explicitly mentioned here as these will be implemented in future versions. Also consider the [Api differences](user-guide/api-differences.md) section for general differences and limitations which will not be or cannot be adressed in the near forseable future or ever.
 
 - Each registered constructor must have a unique number of arguments. Constructor overloading is not yet supported
 - No tool mode (you can set it already in the `@RegisterClass` annotation but it has no effect yet)
