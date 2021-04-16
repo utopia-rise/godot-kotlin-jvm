@@ -1,9 +1,7 @@
 #include "jvm_loader.h"
 
-#include <core/engine.h>
 #include <core/os/os.h>
 #include <core/project_settings.h>
-#include <modules/kotlin_jvm/src/logging.h>
 
 #ifndef __ANDROID__
 
@@ -69,7 +67,7 @@ String jni::JvmLoader::get_jvm_lib_path() {
 }
 
 String jni::JvmLoader::get_path_to_locally_installed_jvm() {
-    String javaHome{getenv("JAVA_HOME")};
+    String javaHome{OS::get_singleton()->get_environment("JAVA_HOME")};
 
     if (javaHome.empty()) {
         LOG_ERROR("JAVA_HOME is not defined! Exiting...")
