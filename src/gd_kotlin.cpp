@@ -546,7 +546,7 @@ GDKotlin::GDKotlin() :
 }
 
 void GDKotlin::register_members(jni::Env& p_env) {
-    auto map_entry = classes.front();
+    auto* map_entry{classes.front()};
     while (map_entry) {
         map_entry->get()->fetch_members();
         map_entry = map_entry->next();
