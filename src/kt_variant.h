@@ -113,9 +113,9 @@ namespace ktvariant {
     }
 
     static inline void append_basis(SharedBuffer* des, const Basis& data) {
-        append_vector3(des, data.get_axis(0));
-        append_vector3(des, data.get_axis(1));
-        append_vector3(des, data.get_axis(2));
+        append_vector3(des, data.elements[0]);
+        append_vector3(des, data.elements[1]);
+        append_vector3(des, data.elements[2]);
     }
 
     static void to_kvariant_fromBASIS(SharedBuffer* des, const Variant& src) {
