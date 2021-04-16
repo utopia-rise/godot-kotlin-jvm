@@ -99,6 +99,7 @@ namespace ktvariant {
 
     static void to_kvariant_fromQUAT(SharedBuffer* des, const Variant& src) {
         Quat src_quat{src.operator Quat()};
+        set_variant_type(des, Variant::Type::QUAT);
         des->increment_position(encode_float(src_quat.x, des->get_cursor()));
         des->increment_position(encode_float(src_quat.y, des->get_cursor()));
         des->increment_position(encode_float(src_quat.z, des->get_cursor()));

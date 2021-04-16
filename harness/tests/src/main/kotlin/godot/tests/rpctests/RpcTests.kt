@@ -7,7 +7,7 @@ import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 
 @RegisterClass("RPCTests")
-class RpcTests: Node() {
+class RpcTests : Node() {
 
     @RegisterProperty
     var remoteSyncCalled: Boolean = false
