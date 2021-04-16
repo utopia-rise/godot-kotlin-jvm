@@ -21,11 +21,11 @@ open class KtProperty<T : KtObject, P: Any?>(
     val ktPropertyInfo: KtPropertyInfo,
     protected val kProperty: KMutableProperty1<T, P>,
     protected val variantType: VariantType,
-    internal val _defaultValue: P?,
+    internal val _defaultValue: () -> P?,
     val isRef: Boolean
 ) {
     open fun getDefaultValue() {
-        TransferContext.writeReturnValue(_defaultValue, variantType)
+        TransferContext.writeReturnValue(_defaultValue(), variantType)
     }
 
     open fun callGet(instance: T) {
@@ -50,7 +50,7 @@ open class KtProperty<T : KtObject, P: Any?>(
 class KtEnumProperty<T : KtObject, P : Any>(
     ktPropertyInfo: KtPropertyInfo,
     kProperty: KMutableProperty1<T, P>,
-    defaultValue: P,
+    defaultValue: () -> P,
     val getValueConverter: (P?) -> Int,
     val setValueConverter: (Int) -> P
 ) : KtProperty<T, P>(
@@ -61,7 +61,7 @@ class KtEnumProperty<T : KtObject, P : Any>(
         false
 ) {
     override fun getDefaultValue() {
-        TransferContext.writeReturnValue(getValueConverter(_defaultValue), VariantType.JVM_INT)
+        TransferContext.writeReturnValue(getValueConverter(_defaultValue()), VariantType.JVM_INT)
     }
 
     override fun callGet(instance: T) {
