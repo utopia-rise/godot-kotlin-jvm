@@ -812,7 +812,7 @@ class Basis() : CoreType {
     }
 
     operator fun set(index: Int, value: Vector3) {
-        return setAxis(index, value)
+        setAxis(index, value)
     }
 }
 
