@@ -28,3 +28,7 @@ To avoid confusion and conflict with Kotlin types, the following Godot symbols a
 - `Array` -> `VariantArray` (to avoid confusion with a built-in type in Kotlin)
 - `PoolRealArray` -> `PoolFloatArray` (for naming consistency)
 - `Variant.asReal()` -> `Variant.asFloat()` (for naming consistency)
+
+## Print (logging)
+If you want logs to appear both in CLI and in the Godot Editor you'll have to use the print functions inside the `GD` singleton like: `GD.print("Hello There!")`.  
+Kotlin's print functions like `println("Hello There!")` on the other hand will only print to CLI! These prints will not show up inside the Godot Editor output panel!
