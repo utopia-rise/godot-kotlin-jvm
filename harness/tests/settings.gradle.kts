@@ -30,7 +30,7 @@ pluginManagement {
     }
     resolutionStrategy.eachPlugin {
         if (requested.id.id == "com.utopia-rise.godot-kotlin-jvm") {
-            useModule("com.utopia-rise:godot-gradle-plugin:0.1.3-3.2.3-SNAPSHOT")
+            useModule("com.utopia-rise:godot-gradle-plugin:0.1.3-3.2.3")
         }
         if (requested.id.id == "com.utopia-rise.api-generator") {
             useModule("com.utopia-rise:api-generator:0.0.1")

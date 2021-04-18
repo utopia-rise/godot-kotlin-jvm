@@ -1,7 +1,7 @@
 
 plugins {
     kotlin("jvm") version "1.4.10"
-    id("com.utopia-rise.godot-kotlin-jvm") version "0.1.3-3.2.3-SNAPSHOT"
+    id("com.utopia-rise.godot-kotlin-jvm") version "0.1.3-3.2.3"
 }
 
 repositories {
