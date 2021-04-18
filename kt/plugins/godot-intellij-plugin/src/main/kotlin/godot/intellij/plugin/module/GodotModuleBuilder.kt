@@ -145,6 +145,14 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                     .replace("PROJECT_NAME", module.project.name)
             )
         }
+        copyTemplateFile(basePath, "src/main/kotlin/$packagePathAsFolderStructure/Simple.kt") { outFile ->
+            outFile.writeText(
+                outFile
+                    .readText()
+                    .replace("GROUP_ID", group)
+                    .replace("ARTEFACT_ID", artifact)
+            )
+        }
         copyTemplateFile(basePath, "default_env.tres")
         copyTemplateFile(basePath, "icon.png")
         copyTemplateFile(basePath, "project.godot") { outFile ->
