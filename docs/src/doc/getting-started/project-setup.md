@@ -9,4 +9,8 @@ If you have our Intellij plugin installed. You can create a new project with our
 ![Wizard 2](../assets/img/wizard_2.png)  
 ![Wizard 3](../assets/img/wizard_3.png)  
 
+# Getting our custom engine build
+You can download our custom engine build and export templates from the latest [github release](https://github.com/utopia-rise/godot-kotlin-jvm/releases).  
+If you need other modules you can also build it yourself. See [here](../contribution/setup.md) on how to do it.
+
 That's it! Now continue with [adding your first class](add-first-class.md).

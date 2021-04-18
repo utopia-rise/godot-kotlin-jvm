@@ -17,5 +17,8 @@ Please note the [alpha](alpha.md) docs page to see limitations present in the la
 The only language currently supported is Kotlin.  
 That said it is possible to support other Jvm based languages in the future. If you want to add support for another Jvm based language, feel free to open an [issue](https://github.com/utopia-rise/godot-kotlin-jvm/issues) and we'll explain in detail what is necessary to support another language and help you getting started with development.
 
+# Custom engine builds
+Get our pre built engine builds and export templates from the latest [github release](https://github.com/utopia-rise/godot-kotlin-jvm/releases).
+
 # Developer discussion
 Ask questions and collaborate on [Discord](https://discord.gg/zpb5Ru7v9x)
