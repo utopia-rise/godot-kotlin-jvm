@@ -2,6 +2,7 @@ package godot.tests
 
 import godot.Node
 import godot.annotation.RegisterClass
+import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.core.*
 
@@ -38,4 +39,34 @@ class CoreTypesIdentityTest : Node() {
 
     @RegisterProperty
     var vector3 = Vector3(1, 2, 3)
+
+    @RegisterFunction
+    fun aabb(aabb: AABB) = aabb
+
+    @RegisterFunction
+    fun basis(basis: Basis) = basis
+
+    @RegisterFunction
+    fun color(color: Color) = color
+
+    @RegisterFunction
+    fun plane(plane: Plane) = plane
+
+    @RegisterFunction
+    fun quat(quat: Quat) = quat
+
+    @RegisterFunction
+    fun rect2(rect2: Rect2) = rect2
+
+    @RegisterFunction
+    fun transform(transform: Transform) = transform
+
+    @RegisterFunction
+    fun transform2D(transform2D: Transform2D) = transform2D
+
+    @RegisterFunction
+    fun vector2(vector2: Vector2) = vector2
+
+    @RegisterFunction
+    fun vector3(vector3: Vector3) = vector3
 }

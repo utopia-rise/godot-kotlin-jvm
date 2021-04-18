@@ -11,7 +11,7 @@ import godot.callDeferred
 import godot.signals.signal
 
 @RegisterClass
-class FuncRefTest: Node() {
+class FuncRefTest : Node() {
 
     @RegisterSignal
     val signalTest by signal()
