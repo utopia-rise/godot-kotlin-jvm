@@ -63,7 +63,7 @@ class ClassBuilderDsl<T : KtObject>(
         className: String,
         hint: PropertyHint = PropertyHint.NONE,
         hintString: String = "",
-        defaultArgument: P?,
+        defaultArgument: () -> P?,
         rpcModeId: Int = 0,
         isRef: Boolean = false
     ) {
@@ -88,9 +88,9 @@ class ClassBuilderDsl<T : KtObject>(
     }
 
     inline fun <reified P : Enum<P>> enumProperty(
-            kProperty: KMutableProperty1<T, P>,
-            defaultValue: P,
-            rpcModeId: Int = 0
+        kProperty: KMutableProperty1<T, P>,
+        noinline defaultValue: () -> P,
+        rpcModeId: Int = 0
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
         require(!properties.contains(propertyName)) {
@@ -142,13 +142,13 @@ class ClassBuilderDsl<T : KtObject>(
     @JvmName("enumFlagPropertyMutable")
     inline fun <reified P : Enum<P>> enumFlagProperty(
         kProperty: KMutableProperty1<T, MutableSet<P>>,
-        defaultValue: MutableSet<P>,
+        noinline defaultValue: () -> MutableSet<P>,
         rpcModeId: Int
     ) = enumFlagProperty(kProperty as KMutableProperty1<T, Set<P>>, defaultValue, rpcModeId)
 
     inline fun <reified P : Enum<P>> enumFlagProperty(
         kProperty: KMutableProperty1<T, Set<P>>,
-        defaultValue: Set<P>,
+        noinline defaultValue: () -> Set<P>,
         rpcModeId: Int
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
@@ -202,7 +202,7 @@ class ClassBuilderDsl<T : KtObject>(
         variantType: VariantType,
         setValueConverter: ((Any?) -> P),
         isRef: Boolean = false,
-        defaultArgument: P,
+        defaultArgument: () -> P,
         rpcModeId: Int = 0,
         pib: KtPropertyInfoBuilderDsl.() -> Unit
     ) {

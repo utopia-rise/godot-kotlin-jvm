@@ -49,6 +49,8 @@ public:
 
     void register_classes(jni::Env& p_env, jni::JObjectArray p_classes);
 
+    void register_members(jni::Env& p_env);
+
     void unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes);
 
     KtClass* find_class(const StringName& p_script_path);

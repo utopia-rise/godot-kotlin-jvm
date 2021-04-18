@@ -112,6 +112,7 @@ class Bootstrap {
             }
             loadClasses(registry!!.classes.toTypedArray())
             registerUserTypesNames(TypeManager.userTypes.toTypedArray())
+            registerUserTypesMembers()
         } else {
             err("Unable to find Entry class, no classes will be loaded")
         }
@@ -158,4 +159,5 @@ class Bootstrap {
     )
 
     private external fun registerUserTypesNames(userTypesNames: Array<String>)
+    private external fun registerUserTypesMembers()
 }

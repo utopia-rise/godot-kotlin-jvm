@@ -39,6 +39,8 @@ public:
 
     void get_signal_list(List<MethodInfo>* p_list);
 
+    void fetch_members();
+
 private:
     HashMap<StringName, KtFunction*> methods;
     HashMap<StringName, KtProperty*> properties;

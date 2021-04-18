@@ -11,10 +11,6 @@ KtClass::KtClass(jni::JObject p_wrapped, jni::JObject& p_class_loader) :
     registered_class_name = get_registered_name(env);
     super_class = get_super_class(env);
     base_godot_class = get_base_godot_class(env);
-    fetch_methods(env);
-    fetch_properties(env);
-    fetch_signals(env);
-    fetch_constructors(env);
 }
 
 KtClass::~KtClass() {
@@ -155,4 +151,12 @@ void KtClass::get_property_list(List<PropertyInfo>* p_list) {
 
 void KtClass::get_signal_list(List<MethodInfo>* p_list) {
     get_member_list(p_list, signal_infos);
+}
+
+void KtClass::fetch_members() {
+    jni::Env env { jni::Jvm::current_env() };
+    fetch_methods(env);
+    fetch_properties(env);
+    fetch_signals(env);
+    fetch_constructors(env);
 }

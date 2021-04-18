@@ -188,6 +188,11 @@ void register_user_types_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_type
     LOG_VERBOSE("Done registering user types.");
 }
 
+void register_user_types_members_hook(JNIEnv* p_env, jobject p_this) {
+    jni::Env env(p_env);
+    GDKotlin::get_instance().register_members(env);
+}
+
 void GDKotlin::init() {
     if (Main::is_project_manager()) {
 #ifdef DEBUG_ENABLED
@@ -377,7 +382,7 @@ void GDKotlin::init() {
     bootstrap = new Bootstrap(instance, class_loader);
 
     bootstrap->register_hooks(env, load_classes_hook, unload_classes_hook, register_engine_types_hook,
-                              register_user_types_hook);
+                              register_user_types_hook, register_user_types_members_hook);
     bool is_editor = Engine::get_singleton()->is_editor_hint();
 
 #ifdef TOOLS_ENABLED
@@ -538,4 +543,12 @@ GDKotlin::GDKotlin() :
         bootstrap(nullptr),
         is_gc_started(false),
         transfer_context(nullptr) {
+}
+
+void GDKotlin::register_members(jni::Env& p_env) {
+    auto* map_entry{classes.front()};
+    while (map_entry) {
+        map_entry->get()->fetch_members();
+        map_entry = map_entry->next();
+    }
 }
