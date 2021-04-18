@@ -6,10 +6,15 @@ import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
 object TransferContext {
-    // If changed, remember to change also DEFAULT_SHARED_BUFFER_SIZE in gd_kotlin.cpp
-    var bufferSize = 20_000_000
 
-    val buffer by threadLocalLazy {
+    private const val ARGUMENT_MAX_COUNT = 5
+
+    private val bufferSize: Int
+        get() {
+            return (LongStringQueue.stringMaxSize + 12) * ARGUMENT_MAX_COUNT
+        }
+
+    val buffer by threadLocalLazy<ByteBuffer> {
         val buf = ByteBuffer.allocateDirect(bufferSize)
         buf.order(ByteOrder.LITTLE_ENDIAN)
         buf

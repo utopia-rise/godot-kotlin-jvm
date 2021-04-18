@@ -10,15 +10,21 @@
 
 class TransferContext : public JavaInstanceWrapper<TransferContext> {
 public:
+
     TransferContext(jni::JObject p_wrapped, jni::JObject p_class_loader);
+
     ~TransferContext();
+
     TransferContext(const TransferContext&) = delete;
+
     void operator=(const TransferContext&) = delete;
 
     void write_return_value(jni::Env& p_env, Variant& variant);
+
     void read_return_value(jni::Env& p_env, Variant& r_ret);
 
     void write_args(jni::Env& p_env, const Variant** p_args, int args_size);
+
     void read_args(jni::Env& p_env, Variant* args);
 
     static void icall(JNIEnv* rawEnv,
@@ -42,11 +48,13 @@ public:
 
 private:
     SharedBuffer* get_buffer(jni::Env& p_env);
+
     _FORCE_INLINE_ static uint32_t read_args_size(jni::Env& p_env, SharedBuffer* buffer) {
         uint32_t args_size{decode_uint32(buffer->get_cursor())};
         buffer->increment_position(4);
         return args_size;
     }
+
     _FORCE_INLINE_ static void read_args_to_array(SharedBuffer* buffer, Variant* p_args, uint32_t args_size) {
         for (uint32_t i = 0; i < args_size; ++i) {
             ktvariant::get_variant_from_buffer(buffer, p_args[i]);
@@ -54,6 +62,7 @@ private:
 
         buffer->rewind();
     }
+
     _FORCE_INLINE_ static void write_return_value(SharedBuffer* buffer, const Variant& r_ret) {
         ktvariant::send_variant_to_buffer(r_ret, buffer);
         buffer->rewind();
@@ -61,7 +70,6 @@ private:
 
 DECLARE_JNI_METHODS(
         JNI_METHOD(GET_BUFFER, "getBuffer", "()Ljava/nio/ByteBuffer;")
-        JNI_METHOD(ENSURE_CAPACITY, "ensureCapacity", "(I)Z")
 )
 
 };

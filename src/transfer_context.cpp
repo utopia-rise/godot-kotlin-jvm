@@ -3,7 +3,6 @@
 #include "transfer_context.h"
 #include "gd_kotlin.h"
 #include "kotlin_instance.h"
-#include "logging.h"
 
 JNI_INIT_STATICS_FOR_CLASS(TransferContext)
 
@@ -42,6 +41,7 @@ TransferContext::TransferContext(jni::JObject p_wrapped, jni::JObject p_class_lo
             "(J)V",
             (void*) TransferContext::free_object
     };
+
 
     Vector<jni::JNativeMethod> methods;
     methods.push_back(icall_method);
@@ -103,8 +103,8 @@ void TransferContext::read_args(jni::Env& p_env, Variant* args) {
     buffer->rewind();
 }
 
-void
-TransferContext::icall(
+
+void TransferContext::icall(
         JNIEnv* rawEnv,
         jobject instance,
         jlong jPtr,
@@ -118,7 +118,7 @@ TransferContext::icall(
     }
 
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
-    jni::Env env(rawEnv);
+    jni::Env env{rawEnv};
 
     SharedBuffer* buffer{transfer_context->get_buffer(env)};
     uint32_t args_size{read_args_size(env, buffer)};
@@ -167,7 +167,7 @@ void TransferContext::invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, 
         id = ptr->get_instance_id();
     }
 
-    jni::Env env(p_raw_env);
+    jni::Env env{p_raw_env};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     SharedBuffer* buffer{transfer_context->get_buffer(env)};
 
@@ -191,7 +191,6 @@ void TransferContext::set_script(
         jint p_class_index,
         jobject p_object,
         jobject p_class_loader) {
-    jni::Env env(p_raw_env);
     Ref<KotlinScript> kotlin_script{GDKotlin::get_instance().user_scripts[static_cast<int>(p_class_index)]};
     auto* owner{reinterpret_cast<Object*>(p_raw_ptr)};
     auto* kt_object{new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader))};

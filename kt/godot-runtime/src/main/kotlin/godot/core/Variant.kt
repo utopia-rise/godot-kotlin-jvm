@@ -124,17 +124,31 @@ enum class VariantType(
     ),
     STRING(
             { buffer: ByteBuffer, _: Int ->
-                val stringSize = buffer.int
-                val charArray = ByteArray(stringSize)
-                buffer.get(charArray, 0, stringSize)
-                String(charArray, Charsets.UTF_8)
+                val isLong = buffer.bool
+                if(isLong){
+                    LongStringQueue.pollString()
+                }
+                else{
+                    val stringSize = buffer.int
+                    val charArray = ByteArray(stringSize)
+                    buffer.get(charArray, 0, stringSize)
+                    String(charArray, Charsets.UTF_8)
+                }
             },
             { buffer: ByteBuffer, any: Any ->
                 buffer.variantType = STRING.ordinal
                 any as String
                 val stringBytes = any.encodeToByteArray()
-                buffer.putInt(stringBytes.size)
-                buffer.put(stringBytes)
+                //TODO: Think of a way to reuse the encoded String
+                if(stringBytes.size > LongStringQueue.stringMaxSize){
+                    buffer.bool = true
+                    LongStringQueue.sendStringToCPP(any)
+                }
+                else{
+                    buffer.bool = false
+                    buffer.putInt(stringBytes.size)
+                    buffer.put(stringBytes)
+                }
             }
     ),
 
