@@ -52,9 +52,9 @@ var releaseMode = tagOnCurrentCommit != null
 val isSnapshot = !releaseMode || requireNotNull(tagOnCurrentCommit).name.contains("-SNAPSHOT")
 
 version = if (!releaseMode) {
-    "$godotKotlinIntellijPluginVersion-${DependenciesVersions.godotVersion}-${currentCommit.abbreviatedId}-SNAPSHOT"
+    "$godotKotlinJvmVersion-${DependenciesVersions.godotVersion}-${currentCommit.abbreviatedId}-SNAPSHOT"
 } else {
-    val baseVersion = "$godotKotlinIntellijPluginVersion-${DependenciesVersions.godotVersion}"
+    val baseVersion = "$godotKotlinJvmVersion-${DependenciesVersions.godotVersion}"
     if (isSnapshot) {
         "$baseVersion-SNAPSHOT"
     } else {
