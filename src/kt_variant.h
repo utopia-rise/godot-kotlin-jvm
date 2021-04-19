@@ -48,7 +48,7 @@ namespace ktvariant {
         set_variant_type(des, Variant::Type::STRING);
         if (char_string.size() > LongStringQueue::max_string_size) {
             des->increment_position(encode_uint32(1, des->get_cursor()));
-            LongStringQueue::get_instance()->send_string_to_jvm(str);
+            LongStringQueue::get_instance().send_string_to_jvm(str);
         } else {
             des->increment_position(encode_uint32(0, des->get_cursor()));
             des->increment_position(encode_uint32(char_string.size(), des->get_cursor()));
@@ -348,7 +348,7 @@ namespace ktvariant {
             byte_buffer->increment_position(size);
             return Variant(str);
         } else {
-            String str = LongStringQueue::get_instance()->poll_string();
+            String str = LongStringQueue::get_instance().poll_string();
             return Variant(str);
         }
     }

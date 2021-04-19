@@ -1,5 +1,6 @@
 #include "kt_signal_info.h"
 #include "gd_kotlin.h"
+#include "class_loader.h"
 
 JNI_INIT_STATICS_FOR_CLASS(KtSignalInfo)
 
@@ -13,7 +14,7 @@ KtSignalInfo::KtSignalInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader)
     jni::MethodId get_arguments_method_id{get_method_id(env, jni_methods.GET_ARGUMENTS)};
     jni::JObjectArray args_array{wrapped.call_object_method(env, get_arguments_method_id)};
     for (int i = 0; i < args_array.length(env); i++) {
-        arguments.push_back(new KtPropertyInfo(args_array.get(env, i), GDKotlin::get_instance().get_class_loader()));
+        arguments.push_back(new KtPropertyInfo(args_array.get(env, i), ClassLoader::get_default_loader()));
     }
 }
 

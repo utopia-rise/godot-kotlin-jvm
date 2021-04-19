@@ -18,7 +18,6 @@ private:
 
     Map<StringName, KtClass*> classes;
 
-    jni::JObject class_loader;
     Bootstrap* bootstrap;
 
     bool is_gc_started;
@@ -44,8 +43,6 @@ public:
     void init();
 
     void finish();
-
-    jni::JObject& get_class_loader();
 
     void register_classes(jni::Env& p_env, jni::JObjectArray p_classes);
 

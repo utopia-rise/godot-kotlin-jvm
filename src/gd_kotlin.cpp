@@ -1,10 +1,9 @@
 #include <core/print_string.h>
-#include <cassert>
 #include <main/main.h>
 #include "gd_kotlin.h"
 #include "core/project_settings.h"
 #include "bridges_manager.h"
-#include "long_string_queue.h"
+#include "class_loader.h"
 #include <core/io/resource_loader.h>
 
 #ifndef TOOLS_ENABLED
@@ -19,67 +18,6 @@
 #include <platform/android/java_godot_wrapper.h>
 
 #endif
-
-jni::JObject get_current_thread(jni::Env& env) {
-    jni::JClass cls = env.find_class("java/lang/Thread");
-    jni::MethodId current_thread_method = cls.get_static_method_id(env, "currentThread", "()Ljava/lang/Thread;");
-    jni::JObject thread = cls.call_static_object_method(env, current_thread_method);
-    assert(!thread.is_null());
-    return thread;
-}
-
-jni::JObject to_java_url(jni::Env& env, const String& bootstrapJar) {
-    jni::JClass cls = env.find_class("java/io/File");
-    jni::MethodId ctor = cls.get_constructor_method_id(env, "(Ljava/lang/String;)V");
-    jni::JObject path = env.new_string(bootstrapJar.utf8().get_data());
-    jvalue args[1] = {jni::to_jni_arg(path)};
-    jni::JObject file = cls.new_instance(env, ctor, args);
-    assert(!file.is_null());
-    jni::MethodId to_url_method = cls.get_method_id(env, "toURL", "()Ljava/net/URL;");
-    jni::JObject url = file.call_object_method(env, to_url_method);
-    assert(!url.is_null());
-    return url;
-}
-
-jni::JObject create_class_loader(jni::Env& env, const String& full_jar_path, const jni::JObject& p_parent_loader) {
-#ifdef __ANDROID__
-    jni::JClass class_loader_cls{env.find_class("dalvik/system/DexClassLoader")};
-    jni::MethodId ctor{
-            class_loader_cls.get_constructor_method_id(
-                    env,
-                    "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/ClassLoader;)V"
-            )
-    };
-    jni::JObject jar_path{env.new_string(full_jar_path.utf8().get_data())};
-    jvalue args[4] = {
-            jni::to_jni_arg(jar_path),
-            jni::to_jni_arg(jni::JObject(nullptr)),
-            jni::to_jni_arg(jni::JObject(nullptr)),
-            jni::to_jni_arg(p_parent_loader)
-    };
-    return class_loader_cls.new_instance(env, ctor, args);
-#else
-    jni::JObject url = to_java_url(env, full_jar_path);
-    jni::JClass url_cls = env.find_class("java/net/URL");
-    jni::JObjectArray urls = url_cls.new_object_array(env, 1, {url});
-    jni::JClass class_loader_cls = env.find_class("java/net/URLClassLoader");
-    jni::MethodId ctor = class_loader_cls.get_constructor_method_id(
-            env,
-            "([Ljava/net/URL;Ljava/lang/ClassLoader;)V"
-    );
-    jvalue args[2] = {jni::to_jni_arg(urls), jni::to_jni_arg(p_parent_loader)};
-    jni::JObject class_loader = class_loader_cls.new_instance(env, ctor, args);
-    assert(!class_loader_cls.is_null());
-    return class_loader;
-#endif
-}
-
-void set_context_class_loader(jni::Env& env, jni::JObject thread, jni::JObject classLoader) {
-    auto cls = env.find_class("java/lang/Thread");
-    auto setContextClassLoaderMethod = cls.get_method_id(env, "setContextClassLoader", "(Ljava/lang/ClassLoader;)V");
-    jvalue args[1] = {jni::to_jni_arg(classLoader)};
-    thread.call_void_method(env, setContextClassLoaderMethod, args);
-}
 
 GDKotlin& GDKotlin::get_instance() {
     static GDKotlin instance;
@@ -143,7 +81,7 @@ register_engine_types_hook(
 
     jni::JObjectArray method_names{p_method_names};
     jni::JObjectArray types_of_methods{p_types_of_methods};
-    jni::JClass integer_class{env.load_class("java.lang.Integer", GDKotlin::get_instance().get_class_loader())};
+    jni::JClass integer_class{env.load_class("java.lang.Integer", ClassLoader::get_default_loader())};
     jni::MethodId integer_get_value_method{integer_class.get_method_id(env, "intValue", "()I")};
     for (int i = 0; i < method_names.length(env); i++) {
         jni::JObject type = types_of_methods.get(env, i);
@@ -324,9 +262,12 @@ void GDKotlin::init() {
 
     LOG_INFO(vformat("Loading bootstrap jar: %s", bootstrap_jar))
     jni::Env env{jni::Jvm::current_env()};
-    jni::JObject current_thread = get_current_thread(env);
-    class_loader = create_class_loader(env, bootstrap_jar, jni::JObject(nullptr)).new_global_ref<jni::JObject>(env);
-    set_context_class_loader(env, current_thread, class_loader);
+
+    jni::JObject class_loader = ClassLoader::provide_loader(env, bootstrap_jar, jni::JObject(nullptr));
+    ClassLoader::set_default_loader(class_loader);
+    class_loader.delete_local_ref(env);
+
+    class_loader = ClassLoader::get_default_loader();
 
     jni::JClass transfer_ctx_cls = env.load_class("godot.core.TransferContext", class_loader);
     jni::FieldId transfer_ctx_instance_field = transfer_ctx_cls.get_static_field_id(env, "INSTANCE",
@@ -335,9 +276,9 @@ void GDKotlin::init() {
     JVM_CRASH_COND_MSG(transfer_ctx_instance.is_null(), "Failed to retrieve TransferContext instance")
     transfer_context = new TransferContext(transfer_ctx_instance, class_loader);
 
-    LongStringQueue::init(env, class_loader);
+    LongStringQueue::get_instance();
     if (jvm_to_engine_max_string_size != LongStringQueue::max_string_size) {
-        LongStringQueue::get_instance()->set_string_max_size(jvm_to_engine_max_string_size);
+        LongStringQueue::get_instance().set_string_max_size(jvm_to_engine_max_string_size);
     }
 
     //Garbage Collector
@@ -399,9 +340,9 @@ void GDKotlin::init() {
             jar_path,
             main_jar_file,
 #ifdef __ANDROID__
-            create_class_loader(env, main_jar, class_loader)
+            ClassLoader::provide_loader(env, main_jar, class_loader)
 #else
-            jni::JObject(nullptr)
+            jni::JObject()
 #endif
     );
 }
@@ -422,7 +363,8 @@ void GDKotlin::finish() {
     bootstrap = nullptr;
 
     if (is_gc_started) {
-        jni::JClass garbage_collector_cls{env.load_class("godot.core.GarbageCollector", class_loader)};
+        jni::JClass garbage_collector_cls{env.load_class("godot.core.GarbageCollector",
+                                                         ClassLoader::get_default_loader())};
         jni::FieldId garbage_collector_instance_field{
                 garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/GarbageCollector;")
         };
@@ -450,7 +392,7 @@ void GDKotlin::finish() {
     user_scripts.clear();
 
     TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.clear();
-    class_loader.delete_global_ref(env);
+    ClassLoader::delete_default_loader(env);
     jni::Jvm::destroy();
     LOG_INFO("Shutting down JVM ...")
 }
@@ -459,6 +401,7 @@ void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
 #ifdef DEBUG_ENABLED
     LOG_INFO("Loading classes ...")
 #endif
+    jni::JObject class_loader = ClassLoader::get_default_loader();
     for (auto i = 0; i < p_classes.length(p_env); i++) {
         jni::JObject clazz = p_classes.get(p_env, i);
         auto* kt_class = new KtClass(clazz, class_loader);
@@ -494,10 +437,6 @@ KtClass* GDKotlin::find_class(const StringName& p_script_path) {
     }
 #endif
     return classes[p_script_path];
-}
-
-jni::JObject& GDKotlin::get_class_loader() {
-    return class_loader;
 }
 
 Error GDKotlin::split_jvm_debug_argument(const String& cmd_arg, String& result) {

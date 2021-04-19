@@ -1,5 +1,6 @@
 #include "kt_property.h"
 #include "gd_kotlin.h"
+#include "class_loader.h"
 
 JNI_INIT_STATICS_FOR_CLASS(KtPropertyInfo)
 JNI_INIT_STATICS_FOR_CLASS(KtProperty)
@@ -43,7 +44,7 @@ KtProperty::KtProperty(jni::JObject p_wrapped, jni::JObject& p_class_loader)
     jni::Env env { jni::Jvm::current_env() };
     jni::MethodId getKtPropertyInfoMethod{get_method_id(env, jni_methods.GET_KT_PROPERTY_INFO)};
     propertyInfo = new KtPropertyInfo(wrapped.call_object_method(env, getKtPropertyInfoMethod),
-                                      GDKotlin::get_instance().get_class_loader());
+                                      ClassLoader::get_default_loader());
     jni::MethodId getIsRefMethod{get_method_id(env, jni_methods.IS_REF)};
     is_ref = wrapped.call_boolean_method(env, getIsRefMethod);
 }

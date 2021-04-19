@@ -7,20 +7,20 @@ class LongStringQueue : public JavaInstanceWrapper<LongStringQueue> {
 
 private:
 
-    static LongStringQueue* instance;
+    LongStringQueue(jni::JObject p_wrapped,  jni::JObject& p_class_loader);
 
-    LongStringQueue(jni::JObject p_wrapped, jni::JObject p_class_loader);
-    ~LongStringQueue() = default;
     LongStringQueue(const LongStringQueue&) = delete;
     void operator=(const LongStringQueue&) = delete;
 
+    LongStringQueue(LongStringQueue&& instance) = default;
+    void operator=(LongStringQueue&$) = delete;
+
+    ~LongStringQueue() = default;
 public:
 
     static int max_string_size;
 
-    static void init(jni::Env& p_env, jni::JObject p_class_loader);
-
-    static LongStringQueue* get_instance();
+    static LongStringQueue& get_instance();
 
     void set_string_max_size(int max_size);
 
@@ -33,6 +33,8 @@ public:
     static void send_string_to_cpp(JNIEnv* p_raw_env, jobject p_instance, jstring p_string);
 
 private:
+
+    static LongStringQueue init();
 
 DECLARE_JNI_METHODS(
         JNI_METHOD(QUEUE_STRING, "queueString", "(Ljava/lang/String;)V")
