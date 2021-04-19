@@ -1,0 +1,26 @@
+name: Deploy to maven central
+on:
+  push:
+    tags:
+      - '\d+.\d+.\d+-\d+.\d+.\d+-SNAPSHOT'
+      - '\d+.\d+.\d+-\d+.\d+.\d+'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone
+        uses: actions/checkout@v2
+      - name: Build
+        uses: eskatos/gradle-command-action@v1
+        with:
+          arguments: build
+      - name: Publish to maven central
+        uses: eskatos/gradle-command-action@v1
+        with:
+          arguments: publish
+        env:
+          GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII: ${{ secrets.GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII }}
+          GODOT_KOTLIN_GPG_KEY_PASSPHRASE: ${{ secrets.GODOT_KOTLIN_GPG_KEY_PASSPHRASE }}
+          GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_USERNAME: ${{ secrets.GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_USERNAME }}
+          GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_PASSWORD: ${{ secrets.GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_PASSWORD }}
