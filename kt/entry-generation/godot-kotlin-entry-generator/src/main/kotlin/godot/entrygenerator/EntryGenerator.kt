@@ -6,8 +6,7 @@ import godot.entrygenerator.exceptions.ClassNameRegistrationException
 import godot.entrygenerator.exceptions.MultipleClassesPerFileRegistrationException
 import godot.entrygenerator.exceptions.WrongPackagePathRegistrationException
 import godot.entrygenerator.extension.getFqNameToRegisteredClassNamePair
-import godot.entrygenerator.filebuilder.EntryFileBuilderProvider
-import godot.entrygenerator.generator.GdnsGenerator
+import godot.entrygenerator.filebuilder.EntryFileBuilder
 import godot.entrygenerator.generator.ServiceGenerator
 import godot.entrygenerator.model.ClassWithMembers
 import godot.entrygenerator.model.PsiClassWithMembers
@@ -27,13 +26,13 @@ object EntryGenerator {
      * incremental builds
      */
     var psiClassesWithMembers: List<PsiClassWithMembers> = listOf()
+
     /**
      * Only needed on the JVM as for performance optimization we register the resPath instead of the fqName
      */
     var fqNamesToRePath: Map<String, String> = mapOf()
 
     fun generateEntryFiles(
-        generationType: EntryGenerationType,
         bindingContext: BindingContext,
         outputPath: String,
         classes: Set<ClassDescriptor>,
@@ -42,9 +41,9 @@ object EntryGenerator {
         signals: Set<PropertyDescriptor>,
         srcDirs: List<String>
     ) {
-        EntryFileBuilderProvider
-            .provideMainEntryFileBuilder(generationType, bindingContext)
+        EntryFileBuilder
             .registerClassesWithMembers(
+                bindingContext,
                 transformTypeDeclarationsToClassWithMembers(
                     classes,
                     properties,
@@ -58,15 +57,6 @@ object EntryGenerator {
         classNameSanityCheck()
         oneClassPerFileSanityCheck()
         packagePathSanityCheck(srcDirs)
-    }
-
-    fun generateGdnsFiles(
-        outputPath: String,
-        gdnLibFilePath: String,
-        cleanGeneratedGdnsFiles: Boolean,
-        classes: Set<ClassDescriptor>
-    ) {
-        GdnsGenerator.generateGdnsFiles(outputPath, gdnLibFilePath, cleanGeneratedGdnsFiles, classes)
     }
 
     fun generateServiceFile(serviceFileDir: String) = ServiceGenerator.generateServiceFile(serviceFileDir)
@@ -226,7 +216,13 @@ object EntryGenerator {
             .toSet()
 
         if (filesWithMultipleRegisteredClasses.isNotEmpty()) {
-            throw MultipleClassesPerFileRegistrationException("Only one registered class per file is allowed! The following files contain more than one registered class:\n${filesWithMultipleRegisteredClasses.joinToString("\n") { it.virtualFilePath }}")
+            throw MultipleClassesPerFileRegistrationException(
+                "Only one registered class per file is allowed! The following files contain more than one registered class:\n${
+                    filesWithMultipleRegisteredClasses.joinToString(
+                        "\n"
+                    ) { it.virtualFilePath }
+                }"
+            )
         }
     }
 
@@ -247,7 +243,13 @@ object EntryGenerator {
             .toSet()
 
         if (classesWithWrongPackagePath.isNotEmpty()) {
-            throw WrongPackagePathRegistrationException("Package path of registered classes has to match the directory they are stored in! Also the file name has to match the class name! The following classes have wrong package path's or wrong file names:\n${classesWithWrongPackagePath.joinToString("\n") { it.fqName?.asString() ?: "" }}")
+            throw WrongPackagePathRegistrationException(
+                "Package path of registered classes has to match the directory they are stored in! Also the file name has to match the class name! The following classes have wrong package path's or wrong file names:\n${
+                    classesWithWrongPackagePath.joinToString(
+                        "\n"
+                    ) { it.fqName?.asString() ?: "" }
+                }"
+            )
         }
     }
 }

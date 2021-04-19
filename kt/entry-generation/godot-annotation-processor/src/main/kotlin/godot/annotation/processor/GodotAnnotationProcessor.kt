@@ -5,7 +5,6 @@ import de.jensklingenberg.mpapt.model.Element
 import de.jensklingenberg.mpapt.model.RoundEnvironment
 import de.jensklingenberg.mpapt.utils.KotlinPlatformValues
 import godot.annotation.*
-import godot.entrygenerator.EntryGenerationType
 import godot.entrygenerator.EntryGenerator
 import godot.entrygenerator.model.*
 import org.jetbrains.kotlin.com.intellij.mock.MockProject
@@ -24,7 +23,6 @@ import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtNamedFunction
 import org.jetbrains.kotlin.resolve.BindingContext
 import java.io.File
-import java.lang.instrument.IllegalClassFormatException
 
 class GodotAnnotationProcessor(
     private val project: MockProject,
@@ -119,7 +117,6 @@ class GodotAnnotationProcessor(
         EntryGenerator.psiClassesWithMembers = getAllRegisteredUserPsiClassesWithMembers()
         EntryGenerator.fqNamesToRePath = fqNameToResPath()
         EntryGenerator.generateEntryFiles(
-            EntryGenerationType.JVM,
             bindingContext,
             entryGenerationOutputDir,
             classes,

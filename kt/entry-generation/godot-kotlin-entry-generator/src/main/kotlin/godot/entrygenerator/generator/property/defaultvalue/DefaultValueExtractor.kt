@@ -63,17 +63,34 @@ open class DefaultValueExtractor(
             } != null -> KtPrefixExpressionExtractor.extract(expression)
             //string assignments but no string templations like ("${someVarToPutInString}"): val foo = "this is awesome"
             expression is KtStringTemplateExpression -> KtStringTemplateExpressionExtractor.extract(expression)
-            expression is KtDotQualifiedExpression -> KtDotQualifiedExpressionExtractor.extract(bindingContext, expression)
+            expression is KtDotQualifiedExpression -> KtDotQualifiedExpressionExtractor.extract(
+                bindingContext,
+                expression
+            )
             //call expressions like constructor calls or function calls
-            expression is KtCallExpression -> KtCallExpressionExtractor.extract(bindingContext, expression, ::getDefaultValueTemplateStringWithTemplateArguments)
+            expression is KtCallExpression -> KtCallExpressionExtractor.extract(
+                bindingContext,
+                expression,
+                ::getDefaultValueTemplateStringWithTemplateArguments
+            )
             //used for flags: val foo = 1 or 3 and 5
-            expression is KtBinaryExpression -> KtBinaryExpressionExtractor.extract(expression, ::getDefaultValueTemplateStringWithTemplateArguments)
+            expression is KtBinaryExpression -> KtBinaryExpressionExtractor.extract(
+                expression,
+                ::getDefaultValueTemplateStringWithTemplateArguments
+            )
             //static named reference to a global const for example
-            expression is KtNameReferenceExpression -> KtNameReferenceExpressionExtractor.extract(bindingContext, expression, propertyDescriptor)
+            expression is KtNameReferenceExpression -> KtNameReferenceExpressionExtractor.extract(
+                bindingContext,
+                expression,
+                propertyDescriptor
+            )
             //operators like the `or` operator
             expression is KtOperationReferenceExpression -> KtOperationReferenceExpressionExtractor.extract(expression)
             //EnumArray -> int to enum mapping function
-            expression is KtLambdaExpression && expression.parents.firstOrNull { it is KtNameReferenceExpression || it is KtCallExpression } != null -> KtLambdaExpressionExtractor.extract(bindingContext, expression)
+            expression is KtLambdaExpression && expression.parents.firstOrNull { it is KtNameReferenceExpression || it is KtCallExpression } != null -> KtLambdaExpressionExtractor.extract(
+                bindingContext,
+                expression
+            )
             else -> null
         }
     }

@@ -23,7 +23,11 @@ import org.jetbrains.kotlin.serialization.deserialization.descriptors.Deserializ
 
 object KtCallExpressionExtractor {
 
-    fun extract(bindingContext: BindingContext, expression: KtCallExpression, getDefaultValueTemplateStringWithTemplateArguments: (KtExpression) -> Pair<String, Array<out Any>>?): Pair<String, Array<out Any>> {
+    fun extract(
+        bindingContext: BindingContext,
+        expression: KtCallExpression,
+        getDefaultValueTemplateStringWithTemplateArguments: (KtExpression) -> Pair<String, Array<out Any>>?
+    ): Pair<String, Array<out Any>> {
         val ref = expression
             .referenceExpression()
             ?.getReferenceTargets(bindingContext)
@@ -70,10 +74,10 @@ object KtCallExpressionExtractor {
                 //godot arrays and kotlin collections
                 //Note: kotlin collections only as constructor arguments or function params. TypeToVariantAsClassNameMapper already enshures that they are not registered as property types
                 ref is FunctionDescriptor && (
-                        ref.fqNameSafe.asString().matches(Regex("^godot\\.core\\..*(ArrayOf|Array)\$"))
-                                || ref.fqNameSafe.asString().matches(Regex("^godot\\.core\\..*(dictionaryOf|Dictionary)\$"))
-                                || ref.findPackage().fqName.asString() == "kotlin.collections"
-                        ) -> {
+                    ref.fqNameSafe.asString().matches(Regex("^godot\\.core\\..*(ArrayOf|Array)\$"))
+                        || ref.fqNameSafe.asString().matches(Regex("^godot\\.core\\..*(dictionaryOf|Dictionary)\$"))
+                        || ref.findPackage().fqName.asString() == "kotlin.collections"
+                    ) -> {
                     val fqName = ref.fqNameSafe
                     val pkg = fqName.parent().asString()
                     val functionName = fqName.shortName().asString()

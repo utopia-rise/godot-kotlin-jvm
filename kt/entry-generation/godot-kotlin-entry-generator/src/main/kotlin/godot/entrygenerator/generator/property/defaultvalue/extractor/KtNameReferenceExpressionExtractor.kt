@@ -12,7 +12,11 @@ import org.jetbrains.kotlin.resolve.descriptorUtil.parents
 
 object KtNameReferenceExpressionExtractor {
 
-    fun extract(bindingContext: BindingContext, expression: KtNameReferenceExpression, propertyDescriptor: PropertyDescriptor): Pair<String, Array<out Any>> {
+    fun extract(
+        bindingContext: BindingContext,
+        expression: KtNameReferenceExpression,
+        propertyDescriptor: PropertyDescriptor
+    ): Pair<String, Array<out Any>> {
         val ref = expression
             .referenceExpression()
             ?.getReferenceTargets(bindingContext)

@@ -8,5 +8,6 @@ class EnumFlagHintStringGenerator(
     bindingContext: BindingContext
 ) : PropertyHintStringGenerator(propertyDescriptor, bindingContext) {
 
-    override fun getHintString(): String = throw UnsupportedOperationException("Hint string for enums is handled by the binding at runtime.")
+    override fun getHintString(): String =
+        throw UnsupportedOperationException("Hint string for enums is handled by the binding at runtime.")
 }

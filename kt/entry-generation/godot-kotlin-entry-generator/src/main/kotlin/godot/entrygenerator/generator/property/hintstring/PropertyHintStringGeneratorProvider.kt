@@ -1,6 +1,5 @@
 package godot.entrygenerator.generator.property.hintstring
 
-import godot.entrygenerator.EntryGenerationType
 import godot.entrygenerator.extension.isCompatibleList
 import godot.entrygenerator.extension.isCoreType
 import godot.entrygenerator.extension.isReference
@@ -15,8 +14,7 @@ object PropertyHintStringGeneratorProvider {
 
     fun provide(
         propertyDescriptor: PropertyDescriptor,
-        bindingContext: BindingContext,
-        entryGenerationType: EntryGenerationType
+        bindingContext: BindingContext
     ): PropertyHintStringGenerator {
         return when {
             KotlinBuiltIns.isInt(propertyDescriptor.type) ->
@@ -55,9 +53,9 @@ object PropertyHintStringGeneratorProvider {
                 }
 
             KotlinBuiltIns.isLong(propertyDescriptor.type)
-                    || KotlinBuiltIns.isFloat(propertyDescriptor.type)
-                    || KotlinBuiltIns.isDouble(propertyDescriptor.type)
-                    || KotlinBuiltIns.isBoolean(propertyDescriptor.type) -> PrimitivesHintStringGenerator(
+                || KotlinBuiltIns.isFloat(propertyDescriptor.type)
+                || KotlinBuiltIns.isDouble(propertyDescriptor.type)
+                || KotlinBuiltIns.isBoolean(propertyDescriptor.type) -> PrimitivesHintStringGenerator(
                 propertyDescriptor,
                 bindingContext
             )
@@ -66,7 +64,7 @@ object PropertyHintStringGeneratorProvider {
                 propertyDescriptor,
                 bindingContext
             )
-            propertyDescriptor.type.isReference(entryGenerationType) -> ResourceHintStringGenerator(
+            propertyDescriptor.type.isReference() -> ResourceHintStringGenerator(
                 propertyDescriptor,
                 bindingContext
             )
@@ -74,7 +72,8 @@ object PropertyHintStringGeneratorProvider {
                 propertyDescriptor,
                 bindingContext
             )
-            propertyDescriptor.type.getJetTypeFqName(false).matches(Regex("^kotlin\\.collections\\..*Set\$")) -> EnumHintStringGenerator(
+            propertyDescriptor.type.getJetTypeFqName(false)
+                .matches(Regex("^kotlin\\.collections\\..*Set\$")) -> EnumHintStringGenerator(
                 propertyDescriptor,
                 bindingContext
             )

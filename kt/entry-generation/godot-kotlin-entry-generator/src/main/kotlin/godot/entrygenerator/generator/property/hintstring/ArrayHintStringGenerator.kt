@@ -46,7 +46,9 @@ class ArrayHintStringGenerator(
                                 append(":19") //variant.type.array.ordinal
                                 currentElementType = currentElementType.arguments.firstOrNull()?.type
                             }
-                            currentElementType.getJetTypeFqName(false).isGodotPrimitive() || currentElementType.isCoreType() -> {
+                            currentElementType
+                                .getJetTypeFqName(false)
+                                .isGodotPrimitive() || currentElementType.isCoreType() -> {
                                 append(":${currentElementType.getJetTypeFqName(false).getAsVariantTypeOrdinal()}")
                                 break@loop
                             }

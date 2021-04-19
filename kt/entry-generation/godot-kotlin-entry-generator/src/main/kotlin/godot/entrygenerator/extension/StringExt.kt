@@ -64,7 +64,7 @@ fun String.isCompatibleListType(): Boolean {
 }
 
 fun String.getCompatibleListType(): String {
-    return when(this) {
+    return when (this) {
         "godot.core.BoolVariantArray" -> "1"
         "godot.core.EnumArray",
         "godot.core.IntVariantArray" -> "2"

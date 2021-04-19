@@ -31,7 +31,13 @@ object KtDotQualifiedExpressionExtractor {
             } else if (receiverRef.isCompanionObject()) { //static ref like Vector3.UP
                 val packagePath = requireNotNull(receiverRef.containingDeclaration).fqNameSafe.asString()
                 val expr = expression.text.substringAfter(".")
-                return "%T.%L" to arrayOf(ClassName(packagePath.substringBeforeLast("."), packagePath.substringAfterLast(".")), expr)
+                return "%T.%L" to arrayOf(
+                    ClassName(
+                        packagePath.substringBeforeLast("."),
+                        packagePath.substringAfterLast(".")
+                    ),
+                    expr
+                )
             }
             //multiline strings
         } else if (receiver is KtStringTemplateExpression) {

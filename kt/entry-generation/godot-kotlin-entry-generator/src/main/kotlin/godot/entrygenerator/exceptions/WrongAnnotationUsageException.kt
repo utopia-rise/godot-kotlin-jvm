@@ -9,6 +9,5 @@ class WrongAnnotationUsageException(
     propertyHintAnnotation: AnnotationDescriptor?,
     effectiveType: String? = null
 ) : Exception(
-    "You annotated ${propertyDescriptor.fqNameSafe} with @${propertyHintAnnotation?.fqName?.asString()?.split(".")
-        ?.last()} which ${if (effectiveType != null) "is only applicable to properties of type $effectiveType" else "cannot be applied on properties of type ${propertyDescriptor.type}"}"
+    "You annotated ${propertyDescriptor.fqNameSafe} with @${propertyHintAnnotation?.fqName?.asString()?.split(".")?.last()} which ${if (effectiveType != null) "is only applicable to properties of type $effectiveType" else "cannot be applied on properties of type ${propertyDescriptor.type}"}"
 )

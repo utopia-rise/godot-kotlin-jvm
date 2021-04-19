@@ -19,6 +19,10 @@ object CompilerEnvironmentProvider {
             addJvmClasspathRoots(PathUtil.getJdkClassesRootsFromCurrentJre())
             addKotlinSourceRoots(sourceDirs)
         }
-        return KotlinCoreEnvironment.createForProduction(Disposer.newDisposable(), configuration, EnvironmentConfigFiles.JVM_CONFIG_FILES)
+        return KotlinCoreEnvironment.createForProduction(
+            Disposer.newDisposable(),
+            configuration,
+            EnvironmentConfigFiles.JVM_CONFIG_FILES
+        )
     }
 }

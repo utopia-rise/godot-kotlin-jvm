@@ -6,7 +6,7 @@ import org.jetbrains.kotlin.cli.common.messages.CompilerMessageSourceLocation
 import org.jetbrains.kotlin.cli.common.messages.MessageCollector
 import java.util.logging.Logger
 
-internal class EntryGeneratorMessageCollector: MessageCollector {
+internal class EntryGeneratorMessageCollector : MessageCollector {
     private val logger = Logger.getLogger(EntryGenerator::class.java.name)
     private var hasErrors = false
 

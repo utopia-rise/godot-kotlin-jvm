@@ -10,7 +10,10 @@ import org.jetbrains.kotlin.psi.KtEnumEntry
 import org.jetbrains.kotlin.resolve.BindingContext
 import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
 
-class EnumFlagDefaultValueExtractor(propertyDescriptor: PropertyDescriptor, bindingContext: BindingContext) : DefaultValueExtractor(propertyDescriptor, bindingContext) {
+class EnumFlagDefaultValueExtractor(
+    propertyDescriptor: PropertyDescriptor,
+    bindingContext: BindingContext
+) : DefaultValueExtractor(propertyDescriptor, bindingContext) {
 
     override fun getDefaultValue(variantClassName: ClassName?): Pair<String, Array<out Any>> {
         if (propertyHintAnnotation == null || propertyHintAnnotation.fqName?.asString() != "godot.annotation.EnumFlag") {
