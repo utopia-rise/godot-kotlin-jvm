@@ -13,6 +13,7 @@
     * [API differences](src/doc/user-guide/api-differences.md)
 * [Advanced]()
     * [Custom Src dirs](src/doc/advanced/custom-src-dirs.md)
+    * [Custom gradle wrapper path](src/doc/advanced/custom_gradle_wrapper_path.md)
     * [Commandline args](src/doc/advanced/commandline-args.md)
 	* [Kotlin singletons](src/doc/advanced/kotlin-singleton.md)
 * [Contribution]()
