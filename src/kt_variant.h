@@ -341,14 +341,14 @@ namespace ktvariant {
     static Variant from_kvariant_tokStringValue(SharedBuffer* byte_buffer) {
         uint32_t is_long{decode_uint32(byte_buffer->get_cursor())};
         if (is_long == 1) {
+            String str = LongStringQueue::get_instance().poll_string();
+            return Variant(str);
+        } else {
             uint32_t size{decode_uint32(byte_buffer->get_cursor())};
             byte_buffer->increment_position(INT_SIZE);
             String str;
             str.parse_utf8(reinterpret_cast<const char*>(byte_buffer->get_cursor()), size);
             byte_buffer->increment_position(size);
-            return Variant(str);
-        } else {
-            String str = LongStringQueue::get_instance().poll_string();
             return Variant(str);
         }
     }
