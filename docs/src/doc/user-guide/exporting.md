@@ -1,13 +1,16 @@
 
-To export the game, you should copy exports into the correct template folder, which should be:  
+To export the game, you should copy exports into the correct template folder, which should be:
+
 - Windows: `%APPDATA%\Godot\templates\<godot-version>`
 - Linux: `~/.local/share/godot/templates/<godot-version>`  
 
-You should also renamed the `release` export to:    
+You should also renamed the `release` export to:
+
 - Windows: `windows_64_release.exe`
 - Linux: `linux_x11_64_release`
 
-And `release_debug` to:  
+And `release_debug` to:
+
 - Windows: `windows_64_debug.exe`
 - Linux: `linux_x11_64_debug`
 
