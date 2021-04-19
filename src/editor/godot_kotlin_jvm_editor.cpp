@@ -68,6 +68,7 @@ void GodotKotlinJvmEditor::_notificationv(int p_notification, bool p_reversed) {
 
     if (p_notification == NOTIFICATION_READY) {
         _EDITOR_DEF("kotlin_jvm/editor/build_gradle_before_start", true, false);
+        _GLOBAL_DEF("kotlin_jvm/editor/gradle_wrapper_dir", "res://", false);
 
         ClassDB::bind_method(
                 D_METHOD("on_menu_option_pressed", "menu_option"),
