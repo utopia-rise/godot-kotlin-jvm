@@ -28,6 +28,32 @@ subprojects {
 }
 
 tasks {
+    val generateChangelog by creating {
+        group = "godot-kotlin-jvm"
+
+        doLast {
+            val tags = grgit.tag.list().reversed()
+            val fromTag = tags.getOrNull(1)
+            val toTag = tags.getOrNull(0)
+            val changeLogPrefix = """
+                The pre built engines are the zip files.  
+                The other files are export templates needed for exporting your game. See [exporting](https://godot-kotl.in/en/latest/user-guide/exporting/) documentation on how to use them.
+                
+                **Changelog:**
+                
+            """.trimIndent()
+
+            val changelogString = grgit.log {
+                range(fromTag?.name, toTag?.name)
+            }
+                .joinToString(separator = "\n", prefix = changeLogPrefix) { commit ->
+                    val link = "https://github.com/utopia-rise/godot-kotlin-jvm/commit/${commit.id}"
+                    "- [${commit.abbreviatedId}]($link) ${commit.shortMessage}"
+                }
+
+            project.buildDir.resolve("changelog.md").writeText(changelogString)
+        }
+    }
     val buildEngineDebug by creating(Exec::class) {
         group = "godot-kotlin-jvm"
 

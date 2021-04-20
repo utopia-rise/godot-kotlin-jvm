@@ -10,6 +10,20 @@ jobs:
     name: Create Github Release
     runs-on: ubuntu-latest
     steps:
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v2
+      - name: Checkout submodules
+        uses: snickerbockers/submodules-init@v4
+      - name: Set up JDK ${{ matrix.java-version }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java-version }}
+      - name: Generate changelog
+        uses: eskatos/gradle-command-action@v1
+        with:
+          wrapper-directory: kt/
+          build-root-directory: kt/
+          arguments: generateChangelog
       - name: Create draft release
         id: create_release
         uses: actions/create-release@v1
@@ -20,9 +34,7 @@ jobs:
           release_name: ${{ github.ref }}
           draft: true
           prerelease: false
-          body: |
-            The pre built engines are the zip files.
-            The other files are export templates needed for exporting your game. See [exporting](https://godot-kotl.in/en/latest/user-guide/exporting/) documentation on how to use them.
+          body_path: kt/build/changelog.md
 
       - name: Output release url file
         run: echo "${{ steps.create_release.outputs.upload_url }}" > release_url.txt
