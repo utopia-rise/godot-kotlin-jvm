@@ -94,10 +94,22 @@ Error BuildManager::build_blocking() {
     args.push_back("build");
 
 #if defined _WIN32 || defined _WIN64
-    String gradle_command{ProjectSettings::get_singleton()->globalize_path("res://gradlew.bat")};
+    String gradle_wrapper{"gradlew.bat"};
 #else
-    String gradle_command{ProjectSettings::get_singleton()->globalize_path("res://gradlew")};
+    String gradle_wrapper{"gradlew"};
 #endif
+
+    String gradle_wrapper_path{
+            ProjectSettings::get_singleton()->globalize_path(
+                    ProjectSettings::get_singleton()->get_setting("kotlin_jvm/editor/gradle_wrapper_dir")
+            )
+    };
+
+    if (!gradle_wrapper_path.ends_with("/")) {
+        gradle_wrapper_path = String{gradle_wrapper_path + "/"};
+    }
+
+    String gradle_command{gradle_wrapper_path + gradle_wrapper};
 
     int exit_code;
     Error result = OS::get_singleton()->execute(

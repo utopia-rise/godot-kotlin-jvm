@@ -48,6 +48,7 @@ nav:
     - API differences: user-guide/api-differences.md
   - Advanced:
     - Custom Src dirs: advanced/custom-src-dirs.md
+    - Custom gradle wrapper path: advanced/custom_gradle_wrapper_path.md
     - Commandline args: advanced/commandline-args.md
     - Kotlin singletons: advanced/kotlin-singleton.md
   - Contribution:
