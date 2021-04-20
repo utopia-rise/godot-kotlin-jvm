@@ -26,7 +26,7 @@ class Bootstrap {
     private var watchService: WatchService? = null
     private var engineTypesRegistered: Boolean = false
 
-    fun init(isEditor: Boolean, jarRootDir: String, jarFile: String, loader: ClassLoader?) {
+    fun init(isEditor: Boolean, projectRootDir: String, jarRootDir: String, jarFile: String, loader: ClassLoader?) {
         val libsDir = Paths.get(jarRootDir)
         val mainJarPath = libsDir.resolve(jarFile)
 
@@ -40,9 +40,11 @@ class Bootstrap {
             }.invoke("No main.jar detected. No classes will be loaded. Build the gradle project to load classes")
         }
 
+        println("DEBUG: isEditor $isEditor")
+        println("DEBUG: path ${getBuildLockDir(projectRootDir)}")
         if (isEditor) {
             watchService = FileSystems.getDefault().newWatchService()
-            val watchKey = getBuildLockDir(jarRootDir).toPath().register(
+            val watchKey = getBuildLockDir(projectRootDir).toPath().register(
                 watchService,
                 StandardWatchEventKinds.ENTRY_CREATE,
                 StandardWatchEventKinds.ENTRY_DELETE,
@@ -56,9 +58,12 @@ class Bootstrap {
             }
 
             executor!!.scheduleAtFixedRate({
+                println("checking...")
                 val events = watchKey.pollEvents()
                 if (events.isNotEmpty()) {
-                    if (File(getBuildLockDir(jarRootDir), "buildLock.lock").exists()) {
+                    println("event received")
+                    if (File(getBuildLockDir(projectRootDir), "buildLock.lock").exists()) {
+                        info("Build lock present. Not reloading...")
                         return@scheduleAtFixedRate
                     }
                     info("Changes detected, reloading classes ...")

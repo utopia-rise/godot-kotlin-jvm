@@ -86,6 +86,7 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
         val createBuildLock by creating {
             doFirst {
                 val buildLockDir = getBuildLockDir(projectDir)
+                println("DEBUG: $buildLockDir")
                 File(buildLockDir, "buildLock.lock").createNewFile()
             }
         }
@@ -204,7 +205,7 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
         }
 
         val build by getting {
-            dependsOn(cleanupEntryFiles, bootstrapJar, shadowJar)
+            dependsOn(cleanupEntryFiles, bootstrapJar, shadowJar, createBuildLock)
             finalizedBy(deleteBuildLock)
             if(godotExtension.isAndroidExportEnabled.get()) {
                 finalizedBy(createGodotBootstrapDexJar, createMainDexJar)

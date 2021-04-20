@@ -391,11 +391,13 @@ void GDKotlin::init() {
     String jar_path{project_settings->globalize_path("user://")};
 #endif
 
+    String project_path{project_settings->globalize_path("res://")};
     String main_jar{ProjectSettings::get_singleton()->globalize_path(vformat("user://%s", main_jar_file))};
 
     bootstrap->init(
             env,
             is_editor,
+            project_path,
             jar_path,
             main_jar_file,
 #ifdef __ANDROID__

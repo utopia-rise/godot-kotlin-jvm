@@ -51,14 +51,16 @@ Bootstrap::register_hooks(jni::Env& p_env, LoadClassesHook p_load_classes_hook, 
     j_class.register_natives(p_env, methods);
 }
 
-void Bootstrap::init(jni::Env& p_env, bool p_is_editor, const String& p_project_path, const String& p_jar_file,
+void Bootstrap::init(jni::Env& p_env, bool p_is_editor, const String& p_project_path, const String& p_jar_path, const String& p_jar_file,
                      const jni::JObject& p_class_loader) {
     jni::MethodId init_method = get_method_id(p_env, jni_methods.INIT);
     jni::JObject project_path = p_env.new_string(p_project_path.utf8().get_data());
+    jni::JObject jar_path = p_env.new_string(p_jar_path.utf8().get_data());
     jni::JObject jar_file{p_env.new_string(p_jar_file.utf8().get_data())};
-    jvalue args[4] = {
+    jvalue args[5] = {
             jni::to_jni_arg(p_is_editor),
             jni::to_jni_arg(project_path),
+            jni::to_jni_arg(jar_path),
             jni::to_jni_arg(jar_file),
             jni::to_jni_arg(p_class_loader)
     };

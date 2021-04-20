@@ -20,12 +20,12 @@ public:
     void register_hooks(jni::Env& p_env, LoadClassesHook p_load_classes_hook, UnloadClassesHook p_unload_classes_hook,
                         RegisterManagedEngineTypesHook p_register_managed_engine_types_hook,
                         RegisterUserTypesNamesHook p_user_types_names_hook, RegisterUserTypesMembersHook p_user_types_nmembers_hook);
-    void init(jni::Env& p_env, bool p_is_editor, const String& p_project_path, const String& p_jar_file,
+    void init(jni::Env& p_env, bool p_is_editor, const String& p_project_path, const String& p_jar_path, const String& p_jar_file,
               const jni::JObject& p_class_loader);
     void finish(jni::Env& p_env);
 
 DECLARE_JNI_METHODS(
-        JNI_METHOD(INIT, "init", "(ZLjava/lang/String;Ljava/lang/String;Ljava/lang/ClassLoader;)V")
+        JNI_METHOD(INIT, "init", "(ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/ClassLoader;)V")
         JNI_METHOD(FINISH, "finish", "()V")
 )
 };
