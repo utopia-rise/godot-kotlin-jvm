@@ -12,11 +12,18 @@ import godot.util.RealT
 import org.joda.time.DateTime
 
 enum class TestEnum {
-	ENUM_1
+	ENUM_1,
+	ENUM_2
 }
 
 @RegisterClass
 class Invocation : Spatial() {
+
+	@RegisterProperty
+	var enumList = listOf(TestEnum.ENUM_1)
+
+	@RegisterProperty
+	var enumListMutable = mutableListOf(TestEnum.ENUM_1, TestEnum.ENUM_2)
 
 	@RegisterProperty
 	var testNullable: Int? = null

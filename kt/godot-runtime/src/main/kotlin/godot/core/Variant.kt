@@ -36,7 +36,7 @@ val variantMapper = mutableMapOf(
         PoolRealArray::class to POOL_REAL_ARRAY,
         PoolStringArray::class to POOL_STRING_ARRAY,
         PoolVector2Array::class to POOL_VECTOR2_ARRAY,
-        PoolVector3Array::class to POOL_VECTOR3_ARRAY,
+        PoolVector3Array::class to POOL_VECTOR3_ARRAY
 )
 
 var ByteBuffer.bool: Boolean

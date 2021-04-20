@@ -10,6 +10,7 @@ import godot.entrygenerator.extension.toReturnKtVariantType
 import godot.entrygenerator.generator.property.defaultvalue.DefaultValueExtractorProvider
 import godot.entrygenerator.generator.property.hintstring.PropertyHintStringGeneratorProvider
 import godot.entrygenerator.generator.property.typehint.PropertyTypeHintProvider
+import godot.entrygenerator.model.ENUM_FLAG_ANNOTATION
 import godot.entrygenerator.model.REGISTER_PROPERTY_ANNOTATION
 import godot.entrygenerator.model.REGISTER_PROPERTY_ANNOTATION_RPC_MODE_ARGUMENT
 import godot.entrygenerator.model.REGISTER_PROPERTY_ANNOTATION_VISIBLE_IN_EDITOR_ARGUMENT
@@ -39,23 +40,38 @@ object PropertyRegistrationGenerator {
                         className,
                         registeredProperty,
                         bindingContext,
+                        classSpecificRegistryBuilder,
                         registerClassControlFlow
                     )
-                    registeredProperty.propertyDescriptor.type.isCompatibleList() && registeredProperty.propertyDescriptor.type.arguments.firstOrNull()?.type?.isEnum() == true -> registerEnumList(
-                        className,
-                        registeredProperty,
-                        bindingContext,
-                        registerClassControlFlow
-                    )
-                    registeredProperty.propertyDescriptor.type.getJetTypeFqName(false)
-                        .matches(Regex("^kotlin\\.collections\\..*Set\$"))
-                        && registeredProperty.propertyDescriptor.type.arguments.firstOrNull()?.type?.isEnum() == true -> registerEnumFlag(
+                    registeredProperty
+                        .propertyDescriptor
+                        .type
+                        .getJetTypeFqName(false)
+                        .matches(Regex("^kotlin\\.collections\\..*Set\$")) &&
+                        registeredProperty.propertyDescriptor.type.arguments.firstOrNull()?.type?.isEnum() == true &&
+                        registeredProperty
+                            .propertyDescriptor
+                            .annotations
+                            .hasAnnotation(FqName(ENUM_FLAG_ANNOTATION)) -> registerEnumFlag(
                         className,
                         registeredProperty,
                         bindingContext,
                         classSpecificRegistryBuilder,
                         registerClassControlFlow
                     )
+                    registeredProperty
+                        .propertyDescriptor
+                        .type
+                        .getJetTypeFqName(false)
+                        .matches(Regex("^kotlin\\.collections\\..*")) &&
+                        registeredProperty.propertyDescriptor.type.arguments.firstOrNull()?.type?.isEnum() == true ->
+                        registerEnumList(
+                            className,
+                            registeredProperty,
+                            bindingContext,
+                            classSpecificRegistryBuilder,
+                            registerClassControlFlow
+                        )
                     else -> registerProperty(
                         className,
                         registeredProperty,
@@ -74,19 +90,14 @@ object PropertyRegistrationGenerator {
         classSpecificRegistryBuilder: TypeSpec.Builder,
         registerClassControlFlow: FunSpec.Builder
     ) {
-        val (defaultValueStringTemplate, defaultValueStringTemplateValues) = DefaultValueExtractorProvider
-            .provide(registeredProperty.propertyDescriptor, bindingContext)
-            .getDefaultValue(null)
-
         if (registeredProperty.isOverriding || !registeredProperty.isInherited) {
             generateDefaultValueProvider(registeredProperty, bindingContext, classSpecificRegistryBuilder)
         }
 
         registerClassControlFlow
             .addStatement(
-                "enumFlagProperty(%L,·{·${defaultValueStringTemplate.replace(" ", "·")}·},·%T.id.toInt())",
+                "enumFlagProperty(%L,·${registeredProperty.propertyDescriptor.name}DefaultValueProvider,·%T.id.toInt())",
                 getPropertyReference(registeredProperty.propertyDescriptor, className),
-                *defaultValueStringTemplateValues,
                 getRpcModeEnum(registeredProperty.propertyDescriptor)
             )
     }
@@ -95,26 +106,37 @@ object PropertyRegistrationGenerator {
         className: ClassName,
         registeredProperty: RegisteredProperty,
         bindingContext: BindingContext,
+        classSpecificRegistryBuilder: TypeSpec.Builder,
         registerClassControlFlow: FunSpec.Builder
     ) {
-        TODO("Not yet implemented")
+        if (registeredProperty.isOverriding || !registeredProperty.isInherited) {
+            generateDefaultValueProvider(registeredProperty, bindingContext, classSpecificRegistryBuilder)
+        }
+
+        registerClassControlFlow
+            .addStatement(
+                "enumListProperty(%L,·${registeredProperty.propertyDescriptor.name}DefaultValueProvider,·%T.id.toInt())",
+                getPropertyReference(registeredProperty.propertyDescriptor, className),
+                getRpcModeEnum(registeredProperty.propertyDescriptor)
+            )
     }
 
     private fun registerEnum(
         className: ClassName,
         registeredProperty: RegisteredProperty,
         bindingContext: BindingContext,
+        classSpecificRegistryBuilder: TypeSpec.Builder,
         registerClassControlFlow: FunSpec.Builder
     ) {
-        val (defaultValueStringTemplate, defaultValueStringTemplateValues) = DefaultValueExtractorProvider
-            .provide(registeredProperty.propertyDescriptor, bindingContext)
-            .getDefaultValue(null)
+
+        if (registeredProperty.isOverriding || !registeredProperty.isInherited) {
+            generateDefaultValueProvider(registeredProperty, bindingContext, classSpecificRegistryBuilder)
+        }
 
         registerClassControlFlow
             .addStatement(
-                "enumProperty(%L,·{·${defaultValueStringTemplate.replace(" ", "·")}·},·%T.id.toInt())",
+                "enumProperty(%L,·${registeredProperty.propertyDescriptor.name}DefaultValueProvider,·%T.id.toInt())",
                 getPropertyReference(registeredProperty.propertyDescriptor, className),
-                *defaultValueStringTemplateValues,
                 getRpcModeEnum(registeredProperty.propertyDescriptor)
             )
     }
@@ -138,7 +160,7 @@ object PropertyRegistrationGenerator {
 
         registerClassControlFlow
             .addStatement(
-                "property(%L,·%T,·%T,·%S,·%T,·%S,·{·${registeredProperty.propertyDescriptor.name}DefaultValue·},·%T.id.toInt())",
+                "property(%L,·%T,·%T,·%S,·%T,·%S,·${registeredProperty.propertyDescriptor.name}DefaultValueProvider,·%T.id.toInt())",
                 getPropertyReference(registeredProperty.propertyDescriptor, className),
                 registeredProperty.propertyDescriptor.type.toParameterKtVariantType(),
                 registeredProperty.propertyDescriptor.type.toReturnKtVariantType(),
@@ -184,11 +206,11 @@ object PropertyRegistrationGenerator {
 
         val defaultValuePropertySpec = PropertySpec
             .builder(
-                "${registeredProperty.propertyDescriptor.name}DefaultValue",
-                returnTypeClassName.copy(nullable = defaultValueStringTemplateValues.all { it is String && it == "null" })
+                "${registeredProperty.propertyDescriptor.name}DefaultValueProvider",
+                LambdaTypeName.get(returnType = returnTypeClassName.copy(nullable = defaultValueStringTemplateValues.all { it is String && it == "null" }))
             )
             .addModifiers(KModifier.OPEN)
-            .delegate("lazy·{·${defaultValueStringTemplate.replace(" ", "·")}·}", *defaultValueStringTemplateValues)
+            .initializer("{·${defaultValueStringTemplate.replace(" ", "·")}·}", *defaultValueStringTemplateValues)
 
         if (registeredProperty.isOverriding) {
             defaultValuePropertySpec.addModifiers(KModifier.OVERRIDE)

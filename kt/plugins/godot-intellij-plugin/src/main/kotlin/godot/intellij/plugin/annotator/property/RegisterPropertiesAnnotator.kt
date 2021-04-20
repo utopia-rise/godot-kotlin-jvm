@@ -14,6 +14,7 @@ import org.jetbrains.kotlin.js.descriptorUtils.getJetTypeFqName
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.nj2k.postProcessing.type
 import org.jetbrains.kotlin.psi.KtProperty
+import org.jetbrains.kotlin.types.typeUtil.isEnum
 
 class RegisterPropertiesAnnotator : Annotator {
     private val mutabilityQuickFix by lazy { RegisterPropertyMutabilityQuickFix() }
@@ -47,10 +48,24 @@ class RegisterPropertiesAnnotator : Annotator {
     private fun checkRegisteredType(ktProperty: KtProperty, holder: AnnotationHolder) {
         val type = ktProperty.type() ?: return
         // enum flag is the only case where registering a kotlin collection is allowed
-        if (type.getJetTypeFqName(false).startsWith("kotlin.collections") && ktProperty.findAnnotation(FqName("godot.annotation.EnumFlag")) == null) {
+        if (
+            type.getJetTypeFqName(false).startsWith("kotlin.collections") &&
+            ktProperty.findAnnotation(FqName("godot.annotation.EnumFlag")) == null &&
+            type.arguments.firstOrNull()?.type?.isEnum() != true
+        ) {
             // TODO: add quick fix
             holder.registerProblem(
                 GodotPluginBundle.message("problem.property.registeredKotlinCollection"),
+                getInitializerProblemLocation(ktProperty)
+            )
+        }
+        if (
+            type.getJetTypeFqName(false).startsWith("godot.core.VariantArray") &&
+            type.arguments.firstOrNull()?.type?.isEnum() == true
+        ) {
+            // TODO: add quick fix
+            holder.registerProblem(
+                GodotPluginBundle.message("problem.property.registeredEnumListWithVariantArray"),
                 getInitializerProblemLocation(ktProperty)
             )
         }
@@ -69,5 +84,6 @@ class RegisterPropertiesAnnotator : Annotator {
             }
     }
 
-    private fun getInitializerProblemLocation(ktProperty: KtProperty) = ktProperty.initializer?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
+    private fun getInitializerProblemLocation(ktProperty: KtProperty) =
+        ktProperty.initializer?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
 }

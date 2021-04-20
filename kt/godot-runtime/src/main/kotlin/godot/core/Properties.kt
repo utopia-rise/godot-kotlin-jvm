@@ -74,3 +74,30 @@ class KtEnumProperty<T : KtObject, P : Any>(
     }
 }
 
+class KtEnumListProperty<T : KtObject, P : Enum<P>, L: Collection<P>>(
+    ktPropertyInfo: KtPropertyInfo,
+    kProperty: KMutableProperty1<T, L>,
+    defaultValueProvider: () -> L,
+    val getValueConverter: (L?) -> VariantArray<Int>,
+    val setValueConverter: (VariantArray<Int>) -> L
+) : KtProperty<T, L>(
+    ktPropertyInfo,
+    kProperty,
+    VariantType.ARRAY,
+    defaultValueProvider,
+    false
+) {
+    override fun getDefaultValue() {
+        TransferContext.writeReturnValue(getValueConverter(_defaultValueProvider()), VariantType.ARRAY)
+    }
+
+    override fun callGet(instance: T) {
+        TransferContext.writeReturnValue(getValueConverter(kProperty.get(instance)), VariantType.ARRAY)
+    }
+
+    override fun callSet(instance: T) {
+        val arg = extractSetterArgument<VariantArray<Int>>()
+        kProperty.set(instance, setValueConverter(arg))
+    }
+}
+

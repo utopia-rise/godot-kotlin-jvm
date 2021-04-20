@@ -63,7 +63,7 @@ class ClassBuilderDsl<T : KtObject>(
         className: String,
         hint: PropertyHint = PropertyHint.NONE,
         hintString: String = "",
-        defaultArgument: () -> P?,
+        defaultValueProvider: () -> P?,
         rpcModeId: Int = 0,
         isRef: Boolean = false
     ) {
@@ -82,14 +82,14 @@ class ClassBuilderDsl<T : KtObject>(
             ),
             kProperty,
             variantType,
-            defaultArgument,
+            defaultValueProvider,
             isRef
         )
     }
 
     inline fun <reified P : Enum<P>> enumProperty(
         kProperty: KMutableProperty1<T, P>,
-        noinline defaultValue: () -> P,
+        noinline defaultValueProvider: () -> P,
         rpcModeId: Int = 0
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
@@ -108,47 +108,56 @@ class ClassBuilderDsl<T : KtObject>(
             ),
             kProperty,
             //TODO change when nullable enum are here.
-            defaultValue,
+            defaultValueProvider,
             { enum: P? -> enum?.ordinal ?: 1 },
             { i -> enumValues<P>()[i] }
         )
     }
 
-    //TODO: uncomment and fixup once collections are supported in KtVariant
-//    inline fun <reified P : Enum<P>> enumListProperty(
-//        kProperty: KMutableProperty1<T, Collection<P>>
-//    ) {
-//        val propertyName = kProperty.name.camelToSnakeCase()
-//        require(!properties.contains(propertyName)) {
-//            "Found two properties with name $propertyName for class $name"
-//        }
-//
-//        properties[propertyName] = KtProperty(
-//            KtPropertyInfo(
-//                VariantType.LONG,
-//                propertyName,
-//                "Int",
-//                PropertyHint.ENUM,
-//                "2/3:${enumValues<P>().joinToString(",") { it.name }}" //2 = VariantType.LONG.ordinal | 3 = PropertyHint.ENUM.ordinal
-//            ),
-//            kProperty,
-//            { enumList ->
-//                KtVariant(enumList.map { it.ordinal } as Collection)
-//            },
-//            { ktVariant -> enumValues<P>()[ktVariant.asInt()] }
-//        )
-//    }
+    inline fun <reified P : Enum<P>, L : Collection<P>> enumListProperty(
+        kProperty: KMutableProperty1<T, L>,
+        noinline defaultValueProvider: () -> L,
+        rpcModeId: Int = 0
+    ) {
+        val propertyName = kProperty.name.camelToSnakeCase()
+        require(!properties.contains(propertyName)) {
+            "Found two properties with name $propertyName for class $name"
+        }
+
+        properties[propertyName] = KtEnumListProperty(
+            KtPropertyInfo(
+                VariantType.ARRAY,
+                propertyName,
+                "Int",
+                PropertyHint.ENUM,
+                "2/3:${enumValues<P>().joinToString(",") { it.name }}", //2 = VariantType.LONG.ordinal | 3 = PropertyHint.ENUM.ordinal
+                rpcModeId
+            ),
+            kProperty,
+            defaultValueProvider,
+            { enumList: Collection<P>? ->
+                enumList
+                    ?.map { it.ordinal }
+                    ?.toVariantArray()
+                    ?: variantArrayOf()
+            },
+            { enumOrdinalVariantArray ->
+                enumOrdinalVariantArray
+                    .map { enumValues<P>()[it] } as L
+            }
+        )
+    }
 
     @JvmName("enumFlagPropertyMutable")
     inline fun <reified P : Enum<P>> enumFlagProperty(
         kProperty: KMutableProperty1<T, MutableSet<P>>,
-        noinline defaultValue: () -> MutableSet<P>,
+        noinline defaultValueProvider: () -> MutableSet<P>,
         rpcModeId: Int
-    ) = enumFlagProperty(kProperty as KMutableProperty1<T, Set<P>>, defaultValue, rpcModeId)
+    ) = enumFlagProperty(kProperty as KMutableProperty1<T, Set<P>>, defaultValueProvider, rpcModeId)
 
     inline fun <reified P : Enum<P>> enumFlagProperty(
         kProperty: KMutableProperty1<T, Set<P>>,
-        noinline defaultValue: () -> Set<P>,
+        noinline defaultValueProvider: () -> Set<P>,
         rpcModeId: Int
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
@@ -167,7 +176,7 @@ class ClassBuilderDsl<T : KtObject>(
             ),
             kProperty,
             //TODO : Change when null default values are supported
-            defaultValue,
+            defaultValueProvider,
             { enumSet ->
                 var intFlag = 0
                 enumSet?.forEach { enum ->
@@ -202,7 +211,7 @@ class ClassBuilderDsl<T : KtObject>(
         variantType: VariantType,
         setValueConverter: ((Any?) -> P),
         isRef: Boolean = false,
-        defaultArgument: () -> P,
+        defaultValueProvider: () -> P,
         rpcModeId: Int = 0,
         pib: KtPropertyInfoBuilderDsl.() -> Unit
     ) {
@@ -214,7 +223,7 @@ class ClassBuilderDsl<T : KtObject>(
         require(!properties.contains(property.name)) {
             "Found two properties with name ${property.name} for class $name"
         }
-        properties[property.name] = KtProperty(property, kProperty, variantType, defaultArgument, isRef)
+        properties[property.name] = KtProperty(property, kProperty, variantType, defaultValueProvider, isRef)
     }
 
     fun <R: Any?> function(
