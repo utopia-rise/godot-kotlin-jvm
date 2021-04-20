@@ -40,8 +40,6 @@ class Bootstrap {
             }.invoke("No main.jar detected. No classes will be loaded. Build the gradle project to load classes")
         }
 
-        println("DEBUG: isEditor $isEditor")
-        println("DEBUG: path ${getBuildLockDir(projectRootDir)}")
         if (isEditor) {
             watchService = FileSystems.getDefault().newWatchService()
             val watchKey = getBuildLockDir(projectRootDir).toPath().register(
@@ -58,10 +56,8 @@ class Bootstrap {
             }
 
             executor!!.scheduleAtFixedRate({
-                println("checking...")
                 val events = watchKey.pollEvents()
                 if (events.isNotEmpty()) {
-                    println("event received")
                     if (File(getBuildLockDir(projectRootDir), "buildLock.lock").exists()) {
                         info("Build lock present. Not reloading...")
                         return@scheduleAtFixedRate
