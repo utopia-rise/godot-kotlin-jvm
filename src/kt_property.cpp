@@ -1,5 +1,4 @@
 #include "kt_property.h"
-#include "kt_variant.h"
 #include "gd_kotlin.h"
 
 JNI_INIT_STATICS_FOR_CLASS(KtPropertyInfo)
@@ -20,6 +19,8 @@ KtPropertyInfo::KtPropertyInfo(jni::JObject p_wrapped, jni::JObject& p_class_loa
     hint_string = env.from_jstring(wrapped.call_object_method(env, getHintStringMethod));
     jni::MethodId getRpcModeMethod{get_method_id(env, jni_methods.GET_RPC_MODE)};
     rpc_mode = static_cast<MultiplayerAPI::RPCMode>(wrapped.call_int_method(env, getRpcModeMethod));
+    jni::MethodId getVisibleInEditorMethod{get_method_id(env, jni_methods.GET_VISIBLE_IN_EDITOR)};
+    visible_in_editor = wrapped.call_boolean_method(env, getVisibleInEditorMethod);
 }
 
 PropertyInfo KtPropertyInfo::toPropertyInfo() {
@@ -29,19 +30,22 @@ PropertyInfo KtPropertyInfo::toPropertyInfo() {
     info.class_name = class_name;
     info.hint = hint;
     info.hint_string = hint_string;
+    if (visible_in_editor) {
+        info.usage = PropertyUsageFlags::PROPERTY_USAGE_DEFAULT;
+    } else {
+        info.usage = PropertyUsageFlags::PROPERTY_USAGE_NOEDITOR;
+    }
     return info;
 }
 
 KtProperty::KtProperty(jni::JObject p_wrapped, jni::JObject& p_class_loader)
-        : JavaInstanceWrapper("godot.core.KtProperty", p_wrapped, p_class_loader),
-        is_default_value_initialized(false) {
+        : JavaInstanceWrapper("godot.core.KtProperty", p_wrapped, p_class_loader) {
     jni::Env env { jni::Jvm::current_env() };
     jni::MethodId getKtPropertyInfoMethod{get_method_id(env, jni_methods.GET_KT_PROPERTY_INFO)};
     propertyInfo = new KtPropertyInfo(wrapped.call_object_method(env, getKtPropertyInfoMethod),
                                       GDKotlin::get_instance().get_class_loader());
     jni::MethodId getIsRefMethod{get_method_id(env, jni_methods.IS_REF)};
     is_ref = wrapped.call_boolean_method(env, getIsRefMethod);
-    initialize_default_value();
 }
 
 KtProperty::~KtProperty() {
@@ -78,16 +82,9 @@ void KtProperty::setCall(KtObject* instance, const Variant& p_value) {
 }
 
 void KtProperty::get_default_value(Variant& r_value) {
-    r_value = default_value.duplicate(true);
-}
-
-void KtProperty::initialize_default_value() {
-    if (!is_default_value_initialized) {
-        jni::Env env {jni::Jvm::current_env()};
-        GDKotlin::get_instance().transfer_context->write_args(env, nullptr, 0);
-        jni::MethodId get_default_value_method{get_method_id(env, jni_methods.GET_DEFAULT_VALUE)};
-        wrapped.call_void_method(env, get_default_value_method);
-        GDKotlin::get_instance().transfer_context->read_return_value(env, default_value);
-        is_default_value_initialized = true;
-    }
+    jni::Env env {jni::Jvm::current_env()};
+    GDKotlin::get_instance().transfer_context->write_args(env, nullptr, 0);
+    jni::MethodId get_default_value_method{get_method_id(env, jni_methods.GET_DEFAULT_VALUE)};
+    wrapped.call_void_method(env, get_default_value_method);
+    GDKotlin::get_instance().transfer_context->read_return_value(env, r_value);
 }

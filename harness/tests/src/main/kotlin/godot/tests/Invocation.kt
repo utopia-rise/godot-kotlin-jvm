@@ -33,20 +33,20 @@ class Invocation : Spatial() {
 	@RegisterProperty
 	lateinit var lateinitString: String
 
-	@RegisterProperty
+	@RegisterProperty(false)
 	lateinit var registerObject: OtherScript
 
-	@RegisterProperty
+	@RegisterProperty(false)
 	var registerObjectNullable: OtherScript? = null
 
-	@RegisterProperty
+	@RegisterProperty(false)
 	var registerObjectNullablePreInit: OtherScript? = OtherScript()
 		set(value) {
 			field?.free()
 			field = value
 		}
 
-	@RegisterProperty
+	@RegisterProperty(false)
 	var registerObjectNonNullablePreInit: OtherScript = OtherScript()
 		set(value) {
 			field.free()
@@ -65,7 +65,7 @@ class Invocation : Spatial() {
 	@RegisterProperty
 	var customName = "Idonthaveanyidea"
 
-	@RegisterProperty
+	@RegisterProperty(false)
 	var invocation = OtherScript()
 
 	@RegisterProperty

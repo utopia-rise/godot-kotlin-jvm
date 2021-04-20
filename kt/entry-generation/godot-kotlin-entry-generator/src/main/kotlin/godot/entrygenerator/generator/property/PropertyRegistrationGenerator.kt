@@ -96,8 +96,9 @@ object PropertyRegistrationGenerator {
 
         registerClassControlFlow
             .addStatement(
-                "enumFlagProperty(%L,·${registeredProperty.propertyDescriptor.name}DefaultValueProvider,·%T.id.toInt())",
+                "enumFlagProperty(%L,·${registeredProperty.propertyDescriptor.name}DefaultValueProvider,·%L,·%T.id.toInt())",
                 getPropertyReference(registeredProperty.propertyDescriptor, className),
+                getIsVisibleInEditor(registeredProperty.propertyDescriptor),
                 getRpcModeEnum(registeredProperty.propertyDescriptor)
             )
     }
@@ -115,8 +116,9 @@ object PropertyRegistrationGenerator {
 
         registerClassControlFlow
             .addStatement(
-                "enumListProperty(%L,·${registeredProperty.propertyDescriptor.name}DefaultValueProvider,·%T.id.toInt())",
+                "enumListProperty(%L,·${registeredProperty.propertyDescriptor.name}DefaultValueProvider,·%L,·%T.id.toInt())",
                 getPropertyReference(registeredProperty.propertyDescriptor, className),
+                getIsVisibleInEditor(registeredProperty.propertyDescriptor),
                 getRpcModeEnum(registeredProperty.propertyDescriptor)
             )
     }
@@ -135,8 +137,9 @@ object PropertyRegistrationGenerator {
 
         registerClassControlFlow
             .addStatement(
-                "enumProperty(%L,·${registeredProperty.propertyDescriptor.name}DefaultValueProvider,·%T.id.toInt())",
+                "enumProperty(%L,·${registeredProperty.propertyDescriptor.name}DefaultValueProvider,·%L,·%T.id.toInt())",
                 getPropertyReference(registeredProperty.propertyDescriptor, className),
+                getIsVisibleInEditor(registeredProperty.propertyDescriptor),
                 getRpcModeEnum(registeredProperty.propertyDescriptor)
             )
     }
@@ -160,7 +163,7 @@ object PropertyRegistrationGenerator {
 
         registerClassControlFlow
             .addStatement(
-                "property(%L,·%T,·%T,·%S,·%T,·%S,·${registeredProperty.propertyDescriptor.name}DefaultValueProvider,·%T.id.toInt())",
+                "property(%L,·%T,·%T,·%S,·%T,·%S,·${registeredProperty.propertyDescriptor.name}DefaultValueProvider,·%L,·%T.id.toInt())",
                 getPropertyReference(registeredProperty.propertyDescriptor, className),
                 registeredProperty.propertyDescriptor.type.toParameterKtVariantType(),
                 registeredProperty.propertyDescriptor.type.toReturnKtVariantType(),
@@ -170,6 +173,7 @@ object PropertyRegistrationGenerator {
                     .provide(registeredProperty.propertyDescriptor, bindingContext)
                     .getHintString()
                     .replace("?", ""),
+                getIsVisibleInEditor(registeredProperty.propertyDescriptor),
                 getRpcModeEnum(registeredProperty.propertyDescriptor)
             )
     }
@@ -251,6 +255,12 @@ object PropertyRegistrationGenerator {
                 REGISTER_PROPERTY_ANNOTATION_RPC_MODE_ARGUMENT,
                 Pair(ClassId(FqName("godot.MultiplayerAPI"), Name.identifier("RPCMode")), Name.identifier("DISABLED"))
             )
+    }
+
+    private fun getIsVisibleInEditor(propertyDescriptor: PropertyDescriptor): Boolean {
+        return propertyDescriptor
+            .annotations
+            .getAnnotationValue(REGISTER_PROPERTY_ANNOTATION, REGISTER_PROPERTY_ANNOTATION_VISIBLE_IN_EDITOR_ARGUMENT, true)
     }
 
     private fun isOfType(type: KotlinType, typeFqName: String): Boolean {
