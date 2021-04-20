@@ -70,7 +70,7 @@ class Bootstrap {
                     clearClassesCache()
 
                     if (File(mainJarPath.toString()).exists()) {
-                        doInit(mainJarPath.toUri().toURL(), classloader)
+                        doInit(mainJarPath.toUri().toURL(), null) //no classloader so new main jar get's loaded
                     } else {
                         warning("No main.jar detected. No classes will be loaded. Build the project to load classes")
                     }

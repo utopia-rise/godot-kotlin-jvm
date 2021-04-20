@@ -205,7 +205,7 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
         }
 
         val build by getting {
-            dependsOn(cleanupEntryFiles, bootstrapJar, shadowJar, createBuildLock)
+            dependsOn(cleanupEntryFiles, bootstrapJar, shadowJar)
             finalizedBy(deleteBuildLock)
             if(godotExtension.isAndroidExportEnabled.get()) {
                 finalizedBy(createGodotBootstrapDexJar, createMainDexJar)
