@@ -100,12 +100,16 @@ Error BuildManager::build_blocking() {
 #endif
 
     String gradle_wrapper_path{
-            ProjectSettings::get_singleton()->get_setting("kotlin_jvm/editor/gradle_wrapper_dir")
+            ProjectSettings::get_singleton()->globalize_path(
+                    ProjectSettings::get_singleton()->get_setting("kotlin_jvm/editor/gradle_wrapper_dir")
+            )
     };
 
-    String gradle_command{ProjectSettings::get_singleton()->globalize_path(gradle_wrapper_path) + gradle_wrapper};
+    if (!gradle_wrapper_path.ends_with("/")) {
+        gradle_wrapper_path = String{gradle_wrapper_path + "/"};
+    }
 
-    print_line("gradlew command" + gradle_command);
+    String gradle_command{gradle_wrapper_path + gradle_wrapper};
 
     int exit_code;
     Error result = OS::get_singleton()->execute(
