@@ -2,7 +2,7 @@
 
 #include "kt_function.h"
 #include "gd_kotlin.h"
-#include "class_loader.h"
+#include "jni/class_loader.h"
 
 JNI_INIT_STATICS_FOR_CLASS(KtFunction)
 JNI_INIT_STATICS_FOR_CLASS(KtFunctionInfo)

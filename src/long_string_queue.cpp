@@ -1,9 +1,9 @@
 #include "long_string_queue.h"
-#include "class_loader.h"
+#include "jni/class_loader.h"
 
 JNI_INIT_STATICS_FOR_CLASS(LongStringQueue)
 
-// If changed, remember to change also LongStringQueue::stringMaxSize on JVM side
+// If changed, remember to change also LongStringQueue::stringMaxSize on JVM side  and the StringTest.kt
 int LongStringQueue::max_string_size = 512;
 
 thread_local static List<String> string_queue;

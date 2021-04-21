@@ -38,7 +38,7 @@ private:
 
 DECLARE_JNI_METHODS(
         JNI_METHOD(QUEUE_STRING, "queueString", "(Ljava/lang/String;)V")
-        JNI_METHOD(SET_STRING_MAX_SIZE, "setStringMaxSize", "(Ljava/lang/String;)V")
+        JNI_METHOD(SET_STRING_MAX_SIZE, "setStringMaxSize", "(I)V")
 )
 
 };

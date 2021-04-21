@@ -21,18 +21,19 @@ The SOAP middleware is down, f*** the serverless stream so we can circle back th
 
 You can't ship the continuous integration without blogging the junior IoT Stack Overflow!"""
 
+#A string of 511 character a so we obtain a 512 long string, the maximun size of the buffer.
+#Change this value with the default value in LongStringQueue.kt and long_string_queue.cpp
 var longest_short_str: String = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
-var scriptpath: Script = load("res://src/main/kotlin/godot/tests/coretypes/StringTest.kt")
 
 func test_short_string() -> void:
-	var script = scriptpath.new()
+	var script = godot_tests_coretypes_StringTest.new()
 	assert_eq(short_str, script.get_short_string(), "String on JVM side should be same as gdscript one.")
 	assert_eq(short_str, script.identity(short_str), "String on JVM side should be same as gdscript one.")
 
 
 func test_long_string() -> void:
-	var script = scriptpath.new()
+	var script = godot_tests_coretypes_StringTest.new()
 	assert_eq(long_str, script.get_long_string(), "String on JVM side should be same as gdscript one.")
 	assert_eq(long_str, script.identity(long_str), "String on JVM side should be same as gdscript one.")
 	

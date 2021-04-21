@@ -139,7 +139,7 @@ enum class VariantType(
             },
             { buffer: ByteBuffer, any: Any ->
                 buffer.variantType = STRING.ordinal
-                any as String
+                require(any is String)
                 val stringBytes = any.encodeToByteArray()
                 //TODO: Think of a way to reuse the encoded String
                 if(stringBytes.size > LongStringQueue.stringMaxSize){

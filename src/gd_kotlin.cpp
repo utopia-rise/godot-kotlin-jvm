@@ -3,7 +3,7 @@
 #include "gd_kotlin.h"
 #include "core/project_settings.h"
 #include "bridges_manager.h"
-#include "class_loader.h"
+#include "jni/class_loader.h"
 #include <core/io/resource_loader.h>
 
 #ifndef TOOLS_ENABLED
@@ -182,9 +182,9 @@ void GDKotlin::init() {
             String result;
             if (split_jvm_debug_argument(cmd_arg, result) == OK) {
                 jvm_to_engine_max_string_size = result.to_int();
-                //TODO: Link to documentation
+                //https://godot-kotl.in/en/latest/advanced/commandline-args/
                 LOG_WARNING(
-                        vformat("Warning ! Buffer capacity was changed to %s, this is not a recommended practice",
+                        vformat("Warning ! The max string size was changed to %s which modify the size of the buffer, this is not a recommended practice",
                                 result)
                 )
             }

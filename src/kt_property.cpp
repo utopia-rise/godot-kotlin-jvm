@@ -1,6 +1,6 @@
 #include "kt_property.h"
 #include "gd_kotlin.h"
-#include "class_loader.h"
+#include "jni/class_loader.h"
 
 JNI_INIT_STATICS_FOR_CLASS(KtPropertyInfo)
 JNI_INIT_STATICS_FOR_CLASS(KtProperty)
