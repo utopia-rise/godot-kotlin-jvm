@@ -20,6 +20,52 @@ Godot singletons are mapped as Kotlin objects.
 Physics2DServer.areaGetTransform(area)
 ```
 
+## Core types
+Godot's built-in types are passed by value (except for `Dictionary` and `VariantArray` - more on this later), so the following snippet won't work as expected.
+
+```kotlin
+val spatial = Spatial()
+spatial.rotation.y += 10f
+```
+
+You are actually mutating a copy of the `rotation` property, not a reference to it. To get the desired behaviour you have to re-assign the copy back.
+
+```kotlin
+val rotation = spatial.rotation
+rotation.y += 10f
+spatial.rotation = rotation
+``` 
+
+This approach introduces a lot of boilerplate, so this binding provides a concise way of achieving the same behaviour.
+
+```kotlin
+spatial.rotation {
+  y += 10f
+}
+```
+
+The snippet above is functionally equivalent to the previous one.
+
+## Collection types
+While `VariantArray` and `Dictionary` are passed by reference, the value returned by the retrieval methods (`VariantArray.get(...)` and `Dictionary.get(...)`) are not.
+
+```kotlin
+array.get(index).asVector3().y += 10f
+dictionary.get("foo").asVector3().y += 5f
+```
+
+To get the desired behaviour, you can re-assign the copy back or in a similar fashion as before, this binding provides a better alternative.
+
+```kotlin
+array.get<Vector3>(index) {
+  y += 10f
+}
+
+dictionary.get<Vector3>(index) {
+  y += 5f
+}
+``` 
+
 ## Enums and constants
 Godot enums are mapped to Kotlin enums, the generated enum exposes a `value` property that represents the value in Godot. Constants in Godot classes that represent an enum value (such as `Node.PAUSE_MODE_INHERIT`) are not present in this module, please use the generated enum instead (`Node.PauseMode.INHERIT`).
 
