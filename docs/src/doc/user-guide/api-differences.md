@@ -1,3 +1,11 @@
+## Class and member registration
+Contrary to what you might be used to from GDScript or C#, this binding requires you to explicitly define which classes
+and which members of those classes should be exposed to Godot.  
+This requires a bit more code but enables to properly define visibility across languages and restrict access to values 
+which you might not want to expose.  
+See the individual sections in the `user-guide` in this documentation to see how to register your classes and members so
+you can use them from godot and other scripting languages.
+
 ## Instance types and singletons
 Creating a new instance of a Godot type can be done like any Kotlin types.
 
