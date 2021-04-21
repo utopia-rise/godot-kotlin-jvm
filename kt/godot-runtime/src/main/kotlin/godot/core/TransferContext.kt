@@ -11,7 +11,12 @@ object TransferContext {
 
     private val bufferSize: Int
         get() {
-            return (LongStringQueue.stringMaxSize + 12) * ARGUMENT_MAX_COUNT
+            /**
+             * String is by far the biggest type you can send in a buffer, so its size is going to be directly proportional to it
+             * We had +12 to the size because we need 3 extra integers (4 bytes each): The VariantType, the long/short check and the size
+             * Finally we had another + 4 because the buffer always starts with the number of arguments sent.
+             */
+            return (LongStringQueue.stringMaxSize + 12) * ARGUMENT_MAX_COUNT + 4
         }
 
     val buffer by threadLocalLazy<ByteBuffer> {

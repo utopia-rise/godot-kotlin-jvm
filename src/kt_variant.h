@@ -47,11 +47,9 @@ namespace ktvariant {
         const CharString& char_string{str.utf8()};
         set_variant_type(des, Variant::Type::STRING);
         if (char_string.size() > LongStringQueue::max_string_size) {
-            LOG_INFO(vformat("CPP sends long string %s", str))
             des->increment_position(encode_uint32(true, des->get_cursor()));
             LongStringQueue::get_instance().send_string_to_jvm(str);
         } else {
-            LOG_INFO(vformat("CPP sends short string %s", str))
             des->increment_position(encode_uint32(false, des->get_cursor()));
             des->increment_position(encode_uint32(char_string.size(), des->get_cursor()));
             des->increment_position(encode_cstring(char_string, des->get_cursor()));
@@ -345,7 +343,6 @@ namespace ktvariant {
         byte_buffer->increment_position(BOOL_SIZE);
         if (is_long) {
             String str = LongStringQueue::get_instance().poll_string();
-            LOG_INFO(vformat("CPP receives long string %s", str))
             return Variant(str);
         } else {
             uint32_t size{decode_uint32(byte_buffer->get_cursor())};
@@ -353,7 +350,6 @@ namespace ktvariant {
             String str;
             str.parse_utf8(reinterpret_cast<const char*>(byte_buffer->get_cursor()), size);
             byte_buffer->increment_position(size);
-            LOG_INFO(vformat("CPP receives short string %s", str))
             return Variant(str);
         }
     }

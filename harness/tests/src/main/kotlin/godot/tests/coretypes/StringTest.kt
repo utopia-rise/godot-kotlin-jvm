@@ -1,14 +1,19 @@
 package godot.tests.coretypes
 
-import godot.Node
+import godot.Reference
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 
 @RegisterClass
-class StringTest : Node() {
+class StringTest : Reference() {
 
     @RegisterFunction
     fun identity(str: String) = str
+
+    @RegisterFunction
+    fun fillTheBuffer(str1: String, str2: String, str3: String, str4: String, str5: String): Boolean{
+        return true
+    }
 
     @RegisterFunction
     fun getShortString() = "Short String"

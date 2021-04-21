@@ -127,7 +127,6 @@ enum class VariantType(
                 val isLong = buffer.bool
                 if(isLong){
                     val str = LongStringQueue.pollString()
-                    println("Jvm receives long string $str")
                     str
                 }
                 else{
@@ -136,7 +135,6 @@ enum class VariantType(
                     val charArray = ByteArray(stringSize)
                     buffer.get(charArray, 0, stringSize)
                     val str = String(charArray, Charsets.UTF_8)
-                    kotlin.io.println("Jvm receives short string $str")
                     str
                 }
             },
@@ -146,12 +144,10 @@ enum class VariantType(
                 val stringBytes = any.encodeToByteArray()
                 //TODO: Think of a way to reuse the encoded String
                 if(stringBytes.size > LongStringQueue.stringMaxSize){
-                    kotlin.io.println("Jvm sends long string $any")
                     buffer.bool = true
                     LongStringQueue.sendStringToCPP(any)
                 }
                 else{
-                    kotlin.io.println("Jvm sends short string $any")
                     buffer.bool = false
                     buffer.putInt(stringBytes.size)
                     buffer.put(stringBytes)
