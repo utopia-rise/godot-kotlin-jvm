@@ -4,9 +4,12 @@ import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
 import godot.intellij.plugin.GodotPluginBundle
+import godot.intellij.plugin.data.model.EXPORT_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
+import godot.intellij.plugin.quickfix.PropertyNotRegisteredQuickFix
+import godot.intellij.plugin.quickfix.PropertyRemoveExportAnnotationQuickFix
 import godot.intellij.plugin.quickfix.RegisterPropertyMutabilityQuickFix
 import org.jetbrains.kotlin.idea.intentions.loopToCallChain.isConstant
 import org.jetbrains.kotlin.idea.util.findAnnotation
@@ -15,9 +18,12 @@ import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.nj2k.postProcessing.type
 import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.types.typeUtil.isEnum
+import org.jetbrains.kotlin.types.typeUtil.supertypes
 
 class RegisterPropertiesAnnotator : Annotator {
     private val mutabilityQuickFix by lazy { RegisterPropertyMutabilityQuickFix() }
+    private val propertyNotRegisteredQuickFix by lazy { PropertyNotRegisteredQuickFix() }
+    private val propertyRemoveExportAnnotationQuickFix by lazy { PropertyRemoveExportAnnotationQuickFix() }
     private val ktExpressionConstantChecker by lazy { KtExpressionConstantChecker() }
     private val propertyHintAnnotationChecker by lazy { PropertyHintAnnotationChecker() }
 
@@ -32,6 +38,7 @@ class RegisterPropertiesAnnotator : Annotator {
             }
             // outside to check if the property is also registered
             propertyHintAnnotationChecker.checkPropertyHintAnnotations(element, holder)
+            checkExportAnnotation(element, holder)
         }
     }
 
@@ -42,6 +49,28 @@ class RegisterPropertiesAnnotator : Annotator {
                 ktProperty.valOrVarKeyword,
                 mutabilityQuickFix
             )
+        }
+    }
+
+    private fun checkExportAnnotation(ktProperty: KtProperty, holder: AnnotationHolder) {
+        if (ktProperty.findAnnotation(FqName(EXPORT_ANNOTATION)) != null) {
+            if (ktProperty.findAnnotation(FqName(REGISTER_PROPERTY_ANNOTATION)) == null) {
+                holder.registerProblem(
+                    GodotPluginBundle.message("problem.property.export.notRegistered"),
+                    ktProperty.nameIdentifier ?: ktProperty.navigationElement,
+                    propertyNotRegisteredQuickFix
+                )
+            }
+            if (
+                ktProperty.type()?.supertypes()?.any { it.getJetTypeFqName(false) == "godot.Object" } == true &&
+                ktProperty.type()?.supertypes()?.any { it.getJetTypeFqName(false) == "godot.Reference" } == false
+            ) {
+                holder.registerProblem(
+                    GodotPluginBundle.message("problem.property.export.triedToExportObject"),
+                    ktProperty.nameIdentifier ?: ktProperty.navigationElement,
+                    propertyRemoveExportAnnotationQuickFix
+                )
+            }
         }
     }
 

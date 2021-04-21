@@ -106,7 +106,7 @@ Error BuildManager::build_blocking() {
     };
 
     if (!gradle_wrapper_path.ends_with("/")) {
-        gradle_wrapper_path = String{gradle_wrapper_path + "/"};
+        gradle_wrapper_path = gradle_wrapper_path + "/";
     }
 
     String gradle_command{gradle_wrapper_path + gradle_wrapper};

@@ -1,19 +1,26 @@
 package godot.entrygenerator.generator.property
 
-import com.squareup.kotlinpoet.*
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.CodeBlock
+import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.LambdaTypeName
 import com.squareup.kotlinpoet.MemberName.Companion.member
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
+import com.squareup.kotlinpoet.PropertySpec
+import com.squareup.kotlinpoet.TypeName
+import com.squareup.kotlinpoet.TypeSpec
+import godot.entrygenerator.exceptions.WrongExportUsageException
 import godot.entrygenerator.extension.getAnnotationValue
-import godot.entrygenerator.extension.isCompatibleList
 import godot.entrygenerator.extension.toParameterKtVariantType
 import godot.entrygenerator.extension.toReturnKtVariantType
 import godot.entrygenerator.generator.property.defaultvalue.DefaultValueExtractorProvider
 import godot.entrygenerator.generator.property.hintstring.PropertyHintStringGeneratorProvider
 import godot.entrygenerator.generator.property.typehint.PropertyTypeHintProvider
 import godot.entrygenerator.model.ENUM_FLAG_ANNOTATION
+import godot.entrygenerator.model.EXPORT_ANNOTATION
 import godot.entrygenerator.model.REGISTER_PROPERTY_ANNOTATION
 import godot.entrygenerator.model.REGISTER_PROPERTY_ANNOTATION_RPC_MODE_ARGUMENT
-import godot.entrygenerator.model.REGISTER_PROPERTY_ANNOTATION_VISIBLE_IN_EDITOR_ARGUMENT
 import godot.entrygenerator.model.RegisteredProperty
 import org.jetbrains.kotlin.descriptors.PropertyDescriptor
 import org.jetbrains.kotlin.js.descriptorUtils.getJetTypeFqName
@@ -35,6 +42,7 @@ object PropertyRegistrationGenerator {
     ) {
         registeredProperties
             .forEach { registeredProperty ->
+                exportSanityCheck(registeredProperty)
                 when {
                     registeredProperty.propertyDescriptor.type.isEnum() -> registerEnum(
                         className,
@@ -83,6 +91,17 @@ object PropertyRegistrationGenerator {
             }
     }
 
+    private fun exportSanityCheck(registeredProperty: RegisteredProperty) {
+        if (registeredProperty.propertyDescriptor.annotations.hasAnnotation(FqName(EXPORT_ANNOTATION))) {
+            if (
+                registeredProperty.propertyDescriptor.type.supertypes().any { it.getJetTypeFqName(false) == "godot.Object" } &&
+                !registeredProperty.propertyDescriptor.type.supertypes().any { it.getJetTypeFqName(false) == "godot.Reference" }
+            ) {
+                throw WrongExportUsageException(registeredProperty.propertyDescriptor)
+            }
+        }
+    }
+
     private fun registerEnumFlag(
         className: ClassName,
         registeredProperty: RegisteredProperty,
@@ -90,15 +109,13 @@ object PropertyRegistrationGenerator {
         classSpecificRegistryBuilder: TypeSpec.Builder,
         registerClassControlFlow: FunSpec.Builder
     ) {
-        if (registeredProperty.isOverriding || !registeredProperty.isInherited) {
-            generateDefaultValueProvider(registeredProperty, bindingContext, classSpecificRegistryBuilder)
-        }
+        val defaultValueProvider = generateAndProvideDefaultValueProvider(registeredProperty, bindingContext, classSpecificRegistryBuilder)
 
         registerClassControlFlow
             .addStatement(
-                "enumFlagProperty(%L,·${registeredProperty.propertyDescriptor.name}DefaultValueProvider,·%L,·%T.id.toInt())",
+                "enumFlagProperty(%L,·$defaultValueProvider,·%L,·%T.id.toInt())",
                 getPropertyReference(registeredProperty.propertyDescriptor, className),
-                getIsVisibleInEditor(registeredProperty.propertyDescriptor),
+                shouldBeVisibleInEditor(registeredProperty.propertyDescriptor),
                 getRpcModeEnum(registeredProperty.propertyDescriptor)
             )
     }
@@ -110,15 +127,13 @@ object PropertyRegistrationGenerator {
         classSpecificRegistryBuilder: TypeSpec.Builder,
         registerClassControlFlow: FunSpec.Builder
     ) {
-        if (registeredProperty.isOverriding || !registeredProperty.isInherited) {
-            generateDefaultValueProvider(registeredProperty, bindingContext, classSpecificRegistryBuilder)
-        }
+        val defaultValueProvider = generateAndProvideDefaultValueProvider(registeredProperty, bindingContext, classSpecificRegistryBuilder)
 
         registerClassControlFlow
             .addStatement(
-                "enumListProperty(%L,·${registeredProperty.propertyDescriptor.name}DefaultValueProvider,·%L,·%T.id.toInt())",
+                "enumListProperty(%L,·$defaultValueProvider,·%L,·%T.id.toInt())",
                 getPropertyReference(registeredProperty.propertyDescriptor, className),
-                getIsVisibleInEditor(registeredProperty.propertyDescriptor),
+                shouldBeVisibleInEditor(registeredProperty.propertyDescriptor),
                 getRpcModeEnum(registeredProperty.propertyDescriptor)
             )
     }
@@ -131,15 +146,13 @@ object PropertyRegistrationGenerator {
         registerClassControlFlow: FunSpec.Builder
     ) {
 
-        if (registeredProperty.isOverriding || !registeredProperty.isInherited) {
-            generateDefaultValueProvider(registeredProperty, bindingContext, classSpecificRegistryBuilder)
-        }
+        val defaultValueProvider = generateAndProvideDefaultValueProvider(registeredProperty, bindingContext, classSpecificRegistryBuilder)
 
         registerClassControlFlow
             .addStatement(
-                "enumProperty(%L,·${registeredProperty.propertyDescriptor.name}DefaultValueProvider,·%L,·%T.id.toInt())",
+                "enumProperty(%L,·$defaultValueProvider,·%L,·%T.id.toInt())",
                 getPropertyReference(registeredProperty.propertyDescriptor, className),
-                getIsVisibleInEditor(registeredProperty.propertyDescriptor),
+                shouldBeVisibleInEditor(registeredProperty.propertyDescriptor),
                 getRpcModeEnum(registeredProperty.propertyDescriptor)
             )
     }
@@ -151,9 +164,7 @@ object PropertyRegistrationGenerator {
         classSpecificRegistryBuilder: TypeSpec.Builder,
         registerClassControlFlow: FunSpec.Builder
     ) {
-        if (registeredProperty.isOverriding || !registeredProperty.isInherited) {
-            generateDefaultValueProvider(registeredProperty, bindingContext, classSpecificRegistryBuilder)
-        }
+        val defaultValueProvider = generateAndProvideDefaultValueProvider(registeredProperty, bindingContext, classSpecificRegistryBuilder)
 
         val typeFqNameWithNullability = if (registeredProperty.propertyDescriptor.type.isMarkedNullable) {
             "${registeredProperty.propertyDescriptor.type.getJetTypeFqName(false)}?"
@@ -163,7 +174,7 @@ object PropertyRegistrationGenerator {
 
         registerClassControlFlow
             .addStatement(
-                "property(%L,·%T,·%T,·%S,·%T,·%S,·${registeredProperty.propertyDescriptor.name}DefaultValueProvider,·%L,·%T.id.toInt())",
+                "property(%L,·%T,·%T,·%S,·%T,·%S,·$defaultValueProvider,·%L,·%T.id.toInt())",
                 getPropertyReference(registeredProperty.propertyDescriptor, className),
                 registeredProperty.propertyDescriptor.type.toParameterKtVariantType(),
                 registeredProperty.propertyDescriptor.type.toReturnKtVariantType(),
@@ -173,7 +184,7 @@ object PropertyRegistrationGenerator {
                     .provide(registeredProperty.propertyDescriptor, bindingContext)
                     .getHintString()
                     .replace("?", ""),
-                getIsVisibleInEditor(registeredProperty.propertyDescriptor),
+                shouldBeVisibleInEditor(registeredProperty.propertyDescriptor),
                 getRpcModeEnum(registeredProperty.propertyDescriptor)
             )
     }
@@ -233,11 +244,7 @@ object PropertyRegistrationGenerator {
     private fun shouldBeVisibleInEditor(propertyDescriptor: PropertyDescriptor): Boolean {
         return propertyDescriptor
             .annotations
-            .getAnnotationValue(
-                REGISTER_PROPERTY_ANNOTATION,
-                REGISTER_PROPERTY_ANNOTATION_VISIBLE_IN_EDITOR_ARGUMENT,
-                true
-            )
+            .hasAnnotation(FqName(EXPORT_ANNOTATION))
     }
 
     private fun getRpcModeEnum(propertyDescriptor: PropertyDescriptor): ClassName {
@@ -257,12 +264,6 @@ object PropertyRegistrationGenerator {
             )
     }
 
-    private fun getIsVisibleInEditor(propertyDescriptor: PropertyDescriptor): Boolean {
-        return propertyDescriptor
-            .annotations
-            .getAnnotationValue(REGISTER_PROPERTY_ANNOTATION, REGISTER_PROPERTY_ANNOTATION_VISIBLE_IN_EDITOR_ARGUMENT, true)
-    }
-
     private fun isOfType(type: KotlinType, typeFqName: String): Boolean {
         return if (type.getJetTypeFqName(false) == typeFqName) {
             true
@@ -270,6 +271,21 @@ object PropertyRegistrationGenerator {
             type
                 .supertypes()
                 .any { it.getJetTypeFqName(false) == typeFqName }
+        }
+    }
+
+    private fun generateAndProvideDefaultValueProvider(
+        registeredProperty: RegisteredProperty,
+        bindingContext: BindingContext,
+        classSpecificRegistryBuilder: TypeSpec.Builder
+    ): String {
+        if (shouldBeVisibleInEditor(registeredProperty.propertyDescriptor) && (registeredProperty.isOverriding || !registeredProperty.isInherited)) {
+            generateDefaultValueProvider(registeredProperty, bindingContext, classSpecificRegistryBuilder)
+        }
+        return if (shouldBeVisibleInEditor(registeredProperty.propertyDescriptor)) {
+            "${registeredProperty.propertyDescriptor.name}DefaultValueProvider"
+        } else {
+            "{·null·}"
         }
     }
 }
