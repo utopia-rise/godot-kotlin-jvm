@@ -24,5 +24,6 @@
     * [Knowledge Base]()
         * [Artefact differentiation](src/doc/contribution/knowledge-base/artefact-differentiation.md)
         * [Entry generation](src/doc/contribution/knowledge-base/entry-generation.md)
+		* [Shared buffer](src/doc/contribution/knowledge-base/shared-buffer.md)
 * [Versioning](src/doc/versioning.md)
 * [Supported platforms](src/doc/supported-platforms.md)

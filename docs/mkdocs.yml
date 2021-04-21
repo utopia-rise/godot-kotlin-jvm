@@ -59,5 +59,6 @@ nav:
     - Knowledge base:
         - Artefact differentiation: contribution/knowledge-base/artefact-differentiation.md
         - Entry generation: contribution/knowledge-base/entry-generation.md
+        - Shared buffer: contribution/knowledge-base/shared-buffer.md
   - Versioning: versioning.md
   - Supported platforms: supported-platforms.md
