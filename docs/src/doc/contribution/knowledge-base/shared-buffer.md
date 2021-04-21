@@ -25,7 +25,7 @@ Each variable starts with another Int that indicates its type then followed by t
 
 | type | ordinal | content |
 | --- | --- | ---|
-| Nil | 0 | X |
+| Nil | 0 |  <nothing> |
 | Bool | 1 | Bool: 4 Bytes |
 | Int | 2 | Long: 8 Bytes |
 | Real | 3 | Double: 8 Bytes |
