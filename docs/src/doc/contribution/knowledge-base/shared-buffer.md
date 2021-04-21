@@ -23,7 +23,7 @@ Other dynamic type like Array and Dictionnary are not an issue as only their poi
 The first value of the buffer is always an Int that indicates the number of variable to read. 
 Each variable starts with another Int that indicates its type then followed by the relevant data of that type.
 
- Type | ordinal | content |
+| type | ordinal | content |
 | Nil | 0 | X |
 | Bool | 1 | Bool: 4 Bytes |
 | Int | 2 | Long: 8 Bytes |
