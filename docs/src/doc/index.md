@@ -9,16 +9,16 @@ Please also note the [API differences](user-guide/api-differences.md) section wh
 
 If you are looking for the documentation for Godot Kotlin/Native; you can find it [here](https://godot-kotlin.readthedocs.io/en/latest/).
 
-# State
+## State
 This binding is currently in Alpha state and not production ready as some breaking API changes might still occure.  
 Please note the [alpha](alpha.md) docs page to see limitations present in the latest alpha release.
 
-# Supported languages
+## Supported languages
 The only language currently supported is Kotlin.  
 That said it is possible to support other Jvm based languages in the future. If you want to add support for another Jvm based language, feel free to open an [issue](https://github.com/utopia-rise/godot-kotlin-jvm/issues) and we'll explain in detail what is necessary to support another language and help you getting started with development.
 
-# Custom engine builds
+## Custom engine builds
 Get our pre built engine builds and export templates from the latest [github release](https://github.com/utopia-rise/godot-kotlin-jvm/releases).
 
-# Developer discussion
+## Developer discussion
 Ask questions and collaborate on [Discord](https://discord.gg/zpb5Ru7v9x)

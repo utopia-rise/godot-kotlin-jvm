@@ -1,4 +1,4 @@
-site_name: Godot Kotlin/Jvm
+site_name: Godot Kotlin/JVM
 docs_dir: src/doc
 
 repo_name: 'utopia-rise/godot-kotlin-jvm'
@@ -8,9 +8,13 @@ theme:
   name: material
   favicon: assets/img/favicon.ico
   palette:
-    primary: indigo
-    accent: light-blue
+    scheme: default
   logo: assets/img/logo.png
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+
 
 extra:
   social:
@@ -23,11 +27,12 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.highlight
   - pymdownx.superfences
+  - pymdownx.tabbed
   - admonition
 
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js
-  - javascripts/config.js
+  - js/init.js
 extra_css:
   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css
 
@@ -35,10 +40,9 @@ extra_css:
 nav:
   - Overview: index.md
   - Getting started:
-      - Project Setup: getting-started/project-setup.md
-      - IDE: getting-started/ide.md
-      - Gradle: getting-started/gradle.md
-      - Add first class: getting-started/add-first-class.md
+      - Requirements: getting-started/requirements.md
+      - Setting up: getting-started/setting-up.md
+      - Your first class: getting-started/your-first-class.md
   - User guide:
     - Classes: user-guide/classes.md
     - Properties: user-guide/properties.md
@@ -46,11 +50,11 @@ nav:
     - Functions: user-guide/functions.md
     - Exporting: user-guide/exporting.md
     - API differences: user-guide/api-differences.md
-  - Advanced:
-    - Custom Src dirs: advanced/custom-src-dirs.md
-    - Custom gradle wrapper path: advanced/custom_gradle_wrapper_path.md
-    - Commandline args: advanced/commandline-args.md
-    - Kotlin singletons: advanced/kotlin-singleton.md
+    - Advanced:
+      - Custom Src dirs: advanced/custom-src-dirs.md
+      - Custom gradle wrapper path: advanced/custom_gradle_wrapper_path.md
+      - Commandline args: advanced/commandline-args.md
+      - Kotlin singletons: advanced/kotlin-singleton.md
   - Contribution:
     - General: contribution/general.md
     - Guidelines: contribution/guidelines.md
