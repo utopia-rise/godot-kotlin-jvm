@@ -42,4 +42,5 @@ complexity:
     excludes: [
         '**/godot/intellij/plugin/linemarker/SignalConnectionLineMarker.kt',
         '**/godot/intellij/plugin/data/cache/signalconnection/SignalConnectionCache.kt',
+        '**/godot/intellij/plugin/annotator/clazz/RegisterClassAnnotator.kt',
     ]
