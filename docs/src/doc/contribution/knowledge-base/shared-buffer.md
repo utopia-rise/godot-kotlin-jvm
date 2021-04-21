@@ -24,6 +24,7 @@ The first value of the buffer is always an Int that indicates the number of vari
 Each variable starts with another Int that indicates its type then followed by the relevant data of that type.
 
 | type | ordinal | content |
+| --- | --- | ---|
 | Nil | 0 | X |
 | Bool | 1 | Bool: 4 Bytes |
 | Int | 2 | Long: 8 Bytes |
@@ -44,4 +45,4 @@ Each variable starts with another Int that indicates its type then followed by t
 | Object | 17 | pointer: ptr: 8 Bytes, JVM_constructor_index: Int: 4 Bytes, isReference: Bool: 4 Bytes, object_id: Long: 8 Bytes |
 | Dictionnary | 18 | pointer: ptr: 8 Bytes |
 | Array | 19 | pointer: ptr: 8 Bytes |
-| PoolXArray | 20 to 27 | ---|
+| PoolXArray | 20 to 27 | pointer: ptr: 8 Bytes |
