@@ -2,8 +2,10 @@ package godot.intellij.plugin.annotator.property
 
 import com.intellij.lang.annotation.AnnotationHolder
 import godot.intellij.plugin.GodotPluginBundle
+import godot.intellij.plugin.data.model.EXPORT_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
 import godot.intellij.plugin.extension.registerProblem
+import godot.intellij.plugin.quickfix.PropertyNotExportedQuickFix
 import godot.intellij.plugin.quickfix.PropertyNotRegisteredQuickFix
 import org.jetbrains.kotlin.idea.refactoring.fqName.fqName
 import org.jetbrains.kotlin.idea.util.findAnnotation
@@ -24,6 +26,7 @@ private const val MAX_ENUM_ENTRIES_FOR_ENUM_FLAGS = 32
 
 class PropertyHintAnnotationChecker {
     private val propertyNotRegisteredQuickFix by lazy { PropertyNotRegisteredQuickFix() }
+    private val propertyNotExportedQuickFix by lazy { PropertyNotExportedQuickFix() }
 
     fun checkPropertyHintAnnotations(ktProperty: KtProperty, holder: AnnotationHolder) {
         when {
@@ -207,6 +210,13 @@ class PropertyHintAnnotationChecker {
                 GodotPluginBundle.message("problem.property.hint.notRegistered"),
                 ktProperty.nameIdentifier ?: ktProperty.navigationElement,
                 propertyNotRegisteredQuickFix
+            )
+        }
+        if (ktProperty.findAnnotation(FqName(EXPORT_ANNOTATION)) == null) {
+            holder.registerProblem(
+                GodotPluginBundle.message("problem.property.hint.notExported"),
+                ktProperty.nameIdentifier ?: ktProperty.navigationElement,
+                propertyNotExportedQuickFix
             )
         }
     }

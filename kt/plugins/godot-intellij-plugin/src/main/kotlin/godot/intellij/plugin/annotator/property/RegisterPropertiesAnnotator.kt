@@ -34,7 +34,7 @@ class RegisterPropertiesAnnotator : Annotator {
             if (element.findAnnotation(FqName(REGISTER_PROPERTY_ANNOTATION)) != null) {
                 checkMutability(element, holder)
                 checkRegisteredType(element, holder)
-                checkIfDefaultValueIsConstant(element, holder)
+                checkIfDefaultValueIsConstantWhenExported(element, holder)
             }
             // outside to check if the property is also registered
             propertyHintAnnotationChecker.checkPropertyHintAnnotations(element, holder)
@@ -100,17 +100,19 @@ class RegisterPropertiesAnnotator : Annotator {
         }
     }
 
-    private fun checkIfDefaultValueIsConstant(ktProperty: KtProperty, holder: AnnotationHolder) {
-        ktProperty
-            .initializer
-            ?.let {
-                if (!it.isConstant() && !ktExpressionConstantChecker.isConstantEnoughForRegistration(it)) {
-                    holder.registerProblem(
-                        GodotPluginBundle.message("problem.property.defaultValue.notConstant"),
-                        getInitializerProblemLocation(ktProperty)
-                    )
+    private fun checkIfDefaultValueIsConstantWhenExported(ktProperty: KtProperty, holder: AnnotationHolder) {
+        if (ktProperty.findAnnotation(FqName(EXPORT_ANNOTATION)) != null) {
+            ktProperty
+                .initializer
+                ?.let {
+                    if (!it.isConstant() && !ktExpressionConstantChecker.isConstantEnoughForRegistration(it)) {
+                        holder.registerProblem(
+                            GodotPluginBundle.message("problem.property.defaultValue.notConstant"),
+                            getInitializerProblemLocation(ktProperty)
+                        )
+                    }
                 }
-            }
+        }
     }
 
     private fun getInitializerProblemLocation(ktProperty: KtProperty) =

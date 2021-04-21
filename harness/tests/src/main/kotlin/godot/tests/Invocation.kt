@@ -107,8 +107,11 @@ class Invocation : Spatial() {
 	@RegisterProperty
 	var customName = "Idonthaveanyidea"
 
+	//references in default values are allowed if the property is NOT exported
+	private val otherScriptReference = OtherScript()
+	private fun provideOtherScriptReference() = otherScriptReference
 	@RegisterProperty
-	var invocation = OtherScript()
+	var invocation = provideOtherScriptReference()
 
 	@Export
 	@RegisterProperty
