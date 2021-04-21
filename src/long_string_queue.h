@@ -13,7 +13,7 @@ private:
     void operator=(const LongStringQueue&) = delete;
 
     LongStringQueue(LongStringQueue&& instance) = default;
-    void operator=(LongStringQueue&$) = delete;
+    void operator=(LongStringQueue&&) = delete;
 
     ~LongStringQueue() = default;
 public:
