@@ -1,6 +1,6 @@
 package godot.core
 
-import java.util.ArrayDeque
+import java.util.*
 
 internal object LongStringQueue {
 

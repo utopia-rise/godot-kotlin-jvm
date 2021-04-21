@@ -46,7 +46,7 @@ namespace ktvariant {
         String str{src};
         const CharString& char_string{str.utf8()};
         set_variant_type(des, Variant::Type::STRING);
-        if (char_string.size() > LongStringQueue::max_string_size) {
+        if (unlikely(char_string.size() > LongStringQueue::max_string_size)) {
             des->increment_position(encode_uint32(true, des->get_cursor()));
             LongStringQueue::get_instance().send_string_to_jvm(str);
         } else {
@@ -341,7 +341,7 @@ namespace ktvariant {
     static Variant from_kvariant_tokStringValue(SharedBuffer* byte_buffer) {
         bool is_long{static_cast<bool>(decode_uint32(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(BOOL_SIZE);
-        if (is_long) {
+        if (unlikely(is_long)) {
             String str = LongStringQueue::get_instance().poll_string();
             return Variant(str);
         } else {

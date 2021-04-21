@@ -130,7 +130,6 @@ enum class VariantType(
                     str
                 }
                 else{
-
                     val stringSize = buffer.int
                     val charArray = ByteArray(stringSize)
                     buffer.get(charArray, 0, stringSize)
