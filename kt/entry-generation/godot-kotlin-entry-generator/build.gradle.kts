@@ -6,7 +6,6 @@ plugins {
 }
 
 dependencies {
-    implementation(kotlin("stdlib"))
     implementation("org.jetbrains.kotlin:kotlin-compiler-embeddable:${kotlin.coreLibrariesVersion}")
     implementation("com.squareup:kotlinpoet:${DependenciesVersions.kotlinPoetVersion}")
 }
