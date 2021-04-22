@@ -278,6 +278,12 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
         return TransferContext.readReturnValue(valueVariantType, true) as V
     }
 
+    fun get(key: K, block: V.() -> Unit) {
+        val localCopy = this[key]
+        localCopy.block()
+        this[key] = localCopy
+    }
+
     operator fun set(key: K, value: V) {
         TransferContext.writeArguments(keyVariantType to key, valueVariantType to value)
         Bridge.engine_call_operator_set(_handle)

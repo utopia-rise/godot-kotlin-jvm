@@ -356,6 +356,11 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
         Bridge.engine_call_operator_set(_handle)
     }
 
+    fun get(idx: Int, block: T.() -> Unit) {
+        val localCopy = this[idx]
+        localCopy.block()
+        this[idx] = localCopy
+    }
 
     operator fun get(idx: Int): T {
         TransferContext.writeArguments(VariantType.JVM_INT to idx)

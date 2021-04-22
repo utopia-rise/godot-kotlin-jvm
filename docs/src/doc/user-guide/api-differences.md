@@ -50,18 +50,18 @@ The snippet above is functionally equivalent to the previous one.
 While `VariantArray` and `Dictionary` are passed by reference, the value returned by the retrieval methods (`VariantArray.get(...)` and `Dictionary.get(...)`) are not.
 
 ```kotlin
-array.get(index).asVector3().y += 10f
-dictionary.get("foo").asVector3().y += 5f
+array[index].y += 10f
+dictionary["foo"].y += 5f
 ```
 
 To get the desired behaviour, you can re-assign the copy back or in a similar fashion as before, this binding provides a better alternative.
 
 ```kotlin
-array.get<Vector3>(index) {
+array.get(index) {
   y += 10f
 }
 
-dictionary.get<Vector3>(index) {
+dictionary.get("foo") {
   y += 5f
 }
 ``` 
