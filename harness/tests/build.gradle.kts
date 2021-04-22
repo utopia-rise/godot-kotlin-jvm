@@ -1,6 +1,7 @@
 
 plugins {
     kotlin("jvm") version "1.5.21"
+    application
     id("com.utopia-rise.godot-kotlin-jvm")
 }
 
@@ -13,6 +14,11 @@ godot {
 //    isAndroidExportEnabled.set(true)
 //    d8ToolPath = File("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/30.0.3/d8")
 //    androidCompileSdkDir = File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-30")
+}
+
+application {
+    mainClass.set("godot.GraalFakeMainKt")
+    mainClassName = "godot.GraalFakeMainKt"
 }
 
 dependencies {
