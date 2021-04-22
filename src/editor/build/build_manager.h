@@ -38,10 +38,10 @@ private:
     BuildManager();
 
     String build_log;
-    Thread* build_thread = nullptr;
-    bool build_finished = false;
-    Mutex* build_mutex;
-    int last_build_exit_code = 0;
+    Thread build_thread;
+    bool build_finished;
+    Mutex build_mutex;
+    int last_build_exit_code;
 };
 
 
