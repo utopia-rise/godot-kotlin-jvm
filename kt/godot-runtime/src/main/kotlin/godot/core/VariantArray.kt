@@ -4,7 +4,7 @@ import godot.util.IndexedIterator
 import godot.util.VoidPtr
 
 
-@Suppress("unused")
+@Suppress("unused", "UNCHECKED_CAST")
 class VariantArray<T> : NativeCoreType, MutableCollection<T> {
 
     internal var variantType: VariantType = VariantType.NIL

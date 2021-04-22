@@ -9,7 +9,7 @@ import kotlin.reflect.KFunction
 @Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
 inline fun <T : Node?> Node.getNode(path: String) = getNode(NodePath(path)) as T
 
-@Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
+@Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST", "EXTENSION_SHADOWED_BY_MEMBER")
 inline fun <T : Node?> Node.getNode(nodePath: NodePath) = getNode(nodePath) as T
 
 /**

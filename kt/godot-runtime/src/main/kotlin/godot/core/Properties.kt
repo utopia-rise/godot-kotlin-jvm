@@ -43,6 +43,7 @@ open class KtProperty<T : KtObject, P: Any?>(
         //TODO: manage nullable argument of enum setter (only for objects)
         val arg = TransferContext.readSingleArgument(variantType)
         TransferContext.buffer.rewind()
+        @Suppress("UNCHECKED_CAST")
         return arg as P
     }
 }

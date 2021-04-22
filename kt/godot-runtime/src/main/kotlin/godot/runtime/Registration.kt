@@ -1,9 +1,36 @@
 package godot.runtime
 
-import godot.core.*
+import godot.core.CONSTRUCTOR_MAX_ARGS
+import godot.core.KtClass
+import godot.core.KtConstructor
+import godot.core.KtEnumProperty
+import godot.core.KtFunction
+import godot.core.KtFunction0
+import godot.core.KtFunction1
+import godot.core.KtFunction2
+import godot.core.KtFunction3
+import godot.core.KtFunction4
+import godot.core.KtFunction5
+import godot.core.KtFunctionInfo
+import godot.core.KtObject
+import godot.core.KtProperty
+import godot.core.KtPropertyInfo
+import godot.core.KtSignalInfo
+import godot.core.PropertyHint
+import godot.core.TypeManager
+import godot.core.VariantType
 import godot.util.camelToSnakeCase
-import kotlin.reflect.*
+import kotlin.reflect.KClass
+import kotlin.reflect.KFunction1
+import kotlin.reflect.KFunction2
+import kotlin.reflect.KFunction3
+import kotlin.reflect.KFunction4
+import kotlin.reflect.KFunction5
+import kotlin.reflect.KFunction6
+import kotlin.reflect.KMutableProperty1
+import kotlin.reflect.KProperty
 
+@Suppress("UNCHECKED_CAST")
 class KtPropertyInfoBuilderDsl {
     var type: VariantType? = null
     var name: String = ""
@@ -140,6 +167,7 @@ class ClassBuilderDsl<T : KtObject>(
 //    }
 
     @JvmName("enumFlagPropertyMutable")
+    @Suppress("UNCHECKED_CAST")
     inline fun <reified P : Enum<P>> enumFlagProperty(
         kProperty: KMutableProperty1<T, MutableSet<P>>,
         noinline defaultValue: () -> MutableSet<P>,
@@ -200,7 +228,6 @@ class ClassBuilderDsl<T : KtObject>(
     fun <P: Any?> property(
         kProperty: KMutableProperty1<T, P>,
         variantType: VariantType,
-        setValueConverter: ((Any?) -> P),
         isRef: Boolean = false,
         defaultArgument: () -> P,
         rpcModeId: Int = 0,

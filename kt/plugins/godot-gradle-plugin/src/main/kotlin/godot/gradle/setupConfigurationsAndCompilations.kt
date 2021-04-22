@@ -203,6 +203,7 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
             }
         }
 
+        @Suppress("UNUSED_VARIABLE")
         val build by getting {
             dependsOn(cleanupEntryFiles, bootstrapJar, shadowJar)
             finalizedBy(deleteBuildLock)
@@ -211,6 +212,7 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
             }
         }
 
+        @Suppress("UNUSED_VARIABLE")
         val clean by getting {
             dependsOn(createBuildLock)
             finalizedBy(deleteBuildLock)

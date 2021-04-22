@@ -1,5 +1,6 @@
 package godot.util
 
+@Suppress("UNCHECKED_CAST")
 internal class IndexedIterator<T>(
         private var size: () -> Int,
         private val getter: (Int) -> T,
@@ -40,6 +41,7 @@ internal class Entry<K, V>(
     }
 }
 
+@Suppress("UNCHECKED_CAST")
 internal class MapIterator<K, V>(
         private val keyIterator: MutableIterator<K>,
         private val getter: (K) -> V,

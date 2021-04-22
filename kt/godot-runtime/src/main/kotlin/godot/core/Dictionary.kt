@@ -164,6 +164,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
     fun duplicate(deep: Boolean): Dictionary<K, V> {
         TransferContext.writeArguments(VariantType.BOOL to deep)
         Bridge.engine_call_duplicate(_handle)
+        @Suppress("UNCHECKED_CAST")
         return (TransferContext.readReturnValue(VariantType.DICTIONARY) as Dictionary<K, V>).also {
             it.keyVariantType = keyVariantType
             it.valueVariantType = valueVariantType
@@ -193,6 +194,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
     fun get(key: K, default: V?): V? {
         TransferContext.writeArguments(keyVariantType to key, valueVariantType to default)
         Bridge.engine_call_get(_handle)
+        @Suppress("UNCHECKED_CAST")
         return TransferContext.readReturnValue(valueVariantType, true) as V
     }
 
@@ -232,6 +234,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
      */
     fun keys(): VariantArray<K> {
         Bridge.engine_call_keys(_handle)
+        @Suppress("UNCHECKED_CAST")
         return (TransferContext.readReturnValue(VariantType.ARRAY) as VariantArray<K>).also {
             it.variantType = keyVariantType
         }
@@ -260,6 +263,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
      */
     fun values(): VariantArray<V> {
         Bridge.engine_call_values(_handle)
+        @Suppress("UNCHECKED_CAST")
         return (TransferContext.readReturnValue(VariantType.ARRAY) as VariantArray<V>).also {
             it.variantType = valueVariantType
         }
@@ -270,6 +274,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
     override operator fun get(key: K): V {
         TransferContext.writeArguments(keyVariantType to key)
         Bridge.engine_call_operator_get(_handle)
+        @Suppress("UNCHECKED_CAST")
         return TransferContext.readReturnValue(valueVariantType, true) as V
     }
 

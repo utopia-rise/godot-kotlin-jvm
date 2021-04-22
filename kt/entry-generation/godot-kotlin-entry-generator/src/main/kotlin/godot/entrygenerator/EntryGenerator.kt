@@ -1,6 +1,11 @@
 package godot.entrygenerator
 
-import com.squareup.kotlinpoet.*
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.FileSpec
+import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.MemberName
+import com.squareup.kotlinpoet.TypeSpec
 import godot.entrygenerator.compiler.CompilerEnvironmentProvider
 import godot.entrygenerator.exceptions.ClassNameRegistrationException
 import godot.entrygenerator.exceptions.MultipleClassesPerFileRegistrationException
@@ -182,14 +187,14 @@ object EntryGenerator {
 
         if (duplicatedClasses.isNotEmpty()) {
             val exceptionMessage = buildString {
-                appendln("There are classes registered with the same name. Check your customName argument for the annotation @RegisterClass:")
+                appendLine("There are classes registered with the same name. Check your customName argument for the annotation @RegisterClass:")
                 duplicatedClasses
                     .forEachIndexed { index, duplications ->
                         if (index != 0) {
-                            appendln("---")
+                            appendLine("---")
                         }
                         duplications.forEach { (classFqName, registeredName) ->
-                            appendln("RegisteredName: $registeredName, ActualClass: $classFqName")
+                            appendLine("RegisteredName: $registeredName, ActualClass: $classFqName")
                         }
                     }
             }
