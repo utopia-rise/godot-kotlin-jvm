@@ -17,6 +17,9 @@ import kotlin.Suppress
  *
  * Simulates the sound of acoustic environments such as rooms, concert halls, caverns, or an open spaces.
  *
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
+ *
  * Simulates rooms of different sizes. Its parameters can be adjusted to simulate the sound of a specific room.
  */
 @GodotBaseType

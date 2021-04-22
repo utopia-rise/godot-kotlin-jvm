@@ -20,19 +20,25 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * 3D particle emitter.
+ * GPU-based 3D particle emitter.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/3d/vertex_animation/controlling_thousands_of_fish.html](https://docs.godotengine.org/en/latest/tutorials/3d/vertex_animation/controlling_thousands_of_fish.html)
+ * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
  * 3D particle node used to create a variety of particle systems and effects. [godot.Particles] features an emitter that generates some number of particles at a given rate.
  *
  * Use the `process_material` property to add a [godot.ParticlesMaterial] to configure particle appearance and behavior. Alternatively, you can add a [godot.ShaderMaterial] which will be applied to all particles.
+ *
+ * **Note:** [godot.Particles] only work when using the GLES3 renderer. If using the GLES2 renderer, use [godot.CPUParticles] instead. You can convert [godot.Particles] to [godot.CPUParticles] by selecting the node, clicking the **Particles** menu at the top of the 3D editor viewport then choosing **Convert to CPUParticles**.
+ *
+ * **Note:** After working on a Particles node, remember to update its [visibilityAabb] by selecting it, clicking the **Particles** menu at the top of the 3D editor viewport then choose **Generate Visibility AABB**. Otherwise, particles may suddenly disappear depending on the camera position and angle.
  */
 @GodotBaseType
 open class Particles : GeometryInstance() {
   /**
-   * Number of particles to emit.
+   * The number of particles emitted in one emission cycle (corresponding to the [lifetime]).
+   *
+   * **Note:** Changing [amount] will reset the particle emission, therefore removing all particles that were already emitted before changing [amount].
    */
   open var amount: Long
     get() {
@@ -187,7 +193,7 @@ open class Particles : GeometryInstance() {
     }
 
   /**
-   * Amount of time each particle will exist.
+   * The amount of time each particle will exist (in seconds).
    */
   open var lifetime: Double
     get() {
@@ -287,7 +293,9 @@ open class Particles : GeometryInstance() {
     }
 
   /**
-   * The [AABB] that determines the area of the world part of which needs to be visible on screen for the particle system to be active.
+   * The [AABB] that determines the node's region which needs to be visible on screen for the particle system to be active.
+   *
+   * Grow the box if particles suddenly appear/disappear when the node enters/exits the screen. The [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.
    *
    * **Note:** If the [godot.ParticlesMaterial] in use is configured to cast shadows, you may want to enlarge this AABB to ensure the shadow is updated when particles are off-screen.
    */

@@ -77,6 +77,22 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class UDPServer : Reference() {
+  /**
+   * Define the maximum number of pending connections, during [poll], any new pending connection exceeding that value will be automatically dropped. Setting this value to `0` effectively prevents any new pending connection to be accepted (e.g. when all your players have connected).
+   */
+  open var maxPendingConnections: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_UDPSERVER_GET_MAX_PENDING_CONNECTIONS, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(value) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_UDPSERVER_SET_MAX_PENDING_CONNECTIONS, NIL)
+    }
+
   override fun __new() {
     callConstructor(ENGINECLASS_UDPSERVER)
   }
@@ -106,6 +122,15 @@ open class UDPServer : Reference() {
   open fun listen(port: Long, bindAddress: String = "*"): GodotError {
     TransferContext.writeArguments(LONG to port, STRING to bindAddress)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_LISTEN, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Call this method at regular intervals (e.g. inside [godot.Node.Process]) to process new packets. And packet from known address/port pair will be delivered to the appropriate [godot.PacketPeerUDP], any packet received from an unknown address/port pair will be added as a pending connection (see [isConnectionAvailable], [takeConnection]). The maximum number of pending connection is defined via [maxPendingConnections].
+   */
+  open fun poll(): GodotError {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_POLL, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 

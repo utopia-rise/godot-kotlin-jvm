@@ -28,6 +28,9 @@ import kotlin.Unit
 
 /**
  *
+ *
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/523](https://godotengine.org/asset-library/asset/523)
  */
 @GodotBaseType
 open class SkeletonIK : Node() {

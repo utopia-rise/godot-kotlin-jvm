@@ -36,9 +36,11 @@ import kotlin.Unit
  * Node for 2D tile-based maps.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/2d/using_tilemaps.html](https://docs.godotengine.org/en/latest/tutorials/2d/using_tilemaps.html)
+ * [https://godotengine.org/asset-library/asset/113](https://godotengine.org/asset-library/asset/113)
  *
  * Node for 2D tile-based maps. Tilemaps use a [godot.TileSet] which contain a list of tiles (textures plus optional collision, navigation, and/or occluder shapes) which are used to create grid-based maps.
+ *
+ * When doing physics queries against the tilemap, the cell coordinates are encoded as `metadata` for each detected collision shape returned by methods such as [godot.Physics2DDirectSpaceState.intersectShape], [godot.Physics2DDirectBodyState.getContactColliderShapeMetadata], etc.
  */
 @GodotBaseType
 open class TileMap : Node2D() {
@@ -138,7 +140,7 @@ open class TileMap : Node2D() {
     }
 
   /**
-   * If `true`, the TileMap's children will be drawn in order of their Y coordinate.
+   * If `true`, the TileMap's direct children will be drawn in order of their Y coordinate.
    */
   open var cellYSort: Boolean
     get() {
@@ -201,7 +203,7 @@ open class TileMap : Node2D() {
     }
 
   /**
-   * The collision layer(s) for all colliders in the TileMap. See [godot.Collision layers and masks](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The collision layer(s) for all colliders in the TileMap. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
   open var collisionLayer: Long
     get() {
@@ -215,7 +217,7 @@ open class TileMap : Node2D() {
     }
 
   /**
-   * The collision mask(s) for all colliders in the TileMap. See [godot.Collision layers and masks](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The collision mask(s) for all colliders in the TileMap. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
   open var collisionMask: Long
     get() {
@@ -308,6 +310,20 @@ open class TileMap : Node2D() {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_OCCLUDER_LIGHT_MASK,
           NIL)
+    }
+
+  /**
+   * If `true`, collision shapes are shown in the editor and at run-time. Requires **Visible Collision Shapes** to be enabled in the **Debug** menu for collision shapes to be visible at run-time.
+   */
+  open var showCollision: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_SHOW_COLLISION, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(value) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_SHOW_COLLISION, NIL)
     }
 
   /**
@@ -483,7 +499,14 @@ open class TileMap : Node2D() {
   }
 
   /**
-   * Returns the global position corresponding to the given tilemap (grid-based) coordinates.
+   * Returns the local position of the top left corner of the cell corresponding to the given tilemap (grid-based) coordinates.
+   *
+   * To get the global position, use [godot.Node2D.toGlobal]:
+   *
+   * ```
+   * 				var local_position = my_tilemap.map_to_world(map_position)
+   * 				var global_position = my_tilemap.to_global(local_position)
+   * 				```
    *
    * Optionally, the tilemap's half offset can be ignored.
    */
@@ -507,7 +530,7 @@ open class TileMap : Node2D() {
    * Overriding this method also overrides it internally, allowing custom logic to be implemented when tiles are placed/removed:
    *
    * ```
-   * 				func set_cell(x, y, tile, flip_x=false, flip_y=false, transpose=false, autotile_coord=Vector2())
+   * 				func set_cell(x, y, tile, flip_x=false, flip_y=false, transpose=false, autotile_coord=Vector2()):
    * 				    # Write your custom logic here.
    * 				    # To call the default method:
    * 				    .set_cell(x, y, tile, flip_x, flip_y, transpose, autotile_coord)
@@ -596,6 +619,13 @@ open class TileMap : Node2D() {
 
   /**
    * Returns the tilemap (grid-based) coordinates corresponding to the given local position.
+   *
+   * To use this with a global position, first determine the local position with [godot.Node2D.toLocal]:
+   *
+   * ```
+   * 				var local_position = my_tilemap.to_local(global_position)
+   * 				var map_position = my_tilemap.world_to_map(local_position)
+   * 				```
    */
   open fun worldToMap(worldPosition: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to worldPosition)

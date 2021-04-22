@@ -16,7 +16,10 @@ import kotlin.Unit
 /**
  * Colored rectangle.
  *
- * Displays a colored rectangle.
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/515](https://godotengine.org/asset-library/asset/515)
+ *
+ * Displays a rectangle filled with a solid [color]. If you need to display the border alone, consider using [godot.ReferenceRect] instead.
  */
 @GodotBaseType
 open class ColorRect : Control() {

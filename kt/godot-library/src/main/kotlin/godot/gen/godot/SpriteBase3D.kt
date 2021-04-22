@@ -160,7 +160,7 @@ open class SpriteBase3D : GeometryInstance() {
     }
 
   /**
-   * The objects visibility on a scale from `0` fully invisible to `1` fully visible.
+   * The objects' visibility on a scale from `0` fully invisible to `1` fully visible.
    */
   open var opacity: Double
     get() {

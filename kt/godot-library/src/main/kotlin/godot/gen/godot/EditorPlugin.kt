@@ -27,7 +27,7 @@ import kotlin.Suppress
  * Used by the editor to extend its functionality.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/plugins/editor/index.html](https://docs.godotengine.org/en/latest/tutorials/plugins/editor/index.html)
+ * [https://docs.godotengine.org/en/3.3/tutorials/plugins/editor/index.html](https://docs.godotengine.org/en/3.3/tutorials/plugins/editor/index.html)
  *
  * Plugins are used by the editor to extend functionality. The most common types of plugins are those which edit a given node or resource type, import plugins and export plugins. See also [godot.EditorScript] to add functions to the editor.
  */
@@ -122,7 +122,7 @@ open class EditorPlugin : Node() {
   }
 
   /**
-   *
+   * Registers a new export plugin. Export plugins are used when the project is being exported. See [godot.EditorExportPlugin] for more information.
    */
   open fun addExportPlugin(plugin: EditorExportPlugin) {
     TransferContext.writeArguments(OBJECT to plugin)
@@ -196,7 +196,9 @@ open class EditorPlugin : Node() {
   }
 
   /**
+   * This method is called when the editor is about to run the project. The plugin can then perform required operations before the project runs.
    *
+   * This method must return a boolean. If this method returns `false`, the project will not run. The run is aborted immediately, so this also prevents all other plugins' [build] methods from running.
    */
   open fun _build(): Boolean {
     throw NotImplementedError("build is not implemented for EditorPlugin")
@@ -227,13 +229,28 @@ open class EditorPlugin : Node() {
   }
 
   /**
+   * Called by the engine when the 2D editor's viewport is updated. Use the `overlay` [godot.Control] for drawing. You can update the viewport manually by calling [updateOverlays].
    *
+   * ```
+   * 				func forward_canvas_draw_over_viewport(overlay):
+   * 				    # Draw a circle at cursor position.
+   * 				    overlay.draw_circle(overlay.get_local_mouse_position(), 64, Color.white)
+   *
+   * 				func forward_canvas_gui_input(event):
+   * 				    if event is InputEventMouseMotion:
+   * 				        # Redraw viewport when cursor is moved.
+   * 				        update_overlays()
+   * 				        return true
+   * 				    return false
+   * 				```
    */
   open fun _forwardCanvasDrawOverViewport(overlay: Control) {
   }
 
   /**
+   * This method is the same as [forwardCanvasDrawOverViewport], except it draws on top of everything. Useful when you need an extra layer that shows over anything else.
    *
+   * You need to enable calling of this method by using [setForceDrawOverForwardingEnabled].
    */
   open fun _forwardCanvasForceDrawOverViewport(overlay: Control) {
   }
@@ -261,6 +278,33 @@ open class EditorPlugin : Node() {
    */
   open fun _forwardCanvasGuiInput(event: InputEvent): Boolean {
     throw NotImplementedError("forward_canvas_gui_input is not implemented for EditorPlugin")
+  }
+
+  /**
+   * Called by the engine when the 3D editor's viewport is updated. Use the `overlay` [godot.Control] for drawing. You can update the viewport manually by calling [updateOverlays].
+   *
+   * ```
+   * 				func forward_spatial_draw_over_viewport(overlay):
+   * 				    # Draw a circle at cursor position.
+   * 				    overlay.draw_circle(overlay.get_local_mouse_position(), 64)
+   *
+   * 				func forward_spatial_gui_input(camera, event):
+   * 				    if event is InputEventMouseMotion:
+   * 				        # Redraw viewport when cursor is moved.
+   * 				        update_overlays()
+   * 				        return true
+   * 				    return false
+   * 				```
+   */
+  open fun _forwardSpatialDrawOverViewport(overlay: Control) {
+  }
+
+  /**
+   * This method is the same as [forwardSpatialDrawOverViewport], except it draws on top of everything. Useful when you need an extra layer that shows over anything else.
+   *
+   * You need to enable calling of this method by using [setForceDrawOverForwardingEnabled].
+   */
+  open fun _forwardSpatialForceDrawOverViewport(overlay: Control) {
   }
 
   /**
@@ -520,7 +564,7 @@ open class EditorPlugin : Node() {
   }
 
   /**
-   *
+   * Enables calling of [forwardCanvasForceDrawOverViewport] for the 2D editor and [forwardSpatialForceDrawOverViewport] for the 3D editor when their viewports are updated. You need to call this method only once and it will work permanently for this plugin.
    */
   open fun setForceDrawOverForwardingEnabled() {
     TransferContext.writeArguments()
@@ -550,7 +594,7 @@ open class EditorPlugin : Node() {
   }
 
   /**
-   * Updates the overlays of the editor (2D/3D) viewport.
+   * Updates the overlays of the 2D and 3D editor viewport. Causes methods [forwardCanvasDrawOverViewport], [forwardCanvasForceDrawOverViewport], [forwardSpatialDrawOverViewport] and [forwardSpatialForceDrawOverViewport] to be called.
    */
   open fun updateOverlays(): Long {
     TransferContext.writeArguments()

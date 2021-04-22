@@ -40,14 +40,21 @@ import kotlin.Suppress
  * Below is an example of how MeshDataTool may be used.
  *
  * ```
+ * 		var mesh = ArrayMesh.new()
+ * 		mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, CubeMesh.new().get_mesh_arrays())
  * 		var mdt = MeshDataTool.new()
  * 		mdt.create_from_surface(mesh, 0)
  * 		for i in range(mdt.get_vertex_count()):
  * 		    var vertex = mdt.get_vertex(i)
- * 		    ...
+ * 		    # In this example we extend the mesh by one unit, which results in seperated faces as it is flat shaded.
+ * 		    vertex += mdt.get_vertex_normal(i)
+ * 		    # Save your change.
  * 		    mdt.set_vertex(i, vertex)
  * 		mesh.surface_remove(0)
  * 		mdt.commit_to_surface(mesh)
+ * 		var mi = MeshInstance.new()
+ * 		mi.mesh = mesh
+ * 		add_child(mi)
  * 		```
  *
  * See also [godot.ArrayMesh], [godot.ImmediateGeometry] and [godot.SurfaceTool] for procedural geometry generation.

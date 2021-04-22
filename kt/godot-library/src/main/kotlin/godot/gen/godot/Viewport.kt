@@ -34,8 +34,7 @@ import kotlin.Unit
  * Creates a sub-view into the screen.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/2d/2d_transforms.html](https://docs.godotengine.org/en/latest/tutorials/2d/2d_transforms.html)
- * [https://docs.godotengine.org/en/latest/tutorials/viewports/index.html](https://docs.godotengine.org/en/latest/tutorials/viewports/index.html)
+ * [https://godotengine.org/asset-library/asset/586](https://godotengine.org/asset-library/asset/586)
  *
  * A Viewport creates a different view into the screen, or a sub-view inside another viewport. Children 2D Nodes will display on it, and children Camera 3D nodes will render on it too.
  *
@@ -124,6 +123,22 @@ open class Viewport : Node() {
     }
 
   /**
+   * If `true`, uses a fast post-processing filter to make banding significantly less visible. In some cases, debanding may introduce a slightly noticeable dithering pattern. It's recommended to enable debanding only when actually needed since the dithering pattern will make lossless-compressed screenshots larger.
+   *
+   * **Note:** Only available on the GLES3 backend. [hdr] must also be `true` for debanding to be effective.
+   */
+  open var debanding: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEBANDING, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(value) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DEBANDING, NIL)
+    }
+
+  /**
    * The overlay mode for test rendered geometry in debug purposes.
    */
   open var debugDraw: Long
@@ -152,6 +167,20 @@ open class Viewport : Node() {
     }
 
   /**
+   * Enables fast approximate antialiasing. FXAA is a popular screen-space antialiasing method, which is fast but will make the image look blurry, especially at lower resolutions. It can still work relatively well at large resolutions such as 1440p and 4K.
+   */
+  open var fxaa: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_FXAA, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(value) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_FXAA, NIL)
+    }
+
+  /**
    * The global canvas transform of the viewport. The canvas transform is relative to this.
    */
   open var globalCanvasTransform: Transform2D
@@ -168,7 +197,7 @@ open class Viewport : Node() {
     }
 
   /**
-   * If `true`, the viewport will not receive input event.
+   * If `true`, the viewport will not receive input events.
    */
   open var guiDisableInput: Boolean
     get() {
@@ -556,6 +585,9 @@ open class Viewport : Node() {
   }
 
   open fun _postGuiGrabClickFocus() {
+  }
+
+  open fun _processPicking(ignorePaused: Boolean) {
   }
 
   open fun _subwindowVisibilityChanged() {

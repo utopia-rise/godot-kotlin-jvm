@@ -24,7 +24,7 @@ import kotlin.Suppress
 /**
  * Tabs control.
  *
- * Simple tabs control, similar to [godot.TabContainer] but is only in charge of drawing tabs, not interact with children.
+ * Simple tabs control, similar to [godot.TabContainer] but is only in charge of drawing tabs, not interacting with children.
  */
 @GodotBaseType
 open class Tabs : Control() {
@@ -89,7 +89,7 @@ open class Tabs : Control() {
     }
 
   /**
-   * if `true`, the mouse's scroll wheel cab be used to navigate the scroll view.
+   * if `true`, the mouse's scroll wheel can be used to navigate the scroll view.
    */
   open var scrollingEnabled: Boolean
     get() {
@@ -169,6 +169,15 @@ open class Tabs : Control() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABS_GET_OFFSET_BUTTONS_VISIBLE,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns the previously active tab index.
+   */
+  open fun getPreviousTab(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABS_GET_PREVIOUS_TAB, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**

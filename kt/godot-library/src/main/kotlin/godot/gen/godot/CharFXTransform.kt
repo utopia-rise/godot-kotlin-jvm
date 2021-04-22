@@ -28,7 +28,7 @@ import kotlin.Unit
  * Controls how an individual character will be displayed in a [godot.RichTextEffect].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/gui/bbcode_in_richtextlabel.html](https://docs.godotengine.org/en/latest/tutorials/gui/bbcode_in_richtextlabel.html)
+ * [https://docs.godotengine.org/en/3.3/tutorials/gui/bbcode_in_richtextlabel.html](https://docs.godotengine.org/en/3.3/tutorials/gui/bbcode_in_richtextlabel.html)
  * [https://github.com/Eoin-ONeill-Yokai/Godot-Rich-Text-Effect-Test-Project](https://github.com/Eoin-ONeill-Yokai/Godot-Rich-Text-Effect-Test-Project)
  *
  * By setting various properties on this object, you can control how individual characters will be displayed in a [godot.RichTextEffect].

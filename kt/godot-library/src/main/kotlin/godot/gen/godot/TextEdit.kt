@@ -455,6 +455,22 @@ open class TextEdit : Control() {
     }
 
   /**
+   * If `true`, the native virtual keyboard is shown when focused on platforms that support it.
+   */
+  open var virtualKeyboardEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_VIRTUAL_KEYBOARD_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(value) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_VIRTUAL_KEYBOARD_ENABLED, NIL)
+    }
+
+  /**
    * If `true`, enables text wrapping when it goes beyond the edge of what is visible.
    */
   open var wrapEnabled: Boolean
@@ -736,7 +752,7 @@ open class TextEdit : Control() {
   }
 
   /**
-   * Returns a [godot.String] text with the word under the mouse cursor location.
+   * Returns a [godot.String] text with the word under the caret (text cursor) location.
    */
   open fun getWordUnderCursor(): String {
     TransferContext.writeArguments()
@@ -777,6 +793,35 @@ open class TextEdit : Control() {
   open fun isLineHidden(line: Long): Boolean {
     TransferContext.writeArguments(LONG to line)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_LINE_HIDDEN, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` when the specified `line` is bookmarked.
+   */
+  open fun isLineSetAsBookmark(line: Long): Boolean {
+    TransferContext.writeArguments(LONG to line)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_LINE_SET_AS_BOOKMARK,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` when the specified `line` has a breakpoint.
+   */
+  open fun isLineSetAsBreakpoint(line: Long): Boolean {
+    TransferContext.writeArguments(LONG to line)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_LINE_SET_AS_BREAKPOINT,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` when the specified `line` is marked as safe.
+   */
+  open fun isLineSetAsSafe(line: Long): Boolean {
+    TransferContext.writeArguments(LONG to line)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_LINE_SET_AS_SAFE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -881,11 +926,40 @@ open class TextEdit : Control() {
   }
 
   /**
+   * Bookmarks the `line` if `bookmark` is true. Deletes the bookmark if `bookmark` is false.
+   *
+   * Bookmarks are shown in the [breakpointGutter].
+   */
+  open fun setLineAsBookmark(line: Long, bookmark: Boolean) {
+    TransferContext.writeArguments(LONG to line, BOOL to bookmark)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_BOOKMARK, NIL)
+  }
+
+  /**
+   * Adds or removes the breakpoint in `line`. Breakpoints are shown in the [breakpointGutter].
+   */
+  open fun setLineAsBreakpoint(line: Long, breakpoint: Boolean) {
+    TransferContext.writeArguments(LONG to line, BOOL to breakpoint)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_BREAKPOINT,
+        NIL)
+  }
+
+  /**
    * If `true`, hides the line of the specified index.
    */
   open fun setLineAsHidden(line: Long, enable: Boolean) {
     TransferContext.writeArguments(LONG to line, BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_HIDDEN, NIL)
+  }
+
+  /**
+   * If `true`, marks the `line` as safe.
+   *
+   * This will show the line number with the color provided in the `safe_line_number_color` theme property.
+   */
+  open fun setLineAsSafe(line: Long, safe: Boolean) {
+    TransferContext.writeArguments(LONG to line, BOOL to safe)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_LINE_AS_SAFE, NIL)
   }
 
   /**

@@ -22,7 +22,7 @@ import kotlin.Suppress
  * Base class for nodes in a visual shader graph.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/shading/visual_shaders.html](https://docs.godotengine.org/en/latest/tutorials/shading/visual_shaders.html)
+ * [https://docs.godotengine.org/en/3.3/tutorials/shading/visual_shaders.html](https://docs.godotengine.org/en/3.3/tutorials/shading/visual_shaders.html)
  */
 @GodotBaseType
 open class VisualShaderNode : Resource() {

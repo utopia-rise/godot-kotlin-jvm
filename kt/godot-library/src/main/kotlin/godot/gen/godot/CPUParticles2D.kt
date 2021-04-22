@@ -30,16 +30,20 @@ import kotlin.Unit
  * CPU-based 2D particle emitter.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/2d/particle_systems_2d.html](https://docs.godotengine.org/en/latest/tutorials/2d/particle_systems_2d.html)
+ * [https://docs.godotengine.org/en/3.3/tutorials/2d/particle_systems_2d.html](https://docs.godotengine.org/en/3.3/tutorials/2d/particle_systems_2d.html)
  *
  * CPU-based 2D particle node used to create a variety of particle systems and effects.
  *
  * See also [godot.Particles2D], which provides the same functionality with hardware acceleration, but may not run on older devices.
+ *
+ * **Note:** Unlike [godot.Particles2D], the visibility rect is generated on-the-fly and doesn't need to be configured by the user.
  */
 @GodotBaseType
 open class CPUParticles2D : Node2D() {
   /**
-   * Number of particles emitted in one emission cycle.
+   * The number of particles emitted in one emission cycle (corresponding to the [lifetime]).
+   *
+   * **Note:** Changing [amount] will reset the particle emission, therefore removing all particles that were already emitted before changing [amount].
    */
   open var amount: Long
     get() {
@@ -619,7 +623,7 @@ open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Amount of time each particle will exist.
+   * The amount of time each particle will exist (in seconds).
    */
   open var lifetime: Double
     get() {

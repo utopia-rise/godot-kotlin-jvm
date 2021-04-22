@@ -29,11 +29,13 @@ import kotlin.Suppress
 /**
  * High-level multiplayer API.
  *
- * This class implements most of the logic behind the high-level multiplayer API.
+ * This class implements most of the logic behind the high-level multiplayer API. See also [godot.NetworkedMultiplayerPeer].
  *
  * By default, [godot.SceneTree] has a reference to this class that is used to provide multiplayer capabilities (i.e. RPC/RSET) across the whole scene.
  *
  * It is possible to override the MultiplayerAPI instance used by specific Nodes by setting the [godot.Node.customMultiplayer] property, effectively allowing to run both client and server in the same scene.
+ *
+ * **Note:** The high-level multiplayer API protocol is an implementation detail and isn't meant to be used by non-Godot servers. It may change without notice.
  */
 @GodotBaseType
 open class MultiplayerAPI : Reference() {
@@ -115,6 +117,23 @@ open class MultiplayerAPI : Reference() {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SET_REFUSE_NEW_NETWORK_CONNECTIONS, NIL)
+    }
+
+  /**
+   * The root node to use for RPCs. Instead of an absolute path, a relative path will be used to find the node upon which the RPC should be executed.
+   *
+   * This effectively allows to have different branches of the scene tree to be managed by different MultiplayerAPI, allowing for example to run both client and server in the same scene.
+   */
+  open var rootNode: Node?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_ROOT_NODE,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Node?
+    }
+    set(value) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SET_ROOT_NODE, NIL)
     }
 
   override fun __new() {
@@ -217,16 +236,6 @@ open class MultiplayerAPI : Reference() {
     TransferContext.writeArguments(POOL_BYTE_ARRAY to bytes, LONG to id, LONG to mode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SEND_BYTES, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  /**
-   * Sets the base root node to use for RPCs. Instead of an absolute path, a relative path will be used to find the node upon which the RPC should be executed.
-   *
-   * This effectively allows to have different branches of the scene tree to be managed by different MultiplayerAPI, allowing for example to run both client and server in the same scene.
-   */
-  open fun setRootNode(node: Node) {
-    TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SET_ROOT_NODE, NIL)
   }
 
   enum class RPCMode(

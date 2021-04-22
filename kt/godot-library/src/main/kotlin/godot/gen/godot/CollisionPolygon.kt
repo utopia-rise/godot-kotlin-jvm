@@ -56,6 +56,21 @@ open class CollisionPolygon : Spatial() {
     }
 
   /**
+   * The collision margin for the generated [godot.Shape]. See [godot.Shape.margin] for more details.
+   */
+  open var margin: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON_GET_MARGIN,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(value) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON_SET_MARGIN, NIL)
+    }
+
+  /**
    * Array of vertices which define the polygon.
    *
    * **Note:** The returned value is a copy of the original. Methods which mutate the size or properties of the return value will not impact the original polygon. To change properties of the polygon, assign it to a temporary variable and make changes before reassigning the `polygon` member.

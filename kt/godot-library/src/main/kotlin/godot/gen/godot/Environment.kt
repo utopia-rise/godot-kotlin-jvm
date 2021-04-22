@@ -28,8 +28,7 @@ import kotlin.Unit
  * Resource for environment nodes (like [godot.WorldEnvironment]) that define multiple rendering options.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/3d/environment_and_post_processing.html](https://docs.godotengine.org/en/latest/tutorials/3d/environment_and_post_processing.html)
- * [https://docs.godotengine.org/en/latest/tutorials/3d/high_dynamic_range.html](https://docs.godotengine.org/en/latest/tutorials/3d/high_dynamic_range.html)
+ * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
  * Resource for environment nodes (like [godot.WorldEnvironment]) that define multiple environment operations (such as background [godot.Sky] or [godot.core.Color], ambient light, fog, depth-of-field...). These parameters affect the final render of the scene. The order of these operations is:
  *

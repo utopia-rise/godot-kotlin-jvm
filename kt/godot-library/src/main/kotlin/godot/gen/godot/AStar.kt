@@ -27,7 +27,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 
 /**
- * An implementation of A* to find shortest paths among connected points in space.
+ * An implementation of A* to find the shortest paths among connected points in space.
  *
  * A* (A star) is a computer algorithm that is widely used in pathfinding and graph traversal, the process of plotting short paths among vertices (points), passing through a given set of edges (segments). It enjoys widespread use due to its performance and accuracy. Godot's A* implementation uses points in three-dimensional space and Euclidean distances by default.
  *
@@ -47,6 +47,8 @@ import kotlin.Suppress
  * 		```
  *
  * [_estimateCost] should return a lower bound of the distance, i.e. `_estimate_cost(u, v) <= _compute_cost(u, v)`. This serves as a hint to the algorithm because the custom `_compute_cost` might be computation-heavy. If this is not the case, make [_estimateCost] return the same value as [_computeCost] to provide the algorithm with the most accurate information.
+ *
+ * If the default [_estimateCost] and [_computeCost] methods are used, or if the supplied [_estimateCost] method returns a lower bound of the cost, then the paths returned by A* will be the lowest cost paths. Here, the cost of a path equals to the sum of the [_computeCost] results of all segments in the path multiplied by the `weight_scale`s of the end points of the respective segments. If the default methods are used and the `weight_scale`s of all points are set to `1.0`, then this equals to the sum of Euclidean distances of all segments in the path.
  */
 @GodotBaseType
 open class AStar : Reference() {
@@ -73,7 +75,9 @@ open class AStar : Reference() {
   }
 
   /**
-   * Adds a new point at the given position with the given identifier. The algorithm prefers points with lower `weight_scale` to form a path. The `id` must be 0 or larger, and the `weight_scale` must be 1 or larger.
+   * Adds a new point at the given position with the given identifier. The `id` must be 0 or larger, and the `weight_scale` must be 1 or larger.
+   *
+   * The `weight_scale` is multiplied by the result of [_computeCost] when determining the overall cost of traveling across a segment from a neighboring point to this point. Thus, all else being equal, the algorithm prefers points with lower `weight_scale`s to form a path.
    *
    * ```
    * 				var astar = AStar.new()
@@ -252,6 +256,8 @@ open class AStar : Reference() {
 
   /**
    * Returns an array with the points that are in the path found by AStar between the given points. The array is ordered from the starting point to the ending point of the path.
+   *
+   * **Note:** This method is not thread-safe. If called from a [godot.Thread], it will return an empty [godot.core.PoolVector3Array] and will print an error message.
    */
   open fun getPointPath(fromId: Long, toId: Long): PoolVector3Array {
     TransferContext.writeArguments(LONG to fromId, LONG to toId)
@@ -339,7 +345,7 @@ open class AStar : Reference() {
   }
 
   /**
-   * Sets the `weight_scale` for the point with the given `id`.
+   * Sets the `weight_scale` for the point with the given `id`. The `weight_scale` is multiplied by the result of [_computeCost] when determining the overall cost of traveling across a segment from a neighboring point to this point.
    */
   open fun setPointWeightScale(id: Long, weightScale: Double) {
     TransferContext.writeArguments(LONG to id, DOUBLE to weightScale)

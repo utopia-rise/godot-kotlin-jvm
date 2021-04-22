@@ -25,7 +25,7 @@ import kotlin.Suppress
  * Used by the editor to define Spatial gizmo types.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/plugins/editor/spatial_gizmos.html](https://docs.godotengine.org/en/latest/tutorials/plugins/editor/spatial_gizmos.html)
+ * [https://docs.godotengine.org/en/3.3/tutorials/plugins/editor/spatial_gizmos.html](https://docs.godotengine.org/en/3.3/tutorials/plugins/editor/spatial_gizmos.html)
  *
  * EditorSpatialGizmoPlugin allows you to define a new type of Gizmo. There are two main ways to do so: extending [godot.EditorSpatialGizmoPlugin] for the simpler gizmos, or creating a new [godot.EditorSpatialGizmo] type. See the tutorial in the documentation for more info.
  */
@@ -125,7 +125,7 @@ open class EditorSpatialGizmoPlugin : Resource() {
   /**
    * Gets material from the internal list of materials. If an [godot.EditorSpatialGizmo] is provided, it will try to get the corresponding variant (selected and/or editable).
    */
-  open fun getMaterial(name: String, gizmo: EditorSpatialGizmo): SpatialMaterial? {
+  open fun getMaterial(name: String, gizmo: EditorSpatialGizmo? = null): SpatialMaterial? {
     TransferContext.writeArguments(STRING to name, OBJECT to gizmo)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSPATIALGIZMOPLUGIN_GET_MATERIAL, OBJECT)
@@ -144,7 +144,7 @@ open class EditorSpatialGizmoPlugin : Resource() {
    *
    * All built-in editor gizmos return a priority of `-1`. If not overridden, this method will return `0`, which means custom gizmos will automatically override built-in gizmos.
    */
-  open fun _getPriority(): String {
+  open fun _getPriority(): Long {
     throw NotImplementedError("get_priority is not implemented for EditorSpatialGizmoPlugin")
   }
 
@@ -164,7 +164,7 @@ open class EditorSpatialGizmoPlugin : Resource() {
   }
 
   /**
-   * Override this method to define whether Spatial with this gizmo should be selecteble even when the gizmo is hidden.
+   * Override this method to define whether a Spatial with this gizmo should be selectable even when the gizmo is hidden.
    */
   open fun _isSelectableWhenHidden(): Boolean {
     throw

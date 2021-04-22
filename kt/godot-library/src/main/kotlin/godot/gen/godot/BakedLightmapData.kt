@@ -9,17 +9,21 @@ import godot.annotation.GodotBaseType
 import godot.core.AABB
 import godot.core.NodePath
 import godot.core.PoolByteArray
+import godot.core.Rect2
 import godot.core.TransferContext
 import godot.core.Transform
 import godot.core.VariantArray
+import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_BYTE_ARRAY
+import godot.core.VariantType.RECT2
 import godot.core.VariantType.TRANSFORM
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -79,7 +83,7 @@ open class BakedLightmapData : Resource() {
     }
 
   /**
-   *
+   * Global energy multiplier for baked and dynamic capture objects.
    */
   open var energy: Double
     get() {
@@ -91,6 +95,22 @@ open class BakedLightmapData : Resource() {
     set(value) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_SET_ENERGY, NIL)
+    }
+
+  /**
+   * Controls whether dynamic capture objects receive environment lighting or not.
+   */
+  open var interior: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_GET_INTERIOR,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(value) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_SET_INTERIOR,
+          NIL)
     }
 
   /**
@@ -136,11 +156,22 @@ open class BakedLightmapData : Resource() {
    */
   open fun addUser(
     path: NodePath,
-    lightmap: Texture,
+    lightmap: Resource,
+    lightmapSlice: Long,
+    lightmapUvRect: Rect2,
     instance: Long
   ) {
-    TransferContext.writeArguments(NODE_PATH to path, OBJECT to lightmap, LONG to instance)
+    TransferContext.writeArguments(NODE_PATH to path, OBJECT to lightmap, LONG to lightmapSlice,
+        RECT2 to lightmapUvRect, LONG to instance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_ADD_USER, NIL)
+  }
+
+  /**
+   *
+   */
+  open fun clearData() {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_CLEAR_DATA, NIL)
   }
 
   /**
@@ -164,11 +195,11 @@ open class BakedLightmapData : Resource() {
   /**
    *
    */
-  open fun getUserLightmap(userIdx: Long): Texture? {
+  open fun getUserLightmap(userIdx: Long): Resource? {
     TransferContext.writeArguments(LONG to userIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_GET_USER_LIGHTMAP,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Texture?
+    return TransferContext.readReturnValue(OBJECT, true) as Resource?
   }
 
   /**

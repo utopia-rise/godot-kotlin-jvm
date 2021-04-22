@@ -127,7 +127,7 @@ open class VisualShaderNodeGroupBase : VisualShaderNode() {
   }
 
   /**
-   * Returns a [godot.String] description of the input ports as as colon-separated list using the format `id,type,name;` (see [addInputPort]).
+   * Returns a [godot.String] description of the input ports as a colon-separated list using the format `id,type,name;` (see [addInputPort]).
    */
   open fun getInputs(): String {
     TransferContext.writeArguments()
@@ -147,7 +147,7 @@ open class VisualShaderNodeGroupBase : VisualShaderNode() {
   }
 
   /**
-   * Returns a [godot.String] description of the output ports as as colon-separated list using the format `id,type,name;` (see [addOutputPort]).
+   * Returns a [godot.String] description of the output ports as a colon-separated list using the format `id,type,name;` (see [addOutputPort]).
    */
   open fun getOutputs(): String {
     TransferContext.writeArguments()

@@ -48,7 +48,7 @@ open class PopupMenu : Popup() {
   val indexPressed: Signal1<Long> by signal("index")
 
   /**
-   * If `true`, allows to navigate [godot.PopupMenu] with letter keys.
+   * If `true`, allows navigating [godot.PopupMenu] with letter keys.
    */
   open var allowSearch: Boolean
     get() {
@@ -337,10 +337,12 @@ open class PopupMenu : Popup() {
   }
 
   /**
-   * Adds a separator between items. Separators also occupy an index.
+   * Adds a separator between items. Separators also occupy an index, which you can set by using the `id` parameter.
+   *
+   * A `label` can optionally be provided, which will appear at the center of the separator.
    */
-  open fun addSeparator(label: String = "") {
-    TransferContext.writeArguments(STRING to label)
+  open fun addSeparator(label: String = "", id: Long = -1) {
+    TransferContext.writeArguments(STRING to label, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_SEPARATOR, NIL)
   }
 
@@ -649,7 +651,7 @@ open class PopupMenu : Popup() {
   }
 
   /**
-   * Sets the state of an multistate item. See [addMultistateItem] for details.
+   * Sets the state of a multistate item. See [addMultistateItem] for details.
    */
   open fun setItemMultistate(idx: Long, state: Long) {
     TransferContext.writeArguments(LONG to idx, LONG to state)
@@ -710,7 +712,7 @@ open class PopupMenu : Popup() {
   }
 
   /**
-   * Cycle to the next state of an multistate item. See [addMultistateItem] for details.
+   * Cycle to the next state of a multistate item. See [addMultistateItem] for details.
    */
   open fun toggleItemMultistate(idx: Long) {
     TransferContext.writeArguments(LONG to idx)

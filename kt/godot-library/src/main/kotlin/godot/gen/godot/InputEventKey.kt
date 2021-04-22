@@ -19,7 +19,7 @@ import kotlin.UninitializedPropertyAccessException
  * Input event type for keyboard events.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html)
+ * [https://docs.godotengine.org/en/3.3/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/3.3/tutorials/inputs/inputevent.html)
  *
  * Stores key presses on the keyboard. Supports key presses, key releases and [echo] events.
  */

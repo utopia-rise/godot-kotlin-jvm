@@ -6,16 +6,20 @@
 package godot
 
 import godot.annotation.GodotBaseType
+import godot.core.Color
+import godot.core.RID
 import godot.core.TransferContext
 import godot.core.Transform2D
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
+import godot.core.VariantType._RID
 import godot.core.Vector2
 import kotlin.Any
 import kotlin.Boolean
@@ -26,7 +30,7 @@ import kotlin.Suppress
  * Base class for all 2D shapes.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html)
+ * [https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html)
  *
  * Base class for all 2D shapes. All 2D shape types inherit from this.
  */
@@ -120,5 +124,13 @@ open class Shape2D : Resource() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SHAPE2D_COLLIDE_WITH_MOTION_AND_GET_CONTACTS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+  }
+
+  /**
+   * Draws a solid shape onto a [godot.CanvasItem] with the [godot.VisualServer] API filled with the specified `color`. The exact drawing method is specific for each shape and cannot be configured.
+   */
+  open fun draw(canvasItem: RID, color: Color) {
+    TransferContext.writeArguments(_RID to canvasItem, COLOR to color)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_DRAW, NIL)
   }
 }

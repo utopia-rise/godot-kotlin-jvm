@@ -13,13 +13,18 @@ import godot.core.VariantType.COLOR
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.STRING
 import kotlin.Boolean
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
  * DynamicFont renders vector font files at runtime.
+ *
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
  * DynamicFont renders vector font files (such as TTF or OTF) dynamically at runtime instead of using a prerendered texture atlas like [godot.BitmapFont]. This trades the faster loading time of [godot.BitmapFont]s for the ability to change font parameters like size and spacing during runtime. [godot.DynamicFontData] is used for referencing the font file paths. DynamicFont also supports defining one or more fallback fonts, which will be used when displaying a character not supported by the main font.
  *
@@ -53,7 +58,9 @@ open class DynamicFont : Font() {
     }
 
   /**
-   * Extra character spacing in pixels.
+   * Extra spacing for each character in pixels.
+   *
+   * This can be a negative number to make the distance between characters smaller.
    */
   open var extraSpacingChar: Long
     get() {
@@ -69,7 +76,9 @@ open class DynamicFont : Font() {
     }
 
   /**
-   * Extra space spacing in pixels.
+   * Extra spacing for the space character (in addition to [extraSpacingChar]) in pixels.
+   *
+   * This can be a negative number to make the distance between words smaller.
    */
   open var extraSpacingSpace: Long
     get() {
@@ -208,6 +217,18 @@ open class DynamicFont : Font() {
   }
 
   /**
+   * Returns a string containing all the characters available in the main and all the fallback fonts.
+   *
+   * If a given character is included in more than one font, it appears only once in the returned string.
+   */
+  open fun getAvailableChars(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_GET_AVAILABLE_CHARS,
+        STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
    * Returns the fallback font at index `idx`.
    */
   open fun getFallback(idx: Long): DynamicFontData? {
@@ -256,12 +277,12 @@ open class DynamicFont : Font() {
     SPACING_BOTTOM(1),
 
     /**
-     * Character spacing.
+     * Spacing for each character.
      */
     SPACING_CHAR(2),
 
     /**
-     * Space spacing.
+     * Spacing for the space character.
      */
     SPACING_SPACE(3);
 
@@ -282,12 +303,12 @@ open class DynamicFont : Font() {
     final const val SPACING_BOTTOM: Long = 1
 
     /**
-     * Character spacing.
+     * Spacing for each character.
      */
     final const val SPACING_CHAR: Long = 2
 
     /**
-     * Space spacing.
+     * Spacing for the space character.
      */
     final const val SPACING_SPACE: Long = 3
 

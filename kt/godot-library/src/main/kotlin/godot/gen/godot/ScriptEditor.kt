@@ -68,7 +68,7 @@ open class ScriptEditor : PanelContainer() {
   open fun _closeAllTabs() {
   }
 
-  open fun _closeCurrentTab() {
+  open fun _closeCurrentTab(arg0: Boolean) {
   }
 
   open fun _closeDiscardCurrentTab(arg0: String) {
@@ -290,7 +290,7 @@ open class ScriptEditor : PanelContainer() {
   }
 
   /**
-   *
+   * Opens the script create dialog. The script will extend `base_name`. The file extension can be omitted from `base_path`. It will be added based on the selected scripting language.
    */
   open fun openScriptCreateDialog(baseName: String, basePath: String) {
     TransferContext.writeArguments(STRING to baseName, STRING to basePath)

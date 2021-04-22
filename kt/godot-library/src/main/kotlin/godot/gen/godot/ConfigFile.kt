@@ -64,6 +64,14 @@ open class ConfigFile : Reference() {
   }
 
   /**
+   *
+   */
+  open fun clear() {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_CLEAR, NIL)
+  }
+
+  /**
    * Deletes the specified section along with all the key-value pairs inside. Raises an error if the section does not exist.
    */
   open fun eraseSection(section: String) {
@@ -165,7 +173,7 @@ open class ConfigFile : Reference() {
   }
 
   /**
-   * Parses the the passed string as the contents of a config file. The string is parsed and loaded in the ConfigFile object which the method was called on.
+   * Parses the passed string as the contents of a config file. The string is parsed and loaded in the ConfigFile object which the method was called on.
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */

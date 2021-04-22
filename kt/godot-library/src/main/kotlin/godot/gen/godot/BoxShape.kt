@@ -16,6 +16,9 @@ import kotlin.Unit
 /**
  * Box shape resource.
  *
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/125](https://godotengine.org/asset-library/asset/125)
+ *
  * 3D box shape that can be a child of a [godot.PhysicsBody] or [godot.Area].
  */
 @GodotBaseType

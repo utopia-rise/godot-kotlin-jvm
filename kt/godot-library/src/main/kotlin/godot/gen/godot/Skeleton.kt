@@ -19,6 +19,8 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.VariantType.TRANSFORM
 import godot.core.VariantType._RID
+import godot.signals.Signal0
+import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -29,6 +31,9 @@ import kotlin.Suppress
 /**
  * Skeleton for characters and animated objects.
  *
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
+ *
  * Skeleton provides a hierarchical interface for managing bones, including pose, rest and animation (see [godot.Animation]). It can also use ragdoll physics.
  *
  * The overall transform of a bone with respect to the skeleton is determined by the following hierarchical order: rest pose, custom pose and pose.
@@ -37,6 +42,11 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class Skeleton : Spatial() {
+  /**
+   *
+   */
+  val skeletonUpdated: Signal0 by signal()
+
   override fun __new() {
     callConstructor(ENGINECLASS_SKELETON)
   }

@@ -24,6 +24,9 @@ import kotlin.Unit
 
 /**
  *
+ *
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  */
 @GodotBaseType
 open class GIProbeData : Resource() {

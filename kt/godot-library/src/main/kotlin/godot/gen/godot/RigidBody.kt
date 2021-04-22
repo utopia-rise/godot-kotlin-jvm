@@ -6,9 +6,11 @@
 package godot
 
 import godot.annotation.GodotBaseType
+import godot.core.Basis
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
+import godot.core.VariantType.BASIS
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -31,7 +33,7 @@ import kotlin.Unit
  * Physics Body whose position is determined through physics simulation in 3D space.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html)
+ * [https://godotengine.org/asset-library/asset/675](https://godotengine.org/asset-library/asset/675)
  *
  * This is the node that implements full 3D physics. This means that you do not control a RigidBody directly. Instead, you can apply forces to it (gravity, impulses, etc.), and the physics simulation will calculate the resulting movement, collision, bouncing, rotating, etc.
  *
@@ -46,27 +48,47 @@ import kotlin.Unit
 @GodotBaseType
 open class RigidBody : PhysicsBody() {
   /**
-   * Emitted when a body enters into contact with this one. Requires [contactMonitor] to be set to `true` and [contactsReported] to be set high enough to detect all the collisions.
+   * Emitted when a collision with another [godot.PhysicsBody] or [godot.GridMap] occurs. Requires [contactMonitor] to be set to `true` and [contactsReported] to be set high enough to detect all the collisions. [godot.GridMap]s are detected if the [godot.MeshLibrary] has Collision [godot.Shape]s.
+   *
+   * `body` the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody] or [godot.GridMap].
    */
   val bodyEntered: Signal1<Node> by signal("body")
 
   /**
-   * Emitted when a body shape exits contact with this one. Requires [contactMonitor] to be set to `true` and [contactsReported] to be set high enough to detect all the collisions.
+   * Emitted when the collision with another [godot.PhysicsBody] or [godot.GridMap] ends. Requires [contactMonitor] to be set to `true` and [contactsReported] to be set high enough to detect all the collisions. [godot.GridMap]s are detected if the [godot.MeshLibrary] has Collision [godot.Shape]s.
+   *
+   * `body` the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody] or [godot.GridMap].
    */
   val bodyExited: Signal1<Node> by signal("body")
 
   /**
-   * Emitted when a body enters into contact with this one. Requires [contactMonitor] to be set to `true` and [contactsReported] to be set high enough to detect all the collisions.
+   * Emitted when one of this RigidBody's [godot.Shape]s collides with another [godot.PhysicsBody] or [godot.GridMap]'s [godot.Shape]s. Requires [contactMonitor] to be set to `true` and [contactsReported] to be set high enough to detect all the collisions. [godot.GridMap]s are detected if the [godot.MeshLibrary] has Collision [godot.Shape]s.
    *
-   * This signal not only receives the body that collided with this one, but also its [RID] (`body_id`), the shape index from the colliding body (`body_shape`), and the shape index from this body (`local_shape`) the other body collided with.
+   * `body_id` the [RID] of the other [godot.PhysicsBody] or [godot.MeshLibrary]'s [godot.CollisionObject] used by the [godot.PhysicsServer].
+   *
+   * `body` the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody] or [godot.GridMap].
+   *
+   * `body_shape` the index of the [godot.Shape] of the other [godot.PhysicsBody] or [godot.GridMap] used by the [godot.PhysicsServer].
+   *
+   * `local_shape` the index of the [godot.Shape] of this RigidBody used by the [godot.PhysicsServer].
+   *
+   * **Note:** Bullet physics cannot identify the shape index when using a [godot.ConcavePolygonShape]. Don't use multiple [godot.CollisionShape]s when using a [godot.ConcavePolygonShape] with Bullet physics if you need shape indices.
    */
   val bodyShapeEntered: Signal4<Long, Node, Long, Long> by signal("body_id", "body", "body_shape",
       "local_shape")
 
   /**
-   * Emitted when a body shape exits contact with this one. Requires [contactMonitor] to be set to `true` and [contactsReported] to be set high enough to detect all the collisions.
+   * Emitted when the collision between one of this RigidBody's [godot.Shape]s and another [godot.PhysicsBody] or [godot.GridMap]'s [godot.Shape]s ends. Requires [contactMonitor] to be set to `true` and [contactsReported] to be set high enough to detect all the collisions. [godot.GridMap]s are detected if the [godot.MeshLibrary] has Collision [godot.Shape]s.
    *
-   * This signal not only receives the body that stopped colliding with this one, but also its [RID] (`body_id`), the shape index from the colliding body (`body_shape`), and the shape index from this body (`local_shape`) the other body stopped colliding with.
+   * `body_id` the [RID] of the other [godot.PhysicsBody] or [godot.MeshLibrary]'s [godot.CollisionObject] used by the [godot.PhysicsServer]. [godot.GridMap]s are detected if the Meshes have [godot.Shape]s.
+   *
+   * `body` the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody] or [godot.GridMap].
+   *
+   * `body_shape` the index of the [godot.Shape] of the other [godot.PhysicsBody] or [godot.GridMap] used by the [godot.PhysicsServer].
+   *
+   * `local_shape` the index of the [godot.Shape] of this RigidBody used by the [godot.PhysicsServer].
+   *
+   * **Note:** Bullet physics cannot identify the shape index when using a [godot.ConcavePolygonShape]. Don't use multiple [godot.CollisionShape]s when using a [godot.ConcavePolygonShape] with Bullet physics if you need shape indices.
    */
   val bodyShapeExited: Signal4<Long, Node, Long, Long> by signal("body_id", "body", "body_shape",
       "local_shape")
@@ -80,6 +102,8 @@ open class RigidBody : PhysicsBody() {
 
   /**
    * Damps RigidBody's rotational forces.
+   *
+   * See [godot.ProjectSettings.physics/3d/defaultAngularDamp] for more details about damping.
    */
   open var angularDamp: Double
     get() {
@@ -336,6 +360,8 @@ open class RigidBody : PhysicsBody() {
 
   /**
    * The body's linear damp. Cannot be less than -1.0. If this value is different from -1.0, any linear damp derived from the world or areas will be overridden.
+   *
+   * See [godot.ProjectSettings.physics/3d/defaultLinearDamp] for more details about damping.
    */
   open var linearDamp: Double
     get() {
@@ -537,6 +563,16 @@ open class RigidBody : PhysicsBody() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY_GET_COLLIDING_BODIES,
         ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+  }
+
+  /**
+   * Returns the inverse inertia tensor basis. This is used to calculate the angular acceleration resulting from a torque applied to the RigidBody.
+   */
+  open fun getInverseInertiaTensor(): Basis {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RIGIDBODY_GET_INVERSE_INERTIA_TENSOR, BASIS)
+    return TransferContext.readReturnValue(BASIS, false) as Basis
   }
 
   /**

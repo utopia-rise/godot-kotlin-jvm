@@ -31,6 +31,8 @@ import kotlin.Suppress
  * Textures are often created by loading them from a file. See [@GDScript.load].
  *
  * [godot.Texture] is a base for other resources. It cannot be used directly.
+ *
+ * **Note:** The maximum texture size is 16384×16384 pixels due to graphics hardware limitations. Larger textures may fail to import.
  */
 @GodotBaseType
 open class Texture : Resource() {
@@ -155,6 +157,8 @@ open class Texture : Resource() {
 
     /**
      * Repeats the texture (instead of clamp to edge).
+     *
+     * **Note:** Ignored when using an [godot.AtlasTexture] as these don't support repetition.
      */
     FLAG_REPEAT(2),
 
@@ -182,6 +186,8 @@ open class Texture : Resource() {
 
     /**
      * Repeats the texture with alternate sections mirrored.
+     *
+     * **Note:** Ignored when using an [godot.AtlasTexture] as these don't support repetition.
      */
     FLAG_MIRRORED_REPEAT(32),
 
@@ -230,11 +236,15 @@ open class Texture : Resource() {
 
     /**
      * Repeats the texture with alternate sections mirrored.
+     *
+     * **Note:** Ignored when using an [godot.AtlasTexture] as these don't support repetition.
      */
     final const val FLAG_MIRRORED_REPEAT: Long = 32
 
     /**
      * Repeats the texture (instead of clamp to edge).
+     *
+     * **Note:** Ignored when using an [godot.AtlasTexture] as these don't support repetition.
      */
     final const val FLAG_REPEAT: Long = 2
 
