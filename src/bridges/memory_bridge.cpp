@@ -40,6 +40,7 @@ MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) 
     methods.push_back(check_instance_method);
     methods.push_back(unref_method);
     methods.push_back(unref_native_core_type_method);
+    methods.push_back(notify_leak_method);
 
     jni::Env env{jni::Jvm::current_env()};
     j_class.register_natives(env, methods);
