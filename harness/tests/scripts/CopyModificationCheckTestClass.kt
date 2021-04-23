@@ -153,7 +153,7 @@ class CopyModificationCheckTestClass: Spatial() {
         vectorRefThroughProvider.x = 5.0
     }
 
-    // Allowed as `blubbAllowedAsAssignedLater` is assigned later so the change of `x` actually has a use
+    // Allowed as `vectorCopy` is assigned later so the change of `x` actually has a use
     fun copyButAssignedLater() {
         val vectorCopy = spatial.rotation
         vectorCopy[0] = 5.0
@@ -163,7 +163,8 @@ class CopyModificationCheckTestClass: Spatial() {
         anotherSpatial.rotation = vectorCopy
     }
 
-    // Not allowed as modifying a local copy without using the modified local copy later. We have to assume that the modification was done by "accident"
+    // Not allowed as modifying a local copy without using the modified local copy later.
+    // We have to assume that the modification was done by "accident"
     fun copyModificationThroughReference() {
         val vectorCopy = spatial.rotation
         vectorCopy[0] = 5.0
