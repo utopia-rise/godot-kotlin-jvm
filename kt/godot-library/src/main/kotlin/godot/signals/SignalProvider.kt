@@ -1,12 +1,12 @@
 package godot.signals
 
 import godot.Object
-import godot.util.camelToSnakeCase
 import kotlin.reflect.KProperty
 
 class SignalDelegate<T : Signal>(val factory: () -> T) {
     @PublishedApi
     internal var signal: T? = null
+    @Suppress("NOTHING_TO_INLINE")
     inline operator fun getValue(thisRef: Object, property: KProperty<*>): T {
         if (signal == null) {
             signal = factory()

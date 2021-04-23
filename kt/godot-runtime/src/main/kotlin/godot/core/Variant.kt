@@ -173,7 +173,7 @@ enum class VariantType(
             }
     ),
     TRANSFORM2D(
-            { buffer: ByteBuffer, expectedType: Int ->
+            { buffer: ByteBuffer, _: Int ->
                 val x = buffer.vector2
                 val y = buffer.vector2
                 val origin = buffer.vector2
@@ -386,7 +386,7 @@ enum class VariantType(
             }
     ), // 25
     POOL_COLOR_ARRAY(
-            { buffer: ByteBuffer, expectedType: Int ->
+            { buffer: ByteBuffer, _: Int ->
                 val ptr = buffer.long
                 PoolColorArray(ptr)
             },

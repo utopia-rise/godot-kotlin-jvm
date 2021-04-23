@@ -305,6 +305,7 @@ object GarbageCollector {
     private fun forceJvmGc() {
         var any: Any? = Any()
         val wkRef = WeakReference(any)
+        @Suppress("UNUSED_VALUE")
         any = null
         while (wkRef.get() != null) {
             System.gc()

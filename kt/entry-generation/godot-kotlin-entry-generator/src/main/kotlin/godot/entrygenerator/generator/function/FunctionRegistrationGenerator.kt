@@ -1,6 +1,8 @@
 package godot.entrygenerator.generator.function
 
-import com.squareup.kotlinpoet.*
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.CodeBlock
+import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.MemberName.Companion.member
 import godot.entrygenerator.extension.getAnnotationValue
 import godot.entrygenerator.extension.toParameterKtVariantType
@@ -88,7 +90,7 @@ object FunctionRegistrationGenerator {
             append("function(%L,·%T") //functionReference, returnTypeConverterReference
 
             if (functionDescriptor.valueParameters.isNotEmpty()) {
-                functionDescriptor.valueParameters.forEach { param ->
+                functionDescriptor.valueParameters.forEach { _ ->
                     append(",·%T·to·%L") //Variant type
                 }
                 functionDescriptor.valueParameters.forEach { _ ->
