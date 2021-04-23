@@ -44,10 +44,15 @@ namespace jni {
 
         JavaVM* java_vm{nullptr};
         JNIEnv* jni_env{nullptr};
+
+#ifndef NO_USE_STDLIB
+        std::locale global;
+#endif
+
         jint result{JvmLoader::get_create_jvm_function()(&java_vm, reinterpret_cast<void**>(&jni_env), &args)};
 
 #ifndef NO_USE_STDLIB
-        std::locale::global(std::locale());
+        std::locale::global(global);
 #endif
 
         delete[] options;
