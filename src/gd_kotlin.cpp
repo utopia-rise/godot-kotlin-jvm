@@ -178,7 +178,7 @@ void GDKotlin::init() {
                     jvm_jmx_port = "9010";
                 }
             }
-        } else if (cmd_arg.find("--jvm_to_engine_max_string_size") >= 0) {
+        } else if (cmd_arg.find("--jvm-to-engine-max-string-size") >= 0) {
             String result;
             if (split_jvm_debug_argument(cmd_arg, result) == OK) {
                 jvm_to_engine_max_string_size = result.to_int();
@@ -263,7 +263,7 @@ void GDKotlin::init() {
     LOG_INFO(vformat("Loading bootstrap jar: %s", bootstrap_jar))
     jni::Env env{jni::Jvm::current_env()};
 
-    jni::JObject class_loader = ClassLoader::provide_loader(env, bootstrap_jar, jni::JObject(nullptr));
+    jni::JObject class_loader {ClassLoader::provide_loader(env, bootstrap_jar, jni::JObject(nullptr))};
     ClassLoader::set_default_loader(class_loader);
     class_loader.delete_local_ref(env);
 

@@ -6,14 +6,14 @@ ClassLoader::ClassLoader(): class_loader{jni::JObject()} {
 }
 
 jni::JObject to_java_url(jni::Env& env, const String& bootstrapJar) {
-    jni::JClass cls = env.find_class("java/io/File");
-    jni::MethodId ctor = cls.get_constructor_method_id(env, "(Ljava/lang/String;)V");
-    jni::JObject path = env.new_string(bootstrapJar.utf8().get_data());
+    jni::JClass cls  {env.find_class("java/io/File")};
+    jni::MethodId ctor {cls.get_constructor_method_id(env, "(Ljava/lang/String;)V")};
+    jni::JObject path {env.new_string(bootstrapJar.utf8().get_data())};
     jvalue args[1] = {jni::to_jni_arg(path)};
-    jni::JObject file = cls.new_instance(env, ctor, args);
+    jni::JObject file {cls.new_instance(env, ctor, args)};
     assert(!file.is_null());
-    jni::MethodId to_url_method = cls.get_method_id(env, "toURL", "()Ljava/net/URL;");
-    jni::JObject url = file.call_object_method(env, to_url_method);
+    jni::MethodId to_url_method {cls.get_method_id(env, "toURL", "()Ljava/net/URL;")};
+    jni::JObject url {file.call_object_method(env, to_url_method)};
     assert(!url.is_null());
     return url;
 }
@@ -55,12 +55,12 @@ void ClassLoader::set_default_loader(jni::JObject& p_class_loader) {
     jni::Env env{jni::Jvm::current_env()};
     get_instance().class_loader = p_class_loader.new_global_ref<jni::JObject>(env);
 
-    auto cls = env.find_class("java/lang/Thread");
-    jni::MethodId current_thread_method = cls.get_static_method_id(env, "currentThread", "()Ljava/lang/Thread;");
-    jni::JObject thread = cls.call_static_object_method(env, current_thread_method);
+    jni::JClass cls {env.find_class("java/lang/Thread")};
+    jni::MethodId current_thread_method {cls.get_static_method_id(env, "currentThread", "()Ljava/lang/Thread;")};
+    jni::JObject thread {cls.call_static_object_method(env, current_thread_method)};
     assert(!thread.is_null());
 
-    auto setContextClassLoaderMethod = cls.get_method_id(env, "setContextClassLoader", "(Ljava/lang/ClassLoader;)V");
+    _jmethodID * setContextClassLoaderMethod {cls.get_method_id(env, "setContextClassLoader", "(Ljava/lang/ClassLoader;)V")};
     jvalue args[1] = {jni::to_jni_arg(p_class_loader)};
 
     thread.call_void_method(env, setContextClassLoaderMethod, args);
