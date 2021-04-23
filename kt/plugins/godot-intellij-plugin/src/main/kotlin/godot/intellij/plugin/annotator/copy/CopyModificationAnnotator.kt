@@ -81,10 +81,7 @@ class CopyModificationAnnotator : Annotator {
                 receiverType?.getJetTypeFqName(false) != "godot.core.Dictionary" &&
                     receiverType?.getJetTypeFqName(false) != "godot.core.VariantArray" &&
                     receiverType?.isCoreType() == true &&
-                    (((element.selectorExpression as? KtCallExpression)
-                        ?.calleeExpression as? KtReferenceExpression)
-                        ?.resolve() as? KtAnnotated)
-                        ?.findAnnotation(FqName(CORE_TYPE_HELPER_ANNOTATION)) != null
+                    (((element.selectorExpression as? KtCallExpression)?.calleeExpression as? KtReferenceExpression)?.resolve() as? KtAnnotated)?.findAnnotation(FqName(CORE_TYPE_HELPER_ANNOTATION)) != null
             }
             else -> false
         }
