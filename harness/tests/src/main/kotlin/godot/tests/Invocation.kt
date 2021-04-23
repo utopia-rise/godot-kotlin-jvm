@@ -92,6 +92,9 @@ class Invocation : Spatial() {
 			field = value
 		}
 
+    @RegisterProperty
+    var vector = Vector3()
+
 	@Export
 	@RegisterProperty
 	var x = 0

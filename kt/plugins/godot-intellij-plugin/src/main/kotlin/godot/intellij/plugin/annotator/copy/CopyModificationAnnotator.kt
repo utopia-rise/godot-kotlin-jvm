@@ -1,13 +1,16 @@
 package godot.intellij.plugin.annotator.copy
 
+import com.intellij.codeInspection.ProblemHighlightType
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
 import com.intellij.psi.search.searches.ReferencesSearch
+import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.extension.registerProblem
 import org.jetbrains.kotlin.descriptors.impl.ClassConstructorDescriptorImpl
 import org.jetbrains.kotlin.idea.caches.resolve.analyze
 import org.jetbrains.kotlin.idea.debugger.sequence.psi.resolveType
+import org.jetbrains.kotlin.idea.util.module
 import org.jetbrains.kotlin.js.descriptorUtils.getJetTypeFqName
 import org.jetbrains.kotlin.js.resolve.diagnostics.findPsi
 import org.jetbrains.kotlin.lexer.KtSingleValueToken
@@ -15,6 +18,7 @@ import org.jetbrains.kotlin.nj2k.postProcessing.resolve
 import org.jetbrains.kotlin.psi.KtArrayAccessExpression
 import org.jetbrains.kotlin.psi.KtBinaryExpression
 import org.jetbrains.kotlin.psi.KtCallExpression
+import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtConstructor
 import org.jetbrains.kotlin.psi.KtDotQualifiedExpression
 import org.jetbrains.kotlin.psi.KtExpression
@@ -33,16 +37,25 @@ class CopyModificationAnnotator : Annotator {
         val isCoreTypeCopyAssignment = if (element is KtBinaryExpression) {
             val tokenType = element.operationToken
             if (tokenType is KtSingleValueToken && tokenType.value == "=") {
-                element.left?.let { evaluateExpression(it) } ?: false
+                val left = element.left
+                when {
+                    left is KtDotQualifiedExpression && !left.receiverExpression.resolveType().isCoreType() -> false
+                    left is KtArrayAccessExpression && left.arrayExpression?.resolveType()?.isCoreType() == false -> false
+                    else -> element.left?.let { evaluateExpression(it) } ?: false
+                }
             } else false
         } else false
 
         if (isCoreTypeCopyAssignment) {
-            holder.registerProblem("Test", element)
+            holder.registerProblem(
+                GodotPluginBundle.message("problem.general.modificationOfCoreTypeCopy"),
+                element,
+                problemHighlightType = ProblemHighlightType.WEAK_WARNING
+            )
         }
     }
 
-    private fun evaluateExpression(expression: KtExpression) : Boolean {
+    private fun evaluateExpression(expression: KtExpression): Boolean {
         return when (expression) {
             is KtDotQualifiedExpression -> {
                 when (val receiverExpression = expression.receiverExpression) {
@@ -52,7 +65,7 @@ class CopyModificationAnnotator : Annotator {
                     is KtCallExpression -> {
                         evaluateKtCallExpression(receiverExpression)
                     }
-                    else -> expression.receiverExpression.resolveType().isCoreType()
+                    else -> isExpressionFromGodotLibrary(expression.receiverExpression)
                 }
             }
             is KtArrayAccessExpression -> {
@@ -63,48 +76,79 @@ class CopyModificationAnnotator : Annotator {
                     is KtCallExpression -> {
                         evaluateKtCallExpression(arrayExpression)
                     }
-                    else -> arrayExpression?.resolveType()?.isCoreType() ?: false
+                    else -> arrayExpression?.let { isExpressionFromGodotLibrary(it) } ?: false
                 }
             }
             is KtNameReferenceExpression -> {
                 evaluateKtNameReferenceExpression(expression)
             }
+            is KtCallExpression -> {
+                evaluateKtCallExpression(expression)
+            }
             else -> false
         }
+    }
+
+    private fun isExpressionFromGodotLibrary(expression: KtExpression): Boolean {
+        return expression./*let {
+            when (it) {
+                is KtDotQualifiedExpression -> (it.selectorExpression as? KtReferenceExpression)
+                    ?.resolve()
+                    ?.module
+                is KtNameReferenceExpression -> it.resolve()?.module
+                else -> null
+            }?.name?.contains("godot-library") == true && it.*/resolveType().isCoreType()
+//        }
     }
 
     private fun evaluateKtNameReferenceExpression(ktNameReferenceExpression: KtNameReferenceExpression): Boolean {
         val resolvedExpression = ktNameReferenceExpression.resolve()
         return if (resolvedExpression is KtProperty) {
-            val initializer = resolvedExpression.initializer
-            //((((resolvedExpression.initializer as KtCallExpression).calleeExpression as KtReferenceExpression).resolve() as KtNamedFunction).getDeclarationBody() as KtBlockExpression).statements.filterIsInstance<KtReturnExpression>().first().returnedExpression
-            if (initializer is KtCallExpression) {
-                evaluateKtCallExpression(initializer)
-            } else {
-                resolvedExpression.initializer?.isConstructorCall() == false &&
-                    resolvedExpression.initializer !is KtNameReferenceExpression &&
-                    ReferencesSearch.search(resolvedExpression).none { psiReference ->
-                        val referenceElement = psiReference.element
-                        val expressionWithUsage = referenceElement.parent
-                        expressionWithUsage is KtBinaryExpression && expressionWithUsage.right == referenceElement
-                    }
+            val isUsedAsAssignmentLater = ReferencesSearch.search(resolvedExpression).any { psiReference ->
+                val referenceElement = psiReference.element
+                val expressionWithUsage = referenceElement.parent
+                expressionWithUsage is KtBinaryExpression && expressionWithUsage.right == referenceElement
+            }
+
+            when (val initializer = resolvedExpression.initializer) {
+                is KtCallExpression -> {
+                    !isUsedAsAssignmentLater && evaluateKtCallExpression(initializer)
+                }
+                is KtDotQualifiedExpression -> {
+                    !isUsedAsAssignmentLater && evaluateExpression(initializer)
+                }
+                null -> {
+                    !isUsedAsAssignmentLater && resolvedExpression.module?.name?.contains("godot-library") == true
+                }
+                else -> {
+                    resolvedExpression.initializer?.isConstructorCall() == false &&
+                            resolvedExpression.initializer !is KtNameReferenceExpression &&
+                            !isUsedAsAssignmentLater
+                }
             }
         } else false
     }
 
     private fun evaluateKtCallExpression(ktCallExpression: KtCallExpression): Boolean {
-        val function = ((ktCallExpression.calleeExpression as? KtReferenceExpression)?.resolve() as? KtNamedFunction)
-        return if (function?.hasBlockBody() == true) {
-            function
-                .bodyBlockExpression
-                ?.statements
-                ?.filterIsInstance<KtReturnExpression>()
-                ?.map { it.returnedExpression }
-                ?.mapNotNull { it }
-                ?.any { evaluateExpression(it) }
-                ?: false
-        } else {
-            function?.bodyExpression?.let { evaluateExpression(it) } ?: false
+        return when (val function = (ktCallExpression.calleeExpression as? KtReferenceExpression)?.resolve()) {
+            is KtNamedFunction -> {
+                return if (function.hasBlockBody()) {
+                    function
+                        .bodyBlockExpression
+                        ?.statements
+                        ?.filterIsInstance<KtReturnExpression>()
+                        ?.map { it.returnedExpression }
+                        ?.mapNotNull { it }
+                        ?.any { evaluateExpression(it) }
+                        ?: false
+                } else {
+                    function.bodyExpression?.let { evaluateExpression(it) } ?: false
+                }
+            }
+            is KtClass -> {
+                function.module?.name?.contains("godot-library") == true
+            }
+            else -> false
         }
     }
 }
@@ -137,8 +181,6 @@ private val coreTypes = listOf(
     "godot.core.Color",
     "godot.core.NodePath",
     "godot.core.RID",
-    "godot.Object",
-    "godot.core.Dictionary",
     "godot.core.PoolByteArray",
     "godot.core.PoolIntArray",
     "godot.core.PoolRealArray",
@@ -147,22 +189,4 @@ private val coreTypes = listOf(
     "godot.core.PoolVector2Array",
     "godot.core.PoolVector3Array",
     "godot.core.VariantArray",
-    "godot.core.ObjectArray",
-    "godot.core.EnumArray",
-    "godot.core.BoolVariantArray",
-    "godot.core.IntVariantArray",
-    "godot.core.RealVariantArray",
-    "godot.core.StringVariantArray",
-    "godot.core.AABBArray",
-    "godot.core.BasisArray",
-    "godot.core.ColorArray",
-    "godot.core.NodePathArray",
-    "godot.core.PlaneArray",
-    "godot.core.QuatArray",
-    "godot.core.Rect2Array",
-    "godot.core.RIDArray",
-    "godot.core.Transform2DArray",
-    "godot.core.TransformArray",
-    "godot.core.Vector2Array",
-    "godot.core.Vector3Array"
 )

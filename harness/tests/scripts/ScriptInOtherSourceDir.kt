@@ -1,13 +1,14 @@
-import godot.Node
 import godot.Spatial
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.core.Dictionary
 import godot.core.Vector3
+import godot.tests.Invocation
+import godot.tests.TestEnum
 
 @RegisterClass
-class ScriptInOtherSourceDir: Node() {
+class ScriptInOtherSourceDir: Spatial() {
 
     @RegisterProperty
     var spatial = Spatial()
@@ -18,6 +19,8 @@ class ScriptInOtherSourceDir: Node() {
 
     // Not allowed as it's a direct copy modification
     fun directCopyModification() {
+        rotation.x = 5.0
+        rotation[0] = 5.0
         spatial.rotation.x = 5.0
         spatial.rotation[0] = 5.0
         vectorList[0].x = 5.0
@@ -43,7 +46,7 @@ class ScriptInOtherSourceDir: Node() {
 
     // Allowed as it's instantiated with a constructor call
     fun constructorCallModificationThroughFunctionCall() {
-        val vector = Vector3()
+        val vector = Invocation().rotation
         fun vectorProvider() = vector
         vectorProvider()[0] = 5.0
         vectorProvider().x = 5.0
@@ -62,6 +65,45 @@ class ScriptInOtherSourceDir: Node() {
     fun constructorCallModificationThroughReferenceAndFunctionCallWithBody() {
         val vector = Vector3()
         fun vectorProvider(): Vector3 {
+            return vector
+        }
+        val vectorRefThroughProvider = vectorProvider()
+        vectorRefThroughProvider[0] = 5.0
+        vectorRefThroughProvider.x = 5.0
+    }
+
+    // Not allowed as it's a copy modification through some refs
+    fun copyModificationThroughReferenceAndFunctionCallWithBody() {
+        val vector = spatial.rotation
+        fun vectorProvider(): Vector3 {
+            return vector
+        }
+        val vectorRefThroughProvider = vectorProvider()
+        vectorRefThroughProvider[0] = 5.0
+        vectorRefThroughProvider.x = 5.0
+    }
+
+    // Allowed as it's always a modification of a vector crated locally
+    fun constructorCallModificationThroughDifferentReturnBranches(decision: TestEnum) {
+        val vector = Vector3()
+        fun vectorProvider(): Vector3 {
+            if (decision == TestEnum.ENUM_1) {
+                return Vector3()
+            }
+            return vector
+        }
+        val vectorRefThroughProvider = vectorProvider()
+        vectorRefThroughProvider[0] = 5.0
+        vectorRefThroughProvider.x = 5.0
+    }
+
+    // Not allowed as one branch might return a copy of a vector
+    fun copyModificationThroughDifferentReturnBranches(decision: TestEnum) {
+        val vector = spatial.rotation
+        fun vectorProvider(): Vector3 {
+            if (decision == TestEnum.ENUM_1) {
+                return Vector3()
+            }
             return vector
         }
         val vectorRefThroughProvider = vectorProvider()
