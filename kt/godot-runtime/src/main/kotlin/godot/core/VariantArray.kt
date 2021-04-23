@@ -358,7 +358,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     }
 
     @CoreTypeHelper
-    fun <R> get(idx: Int, block: T.() -> R): R {
+    inline fun <R> get(idx: Int, block: T.() -> R): R {
         val localCopy = this[idx]
         val ret = localCopy.block()
         this[idx] = localCopy
