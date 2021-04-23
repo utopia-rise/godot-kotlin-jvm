@@ -60,7 +60,7 @@ class CopyModificationCheckTestClass: Spatial() {
         vectorProvider().x = 5.0
     }
 
-    // All modifications allowed as `blubb` is assigned to something later
+    // All modifications allowed as `vector` is assigned to something later
     fun randomModificationsAllowed() {
         val invocation = Invocation()
         var vector = invocation.transform.basis.x.x
@@ -80,7 +80,7 @@ class CopyModificationCheckTestClass: Spatial() {
         }
     }
 
-    // All modifications NOT allowed as `blubb` is never use later
+    // All modifications NOT allowed as `vector` is never use later
     fun randomModificationsNotAllowed() {
         val invocation = Invocation()
         var vector = invocation.transform.basis.x.x
@@ -125,7 +125,7 @@ class CopyModificationCheckTestClass: Spatial() {
         vectorRefThroughProvider.x = 5.0
     }
 
-    // Allowed as it's always a modification of a vector crated locally
+    // Allowed as it's always a modification of a vector created locally
     fun constructorCallModificationThroughDifferentReturnBranches(decision: TestEnum) {
         val vector = Vector3()
         fun vectorProvider(): Vector3 {
