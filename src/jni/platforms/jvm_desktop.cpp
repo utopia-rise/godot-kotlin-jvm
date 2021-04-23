@@ -56,7 +56,7 @@ namespace jni {
 #endif
 
         delete[] options;
-        JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to create a new java_vm!")
+        JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to create a new vm!")
         return java_vm;
     }
 
