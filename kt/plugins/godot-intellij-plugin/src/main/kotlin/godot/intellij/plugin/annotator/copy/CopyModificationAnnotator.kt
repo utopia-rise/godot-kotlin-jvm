@@ -14,12 +14,15 @@ import org.jetbrains.kotlin.lexer.KtSingleValueToken
 import org.jetbrains.kotlin.nj2k.postProcessing.resolve
 import org.jetbrains.kotlin.psi.KtArrayAccessExpression
 import org.jetbrains.kotlin.psi.KtBinaryExpression
+import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtConstructor
 import org.jetbrains.kotlin.psi.KtDotQualifiedExpression
 import org.jetbrains.kotlin.psi.KtExpression
 import org.jetbrains.kotlin.psi.KtNameReferenceExpression
-import org.jetbrains.kotlin.psi.KtOperationReferenceExpression
+import org.jetbrains.kotlin.psi.KtNamedFunction
 import org.jetbrains.kotlin.psi.KtProperty
+import org.jetbrains.kotlin.psi.KtReferenceExpression
+import org.jetbrains.kotlin.psi.KtReturnExpression
 import org.jetbrains.kotlin.psi.psiUtil.referenceExpression
 import org.jetbrains.kotlin.resolve.bindingContextUtil.getReferenceTargets
 import org.jetbrains.kotlin.resolve.lazy.BodyResolveMode
@@ -27,52 +30,10 @@ import org.jetbrains.kotlin.types.KotlinType
 
 class CopyModificationAnnotator : Annotator {
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
-        val isCoreTypeCopyAssignment = if (element is KtOperationReferenceExpression) {
-            val tokenType = element.operationSignTokenType
+        val isCoreTypeCopyAssignment = if (element is KtBinaryExpression) {
+            val tokenType = element.operationToken
             if (tokenType is KtSingleValueToken && tokenType.value == "=") {
-                when (val parent = element.parent) {
-                    is KtBinaryExpression -> {
-                        when (val leftExpression = parent.left) {
-                            is KtDotQualifiedExpression -> {
-                                val receiverExpression = leftExpression.receiverExpression
-                                if (receiverExpression is KtNameReferenceExpression) {
-                                    val resolvedExpression = receiverExpression.resolve()
-                                    if (resolvedExpression is KtProperty) {
-                                        resolvedExpression.initializer?.isConstructorCall() == false &&
-                                        ReferencesSearch.search(resolvedExpression).none { psiReference ->
-                                            val referenceElement = psiReference.element
-                                            val expressionWithUsage = referenceElement.parent
-                                            expressionWithUsage is KtBinaryExpression && expressionWithUsage.right == referenceElement
-                                        }
-                                    } else false
-                                } else {
-                                    leftExpression.receiverExpression.resolveType().isCoreType()
-                                }
-                            }
-                            is KtArrayAccessExpression -> {
-                                val arrayExpression = leftExpression.arrayExpression
-                                if (arrayExpression is KtNameReferenceExpression) {
-                                    val resolvedExpression = arrayExpression.resolve()
-                                    if (resolvedExpression is KtProperty) {
-                                        resolvedExpression.initializer?.isConstructorCall() == false &&
-                                        ReferencesSearch.search(resolvedExpression).none { psiReference ->
-                                            val referenceElement = psiReference.element
-                                            val expressionWithUsage = referenceElement.parent
-                                            expressionWithUsage is KtBinaryExpression && expressionWithUsage.right == referenceElement
-                                        }
-                                    } else false
-                                } else {
-                                    leftExpression
-                                        .arrayExpression
-                                        ?.resolveType()
-                                        ?.isCoreType() ?: false
-                                }
-                            }
-                            else -> false
-                        }
-                    }
-                    else -> false
-                }
+                element.left?.let { evaluateExpression(it) } ?: false
             } else false
         } else false
 
@@ -81,16 +42,82 @@ class CopyModificationAnnotator : Annotator {
         }
     }
 
-    private fun KtExpression.isConstructorCall(): Boolean {
-        val bindingContext = analyze(BodyResolveMode.FULL)
-        return referenceExpression()
-            ?.getReferenceTargets(bindingContext)
-            ?.firstOrNull()
-            ?.let { declarationDescriptor ->
-                val psi = declarationDescriptor.findPsi()
-                psi is KtConstructor<*> || declarationDescriptor is ClassConstructorDescriptorImpl
-            } ?: false
+    private fun evaluateExpression(expression: KtExpression) : Boolean {
+        return when (expression) {
+            is KtDotQualifiedExpression -> {
+                when (val receiverExpression = expression.receiverExpression) {
+                    is KtNameReferenceExpression -> {
+                        evaluateKtNameReferenceExpression(receiverExpression)
+                    }
+                    is KtCallExpression -> {
+                        evaluateKtCallExpression(receiverExpression)
+                    }
+                    else -> expression.receiverExpression.resolveType().isCoreType()
+                }
+            }
+            is KtArrayAccessExpression -> {
+                when (val arrayExpression = expression.arrayExpression) {
+                    is KtNameReferenceExpression -> {
+                        evaluateKtNameReferenceExpression(arrayExpression)
+                    }
+                    is KtCallExpression -> {
+                        evaluateKtCallExpression(arrayExpression)
+                    }
+                    else -> arrayExpression?.resolveType()?.isCoreType() ?: false
+                }
+            }
+            is KtNameReferenceExpression -> {
+                evaluateKtNameReferenceExpression(expression)
+            }
+            else -> false
+        }
     }
+
+    private fun evaluateKtNameReferenceExpression(ktNameReferenceExpression: KtNameReferenceExpression): Boolean {
+        val resolvedExpression = ktNameReferenceExpression.resolve()
+        return if (resolvedExpression is KtProperty) {
+            val initializer = resolvedExpression.initializer
+            //((((resolvedExpression.initializer as KtCallExpression).calleeExpression as KtReferenceExpression).resolve() as KtNamedFunction).getDeclarationBody() as KtBlockExpression).statements.filterIsInstance<KtReturnExpression>().first().returnedExpression
+            if (initializer is KtCallExpression) {
+                evaluateKtCallExpression(initializer)
+            } else {
+                resolvedExpression.initializer?.isConstructorCall() == false &&
+                    resolvedExpression.initializer !is KtNameReferenceExpression &&
+                    ReferencesSearch.search(resolvedExpression).none { psiReference ->
+                        val referenceElement = psiReference.element
+                        val expressionWithUsage = referenceElement.parent
+                        expressionWithUsage is KtBinaryExpression && expressionWithUsage.right == referenceElement
+                    }
+            }
+        } else false
+    }
+
+    private fun evaluateKtCallExpression(ktCallExpression: KtCallExpression): Boolean {
+        val function = ((ktCallExpression.calleeExpression as? KtReferenceExpression)?.resolve() as? KtNamedFunction)
+        return if (function?.hasBlockBody() == true) {
+            function
+                .bodyBlockExpression
+                ?.statements
+                ?.filterIsInstance<KtReturnExpression>()
+                ?.map { it.returnedExpression }
+                ?.mapNotNull { it }
+                ?.any { evaluateExpression(it) }
+                ?: false
+        } else {
+            function?.bodyExpression?.let { evaluateExpression(it) } ?: false
+        }
+    }
+}
+
+private fun KtExpression.isConstructorCall(): Boolean {
+    val bindingContext = analyze(BodyResolveMode.FULL)
+    return referenceExpression()
+        ?.getReferenceTargets(bindingContext)
+        ?.firstOrNull()
+        ?.let { declarationDescriptor ->
+            val psi = declarationDescriptor.findPsi()
+            psi is KtConstructor<*> || declarationDescriptor is ClassConstructorDescriptorImpl
+        } ?: false
 }
 
 private fun KotlinType.isCoreType(): Boolean {
