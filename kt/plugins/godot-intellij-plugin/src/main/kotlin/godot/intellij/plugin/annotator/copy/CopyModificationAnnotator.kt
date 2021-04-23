@@ -71,6 +71,7 @@ class CopyModificationAnnotator : Annotator {
                 !expression.receiverExpression.resolveType().isCoreType() -> false
             expression is KtArrayAccessExpression &&
                 expression.arrayExpression?.resolveType()?.isCoreType() == false -> false
+            expression is KtNameReferenceExpression && !expression.resolveType().isCoreType() -> false
             else -> true
         }
     }
