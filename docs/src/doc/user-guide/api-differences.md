@@ -1,14 +1,14 @@
 ## Instance types and singletons
 Creating a new instance of a Godot type can be done like any Kotlin types.
 
-```kotlin
+```kt
 val spatial = Spatial()
 val vec = Vector3()
 ```
 
 Godot singletons are mapped as Kotlin objects.
 
-```kotlin
+```kt
 Physics2DServer.areaGetTransform(area)
 ```
 
@@ -29,6 +29,11 @@ To avoid confusion and conflict with Kotlin types, the following Godot symbols a
 - `PoolRealArray` -> `PoolFloatArray` (for naming consistency)
 - `Variant.asReal()` -> `Variant.asFloat()` (for naming consistency)
 
-## Print (logging)
-If you want logs to appear both in CLI and in the Godot Editor you'll have to use the print functions inside the `GD` singleton like: `GD.print("Hello There!")`.  
-Kotlin's print functions like `println("Hello There!")` on the other hand will only print to CLI! These prints will not show up inside the Godot Editor output panel!
+## Logging
+If you want logs to appear both in CLI and in the Godot Editor you will have to use the print functions inside the `GD` singleton like:
+
+```kt
+GD.print("Hello There!")
+```
+
+Kotlin's print functions on the other hand will only print to CLI! They will print to Godot editor's output panel.

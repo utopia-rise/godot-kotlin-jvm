@@ -100,8 +100,3 @@ The `@RegisterClass` annotation can take two arguments:
     If you specify the `className` in the annotation, you have to make sure that this name is unique!
     We implemented compilation checks to make sure the compilation fails if more than two classes are registered with the same name, but we cannot check class names from other scripting languages like GDScript or C#!
     It is also recommended installing our intellij plugin as it shows duplicated registered class names in the editor as an error. See the section [IDE](../getting-started/ide.md) for more information about the plugin.
-
-## What's next?
- - [Registering properties](properties.md)
- - [Registering functions](functions.md)
- - [Registering signals](signals.md)
