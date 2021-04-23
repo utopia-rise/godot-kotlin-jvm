@@ -358,10 +358,11 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
     }
 
     @CoreTypeHelper
-    fun get(idx: Int, block: T.() -> Unit) {
+    fun <R> get(idx: Int, block: T.() -> R): R {
         val localCopy = this[idx]
-        localCopy.block()
+        val ret = localCopy.block()
         this[idx] = localCopy
+        return ret
     }
 
     operator fun get(idx: Int): T {

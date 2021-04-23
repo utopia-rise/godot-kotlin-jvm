@@ -280,10 +280,11 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
     }
 
     @CoreTypeHelper
-    fun get(key: K, block: V.() -> Unit) {
+    fun <R> get(key: K, block: V.() -> R): R {
         val localCopy = this[key]
-        localCopy.block()
+        val ret = localCopy.block()
         this[key] = localCopy
+        return ret
     }
 
     operator fun set(key: K, value: V) {
