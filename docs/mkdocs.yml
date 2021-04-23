@@ -36,6 +36,7 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tabbed
   - admonition
+  - meta
 
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js
@@ -44,7 +45,7 @@ extra_css:
   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css
 
 nav:
-  - Overview: index.md
+  - Home: index.md
   - Getting started:
       - Requirements: getting-started/requirements.md
       - Setting up: getting-started/setting-up.md
@@ -56,20 +57,18 @@ nav:
     - Signals: user-guide/signals.md
     - Functions: user-guide/functions.md
     - Exporting: user-guide/exporting.md
+    - Versioning: user-guide/versioning.md
+    - Supported platforms: user-guide/supported-platforms.md
     - Advanced:
       - Custom src dirs: user-guide/advanced/custom-src-dirs.md
       - Custom gradle wrapper path: user-guide/advanced/custom_gradle_wrapper_path.md
       - Commandline args: user-guide/advanced/commandline-args.md
       - Kotlin singletons: user-guide/advanced/kotlin-singleton.md
-  - Information:
-    - Versioning: information/versioning.md
-    - Supported platforms: information/supported-platforms.md
-    - Alpha: information/alpha.md
-    - Contribution:
-      - General: information/contribution/general.md
-      - Guidelines: information/contribution/guidelines.md
-      - Setup: information/contribution/setup.md
-      - Build with C# support: information/contribution/build-with-csharp-support.md
-      - Knowledge base:
-          - Artefact differentiation: information/contribution/knowledge-base/artefact-differentiation.md
-          - Entry generation: information/contribution/knowledge-base/entry-generation.md
+  - Contributing:
+    - General: contribution/general.md
+    - Guidelines: contribution/guidelines.md
+    - Setup: contribution/setup.md
+    - Build with C# support: contribution/build-with-csharp-support.md
+    - Knowledge base:
+        - Artefact differentiation: contribution/knowledge-base/artefact-differentiation.md
+        - Entry generation: contribution/knowledge-base/entry-generation.md
