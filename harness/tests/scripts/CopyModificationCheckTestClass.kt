@@ -4,6 +4,7 @@ import godot.annotation.RegisterProperty
 import godot.core.Dictionary
 import godot.core.Transform
 import godot.core.Vector3
+import godot.core.variantArrayOf
 import godot.tests.Invocation
 import godot.tests.TestEnum
 
@@ -12,7 +13,7 @@ class CopyModificationCheckTestClass: Spatial() {
 
     @RegisterProperty
     var spatial = Spatial()
-    var vectorList = arrayListOf(Vector3.FORWARD)
+    var vectorList = variantArrayOf(Vector3.FORWARD)
     var dictionary = Dictionary<Int, Vector3>().apply {
         set(0, Vector3.FORWARD)
     }
@@ -178,8 +179,33 @@ class CopyModificationCheckTestClass: Spatial() {
         }
     }
 
+    // not allowed as globalTransform is a copy and it would not be set correctly to this (Spatial) again
+    fun nextedHelperFunction() {
+        globalTransform.origin {
+            x += 3
+        }
+    }
+
+    // both allowed as both are equivalent in functionality and are setting the correct value back to this (Spatial)
+    fun correctlyNestedHelperFunction() {
+        globalTransform {
+            origin.x += 3
+        }
+        globalTransform {
+            origin {
+                x += 3
+            }
+        }
+    }
+
     fun collectionHelperFunction() {
-        //TODO: once helper functions are merged
+        dictionary.get(0) {
+            x += 3
+        }
+
+        vectorList.get(0) {
+            x += 3
+        }
     }
 
     fun dictionaryHelperFunction() {

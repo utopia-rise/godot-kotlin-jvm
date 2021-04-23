@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.annotation.CoreTypeHelper
 import godot.util.*
 import kotlin.math.max
 import kotlin.math.min
@@ -26,6 +27,7 @@ class Rect2(
             _position = Vector2(value)
         }
 
+    @CoreTypeHelper
     inline fun <T> position(block: Vector2.() -> T): T {
         return _position.block()
     }
@@ -40,6 +42,7 @@ class Rect2(
             _size = Vector2(value)
         }
 
+    @CoreTypeHelper
     inline fun <T> size(block: Vector2.() -> T): T {
         return _size.block()
     }
@@ -54,6 +57,7 @@ class Rect2(
             _size = value - _position
         }
 
+    @CoreTypeHelper
     inline fun <T> end(block: Vector2.() -> T): T {
         val vec = end
         val ret = vec.block()

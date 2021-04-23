@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.annotation.CoreTypeHelper
 import godot.util.CMP_EPSILON
 import godot.util.RealT
 import godot.util.isEqualApprox
@@ -774,6 +775,7 @@ class Basis() : CoreType {
             setAxis(0, value)
         }
 
+    @CoreTypeHelper
     inline fun <T> x(block: Vector3.() -> T): T {
         return _x.block()
     }
@@ -788,7 +790,7 @@ class Basis() : CoreType {
             setAxis(1, value)
         }
 
-
+    @CoreTypeHelper
     inline fun <T> y(block: Vector3.() -> T): T {
         return _y.block()
     }
@@ -803,6 +805,7 @@ class Basis() : CoreType {
             setAxis(2, value)
         }
 
+    @CoreTypeHelper
     inline fun <T> z(block: Vector3.() -> T): T {
         return _z.block()
     }

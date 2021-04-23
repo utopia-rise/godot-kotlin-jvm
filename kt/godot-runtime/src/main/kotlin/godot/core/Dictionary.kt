@@ -2,6 +2,7 @@
 
 package godot.core
 
+import godot.annotation.CoreTypeHelper
 import godot.util.MapIterator
 import godot.util.VoidPtr
 
@@ -278,6 +279,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
         return TransferContext.readReturnValue(valueVariantType, true) as V
     }
 
+    @CoreTypeHelper
     fun get(key: K, block: V.() -> Unit) {
         val localCopy = this[key]
         localCopy.block()

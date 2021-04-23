@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.annotation.CoreTypeHelper
 import godot.util.IndexedIterator
 import godot.util.VoidPtr
 
@@ -356,6 +357,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
         Bridge.engine_call_operator_set(_handle)
     }
 
+    @CoreTypeHelper
     fun get(idx: Int, block: T.() -> Unit) {
         val localCopy = this[idx]
         localCopy.block()

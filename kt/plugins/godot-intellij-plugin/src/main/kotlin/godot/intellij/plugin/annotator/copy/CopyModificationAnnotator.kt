@@ -6,15 +6,19 @@ import com.intellij.lang.annotation.Annotator
 import com.intellij.psi.PsiElement
 import com.intellij.psi.search.searches.ReferencesSearch
 import godot.intellij.plugin.GodotPluginBundle
+import godot.intellij.plugin.data.model.CORE_TYPE_HELPER_ANNOTATION
 import godot.intellij.plugin.extension.registerProblem
 import org.jetbrains.kotlin.descriptors.impl.ClassConstructorDescriptorImpl
 import org.jetbrains.kotlin.idea.caches.resolve.analyze
 import org.jetbrains.kotlin.idea.debugger.sequence.psi.resolveType
+import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.idea.util.module
 import org.jetbrains.kotlin.js.descriptorUtils.getJetTypeFqName
 import org.jetbrains.kotlin.js.resolve.diagnostics.findPsi
 import org.jetbrains.kotlin.lexer.KtSingleValueToken
+import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.nj2k.postProcessing.resolve
+import org.jetbrains.kotlin.psi.KtAnnotated
 import org.jetbrains.kotlin.psi.KtArrayAccessExpression
 import org.jetbrains.kotlin.psi.KtBinaryExpression
 import org.jetbrains.kotlin.psi.KtCallExpression
@@ -53,6 +57,35 @@ class CopyModificationAnnotator : Annotator {
                     element.baseExpression?.let { evaluateExpression(it) } ?: false
                 } else false
             }
+            /*
+              check if a core type helper function is used on a copied core type
+              example:
+              globalTransform.origin {
+                  x += 3
+              }
+
+              correct would be:
+              globalTransform {
+                  origin {
+                      x += 3
+                  }
+              }
+              or:
+              globalTransform {
+                  origin.x += 3
+              }
+             */
+            is KtDotQualifiedExpression -> {
+                val receiverType = element.receiverExpression.resolveTypeSafe()
+
+                receiverType?.getJetTypeFqName(false) != "godot.core.Dictionary" &&
+                    receiverType?.getJetTypeFqName(false) != "godot.core.VariantArray" &&
+                    receiverType?.isCoreType() == true &&
+                    (((element.selectorExpression as? KtCallExpression)
+                        ?.calleeExpression as? KtReferenceExpression)
+                        ?.resolve() as? KtAnnotated)
+                        ?.findAnnotation(FqName(CORE_TYPE_HELPER_ANNOTATION)) != null
+            }
             else -> false
         }
 
@@ -68,10 +101,9 @@ class CopyModificationAnnotator : Annotator {
     private fun shouldEvaluate(expression: KtExpression?): Boolean {
         return when {
             expression is KtDotQualifiedExpression &&
-                !expression.receiverExpression.resolveType().isCoreType() -> false
+                expression.receiverExpression.resolveTypeSafe()?.isCoreType() == false -> false
             expression is KtArrayAccessExpression &&
-                expression.arrayExpression?.resolveType()?.isCoreType() == false -> false
-            expression is KtNameReferenceExpression && !expression.resolveType().isCoreType() -> false
+                expression.arrayExpression?.resolveTypeSafe()?.isCoreType() == false -> false
             else -> true
         }
     }
@@ -81,12 +113,12 @@ class CopyModificationAnnotator : Annotator {
             is KtDotQualifiedExpression -> when (val receiverExpression = expression.receiverExpression) {
                 is KtNameReferenceExpression -> evaluateKtNameReferenceExpression(receiverExpression)
                 is KtCallExpression -> evaluateKtCallExpression(receiverExpression)
-                else -> expression.receiverExpression.resolveType().isCoreType()
+                else -> expression.receiverExpression.resolveTypeSafe()?.isCoreType() == true
             }
             is KtArrayAccessExpression -> when (val arrayExpression = expression.arrayExpression) {
                 is KtNameReferenceExpression -> evaluateKtNameReferenceExpression(arrayExpression)
                 is KtCallExpression -> evaluateKtCallExpression(arrayExpression)
-                else -> arrayExpression?.resolveType()?.isCoreType() ?: false
+                else -> arrayExpression?.resolveTypeSafe()?.isCoreType() ?: false
             }
             is KtNameReferenceExpression -> evaluateKtNameReferenceExpression(expression)
             is KtCallExpression -> evaluateKtCallExpression(expression)
@@ -114,8 +146,9 @@ class CopyModificationAnnotator : Annotator {
                 null ->
                     !isUsedAsAssignmentLater && resolvedExpression.module?.name?.contains("godot-library") == true
                 else ->
-                    resolvedExpression.initializer?.isConstructorCall() == false &&
-                        resolvedExpression.initializer !is KtNameReferenceExpression &&
+                    !initializer.isConstructorCall() &&
+                        initializer !is KtNameReferenceExpression &&
+                        initializer.resolveTypeSafe()?.isCoreType() == true &&
                         !isUsedAsAssignmentLater
             }
         } else false
@@ -156,6 +189,14 @@ private fun KtExpression.isConstructorCall(): Boolean {
 private fun KotlinType.isCoreType(): Boolean = coreTypes
     .contains(getJetTypeFqName(false).removeSuffix("?"))
 
+private fun KtExpression.resolveTypeSafe(): KotlinType? {
+    return try {
+        resolveType()
+    } catch (e: NullPointerException) {
+        null
+    }
+}
+
 private val coreTypes = listOf(
     "godot.core.Vector2",
     "godot.core.Rect2",
@@ -176,5 +217,6 @@ private val coreTypes = listOf(
     "godot.core.PoolColorArray",
     "godot.core.PoolVector2Array",
     "godot.core.PoolVector3Array",
+    "godot.core.Dictionary",
     "godot.core.VariantArray",
 )
