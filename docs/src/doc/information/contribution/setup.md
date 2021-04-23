@@ -26,11 +26,9 @@ Make sure that Java is installed and its PATH set in your system as well (at lea
 stands for the JMX port of you choice. You can then setup remote debug configuration in Intellij' IDEA.
 
 ## Important things to note:
-When you build a sample, it generates a `godot-bootstrap.jar` in `build/libs`. This jar is needed by the engine to function correctly.  
-You need to copy this jar to `<godot-root>/bin`.  
-If you want to automate that, consider using the following gradle task in the samples `build.gradle.kts`. But don't commit it!:
+When you build a sample, it generates a `godot-bootstrap.jar` in `build/libs`. This jar is needed by the engine to function correctly. You need to copy this jar to `<godot-root>/bin`. If you want to automate that, consider using the following gradle task in the samples `build.gradle.kts`- but don't commit it!
 
-```kotlin
+```kt
 afterEvaluate {
     tasks {
         val bootstrapJar = getByName("bootstrapJar")

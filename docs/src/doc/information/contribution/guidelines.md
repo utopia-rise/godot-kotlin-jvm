@@ -10,8 +10,8 @@ Before you start to invest your precious time in writing code that you want to c
 - If the issue does not yet exist, open one and describe as best as you can, what your idea/what the bug is you want to tackle. The provided templates are a good starting point.
 
 ## Code
-- **CodeStyle:**  
-We enforce the code style to match the official Kotlin [coding conventions](https://kotlinlang.org/docs/reference/coding-conventions.html). Read there on how to set those up for your IDE.
-We will enforce this later on through CI and linting.  
-- **Branching:**  
+### Code style
+We enforce the code style to match the official Kotlin [coding conventions](https://kotlinlang.org/docs/reference/coding-conventions.html). Read there on how to set those up for your IDE. We will enforce this later on through CI and linting.  
+
+### Branching
 We do branching like described in `git-flow`.

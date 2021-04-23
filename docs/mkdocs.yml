@@ -43,7 +43,6 @@ extra_javascript:
 extra_css:
   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css
 
-
 nav:
   - Overview: index.md
   - Getting started:
@@ -58,7 +57,7 @@ nav:
     - Functions: user-guide/functions.md
     - Exporting: user-guide/exporting.md
     - Advanced:
-      - Custom Src dirs: user-guide/advanced/custom-src-dirs.md
+      - Custom src dirs: user-guide/advanced/custom-src-dirs.md
       - Custom gradle wrapper path: user-guide/advanced/custom_gradle_wrapper_path.md
       - Commandline args: user-guide/advanced/commandline-args.md
       - Kotlin singletons: user-guide/advanced/kotlin-singleton.md

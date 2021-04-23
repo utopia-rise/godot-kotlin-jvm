@@ -40,10 +40,3 @@ The majority of the JVM ecosystem is at your disposal, just add a dependency lik
         implementation("joda-time:joda-time:2.10.6")
     }
     ```
-
-
-## Creating embedded jre
-It is recommended that you use an embedded JRE during development. As it is needed for exporting your game anyways, it also makes sense to run on the same jre during development which you use for exporting.  
-To create an embedded jre run the following command from the root of your project: `jlink --add-modules java.base,java.logging --output jre`  
-If you want to remote debug add the module `jdk.jdwp.agent` to the command.  
-If you want to enable jmx, add `jdk.management.agent` to the command.
