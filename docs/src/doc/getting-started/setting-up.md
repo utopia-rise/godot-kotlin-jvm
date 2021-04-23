@@ -17,6 +17,9 @@ IntelliJ IDEA should open up your project and if you wait for a bit you should s
 ## Setting up manually
 If you do not want to use our IntelliJ IDEA plugin you can follow these steps to setup a project.
 
+!!! note
+    The following steps requires Gradle to be installed, checkout their [website](https://gradle.org) for installation instructions.
+
 Firstly, you need to setup a gradle [wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html). The wrapper will ensure that anyone who wants to build your project from source will use the same gradle version.
 
 === "Windows" 

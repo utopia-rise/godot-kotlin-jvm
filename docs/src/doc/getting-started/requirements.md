@@ -1,18 +1,5 @@
-Before everything else, you need to install [SDKMAN!](https://sdkman.io) as we will use it the next sections. Installation instructions can be found [here](https://sdkman.io/install). When you are done, open up your terminal.
-
 ## Java
-To use this module, at least Java 1.8 is required. Install it by running the following in your terminal:
-
-```sh
-sdk install java 1.12.0-zulu
-```
-
-## Gradle
-[Gradle](https://gradle.org) is used to build your code and manage your dependencies. In your terminal run the following to install it:
-
-```sh
-sdk install gradle 7.0
-```
+To use this module at least JDK 11 is needed (note you will need the JDK not just the JRE).
 
 ## IDE
 There is currently no plan to support the built-in Godot editor, using [IntelliJ IDEA](https://jetbrains.com/idea) is strongly recommended (the community edition is free). Editors such as VSCode can be used, however, we only provide first class support for IntelliJ IDEA. You can install it via [JetBrains Toolbox](https://www.jetbrains.com/toolbox-app/) app.
