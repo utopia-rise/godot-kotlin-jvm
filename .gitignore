@@ -7,3 +7,5 @@
 *.o
 __pycache__
 libprotobuf/
+
+**/*.DS_Store

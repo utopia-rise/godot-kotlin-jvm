@@ -2,8 +2,12 @@
 
 #include <cassert>
 #include <modules/kotlin_jvm/src/logging.h>
+
+#ifndef NO_USE_STDLIB
+#include <locale>
+#endif
+
 #include "../jvm_loader.h"
-#include "../jvm.h"
 
 namespace jni {
     JavaVM* Jvm::vm = nullptr;
@@ -11,7 +15,7 @@ namespace jni {
     jint Jvm::version = 0;
 
     void Jvm::init(const InitArgs& initArgs) {
-        auto res = get_existing();
+        JavaVM* res{get_existing()};
         if (res == nullptr) {
             res = create(initArgs);
         }
@@ -38,12 +42,17 @@ namespace jni {
             args.options[i].optionString = (char*) initArgs.options[i].c_str();
         }
 
-        JavaVM* vm;
-        JNIEnv* env;
-        auto result = JvmLoader::get_create_jvm_function()(&vm, (void**) &env, (void*) &args);
+        JavaVM* java_vm{nullptr};
+        JNIEnv* jni_env{nullptr};
+        jint result{JvmLoader::get_create_jvm_function()(&java_vm, reinterpret_cast<void**>(&jni_env), &args)};
+
+#ifndef NO_USE_STDLIB
+        std::locale::global(std::locale());
+#endif
+
         delete[] options;
-        JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to create a new vm!")
-        return vm;
+        JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to create a new java_vm!")
+        return java_vm;
     }
 
     JavaVM* Jvm::get_existing() {
