@@ -1,28 +1,73 @@
 package godot.tests
 
-import godot.*
-import godot.annotation.*
+import godot.ARVRServer
+import godot.Button
+import godot.NavigationMesh
+import godot.Object
+import godot.Spatial
+import godot.annotation.ColorNoAlpha
+import godot.annotation.Dir
+import godot.annotation.DoubleRange
+import godot.annotation.EnumFlag
+import godot.annotation.EnumTypeHint
+import godot.annotation.ExpEasing
+import godot.annotation.ExpRange
+import godot.annotation.Export
 import godot.annotation.File
+import godot.annotation.FloatRange
+import godot.annotation.IntFlag
 import godot.annotation.IntRange
 import godot.annotation.LongRange
-import godot.core.*
+import godot.annotation.MultilineText
+import godot.annotation.PlaceHolderText
+import godot.annotation.RegisterClass
+import godot.annotation.RegisterFunction
+import godot.annotation.RegisterProperty
+import godot.annotation.RegisterSignal
+import godot.core.Color
+import godot.core.Dictionary
+import godot.core.NodePath
+import godot.core.PoolByteArray
+import godot.core.PoolColorArray
+import godot.core.PoolIntArray
+import godot.core.PoolRealArray
+import godot.core.PoolStringArray
+import godot.core.PoolVector2Array
+import godot.core.PoolVector3Array
+import godot.core.RID
+import godot.core.VariantArray
+import godot.core.Vector2
+import godot.core.Vector3
+import godot.core.dictionaryOf
+import godot.core.variantArrayOf
 import godot.signals.signal
 import godot.tests.subpackage.OtherScript
 import godot.util.RealT
 import org.joda.time.DateTime
 
 enum class TestEnum {
-	ENUM_1
+	ENUM_1,
+	ENUM_2
 }
 
 @RegisterClass
 class Invocation : Spatial() {
 
+	@Export
+	@RegisterProperty
+	var enumList = listOf(TestEnum.ENUM_1)
+
+	@Export
+	@RegisterProperty
+	var enumListMutable = mutableListOf(TestEnum.ENUM_1, TestEnum.ENUM_2)
+
+	@Export
 	@RegisterProperty
 	var testNullable: Int? = null
 
 	private var hasInitializedLateInits = false
 
+	@Export
 	@RegisterProperty
 	lateinit var lateinitString: String
 
@@ -46,27 +91,37 @@ class Invocation : Spatial() {
 			field = value
 		}
 
+	@Export
 	@RegisterProperty
 	var x = 0
 
+	@Export
 	@RegisterProperty
 	var y = 0.0
 
+	@Export
 	@RegisterProperty
 	var z = 0.0f
 
+	@Export
 	@RegisterProperty
 	var customName = "Idonthaveanyidea"
 
+	//references in default values are allowed if the property is NOT exported
+	private val otherScriptReference = OtherScript()
+	private fun provideOtherScriptReference() = otherScriptReference
 	@RegisterProperty
-	var invocation = OtherScript()
+	var invocation = provideOtherScriptReference()
 
+	@Export
 	@RegisterProperty
 	var enumTest = TestEnum.ENUM_1
 
+	@Export
 	@RegisterProperty
 	var resourceTest = NavigationMesh()
 
+	@Export
 	@RegisterProperty
 	var jvmId: Int = 0
 		get() = hashCode()
@@ -74,114 +129,145 @@ class Invocation : Spatial() {
 			field = hashCode()
 		}
 
+	@Export
 	@RegisterProperty
 	var testArrayAny = VariantArray<Any>()
 
+	@Export
 	@RegisterProperty
 	var navMeshes = variantArrayOf(NavigationMesh())
 
+	@Export
 	@RegisterProperty
 	var nullableArray = variantArrayOf(NavigationMesh(), null)
 
+	@Export
 	@RegisterProperty
 	var anyToAnyDictionary = Dictionary<Any, Any>()
 
+	@Export
 	@RegisterProperty
 	var navMeshesDictionary = dictionaryOf("AwesomeNavmesh" to NavigationMesh())
 
+	@Export
 	@RegisterProperty
 	var nullableDictionary = dictionaryOf(
 		"notnull" to NavigationMesh(),
 		"null" to null
 	)
 
+	@Export
 	@RegisterProperty
 	var color = Color()
 
+	@Export
 	@RegisterProperty
 	var rid = RID()
 
+	@Export
 	@RegisterProperty
 	var poolByteArray = PoolByteArray()
 
+	@Export
 	@RegisterProperty
 	var poolIntArray = PoolIntArray()
 
+	@Export
 	@RegisterProperty
 	var poolRealArray = PoolRealArray()
 
+	@Export
 	@RegisterProperty
 	var poolColorArray = PoolColorArray()
 
+	@Export
 	@RegisterProperty
 	var poolStringArray = PoolStringArray()
 
+	@Export
 	@RegisterProperty
 	var poolVector2Array = PoolVector2Array()
 
+	@Export
 	@RegisterProperty
 	var poolVector3Array = PoolVector3Array()
 
+	@Export
 	@RegisterProperty
 	@IntRange(1, 2)
 	var p1 = 1
 
+	@Export
 	@RegisterProperty
 	@LongRange(1L, 2L)
 	var p1_1 = 1L
 
+	@Export
 	@RegisterProperty
 	@FloatRange(1f, 2f)
 	var p2 = 1f
 
+	@Export
 	@RegisterProperty
 	@DoubleRange(1.0, 2.0)
 	var p3 = 1.0
 
+	@Export
 	@RegisterProperty
 	@ExpRange(1f, 2f)
 	var p4 = 1.0
 
+	@Export
 	@RegisterProperty
 	@ExpRange(1f, 2f)
 	var p5 = 1f
 
+	@Export
 	@RegisterProperty
 	@EnumTypeHint
 	var p6 = TestEnum.ENUM_1
 
+	@Export
 	@RegisterProperty
 	@ExpEasing
 	var p7 = 1f
 
+	@Export
 	@RegisterProperty
 	@ExpEasing
 	var p8 = 1.0
 
+	@Export
 	@RegisterProperty
 	@EnumFlag
 	var p9 = setOf(TestEnum.ENUM_1)
 
+	@Export
 	@RegisterProperty
 	@EnumFlag
 	var p10 = mutableSetOf(TestEnum.ENUM_1)
 
+	@Export
 	@RegisterProperty
 	@EnumFlag
 	var p11 = mutableSetOf<TestEnum>()
 
+	@Export
 	@RegisterProperty
 	@IntFlag
 	var p12 = 1 or 2 and 3
 
+	@Export
 	@RegisterProperty
 	@File
 	var p13 = "someFile"
 
+	@Export
 	@RegisterProperty
 	@Dir
 	var p14 = "someDir"
 
+	@Export
 	@RegisterProperty
 	@MultilineText
 	var p15 = """
@@ -190,23 +276,29 @@ class Invocation : Spatial() {
 		text
 	""".trimIndent()
 
+	@Export
 	@RegisterProperty
 	@PlaceHolderText
 	var p16 = "someDir"
 
+	@Export
 	@RegisterProperty
 	@ColorNoAlpha
 	var p17 = Color()
 
+	@Export
 	@RegisterProperty
 	var stringtemplation = "blubb ${17 + 25}"
 
+	@Export
 	@RegisterProperty
 	var testString = "Two eggs in a boiler. One says: it's hot here, isn't ? The other: oh my god, an egg talking!"
 
+	@Export
 	@RegisterProperty
 	var asciiString = ""
 
+	@Export
 	@RegisterProperty
 	var utf8String = ""
 

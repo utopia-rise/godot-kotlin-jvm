@@ -10,6 +10,7 @@ import godot.intellij.plugin.data.model.REGISTER_CONSTRUCTOR_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_SIGNAL_ANNOTATION
+import godot.intellij.plugin.data.model.TOOL_ANNOTATION
 import godot.intellij.plugin.extension.anyFunctionHasAnnotation
 import godot.intellij.plugin.extension.anyPropertyHasAnnotation
 import godot.intellij.plugin.extension.getGodotRoot
@@ -41,6 +42,13 @@ class RegisterClassAnnotator : Annotator {
             is KtClass -> {
                 if (element.findAnnotation(FqName(REGISTER_CLASS_ANNOTATION)) == null) {
                     val errorLocation = element.nameIdentifier ?: element.navigationElement
+                    if (element.findAnnotation(FqName(TOOL_ANNOTATION)) != null) {
+                        holder.registerProblem(
+                            GodotPluginBundle.message("problem.class.notRegistered.butHasToolAnnotation"),
+                            errorLocation,
+                            classNotRegisteredQuickFix
+                        )
+                    }
                     if (element.anyPropertyHasAnnotation(REGISTER_PROPERTY_ANNOTATION)) {
                         holder.registerProblem(
                             GodotPluginBundle.message("problem.class.notRegistered.properties"),

@@ -89,12 +89,15 @@ You can customize to some extent how your class should be registered in Godot:
 The `@RegisterClass` annotation can take two arguments:
 
 - **className**: If set, the class will be registered with the name you provide
-- **isTool**: If set to true, this class is treated as a tool class. Similar to the `tool` of GDScript. **Default:** false
 
 !!! warning "Unique class names"
     If you specify the `className` in the annotation, you have to make sure that this name is unique!
     We implemented compilation checks to make sure the compilation fails if more than two classes are registered with the same name, but we cannot check class names from other scripting languages like GDScript or C#!
     It is also recommended installing our intellij plugin as it shows duplicated registered class names in the editor as an error. See the section [IDE](../getting-started/ide.md) for more information about the plugin.
+
+## Tool mode
+To make a class a tool class. Add the annotation `@Tool` to your class.  
+Your class needs to be registered with `@RegisterClass` for this annotation to take effect.
 
 ## What's next?
  - [Registering properties](properties.md)

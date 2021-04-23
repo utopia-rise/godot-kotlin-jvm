@@ -22,10 +22,14 @@ class RotatingCube: Spatial() {
 ## Naming
 You can and should name your properties kotlin style camelCase. But for a more natural feel and more consistent code in GDScript when using kotlin properties from GDScript, your properties are actually registered as snake_case. So if you want to use your kotlin property `someFlag` use it from GDScript with `some_flag`.
 
-## Default Values
-If you define a default value for a property and `visibleInEditor` (more on that later) is set to `true`, the default value will be set in the `inspector`.
+## Exporting
+To export your property (make it visible in the inspector), add the annotation `@Export` to your property.  
+A property can only be annotated with `@Export` and thus exported, if the type inherits `godot.Reference`, is a CoreType or a primitive.
 
-!!! note ""
+## Default Values
+If you define a default value for a property and the property is exported with `@Export`, the default value will be set in the `inspector`.
+
+!!! warning ""
     If you set a default value in code and a different value in the `inspector` the value of the `inspector` will override the value in code after `init` and before `_enter_tree`!
     A default value can **only** contain compile time constants and only References to compile time constants! Better you only use refs where you have no other choice like for Enums.
     We try to catch all wrong references during compilation and throw a corresponding exception, but we may have missed some cases which then only occur during runtime.
@@ -35,14 +39,17 @@ If you define a default value for a property and `visibleInEditor` (more on that
 ## Registration Configuration
 You can customize to some extent how your property should be registered in Godot:
 
-The `@RegisterProperty` annotation takes two arguments:
+The `@RegisterProperty` annotation takes one optional argument:
 
-- **visibleInEditor**: If set to `true` the property is visible in the `inspector`. Default: `true`
 - **rpcMode**: Default: `RPCMode.DISABLED`
 
 ## Type Hint Registration
 This module provides a plethora of annotations for defining Property Type Hints. These annotations are for the `inspector` to provide proper hints and editors to set and change values from within the inspector (like a color wheel, checkboxes, file dialogs, and so on...).
-Each property hint annotation can only be added to certain types of properties. If you use such an annotation wrongly, we will let your compilation fail. If you want warnings about wrong type hint annotation usage, install our intellij IDE plugin.
+Each property hint annotation can only be added to certain types of properties. If you use such an annotation wrongly, we will let your compilation fail. If you want warnings about wrong type hint annotation usage, install our intellij IDE plugin.  
+
+!!! warning ""
+    A property hint only takes effect if the property is also annotated with `@Export`
+ 
 Below is a list of currently implemented type hints:
 
 | Annotation      | Type of Property           | Arguments                                                             | Short Description                                                                                                                                |

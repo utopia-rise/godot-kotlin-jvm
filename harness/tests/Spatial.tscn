@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/main/kotlin/godot/tests/Invocation.kt" type="Script" id=1]
 
@@ -6,20 +6,29 @@
 
 [sub_resource type="NavigationMesh" id=2]
 
+[sub_resource type="NavigationMesh" id=3]
+
+[sub_resource type="NavigationMesh" id=4]
+
+[sub_resource type="NavigationMesh" id=5]
+
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 1 )
 nullable_dictionary = {
 "notnull": SubResource( 1 ),
 "null": null
 }
+nullable_array = [ SubResource( 2 ), null ]
 nav_meshes_dictionary = {
-"AwesomeNavmesh": SubResource( 2 )
+"AwesomeNavmesh": SubResource( 3 )
 }
 any_to_any_dictionary = {
 
 }
 test_nullable = 2
+resource_test = SubResource( 4 )
 lateinit_string = "works also from inspector"
+nav_meshes = [ SubResource( 5 ) ]
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.974354, 0.225019, 0, -0.225019, 0.974354, 0, 1.2131, 2.47241 )
