@@ -24,6 +24,7 @@ import org.jetbrains.kotlin.psi.KtDotQualifiedExpression
 import org.jetbrains.kotlin.psi.KtExpression
 import org.jetbrains.kotlin.psi.KtNameReferenceExpression
 import org.jetbrains.kotlin.psi.KtNamedFunction
+import org.jetbrains.kotlin.psi.KtPostfixExpression
 import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.psi.KtReferenceExpression
 import org.jetbrains.kotlin.psi.KtReturnExpression
@@ -33,18 +34,21 @@ import org.jetbrains.kotlin.resolve.lazy.BodyResolveMode
 import org.jetbrains.kotlin.types.KotlinType
 
 class CopyModificationAnnotator : Annotator {
+    private val tokenToCheck = listOf("=", "+=", "-=", "*=", "/=", "%=", "++", "--")
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
-        val isCoreTypeCopyAssignment = if (element is KtBinaryExpression) {
-            val tokenType = element.operationToken
-            if (tokenType is KtSingleValueToken && tokenType.value == "=") {
-                val left = element.left
-                when {
-                    left is KtDotQualifiedExpression && !left.receiverExpression.resolveType().isCoreType() -> false
-                    left is KtArrayAccessExpression && left.arrayExpression?.resolveType()?.isCoreType() == false -> false
-                    else -> element.left?.let { evaluateExpression(it) } ?: false
-                }
-            } else false
-        } else false
+        val isCoreTypeCopyAssignment = when (element) {
+            is KtBinaryExpression -> {
+                val tokenType = element.operationToken
+                if (tokenType is KtSingleValueToken && tokenToCheck.contains(tokenType.value)) {
+                    val left = element.left
+                    evaluationPreCheck(left)
+                } else false
+            }
+            is KtPostfixExpression -> {
+                evaluationPreCheck(element.baseExpression)
+            }
+            else -> false
+        }
 
         if (isCoreTypeCopyAssignment) {
             holder.registerProblem(
@@ -52,6 +56,15 @@ class CopyModificationAnnotator : Annotator {
                 element,
                 problemHighlightType = ProblemHighlightType.WEAK_WARNING
             )
+        }
+    }
+
+    private fun evaluationPreCheck(expression: KtExpression?): Boolean {
+        return when {
+            expression is KtDotQualifiedExpression && !expression.receiverExpression.resolveType().isCoreType() -> false
+            expression is KtArrayAccessExpression && expression.arrayExpression?.resolveType()
+                ?.isCoreType() == false -> false
+            else -> expression?.let { evaluateExpression(it) } ?: false
         }
     }
 
@@ -65,7 +78,7 @@ class CopyModificationAnnotator : Annotator {
                     is KtCallExpression -> {
                         evaluateKtCallExpression(receiverExpression)
                     }
-                    else -> isExpressionFromGodotLibrary(expression.receiverExpression)
+                    else -> expression.receiverExpression.resolveType().isCoreType()
                 }
             }
             is KtArrayAccessExpression -> {
@@ -76,7 +89,7 @@ class CopyModificationAnnotator : Annotator {
                     is KtCallExpression -> {
                         evaluateKtCallExpression(arrayExpression)
                     }
-                    else -> arrayExpression?.let { isExpressionFromGodotLibrary(it) } ?: false
+                    else -> arrayExpression?.resolveType()?.isCoreType() ?: false
                 }
             }
             is KtNameReferenceExpression -> {
@@ -87,18 +100,6 @@ class CopyModificationAnnotator : Annotator {
             }
             else -> false
         }
-    }
-
-    private fun isExpressionFromGodotLibrary(expression: KtExpression): Boolean {
-        return expression./*let {
-            when (it) {
-                is KtDotQualifiedExpression -> (it.selectorExpression as? KtReferenceExpression)
-                    ?.resolve()
-                    ?.module
-                is KtNameReferenceExpression -> it.resolve()?.module
-                else -> null
-            }?.name?.contains("godot-library") == true && it.*/resolveType().isCoreType()
-//        }
     }
 
     private fun evaluateKtNameReferenceExpression(ktNameReferenceExpression: KtNameReferenceExpression): Boolean {
@@ -115,7 +116,11 @@ class CopyModificationAnnotator : Annotator {
                     !isUsedAsAssignmentLater && evaluateKtCallExpression(initializer)
                 }
                 is KtDotQualifiedExpression -> {
-                    !isUsedAsAssignmentLater && evaluateExpression(initializer)
+                    if (initializer.receiverExpression.isConstructorCall()) {
+                        !isUsedAsAssignmentLater && initializer.selectorExpression?.let { evaluateExpression(it) } ?: false
+                    } else {
+                        !isUsedAsAssignmentLater && evaluateExpression(initializer)
+                    }
                 }
                 null -> {
                     !isUsedAsAssignmentLater && resolvedExpression.module?.name?.contains("godot-library") == true

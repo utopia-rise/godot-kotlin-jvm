@@ -3,6 +3,7 @@ import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.core.Dictionary
+import godot.core.Transform
 import godot.core.Vector3
 import godot.tests.Invocation
 import godot.tests.TestEnum
@@ -45,11 +46,53 @@ class ScriptInOtherSourceDir: Spatial() {
     }
 
     // Allowed as it's instantiated with a constructor call
-    fun constructorCallModificationThroughFunctionCall() {
+    fun constructorCallModificationThroughPropertyAccess() {
+        val vector = Invocation().vector
+        fun vectorProvider() = vector
+        vectorProvider()[0] = 5.0
+        vectorProvider().x = 5.0
+    }
+
+    // Not allowed as it's a property received by copy
+    fun copyModificationThroughThroughPropertyAccess() {
         val vector = Invocation().rotation
         fun vectorProvider() = vector
         vectorProvider()[0] = 5.0
         vectorProvider().x = 5.0
+    }
+
+    // All modifications allowed as `blubb` is assigned to something later
+    fun randomModificationsAllowed() {
+        val invocation = Invocation()
+        var vector = invocation.transform.basis.x.x
+        vector += 5.0
+        vector -= 5.0
+        vector *= 5.0
+        vector /= 5.0
+        vector %= 5.0
+        vector++
+        vector--
+        println(vector)
+
+        Spatial().transform = Transform().apply {
+            basis.x = Vector3().apply {
+                x = vector
+            }
+        }
+    }
+
+    // All modifications NOT allowed as `blubb` is never use later
+    fun randomModificationsNotAllowed() {
+        val invocation = Invocation()
+        var vector = invocation.transform.basis.x.x
+        vector += 5.0
+        vector -= 5.0
+        vector *= 5.0
+        vector /= 5.0
+        vector %= 5.0
+        vector++
+        vector--
+        println(vector)
     }
 
     // Allowed as it's instantiated with a constructor call
