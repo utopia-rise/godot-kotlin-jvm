@@ -1,11 +1,11 @@
 package godot.tests.coretypes
 
-import godot.Reference
+import godot.Node
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 
 @RegisterClass
-class StringTest : Reference() {
+class StringTest : Node() {
 
     @RegisterFunction
     fun identity(str: String) = str

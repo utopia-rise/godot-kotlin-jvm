@@ -30,13 +30,15 @@ func test_short_string() -> void:
 	var script = godot_tests_coretypes_StringTest.new()
 	assert_eq(short_str, script.get_short_string(), "String on JVM side should be same as gdscript one.")
 	assert_eq(short_str, script.identity(short_str), "String on JVM side should be same as gdscript one.")
-
+	script.free()
 
 func test_long_string() -> void:
 	var script = godot_tests_coretypes_StringTest.new()
 	assert_eq(long_str, script.get_long_string(), "String on JVM side should be same as gdscript one.")
 	assert_eq(long_str, script.identity(long_str), "String on JVM side should be same as gdscript one.")
-	
+	script.free()
+
 func test_flood_string() -> void:
 	var script = godot_tests_coretypes_StringTest.new()
 	assert_eq(script.fill_the_buffer(longest_short_str, longest_short_str, longest_short_str, longest_short_str, longest_short_str), true, "Should return true when buffer is filled")
+	script.free()
