@@ -38,5 +38,5 @@ func test_long_string() -> void:
 	assert_eq(long_str, script.identity(long_str), "String on JVM side should be same as gdscript one.")
 	
 func test_flood_string() -> void:
-	var script = scriptpath.new()
+	var script = godot_tests_coretypes_StringTest.new()
 	assert_eq(script.fill_the_buffer(longest_short_str, longest_short_str, longest_short_str, longest_short_str, longest_short_str), true, "Should return true when buffer is filled")

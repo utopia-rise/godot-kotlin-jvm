@@ -20,7 +20,8 @@ class StringTest : Reference() {
 
 
     @RegisterFunction
-    fun getLongString() = """I'll pivot the lazy YAML middleware, that should abstraction the DAG virtual DOM!
+    fun getLongString() = """
+        I'll pivot the lazy YAML middleware, that should abstraction the DAG virtual DOM!
         
         The HTML stack is down, store the stateless Imagemagick so we can lazy eval the JSON Stack Overflow!
         
@@ -38,5 +39,6 @@ class StringTest : Reference() {
         
         The SOAP middleware is down, f*** the serverless stream so we can circle back the LGTM constant!
         
-        You can't ship the continuous integration without blogging the junior IoT Stack Overflow!""".trimIndent()
+        You can't ship the continuous integration without blogging the junior IoT Stack Overflow!
+        """.trimIndent()
 }
