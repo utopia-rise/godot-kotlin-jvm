@@ -51,6 +51,9 @@ namespace jni {
 
         jint result{JvmLoader::get_create_jvm_function()(&java_vm, reinterpret_cast<void**>(&jni_env), &args)};
 
+        // Set std::local::global to value it was before creating JVM.
+        // See https://github.com/utopia-rise/godot-kotlin-jvm/issues/166
+        // and https://github.com/utopia-rise/godot-kotlin-jvm/issues/170
 #ifndef NO_USE_STDLIB
         std::locale::global(global);
 #endif
