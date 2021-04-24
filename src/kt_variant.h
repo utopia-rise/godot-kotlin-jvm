@@ -10,6 +10,7 @@
 #include "type_manager.h"
 #include "ref_db.h"
 #include "logging.h"
+#include "long_string_queue.h"
 
 namespace ktvariant {
 
@@ -45,8 +46,14 @@ namespace ktvariant {
         String str{src};
         const CharString& char_string{str.utf8()};
         set_variant_type(des, Variant::Type::STRING);
-        des->increment_position(encode_uint32(char_string.size(), des->get_cursor()));
-        des->increment_position(encode_cstring(char_string, des->get_cursor()));
+        if (unlikely(char_string.size() > LongStringQueue::max_string_size)) {
+            des->increment_position(encode_uint32(true, des->get_cursor()));
+            LongStringQueue::get_instance().send_string_to_jvm(str);
+        } else {
+            des->increment_position(encode_uint32(false, des->get_cursor()));
+            des->increment_position(encode_uint32(char_string.size(), des->get_cursor()));
+            des->increment_position(encode_cstring(char_string, des->get_cursor()));
+        }
     }
 
     static void to_kvariant_fromBOOL(SharedBuffer* des, const Variant& src) {
@@ -332,12 +339,19 @@ namespace ktvariant {
     }
 
     static Variant from_kvariant_tokStringValue(SharedBuffer* byte_buffer) {
-        uint32_t size{decode_uint32(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(INT_SIZE);
-        String str;
-        str.parse_utf8(reinterpret_cast<const char*>(byte_buffer->get_cursor()), size);
-        byte_buffer->increment_position(size);
-        return Variant(str);
+        bool is_long{static_cast<bool>(decode_uint32(byte_buffer->get_cursor()))};
+        byte_buffer->increment_position(BOOL_SIZE);
+        if (unlikely(is_long)) {
+            String str = LongStringQueue::get_instance().poll_string();
+            return Variant(str);
+        } else {
+            uint32_t size{decode_uint32(byte_buffer->get_cursor())};
+            byte_buffer->increment_position(INT_SIZE);
+            String str;
+            str.parse_utf8(reinterpret_cast<const char*>(byte_buffer->get_cursor()), size);
+            byte_buffer->increment_position(size);
+            return Variant(str);
+        }
     }
 
     static Variant from_kvariant_tokBoolValue(SharedBuffer* byte_buffer) {

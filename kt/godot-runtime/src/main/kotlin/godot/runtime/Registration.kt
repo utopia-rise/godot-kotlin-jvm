@@ -3,6 +3,7 @@ package godot.runtime
 import godot.core.CONSTRUCTOR_MAX_ARGS
 import godot.core.KtClass
 import godot.core.KtConstructor
+import godot.core.KtEnumListProperty
 import godot.core.KtEnumProperty
 import godot.core.KtFunction
 import godot.core.KtFunction0
@@ -19,6 +20,8 @@ import godot.core.KtSignalInfo
 import godot.core.PropertyHint
 import godot.core.TypeManager
 import godot.core.VariantType
+import godot.core.toVariantArray
+import godot.core.variantArrayOf
 import godot.util.camelToSnakeCase
 import kotlin.reflect.KClass
 import kotlin.reflect.KFunction1
