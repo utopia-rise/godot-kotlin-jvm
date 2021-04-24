@@ -1,16 +1,10 @@
-package godot
+package godot.extensions
 
-import godot.core.NodePath
+import godot.Object
 import godot.core.VariantArray
 import godot.signals.Signal
 import godot.util.camelToSnakeCase
 import kotlin.reflect.KFunction
-
-@Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
-inline fun <T : Node?> Node.getNode(path: String) = getNode(NodePath(path)) as T
-
-@Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST", "EXTENSION_SHADOWED_BY_MEMBER")
-inline fun <T : Node?> Node.getNode(nodePath: NodePath) = getNode(nodePath) as T
 
 /**
  * **Note:** The function name is converted to snake_case
