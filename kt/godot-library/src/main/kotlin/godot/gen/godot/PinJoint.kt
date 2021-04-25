@@ -14,9 +14,9 @@ import kotlin.Long
 import kotlin.Suppress
 
 /**
- * Pin joint for 3D PhysicsBodies.
+ * Pin joint for 3D shapes.
  *
- * Pin joint for 3D rigid bodies. It pins 2 bodies (rigid or static) together. See also [godot.Generic6DOFJoint].
+ * Pin joint for 3D rigid bodies. It pins 2 bodies (rigid or static) together.
  */
 @GodotBaseType
 open class PinJoint : Joint() {

@@ -25,7 +25,7 @@ import kotlin.Suppress
  * Used by the editor to define Spatial gizmo types.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/plugins/editor/spatial_gizmos.html](https://docs.godotengine.org/en/3.3/tutorials/plugins/editor/spatial_gizmos.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/plugins/editor/spatial_gizmos.html](https://docs.godotengine.org/en/latest/tutorials/plugins/editor/spatial_gizmos.html)
  *
  * EditorSpatialGizmoPlugin allows you to define a new type of Gizmo. There are two main ways to do so: extending [godot.EditorSpatialGizmoPlugin] for the simpler gizmos, or creating a new [godot.EditorSpatialGizmo] type. See the tutorial in the documentation for more info.
  */
@@ -164,7 +164,7 @@ open class EditorSpatialGizmoPlugin : Resource() {
   }
 
   /**
-   * Override this method to define whether a Spatial with this gizmo should be selectable even when the gizmo is hidden.
+   * Override this method to define whether Spatial with this gizmo should be selecteble even when the gizmo is hidden.
    */
   open fun _isSelectableWhenHidden(): Boolean {
     throw

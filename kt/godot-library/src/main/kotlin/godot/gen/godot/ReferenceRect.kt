@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -20,7 +21,7 @@ import kotlin.Unit
 /**
  * Reference frame for GUI.
  *
- * A rectangle box that displays only a [borderColor] border color around its rectangle. [godot.ReferenceRect] has no fill [godot.core.Color]. If you need to display a rectangle filled with a solid color, consider using [godot.ColorRect] instead.
+ * A rectangle box that displays only a [borderColor] border color around its rectangle. [godot.ReferenceRect] has no fill [godot.core.Color].
  */
 @GodotBaseType
 open class ReferenceRect : Control() {
@@ -40,9 +41,6 @@ open class ReferenceRect : Control() {
           NIL)
     }
 
-  /**
-   * Sets the border width of the [godot.ReferenceRect]. The border grows both inwards and outwards with respect to the rectangle box.
-   */
   open var borderWidth: Double
     get() {
       TransferContext.writeArguments()
@@ -76,6 +74,7 @@ open class ReferenceRect : Control() {
     callConstructor(ENGINECLASS_REFERENCERECT)
   }
 
+  @CoreTypeHelper
   open fun borderColor(schedule: Color.() -> Unit): Color = borderColor.apply{
       schedule(this)
       borderColor = this

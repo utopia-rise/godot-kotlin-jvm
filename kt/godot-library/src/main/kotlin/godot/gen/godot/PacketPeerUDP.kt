@@ -41,7 +41,7 @@ open class PacketPeerUDP : PacketPeer() {
   /**
    * Calling this method connects this UDP peer to the given `host`/`port` pair. UDP is in reality connectionless, so this option only means that incoming packets from different addresses are automatically discarded, and that outgoing packets are always sent to the connected address (future calls to [setDestAddress] are not allowed). This method does not send any data to the remote peer, to do that, use [godot.PacketPeer.putVar] or [godot.PacketPeer.putPacket] as usual. See also [godot.UDPServer].
    *
-   * **Note:** Connecting to the remote peer does not help to protect from malicious attacks like IP spoofing, etc. Think about using an encryption technique like SSL or DTLS if you feel like your application is transferring sensitive information.
+   * Note: Connecting to the remote peer does not help to protect from malicious attacks like IP spoofing, etc. Think about using an encryption technique like SSL or DTLS if you feel like your application is transfering sensitive information.
    */
   open fun connectToHost(host: String, port: Long): GodotError {
     TransferContext.writeArguments(STRING to host, LONG to port)
@@ -154,20 +154,6 @@ open class PacketPeerUDP : PacketPeer() {
 
   /**
    * Waits for a packet to arrive on the listening port. See [listen].
-   *
-   * **Note:** [wait] can't be interrupted once it has been called. This can be worked around by allowing the other party to send a specific "death pill" packet like this:
-   *
-   * ```
-   * 				# Server
-   * 				socket.set_dest_address("127.0.0.1", 789)
-   * 				socket.put_packet("Time to stop".to_ascii())
-   *
-   * 				# Client
-   * 				while socket.wait() == OK:
-   * 				    var data = socket.get_packet().get_string_from_ascii()
-   * 				    if data == "Time to stop":
-   * 				        return
-   * 				```
    */
   open fun wait(): GodotError {
     TransferContext.writeArguments()

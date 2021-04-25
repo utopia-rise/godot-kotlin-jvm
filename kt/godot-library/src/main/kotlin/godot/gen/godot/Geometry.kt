@@ -160,7 +160,7 @@ object Geometry : Object() {
   /**
    * Clips `polygon_a` against `polygon_b` and returns an array of clipped polygons. This performs [OPERATION_DIFFERENCE] between polygons. Returns an empty array if `polygon_b` completely overlaps `polygon_a`.
    *
-   * If `polygon_b` is enclosed by `polygon_a`, returns an outer polygon (boundary) and inner polygon (hole) which could be distinguished by calling [isPolygonClockwise].
+   * If `polygon_b` is enclosed by `polygon_a`, returns an outer polygon (boundary) and inner polygon (hole) which could be distiguished by calling [isPolygonClockwise].
    */
   fun clipPolygons2d(polygonA: PoolVector2Array, polygonB: PoolVector2Array): VariantArray<Any?> {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to polygonA, POOL_VECTOR2_ARRAY to polygonB)
@@ -192,7 +192,7 @@ object Geometry : Object() {
   /**
    * Mutually excludes common area defined by intersection of `polygon_a` and `polygon_b` (see [intersectPolygons2d]) and returns an array of excluded polygons. This performs [OPERATION_XOR] between polygons. In other words, returns all but common area between polygons.
    *
-   * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [isPolygonClockwise].
+   * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distiguished by calling [isPolygonClockwise].
    */
   fun excludePolygons2d(polygonA: PoolVector2Array, polygonB: PoolVector2Array):
       VariantArray<Any?> {
@@ -274,7 +274,7 @@ object Geometry : Object() {
   }
 
   /**
-   * Given the two 2D segments (`p1`, `q1`) and (`p2`, `q2`), finds those two points on the two segments that are closest to each other. Returns a [godot.core.PoolVector2Array] that contains this point on (`p1`, `q1`) as well the accompanying point on (`p2`, `q2`).
+   * Given the two 2D segments (`p1`, `p2`) and (`q1`, `q2`), finds those two points on the two segments that are closest to each other. Returns a [godot.core.PoolVector2Array] that contains this point on (`p1`, `p2`) as well the accompanying point on (`q1`, `q2`).
    */
   fun getClosestPointsBetweenSegments2d(
     p1: Vector2,
@@ -385,7 +385,7 @@ object Geometry : Object() {
   /**
    * Merges (combines) `polygon_a` and `polygon_b` and returns an array of merged polygons. This performs [OPERATION_UNION] between polygons.
    *
-   * The operation may result in an outer polygon (boundary) and multiple inner polygons (holes) produced which could be distinguished by calling [isPolygonClockwise].
+   * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [isPolygonClockwise].
    */
   fun mergePolygons2d(polygonA: PoolVector2Array, polygonB: PoolVector2Array): VariantArray<Any?> {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to polygonA, POOL_VECTOR2_ARRAY to polygonB)

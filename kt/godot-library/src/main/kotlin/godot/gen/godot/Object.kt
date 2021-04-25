@@ -46,10 +46,10 @@ import kotlin.Unit
 import kotlin.reflect.KCallable
 
 /**
- * Base class for all non-built-in types.
+ * Base class for all non built-in types.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/getting_started/scripting/gdscript/gdscript_exports.html#advanced-exports](https://docs.godotengine.org/en/3.3/getting_started/scripting/gdscript/gdscript_exports.html#advanced-exports)
+ * [https://docs.godotengine.org/en/latest/getting_started/workflow/best_practices/node_alternatives.html](https://docs.godotengine.org/en/latest/getting_started/workflow/best_practices/node_alternatives.html)
  *
  * Every class which is not a built-in type inherits from this class.
  *
@@ -74,8 +74,6 @@ import kotlin.reflect.KCallable
  * Objects also receive notifications. Notifications are a simple way to notify the object about different events, so they can all be handled together. See [_notification].
  *
  * **Note:** Unlike references to a [godot.Reference], references to an Object stored in a variable can become invalid without warning. Therefore, it's recommended to use [godot.Reference] for data classes instead of [godot.Object].
- *
- * **Note:** Due to a bug, you can't create a "plain" Object using `Object.new()`. Instead, use `ClassDB.instance("Object")`. This bug only applies to Object itself, not any of its descendents like [godot.Reference].
  */
 @GodotBaseType
 open class Object : KtObject() {

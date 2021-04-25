@@ -6,6 +6,7 @@
 package godot
 
 import godot.Mesh
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.AABB
 import godot.core.GodotError
@@ -33,7 +34,7 @@ import kotlin.Unit
  * [godot.Mesh] type that provides utility for constructing a surface from arrays.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/content/procedural_geometry/arraymesh.html](https://docs.godotengine.org/en/3.3/tutorials/content/procedural_geometry/arraymesh.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/content/procedural_geometry/arraymesh.html](https://docs.godotengine.org/en/latest/tutorials/content/procedural_geometry/arraymesh.html)
  *
  * The [godot.ArrayMesh] is used to construct a [godot.Mesh] by specifying the attributes as arrays.
  *
@@ -98,6 +99,7 @@ open class ArrayMesh : Mesh() {
     callConstructor(ENGINECLASS_ARRAYMESH)
   }
 
+  @CoreTypeHelper
   open fun customAabb(schedule: AABB.() -> Unit): AABB = customAabb.apply{
       schedule(this)
       customAabb = this

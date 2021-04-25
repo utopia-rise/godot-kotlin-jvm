@@ -59,7 +59,7 @@ open class ClippedCamera : Camera() {
     }
 
   /**
-   * The camera's collision mask. Only objects in at least one collision layer matching the mask will be detected. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The camera's collision mask. Only objects in at least one collision layer matching the mask will be detected. See [godot.Collision layers and masks](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
   open var collisionMask: Long
     get() {

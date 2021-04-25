@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -46,6 +47,7 @@ open class VisualShaderNodeGroupBase : VisualShaderNode() {
     callConstructor(ENGINECLASS_VISUALSHADERNODEGROUPBASE)
   }
 
+  @CoreTypeHelper
   open fun size(schedule: Vector2.() -> Unit): Vector2 = size.apply{
       schedule(this)
       size = this
@@ -127,7 +129,7 @@ open class VisualShaderNodeGroupBase : VisualShaderNode() {
   }
 
   /**
-   * Returns a [godot.String] description of the input ports as a colon-separated list using the format `id,type,name;` (see [addInputPort]).
+   * Returns a [godot.String] description of the input ports as as colon-separated list using the format `id,type,name;` (see [addInputPort]).
    */
   open fun getInputs(): String {
     TransferContext.writeArguments()
@@ -147,7 +149,7 @@ open class VisualShaderNodeGroupBase : VisualShaderNode() {
   }
 
   /**
-   * Returns a [godot.String] description of the output ports as a colon-separated list using the format `id,type,name;` (see [addOutputPort]).
+   * Returns a [godot.String] description of the output ports as as colon-separated list using the format `id,type,name;` (see [addOutputPort]).
    */
   open fun getOutputs(): String {
     TransferContext.writeArguments()

@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.AABB
 import godot.core.NodePath
@@ -83,7 +84,7 @@ open class BakedLightmapData : Resource() {
     }
 
   /**
-   * Global energy multiplier for baked and dynamic capture objects.
+   *
    */
   open var energy: Double
     get() {
@@ -97,9 +98,6 @@ open class BakedLightmapData : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_SET_ENERGY, NIL)
     }
 
-  /**
-   * Controls whether dynamic capture objects receive environment lighting or not.
-   */
   open var interior: Boolean
     get() {
       TransferContext.writeArguments()
@@ -132,12 +130,14 @@ open class BakedLightmapData : Resource() {
     callConstructor(ENGINECLASS_BAKEDLIGHTMAPDATA)
   }
 
+  @CoreTypeHelper
   open fun bounds(schedule: AABB.() -> Unit): AABB = bounds.apply{
       schedule(this)
       bounds = this
   }
 
 
+  @CoreTypeHelper
   open fun cellSpaceTransform(schedule: Transform.() -> Unit): Transform = cellSpaceTransform.apply{
       schedule(this)
       cellSpaceTransform = this
@@ -166,9 +166,6 @@ open class BakedLightmapData : Resource() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_ADD_USER, NIL)
   }
 
-  /**
-   *
-   */
   open fun clearData() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_CLEAR_DATA, NIL)

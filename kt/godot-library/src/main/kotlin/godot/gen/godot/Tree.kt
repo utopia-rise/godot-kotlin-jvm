@@ -284,9 +284,6 @@ open class Tree : Control() {
     return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
   }
 
-  /**
-   * Edits the selected tree item as if it was clicked. The item must be set editable with [godot.TreeItem.setEditable]. Returns `true` if the item could be edited. Fails if no item is selected.
-   */
   open fun editSelected(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_EDIT_SELECTED, BOOL)
@@ -356,15 +353,7 @@ open class Tree : Control() {
   }
 
   /**
-   * Returns the currently edited item. Can be used with [itemEdited] to get the item that was modified.
-   *
-   * ```
-   * 				func _ready():
-   * 				    $Tree.item_edited.connect(on_Tree_item_edited)
-   *
-   * 				func on_Tree_item_edited():
-   * 				    print($Tree.get_edited()) # This item just got edited (e.g. checked).
-   * 				```
+   * Returns the currently edited item. This is only available for custom cell mode.
    */
   open fun getEdited(): TreeItem? {
     TransferContext.writeArguments()
@@ -373,7 +362,7 @@ open class Tree : Control() {
   }
 
   /**
-   * Returns the column for the currently edited item.
+   * Returns the column for the currently edited item. This is only available for custom cell mode.
    */
   open fun getEditedColumn(): Long {
     TransferContext.writeArguments()
@@ -463,9 +452,6 @@ open class Tree : Control() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  /**
-   *
-   */
   open fun scrollToItem(item: Object) {
     TransferContext.writeArguments(OBJECT to item)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SCROLL_TO_ITEM, NIL)

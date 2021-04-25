@@ -9,10 +9,7 @@ import godot.annotation.GodotBaseType
 import kotlin.Suppress
 
 /**
- * Reduces all frequencies below the [godot.AudioEffectFilter.cutoffHz].
  *
- * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/audio/audio_buses.html](https://docs.godotengine.org/en/3.3/tutorials/audio/audio_buses.html)
  */
 @GodotBaseType
 open class AudioEffectLowShelfFilter : AudioEffectFilter() {

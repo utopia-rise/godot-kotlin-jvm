@@ -100,7 +100,7 @@ object IP : Object() {
   }
 
   /**
-   * Returns all the user's current IPv4 and IPv6 addresses as an array.
+   * Returns all of the user's current IPv4 and IPv6 addresses as an array.
    */
   fun getLocalAddresses(): VariantArray<Any?> {
     TransferContext.writeArguments()

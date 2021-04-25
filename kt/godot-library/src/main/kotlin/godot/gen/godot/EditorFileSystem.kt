@@ -36,7 +36,7 @@ open class EditorFileSystem : Node() {
   val filesystemChanged: Signal0 by signal()
 
   /**
-   * Emitted if a resource is reimported.
+   * Remitted if a resource is reimported.
    */
   val resourcesReimported: Signal1<PoolStringArray> by signal("resources")
 

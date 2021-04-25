@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.Transform2D
@@ -26,7 +27,7 @@ import kotlin.Unit
  * A 2D game object, inherited by all 2D-related nodes. Has a position, rotation, scale, and Z index.
  *
  * Tutorials:
- * [https://github.com/godotengine/godot-demo-projects/tree/master/2d](https://github.com/godotengine/godot-demo-projects/tree/master/2d)
+ * [https://docs.godotengine.org/en/latest/tutorials/2d/custom_drawing_in_2d.html](https://docs.godotengine.org/en/latest/tutorials/2d/custom_drawing_in_2d.html)
  *
  * A 2D game object, with a transform (position, rotation, and scale). All 2D nodes, including physics objects and sprites, inherit from Node2D. Use Node2D as a parent node to move, scale and rotate children in a 2D project. Also gives control of the node's render order.
  */
@@ -201,36 +202,42 @@ open class Node2D : CanvasItem() {
     callConstructor(ENGINECLASS_NODE2D)
   }
 
+  @CoreTypeHelper
   open fun globalPosition(schedule: Vector2.() -> Unit): Vector2 = globalPosition.apply{
       schedule(this)
       globalPosition = this
   }
 
 
+  @CoreTypeHelper
   open fun globalScale(schedule: Vector2.() -> Unit): Vector2 = globalScale.apply{
       schedule(this)
       globalScale = this
   }
 
 
+  @CoreTypeHelper
   open fun globalTransform(schedule: Transform2D.() -> Unit): Transform2D = globalTransform.apply{
       schedule(this)
       globalTransform = this
   }
 
 
+  @CoreTypeHelper
   open fun position(schedule: Vector2.() -> Unit): Vector2 = position.apply{
       schedule(this)
       position = this
   }
 
 
+  @CoreTypeHelper
   open fun scale(schedule: Vector2.() -> Unit): Vector2 = scale.apply{
       schedule(this)
       scale = this
   }
 
 
+  @CoreTypeHelper
   open fun transform(schedule: Transform2D.() -> Unit): Transform2D = transform.apply{
       schedule(this)
       transform = this

@@ -25,13 +25,13 @@ import kotlin.Suppress
  * Kinematic body 3D node.
  *
  * Tutorials:
- * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
+ * [https://docs.godotengine.org/en/latest/tutorials/physics/kinematic_character_2d.html](https://docs.godotengine.org/en/latest/tutorials/physics/kinematic_character_2d.html)
  *
  * Kinematic bodies are special types of bodies that are meant to be user-controlled. They are not affected by physics at all; to other types of bodies, such as a character or a rigid body, these are the same as a static body. However, they have two main uses:
  *
  * **Simulated motion:** When these bodies are moved manually, either from code or from an [godot.AnimationPlayer] (with [godot.AnimationPlayer.playbackProcessMode] set to "physics"), the physics will automatically compute an estimate of their linear and angular velocity. This makes them very useful for moving platforms or other AnimationPlayer-controlled objects (like a door, a bridge that opens, etc).
  *
- * **Kinematic characters:** KinematicBody also has an API for moving objects (the [moveAndCollide] and [moveAndSlide] methods) while performing collision tests. This makes them really useful to implement characters that collide against a world, but don't require advanced physics.
+ * **Kinematic characters:** KinematicBody also has an API for moving objects (the [moveAndCollide] and [moveAndSlide] methods) while performing collision tests. This makes them really useful to implement characters that collide against a world, but that don't require advanced physics.
  */
 @GodotBaseType
 open class KinematicBody : PhysicsBody() {
@@ -121,7 +121,7 @@ open class KinematicBody : PhysicsBody() {
   }
 
   /**
-   * Returns a [godot.KinematicCollision], which contains information about a collision that occurred during the last call to [moveAndSlide] or [moveAndSlideWithSnap]. Since the body can collide several times in a single call to [moveAndSlide], you must specify the index of the collision in the range 0 to ([getSlideCount] - 1).
+   * Returns a [godot.KinematicCollision], which contains information about a collision that occurred during the last [moveAndSlide] call. Since the body can collide several times in a single call to [moveAndSlide], you must specify the index of the collision in the range 0 to ([getSlideCount] - 1).
    */
   open fun getSlideCollision(slideIdx: Long): KinematicCollision? {
     TransferContext.writeArguments(LONG to slideIdx)
@@ -131,7 +131,7 @@ open class KinematicBody : PhysicsBody() {
   }
 
   /**
-   * Returns the number of times the body collided and changed direction during the last call to [moveAndSlide] or [moveAndSlideWithSnap].
+   * Returns the number of times the body collided and changed direction during the last call to [moveAndSlide].
    */
   open fun getSlideCount(): Long {
     TransferContext.writeArguments()
@@ -140,7 +140,7 @@ open class KinematicBody : PhysicsBody() {
   }
 
   /**
-   * Returns `true` if the body is on the ceiling. Only updates when calling [moveAndSlide] or [moveAndSlideWithSnap].
+   * Returns `true` if the body is on the ceiling. Only updates when calling [moveAndSlide].
    */
   open fun isOnCeiling(): Boolean {
     TransferContext.writeArguments()
@@ -149,7 +149,7 @@ open class KinematicBody : PhysicsBody() {
   }
 
   /**
-   * Returns `true` if the body is on the floor. Only updates when calling [moveAndSlide] or [moveAndSlideWithSnap].
+   * Returns `true` if the body is on the floor. Only updates when calling [moveAndSlide].
    */
   open fun isOnFloor(): Boolean {
     TransferContext.writeArguments()
@@ -158,7 +158,7 @@ open class KinematicBody : PhysicsBody() {
   }
 
   /**
-   * Returns `true` if the body is on a wall. Only updates when calling [moveAndSlide] or [moveAndSlideWithSnap].
+   * Returns `true` if the body is on a wall. Only updates when calling [moveAndSlide].
    */
   open fun isOnWall(): Boolean {
     TransferContext.writeArguments()
@@ -185,7 +185,7 @@ open class KinematicBody : PhysicsBody() {
   }
 
   /**
-   * Moves the body along a vector. If the body collides with another, it will slide along the other body rather than stop immediately. If the other body is a [godot.KinematicBody] or [godot.RigidBody], it will also be affected by the motion of the other body. You can use this to make moving and rotating platforms, or to make nodes push other nodes.
+   * Moves the body along a vector. If the body collides with another, it will slide along the other body rather than stop immediately. If the other body is a [godot.KinematicBody] or [godot.RigidBody], it will also be affected by the motion of the other body. You can use this to make moving or rotating platforms, or to make nodes push other nodes.
    *
    * This method should be used in [godot.Node.PhysicsProcess] (or in a method called by [godot.Node.PhysicsProcess]), as it uses the physics step's `delta` value automatically in calculations. Otherwise, the simulation will run at an incorrect speed.
    *

@@ -42,7 +42,7 @@ import kotlin.Suppress
  * Contains data used to animate everything in the engine.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/animation/index.html](https://docs.godotengine.org/en/3.3/tutorials/animation/index.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/animation/index.html](https://docs.godotengine.org/en/latest/tutorials/animation/index.html)
  *
  * An Animation resource contains data used to animate everything in the engine. Animations are divided into tracks, and each track must be linked to a node. The state of that node can be changed through time, by adding timed keys (events) to the track.
  *
@@ -82,7 +82,7 @@ open class Animation : Resource() {
     }
 
   /**
-   * A flag indicating that the animation must loop. This is used for correct interpolation of animation cycles, and for hinting the player that it must restart the animation.
+   * A flag indicating that the animation must loop. This is uses for correct interpolation of animation cycles, and for hinting the player that it must restart the animation.
    */
   open var loop: Boolean
     get() {
@@ -239,7 +239,7 @@ open class Animation : Resource() {
   }
 
   /**
-   * Sets the stream of the key identified by `key_idx` to value `stream`. The `track_idx` must be the index of an Audio Track.
+   * Sets the stream of the key identified by `key_idx` to value `offset`. The `track_idx` must be the index of an Audio Track.
    */
   open fun audioTrackSetKeyStream(
     trackIdx: Long,
@@ -727,9 +727,6 @@ open class Animation : Resource() {
     return Animation.UpdateMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  /**
-   * Returns the interpolated value at the given time (in seconds). The `track_idx` must be the index of a value track.
-   */
   open fun valueTrackInterpolate(trackIdx: Long, timeSec: Double): Any? {
     TransferContext.writeArguments(LONG to trackIdx, DOUBLE to timeSec)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_VALUE_TRACK_INTERPOLATE,

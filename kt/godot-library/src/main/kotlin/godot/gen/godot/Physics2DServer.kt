@@ -405,7 +405,7 @@ object Physics2DServer : Object() {
   }
 
   /**
-   * Creates an [godot.Area2D]. After creating an [godot.Area2D] with this method, assign it to a space using [areaSetSpace] to use the created [godot.Area2D] in the physics world.
+   * Creates an [godot.Area2D].
    */
   fun areaCreate(): RID {
     TransferContext.writeArguments()

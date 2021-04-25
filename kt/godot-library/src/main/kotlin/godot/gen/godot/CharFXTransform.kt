@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
@@ -28,7 +29,7 @@ import kotlin.Unit
  * Controls how an individual character will be displayed in a [godot.RichTextEffect].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/gui/bbcode_in_richtextlabel.html](https://docs.godotengine.org/en/3.3/tutorials/gui/bbcode_in_richtextlabel.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/gui/bbcode_in_richtextlabel.html](https://docs.godotengine.org/en/latest/tutorials/gui/bbcode_in_richtextlabel.html)
  * [https://github.com/Eoin-ONeill-Yokai/Godot-Rich-Text-Effect-Test-Project](https://github.com/Eoin-ONeill-Yokai/Godot-Rich-Text-Effect-Test-Project)
  *
  * By setting various properties on this object, you can control how individual characters will be displayed in a [godot.RichTextEffect].
@@ -175,12 +176,14 @@ open class CharFXTransform : Reference() {
     callConstructor(ENGINECLASS_CHARFXTRANSFORM)
   }
 
+  @CoreTypeHelper
   open fun color(schedule: Color.() -> Unit): Color = color.apply{
       schedule(this)
       color = this
   }
 
 
+  @CoreTypeHelper
   open fun offset(schedule: Vector2.() -> Unit): Vector2 = offset.apply{
       schedule(this)
       offset = this

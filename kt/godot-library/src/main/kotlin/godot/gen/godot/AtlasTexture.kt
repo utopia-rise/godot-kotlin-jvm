@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Rect2
 import godot.core.TransferContext
@@ -17,13 +18,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Crops out one part of a texture, such as a texture from a texture atlas.
+ * Packs multiple small textures in a single, bigger one. Helps to optimize video memory costs and render calls.
  *
- * [godot.Texture] resource that crops out one part of the [atlas] texture, defined by [region]. The main use case is cropping out textures from a texture atlas, which is a big texture file that packs multiple smaller textures. Consists of a [godot.Texture] for the [atlas], a [region] that defines the area of [atlas] to use, and a [margin] that defines the border width.
- *
- * [godot.AtlasTexture] cannot be used in an [godot.AnimatedTexture], cannot be tiled in nodes such as [godot.TextureRect], and does not work properly if used inside of other [godot.AtlasTexture] resources. Multiple [godot.AtlasTexture] resources can be used to crop multiple textures from the atlas. Using a texture atlas helps to optimize video memory costs and render calls compared to using multiple small files.
- *
- * **Note:** AtlasTextures don't support repetition. The [godot.Texture.FLAG_REPEAT] and [godot.Texture.FLAG_MIRRORED_REPEAT] flags are ignored when using an AtlasTexture.
+ * [godot.Texture] resource aimed at managing big textures files that pack multiple smaller textures. Consists of a [godot.Texture], a margin that defines the border width, and a region that defines the actual area of the AtlasTexture.
  */
 @GodotBaseType
 open class AtlasTexture : Texture() {
@@ -88,12 +85,14 @@ open class AtlasTexture : Texture() {
     callConstructor(ENGINECLASS_ATLASTEXTURE)
   }
 
+  @CoreTypeHelper
   open fun margin(schedule: Rect2.() -> Unit): Rect2 = margin.apply{
       schedule(this)
       margin = this
   }
 
 
+  @CoreTypeHelper
   open fun region(schedule: Rect2.() -> Unit): Rect2 = region.apply{
       schedule(this)
       region = this

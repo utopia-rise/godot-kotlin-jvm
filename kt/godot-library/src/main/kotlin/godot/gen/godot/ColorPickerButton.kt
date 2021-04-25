@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -22,12 +23,7 @@ import kotlin.Unit
 /**
  * Button that pops out a [godot.ColorPicker].
  *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/517](https://godotengine.org/asset-library/asset/517)
- *
  * Encapsulates a [godot.ColorPicker] making it accessible by pressing a button. Pressing the button will toggle the [godot.ColorPicker] visibility.
- *
- * See also [godot.BaseButton] which contains common properties and methods associated with this node.
  */
 @GodotBaseType
 open class ColorPickerButton : Button() {
@@ -81,6 +77,7 @@ open class ColorPickerButton : Button() {
     callConstructor(ENGINECLASS_COLORPICKERBUTTON)
   }
 
+  @CoreTypeHelper
   open fun color(schedule: Color.() -> Unit): Color = color.apply{
       schedule(this)
       color = this

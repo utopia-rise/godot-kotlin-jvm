@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.PoolColorArray
@@ -32,15 +33,11 @@ import kotlin.Unit
  * CPU-based 3D particle node used to create a variety of particle systems and effects.
  *
  * See also [godot.Particles], which provides the same functionality with hardware acceleration, but may not run on older devices.
- *
- * **Note:** Unlike [godot.Particles], the visibility rect is generated on-the-fly and doesn't need to be configured by the user.
  */
 @GodotBaseType
 open class CPUParticles : GeometryInstance() {
   /**
-   * The number of particles emitted in one emission cycle (corresponding to the [lifetime]).
-   *
-   * **Note:** Changing [amount] will reset the particle emission, therefore removing all particles that were already emitted before changing [amount].
+   * Number of particles emitted in one emission cycle.
    */
   open var amount: Long
     get() {
@@ -656,7 +653,7 @@ open class CPUParticles : GeometryInstance() {
     }
 
   /**
-   * The amount of time each particle will exist (in seconds).
+   * Amount of time each particle will exist.
    */
   open var lifetime: Double
     get() {
@@ -1034,24 +1031,28 @@ open class CPUParticles : GeometryInstance() {
     callConstructor(ENGINECLASS_CPUPARTICLES)
   }
 
+  @CoreTypeHelper
   open fun color(schedule: Color.() -> Unit): Color = color.apply{
       schedule(this)
       color = this
   }
 
 
+  @CoreTypeHelper
   open fun direction(schedule: Vector3.() -> Unit): Vector3 = direction.apply{
       schedule(this)
       direction = this
   }
 
 
+  @CoreTypeHelper
   open fun emissionBoxExtents(schedule: Vector3.() -> Unit): Vector3 = emissionBoxExtents.apply{
       schedule(this)
       emissionBoxExtents = this
   }
 
 
+  @CoreTypeHelper
   open fun gravity(schedule: Vector3.() -> Unit): Vector3 = gravity.apply{
       schedule(this)
       gravity = this

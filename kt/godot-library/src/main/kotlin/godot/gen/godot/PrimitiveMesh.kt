@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.AABB
 import godot.core.TransferContext
@@ -26,7 +27,7 @@ import kotlin.Unit
 @GodotBaseType
 open class PrimitiveMesh : Mesh() {
   /**
-   * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when  using a shader to offset vertices.
+   * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unnexpected culling when  using a shader to offset vertices.
    */
   open var customAabb: AABB
     get() {
@@ -77,6 +78,7 @@ open class PrimitiveMesh : Mesh() {
     callConstructor(ENGINECLASS_PRIMITIVEMESH)
   }
 
+  @CoreTypeHelper
   open fun customAabb(schedule: AABB.() -> Unit): AABB = customAabb.apply{
       schedule(this)
       customAabb = this

@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
@@ -38,6 +39,7 @@ open class InputEventPanGesture : InputEventGesture() {
     callConstructor(ENGINECLASS_INPUTEVENTPANGESTURE)
   }
 
+  @CoreTypeHelper
   open fun delta(schedule: Vector2.() -> Unit): Vector2 = delta.apply{
       schedule(this)
       delta = this

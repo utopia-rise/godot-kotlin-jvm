@@ -21,11 +21,9 @@ import kotlin.Suppress
  * A material that uses a custom [godot.Shader] program.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/shading/index.html](https://docs.godotengine.org/en/3.3/tutorials/shading/index.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/shading/index.html](https://docs.godotengine.org/en/latest/tutorials/shading/index.html)
  *
  * A material that uses a custom [godot.Shader] program to render either items to screen or process particles. You can create multiple materials for the same shader but configure different values for the uniforms defined in the shader.
- *
- * **Note:** Due to a renderer limitation, emissive [godot.ShaderMaterial]s cannot emit light when used in a [godot.GIProbe]. Only emissive [godot.SpatialMaterial]s can emit light in a [godot.GIProbe].
  */
 @GodotBaseType
 open class ShaderMaterial : Material() {

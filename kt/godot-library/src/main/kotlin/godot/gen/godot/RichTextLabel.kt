@@ -38,13 +38,11 @@ import kotlin.Suppress
  * Label that displays rich text.
  *
  * Tutorials:
- * [https://godotengine.org/asset-library/asset/677](https://godotengine.org/asset-library/asset/677)
+ * [https://docs.godotengine.org/en/latest/tutorials/gui/bbcode_in_richtextlabel.html](https://docs.godotengine.org/en/latest/tutorials/gui/bbcode_in_richtextlabel.html)
  *
  * Rich text can contain custom text, fonts, images and some basic formatting. The label manages these as an internal tag stack. It also adapts itself to given width/heights.
  *
  * **Note:** Assignments to [bbcodeText] clear the tag stack and reconstruct it from the property's contents. Any edits made to [bbcodeText] will erase previous edits made from other manual sources such as [appendBbcode] and the `push_*` / [pop] methods.
- *
- * **Note:** RichTextLabel doesn't support entangled BBCode tags. For example, instead of using `**bold*bold italic**italic*`, use `**bold*bold italic****italic*`.
  *
  * **Note:** Unlike [godot.Label], RichTextLabel doesn't have a *property* to horizontally align text to the center. Instead, enable [bbcodeEnabled] and surround the text in a `[center]` tag as follows: `[center]Example[/center]`. There is currently no built-in way to vertically align text either, but this can be emulated by relying on anchors/containers and the [fitContentHeight] property.
  */
@@ -67,8 +65,6 @@ open class RichTextLabel : Control() {
 
   /**
    * If `true`, the label uses BBCode formatting.
-   *
-   * **Note:** Trying to alter the [godot.RichTextLabel]'s text with [addText] will reset this to `false`. Use instead [appendBbcode] to preserve BBCode formatting.
    */
   open var bbcodeEnabled: Boolean
     get() {
@@ -86,7 +82,7 @@ open class RichTextLabel : Control() {
   /**
    * The label's text in BBCode format. Is not representative of manual modifications to the internal tag stack. Erases changes made by other methods when edited.
    *
-   * **Note:** It is unadvised to use the `+=` operator with `bbcode_text` (e.g. `bbcode_text += "some string"`) as it replaces the whole text and can cause slowdowns. Use [appendBbcode] for adding text instead, unless you absolutely need to close a tag that was opened in an earlier method call.
+   * **Note:** It is unadvised to use `+=` operator with `bbcode_text` (e.g. `bbcode_text += "some string"`) as it replaces the whole text and can cause slowdowns. Use [appendBbcode] for adding text instead.
    */
   open var bbcodeText: String
     get() {
@@ -267,8 +263,6 @@ open class RichTextLabel : Control() {
 
   /**
    * The restricted number of characters to display in the label. If `-1`, all characters will be displayed.
-   *
-   * **Note:** Setting this property updates [percentVisible] based on current [getTotalCharacterCount].
    */
   open var visibleCharacters: Long
     get() {
@@ -317,8 +311,6 @@ open class RichTextLabel : Control() {
 
   /**
    * Parses `bbcode` and adds tags to the tag stack as needed. Returns the result of the parsing, [OK] if successful.
-   *
-   * **Note:** Using this method, you can't close a tag that was opened in a previous [appendBbcode] call. This is done to improve performance, especially when updating large RichTextLabels since rebuilding the whole BBCode every time would be slower. If you absolutely need to close a tag in a future method call, append the [bbcodeText] instead of using [appendBbcode].
    */
   open fun appendBbcode(bbcode: String): GodotError {
     TransferContext.writeArguments(STRING to bbcode)

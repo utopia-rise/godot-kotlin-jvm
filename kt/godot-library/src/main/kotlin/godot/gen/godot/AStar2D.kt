@@ -56,9 +56,7 @@ open class AStar2D : Reference() {
   }
 
   /**
-   * Adds a new point at the given position with the given identifier. The `id` must be 0 or larger, and the `weight_scale` must be 1 or larger.
-   *
-   * The `weight_scale` is multiplied by the result of [_computeCost] when determining the overall cost of traveling across a segment from a neighboring point to this point. Thus, all else being equal, the algorithm prefers points with lower `weight_scale`s to form a path.
+   * Adds a new point at the given position with the given identifier. The algorithm prefers points with lower `weight_scale` to form a path. The `id` must be 0 or larger, and the `weight_scale` must be 1 or larger.
    *
    * ```
    * 				var astar = AStar2D.new()
@@ -230,8 +228,6 @@ open class AStar2D : Reference() {
 
   /**
    * Returns an array with the points that are in the path found by AStar2D between the given points. The array is ordered from the starting point to the ending point of the path.
-   *
-   * **Note:** This method is not thread-safe. If called from a [godot.Thread], it will return an empty [godot.core.PoolVector2Array] and will print an error message.
    */
   open fun getPointPath(fromId: Long, toId: Long): PoolVector2Array {
     TransferContext.writeArguments(LONG to fromId, LONG to toId)
@@ -319,7 +315,7 @@ open class AStar2D : Reference() {
   }
 
   /**
-   * Sets the `weight_scale` for the point with the given `id`. The `weight_scale` is multiplied by the result of [_computeCost] when determining the overall cost of traveling across a segment from a neighboring point to this point.
+   * Sets the `weight_scale` for the point with the given `id`.
    */
   open fun setPointWeightScale(id: Long, weightScale: Double) {
     TransferContext.writeArguments(LONG to id, DOUBLE to weightScale)

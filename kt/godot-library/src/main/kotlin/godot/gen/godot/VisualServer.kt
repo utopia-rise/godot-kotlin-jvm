@@ -62,7 +62,7 @@ import kotlin.Suppress
  * Server for anything visible.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/optimization/using_servers.html](https://docs.godotengine.org/en/3.3/tutorials/optimization/using_servers.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/optimization/using_servers.html](https://docs.godotengine.org/en/latest/tutorials/optimization/using_servers.html)
  *
  * Server for anything visible. The visual server is the API backend for everything visible. The whole scene system mounts on it to display.
  *
@@ -76,7 +76,7 @@ import kotlin.Suppress
  *
  * In 3D, all visual objects must be associated with a scenario. The scenario is a visual representation of the world. If accessing the visual server from a running game, the scenario can be accessed from the scene tree from any [godot.Spatial] node with [godot.Spatial.getWorld]. Otherwise, a scenario can be created with [scenarioCreate].
  *
- * Similarly, in 2D, a canvas is needed to draw all canvas items.
+ * Similarly in 2D, a canvas is needed to draw all canvas items.
  *
  * In 3D, all visible objects are comprised of a resource and an instance. A resource can be a mesh, a particle system, a light, or any other 3D object. In order to be visible resources must be attached to an instance using [instanceSetBase]. The instance must also be attached to the scenario using [instanceSetScenario] in order to be visible.
  *
@@ -624,19 +624,10 @@ object VisualServer : Object() {
    */
   final const val INSTANCE_REFLECTION_PROBE: Long = 6
 
-  /**
-   *
-   */
   final const val LIGHT_BAKE_ALL: Long = 2
 
-  /**
-   *
-   */
   final const val LIGHT_BAKE_DISABLED: Long = 0
 
-  /**
-   *
-   */
   final const val LIGHT_BAKE_INDIRECT: Long = 1
 
   /**
@@ -2747,9 +2738,7 @@ object VisualServer : Object() {
   }
 
   /**
-   * Returns `true` if the OS supports a certain feature. Features might be `s3tc`, `etc`, `etc2`, `pvrtc` and `skinning_fallback`.
-   *
-   * When rendering with GLES2, returns `true` with `skinning_fallback` in case the hardware doesn't support the default GPU skinning process.
+   * Returns `true` if the OS supports a certain feature. Features might be `s3tc`, `etc`, `etc2` and `pvrtc`.
    */
   fun hasOsFeature(feature: String): Boolean {
     TransferContext.writeArguments(STRING to feature)
@@ -3020,7 +3009,7 @@ object VisualServer : Object() {
   }
 
   /**
-   * Sets a margin to increase the size of the AABB when culling objects from the view frustum. This allows you to avoid culling objects that fall outside the view frustum. Equivalent to [godot.GeometryInstance.extraCullMargin].
+   * Sets a margin to increase the size of the AABB when culling objects from the view frustum. This allows you avoid culling objects that fall outside the view frustum. Equivalent to [godot.GeometryInstance.extraCullMargin].
    */
   fun instanceSetExtraVisibilityMargin(instance: RID, margin: Double) {
     TransferContext.writeArguments(_RID to instance, DOUBLE to margin)
@@ -3178,9 +3167,6 @@ object VisualServer : Object() {
         ENGINEMETHOD_ENGINECLASS_VISUALSERVER_LIGHT_OMNI_SET_SHADOW_MODE, NIL)
   }
 
-  /**
-   * Sets the bake mode for this light, see [enum LightBakeMode] for options. The bake mode affects how the light will be baked in [godot.BakedLightmap]s and [godot.GIProbe]s.
-   */
   fun lightSetBakeMode(light: RID, bakeMode: Long) {
     TransferContext.writeArguments(_RID to light, LONG to bakeMode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSERVER_LIGHT_SET_BAKE_MODE,
@@ -3261,7 +3247,7 @@ object VisualServer : Object() {
   }
 
   /**
-   * Sets whether GI probes capture light information from this light. *Deprecated method.* Use [lightSetBakeMode] instead. This method is only kept for compatibility reasons and calls [lightSetBakeMode] internally, setting the bake mode to [LIGHT_BAKE_DISABLED] or [LIGHT_BAKE_INDIRECT] depending on the given parameter.
+   * Sets whether GI probes capture light information from this light.
    */
   fun lightSetUseGi(light: RID, enabled: Boolean) {
     TransferContext.writeArguments(_RID to light, BOOL to enabled)
@@ -3333,9 +3319,6 @@ object VisualServer : Object() {
     return TransferContext.readReturnValue(TRANSFORM, false) as Transform
   }
 
-  /**
-   * Returns `true` if capture is in "interior" mode.
-   */
   fun lightmapCaptureIsInterior(capture: RID): Boolean {
     TransferContext.writeArguments(_RID to capture)
     TransferContext.callMethod(rawPtr,
@@ -3361,9 +3344,6 @@ object VisualServer : Object() {
         ENGINEMETHOD_ENGINECLASS_VISUALSERVER_LIGHTMAP_CAPTURE_SET_ENERGY, NIL)
   }
 
-  /**
-   * Sets the "interior" mode for this lightmap capture. Equivalent to [godot.BakedLightmapData.interior].
-   */
   fun lightmapCaptureSetInterior(capture: RID, interior: Boolean) {
     TransferContext.writeArguments(_RID to capture, BOOL to interior)
     TransferContext.callMethod(rawPtr,
@@ -4165,7 +4145,7 @@ object VisualServer : Object() {
   }
 
   /**
-   * Sets the preprocess time for the particles' animation. This lets you delay starting an animation until after the particles have begun emitting. Equivalent to [godot.Particles.preprocess].
+   * Sets the preprocess time for the particles animation. This lets you delay starting an animation until after the particles have begun emitting. Equivalent to [godot.Particles.preprocess].
    */
   fun particlesSetPreProcessTime(particles: RID, time: Double) {
     TransferContext.writeArguments(_RID to particles, DOUBLE to time)
@@ -5161,20 +5141,12 @@ object VisualServer : Object() {
         NIL)
   }
 
-  /**
-   * If `true`, uses a fast post-processing filter to make banding significantly less visible. In some cases, debanding may introduce a slightly noticeable dithering pattern. It's recommended to enable debanding only when actually needed since the dithering pattern will make lossless-compressed screenshots larger.
-   *
-   * **Note:** Only available on the GLES3 backend. [godot.Viewport.hdr] must also be `true` for debanding to be effective.
-   */
   fun viewportSetUseDebanding(viewport: RID, debanding: Boolean) {
     TransferContext.writeArguments(_RID to viewport, BOOL to debanding)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSERVER_VIEWPORT_SET_USE_DEBANDING, NIL)
   }
 
-  /**
-   * Enables fast approximate antialiasing for this viewport. FXAA is a popular screen-space antialiasing method, which is fast but will make the image look blurry, especially at lower resolutions. It can still work relatively well at large resolutions such as 1440p and 4K.
-   */
   fun viewportSetUseFxaa(viewport: RID, fxaa: Boolean) {
     TransferContext.writeArguments(_RID to viewport, BOOL to fxaa)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSERVER_VIEWPORT_SET_USE_FXAA,
@@ -6250,19 +6222,10 @@ object VisualServer : Object() {
   enum class LightBakeMode(
     id: Long
   ) {
-    /**
-     *
-     */
     LIGHT_BAKE_DISABLED(0),
 
-    /**
-     *
-     */
     LIGHT_BAKE_INDIRECT(1),
 
-    /**
-     *
-     */
     LIGHT_BAKE_ALL(2);
 
     val id: Long

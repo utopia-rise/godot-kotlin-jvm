@@ -37,14 +37,9 @@ import kotlin.Suppress
 /**
  * Image datatype.
  *
- * Tutorials:
- * [https://docs.godotengine.org/en/3.3/getting_started/workflow/assets/importing_images.html](https://docs.godotengine.org/en/3.3/getting_started/workflow/assets/importing_images.html)
+ * Native image datatype. Contains image data, which can be converted to a [godot.Texture], and several functions to interact with it. The maximum width and height for an [godot.Image] are [MAX_WIDTH] and [MAX_HEIGHT].
  *
- * Native image datatype. Contains image data which can be converted to an [godot.ImageTexture] and provides commonly used *image processing* methods. The maximum width and height for an [godot.Image] are [MAX_WIDTH] and [MAX_HEIGHT].
- *
- * An [godot.Image] cannot be assigned to a `texture` property of an object directly (such as [godot.Sprite]), and has to be converted manually to an [godot.ImageTexture] first.
- *
- * **Note:** The maximum image size is 16384×16384 pixels due to graphics hardware limitations. Larger images may fail to import.
+ * **Note:** The maximum image size is 16384×16384 pixels due to graphics hardware limitations. Larger images will fail to import.
  */
 @GodotBaseType
 open class Image : Resource() {
@@ -250,7 +245,7 @@ open class Image : Resource() {
   }
 
   /**
-   * Generates mipmaps for the image. Mipmaps are precalculated and lower resolution copies of the image. Mipmaps are automatically used if the image needs to be scaled down when rendered. This improves image quality and the performance of the rendering. Returns an error if the image is compressed, in a custom format or if the image's width/height is 0.
+   * Generates mipmaps for the image. Mipmaps are pre-calculated and lower resolution copies of the image. Mipmaps are automatically used if the image needs to be scaled down when rendered. This improves image quality and the performance of the rendering. Returns an error if the image is compressed, in a custom format or if the image's width/height is 0.
    */
   open fun generateMipmaps(renormalize: Boolean = false): GodotError {
     TransferContext.writeArguments(BOOL to renormalize)
@@ -385,11 +380,7 @@ open class Image : Resource() {
   }
 
   /**
-   * Loads an image from file `path`. See [godot.Supported image formats](https://docs.godotengine.org/en/3.3/getting_started/workflow/assets/importing_images.html#supported-image-formats) for a list of supported image formats and limitations.
-   *
-   * **Warning:** This method should only be used in the editor or in cases when you need to load external images at run-time, such as images located at the `user://` directory, and may not work in exported projects.
-   *
-   * See also [godot.ImageTexture] description for usage examples.
+   * Loads an image from file `path`. See [godot.Supported image formats](https://docs.godotengine.org/en/latest/getting_started/workflow/assets/importing_images.html#supported-image-formats) for a list of supported image formats and limitations.
    */
   open fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
@@ -397,11 +388,6 @@ open class Image : Resource() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  /**
-   * Loads an image from the binary contents of a BMP file.
-   *
-   * **Note:** Godot's BMP module doesn't support 16-bit per pixel images. Only 1-bit, 4-bit, 8-bit, 24-bit, and 32-bit per pixel images are supported.
-   */
   open fun loadBmpFromBuffer(buffer: PoolByteArray): GodotError {
     TransferContext.writeArguments(POOL_BYTE_ARRAY to buffer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_BMP_FROM_BUFFER, LONG)
@@ -469,7 +455,7 @@ open class Image : Resource() {
   }
 
   /**
-   * Resizes the image to the given `width` and `height`. New pixels are calculated using the `interpolation` mode defined via [enum Interpolation] constants.
+   * Resizes the image to the given `width` and `height`. New pixels are calculated using `interpolation`. See `interpolation` constants.
    */
   open fun resize(
     width: Long,
@@ -481,7 +467,7 @@ open class Image : Resource() {
   }
 
   /**
-   * Resizes the image to the nearest power of 2 for the width and height. If `square` is `true` then set width and height to be the same. New pixels are calculated using the `interpolation` mode defined via [enum Interpolation] constants.
+   * Resizes the image to the nearest power of 2 for the width and height. If `square` is `true` then set width and height to be the same.
    */
   open fun resizeToPo2(square: Boolean = false, interpolation: Long = 1) {
     TransferContext.writeArguments(BOOL to square, LONG to interpolation)

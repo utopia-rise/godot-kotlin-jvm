@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
@@ -38,6 +39,7 @@ open class ExternalTexture : Texture() {
     callConstructor(ENGINECLASS_EXTERNALTEXTURE)
   }
 
+  @CoreTypeHelper
   open fun size(schedule: Vector2.() -> Unit): Vector2 = size.apply{
       schedule(this)
       size = this

@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -16,10 +17,7 @@ import kotlin.Unit
 /**
  * Colored rectangle.
  *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/515](https://godotengine.org/asset-library/asset/515)
- *
- * Displays a rectangle filled with a solid [color]. If you need to display the border alone, consider using [godot.ReferenceRect] instead.
+ * Displays a colored rectangle.
  */
 @GodotBaseType
 open class ColorRect : Control() {
@@ -45,6 +43,7 @@ open class ColorRect : Control() {
     callConstructor(ENGINECLASS_COLORRECT)
   }
 
+  @CoreTypeHelper
   open fun color(schedule: Color.() -> Unit): Color = color.apply{
       schedule(this)
       color = this

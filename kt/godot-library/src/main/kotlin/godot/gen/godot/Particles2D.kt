@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Rect2
 import godot.core.TransferContext
@@ -21,27 +22,19 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * GPU-based 2D particle emitter.
+ * 2D particle emitter.
  *
  * Tutorials:
- * [https://godotengine.org/asset-library/asset/515](https://godotengine.org/asset-library/asset/515)
+ * [https://docs.godotengine.org/en/latest/tutorials/2d/particle_systems_2d.html](https://docs.godotengine.org/en/latest/tutorials/2d/particle_systems_2d.html)
  *
  * 2D particle node used to create a variety of particle systems and effects. [godot.Particles2D] features an emitter that generates some number of particles at a given rate.
  *
  * Use the `process_material` property to add a [godot.ParticlesMaterial] to configure particle appearance and behavior. Alternatively, you can add a [godot.ShaderMaterial] which will be applied to all particles.
- *
- * **Note:** [godot.Particles2D] only work when using the GLES3 renderer. If using the GLES2 renderer, use [godot.CPUParticles2D] instead. You can convert [godot.Particles2D] to [godot.CPUParticles2D] by selecting the node, clicking the **Particles** menu at the top of the 2D editor viewport then choosing **Convert to CPUParticles2D**.
- *
- * **Note:** After working on a Particles node, remember to update its [visibilityRect] by selecting it, clicking the **Particles** menu at the top of the 2D editor viewport then choose **Generate Visibility Rect**. Otherwise, particles may suddenly disappear depending on the camera position and angle.
- *
- * **Note:** Unlike [godot.CPUParticles2D], [godot.Particles2D] currently ignore the texture region defined in [godot.AtlasTexture]s.
  */
 @GodotBaseType
 open class Particles2D : Node2D() {
   /**
-   * The number of particles emitted in one emission cycle (corresponding to the [lifetime]).
-   *
-   * **Note:** Changing [amount] will reset the particle emission, therefore removing all particles that were already emitted before changing [amount].
+   * Number of particles emitted in one emission cycle.
    */
   open var amount: Long
     get() {
@@ -127,7 +120,7 @@ open class Particles2D : Node2D() {
     }
 
   /**
-   * The amount of time each particle will exist (in seconds).
+   * Amount of time each particle will exist.
    */
   open var lifetime: Double
     get() {
@@ -262,9 +255,7 @@ open class Particles2D : Node2D() {
     }
 
   /**
-   * The [godot.core.Rect2] that determines the node's region which needs to be visible on screen for the particle system to be active.
-   *
-   * Grow the rect if particles suddenly appear/disappear when the node enters/exits the screen. The [godot.core.Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.
+   * Editor visibility helper.
    */
   open var visibilityRect: Rect2
     get() {
@@ -283,6 +274,7 @@ open class Particles2D : Node2D() {
     callConstructor(ENGINECLASS_PARTICLES2D)
   }
 
+  @CoreTypeHelper
   open fun visibilityRect(schedule: Rect2.() -> Unit): Rect2 = visibilityRect.apply{
       schedule(this)
       visibilityRect = this

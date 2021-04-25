@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -277,24 +278,28 @@ open class TextureProgress : Range() {
     callConstructor(ENGINECLASS_TEXTUREPROGRESS)
   }
 
+  @CoreTypeHelper
   open fun radialCenterOffset(schedule: Vector2.() -> Unit): Vector2 = radialCenterOffset.apply{
       schedule(this)
       radialCenterOffset = this
   }
 
 
+  @CoreTypeHelper
   open fun tintOver(schedule: Color.() -> Unit): Color = tintOver.apply{
       schedule(this)
       tintOver = this
   }
 
 
+  @CoreTypeHelper
   open fun tintProgress(schedule: Color.() -> Unit): Color = tintProgress.apply{
       schedule(this)
       tintProgress = this
   }
 
 
+  @CoreTypeHelper
   open fun tintUnder(schedule: Color.() -> Unit): Color = tintUnder.apply{
       schedule(this)
       tintUnder = this

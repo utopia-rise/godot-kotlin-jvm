@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.PoolIntArray
@@ -262,6 +263,7 @@ open class ItemList : Control() {
     callConstructor(ENGINECLASS_ITEMLIST)
   }
 
+  @CoreTypeHelper
   open fun fixedIconSize(schedule: Vector2.() -> Unit): Vector2 = fixedIconSize.apply{
       schedule(this)
       fixedIconSize = this
@@ -519,6 +521,11 @@ open class ItemList : Control() {
 
   /**
    * Sets the background color of the item specified by `idx` index to the specified [godot.core.Color].
+   *
+   * ```
+   * 				var some_string = "Some text"
+   * 				some_string.set_item_custom_bg_color(0,Color(1, 0, 0, 1) # This will set the background color of the first item of the control to red.
+   * 				```
    */
   open fun setItemCustomBgColor(idx: Long, customBgColor: Color) {
     TransferContext.writeArguments(LONG to idx, COLOR to customBgColor)
@@ -528,6 +535,11 @@ open class ItemList : Control() {
 
   /**
    * Sets the foreground color of the item specified by `idx` index to the specified [godot.core.Color].
+   *
+   * ```
+   * 				var some_string = "Some text"
+   * 				some_string.set_item_custom_fg_color(0,Color(1, 0, 0, 1) # This will set the foreground color of the first item of the control to red.
+   * 				```
    */
   open fun setItemCustomFgColor(idx: Long, customFgColor: Color) {
     TransferContext.writeArguments(LONG to idx, COLOR to customFgColor)

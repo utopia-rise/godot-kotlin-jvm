@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.PoolVector3Array
 import godot.core.TransferContext
@@ -24,9 +25,6 @@ import kotlin.Unit
 
 /**
  * Mesh-based navigation and pathfinding node.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/124](https://godotengine.org/asset-library/asset/124)
  *
  * Provides navigation and pathfinding within a collection of [godot.NavigationMesh]es. By default, these will be automatically collected from child [godot.NavigationMeshInstance] nodes, but they can also be added on the fly with [navmeshAdd]. In addition to basic pathfinding, this class also assists with aligning navigation agents with the meshes they are navigating on.
  */
@@ -50,6 +48,7 @@ open class Navigation : Spatial() {
     callConstructor(ENGINECLASS_NAVIGATION)
   }
 
+  @CoreTypeHelper
   open fun upVector(schedule: Vector3.() -> Unit): Vector3 = upVector.apply{
       schedule(this)
       upVector = this

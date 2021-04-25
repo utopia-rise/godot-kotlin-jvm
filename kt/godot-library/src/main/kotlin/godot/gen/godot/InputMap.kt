@@ -24,7 +24,7 @@ import kotlin.Suppress
  * Singleton that manages [godot.InputEventAction].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/inputs/inputevent.html#inputmap](https://docs.godotengine.org/en/3.3/tutorials/inputs/inputevent.html#inputmap)
+ * [https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html#inputmap](https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html#inputmap)
  *
  * Manages all [godot.InputEventAction] which can be created/modified from the project settings menu **Project > Project Settings > Input Map** or in code with [addAction] and [actionAddEvent]. See [godot.Node.Input].
  */

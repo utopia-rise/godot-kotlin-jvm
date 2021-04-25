@@ -26,7 +26,7 @@ import kotlin.Suppress
  * A soft mesh physics body.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/physics/soft_body.html](https://docs.godotengine.org/en/3.3/tutorials/physics/soft_body.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/physics/soft_body.html](https://docs.godotengine.org/en/latest/tutorials/physics/soft_body.html)
  *
  * A deformable physics body. Used to create elastic or deformable objects such as cloth, rubber, or other flexible materials.
  */
@@ -53,7 +53,7 @@ open class SoftBody : MeshInstance() {
    *
    * Collidable objects can exist in any of 32 different layers. These layers work like a tagging system, and are not visual. A collidable can use these layers to select with which objects it can collide, using the collision_mask property.
    *
-   * A contact is detected if object A is in any of the layers that object B scans, or object B is in any layer scanned by object A. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * A contact is detected if object A is in any of the layers that object B scans, or object B is in any layer scanned by object A. See [godot.Collision layers and masks](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
   open var collisionLayer: Long
     get() {
@@ -68,7 +68,7 @@ open class SoftBody : MeshInstance() {
     }
 
   /**
-   * The physics layers this SoftBody scans for collisions. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The physics layers this SoftBody scans for collisions. See [godot.Collision layers and masks](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
   open var collisionMask: Long
     get() {

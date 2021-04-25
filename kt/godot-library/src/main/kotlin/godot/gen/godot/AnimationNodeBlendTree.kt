@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -24,7 +25,7 @@ import kotlin.Unit
  * [godot.AnimationTree] node resource that contains many blend type nodes.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/3.3/tutorials/animation/animation_tree.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
  *
  * This node may contain a sub-tree of any other blend type nodes, such as mix, blend2, blend3, one shot, etc. This is one of the most commonly used roots.
  */
@@ -50,6 +51,7 @@ open class AnimationNodeBlendTree : AnimationRootNode() {
     callConstructor(ENGINECLASS_ANIMATIONNODEBLENDTREE)
   }
 
+  @CoreTypeHelper
   open fun graphOffset(schedule: Vector2.() -> Unit): Vector2 = graphOffset.apply{
       schedule(this)
       graphOffset = this

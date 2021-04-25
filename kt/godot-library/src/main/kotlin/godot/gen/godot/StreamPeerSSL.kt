@@ -25,7 +25,7 @@ import kotlin.Suppress
  * SSL stream peer.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/networking/ssl_certificates.html](https://docs.godotengine.org/en/3.3/tutorials/networking/ssl_certificates.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/networking/ssl_certificates.html](https://docs.godotengine.org/en/latest/tutorials/networking/ssl_certificates.html)
  *
  * SSL stream peer. This object can be used to connect to an SSL server or accept a single SSL client connection.
  */

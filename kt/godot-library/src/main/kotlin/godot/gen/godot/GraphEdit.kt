@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.GodotError
 import godot.core.TransferContext
@@ -116,9 +117,6 @@ open class GraphEdit : Control() {
    */
   val scrollOffsetChanged: Signal1<Vector2> by signal("ofs")
 
-  /**
-   * If `true`, the minimap is visible.
-   */
   open var minimapEnabled: Boolean
     get() {
       TransferContext.writeArguments()
@@ -132,9 +130,6 @@ open class GraphEdit : Control() {
           NIL)
     }
 
-  /**
-   * The opacity of the minimap rectangle.
-   */
   open var minimapOpacity: Double
     get() {
       TransferContext.writeArguments()
@@ -148,9 +143,6 @@ open class GraphEdit : Control() {
           NIL)
     }
 
-  /**
-   * The size of the minimap rectangle. The map itself is based on the size of the grid area and is scaled to fit this rectangle.
-   */
   open var minimapSize: Vector2
     get() {
       TransferContext.writeArguments()
@@ -240,12 +232,14 @@ open class GraphEdit : Control() {
     callConstructor(ENGINECLASS_GRAPHEDIT)
   }
 
+  @CoreTypeHelper
   open fun minimapSize(schedule: Vector2.() -> Unit): Vector2 = minimapSize.apply{
       schedule(this)
       minimapSize = this
   }
 
 
+  @CoreTypeHelper
   open fun scrollOffset(schedule: Vector2.() -> Unit): Vector2 = scrollOffset.apply{
       schedule(this)
       scrollOffset = this
@@ -375,7 +369,7 @@ open class GraphEdit : Control() {
   /**
    * Gets the [godot.HBoxContainer] that contains the zooming and grid snap controls in the top left of the graph.
    *
-   * Warning: The intended usage of this function is to allow you to reposition or add your own custom controls to the container. This is an internal control and as such should not be freed. If you wish to hide this or any of its children, use their [godot.CanvasItem.visible] property instead.
+   * Warning: The intended usage of this function is to allow you to reposition or add your own custom controls to the container. This is an internal control and as such should not be freed. If you wish to hide this or any of it's children use their [godot.CanvasItem.visible] property instead.
    */
   open fun getZoomHbox(): HBoxContainer? {
     TransferContext.writeArguments()

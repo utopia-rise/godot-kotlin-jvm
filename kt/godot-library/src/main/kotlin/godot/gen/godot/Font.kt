@@ -84,7 +84,7 @@ open class Font : Resource() {
   }
 
   /**
-   * Returns the size of a character, optionally taking kerning into account if the next character is provided. Note that the height returned is the font height (see [getHeight]) and has no relation to the glyph height.
+   * Returns the size of a character, optionally taking kerning into account if the next character is provided.
    */
   open fun getCharSize(char: Long, next: Long = 0): Vector2 {
     TransferContext.writeArguments(LONG to char, LONG to next)
@@ -111,7 +111,7 @@ open class Font : Resource() {
   }
 
   /**
-   * Returns the size of a string, taking kerning and advance into account. Note that the height returned is the font height (see [getHeight]) and has no relation to the string.
+   * Returns the size of a string, taking kerning and advance into account.
    */
   open fun getStringSize(string: String): Vector2 {
     TransferContext.writeArguments(STRING to string)

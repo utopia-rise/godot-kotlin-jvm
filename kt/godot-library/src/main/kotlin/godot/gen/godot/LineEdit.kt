@@ -421,9 +421,6 @@ open class LineEdit : Control() {
     return TransferContext.readReturnValue(OBJECT, true) as PopupMenu?
   }
 
-  /**
-   * Returns the scroll offset due to [caretPosition], as a number of characters.
-   */
   open fun getScrollOffset(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_SCROLL_OFFSET, LONG)

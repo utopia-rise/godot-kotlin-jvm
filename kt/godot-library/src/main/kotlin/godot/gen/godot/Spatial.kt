@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.Transform
@@ -27,7 +28,7 @@ import kotlin.Unit
  * Most basic 3D game object, parent of all 3D-related nodes.
  *
  * Tutorials:
- * [https://github.com/godotengine/godot-demo-projects/tree/master/3d](https://github.com/godotengine/godot-demo-projects/tree/master/3d)
+ * [https://docs.godotengine.org/en/latest/tutorials/3d/introduction_to_3d.html](https://docs.godotengine.org/en/latest/tutorials/3d/introduction_to_3d.html)
  *
  * Most basic 3D game object, with a 3D [godot.core.Transform] and visibility settings. All other 3D game objects inherit from Spatial. Use [godot.Spatial] as a parent node to move, scale, rotate and show/hide children in a 3D project.
  *
@@ -162,36 +163,42 @@ open class Spatial : Node() {
     callConstructor(ENGINECLASS_SPATIAL)
   }
 
+  @CoreTypeHelper
   open fun globalTransform(schedule: Transform.() -> Unit): Transform = globalTransform.apply{
       schedule(this)
       globalTransform = this
   }
 
 
+  @CoreTypeHelper
   open fun rotation(schedule: Vector3.() -> Unit): Vector3 = rotation.apply{
       schedule(this)
       rotation = this
   }
 
 
+  @CoreTypeHelper
   open fun rotationDegrees(schedule: Vector3.() -> Unit): Vector3 = rotationDegrees.apply{
       schedule(this)
       rotationDegrees = this
   }
 
 
+  @CoreTypeHelper
   open fun scale(schedule: Vector3.() -> Unit): Vector3 = scale.apply{
       schedule(this)
       scale = this
   }
 
 
+  @CoreTypeHelper
   open fun transform(schedule: Transform.() -> Unit): Transform = transform.apply{
       schedule(this)
       transform = this
   }
 
 
+  @CoreTypeHelper
   open fun translation(schedule: Vector3.() -> Unit): Vector3 = translation.apply{
       schedule(this)
       translation = this
@@ -429,7 +436,7 @@ open class Spatial : Node() {
   }
 
   /**
-   * Sets whether the node notifies about its global and local transformation changes. [godot.Spatial] will not propagate this by default, unless it is in the editor context and it has a valid gizmo.
+   * Sets whether the node notifies about its global and local transformation changes. [godot.Spatial] will not propagate this by default.
    */
   open fun setNotifyTransform(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
@@ -502,7 +509,7 @@ open class Spatial : Node() {
     /**
      * Spatial nodes receives this notification when their global transform changes. This means that either the current or a parent node changed its transform.
      *
-     * In order for [NOTIFICATION_TRANSFORM_CHANGED] to work, users first need to ask for it, with [setNotifyTransform]. The notification is also sent if the node is in the editor context and it has a valid gizmo.
+     * In order for [NOTIFICATION_TRANSFORM_CHANGED] to work, users first need to ask for it, with [setNotifyTransform].
      */
     final const val NOTIFICATION_TRANSFORM_CHANGED: Long = 2000
 

@@ -20,8 +20,8 @@ import kotlin.Suppress
  * Server that manages all translations.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/i18n/internationalizing_games.html](https://docs.godotengine.org/en/3.3/tutorials/i18n/internationalizing_games.html)
- * [https://docs.godotengine.org/en/3.3/tutorials/i18n/locales.html](https://docs.godotengine.org/en/3.3/tutorials/i18n/locales.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/i18n/internationalizing_games.html](https://docs.godotengine.org/en/latest/tutorials/i18n/internationalizing_games.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/i18n/locales.html](https://docs.godotengine.org/en/latest/tutorials/i18n/locales.html)
  *
  * Server that manages all translations. Translations can be set to it and removed from it.
  */

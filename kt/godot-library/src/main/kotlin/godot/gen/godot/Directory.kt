@@ -23,13 +23,11 @@ import kotlin.Suppress
  * Type used to handle the filesystem.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/getting_started/step_by_step/filesystem.html](https://docs.godotengine.org/en/3.3/getting_started/step_by_step/filesystem.html)
+ * [https://docs.godotengine.org/en/latest/getting_started/step_by_step/filesystem.html](https://docs.godotengine.org/en/latest/getting_started/step_by_step/filesystem.html)
  *
  * Directory type. It is used to manage directories and their content (not restricted to the project folder).
  *
  * When creating a new [godot.Directory], its default opened directory will be `res://`. This may change in the future, so it is advised to always use [open] to initialize your [godot.Directory] where you want to operate, with explicit error checking.
- *
- * **Note:** Many resources types are imported (e.g. textures or sound files), and their source asset will not be included in the exported game, as only the imported version is used. Use [godot.ResourceLoader] to access imported resources.
  *
  * Here is an example on how to iterate through the files of a directory:
  *
@@ -123,7 +121,7 @@ open class Directory : Reference() {
   }
 
   /**
-   * On Windows, returns the name of the drive (partition) passed as an argument (e.g. `C:`). On other platforms, or if the requested drive does not exist, the method returns an empty String.
+   * On Windows, returns the name of the drive (partition) passed as an argument (e.g. `C:`). On other platforms, or if the requested drive does not existed, the method returns an empty String.
    */
   open fun getDrive(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
@@ -175,7 +173,7 @@ open class Directory : Reference() {
   }
 
   /**
-   * Closes the current stream opened with [listDirBegin] (whether it has been fully processed with [getNext] does not matter).
+   * Closes the current stream opened with [listDirBegin] (whether it has been fully processed with [getNext] or not does not matter).
    */
   open fun listDirEnd() {
     TransferContext.writeArguments()

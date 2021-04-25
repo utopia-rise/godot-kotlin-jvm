@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -23,7 +24,7 @@ import kotlin.Unit
  * Provides a base class for different kinds of light nodes.
  *
  * Tutorials:
- * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
+ * [https://docs.godotengine.org/en/latest/tutorials/3d/lights_and_shadows.html](https://docs.godotengine.org/en/latest/tutorials/3d/lights_and_shadows.html)
  *
  * Light is the *abstract* base class for light nodes. As it can't be instanced, it shouldn't be used directly. Other types of light nodes inherit from it. Light contains the common variables and parameters used for lighting.
  */
@@ -219,12 +220,14 @@ open class Light : VisualInstance() {
     callConstructor(ENGINECLASS_LIGHT)
   }
 
+  @CoreTypeHelper
   open fun lightColor(schedule: Color.() -> Unit): Color = lightColor.apply{
       schedule(this)
       lightColor = this
   }
 
 
+  @CoreTypeHelper
   open fun shadowColor(schedule: Color.() -> Unit): Color = shadowColor.apply{
       schedule(this)
       shadowColor = this

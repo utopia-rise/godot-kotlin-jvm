@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -24,7 +25,7 @@ import kotlin.Unit
  * (only available on mobile devices)
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/3.3/tutorials/inputs/inputevent.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html)
  *
  * Stores multi-touch press/release information. Supports touch press, touch release and [index] for multi-touch count and order.
  */
@@ -79,6 +80,7 @@ open class InputEventScreenTouch : InputEvent() {
     callConstructor(ENGINECLASS_INPUTEVENTSCREENTOUCH)
   }
 
+  @CoreTypeHelper
   open fun position(schedule: Vector2.() -> Unit): Vector2 = position.apply{
       schedule(this)
       position = this

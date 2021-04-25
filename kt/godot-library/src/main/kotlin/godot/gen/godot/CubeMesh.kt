@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
@@ -21,8 +22,6 @@ import kotlin.Unit
  * Generate an axis-aligned cuboid [godot.PrimitiveMesh].
  *
  * The cube's UV layout is arranged in a 3×2 layout that allows texturing each face individually. To apply the same texture on all faces, change the material's UV property to `Vector3(3, 2, 1)`.
- *
- * **Note:** When using a large textured [godot.CubeMesh] (e.g. as a floor), you may stumble upon UV jittering issues depending on the camera angle. To solve this, increase [subdivideDepth], [subdivideHeight] and [subdivideWidth] until you no longer notice UV jittering.
  */
 @GodotBaseType
 open class CubeMesh : PrimitiveMesh() {
@@ -90,6 +89,7 @@ open class CubeMesh : PrimitiveMesh() {
     callConstructor(ENGINECLASS_CUBEMESH)
   }
 
+  @CoreTypeHelper
   open fun size(schedule: Vector3.() -> Unit): Vector3 = size.apply{
       schedule(this)
       size = this

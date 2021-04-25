@@ -253,7 +253,7 @@ open class TreeItem : Object() {
   }
 
   /**
-   * Returns the metadata value that was set for the given column using [setMetadata].
+   *
    */
   open fun getMetadata(column: Long): Any? {
     TransferContext.writeArguments(LONG to column)
@@ -311,7 +311,7 @@ open class TreeItem : Object() {
   }
 
   /**
-   * Returns the value of a [CELL_MODE_RANGE] column.
+   *
    */
   open fun getRange(column: Long): Double {
     TransferContext.writeArguments(LONG to column)
@@ -320,7 +320,7 @@ open class TreeItem : Object() {
   }
 
   /**
-   * Returns a dictionary containing the range parameters for a given column. The keys are "min", "max", "step", and "expr".
+   *
    */
   open fun getRangeConfig(column: Long): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to column)
@@ -330,7 +330,7 @@ open class TreeItem : Object() {
   }
 
   /**
-   * Gets the suffix string shown after the column value.
+   *
    */
   open fun getSuffix(column: Long): String {
     TransferContext.writeArguments(LONG to column)
@@ -583,7 +583,7 @@ open class TreeItem : Object() {
   }
 
   /**
-   * Sets the metadata value for the given column, which can be retrieved later using [getMetadata]. This can be used, for example, to store a reference to the original data.
+   *
    */
   open fun setMetadata(column: Long, meta: Any?) {
     TransferContext.writeArguments(LONG to column, ANY to meta)
@@ -591,7 +591,7 @@ open class TreeItem : Object() {
   }
 
   /**
-   * Sets the value of a [CELL_MODE_RANGE] column.
+   *
    */
   open fun setRange(column: Long, value: Double) {
     TransferContext.writeArguments(LONG to column, DOUBLE to value)
@@ -599,9 +599,7 @@ open class TreeItem : Object() {
   }
 
   /**
-   * Sets the range of accepted values for a column. The column must be in the [CELL_MODE_RANGE] mode.
    *
-   * If `expr` is `true`, the edit mode slider will use an exponential scale as with [godot.Range.expEdit].
    */
   open fun setRangeConfig(
     column: Long,
@@ -624,7 +622,7 @@ open class TreeItem : Object() {
   }
 
   /**
-   * Sets a string to be shown after a column's value (for example, a unit abbreviation).
+   *
    */
   open fun setSuffix(column: Long, text: String) {
     TransferContext.writeArguments(LONG to column, STRING to text)
@@ -632,7 +630,7 @@ open class TreeItem : Object() {
   }
 
   /**
-   * Sets the given column's text value.
+   *
    */
   open fun setText(column: Long, text: String) {
     TransferContext.writeArguments(LONG to column, STRING to text)
@@ -664,7 +662,7 @@ open class TreeItem : Object() {
     CELL_MODE_STRING(0),
 
     /**
-     * Cell contains a checkbox.
+     * Cell can be checked.
      */
     CELL_MODE_CHECK(1),
 
@@ -738,7 +736,7 @@ open class TreeItem : Object() {
     final const val ALIGN_RIGHT: Long = 2
 
     /**
-     * Cell contains a checkbox.
+     * Cell can be checked.
      */
     final const val CELL_MODE_CHECK: Long = 1
 

@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -29,7 +30,7 @@ import kotlin.Unit
  * Sprite node that can use multiple textures for animation.
  *
  * Tutorials:
- * [https://godotengine.org/asset-library/asset/515](https://godotengine.org/asset-library/asset/515)
+ * [https://docs.godotengine.org/en/latest/tutorials/2d/2d_sprite_animation.html](https://docs.godotengine.org/en/latest/tutorials/2d/2d_sprite_animation.html)
  *
  * Animations are created using a [godot.SpriteFrames] resource, which can be configured in the editor via the SpriteFrames panel.
  *
@@ -167,6 +168,7 @@ open class AnimatedSprite : Node2D() {
     callConstructor(ENGINECLASS_ANIMATEDSPRITE)
   }
 
+  @CoreTypeHelper
   open fun offset(schedule: Vector2.() -> Unit): Vector2 = offset.apply{
       schedule(this)
       offset = this

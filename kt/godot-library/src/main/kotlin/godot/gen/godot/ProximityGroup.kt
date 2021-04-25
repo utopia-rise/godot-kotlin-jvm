@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantArray
@@ -86,6 +87,7 @@ open class ProximityGroup : Spatial() {
     callConstructor(ENGINECLASS_PROXIMITYGROUP)
   }
 
+  @CoreTypeHelper
   open fun gridRadius(schedule: Vector3.() -> Unit): Vector3 = gridRadius.apply{
       schedule(this)
       gridRadius = this

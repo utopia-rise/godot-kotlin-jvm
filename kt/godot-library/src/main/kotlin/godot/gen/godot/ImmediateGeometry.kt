@@ -35,8 +35,6 @@ import kotlin.Suppress
  * **Note:** ImmediateGeometry3D is best suited to small amounts of mesh data that change every frame. It will be slow when handling large amounts of mesh data. If mesh data doesn't change often, use [godot.ArrayMesh], [godot.MeshDataTool] or [godot.SurfaceTool] instead.
  *
  * **Note:** Godot uses clockwise [winding order](https://learnopengl.com/Advanced-OpenGL/Face-culling) for front faces of triangle primitive modes.
- *
- * **Note:** In case of missing points when handling large amounts of mesh data, try increasing its buffer size limit under [godot.ProjectSettings.rendering/limits/buffers/immediateBufferSizeKb].
  */
 @GodotBaseType
 open class ImmediateGeometry : GeometryInstance() {

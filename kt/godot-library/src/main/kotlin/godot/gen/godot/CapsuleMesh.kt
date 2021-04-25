@@ -22,9 +22,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class CapsuleMesh : PrimitiveMesh() {
   /**
-   * Height of the middle cylindrical part of the capsule (without the hemispherical ends).
-   *
-   * **Note:** The capsule's total height is equal to [midHeight] + 2 * [radius].
+   * Height of the capsule mesh from the center point.
    */
   open var midHeight: Double
     get() {

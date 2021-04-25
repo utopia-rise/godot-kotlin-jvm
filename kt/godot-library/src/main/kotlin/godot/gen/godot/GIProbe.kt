@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -24,15 +25,11 @@ import kotlin.Unit
  * Real-time global illumination (GI) probe.
  *
  * Tutorials:
- * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
+ * [https://docs.godotengine.org/en/latest/tutorials/3d/gi_probes.html](https://docs.godotengine.org/en/latest/tutorials/3d/gi_probes.html)
  *
  * [godot.GIProbe]s are used to provide high-quality real-time indirect light to scenes. They precompute the effect of objects that emit light and the effect of static geometry to simulate the behavior of complex light in real-time. [godot.GIProbe]s need to be baked before using, however, once baked, dynamic objects will receive light from them. Further, lights can be fully dynamic or baked.
  *
  * Having [godot.GIProbe]s in a scene can be expensive, the quality of the probe can be turned down in exchange for better performance in the [godot.ProjectSettings] using [godot.ProjectSettings.rendering/quality/voxelConeTracing/highQuality].
- *
- * **Note:** Meshes should have sufficiently thick walls to avoid light leaks (avoid one-sided walls). For interior levels, enclose your level geometry in a sufficiently large box and bridge the loops to close the mesh.
- *
- * **Note:** Due to a renderer limitation, emissive [godot.ShaderMaterial]s cannot emit light when used in a [godot.GIProbe]. Only emissive [godot.SpatialMaterial]s can emit light in a [godot.GIProbe].
  */
 @GodotBaseType
 open class GIProbe : VisualInstance() {
@@ -182,6 +179,7 @@ open class GIProbe : VisualInstance() {
     callConstructor(ENGINECLASS_GIPROBE)
   }
 
+  @CoreTypeHelper
   open fun extents(schedule: Vector3.() -> Unit): Vector3 = extents.apply{
       schedule(this)
       extents = this

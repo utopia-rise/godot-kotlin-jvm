@@ -28,9 +28,6 @@ import kotlin.Suppress
 
 /**
  *
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/124](https://godotengine.org/asset-library/asset/124)
  */
 @GodotBaseType
 open class NavigationMesh : Resource() {

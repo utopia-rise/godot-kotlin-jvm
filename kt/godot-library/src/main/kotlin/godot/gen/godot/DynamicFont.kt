@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -22,9 +23,6 @@ import kotlin.Unit
 
 /**
  * DynamicFont renders vector font files at runtime.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
  * DynamicFont renders vector font files (such as TTF or OTF) dynamically at runtime instead of using a prerendered texture atlas like [godot.BitmapFont]. This trades the faster loading time of [godot.BitmapFont]s for the ability to change font parameters like size and spacing during runtime. [godot.DynamicFontData] is used for referencing the font file paths. DynamicFont also supports defining one or more fallback fonts, which will be used when displaying a character not supported by the main font.
  *
@@ -58,9 +56,7 @@ open class DynamicFont : Font() {
     }
 
   /**
-   * Extra spacing for each character in pixels.
-   *
-   * This can be a negative number to make the distance between characters smaller.
+   * Extra character spacing in pixels.
    */
   open var extraSpacingChar: Long
     get() {
@@ -76,9 +72,7 @@ open class DynamicFont : Font() {
     }
 
   /**
-   * Extra spacing for the space character (in addition to [extraSpacingChar]) in pixels.
-   *
-   * This can be a negative number to make the distance between words smaller.
+   * Extra space spacing in pixels.
    */
   open var extraSpacingSpace: Long
     get() {
@@ -202,6 +196,7 @@ open class DynamicFont : Font() {
     callConstructor(ENGINECLASS_DYNAMICFONT)
   }
 
+  @CoreTypeHelper
   open fun outlineColor(schedule: Color.() -> Unit): Color = outlineColor.apply{
       schedule(this)
       outlineColor = this
@@ -277,12 +272,12 @@ open class DynamicFont : Font() {
     SPACING_BOTTOM(1),
 
     /**
-     * Spacing for each character.
+     * Character spacing.
      */
     SPACING_CHAR(2),
 
     /**
-     * Spacing for the space character.
+     * Space spacing.
      */
     SPACING_SPACE(3);
 
@@ -303,12 +298,12 @@ open class DynamicFont : Font() {
     final const val SPACING_BOTTOM: Long = 1
 
     /**
-     * Spacing for each character.
+     * Character spacing.
      */
     final const val SPACING_CHAR: Long = 2
 
     /**
-     * Spacing for the space character.
+     * Space spacing.
      */
     final const val SPACING_SPACE: Long = 3
 

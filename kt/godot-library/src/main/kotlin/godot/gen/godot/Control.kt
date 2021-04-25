@@ -6,6 +6,7 @@
 package godot
 
 import godot.Control
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.NodePath
@@ -42,7 +43,8 @@ import kotlin.Unit
  * All user interface nodes inherit from Control. A control's anchors and margins adapt its position and size relative to its parent.
  *
  * Tutorials:
- * [https://github.com/godotengine/godot-demo-projects/tree/master/gui](https://github.com/godotengine/godot-demo-projects/tree/master/gui)
+ * [https://docs.godotengine.org/en/latest/tutorials/gui/index.html](https://docs.godotengine.org/en/latest/tutorials/gui/index.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/2d/custom_drawing_in_2d.html](https://docs.godotengine.org/en/latest/tutorials/2d/custom_drawing_in_2d.html)
  *
  * Base class for all UI-related nodes. [godot.Control] features a bounding rectangle that defines its extents, an anchor position relative to its parent control or the current viewport, and margins that represent an offset to the anchor. The margins update automatically when the node, any of its parents, or the screen size change.
  *
@@ -288,17 +290,6 @@ open class Control : CanvasItem() {
 
   /**
    * Changes the tooltip text. The tooltip appears when the user's mouse cursor stays idle over this control for a few moments, provided that the [mouseFilter] property is not [MOUSE_FILTER_IGNORE]. You can change the time required for the tooltip to appear with `gui/timers/tooltip_delay_sec` option in Project Settings.
-   *
-   * The tooltip popup will use either a default implementation, or a custom one that you can provide by overriding [_makeCustomTooltip]. The default tooltip includes a [godot.PopupPanel] and [godot.Label] whose theme properties can be customized using [godot.Theme] methods with the `"TooltipPanel"` and `"TooltipLabel"` respectively. For example:
-   *
-   * ```
-   * 			var style_box = StyleBoxFlat.new()
-   * 			style_box.set_bg_color(Color(1, 1, 0))
-   * 			style_box.set_border_width_all(2)
-   * 			# We assume here that the `theme` property has been assigned a custom Theme beforehand.
-   * 			theme.set_stylebox("panel", "TooltipPanel", style_box)
-   * 			theme.set_color("font_color", "TooltipLabel", Color(0, 1, 1))
-   * 			```
    */
   open var hintTooltip: String
     get() {
@@ -310,11 +301,6 @@ open class Control : CanvasItem() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_HINT_TOOLTIP, NIL)
     }
 
-  /**
-   * Enables whether input should propagate when you close the control as modal.
-   *
-   * If `false`, stops event handling at the viewport input event handling. The viewport first hides the modal and after marks the input as handled.
-   */
   open var inputPassOnModalCloseClick: Boolean
     get() {
       TransferContext.writeArguments()
@@ -510,7 +496,7 @@ open class Control : CanvasItem() {
   /**
    * The node's scale, relative to its [rectSize]. Change this property to scale the node around its [rectPivotOffset]. The Control's [hintTooltip] will also scale according to this value.
    *
-   * **Note:** This property is mainly intended to be used for animation purposes. Text inside the Control will look pixelated or blurry when the Control is scaled. To support multiple resolutions in your project, use an appropriate viewport stretch mode as described in the [documentation](https://docs.godotengine.org/en/3.3/tutorials/viewports/multiple_resolutions.html) instead of scaling Controls individually.
+   * **Note:** This property is mainly intended to be used for animation purposes. Text inside the Control will look pixelated or blurry when the Control is scaled. To support multiple resolutions in your project, use an appropriate viewport stretch mode as described in the [documentation](https://docs.godotengine.org/en/latest/tutorials/viewports/multiple_resolutions.html) instead of scaling Controls individually.
    *
    * **Note:** If the Control node is a child of a [godot.Container] node, the scale will be reset to `Vector2(1, 1)` when the scene is instanced. To set the Control's scale when it's instanced, wait for one frame using `yield(get_tree(), "idle_frame")` then set its [rectScale] property.
    */
@@ -601,18 +587,21 @@ open class Control : CanvasItem() {
     callConstructor(ENGINECLASS_CONTROL)
   }
 
+  @CoreTypeHelper
   open fun rectMinSize(schedule: Vector2.() -> Unit): Vector2 = rectMinSize.apply{
       schedule(this)
       rectMinSize = this
   }
 
 
+  @CoreTypeHelper
   open fun rectPivotOffset(schedule: Vector2.() -> Unit): Vector2 = rectPivotOffset.apply{
       schedule(this)
       rectPivotOffset = this
   }
 
 
+  @CoreTypeHelper
   open fun rectScale(schedule: Vector2.() -> Unit): Vector2 = rectScale.apply{
       schedule(this)
       rectScale = this
@@ -669,15 +658,13 @@ open class Control : CanvasItem() {
   }
 
   /**
-   * Virtual method to be implemented by the user. Returns a [godot.Control] node that should be used as a tooltip instead of the default one. The `for_text` includes the contents of the [hintTooltip] property.
+   * Virtual method to be implemented by the user. Returns a [godot.Control] node that should be used as a tooltip instead of the default one. Use `for_text` parameter to determine what text the tooltip should contain (likely the contents of [hintTooltip]).
    *
-   * The returned node must be of type [godot.Control] or Control-derived. It can have child nodes of any type. It is freed when the tooltip disappears, so make sure you always provide a new instance (if you want to use a pre-existing node from your scene tree, you can duplicate it and pass the duplicated instance).When `null` or a non-Control node is returned, the default tooltip will be used instead.
-   *
-   * The returned node will be added as child to a [godot.PopupPanel], so you should only provide the contents of that panel. That [godot.PopupPanel] can be themed using [godot.Theme.setStylebox] for the type `"TooltipPanel"` (see [hintTooltip] for an example).
+   * The returned node must be of type [godot.Control] or Control-derieved. It can have child nodes of any type. It is freed when the tooltip disappears, so make sure you always provide a new instance, not e.g. a node from scene. When `null` or non-Control node is returned, the default tooltip will be used instead.
    *
    * **Note:** The tooltip is shrunk to minimal size. If you want to ensure it's fully visible, you might want to set its [rectMinSize] to some non-zero value.
    *
-   * Example of usage with a custom-constructed node:
+   * Example of usage with custom-constructed node:
    *
    * ```
    * 				func _make_custom_tooltip(for_text):
@@ -686,11 +673,11 @@ open class Control : CanvasItem() {
    * 				    return label
    * 				```
    *
-   * Example of usage with a custom scene instance:
+   * Example of usage with custom scene instance:
    *
    * ```
    * 				func _make_custom_tooltip(for_text):
-   * 				    var tooltip = preload("res://SomeTooltipScene.tscn").instance()
+   * 				    var tooltip = preload("SomeTooltipScene.tscn").instance()
    * 				    tooltip.get_node("Label").text = for_text
    * 				    return tooltip
    * 				```
@@ -837,9 +824,6 @@ open class Control : CanvasItem() {
   open fun _dropData(position: Vector2, data: Any?) {
   }
 
-  /**
-   * Finds the next (below in the tree) [godot.Control] that can receive the focus.
-   */
   open fun findNextValidFocus(): Control? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_FIND_NEXT_VALID_FOCUS,
@@ -847,9 +831,6 @@ open class Control : CanvasItem() {
     return TransferContext.readReturnValue(OBJECT, true) as Control?
   }
 
-  /**
-   * Finds the previous (above in the tree) [godot.Control] that can receive the focus.
-   */
   open fun findPrevValidFocus(): Control? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_FIND_PREV_VALID_FOCUS,
@@ -877,7 +858,7 @@ open class Control : CanvasItem() {
   }
 
   /**
-   * Returns a color from assigned [godot.Theme] with given `name` and associated with [godot.Control] of given `node_type`.
+   * Returns a color from assigned [godot.Theme] with given `name` and associated with [godot.Control] of given `type`.
    *
    * ```
    * 				func _ready():
@@ -901,7 +882,7 @@ open class Control : CanvasItem() {
   }
 
   /**
-   * Returns a constant from assigned [godot.Theme] with given `name` and associated with [godot.Control] of given `node_type`.
+   * Returns a constant from assigned [godot.Theme] with given `name` and associated with [godot.Control] of given `type`.
    */
   open fun getConstant(name: String, nodeType: String = ""): Long {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -953,7 +934,7 @@ open class Control : CanvasItem() {
   }
 
   /**
-   * Returns a font from assigned [godot.Theme] with given `name` and associated with [godot.Control] of given `node_type`.
+   * Returns a font from assigned [godot.Theme] with given `name` and associated with [godot.Control] of given `type`.
    */
   open fun getFont(name: String, nodeType: String = ""): Font? {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -971,7 +952,7 @@ open class Control : CanvasItem() {
   }
 
   /**
-   * Returns an icon from assigned [godot.Theme] with given `name` and associated with [godot.Control] of given `node_type`.
+   * Returns an icon from assigned [godot.Theme] with given `name` and associated with [godot.Control] of given `type`.
    */
   open fun getIcon(name: String, nodeType: String = ""): Texture? {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -1026,7 +1007,7 @@ open class Control : CanvasItem() {
   }
 
   /**
-   * Returns a [godot.StyleBox] from assigned [godot.Theme] with given `name` and associated with [godot.Control] of given `node_type`.
+   * Returns a [godot.StyleBox] from assigned [godot.Theme] with given `name` and associated with [godot.Control] of given `type`.
    */
   open fun getStylebox(name: String, nodeType: String = ""): StyleBox? {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -1065,7 +1046,7 @@ open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if [godot.core.Color] with given `name` and associated with [godot.Control] of given `node_type` exists in assigned [godot.Theme].
+   * Returns `true` if [godot.core.Color] with given `name` and associated with [godot.Control] of given `type` exists in assigned [godot.Theme].
    */
   open fun hasColor(name: String, nodeType: String = ""): Boolean {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -1083,7 +1064,7 @@ open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if constant with given `name` and associated with [godot.Control] of given `node_type` exists in assigned [godot.Theme].
+   * Returns `true` if constant with given `name` and associated with [godot.Control] of given `type` exists in assigned [godot.Theme].
    */
   open fun hasConstant(name: String, nodeType: String = ""): Boolean {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -1110,7 +1091,7 @@ open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if font with given `name` and associated with [godot.Control] of given `node_type` exists in assigned [godot.Theme].
+   * Returns `true` if font with given `name` and associated with [godot.Control] of given `type` exists in assigned [godot.Theme].
    */
   open fun hasFont(name: String, nodeType: String = ""): Boolean {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -1128,7 +1109,7 @@ open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if icon with given `name` and associated with [godot.Control] of given `node_type` exists in assigned [godot.Theme].
+   * Returns `true` if icon with given `name` and associated with [godot.Control] of given `type` exists in assigned [godot.Theme].
    */
   open fun hasIcon(name: String, nodeType: String = ""): Boolean {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -1166,7 +1147,7 @@ open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if [godot.StyleBox] with given `name` and associated with [godot.Control] of given `node_type` exists in assigned [godot.Theme].
+   * Returns `true` if [godot.StyleBox] with given `name` and associated with [godot.Control] of given `type` exists in assigned [godot.Theme].
    */
   open fun hasStylebox(name: String, nodeType: String = ""): Boolean {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -1296,7 +1277,7 @@ open class Control : CanvasItem() {
   }
 
   /**
-   * Shows the given control at the mouse pointer. A good time to call this method is in [getDragData]. The control must not be in the scene tree. You should not free the control, and you should not keep a reference to the control beyond the duration of the drag. It will be deleted automatically after the drag has ended.
+   * Shows the given control at the mouse pointer. A good time to call this method is in [getDragData]. The control must not be in the scene tree.
    *
    * ```
    * 				export (Color, RGBA) var color = Color(1, 0, 0, 1)

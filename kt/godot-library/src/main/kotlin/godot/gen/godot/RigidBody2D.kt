@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantArray
@@ -30,10 +31,7 @@ import kotlin.Unit
 /**
  * A body that is controlled by the 2D physics engine.
  *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/148](https://godotengine.org/asset-library/asset/148)
- *
- * This node implements simulated 2D physics. You do not control a RigidBody2D directly. Instead, you apply forces to it (gravity, impulses, etc.) and the physics simulation calculates the resulting movement based on its mass, friction, and other physical properties.
+ * This node implements simulated 2D physics. You do not control a RigidBody2D directly. Instead you apply forces to it (gravity, impulses, etc.) and the physics simulation calculates the resulting movement based on its mass, friction, and other physical properties.
  *
  * A RigidBody2D has 4 behavior [mode]s: Rigid, Static, Character, and Kinematic.
  *
@@ -48,43 +46,23 @@ import kotlin.Unit
 @GodotBaseType
 open class RigidBody2D : PhysicsBody2D() {
   /**
-   * Emitted when a collision with another [godot.PhysicsBody2D] or [godot.TileMap] occurs. Requires [contactMonitor] to be set to `true` and [contactsReported] to be set high enough to detect all the collisions. [godot.TileMap]s are detected if the [godot.TileSet] has Collision [godot.Shape2D]s.
-   *
-   * `body` the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody2D] or [godot.TileMap].
+   * Emitted when a body enters into contact with this one. Requires [contactMonitor] to be set to `true` and [contactsReported] to be set high enough to detect all the collisions.
    */
   val bodyEntered: Signal1<Node> by signal("body")
 
   /**
-   * Emitted when the collision with another [godot.PhysicsBody2D] or [godot.TileMap] ends. Requires [contactMonitor] to be set to `true` and [contactsReported] to be set high enough to detect all the collisions. [godot.TileMap]s are detected if the [godot.TileSet] has Collision [godot.Shape2D]s.
-   *
-   * `body` the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody2D] or [godot.TileMap].
+   * Emitted when a body exits contact with this one. Requires [contactMonitor] to be set to `true` and [contactsReported] to be set high enough to detect all the collisions.
    */
   val bodyExited: Signal1<Node> by signal("body")
 
   /**
-   * Emitted when one of this RigidBody2D's [godot.Shape2D]s collides with another [godot.PhysicsBody2D] or [godot.TileMap]'s [godot.Shape2D]s. Requires [contactMonitor] to be set to `true` and [contactsReported] to be set high enough to detect all the collisions. [godot.TileMap]s are detected if the [godot.TileSet] has Collision [godot.Shape2D]s.
-   *
-   * `body_id` the [RID] of the other [godot.PhysicsBody2D] or [godot.TileSet]'s [godot.CollisionObject2D] used by the [godot.Physics2DServer].
-   *
-   * `body` the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody2D] or [godot.TileMap].
-   *
-   * `body_shape` the index of the [godot.Shape2D] of the other [godot.PhysicsBody2D] or [godot.TileMap] used by the [godot.Physics2DServer].
-   *
-   * `local_shape` the index of the [godot.Shape2D] of this RigidBody2D used by the [godot.Physics2DServer].
+   * Emitted when a body enters into contact with this one. Reports colliding shape information. See [godot.CollisionObject2D] for shape index information. Requires [contactMonitor] to be set to `true` and [contactsReported] to be set high enough to detect all the collisions.
    */
   val bodyShapeEntered: Signal4<Long, Node, Long, Long> by signal("body_id", "body", "body_shape",
       "local_shape")
 
   /**
-   * Emitted when the collision between one of this RigidBody2D's [godot.Shape2D]s and another [godot.PhysicsBody2D] or [godot.TileMap]'s [godot.Shape2D]s ends. Requires [contactMonitor] to be set to `true` and [contactsReported] to be set high enough to detect all the collisions. [godot.TileMap]s are detected if the [godot.TileSet] has Collision [godot.Shape2D]s.
-   *
-   * `body_id` the [RID] of the other [godot.PhysicsBody2D] or [godot.TileSet]'s [godot.CollisionObject2D] used by the [godot.Physics2DServer].
-   *
-   * `body` the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody2D] or [godot.TileMap].
-   *
-   * `body_shape` the index of the [godot.Shape2D] of the other [godot.PhysicsBody2D] or [godot.TileMap] used by the [godot.Physics2DServer].
-   *
-   * `local_shape` the index of the [godot.Shape2D] of this RigidBody2D used by the [godot.Physics2DServer].
+   * Emitted when a body shape exits contact with this one. Reports colliding shape information. See [godot.CollisionObject2D] for shape index information. Requires [contactMonitor] to be set to `true` and [contactsReported] to be set high enough to detect all the collisions.
    */
   val bodyShapeExited: Signal4<Long, Node, Long, Long> by signal("body_id", "body", "body_shape",
       "local_shape")
@@ -98,8 +76,6 @@ open class RigidBody2D : PhysicsBody2D() {
 
   /**
    * Damps the body's [angularVelocity]. If `-1`, the body will use the **Default Angular Damp** defined in **Project > Project Settings > Physics > 2d**.
-   *
-   * See [godot.ProjectSettings.physics/2d/defaultAngularDamp] for more details about damping.
    */
   open var angularDamp: Double
     get() {
@@ -212,7 +188,7 @@ open class RigidBody2D : PhysicsBody2D() {
   /**
    * The maximum number of contacts that will be recorded. Requires [contactMonitor] to be set to `true`.
    *
-   * **Note:** The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end).
+   * **Note:** The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end), and collisions between parallel faces will result in four contacts (one at each corner).
    */
   open var contactsReported: Long
     get() {
@@ -309,8 +285,6 @@ open class RigidBody2D : PhysicsBody2D() {
 
   /**
    * Damps the body's [linearVelocity]. If `-1`, the body will use the **Default Linear Damp** in **Project > Project Settings > Physics > 2d**.
-   *
-   * See [godot.ProjectSettings.physics/2d/defaultLinearDamp] for more details about damping.
    */
   open var linearDamp: Double
     get() {
@@ -418,12 +392,14 @@ open class RigidBody2D : PhysicsBody2D() {
     callConstructor(ENGINECLASS_RIGIDBODY2D)
   }
 
+  @CoreTypeHelper
   open fun appliedForce(schedule: Vector2.() -> Unit): Vector2 = appliedForce.apply{
       schedule(this)
       appliedForce = this
   }
 
 
+  @CoreTypeHelper
   open fun linearVelocity(schedule: Vector2.() -> Unit): Vector2 = linearVelocity.apply{
       schedule(this)
       linearVelocity = this

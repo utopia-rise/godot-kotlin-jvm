@@ -24,11 +24,9 @@ import kotlin.Suppress
  * A high-level network interface to simplify multiplayer interactions.
  *
  * Tutorials:
- * [https://godotengine.org/asset-library/asset/537](https://godotengine.org/asset-library/asset/537)
+ * [https://docs.godotengine.org/en/latest/tutorials/networking/high_level_multiplayer.html](https://docs.godotengine.org/en/latest/tutorials/networking/high_level_multiplayer.html)
  *
- * Manages the connection to network peers. Assigns unique IDs to each client connected to the server. See also [godot.MultiplayerAPI].
- *
- * **Note:** The high-level multiplayer API protocol is an implementation detail and isn't meant to be used by non-Godot servers. It may change without notice.
+ * Manages the connection to network peers. Assigns unique IDs to each client connected to the server.
  */
 @GodotBaseType
 open class NetworkedMultiplayerPeer : PacketPeer() {

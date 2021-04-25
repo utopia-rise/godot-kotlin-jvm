@@ -16,7 +16,7 @@ import kotlin.Suppress
  * Input animation to use in an [godot.AnimationNodeBlendTree].
  *
  * Tutorials:
- * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
+ * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
  *
  * A resource to add to an [godot.AnimationNodeBlendTree]. Only features one output set using the [animation] property. Use it as an input for [godot.AnimationNode] that blend animations together.
  */

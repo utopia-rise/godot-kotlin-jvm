@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Rect2
 import godot.core.TransferContext
@@ -33,7 +34,7 @@ open class NinePatchRect : Control() {
   val textureChanged: Signal0 by signal()
 
   /**
-   * The stretch mode to use for horizontal stretching/tiling. See [enum NinePatchRect.AxisStretchMode] for possible values.
+   * Doesn't do anything at the time of writing.
    */
   open var axisStretchHorizontal: Long
     get() {
@@ -49,7 +50,7 @@ open class NinePatchRect : Control() {
     }
 
   /**
-   * The stretch mode to use for vertical stretching/tiling. See [enum NinePatchRect.AxisStretchMode] for possible values.
+   * Doesn't do anything at the time of writing.
    */
   open var axisStretchVertical: Long
     get() {
@@ -97,7 +98,7 @@ open class NinePatchRect : Control() {
     }
 
   /**
-   * The width of the 9-slice's left column. A margin of 16 means the 9-slice's left corners and side will have a width of 16 pixels. You can set all 4 margin values individually to create panels with non-uniform borders.
+   * The height of the 9-slice's left column.
    */
   open var patchMarginLeft: Long
     get() {
@@ -113,7 +114,7 @@ open class NinePatchRect : Control() {
     }
 
   /**
-   * The width of the 9-slice's right column. A margin of 16 means the 9-slice's right corners and side will have a width of 16 pixels. You can set all 4 margin values individually to create panels with non-uniform borders.
+   * The height of the 9-slice's right column.
    */
   open var patchMarginRight: Long
     get() {
@@ -129,7 +130,7 @@ open class NinePatchRect : Control() {
     }
 
   /**
-   * The height of the 9-slice's top row. A margin of 16 means the 9-slice's top corners and side will have a height of 16 pixels. You can set all 4 margin values individually to create panels with non-uniform borders.
+   * The height of the 9-slice's top row.
    */
   open var patchMarginTop: Long
     get() {
@@ -178,6 +179,7 @@ open class NinePatchRect : Control() {
     callConstructor(ENGINECLASS_NINEPATCHRECT)
   }
 
+  @CoreTypeHelper
   open fun regionRect(schedule: Rect2.() -> Unit): Rect2 = regionRect.apply{
       schedule(this)
       regionRect = this
@@ -188,21 +190,17 @@ open class NinePatchRect : Control() {
     id: Long
   ) {
     /**
-     * Stretches the center texture across the NinePatchRect. This may cause the texture to be distorted.
+     * Doesn't do anything at the time of writing.
      */
     AXIS_STRETCH_MODE_STRETCH(0),
 
     /**
-     * Repeats the center texture across the NinePatchRect. This won't cause any visible distortion. The texture must be seamless for this to work without displaying artifacts between edges.
-     *
-     * **Note:** Only supported when using the GLES3 renderer. When using the GLES2 renderer, this will behave like [AXIS_STRETCH_MODE_STRETCH].
+     * Doesn't do anything at the time of writing.
      */
     AXIS_STRETCH_MODE_TILE(1),
 
     /**
-     * Repeats the center texture across the NinePatchRect, but will also stretch the texture to make sure each tile is visible in full. This may cause the texture to be distorted, but less than [AXIS_STRETCH_MODE_STRETCH]. The texture must be seamless for this to work without displaying artifacts between edges.
-     *
-     * **Note:** Only supported when using the GLES3 renderer. When using the GLES2 renderer, this will behave like [AXIS_STRETCH_MODE_STRETCH].
+     * Doesn't do anything at the time of writing.
      */
     AXIS_STRETCH_MODE_TILE_FIT(2);
 
@@ -218,21 +216,17 @@ open class NinePatchRect : Control() {
 
   companion object {
     /**
-     * Stretches the center texture across the NinePatchRect. This may cause the texture to be distorted.
+     * Doesn't do anything at the time of writing.
      */
     final const val AXIS_STRETCH_MODE_STRETCH: Long = 0
 
     /**
-     * Repeats the center texture across the NinePatchRect. This won't cause any visible distortion. The texture must be seamless for this to work without displaying artifacts between edges.
-     *
-     * **Note:** Only supported when using the GLES3 renderer. When using the GLES2 renderer, this will behave like [AXIS_STRETCH_MODE_STRETCH].
+     * Doesn't do anything at the time of writing.
      */
     final const val AXIS_STRETCH_MODE_TILE: Long = 1
 
     /**
-     * Repeats the center texture across the NinePatchRect, but will also stretch the texture to make sure each tile is visible in full. This may cause the texture to be distorted, but less than [AXIS_STRETCH_MODE_STRETCH]. The texture must be seamless for this to work without displaying artifacts between edges.
-     *
-     * **Note:** Only supported when using the GLES3 renderer. When using the GLES2 renderer, this will behave like [AXIS_STRETCH_MODE_STRETCH].
+     * Doesn't do anything at the time of writing.
      */
     final const val AXIS_STRETCH_MODE_TILE_FIT: Long = 2
   }

@@ -27,8 +27,6 @@ import kotlin.Suppress
  * Button control that provides selectable options when pressed.
  *
  * OptionButton is a type button that provides a selectable list of items when pressed. The item selected becomes the "current" item and is displayed as the button text.
- *
- * See also [godot.BaseButton] which contains common properties and methods associated with this node.
  */
 @GodotBaseType
 open class OptionButton : Button() {

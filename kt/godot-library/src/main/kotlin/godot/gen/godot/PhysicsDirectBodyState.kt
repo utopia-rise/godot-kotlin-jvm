@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Basis
 import godot.core.RID
@@ -189,18 +190,21 @@ open class PhysicsDirectBodyState : Object() {
     callConstructor(ENGINECLASS_PHYSICSDIRECTBODYSTATE)
   }
 
+  @CoreTypeHelper
   open fun angularVelocity(schedule: Vector3.() -> Unit): Vector3 = angularVelocity.apply{
       schedule(this)
       angularVelocity = this
   }
 
 
+  @CoreTypeHelper
   open fun linearVelocity(schedule: Vector3.() -> Unit): Vector3 = linearVelocity.apply{
       schedule(this)
       linearVelocity = this
   }
 
 
+  @CoreTypeHelper
   open fun transform(schedule: Transform.() -> Unit): Transform = transform.apply{
       schedule(this)
       transform = this

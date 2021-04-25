@@ -34,7 +34,7 @@ import kotlin.Suppress
  * Container and player of [godot.Animation] resources.
  *
  * Tutorials:
- * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
+ * [https://docs.godotengine.org/en/latest/tutorials/animation/index.html](https://docs.godotengine.org/en/latest/tutorials/animation/index.html)
  *
  * An animation player is used for general-purpose playback of [godot.Animation] resources. It contains a dictionary of animations (referenced by name) and custom blend times between their transitions. Additionally, animations can be played and blended in different channels.
  *
@@ -98,7 +98,7 @@ open class AnimationPlayer : Node() {
   /**
    * The name of the currently playing animation. If no animation is playing, the property's value is an empty string. Changing this value does not restart the animation. See [play] for more information on playing animations.
    *
-   * **Note**: while this property appears in the inspector, it's not meant to be edited, and it's not saved in the scene. This property is mainly used to get the currently playing animation, and internally for animation playback tracks. For more information, see [godot.Animation].
+   * **Note**: while this property appears in the inspector, it's not meant to be edited and it's not saved in the scene. This property is mainly used to get the currently playing animation, and internally for animation playback tracks. For more information, see [godot.Animation].
    */
   open var currentAnimation: String
     get() {

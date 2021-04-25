@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
@@ -28,7 +29,8 @@ import kotlin.Unit
  * Canvas drawing layer.
  *
  * Tutorials:
- * [https://godotengine.org/asset-library/asset/515](https://godotengine.org/asset-library/asset/515)
+ * [https://docs.godotengine.org/en/latest/tutorials/2d/2d_transforms.html](https://docs.godotengine.org/en/latest/tutorials/2d/2d_transforms.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/2d/canvas_layers.html](https://docs.godotengine.org/en/latest/tutorials/2d/canvas_layers.html)
  *
  * Canvas drawing layer. [godot.CanvasItem] nodes that are direct or indirect children of a [godot.CanvasLayer] will be drawn in that layer. The layer is a numeric index that defines the draw order. The default 2D scene renders with index 0, so a [godot.CanvasLayer] with index -1 will be drawn below, and one with index 1 will be drawn above. This is very useful for HUDs (in layer 1+ or above), or backgrounds (in layer -1 or below).
  */
@@ -173,18 +175,21 @@ open class CanvasLayer : Node() {
     callConstructor(ENGINECLASS_CANVASLAYER)
   }
 
+  @CoreTypeHelper
   open fun offset(schedule: Vector2.() -> Unit): Vector2 = offset.apply{
       schedule(this)
       offset = this
   }
 
 
+  @CoreTypeHelper
   open fun scale(schedule: Vector2.() -> Unit): Vector2 = scale.apply{
       schedule(this)
       scale = this
   }
 
 
+  @CoreTypeHelper
   open fun transform(schedule: Transform2D.() -> Unit): Transform2D = transform.apply{
       schedule(this)
       transform = this

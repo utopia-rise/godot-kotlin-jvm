@@ -48,9 +48,6 @@ open class TabContainer : Container() {
    */
   val tabSelected: Signal1<Long> by signal("tab")
 
-  /**
-   * If `true`, all tabs are drawn in front of the panel. If `false`, inactive tabs are drawn behind the panel.
-   */
   open var allTabsInFront: Boolean
     get() {
       TransferContext.writeArguments()

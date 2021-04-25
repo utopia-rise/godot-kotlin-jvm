@@ -16,7 +16,7 @@ import kotlin.Suppress
  * Blends two of three animations linearly inside of an [godot.AnimationNodeBlendTree].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/3.3/tutorials/animation/animation_tree.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
  *
  * A resource to add to an [godot.AnimationNodeBlendTree]. Blends two animations together linearly out of three based on a value in the `[-1.0, 1.0]` range.
  *

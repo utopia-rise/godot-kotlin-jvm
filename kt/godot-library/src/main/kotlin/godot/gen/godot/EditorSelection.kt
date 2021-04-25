@@ -42,8 +42,6 @@ open class EditorSelection : Object() {
 
   /**
    * Adds a node to the selection.
-   *
-   * **Note:** The newly selected node will not be automatically edited in the inspector. If you want to edit a node, use [godot.EditorInterface.editNode].
    */
   open fun addNode(node: Node) {
     TransferContext.writeArguments(OBJECT to node)

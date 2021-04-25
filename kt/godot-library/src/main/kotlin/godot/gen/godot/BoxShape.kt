@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
@@ -15,9 +16,6 @@ import kotlin.Unit
 
 /**
  * Box shape resource.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/125](https://godotengine.org/asset-library/asset/125)
  *
  * 3D box shape that can be a child of a [godot.PhysicsBody] or [godot.Area].
  */
@@ -41,6 +39,7 @@ open class BoxShape : Shape() {
     callConstructor(ENGINECLASS_BOXSHAPE)
   }
 
+  @CoreTypeHelper
   open fun extents(schedule: Vector3.() -> Unit): Vector3 = extents.apply{
       schedule(this)
       extents = this

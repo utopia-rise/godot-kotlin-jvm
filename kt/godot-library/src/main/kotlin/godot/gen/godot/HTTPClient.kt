@@ -32,10 +32,10 @@ import kotlin.Suppress
  * Low-level hyper-text transfer protocol client.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/networking/http_client_class.html](https://docs.godotengine.org/en/3.3/tutorials/networking/http_client_class.html)
- * [https://docs.godotengine.org/en/3.3/tutorials/networking/ssl_certificates.html](https://docs.godotengine.org/en/3.3/tutorials/networking/ssl_certificates.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/networking/http_client_class.html](https://docs.godotengine.org/en/latest/tutorials/networking/http_client_class.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/networking/ssl_certificates.html](https://docs.godotengine.org/en/latest/tutorials/networking/ssl_certificates.html)
  *
- * Hyper-text transfer protocol client (sometimes called "User Agent"). Used to make HTTP requests to download web content, upload files and other data or to communicate with various services, among other use cases. **See the [godot.HTTPRequest] node for a higher-level alternative.**
+ * Hyper-text transfer protocol client (sometimes called "User Agent"). Used to make HTTP requests to download web content, upload files and other data or to communicate with various services, among other use cases. **See the [godot.HTTPRequest] node for an higher-level alternative.**
  *
  * **Note:** This client only needs to connect to a host once (see [connectToHost]) to send multiple requests. Because of this, methods that take URLs usually take just the part after the host instead of the full URL, as the client is already connected to a host. See [request] for a full example and to get started.
  *
@@ -44,8 +44,6 @@ import kotlin.Suppress
  * For more information on HTTP, see https://developer.mozilla.org/en-US/docs/Web/HTTP (or read RFC 2616 to get it straight from the source: https://tools.ietf.org/html/rfc2616).
  *
  * **Note:** When performing HTTP requests from a project exported to HTML5, keep in mind the remote server may not allow requests from foreign origins due to [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS). If you host the server in question, you should modify its backend to allow requests from foreign origins by adding the `Access-Control-Allow-Origin: *` HTTP header.
- *
- * **Note:** SSL/TLS support is currently limited to TLS 1.0, TLS 1.1, and TLS 1.2. Attempting to connect to a TLS 1.3-only server will return an error.
  */
 @GodotBaseType
 open class HTTPClient : Reference() {

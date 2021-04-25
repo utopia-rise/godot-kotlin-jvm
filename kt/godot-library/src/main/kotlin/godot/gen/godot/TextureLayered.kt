@@ -22,7 +22,7 @@ import kotlin.Suppress
 /**
  * Base class for 3D texture types.
  *
- * Base class for [godot.Texture3D] and [godot.TextureArray]. Cannot be used directly, but contains all the functions necessary for accessing and using [godot.Texture3D] and [godot.TextureArray]. Data is set on a per-layer basis. For [godot.Texture3D]s, the layer specifies the depth or Z-index, they can be treated as a bunch of 2D slices. Similarly, for [godot.TextureArray]s, the layer specifies the array layer.
+ * Base class for [godot.Texture3D] and [godot.TextureArray]. Cannot be used directly, but contains all the functions necessary for accessing and using [godot.Texture3D] and [godot.TextureArray]. Data is set on a per-layer basis. For [godot.Texture3D]s, the layer sepcifies the depth or Z-index, they can be treated as a bunch of 2D slices. Similarly, for [godot.TextureArray]s, the layer specifies the array layer.
  */
 @GodotBaseType
 open class TextureLayered : Resource() {

@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -22,9 +23,6 @@ import kotlin.Unit
 
 /**
  * Camera node for 2D scenes.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/110](https://godotengine.org/asset-library/asset/110)
  *
  * Camera node for 2D scenes. It forces the screen (current layer) to scroll following this node. This makes it easier (and faster) to program scrollable scenes than manually changing the position of [godot.CanvasItem]-based nodes.
  *
@@ -409,12 +407,14 @@ open class Camera2D : Node2D() {
     callConstructor(ENGINECLASS_CAMERA2D)
   }
 
+  @CoreTypeHelper
   open fun offset(schedule: Vector2.() -> Unit): Vector2 = offset.apply{
       schedule(this)
       offset = this
   }
 
 
+  @CoreTypeHelper
   open fun zoom(schedule: Vector2.() -> Unit): Vector2 = zoom.apply{
       schedule(this)
       zoom = this

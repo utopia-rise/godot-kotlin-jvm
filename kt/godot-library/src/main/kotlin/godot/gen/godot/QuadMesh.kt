@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
@@ -15,9 +16,6 @@ import kotlin.Unit
 
 /**
  * Class representing a square mesh.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/129](https://godotengine.org/asset-library/asset/129)
  *
  * Class representing a square [godot.PrimitiveMesh]. This flat mesh does not have a thickness. By default, this mesh is aligned on the X and Y axes; this default rotation is more suited for use with billboarded materials. Unlike [godot.PlaneMesh], this mesh doesn't provide subdivision options.
  */
@@ -41,6 +39,7 @@ open class QuadMesh : PrimitiveMesh() {
     callConstructor(ENGINECLASS_QUADMESH)
   }
 
+  @CoreTypeHelper
   open fun size(schedule: Vector2.() -> Unit): Vector2 = size.apply{
       schedule(this)
       size = this

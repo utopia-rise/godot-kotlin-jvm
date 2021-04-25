@@ -90,7 +90,7 @@ open class BaseButton : Control() {
     }
 
   /**
-   * *Deprecated.* This property has been deprecated due to redundancy and no longer has any effect when set. Please use [godot.Control.focusMode] instead.
+   * Focus access mode to use when switching between enabled/disabled (see [godot.Control.focusMode] and [disabled]).
    */
   open var enabledFocusMode: Long
     get() {

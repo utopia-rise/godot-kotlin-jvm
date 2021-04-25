@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -33,7 +34,7 @@ import kotlin.Unit
  *
  * After adding at least one child to GraphNode new sections will be automatically created in the Inspector called 'Slot'. When 'Slot' is expanded you will see list with index number for each slot. You can click on each of them to expand further.
  *
- * In the Inspector you can enable (show) or disable (hide) slots. By default, all slots are disabled so you may not see any slots on your GraphNode initially. You can assign a type to each slot. Only slots of the same type will be able to connect to each other. You can also assign colors to slots. A tuple of input and output slots is defined for each GUI element included in the GraphNode. Input connections are on the left and output connections are on the right side of GraphNode. Only enabled slots are counted as connections.
+ * In the Inspector you can enable (show) or disable (hide) slots. By default all slots are disabled so you may not see any slots on your GraphNode initially. You can assign a type to each slot. Only slots of the same type will be able to connect to each other. You can also assign colors to slots. A tuple of input and output slots is defined for each GUI element included in the GraphNode. Input connections are on the left and output connections are on the right side of GraphNode. Only enabled slots are counted as connections.
  */
 @GodotBaseType
 open class GraphNode : Container() {
@@ -62,9 +63,6 @@ open class GraphNode : Container() {
    */
   val resizeRequest: Signal1<Vector2> by signal("new_minsize")
 
-  /**
-   * Emitted when any GraphNode's slot is updated.
-   */
   val slotUpdated: Signal1<Long> by signal("idx")
 
   /**
@@ -175,6 +173,7 @@ open class GraphNode : Container() {
     callConstructor(ENGINECLASS_GRAPHNODE)
   }
 
+  @CoreTypeHelper
   open fun offset(schedule: Vector2.() -> Unit): Vector2 = offset.apply{
       schedule(this)
       offset = this

@@ -11,9 +11,6 @@ import kotlin.Suppress
 /**
  * Vertical box container.
  *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
- *
  * Vertical box container. See [godot.BoxContainer].
  */
 @GodotBaseType

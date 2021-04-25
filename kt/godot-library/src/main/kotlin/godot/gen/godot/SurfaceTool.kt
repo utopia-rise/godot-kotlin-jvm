@@ -43,9 +43,6 @@ import kotlin.Suppress
 /**
  * Helper tool to create geometry.
  *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
- *
  * The [godot.SurfaceTool] is used to construct a [godot.Mesh] by specifying vertex attributes individually. It can be used to construct a [godot.Mesh] from a script. All properties except indices need to be added before calling [addVertex]. For example, to add vertex colors and UVs:
  *
  * ```
@@ -73,7 +70,7 @@ open class SurfaceTool : Reference() {
   }
 
   /**
-   * Specifies an array of bones to use for the *next* vertex. `bones` must contain 4 integers.
+   * Adds an array of bones for the next vertex to use. `bones` must contain 4 integers.
    */
   open fun addBones(bones: PoolIntArray) {
     TransferContext.writeArguments(POOL_INT_ARRAY to bones)
@@ -81,9 +78,7 @@ open class SurfaceTool : Reference() {
   }
 
   /**
-   * Specifies a [godot.core.Color] to use for the *next* vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
-   *
-   * **Note:** The material must have [godot.SpatialMaterial.vertexColorUseAsAlbedo] enabled for the vertex color to be visible.
+   * Specifies a [godot.core.Color] for the next vertex to use.
    */
   open fun addColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
@@ -99,7 +94,7 @@ open class SurfaceTool : Reference() {
   }
 
   /**
-   * Specifies a normal to use for the *next* vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
+   * Specifies a normal for the next vertex to use.
    */
   open fun addNormal(normal: Vector3) {
     TransferContext.writeArguments(VECTOR3 to normal)
@@ -115,7 +110,7 @@ open class SurfaceTool : Reference() {
   }
 
   /**
-   * Specifies a tangent to use for the *next* vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
+   * Specifies a tangent for the next vertex to use.
    */
   open fun addTangent(tangent: Plane) {
     TransferContext.writeArguments(PLANE to tangent)
@@ -142,7 +137,7 @@ open class SurfaceTool : Reference() {
   }
 
   /**
-   * Specifies a set of UV coordinates to use for the *next* vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
+   * Specifies a set of UV coordinates to use for the next vertex.
    */
   open fun addUv(uv: Vector2) {
     TransferContext.writeArguments(VECTOR2 to uv)
@@ -150,7 +145,7 @@ open class SurfaceTool : Reference() {
   }
 
   /**
-   * Specifies an optional second set of UV coordinates to use for the *next* vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
+   * Specifies an optional second set of UV coordinates to use for the next vertex.
    */
   open fun addUv2(uv2: Vector2) {
     TransferContext.writeArguments(VECTOR2 to uv2)
@@ -166,7 +161,7 @@ open class SurfaceTool : Reference() {
   }
 
   /**
-   * Specifies weight values to use for the *next* vertex. `weights` must contain 4 values. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
+   * Specifies weight values for next vertex to use. `weights` must contain 4 values.
    */
   open fun addWeights(weights: PoolRealArray) {
     TransferContext.writeArguments(POOL_REAL_ARRAY to weights)
@@ -251,9 +246,9 @@ open class SurfaceTool : Reference() {
   }
 
   /**
-   * Generates normals from vertices so you do not have to do it manually. If `flip` is `true`, the resulting normals will be inverted. [generateNormals] should be called *after* generating geometry and *before* committing the mesh using [commit] or [commitToArrays].
+   * Generates normals from vertices so you do not have to do it manually. If `flip` is `true`, the resulting normals will be inverted.
    *
-   * **Note:** [generateNormals] only works if the primitive type to be set to [godot.Mesh.PRIMITIVE_TRIANGLES].
+   * Requires the primitive type to be set to [godot.Mesh.PRIMITIVE_TRIANGLES].
    */
   open fun generateNormals(flip: Boolean = false) {
     TransferContext.writeArguments(BOOL to flip)
@@ -269,7 +264,7 @@ open class SurfaceTool : Reference() {
   }
 
   /**
-   * Shrinks the vertex array by creating an index array. This can improve performance by avoiding vertex reuse.
+   * Shrinks the vertex array by creating an index array (avoids reusing vertices).
    */
   open fun index() {
     TransferContext.writeArguments()

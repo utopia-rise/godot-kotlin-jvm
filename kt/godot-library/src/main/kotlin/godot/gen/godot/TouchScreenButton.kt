@@ -22,7 +22,7 @@ import kotlin.Suppress
 /**
  * Button for touch screen devices for gameplay use.
  *
- * TouchScreenButton allows you to create on-screen buttons for touch devices. It's intended for gameplay use, such as a unit you have to touch to move. Unlike [godot.Button], TouchScreenButton supports multitouch out of the box. Several TouchScreenButtons can be pressed at the same time with touch input.
+ * TouchScreenButton allows you to create on-screen buttons for touch devices. It's intended for gameplay use, such as a unit you have to touch to move.
  *
  * This node inherits from [godot.Node2D]. Unlike with [godot.Control] nodes, you cannot set anchors on it. If you want to create menus or user interfaces, you may want to use [godot.Button] nodes instead. To make button nodes react to touch events, you can enable the Emulate Mouse option in the Project Settings.
  *
@@ -84,9 +84,7 @@ open class TouchScreenButton : Node2D() {
     }
 
   /**
-   * If `true`, the [pressed] and [released] signals are emitted whenever a pressed finger goes in and out of the button, even if the pressure started outside the active area of the button.
-   *
-   * **Note:** this is a "pass-by" (not "bypass") press mode.
+   * If `true`, pass-by presses are enabled.
    */
   open var passbyPress: Boolean
     get() {

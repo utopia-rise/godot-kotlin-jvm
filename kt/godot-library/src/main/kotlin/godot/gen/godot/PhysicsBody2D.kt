@@ -23,7 +23,7 @@ import kotlin.Suppress
  * Base class for all objects affected by physics in 2D space.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html)
  *
  * PhysicsBody2D is an abstract base class for implementing a physics body. All *Body2D types inherit from it.
  */
@@ -34,7 +34,7 @@ open class PhysicsBody2D : CollisionObject2D() {
    *
    * Collidable objects can exist in any of 32 different layers. These layers work like a tagging system, and are not visual. A collidable can use these layers to select with which objects it can collide, using the [collisionMask] property.
    *
-   * A contact is detected if object A is in any of the layers that object B scans, or object B is in any layer scanned by object A. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * A contact is detected if object A is in any of the layers that object B scans, or object B is in any layer scanned by object A. See [godot.Collision layers and masks](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
   open var collisionLayer: Long
     get() {
@@ -50,7 +50,7 @@ open class PhysicsBody2D : CollisionObject2D() {
     }
 
   /**
-   * The physics layers this area scans for collisions. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The physics layers this area scans for collisions. See [godot.Collision layers and masks](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
   open var collisionMask: Long
     get() {

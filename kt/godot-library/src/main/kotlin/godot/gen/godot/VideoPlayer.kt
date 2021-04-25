@@ -26,11 +26,7 @@ import kotlin.Suppress
  *
  * Control node for playing video streams using [godot.VideoStream] resources.
  *
- * Supported video formats are [godot.WebM](https://www.webmproject.org/) (`.webm`, [godot.VideoStreamWebm]), [godot.Ogg Theora](https://www.theora.org/) (`.ogv`, [godot.VideoStreamTheora]), and any format exposed via a GDNative plugin using [godot.VideoStreamGDNative].
- *
- * **Note:** Due to a bug, VideoPlayer does not support localization remapping yet.
- *
- * **Warning:** On HTML5, video playback *will* perform poorly due to missing architecture-specific assembly optimizations, especially for VP8/VP9.
+ * Supported video formats are [godot.WebM](https://www.webmproject.org/) ([godot.VideoStreamWebm]), [godot.Ogg Theora](https://www.theora.org/) ([godot.VideoStreamTheora]), and any format exposed via a GDNative plugin using [godot.VideoStreamGDNative].
  */
 @GodotBaseType
 open class VideoPlayer : Control() {
@@ -141,8 +137,6 @@ open class VideoPlayer : Control() {
 
   /**
    * The current position of the stream, in seconds.
-   *
-   * **Note:** Changing this value won't have any effect as seeking is not implemented yet, except in video formats implemented by a GDNative add-on.
    */
   open var streamPosition: Double
     get() {

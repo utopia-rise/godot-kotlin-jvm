@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Rect2
 import godot.core.TransferContext
@@ -20,9 +21,6 @@ import kotlin.Unit
 
 /**
  * Detects approximately when the node is visible on screen.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/515](https://godotengine.org/asset-library/asset/515)
  *
  * The VisibilityNotifier2D detects when it is visible on the screen. It also notifies when its bounding rectangle enters or exits the screen or a viewport.
  *
@@ -72,6 +70,7 @@ open class VisibilityNotifier2D : Node2D() {
     callConstructor(ENGINECLASS_VISIBILITYNOTIFIER2D)
   }
 
+  @CoreTypeHelper
   open fun rect(schedule: Rect2.() -> Unit): Rect2 = rect.apply{
       schedule(this)
       rect = this

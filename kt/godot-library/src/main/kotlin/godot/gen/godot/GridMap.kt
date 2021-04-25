@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
@@ -148,6 +149,7 @@ open class GridMap : Spatial() {
     callConstructor(ENGINECLASS_GRIDMAP)
   }
 
+  @CoreTypeHelper
   open fun cellSize(schedule: Vector3.() -> Unit): Vector3 = cellSize.apply{
       schedule(this)
       cellSize = this

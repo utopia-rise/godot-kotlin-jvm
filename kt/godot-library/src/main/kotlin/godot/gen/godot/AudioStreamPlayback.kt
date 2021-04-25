@@ -11,9 +11,6 @@ import kotlin.Suppress
 /**
  * Meta class for playing back audio.
  *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/526](https://godotengine.org/asset-library/asset/526)
- *
  * Can play, loop, pause a scroll through audio. See [godot.AudioStream] and [godot.AudioStreamOGGVorbis] for usage.
  */
 @GodotBaseType

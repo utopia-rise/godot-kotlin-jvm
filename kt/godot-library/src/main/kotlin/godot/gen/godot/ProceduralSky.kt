@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -281,30 +282,35 @@ open class ProceduralSky : Sky() {
     callConstructor(ENGINECLASS_PROCEDURALSKY)
   }
 
+  @CoreTypeHelper
   open fun groundBottomColor(schedule: Color.() -> Unit): Color = groundBottomColor.apply{
       schedule(this)
       groundBottomColor = this
   }
 
 
+  @CoreTypeHelper
   open fun groundHorizonColor(schedule: Color.() -> Unit): Color = groundHorizonColor.apply{
       schedule(this)
       groundHorizonColor = this
   }
 
 
+  @CoreTypeHelper
   open fun skyHorizonColor(schedule: Color.() -> Unit): Color = skyHorizonColor.apply{
       schedule(this)
       skyHorizonColor = this
   }
 
 
+  @CoreTypeHelper
   open fun skyTopColor(schedule: Color.() -> Unit): Color = skyTopColor.apply{
       schedule(this)
       skyTopColor = this
   }
 
 
+  @CoreTypeHelper
   open fun sunColor(schedule: Color.() -> Unit): Color = sunColor.apply{
       schedule(this)
       sunColor = this

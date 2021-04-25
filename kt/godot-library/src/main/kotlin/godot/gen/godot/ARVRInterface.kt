@@ -25,7 +25,7 @@ import kotlin.Suppress
  * Base class for an AR/VR interface implementation.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/vr/index.html](https://docs.godotengine.org/en/3.3/tutorials/vr/index.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/vr/index.html](https://docs.godotengine.org/en/latest/tutorials/vr/index.html)
  *
  * This class needs to be implemented to make an AR or VR platform available to Godot and these should be implemented as C++ modules or GDNative modules (note that for GDNative the subclass ARVRScriptInterface should be used). Part of the interface is exposed to GDScript so you can detect, enable and configure an AR or VR platform.
  *

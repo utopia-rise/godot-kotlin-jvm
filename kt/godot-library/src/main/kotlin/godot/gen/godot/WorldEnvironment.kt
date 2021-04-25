@@ -15,7 +15,7 @@ import kotlin.Suppress
  * Default environment properties for the entire scene (post-processing effects, lighting and background settings).
  *
  * Tutorials:
- * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
+ * [https://docs.godotengine.org/en/latest/tutorials/3d/environment_and_post_processing.html](https://docs.godotengine.org/en/latest/tutorials/3d/environment_and_post_processing.html)
  *
  * The [godot.WorldEnvironment] node is used to configure the default [godot.Environment] for the scene.
  *

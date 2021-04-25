@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Basis
 import godot.core.Color
@@ -28,7 +29,8 @@ import kotlin.Unit
  * Resource for environment nodes (like [godot.WorldEnvironment]) that define multiple rendering options.
  *
  * Tutorials:
- * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
+ * [https://docs.godotengine.org/en/latest/tutorials/3d/environment_and_post_processing.html](https://docs.godotengine.org/en/latest/tutorials/3d/environment_and_post_processing.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/3d/high_dynamic_range.html](https://docs.godotengine.org/en/latest/tutorials/3d/high_dynamic_range.html)
  *
  * Resource for environment nodes (like [godot.WorldEnvironment]) that define multiple environment operations (such as background [godot.Sky] or [godot.core.Color], ambient light, fog, depth-of-field...). These parameters affect the final render of the scene. The order of these operations is:
  *
@@ -1356,18 +1358,21 @@ open class Environment : Resource() {
     callConstructor(ENGINECLASS_ENVIRONMENT)
   }
 
+  @CoreTypeHelper
   open fun ambientLightColor(schedule: Color.() -> Unit): Color = ambientLightColor.apply{
       schedule(this)
       ambientLightColor = this
   }
 
 
+  @CoreTypeHelper
   open fun backgroundColor(schedule: Color.() -> Unit): Color = backgroundColor.apply{
       schedule(this)
       backgroundColor = this
   }
 
 
+  @CoreTypeHelper
   open fun backgroundSkyOrientation(schedule: Basis.() -> Unit): Basis =
       backgroundSkyOrientation.apply{
       schedule(this)
@@ -1375,6 +1380,7 @@ open class Environment : Resource() {
   }
 
 
+  @CoreTypeHelper
   open fun backgroundSkyRotation(schedule: Vector3.() -> Unit): Vector3 =
       backgroundSkyRotation.apply{
       schedule(this)
@@ -1382,6 +1388,7 @@ open class Environment : Resource() {
   }
 
 
+  @CoreTypeHelper
   open fun backgroundSkyRotationDegrees(schedule: Vector3.() -> Unit): Vector3 =
       backgroundSkyRotationDegrees.apply{
       schedule(this)
@@ -1389,18 +1396,21 @@ open class Environment : Resource() {
   }
 
 
+  @CoreTypeHelper
   open fun fogColor(schedule: Color.() -> Unit): Color = fogColor.apply{
       schedule(this)
       fogColor = this
   }
 
 
+  @CoreTypeHelper
   open fun fogSunColor(schedule: Color.() -> Unit): Color = fogSunColor.apply{
       schedule(this)
       fogSunColor = this
   }
 
 
+  @CoreTypeHelper
   open fun ssaoColor(schedule: Color.() -> Unit): Color = ssaoColor.apply{
       schedule(this)
       ssaoColor = this

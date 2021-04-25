@@ -28,9 +28,6 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class FuncRef : Reference() {
-  /**
-   * The name of the referenced function.
-   */
   open var function: String
     get() {
       TransferContext.writeArguments()
@@ -47,7 +44,7 @@ open class FuncRef : Reference() {
   }
 
   /**
-   * Calls the referenced function previously set in [function] or [@GDScript.funcref].
+   * Calls the referenced function previously set by [setFunction] or [@GDScript.funcref].
    */
   open fun callFunc(vararg __var_args: Any?): Any? {
     TransferContext.writeArguments( *__var_args.map { ANY to it }.toTypedArray())
@@ -56,7 +53,7 @@ open class FuncRef : Reference() {
   }
 
   /**
-   * Calls the referenced function previously set in [function] or [@GDScript.funcref]. Contrarily to [callFunc], this method does not support a variable number of arguments but expects all parameters to be passed via a single [godot.Array].
+   * Calls the referenced function previously set by [setFunction] or [@GDScript.funcref]. Contrarily to [callFunc], this method does not support a variable number of arguments but expects all parameters to be passed via a single [godot.Array].
    */
   open fun callFuncv(argArray: VariantArray<Any?>): Any? {
     TransferContext.writeArguments(ARRAY to argArray)

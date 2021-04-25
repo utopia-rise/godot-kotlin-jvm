@@ -112,7 +112,7 @@ open class Curve2D : Resource() {
   }
 
   /**
-   * Returns the closest baked point (in curve's local space) to `to_point`.
+   * Returns the closest point (in curve's local space) to `to_point`.
    *
    * `to_point` must be in this curve's local space.
    */
@@ -132,7 +132,7 @@ open class Curve2D : Resource() {
   }
 
   /**
-   * Returns the position of the control point leading to the vertex `idx`. The returned position is relative to the vertex `idx`. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0)`.
+   * Returns the position of the control point leading to the vertex `idx`. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0)`.
    */
   open fun getPointIn(idx: Long): Vector2 {
     TransferContext.writeArguments(LONG to idx)
@@ -141,7 +141,7 @@ open class Curve2D : Resource() {
   }
 
   /**
-   * Returns the position of the control point leading out of the vertex `idx`. The returned position is relative to the vertex `idx`. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0)`.
+   * Returns the position of the control point leading out of the vertex `idx`. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0)`.
    */
   open fun getPointOut(idx: Long): Vector2 {
     TransferContext.writeArguments(LONG to idx)
@@ -200,7 +200,7 @@ open class Curve2D : Resource() {
   }
 
   /**
-   * Sets the position of the control point leading to the vertex `idx`. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.
+   * Sets the position of the control point leading to the vertex `idx`. If the index is out of bounds, the function sends an error to the console.
    */
   open fun setPointIn(idx: Long, position: Vector2) {
     TransferContext.writeArguments(LONG to idx, VECTOR2 to position)
@@ -208,7 +208,7 @@ open class Curve2D : Resource() {
   }
 
   /**
-   * Sets the position of the control point leading out of the vertex `idx`. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.
+   * Sets the position of the control point leading out of the vertex `idx`. If the index is out of bounds, the function sends an error to the console.
    */
   open fun setPointOut(idx: Long, position: Vector2) {
     TransferContext.writeArguments(LONG to idx, VECTOR2 to position)

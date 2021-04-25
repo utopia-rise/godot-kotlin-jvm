@@ -16,11 +16,9 @@ import kotlin.Suppress
  * Omnidirectional light, such as a light bulb or a candle.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/3d/lights_and_shadows.html](https://docs.godotengine.org/en/3.3/tutorials/3d/lights_and_shadows.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/3d/lights_and_shadows.html](https://docs.godotengine.org/en/latest/tutorials/3d/lights_and_shadows.html)
  *
  * An Omnidirectional light is a type of [godot.Light] that emits light in all directions. The light is attenuated by distance and this attenuation can be configured by changing its energy, radius, and attenuation parameters.
- *
- * **Note:** By default, only 32 OmniLights may affect a single mesh *resource* at once. Consider splitting your level into several meshes to decrease the likelihood that more than 32 lights will affect the same mesh resource. Splitting the level mesh will also improve frustum culling effectiveness, leading to greater performance. If you need to use more lights per mesh, you can increase [godot.ProjectSettings.rendering/limits/rendering/maxLightsPerObject] at the cost of shader compilation times.
  */
 @GodotBaseType
 open class OmniLight : Light() {

@@ -22,7 +22,7 @@ import kotlin.Suppress
  * Playback control for [godot.AnimationNodeStateMachine].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/3.3/tutorials/animation/animation_tree.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
  *
  * Allows control of [godot.AnimationTree] state machines created with [godot.AnimationNodeStateMachine]. Retrieve with `$AnimationTree.get("parameters/playback")`.
  *
@@ -39,9 +39,6 @@ open class AnimationNodeStateMachinePlayback : Resource() {
     callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK)
   }
 
-  /**
-   *
-   */
   open fun getCurrentLength(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
@@ -59,9 +56,6 @@ open class AnimationNodeStateMachinePlayback : Resource() {
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  /**
-   * Returns the playback position within the current animation state.
-   */
   open fun getCurrentPlayPosition(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,

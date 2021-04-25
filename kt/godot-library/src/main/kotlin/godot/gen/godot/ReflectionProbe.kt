@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -25,7 +26,7 @@ import kotlin.Unit
  * Captures its surroundings to create reflections.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/3d/reflection_probes.html](https://docs.godotengine.org/en/3.3/tutorials/3d/reflection_probes.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/3d/reflection_probes.html](https://docs.godotengine.org/en/latest/tutorials/3d/reflection_probes.html)
  *
  * Capture its surroundings as a dual paraboloid image, and stores versions of it with increasing levels of blur to simulate different material roughnesses.
  *
@@ -230,18 +231,21 @@ open class ReflectionProbe : VisualInstance() {
     callConstructor(ENGINECLASS_REFLECTIONPROBE)
   }
 
+  @CoreTypeHelper
   open fun extents(schedule: Vector3.() -> Unit): Vector3 = extents.apply{
       schedule(this)
       extents = this
   }
 
 
+  @CoreTypeHelper
   open fun interiorAmbientColor(schedule: Color.() -> Unit): Color = interiorAmbientColor.apply{
       schedule(this)
       interiorAmbientColor = this
   }
 
 
+  @CoreTypeHelper
   open fun originOffset(schedule: Vector3.() -> Unit): Vector3 = originOffset.apply{
       schedule(this)
       originOffset = this

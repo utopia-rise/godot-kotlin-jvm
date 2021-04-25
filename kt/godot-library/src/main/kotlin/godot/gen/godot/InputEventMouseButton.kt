@@ -21,7 +21,7 @@ import kotlin.UninitializedPropertyAccessException
  * Input event type for mouse button events.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/inputs/mouse_and_input_coordinates.html](https://docs.godotengine.org/en/3.3/tutorials/inputs/mouse_and_input_coordinates.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/inputs/mouse_and_input_coordinates.html](https://docs.godotengine.org/en/latest/tutorials/inputs/mouse_and_input_coordinates.html)
  *
  * Contains mouse click information. See [godot.Node.Input].
  */

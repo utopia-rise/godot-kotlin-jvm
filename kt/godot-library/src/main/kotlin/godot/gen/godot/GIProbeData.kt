@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.AABB
 import godot.core.PoolIntArray
@@ -24,9 +25,6 @@ import kotlin.Unit
 
 /**
  *
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  */
 @GodotBaseType
 open class GIProbeData : Resource() {
@@ -196,12 +194,14 @@ open class GIProbeData : Resource() {
     callConstructor(ENGINECLASS_GIPROBEDATA)
   }
 
+  @CoreTypeHelper
   open fun bounds(schedule: AABB.() -> Unit): AABB = bounds.apply{
       schedule(this)
       bounds = this
   }
 
 
+  @CoreTypeHelper
   open fun toCellXform(schedule: Transform.() -> Unit): Transform = toCellXform.apply{
       schedule(this)
       toCellXform = this

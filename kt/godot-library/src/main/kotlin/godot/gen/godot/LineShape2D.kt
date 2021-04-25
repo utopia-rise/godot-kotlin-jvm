@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
@@ -54,6 +55,7 @@ open class LineShape2D : Shape2D() {
     callConstructor(ENGINECLASS_LINESHAPE2D)
   }
 
+  @CoreTypeHelper
   open fun normal(schedule: Vector2.() -> Unit): Vector2 = normal.apply{
       schedule(this)
       normal = this

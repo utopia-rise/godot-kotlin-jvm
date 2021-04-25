@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
@@ -18,9 +19,6 @@ import kotlin.Unit
 
 /**
  * Static body for 3D physics.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
  * Static body for 3D physics. A static body is a simple body that is not intended to move. In contrast to [godot.RigidBody], they don't consume any CPU resources as long as they don't move.
  *
@@ -114,6 +112,7 @@ open class StaticBody : PhysicsBody() {
     callConstructor(ENGINECLASS_STATICBODY)
   }
 
+  @CoreTypeHelper
   open fun constantAngularVelocity(schedule: Vector3.() -> Unit): Vector3 =
       constantAngularVelocity.apply{
       schedule(this)
@@ -121,6 +120,7 @@ open class StaticBody : PhysicsBody() {
   }
 
 
+  @CoreTypeHelper
   open fun constantLinearVelocity(schedule: Vector3.() -> Unit): Vector3 =
       constantLinearVelocity.apply{
       schedule(this)

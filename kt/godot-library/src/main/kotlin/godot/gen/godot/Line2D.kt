@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.PoolVector2Array
@@ -26,9 +27,6 @@ import kotlin.Unit
 
 /**
  * A 2D line.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/583](https://godotengine.org/asset-library/asset/583)
  *
  * A line through several points in 2D space.
  *
@@ -223,6 +221,7 @@ open class Line2D : Node2D() {
     callConstructor(ENGINECLASS_LINE2D)
   }
 
+  @CoreTypeHelper
   open fun defaultColor(schedule: Color.() -> Unit): Color = defaultColor.apply{
       schedule(this)
       defaultColor = this

@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.PoolColorArray
@@ -24,9 +25,6 @@ import kotlin.Unit
 
 /**
  * Color picker control.
- *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/146](https://godotengine.org/asset-library/asset/146)
  *
  * [godot.Control] node displaying a color picker widget. It's useful for selecting a color from an RGB/RGBA colorspace.
  */
@@ -159,6 +157,7 @@ open class ColorPicker : BoxContainer() {
     callConstructor(ENGINECLASS_COLORPICKER)
   }
 
+  @CoreTypeHelper
   open fun color(schedule: Color.() -> Unit): Color = color.apply{
       schedule(this)
       color = this

@@ -25,7 +25,7 @@ import kotlin.Suppress
  * Theme for controls.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/gui/gui_skinning.html](https://docs.godotengine.org/en/3.3/tutorials/gui/gui_skinning.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/gui/gui_skinning.html](https://docs.godotengine.org/en/latest/tutorials/gui/gui_skinning.html)
  *
  * A theme for skinning controls. Controls can be skinned individually, but for complex applications, it's more practical to just create a global theme that defines everything. This theme can be applied to any [godot.Control]; the Control and its children will automatically use it.
  *
@@ -63,7 +63,7 @@ open class Theme : Resource() {
   }
 
   /**
-   * Clears the [godot.core.Color] at `name` if the theme has `node_type`.
+   * Clears the [godot.core.Color] at `name` if the theme has `type`.
    */
   open fun clearColor(name: String, nodeType: String) {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -71,7 +71,7 @@ open class Theme : Resource() {
   }
 
   /**
-   * Clears the constant at `name` if the theme has `node_type`.
+   * Clears the constant at `name` if the theme has `type`.
    */
   open fun clearConstant(name: String, nodeType: String) {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -79,7 +79,7 @@ open class Theme : Resource() {
   }
 
   /**
-   * Clears the [godot.Font] at `name` if the theme has `node_type`.
+   * Clears the [godot.Font] at `name` if the theme has `type`.
    */
   open fun clearFont(name: String, nodeType: String) {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -87,7 +87,7 @@ open class Theme : Resource() {
   }
 
   /**
-   * Clears the icon at `name` if the theme has `node_type`.
+   * Clears the icon at `name` if the theme has `type`.
    */
   open fun clearIcon(name: String, nodeType: String) {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -95,7 +95,7 @@ open class Theme : Resource() {
   }
 
   /**
-   * Clears [godot.StyleBox] at `name` if the theme has `node_type`.
+   * Clears [godot.StyleBox] at `name` if the theme has `type`.
    */
   open fun clearStylebox(name: String, nodeType: String) {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -119,7 +119,7 @@ open class Theme : Resource() {
   }
 
   /**
-   * Returns the [godot.core.Color] at `name` if the theme has `node_type`.
+   * Returns the [godot.core.Color] at `name` if the theme has `type`.
    */
   open fun getColor(name: String, nodeType: String): Color {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -128,7 +128,7 @@ open class Theme : Resource() {
   }
 
   /**
-   * Returns all the [godot.core.Color]s as a [godot.core.PoolStringArray] filled with each [godot.core.Color]'s name, for use in [getColor], if the theme has `node_type`.
+   * Returns all the [godot.core.Color]s as a [godot.core.PoolStringArray] filled with each [godot.core.Color]'s name, for use in [getColor], if the theme has `type`.
    */
   open fun getColorList(nodeType: String): PoolStringArray {
     TransferContext.writeArguments(STRING to nodeType)
@@ -138,7 +138,7 @@ open class Theme : Resource() {
   }
 
   /**
-   * Returns the constant at `name` if the theme has `node_type`.
+   * Returns the constant at `name` if the theme has `type`.
    */
   open fun getConstant(name: String, nodeType: String): Long {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -147,7 +147,7 @@ open class Theme : Resource() {
   }
 
   /**
-   * Returns all the constants as a [godot.core.PoolStringArray] filled with each constant's name, for use in [getConstant], if the theme has `node_type`.
+   * Returns all the constants as a [godot.core.PoolStringArray] filled with each constant's name, for use in [getConstant], if the theme has `type`.
    */
   open fun getConstantList(nodeType: String): PoolStringArray {
     TransferContext.writeArguments(STRING to nodeType)
@@ -157,7 +157,7 @@ open class Theme : Resource() {
   }
 
   /**
-   * Returns the [godot.Font] at `name` if the theme has `node_type`.
+   * Returns the [godot.Font] at `name` if the theme has `type`.
    */
   open fun getFont(name: String, nodeType: String): Font? {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -166,7 +166,7 @@ open class Theme : Resource() {
   }
 
   /**
-   * Returns all the [godot.Font]s as a [godot.core.PoolStringArray] filled with each [godot.Font]'s name, for use in [getFont], if the theme has `node_type`.
+   * Returns all the [godot.Font]s as a [godot.core.PoolStringArray] filled with each [godot.Font]'s name, for use in [getFont], if the theme has `type`.
    */
   open fun getFontList(nodeType: String): PoolStringArray {
     TransferContext.writeArguments(STRING to nodeType)
@@ -176,7 +176,7 @@ open class Theme : Resource() {
   }
 
   /**
-   * Returns the icon [godot.Texture] at `name` if the theme has `node_type`.
+   * Returns the icon [godot.Texture] at `name` if the theme has `type`.
    */
   open fun getIcon(name: String, nodeType: String): Texture? {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -185,7 +185,7 @@ open class Theme : Resource() {
   }
 
   /**
-   * Returns all the icons as a [godot.core.PoolStringArray] filled with each [godot.Texture]'s name, for use in [getIcon], if the theme has `node_type`.
+   * Returns all the icons as a [godot.core.PoolStringArray] filled with each [godot.Texture]'s name, for use in [getIcon], if the theme has `type`.
    */
   open fun getIconList(nodeType: String): PoolStringArray {
     TransferContext.writeArguments(STRING to nodeType)
@@ -195,9 +195,7 @@ open class Theme : Resource() {
   }
 
   /**
-   * Returns the [godot.StyleBox] at `name` if the theme has `node_type`.
-   *
-   * Valid `name`s may be found using [getStyleboxList]. Valid `node_type`s may be found using [getStyleboxTypes].
+   * Returns the icon [godot.StyleBox] at `name` if the theme has `type`.
    */
   open fun getStylebox(name: String, nodeType: String): StyleBox? {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -206,9 +204,7 @@ open class Theme : Resource() {
   }
 
   /**
-   * Returns all the [godot.StyleBox]s as a [godot.core.PoolStringArray] filled with each [godot.StyleBox]'s name, for use in [getStylebox], if the theme has `node_type`.
-   *
-   * Valid `node_type`s may be found using [getStyleboxTypes].
+   * Returns all the [godot.StyleBox]s as a [godot.core.PoolStringArray] filled with each [godot.StyleBox]'s name, for use in [getStylebox], if the theme has `type`.
    */
   open fun getStyleboxList(nodeType: String): PoolStringArray {
     TransferContext.writeArguments(STRING to nodeType)
@@ -218,7 +214,7 @@ open class Theme : Resource() {
   }
 
   /**
-   * Returns all the [godot.StyleBox] types as a [godot.core.PoolStringArray] filled with each [godot.StyleBox]'s type, for use in [getStylebox] and/or [getStyleboxList], if the theme has `node_type`.
+   * Returns all the [godot.StyleBox] types as a [godot.core.PoolStringArray] filled with each [godot.StyleBox]'s type, for use in [getStylebox] and/or [getStyleboxList], if the theme has `type`.
    */
   open fun getStyleboxTypes(): PoolStringArray {
     TransferContext.writeArguments()
@@ -228,7 +224,7 @@ open class Theme : Resource() {
   }
 
   /**
-   * Returns all the types in `node_type` as a [godot.core.PoolStringArray] for use in any of the `get_*` functions, if the theme has `node_type`.
+   * Returns all the types in `type` as a [godot.core.PoolStringArray] for use in any of the `get_*` functions, if the theme has `type`.
    */
   open fun getTypeList(nodeType: String): PoolStringArray {
     TransferContext.writeArguments(STRING to nodeType)
@@ -238,9 +234,9 @@ open class Theme : Resource() {
   }
 
   /**
-   * Returns `true` if [godot.core.Color] with `name` is in `node_type`.
+   * Returns `true` if [godot.core.Color] with `name` is in `type`.
    *
-   * Returns `false` if the theme does not have `node_type`.
+   * Returns `false` if the theme does not have `type`.
    */
   open fun hasColor(name: String, nodeType: String): Boolean {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -249,9 +245,9 @@ open class Theme : Resource() {
   }
 
   /**
-   * Returns `true` if constant with `name` is in `node_type`.
+   * Returns `true` if constant with `name` is in `type`.
    *
-   * Returns `false` if the theme does not have `node_type`.
+   * Returns `false` if the theme does not have `type`.
    */
   open fun hasConstant(name: String, nodeType: String): Boolean {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -260,9 +256,9 @@ open class Theme : Resource() {
   }
 
   /**
-   * Returns `true` if [godot.Font] with `name` is in `node_type`.
+   * Returns `true` if [godot.Font] with `name` is in `type`.
    *
-   * Returns `false` if the theme does not have `node_type`.
+   * Returns `false` if the theme does not have `type`.
    */
   open fun hasFont(name: String, nodeType: String): Boolean {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -271,9 +267,9 @@ open class Theme : Resource() {
   }
 
   /**
-   * Returns `true` if icon [godot.Texture] with `name` is in `node_type`.
+   * Returns `true` if icon [godot.Texture] with `name` is in `type`.
    *
-   * Returns `false` if the theme does not have `node_type`.
+   * Returns `false` if the theme does not have `type`.
    */
   open fun hasIcon(name: String, nodeType: String): Boolean {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -282,9 +278,9 @@ open class Theme : Resource() {
   }
 
   /**
-   * Returns `true` if [godot.StyleBox] with `name` is in `node_type`.
+   * Returns `true` if [godot.StyleBox] with `name` is in `type`.
    *
-   * Returns `false` if the theme does not have `node_type`.
+   * Returns `false` if the theme does not have `type`.
    */
   open fun hasStylebox(name: String, nodeType: String): Boolean {
     TransferContext.writeArguments(STRING to name, STRING to nodeType)
@@ -293,9 +289,9 @@ open class Theme : Resource() {
   }
 
   /**
-   * Sets the theme's [godot.core.Color] to `color` at `name` in `node_type`.
+   * Sets the theme's [godot.core.Color] to `color` at `name` in `type`.
    *
-   * Does nothing if the theme does not have `node_type`.
+   * Does nothing if the theme does not have `type`.
    */
   open fun setColor(
     name: String,
@@ -307,9 +303,9 @@ open class Theme : Resource() {
   }
 
   /**
-   * Sets the theme's constant to `constant` at `name` in `node_type`.
+   * Sets the theme's constant to `constant` at `name` in `type`.
    *
-   * Does nothing if the theme does not have `node_type`.
+   * Does nothing if the theme does not have `type`.
    */
   open fun setConstant(
     name: String,
@@ -321,9 +317,9 @@ open class Theme : Resource() {
   }
 
   /**
-   * Sets the theme's [godot.Font] to `font` at `name` in `node_type`.
+   * Sets the theme's [godot.Font] to `font` at `name` in `type`.
    *
-   * Does nothing if the theme does not have `node_type`.
+   * Does nothing if the theme does not have `type`.
    */
   open fun setFont(
     name: String,
@@ -335,9 +331,9 @@ open class Theme : Resource() {
   }
 
   /**
-   * Sets the theme's icon [godot.Texture] to `texture` at `name` in `node_type`.
+   * Sets the theme's icon [godot.Texture] to `texture` at `name` in `type`.
    *
-   * Does nothing if the theme does not have `node_type`.
+   * Does nothing if the theme does not have `type`.
    */
   open fun setIcon(
     name: String,
@@ -349,9 +345,9 @@ open class Theme : Resource() {
   }
 
   /**
-   * Sets theme's [godot.StyleBox] to `stylebox` at `name` in `node_type`.
+   * Sets theme's [godot.StyleBox] to `stylebox` at `name` in `type`.
    *
-   * Does nothing if the theme does not have `node_type`.
+   * Does nothing if the theme does not have `type`.
    */
   open fun setStylebox(
     name: String,

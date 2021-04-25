@@ -31,7 +31,7 @@ import kotlin.Suppress
  * Server interface for low-level audio access.
  *
  * Tutorials:
- * [https://godotengine.org/asset-library/asset/528](https://godotengine.org/asset-library/asset/528)
+ * [https://docs.godotengine.org/en/latest/tutorials/audio/audio_buses.html](https://docs.godotengine.org/en/latest/tutorials/audio/audio_buses.html)
  *
  * [godot.AudioServer] is a low-level server interface for audio access. It is in charge of creating sample data (playable audio) as well as its playback via a voice interface.
  */

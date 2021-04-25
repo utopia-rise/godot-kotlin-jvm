@@ -21,9 +21,6 @@ import kotlin.Suppress
 /**
  * Displays plain text in a line or wrapped inside a rectangle. For formatted text, use [godot.RichTextLabel].
  *
- * Tutorials:
- * [https://godotengine.org/asset-library/asset/515](https://godotengine.org/asset-library/asset/515)
- *
  * Label displays plain text on the screen. It gives you control over the horizontal and vertical alignment, and can wrap the text inside the node's bounding rectangle. It doesn't support bold, italics or other formatting. For that, use [godot.RichTextLabel] instead.
  *
  * **Note:** Contrarily to most other [godot.Control]s, Label's [godot.Control.mouseFilter] defaults to [godot.Control.MOUSE_FILTER_IGNORE] (i.e. it doesn't react to mouse input events). This implies that a label won't display any configured [godot.Control.hintTooltip], unless you change its mouse filter.

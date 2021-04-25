@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -26,7 +27,7 @@ import kotlin.Unit
  * Casts light in a 2D environment.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/2d/2d_lights_and_shadows.html](https://docs.godotengine.org/en/3.3/tutorials/2d/2d_lights_and_shadows.html)
+ * [https://docs.godotengine.org/en/latest/tutorials/2d/2d_lights_and_shadows.html](https://docs.godotengine.org/en/latest/tutorials/2d/2d_lights_and_shadows.html)
  *
  * Casts light in a 2D environment. Light is defined by a (usually grayscale) texture, a color, an energy value, a mode (see constants), and various other parameters (range and shadows-related).
  *
@@ -342,18 +343,21 @@ open class Light2D : Node2D() {
     callConstructor(ENGINECLASS_LIGHT2D)
   }
 
+  @CoreTypeHelper
   open fun color(schedule: Color.() -> Unit): Color = color.apply{
       schedule(this)
       color = this
   }
 
 
+  @CoreTypeHelper
   open fun offset(schedule: Vector2.() -> Unit): Vector2 = offset.apply{
       schedule(this)
       offset = this
   }
 
 
+  @CoreTypeHelper
   open fun shadowColor(schedule: Color.() -> Unit): Color = shadowColor.apply{
       schedule(this)
       shadowColor = this
