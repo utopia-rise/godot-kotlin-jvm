@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -18,6 +19,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -32,8 +34,29 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class EditorInterface : Node() {
+  /**
+   * If `true`, enables distraction-free mode which hides side docks to increase the space available for the main view.
+   */
+  open var distractionFreeMode: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_DISTRACTION_FREE_MODE, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(value) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_DISTRACTION_FREE_MODE, NIL)
+    }
+
   override fun __new() {
     callConstructor(ENGINECLASS_EDITORINTERFACE)
+  }
+
+  open fun editNode(node: Node) {
+    TransferContext.writeArguments(OBJECT to node)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_EDIT_NODE, NIL)
   }
 
   /**
@@ -72,6 +95,13 @@ open class EditorInterface : Node() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITED_SCENE_ROOT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
+  }
+
+  open fun getEditorScale(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_SCALE,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
@@ -127,6 +157,16 @@ open class EditorInterface : Node() {
   }
 
   /**
+   * Returns the name of the scene that is being played. If no scene is currently being played, returns an empty string.
+   */
+  open fun getPlayingScene(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_PLAYING_SCENE,
+        STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
    * Returns the editor's [godot.EditorFileSystem] instance.
    */
   open fun getResourceFilesystem(): EditorFileSystem? {
@@ -179,9 +219,23 @@ open class EditorInterface : Node() {
   /**
    * Shows the given property on the given `object` in the editor's Inspector dock.
    */
-  open fun inspectObject(_object: Object, forProperty: String = "") {
-    TransferContext.writeArguments(OBJECT to _object, STRING to forProperty)
+  open fun inspectObject(
+    _object: Object,
+    forProperty: String = "",
+    inspectorOnly: Boolean = false
+  ) {
+    TransferContext.writeArguments(OBJECT to _object, STRING to forProperty, BOOL to inspectorOnly)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_INSPECT_OBJECT, NIL)
+  }
+
+  /**
+   * Returns `true` if a scene is currently being played, `false` otherwise. Paused scenes are considered as being played.
+   */
+  open fun isPlayingScene(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_PLAYING_SCENE,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -211,6 +265,33 @@ open class EditorInterface : Node() {
     TransferContext.writeArguments(STRING to sceneFilepath)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_OPEN_SCENE_FROM_PATH, NIL)
+  }
+
+  /**
+   * Plays the currently active scene.
+   */
+  open fun playCurrentScene() {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_PLAY_CURRENT_SCENE,
+        NIL)
+  }
+
+  /**
+   * Plays the scene specified by its filepath.
+   */
+  open fun playCustomScene(sceneFilepath: String) {
+    TransferContext.writeArguments(STRING to sceneFilepath)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_PLAY_CUSTOM_SCENE,
+        NIL)
+  }
+
+  /**
+   * Plays the main scene.
+   */
+  open fun playMainScene() {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_PLAY_MAIN_SCENE,
+        NIL)
   }
 
   /**
@@ -247,12 +328,6 @@ open class EditorInterface : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SELECT_FILE, NIL)
   }
 
-  open fun setDistractionFreeMode(enter: Boolean) {
-    TransferContext.writeArguments(BOOL to enter)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_DISTRACTION_FREE_MODE, NIL)
-  }
-
   /**
    * Sets the editor's current main screen to the one specified in `name`. `name` must match the text of the tab in question exactly (`2D`, `3D`, `Script`, `AssetLib`).
    */
@@ -268,6 +343,15 @@ open class EditorInterface : Node() {
   open fun setPluginEnabled(plugin: String, enabled: Boolean) {
     TransferContext.writeArguments(STRING to plugin, BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_PLUGIN_ENABLED,
+        NIL)
+  }
+
+  /**
+   * Stops the scene that is currently playing.
+   */
+  open fun stopPlayingScene() {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_STOP_PLAYING_SCENE,
         NIL)
   }
 }

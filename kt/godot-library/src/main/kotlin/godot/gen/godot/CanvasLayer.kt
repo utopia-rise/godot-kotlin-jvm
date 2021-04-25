@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
@@ -174,18 +175,21 @@ open class CanvasLayer : Node() {
     callConstructor(ENGINECLASS_CANVASLAYER)
   }
 
+  @CoreTypeHelper
   open fun offset(schedule: Vector2.() -> Unit): Vector2 = offset.apply{
       schedule(this)
       offset = this
   }
 
 
+  @CoreTypeHelper
   open fun scale(schedule: Vector2.() -> Unit): Vector2 = scale.apply{
       schedule(this)
       scale = this
   }
 
 
+  @CoreTypeHelper
   open fun transform(schedule: Transform2D.() -> Unit): Transform2D = transform.apply{
       schedule(this)
       transform = this

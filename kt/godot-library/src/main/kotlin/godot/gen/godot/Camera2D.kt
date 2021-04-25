@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -406,12 +407,14 @@ open class Camera2D : Node2D() {
     callConstructor(ENGINECLASS_CAMERA2D)
   }
 
+  @CoreTypeHelper
   open fun offset(schedule: Vector2.() -> Unit): Vector2 = offset.apply{
       schedule(this)
       offset = this
   }
 
 
+  @CoreTypeHelper
   open fun zoom(schedule: Vector2.() -> Unit): Vector2 = zoom.apply{
       schedule(this)
       zoom = this
@@ -422,9 +425,6 @@ open class Camera2D : Node2D() {
   }
 
   open fun _setCurrent(current: Boolean) {
-  }
-
-  open fun _setOldSmoothing(followSmoothing: Double) {
   }
 
   open fun _updateScroll() {

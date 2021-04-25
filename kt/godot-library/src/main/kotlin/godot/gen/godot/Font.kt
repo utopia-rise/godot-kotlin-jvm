@@ -84,6 +84,15 @@ open class Font : Resource() {
   }
 
   /**
+   * Returns the size of a character, optionally taking kerning into account if the next character is provided.
+   */
+  open fun getCharSize(char: Long, next: Long = 0): Vector2 {
+    TransferContext.writeArguments(LONG to char, LONG to next)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_CHAR_SIZE, VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
    * Returns the font descent (number of pixels below the baseline).
    */
   open fun getDescent(): Double {

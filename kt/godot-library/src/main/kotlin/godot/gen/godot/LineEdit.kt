@@ -340,6 +340,22 @@ open class LineEdit : Control() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_TEXT, NIL)
     }
 
+  /**
+   * If `true`, the native virtual keyboard is shown when focused on platforms that support it.
+   */
+  open var virtualKeyboardEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_VIRTUAL_KEYBOARD_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(value) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_VIRTUAL_KEYBOARD_ENABLED, NIL)
+    }
+
   override fun __new() {
     callConstructor(ENGINECLASS_LINEEDIT)
   }
@@ -373,6 +389,22 @@ open class LineEdit : Control() {
   }
 
   /**
+   * Deletes one character at the cursor's current position (equivalent to pressing the `Delete` key).
+   */
+  open fun deleteCharAtCursor() {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_DELETE_CHAR_AT_CURSOR, NIL)
+  }
+
+  /**
+   * Deletes a section of the [text] going from position `from_column` to `to_column`. Both parameters should be within the text's length.
+   */
+  open fun deleteText(fromColumn: Long, toColumn: Long) {
+    TransferContext.writeArguments(LONG to fromColumn, LONG to toColumn)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_DELETE_TEXT, NIL)
+  }
+
+  /**
    * Clears the current selection.
    */
   open fun deselect() {
@@ -387,6 +419,12 @@ open class LineEdit : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_MENU, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as PopupMenu?
+  }
+
+  open fun getScrollOffset(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_SCROLL_OFFSET, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**

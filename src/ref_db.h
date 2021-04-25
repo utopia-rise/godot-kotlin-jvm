@@ -17,7 +17,7 @@ private:
         uint32_t counter = 0;
     };
 
-    Mutex* mut;
+    BinaryMutex mut;
     HashMap<uint64_t, RefIndex> ref_map;
     List<RefIndex> freeIds;
 

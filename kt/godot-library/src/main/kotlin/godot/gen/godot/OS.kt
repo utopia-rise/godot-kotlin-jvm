@@ -6,10 +6,12 @@
 package godot
 
 import godot.OS
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.PoolStringArray
+import godot.core.PoolVector2Array
 import godot.core.Rect2
 import godot.core.TransferContext
 import godot.core.VariantArray
@@ -23,6 +25,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_STRING_ARRAY
+import godot.core.VariantType.POOL_VECTOR2_ARRAY
 import godot.core.VariantType.RECT2
 import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2
@@ -43,6 +46,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 object OS : Object() {
+  final const val APPLICATION_HANDLE: Long = 0
+
   /**
    * Friday.
    */
@@ -77,6 +82,8 @@ object OS : Object() {
    * Wednesday.
    */
   final const val DAY_WEDNESDAY: Long = 3
+
+  final const val DISPLAY_HANDLE: Long = 1
 
   /**
    * April.
@@ -137,6 +144,8 @@ object OS : Object() {
    * September.
    */
   final const val MONTH_SEPTEMBER: Long = 9
+
+  final const val OPENGL_CONTEXT: Long = 4
 
   /**
    * Plugged in, battery fully charged.
@@ -247,6 +256,10 @@ object OS : Object() {
    * The GLES3 rendering backend. It uses OpenGL ES 3.0 on mobile devices, OpenGL 3.3 on desktop platforms and WebGL 2.0 on the web.
    */
   final const val VIDEO_DRIVER_GLES3: Long = 0
+
+  final const val WINDOW_HANDLE: Long = 2
+
+  final const val WINDOW_VIEW: Long = 3
 
   /**
    * The clipboard from the host OS. Might be unavailable on some platforms.
@@ -555,24 +568,28 @@ object OS : Object() {
 
   override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
+  @CoreTypeHelper
   fun maxWindowSize(schedule: Vector2.() -> Unit): Vector2 = maxWindowSize.apply{
       schedule(this)
       maxWindowSize = this
   }
 
 
+  @CoreTypeHelper
   fun minWindowSize(schedule: Vector2.() -> Unit): Vector2 = minWindowSize.apply{
       schedule(this)
       minWindowSize = this
   }
 
 
+  @CoreTypeHelper
   fun windowPosition(schedule: Vector2.() -> Unit): Vector2 = windowPosition.apply{
       schedule(this)
       windowPosition = this
   }
 
 
+  @CoreTypeHelper
   fun windowSize(schedule: Vector2.() -> Unit): Vector2 = windowSize.apply{
       schedule(this)
       windowSize = this
@@ -826,8 +843,8 @@ object OS : Object() {
   /**
    * Returns an environment variable.
    */
-  fun getEnvironment(environment: String): String {
-    TransferContext.writeArguments(STRING to environment)
+  fun getEnvironment(variable: String): String {
+    TransferContext.writeArguments(STRING to variable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_ENVIRONMENT, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
@@ -920,6 +937,12 @@ object OS : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  fun getNativeHandle(handleType: Long): Long {
+    TransferContext.writeArguments(LONG to handleType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_NATIVE_HANDLE, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -1027,12 +1050,38 @@ object OS : Object() {
   }
 
   /**
+   * Return the greatest scale factor of all screens.
+   *
+   * **Note:** On macOS returned value is `2.0` if there is at least one hiDPI (Retina) screen in the system, and `1.0` in all other cases.
+   *
+   * **Note:** This method is implemented on macOS.
+   */
+  fun getScreenMaxScale(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_SCREEN_MAX_SCALE, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
    * Returns the position of the specified screen by index. If `screen` is `-1` (the default value), the current screen will be used.
    */
   fun getScreenPosition(screen: Long = -1): Vector2 {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_SCREEN_POSITION, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Return the scale factor of the specified screen by index. If `screen` is `-1` (the default value), the current screen will be used.
+   *
+   * **Note:** On macOS returned value is `2.0` for hiDPI (Retina) screen, and `1.0` for all other cases.
+   *
+   * **Note:** This method is implemented on macOS.
+   */
+  fun getScreenScale(screen: Long = -1): Double {
+    TransferContext.writeArguments(LONG to screen)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_SCREEN_SCALE, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
@@ -1121,6 +1170,12 @@ object OS : Object() {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_TABLET_DRIVER_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  fun getThreadCallerId(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_THREAD_CALLER_ID, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -1295,8 +1350,8 @@ object OS : Object() {
   /**
    * Returns `true` if an environment variable exists.
    */
-  fun hasEnvironment(environment: String): Boolean {
-    TransferContext.writeArguments(STRING to environment)
+  fun hasEnvironment(variable: String): Boolean {
+    TransferContext.writeArguments(STRING to variable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_HAS_ENVIRONMENT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -1406,6 +1461,64 @@ object OS : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_IS_WINDOW_FOCUSED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns active keyboard layout index.
+   *
+   * **Note:** This method is implemented on Linux, macOS and Windows.
+   */
+  fun keyboardGetCurrentLayout(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_KEYBOARD_GET_CURRENT_LAYOUT,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the number of keyboard layouts.
+   *
+   * **Note:** This method is implemented on Linux, macOS and Windows.
+   */
+  fun keyboardGetLayoutCount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_KEYBOARD_GET_LAYOUT_COUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the ISO-639/BCP-47 language code of the keyboard layout at position `index`.
+   *
+   * **Note:** This method is implemented on Linux, macOS and Windows.
+   */
+  fun keyboardGetLayoutLanguage(index: Long): String {
+    TransferContext.writeArguments(LONG to index)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_KEYBOARD_GET_LAYOUT_LANGUAGE,
+        STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Returns the localized name of the keyboard layout at position `index`.
+   *
+   * **Note:** This method is implemented on Linux, macOS and Windows.
+   */
+  fun keyboardGetLayoutName(index: Long): String {
+    TransferContext.writeArguments(LONG to index)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_KEYBOARD_GET_LAYOUT_NAME,
+        STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Sets active keyboard layout.
+   *
+   * **Note:** This method is implemented on Linux, macOS and Windows.
+   */
+  fun keyboardSetCurrentLayout(index: Long) {
+    TransferContext.writeArguments(LONG to index)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_KEYBOARD_SET_CURRENT_LAYOUT,
+        NIL)
   }
 
   /**
@@ -1561,6 +1674,12 @@ object OS : Object() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  fun setEnvironment(variable: String, value: String): Boolean {
+    TransferContext.writeArguments(STRING to variable, STRING to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_ENVIRONMENT, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
   /**
    * Sets the game's icon using an [godot.Image] resource.
    *
@@ -1639,6 +1758,12 @@ object OS : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_WINDOW_ALWAYS_ON_TOP, NIL)
   }
 
+  fun setWindowMousePassthrough(region: PoolVector2Array) {
+    TransferContext.writeArguments(POOL_VECTOR2_ARRAY to region)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_WINDOW_MOUSE_PASSTHROUGH,
+        NIL)
+  }
+
   /**
    * Sets the window title to the specified string.
    *
@@ -1679,8 +1804,8 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Android, iOS and UWP.
    */
-  fun showVirtualKeyboard(existingText: String = "") {
-    TransferContext.writeArguments(STRING to existingText)
+  fun showVirtualKeyboard(existingText: String = "", multiline: Boolean = false) {
+    TransferContext.writeArguments(STRING to existingText, BOOL to multiline)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SHOW_VIRTUAL_KEYBOARD, NIL)
   }
 
@@ -1835,6 +1960,29 @@ object OS : Object() {
      * Plugged in, battery fully charged.
      */
     POWERSTATE_CHARGED(4);
+
+    val id: Long
+    init {
+      this.id = id
+    }
+
+    companion object {
+      fun from(value: Long) = values().single { it.id == value }
+    }
+  }
+
+  enum class HandleType(
+    id: Long
+  ) {
+    APPLICATION_HANDLE(0),
+
+    DISPLAY_HANDLE(1),
+
+    WINDOW_HANDLE(2),
+
+    WINDOW_VIEW(3),
+
+    OPENGL_CONTEXT(4);
 
     val id: Long
     init {

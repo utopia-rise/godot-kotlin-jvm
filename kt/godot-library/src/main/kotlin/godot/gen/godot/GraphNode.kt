@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -61,6 +62,8 @@ open class GraphNode : Container() {
    * Emitted when the GraphNode is requested to be resized. Happens on dragging the resizer handle (see [resizable]).
    */
   val resizeRequest: Signal1<Vector2> by signal("new_minsize")
+
+  val slotUpdated: Signal1<Long> by signal("idx")
 
   /**
    * If `true`, the GraphNode is a comment node.
@@ -170,6 +173,7 @@ open class GraphNode : Container() {
     callConstructor(ENGINECLASS_GRAPHNODE)
   }
 
+  @CoreTypeHelper
   open fun offset(schedule: Vector2.() -> Unit): Vector2 = offset.apply{
       schedule(this)
       offset = this

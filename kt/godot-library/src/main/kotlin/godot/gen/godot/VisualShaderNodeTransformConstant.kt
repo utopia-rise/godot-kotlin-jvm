@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.Transform
@@ -40,6 +41,7 @@ open class VisualShaderNodeTransformConstant : VisualShaderNode() {
     callConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMCONSTANT)
   }
 
+  @CoreTypeHelper
   open fun constant(schedule: Transform.() -> Unit): Transform = constant.apply{
       schedule(this)
       constant = this

@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Rect2
 import godot.core.TransferContext
@@ -178,6 +179,7 @@ open class NinePatchRect : Control() {
     callConstructor(ENGINECLASS_NINEPATCHRECT)
   }
 
+  @CoreTypeHelper
   open fun regionRect(schedule: Rect2.() -> Unit): Rect2 = regionRect.apply{
       schedule(this)
       regionRect = this

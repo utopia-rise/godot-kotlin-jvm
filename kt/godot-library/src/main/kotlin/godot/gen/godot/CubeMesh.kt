@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
@@ -88,6 +89,7 @@ open class CubeMesh : PrimitiveMesh() {
     callConstructor(ENGINECLASS_CUBEMESH)
   }
 
+  @CoreTypeHelper
   open fun size(schedule: Vector3.() -> Unit): Vector3 = size.apply{
       schedule(this)
       size = this

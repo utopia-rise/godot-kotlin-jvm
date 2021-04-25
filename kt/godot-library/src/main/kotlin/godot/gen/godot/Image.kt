@@ -388,6 +388,12 @@ open class Image : Resource() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
+  open fun loadBmpFromBuffer(buffer: PoolByteArray): GodotError {
+    TransferContext.writeArguments(POOL_BYTE_ARRAY to buffer)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_BMP_FROM_BUFFER, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
   /**
    * Loads an image from the binary contents of a JPEG file.
    */
@@ -403,6 +409,15 @@ open class Image : Resource() {
   open fun loadPngFromBuffer(buffer: PoolByteArray): GodotError {
     TransferContext.writeArguments(POOL_BYTE_ARRAY to buffer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_PNG_FROM_BUFFER, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Loads an image from the binary contents of a TGA file.
+   */
+  open fun loadTgaFromBuffer(buffer: PoolByteArray): GodotError {
+    TransferContext.writeArguments(POOL_BYTE_ARRAY to buffer)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_TGA_FROM_BUFFER, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -454,8 +469,8 @@ open class Image : Resource() {
   /**
    * Resizes the image to the nearest power of 2 for the width and height. If `square` is `true` then set width and height to be the same.
    */
-  open fun resizeToPo2(square: Boolean = false) {
-    TransferContext.writeArguments(BOOL to square)
+  open fun resizeToPo2(square: Boolean = false, interpolation: Long = 1) {
+    TransferContext.writeArguments(BOOL to square, LONG to interpolation)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_RESIZE_TO_PO2, NIL)
   }
 

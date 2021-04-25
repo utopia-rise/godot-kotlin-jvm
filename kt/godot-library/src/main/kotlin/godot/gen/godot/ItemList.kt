@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.PoolIntArray
@@ -262,6 +263,7 @@ open class ItemList : Control() {
     callConstructor(ENGINECLASS_ITEMLIST)
   }
 
+  @CoreTypeHelper
   open fun fixedIconSize(schedule: Vector2.() -> Unit): Vector2 = fixedIconSize.apply{
       schedule(this)
       fixedIconSize = this

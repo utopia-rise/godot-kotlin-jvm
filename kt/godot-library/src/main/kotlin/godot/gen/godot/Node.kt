@@ -1726,6 +1726,11 @@ open class Node : Object() {
     final const val NOTIFICATION_PHYSICS_PROCESS: Long = 16
 
     /**
+     * Notification received when the node is ready, just before [NOTIFICATION_READY] is received. Unlike the latter, it's sent every time the node enters tree, instead of only once.
+     */
+    final const val NOTIFICATION_POST_ENTER_TREE: Long = 27
+
+    /**
      * Notification received every frame when the process flag is set (see [setProcess]).
      */
     final const val NOTIFICATION_PROCESS: Long = 17

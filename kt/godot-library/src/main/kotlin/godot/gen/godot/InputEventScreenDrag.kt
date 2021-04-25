@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
@@ -93,18 +94,21 @@ open class InputEventScreenDrag : InputEvent() {
     callConstructor(ENGINECLASS_INPUTEVENTSCREENDRAG)
   }
 
+  @CoreTypeHelper
   open fun position(schedule: Vector2.() -> Unit): Vector2 = position.apply{
       schedule(this)
       position = this
   }
 
 
+  @CoreTypeHelper
   open fun relative(schedule: Vector2.() -> Unit): Vector2 = relative.apply{
       schedule(this)
       relative = this
   }
 
 
+  @CoreTypeHelper
   open fun speed(schedule: Vector2.() -> Unit): Vector2 = speed.apply{
       schedule(this)
       speed = this

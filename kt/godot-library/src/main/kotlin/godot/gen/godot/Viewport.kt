@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.RID
 import godot.core.Rect2
@@ -123,6 +124,17 @@ open class Viewport : Node() {
           NIL)
     }
 
+  open var debanding: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEBANDING, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(value) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DEBANDING, NIL)
+    }
+
   /**
    * The overlay mode for test rendered geometry in debug purposes.
    */
@@ -149,6 +161,17 @@ open class Viewport : Node() {
     set(value) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DISABLE_3D, NIL)
+    }
+
+  open var fxaa: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_FXAA, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(value) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_FXAA, NIL)
     }
 
   /**
@@ -527,12 +550,14 @@ open class Viewport : Node() {
     callConstructor(ENGINECLASS_VIEWPORT)
   }
 
+  @CoreTypeHelper
   open fun canvasTransform(schedule: Transform2D.() -> Unit): Transform2D = canvasTransform.apply{
       schedule(this)
       canvasTransform = this
   }
 
 
+  @CoreTypeHelper
   open fun globalCanvasTransform(schedule: Transform2D.() -> Unit): Transform2D =
       globalCanvasTransform.apply{
       schedule(this)
@@ -540,6 +565,7 @@ open class Viewport : Node() {
   }
 
 
+  @CoreTypeHelper
   open fun size(schedule: Vector2.() -> Unit): Vector2 = size.apply{
       schedule(this)
       size = this
@@ -556,6 +582,9 @@ open class Viewport : Node() {
   }
 
   open fun _postGuiGrabClickFocus() {
+  }
+
+  open fun _processPicking(ignorePaused: Boolean) {
   }
 
   open fun _subwindowVisibilityChanged() {

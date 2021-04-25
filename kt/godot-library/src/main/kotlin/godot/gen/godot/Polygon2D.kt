@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.NodePath
@@ -285,24 +286,28 @@ open class Polygon2D : Node2D() {
     callConstructor(ENGINECLASS_POLYGON2D)
   }
 
+  @CoreTypeHelper
   open fun color(schedule: Color.() -> Unit): Color = color.apply{
       schedule(this)
       color = this
   }
 
 
+  @CoreTypeHelper
   open fun offset(schedule: Vector2.() -> Unit): Vector2 = offset.apply{
       schedule(this)
       offset = this
   }
 
 
+  @CoreTypeHelper
   open fun textureOffset(schedule: Vector2.() -> Unit): Vector2 = textureOffset.apply{
       schedule(this)
       textureOffset = this
   }
 
 
+  @CoreTypeHelper
   open fun textureScale(schedule: Vector2.() -> Unit): Vector2 = textureScale.apply{
       schedule(this)
       textureScale = this

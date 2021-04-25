@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
@@ -40,6 +41,7 @@ open class VisualShaderNodeVec3Constant : VisualShaderNode() {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVEC3CONSTANT)
   }
 
+  @CoreTypeHelper
   open fun constant(schedule: Vector3.() -> Unit): Vector3 = constant.apply{
       schedule(this)
       constant = this

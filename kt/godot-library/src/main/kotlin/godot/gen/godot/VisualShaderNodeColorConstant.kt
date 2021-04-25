@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -42,6 +43,7 @@ open class VisualShaderNodeColorConstant : VisualShaderNode() {
     callConstructor(ENGINECLASS_VISUALSHADERNODECOLORCONSTANT)
   }
 
+  @CoreTypeHelper
   open fun constant(schedule: Color.() -> Unit): Color = constant.apply{
       schedule(this)
       constant = this

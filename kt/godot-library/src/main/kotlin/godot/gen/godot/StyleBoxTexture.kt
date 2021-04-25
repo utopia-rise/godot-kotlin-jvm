@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.Rect2
@@ -299,12 +300,14 @@ open class StyleBoxTexture : StyleBox() {
     callConstructor(ENGINECLASS_STYLEBOXTEXTURE)
   }
 
+  @CoreTypeHelper
   open fun modulateColor(schedule: Color.() -> Unit): Color = modulateColor.apply{
       schedule(this)
       modulateColor = this
   }
 
 
+  @CoreTypeHelper
   open fun regionRect(schedule: Rect2.() -> Unit): Rect2 = regionRect.apply{
       schedule(this)
       regionRect = this

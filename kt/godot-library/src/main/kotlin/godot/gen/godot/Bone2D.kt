@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.Transform2D
@@ -62,6 +63,7 @@ open class Bone2D : Node2D() {
     callConstructor(ENGINECLASS_BONE2D)
   }
 
+  @CoreTypeHelper
   open fun rest(schedule: Transform2D.() -> Unit): Transform2D = rest.apply{
       schedule(this)
       rest = this

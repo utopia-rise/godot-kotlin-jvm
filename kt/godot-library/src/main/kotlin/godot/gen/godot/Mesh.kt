@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.AABB
 import godot.core.PoolVector3Array
@@ -50,6 +51,7 @@ open class Mesh : Resource() {
     callConstructor(ENGINECLASS_MESH)
   }
 
+  @CoreTypeHelper
   open fun lightmapSizeHint(schedule: Vector2.() -> Unit): Vector2 = lightmapSizeHint.apply{
       schedule(this)
       lightmapSizeHint = this

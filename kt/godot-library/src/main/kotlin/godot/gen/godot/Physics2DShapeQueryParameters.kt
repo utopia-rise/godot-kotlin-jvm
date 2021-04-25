@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
@@ -166,12 +167,14 @@ open class Physics2DShapeQueryParameters : Reference() {
     callConstructor(ENGINECLASS_PHYSICS2DSHAPEQUERYPARAMETERS)
   }
 
+  @CoreTypeHelper
   open fun motion(schedule: Vector2.() -> Unit): Vector2 = motion.apply{
       schedule(this)
       motion = this
   }
 
 
+  @CoreTypeHelper
   open fun transform(schedule: Transform2D.() -> Unit): Transform2D = transform.apply{
       schedule(this)
       transform = this

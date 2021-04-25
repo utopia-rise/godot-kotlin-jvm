@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
@@ -97,18 +98,21 @@ open class InputEventMouseMotion : InputEventMouse() {
     callConstructor(ENGINECLASS_INPUTEVENTMOUSEMOTION)
   }
 
+  @CoreTypeHelper
   open fun relative(schedule: Vector2.() -> Unit): Vector2 = relative.apply{
       schedule(this)
       relative = this
   }
 
 
+  @CoreTypeHelper
   open fun speed(schedule: Vector2.() -> Unit): Vector2 = speed.apply{
       schedule(this)
       speed = this
   }
 
 
+  @CoreTypeHelper
   open fun tilt(schedule: Vector2.() -> Unit): Vector2 = tilt.apply{
       schedule(this)
       tilt = this

@@ -106,6 +106,11 @@ open class File : Reference() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  open fun flush() {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__FILE_FLUSH, NIL)
+  }
+
   /**
    * Returns the next 16 bits from the file as an integer. See [store16] for details on what values can be stored and retrieved this way.
    */

@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.PoolVector2Array
@@ -220,6 +221,7 @@ open class Line2D : Node2D() {
     callConstructor(ENGINECLASS_LINE2D)
   }
 
+  @CoreTypeHelper
   open fun defaultColor(schedule: Color.() -> Unit): Color = defaultColor.apply{
       schedule(this)
       defaultColor = this

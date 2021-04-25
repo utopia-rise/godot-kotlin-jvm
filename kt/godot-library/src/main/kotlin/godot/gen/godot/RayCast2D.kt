@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
@@ -132,6 +133,7 @@ open class RayCast2D : Node2D() {
     callConstructor(ENGINECLASS_RAYCAST2D)
   }
 
+  @CoreTypeHelper
   open fun castTo(schedule: Vector2.() -> Unit): Vector2 = castTo.apply{
       schedule(this)
       castTo = this

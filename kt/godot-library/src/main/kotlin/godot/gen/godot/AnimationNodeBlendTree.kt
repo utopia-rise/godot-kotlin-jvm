@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -50,6 +51,7 @@ open class AnimationNodeBlendTree : AnimationRootNode() {
     callConstructor(ENGINECLASS_ANIMATIONNODEBLENDTREE)
   }
 
+  @CoreTypeHelper
   open fun graphOffset(schedule: Vector2.() -> Unit): Vector2 = graphOffset.apply{
       schedule(this)
       graphOffset = this

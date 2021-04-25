@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
@@ -76,18 +77,21 @@ open class ParallaxLayer : Node2D() {
     callConstructor(ENGINECLASS_PARALLAXLAYER)
   }
 
+  @CoreTypeHelper
   open fun motionMirroring(schedule: Vector2.() -> Unit): Vector2 = motionMirroring.apply{
       schedule(this)
       motionMirroring = this
   }
 
 
+  @CoreTypeHelper
   open fun motionOffset(schedule: Vector2.() -> Unit): Vector2 = motionOffset.apply{
       schedule(this)
       motionOffset = this
   }
 
 
+  @CoreTypeHelper
   open fun motionScale(schedule: Vector2.() -> Unit): Vector2 = motionScale.apply{
       schedule(this)
       motionScale = this

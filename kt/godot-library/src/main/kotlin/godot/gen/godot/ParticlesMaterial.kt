@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -919,24 +920,28 @@ open class ParticlesMaterial : Material() {
     callConstructor(ENGINECLASS_PARTICLESMATERIAL)
   }
 
+  @CoreTypeHelper
   open fun color(schedule: Color.() -> Unit): Color = color.apply{
       schedule(this)
       color = this
   }
 
 
+  @CoreTypeHelper
   open fun direction(schedule: Vector3.() -> Unit): Vector3 = direction.apply{
       schedule(this)
       direction = this
   }
 
 
+  @CoreTypeHelper
   open fun emissionBoxExtents(schedule: Vector3.() -> Unit): Vector3 = emissionBoxExtents.apply{
       schedule(this)
       emissionBoxExtents = this
   }
 
 
+  @CoreTypeHelper
   open fun gravity(schedule: Vector3.() -> Unit): Vector3 = gravity.apply{
       schedule(this)
       gravity = this

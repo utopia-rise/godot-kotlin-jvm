@@ -171,6 +171,12 @@ open class Tabs : Control() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  open fun getPreviousTab(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABS_GET_PREVIOUS_TAB, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
   /**
    * Returns `true` if select with right mouse button is enabled.
    */

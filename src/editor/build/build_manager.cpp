@@ -11,8 +11,8 @@ void background_trigger_build(void* p_userdata) {
     BuildManager::get_instance().build_blocking();
 }
 
-BuildManager::BuildManager() {
-    build_mutex = Mutex::create();
+BuildManager::BuildManager() : build_mutex(), build_thread(), build_finished(false), last_build_exit_code(0) {
+
 }
 
 bool BuildManager::build_project_blocking() {
@@ -35,17 +35,17 @@ bool BuildManager::build_project_blocking() {
 }
 
 void BuildManager::build_project_non_blocking() {
-    if (!build_thread) {
+    if (!build_thread.is_started()) {
         clear_log();
         GodotKotlinJvmEditor::get_instance()->build_check_timer->start();
-        build_thread = Thread::create(background_trigger_build, nullptr);
+        build_thread.start(background_trigger_build, nullptr);
     }
 }
 
 bool BuildManager::can_build_project() {
-    build_mutex->lock();
+    build_mutex.lock();
     bool result = build_finished;
-    build_mutex->unlock();
+    build_mutex.unlock();
     return result;
 }
 
@@ -55,30 +55,29 @@ bool BuildManager::is_build_finished() {
 }
 
 void BuildManager::update_build_state() {
-    if (!build_thread) {
+    if (!build_thread.is_started()) {
         GodotKotlinJvmEditor::get_instance()->build_check_timer->stop();
         return;
     }
 
-    build_mutex->lock();
+    build_mutex.lock();
     if (build_finished) {
-        Thread::wait_to_finish(build_thread);
-        build_thread = nullptr;
+        build_thread.wait_to_finish();
     }
-    build_mutex->unlock();
+    build_mutex.unlock();
 }
 
 String BuildManager::get_log() {
-    build_mutex->lock();
+    build_mutex.lock();
     String result = build_log;
-    build_mutex->unlock();
+    build_mutex.unlock();
     return result;
 }
 
 void BuildManager::clear_log() {
-    build_mutex->lock();
+    build_mutex.lock();
     build_log.clear();
-    build_mutex->unlock();
+    build_mutex.unlock();
 }
 
 Error BuildManager::build_blocking() {
@@ -86,9 +85,9 @@ Error BuildManager::build_blocking() {
         return Error::OK;
     }
     clear_log();
-    build_mutex->lock();
+    build_mutex.lock();
     build_finished = false;
-    build_mutex->unlock();
+    build_mutex.unlock();
 
     List<String> args{};
     args.push_back("build");
@@ -120,21 +119,21 @@ Error BuildManager::build_blocking() {
             &build_log,
             &exit_code,
             true,
-            build_mutex
+            &build_mutex
     );
 
-    build_mutex->lock();
+    build_mutex.lock();
     last_build_exit_code = exit_code;
     build_finished = true;
-    build_mutex->unlock();
+    build_mutex.unlock();
 
     return result;
 }
 
 bool BuildManager::last_build_successful() const {
-    build_mutex->lock();
+    build_mutex.lock();
     bool result = last_build_exit_code == 0;
-    build_mutex->unlock();
+    build_mutex.unlock();
     return result;
 }
 

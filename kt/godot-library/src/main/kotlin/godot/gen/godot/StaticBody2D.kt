@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
@@ -111,6 +112,7 @@ open class StaticBody2D : PhysicsBody2D() {
     callConstructor(ENGINECLASS_STATICBODY2D)
   }
 
+  @CoreTypeHelper
   open fun constantLinearVelocity(schedule: Vector2.() -> Unit): Vector2 =
       constantLinearVelocity.apply{
       schedule(this)

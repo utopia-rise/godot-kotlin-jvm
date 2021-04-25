@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Plane
 import godot.core.TransferContext
@@ -38,6 +39,7 @@ open class PlaneShape : Shape() {
     callConstructor(ENGINECLASS_PLANESHAPE)
   }
 
+  @CoreTypeHelper
   open fun plane(schedule: Plane.() -> Unit): Plane = plane.apply{
       schedule(this)
       plane = this

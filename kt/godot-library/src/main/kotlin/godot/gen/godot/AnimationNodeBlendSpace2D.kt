@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.PoolIntArray
 import godot.core.TransferContext
@@ -1503,402 +1504,469 @@ open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     callConstructor(ENGINECLASS_ANIMATIONNODEBLENDSPACE2D)
   }
 
+  @CoreTypeHelper
   open fun blendPoint0_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint0_pos.apply{
       schedule(this)
       blendPoint0_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint1_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint1_pos.apply{
       schedule(this)
       blendPoint1_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint10_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint10_pos.apply{
       schedule(this)
       blendPoint10_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint11_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint11_pos.apply{
       schedule(this)
       blendPoint11_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint12_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint12_pos.apply{
       schedule(this)
       blendPoint12_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint13_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint13_pos.apply{
       schedule(this)
       blendPoint13_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint14_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint14_pos.apply{
       schedule(this)
       blendPoint14_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint15_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint15_pos.apply{
       schedule(this)
       blendPoint15_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint16_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint16_pos.apply{
       schedule(this)
       blendPoint16_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint17_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint17_pos.apply{
       schedule(this)
       blendPoint17_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint18_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint18_pos.apply{
       schedule(this)
       blendPoint18_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint19_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint19_pos.apply{
       schedule(this)
       blendPoint19_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint2_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint2_pos.apply{
       schedule(this)
       blendPoint2_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint20_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint20_pos.apply{
       schedule(this)
       blendPoint20_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint21_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint21_pos.apply{
       schedule(this)
       blendPoint21_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint22_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint22_pos.apply{
       schedule(this)
       blendPoint22_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint23_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint23_pos.apply{
       schedule(this)
       blendPoint23_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint24_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint24_pos.apply{
       schedule(this)
       blendPoint24_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint25_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint25_pos.apply{
       schedule(this)
       blendPoint25_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint26_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint26_pos.apply{
       schedule(this)
       blendPoint26_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint27_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint27_pos.apply{
       schedule(this)
       blendPoint27_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint28_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint28_pos.apply{
       schedule(this)
       blendPoint28_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint29_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint29_pos.apply{
       schedule(this)
       blendPoint29_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint3_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint3_pos.apply{
       schedule(this)
       blendPoint3_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint30_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint30_pos.apply{
       schedule(this)
       blendPoint30_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint31_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint31_pos.apply{
       schedule(this)
       blendPoint31_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint32_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint32_pos.apply{
       schedule(this)
       blendPoint32_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint33_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint33_pos.apply{
       schedule(this)
       blendPoint33_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint34_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint34_pos.apply{
       schedule(this)
       blendPoint34_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint35_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint35_pos.apply{
       schedule(this)
       blendPoint35_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint36_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint36_pos.apply{
       schedule(this)
       blendPoint36_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint37_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint37_pos.apply{
       schedule(this)
       blendPoint37_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint38_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint38_pos.apply{
       schedule(this)
       blendPoint38_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint39_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint39_pos.apply{
       schedule(this)
       blendPoint39_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint4_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint4_pos.apply{
       schedule(this)
       blendPoint4_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint40_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint40_pos.apply{
       schedule(this)
       blendPoint40_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint41_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint41_pos.apply{
       schedule(this)
       blendPoint41_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint42_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint42_pos.apply{
       schedule(this)
       blendPoint42_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint43_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint43_pos.apply{
       schedule(this)
       blendPoint43_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint44_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint44_pos.apply{
       schedule(this)
       blendPoint44_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint45_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint45_pos.apply{
       schedule(this)
       blendPoint45_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint46_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint46_pos.apply{
       schedule(this)
       blendPoint46_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint47_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint47_pos.apply{
       schedule(this)
       blendPoint47_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint48_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint48_pos.apply{
       schedule(this)
       blendPoint48_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint49_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint49_pos.apply{
       schedule(this)
       blendPoint49_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint5_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint5_pos.apply{
       schedule(this)
       blendPoint5_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint50_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint50_pos.apply{
       schedule(this)
       blendPoint50_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint51_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint51_pos.apply{
       schedule(this)
       blendPoint51_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint52_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint52_pos.apply{
       schedule(this)
       blendPoint52_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint53_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint53_pos.apply{
       schedule(this)
       blendPoint53_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint54_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint54_pos.apply{
       schedule(this)
       blendPoint54_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint55_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint55_pos.apply{
       schedule(this)
       blendPoint55_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint56_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint56_pos.apply{
       schedule(this)
       blendPoint56_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint57_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint57_pos.apply{
       schedule(this)
       blendPoint57_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint58_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint58_pos.apply{
       schedule(this)
       blendPoint58_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint59_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint59_pos.apply{
       schedule(this)
       blendPoint59_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint6_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint6_pos.apply{
       schedule(this)
       blendPoint6_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint60_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint60_pos.apply{
       schedule(this)
       blendPoint60_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint61_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint61_pos.apply{
       schedule(this)
       blendPoint61_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint62_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint62_pos.apply{
       schedule(this)
       blendPoint62_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint63_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint63_pos.apply{
       schedule(this)
       blendPoint63_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint7_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint7_pos.apply{
       schedule(this)
       blendPoint7_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint8_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint8_pos.apply{
       schedule(this)
       blendPoint8_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun blendPoint9_pos(schedule: Vector2.() -> Unit): Vector2 = blendPoint9_pos.apply{
       schedule(this)
       blendPoint9_pos = this
   }
 
 
+  @CoreTypeHelper
   open fun maxSpace(schedule: Vector2.() -> Unit): Vector2 = maxSpace.apply{
       schedule(this)
       maxSpace = this
   }
 
 
+  @CoreTypeHelper
   open fun minSpace(schedule: Vector2.() -> Unit): Vector2 = minSpace.apply{
       schedule(this)
       minSpace = this
   }
 
 
+  @CoreTypeHelper
   open fun snap(schedule: Vector2.() -> Unit): Vector2 = snap.apply{
       schedule(this)
       snap = this

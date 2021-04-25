@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -219,12 +220,14 @@ open class Light : VisualInstance() {
     callConstructor(ENGINECLASS_LIGHT)
   }
 
+  @CoreTypeHelper
   open fun lightColor(schedule: Color.() -> Unit): Color = lightColor.apply{
       schedule(this)
       lightColor = this
   }
 
 
+  @CoreTypeHelper
   open fun shadowColor(schedule: Color.() -> Unit): Color = shadowColor.apply{
       schedule(this)
       shadowColor = this

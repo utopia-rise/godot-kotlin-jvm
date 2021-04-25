@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.PoolVector3Array
 import godot.core.TransferContext
@@ -47,6 +48,7 @@ open class Navigation : Spatial() {
     callConstructor(ENGINECLASS_NAVIGATION)
   }
 
+  @CoreTypeHelper
   open fun upVector(schedule: Vector3.() -> Unit): Vector3 = upVector.apply{
       schedule(this)
       upVector = this

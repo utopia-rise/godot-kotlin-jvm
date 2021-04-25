@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Rect2
 import godot.core.TransferContext
@@ -84,12 +85,14 @@ open class AtlasTexture : Texture() {
     callConstructor(ENGINECLASS_ATLASTEXTURE)
   }
 
+  @CoreTypeHelper
   open fun margin(schedule: Rect2.() -> Unit): Rect2 = margin.apply{
       schedule(this)
       margin = this
   }
 
 
+  @CoreTypeHelper
   open fun region(schedule: Rect2.() -> Unit): Rect2 = region.apply{
       schedule(this)
       region = this

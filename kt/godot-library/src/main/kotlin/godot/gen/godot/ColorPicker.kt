@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.PoolColorArray
@@ -156,6 +157,7 @@ open class ColorPicker : BoxContainer() {
     callConstructor(ENGINECLASS_COLORPICKER)
   }
 
+  @CoreTypeHelper
   open fun color(schedule: Color.() -> Unit): Color = color.apply{
       schedule(this)
       color = this

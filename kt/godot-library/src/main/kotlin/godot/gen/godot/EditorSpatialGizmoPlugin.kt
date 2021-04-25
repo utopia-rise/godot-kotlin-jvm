@@ -125,7 +125,7 @@ open class EditorSpatialGizmoPlugin : Resource() {
   /**
    * Gets material from the internal list of materials. If an [godot.EditorSpatialGizmo] is provided, it will try to get the corresponding variant (selected and/or editable).
    */
-  open fun getMaterial(name: String, gizmo: EditorSpatialGizmo): SpatialMaterial? {
+  open fun getMaterial(name: String, gizmo: EditorSpatialGizmo? = null): SpatialMaterial? {
     TransferContext.writeArguments(STRING to name, OBJECT to gizmo)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSPATIALGIZMOPLUGIN_GET_MATERIAL, OBJECT)
@@ -144,7 +144,7 @@ open class EditorSpatialGizmoPlugin : Resource() {
    *
    * All built-in editor gizmos return a priority of `-1`. If not overridden, this method will return `0`, which means custom gizmos will automatically override built-in gizmos.
    */
-  open fun _getPriority(): String {
+  open fun _getPriority(): Long {
     throw NotImplementedError("get_priority is not implemented for EditorSpatialGizmoPlugin")
   }
 

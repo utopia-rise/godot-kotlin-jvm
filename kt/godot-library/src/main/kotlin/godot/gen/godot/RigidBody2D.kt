@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantArray
@@ -391,12 +392,14 @@ open class RigidBody2D : PhysicsBody2D() {
     callConstructor(ENGINECLASS_RIGIDBODY2D)
   }
 
+  @CoreTypeHelper
   open fun appliedForce(schedule: Vector2.() -> Unit): Vector2 = appliedForce.apply{
       schedule(this)
       appliedForce = this
   }
 
 
+  @CoreTypeHelper
   open fun linearVelocity(schedule: Vector2.() -> Unit): Vector2 = linearVelocity.apply{
       schedule(this)
       linearVelocity = this

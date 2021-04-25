@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.GodotError
 import godot.core.PoolIntArray
@@ -55,6 +56,7 @@ open class VisualShader : Shader() {
     callConstructor(ENGINECLASS_VISUALSHADER)
   }
 
+  @CoreTypeHelper
   open fun graphOffset(schedule: Vector2.() -> Unit): Vector2 = graphOffset.apply{
       schedule(this)
       graphOffset = this

@@ -58,9 +58,6 @@ open class CollisionShape : Spatial() {
   open fun _shapeChanged() {
   }
 
-  open fun _updateDebugShape() {
-  }
-
   /**
    * Sets the collision shape's shape to the addition of all its convexed [godot.MeshInstance] siblings geometry.
    */

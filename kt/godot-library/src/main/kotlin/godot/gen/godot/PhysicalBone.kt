@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.Transform
@@ -147,12 +148,14 @@ open class PhysicalBone : PhysicsBody() {
     callConstructor(ENGINECLASS_PHYSICALBONE)
   }
 
+  @CoreTypeHelper
   open fun bodyOffset(schedule: Transform.() -> Unit): Transform = bodyOffset.apply{
       schedule(this)
       bodyOffset = this
   }
 
 
+  @CoreTypeHelper
   open fun jointOffset(schedule: Transform.() -> Unit): Transform = jointOffset.apply{
       schedule(this)
       jointOffset = this

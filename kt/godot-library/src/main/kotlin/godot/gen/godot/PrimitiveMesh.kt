@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.AABB
 import godot.core.TransferContext
@@ -77,6 +78,7 @@ open class PrimitiveMesh : Mesh() {
     callConstructor(ENGINECLASS_PRIMITIVEMESH)
   }
 
+  @CoreTypeHelper
   open fun customAabb(schedule: AABB.() -> Unit): AABB = customAabb.apply{
       schedule(this)
       customAabb = this

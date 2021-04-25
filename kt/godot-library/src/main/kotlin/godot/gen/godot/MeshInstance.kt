@@ -8,10 +8,12 @@ package godot
 import godot.annotation.GodotBaseType
 import godot.core.NodePath
 import godot.core.TransferContext
+import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
+import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
 
@@ -65,11 +67,27 @@ open class MeshInstance : GeometryInstance() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_SET_SKIN, NIL)
     }
 
+  open var softwareSkinningTransformNormals: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_GET_SOFTWARE_SKINNING_TRANSFORM_NORMALS, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(value) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_SET_SOFTWARE_SKINNING_TRANSFORM_NORMALS, NIL)
+    }
+
   override fun __new() {
     callConstructor(ENGINECLASS_MESHINSTANCE)
   }
 
   open fun _meshChanged() {
+  }
+
+  open fun _updateSkinning() {
   }
 
   /**
@@ -97,6 +115,13 @@ open class MeshInstance : GeometryInstance() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_CREATE_TRIMESH_COLLISION, NIL)
+  }
+
+  open fun getActiveMaterial(surface: Long): Material? {
+    TransferContext.writeArguments(LONG to surface)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_GET_ACTIVE_MATERIAL,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Material?
   }
 
   /**

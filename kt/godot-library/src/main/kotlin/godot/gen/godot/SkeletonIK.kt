@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.NodePath
 import godot.core.TransferContext
@@ -182,12 +183,14 @@ open class SkeletonIK : Node() {
     callConstructor(ENGINECLASS_SKELETONIK)
   }
 
+  @CoreTypeHelper
   open fun magnet(schedule: Vector3.() -> Unit): Vector3 = magnet.apply{
       schedule(this)
       magnet = this
   }
 
 
+  @CoreTypeHelper
   open fun target(schedule: Transform.() -> Unit): Transform = target.apply{
       schedule(this)
       target = this

@@ -339,8 +339,8 @@ open class PopupMenu : Popup() {
   /**
    * Adds a separator between items. Separators also occupy an index.
    */
-  open fun addSeparator(label: String = "") {
-    TransferContext.writeArguments(STRING to label)
+  open fun addSeparator(label: String = "", id: Long = -1) {
+    TransferContext.writeArguments(STRING to label, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_SEPARATOR, NIL)
   }
 

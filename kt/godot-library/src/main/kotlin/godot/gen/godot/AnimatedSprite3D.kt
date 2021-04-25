@@ -30,6 +30,8 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class AnimatedSprite3D : SpriteBase3D() {
+  val animationFinished: Signal0 by signal()
+
   /**
    * Emitted when [frame] changed.
    */

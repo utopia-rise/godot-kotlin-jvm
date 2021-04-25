@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
@@ -130,6 +131,7 @@ open class RayCast : Spatial() {
     callConstructor(ENGINECLASS_RAYCAST)
   }
 
+  @CoreTypeHelper
   open fun castTo(schedule: Vector3.() -> Unit): Vector3 = castTo.apply{
       schedule(this)
       castTo = this

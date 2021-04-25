@@ -50,6 +50,19 @@ open class RandomNumberGenerator : Reference() {
           NIL)
     }
 
+  open var state: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_GET_STATE,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(value) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_SET_STATE,
+          NIL)
+    }
+
   override fun __new() {
     callConstructor(ENGINECLASS_RANDOMNUMBERGENERATOR)
   }

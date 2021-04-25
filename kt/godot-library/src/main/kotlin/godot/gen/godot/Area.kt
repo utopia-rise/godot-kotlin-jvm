@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
@@ -50,13 +51,13 @@ open class Area : CollisionObject() {
    * Emitted when another area enters, reporting which areas overlapped. `shape_owner_get_owner(shape_find_owner(shape))` returns the parent object of the owner of the `shape`.
    */
   val areaShapeEntered: Signal4<Long, Area, Long, Long> by signal("area_id", "area", "area_shape",
-      "self_shape")
+      "local_shape")
 
   /**
    * Emitted when another area exits, reporting which areas were overlapping.
    */
   val areaShapeExited: Signal4<Long, Area, Long, Long> by signal("area_id", "area", "area_shape",
-      "self_shape")
+      "local_shape")
 
   /**
    * Emitted when a physics body enters.
@@ -78,7 +79,7 @@ open class Area : CollisionObject() {
    * The `body` argument can either be a [godot.PhysicsBody] or a [godot.GridMap] instance (while GridMaps are not physics body themselves, they register their tiles with collision shapes as a virtual physics body).
    */
   val bodyShapeEntered: Signal4<Long, Node, Long, Long> by signal("body_id", "body", "body_shape",
-      "area_shape")
+      "local_shape")
 
   /**
    * Emitted when a physics body exits, reporting which shapes were overlapping.
@@ -86,7 +87,7 @@ open class Area : CollisionObject() {
    * The `body` argument can either be a [godot.PhysicsBody] or a [godot.GridMap] instance (while GridMaps are not physics body themselves, they register their tiles with collision shapes as a virtual physics body).
    */
   val bodyShapeExited: Signal4<Long, Node, Long, Long> by signal("body_id", "body", "body_shape",
-      "area_shape")
+      "local_shape")
 
   /**
    * The rate at which objects stop spinning in this area. Represents the angular velocity lost per second. Values range from `0` (no damping) to `1` (full damping).
@@ -349,6 +350,7 @@ open class Area : CollisionObject() {
     callConstructor(ENGINECLASS_AREA)
   }
 
+  @CoreTypeHelper
   open fun gravityVec(schedule: Vector3.() -> Unit): Vector3 = gravityVec.apply{
       schedule(this)
       gravityVec = this

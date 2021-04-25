@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -1657,42 +1658,49 @@ open class SpatialMaterial : Material() {
     callConstructor(ENGINECLASS_SPATIALMATERIAL)
   }
 
+  @CoreTypeHelper
   open fun albedoColor(schedule: Color.() -> Unit): Color = albedoColor.apply{
       schedule(this)
       albedoColor = this
   }
 
 
+  @CoreTypeHelper
   open fun emission(schedule: Color.() -> Unit): Color = emission.apply{
       schedule(this)
       emission = this
   }
 
 
+  @CoreTypeHelper
   open fun transmission(schedule: Color.() -> Unit): Color = transmission.apply{
       schedule(this)
       transmission = this
   }
 
 
+  @CoreTypeHelper
   open fun uv1Offset(schedule: Vector3.() -> Unit): Vector3 = uv1Offset.apply{
       schedule(this)
       uv1Offset = this
   }
 
 
+  @CoreTypeHelper
   open fun uv1Scale(schedule: Vector3.() -> Unit): Vector3 = uv1Scale.apply{
       schedule(this)
       uv1Scale = this
   }
 
 
+  @CoreTypeHelper
   open fun uv2Offset(schedule: Vector3.() -> Unit): Vector3 = uv2Offset.apply{
       schedule(this)
       uv2Offset = this
   }
 
 
+  @CoreTypeHelper
   open fun uv2Scale(schedule: Vector3.() -> Unit): Vector3 = uv2Scale.apply{
       schedule(this)
       uv2Scale = this

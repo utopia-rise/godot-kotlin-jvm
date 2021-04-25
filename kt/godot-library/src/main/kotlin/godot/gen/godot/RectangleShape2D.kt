@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
@@ -39,6 +40,7 @@ open class RectangleShape2D : Shape2D() {
     callConstructor(ENGINECLASS_RECTANGLESHAPE2D)
   }
 
+  @CoreTypeHelper
   open fun extents(schedule: Vector2.() -> Unit): Vector2 = extents.apply{
       schedule(this)
       extents = this

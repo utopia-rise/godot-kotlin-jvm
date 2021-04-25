@@ -86,6 +86,19 @@ open class EditorExportPlugin : Reference() {
   }
 
   /**
+   * Adds a dynamic library (*.dylib, *.framework) to Linking Phase in iOS's Xcode project and embeds it into resulting binary.
+   *
+   * **Note:** For static libraries (*.a) works in same way as [addIosFramework].
+   *
+   * This method should not be used for System libraries as they are already present on the device.
+   */
+  open fun addIosEmbeddedFramework(path: String) {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_IOS_EMBEDDED_FRAMEWORK, NIL)
+  }
+
+  /**
    * Adds a static library (*.a) or dynamic library (*.dylib, *.framework) to Linking Phase in iOS's Xcode project.
    */
   open fun addIosFramework(path: String) {

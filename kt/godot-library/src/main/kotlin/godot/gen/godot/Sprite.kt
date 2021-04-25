@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Rect2
 import godot.core.TransferContext
@@ -229,18 +230,21 @@ open class Sprite : Node2D() {
     callConstructor(ENGINECLASS_SPRITE)
   }
 
+  @CoreTypeHelper
   open fun frameCoords(schedule: Vector2.() -> Unit): Vector2 = frameCoords.apply{
       schedule(this)
       frameCoords = this
   }
 
 
+  @CoreTypeHelper
   open fun offset(schedule: Vector2.() -> Unit): Vector2 = offset.apply{
       schedule(this)
       offset = this
   }
 
 
+  @CoreTypeHelper
   open fun regionRect(schedule: Rect2.() -> Unit): Rect2 = regionRect.apply{
       schedule(this)
       regionRect = this

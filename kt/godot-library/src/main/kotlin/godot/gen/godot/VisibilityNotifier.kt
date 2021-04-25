@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.AABB
 import godot.core.TransferContext
@@ -67,6 +68,7 @@ open class VisibilityNotifier : Spatial() {
     callConstructor(ENGINECLASS_VISIBILITYNOTIFIER)
   }
 
+  @CoreTypeHelper
   open fun aabb(schedule: AABB.() -> Unit): AABB = aabb.apply{
       schedule(this)
       aabb = this

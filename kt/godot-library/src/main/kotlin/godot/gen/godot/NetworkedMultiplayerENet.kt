@@ -202,6 +202,18 @@ open class NetworkedMultiplayerENet : NetworkedMultiplayerPeer() {
         ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_SET_DTLS_KEY, NIL)
   }
 
+  open fun setPeerTimeout(
+    id: Long,
+    timeoutLimit: Long,
+    timeoutMin: Long,
+    timeoutMax: Long
+  ) {
+    TransferContext.writeArguments(LONG to id, LONG to timeoutLimit, LONG to timeoutMin, LONG to
+        timeoutMax)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_SET_PEER_TIMEOUT, NIL)
+  }
+
   enum class CompressionMode(
     id: Long
   ) {

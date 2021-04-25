@@ -116,6 +116,24 @@ open class RichTextLabel : Control() {
     }
 
   /**
+   * If `true`, the label's height will be automatically updated to fit its content.
+   *
+   * **Note:** This property is used as a workaround to fix issues with [godot.RichTextLabel] in [godot.Container]s, but it's unreliable in some cases and will be removed in future versions.
+   */
+  open var fitContentHeight: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_FIT_CONTENT_HEIGHT, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(value) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_FIT_CONTENT_HEIGHT, NIL)
+    }
+
+  /**
    * If `true`, the label underlines meta tags such as `[url]{text}[/url]`.
    */
   open var metaUnderlined: Boolean

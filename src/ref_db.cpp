@@ -6,9 +6,9 @@ uint64_t RefDB::get_ref_id(Reference* ref) {
     RefIndex index;
 
     {
-        auto ptr = reinterpret_cast<uint64_t>(ref);
-        auto lock = MutexLock(mut);
-        RefIndex* index_ptr = ref_map.getptr(ptr);
+        auto ptr{reinterpret_cast<uint64_t>(ref)};
+        MutexLock lock{mut};
+        RefIndex* index_ptr{ref_map.getptr(ptr)};
         if (index_ptr) {
             index_ptr->counter++;
             return index_ptr->index;
@@ -35,9 +35,9 @@ uint64_t RefDB::get_ref_id(Reference* ref) {
 
 void RefDB::remove_ref(Reference* ref, uint32_t counter) {
     {
-        auto ptr = reinterpret_cast<uint64_t>(ref);
-        auto lock = MutexLock(mut);
-        RefIndex* index_ptr = ref_map.getptr(ptr);
+        auto ptr{reinterpret_cast<uint64_t>(ref)};
+        MutexLock lock{mut};
+        RefIndex* index_ptr{ref_map.getptr(ptr)};
         if (!index_ptr) {
             return;
         }
@@ -64,6 +64,6 @@ RefDB& RefDB::get_instance() {
     return instance;
 }
 
-RefDB::RefDB() : ref_map(), freeIds(), mut(Mutex::create(false)) {
+RefDB::RefDB() : ref_map(), freeIds(), mut() {
 
 }

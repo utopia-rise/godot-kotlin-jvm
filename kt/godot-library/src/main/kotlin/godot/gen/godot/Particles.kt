@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.AABB
 import godot.core.TransferContext
@@ -308,6 +309,7 @@ open class Particles : GeometryInstance() {
     callConstructor(ENGINECLASS_PARTICLES)
   }
 
+  @CoreTypeHelper
   open fun visibilityAabb(schedule: AABB.() -> Unit): AABB = visibilityAabb.apply{
       schedule(this)
       visibilityAabb = this

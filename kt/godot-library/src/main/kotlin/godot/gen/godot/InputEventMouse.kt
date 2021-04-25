@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
@@ -76,12 +77,14 @@ open class InputEventMouse : InputEventWithModifiers() {
     callConstructor(ENGINECLASS_INPUTEVENTMOUSE)
   }
 
+  @CoreTypeHelper
   open fun globalPosition(schedule: Vector2.() -> Unit): Vector2 = globalPosition.apply{
       schedule(this)
       globalPosition = this
   }
 
 
+  @CoreTypeHelper
   open fun position(schedule: Vector2.() -> Unit): Vector2 = position.apply{
       schedule(this)
       position = this

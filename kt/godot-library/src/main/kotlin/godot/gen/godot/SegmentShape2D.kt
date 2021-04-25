@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
@@ -52,12 +53,14 @@ open class SegmentShape2D : Shape2D() {
     callConstructor(ENGINECLASS_SEGMENTSHAPE2D)
   }
 
+  @CoreTypeHelper
   open fun a(schedule: Vector2.() -> Unit): Vector2 = a.apply{
       schedule(this)
       a = this
   }
 
 
+  @CoreTypeHelper
   open fun b(schedule: Vector2.() -> Unit): Vector2 = b.apply{
       schedule(this)
       b = this

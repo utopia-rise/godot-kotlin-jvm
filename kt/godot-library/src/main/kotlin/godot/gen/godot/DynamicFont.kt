@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -13,8 +14,10 @@ import godot.core.VariantType.COLOR
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.STRING
 import kotlin.Boolean
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -193,6 +196,7 @@ open class DynamicFont : Font() {
     callConstructor(ENGINECLASS_DYNAMICFONT)
   }
 
+  @CoreTypeHelper
   open fun outlineColor(schedule: Color.() -> Unit): Color = outlineColor.apply{
       schedule(this)
       outlineColor = this
@@ -205,6 +209,18 @@ open class DynamicFont : Font() {
   open fun addFallback(data: DynamicFontData) {
     TransferContext.writeArguments(OBJECT to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_ADD_FALLBACK, NIL)
+  }
+
+  /**
+   * Returns a string containing all the characters available in the main and all the fallback fonts.
+   *
+   * If a given character is included in more than one font, it appears only once in the returned string.
+   */
+  open fun getAvailableChars(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_GET_AVAILABLE_CHARS,
+        STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**

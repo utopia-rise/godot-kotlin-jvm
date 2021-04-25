@@ -6,6 +6,7 @@
 package godot
 
 import godot.CameraFeed
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.Transform2D
@@ -67,6 +68,7 @@ open class CameraFeed : Reference() {
     callConstructor(ENGINECLASS_CAMERAFEED)
   }
 
+  @CoreTypeHelper
   open fun feedTransform(schedule: Transform2D.() -> Unit): Transform2D = feedTransform.apply{
       schedule(this)
       feedTransform = this

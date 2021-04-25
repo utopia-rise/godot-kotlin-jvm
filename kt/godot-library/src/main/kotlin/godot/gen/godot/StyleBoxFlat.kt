@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -407,24 +408,28 @@ open class StyleBoxFlat : StyleBox() {
     callConstructor(ENGINECLASS_STYLEBOXFLAT)
   }
 
+  @CoreTypeHelper
   open fun bgColor(schedule: Color.() -> Unit): Color = bgColor.apply{
       schedule(this)
       bgColor = this
   }
 
 
+  @CoreTypeHelper
   open fun borderColor(schedule: Color.() -> Unit): Color = borderColor.apply{
       schedule(this)
       borderColor = this
   }
 
 
+  @CoreTypeHelper
   open fun shadowColor(schedule: Color.() -> Unit): Color = shadowColor.apply{
       schedule(this)
       shadowColor = this
   }
 
 
+  @CoreTypeHelper
   open fun shadowOffset(schedule: Vector2.() -> Unit): Vector2 = shadowOffset.apply{
       schedule(this)
       shadowOffset = this

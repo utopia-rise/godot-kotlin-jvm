@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Dictionary
 import godot.core.PoolIntArray
@@ -310,6 +311,17 @@ open class TileMap : Node2D() {
           NIL)
     }
 
+  open var showCollision: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_SHOW_COLLISION, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(value) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_SHOW_COLLISION, NIL)
+    }
+
   /**
    * The assigned [godot.TileSet].
    */
@@ -328,6 +340,7 @@ open class TileMap : Node2D() {
     callConstructor(ENGINECLASS_TILEMAP)
   }
 
+  @CoreTypeHelper
   open fun cellCustomTransform(schedule: Transform2D.() -> Unit): Transform2D =
       cellCustomTransform.apply{
       schedule(this)
@@ -335,6 +348,7 @@ open class TileMap : Node2D() {
   }
 
 
+  @CoreTypeHelper
   open fun cellSize(schedule: Vector2.() -> Unit): Vector2 = cellSize.apply{
       schedule(this)
       cellSize = this

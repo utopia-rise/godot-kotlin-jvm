@@ -126,8 +126,12 @@ object ProjectSettings : Object() {
    *
    * **Note:** If a file from `pack` shares the same path as a file already in the resource filesystem, any attempts to load that file will use the file from `pack` unless `replace_files` is set to `false`.
    */
-  fun loadResourcePack(pack: String, replaceFiles: Boolean = true): Boolean {
-    TransferContext.writeArguments(STRING to pack, BOOL to replaceFiles)
+  fun loadResourcePack(
+    pack: String,
+    replaceFiles: Boolean = true,
+    offset: Long = 0
+  ): Boolean {
+    TransferContext.writeArguments(STRING to pack, BOOL to replaceFiles, LONG to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_LOAD_RESOURCE_PACK,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
@@ -189,12 +190,14 @@ open class CanvasItem : Node() {
     callConstructor(ENGINECLASS_CANVASITEM)
   }
 
+  @CoreTypeHelper
   open fun modulate(schedule: Color.() -> Unit): Color = modulate.apply{
       schedule(this)
       modulate = this
   }
 
 
+  @CoreTypeHelper
   open fun selfModulate(schedule: Color.() -> Unit): Color = selfModulate.apply{
       schedule(this)
       selfModulate = this

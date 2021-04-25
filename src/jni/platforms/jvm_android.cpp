@@ -37,7 +37,7 @@ namespace jni {
 
     Env Jvm::current_env() {
         // Call android support get_env method.
-        return Env(ThreadAndroid::get_env());
+        return Env(get_jni_env());
     }
 }
 

@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.Rect2
@@ -221,12 +222,14 @@ open class SpriteBase3D : GeometryInstance() {
     callConstructor(ENGINECLASS_SPRITEBASE3D)
   }
 
+  @CoreTypeHelper
   open fun modulate(schedule: Color.() -> Unit): Color = modulate.apply{
       schedule(this)
       modulate = this
   }
 
 
+  @CoreTypeHelper
   open fun offset(schedule: Vector2.() -> Unit): Vector2 = offset.apply{
       schedule(this)
       offset = this

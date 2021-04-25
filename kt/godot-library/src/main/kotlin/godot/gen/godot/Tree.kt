@@ -284,6 +284,12 @@ open class Tree : Control() {
     return TransferContext.readReturnValue(OBJECT, true) as TreeItem?
   }
 
+  open fun editSelected(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_EDIT_SELECTED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
   /**
    * Makes the currently focused cell visible.
    *
@@ -444,6 +450,11 @@ open class Tree : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_SELECTED_COLUMN, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  open fun scrollToItem(item: Object) {
+    TransferContext.writeArguments(OBJECT to item)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SCROLL_TO_ITEM, NIL)
   }
 
   /**

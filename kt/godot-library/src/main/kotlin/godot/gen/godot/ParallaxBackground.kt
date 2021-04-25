@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.Transform2D
@@ -123,30 +124,35 @@ open class ParallaxBackground : CanvasLayer() {
     callConstructor(ENGINECLASS_PARALLAXBACKGROUND)
   }
 
+  @CoreTypeHelper
   open fun scrollBaseOffset(schedule: Vector2.() -> Unit): Vector2 = scrollBaseOffset.apply{
       schedule(this)
       scrollBaseOffset = this
   }
 
 
+  @CoreTypeHelper
   open fun scrollBaseScale(schedule: Vector2.() -> Unit): Vector2 = scrollBaseScale.apply{
       schedule(this)
       scrollBaseScale = this
   }
 
 
+  @CoreTypeHelper
   open fun scrollLimitBegin(schedule: Vector2.() -> Unit): Vector2 = scrollLimitBegin.apply{
       schedule(this)
       scrollLimitBegin = this
   }
 
 
+  @CoreTypeHelper
   open fun scrollLimitEnd(schedule: Vector2.() -> Unit): Vector2 = scrollLimitEnd.apply{
       schedule(this)
       scrollLimitEnd = this
   }
 
 
+  @CoreTypeHelper
   open fun scrollOffset(schedule: Vector2.() -> Unit): Vector2 = scrollOffset.apply{
       schedule(this)
       scrollOffset = this

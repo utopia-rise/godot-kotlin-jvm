@@ -55,6 +55,18 @@ open class CollisionPolygon : Spatial() {
           NIL)
     }
 
+  open var margin: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON_GET_MARGIN,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(value) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON_SET_MARGIN, NIL)
+    }
+
   /**
    * Array of vertices which define the polygon.
    *

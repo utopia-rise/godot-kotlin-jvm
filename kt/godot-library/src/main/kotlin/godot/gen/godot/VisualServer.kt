@@ -624,6 +624,12 @@ object VisualServer : Object() {
    */
   final const val INSTANCE_REFLECTION_PROBE: Long = 6
 
+  final const val LIGHT_BAKE_ALL: Long = 2
+
+  final const val LIGHT_BAKE_DISABLED: Long = 0
+
+  final const val LIGHT_BAKE_INDIRECT: Long = 1
+
   /**
    * Is a directional (sun) light.
    */
@@ -1190,6 +1196,22 @@ object VisualServer : Object() {
    * Emitted at the beginning of the frame, before the VisualServer updates all the Viewports.
    */
   val framePreDraw: Signal0 by signal()
+
+  /**
+   * If `false`, disables rendering completely, but the engine logic is still being processed. You can call [forceDraw] to draw a frame even with rendering disabled.
+   */
+  var renderLoopEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSERVER_GET_RENDER_LOOP_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(value) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSERVER_SET_RENDER_LOOP_ENABLED, NIL)
+    }
 
   override fun __new() {
     rawPtr = TransferContext.getSingleton(ENGINESINGLETON_VISUALSERVER)
@@ -3041,9 +3063,12 @@ object VisualServer : Object() {
   fun instanceSetUseLightmap(
     instance: RID,
     lightmapInstance: RID,
-    lightmap: RID
+    lightmap: RID,
+    lightmapSlice: Long = -1,
+    lightmapUvRect: Rect2 = Rect2(0.0, 0.0, 1.0, 1.0)
   ) {
-    TransferContext.writeArguments(_RID to instance, _RID to lightmapInstance, _RID to lightmap)
+    TransferContext.writeArguments(_RID to instance, _RID to lightmapInstance, _RID to lightmap,
+        LONG to lightmapSlice, RECT2 to lightmapUvRect)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSERVER_INSTANCE_SET_USE_LIGHTMAP, NIL)
   }
@@ -3140,6 +3165,12 @@ object VisualServer : Object() {
     TransferContext.writeArguments(_RID to light, LONG to mode)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSERVER_LIGHT_OMNI_SET_SHADOW_MODE, NIL)
+  }
+
+  fun lightSetBakeMode(light: RID, bakeMode: Long) {
+    TransferContext.writeArguments(_RID to light, LONG to bakeMode)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSERVER_LIGHT_SET_BAKE_MODE,
+        NIL)
   }
 
   /**
@@ -3288,6 +3319,13 @@ object VisualServer : Object() {
     return TransferContext.readReturnValue(TRANSFORM, false) as Transform
   }
 
+  fun lightmapCaptureIsInterior(capture: RID): Boolean {
+    TransferContext.writeArguments(_RID to capture)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSERVER_LIGHTMAP_CAPTURE_IS_INTERIOR, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
   /**
    * Sets the size of the area covered by the lightmap capture. Equivalent to [godot.BakedLightmapData.bounds].
    */
@@ -3304,6 +3342,12 @@ object VisualServer : Object() {
     TransferContext.writeArguments(_RID to capture, DOUBLE to energy)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSERVER_LIGHTMAP_CAPTURE_SET_ENERGY, NIL)
+  }
+
+  fun lightmapCaptureSetInterior(capture: RID, interior: Boolean) {
+    TransferContext.writeArguments(_RID to capture, BOOL to interior)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSERVER_LIGHTMAP_CAPTURE_SET_INTERIOR, NIL)
   }
 
   /**
@@ -4369,6 +4413,17 @@ object VisualServer : Object() {
   }
 
   /**
+   * Sets the scale to apply to the passage of time for the shaders' `TIME` builtin.
+   *
+   * The default value is `1.0`, which means `TIME` will count the real time as it goes by, without narrowing or stretching it.
+   */
+  fun setShaderTimeScale(scale: Double) {
+    TransferContext.writeArguments(DOUBLE to scale)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSERVER_SET_SHADER_TIME_SCALE,
+        NIL)
+  }
+
+  /**
    * Creates an empty shader and adds it to the VisualServer. It can be accessed with the RID that is returned. This RID will be used in all `shader_*` VisualServer functions.
    *
    * Once finished with your RID, you will want to free the RID using the VisualServer's [freeRid] static method.
@@ -5083,6 +5138,18 @@ object VisualServer : Object() {
   fun viewportSetUseArvr(viewport: RID, useArvr: Boolean) {
     TransferContext.writeArguments(_RID to viewport, BOOL to useArvr)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSERVER_VIEWPORT_SET_USE_ARVR,
+        NIL)
+  }
+
+  fun viewportSetUseDebanding(viewport: RID, debanding: Boolean) {
+    TransferContext.writeArguments(_RID to viewport, BOOL to debanding)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSERVER_VIEWPORT_SET_USE_DEBANDING, NIL)
+  }
+
+  fun viewportSetUseFxaa(viewport: RID, fxaa: Boolean) {
+    TransferContext.writeArguments(_RID to viewport, BOOL to fxaa)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSERVER_VIEWPORT_SET_USE_FXAA,
         NIL)
   }
 
@@ -6141,6 +6208,25 @@ object VisualServer : Object() {
      * Always update the viewport.
      */
     VIEWPORT_UPDATE_ALWAYS(3);
+
+    val id: Long
+    init {
+      this.id = id
+    }
+
+    companion object {
+      fun from(value: Long) = values().single { it.id == value }
+    }
+  }
+
+  enum class LightBakeMode(
+    id: Long
+  ) {
+    LIGHT_BAKE_DISABLED(0),
+
+    LIGHT_BAKE_INDIRECT(1),
+
+    LIGHT_BAKE_ALL(2);
 
     val id: Long
     init {

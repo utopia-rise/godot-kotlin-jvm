@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Rect2
 import godot.core.TransferContext
@@ -69,6 +70,7 @@ open class VisibilityNotifier2D : Node2D() {
     callConstructor(ENGINECLASS_VISIBILITYNOTIFIER2D)
   }
 
+  @CoreTypeHelper
   open fun rect(schedule: Rect2.() -> Unit): Rect2 = rect.apply{
       schedule(this)
       rect = this

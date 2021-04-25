@@ -6,6 +6,7 @@
 package godot
 
 import godot.Control
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.NodePath
@@ -300,6 +301,19 @@ open class Control : CanvasItem() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_HINT_TOOLTIP, NIL)
     }
 
+  open var inputPassOnModalCloseClick: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CONTROL_GET_INPUT_PASS_ON_MODAL_CLOSE_CLICK, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(value) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CONTROL_SET_INPUT_PASS_ON_MODAL_CLOSE_CLICK, NIL)
+    }
+
   /**
    * Distance between the node's bottom edge and its parent control, based on [anchorBottom].
    *
@@ -573,18 +587,21 @@ open class Control : CanvasItem() {
     callConstructor(ENGINECLASS_CONTROL)
   }
 
+  @CoreTypeHelper
   open fun rectMinSize(schedule: Vector2.() -> Unit): Vector2 = rectMinSize.apply{
       schedule(this)
       rectMinSize = this
   }
 
 
+  @CoreTypeHelper
   open fun rectPivotOffset(schedule: Vector2.() -> Unit): Vector2 = rectPivotOffset.apply{
       schedule(this)
       rectPivotOffset = this
   }
 
 
+  @CoreTypeHelper
   open fun rectScale(schedule: Vector2.() -> Unit): Vector2 = rectScale.apply{
       schedule(this)
       rectScale = this
@@ -665,7 +682,7 @@ open class Control : CanvasItem() {
    * 				    return tooltip
    * 				```
    */
-  open fun _makeCustomTooltip(forText: String): Object? {
+  open fun _makeCustomTooltip(forText: String): Control? {
     throw NotImplementedError("_make_custom_tooltip is not implemented for Control")
   }
 
@@ -807,6 +824,20 @@ open class Control : CanvasItem() {
   open fun _dropData(position: Vector2, data: Any?) {
   }
 
+  open fun findNextValidFocus(): Control? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_FIND_NEXT_VALID_FOCUS,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Control?
+  }
+
+  open fun findPrevValidFocus(): Control? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_FIND_PREV_VALID_FOCUS,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Control?
+  }
+
   /**
    * Forces drag and bypasses [getDragData] and [setDragPreview] by passing `data` and `preview`. Drag will start even if the mouse is neither over nor pressed on this control.
    *
@@ -834,8 +865,8 @@ open class Control : CanvasItem() {
    * 				    modulate = get_color("font_color", "Button") #get the color defined for button fonts
    * 				```
    */
-  open fun getColor(name: String, type: String = ""): Color {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun getColor(name: String, nodeType: String = ""): Color {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_COLOR, COLOR)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
@@ -853,8 +884,8 @@ open class Control : CanvasItem() {
   /**
    * Returns a constant from assigned [godot.Theme] with given `name` and associated with [godot.Control] of given `type`.
    */
-  open fun getConstant(name: String, type: String = ""): Long {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun getConstant(name: String, nodeType: String = ""): Long {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_CONSTANT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
@@ -905,8 +936,8 @@ open class Control : CanvasItem() {
   /**
    * Returns a font from assigned [godot.Theme] with given `name` and associated with [godot.Control] of given `type`.
    */
-  open fun getFont(name: String, type: String = ""): Font? {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun getFont(name: String, nodeType: String = ""): Font? {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_FONT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Font?
   }
@@ -923,8 +954,8 @@ open class Control : CanvasItem() {
   /**
    * Returns an icon from assigned [godot.Theme] with given `name` and associated with [godot.Control] of given `type`.
    */
-  open fun getIcon(name: String, type: String = ""): Texture? {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun getIcon(name: String, nodeType: String = ""): Texture? {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_ICON, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Texture?
   }
@@ -978,8 +1009,8 @@ open class Control : CanvasItem() {
   /**
    * Returns a [godot.StyleBox] from assigned [godot.Theme] with given `name` and associated with [godot.Control] of given `type`.
    */
-  open fun getStylebox(name: String, type: String = ""): StyleBox? {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun getStylebox(name: String, nodeType: String = ""): StyleBox? {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_STYLEBOX, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as StyleBox?
   }
@@ -1017,8 +1048,8 @@ open class Control : CanvasItem() {
   /**
    * Returns `true` if [godot.core.Color] with given `name` and associated with [godot.Control] of given `type` exists in assigned [godot.Theme].
    */
-  open fun hasColor(name: String, type: String = ""): Boolean {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun hasColor(name: String, nodeType: String = ""): Boolean {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_COLOR, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -1035,8 +1066,8 @@ open class Control : CanvasItem() {
   /**
    * Returns `true` if constant with given `name` and associated with [godot.Control] of given `type` exists in assigned [godot.Theme].
    */
-  open fun hasConstant(name: String, type: String = ""): Boolean {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun hasConstant(name: String, nodeType: String = ""): Boolean {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_CONSTANT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -1062,8 +1093,8 @@ open class Control : CanvasItem() {
   /**
    * Returns `true` if font with given `name` and associated with [godot.Control] of given `type` exists in assigned [godot.Theme].
    */
-  open fun hasFont(name: String, type: String = ""): Boolean {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun hasFont(name: String, nodeType: String = ""): Boolean {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_FONT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -1080,8 +1111,8 @@ open class Control : CanvasItem() {
   /**
    * Returns `true` if icon with given `name` and associated with [godot.Control] of given `type` exists in assigned [godot.Theme].
    */
-  open fun hasIcon(name: String, type: String = ""): Boolean {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun hasIcon(name: String, nodeType: String = ""): Boolean {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_ICON, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -1118,8 +1149,8 @@ open class Control : CanvasItem() {
   /**
    * Returns `true` if [godot.StyleBox] with given `name` and associated with [godot.Control] of given `type` exists in assigned [godot.Theme].
    */
-  open fun hasStylebox(name: String, type: String = ""): Boolean {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun hasStylebox(name: String, nodeType: String = ""): Boolean {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_STYLEBOX, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }

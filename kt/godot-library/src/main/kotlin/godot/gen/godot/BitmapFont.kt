@@ -165,12 +165,6 @@ open class BitmapFont : Font() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  open fun getCharSize(char: Long, next: Long = 0): Vector2 {
-    TransferContext.writeArguments(LONG to char, LONG to next)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAPFONT_GET_CHAR_SIZE, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-  }
-
   /**
    * Returns a kerning pair as a difference.
    */

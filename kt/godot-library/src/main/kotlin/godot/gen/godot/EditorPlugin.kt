@@ -263,6 +263,12 @@ open class EditorPlugin : Node() {
     throw NotImplementedError("forward_canvas_gui_input is not implemented for EditorPlugin")
   }
 
+  open fun _forwardSpatialDrawOverViewport(overlay: Control) {
+  }
+
+  open fun _forwardSpatialForceDrawOverViewport(overlay: Control) {
+  }
+
   /**
    * Called when there is a root node in the current edited scene, [handles] is implemented and an [godot.InputEvent] happens in the 3D viewport. Intercepts the [godot.InputEvent], if `return true` [godot.EditorPlugin] consumes the `event`, otherwise forwards `event` to other Editor classes. Example:
    *

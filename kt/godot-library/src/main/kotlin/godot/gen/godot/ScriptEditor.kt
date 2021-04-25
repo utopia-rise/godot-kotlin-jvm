@@ -68,7 +68,7 @@ open class ScriptEditor : PanelContainer() {
   open fun _closeAllTabs() {
   }
 
-  open fun _closeCurrentTab() {
+  open fun _closeCurrentTab(arg0: Boolean) {
   }
 
   open fun _closeDiscardCurrentTab(arg0: String) {

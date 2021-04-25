@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Rect2
 import godot.core.TransferContext
@@ -273,6 +274,7 @@ open class Particles2D : Node2D() {
     callConstructor(ENGINECLASS_PARTICLES2D)
   }
 
+  @CoreTypeHelper
   open fun visibilityRect(schedule: Rect2.() -> Unit): Rect2 = visibilityRect.apply{
       schedule(this)
       visibilityRect = this

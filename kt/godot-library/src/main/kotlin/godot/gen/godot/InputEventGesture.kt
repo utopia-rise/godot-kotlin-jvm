@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
@@ -38,6 +39,7 @@ open class InputEventGesture : InputEventWithModifiers() {
     callConstructor(ENGINECLASS_INPUTEVENTGESTURE)
   }
 
+  @CoreTypeHelper
   open fun position(schedule: Vector2.() -> Unit): Vector2 = position.apply{
       schedule(this)
       position = this

@@ -6,6 +6,7 @@
 package godot
 
 import godot.Mesh
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.AABB
 import godot.core.GodotError
@@ -98,6 +99,7 @@ open class ArrayMesh : Mesh() {
     callConstructor(ENGINECLASS_ARRAYMESH)
   }
 
+  @CoreTypeHelper
   open fun customAabb(schedule: AABB.() -> Unit): AABB = customAabb.apply{
       schedule(this)
       customAabb = this

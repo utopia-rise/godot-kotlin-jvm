@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
@@ -223,6 +224,7 @@ open class Camera : Spatial() {
     callConstructor(ENGINECLASS_CAMERA)
   }
 
+  @CoreTypeHelper
   open fun frustumOffset(schedule: Vector2.() -> Unit): Vector2 = frustumOffset.apply{
       schedule(this)
       frustumOffset = this

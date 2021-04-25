@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Rect2
 import godot.core.TransferContext
@@ -57,6 +58,7 @@ open class BackBufferCopy : Node2D() {
     callConstructor(ENGINECLASS_BACKBUFFERCOPY)
   }
 
+  @CoreTypeHelper
   open fun rect(schedule: Rect2.() -> Unit): Rect2 = rect.apply{
       schedule(this)
       rect = this

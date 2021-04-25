@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.Transform2D
@@ -159,28 +160,6 @@ open class Node2D : CanvasItem() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_SCALE, NIL)
     }
 
-  open var skew: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_SKEW, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(value) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_SKEW, NIL)
-    }
-
-  open var skewDegrees: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_SKEW_DEGREES, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(value) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_SKEW_DEGREES, NIL)
-    }
-
   /**
    * Local [godot.core.Transform2D].
    */
@@ -223,36 +202,42 @@ open class Node2D : CanvasItem() {
     callConstructor(ENGINECLASS_NODE2D)
   }
 
+  @CoreTypeHelper
   open fun globalPosition(schedule: Vector2.() -> Unit): Vector2 = globalPosition.apply{
       schedule(this)
       globalPosition = this
   }
 
 
+  @CoreTypeHelper
   open fun globalScale(schedule: Vector2.() -> Unit): Vector2 = globalScale.apply{
       schedule(this)
       globalScale = this
   }
 
 
+  @CoreTypeHelper
   open fun globalTransform(schedule: Transform2D.() -> Unit): Transform2D = globalTransform.apply{
       schedule(this)
       globalTransform = this
   }
 
 
+  @CoreTypeHelper
   open fun position(schedule: Vector2.() -> Unit): Vector2 = position.apply{
       schedule(this)
       position = this
   }
 
 
+  @CoreTypeHelper
   open fun scale(schedule: Vector2.() -> Unit): Vector2 = scale.apply{
       schedule(this)
       scale = this
   }
 
 
+  @CoreTypeHelper
   open fun transform(schedule: Transform2D.() -> Unit): Transform2D = transform.apply{
       schedule(this)
       transform = this

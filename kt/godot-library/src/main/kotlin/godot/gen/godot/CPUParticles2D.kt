@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.Color
 import godot.core.PoolColorArray
@@ -1017,24 +1018,28 @@ open class CPUParticles2D : Node2D() {
     callConstructor(ENGINECLASS_CPUPARTICLES2D)
   }
 
+  @CoreTypeHelper
   open fun color(schedule: Color.() -> Unit): Color = color.apply{
       schedule(this)
       color = this
   }
 
 
+  @CoreTypeHelper
   open fun direction(schedule: Vector2.() -> Unit): Vector2 = direction.apply{
       schedule(this)
       direction = this
   }
 
 
+  @CoreTypeHelper
   open fun emissionRectExtents(schedule: Vector2.() -> Unit): Vector2 = emissionRectExtents.apply{
       schedule(this)
       emissionRectExtents = this
   }
 
 
+  @CoreTypeHelper
   open fun gravity(schedule: Vector2.() -> Unit): Vector2 = gravity.apply{
       schedule(this)
       gravity = this

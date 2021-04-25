@@ -5,10 +5,13 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
+import godot.core.Basis
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
+import godot.core.VariantType.BASIS
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -442,12 +445,14 @@ open class RigidBody : PhysicsBody() {
     callConstructor(ENGINECLASS_RIGIDBODY)
   }
 
+  @CoreTypeHelper
   open fun angularVelocity(schedule: Vector3.() -> Unit): Vector3 = angularVelocity.apply{
       schedule(this)
       angularVelocity = this
   }
 
 
+  @CoreTypeHelper
   open fun linearVelocity(schedule: Vector3.() -> Unit): Vector3 = linearVelocity.apply{
       schedule(this)
       linearVelocity = this
@@ -537,6 +542,16 @@ open class RigidBody : PhysicsBody() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY_GET_COLLIDING_BODIES,
         ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+  }
+
+  /**
+   * Returns the inverse inertia tensor basis. This is used to calculate the angular acceleration resulting from a torque applied to the RigidBody.
+   */
+  open fun getInverseInertiaTensor(): Basis {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RIGIDBODY_GET_INVERSE_INERTIA_TENSOR, BASIS)
+    return TransferContext.readReturnValue(BASIS, false) as Basis
   }
 
   /**

@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.annotation.CoreTypeHelper
 import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.Transform
@@ -162,36 +163,42 @@ open class Spatial : Node() {
     callConstructor(ENGINECLASS_SPATIAL)
   }
 
+  @CoreTypeHelper
   open fun globalTransform(schedule: Transform.() -> Unit): Transform = globalTransform.apply{
       schedule(this)
       globalTransform = this
   }
 
 
+  @CoreTypeHelper
   open fun rotation(schedule: Vector3.() -> Unit): Vector3 = rotation.apply{
       schedule(this)
       rotation = this
   }
 
 
+  @CoreTypeHelper
   open fun rotationDegrees(schedule: Vector3.() -> Unit): Vector3 = rotationDegrees.apply{
       schedule(this)
       rotationDegrees = this
   }
 
 
+  @CoreTypeHelper
   open fun scale(schedule: Vector3.() -> Unit): Vector3 = scale.apply{
       schedule(this)
       scale = this
   }
 
 
+  @CoreTypeHelper
   open fun transform(schedule: Transform.() -> Unit): Transform = transform.apply{
       schedule(this)
       transform = this
   }
 
 
+  @CoreTypeHelper
   open fun translation(schedule: Vector3.() -> Unit): Vector3 = translation.apply{
       schedule(this)
       translation = this
