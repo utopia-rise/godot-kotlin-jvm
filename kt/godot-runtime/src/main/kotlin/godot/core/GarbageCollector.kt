@@ -1,6 +1,7 @@
 package godot.core
 
 import godot.core.memory.GodotStatic
+import godot.core.memory.IGodotStatic
 import godot.core.memory.NativeCoreWeakReference
 import godot.core.memory.ReferenceWeakReference
 import godot.util.VoidPtr
@@ -62,7 +63,7 @@ object GarbageCollector {
     private var wrapperList: List<Pair<VoidPtr, KtObject>>? = null
 
     /** Holds the instances to clean up when the JVM stops.*/
-    private val staticInstances = mutableListOf<GodotStatic>()
+    private val staticInstances = mutableListOf<IGodotStatic>()
 
     private val executor = Executors.newSingleThreadScheduledExecutor()
 
@@ -102,8 +103,10 @@ object GarbageCollector {
         nativeCoreTypeMap[rawPtr] = NativeCoreWeakReference(nativeCoreType, nativeReferenceQueue, variantType)
     }
 
-    fun registerStatic(instance: GodotStatic) {
-        staticInstances.add(instance)
+    fun registerStatic(instance: IGodotStatic) {
+        if(instance !in staticInstances){
+            staticInstances.add(instance)
+        }
     }
 
     fun getObjectInstance(ptr: VoidPtr, id: Long): KtObject? {

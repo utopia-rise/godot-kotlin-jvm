@@ -10,12 +10,8 @@ import godot.core.memory.GodotStatic
 import godot.util.nullptr
 
 
-object GD : GDMath, GDCore, GDRandom, GDPrint, GodotStatic {
+object GD : GDMath, GDCore, GDRandom, GDPrint, GodotStatic() {
     override var rng: RandomNumberGenerator? = RandomNumberGenerator()
-
-    init{
-        registerAsSingleton()
-    }
 
     override fun collect(){
         rng = null

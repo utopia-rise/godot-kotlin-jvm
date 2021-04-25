@@ -2,11 +2,19 @@ package godot.core.memory
 
 import godot.core.GarbageCollector
 
-interface GodotStatic{
+interface IGodotStatic {
 
-    fun registerAsSingleton(){
+    fun registerAsSingleton() {
         GarbageCollector.registerStatic(this)
     }
 
-    fun collect();
+    fun collect()
+}
+
+abstract class GodotStatic: IGodotStatic {
+
+    init {
+        @Suppress("LeakingThis")
+        registerAsSingleton()
+    }
 }
