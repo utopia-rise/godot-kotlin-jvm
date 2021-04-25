@@ -1,8 +1,7 @@
-import godot.Node
+package godot.tests
+
 import godot.PackedScene
 import godot.ResourceLoader
-import godot.annotation.RegisterClass
-import godot.annotation.RegisterFunction
 import godot.core.memory.GodotStatic
 
 object Singleton: GodotStatic(){
@@ -13,13 +12,3 @@ object Singleton: GodotStatic(){
     }
 
 }
-
-@RegisterClass
-class TestSingleton: Node() {
-
-    @RegisterFunction
-    override fun _ready(){
-        val ref = Singleton.ref
-    }
-}
-
