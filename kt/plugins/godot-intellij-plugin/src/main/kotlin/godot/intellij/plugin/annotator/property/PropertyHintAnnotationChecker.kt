@@ -2,8 +2,11 @@ package godot.intellij.plugin.annotator.property
 
 import com.intellij.lang.annotation.AnnotationHolder
 import godot.intellij.plugin.GodotPluginBundle
+import godot.intellij.plugin.data.model.EXPORT_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
 import godot.intellij.plugin.extension.registerProblem
+import godot.intellij.plugin.quickfix.PropertyNotExportedQuickFix
+import godot.intellij.plugin.quickfix.PropertyNotRegisteredQuickFix
 import org.jetbrains.kotlin.idea.refactoring.fqName.fqName
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.js.descriptorUtils.getJetTypeFqName
@@ -22,6 +25,9 @@ import org.jetbrains.kotlin.types.typeUtil.isLong
 private const val MAX_ENUM_ENTRIES_FOR_ENUM_FLAGS = 32
 
 class PropertyHintAnnotationChecker {
+    private val propertyNotRegisteredQuickFix by lazy { PropertyNotRegisteredQuickFix() }
+    private val propertyNotExportedQuickFix by lazy { PropertyNotExportedQuickFix() }
+
     fun checkPropertyHintAnnotations(ktProperty: KtProperty, holder: AnnotationHolder) {
         when {
             ktProperty.findAnnotation(FqName("godot.annotation.IntRange")) != null -> checkIntRange(ktProperty, holder)
@@ -105,7 +111,7 @@ class PropertyHintAnnotationChecker {
         checkForRegistrationAnnotation(ktProperty, holder)
         if (ktProperty.type()?.fqName?.asString()?.matches(Regex("^kotlin\\.collections\\..*Set\$")) == false) {
             holder.registerProblem(
-                GodotPluginBundle.message("problem.property.hint.wrongType", "${Set::class.qualifiedName} or ${MutableSet::class.qualifiedName}"),
+                GodotPluginBundle.message("problem.property.hint.wrongType", "kotlin.collections.Set or kotlin.collections.MutableSet"),
                 ktProperty.findAnnotation(FqName("godot.annotation.EnumFlag"))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement
             )
         } else {
@@ -202,7 +208,15 @@ class PropertyHintAnnotationChecker {
         if (ktProperty.findAnnotation(FqName(REGISTER_PROPERTY_ANNOTATION)) == null) {
             holder.registerProblem(
                 GodotPluginBundle.message("problem.property.hint.notRegistered"),
-                ktProperty.nameIdentifier ?: ktProperty.navigationElement
+                ktProperty.nameIdentifier ?: ktProperty.navigationElement,
+                propertyNotRegisteredQuickFix
+            )
+        }
+        if (ktProperty.findAnnotation(FqName(EXPORT_ANNOTATION)) == null) {
+            holder.registerProblem(
+                GodotPluginBundle.message("problem.property.hint.notExported"),
+                ktProperty.nameIdentifier ?: ktProperty.navigationElement,
+                propertyNotExportedQuickFix
             )
         }
     }

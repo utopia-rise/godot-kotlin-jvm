@@ -1,18 +1,50 @@
 package godot.runtime
 
-import godot.core.*
+import godot.core.CONSTRUCTOR_MAX_ARGS
+import godot.core.KtClass
+import godot.core.KtConstructor
+import godot.core.KtEnumListProperty
+import godot.core.KtEnumProperty
+import godot.core.KtFunction
+import godot.core.KtFunction0
+import godot.core.KtFunction1
+import godot.core.KtFunction2
+import godot.core.KtFunction3
+import godot.core.KtFunction4
+import godot.core.KtFunction5
+import godot.core.KtFunctionInfo
+import godot.core.KtObject
+import godot.core.KtProperty
+import godot.core.KtPropertyInfo
+import godot.core.KtSignalInfo
+import godot.core.PropertyHint
+import godot.core.TypeManager
+import godot.core.VariantType
+import godot.core.toVariantArray
+import godot.core.variantArrayOf
 import godot.util.camelToSnakeCase
-import kotlin.reflect.*
+import kotlin.reflect.KClass
+import kotlin.reflect.KFunction1
+import kotlin.reflect.KFunction2
+import kotlin.reflect.KFunction3
+import kotlin.reflect.KFunction4
+import kotlin.reflect.KFunction5
+import kotlin.reflect.KFunction6
+import kotlin.reflect.KMutableProperty1
+import kotlin.reflect.KProperty
 
+@Suppress("UNCHECKED_CAST")
 class KtPropertyInfoBuilderDsl {
     var type: VariantType? = null
     var name: String = ""
     var className: String? = null
     var hint: PropertyHint = PropertyHint.NONE
     var hintString: String = ""
+    var visibleInEditor: Boolean = true
     var rpcModeId: Int = 0
 
-    internal fun build() = KtPropertyInfo(checkNotNull(type), name, checkNotNull(className), hint, hintString, rpcModeId)
+    internal fun build() =
+        KtPropertyInfo(checkNotNull(type), name, checkNotNull(className), hint, hintString, visibleInEditor, rpcModeId)
 }
 
 data class KtFunctionArgument(
@@ -26,7 +58,8 @@ data class KtFunctionArgument(
         className,
         PropertyHint.NONE,
         "", //always empty. Only used for properties
-    0 // always RPCMode.DISABLED. Only used for properties
+        true, //always true. Only used for properties
+        0 // always RPCMode.DISABLED. Only used for properties
     )
 }
 
@@ -63,7 +96,8 @@ class ClassBuilderDsl<T : KtObject>(
         className: String,
         hint: PropertyHint = PropertyHint.NONE,
         hintString: String = "",
-        defaultArgument: () -> P?,
+        defaultValueProvider: () -> P?,
+        visibleInEditor: Boolean = true,
         rpcModeId: Int = 0,
         isRef: Boolean = false
     ) {
@@ -78,18 +112,20 @@ class ClassBuilderDsl<T : KtObject>(
                 className,
                 hint,
                 hintString,
+                visibleInEditor,
                 rpcModeId
             ),
             kProperty,
             variantType,
-            defaultArgument,
+            defaultValueProvider,
             isRef
         )
     }
 
     inline fun <reified P : Enum<P>> enumProperty(
         kProperty: KMutableProperty1<T, P>,
-        noinline defaultValue: () -> P,
+        noinline defaultValueProvider: () -> P,
+        visibleInEditor: Boolean,
         rpcModeId: Int = 0
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
@@ -104,51 +140,66 @@ class ClassBuilderDsl<T : KtObject>(
                 "Int",
                 PropertyHint.ENUM,
                 enumValues<P>().joinToString { it.name },
+                visibleInEditor,
                 rpcModeId
             ),
             kProperty,
             //TODO change when nullable enum are here.
-            defaultValue,
+            defaultValueProvider,
             { enum: P? -> enum?.ordinal ?: 1 },
             { i -> enumValues<P>()[i] }
         )
     }
 
-    //TODO: uncomment and fixup once collections are supported in KtVariant
-//    inline fun <reified P : Enum<P>> enumListProperty(
-//        kProperty: KMutableProperty1<T, Collection<P>>
-//    ) {
-//        val propertyName = kProperty.name.camelToSnakeCase()
-//        require(!properties.contains(propertyName)) {
-//            "Found two properties with name $propertyName for class $name"
-//        }
-//
-//        properties[propertyName] = KtProperty(
-//            KtPropertyInfo(
-//                VariantType.LONG,
-//                propertyName,
-//                "Int",
-//                PropertyHint.ENUM,
-//                "2/3:${enumValues<P>().joinToString(",") { it.name }}" //2 = VariantType.LONG.ordinal | 3 = PropertyHint.ENUM.ordinal
-//            ),
-//            kProperty,
-//            { enumList ->
-//                KtVariant(enumList.map { it.ordinal } as Collection)
-//            },
-//            { ktVariant -> enumValues<P>()[ktVariant.asInt()] }
-//        )
-//    }
+    inline fun <reified P : Enum<P>, L : Collection<P>> enumListProperty(
+        kProperty: KMutableProperty1<T, L>,
+        noinline defaultValueProvider: () -> L,
+        visibleInEditor: Boolean,
+        rpcModeId: Int = 0
+    ) {
+        val propertyName = kProperty.name.camelToSnakeCase()
+        require(!properties.contains(propertyName)) {
+            "Found two properties with name $propertyName for class $name"
+        }
+
+        properties[propertyName] = KtEnumListProperty(
+            KtPropertyInfo(
+                VariantType.ARRAY,
+                propertyName,
+                "Int",
+                PropertyHint.ENUM,
+                "2/3:${enumValues<P>().joinToString(",") { it.name }}", //2 = VariantType.LONG.ordinal | 3 = PropertyHint.ENUM.ordinal
+                visibleInEditor,
+                rpcModeId
+            ),
+            kProperty,
+            defaultValueProvider,
+            { enumList: Collection<P>? ->
+                enumList
+                    ?.map { it.ordinal }
+                    ?.toVariantArray()
+                    ?: variantArrayOf()
+            },
+            { enumOrdinalVariantArray ->
+                enumOrdinalVariantArray
+                    .map { enumValues<P>()[it] } as L
+            }
+        )
+    }
 
     @JvmName("enumFlagPropertyMutable")
+    @Suppress("UNCHECKED_CAST")
     inline fun <reified P : Enum<P>> enumFlagProperty(
         kProperty: KMutableProperty1<T, MutableSet<P>>,
-        noinline defaultValue: () -> MutableSet<P>,
+        noinline defaultValueProvider: () -> MutableSet<P>,
+        visibleInEditor: Boolean,
         rpcModeId: Int
-    ) = enumFlagProperty(kProperty as KMutableProperty1<T, Set<P>>, defaultValue, rpcModeId)
+    ) = enumFlagProperty(kProperty as KMutableProperty1<T, Set<P>>, defaultValueProvider, visibleInEditor, rpcModeId)
 
     inline fun <reified P : Enum<P>> enumFlagProperty(
         kProperty: KMutableProperty1<T, Set<P>>,
-        noinline defaultValue: () -> Set<P>,
+        noinline defaultValueProvider: () -> Set<P>,
+        visibleInEditor: Boolean,
         rpcModeId: Int
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
@@ -158,16 +209,17 @@ class ClassBuilderDsl<T : KtObject>(
 
         properties[propertyName] = KtEnumProperty(
             KtPropertyInfo(
-                    VariantType.LONG,
+                VariantType.LONG,
                 propertyName,
                 "Int",
                 PropertyHint.FLAGS,
                 enumValues<P>().joinToString { it.name },
+                visibleInEditor,
                 rpcModeId
             ),
             kProperty,
             //TODO : Change when null default values are supported
-            defaultValue,
+            defaultValueProvider,
             { enumSet ->
                 var intFlag = 0
                 enumSet?.forEach { enum ->
@@ -197,12 +249,12 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P: Any?> property(
+    fun <P : Any?> property(
         kProperty: KMutableProperty1<T, P>,
         variantType: VariantType,
-        setValueConverter: ((Any?) -> P),
         isRef: Boolean = false,
-        defaultArgument: () -> P,
+        defaultValueProvider: () -> P,
+        visibleInEditor: Boolean = true,
         rpcModeId: Int = 0,
         pib: KtPropertyInfoBuilderDsl.() -> Unit
     ) {
@@ -210,14 +262,15 @@ class ClassBuilderDsl<T : KtObject>(
         builder.name = kProperty.name.camelToSnakeCase()
         builder.rpcModeId = rpcModeId
         builder.pib()
+        builder.visibleInEditor = visibleInEditor
         val property = builder.build()
         require(!properties.contains(property.name)) {
             "Found two properties with name ${property.name} for class $name"
         }
-        properties[property.name] = KtProperty(property, kProperty, variantType, defaultArgument, isRef)
+        properties[property.name] = KtProperty(property, kProperty, variantType, defaultValueProvider, isRef)
     }
 
-    fun <R: Any?> function(
+    fun <R : Any?> function(
         func: KFunction1<T, R>,
         variantType: VariantType,
         returnType: KtFunctionArgument,
@@ -234,6 +287,7 @@ class ClassBuilderDsl<T : KtObject>(
                         returnType.className,
                         PropertyHint.NONE,
                         "",
+                        true, // always true. Only used for properties
                         0 // always RPCMode.DISABLED. Only used for properties
                     ),
                     rpcModeId
@@ -244,7 +298,7 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <R: Any?> function(
+    fun <R : Any?> function(
         func: KFunction1<T, R>,
         variantType: VariantType,
         returns: KtPropertyInfoBuilderDsl.() -> Unit,
@@ -261,7 +315,7 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, R: Any?> function(
+    fun <P0, R : Any?> function(
         func: KFunction2<T, P0, R>,
         variantType: VariantType,
         p0Type: Pair<VariantType, Boolean>,
@@ -286,7 +340,7 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, R: Any?> function(
+    fun <P0, R : Any?> function(
         func: KFunction2<T, P0, R>,
         variantType: VariantType,
         p0Type: Pair<VariantType, Boolean>,
@@ -305,7 +359,7 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, P1, R: Any?> function(
+    fun <P0, P1, R : Any?> function(
         func: KFunction3<T, P0, P1, R>,
         variantType: VariantType,
         p0Type: Pair<VariantType, Boolean>,
@@ -334,7 +388,7 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, P1, R: Any?> function(
+    fun <P0, P1, R : Any?> function(
         func: KFunction3<T, P0, P1, R>,
         variantType: VariantType,
         p0Type: Pair<VariantType, Boolean>,
@@ -358,7 +412,7 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, P1, P2, R: Any?> function(
+    fun <P0, P1, P2, R : Any?> function(
         func: KFunction4<T, P0, P1, P2, R>,
         variantType: VariantType,
         p0Type: Pair<VariantType, Boolean>,
@@ -391,7 +445,7 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, P1, P2, R: Any?> function(
+    fun <P0, P1, P2, R : Any?> function(
         func: KFunction4<T, P0, P1, P2, R>,
         variantType: VariantType,
         p0Type: Pair<VariantType, Boolean>,
@@ -417,7 +471,7 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, P1, P2, P3, R: Any?> function(
+    fun <P0, P1, P2, P3, R : Any?> function(
         func: KFunction5<T, P0, P1, P2, P3, R>,
         variantType: VariantType,
         p0Type: Pair<VariantType, Boolean>,
@@ -454,7 +508,7 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, P1, P2, P3, R: Any?> function(
+    fun <P0, P1, P2, P3, R : Any?> function(
         func: KFunction5<T, P0, P1, P2, P3, R>,
         variantType: VariantType,
         p0Type: Pair<VariantType, Boolean>,
@@ -482,7 +536,7 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, P1, P2, P3, P4, R: Any?> function(
+    fun <P0, P1, P2, P3, P4, R : Any?> function(
         func: KFunction6<T, P0, P1, P2, P3, P4, R>,
         variantType: VariantType,
         p0Type: Pair<VariantType, Boolean>,
@@ -523,7 +577,7 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    fun <P0, P1, P2, P3, P4, R: Any?> function(
+    fun <P0, P1, P2, P3, P4, R : Any?> function(
         func: KFunction6<T, P0, P1, P2, P3, P4, R>,
         variantType: VariantType,
         p0Type: Pair<VariantType, Boolean>,
@@ -666,7 +720,7 @@ class ClassBuilderDsl<T : KtObject>(
         return args.applyArgumentsDsl() to returnInfo
     }
 
-    private fun <R: Any?> appendFunction(function: KtFunction<T, R>) {
+    private fun <R : Any?> appendFunction(function: KtFunction<T, R>) {
         require(!functions.containsKey(function.functionInfo.name)) {
             "A method with ${function.functionInfo.name} already exists."
         }
@@ -688,7 +742,16 @@ class ClassBuilderDsl<T : KtObject>(
         constructors.forEach {
             constructorArray[it.key] = it.value
         }
-        return KtClass(name, registeredName, superClass, constructorArray, properties, functions, signals, baseGodotClass)
+        return KtClass(
+            name,
+            registeredName,
+            superClass,
+            constructorArray,
+            properties,
+            functions,
+            signals,
+            baseGodotClass
+        )
     }
 
     @PublishedApi

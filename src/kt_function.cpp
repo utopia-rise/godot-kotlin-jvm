@@ -2,6 +2,7 @@
 
 #include "kt_function.h"
 #include "gd_kotlin.h"
+#include "jni/class_loader.h"
 
 JNI_INIT_STATICS_FOR_CLASS(KtFunction)
 JNI_INIT_STATICS_FOR_CLASS(KtFunctionInfo)
@@ -11,7 +12,7 @@ KtFunction::KtFunction(jni::JObject p_wrapped, jni::JObject& p_class_loader)
     jni::Env env{jni::Jvm::current_env()};
     jni::MethodId getFunctionInfoMethod{get_method_id(env, jni_methods.GET_FUNCTION_INFO)};
     method_info = new KtFunctionInfo(wrapped.call_object_method(env, getFunctionInfoMethod),
-                                     GDKotlin::get_instance().get_class_loader());
+                                     ClassLoader::get_default_loader());
     jni::MethodId getParameterCountMethod{get_method_id(env, jni_methods.GET_PARAMETER_COUNT)};
     parameter_count = wrapped.call_int_method(env, getParameterCountMethod);
 }
@@ -60,11 +61,11 @@ KtFunctionInfo::KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loa
     jni::JObjectArray propertyInfoArray{wrapped.call_object_method(env, getPropertyInfosMethod)};
     for (int i = 0; i < propertyInfoArray.length(env); i++) {
         arguments.push_back(
-                new KtPropertyInfo(propertyInfoArray.get(env, i), GDKotlin::get_instance().get_class_loader()));
+                new KtPropertyInfo(propertyInfoArray.get(env, i), ClassLoader::get_default_loader()));
     }
     jni::MethodId getReturnValMethod{get_method_id(env, jni_methods.GET_RETURN_VAL)};
     return_val = new KtPropertyInfo(wrapped.call_object_method(env, getReturnValMethod),
-                                    GDKotlin::get_instance().get_class_loader());
+                                    ClassLoader::get_default_loader());
     jni::MethodId getRPCModeMethod{get_method_id(env, jni_methods.GET_RPC_MODE_ID)};
     rpc_mode = static_cast<MultiplayerAPI::RPCMode>(wrapped.call_int_method(env, getRPCModeMethod));
 }

@@ -1,6 +1,6 @@
 #include "kt_class.h"
 #include "gd_kotlin.h"
-#include "logging.h"
+#include "jni/class_loader.h"
 
 JNI_INIT_STATICS_FOR_CLASS(KtClass)
 
@@ -91,7 +91,7 @@ void KtClass::fetch_methods(jni::Env& env) {
     jni::MethodId getFunctionsMethod { get_method_id(env, jni_methods.GET_FUNCTIONS) };
     jni::JObjectArray functionsArray { wrapped.call_object_method(env, getFunctionsMethod) };
     for (int i = 0; i < functionsArray.length(env); i++) {
-        auto* ktFunction { new KtFunction(functionsArray.get(env, i), GDKotlin::get_instance().get_class_loader()) };
+        auto* ktFunction { new KtFunction(functionsArray.get(env, i), ClassLoader::get_default_loader()) };
         methods[ktFunction->get_name()] = ktFunction;
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE(vformat("Fetched method %s for class %s", ktFunction->get_name(), name))
@@ -103,7 +103,7 @@ void KtClass::fetch_properties(jni::Env& env) {
     jni::MethodId getPropertiesMethod { get_method_id(env, jni_methods.GET_PROPERTIES) };
     jni::JObjectArray propertiesArray { wrapped.call_object_method(env, getPropertiesMethod) };
     for (int i = 0; i < propertiesArray.length(env); i++) {
-        auto* ktProperty { new KtProperty(propertiesArray.get(env, i), GDKotlin::get_instance().get_class_loader()) };
+        auto* ktProperty { new KtProperty(propertiesArray.get(env, i), ClassLoader::get_default_loader()) };
         properties[ktProperty->get_name()] = ktProperty;
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE(vformat("Fetched property %s for class %s", ktProperty->get_name(), name))
@@ -116,7 +116,7 @@ void KtClass::fetch_signals(jni::Env& env) {
     jni::JObjectArray signal_info_array{wrapped.call_object_method(env, get_signal_infos_method)};
     for (int i = 0; i < signal_info_array.length(env); i++) {
         auto* kt_signal_info{
-            new KtSignalInfo(signal_info_array.get(env, i), GDKotlin::get_instance().get_class_loader())
+            new KtSignalInfo(signal_info_array.get(env, i), ClassLoader::get_default_loader())
         };
         signal_infos[kt_signal_info->name] = kt_signal_info;
 #ifdef DEBUG_ENABLED
@@ -132,7 +132,7 @@ void KtClass::fetch_constructors(jni::Env &env) {
         const jni::JObject& constructor{constructors_array.get(env, i)};
         KtConstructor* kt_constructor{nullptr};
         if (constructor.obj != nullptr) {
-            kt_constructor = new KtConstructor(constructor, GDKotlin::get_instance().get_class_loader());
+            kt_constructor = new KtConstructor(constructor, ClassLoader::get_default_loader());
 #ifdef DEBUG_ENABLED
             LOG_VERBOSE(vformat("Fetched constructor with %s parameters for class %s", i, name))
 #endif

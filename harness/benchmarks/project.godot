@@ -33,18 +33,31 @@ _global_script_classes=[ {
 "class": "Stats",
 "language": "GDScript",
 "path": "res://scripts/Stats.gd"
+}, {
+"base": "Object",
+"class": "godot_benchmark_Memory",
+"language": "Kotlin",
+"path": "res://src/main/kotlin/godot/benchmark/Memory.kt"
+}, {
+"base": "Object",
+"class": "godot_benchmark_Simple",
+"language": "Kotlin",
+"path": "res://src/main/kotlin/godot/benchmark/Simple.kt"
 } ]
 _global_script_class_icons={
 "Benchmark": "",
 "Benchmarks": "",
 "Language": "",
 "Report": "",
-"Stats": ""
+"Stats": "",
+"godot_benchmark_Memory": "",
+"godot_benchmark_Simple": ""
 }
 
 [application]
 
 config/name="godot-project"
+run/main_scene="res://Benchmarks.tscn"
 config/icon="res://icon.png"
 
 [rendering]

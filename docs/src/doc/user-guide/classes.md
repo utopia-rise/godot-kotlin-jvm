@@ -8,8 +8,7 @@ class RotatingCube: Spatial() {
 ```
 
 ## Naming
-Classes need to be registered with a unique name as Godot does not support namespaces (or packages in this case) for script classes.  
-This is why this module registers your classes with the fully qualified name. But as GDScript does not support `.` in the type name, `.` are converted to `_`.  
+Classes need to be registered with a unique name as Godot does not support namespaces (or packages in this case) for script classes. This is why this module registers your classes with the fully qualified name. But as GDScript does not support `.` in the type name, `.` are converted to `_`.  
 
 !!! info "A little example"
     A class with fqname `com.company.game.RotatingCube` will be registered as `com_company_game_RotatingCube`. In GDScript you can use it like:
@@ -17,7 +16,7 @@ This is why this module registers your classes with the fully qualified name. Bu
     var instance := com_company_game_RotatingCube.new()
     ```  
 
-As this can get quite long and convoluted, you can register classes with a custom class name. See [Customization](#customization) section found on this page for more details.
+As this can get quite long and convoluted, you can register classes with a custom class name. See [customization](#customization) section found on this page for more details.
 
 ## Lifecycle
 If you want to be notified when initialization and destruction of your class happens, use the `init` block and override the `_onDestroy` function respectively.
@@ -94,7 +93,10 @@ You can customize to some extent how your class should be registered in Godot:
 The `@RegisterClass` annotation can take two arguments:
 
 - **className**: If set, the class will be registered with the name you provide
-- **isTool**: If set to true, this class is treated as a tool class. Similar to the `tool` of GDScript. **Default:** false
 
 !!! warning "Unique class names"
     If you specify the `className` in the annotation, you have to make sure that this name is unique! We implemented compilation checks to make sure the compilation fails if more than two classes are registered with the same name, but we cannot check class names from other scripting languages like GDScript or C#! It is also recommended installing our intellij plugin as it shows duplicated registered class names in the editor as an error.
+
+
+## Tool mode
+Annotate your class with `@Tool` to make it a tool class (note that `@RegisterClass` is required for this annotation to take effect).

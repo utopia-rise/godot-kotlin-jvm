@@ -44,6 +44,11 @@ _global_script_classes=[ {
 "language": "Kotlin",
 "path": "res://src/main/kotlin/godot/tests/coretypes/BasisTest.kt"
 }, {
+"base": "Reference",
+"class": "godot_tests_coretypes_StringTest",
+"language": "Kotlin",
+"path": "res://src/main/kotlin/godot/tests/coretypes/StringTest.kt"
+}, {
 "base": "Node",
 "class": "godot_tests_coretypes_Vector3Test",
 "language": "Kotlin",
@@ -72,6 +77,7 @@ _global_script_class_icons={
 "godot_tests_Invocation": "",
 "godot_tests_MultiArgsConstructorTest": "",
 "godot_tests_coretypes_BasisTest": "",
+"godot_tests_coretypes_StringTest": "",
 "godot_tests_coretypes_Vector3Test": "",
 "godot_tests_inheritance_ClassInheritanceChild": "",
 "godot_tests_inheritance_ClassInheritanceParent": "",

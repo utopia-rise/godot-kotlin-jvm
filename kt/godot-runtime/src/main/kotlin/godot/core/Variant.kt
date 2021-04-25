@@ -36,7 +36,7 @@ val variantMapper = mutableMapOf(
         PoolRealArray::class to POOL_REAL_ARRAY,
         PoolStringArray::class to POOL_STRING_ARRAY,
         PoolVector2Array::class to POOL_VECTOR2_ARRAY,
-        PoolVector3Array::class to POOL_VECTOR3_ARRAY,
+        PoolVector3Array::class to POOL_VECTOR3_ARRAY
 )
 
 var ByteBuffer.bool: Boolean
@@ -100,8 +100,9 @@ enum class VariantType(
                 buffer.bool
             },
             { buffer: ByteBuffer, any: Any ->
+                require(any is Boolean)
                 buffer.variantType = BOOL.ordinal
-                buffer.bool = any as Boolean
+                buffer.bool = any
             }
     ),
     LONG(
@@ -109,8 +110,9 @@ enum class VariantType(
                 buffer.long
             },
             { buffer: ByteBuffer, any: Any ->
+                require(any is Long)
                 buffer.variantType = LONG.ordinal
-                buffer.putLong(any as Long)
+                buffer.putLong(any)
             }
     ),
     DOUBLE(
@@ -118,23 +120,40 @@ enum class VariantType(
                 buffer.double
             },
             { buffer: ByteBuffer, any: Any ->
+                require(any is Double)
                 buffer.variantType = DOUBLE.ordinal
-                buffer.putDouble(any as Double)
+                buffer.putDouble(any)
             }
     ),
     STRING(
             { buffer: ByteBuffer, _: Int ->
-                val stringSize = buffer.int
-                val charArray = ByteArray(stringSize)
-                buffer.get(charArray, 0, stringSize)
-                String(charArray, Charsets.UTF_8)
+                val isLong = buffer.bool
+                if(isLong){
+                    val str = LongStringQueue.pollString()
+                    str
+                }
+                else{
+                    val stringSize = buffer.int
+                    val charArray = ByteArray(stringSize)
+                    buffer.get(charArray, 0, stringSize)
+                    val str = String(charArray, Charsets.UTF_8)
+                    str
+                }
             },
             { buffer: ByteBuffer, any: Any ->
+                require(any is String)
                 buffer.variantType = STRING.ordinal
-                any as String
                 val stringBytes = any.encodeToByteArray()
-                buffer.putInt(stringBytes.size)
-                buffer.put(stringBytes)
+                //TODO: Think of a way to reuse the encoded String
+                if(stringBytes.size > LongStringQueue.stringMaxSize){
+                    buffer.bool = true
+                    LongStringQueue.sendStringToCPP(any)
+                }
+                else{
+                    buffer.bool = false
+                    buffer.putInt(stringBytes.size)
+                    buffer.put(stringBytes)
+                }
             }
     ),
 
@@ -145,8 +164,9 @@ enum class VariantType(
                 buffer.vector2
             },
             { buffer: ByteBuffer, any: Any ->
+                require(any is Vector2)
                 buffer.variantType = VECTOR2.ordinal
-                buffer.vector2 = any as Vector2
+                buffer.vector2 = any
             }
     ), // 5
     RECT2(
@@ -157,8 +177,8 @@ enum class VariantType(
                 )
             },
             { buffer: ByteBuffer, any: Any ->
+                require(any is Rect2)
                 buffer.variantType = RECT2.ordinal
-                any as Rect2
                 buffer.vector2 = any._position
                 buffer.vector2 = any._size
             }
@@ -168,20 +188,21 @@ enum class VariantType(
                 Vector3(buffer.float.toRealT(), buffer.float.toRealT(), buffer.float.toRealT())
             },
             { buffer: ByteBuffer, any: Any ->
+                require(any is Vector3)
                 buffer.variantType = VECTOR3.ordinal
-                buffer.vector3 = any as Vector3
+                buffer.vector3 = any
             }
     ),
     TRANSFORM2D(
-            { buffer: ByteBuffer, expectedType: Int ->
+            { buffer: ByteBuffer, _: Int ->
                 val x = buffer.vector2
                 val y = buffer.vector2
                 val origin = buffer.vector2
                 Transform2D(x, y, origin)
             },
             { buffer: ByteBuffer, any: Any ->
+                require(any is Transform2D)
                 buffer.variantType = TRANSFORM2D.ordinal
-                any as Transform2D
                 buffer.vector2 = any._x
                 buffer.vector2 = any._y
                 buffer.vector2 = any.origin
@@ -194,8 +215,8 @@ enum class VariantType(
                 Plane(normal, d)
             },
             { buffer: ByteBuffer, any: Any ->
+                require(any is Plane)
                 buffer.variantType = PLANE.ordinal
-                any as Plane
                 buffer.vector3 = any._normal
                 buffer.putFloat(any.d.toFloat())
             }
@@ -210,8 +231,8 @@ enum class VariantType(
                 Quat(x, y, z, w)
             },
             { buffer: ByteBuffer, any: Any ->
+                require(any is Quat)
                 buffer.variantType = QUAT.ordinal
-                any as Quat
                 buffer.putFloat(any.x.toFloat())
                 buffer.putFloat(any.y.toFloat())
                 buffer.putFloat(any.z.toFloat())
@@ -225,8 +246,8 @@ enum class VariantType(
                 AABB(position, size)
             },
             { buffer: ByteBuffer, any: Any ->
+                require(any is godot.core.AABB)
                 buffer.variantType = AABB.ordinal
-                any as godot.core.AABB
                 buffer.vector3 = any._position
                 buffer.vector3 = any._size
             }
@@ -236,8 +257,9 @@ enum class VariantType(
                 buffer.basis
             },
             { buffer: ByteBuffer, any: Any ->
+                require(any is Basis)
                 buffer.variantType = BASIS.ordinal
-                buffer.basis = any as Basis
+                buffer.basis = any
             }
     ),
     TRANSFORM(
@@ -247,8 +269,8 @@ enum class VariantType(
                 Transform(basis, origin)
             },
             { buffer: ByteBuffer, any: Any ->
+                require(any is Transform)
                 buffer.variantType = TRANSFORM.ordinal
-                any as Transform
                 buffer.basis = any._basis
                 buffer.vector3 = any._origin
             }
@@ -260,8 +282,8 @@ enum class VariantType(
                 Color(buffer.float, buffer.float, buffer.float, buffer.float)
             },
             { buffer: ByteBuffer, any: Any ->
+                require(any is Color)
                 buffer.variantType = COLOR.ordinal
-                any as Color
                 buffer.putFloat(any.r.toFloat())
                 buffer.putFloat(any.g.toFloat())
                 buffer.putFloat(any.b.toFloat())
@@ -305,8 +327,8 @@ enum class VariantType(
                     TypeManager.engineTypesConstructors[constructorIndex])
             },
             { buffer: ByteBuffer, any: Any ->
+                require(any is KtObject)
                 buffer.variantType = OBJECT.ordinal
-                any as KtObject
                 buffer.putLong(any.rawPtr)
                 buffer.bool = any.____DO_NOT_TOUCH_THIS_isRef____()
             }
@@ -386,7 +408,7 @@ enum class VariantType(
             }
     ), // 25
     POOL_COLOR_ARRAY(
-            { buffer: ByteBuffer, expectedType: Int ->
+            { buffer: ByteBuffer, _: Int ->
                 val ptr = buffer.long
                 PoolColorArray(ptr)
             },
@@ -501,8 +523,8 @@ fun VariantType.getToKotlinLambdaToExecute(defaultLambda: (ByteBuffer, Int) -> A
 }
 
 private inline fun <reified T: NativeCoreType> VariantType.toGodotNativeCoreType(buffer: ByteBuffer, any: Any) {
+    require(any is T)
     buffer.variantType = ordinal
-    any as T
     buffer.putLong(any._handle)
 }
 

@@ -17,15 +17,20 @@ fun String.camelToSnakeCase(): String {
     }.toLowerCase()
 }
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun Number.toRealT(): RealT = this.toDouble()
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun Double.toRealT(): RealT = this
 
+@Suppress("NOTHING_TO_INLINE")
 inline fun Float.toRealT(): RealT = this.toDouble()
 
+@Suppress("NOTHING_TO_INLINE")
 @PublishedApi
 internal inline fun Number.toGodotReal(): Float = this.toFloat()
 
+@Suppress("NOTHING_TO_INLINE")
 @PublishedApi
 internal inline fun Float.toGodotReal(): Float = this
 

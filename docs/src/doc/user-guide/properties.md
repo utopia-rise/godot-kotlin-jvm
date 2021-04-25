@@ -15,7 +15,7 @@ class RotatingCube: Spatial() {
 Property names should follow Kotlin's style which is `camelCase`. For consistency with Godot's style, your properties are actually registered as `snake_case`. So a property `someFlag` in Kotlin is usable in GDScript as `some_flag`.
 
 ## Exporting properties
-A registered property can be exported (a.k.a make it visible in the Godot editor) by annotating it by `@Export`.
+A registered property can be exported (a.k.a make it visible in the Godot editor) by annotating it by `@Export`. A property can be exported if it is a core type, a primitive or inherits from `godot.Reference`.
 
 ```kotlin
 @RegisterClass
@@ -39,7 +39,7 @@ The `@RegisterProperty` annotation takes the following arguments:
 - **rpcMode**: Default: `RPCMode.DISABLED`
 
 ## Type Hint Registration
-This module provides a plethora of annotations for defining property type hints. These annotations controls how Godot display the property in the inspector. Each property hint annotation can only be added to certain types of properties. Using the wrong annotation will make compilation fail.
+This module provides a plethora of annotations for defining property type hints. These annotations controls how Godot display the property in the inspector. Each property hint annotation can only be added to certain types of properties. Using the wrong annotation will make compilation fail. These will only take effect if the property is exported.
 
 !!! note
     If you are using IntelliJ IDEA and have our plugin installed, you will get a warning about wrong annotation usages.

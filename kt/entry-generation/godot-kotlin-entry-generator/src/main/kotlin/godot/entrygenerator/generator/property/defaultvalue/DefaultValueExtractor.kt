@@ -2,14 +2,30 @@ package godot.entrygenerator.generator.property.defaultvalue
 
 import com.squareup.kotlinpoet.ClassName
 import godot.entrygenerator.extension.assignmentPsi
-import godot.entrygenerator.extension.getAnnotationValue
 import godot.entrygenerator.extension.getPropertyHintAnnotation
-import godot.entrygenerator.generator.property.defaultvalue.extractor.*
-import godot.entrygenerator.model.REGISTER_PROPERTY_ANNOTATION
-import godot.entrygenerator.model.REGISTER_PROPERTY_ANNOTATION_VISIBLE_IN_EDITOR_ARGUMENT
+import godot.entrygenerator.generator.property.defaultvalue.extractor.KtBinaryExpressionExtractor
+import godot.entrygenerator.generator.property.defaultvalue.extractor.KtCallExpressionExtractor
+import godot.entrygenerator.generator.property.defaultvalue.extractor.KtConstantExpressionExtractor
+import godot.entrygenerator.generator.property.defaultvalue.extractor.KtDotQualifiedExpressionExtractor
+import godot.entrygenerator.generator.property.defaultvalue.extractor.KtLambdaExpressionExtractor
+import godot.entrygenerator.generator.property.defaultvalue.extractor.KtNameReferenceExpressionExtractor
+import godot.entrygenerator.generator.property.defaultvalue.extractor.KtOperationReferenceExpressionExtractor
+import godot.entrygenerator.generator.property.defaultvalue.extractor.KtPrefixExpressionExtractor
+import godot.entrygenerator.generator.property.defaultvalue.extractor.KtStringTemplateExpressionExtractor
+import godot.entrygenerator.model.EXPORT_ANNOTATION
 import org.jetbrains.kotlin.descriptors.PropertyDescriptor
 import org.jetbrains.kotlin.js.resolve.diagnostics.findPsi
-import org.jetbrains.kotlin.psi.*
+import org.jetbrains.kotlin.name.FqName
+import org.jetbrains.kotlin.psi.KtBinaryExpression
+import org.jetbrains.kotlin.psi.KtCallExpression
+import org.jetbrains.kotlin.psi.KtConstantExpression
+import org.jetbrains.kotlin.psi.KtDotQualifiedExpression
+import org.jetbrains.kotlin.psi.KtExpression
+import org.jetbrains.kotlin.psi.KtLambdaExpression
+import org.jetbrains.kotlin.psi.KtNameReferenceExpression
+import org.jetbrains.kotlin.psi.KtOperationReferenceExpression
+import org.jetbrains.kotlin.psi.KtPrefixExpression
+import org.jetbrains.kotlin.psi.KtStringTemplateExpression
 import org.jetbrains.kotlin.psi.psiUtil.parents
 import org.jetbrains.kotlin.resolve.BindingContext
 import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameSafe
@@ -25,11 +41,7 @@ open class DefaultValueExtractor(
     }
 
     protected fun isVisibleInEditor(): Boolean {
-        return propertyDescriptor.annotations.getAnnotationValue(
-            REGISTER_PROPERTY_ANNOTATION,
-            REGISTER_PROPERTY_ANNOTATION_VISIBLE_IN_EDITOR_ARGUMENT,
-            true
-        )
+        return propertyDescriptor.annotations.hasAnnotation(FqName(EXPORT_ANNOTATION))
     }
 
     open fun getDefaultValue(variantClassName: ClassName?): Pair<String, Array<out Any>> {
@@ -96,13 +108,9 @@ open class DefaultValueExtractor(
     }
 
     private fun checkHintAnnotationUsage() {
-        if (!propertyDescriptor.annotations.getAnnotationValue(
-                REGISTER_PROPERTY_ANNOTATION,
-                REGISTER_PROPERTY_ANNOTATION_VISIBLE_IN_EDITOR_ARGUMENT,
-                true
-            ) && propertyHintAnnotation != null
+        if (!propertyDescriptor.annotations.hasAnnotation(FqName(EXPORT_ANNOTATION)) && propertyHintAnnotation != null
         ) {
-            throw IllegalStateException("You added the type hint annotation ${propertyHintAnnotation.fqName} to the property ${propertyDescriptor.name}. But the @RegisterProperty annotation is either not present or the isVisibleInEditor flag is not set to true")
+            throw IllegalStateException("You added the type hint annotation ${propertyHintAnnotation.fqName} to the property ${propertyDescriptor.name}. But either the @RegisterProperty annotation or the @Export annotation is not present")
         }
         if (!propertyDescriptor.isVar) {
             throw IllegalStateException("You try to register the immutable property ${propertyDescriptor.fqNameSafe} with @RegisterProperty. This is not supported! Each property that you register has to be mutable. Use var or lateinit var.")

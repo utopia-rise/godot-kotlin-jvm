@@ -15,9 +15,15 @@ import godot.entrygenerator.extension.toTypeName
 import godot.entrygenerator.generator.function.FunctionRegistrationGenerator
 import godot.entrygenerator.generator.property.PropertyRegistrationGenerator
 import godot.entrygenerator.generator.signal.SignalRegistrationGenerator
-import godot.entrygenerator.model.*
-import org.jetbrains.kotlin.descriptors.ClassDescriptor
+import godot.entrygenerator.model.ClassWithMembers
+import godot.entrygenerator.model.REGISTER_CLASS_ANNOTATION
+import godot.entrygenerator.model.REGISTER_CLASS_ANNOTATION_NAME_ARGUMENT
+import godot.entrygenerator.model.REGISTER_CONSTRUCTOR_ANNOTATION
+import godot.entrygenerator.model.RegisteredProperty
+import godot.entrygenerator.model.TOOL_ANNOTATION
+import godot.entrygenerator.model.gatherAllMembersOfClassHierarchyForRegistration
 import org.jetbrains.kotlin.descriptors.ClassConstructorDescriptor
+import org.jetbrains.kotlin.descriptors.ClassDescriptor
 import org.jetbrains.kotlin.descriptors.FunctionDescriptor
 import org.jetbrains.kotlin.descriptors.PropertyDescriptor
 import org.jetbrains.kotlin.js.resolve.diagnostics.findPsi
@@ -301,6 +307,6 @@ object ClassRegistrationGenerator {
     private fun isTool(classDescriptor: ClassDescriptor): Boolean {
         return classDescriptor
             .annotations
-            .getAnnotationValue(REGISTER_CLASS_ANNOTATION, REGISTER_CLASS_ANNOTATION_TOOL_ARGUMENT, false)
+            .hasAnnotation(FqName(TOOL_ANNOTATION))
     }
 }
