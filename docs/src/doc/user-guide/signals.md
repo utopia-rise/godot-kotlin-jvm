@@ -1,6 +1,4 @@
-Use the delegate `signal` to create a signal and annotate it with `@RegisterSignal`. Note that the name of
-the signal must start with a prefix `signal` (see [API differences](api-differences.md) section for an explanation).
-This module only supports signals with at most 10 parameters at the moment.
+Use the delegate `signal` to create a signal and annotate it with `@RegisterSignal`. Note that the name of the signal must start with `signal` (see [API differences](api-differences.md) section for an explanation). This module only supports signals with at most 10 parameters at the moment.
 
 ```kotlin
 @RegisterClass
@@ -11,7 +9,7 @@ class RotatingCube: Spatial() {
 ```
 
 ## Naming
-For better compatibility the `signal` prefix is dropped during registration, and the name of your signal is converted to snake_case. So to use your signal `signalHelloThere` from GDScript, use it with `hello_there`.
+For consistency with Godot's style, the `signal` prefix is dropped during registration and the name of your signal is converted to snake_case. The signal `signalHelloThere` is known as `hello_there` in GDScript.
 
 ## Emitting
 Every signal has a `emit` method which can be used to emit it in a typesafe way.
@@ -21,9 +19,9 @@ signalReverseChanged.emit(false)
 ```
 
 ## Subscribing
-A method can be subscribed/connected to a signal via `connect`. The number of parameters and their type of the function and signal must match. But the IDE will complain, and the compilation will fail if this is not the case.
+A method can be subscribed/connected to a signal via `connect`.
 
-```kotlin
+```kt
 @RegisterClass
 class SomeObject: Object() {
     @RegisterFunction
@@ -32,16 +30,12 @@ class SomeObject: Object() {
     }
 }
 
-val targetObject = SomeObject()
-signalReverseChanged.connect(targetObject, targetObject::onReverseChanged)
+@RegisterClass
+class AnotherObject: Object() {
+    val targetObject = SomeObject()
+
+    init {
+        signalReverseChanged.connect(targetObject, targetObject::onReverseChanged)
+    }
+}
 ```
-
-!!! note ""
-    The targetObject you pass in the `connect` function has to be a registered class!
-    Also the target function has to be registered!
-
-
-## What's next?
-- [Registering classes](classes.md)
-- [Registering properties](properties.md)
-- [Registering functions](functions.md)

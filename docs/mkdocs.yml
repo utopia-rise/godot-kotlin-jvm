@@ -1,4 +1,4 @@
-site_name: Godot Kotlin/Jvm
+site_name: Godot Kotlin/JVM
 docs_dir: src/doc
 
 repo_name: 'utopia-rise/godot-kotlin-jvm'
@@ -8,9 +8,20 @@ theme:
   name: material
   favicon: assets/img/favicon.ico
   palette:
-    primary: indigo
-    accent: light-blue
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
   logo: assets/img/logo.png
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+
 
 extra:
   social:
@@ -23,35 +34,37 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.highlight
   - pymdownx.superfences
+  - pymdownx.tabbed
   - admonition
+  - meta
 
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js
-  - javascripts/config.js
+  - js/init.js
 extra_css:
   - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css
 
-
 nav:
-  - Overview: index.md
+  - Home: index.md
   - Getting started:
-      - Project Setup: getting-started/project-setup.md
-      - IDE: getting-started/ide.md
-      - Gradle: getting-started/gradle.md
-      - Add first class: getting-started/add-first-class.md
+      - Requirements: getting-started/requirements.md
+      - Setting up: getting-started/setting-up.md
+      - Your first class: getting-started/your-first-class.md
   - User guide:
+    - API differences: user-guide/api-differences.md
     - Classes: user-guide/classes.md
     - Properties: user-guide/properties.md
     - Signals: user-guide/signals.md
     - Functions: user-guide/functions.md
     - Exporting: user-guide/exporting.md
-    - API differences: user-guide/api-differences.md
-  - Advanced:
-    - Custom Src dirs: advanced/custom-src-dirs.md
-    - Custom gradle wrapper path: advanced/custom_gradle_wrapper_path.md
-    - Commandline args: advanced/commandline-args.md
-    - Kotlin singletons: advanced/kotlin-singleton.md
-  - Contribution:
+    - Versioning: user-guide/versioning.md
+    - Supported platforms: user-guide/supported-platforms.md
+    - Advanced:
+      - Custom src dirs: user-guide/advanced/custom-src-dirs.md
+      - Custom gradle wrapper path: user-guide/advanced/custom_gradle_wrapper_path.md
+      - Commandline args: user-guide/advanced/commandline-args.md
+      - Kotlin singletons: user-guide/advanced/kotlin-singleton.md
+  - Contributing:
     - General: contribution/general.md
     - Guidelines: contribution/guidelines.md
     - Setup: contribution/setup.md
@@ -60,5 +73,3 @@ nav:
         - Artefact differentiation: contribution/knowledge-base/artefact-differentiation.md
         - Entry generation: contribution/knowledge-base/entry-generation.md
         - Shared buffer: contribution/knowledge-base/shared-buffer.md
-  - Versioning: versioning.md
-  - Supported platforms: supported-platforms.md

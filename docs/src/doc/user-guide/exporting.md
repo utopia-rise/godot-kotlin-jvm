@@ -1,4 +1,3 @@
-
 To export the game, you should copy exports into the correct template folder, which should be:
 
 - Windows: `%APPDATA%\Godot\templates\<godot-version>`
@@ -14,46 +13,49 @@ And `release_debug` to:
 - Windows: `windows_64_debug.exe`
 - Linux: `linux_x11_64_debug`
 
-On osx use the script mentioned in [this issue](https://github.com/godotengine/godot-docs/issues/3194#issuecomment-588862977). It will do the job for you.
+On OSX use the script mentioned in [this issue](https://github.com/godotengine/godot-docs/issues/3194#issuecomment-588862977) as it will do the job for you.
 
-Then you can export your game as usual, your game `jar` will be included in `pck`.  
-On desktop platforms, this also copies the jre folder of your project in the exported game folder.
+Then you can export your game as usual, your game `jar` will be included in `pck`.   On desktop platforms, this also copies the jre folder of your project in the exported game folder.
 
 ## Requirements
-To export your game, you need to have an embedded JRE created:  
-To create an embedded jre run the following command from the root of your project: `jlink --add-modules java.base,java.logging --output jre`  
-If you want to remote debug add the module `jdk.jdwp.agent` to the command.  
-If you want to enable jmx, add `jdk.management.agent` to the command.
+To export your game, you need to have an embedded JRE created. Run the following command within your project's root.
 
-## Particularities
+```shell
+jlink --add-modules java.base,java.logging --output jre
+```
 
-`godot-bootstrap.jar` and `main.jar` are set into `pck` during the export process. As a real file path is needed to
-handle them, they are copied on the first game version start from `res://` to `user://` (We check if it exists and also check the md5 hash)
-to only update when needed.  
-Don't forget to remove them when writing an uninstaller for the game.
+The above command will create a very minimal JVM, if you need extra features you can include the following modules:
+
+- `jdk.jdwp.agent` to enable remote debugging
+- `jdk.management.agent` to enable JMX.
+
+## Specifics
+
+`godot-bootstrap.jar` and `main.jar` are set into `pck` during the export process. As a real file path is needed to handle them, they are copied on the first game version start from `res://` to `user://` (we check if it exists and also check the md5 hash) to only update when needed. Don't forget to remove them when writing an uninstaller for your game.
 
 ## Android
-In order to build on android, set the `isAndroidExportEnabled` flag to true in the `build.gradle.kts`:
-```kotlin
-godot {
-    isAndroidExportEnabled.set(true)
-}
-```
-On android we do not embed a JVM. We use the existing ART of android.  
-In order for your game to load the necessary jar files, they need to be converted into dex format.  
-Our gradle plugin will handle this for you, but you need to fulfill the following requirements:
+In order to build for Android, set the `isAndroidExportEnabled` flag to `true` in your build file.
+
+=== "build.gradke.kts"
+    ```kt
+    godot {
+        isAndroidExportEnabled.set(true)
+    }
+    ```
+
+On android we do not embed a JVM, we use the existing ART provided by the OS. In order for your game to load the necessary jar files, they need to be converted into dex format. Our gradle plugin will handle this for you, but you need to fulfill the following requirements:
 
 - Android SDK installed
 - `dx` tool resolvable by doing one of the following:
     - set the `PATH` environment variable to include `<android-sdk-dir>/build-tools/<version>/`
-    - set the path to the `dx` tool through gradle with the property `dxToolPath`:
-```kotlin
+    - set `dxToolPath` to the file path of `dx`:
+
+    ```kt
     godot {
         isAndroidExportEnabled.set(true)
         dxToolPath.set("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/30.0.3/dx")
     }
-```
+    ```
 
-!!! warning "Important:"
-    Same as on the desktop targets, the game copies the needed jar files to the `user://` dir upon first execution or if the files have changed. On android this is the applications `files` folder.  
-    If you do IO operations on android, never empty the whole `files` folder! Only delete what you have added or exclude the following two files when clearing the `files` folder: `godot-bootstrap-dex.jar` and `main-dex.jar`.
+!!! warning
+    Similar to the desktop targets, the game copies the needed jar files to the `user://` directory upon first execution or if the files have changed. On android this is the applications `files` folder. If you do IO operations on Android, never empty the whole `files` folder! Only delete what you have added or exclude the following two files when clearing the `files` folder: `godot-bootstrap-dex.jar` and `main-dex.jar`.

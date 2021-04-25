@@ -9,14 +9,14 @@ you can use them from godot and other scripting languages.
 ## Instance types and singletons
 Creating a new instance of a Godot type can be done like any Kotlin types.
 
-```kotlin
+```kt
 val spatial = Spatial()
 val vec = Vector3()
 ```
 
 Godot singletons are mapped as Kotlin objects.
 
-```kotlin
+```kt
 Physics2DServer.areaGetTransform(area)
 ```
 
@@ -26,7 +26,7 @@ Godot enums are mapped to Kotlin enums, the generated enum exposes a `value` pro
 ## Signals and exposed methods
 In GDScript, signals can have any number of arguments, this is not possible in Kotlin as it is a statically typed language. At the moment, you can create signals and expose them to Godot with at most 10 parameters.  
 
-Additionally, signals are mapped to properties of type `Signal` and must start with a prefix `signal` (check [Signals](user-guide/signals.md) section for more details). The prefix is dropped during registration and converted to snake_case, so the signal `signalReverseChanged` is known in Godot as `reverse_changed`. This is done to avoid naming conflicts with other members of a class. There is no signal type in GDScript, signals are only referenced by name so they can have the same name as methods and/or properties in the same class.  
+Additionally, signals are mapped to properties of type `Signal` and must start with a prefix `signal` (check [Signals](signals.md) section for more details). The prefix is dropped during registration and converted to snake_case, so the signal `signalReverseChanged` is known in Godot as `reverse_changed`. This is done to avoid naming conflicts with other members of a class. There is no signal type in GDScript, signals are only referenced by name so they can have the same name as methods and/or properties in the same class.  
 
 If you need more than 10 parameters, you can either use the not typesafe function `connect(signalAsString, targetObject, targetMethodAsString)` and the corresponding emit function or you can write your own typesafe extension functions like we did, to further increase the supported arg count. Keep in mind that you pass in the converted function and signal names (snake_case) to the above mentioned functions.  
 
@@ -37,6 +37,11 @@ To avoid confusion and conflict with Kotlin types, the following Godot symbols a
 - `PoolRealArray` -> `PoolFloatArray` (for naming consistency)
 - `Variant.asReal()` -> `Variant.asFloat()` (for naming consistency)
 
-## Print (logging)
-If you want logs to appear both in CLI and in the Godot Editor you'll have to use the print functions inside the `GD` singleton like: `GD.print("Hello There!")`.  
-Kotlin's print functions like `println("Hello There!")` on the other hand will only print to CLI! These prints will not show up inside the Godot Editor output panel!
+## Logging
+If you want logs to appear both in CLI and in the Godot Editor you will have to use the print functions inside the `GD` singleton like:
+
+```kt
+GD.print("Hello There!")
+```
+
+Kotlin's print functions on the other hand will only print to CLI! They will print to Godot editor's output panel.

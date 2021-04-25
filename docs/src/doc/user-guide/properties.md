@@ -1,16 +1,8 @@
-Any property of a registered class can be registered as long as it meets all of the following requirements:
-
- - Defined inside a registered class
- - Mutable
- - Annotated with `@RegisterProperty`
- - Type can be converted to `Variant`
-
-
+Any property of a registered class can be registered as long as it is public, mutable and can be converted to a `Variant`. To register a property annotate it with `@RegisterProperty`.
 
 ```kotlin
 @RegisterClass
 class RotatingCube: Spatial() {
-
     @RegisterProperty
     lateinit var lateInitProperty: NodePath
 
@@ -20,36 +12,38 @@ class RotatingCube: Spatial() {
 ```
 
 ## Naming
-You can and should name your properties kotlin style camelCase. But for a more natural feel and more consistent code in GDScript when using kotlin properties from GDScript, your properties are actually registered as snake_case. So if you want to use your kotlin property `someFlag` use it from GDScript with `some_flag`.
+Property names should follow Kotlin's style which is `camelCase`. For consistency with Godot's style, your properties are actually registered as `snake_case`. So a property `someFlag` in Kotlin is usable in GDScript as `some_flag`.
 
-## Exporting
-To export your property (make it visible in the inspector), add the annotation `@Export` to your property.  
-A property can only be annotated with `@Export` and thus exported, if the type inherits `godot.Reference`, is a CoreType or a primitive.
+## Exporting properties
+A registered property can be exported (a.k.a make it visible in the Godot editor) by annotating it by `@Export`. A property can be exported if it is a core type, a primitive or inherits from `godot.Reference`.
 
-## Default Values
-If you define a default value for a property and the property is exported with `@Export`, the default value will be set in the `inspector`.
+```kotlin
+@RegisterClass
+class RotatingCube: Spatial() {
+    @Export
+    @RegisterProperty
+    var speed: Float = 2f
+}
+```
 
-!!! warning ""
-    If you set a default value in code and a different value in the `inspector` the value of the `inspector` will override the value in code after `init` and before `_enter_tree`!
-    A default value can **only** contain compile time constants and only References to compile time constants! Better you only use refs where you have no other choice like for Enums.
-    We try to catch all wrong references during compilation and throw a corresponding exception, but we may have missed some cases which then only occur during runtime.
-    We also strongly recommend using our Intellij plugin as it can warn you about many wrongly registered properties while you write your code. See the section [IDE](../getting-started/ide.md) for more information about the plugin.
+Exported properties can also have default values (`2f` in the example above) which will be used as a default value by the `inspector`. A default value can **only** contain compile time constants and only references to compile time constants.
 
+!!! danger
+    If you set a default value in code and a different value in the `inspector` the value of the latter will override the value in code after `init` and before `_enter_tree`.
 
-## Registration Configuration
+## Customization
 You can customize to some extent how your property should be registered in Godot:
 
-The `@RegisterProperty` annotation takes one optional argument:
+The `@RegisterProperty` annotation takes the following arguments:
 
 - **rpcMode**: Default: `RPCMode.DISABLED`
 
 ## Type Hint Registration
-This module provides a plethora of annotations for defining Property Type Hints. These annotations are for the `inspector` to provide proper hints and editors to set and change values from within the inspector (like a color wheel, checkboxes, file dialogs, and so on...).
-Each property hint annotation can only be added to certain types of properties. If you use such an annotation wrongly, we will let your compilation fail. If you want warnings about wrong type hint annotation usage, install our intellij IDE plugin.  
+This module provides a plethora of annotations for defining property type hints. These annotations controls how Godot display the property in the inspector. Each property hint annotation can only be added to certain types of properties. Using the wrong annotation will make compilation fail. These will only take effect if the property is exported.
 
-!!! warning ""
-    A property hint only takes effect if the property is also annotated with `@Export`
- 
+!!! note
+    If you are using IntelliJ IDEA and have our plugin installed, you will get a warning about wrong annotation usages.
+
 Below is a list of currently implemented type hints:
 
 | Annotation      | Type of Property           | Arguments                                                             | Short Description                                                                                                                                |
@@ -67,9 +61,3 @@ Below is a list of currently implemented type hints:
 | MultilineText   | String                     |                                                                       | The inspector shows a multiline text input.                                                                                                      |
 | PlaceHolderText | String                     |                                                                       | N/A                                                                                                                                              |
 | ColorNoAlpha    | Color                      |                                                                       | The inspector shows a color selection dialog without Alpha                                                                                       |
-
-
-## What's next?
-- [Registering classes](classes.md)
-- [Registering signals](signals.md)
-- [Registering functions](functions.md)

@@ -1,6 +1,6 @@
 The following command line args can be supplied to customize the behaviour or the Godot Kotlin/JVM binding:
 
-| arg | default value | description |
+| Argument | Default value | Description |
 | --- | --- | ---|
 | --jvm-debug-port | | Defines the port to which you can attach a remote debugger. **Note:** the module `jdk.jdwp.agent` is needed in the embedded JRE if you want to debug your application. If you need `jmx`, also the module `jdk.management.agent` is needed |
 | --jvm-debug-address | | Defines which adresses are allowed for debugging |

@@ -4,8 +4,8 @@ BASEDIR=$(dirname "$0")
 VIRTUALENV_DIR="$BASEDIR/p3"
 
 if [[ ! -d "$VIRTUALENV_DIR" ]]; then
-    pip install virtualenv
-    virtualenv -p python3 "$VIRTUALENV_DIR"
+    python -m pip install virtualenv
+    python -m virtualenv -p python3 "$VIRTUALENV_DIR"
 fi
 source "$VIRTUALENV_DIR/bin/activate"
 pip install -r requirements.txt
