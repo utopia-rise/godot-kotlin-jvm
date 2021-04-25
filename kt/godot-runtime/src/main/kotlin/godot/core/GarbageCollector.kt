@@ -63,7 +63,7 @@ object GarbageCollector {
     private var wrapperList: List<Pair<VoidPtr, KtObject>>? = null
 
     /** Holds the instances to clean up when the JVM stops.*/
-    private val staticInstances = mutableListOf<IGodotStatic>()
+    private val staticInstances = mutableSetOf<GodotStatic>()
 
     private val executor = Executors.newSingleThreadScheduledExecutor()
 
