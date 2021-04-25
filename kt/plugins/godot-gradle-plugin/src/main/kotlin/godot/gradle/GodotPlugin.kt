@@ -55,7 +55,7 @@ class GodotPlugin : KotlinCompilerPluginSupportPlugin {
                 ),
                 SubpluginOption(
                     CompilerPluginConst.CommandLineOptionNames.serviceFileDirPathOption,
-                    File(project.rootDir, "/src/main/resources/META-INF/services/").apply {
+                    File(project.projectDir, "/src/main/resources/META-INF/services/").apply {
                         mkdirs()
                     }.absolutePath
                 ),
