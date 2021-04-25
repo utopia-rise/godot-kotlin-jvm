@@ -165,17 +165,15 @@ Variant KotlinScript::_new(const Variant** p_args, int p_argcount, Variant::Call
 void KotlinScript::set_path(const String& p_path, bool p_take_over) {
     Resource::set_path(p_path, p_take_over);
 
-    String package = p_path.replace("res://", "")
-            .replace("src/main/kotlin", "")
-            .replace("/" + get_name(), "")
-            .replace("."+ KotlinLanguage::get_instance().get_extension(), "")
+    String package = p_path.replace("src/main/kotlin/", "")
+            .trim_prefix("res://")
+            .trim_suffix(get_name() + "." + KotlinLanguage::get_instance().get_extension())
+            .trim_prefix("/")
+            .trim_suffix("/")
             .replace("/", ".");
 
-    if(package != get_name()){
+    if (!package.empty()) {
         package = "package " + package + "\n\n";
-    }
-    else{
-        package = "";
     }
 
     String source_code = get_source_code().replace("%PACKAGE%", package);
