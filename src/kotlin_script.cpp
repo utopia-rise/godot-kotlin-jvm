@@ -168,7 +168,6 @@ void KotlinScript::set_path(const String& p_path, bool p_take_over) {
     String package = p_path.replace("src/main/kotlin/", "")
             .trim_prefix("res://")
             .trim_suffix(get_name() + "." + KotlinLanguage::get_instance().get_extension())
-            .trim_prefix("/")
             .trim_suffix("/")
             .replace("/", ".");
 
@@ -181,7 +180,6 @@ void KotlinScript::set_path(const String& p_path, bool p_take_over) {
 
 #ifndef TOOLS_ENABLED
     if (!kotlin_class) {
-
         kotlin_class = GDKotlin::get_instance().find_class(p_path);
     }
 #endif
