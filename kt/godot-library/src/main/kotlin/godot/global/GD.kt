@@ -5,7 +5,6 @@ import godot.RandomNumberGenerator
 import godot.Resource
 import godot.ResourceLoader
 import godot.core.*
-import godot.core.Dictionary
 import godot.core.memory.GodotStatic
 import godot.util.nullptr
 
@@ -23,8 +22,11 @@ object GD : GDMath, GDCore, GDRandom, GDPrint, GodotStatic() {
     fun assert(condition: Boolean, message: String = "") = assert(condition) { message }
 
     /** Returns whether instance is a valid object (e.g. has not been deleted from memory).*/
-    fun isInstanceValid(instance: Object): Boolean {
-        return instance.rawPtr != nullptr && GarbageCollector.isInstanceValid(instance)
+    fun isInstanceValid(instance: Object?): Boolean {
+        if(instance != null){
+            return instance.rawPtr != nullptr && GarbageCollector.isInstanceValid(instance)
+        }
+        return false
     }
 
     /** Returns length of Variant var
