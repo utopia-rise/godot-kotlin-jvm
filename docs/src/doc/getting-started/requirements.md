@@ -8,4 +8,4 @@ There is currently no plan to support the built-in Godot editor, using [IntelliJ
 We also recommend installing our [IntelliJ IDEA plugin](https://plugins.jetbrains.com/plugin/16505-godot-jvm) as it provides you with a lot of useful checks and helpers to detect errors during development.
 
 ## Godot Editor
-You can download our custom engine build and export templates from the latest [github release](https://github.com/utopia-rise/godot-kotlin-jvm/releases). If you need other modules you can also [build it yourself]((../contribution/setup.md)).
+You can download our custom engine build and export templates from the latest [github release](https://github.com/utopia-rise/godot-kotlin-jvm/releases). If you need other modules you can also [build it yourself](../contribution/setup.md).

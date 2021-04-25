@@ -71,7 +71,7 @@ Godot requires you to have a default constructor on your classes. You can define
 
 Constructors also can have a maximum of 5 arguments and must have a unique argument count as constructor overloading is not yet supported. This limitation is only for registered constructors.
 
-### Constructor Kotlin script classes in GDScript
+### Instantiate Kotlin script classes in GDScript
 Creating an instance using the default constructor can be done by:
 
 ```kt
@@ -97,6 +97,4 @@ The `@RegisterClass` annotation can take two arguments:
 - **isTool**: If set to true, this class is treated as a tool class. Similar to the `tool` of GDScript. **Default:** false
 
 !!! warning "Unique class names"
-    If you specify the `className` in the annotation, you have to make sure that this name is unique!
-    We implemented compilation checks to make sure the compilation fails if more than two classes are registered with the same name, but we cannot check class names from other scripting languages like GDScript or C#!
-    It is also recommended installing our intellij plugin as it shows duplicated registered class names in the editor as an error. See the section [IDE](../getting-started/ide.md) for more information about the plugin.
+    If you specify the `className` in the annotation, you have to make sure that this name is unique! We implemented compilation checks to make sure the compilation fails if more than two classes are registered with the same name, but we cannot check class names from other scripting languages like GDScript or C#! It is also recommended installing our intellij plugin as it shows duplicated registered class names in the editor as an error.

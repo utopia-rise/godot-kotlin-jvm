@@ -9,7 +9,7 @@ class RotatingCube: Spatial() {
 ```
 
 ## Naming
-For consistency with GDScript's style, the `signal` prefix is dropped during registration and the name of your signal is converted to snake_case. The signal `signalHelloThere` is known as `hello_there` in GDScript.
+For consistency with Godot's style, the `signal` prefix is dropped during registration and the name of your signal is converted to snake_case. The signal `signalHelloThere` is known as `hello_there` in GDScript.
 
 ## Emitting
 Every signal has a `emit` method which can be used to emit it in a typesafe way.
@@ -19,7 +19,7 @@ signalReverseChanged.emit(false)
 ```
 
 ## Subscribing
-A method can be subscribed/connected to a signal via `connect`. The number of parameters and the type of each parameter of the function must match the signal.
+A method can be subscribed/connected to a signal via `connect`.
 
 ```kt
 @RegisterClass

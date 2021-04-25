@@ -58,7 +58,3 @@ You should have the wrapper setup after running the command above. Up next is se
     Replace `$kotlinVersion` and `$godotkotlinVersion` to the appropriate version you want to use.
 
 The snippet above uses our gradle plugin. Without the plugin, you will have to manually define all needed dependencies, manually register your classes, signals, properties, functions and manually create and copy the needed jar's to the appropriate locations.
-
-
-## Adding your first script
-That's it! Now continue with [adding your first class](add-first-class.md).
