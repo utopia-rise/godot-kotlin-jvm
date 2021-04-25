@@ -104,9 +104,7 @@ object GarbageCollector {
     }
 
     fun registerStatic(instance: IGodotStatic) {
-        if(instance !in staticInstances){
-            staticInstances.add(instance)
-        }
+        staticInstances.add(instance)
     }
 
     fun getObjectInstance(ptr: VoidPtr, id: Long): KtObject? {
