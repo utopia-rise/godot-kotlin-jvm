@@ -1,0 +1,13 @@
+plugins {
+    KOTLIN_DEPENDENCY
+    GODOT_KOTLIN_DEPENDENCY
+}
+
+repositories {
+    mavenCentral()
+}
+
+godot {
+    isAndroidExportEnabled.set(ANDROID_ENABLED)
+    dxToolPath.set("DX_TOOL_PATH")
+}
