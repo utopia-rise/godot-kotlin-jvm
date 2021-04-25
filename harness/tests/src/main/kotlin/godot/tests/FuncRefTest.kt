@@ -6,8 +6,8 @@ import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
-import godot.call
-import godot.callDeferred
+import godot.extensions.call
+import godot.extensions.callDeferred
 import godot.signals.signal
 
 @RegisterClass

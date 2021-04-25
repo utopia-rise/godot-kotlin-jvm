@@ -40,6 +40,7 @@ import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.dictionaryOf
 import godot.core.variantArrayOf
+import godot.extensions.getNodeAs
 import godot.signals.signal
 import godot.tests.subpackage.OtherScript
 import godot.util.RealT
@@ -364,10 +365,16 @@ class Invocation : Spatial() {
 		name = formerName
 		val test = DateTime.now() //external dependency to test dependency inclusion in dummyCompilation
 
+        val getNode = getNodeAs<Button>("CanvasLayer/Button")
+
+        val path = NodePath("CanvasLayer/Button")
+        val getNode2 = getNodeAs<Button>(path)
+
 		signalNoParam.connect(invocation, invocation::hookNoParam)
 		signalOneParam.connect(invocation, invocation::hookOneParam)
 		signalTwoParam.connect(invocation, invocation::hookTwoParam)
-		(getNodeOrNull(NodePath("CanvasLayer/Button")) as Button?)?.signalPressed?.connect(
+
+		(getNodeOrNull(path) as Button?)?.signalPressed?.connect(
 			invocation,
 			invocation::hookNoParam
 		)
