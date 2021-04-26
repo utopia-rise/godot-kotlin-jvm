@@ -81,9 +81,8 @@ class CopyModificationAnnotator : Annotator {
                 receiverType?.getJetTypeFqName(false) != "godot.core.Dictionary" &&
                     receiverType?.getJetTypeFqName(false) != "godot.core.VariantArray" &&
                     receiverType?.isCoreType() == true &&
-                    (((element.selectorExpression as? KtCallExpression)?.calleeExpression as? KtReferenceExpression)?.resolve() as? KtAnnotated)?.findAnnotation(
-                        FqName(CORE_TYPE_HELPER_ANNOTATION)
-                    ) != null
+                    (((element.selectorExpression as? KtCallExpression)?.calleeExpression as? KtReferenceExpression)?.resolve() as? KtAnnotated)
+                        ?.findAnnotation(FqName(CORE_TYPE_HELPER_ANNOTATION)) != null
             }
             else -> false
         }
@@ -111,24 +110,29 @@ class CopyModificationAnnotator : Annotator {
         return when (expression) {
             is KtDotQualifiedExpression -> when (val receiverExpression = expression.receiverExpression) {
                 is KtNameReferenceExpression -> evaluateKtNameReferenceExpression(receiverExpression)
-                is KtCallExpression -> if (expression.receiverExpression is KtDotQualifiedExpression &&
-                    (expression.receiverExpression as KtDotQualifiedExpression).receiverExpression.resolveTypeSafe()?.isPoolArray() == true) {
-                    false
-                } else {
-                    evaluateKtCallExpression(receiverExpression)
-                }
-                is KtDotQualifiedExpression -> receiverExpression
-                    .receiverExpression
-                    .resolveTypeSafe()
-                    ?.isPoolArray() != true
-                is KtArrayAccessExpression -> receiverExpression
-                    .arrayExpression
-                    ?.resolveTypeSafe()
-                    ?.isPoolArray() != true &&
-                    expression
+                is KtCallExpression ->
+                    if (expression.receiverExpression is KtDotQualifiedExpression &&
+                        (expression.receiverExpression as KtDotQualifiedExpression).receiverExpression.resolveTypeSafe()
+                            ?.isPoolArray() == true
+                    ) {
+                        false
+                    } else {
+                        evaluateKtCallExpression(receiverExpression)
+                    }
+                is KtDotQualifiedExpression ->
+                    receiverExpression
                         .receiverExpression
                         .resolveTypeSafe()
-                        ?.isCoreType() == true
+                        ?.isPoolArray() != true
+                is KtArrayAccessExpression ->
+                    receiverExpression
+                        .arrayExpression
+                        ?.resolveTypeSafe()
+                        ?.isPoolArray() != true &&
+                        expression
+                            .receiverExpression
+                            .resolveTypeSafe()
+                            ?.isCoreType() == true
                 else ->
                     expression
                         .receiverExpression
