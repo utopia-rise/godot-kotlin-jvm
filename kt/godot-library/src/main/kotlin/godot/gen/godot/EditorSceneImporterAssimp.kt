@@ -9,8 +9,8 @@ import godot.annotation.GodotBaseType
 import kotlin.Suppress
 
 @GodotBaseType
-open class EditorSceneImporterFBX : EditorSceneImporter() {
+open class EditorSceneImporterAssimp : EditorSceneImporter() {
   override fun __new() {
-    callConstructor(ENGINECLASS_EDITORSCENEIMPORTERFBX)
+    callConstructor(ENGINECLASS_EDITORSCENEIMPORTERASSIMP)
   }
 }

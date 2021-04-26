@@ -13,32 +13,32 @@ Bootstrap::register_hooks(jni::Env& p_env, LoadClassesHook p_load_classes_hook, 
                           RegisterManagedEngineTypesHook p_register_managed_engine_types_hook,
                           RegisterUserTypesNamesHook p_user_types_names_hook, RegisterUserTypesMembersHook p_user_types_nmembers_hook) {
     jni::JNativeMethod load_class_hook_method {
-            "loadClasses",
-            "([Lgodot/core/KtClass;)V",
+            String("loadClasses").utf8().ptrw(),
+            String("([Lgodot/core/KtClass;)V").utf8().ptrw(),
             (void*) p_load_classes_hook
     };
 
     jni::JNativeMethod unload_class_hook_method {
-            "unloadClasses",
-            "([Lgodot/core/KtClass;)V",
+            String("unloadClasses").utf8().ptrw(),
+            String("([Lgodot/core/KtClass;)V").utf8().ptrw(),
             (void*) p_unload_classes_hook
     };
 
     jni::JNativeMethod register_managed_engine_types_method{
-            "registerManagedEngineTypes",
-            "([Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/Integer;)V",
+            String("registerManagedEngineTypes").utf8().ptrw(),
+            String("([Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/Integer;)V").utf8().ptrw(),
             (void*) p_register_managed_engine_types_hook
     };
 
     jni::JNativeMethod register_user_types_names {
-            "registerUserTypesNames",
-            "([Ljava/lang/String;)V",
+            String("registerUserTypesNames").utf8().ptrw(),
+            String("([Ljava/lang/String;)V").utf8().ptrw(),
             (void*) p_user_types_names_hook
     };
 
     jni::JNativeMethod register_user_types_members {
-            "registerUserTypesMembers",
-            "()V",
+            String("registerUserTypesMembers").utf8().ptrw(),
+            String("()V").utf8().ptrw(),
             (void*) p_user_types_nmembers_hook
     };
 

@@ -341,8 +341,8 @@ open class PopupMenu : Popup() {
    *
    * A `label` can optionally be provided, which will appear at the center of the separator.
    */
-  open fun addSeparator(label: String = "", id: Long = -1) {
-    TransferContext.writeArguments(STRING to label, LONG to id)
+  open fun addSeparator(label: String = "") {
+    TransferContext.writeArguments(STRING to label)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_SEPARATOR, NIL)
   }
 

@@ -84,7 +84,4 @@ open class Joint2D : Node2D() {
   override fun __new() {
     callConstructor(ENGINECLASS_JOINT2D)
   }
-
-  open fun _bodyExitTree() {
-  }
 }

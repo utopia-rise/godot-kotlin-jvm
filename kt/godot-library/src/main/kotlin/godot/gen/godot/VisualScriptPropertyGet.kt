@@ -129,9 +129,7 @@ open class VisualScriptPropertyGet : VisualScriptNode() {
 
     CALL_MODE_NODE_PATH(1),
 
-    CALL_MODE_INSTANCE(2),
-
-    CALL_MODE_BASIC_TYPE(3);
+    CALL_MODE_INSTANCE(2);
 
     val id: Long
     init {
@@ -144,8 +142,6 @@ open class VisualScriptPropertyGet : VisualScriptNode() {
   }
 
   companion object {
-    final const val CALL_MODE_BASIC_TYPE: Long = 3
-
     final const val CALL_MODE_INSTANCE: Long = 2
 
     final const val CALL_MODE_NODE_PATH: Long = 1

@@ -33,7 +33,7 @@ open class ProximityGroup : Spatial() {
   /**
    *
    */
-  val broadcast: Signal2<String, VariantArray<Any?>> by signal("method", "parameters")
+  val broadcast: Signal2<String, VariantArray<Any?>> by signal("group_name", "parameters")
 
   /**
    *
@@ -94,14 +94,14 @@ open class ProximityGroup : Spatial() {
   }
 
 
-  open fun _proximityGroupBroadcast(method: String, parameters: Any?) {
+  open fun _proximityGroupBroadcast(name: String, params: Any?) {
   }
 
   /**
    *
    */
-  open fun broadcast(method: String, parameters: Any?) {
-    TransferContext.writeArguments(STRING to method, ANY to parameters)
+  open fun broadcast(name: String, parameters: Any?) {
+    TransferContext.writeArguments(STRING to name, ANY to parameters)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROXIMITYGROUP_BROADCAST, NIL)
   }
 

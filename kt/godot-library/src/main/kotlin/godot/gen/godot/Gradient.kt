@@ -108,8 +108,8 @@ open class Gradient : Resource() {
   /**
    * Removes the color at the index `point`.
    */
-  open fun removePoint(point: Long) {
-    TransferContext.writeArguments(LONG to point)
+  open fun removePoint(offset: Long) {
+    TransferContext.writeArguments(LONG to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_REMOVE_POINT, NIL)
   }
 

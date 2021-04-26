@@ -75,7 +75,4 @@ open class Joint : Spatial() {
   override fun __new() {
     callConstructor(ENGINECLASS_JOINT)
   }
-
-  open fun _bodyExitTree() {
-  }
 }

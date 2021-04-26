@@ -166,19 +166,19 @@ open class EditorFeatureProfile : Reference() {
     FEATURE_SCENE_TREE(3),
 
     /**
+     * The Import dock. If this feature is disabled, the Import dock won't be visible.
+     */
+    FEATURE_IMPORT_DOCK(4),
+
+    /**
      * The Node dock. If this feature is disabled, signals and groups won't be visible and modifiable from the editor.
      */
-    FEATURE_NODE_DOCK(4),
+    FEATURE_NODE_DOCK(5),
 
     /**
      * The FileSystem dock. If this feature is disabled, the FileSystem dock won't be visible.
      */
-    FEATURE_FILESYSTEM_DOCK(5),
-
-    /**
-     * The Import dock. If this feature is disabled, the Import dock won't be visible.
-     */
-    FEATURE_IMPORT_DOCK(6),
+    FEATURE_FILESYSTEM_DOCK(6),
 
     /**
      * Represents the size of the [enum Feature] enum.
@@ -209,12 +209,12 @@ open class EditorFeatureProfile : Reference() {
     /**
      * The FileSystem dock. If this feature is disabled, the FileSystem dock won't be visible.
      */
-    final const val FEATURE_FILESYSTEM_DOCK: Long = 5
+    final const val FEATURE_FILESYSTEM_DOCK: Long = 6
 
     /**
      * The Import dock. If this feature is disabled, the Import dock won't be visible.
      */
-    final const val FEATURE_IMPORT_DOCK: Long = 6
+    final const val FEATURE_IMPORT_DOCK: Long = 4
 
     /**
      * Represents the size of the [enum Feature] enum.
@@ -224,7 +224,7 @@ open class EditorFeatureProfile : Reference() {
     /**
      * The Node dock. If this feature is disabled, signals and groups won't be visible and modifiable from the editor.
      */
-    final const val FEATURE_NODE_DOCK: Long = 4
+    final const val FEATURE_NODE_DOCK: Long = 5
 
     /**
      * Scene tree editing. If this feature is disabled, the Scene tree dock will still be visible but will be read-only.

@@ -147,12 +147,8 @@ object ProjectSettings : Object() {
    *
    * **Note:** The optional `offset` parameter can be used to specify the offset in bytes to the start of the resource pack. This is only supported for .pck files.
    */
-  fun loadResourcePack(
-    pack: String,
-    replaceFiles: Boolean = true,
-    offset: Long = 0
-  ): Boolean {
-    TransferContext.writeArguments(STRING to pack, BOOL to replaceFiles, LONG to offset)
+  fun loadResourcePack(pack: String, replaceFiles: Boolean = true): Boolean {
+    TransferContext.writeArguments(STRING to pack, BOOL to replaceFiles)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_LOAD_RESOURCE_PACK,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

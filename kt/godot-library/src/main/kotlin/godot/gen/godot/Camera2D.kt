@@ -430,6 +430,9 @@ open class Camera2D : Node2D() {
   open fun _setCurrent(current: Boolean) {
   }
 
+  open fun _setOldSmoothing(followSmoothing: Double) {
+  }
+
   open fun _updateScroll() {
   }
 
