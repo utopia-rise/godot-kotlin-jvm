@@ -12,7 +12,7 @@ object Singleton: GodotStatic(){
 
     override fun collect() {
         if (GD.isInstanceValid(myScene)){
-            myScene.queueFree()
+            myScene.free()
         }
         ref = null
     }
