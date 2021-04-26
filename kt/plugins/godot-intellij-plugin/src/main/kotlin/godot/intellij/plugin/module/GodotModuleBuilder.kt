@@ -16,6 +16,7 @@ import com.intellij.ui.layout.GrowPolicy
 import com.intellij.ui.layout.panel
 import com.intellij.ui.layout.selected
 import godot.intellij.plugin.GodotPluginBundle
+import godot.utils.GodotBuildProperties
 import org.jetbrains.plugins.gradle.util.GradleUtil
 import java.io.File
 import javax.swing.JCheckBox
@@ -137,7 +138,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                         .replace("KOTLIN_VERSION", wizardContext.getUserData(kotlinVersionKey) ?: "1.4.32")
                         .replace(
                             "GODOT_KOTLIN_JVM_VERSION",
-                            "0.1.4-3.3.0"
+                            GodotBuildProperties.godotKotlinVersion
                         )
                         .replace("ANDROID_ENABLED", wizardContext.getUserData(androidEnabledKey)?.toString() ?: "false")
                         .replace("DX_TOOL_PATH", wizardContext.getUserData(dxToolPathKey) ?: "dx")
@@ -181,7 +182,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                             } else {
                                 content.replace(
                                     "GODOT_KOTLIN_DEPENDENCY",
-                                    "id(\"com.utopia-rise.godot-kotlin-jvm\") version \"0.1.4-3.2.3\""
+                                    "id(\"com.utopia-rise.godot-kotlin-jvm\") version \"${GodotBuildProperties.godotKotlinVersion}\""
                                 )
                             }
                             if (module.parentProjectAlreadyContainsDependency(wizardContext, "kotlin-stdlib")) {
