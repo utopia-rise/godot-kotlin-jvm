@@ -487,12 +487,24 @@ object GlobalConstants : Object() {
    */
   final const val JOY_BUTTON_15: Long = 15
 
+  /**
+   * Gamepad button 16.
+   */
   final const val JOY_BUTTON_16: Long = 16
 
+  /**
+   * Gamepad button 17.
+   */
   final const val JOY_BUTTON_17: Long = 17
 
+  /**
+   * Gamepad button 18.
+   */
   final const val JOY_BUTTON_18: Long = 18
 
+  /**
+   * Gamepad button 19.
+   */
   final const val JOY_BUTTON_19: Long = 19
 
   /**
@@ -500,8 +512,14 @@ object GlobalConstants : Object() {
    */
   final const val JOY_BUTTON_2: Long = 2
 
+  /**
+   * Gamepad button 20.
+   */
   final const val JOY_BUTTON_20: Long = 20
 
+  /**
+   * Gamepad button 21.
+   */
   final const val JOY_BUTTON_21: Long = 21
 
   /**
@@ -604,6 +622,9 @@ object GlobalConstants : Object() {
    */
   final const val JOY_L3: Long = 8
 
+  /**
+   * Gamepad SDL miscellaneous button.
+   */
   final const val JOY_MISC1: Long = 16
 
   /**
@@ -636,12 +657,24 @@ object GlobalConstants : Object() {
    */
   final const val JOY_OPENVR_TOUCHPADY: Long = 1
 
+  /**
+   * Gamepad SDL paddle 1 button.
+   */
   final const val JOY_PADDLE1: Long = 17
 
+  /**
+   * Gamepad SDL paddle 2 button.
+   */
   final const val JOY_PADDLE2: Long = 18
 
+  /**
+   * Gamepad SDL paddle 3 button.
+   */
   final const val JOY_PADDLE3: Long = 19
 
+  /**
+   * Gamepad SDL paddle 4 button.
+   */
   final const val JOY_PADDLE4: Long = 20
 
   /**
@@ -689,6 +722,9 @@ object GlobalConstants : Object() {
    */
   final const val JOY_START: Long = 11
 
+  /**
+   * Gamepad SDL touchpad button.
+   */
   final const val JOY_TOUCHPAD: Long = 21
 
   /**
@@ -2094,10 +2130,10 @@ object GlobalConstants : Object() {
    * ```
    * 			var err = method_that_returns_error()
    * 			if err != OK:
-   * 			    print("Failure!)
+   * 			    print("Failure!")
    * 			# Or, equivalent:
    * 			if err:
-   * 			    print("Still failing!)
+   * 			    print("Still failing!")
    * 			```
    */
   final const val OK: Long = 0

@@ -15,6 +15,9 @@ import kotlin.Suppress
 /**
  * Sphere shape for 3D collisions.
  *
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/675](https://godotengine.org/asset-library/asset/675)
+ *
  * Sphere shape for 3D collisions, which can be set into a [godot.PhysicsBody] or [godot.Area]. This shape is useful for modeling sphere-like 3D objects.
  */
 @GodotBaseType

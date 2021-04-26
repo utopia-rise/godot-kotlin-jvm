@@ -27,8 +27,7 @@ import kotlin.Suppress
  * Generic input event.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html)
- * [https://docs.godotengine.org/en/latest/tutorials/2d/2d_transforms.html](https://docs.godotengine.org/en/latest/tutorials/2d/2d_transforms.html)
+ * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
  * Base class of all sort of input event. See [godot.Node.Input].
  */

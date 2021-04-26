@@ -25,7 +25,7 @@ import kotlin.Unit
  * Query the closest object intersecting a ray.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/physics/ray-casting.html](https://docs.godotengine.org/en/latest/tutorials/physics/ray-casting.html)
+ * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
  * A RayCast represents a line from its origin to its destination position, `cast_to`. It is used to query the 3D space in order to find the closest object along the path of the ray.
  *
@@ -86,7 +86,7 @@ open class RayCast : Spatial() {
     }
 
   /**
-   * The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [godot.Collision layers and masks](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
   open var collisionMask: Long
     get() {

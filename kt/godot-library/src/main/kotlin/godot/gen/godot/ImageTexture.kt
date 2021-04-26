@@ -27,9 +27,40 @@ import kotlin.Suppress
 /**
  * A [godot.Texture] based on an [godot.Image].
  *
- * A [godot.Texture] based on an [godot.Image]. Can be created from an [godot.Image] with [createFromImage].
+ * Tutorials:
+ * [https://docs.godotengine.org/en/3.3/getting_started/workflow/assets/importing_images.html](https://docs.godotengine.org/en/3.3/getting_started/workflow/assets/importing_images.html)
  *
- * **Note:** The maximum image size is 16384×16384 pixels due to graphics hardware limitations. Larger images will fail to import.
+ * A [godot.Texture] based on an [godot.Image]. For an image to be displayed, an [godot.ImageTexture] has to be created from it using the [createFromImage] method:
+ *
+ * ```
+ * 		var texture = ImageTexture.new()
+ * 		var image = Image.new()
+ * 		image.load("res://icon.png")
+ * 		texture.create_from_image(image)
+ * 		$Sprite.texture = texture
+ * 		```
+ *
+ * This way, textures can be created at run-time by loading images both from within the editor and externally.
+ *
+ * **Warning:** Prefer to load imported textures with [@GDScript.load] over loading them from within the filesystem dynamically with [godot.Image.load], as it may not work in exported projects:
+ *
+ * ```
+ * 		var texture = load("res://icon.png")
+ * 		$Sprite.texture = texture
+ * 		```
+ *
+ * This is because images have to be imported as [godot.StreamTexture] first to be loaded with [@GDScript.load]. If you'd still like to load an image file just like any other [godot.Resource], import it as an [godot.Image] resource instead, and then load it normally using the [@GDScript.load] method.
+ *
+ * But do note that the image data can still be retrieved from an imported texture as well using the [godot.Texture.getData] method, which returns a copy of the data:
+ *
+ * ```
+ * 		var texture = load("res://icon.png")
+ * 		var image : Image = texture.get_data()
+ * 		```
+ *
+ * An [godot.ImageTexture] is not meant to be operated from within the editor interface directly, and is mostly useful for rendering images on screen dynamically via code. If you need to generate images procedurally from within the editor, consider saving and importing images as custom texture resources implementing a new [godot.EditorImportPlugin].
+ *
+ * **Note:** The maximum texture size is 16384×16384 pixels due to graphics hardware limitations.
  */
 @GodotBaseType
 open class ImageTexture : Texture() {
@@ -86,7 +117,7 @@ open class ImageTexture : Texture() {
   }
 
   /**
-   * Create a new [godot.ImageTexture] from an [godot.Image] with `flags` from [enum Texture.Flags]. An sRGB to linear color space conversion can take place, according to [enum Image.Format].
+   * Initializes the texture by allocating and setting the data from an [godot.Image] with `flags` from [enum Texture.Flags]. An sRGB to linear color space conversion can take place, according to [enum Image.Format].
    */
   open fun createFromImage(image: Image, flags: Long = 7) {
     TransferContext.writeArguments(OBJECT to image, LONG to flags)
@@ -94,7 +125,7 @@ open class ImageTexture : Texture() {
   }
 
   /**
-   * Returns the format of the [godot.ImageTexture], one of [enum Image.Format].
+   * Returns the format of the texture, one of [enum Image.Format].
    */
   open fun getFormat(): Image.Format {
     TransferContext.writeArguments()
@@ -103,7 +134,9 @@ open class ImageTexture : Texture() {
   }
 
   /**
-   * Load an [godot.ImageTexture] from a file path.
+   * Loads an image from a file path and creates a texture from it.
+   *
+   * **Note:** the method is deprecated and will be removed in Godot 4.0, use [godot.Image.load] and [createFromImage] instead.
    */
   open fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
@@ -112,7 +145,11 @@ open class ImageTexture : Texture() {
   }
 
   /**
-   * Sets the [godot.Image] of this [godot.ImageTexture].
+   * Replaces the texture's data with a new [godot.Image].
+   *
+   * **Note:** The texture has to be initialized first with the [createFromImage] method before it can be updated. The new image dimensions, format, and mipmaps configuration should match the existing texture's image configuration, otherwise it has to be re-created with the [createFromImage] method.
+   *
+   * Use this method over [createFromImage] if you need to update the texture frequently, which is faster than allocating additional memory for a new texture each time.
    */
   open fun setData(image: Image) {
     TransferContext.writeArguments(OBJECT to image)
@@ -120,7 +157,7 @@ open class ImageTexture : Texture() {
   }
 
   /**
-   * Resizes the [godot.ImageTexture] to the specified dimensions.
+   * Resizes the texture to the specified dimensions.
    */
   open fun setSizeOverride(size: Vector2) {
     TransferContext.writeArguments(VECTOR2 to size)

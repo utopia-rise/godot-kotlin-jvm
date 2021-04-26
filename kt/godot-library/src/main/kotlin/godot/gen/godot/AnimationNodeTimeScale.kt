@@ -12,7 +12,7 @@ import kotlin.Suppress
  * A time-scaling animation node to be used with [godot.AnimationTree].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
+ * [https://godotengine.org/asset-library/asset/125](https://godotengine.org/asset-library/asset/125)
  *
  * Allows scaling the speed of the animation (or reversing it) in any children nodes. Setting it to 0 will pause the animation.
  */

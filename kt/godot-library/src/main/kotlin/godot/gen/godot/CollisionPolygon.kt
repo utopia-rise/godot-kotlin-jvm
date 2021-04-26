@@ -55,6 +55,9 @@ open class CollisionPolygon : Spatial() {
           NIL)
     }
 
+  /**
+   * The collision margin for the generated [godot.Shape]. See [godot.Shape.margin] for more details.
+   */
   open var margin: Double
     get() {
       TransferContext.writeArguments()

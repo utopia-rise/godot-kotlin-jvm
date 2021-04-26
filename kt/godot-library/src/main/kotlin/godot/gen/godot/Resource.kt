@@ -23,14 +23,18 @@ import kotlin.Suppress
  * Base class for all resources.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/getting_started/workflow/best_practices/node_alternatives.html](https://docs.godotengine.org/en/latest/getting_started/workflow/best_practices/node_alternatives.html)
+ * [https://docs.godotengine.org/en/3.3/getting_started/workflow/best_practices/node_alternatives.html](https://docs.godotengine.org/en/3.3/getting_started/workflow/best_practices/node_alternatives.html)
  *
- * Resource is the base class for all Godot-specific resource types, serving primarily as data containers. Unlike [godot.Object]s, they are reference-counted and freed when no longer in use. They are also cached once loaded from disk, so that any further attempts to load a resource from a given path will return the same reference (all this in contrast to a [godot.Node], which is not reference-counted and can be instanced from disk as many times as desired). Resources can be saved externally on disk or bundled into another object, such as a [godot.Node] or another resource.
+ * Resource is the base class for all Godot-specific resource types, serving primarily as data containers. Since they inherit from [godot.Reference], resources are reference-counted and freed when no longer in use. They are also cached once loaded from disk, so that any further attempts to load a resource from a given path will return the same reference (all this in contrast to a [godot.Node], which is not reference-counted and can be instanced from disk as many times as desired). Resources can be saved externally on disk or bundled into another object, such as a [godot.Node] or another resource.
+ *
+ * **Note:** In C#, resources will not be freed instantly after they are no longer in use. Instead, garbage collection will run periodically and will free resources that are no longer in use. This means that unused resources will linger on for a while before being removed.
  */
 @GodotBaseType
 open class Resource : Reference() {
   /**
    * Emitted whenever the resource changes.
+   *
+   * **Note:** This signal is not emitted automatically for custom resources, which means that you need to create a setter and emit the signal yourself.
    */
   val changed: Signal0 by signal()
 
@@ -51,7 +55,7 @@ open class Resource : Reference() {
     }
 
   /**
-   * The name of the resource. This is an optional identifier.
+   * The name of the resource. This is an optional identifier. If [resourceName] is not empty, its value will be displayed to represent the current resource in the editor inspector. For built-in scripts, the [resourceName] will be displayed as the tab name in the script editor.
    */
   open var resourceName: String
     get() {
@@ -101,6 +105,19 @@ open class Resource : Reference() {
     return TransferContext.readReturnValue(OBJECT, true) as Resource?
   }
 
+  /**
+   * Emits the [changed] signal.
+   *
+   * If external objects which depend on this resource should be updated, this method must be called manually whenever the state of this resource has changed (such as modification of properties).
+   *
+   * The method is equivalent to:
+   *
+   * ```
+   * 				emit_signal("changed")
+   * 				```
+   *
+   * **Note:** This method is called automatically for built-in resources.
+   */
   open fun emitChanged() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_EMIT_CHANGED, NIL)

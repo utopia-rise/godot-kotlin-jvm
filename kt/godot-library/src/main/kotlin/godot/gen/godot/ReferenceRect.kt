@@ -21,7 +21,7 @@ import kotlin.Unit
 /**
  * Reference frame for GUI.
  *
- * A rectangle box that displays only a [borderColor] border color around its rectangle. [godot.ReferenceRect] has no fill [godot.core.Color].
+ * A rectangle box that displays only a [borderColor] border color around its rectangle. [godot.ReferenceRect] has no fill [godot.core.Color]. If you need to display a rectangle filled with a solid color, consider using [godot.ColorRect] instead.
  */
 @GodotBaseType
 open class ReferenceRect : Control() {
@@ -41,6 +41,9 @@ open class ReferenceRect : Control() {
           NIL)
     }
 
+  /**
+   * Sets the border width of the [godot.ReferenceRect]. The border grows both inwards and outwards with respect to the rectangle box.
+   */
   open var borderWidth: Double
     get() {
       TransferContext.writeArguments()

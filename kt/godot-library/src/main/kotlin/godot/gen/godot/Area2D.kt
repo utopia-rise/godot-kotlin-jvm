@@ -34,66 +34,100 @@ import kotlin.Unit
  * 2D area for detection and 2D physics influence.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/physics/using_area_2d.html](https://docs.godotengine.org/en/latest/tutorials/physics/using_area_2d.html)
+ * [https://godotengine.org/asset-library/asset/120](https://godotengine.org/asset-library/asset/120)
  *
  * 2D area that detects [godot.CollisionObject2D] nodes overlapping, entering, or exiting. Can also alter or override local physics parameters (gravity, damping).
  */
 @GodotBaseType
 open class Area2D : CollisionObject2D() {
   /**
-   * Emitted when another area enters.
+   * Emitted when another Area2D enters this Area2D. Requires [monitoring] to be set to `true`.
+   *
+   * `area` the other Area2D.
    */
   val areaEntered: Signal1<Area2D> by signal("area")
 
   /**
-   * Emitted when another area exits.
+   * Emitted when another Area2D exits this Area2D. Requires [monitoring] to be set to `true`.
+   *
+   * `area` the other Area2D.
    */
   val areaExited: Signal1<Area2D> by signal("area")
 
   /**
-   * Emitted when another area enters, reporting which shapes overlapped. `shape_owner_get_owner(shape_find_owner(shape))` returns the parent object of the owner of the `shape`.
+   * Emitted when one of another Area2D's [godot.Shape2D]s enters one of this Area2D's [godot.Shape2D]s. Requires [monitoring] to be set to `true`.
+   *
+   * `area_id` the [RID] of the other Area2D's [godot.CollisionObject2D] used by the [godot.Physics2DServer].
+   *
+   * `area` the other Area2D.
+   *
+   * `area_shape` the index of the [godot.Shape2D] of the other Area2D used by the [godot.Physics2DServer].
+   *
+   * `local_shape` the index of the [godot.Shape2D] of this Area2D used by the [godot.Physics2DServer].
    */
   val areaShapeEntered: Signal4<Long, Area2D, Long, Long> by signal("area_id", "area", "area_shape",
       "local_shape")
 
   /**
-   * Emitted when another area exits, reporting which shapes were overlapping.
+   * Emitted when one of another Area2D's [godot.Shape2D]s exits one of this Area2D's [godot.Shape2D]s. Requires [monitoring] to be set to `true`.
+   *
+   * `area_id` the [RID] of the other Area2D's [godot.CollisionObject2D] used by the [godot.Physics2DServer].
+   *
+   * `area` the other Area2D.
+   *
+   * `area_shape` the index of the [godot.Shape2D] of the other Area2D used by the [godot.Physics2DServer].
+   *
+   * `local_shape` the index of the [godot.Shape2D] of this Area2D used by the [godot.Physics2DServer].
    */
   val areaShapeExited: Signal4<Long, Area2D, Long, Long> by signal("area_id", "area", "area_shape",
       "local_shape")
 
   /**
-   * Emitted when a physics body enters.
+   * Emitted when a [godot.PhysicsBody2D] or [godot.TileMap] enters this Area2D. Requires [monitoring] to be set to `true`. [godot.TileMap]s are detected if the [godot.TileSet] has Collision [godot.Shape2D]s.
    *
-   * The `body` argument can either be a [godot.PhysicsBody2D] or a [godot.TileMap] instance (while TileMaps are not physics body themselves, they register their tiles with collision shapes as a virtual physics body).
+   * `body` the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody2D] or [godot.TileMap].
    */
   val bodyEntered: Signal1<Node> by signal("body")
 
   /**
-   * Emitted when a physics body exits.
+   * Emitted when a [godot.PhysicsBody2D] or [godot.TileMap] exits this Area2D. Requires [monitoring] to be set to `true`. [godot.TileMap]s are detected if the [godot.TileSet] has Collision [godot.Shape2D]s.
    *
-   * The `body` argument can either be a [godot.PhysicsBody2D] or a [godot.TileMap] instance (while TileMaps are not physics body themselves, they register their tiles with collision shapes as a virtual physics body).
+   * `body` the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody2D] or [godot.TileMap].
    */
   val bodyExited: Signal1<Node> by signal("body")
 
   /**
-   * Emitted when a physics body enters, reporting which shapes overlapped.
+   * Emitted when one of a [godot.PhysicsBody2D] or [godot.TileMap]'s [godot.Shape2D]s enters one of this Area2D's [godot.Shape2D]s. Requires [monitoring] to be set to `true`. [godot.TileMap]s are detected if the [godot.TileSet] has Collision [godot.Shape2D]s.
    *
-   * The `body` argument can either be a [godot.PhysicsBody2D] or a [godot.TileMap] instance (while TileMaps are not physics body themselves, they register their tiles with collision shapes as a virtual physics body).
+   * `body_id` the [RID] of the [godot.PhysicsBody2D] or [godot.TileSet]'s [godot.CollisionObject2D] used by the [godot.Physics2DServer].
+   *
+   * `body` the [godot.Node], if it exists in the tree, of the [godot.PhysicsBody2D] or [godot.TileMap].
+   *
+   * `body_shape` the index of the [godot.Shape2D] of the [godot.PhysicsBody2D] or [godot.TileMap] used by the [godot.Physics2DServer].
+   *
+   * `local_shape` the index of the [godot.Shape2D] of this Area2D used by the [godot.Physics2DServer].
    */
   val bodyShapeEntered: Signal4<Long, Node, Long, Long> by signal("body_id", "body", "body_shape",
       "local_shape")
 
   /**
-   * Emitted when a physics body exits, reporting which shapes were overlapping.
+   * Emitted when one of a [godot.PhysicsBody2D] or [godot.TileMap]'s [godot.Shape2D]s exits one of this Area2D's [godot.Shape2D]s. Requires [monitoring] to be set to `true`. [godot.TileMap]s are detected if the [godot.TileSet] has Collision [godot.Shape2D]s.
    *
-   * The `body` argument can either be a [godot.PhysicsBody2D] or a [godot.TileMap] instance (while TileMaps are not physics body themselves, they register their tiles with collision shapes as a virtual physics body).
+   * `body_id` the [RID] of the [godot.PhysicsBody2D] or [godot.TileSet]'s [godot.CollisionObject2D] used by the [godot.Physics2DServer].
+   *
+   * `body` the [godot.Node], if it exists in the tree, of the [godot.PhysicsBody2D] or [godot.TileMap].
+   *
+   * `body_shape` the index of the [godot.Shape2D] of the [godot.PhysicsBody2D] or [godot.TileMap] used by the [godot.Physics2DServer].
+   *
+   * `local_shape` the index of the [godot.Shape2D] of this Area2D used by the [godot.Physics2DServer].
    */
   val bodyShapeExited: Signal4<Long, Node, Long, Long> by signal("body_id", "body", "body_shape",
       "local_shape")
 
   /**
-   * The rate at which objects stop spinning in this area. Represents the angular velocity lost per second. Values range from `0` (no damping) to `1` (full damping).
+   * The rate at which objects stop spinning in this area. Represents the angular velocity lost per second.
+   *
+   * See [godot.ProjectSettings.physics/2d/defaultAngularDamp] for more details about damping.
    */
   open var angularDamp: Double
     get() {
@@ -137,7 +171,7 @@ open class Area2D : CollisionObject2D() {
     }
 
   /**
-   * The area's physics layer(s). Collidable objects can exist in any of 32 different layers. A contact is detected if object A is in any of the layers that object B scans, or object B is in any layers that object A scans. See also [collisionMask]. See [godot.Collision layers and masks](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The area's physics layer(s). Collidable objects can exist in any of 32 different layers. A contact is detected if object A is in any of the layers that object B scans, or object B is in any layers that object A scans. See also [collisionMask]. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
   open var collisionLayer: Long
     get() {
@@ -151,7 +185,7 @@ open class Area2D : CollisionObject2D() {
     }
 
   /**
-   * The physics layers this area scans to determine collision detection. See [godot.Collision layers and masks](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The physics layers this area scans to determine collision detection. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
   open var collisionMask: Long
     get() {
@@ -223,7 +257,9 @@ open class Area2D : CollisionObject2D() {
     }
 
   /**
-   * The rate at which objects stop moving in this area. Represents the linear velocity lost per second. Values range from `0` (no damping) to `1` (full damping).
+   * The rate at which objects stop moving in this area. Represents the linear velocity lost per second.
+   *
+   * See [godot.ProjectSettings.physics/2d/defaultLinearDamp] for more details about damping.
    */
   open var linearDamp: Double
     get() {

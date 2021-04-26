@@ -29,7 +29,7 @@ import kotlin.Unit
  * Blends linearly between three [godot.AnimationNode] of any type placed in a 2D space.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
+ * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  *
  * A resource to add to an [godot.AnimationNodeBlendTree].
  *

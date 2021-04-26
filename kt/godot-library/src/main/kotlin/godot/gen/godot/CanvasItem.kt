@@ -44,8 +44,7 @@ import kotlin.Unit
  * Base class of anything 2D.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/2d/2d_transforms.html](https://docs.godotengine.org/en/latest/tutorials/2d/2d_transforms.html)
- * [https://docs.godotengine.org/en/latest/tutorials/2d/custom_drawing_in_2d.html](https://docs.godotengine.org/en/latest/tutorials/2d/custom_drawing_in_2d.html)
+ * [https://godotengine.org/asset-library/asset/528](https://godotengine.org/asset-library/asset/528)
  *
  * Base class of anything 2D. Canvas items are laid out in a tree; children inherit and extend their parent's transform. [godot.CanvasItem] is extended by [godot.Control] for anything GUI-related, and by [godot.Node2D] for anything related to the 2D engine.
  *
@@ -72,7 +71,7 @@ open class CanvasItem : Node() {
   val hide: Signal0 by signal()
 
   /**
-   * Emitted when the item rect has changed.
+   * Emitted when the item's [godot.core.Rect2] boundaries (position or size) have changed, or when an action is taking place that may have impacted these boundaries (e.g. changing [godot.Sprite.texture]).
    */
   val itemRectChanged: Signal0 by signal()
 
@@ -519,7 +518,7 @@ open class CanvasItem : Node() {
   }
 
   /**
-   * Draws `text` using the specified `font` at the `position` (top-left corner). The text will have its color multiplied by `modulate`. If `clip_w` is greater than or equal to 0, the text will be clipped if it exceeds the specified width.
+   * Draws `text` using the specified `font` at the `position` (bottom-left corner using the baseline of the font). The text will have its color multiplied by `modulate`. If `clip_w` is greater than or equal to 0, the text will be clipped if it exceeds the specified width.
    *
    * **Example using the default project font:**
    *

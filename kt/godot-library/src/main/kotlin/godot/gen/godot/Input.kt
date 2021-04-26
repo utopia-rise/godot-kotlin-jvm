@@ -35,7 +35,7 @@ import kotlin.Suppress
  * A singleton that deals with inputs.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/inputs/index.html](https://docs.godotengine.org/en/latest/tutorials/inputs/index.html)
+ * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
  * A singleton that deals with inputs. This includes key presses, mouse buttons and movement, joypads, and input actions. Actions and their events can be set in the **Input Map** tab in the **Project > Project Settings**, or with the [godot.InputMap] class.
  */
@@ -188,11 +188,11 @@ object Input : Object() {
   }
 
   /**
-   * Returns the acceleration of the device's accelerometer, if the device has one. Otherwise, the method returns [godot.Vector3.ZERO].
+   * Returns the acceleration of the device's accelerometer sensor, if the device has one. Otherwise, the method returns [godot.Vector3.ZERO].
    *
    * Note this method returns an empty [godot.core.Vector3] when running from the editor even when your device has an accelerometer. You must export your project to a supported device to read values from the accelerometer.
    *
-   * **Note:** This method only works on iOS, Android, and UWP. On other platforms, it always returns [godot.Vector3.ZERO].
+   * **Note:** This method only works on iOS, Android, and UWP. On other platforms, it always returns [godot.Vector3.ZERO]. On Android the unit of measurement for each axis is m/s² while on iOS and UWP it's a multiple of the Earth's gravitational acceleration `g` (~9.81 m/s²).
    */
   fun getAccelerometer(): Vector3 {
     TransferContext.writeArguments()
@@ -229,9 +229,9 @@ object Input : Object() {
   }
 
   /**
-   * Returns the gravity of the device's accelerometer, if the device has one. Otherwise, the method returns [godot.Vector3.ZERO].
+   * Returns the gravity of the device's accelerometer sensor, if the device has one. Otherwise, the method returns [godot.Vector3.ZERO].
    *
-   * **Note:** This method only works on Android and iOS. On other platforms, it always returns [godot.Vector3.ZERO].
+   * **Note:** This method only works on Android and iOS. On other platforms, it always returns [godot.Vector3.ZERO]. On Android the unit of measurement for each axis is m/s² while on iOS it's a multiple of the Earth's gravitational acceleration `g` (~9.81 m/s²).
    */
   fun getGravity(): Vector3 {
     TransferContext.writeArguments()
@@ -240,9 +240,9 @@ object Input : Object() {
   }
 
   /**
-   * Returns the rotation rate in rad/s around a device's X, Y, and Z axes of the gyroscope, if the device has one. Otherwise, the method returns [godot.Vector3.ZERO].
+   * Returns the rotation rate in rad/s around a device's X, Y, and Z axes of the gyroscope sensor, if the device has one. Otherwise, the method returns [godot.Vector3.ZERO].
    *
-   * **Note:** This method only works on Android. On other platforms, it always returns [godot.Vector3.ZERO].
+   * **Note:** This method only works on Android and iOS. On other platforms, it always returns [godot.Vector3.ZERO].
    */
   fun getGyroscope(): Vector3 {
     TransferContext.writeArguments()
@@ -345,9 +345,9 @@ object Input : Object() {
   }
 
   /**
-   * Returns the the magnetic field strength in micro-Tesla for all axes of the device's magnetometer, if the device has one. Otherwise, the method returns [godot.Vector3.ZERO].
+   * Returns the magnetic field strength in micro-Tesla for all axes of the device's magnetometer sensor, if the device has one. Otherwise, the method returns [godot.Vector3.ZERO].
    *
-   * **Note:** This method only works on Android and UWP. On other platforms, it always returns [godot.Vector3.ZERO].
+   * **Note:** This method only works on Android, iOS and UWP. On other platforms, it always returns [godot.Vector3.ZERO].
    */
   fun getMagnetometer(): Vector3 {
     TransferContext.writeArguments()
@@ -557,7 +557,7 @@ object Input : Object() {
   /**
    * Vibrate Android and iOS devices.
    *
-   * **Note:** It needs VIBRATE permission for Android at export settings. iOS does not support duration.
+   * **Note:** It needs `VIBRATE` permission for Android at export settings. iOS does not support duration.
    */
   fun vibrateHandheld(durationMs: Long = 500) {
     TransferContext.writeArguments(LONG to durationMs)

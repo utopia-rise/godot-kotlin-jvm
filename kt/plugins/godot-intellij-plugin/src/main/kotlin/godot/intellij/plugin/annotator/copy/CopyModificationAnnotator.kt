@@ -117,19 +117,23 @@ class CopyModificationAnnotator : Annotator {
                 } else {
                     evaluateKtCallExpression(receiverExpression)
                 }
-                else -> if (expression.receiverExpression is KtArrayAccessExpression) {
-                    (expression.receiverExpression as KtArrayAccessExpression)
-                        .arrayExpression?.resolveTypeSafe()?.isPoolArray() != true &&
-                        expression
-                            .receiverExpression
-                            .resolveTypeSafe()
-                            ?.isCoreType() == true
-                } else {
+                is KtDotQualifiedExpression -> receiverExpression
+                    .receiverExpression
+                    .resolveTypeSafe()
+                    ?.isPoolArray() != true
+                is KtArrayAccessExpression -> receiverExpression
+                    .arrayExpression
+                    ?.resolveTypeSafe()
+                    ?.isPoolArray() != true &&
+                    expression
+                        .receiverExpression
+                        .resolveTypeSafe()
+                        ?.isCoreType() == true
+                else ->
                     expression
                         .receiverExpression
                         .resolveTypeSafe()
                         ?.isCoreType() == true && expression.receiverExpression.resolveTypeSafe()?.isPoolArray() != true
-                }
             }
             is KtArrayAccessExpression -> when (val arrayExpression = expression.arrayExpression) {
                 is KtNameReferenceExpression -> evaluateKtNameReferenceExpression(arrayExpression)

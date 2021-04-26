@@ -36,7 +36,7 @@ open class Sprite3D : SpriteBase3D() {
   val frameChanged: Signal0 by signal()
 
   /**
-   * Current frame to display from sprite sheet. [vframes] or [hframes] must be greater than 1.
+   * Current frame to display from sprite sheet. [hframes] or [vframes] must be greater than 1.
    */
   open var frame: Long
     get() {
@@ -50,7 +50,7 @@ open class Sprite3D : SpriteBase3D() {
     }
 
   /**
-   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame] property. [vframes] or [hframes] must be greater than 1.
+   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame] property. [hframes] or [vframes] must be greater than 1.
    */
   open var frameCoords: Vector2
     get() {

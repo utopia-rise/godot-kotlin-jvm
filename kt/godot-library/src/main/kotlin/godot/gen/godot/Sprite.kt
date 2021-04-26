@@ -26,6 +26,9 @@ import kotlin.Unit
 /**
  * General-purpose sprite node.
  *
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/148](https://godotengine.org/asset-library/asset/148)
+ *
  * A node that displays a 2D texture. The texture displayed can be a region from a larger atlas texture, or a frame from a sprite sheet animation.
  */
 @GodotBaseType
@@ -83,7 +86,7 @@ open class Sprite : Node2D() {
     }
 
   /**
-   * Current frame to display from sprite sheet. [vframes] or [hframes] must be greater than 1.
+   * Current frame to display from sprite sheet. [hframes] or [vframes] must be greater than 1.
    */
   open var frame: Long
     get() {
@@ -97,7 +100,7 @@ open class Sprite : Node2D() {
     }
 
   /**
-   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame] property. [vframes] or [hframes] must be greater than 1.
+   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame] property. [hframes] or [vframes] must be greater than 1.
    */
   open var frameCoords: Vector2
     get() {

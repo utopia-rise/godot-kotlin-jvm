@@ -25,7 +25,7 @@ import kotlin.Unit
 /**
  * Customizable [godot.StyleBox] with a given set of parameters (no texture required).
  *
- * This [godot.StyleBox] can be used to achieve all kinds of looks without the need of a texture. Those properties are customizable:
+ * This [godot.StyleBox] can be used to achieve all kinds of looks without the need of a texture. The following properties are customizable:
  *
  * - Color
  *
@@ -35,7 +35,7 @@ import kotlin.Unit
  *
  * - Shadow (with blur and offset)
  *
- * Setting corner radius to high values is allowed. As soon as corners would overlap, the stylebox will switch to a relative system. Example:
+ * Setting corner radius to high values is allowed. As soon as corners overlap, the stylebox will switch to a relative system. Example:
  *
  * ```
  * 		height = 30
@@ -195,9 +195,9 @@ open class StyleBoxFlat : StyleBox() {
     }
 
   /**
-   * This sets the amount of vertices used for each corner. Higher values result in rounder corners but take more processing power to compute. When choosing a value, you should take the corner radius ([setCornerRadiusAll]) into account.
+   * This sets the number of vertices used for each corner. Higher values result in rounder corners but take more processing power to compute. When choosing a value, you should take the corner radius ([setCornerRadiusAll]) into account.
    *
-   * For corner radii smaller than 10, `4` or `5` should be enough. For corner radii smaller than 30, values between `8` and `12` should be enough.
+   * For corner radii less than 10, `4` or `5` should be enough. For corner radii less than 30, values between `8` and `12` should be enough.
    *
    * A corner detail of `1` will result in chamfered corners instead of rounded corners, which is useful for some artistic effects.
    */

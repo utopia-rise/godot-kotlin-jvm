@@ -242,7 +242,7 @@ object PhysicsServer : Object() {
   /**
    * Swing is rotation from side to side, around the axis perpendicular to the twist axis.
    *
-   * The swing span defines, how much rotation will not get corrected allong the swing axis.
+   * The swing span defines, how much rotation will not get corrected along the swing axis.
    *
    * Could be defined as looseness in the [godot.ConeTwistJoint].
    *
@@ -2167,7 +2167,7 @@ object PhysicsServer : Object() {
     /**
      * Swing is rotation from side to side, around the axis perpendicular to the twist axis.
      *
-     * The swing span defines, how much rotation will not get corrected allong the swing axis.
+     * The swing span defines, how much rotation will not get corrected along the swing axis.
      *
      * Could be defined as looseness in the [godot.ConeTwistJoint].
      *

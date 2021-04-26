@@ -57,6 +57,9 @@ open class GeometryInstance : VisualInstance() {
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE_SET_EXTRA_CULL_MARGIN, NIL)
     }
 
+  /**
+   * When disabled, the mesh will be taken into account when computing indirect lighting, but the resulting lightmap will not be saved. Useful for emissive only materials or shadow casters.
+   */
   open var generateLightmap: Boolean
     get() {
       TransferContext.writeArguments()
@@ -70,6 +73,9 @@ open class GeometryInstance : VisualInstance() {
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE_SET_GENERATE_LIGHTMAP, NIL)
     }
 
+  /**
+   * Scale factor for the generated baked lightmap. Useful for adding detail to certain mesh instances.
+   */
   open var lightmapScale: Long
     get() {
       TransferContext.writeArguments()
@@ -272,14 +278,29 @@ open class GeometryInstance : VisualInstance() {
   enum class LightmapScale(
     id: Long
   ) {
+    /**
+     * The generated lightmap texture will have the original size.
+     */
     LIGHTMAP_SCALE_1X(0),
 
+    /**
+     * The generated lightmap texture will be twice as large, on each axis.
+     */
     LIGHTMAP_SCALE_2X(1),
 
+    /**
+     * The generated lightmap texture will be 4 times as large, on each axis.
+     */
     LIGHTMAP_SCALE_4X(2),
 
+    /**
+     * The generated lightmap texture will be 8 times as large, on each axis.
+     */
     LIGHTMAP_SCALE_8X(3),
 
+    /**
+     *
+     */
     LIGHTMAP_SCALE_MAX(4);
 
     val id: Long
@@ -308,14 +329,29 @@ open class GeometryInstance : VisualInstance() {
      */
     final const val FLAG_USE_BAKED_LIGHT: Long = 0
 
+    /**
+     * The generated lightmap texture will have the original size.
+     */
     final const val LIGHTMAP_SCALE_1X: Long = 0
 
+    /**
+     * The generated lightmap texture will be twice as large, on each axis.
+     */
     final const val LIGHTMAP_SCALE_2X: Long = 1
 
+    /**
+     * The generated lightmap texture will be 4 times as large, on each axis.
+     */
     final const val LIGHTMAP_SCALE_4X: Long = 2
 
+    /**
+     * The generated lightmap texture will be 8 times as large, on each axis.
+     */
     final const val LIGHTMAP_SCALE_8X: Long = 3
 
+    /**
+     *
+     */
     final const val LIGHTMAP_SCALE_MAX: Long = 4
 
     /**
