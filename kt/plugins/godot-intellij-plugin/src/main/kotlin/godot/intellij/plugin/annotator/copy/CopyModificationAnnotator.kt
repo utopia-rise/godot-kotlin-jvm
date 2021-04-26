@@ -81,7 +81,9 @@ class CopyModificationAnnotator : Annotator {
                 receiverType?.getJetTypeFqName(false) != "godot.core.Dictionary" &&
                     receiverType?.getJetTypeFqName(false) != "godot.core.VariantArray" &&
                     receiverType?.isCoreType() == true &&
-                    (((element.selectorExpression as? KtCallExpression)?.calleeExpression as? KtReferenceExpression)?.resolve() as? KtAnnotated)?.findAnnotation(FqName(CORE_TYPE_HELPER_ANNOTATION)) != null
+                    (((element.selectorExpression as? KtCallExpression)?.calleeExpression as? KtReferenceExpression)?.resolve() as? KtAnnotated)?.findAnnotation(
+                        FqName(CORE_TYPE_HELPER_ANNOTATION)
+                    ) != null
             }
             else -> false
         }
@@ -109,8 +111,25 @@ class CopyModificationAnnotator : Annotator {
         return when (expression) {
             is KtDotQualifiedExpression -> when (val receiverExpression = expression.receiverExpression) {
                 is KtNameReferenceExpression -> evaluateKtNameReferenceExpression(receiverExpression)
-                is KtCallExpression -> evaluateKtCallExpression(receiverExpression)
-                else -> expression.receiverExpression.resolveTypeSafe()?.isCoreType() == true
+                is KtCallExpression -> if (expression.receiverExpression is KtDotQualifiedExpression &&
+                    (expression.receiverExpression as KtDotQualifiedExpression).receiverExpression.resolveTypeSafe()?.isPoolArray() == true) {
+                    false
+                } else {
+                    evaluateKtCallExpression(receiverExpression)
+                }
+                else -> if (expression.receiverExpression is KtArrayAccessExpression) {
+                    (expression.receiverExpression as KtArrayAccessExpression)
+                        .arrayExpression?.resolveTypeSafe()?.isPoolArray() != true &&
+                        expression
+                            .receiverExpression
+                            .resolveTypeSafe()
+                            ?.isCoreType() == true
+                } else {
+                    expression
+                        .receiverExpression
+                        .resolveTypeSafe()
+                        ?.isCoreType() == true && expression.receiverExpression.resolveTypeSafe()?.isPoolArray() != true
+                }
             }
             is KtArrayAccessExpression -> when (val arrayExpression = expression.arrayExpression) {
                 is KtNameReferenceExpression -> evaluateKtNameReferenceExpression(arrayExpression)
@@ -186,6 +205,9 @@ private fun KtExpression.isConstructorCall(): Boolean {
 private fun KotlinType.isCoreType(): Boolean = coreTypes
     .contains(getJetTypeFqName(false).removeSuffix("?"))
 
+private fun KotlinType.isPoolArray(): Boolean = poolArrays
+    .contains(getJetTypeFqName(false).removeSuffix("?"))
+
 private fun KtExpression.resolveTypeSafe(): KotlinType? {
     return try {
         resolveType()
@@ -216,4 +238,14 @@ private val coreTypes = listOf(
     "godot.core.PoolVector3Array",
     "godot.core.Dictionary",
     "godot.core.VariantArray",
+)
+
+private val poolArrays = listOf(
+    "godot.core.PoolByteArray",
+    "godot.core.PoolIntArray",
+    "godot.core.PoolRealArray",
+    "godot.core.PoolStringArray",
+    "godot.core.PoolColorArray",
+    "godot.core.PoolVector2Array",
+    "godot.core.PoolVector3Array",
 )
