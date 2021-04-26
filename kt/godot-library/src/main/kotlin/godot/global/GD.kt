@@ -5,11 +5,11 @@ import godot.RandomNumberGenerator
 import godot.Resource
 import godot.ResourceLoader
 import godot.core.*
-import godot.core.memory.GodotStatic
+import godot.core.memory.BaseGodotStatic
 import godot.util.nullptr
 
 
-object GD : GDMath, GDCore, GDRandom, GDPrint, GodotStatic() {
+object GD : GDMath, GDCore, GDRandom, GDPrint, BaseGodotStatic() {
     override var rng: RandomNumberGenerator? = RandomNumberGenerator()
 
     override fun collect(){

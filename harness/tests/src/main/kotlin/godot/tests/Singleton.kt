@@ -3,10 +3,10 @@ package godot.tests
 import godot.Node
 import godot.PackedScene
 import godot.ResourceLoader
-import godot.core.memory.GodotStatic
+import godot.core.memory.BaseGodotStatic
 import godot.global.GD
 
-object Singleton: GodotStatic(){
+object Singleton: BaseGodotStatic(){
     var ref = ResourceLoader.load("res://Spatial.tscn") as PackedScene?
     val myScene = Node()
 
