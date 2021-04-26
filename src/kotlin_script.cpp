@@ -164,10 +164,24 @@ Variant KotlinScript::_new(const Variant** p_args, int p_argcount, Variant::Call
 
 void KotlinScript::set_path(const String& p_path, bool p_take_over) {
     Resource::set_path(p_path, p_take_over);
+
 #ifndef TOOLS_ENABLED
     if (!kotlin_class) {
         kotlin_class = GDKotlin::get_instance().find_class(p_path);
     }
+#else
+    String package{p_path.replace("src/main/kotlin/", "")
+                           .trim_prefix("res://")
+                           .trim_suffix(get_name() + "." + KotlinLanguage::get_instance().get_extension())
+                           .trim_suffix("/")
+                           .replace("/", ".")};
+
+    if (!package.empty()) {
+        package = "package " + package + "\n\n";
+    }
+
+    String source_code = get_source_code().replace("%PACKAGE%", package);
+    set_source_code(source_code);
 #endif
 }
 
@@ -178,7 +192,7 @@ KotlinScript::KotlinScript() : kotlin_class(nullptr) {
 PlaceHolderScriptInstance* KotlinScript::placeholder_instance_create(Object* p_this) {
 #ifdef TOOLS_ENABLED
     PlaceHolderScriptInstance* placeholder{
-        memnew(PlaceHolderScriptInstance(&KotlinLanguage::get_instance(), Ref<Script>(this), p_this))
+            memnew(PlaceHolderScriptInstance(&KotlinLanguage::get_instance(), Ref<Script>(this), p_this))
     };
     p_this->set_script_instance(placeholder);
     placeholders.insert(placeholder);
@@ -191,7 +205,7 @@ PlaceHolderScriptInstance* KotlinScript::placeholder_instance_create(Object* p_t
 
 void KotlinScript::update_exports() {
 #ifdef TOOLS_ENABLED
-    for (Set<PlaceHolderScriptInstance *>::Element *E = placeholders.front(); E; E = E->next()) {
+    for (Set<PlaceHolderScriptInstance*>::Element* E = placeholders.front(); E; E = E->next()) {
         _update_exports(E->get());
     }
 #endif
