@@ -165,6 +165,11 @@ Variant KotlinScript::_new(const Variant** p_args, int p_argcount, Variant::Call
 void KotlinScript::set_path(const String& p_path, bool p_take_over) {
     Resource::set_path(p_path, p_take_over);
 
+#ifndef TOOLS_ENABLED
+    if (!kotlin_class) {
+        kotlin_class = GDKotlin::get_instance().find_class(p_path);
+    }
+#else
     String package = p_path.replace("src/main/kotlin/", "")
             .trim_prefix("res://")
             .trim_suffix(get_name() + "." + KotlinLanguage::get_instance().get_extension())
@@ -177,11 +182,6 @@ void KotlinScript::set_path(const String& p_path, bool p_take_over) {
 
     String source_code = get_source_code().replace("%PACKAGE%", package);
     set_source_code(source_code);
-
-#ifndef TOOLS_ENABLED
-    if (!kotlin_class) {
-        kotlin_class = GDKotlin::get_instance().find_class(p_path);
-    }
 #endif
 }
 
