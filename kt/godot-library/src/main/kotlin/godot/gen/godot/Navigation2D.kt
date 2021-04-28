@@ -24,6 +24,9 @@ import kotlin.Suppress
 /**
  * 2D navigation and pathfinding node.
  *
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/117](https://godotengine.org/asset-library/asset/117)
+ *
  * Navigation2D provides navigation and pathfinding within a 2D area, specified as a collection of [godot.NavigationPolygon] resources. By default, these are automatically collected from child [godot.NavigationPolygonInstance] nodes, but they can also be added on the fly with [navpolyAdd].
  */
 @GodotBaseType

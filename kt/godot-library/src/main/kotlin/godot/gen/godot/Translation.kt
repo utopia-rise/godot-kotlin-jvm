@@ -21,8 +21,8 @@ import kotlin.Suppress
  * Language Translation.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/i18n/internationalizing_games.html](https://docs.godotengine.org/en/latest/tutorials/i18n/internationalizing_games.html)
- * [https://docs.godotengine.org/en/latest/tutorials/i18n/locales.html](https://docs.godotengine.org/en/latest/tutorials/i18n/locales.html)
+ * [https://docs.godotengine.org/en/3.3/tutorials/i18n/internationalizing_games.html](https://docs.godotengine.org/en/3.3/tutorials/i18n/internationalizing_games.html)
+ * [https://docs.godotengine.org/en/3.3/tutorials/i18n/locales.html](https://docs.godotengine.org/en/3.3/tutorials/i18n/locales.html)
  *
  * Translations are resources that can be loaded and unloaded on demand. They map a string to another string.
  */

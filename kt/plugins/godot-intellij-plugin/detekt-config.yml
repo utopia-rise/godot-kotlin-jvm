@@ -32,6 +32,11 @@ complexity:
     ignoreSingleWhenExpression: true
     excludes: [
         '**/godot/intellij/plugin/linemarker/SignalConnectionLineMarker.kt',
+        '**/godot/intellij/plugin/annotator/copy/CopyModificationAnnotator.kt',
+    ]
+  NestedBlockDepth:
+    excludes: [
+        '**/godot/intellij/plugin/annotator/copy/CopyModificationAnnotator.kt'
     ]
   TooManyFunctions:
     excludes: [

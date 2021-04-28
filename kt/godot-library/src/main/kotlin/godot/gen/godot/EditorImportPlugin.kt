@@ -20,7 +20,7 @@ import kotlin.Suppress
  * Registers a custom resource importer in the editor. Use the class to parse any file and import it as a new resource type.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/plugins/editor/import_plugins.html](https://docs.godotengine.org/en/latest/tutorials/plugins/editor/import_plugins.html)
+ * [https://docs.godotengine.org/en/3.3/tutorials/plugins/editor/import_plugins.html](https://docs.godotengine.org/en/3.3/tutorials/plugins/editor/import_plugins.html)
  *
  * EditorImportPlugins provide a way to extend the editor's resource import functionality. Use them to import resources from custom files or to provide alternatives to the editor's existing importers. Register your [godot.EditorPlugin] with [godot.EditorPlugin.addImportPlugin].
  *
@@ -36,7 +36,7 @@ import kotlin.Suppress
  * 		    return "my.special.plugin"
  *
  * 		func get_visible_name():
- * 		    return "Special Mesh Importer"
+ * 		    return "Special Mesh"
  *
  * 		func get_recognized_extensions():
  * 		    return ["special", "spec"]
@@ -65,8 +65,7 @@ import kotlin.Suppress
  * 		    # Fill the Mesh with data read in "file", left as an exercise to the reader
  *
  * 		    var filename = save_path + "." + get_save_extension()
- * 		    ResourceSaver.save(filename, mesh)
- * 		    return OK
+ * 		    return ResourceSaver.save(filename, mesh)
  * 		```
  */
 @GodotBaseType
@@ -157,7 +156,7 @@ open class EditorImportPlugin : ResourceImporter() {
   }
 
   /**
-   * Gets the name to display in the import window.
+   * Gets the name to display in the import window. You should choose this name as a continuation to "Import as", e.g. "Import as Special Mesh".
    */
   open fun _getVisibleName(): String {
     throw NotImplementedError("get_visible_name is not implemented for EditorImportPlugin")

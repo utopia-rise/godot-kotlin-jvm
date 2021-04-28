@@ -21,9 +21,12 @@ import kotlin.Suppress
 /**
  * A countdown timer.
  *
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/515](https://godotengine.org/asset-library/asset/515)
+ *
  * Counts down a specified interval and emits a signal on reaching 0. Can be set to repeat or "one-shot" mode.
  *
- * **Note:** To create an one-shot timer without instantiating a node, use [godot.SceneTree.createTimer].
+ * **Note:** To create a one-shot timer without instantiating a node, use [godot.SceneTree.createTimer].
  */
 @GodotBaseType
 open class Timer : Node() {

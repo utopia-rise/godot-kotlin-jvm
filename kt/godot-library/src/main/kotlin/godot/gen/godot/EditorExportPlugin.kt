@@ -20,7 +20,9 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * A script that is executed when exporting projects.
+ * A script that is executed when exporting the project.
+ *
+ * Editor export plugins are automatically activated whenever the user exports the project. Their most common use is to determine what files are being included in the exported project. For each plugin, [_exportBegin] is called at the beginning of the export process and then [_exportFile] is called for each exported file.
  */
 @GodotBaseType
 open class EditorExportPlugin : Reference() {
@@ -29,7 +31,7 @@ open class EditorExportPlugin : Reference() {
   }
 
   /**
-   * Virtual method to be overridden by the user. It is called when the export starts and provides all information about the export.
+   * Virtual method to be overridden by the user. It is called when the export starts and provides all information about the export. `features` is the list of features for the export, `is_debug` is `true` for debug builds, `path` is the target path for the exported project. `flags` is only used when running a runnable profile, e.g. when using native run on Android.
    */
   open fun _exportBegin(
     features: PoolStringArray,
@@ -46,7 +48,9 @@ open class EditorExportPlugin : Reference() {
   }
 
   /**
+   * Virtual method to be overridden by the user. Called for each exported file, providing arguments that can be used to identify the file. `path` is the path of the file, `type` is the [godot.Resource] represented by the file (e.g. [godot.PackedScene]) and `features` is the list of features for the export.
    *
+   * Calling [skip] inside this callback will make the file not included in the export.
    */
   open fun _exportFile(
     path: String,
@@ -56,7 +60,7 @@ open class EditorExportPlugin : Reference() {
   }
 
   /**
-   *
+   * Adds a custom file to be exported. `path` is the virtual path that can be used to load the file, `file` is the binary data of the file. If `remap` is `true`, file will not be exported, but instead remapped to the given `path`.
    */
   open fun addFile(
     path: String,
@@ -68,7 +72,7 @@ open class EditorExportPlugin : Reference() {
   }
 
   /**
-   *
+   * Adds an iOS bundle file from the given `path` to the exported project.
    */
   open fun addIosBundleFile(path: String) {
     TransferContext.writeArguments(STRING to path)
@@ -77,7 +81,7 @@ open class EditorExportPlugin : Reference() {
   }
 
   /**
-   *
+   * Adds a C++ code to the iOS export. The final code is created from the code appended by each active export plugin.
    */
   open fun addIosCppCode(code: String) {
     TransferContext.writeArguments(STRING to code)
@@ -108,7 +112,7 @@ open class EditorExportPlugin : Reference() {
   }
 
   /**
-   *
+   * Adds linker flags for the iOS export.
    */
   open fun addIosLinkerFlags(flags: String) {
     TransferContext.writeArguments(STRING to flags)
@@ -117,7 +121,7 @@ open class EditorExportPlugin : Reference() {
   }
 
   /**
-   *
+   * Adds content for iOS Property List files.
    */
   open fun addIosPlistContent(plistContent: String) {
     TransferContext.writeArguments(STRING to plistContent)
@@ -126,7 +130,7 @@ open class EditorExportPlugin : Reference() {
   }
 
   /**
-   *
+   * Adds a static lib from the given `path` to the iOS project.
    */
   open fun addIosProjectStaticLib(path: String) {
     TransferContext.writeArguments(STRING to path)
@@ -135,7 +139,7 @@ open class EditorExportPlugin : Reference() {
   }
 
   /**
-   *
+   * Adds a shared object with the given `tags` and destination `path`.
    */
   open fun addSharedObject(path: String, tags: PoolStringArray) {
     TransferContext.writeArguments(STRING to path, POOL_STRING_ARRAY to tags)
@@ -144,7 +148,7 @@ open class EditorExportPlugin : Reference() {
   }
 
   /**
-   *
+   * To be called inside [_exportFile]. Skips the current file, so it's not included in the export.
    */
   open fun skip() {
     TransferContext.writeArguments()

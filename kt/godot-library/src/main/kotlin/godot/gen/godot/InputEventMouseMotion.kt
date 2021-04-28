@@ -20,7 +20,7 @@ import kotlin.Unit
  * Input event type for mouse motion events.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/inputs/mouse_and_input_coordinates.html](https://docs.godotengine.org/en/latest/tutorials/inputs/mouse_and_input_coordinates.html)
+ * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
  * Contains mouse and pen motion information. Supports relative, absolute positions and speed. See [godot.Node.Input].
  *

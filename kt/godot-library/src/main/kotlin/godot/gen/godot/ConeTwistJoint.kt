@@ -15,13 +15,13 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 
 /**
- * A twist joint between two 3D bodies.
+ * A twist joint between two 3D PhysicsBodies.
  *
  * The joint can rotate the bodies across an axis defined by the local x-axes of the [godot.Joint].
  *
  * The twist axis is initiated as the X axis of the [godot.Joint].
  *
- * Once the Bodies swing, the twist axis is calculated as the middle of the x-axes of the Joint in the local space of the two Bodies.
+ * Once the Bodies swing, the twist axis is calculated as the middle of the x-axes of the Joint in the local space of the two Bodies. See also [godot.Generic6DOFJoint].
  */
 @GodotBaseType
 open class ConeTwistJoint : Joint() {

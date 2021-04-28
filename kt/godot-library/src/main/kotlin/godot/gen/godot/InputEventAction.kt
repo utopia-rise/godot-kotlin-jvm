@@ -21,7 +21,7 @@ import kotlin.UninitializedPropertyAccessException
  * Input event type for actions.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html#actions](https://docs.godotengine.org/en/latest/tutorials/inputs/inputevent.html#actions)
+ * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
  * Contains a generic action which can be targeted from several types of inputs. Actions can be created from the **Input Map** tab in the **Project > Project Settings** menu. See [godot.Node.Input].
  */
@@ -55,7 +55,7 @@ open class InputEventAction : InputEvent() {
     }
 
   /**
-   * The action's strength between 0 and 1. This value is considered as equal to 0 if pressed is `false`. The event strength allows faking analog joypad motion events, by precising how strongly is the joypad axis bent or pressed.
+   * The action's strength between 0 and 1. This value is considered as equal to 0 if pressed is `false`. The event strength allows faking analog joypad motion events, by specifying how strongly the joypad axis is bent or pressed.
    */
   open var strength: Double
     get() {

@@ -15,6 +15,9 @@ import kotlin.Suppress
 /**
  * Convex polygon shape for 3D physics.
  *
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/675](https://godotengine.org/asset-library/asset/675)
+ *
  * Convex polygon shape resource, which can be added to a [godot.PhysicsBody] or area.
  */
 @GodotBaseType

@@ -25,7 +25,7 @@ import kotlin.Suppress
  * Direct access object to a space in the [godot.Physics2DServer].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/physics/ray-casting.html](https://docs.godotengine.org/en/latest/tutorials/physics/ray-casting.html)
+ * [https://docs.godotengine.org/en/3.3/tutorials/physics/ray-casting.html](https://docs.godotengine.org/en/3.3/tutorials/physics/ray-casting.html)
  *
  * Direct access object to a space in the [godot.Physics2DServer]. It's used mainly to do queries against objects and areas residing in a given space.
  */
@@ -36,9 +36,11 @@ open class Physics2DDirectSpaceState : Object() {
   }
 
   /**
-   * Checks how far the shape can travel toward a point. If the shape can not move, the array will be empty.
+   * Checks how far a [godot.Shape2D] can move without colliding. All the parameters for the query, including the shape and the motion, are supplied through a [godot.Physics2DShapeQueryParameters] object.
    *
-   * **Note:** Both the shape and the motion are supplied through a [godot.Physics2DShapeQueryParameters] object. The method will return an array with two floats between 0 and 1, both representing a fraction of `motion`. The first is how far the shape can move without triggering a collision, and the second is the point at which a collision will occur. If no collision is detected, the returned array will be `[1, 1]`.
+   * Returns an array with the safe and unsafe proportions (between 0 and 1) of the motion. The safe proportion is the maximum fraction of the motion that can be made without a collision. The unsafe proportion is the minimum fraction of the distance that must be moved for a collision. If no collision is detected a result of `[1.0, 1.0]` will be returned.
+   *
+   * **Note:** Any [godot.Shape2D]s that the shape is already colliding with e.g. inside of, will be ignored. Use [collideShape] to determine the [godot.Shape2D]s that the shape is already colliding with.
    */
   open fun castMotion(shape: Physics2DShapeQueryParameters): VariantArray<Any?> {
     TransferContext.writeArguments(OBJECT to shape)
@@ -85,7 +87,7 @@ open class Physics2DDirectSpaceState : Object() {
   }
 
   /**
-   * Checks whether a point is inside any shape. The shapes the point is inside of are returned in an array containing dictionaries with the following fields:
+   * Checks whether a point is inside any solid shape. The shapes the point is inside of are returned in an array containing dictionaries with the following fields:
    *
    * `collider`: The colliding object.
    *
@@ -98,6 +100,8 @@ open class Physics2DDirectSpaceState : Object() {
    * `shape`: The shape index of the colliding shape.
    *
    * Additionally, the method can take an `exclude` array of objects or [RID]s that are to be excluded from collisions, a `collision_mask` bitmask representing the physics layers to check in, or booleans to determine if the ray should collide with [godot.PhysicsBody]s or [godot.Area]s, respectively.
+   *
+   * **Note:** [godot.ConcavePolygonShape2D]s and [godot.CollisionPolygon2D]s in `Segments` build mode are not solid shapes. Therefore, they will not be detected.
    */
   open fun intersectPoint(
     point: Vector2,

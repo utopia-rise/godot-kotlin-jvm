@@ -11,6 +11,9 @@ import kotlin.Suppress
 /**
  * Audio effect for audio.
  *
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/527](https://godotengine.org/asset-library/asset/527)
+ *
  * Base resource for audio bus. Applies an audio effect on the bus that the resource is applied on.
  */
 @GodotBaseType

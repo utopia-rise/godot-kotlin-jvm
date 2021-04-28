@@ -12,8 +12,16 @@ import godot.core.VariantType.STRING
 import kotlin.String
 import kotlin.Suppress
 
+/**
+ * A reference to an existing [godot.VisualShaderNodeUniform].
+ *
+ * Creating a reference to a [godot.VisualShaderNodeUniform] allows you to reuse this uniform in different shaders or shader stages easily.
+ */
 @GodotBaseType
 open class VisualShaderNodeUniformRef : VisualShaderNode() {
+  /**
+   * The name of the uniform which this reference points to.
+   */
   open var uniformName: String
     get() {
       TransferContext.writeArguments()

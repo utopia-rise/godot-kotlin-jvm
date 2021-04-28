@@ -33,6 +33,9 @@ import kotlin.Unit
 /**
  * Camera node, displays from a point of view.
  *
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
+ *
  * Camera is a special node that displays what is visible from its current location. Cameras register themselves in the nearest [godot.Viewport] node (when ascending the tree). Only one camera can be active per viewport. If no viewport is available ascending the tree, the camera will register in the global viewport. In other words, a camera just provides 3D display capabilities to a [godot.Viewport], and, without one, a scene registered in that [godot.Viewport] (or higher viewports) can't be displayed.
  */
 @GodotBaseType
@@ -109,6 +112,16 @@ open class Camera : Spatial() {
 
   /**
    * The camera's field of view angle (in degrees). Only applicable in perspective mode. Since [keepAspect] locks one axis, `fov` sets the other axis' field of view angle.
+   *
+   * For reference, the default vertical field of view value (`75.0`) is equivalent to a horizontal FOV of:
+   *
+   * - ~91.31 degrees in a 4:3 viewport
+   *
+   * - ~101.67 degrees in a 16:10 viewport
+   *
+   * - ~107.51 degrees in a 16:9 viewport
+   *
+   * - ~121.63 degrees in a 21:9 viewport
    */
   open var fov: Double
     get() {
@@ -380,6 +393,15 @@ open class Camera : Spatial() {
 
   /**
    * Returns the 2D coordinate in the [godot.Viewport] rectangle that maps to the given 3D point in worldspace.
+   *
+   * **Note:** When using this to position GUI elements over a 3D viewport, use [isPositionBehind] to prevent them from appearing if the 3D point is behind the camera:
+   *
+   * ```
+   * 				# This code block is part of a script that inherits from Spatial.
+   * 				# `control` is a reference to a node inheriting from Control.
+   * 				control.visible = not get_viewport().get_camera().is_position_behind(global_transform.origin)
+   * 				control.rect_position = get_viewport().get_camera().unproject_position(global_transform.origin)
+   * 				```
    */
   open fun unprojectPosition(worldPoint: Vector3): Vector2 {
     TransferContext.writeArguments(VECTOR3 to worldPoint)

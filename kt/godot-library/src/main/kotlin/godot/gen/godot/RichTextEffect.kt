@@ -14,7 +14,7 @@ import kotlin.Suppress
  * A custom effect for use with [godot.RichTextLabel].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/gui/bbcode_in_richtextlabel.html](https://docs.godotengine.org/en/latest/tutorials/gui/bbcode_in_richtextlabel.html)
+ * [https://docs.godotengine.org/en/3.3/tutorials/gui/bbcode_in_richtextlabel.html](https://docs.godotengine.org/en/3.3/tutorials/gui/bbcode_in_richtextlabel.html)
  * [https://github.com/Eoin-ONeill-Yokai/Godot-Rich-Text-Effect-Test-Project](https://github.com/Eoin-ONeill-Yokai/Godot-Rich-Text-Effect-Test-Project)
  *
  * A custom effect for use with [godot.RichTextLabel].

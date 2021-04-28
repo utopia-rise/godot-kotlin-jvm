@@ -54,6 +54,9 @@ open class EditorInterface : Node() {
     callConstructor(ENGINECLASS_EDITORINTERFACE)
   }
 
+  /**
+   * Edits the given [godot.Node]. The node will be also selected if it's inside the scene tree.
+   */
   open fun editNode(node: Node) {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_EDIT_NODE, NIL)
@@ -97,6 +100,11 @@ open class EditorInterface : Node() {
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
 
+  /**
+   * Returns the actual scale of the editor UI (`1.0` being 100% scale). This can be used to adjust position and dimensions of the UI added by plugins.
+   *
+   * **Note:** This value is set via the `interface/editor/display_scale` and `interface/editor/custom_display_scale` editor settings. Editor must be restarted for changes to be properly applied.
+   */
   open fun getEditorScale(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_SCALE,
@@ -217,7 +225,7 @@ open class EditorInterface : Node() {
   }
 
   /**
-   * Shows the given property on the given `object` in the editor's Inspector dock.
+   * Shows the given property on the given `object` in the editor's Inspector dock. If `inspector_only` is `true`, plugins will not attempt to edit `object`.
    */
   open fun inspectObject(
     _object: Object,

@@ -31,7 +31,7 @@ import kotlin.Suppress
  * Type to handle file reading and writing operations.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/getting_started/step_by_step/filesystem.html](https://docs.godotengine.org/en/latest/getting_started/step_by_step/filesystem.html)
+ * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
  * File type. This is used to permanently store data into the user device's file system and to read from it. This can be used to store game save data or player configuration files, for example.
  *
@@ -52,14 +52,20 @@ import kotlin.Suppress
  * 		    return content
  * 		```
  *
- * In the example above, the file will be saved in the user data folder as specified in the [godot.Data paths](https://docs.godotengine.org/en/latest/tutorials/io/data_paths.html) documentation.
+ * In the example above, the file will be saved in the user data folder as specified in the [godot.Data paths](https://docs.godotengine.org/en/3.3/tutorials/io/data_paths.html) documentation.
+ *
+ * **Note:** To access project resources once exported, it is recommended to use [godot.ResourceLoader] instead of the [godot.File] API, as some files are converted to engine-specific formats and their original source files might not be present in the exported PCK package.
+ *
+ * **Note:** Files are automatically closed only if the process exits "normally" (such as by clicking the window manager's close button or pressing **Alt + F4**). If you stop the project execution by pressing **F8** while the project is running, the file won't be closed as the game process will be killed. You can work around this by calling [flush] at regular intervals.
  */
 @GodotBaseType
 open class File : Reference() {
   /**
-   * If `true`, the file's endianness is swapped. Use this if you're dealing with files written on big-endian machines.
+   * If `true`, the file is read with big-endian [endianness](https://en.wikipedia.org/wiki/Endianness). If `false`, the file is read with little-endian endianness. If in doubt, leave this to `false` as most files are written with little-endian endianness.
    *
-   * **Note:** This is about the file format, not CPU type. This is always reset to `false` whenever you open the file.
+   * **Note:** [endianSwap] is only about the file format, not the CPU type. The CPU endianness doesn't affect the default endianness for files written.
+   *
+   * **Note:** This is always reset to `false` whenever you open the file. Therefore, you must set [endianSwap] *after* opening the file, not before.
    */
   open var endianSwap: Boolean
     get() {
@@ -77,7 +83,7 @@ open class File : Reference() {
   }
 
   /**
-   * Closes the currently opened file.
+   * Closes the currently opened file and prevents subsequent read/write operations. Use [flush] to persist the data to disk without closing the file.
    */
   open fun close() {
     TransferContext.writeArguments()
@@ -98,7 +104,7 @@ open class File : Reference() {
   /**
    * Returns `true` if the file exists in the given path.
    *
-   * **Note:** Many resources types are imported (e.g. textures or sound files), and that their source asset will not be included in the exported game, as only the imported version is used (in the `res://.import` folder). To check for the existence of such resources while taking into account the remapping to their imported location, use [godot.ResourceLoader.exists]. Typically, using `File.file_exists` on an imported resource would work while you are developing in the editor (the source asset is present in `res://`, but fail when exported).
+   * **Note:** Many resources types are imported (e.g. textures or sound files), and their source asset will not be included in the exported game, as only the imported version is used. See [godot.ResourceLoader.exists] for an alternative approach that takes resource remapping into account.
    */
   open fun fileExists(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
@@ -106,6 +112,11 @@ open class File : Reference() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   * Writes the file's buffer to disk. Flushing is automatically performed when the file is closed. This means you don't need to call [flush] manually before closing a file using [close]. Still, calling [flush] can be used to ensure the data is safe even if the project crashes instead of being closed gracefully.
+   *
+   * **Note:** Only call [flush] when you actually need it. Otherwise, it will decrease performance due to constant disk writes.
+   */
   open fun flush() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__FILE_FLUSH, NIL)
@@ -489,9 +500,7 @@ open class File : Reference() {
   }
 
   /**
-   * Stores the given [godot.String] as a line in the file.
-   *
-   * Text will be encoded as UTF-8.
+   * Appends `line` to the file followed by a line return character (`\n`), encoding the text as UTF-8.
    */
   open fun storeLine(line: String) {
     TransferContext.writeArguments(STRING to line)
@@ -517,9 +526,7 @@ open class File : Reference() {
   }
 
   /**
-   * Stores the given [godot.String] in the file.
-   *
-   * Text will be encoded as UTF-8.
+   * Appends `string` to the file without a line return, encoding the text as UTF-8.
    */
   open fun storeString(string: String) {
     TransferContext.writeArguments(STRING to string)

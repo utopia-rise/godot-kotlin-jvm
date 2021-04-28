@@ -34,7 +34,7 @@ import kotlin.Unit
  * [godot.Mesh] type that provides utility for constructing a surface from arrays.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/content/procedural_geometry/arraymesh.html](https://docs.godotengine.org/en/latest/tutorials/content/procedural_geometry/arraymesh.html)
+ * [https://docs.godotengine.org/en/3.3/tutorials/content/procedural_geometry/arraymesh.html](https://docs.godotengine.org/en/3.3/tutorials/content/procedural_geometry/arraymesh.html)
  *
  * The [godot.ArrayMesh] is used to construct a [godot.Mesh] by specifying the attributes as arrays.
  *

@@ -26,9 +26,9 @@ import kotlin.Suppress
  * Plays 3D sound in 3D space.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/audio/audio_streams.html](https://docs.godotengine.org/en/latest/tutorials/audio/audio_streams.html)
+ * [https://docs.godotengine.org/en/3.3/tutorials/audio/audio_streams.html](https://docs.godotengine.org/en/3.3/tutorials/audio/audio_streams.html)
  *
- * Plays a sound effect with directed sound effects, dampens with distance if needed, generates effect of hearable position in space.
+ * Plays a sound effect with directed sound effects, dampens with distance if needed, generates effect of hearable position in space. For greater realism, a low-pass filter is automatically applied to distant sounds. This can be disabled by setting [attenuationFilterCutoffHz] to `20500`.
  *
  * By default, audio is heard from the camera position. This can be changed by adding a [godot.Listener] node to the scene and enabling it by calling [godot.Listener.makeCurrent] on it.
  */
@@ -56,7 +56,7 @@ open class AudioStreamPlayer3D : Spatial() {
     }
 
   /**
-   * Dampens audio above this frequency, in Hz.
+   * Dampens audio using a low-pass filter above this frequency, in Hz. To disable the dampening effect entirely, set this to `20500` as this frequency is above the human hearing limit.
    */
   open var attenuationFilterCutoffHz: Double
     get() {
@@ -72,7 +72,7 @@ open class AudioStreamPlayer3D : Spatial() {
     }
 
   /**
-   * Amount how much the filter affects the loudness, in dB.
+   * Amount how much the filter affects the loudness, in decibels.
    */
   open var attenuationFilterDb: Double
     get() {
@@ -104,7 +104,7 @@ open class AudioStreamPlayer3D : Spatial() {
     }
 
   /**
-   * If `true`, audio plays when added to scene tree.
+   * If `true`, audio plays when the AudioStreamPlayer3D node is added to scene tree.
    */
   open var autoplay: Boolean
     get() {
@@ -120,7 +120,7 @@ open class AudioStreamPlayer3D : Spatial() {
     }
 
   /**
-   * Bus on which this audio is playing.
+   * The bus on which this audio is playing.
    */
   open var bus: String
     get() {
@@ -183,7 +183,7 @@ open class AudioStreamPlayer3D : Spatial() {
     }
 
   /**
-   * Dampens audio if camera is outside of [emissionAngleDegrees] and [emissionAngleEnabled] is set by this factor, in dB.
+   * Dampens audio if camera is outside of [emissionAngleDegrees] and [emissionAngleEnabled] is set by this factor, in decibels.
    */
   open var emissionAngleFilterAttenuationDb: Double
     get() {
@@ -201,7 +201,7 @@ open class AudioStreamPlayer3D : Spatial() {
     }
 
   /**
-   * Sets the absolute maximum of the soundlevel, in dB.
+   * Sets the absolute maximum of the soundlevel, in decibels.
    */
   open var maxDb: Double
     get() {
@@ -276,7 +276,7 @@ open class AudioStreamPlayer3D : Spatial() {
     }
 
   /**
-   * The [godot.AudioStream] object to be played.
+   * The [godot.AudioStream] resource to be played.
    */
   open var stream: AudioStream?
     get() {
@@ -292,7 +292,7 @@ open class AudioStreamPlayer3D : Spatial() {
     }
 
   /**
-   * If `true`, the playback is paused. You can resume it by setting `stream_paused` to `false`.
+   * If `true`, the playback is paused. You can resume it by setting [streamPaused] to `false`.
    */
   open var streamPaused: Boolean
     get() {
@@ -308,7 +308,7 @@ open class AudioStreamPlayer3D : Spatial() {
     }
 
   /**
-   * Base sound level unaffected by dampening, in dB.
+   * The base sound level unaffected by dampening, in decibels.
    */
   open var unitDb: Double
     get() {
@@ -324,7 +324,7 @@ open class AudioStreamPlayer3D : Spatial() {
     }
 
   /**
-   * Factor for the attenuation effect.
+   * The factor for the attenuation effect. Higher values make the sound audible over a larger distance.
    */
   open var unitSize: Double
     get() {
@@ -416,7 +416,7 @@ open class AudioStreamPlayer3D : Spatial() {
     ATTENUATION_LOGARITHMIC(2),
 
     /**
-     * No dampening of loudness according to distance.
+     * No dampening of loudness according to distance. The sound will still be heard positionally, unlike an [godot.AudioStreamPlayer].
      */
     ATTENUATION_DISABLED(3);
 
@@ -434,12 +434,12 @@ open class AudioStreamPlayer3D : Spatial() {
     id: Long
   ) {
     /**
-     * Mix this audio in, even when it's out of range.
+     * Mix this audio in, even when it's out of range. This increases CPU usage, but keeps the sound playing at the correct position if the camera leaves and enters the [godot.AudioStreamPlayer3D]'s [maxDistance] radius.
      */
     OUT_OF_RANGE_MIX(0),
 
     /**
-     * Pause this audio when it gets out of range.
+     * Pause this audio when it gets out of range. This decreases CPU usage, but will cause the sound to restart if the camera leaves and enters the [godot.AudioStreamPlayer3D]'s [maxDistance] radius.
      */
     OUT_OF_RANGE_PAUSE(1);
 
@@ -483,7 +483,7 @@ open class AudioStreamPlayer3D : Spatial() {
 
   companion object {
     /**
-     * No dampening of loudness according to distance.
+     * No dampening of loudness according to distance. The sound will still be heard positionally, unlike an [godot.AudioStreamPlayer].
      */
     final const val ATTENUATION_DISABLED: Long = 3
 
@@ -518,12 +518,12 @@ open class AudioStreamPlayer3D : Spatial() {
     final const val DOPPLER_TRACKING_PHYSICS_STEP: Long = 2
 
     /**
-     * Mix this audio in, even when it's out of range.
+     * Mix this audio in, even when it's out of range. This increases CPU usage, but keeps the sound playing at the correct position if the camera leaves and enters the [godot.AudioStreamPlayer3D]'s [maxDistance] radius.
      */
     final const val OUT_OF_RANGE_MIX: Long = 0
 
     /**
-     * Pause this audio when it gets out of range.
+     * Pause this audio when it gets out of range. This decreases CPU usage, but will cause the sound to restart if the camera leaves and enters the [godot.AudioStreamPlayer3D]'s [maxDistance] radius.
      */
     final const val OUT_OF_RANGE_PAUSE: Long = 1
   }

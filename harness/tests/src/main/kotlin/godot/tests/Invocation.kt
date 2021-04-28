@@ -58,6 +58,9 @@ class Invocation : Spatial() {
 	@RegisterProperty
 	var enumList = listOf(TestEnum.ENUM_1)
 
+    @RegisterProperty
+    var vectorList = PoolVector3Array()
+
 	@Export
 	@RegisterProperty
 	var enumListMutable = mutableListOf(TestEnum.ENUM_1, TestEnum.ENUM_2)
@@ -91,6 +94,9 @@ class Invocation : Spatial() {
 			field.free()
 			field = value
 		}
+
+    @RegisterProperty
+    var vector = Vector3()
 
 	@Export
 	@RegisterProperty

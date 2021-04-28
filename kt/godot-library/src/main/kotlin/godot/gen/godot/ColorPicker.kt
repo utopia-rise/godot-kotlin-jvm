@@ -26,6 +26,9 @@ import kotlin.Unit
 /**
  * Color picker control.
  *
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/146](https://godotengine.org/asset-library/asset/146)
+ *
  * [godot.Control] node displaying a color picker widget. It's useful for selecting a color from an RGB/RGBA colorspace.
  */
 @GodotBaseType

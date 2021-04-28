@@ -20,6 +20,9 @@ import kotlin.Suppress
 /**
  * Standard themed Button.
  *
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/677](https://godotengine.org/asset-library/asset/677)
+ *
  * Button is the standard themed button. It can contain text and an icon, and will display them according to the current [godot.Theme].
  *
  * **Example of creating a button and assigning an action when pressed by code:**
@@ -36,6 +39,10 @@ import kotlin.Suppress
  * 		```
  *
  * Buttons (like all Control nodes) can also be created in the editor, but some situations may require creating them from code.
+ *
+ * See also [godot.BaseButton] which contains common properties and methods associated with this node.
+ *
+ * **Note:** Buttons do not interpret touch input and therefore don't support multitouch, since mouse emulation can only press one button at a given time. Use [godot.TouchScreenButton] for buttons that trigger gameplay movement or actions, as [godot.TouchScreenButton] supports multitouch.
  */
 @GodotBaseType
 open class Button : BaseButton() {

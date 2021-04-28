@@ -25,7 +25,7 @@ import kotlin.Suppress
  * A unit of execution in a process.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/threads/thread_safe_apis.html](https://docs.godotengine.org/en/latest/tutorials/threads/thread_safe_apis.html)
+ * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
  * A unit of execution in a process. Can run methods on [godot.Object]s simultaneously. The use of synchronization via [godot.Mutex] or [godot.Semaphore] is advised if working with shared objects.
  *

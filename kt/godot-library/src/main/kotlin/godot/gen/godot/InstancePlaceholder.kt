@@ -32,7 +32,7 @@ open class InstancePlaceholder : Node() {
   }
 
   /**
-   *
+   * Not thread-safe. Use [godot.Object.callDeferred] if calling from a thread.
    */
   open fun createInstance(replace: Boolean = false, customScene: PackedScene? = null): Node? {
     TransferContext.writeArguments(BOOL to replace, OBJECT to customScene)
@@ -42,7 +42,7 @@ open class InstancePlaceholder : Node() {
   }
 
   /**
-   * Gets the path to the [godot.PackedScene] resource file that is loaded by default when calling [replaceByInstance].
+   * Gets the path to the [godot.PackedScene] resource file that is loaded by default when calling [replaceByInstance]. Not thread-safe. Use [godot.Object.callDeferred] if calling from a thread.
    */
   open fun getInstancePath(): String {
     TransferContext.writeArguments()

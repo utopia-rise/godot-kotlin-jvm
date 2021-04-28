@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.annotation.CoreTypeHelper
 import godot.util.*
 import kotlin.jvm.JvmOverloads
 import kotlin.math.acos
@@ -33,6 +34,7 @@ class Transform2D(
             _x = Vector2(value)
         }
 
+    @CoreTypeHelper
     inline fun <T> x(block: Vector2.() -> T): T {
         return _x.block()
     }
@@ -47,6 +49,7 @@ class Transform2D(
             _y = Vector2(value)
         }
 
+    @CoreTypeHelper
     inline fun <T> y(block: Vector2.() -> T): T {
         return _y.block()
     }
@@ -61,6 +64,7 @@ class Transform2D(
             _origin = Vector2(value)
         }
 
+    @CoreTypeHelper
     inline fun <T> origin(block: Vector2.() -> T): T {
         return _origin.block()
     }

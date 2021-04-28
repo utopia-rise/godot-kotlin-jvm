@@ -28,12 +28,15 @@ import kotlin.Unit
 /**
  * A [godot.Resource] that contains vertex array-based geometry.
  *
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
+ *
  * Mesh is a type of [godot.Resource] that contains vertex array-based geometry, divided in *surfaces*. Each surface contains a completely separate array and a material used to draw it. Design wise, a mesh with multiple surfaces is preferred to a single surface, because objects created in 3D editing software commonly contain multiple materials.
  */
 @GodotBaseType
 open class Mesh : Resource() {
   /**
-   * Sets a hint to be used for lightmap resolution in [godot.BakedLightmap]. Overrides [godot.BakedLightmap.bakeDefaultTexelsPerUnit].
+   * Sets a hint to be used for lightmap resolution in [godot.BakedLightmap]. Overrides [godot.BakedLightmap.defaultTexelsPerUnit].
    */
   open var lightmapSizeHint: Vector2
     get() {

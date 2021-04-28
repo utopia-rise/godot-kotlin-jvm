@@ -101,7 +101,7 @@ open class EditorVCSInterface : Object() {
   }
 
   /**
-   * Returns a [godot.core.Dictionary] containing the path of the detected file change mapped to an integer signifying what kind of a change the corresponding file has experienced.
+   * Returns a [godot.core.Dictionary] containing the path of the detected file change mapped to an integer signifying what kind of change the corresponding file has experienced.
    *
    * The following integer values are being used to signify that the detected file is:
    *
