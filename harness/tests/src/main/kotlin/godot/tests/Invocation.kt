@@ -389,8 +389,10 @@ class Invocation : Spatial() {
 		println("NavMesh instance id after re-re-assign: ${resourceTest.getInstanceId()}")
 
 
-        //Just there to init the singleton.
-        Singleton.myScene
+        //Just there to register static instances in the GC
+        GodotStaticTest
+        GodotStaticDelegateTest.myScene
+        GodotStaticDelegateTest.ref
 	}
 
 	init {
