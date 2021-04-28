@@ -4,6 +4,7 @@ package godot.extensions
 
 import godot.Reference
 import godot.Object
+import godot.core.GarbageCollector
 import godot.core.memory.BaseGodotStatic
 import godot.global.GD
 import kotlin.properties.ReadWriteProperty
@@ -31,7 +32,7 @@ class GodotStaticDelegate<T : Object?>(val factory: () -> T) : BaseGodotStatic()
 
         if (v1 != UNINITIALIZED_VALUE && v1 != null) {
             require(v1 is Object)
-            if (v1 !is Reference && GD.isInstanceValid(v1)) {
+            if (v1 !is Reference && GarbageCollector.isInstanceValid(v1)) {
                 v1.free()
             }
         }
