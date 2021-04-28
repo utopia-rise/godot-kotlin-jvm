@@ -1,5 +1,7 @@
 Sometimes you need to store some Godot objects or references in a Kotlin singleton. This can cause some leaks when the program ends because you have to manually free objects and have the references collected. The `BaseGodotStatic` abstract class lets you implement the function `collect` so you can write the appropriate cleanup code.
 
+Warning: Don't use `queueFree()`. As the engine is closing, the queue won't be flushed.
+
 ```kotlin
 object MySingleton : GodotStatic() {
     var ref: MyReference? = MyReference()
