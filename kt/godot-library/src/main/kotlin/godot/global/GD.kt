@@ -6,6 +6,7 @@ import godot.Resource
 import godot.ResourceLoader
 import godot.core.*
 import godot.core.memory.BaseGodotStatic
+import godot.core.memory.GodotStatic
 import godot.util.nullptr
 
 
@@ -22,7 +23,7 @@ object GD : GDMath, GDCore, GDRandom, GDPrint, BaseGodotStatic() {
     fun assert(condition: Boolean, message: String = "") = assert(condition) { message }
 
     /** Returns whether instance is a valid object (e.g. has not been deleted from memory).*/
-    fun isInstanceValid(instance: Object?): Boolean {
+    fun isInstanceValid(instance: KtObject?): Boolean {
         if(instance != null){
             return instance.rawPtr != nullptr && GarbageCollector.isInstanceValid(instance)
         }
