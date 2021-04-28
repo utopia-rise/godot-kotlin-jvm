@@ -3,7 +3,7 @@
 package godot.extensions
 
 import godot.Reference
-import godot.core.KtObject
+import godot.Object
 import godot.core.memory.BaseGodotStatic
 import godot.global.GD
 import kotlin.properties.ReadWriteProperty
@@ -12,7 +12,7 @@ import kotlin.reflect.KProperty
 
 internal object UNINITIALIZED_VALUE
 
-class GodotStaticDelegate<T : KtObject?>(val factory: () -> T) : BaseGodotStatic(), ReadWriteProperty<Any, T> {
+class GodotStaticDelegate<T : Object?>(val factory: () -> T) : BaseGodotStatic(), ReadWriteProperty<Any, T> {
 
     private var _value: Any? = UNINITIALIZED_VALUE
 
@@ -30,7 +30,7 @@ class GodotStaticDelegate<T : KtObject?>(val factory: () -> T) : BaseGodotStatic
         val v1 = _value
 
         if (v1 != UNINITIALIZED_VALUE && v1 != null) {
-            require(v1 is KtObject)
+            require(v1 is Object)
             if (v1 !is Reference && GD.isInstanceValid(v1)) {
                 v1.free()
             }
@@ -47,6 +47,6 @@ class GodotStaticDelegate<T : KtObject?>(val factory: () -> T) : BaseGodotStatic
     }
 }
 
-fun <T : KtObject?> godotStatic(factory: () -> T): GodotStaticDelegate<T> {
+fun <T : Object?> godotStatic(factory: () -> T): GodotStaticDelegate<T> {
     return GodotStaticDelegate(factory)
 }
