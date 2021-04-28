@@ -23,7 +23,7 @@ object GD : GDMath, GDCore, GDRandom, GDPrint, BaseGodotStatic() {
     fun assert(condition: Boolean, message: String = "") = assert(condition) { message }
 
     /** Returns whether instance is a valid object (e.g. has not been deleted from memory).*/
-    fun isInstanceValid(instance: KtObject?): Boolean {
+    fun isInstanceValid(instance: Object?): Boolean {
         if(instance != null){
             return instance.rawPtr != nullptr && GarbageCollector.isInstanceValid(instance)
         }
