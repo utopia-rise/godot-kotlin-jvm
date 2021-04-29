@@ -390,7 +390,6 @@ class Invocation : Spatial() {
 
 
         //Just there to register static instances in the GC
-        GodotStaticTest
         GodotStaticDelegateTest.myScene
         GodotStaticDelegateTest.ref
 	}

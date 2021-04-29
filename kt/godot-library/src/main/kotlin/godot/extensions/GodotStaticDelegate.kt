@@ -5,15 +5,15 @@ package godot.extensions
 import godot.Reference
 import godot.Object
 import godot.core.GarbageCollector
-import godot.core.memory.BaseGodotStatic
-import godot.global.GD
+import godot.core.memory.GodotStatic
+import godot.core.variantMapper
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 
 internal object UNINITIALIZED_VALUE
 
-class GodotStaticDelegate<T : Object?>(val factory: () -> T) : BaseGodotStatic(), ReadWriteProperty<Any, T> {
+class GodotStaticDelegate<T : Any?>(val factory: () -> T) : GodotStatic, ReadWriteProperty<Any, T> {
 
     private var _value: Any? = UNINITIALIZED_VALUE
 
@@ -48,6 +48,14 @@ class GodotStaticDelegate<T : Object?>(val factory: () -> T) : BaseGodotStatic()
     }
 }
 
-fun <T : Object?> godotStatic(factory: () -> T): GodotStaticDelegate<T> {
-    return GodotStaticDelegate(factory)
+inline fun <reified T : Any?> godotStatic(noinline factory: () -> T): GodotStaticDelegate<T> {
+
+    val variantType = variantMapper[T::class]
+    checkNotNull(variantType) {
+        "Can't create a GodotStatic with generic ${T::class}."
+    }
+
+    return GodotStaticDelegate(factory).also{
+        it.registerAsSingleton()
+    }
 }

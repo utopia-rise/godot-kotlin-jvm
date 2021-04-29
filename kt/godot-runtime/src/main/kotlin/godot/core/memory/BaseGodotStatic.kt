@@ -10,11 +10,3 @@ interface GodotStatic {
 
     fun collect()
 }
-
-abstract class BaseGodotStatic: GodotStatic {
-
-    init {
-        @Suppress("LeakingThis")
-        registerAsSingleton()
-    }
-}
