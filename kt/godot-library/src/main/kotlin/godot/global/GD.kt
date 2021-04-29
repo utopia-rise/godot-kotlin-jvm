@@ -5,16 +5,13 @@ import godot.RandomNumberGenerator
 import godot.Resource
 import godot.ResourceLoader
 import godot.core.*
-import godot.core.memory.BaseGodotStatic
-import godot.core.memory.GodotStatic
+import godot.extensions.godotStatic
 import godot.util.nullptr
 
 
-object GD : GDMath, GDCore, GDRandom, GDPrint, BaseGodotStatic() {
-    override var rng: RandomNumberGenerator? = RandomNumberGenerator()
-
-    override fun collect(){
-        rng = null
+object GD : GDMath, GDCore, GDRandom, GDPrint {
+    override var rng: RandomNumberGenerator? by godotStatic {
+        RandomNumberGenerator()
     }
 
     /** Asserts that the condition is true.
@@ -24,7 +21,7 @@ object GD : GDMath, GDCore, GDRandom, GDPrint, BaseGodotStatic() {
 
     /** Returns whether instance is a valid object (e.g. has not been deleted from memory).*/
     fun isInstanceValid(instance: Object?): Boolean {
-        if(instance != null){
+        if (instance != null) {
             return instance.rawPtr != nullptr && GarbageCollector.isInstanceValid(instance)
         }
         return false
