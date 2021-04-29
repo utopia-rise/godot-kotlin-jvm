@@ -65,6 +65,6 @@ object GD : GDMath, GDCore, GDRandom, GDPrint, GodotStatic {
      * */
     @Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
     inline fun <T : Resource> load(path: String, typeHint: String = "", noCache: Boolean = false): T? {
-        return ResourceLoader.loadAs(path, typeHint, noCache) as T?
+        return ResourceLoader.loadAs(path, typeHint, noCache)
     }
 }
