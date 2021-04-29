@@ -301,7 +301,7 @@ void VariantArrayBridge::engine_call_count(JNIEnv* p_raw_env, jobject p_instance
     jni::Env env{p_raw_env};
     Variant args[1] = {};
     GDKotlin::get_instance().transfer_context->read_args(env, args);
-    Variant variant{from_uint_to_ptr<Array>(p_raw_ptr)->count(args[0].operator Object *())};
+    Variant variant{from_uint_to_ptr<Array>(p_raw_ptr)->count(args[0])};
 }
 
 void VariantArrayBridge::engine_call_duplicate(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
@@ -334,7 +334,7 @@ void VariantArrayBridge::engine_call_findLast(JNIEnv* p_raw_env, jobject p_insta
     Variant args[1] = {};
     TransferContext* transfer_context = GDKotlin::get_instance().transfer_context;
     transfer_context->read_args(env, args);
-    Variant variant{from_uint_to_ptr<Array>(p_raw_ptr)->find_last(args[0].operator Object *())};
+    Variant variant{from_uint_to_ptr<Array>(p_raw_ptr)->find_last(args[0])};
     transfer_context->write_return_value(env, variant);
 }
 
@@ -357,7 +357,7 @@ void VariantArrayBridge::engine_call_insert(JNIEnv* p_raw_env, jobject p_instanc
     jni::Env env{p_raw_env};
     Variant args[2] = {};
     GDKotlin::get_instance().transfer_context->read_args(env, args);
-    from_uint_to_ptr<Array>(p_raw_ptr)->insert(args[0].operator int64_t(), args[1].operator Object *());
+    from_uint_to_ptr<Array>(p_raw_ptr)->insert(args[0].operator int64_t(), args[1]);
 }
 
 void VariantArrayBridge::engine_call_max(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
@@ -427,7 +427,7 @@ void VariantArrayBridge::engine_call_operator_set(JNIEnv* p_raw_env, jobject p_i
     jni::Env env{p_raw_env};
     Variant args[2] = {};
     GDKotlin::get_instance().transfer_context->read_args(env, args);
-    from_uint_to_ptr<Array>(p_raw_ptr)->set(args[0].operator int64_t(), args[1].operator Object *());
+    from_uint_to_ptr<Array>(p_raw_ptr)->operator[](args[0].operator int64_t()) = args[1];
 }
 
 void VariantArrayBridge::engine_call_operator_get(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
