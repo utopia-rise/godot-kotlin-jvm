@@ -19,7 +19,7 @@ import kotlin.Suppress
  * Audio effect used for recording sound from a microphone.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/audio/recording_with_microphone.html](https://docs.godotengine.org/en/latest/tutorials/audio/recording_with_microphone.html)
+ * [https://godotengine.org/asset-library/asset/527](https://godotengine.org/asset-library/asset/527)
  *
  * Allows the user to record sound from a microphone. It sets and gets the format in which the audio file will be recorded (8-bit, 16-bit, or compressed). It checks whether or not the recording is active, and if it is, records the sound. It then returns the recorded sample.
  */

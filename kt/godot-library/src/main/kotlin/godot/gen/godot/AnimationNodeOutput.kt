@@ -12,7 +12,7 @@ import kotlin.Suppress
  * Generic output node to be added to [godot.AnimationNodeBlendTree].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
+ * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  */
 @GodotBaseType
 open class AnimationNodeOutput : AnimationNode() {

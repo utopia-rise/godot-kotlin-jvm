@@ -21,7 +21,7 @@ import kotlin.Suppress
  * Blends linearly between two of any number of [godot.AnimationNode] of any type placed on a virtual axis.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/latest/tutorials/animation/animation_tree.html)
+ * [https://docs.godotengine.org/en/3.3/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/3.3/tutorials/animation/animation_tree.html)
  *
  * A resource to add to an [godot.AnimationNodeBlendTree].
  *

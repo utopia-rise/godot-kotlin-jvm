@@ -26,7 +26,7 @@ import kotlin.Suppress
  * Plays audio in 2D.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/audio/audio_streams.html](https://docs.godotengine.org/en/latest/tutorials/audio/audio_streams.html)
+ * [https://docs.godotengine.org/en/3.3/tutorials/audio/audio_streams.html](https://docs.godotengine.org/en/3.3/tutorials/audio/audio_streams.html)
  *
  * Plays audio that dampens with distance from screen center.
  */

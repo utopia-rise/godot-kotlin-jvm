@@ -27,7 +27,7 @@ import kotlin.Unit
  * Casts light in a 2D environment.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/2d/2d_lights_and_shadows.html](https://docs.godotengine.org/en/latest/tutorials/2d/2d_lights_and_shadows.html)
+ * [https://docs.godotengine.org/en/3.3/tutorials/2d/2d_lights_and_shadows.html](https://docs.godotengine.org/en/3.3/tutorials/2d/2d_lights_and_shadows.html)
  *
  * Casts light in a 2D environment. Light is defined by a (usually grayscale) texture, a color, an energy value, a mode (see constants), and various other parameters (range and shadows-related).
  *

@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.annotation.CoreTypeHelper
 import godot.util.*
 
 class AABB(
@@ -22,6 +23,7 @@ class AABB(
             _position = Vector3(value)
         }
 
+    @CoreTypeHelper
     inline fun <T> position(block: Vector3.() -> T): T {
         return _position.block()
     }
@@ -36,6 +38,7 @@ class AABB(
             _size = Vector3(value)
         }
 
+    @CoreTypeHelper
     inline fun <T> size(block: Vector3.() -> T): T{
         return _size.block()
     }
@@ -50,6 +53,7 @@ class AABB(
             _size = value - _position
         }
 
+    @CoreTypeHelper
     inline fun <T> end(block: Vector3.() -> T): T{
         val vec = end
         val ret = vec.block()

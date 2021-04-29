@@ -21,7 +21,7 @@ import kotlin.Suppress
 /**
  * Plugin for adding custom property editors on inspector.
  *
- * This plugins allows adding custom property editors to [godot.EditorInspector].
+ * These plugins allow adding custom property editors to [godot.EditorInspector].
  *
  * Plugins are registered via [godot.EditorPlugin.addInspectorPlugin].
  *
@@ -31,7 +31,7 @@ import kotlin.Suppress
  *
  * Subsequently, the [parseCategory] and [parseProperty] are called for every category and property. They offer the ability to add custom controls to the inspector too.
  *
- * Finally [parseEnd] will be called.
+ * Finally, [parseEnd] will be called.
  *
  * On each of these calls, the "add" functions can be called.
  */

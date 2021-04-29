@@ -79,7 +79,7 @@ open class StreamPeerTCP : StreamPeer() {
   }
 
   /**
-   * Returns `true` if this peer is currently connected to a host, `false` otherwise.
+   * Returns `true` if this peer is currently connected or is connecting to a host, `false` otherwise.
    */
   open fun isConnectedToHost(): Boolean {
     TransferContext.writeArguments()
@@ -89,9 +89,9 @@ open class StreamPeerTCP : StreamPeer() {
   }
 
   /**
-   * Disables Nagle's algorithm to improve latency for small packets.
+   * If `enabled` is `true`, packets will be sent immediately. If `enabled` is `false` (the default), packet transfers will be delayed and combined using [godot.Nagle's algorithm](https://en.wikipedia.org/wiki/Nagle%27s_algorithm).
    *
-   * **Note:** For applications that send large packets or need to transfer a lot of data, this can decrease the total available bandwidth.
+   * **Note:** It's recommended to leave this disabled for applications that send large packets or need to transfer a lot of data, as enabling this can decrease the total available bandwidth.
    */
   open fun setNoDelay(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)

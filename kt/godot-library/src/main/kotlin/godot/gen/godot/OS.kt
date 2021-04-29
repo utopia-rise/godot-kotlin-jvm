@@ -42,10 +42,22 @@ import kotlin.Unit
 /**
  * Operating System functions.
  *
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/677](https://godotengine.org/asset-library/asset/677)
+ *
  * Operating System functions. OS wraps the most common functionality to communicate with the host operating system, such as the clipboard, video driver, date and time, timers, environment variables, execution of binaries, command line, etc.
  */
 @GodotBaseType
 object OS : Object() {
+  /**
+   * Application handle:
+   *
+   * - Windows: `HINSTANCE` of the application
+   *
+   * - MacOS: `NSApplication*` of the application (not yet implemented)
+   *
+   * - Android: `JNIEnv*` of the application (not yet implemented)
+   */
   final const val APPLICATION_HANDLE: Long = 0
 
   /**
@@ -83,6 +95,11 @@ object OS : Object() {
    */
   final const val DAY_WEDNESDAY: Long = 3
 
+  /**
+   * Display handle:
+   *
+   * - Linux: `X11::Display*` for the display
+   */
   final const val DISPLAY_HANDLE: Long = 1
 
   /**
@@ -145,6 +162,15 @@ object OS : Object() {
    */
   final const val MONTH_SEPTEMBER: Long = 9
 
+  /**
+   * OpenGL Context:
+   *
+   * - Windows: `HGLRC`
+   *
+   * - Linux: `X11::GLXContext`
+   *
+   * - MacOS: `NSOpenGLContext*` (not yet implemented)
+   */
   final const val OPENGL_CONTEXT: Long = 4
 
   /**
@@ -257,8 +283,26 @@ object OS : Object() {
    */
   final const val VIDEO_DRIVER_GLES3: Long = 0
 
+  /**
+   * Window handle:
+   *
+   * - Windows: `HWND` of the main window
+   *
+   * - Linux: `X11::Window*` of the main window
+   *
+   * - MacOS: `NSWindow*` of the main window (not yet implemented)
+   *
+   * - Android: `jObject` the main android activity (not yet implemented)
+   */
   final const val WINDOW_HANDLE: Long = 2
 
+  /**
+   * Window view:
+   *
+   * - Windows: `HDC` of the main window drawing context
+   *
+   * - MacOS: `NSView*` of the main windows view (not yet implemented)
+   */
   final const val WINDOW_VIEW: Long = 3
 
   /**
@@ -394,7 +438,7 @@ object OS : Object() {
     }
 
   /**
-   * The current tablet drvier in use.
+   * The current tablet driver in use.
    */
   var tabletDriver: String
     get() {
@@ -641,7 +685,7 @@ object OS : Object() {
   }
 
   /**
-   * Delay execution of the current thread by `msec` milliseconds.
+   * Delay execution of the current thread by `msec` milliseconds. `usec` must be greater than or equal to `0`. Otherwise, [delayMsec] will do nothing and will print an error message.
    */
   fun delayMsec(msec: Long) {
     TransferContext.writeArguments(LONG to msec)
@@ -649,7 +693,7 @@ object OS : Object() {
   }
 
   /**
-   * Delay execution of the current thread by `usec` microseconds.
+   * Delay execution of the current thread by `usec` microseconds. `usec` must be greater than or equal to `0`. Otherwise, [delayUsec] will do nothing and will print an error message.
    */
   fun delayUsec(usec: Long) {
     TransferContext.writeArguments(LONG to usec)
@@ -841,7 +885,9 @@ object OS : Object() {
   }
 
   /**
-   * Returns an environment variable.
+   * Returns the value of an environment variable. Returns an empty string if the environment variable doesn't exist.
+   *
+   * **Note:** Double-check the casing of `variable`. Environment variable names are case-sensitive on all platforms except Windows.
    */
   fun getEnvironment(variable: String): String {
     TransferContext.writeArguments(STRING to variable)
@@ -939,6 +985,11 @@ object OS : Object() {
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
+  /**
+   * Returns internal structure pointers for use in GDNative plugins.
+   *
+   * **Note:** This method is implemented on Linux and Windows (other OSs will soon be supported).
+   */
   fun getNativeHandle(handleType: Long): Long {
     TransferContext.writeArguments(LONG to handleType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_NATIVE_HANDLE, LONG)
@@ -1030,7 +1081,9 @@ object OS : Object() {
   /**
    * Returns the dots per inch density of the specified screen. If `screen` is `-1` (the default value), the current screen will be used.
    *
-   * On Android devices, the actual screen densities are grouped into six generalized densities:
+   * **Note:** On macOS, returned value is inaccurate if fractional display scaling mode is used.
+   *
+   * **Note:** On Android devices, the actual screen densities are grouped into six generalized densities:
    *
    * ```
    * 				   ldpi - 120 dpi
@@ -1172,6 +1225,11 @@ object OS : Object() {
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
+  /**
+   * Returns the ID of the current thread. This can be used in logs to ease debugging of multi-threaded applications.
+   *
+   * **Note:** Thread IDs are not deterministic and may be reused across application restarts.
+   */
   fun getThreadCallerId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_THREAD_CALLER_ID, LONG)
@@ -1226,7 +1284,9 @@ object OS : Object() {
   }
 
   /**
-   * Returns the current UNIX epoch timestamp.
+   * Returns the current UNIX epoch timestamp in seconds.
+   *
+   * **Important:** This is the system clock that the user can manully set. **Never use** this method for precise time calculation since its results are also subject to automatic adjustments by the operating system. **Always use** [getTicksUsec] or [getTicksMsec] for precise time calculation instead, since they are guaranteed to be monotonic (i.e. never decrease).
    */
   fun getUnixTime(): Long {
     TransferContext.writeArguments()
@@ -1238,6 +1298,8 @@ object OS : Object() {
    * Gets an epoch time value from a dictionary of time values.
    *
    * `datetime` must be populated with the following keys: `year`, `month`, `day`, `hour`, `minute`, `second`.
+   *
+   * If the dictionary is empty `0` is returned.
    *
    * You can pass the output from [getDatetimeFromUnixTime] directly into this function. Daylight Savings Time (`dst`), if present, is ignored.
    */
@@ -1348,7 +1410,9 @@ object OS : Object() {
   }
 
   /**
-   * Returns `true` if an environment variable exists.
+   * Returns `true` if the environment variable with the name `variable` exists.
+   *
+   * **Note:** Double-check the casing of `variable`. Environment variable names are case-sensitive on all platforms except Windows.
    */
   fun hasEnvironment(variable: String): Boolean {
     TransferContext.writeArguments(STRING to variable)
@@ -1357,7 +1421,7 @@ object OS : Object() {
   }
 
   /**
-   * Returns `true` if the feature for the given feature tag is supported in the currently running instance, depending on platform, build etc. Can be used to check whether you're currently running a debug build, on a certain platform or arch, etc. Refer to the [godot.Feature Tags](https://docs.godotengine.org/en/latest/getting_started/workflow/export/feature_tags.html) documentation for more details.
+   * Returns `true` if the feature for the given feature tag is supported in the currently running instance, depending on platform, build etc. Can be used to check whether you're currently running a debug build, on a certain platform or arch, etc. Refer to the [godot.Feature Tags](https://docs.godotengine.org/en/3.3/getting_started/workflow/export/feature_tags.html) documentation for more details.
    *
    * **Note:** Tag names are case-sensitive.
    */
@@ -1674,6 +1738,11 @@ object OS : Object() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
+  /**
+   * Sets the value of the environment variable `variable` to `value`. The environment variable will be set for the Godot process and any process executed with [execute] after running [setEnvironment]. The environment variable will *not* persist to processes run after the Godot process was terminated.
+   *
+   * **Note:** Double-check the casing of `variable`. Environment variable names are case-sensitive on all platforms except Windows.
+   */
   fun setEnvironment(variable: String, value: String): Boolean {
     TransferContext.writeArguments(STRING to variable, STRING to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_ENVIRONMENT, BOOL)
@@ -1758,6 +1827,26 @@ object OS : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_WINDOW_ALWAYS_ON_TOP, NIL)
   }
 
+  /**
+   * Sets a polygonal region of the window which accepts mouse events. Mouse events outside the region will be passed through.
+   *
+   * Passing an empty array will disable passthrough support (all mouse events will be intercepted by the window, which is the default behavior).
+   *
+   * ```
+   * 				# Set region, using Path2D node.
+   * 				OS.set_window_mouse_passthrough($Path2D.curve.get_baked_points())
+   *
+   * 				# Set region, using Polygon2D node.
+   * 				OS.set_window_mouse_passthrough($Polygon2D.polygon)
+   *
+   * 				# Reset region to default.
+   * 				OS.set_window_mouse_passthrough([])
+   * 				```
+   *
+   * **Note:** On Windows, the portion of a window that lies outside the region is not drawn, while on Linux and macOS it is.
+   *
+   * **Note:** This method is implemented on Linux, macOS and Windows.
+   */
   fun setWindowMousePassthrough(region: PoolVector2Array) {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to region)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_WINDOW_MOUSE_PASSTHROUGH,
@@ -1974,14 +2063,55 @@ object OS : Object() {
   enum class HandleType(
     id: Long
   ) {
+    /**
+     * Application handle:
+     *
+     * - Windows: `HINSTANCE` of the application
+     *
+     * - MacOS: `NSApplication*` of the application (not yet implemented)
+     *
+     * - Android: `JNIEnv*` of the application (not yet implemented)
+     */
     APPLICATION_HANDLE(0),
 
+    /**
+     * Display handle:
+     *
+     * - Linux: `X11::Display*` for the display
+     */
     DISPLAY_HANDLE(1),
 
+    /**
+     * Window handle:
+     *
+     * - Windows: `HWND` of the main window
+     *
+     * - Linux: `X11::Window*` of the main window
+     *
+     * - MacOS: `NSWindow*` of the main window (not yet implemented)
+     *
+     * - Android: `jObject` the main android activity (not yet implemented)
+     */
     WINDOW_HANDLE(2),
 
+    /**
+     * Window view:
+     *
+     * - Windows: `HDC` of the main window drawing context
+     *
+     * - MacOS: `NSView*` of the main windows view (not yet implemented)
+     */
     WINDOW_VIEW(3),
 
+    /**
+     * OpenGL Context:
+     *
+     * - Windows: `HGLRC`
+     *
+     * - Linux: `X11::GLXContext`
+     *
+     * - MacOS: `NSOpenGLContext*` (not yet implemented)
+     */
     OPENGL_CONTEXT(4);
 
     val id: Long

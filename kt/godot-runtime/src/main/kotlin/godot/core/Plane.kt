@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.annotation.CoreTypeHelper
 import godot.util.*
 import kotlin.math.abs
 
@@ -23,6 +24,7 @@ class Plane(
             _normal = Vector3(value)
         }
 
+    @CoreTypeHelper
     inline fun <T> normal(block: Vector3.() -> T): T {
         return _normal.block()
     }

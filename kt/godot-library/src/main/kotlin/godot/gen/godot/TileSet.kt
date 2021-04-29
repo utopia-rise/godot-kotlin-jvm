@@ -37,6 +37,9 @@ import kotlin.Suppress
 /**
  * Tile library for tilemaps.
  *
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/113](https://godotengine.org/asset-library/asset/113)
+ *
  * A TileSet is a library of tiles for a [godot.TileMap]. It contains a list of tiles, each consisting of a sprite and optional collision shapes.
  *
  * Tiles are referenced by a unique integer ID.

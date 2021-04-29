@@ -40,12 +40,12 @@ import kotlin.Unit
  * Manages the game loop via a hierarchy of nodes.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/getting_started/step_by_step/scene_tree.html](https://docs.godotengine.org/en/latest/getting_started/step_by_step/scene_tree.html)
- * [https://docs.godotengine.org/en/latest/tutorials/viewports/multiple_resolutions.html](https://docs.godotengine.org/en/latest/tutorials/viewports/multiple_resolutions.html)
+ * [https://docs.godotengine.org/en/3.3/getting_started/step_by_step/scene_tree.html](https://docs.godotengine.org/en/3.3/getting_started/step_by_step/scene_tree.html)
+ * [https://docs.godotengine.org/en/3.3/tutorials/viewports/multiple_resolutions.html](https://docs.godotengine.org/en/3.3/tutorials/viewports/multiple_resolutions.html)
  *
  * As one of the most important classes, the [godot.SceneTree] manages the hierarchy of nodes in a scene as well as scenes themselves. Nodes can be added, retrieved and removed. The whole scene tree (and thus the current scene) can be paused. Scenes can be loaded, switched and reloaded.
  *
- * You can also use the [godot.SceneTree] to organize your nodes into groups: every node can be assigned as many groups as you want to create, e.g. a "enemy" group. You can then iterate these groups or even call methods and set properties on all the group's members at once.
+ * You can also use the [godot.SceneTree] to organize your nodes into groups: every node can be assigned as many groups as you want to create, e.g. an "enemy" group. You can then iterate these groups or even call methods and set properties on all the group's members at once.
  *
  * [godot.SceneTree] is the default [godot.MainLoop] implementation used by scenes, and is thus in charge of the game loop.
  */
@@ -319,7 +319,9 @@ open class SceneTree : MainLoop() {
   }
 
   /**
-   * Calls `method` on each member of the given group.
+   * Calls `method` on each member of the given group. You can pass arguments to `method` by specifying them at the end of the method call.
+   *
+   * **Note:** `method` may only have 5 arguments at most (7 arguments passed to this method in total).
    */
   open fun callGroup(
     group: String,
@@ -333,7 +335,9 @@ open class SceneTree : MainLoop() {
   }
 
   /**
-   * Calls `method` on each member of the given group, respecting the given [enum GroupCallFlags].
+   * Calls `method` on each member of the given group, respecting the given [enum GroupCallFlags]. You can pass arguments to `method` by specifying them at the end of the method call.
+   *
+   * **Note:** `method` may only have 5 arguments at most (8 arguments passed to this method in total).
    */
   open fun callGroupFlags(
     flags: Long,
@@ -351,6 +355,8 @@ open class SceneTree : MainLoop() {
    * Changes the running scene to the one at the given `path`, after loading it into a [godot.PackedScene] and creating a new instance.
    *
    * Returns [OK] on success, [ERR_CANT_OPEN] if the `path` cannot be loaded into a [godot.PackedScene], or [ERR_CANT_CREATE] if that scene cannot be instantiated.
+   *
+   * **Note:** The scene change is deferred, which means that the new scene node is added on the next idle frame. You won't be able to access it immediately after the [changeScene] call.
    */
   open fun changeScene(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
@@ -362,6 +368,8 @@ open class SceneTree : MainLoop() {
    * Changes the running scene to a new instance of the given [godot.PackedScene].
    *
    * Returns [OK] on success or [ERR_CANT_CREATE] if the scene cannot be instantiated.
+   *
+   * **Note:** The scene change is deferred, which means that the new scene node is added on the next idle frame. You won't be able to access it immediately after the [changeSceneTo] call.
    */
   open fun changeSceneTo(packedScene: PackedScene): GodotError {
     TransferContext.writeArguments(OBJECT to packedScene)
@@ -380,6 +388,8 @@ open class SceneTree : MainLoop() {
    * 				    yield(get_tree().create_timer(1.0), "timeout")
    * 				    print("end")
    * 				```
+   *
+   * The timer will be automatically freed after its time elapses.
    */
   open fun createTimer(timeSec: Double, pauseModeProcess: Boolean = true): SceneTreeTimer? {
     TransferContext.writeArguments(DOUBLE to timeSec, BOOL to pauseModeProcess)
@@ -508,7 +518,7 @@ open class SceneTree : MainLoop() {
   }
 
   /**
-   * Quits the application. A process `exit_code` can optionally be passed as an argument. If this argument is `0` or greater, it will override the [godot.OS.exitCode] defined before quitting the application.
+   * Quits the application at the end of the current iteration. A process `exit_code` can optionally be passed as an argument. If this argument is `0` or greater, it will override the [godot.OS.exitCode] defined before quitting the application.
    */
   open fun quit(exitCode: Long = -1) {
     TransferContext.writeArguments(LONG to exitCode)

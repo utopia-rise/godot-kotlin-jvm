@@ -17,7 +17,7 @@ import kotlin.Suppress
  * Virtual class to define custom [godot.VisualShaderNode]s for use in the Visual Shader Editor.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/plugins/editor/visual_shader_plugins.html](https://docs.godotengine.org/en/latest/tutorials/plugins/editor/visual_shader_plugins.html)
+ * [https://docs.godotengine.org/en/3.3/tutorials/plugins/editor/visual_shader_plugins.html](https://docs.godotengine.org/en/3.3/tutorials/plugins/editor/visual_shader_plugins.html)
  *
  * By inheriting this class you can create a custom [godot.VisualShader] script addon which will be automatically added to the Visual Shader Editor. The [godot.VisualShaderNode]'s behavior is defined by overriding the provided virtual methods.
  *
@@ -36,7 +36,7 @@ open class VisualShaderNodeCustom : VisualShaderNode() {
   }
 
   /**
-   * Override this method to define the category of the associated custom node in the Visual Shader Editor's members dialog.
+   * Override this method to define the category of the associated custom node in the Visual Shader Editor's members dialog. The path may look like `"MyGame/MyFunctions/Noise"`.
    *
    * Defining this method is **optional**. If not overridden, the node will be filed under the "Custom" category.
    */

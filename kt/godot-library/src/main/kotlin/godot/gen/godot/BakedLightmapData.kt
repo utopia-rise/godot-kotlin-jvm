@@ -84,7 +84,7 @@ open class BakedLightmapData : Resource() {
     }
 
   /**
-   *
+   * Global energy multiplier for baked and dynamic capture objects.
    */
   open var energy: Double
     get() {
@@ -98,6 +98,9 @@ open class BakedLightmapData : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_SET_ENERGY, NIL)
     }
 
+  /**
+   * Controls whether dynamic capture objects receive environment lighting or not.
+   */
   open var interior: Boolean
     get() {
       TransferContext.writeArguments()
@@ -166,6 +169,9 @@ open class BakedLightmapData : Resource() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_ADD_USER, NIL)
   }
 
+  /**
+   *
+   */
   open fun clearData() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_CLEAR_DATA, NIL)

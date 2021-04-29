@@ -33,7 +33,7 @@ import kotlin.Suppress
 @GodotBaseType
 open class SpringArm : Spatial() {
   /**
-   * The layers against which the collision check shall be done. See [godot.Collision layers and masks](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The layers against which the collision check shall be done. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
   open var collisionMask: Long
     get() {

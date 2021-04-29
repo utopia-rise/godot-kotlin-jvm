@@ -27,7 +27,7 @@ import kotlin.Unit
  * Default 3D rendering material.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/3d/spatial_material.html](https://docs.godotengine.org/en/latest/tutorials/3d/spatial_material.html)
+ * [https://docs.godotengine.org/en/3.3/tutorials/3d/spatial_material.html](https://docs.godotengine.org/en/3.3/tutorials/3d/spatial_material.html)
  *
  * This provides a default material with a wide variety of rendering features and properties without the need to write shader code. See the tutorial below for details.
  */
@@ -275,6 +275,8 @@ open class SpatialMaterial : Material() {
 
   /**
    * If `true`, depth mapping is enabled (also called "parallax mapping" or "height mapping"). See also [normalEnabled].
+   *
+   * **Note:** Depth mapping is not supported if triplanar mapping is used on the same material. The value of [depthEnabled] will be ignored if [uv1Triplanar] is enabled.
    */
   open var depthEnabled: Boolean
     get() {
@@ -484,7 +486,9 @@ open class SpatialMaterial : Material() {
     }
 
   /**
-   * Distance at which the object fades fully and is no longer visible.
+   * Distance at which the object appears fully opaque.
+   *
+   * **Note:** If `distance_fade_max_distance` is less than `distance_fade_min_distance`, the behavior will be reversed. The object will start to fade away at `distance_fade_max_distance` and will fully disappear once it reaches `distance_fade_min_distance`.
    */
   open var distanceFadeMaxDistance: Double
     get() {
@@ -500,7 +504,9 @@ open class SpatialMaterial : Material() {
     }
 
   /**
-   * Distance at which the object starts to fade. If the object is less than this distance away it will appear normal.
+   * Distance at which the object starts to become visible. If the object is less than this distance away, it will be invisible.
+   *
+   * **Note:** If `distance_fade_min_distance` is greater than `distance_fade_max_distance`, the behavior will be reversed. The object will start to fade away at `distance_fade_max_distance` and will fully disappear once it reaches `distance_fade_min_distance`.
    */
   open var distanceFadeMinDistance: Double
     get() {
@@ -969,6 +975,8 @@ open class SpatialMaterial : Material() {
 
   /**
    * Controls how the object faces the camera. See [enum BillboardMode].
+   *
+   * **Note:** Billboard mode is not suitable for VR because the left-right vector of the camera is not horizontal when the screen is attached to your head instead of on the table. See [godot.GitHub issue #41567](https://github.com/godotengine/godot/issues/41567) for details.
    */
   open var paramsBillboardMode: Long
     get() {

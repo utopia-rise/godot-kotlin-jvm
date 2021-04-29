@@ -2,6 +2,7 @@
 
 package godot.core
 
+import godot.annotation.CoreTypeHelper
 import godot.util.MapIterator
 import godot.util.VoidPtr
 
@@ -276,6 +277,14 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
         Bridge.engine_call_operator_get(_handle)
         @Suppress("UNCHECKED_CAST")
         return TransferContext.readReturnValue(valueVariantType, true) as V
+    }
+
+    @CoreTypeHelper
+    inline fun <R> get(key: K, block: V.() -> R): R {
+        val localCopy = this[key]
+        val ret = localCopy.block()
+        this[key] = localCopy
+        return ret
     }
 
     operator fun set(key: K, value: V) {

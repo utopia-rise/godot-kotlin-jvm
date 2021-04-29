@@ -45,7 +45,7 @@ import kotlin.reflect.KMutableProperty
  * Base class for all *scene* objects.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/getting_started/step_by_step/scenes_and_nodes.html](https://docs.godotengine.org/en/latest/getting_started/step_by_step/scenes_and_nodes.html)
+ * [https://github.com/godotengine/godot-demo-projects/](https://github.com/godotengine/godot-demo-projects/)
  *
  * Nodes are Godot's building blocks. They can be assigned as the child of another node, resulting in a tree arrangement. A given node can contain any number of nodes as children with the requirement that all siblings (direct children of a node) should have unique names.
  *
@@ -57,7 +57,7 @@ import kotlin.reflect.KMutableProperty
  *
  * This means that when adding a node to the scene tree, the following order will be used for the callbacks: [_enterTree] of the parent, [_enterTree] of the children, [_ready] of the children and finally [_ready] of the parent (recursively for the entire scene tree).
  *
- * **Processing:** Nodes can override the "process" state, so that they receive a callback on each frame requesting them to process (do something). Normal processing (callback [_process], toggled with [setProcess]) happens as fast as possible and is dependent on the frame rate, so the processing time *delta* is passed as an argument. Physics processing (callback [_physicsProcess], toggled with [setPhysicsProcess]) happens a fixed number of times per second (60 by default) and is useful for code related to the physics engine.
+ * **Processing:** Nodes can override the "process" state, so that they receive a callback on each frame requesting them to process (do something). Normal processing (callback [_process], toggled with [setProcess]) happens as fast as possible and is dependent on the frame rate, so the processing time *delta* (in seconds) is passed as an argument. Physics processing (callback [_physicsProcess], toggled with [setPhysicsProcess]) happens a fixed number of times per second (60 by default) and is useful for code related to the physics engine.
  *
  * Nodes can also process input events. When present, the [_input] function will be called for each input that the program receives. In many cases, this can be overkill (unless used for simple projects), and the [_unhandledInput] function might be preferred; it is called when the input event was not handled by anyone else (typically, GUI [godot.Control] nodes), ensuring that the node only receives the events that were meant for it.
  *
@@ -137,6 +137,8 @@ open class Node : Object() {
 
   /**
    * The name of the node. This name is unique among the siblings (other child nodes from the same parent). When set to an existing name, the node will be automatically renamed.
+   *
+   * **Note:** Auto-generated names might include the `@` character, which is reserved for unique names when using [addChild]. When setting the name manually, any `@` will be removed.
    */
   open var name: String
     get() {
@@ -708,7 +710,7 @@ open class Node : Object() {
   }
 
   /**
-   * Called during the physics processing step of the main loop. Physics processing means that the frame rate is synced to the physics, i.e. the `delta` variable should be constant.
+   * Called during the physics processing step of the main loop. Physics processing means that the frame rate is synced to the physics, i.e. the `delta` variable should be constant. `delta` is in seconds.
    *
    * It is only called if physics processing is enabled, which is done automatically if this method is overridden, and can be toggled with [setPhysicsProcess].
    *
@@ -720,7 +722,7 @@ open class Node : Object() {
   }
 
   /**
-   * Called during the processing step of the main loop. Processing happens at every frame and as fast as possible, so the `delta` time since the previous frame is not constant.
+   * Called during the processing step of the main loop. Processing happens at every frame and as fast as possible, so the `delta` time since the previous frame is not constant. `delta` is in seconds.
    *
    * It is only called if processing is enabled, which is done automatically if this method is overridden, and can be toggled with [setProcess].
    *
@@ -780,7 +782,7 @@ open class Node : Object() {
   /**
    * Adds a child node. Nodes can have any number of children, but every child must have a unique name. Child nodes are automatically deleted when the parent node is deleted, so an entire scene can be removed by deleting its topmost node.
    *
-   * If `legible_unique_name` is `true`, the child node will have an human-readable name based on the name of the node being instanced instead of its type.
+   * If `legible_unique_name` is `true`, the child node will have a human-readable name based on the name of the node being instanced instead of its type.
    *
    * **Note:** If the child node already has a parent, the function will fail. Use [removeChild] first to remove the node from its current parent. For example:
    *
@@ -790,7 +792,7 @@ open class Node : Object() {
    * 				add_child(child_node)
    * 				```
    *
-   * **Note:** If you want a child to be persisted to a [godot.PackedScene], you must set [owner] in addition to calling [addChild]. This is typically relevant for [tool scripts](https://godot.readthedocs.io/en/latest/tutorials/misc/running_code_in_the_editor.html) and [editor plugins](https://godot.readthedocs.io/en/latest/tutorials/plugins/editor/index.html). If [addChild] is called without setting [owner], the newly added [godot.Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.
+   * **Note:** If you want a child to be persisted to a [godot.PackedScene], you must set [owner] in addition to calling [addChild]. This is typically relevant for [tool scripts](https://godot.readthedocs.io/en/3.2/tutorials/misc/running_code_in_the_editor.html) and [editor plugins](https://godot.readthedocs.io/en/latest/tutorials/plugins/editor/index.html). If [addChild] is called without setting [owner], the newly added [godot.Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.
    */
   open fun addChild(node: Node, legibleUniqueName: Boolean = false) {
     TransferContext.writeArguments(OBJECT to node, BOOL to legibleUniqueName)
@@ -800,7 +802,7 @@ open class Node : Object() {
   /**
    * Adds `child_node` as a child. The child is placed below the given `node` in the list of children.
    *
-   * If `legible_unique_name` is `true`, the child node will have an human-readable name based on the name of the node being instanced instead of its type.
+   * If `legible_unique_name` is `true`, the child node will have a human-readable name based on the name of the node being instanced instead of its type.
    */
   open fun addChildBelowNode(
     node: Node,
@@ -1020,7 +1022,7 @@ open class Node : Object() {
   }
 
   /**
-   * Returns the time elapsed since the last physics-bound frame (see [_physicsProcess]). This is always a constant value in physics processing unless the frames per second is changed via [godot.Engine.iterationsPerSecond].
+   * Returns the time elapsed (in seconds) since the last physics-bound frame (see [_physicsProcess]). This is always a constant value in physics processing unless the frames per second is changed via [godot.Engine.iterationsPerSecond].
    */
   open fun getPhysicsProcessDeltaTime(): Double {
     TransferContext.writeArguments()
@@ -1289,6 +1291,8 @@ open class Node : Object() {
 
   /**
    * Queues a node for deletion at the end of the current frame. When deleted, all of its child nodes will be deleted as well. This method ensures it's safe to delete the node, contrary to [godot.Object.free]. Use [godot.Object.isQueuedForDeletion] to check whether a node will be deleted at the end of the frame.
+   *
+   * **Important:** If you have a variable pointing to a node, it will *not* be assigned to `null` once the node is freed. Instead, it will point to a *previously freed instance* and you should validate it with [@GDScript.isInstanceValid] before attempting to call its methods or access its properties.
    */
   open fun queueFree() {
     TransferContext.writeArguments()
@@ -1296,7 +1300,7 @@ open class Node : Object() {
   }
 
   /**
-   * Moves this node to the bottom of parent node's children hierarchy. This is often useful in GUIs ([godot.Control] nodes), because their order of drawing depends on their order in the tree, i.e. the further they are on the node list, the higher they are drawn. After using `raise`, a Control will be drawn on top of their siblings.
+   * Moves this node to the bottom of parent node's children hierarchy. This is often useful in GUIs ([godot.Control] nodes), because their order of drawing depends on their order in the tree. The top Node is drawn first, then any siblings below the top Node in the hierarchy are successively drawn on top of it. After using `raise`, a Control will be drawn on top of its siblings.
    */
   open fun raise() {
     TransferContext.writeArguments()
@@ -1472,7 +1476,9 @@ open class Node : Object() {
   }
 
   /**
-   * Enables or disables internal physics for this node. Internal physics processing happens in isolation from the normal [_physicsProcess] calls and is used by some nodes internally to guarantee proper functioning even if the node is paused or physics processing is disabled for scripting ([setPhysicsProcess]). Only useful for advanced uses to manipulate built-in nodes' behaviour.
+   * Enables or disables internal physics for this node. Internal physics processing happens in isolation from the normal [_physicsProcess] calls and is used by some nodes internally to guarantee proper functioning even if the node is paused or physics processing is disabled for scripting ([setPhysicsProcess]). Only useful for advanced uses to manipulate built-in nodes' behavior.
+   *
+   * **Warning:** Built-in Nodes rely on the internal processing for their own logic, so changing this value from your code may lead to unexpected behavior. Script access to this internal logic is provided for specific advanced uses, but is unsafe and not supported.
    */
   open fun setPhysicsProcessInternal(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
@@ -1497,7 +1503,9 @@ open class Node : Object() {
   }
 
   /**
-   * Enables or disabled internal processing for this node. Internal processing happens in isolation from the normal [_process] calls and is used by some nodes internally to guarantee proper functioning even if the node is paused or processing is disabled for scripting ([setProcess]). Only useful for advanced uses to manipulate built-in nodes' behaviour.
+   * Enables or disabled internal processing for this node. Internal processing happens in isolation from the normal [_process] calls and is used by some nodes internally to guarantee proper functioning even if the node is paused or processing is disabled for scripting ([setProcess]). Only useful for advanced uses to manipulate built-in nodes' behavior.
+   *
+   * **Warning:** Built-in Nodes rely on the internal processing for their own logic, so changing this value from your code may lead to unexpected behavior. Script access to this internal logic is provided for specific advanced uses, but is unsafe and not supported.
    */
   open fun setProcessInternal(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)

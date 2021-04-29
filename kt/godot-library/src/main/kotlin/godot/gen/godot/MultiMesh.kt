@@ -30,14 +30,14 @@ import kotlin.Suppress
  * Provides high-performance mesh instancing.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/latest/tutorials/3d/vertex_animation/animating_thousands_of_fish.html](https://docs.godotengine.org/en/latest/tutorials/3d/vertex_animation/animating_thousands_of_fish.html)
- * [https://docs.godotengine.org/en/latest/tutorials/optimization/using_multimesh.html](https://docs.godotengine.org/en/latest/tutorials/optimization/using_multimesh.html)
+ * [https://docs.godotengine.org/en/3.3/tutorials/3d/vertex_animation/animating_thousands_of_fish.html](https://docs.godotengine.org/en/3.3/tutorials/3d/vertex_animation/animating_thousands_of_fish.html)
+ * [https://docs.godotengine.org/en/3.3/tutorials/optimization/using_multimesh.html](https://docs.godotengine.org/en/3.3/tutorials/optimization/using_multimesh.html)
  *
  * MultiMesh provides low-level mesh instancing. Drawing thousands of [godot.MeshInstance] nodes can be slow, since each object is submitted to the GPU then drawn individually.
  *
  * MultiMesh is much faster as it can draw thousands of instances with a single draw call, resulting in less API overhead.
  *
- * As a drawback, if the instances are too far away of each other, performance may be reduced as every single instance will always rendered (they are spatially indexed as one, for the whole object).
+ * As a drawback, if the instances are too far away of each other, performance may be reduced as every single instance will always render (they are spatially indexed as one, for the whole object).
  *
  * Since instances may have any behavior, the AABB used for visibility must be provided by the user.
  */
@@ -228,7 +228,7 @@ open class MultiMesh : Resource() {
   }
 
   /**
-   * Sets the color of a specific instance.
+   * Sets the color of a specific instance by *multiplying* the mesh's existing vertex colors.
    *
    * For the color to take effect, ensure that [colorFormat] is non-`null` on the [godot.MultiMesh] and [godot.SpatialMaterial.vertexColorUseAsAlbedo] is `true` on the material.
    */

@@ -6,6 +6,9 @@ import godot.Resource
 import godot.ResourceLoader
 import godot.core.*
 import godot.extensions.godotStatic
+import godot.core.Dictionary
+import godot.extensions.loadAs
+
 import godot.util.nullptr
 
 
@@ -59,7 +62,7 @@ object GD : GDMath, GDCore, GDRandom, GDPrint {
      * Important: The path must be absolute, a local path will just return null.
      * */
     @Suppress("NOTHING_TO_INLINE", "UNCHECKED_CAST")
-    inline fun <T : Resource> load(path: String, typeHint: String = "", noCache: Boolean = false): T {
-        return ResourceLoader.load(path, typeHint, noCache) as T
+    inline fun <T : Resource> load(path: String, typeHint: String = "", noCache: Boolean = false): T? {
+        return ResourceLoader.loadAs(path, typeHint, noCache)
     }
 }

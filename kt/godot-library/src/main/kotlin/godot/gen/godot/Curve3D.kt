@@ -152,7 +152,7 @@ open class Curve3D : Resource() {
   }
 
   /**
-   * Returns the closest point (in curve's local space) to `to_point`.
+   * Returns the closest baked point (in curve's local space) to `to_point`.
    *
    * `to_point` must be in this curve's local space.
    */
@@ -172,7 +172,7 @@ open class Curve3D : Resource() {
   }
 
   /**
-   * Returns the position of the control point leading to the vertex `idx`. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0, 0)`.
+   * Returns the position of the control point leading to the vertex `idx`. The returned position is relative to the vertex `idx`. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0, 0)`.
    */
   open fun getPointIn(idx: Long): Vector3 {
     TransferContext.writeArguments(LONG to idx)
@@ -181,7 +181,7 @@ open class Curve3D : Resource() {
   }
 
   /**
-   * Returns the position of the control point leading out of the vertex `idx`. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0, 0)`.
+   * Returns the position of the control point leading out of the vertex `idx`. The returned position is relative to the vertex `idx`. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0, 0)`.
    */
   open fun getPointOut(idx: Long): Vector3 {
     TransferContext.writeArguments(LONG to idx)
@@ -219,7 +219,7 @@ open class Curve3D : Resource() {
   }
 
   /**
-   * Returns a point within the curve at position `offset`, where `offset` is measured as a pixel distance along the curve.
+   * Returns a point within the curve at position `offset`, where `offset` is measured as a distance in 3D units along the curve.
    *
    * To do that, it finds the two cached points where the `offset` lies between, then interpolates the values. This interpolation is cubic if `cubic` is set to `true`, or linear if set to `false`.
    *
@@ -263,7 +263,7 @@ open class Curve3D : Resource() {
   }
 
   /**
-   * Sets the position of the control point leading to the vertex `idx`. If the index is out of bounds, the function sends an error to the console.
+   * Sets the position of the control point leading to the vertex `idx`. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.
    */
   open fun setPointIn(idx: Long, position: Vector3) {
     TransferContext.writeArguments(LONG to idx, VECTOR3 to position)
@@ -271,7 +271,7 @@ open class Curve3D : Resource() {
   }
 
   /**
-   * Sets the position of the control point leading out of the vertex `idx`. If the index is out of bounds, the function sends an error to the console.
+   * Sets the position of the control point leading out of the vertex `idx`. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.
    */
   open fun setPointOut(idx: Long, position: Vector3) {
     TransferContext.writeArguments(LONG to idx, VECTOR3 to position)

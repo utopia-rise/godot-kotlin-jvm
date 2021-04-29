@@ -28,6 +28,9 @@ import kotlin.Unit
 /**
  * A 2D line.
  *
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/583](https://godotengine.org/asset-library/asset/583)
+ *
  * A line through several points in 2D space.
  *
  * **Note:** By default, Godot can only draw up to 4,096 polygon points at a time. To increase this limit, open the Project Settings and increase [godot.ProjectSettings.rendering/limits/buffers/canvasPolygonBufferSizeKb] and [godot.ProjectSettings.rendering/limits/buffers/canvasPolygonIndexBufferSizeKb].

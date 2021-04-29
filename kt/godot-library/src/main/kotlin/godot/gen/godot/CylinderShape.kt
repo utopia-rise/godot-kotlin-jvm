@@ -15,6 +15,9 @@ import kotlin.Suppress
 /**
  * Cylinder shape for collisions.
  *
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
+ *
  * Cylinder shape for collisions.
  */
 @GodotBaseType

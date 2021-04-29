@@ -17,9 +17,9 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 
 /**
- * A hinge between two 3D bodies.
+ * A hinge between two 3D PhysicsBodies.
  *
- * A HingeJoint normally uses the Z axis of body A as the hinge axis, another axis can be specified when adding it manually though.
+ * A HingeJoint normally uses the Z axis of body A as the hinge axis, another axis can be specified when adding it manually though. See also [godot.Generic6DOFJoint].
  */
 @GodotBaseType
 open class HingeJoint : Joint() {

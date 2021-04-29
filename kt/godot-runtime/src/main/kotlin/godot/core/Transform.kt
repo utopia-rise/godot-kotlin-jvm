@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.annotation.CoreTypeHelper
 import godot.util.*
 
 class Transform(
@@ -24,6 +25,7 @@ class Transform(
             _basis = Basis(value)
         }
 
+    @CoreTypeHelper
     inline fun <T> basis(block: Basis.() -> T): T {
         return _basis.block()
     }
@@ -38,6 +40,7 @@ class Transform(
             _origin = Vector3(value)
         }
 
+    @CoreTypeHelper
     inline fun <T> origin(block: Vector3.() -> T): T {
         return _origin.block()
     }

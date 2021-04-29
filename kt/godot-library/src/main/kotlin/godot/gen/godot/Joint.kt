@@ -19,6 +19,9 @@ import kotlin.Suppress
 /**
  * Base class for all 3D joints.
  *
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/524](https://godotengine.org/asset-library/asset/524)
+ *
  * Joints are used to bind together two physics bodies. They have a solver priority and can define if the bodies of the two attached nodes should be able to collide with each other.
  */
 @GodotBaseType

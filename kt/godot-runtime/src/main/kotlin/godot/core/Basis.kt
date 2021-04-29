@@ -1,5 +1,6 @@
 package godot.core
 
+import godot.annotation.CoreTypeHelper
 import godot.util.CMP_EPSILON
 import godot.util.RealT
 import godot.util.isEqualApprox
@@ -160,8 +161,8 @@ class Basis() : CoreType {
      */
     fun determinant(): RealT {
         return this._x.x * (this._y.y * this._z.z - this._z.y * this._y.z) -
-                this._y.x * (this._x.y * this._z.z - this._z.y * this._x.z) +
-                this._z.x * (this._x.y * this._y.z - this._y.y * this._x.z)
+            this._y.x * (this._x.y * this._z.z - this._z.y * this._x.z) +
+            this._z.x * (this._x.y * this._y.z - this._y.y * this._x.z)
     }
 
     /**
@@ -460,10 +461,12 @@ class Basis() : CoreType {
         setAxis(2, z)
     }
 
-    private fun getAxis(axis: Int): Vector3 =
+    @PublishedApi
+    internal fun getAxis(axis: Int): Vector3 =
         Vector3(this._x[axis], this._y[axis], this._z[axis])
 
-    private fun setAxis(axis: Int, value: Vector3) {
+    @PublishedApi
+    internal fun setAxis(axis: Int, value: Vector3) {
         this._x[axis] = value.x
         this._y[axis] = value.y
         this._z[axis] = value.z
@@ -737,8 +740,8 @@ class Basis() : CoreType {
     override fun equals(other: Any?): Boolean =
         when (other) {
             is Basis -> (this._x.x == other._x.x && this._x.y == other._x.y && this._x.z == other._x.z &&
-                    this._y.x == other._y.x && this._y.y == other._y.y && this._y.z == other._y.z &&
-                    this._z.x == other._z.x && this._z.y == other._z.y && this._z.z == other._z.z)
+                this._y.x == other._y.x && this._y.y == other._y.y && this._y.z == other._y.z &&
+                this._z.x == other._z.x && this._z.y == other._z.y && this._z.z == other._z.z)
             else -> throw IllegalArgumentException()
         }
 
@@ -774,8 +777,12 @@ class Basis() : CoreType {
             setAxis(0, value)
         }
 
+    @CoreTypeHelper
     inline fun <T> x(block: Vector3.() -> T): T {
-        return _x.block()
+        val x = getAxis(0)
+        val ret =  x.block()
+        setAxis(0, x)
+        return ret
     }
 
     /** Return a copy of the y Vector3
@@ -788,9 +795,12 @@ class Basis() : CoreType {
             setAxis(1, value)
         }
 
-
+    @CoreTypeHelper
     inline fun <T> y(block: Vector3.() -> T): T {
-        return _y.block()
+        val y = getAxis(1)
+        val ret =  y.block()
+        setAxis(1, y)
+        return ret
     }
 
     /** Return a copy of the z Vector3
@@ -803,8 +813,12 @@ class Basis() : CoreType {
             setAxis(2, value)
         }
 
+    @CoreTypeHelper
     inline fun <T> z(block: Vector3.() -> T): T {
-        return _z.block()
+        val z = getAxis(2)
+        val ret =  z.block()
+        setAxis(2, z)
+        return ret
     }
 
     operator fun get(index: Int): Vector3 {

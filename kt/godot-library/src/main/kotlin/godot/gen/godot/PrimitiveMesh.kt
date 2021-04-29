@@ -27,7 +27,7 @@ import kotlin.Unit
 @GodotBaseType
 open class PrimitiveMesh : Mesh() {
   /**
-   * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unnexpected culling when  using a shader to offset vertices.
+   * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when  using a shader to offset vertices.
    */
   open var customAabb: AABB
     get() {

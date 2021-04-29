@@ -15,9 +15,9 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 
 /**
- * Piston kind of slider between two bodies in 3D.
+ * Slider between two PhysicsBodies in 3D.
  *
- * Slides across the X axis of the pivot object.
+ * Slides across the X axis of the pivot object. See also [godot.Generic6DOFJoint].
  */
 @GodotBaseType
 open class SliderJoint : Joint() {

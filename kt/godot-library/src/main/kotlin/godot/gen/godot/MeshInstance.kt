@@ -20,6 +20,9 @@ import kotlin.Suppress
 /**
  * Node that instances meshes into a scenario.
  *
+ * Tutorials:
+ * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
+ *
  * MeshInstance is a node that takes a [godot.Mesh] resource and adds it to the current scenario by creating an instance of it. This is the class most often used to get 3D geometry rendered and can be used to instance a single [godot.Mesh] in many places. This allows to reuse geometry and save on resources. When a [godot.Mesh] has to be instanced more than thousands of times at close proximity, consider using a [godot.MultiMesh] in a [godot.MultiMeshInstance] instead.
  */
 @GodotBaseType
@@ -67,6 +70,11 @@ open class MeshInstance : GeometryInstance() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_SET_SKIN, NIL)
     }
 
+  /**
+   * If `true`, normals are transformed when software skinning is used. Set to `false` when normals are not needed for better performance.
+   *
+   * See [godot.ProjectSettings.rendering/quality/skinning/softwareSkinningFallback] for details about how software skinning is enabled.
+   */
   open var softwareSkinningTransformNormals: Boolean
     get() {
       TransferContext.writeArguments()
@@ -117,6 +125,9 @@ open class MeshInstance : GeometryInstance() {
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_CREATE_TRIMESH_COLLISION, NIL)
   }
 
+  /**
+   * Returns the [godot.Material] that will be used by the [godot.Mesh] when drawing. This can return the [godot.GeometryInstance.materialOverride], the surface override [godot.Material] defined in this [godot.MeshInstance], or the surface [godot.Material] defined in the [godot.Mesh]. For example, if [godot.GeometryInstance.materialOverride] is used, all surfaces will return the override material.
+   */
   open fun getActiveMaterial(surface: Long): Material? {
     TransferContext.writeArguments(LONG to surface)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_GET_ACTIVE_MATERIAL,
