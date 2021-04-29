@@ -31,11 +31,19 @@ Additionally, signals are mapped to properties of type `Signal` and must start w
 If you need more than 10 parameters, you can either use the not typesafe function `connect(signalAsString, targetObject, targetMethodAsString)` and the corresponding emit function or you can write your own typesafe extension functions like we did, to further increase the supported arg count. Keep in mind that you pass in the converted function and signal names (snake_case) to the above mentioned functions.  
 
 ## Renamed symbols
-To avoid confusion and conflict with Kotlin types, the following Godot symbols are renamed.
+To avoid confusion and conflict with Kotlin types, the following Godot symbol is renamed.
 
 - `Array` -> `VariantArray` (to avoid confusion with a built-in type in Kotlin)
-- `PoolRealArray` -> `PoolFloatArray` (for naming consistency)
-- `Variant.asReal()` -> `Variant.asFloat()` (for naming consistency)
+
+## Global functions
+
+In GDScript, some functions are always available like mathematical functions or RNG functions. The complete list is here: https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html.
+
+In Kotlin, they are available inside the `GD` singleton. Don't forget that some functions couldn't be reproduced in Kotlin. `load()` is available but `preload()` is not.
+
+## Additiional functions
+
+For comfort, some Objects got some additionnal functions to enjoy some Kotlin sugar syntax. You can find them all in this folder: https://github.com/utopia-rise/godot-kotlin-jvm/tree/master/kt/godot-library/src/main/kotlin/godot/extensions
 
 ## Logging
 If you want logs to appear both in CLI and in the Godot Editor you will have to use the print functions inside the `GD` singleton like:
