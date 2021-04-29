@@ -254,16 +254,13 @@ object GarbageCollector {
     }
 
     fun cleanUp() {
-        info("Start collecting static instances")
         while(staticInstances.size > 0){
             val iterator = staticInstances.iterator()
             staticInstances = mutableSetOf()
             for (instance in iterator) {
-                println("Collect ${instance::class}")
                 instance.collect()
             }
         }
-        info("Collecting done")
 
         isCleanup = true
         var begin = Instant.now()
