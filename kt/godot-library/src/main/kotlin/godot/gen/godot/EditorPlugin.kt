@@ -281,33 +281,6 @@ open class EditorPlugin : Node() {
   }
 
   /**
-   * Called by the engine when the 3D editor's viewport is updated. Use the `overlay` [godot.Control] for drawing. You can update the viewport manually by calling [updateOverlays].
-   *
-   * ```
-   * 				func forward_spatial_draw_over_viewport(overlay):
-   * 				    # Draw a circle at cursor position.
-   * 				    overlay.draw_circle(overlay.get_local_mouse_position(), 64)
-   *
-   * 				func forward_spatial_gui_input(camera, event):
-   * 				    if event is InputEventMouseMotion:
-   * 				        # Redraw viewport when cursor is moved.
-   * 				        update_overlays()
-   * 				        return true
-   * 				    return false
-   * 				```
-   */
-  open fun _forwardSpatialDrawOverViewport(overlay: Control) {
-  }
-
-  /**
-   * This method is the same as [forwardSpatialDrawOverViewport], except it draws on top of everything. Useful when you need an extra layer that shows over anything else.
-   *
-   * You need to enable calling of this method by using [setForceDrawOverForwardingEnabled].
-   */
-  open fun _forwardSpatialForceDrawOverViewport(overlay: Control) {
-  }
-
-  /**
    * Called when there is a root node in the current edited scene, [handles] is implemented and an [godot.InputEvent] happens in the 3D viewport. Intercepts the [godot.InputEvent], if `return true` [godot.EditorPlugin] consumes the `event`, otherwise forwards `event` to other Editor classes. Example:
    *
    * ```

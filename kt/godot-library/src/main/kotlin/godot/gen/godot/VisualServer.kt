@@ -625,21 +625,6 @@ object VisualServer : Object() {
   final const val INSTANCE_REFLECTION_PROBE: Long = 6
 
   /**
-   *
-   */
-  final const val LIGHT_BAKE_ALL: Long = 2
-
-  /**
-   *
-   */
-  final const val LIGHT_BAKE_DISABLED: Long = 0
-
-  /**
-   *
-   */
-  final const val LIGHT_BAKE_INDIRECT: Long = 1
-
-  /**
    * Is a directional (sun) light.
    */
   final const val LIGHT_DIRECTIONAL: Long = 0
@@ -3074,12 +3059,9 @@ object VisualServer : Object() {
   fun instanceSetUseLightmap(
     instance: RID,
     lightmapInstance: RID,
-    lightmap: RID,
-    lightmapSlice: Long = -1,
-    lightmapUvRect: Rect2 = Rect2(0.0, 0.0, 1.0, 1.0)
+    lightmap: RID
   ) {
-    TransferContext.writeArguments(_RID to instance, _RID to lightmapInstance, _RID to lightmap,
-        LONG to lightmapSlice, RECT2 to lightmapUvRect)
+    TransferContext.writeArguments(_RID to instance, _RID to lightmapInstance, _RID to lightmap)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSERVER_INSTANCE_SET_USE_LIGHTMAP, NIL)
   }
@@ -3176,15 +3158,6 @@ object VisualServer : Object() {
     TransferContext.writeArguments(_RID to light, LONG to mode)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSERVER_LIGHT_OMNI_SET_SHADOW_MODE, NIL)
-  }
-
-  /**
-   * Sets the bake mode for this light, see [enum LightBakeMode] for options. The bake mode affects how the light will be baked in [godot.BakedLightmap]s and [godot.GIProbe]s.
-   */
-  fun lightSetBakeMode(light: RID, bakeMode: Long) {
-    TransferContext.writeArguments(_RID to light, LONG to bakeMode)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSERVER_LIGHT_SET_BAKE_MODE,
-        NIL)
   }
 
   /**
@@ -3334,16 +3307,6 @@ object VisualServer : Object() {
   }
 
   /**
-   * Returns `true` if capture is in "interior" mode.
-   */
-  fun lightmapCaptureIsInterior(capture: RID): Boolean {
-    TransferContext.writeArguments(_RID to capture)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSERVER_LIGHTMAP_CAPTURE_IS_INTERIOR, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
    * Sets the size of the area covered by the lightmap capture. Equivalent to [godot.BakedLightmapData.bounds].
    */
   fun lightmapCaptureSetBounds(capture: RID, bounds: AABB) {
@@ -3359,15 +3322,6 @@ object VisualServer : Object() {
     TransferContext.writeArguments(_RID to capture, DOUBLE to energy)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSERVER_LIGHTMAP_CAPTURE_SET_ENERGY, NIL)
-  }
-
-  /**
-   * Sets the "interior" mode for this lightmap capture. Equivalent to [godot.BakedLightmapData.interior].
-   */
-  fun lightmapCaptureSetInterior(capture: RID, interior: Boolean) {
-    TransferContext.writeArguments(_RID to capture, BOOL to interior)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSERVER_LIGHTMAP_CAPTURE_SET_INTERIOR, NIL)
   }
 
   /**
@@ -5162,26 +5116,6 @@ object VisualServer : Object() {
   }
 
   /**
-   * If `true`, uses a fast post-processing filter to make banding significantly less visible. In some cases, debanding may introduce a slightly noticeable dithering pattern. It's recommended to enable debanding only when actually needed since the dithering pattern will make lossless-compressed screenshots larger.
-   *
-   * **Note:** Only available on the GLES3 backend. [godot.Viewport.hdr] must also be `true` for debanding to be effective.
-   */
-  fun viewportSetUseDebanding(viewport: RID, debanding: Boolean) {
-    TransferContext.writeArguments(_RID to viewport, BOOL to debanding)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSERVER_VIEWPORT_SET_USE_DEBANDING, NIL)
-  }
-
-  /**
-   * Enables fast approximate antialiasing for this viewport. FXAA is a popular screen-space antialiasing method, which is fast but will make the image look blurry, especially at lower resolutions. It can still work relatively well at large resolutions such as 1440p and 4K.
-   */
-  fun viewportSetUseFxaa(viewport: RID, fxaa: Boolean) {
-    TransferContext.writeArguments(_RID to viewport, BOOL to fxaa)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSERVER_VIEWPORT_SET_USE_FXAA,
-        NIL)
-  }
-
-  /**
    * If `true`, the viewport's rendering is flipped vertically.
    */
   fun viewportSetVflip(viewport: RID, enabled: Boolean) {
@@ -6236,34 +6170,6 @@ object VisualServer : Object() {
      * Always update the viewport.
      */
     VIEWPORT_UPDATE_ALWAYS(3);
-
-    val id: Long
-    init {
-      this.id = id
-    }
-
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
-    }
-  }
-
-  enum class LightBakeMode(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    LIGHT_BAKE_DISABLED(0),
-
-    /**
-     *
-     */
-    LIGHT_BAKE_INDIRECT(1),
-
-    /**
-     *
-     */
-    LIGHT_BAKE_ALL(2);
 
     val id: Long
     init {

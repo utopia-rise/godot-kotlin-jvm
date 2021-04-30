@@ -64,14 +64,6 @@ open class ConfigFile : Reference() {
   }
 
   /**
-   *
-   */
-  open fun clear() {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_CLEAR, NIL)
-  }
-
-  /**
    * Deletes the specified section along with all the key-value pairs inside. Raises an error if the section does not exist.
    */
   open fun eraseSection(section: String) {

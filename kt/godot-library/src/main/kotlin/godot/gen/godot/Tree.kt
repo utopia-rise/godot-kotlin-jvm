@@ -285,15 +285,6 @@ open class Tree : Control() {
   }
 
   /**
-   * Edits the selected tree item as if it was clicked. The item must be set editable with [godot.TreeItem.setEditable]. Returns `true` if the item could be edited. Fails if no item is selected.
-   */
-  open fun editSelected(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_EDIT_SELECTED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
    * Makes the currently focused cell visible.
    *
    * This will scroll the tree if necessary. In [SELECT_ROW] mode, this will not do horizontal scrolling, as all the cells in the selected row is focused logically.
@@ -461,14 +452,6 @@ open class Tree : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_SELECTED_COLUMN, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  /**
-   *
-   */
-  open fun scrollToItem(item: Object) {
-    TransferContext.writeArguments(OBJECT to item)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SCROLL_TO_ITEM, NIL)
   }
 
   /**

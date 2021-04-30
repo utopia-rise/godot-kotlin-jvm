@@ -422,15 +422,6 @@ open class LineEdit : Control() {
   }
 
   /**
-   * Returns the scroll offset due to [caretPosition], as a number of characters.
-   */
-  open fun getScrollOffset(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_SCROLL_OFFSET, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  /**
    * Executes a given action as defined in the [enum MenuItems] enum.
    */
   open fun menuOption(option: Long) {

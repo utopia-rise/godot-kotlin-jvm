@@ -118,53 +118,6 @@ open class GraphEdit : Control() {
   val scrollOffsetChanged: Signal1<Vector2> by signal("ofs")
 
   /**
-   * If `true`, the minimap is visible.
-   */
-  open var minimapEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_MINIMAP_ENABLED,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(value) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_MINIMAP_ENABLED,
-          NIL)
-    }
-
-  /**
-   * The opacity of the minimap rectangle.
-   */
-  open var minimapOpacity: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_MINIMAP_OPACITY,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(value) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_MINIMAP_OPACITY,
-          NIL)
-    }
-
-  /**
-   * The size of the minimap rectangle. The map itself is based on the size of the grid area and is scaled to fit this rectangle.
-   */
-  open var minimapSize: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_GET_MINIMAP_SIZE,
-          VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-    }
-    set(value) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHEDIT_SET_MINIMAP_SIZE, NIL)
-    }
-
-  /**
    * If `true`, enables disconnection of existing connections in the GraphEdit by dragging the right end.
    */
   open var rightDisconnects: Boolean
@@ -242,13 +195,6 @@ open class GraphEdit : Control() {
   }
 
   @CoreTypeHelper
-  open fun minimapSize(schedule: Vector2.() -> Unit): Vector2 = minimapSize.apply{
-      schedule(this)
-      minimapSize = this
-  }
-
-
-  @CoreTypeHelper
   open fun scrollOffset(schedule: Vector2.() -> Unit): Vector2 = scrollOffset.apply{
       schedule(this)
       scrollOffset = this
@@ -264,16 +210,7 @@ open class GraphEdit : Control() {
   open fun _graphNodeRaised(arg0: Node) {
   }
 
-  open fun _graphNodeSlotUpdated(arg0: Long, arg1: Node) {
-  }
-
   override fun _guiInput(event: InputEvent) {
-  }
-
-  open fun _minimapDraw() {
-  }
-
-  open fun _minimapToggled() {
   }
 
   open fun _scrollMoved(arg0: Double) {

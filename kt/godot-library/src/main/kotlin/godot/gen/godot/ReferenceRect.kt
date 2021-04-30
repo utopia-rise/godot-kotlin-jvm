@@ -11,10 +11,8 @@ import godot.core.Color
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
-import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import kotlin.Boolean
-import kotlin.Double
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -38,22 +36,6 @@ open class ReferenceRect : Control() {
     set(value) {
       TransferContext.writeArguments(COLOR to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFERENCERECT_SET_BORDER_COLOR,
-          NIL)
-    }
-
-  /**
-   * Sets the border width of the [godot.ReferenceRect]. The border grows both inwards and outwards with respect to the rectangle box.
-   */
-  open var borderWidth: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFERENCERECT_GET_BORDER_WIDTH,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(value) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFERENCERECT_SET_BORDER_WIDTH,
           NIL)
     }
 

@@ -19,8 +19,6 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.VariantType.TRANSFORM
 import godot.core.VariantType._RID
-import godot.signals.Signal0
-import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -42,11 +40,6 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class Skeleton : Spatial() {
-  /**
-   *
-   */
-  val skeletonUpdated: Signal0 by signal()
-
   override fun __new() {
     callConstructor(ENGINECLASS_SKELETON)
   }

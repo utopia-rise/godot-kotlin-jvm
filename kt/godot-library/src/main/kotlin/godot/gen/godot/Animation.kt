@@ -728,16 +728,6 @@ open class Animation : Resource() {
   }
 
   /**
-   * Returns the interpolated value at the given time (in seconds). The `track_idx` must be the index of a value track.
-   */
-  open fun valueTrackInterpolate(trackIdx: Long, timeSec: Double): Any? {
-    TransferContext.writeArguments(LONG to trackIdx, DOUBLE to timeSec)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATION_VALUE_TRACK_INTERPOLATE,
-        ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
-  }
-
-  /**
    * Sets the update mode (see [enum UpdateMode]) of a value track.
    */
   open fun valueTrackSetUpdateMode(trackIdx: Long, mode: Long) {

@@ -314,20 +314,6 @@ open class TileMap : Node2D() {
     }
 
   /**
-   * If `true`, collision shapes are shown in the editor and at run-time. Requires **Visible Collision Shapes** to be enabled in the **Debug** menu for collision shapes to be visible at run-time.
-   */
-  open var showCollision: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_SHOW_COLLISION, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(value) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_SHOW_COLLISION, NIL)
-    }
-
-  /**
    * The assigned [godot.TileSet].
    */
   open var tileSet: TileSet?

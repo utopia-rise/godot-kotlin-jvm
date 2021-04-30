@@ -113,16 +113,6 @@ open class File : Reference() {
   }
 
   /**
-   * Writes the file's buffer to disk. Flushing is automatically performed when the file is closed. This means you don't need to call [flush] manually before closing a file using [close]. Still, calling [flush] can be used to ensure the data is safe even if the project crashes instead of being closed gracefully.
-   *
-   * **Note:** Only call [flush] when you actually need it. Otherwise, it will decrease performance due to constant disk writes.
-   */
-  open fun flush() {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__FILE_FLUSH, NIL)
-  }
-
-  /**
    * Returns the next 16 bits from the file as an integer. See [store16] for details on what values can be stored and retrieved this way.
    */
   open fun get16(): Long {
