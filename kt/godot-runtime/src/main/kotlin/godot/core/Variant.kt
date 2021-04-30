@@ -137,10 +137,11 @@ enum class VariantType(
                      *  We remove the O at the end of the CString in the buffer.
                      *  Kotlin directly hold the length in the String instance.
                      */
-
                     val stringSize = buffer.int - 1
                     val charArray = ByteArray(stringSize)
                     buffer.get(charArray, 0, stringSize)
+                    /** We do a simple get to increment the missing the buffer by one because we didn't read the zero character */
+                    buffer.get()
                     val str = String(charArray, Charsets.UTF_8)
                     str
                 }
