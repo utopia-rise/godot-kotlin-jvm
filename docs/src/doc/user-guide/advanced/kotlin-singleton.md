@@ -2,7 +2,7 @@ Sometimes you need to store some Godot objects or references in a Kotlin singlet
 This issue is fixed by using the delegate `godotStatic` on singleton properties. Those properties will be freed once the JVM ends. They automatically handle `Object` and `Reference`. You can also freely set a new value and the previous one will be immediatly freed.
 
 !!! warning
-	Only use it on a singleton, otherwise all the properties of all instances are going to be kept alive until the end of the JVM.
+    Only use it on a singleton, otherwise all the properties of all instances are going to be kept alive until the end of the JVM.
 
 ```kotlin
 object GodotStatic {
