@@ -32,6 +32,7 @@ complexity:
     ignoreSingleWhenExpression: true
     excludes: [
         '**/godot/intellij/plugin/linemarker/SignalConnectionLineMarker.kt',
+        '**/godot/intellij/plugin/module/GodotModuleBuilder.kt',
         '**/godot/intellij/plugin/annotator/copy/CopyModificationAnnotator.kt',
     ]
   NestedBlockDepth:
@@ -42,10 +43,12 @@ complexity:
     excludes: [
         '**/godot/intellij/plugin/annotator/property/PropertyHintAnnotationChecker.kt',
         '**/godot/intellij/plugin/wrapper/PsiTreeChangeListenerKt.kt',
+        '**/godot/intellij/plugin/module/GodotModuleBuilder.kt',
     ]
   LongMethod:
     excludes: [
         '**/godot/intellij/plugin/linemarker/SignalConnectionLineMarker.kt',
         '**/godot/intellij/plugin/data/cache/signalconnection/SignalConnectionCache.kt',
         '**/godot/intellij/plugin/annotator/clazz/RegisterClassAnnotator.kt',
+        '**/godot/intellij/plugin/module/GodotModuleBuilder.kt',
     ]

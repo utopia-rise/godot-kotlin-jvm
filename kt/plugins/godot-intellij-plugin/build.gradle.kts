@@ -80,6 +80,7 @@ intellij {
 dependencies {
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.14.2")
     implementation("com.utopia-rise:jvm-godot-resource-serialization:0.1.0")
+    implementation(project(":godot-build-props"))
 }
 
 // Configure detekt plugin.
