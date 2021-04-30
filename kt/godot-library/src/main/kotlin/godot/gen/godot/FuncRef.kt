@@ -28,6 +28,20 @@ import kotlin.Suppress
  */
 @GodotBaseType
 open class FuncRef : Reference() {
+  /**
+   * The name of the referenced function.
+   */
+  open var function: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FUNCREF_GET_FUNCTION, STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
+    }
+    set(value) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FUNCREF_SET_FUNCTION, NIL)
+    }
+
   override fun __new() {
     callConstructor(ENGINECLASS_FUNCREF)
   }
@@ -57,11 +71,6 @@ open class FuncRef : Reference() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FUNCREF_IS_VALID, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  open fun setFunction(name: String) {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FUNCREF_SET_FUNCTION, NIL)
   }
 
   /**

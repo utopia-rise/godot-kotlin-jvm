@@ -132,6 +132,19 @@ open class GridMap : Spatial() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_MESH_LIBRARY, NIL)
     }
 
+  open var useInBakedLight: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_USE_IN_BAKED_LIGHT,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(value) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_USE_IN_BAKED_LIGHT,
+          NIL)
+    }
+
   override fun __new() {
     callConstructor(ENGINECLASS_GRIDMAP)
   }

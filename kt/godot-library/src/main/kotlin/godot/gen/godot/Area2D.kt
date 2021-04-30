@@ -66,7 +66,7 @@ open class Area2D : CollisionObject2D() {
    * `local_shape` the index of the [godot.Shape2D] of this Area2D used by the [godot.Physics2DServer].
    */
   val areaShapeEntered: Signal4<Long, Area2D, Long, Long> by signal("area_id", "area", "area_shape",
-      "self_shape")
+      "local_shape")
 
   /**
    * Emitted when one of another Area2D's [godot.Shape2D]s exits one of this Area2D's [godot.Shape2D]s. Requires [monitoring] to be set to `true`.
@@ -80,7 +80,7 @@ open class Area2D : CollisionObject2D() {
    * `local_shape` the index of the [godot.Shape2D] of this Area2D used by the [godot.Physics2DServer].
    */
   val areaShapeExited: Signal4<Long, Area2D, Long, Long> by signal("area_id", "area", "area_shape",
-      "self_shape")
+      "local_shape")
 
   /**
    * Emitted when a [godot.PhysicsBody2D] or [godot.TileMap] enters this Area2D. Requires [monitoring] to be set to `true`. [godot.TileMap]s are detected if the [godot.TileSet] has Collision [godot.Shape2D]s.
@@ -108,7 +108,7 @@ open class Area2D : CollisionObject2D() {
    * `local_shape` the index of the [godot.Shape2D] of this Area2D used by the [godot.Physics2DServer].
    */
   val bodyShapeEntered: Signal4<Long, Node, Long, Long> by signal("body_id", "body", "body_shape",
-      "area_shape")
+      "local_shape")
 
   /**
    * Emitted when one of a [godot.PhysicsBody2D] or [godot.TileMap]'s [godot.Shape2D]s exits one of this Area2D's [godot.Shape2D]s. Requires [monitoring] to be set to `true`. [godot.TileMap]s are detected if the [godot.TileSet] has Collision [godot.Shape2D]s.
@@ -122,7 +122,7 @@ open class Area2D : CollisionObject2D() {
    * `local_shape` the index of the [godot.Shape2D] of this Area2D used by the [godot.Physics2DServer].
    */
   val bodyShapeExited: Signal4<Long, Node, Long, Long> by signal("body_id", "body", "body_shape",
-      "area_shape")
+      "local_shape")
 
   /**
    * The rate at which objects stop spinning in this area. Represents the angular velocity lost per second.

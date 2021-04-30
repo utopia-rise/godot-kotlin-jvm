@@ -66,7 +66,7 @@ open class Area : CollisionObject() {
    * `local_shape` the index of the [godot.Shape] of this Area used by the [godot.PhysicsServer].
    */
   val areaShapeEntered: Signal4<Long, Area, Long, Long> by signal("area_id", "area", "area_shape",
-      "self_shape")
+      "local_shape")
 
   /**
    * Emitted when one of another Area's [godot.Shape]s enters one of this Area's [godot.Shape]s. Requires [monitoring] to be set to `true`.
@@ -80,7 +80,7 @@ open class Area : CollisionObject() {
    * `local_shape` the index of the [godot.Shape] of this Area used by the [godot.PhysicsServer].
    */
   val areaShapeExited: Signal4<Long, Area, Long, Long> by signal("area_id", "area", "area_shape",
-      "self_shape")
+      "local_shape")
 
   /**
    * Emitted when a [godot.PhysicsBody] or [godot.GridMap] enters this Area. Requires [monitoring] to be set to `true`. [godot.GridMap]s are detected if the [godot.MeshLibrary] has Collision [godot.Shape]s.
@@ -108,7 +108,7 @@ open class Area : CollisionObject() {
    * `local_shape` the index of the [godot.Shape] of this Area used by the [godot.PhysicsServer].
    */
   val bodyShapeEntered: Signal4<Long, Node, Long, Long> by signal("body_id", "body", "body_shape",
-      "area_shape")
+      "local_shape")
 
   /**
    * Emitted when one of a [godot.PhysicsBody] or [godot.GridMap]'s [godot.Shape]s enters one of this Area's [godot.Shape]s. Requires [monitoring] to be set to `true`. [godot.GridMap]s are detected if the [godot.MeshLibrary] has Collision [godot.Shape]s.
@@ -122,7 +122,7 @@ open class Area : CollisionObject() {
    * `local_shape` the index of the [godot.Shape] of this Area used by the [godot.PhysicsServer].
    */
   val bodyShapeExited: Signal4<Long, Node, Long, Long> by signal("body_id", "body", "body_shape",
-      "area_shape")
+      "local_shape")
 
   /**
    * The rate at which objects stop spinning in this area. Represents the angular velocity lost per second.

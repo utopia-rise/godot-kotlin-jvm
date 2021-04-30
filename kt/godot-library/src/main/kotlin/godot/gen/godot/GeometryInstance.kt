@@ -58,6 +58,38 @@ open class GeometryInstance : VisualInstance() {
     }
 
   /**
+   * When disabled, the mesh will be taken into account when computing indirect lighting, but the resulting lightmap will not be saved. Useful for emissive only materials or shadow casters.
+   */
+  open var generateLightmap: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE_GET_GENERATE_LIGHTMAP, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(value) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE_SET_GENERATE_LIGHTMAP, NIL)
+    }
+
+  /**
+   * Scale factor for the generated baked lightmap. Useful for adding detail to certain mesh instances.
+   */
+  open var lightmapScale: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE_GET_LIGHTMAP_SCALE, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(value) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE_SET_LIGHTMAP_SCALE, NIL)
+    }
+
+  /**
    * The GeometryInstance's max LOD distance.
    *
    * **Note:** This property currently has no effect.
@@ -243,6 +275,44 @@ open class GeometryInstance : VisualInstance() {
     }
   }
 
+  enum class LightmapScale(
+    id: Long
+  ) {
+    /**
+     * The generated lightmap texture will have the original size.
+     */
+    LIGHTMAP_SCALE_1X(0),
+
+    /**
+     * The generated lightmap texture will be twice as large, on each axis.
+     */
+    LIGHTMAP_SCALE_2X(1),
+
+    /**
+     * The generated lightmap texture will be 4 times as large, on each axis.
+     */
+    LIGHTMAP_SCALE_4X(2),
+
+    /**
+     * The generated lightmap texture will be 8 times as large, on each axis.
+     */
+    LIGHTMAP_SCALE_8X(3),
+
+    /**
+     *
+     */
+    LIGHTMAP_SCALE_MAX(4);
+
+    val id: Long
+    init {
+      this.id = id
+    }
+
+    companion object {
+      fun from(value: Long) = values().single { it.id == value }
+    }
+  }
+
   companion object {
     /**
      * Unused in this class, exposed for consistency with [enum VisualServer.InstanceFlags].
@@ -258,6 +328,31 @@ open class GeometryInstance : VisualInstance() {
      * Will allow the GeometryInstance to be used when baking lights using a [godot.GIProbe] or [godot.BakedLightmap].
      */
     final const val FLAG_USE_BAKED_LIGHT: Long = 0
+
+    /**
+     * The generated lightmap texture will have the original size.
+     */
+    final const val LIGHTMAP_SCALE_1X: Long = 0
+
+    /**
+     * The generated lightmap texture will be twice as large, on each axis.
+     */
+    final const val LIGHTMAP_SCALE_2X: Long = 1
+
+    /**
+     * The generated lightmap texture will be 4 times as large, on each axis.
+     */
+    final const val LIGHTMAP_SCALE_4X: Long = 2
+
+    /**
+     * The generated lightmap texture will be 8 times as large, on each axis.
+     */
+    final const val LIGHTMAP_SCALE_8X: Long = 3
+
+    /**
+     *
+     */
+    final const val LIGHTMAP_SCALE_MAX: Long = 4
 
     /**
      * Will cast shadows from all visible faces in the GeometryInstance.

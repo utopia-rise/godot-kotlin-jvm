@@ -49,6 +49,22 @@ open class TabContainer : Container() {
   val tabSelected: Signal1<Long> by signal("tab")
 
   /**
+   * If `true`, all tabs are drawn in front of the panel. If `false`, inactive tabs are drawn behind the panel.
+   */
+  open var allTabsInFront: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_ALL_TABS_IN_FRONT, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(value) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_ALL_TABS_IN_FRONT, NIL)
+    }
+
+  /**
    * The current tab index. When set, this index's [godot.Control] node's `visible` property is set to `true` and all others are set to `false`.
    */
   open var currentTab: Long

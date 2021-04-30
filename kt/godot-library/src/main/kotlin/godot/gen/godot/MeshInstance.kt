@@ -8,10 +8,12 @@ package godot
 import godot.annotation.GodotBaseType
 import godot.core.NodePath
 import godot.core.TransferContext
+import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
+import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
 
@@ -68,11 +70,32 @@ open class MeshInstance : GeometryInstance() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_SET_SKIN, NIL)
     }
 
+  /**
+   * If `true`, normals are transformed when software skinning is used. Set to `false` when normals are not needed for better performance.
+   *
+   * See [godot.ProjectSettings.rendering/quality/skinning/softwareSkinningFallback] for details about how software skinning is enabled.
+   */
+  open var softwareSkinningTransformNormals: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_GET_SOFTWARE_SKINNING_TRANSFORM_NORMALS, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(value) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_SET_SOFTWARE_SKINNING_TRANSFORM_NORMALS, NIL)
+    }
+
   override fun __new() {
     callConstructor(ENGINECLASS_MESHINSTANCE)
   }
 
   open fun _meshChanged() {
+  }
+
+  open fun _updateSkinning() {
   }
 
   /**
@@ -100,6 +123,16 @@ open class MeshInstance : GeometryInstance() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_CREATE_TRIMESH_COLLISION, NIL)
+  }
+
+  /**
+   * Returns the [godot.Material] that will be used by the [godot.Mesh] when drawing. This can return the [godot.GeometryInstance.materialOverride], the surface override [godot.Material] defined in this [godot.MeshInstance], or the surface [godot.Material] defined in the [godot.Mesh]. For example, if [godot.GeometryInstance.materialOverride] is used, all surfaces will return the override material.
+   */
+  open fun getActiveMaterial(surface: Long): Material? {
+    TransferContext.writeArguments(LONG to surface)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_GET_ACTIVE_MATERIAL,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Material?
   }
 
   /**

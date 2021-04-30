@@ -11,6 +11,7 @@ import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -18,6 +19,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -50,6 +52,14 @@ open class EditorInterface : Node() {
 
   override fun __new() {
     callConstructor(ENGINECLASS_EDITORINTERFACE)
+  }
+
+  /**
+   * Edits the given [godot.Node]. The node will be also selected if it's inside the scene tree.
+   */
+  open fun editNode(node: Node) {
+    TransferContext.writeArguments(OBJECT to node)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_EDIT_NODE, NIL)
   }
 
   /**
@@ -88,6 +98,18 @@ open class EditorInterface : Node() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITED_SCENE_ROOT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
+  }
+
+  /**
+   * Returns the actual scale of the editor UI (`1.0` being 100% scale). This can be used to adjust position and dimensions of the UI added by plugins.
+   *
+   * **Note:** This value is set via the `interface/editor/display_scale` and `interface/editor/custom_display_scale` editor settings. Editor must be restarted for changes to be properly applied.
+   */
+  open fun getEditorScale(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_SCALE,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
@@ -205,8 +227,12 @@ open class EditorInterface : Node() {
   /**
    * Shows the given property on the given `object` in the editor's Inspector dock. If `inspector_only` is `true`, plugins will not attempt to edit `object`.
    */
-  open fun inspectObject(_object: Object, forProperty: String = "") {
-    TransferContext.writeArguments(OBJECT to _object, STRING to forProperty)
+  open fun inspectObject(
+    _object: Object,
+    forProperty: String = "",
+    inspectorOnly: Boolean = false
+  ) {
+    TransferContext.writeArguments(OBJECT to _object, STRING to forProperty, BOOL to inspectorOnly)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_INSPECT_OBJECT, NIL)
   }
 

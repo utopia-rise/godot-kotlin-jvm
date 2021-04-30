@@ -97,6 +97,9 @@ open class CollisionObject : Spatial() {
   ) {
   }
 
+  open fun _updateDebugShapes() {
+  }
+
   /**
    * Creates a new shape owner for the given object. Returns `owner_id` of the new owner for future reference.
    */

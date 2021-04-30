@@ -62,6 +62,33 @@ open class RandomNumberGenerator : Reference() {
           NIL)
     }
 
+  /**
+   * The current state of the random number generator. Save and restore this property to restore the generator to a previous state:
+   *
+   * ```
+   * 			var rng = RandomNumberGenerator.new()
+   * 			print(rng.randf())
+   * 			var saved_state = rng.state # Store current state.
+   * 			print(rng.randf()) # Advance internal state.
+   * 			rng.state = saved_state # Restore the state.
+   * 			print(rng.randf()) # Prints the same value as in previous.
+   * 			```
+   *
+   * **Note:** Do not set state to arbitrary values, since the random number generator requires the state to have certain qualities to behave properly. It should only be set to values that came from the state property itself. To initialize the random number generator with arbitrary input, use [seed] instead.
+   */
+  open var state: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_GET_STATE,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(value) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_SET_STATE,
+          NIL)
+    }
+
   override fun __new() {
     callConstructor(ENGINECLASS_RANDOMNUMBERGENERATOR)
   }

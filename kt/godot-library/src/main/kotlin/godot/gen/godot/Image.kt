@@ -398,6 +398,17 @@ open class Image : Resource() {
   }
 
   /**
+   * Loads an image from the binary contents of a BMP file.
+   *
+   * **Note:** Godot's BMP module doesn't support 16-bit per pixel images. Only 1-bit, 4-bit, 8-bit, 24-bit, and 32-bit per pixel images are supported.
+   */
+  open fun loadBmpFromBuffer(buffer: PoolByteArray): GodotError {
+    TransferContext.writeArguments(POOL_BYTE_ARRAY to buffer)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_LOAD_BMP_FROM_BUFFER, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
    * Loads an image from the binary contents of a JPEG file.
    */
   open fun loadJpgFromBuffer(buffer: PoolByteArray): GodotError {
@@ -472,8 +483,8 @@ open class Image : Resource() {
   /**
    * Resizes the image to the nearest power of 2 for the width and height. If `square` is `true` then set width and height to be the same. New pixels are calculated using the `interpolation` mode defined via [enum Interpolation] constants.
    */
-  open fun resizeToPo2(square: Boolean = false) {
-    TransferContext.writeArguments(BOOL to square)
+  open fun resizeToPo2(square: Boolean = false, interpolation: Long = 1) {
+    TransferContext.writeArguments(BOOL to square, LONG to interpolation)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_RESIZE_TO_PO2, NIL)
   }
 

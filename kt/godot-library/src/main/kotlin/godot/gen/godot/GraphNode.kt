@@ -64,6 +64,11 @@ open class GraphNode : Container() {
   val resizeRequest: Signal1<Vector2> by signal("new_minsize")
 
   /**
+   * Emitted when any GraphNode's slot is updated.
+   */
+  val slotUpdated: Signal1<Long> by signal("idx")
+
+  /**
    * If `true`, the GraphNode is a comment node.
    */
   open var comment: Boolean

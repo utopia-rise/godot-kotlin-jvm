@@ -106,6 +106,24 @@ open class Resource : Reference() {
   }
 
   /**
+   * Emits the [changed] signal.
+   *
+   * If external objects which depend on this resource should be updated, this method must be called manually whenever the state of this resource has changed (such as modification of properties).
+   *
+   * The method is equivalent to:
+   *
+   * ```
+   * 				emit_signal("changed")
+   * 				```
+   *
+   * **Note:** This method is called automatically for built-in resources.
+   */
+  open fun emitChanged() {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_EMIT_CHANGED, NIL)
+  }
+
+  /**
    * If [resourceLocalToScene] is enabled and the resource was loaded from a [godot.PackedScene] instantiation, returns the local scene where this resource's unique copy is in use. Otherwise, returns `null`.
    */
   open fun getLocalScene(): Node? {

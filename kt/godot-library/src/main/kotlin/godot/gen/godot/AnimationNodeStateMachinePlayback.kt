@@ -9,10 +9,12 @@ import godot.annotation.GodotBaseType
 import godot.core.PoolStringArray
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.POOL_STRING_ARRAY
 import godot.core.VariantType.STRING
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.String
 import kotlin.Suppress
 
@@ -38,6 +40,16 @@ open class AnimationNodeStateMachinePlayback : Resource() {
   }
 
   /**
+   *
+   */
+  open fun getCurrentLength(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_LENGTH, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
    * Returns the currently playing animation state.
    */
   open fun getCurrentNode(): String {
@@ -45,6 +57,17 @@ open class AnimationNodeStateMachinePlayback : Resource() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_NODE, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Returns the playback position within the current animation state.
+   */
+  open fun getCurrentPlayPosition(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_PLAY_POSITION,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**

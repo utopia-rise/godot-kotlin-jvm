@@ -124,6 +124,22 @@ open class Viewport : Node() {
     }
 
   /**
+   * If `true`, uses a fast post-processing filter to make banding significantly less visible. In some cases, debanding may introduce a slightly noticeable dithering pattern. It's recommended to enable debanding only when actually needed since the dithering pattern will make lossless-compressed screenshots larger.
+   *
+   * **Note:** Only available on the GLES3 backend. [hdr] must also be `true` for debanding to be effective.
+   */
+  open var debanding: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEBANDING, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(value) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DEBANDING, NIL)
+    }
+
+  /**
    * The overlay mode for test rendered geometry in debug purposes.
    */
   open var debugDraw: Long
@@ -149,6 +165,20 @@ open class Viewport : Node() {
     set(value) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DISABLE_3D, NIL)
+    }
+
+  /**
+   * Enables fast approximate antialiasing. FXAA is a popular screen-space antialiasing method, which is fast but will make the image look blurry, especially at lower resolutions. It can still work relatively well at large resolutions such as 1440p and 4K.
+   */
+  open var fxaa: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_FXAA, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(value) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_FXAA, NIL)
     }
 
   /**
@@ -559,6 +589,9 @@ open class Viewport : Node() {
   }
 
   open fun _postGuiGrabClickFocus() {
+  }
+
+  open fun _processPicking(ignorePaused: Boolean) {
   }
 
   open fun _subwindowVisibilityChanged() {

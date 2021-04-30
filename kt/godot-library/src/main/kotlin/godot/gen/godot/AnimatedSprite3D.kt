@@ -31,6 +31,11 @@ import kotlin.Suppress
 @GodotBaseType
 open class AnimatedSprite3D : SpriteBase3D() {
   /**
+   * Emitted when the animation is finished (when it plays the last frame). If the animation is looping, this signal is emitted every time the last frame is drawn.
+   */
+  val animationFinished: Signal0 by signal()
+
+  /**
    * Emitted when [frame] changed.
    */
   val frameChanged: Signal0 by signal()

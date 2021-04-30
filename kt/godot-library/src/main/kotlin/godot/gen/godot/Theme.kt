@@ -65,40 +65,40 @@ open class Theme : Resource() {
   /**
    * Clears the [godot.core.Color] at `name` if the theme has `node_type`.
    */
-  open fun clearColor(name: String, type: String) {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun clearColor(name: String, nodeType: String) {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_COLOR, NIL)
   }
 
   /**
    * Clears the constant at `name` if the theme has `node_type`.
    */
-  open fun clearConstant(name: String, type: String) {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun clearConstant(name: String, nodeType: String) {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_CONSTANT, NIL)
   }
 
   /**
    * Clears the [godot.Font] at `name` if the theme has `node_type`.
    */
-  open fun clearFont(name: String, type: String) {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun clearFont(name: String, nodeType: String) {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_FONT, NIL)
   }
 
   /**
    * Clears the icon at `name` if the theme has `node_type`.
    */
-  open fun clearIcon(name: String, type: String) {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun clearIcon(name: String, nodeType: String) {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_ICON, NIL)
   }
 
   /**
    * Clears [godot.StyleBox] at `name` if the theme has `node_type`.
    */
-  open fun clearStylebox(name: String, type: String) {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun clearStylebox(name: String, nodeType: String) {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_CLEAR_STYLEBOX, NIL)
   }
 
@@ -121,8 +121,8 @@ open class Theme : Resource() {
   /**
    * Returns the [godot.core.Color] at `name` if the theme has `node_type`.
    */
-  open fun getColor(name: String, type: String): Color {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun getColor(name: String, nodeType: String): Color {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_COLOR, COLOR)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
@@ -130,8 +130,8 @@ open class Theme : Resource() {
   /**
    * Returns all the [godot.core.Color]s as a [godot.core.PoolStringArray] filled with each [godot.core.Color]'s name, for use in [getColor], if the theme has `node_type`.
    */
-  open fun getColorList(type: String): PoolStringArray {
-    TransferContext.writeArguments(STRING to type)
+  open fun getColorList(nodeType: String): PoolStringArray {
+    TransferContext.writeArguments(STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_COLOR_LIST,
         POOL_STRING_ARRAY)
     return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
@@ -140,8 +140,8 @@ open class Theme : Resource() {
   /**
    * Returns the constant at `name` if the theme has `node_type`.
    */
-  open fun getConstant(name: String, type: String): Long {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun getConstant(name: String, nodeType: String): Long {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_CONSTANT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
@@ -149,8 +149,8 @@ open class Theme : Resource() {
   /**
    * Returns all the constants as a [godot.core.PoolStringArray] filled with each constant's name, for use in [getConstant], if the theme has `node_type`.
    */
-  open fun getConstantList(type: String): PoolStringArray {
-    TransferContext.writeArguments(STRING to type)
+  open fun getConstantList(nodeType: String): PoolStringArray {
+    TransferContext.writeArguments(STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_CONSTANT_LIST,
         POOL_STRING_ARRAY)
     return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
@@ -159,8 +159,8 @@ open class Theme : Resource() {
   /**
    * Returns the [godot.Font] at `name` if the theme has `node_type`.
    */
-  open fun getFont(name: String, type: String): Font? {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun getFont(name: String, nodeType: String): Font? {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_FONT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Font?
   }
@@ -168,8 +168,8 @@ open class Theme : Resource() {
   /**
    * Returns all the [godot.Font]s as a [godot.core.PoolStringArray] filled with each [godot.Font]'s name, for use in [getFont], if the theme has `node_type`.
    */
-  open fun getFontList(type: String): PoolStringArray {
-    TransferContext.writeArguments(STRING to type)
+  open fun getFontList(nodeType: String): PoolStringArray {
+    TransferContext.writeArguments(STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_FONT_LIST,
         POOL_STRING_ARRAY)
     return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
@@ -178,8 +178,8 @@ open class Theme : Resource() {
   /**
    * Returns the icon [godot.Texture] at `name` if the theme has `node_type`.
    */
-  open fun getIcon(name: String, type: String): Texture? {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun getIcon(name: String, nodeType: String): Texture? {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_ICON, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Texture?
   }
@@ -187,8 +187,8 @@ open class Theme : Resource() {
   /**
    * Returns all the icons as a [godot.core.PoolStringArray] filled with each [godot.Texture]'s name, for use in [getIcon], if the theme has `node_type`.
    */
-  open fun getIconList(type: String): PoolStringArray {
-    TransferContext.writeArguments(STRING to type)
+  open fun getIconList(nodeType: String): PoolStringArray {
+    TransferContext.writeArguments(STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_ICON_LIST,
         POOL_STRING_ARRAY)
     return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
@@ -199,8 +199,8 @@ open class Theme : Resource() {
    *
    * Valid `name`s may be found using [getStyleboxList]. Valid `node_type`s may be found using [getStyleboxTypes].
    */
-  open fun getStylebox(name: String, type: String): StyleBox? {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun getStylebox(name: String, nodeType: String): StyleBox? {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_STYLEBOX, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as StyleBox?
   }
@@ -210,8 +210,8 @@ open class Theme : Resource() {
    *
    * Valid `node_type`s may be found using [getStyleboxTypes].
    */
-  open fun getStyleboxList(type: String): PoolStringArray {
-    TransferContext.writeArguments(STRING to type)
+  open fun getStyleboxList(nodeType: String): PoolStringArray {
+    TransferContext.writeArguments(STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_STYLEBOX_LIST,
         POOL_STRING_ARRAY)
     return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
@@ -230,8 +230,8 @@ open class Theme : Resource() {
   /**
    * Returns all the types in `node_type` as a [godot.core.PoolStringArray] for use in any of the `get_*` functions, if the theme has `node_type`.
    */
-  open fun getTypeList(type: String): PoolStringArray {
-    TransferContext.writeArguments(STRING to type)
+  open fun getTypeList(nodeType: String): PoolStringArray {
+    TransferContext.writeArguments(STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_GET_TYPE_LIST,
         POOL_STRING_ARRAY)
     return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
@@ -242,8 +242,8 @@ open class Theme : Resource() {
    *
    * Returns `false` if the theme does not have `node_type`.
    */
-  open fun hasColor(name: String, type: String): Boolean {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun hasColor(name: String, nodeType: String): Boolean {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_COLOR, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -253,8 +253,8 @@ open class Theme : Resource() {
    *
    * Returns `false` if the theme does not have `node_type`.
    */
-  open fun hasConstant(name: String, type: String): Boolean {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun hasConstant(name: String, nodeType: String): Boolean {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_CONSTANT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -264,8 +264,8 @@ open class Theme : Resource() {
    *
    * Returns `false` if the theme does not have `node_type`.
    */
-  open fun hasFont(name: String, type: String): Boolean {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun hasFont(name: String, nodeType: String): Boolean {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_FONT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -275,8 +275,8 @@ open class Theme : Resource() {
    *
    * Returns `false` if the theme does not have `node_type`.
    */
-  open fun hasIcon(name: String, type: String): Boolean {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun hasIcon(name: String, nodeType: String): Boolean {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_ICON, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -286,8 +286,8 @@ open class Theme : Resource() {
    *
    * Returns `false` if the theme does not have `node_type`.
    */
-  open fun hasStylebox(name: String, type: String): Boolean {
-    TransferContext.writeArguments(STRING to name, STRING to type)
+  open fun hasStylebox(name: String, nodeType: String): Boolean {
+    TransferContext.writeArguments(STRING to name, STRING to nodeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_HAS_STYLEBOX, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -299,10 +299,10 @@ open class Theme : Resource() {
    */
   open fun setColor(
     name: String,
-    type: String,
+    nodeType: String,
     color: Color
   ) {
-    TransferContext.writeArguments(STRING to name, STRING to type, COLOR to color)
+    TransferContext.writeArguments(STRING to name, STRING to nodeType, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_COLOR, NIL)
   }
 
@@ -313,10 +313,10 @@ open class Theme : Resource() {
    */
   open fun setConstant(
     name: String,
-    type: String,
+    nodeType: String,
     constant: Long
   ) {
-    TransferContext.writeArguments(STRING to name, STRING to type, LONG to constant)
+    TransferContext.writeArguments(STRING to name, STRING to nodeType, LONG to constant)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_CONSTANT, NIL)
   }
 
@@ -327,10 +327,10 @@ open class Theme : Resource() {
    */
   open fun setFont(
     name: String,
-    type: String,
+    nodeType: String,
     font: Font
   ) {
-    TransferContext.writeArguments(STRING to name, STRING to type, OBJECT to font)
+    TransferContext.writeArguments(STRING to name, STRING to nodeType, OBJECT to font)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_FONT, NIL)
   }
 
@@ -341,10 +341,10 @@ open class Theme : Resource() {
    */
   open fun setIcon(
     name: String,
-    type: String,
+    nodeType: String,
     texture: Texture
   ) {
-    TransferContext.writeArguments(STRING to name, STRING to type, OBJECT to texture)
+    TransferContext.writeArguments(STRING to name, STRING to nodeType, OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_ICON, NIL)
   }
 
@@ -355,10 +355,10 @@ open class Theme : Resource() {
    */
   open fun setStylebox(
     name: String,
-    type: String,
+    nodeType: String,
     texture: StyleBox
   ) {
-    TransferContext.writeArguments(STRING to name, STRING to type, OBJECT to texture)
+    TransferContext.writeArguments(STRING to name, STRING to nodeType, OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_STYLEBOX, NIL)
   }
 }
