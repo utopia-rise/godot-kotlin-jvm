@@ -385,6 +385,7 @@ void GDKotlin::finish() {
         garbage_collector_instance.call_void_method(env, clean_up_method_id);
     }
 
+    LongStringQueue::destroy();
     BridgesManager::get_instance().delete_bridges();
 
     engine_type_method.clear();

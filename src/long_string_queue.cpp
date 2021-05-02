@@ -1,7 +1,7 @@
 #include "long_string_queue.h"
 #include "jni/class_loader.h"
 
-JNI_INIT_STATICS_FOR_CLASS(LongStringQueue)
+JNI_INIT_STATICS_FOR_SINGLETON(LongStringQueue)
 
 // If changed, remember to change also LongStringQueue::stringMaxSize on JVM side  and the StringTest.kt
 int LongStringQueue::max_string_size = 512;
@@ -9,7 +9,7 @@ int LongStringQueue::max_string_size = 512;
 thread_local static List<String> string_queue;
 
 LongStringQueue::LongStringQueue(jni::JObject p_wrapped, jni::JObject& p_class_loader)
-        : JavaInstanceWrapper("godot.core.LongStringQueue", p_wrapped, p_class_loader) {
+        : JavaSingletonWrapper<LongStringQueue>("godot.core.LongStringQueue", p_wrapped, p_class_loader) {
 
     jni::JNativeMethod send_string_to_cpp_method{
             "sendStringToCPP",
@@ -53,7 +53,7 @@ void LongStringQueue::send_string_to_cpp(JNIEnv* p_raw_env, jobject p_instance, 
     get_instance().queue_string(nativeString);
 }
 
-LongStringQueue LongStringQueue::init(){
+LongStringQueue* LongStringQueue::init(){
     jni::Env env{jni::Jvm::current_env()};
     jni::JObject class_loader = ClassLoader::get_default_loader();
     jni::JClass long_string_queue_cls = env.load_class("godot.core.LongStringQueue", class_loader);
@@ -75,19 +75,10 @@ LongStringQueue LongStringQueue::init(){
             "Failed to retrieve LongStringQueue instance"
     )
 
-    LongStringQueue instance{long_string_queue_instance, class_loader};
+    auto* instance{new LongStringQueue(long_string_queue_instance, class_loader)};
 
     long_string_queue_cls.delete_local_ref(env);
     long_string_queue_instance.delete_local_ref(env);
 
     return instance;
 }
-
-LongStringQueue& LongStringQueue::get_instance() {
-    static LongStringQueue instance{LongStringQueue::init()};
-    return instance;
-}
-
-
-
-
