@@ -1,3 +1,0 @@
-[submodule "kt/api-generator"]
-	path = kt/api-generator
-	url = https://github.com/utopia-rise/godot-kotlin-api-generator
