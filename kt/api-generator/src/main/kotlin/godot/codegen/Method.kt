@@ -38,7 +38,7 @@ open class Method @JsonCreator constructor(
         engineIndexName = "ENGINEMETHOD_${engineClassIndexName}_${oldName.toUpperCase()}"
     }
 
-    fun generate(clazz: Class, icalls: MutableSet<ICall>?): FunSpec {
+    fun generate(clazz: Class): FunSpec {
         val modifiers = mutableListOf<KModifier>()
 
         if (!clazz.isSingleton) {
@@ -78,7 +78,7 @@ open class Method @JsonCreator constructor(
             )
         }
 
-        generatedFunBuilder.generateCodeBlock(clazz, callArgumentsAsString, icalls, shouldReturn)
+        generatedFunBuilder.generateCodeBlock(clazz, callArgumentsAsString, shouldReturn)
 
         val kDoc = classDocs[clazz.newName]?.functions?.get(oldName)?.description
         if (kDoc != null) {
@@ -90,48 +90,16 @@ open class Method @JsonCreator constructor(
 
     private fun FunSpec.Builder.generateCodeBlock(clazz: Class,
                                                   callArgumentsAsString: String,
-                                                  icalls: MutableSet<ICall>? = null,
                                                   shouldReturn: Boolean
     ) {
         if (!isVirtual) {
-            if (isNative) {
-                checkNotNull(icalls)
-                addStatement("val mb = %M(\"${clazz.oldName}\",\"${oldName}\")", MemberName("godot.internal.utils", "getMethodBind"))
-                val constructedICall = constructICall(callArgumentsAsString, icalls)
-                addStatement(
-                        "%L%L%M%L%L",
-                        if (shouldReturn) "return " else "",
-                        when {
-                            returnType == "enum.Error" -> {
-                                "${returnType.removeEnumPrefix()}.byValue( "
-                            }
-                            returnType.isEnum() -> {
-                                "${returnType.removeEnumPrefix()}.from( "
-                            }
-                            hasVarargs && returnType != "Variant" && returnType != "Unit" -> {
-                                "$returnType from "
-                            }
-                            else -> {
-                                ""
-                            }
-                        },
-                        MemberName("godot.icalls", constructedICall.first),
-                        constructedICall.second,
-                        when {
-                            returnType == "enum.Error" -> ".toUInt())"
-                            returnType.isEnum() -> ")"
-                            else -> ""
-                        }
-                )
-            } else {
-                generateJvmMethodCall(
-                    engineIndexName,
-                    returnType,
-                    callArgumentsAsString,
-                    arguments.map { it.type }.toList(),
-                    hasVarargs
-                )
-            }
+            generateJvmMethodCall(
+                engineIndexName,
+                returnType,
+                callArgumentsAsString,
+                arguments.map { it.type }.toList(),
+                hasVarargs
+            )
         } else {
             if (shouldReturn) {
                 addStatement(
@@ -150,18 +118,14 @@ open class Method @JsonCreator constructor(
                 val index = it.index
                 val argument = it.value
 
-                val shouldAddComa = if (isNative) index != 0 || !hasVarargs else index != 0
+                val shouldAddComa = index != 0
 
                 if (shouldAddComa) append(", ")
 
                 val sanitisedArgumentName = tree.getSanitisedArgumentName(this@Method, index, cl)
-                if (isNative) {
-                    append(sanitisedArgumentName)
-                    if (argument.type.isEnum()) append(".id")
-                } else {
-                    append("%T to $sanitisedArgumentName")
-                    if (argument.type.isEnum()) append(".id")
-                }
+
+                append("%T to $sanitisedArgumentName")
+                if (argument.type.isEnum()) append(".id")
 
                 if (argument.type.isEnum()) append(".id")
 
@@ -178,22 +142,11 @@ open class Method @JsonCreator constructor(
 
                 generatedFunBuilder.addParameter(parameterBuilder.build())
             }
-            if (hasVarargs && !isEmpty()) append(", ")
+            if (hasVarargs && length != 0) append(", ")
         }
     }
 
     private fun getModifier(cl: Class) =
         if (tree.doAncestorsHaveMethod(cl, this)) KModifier.OVERRIDE else KModifier.OPEN
 
-    private fun constructICall(methodArguments: String, icalls: MutableSet<ICall>): Pair<String, String> {
-        if (hasVarargs) {
-            return "_icall_varargs" to
-                "( mb, this.ptr, " +
-                if (methodArguments.isNotEmpty()) "arrayOf($methodArguments*__var_args))" else "__var_args)"
-        }
-
-        val icall = ICall(returnType, arguments)
-        icalls.add(icall)
-        return icall.name to "( mb, this.ptr$methodArguments)"
-    }
 }

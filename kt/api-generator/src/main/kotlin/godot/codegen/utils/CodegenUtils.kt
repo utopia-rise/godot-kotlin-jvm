@@ -2,12 +2,10 @@ package godot.codegen.utils
 
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import godot.codegen.isNative
 
 fun ClassName.convertIfTypeParameter(): TypeName {
-    val arrayClassName = if (isNative) "GodotArray" else "VariantArray"
     return when(this.simpleName) {
-        arrayClassName -> this.parameterizedBy(ANY.copy(nullable = true))
+        "VariantArray" -> this.parameterizedBy(ANY.copy(nullable = true))
         "Dictionary" -> this.parameterizedBy(ANY.copy(nullable = true), ANY.copy(nullable = true))
         else -> this
     }

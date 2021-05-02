@@ -2,7 +2,6 @@ package godot.codegen.utils
 
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.TypeName
-import godot.codegen.isNative
 
 private val coreTypes = listOf(
     "GodotArray",
@@ -56,8 +55,7 @@ private val kotlinReservedNames = listOf(
     "object"
 )
 
-private val primitives =
-        if (isNative) listOf("Long", "Double", "Boolean", "Unit") else listOf("Int", "Long", "Float", "Double", "Boolean", "Unit")
+private val primitives = listOf("Int", "Long", "Float", "Double", "Boolean", "Unit")
 
 fun String.escapeUnderscore(): String {
     if (this == "") return this
@@ -149,25 +147,14 @@ fun String.convertToSnakeCase(): String =
     }.toString()
 
 fun String.convertTypeToKotlin(): String {
-    return if (isNative) {
-        when(this) {
-            "int" -> "Long"
-            "float" -> "Double"
-            "bool" -> "Boolean"
-            "void" -> "Unit"
-            "Array" -> "GodotArray"
-            else -> this
-        }
-    } else {
-        when(this) {
-            "int" -> "Long"
-            "float" -> "Double"
-            "bool" -> "Boolean"
-            "void" -> "Unit"
-            "Array" -> "VariantArray"
-            "Variant" -> "Any"
-            else -> this
-        }
+    return when(this) {
+        "int" -> "Long"
+        "float" -> "Double"
+        "bool" -> "Boolean"
+        "void" -> "Unit"
+        "Array" -> "VariantArray"
+        "Variant" -> "Any"
+        else -> this
     }
 }
 

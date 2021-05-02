@@ -8,6 +8,7 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import godot.codegen.utils.escapeUnderscore
 import godot.codegen.utils.isCoreType
 import godot.codegen.utils.isCoreTypeAdaptedForKotlin
+import org.gradle.kotlin.dsl.support.appendReproducibleNewLine
 import java.io.File
 
 
@@ -51,7 +52,7 @@ class Class @JsonCreator constructor(
         applyGettersAndSettersForProperties()
     }
 
-    fun generate(outputDir: File, icalls: MutableSet<ICall>?) {
+    fun generate(outputDir: File) {
         if (!shouldGenerate) return
 
         val className = ClassName("godot", newName)
@@ -62,36 +63,28 @@ class Class @JsonCreator constructor(
             classTypeBuilder.addKdoc(
                 "%L",
                 buildString {
-                    appendln(classDoc.briefDescription)
-                    appendln()
+                    appendReproducibleNewLine(classDoc.briefDescription)
+                    appendReproducibleNewLine()
                     if (classDoc.tutorialLinks.isNotEmpty()) {
-                        appendln("Tutorials:")
+                        appendReproducibleNewLine("Tutorials:")
                         classDoc.tutorialLinks.forEach {
-                            appendln("[$it]($it)")
+                            appendReproducibleNewLine("[$it]($it)")
                         }
-                        appendln()
+                        appendReproducibleNewLine()
                     }
-                    appendln(classDoc.description)
+                    appendReproducibleNewLine(classDoc.description)
                 }.replace(System.lineSeparator(), "\n")
             )
         }
 
-        if (!isNative) {
-            classTypeBuilder.addAnnotation(ClassName("godot.annotation", "GodotBaseType"))
-        }
+        classTypeBuilder.addAnnotation(ClassName("godot.annotation", "GodotBaseType"))
 
         if (newName == "Object") {
-            if (isNative) {
-                generatePointerVariable(classTypeBuilder)
-                generateInitAndDestroy(classTypeBuilder)
-                generateToVariantMethod(classTypeBuilder)
-            } else {
-                classTypeBuilder.superclass(ClassName("godot.core", "KtObject"))
-            }
+            classTypeBuilder.superclass(ClassName("godot.core", "KtObject"))
             generateConstructorMethod(classTypeBuilder)
             generateSignalExtensions(classTypeBuilder)
         }
-        if (!isNative && newName == "Reference") {
+        if (newName == "Reference") {
             classTypeBuilder.addFunction(
                 FunSpec.builder("____DO_NOT_TOUCH_THIS_isRef____")
                     .addModifiers(KModifier.OVERRIDE)
@@ -105,7 +98,7 @@ class Class @JsonCreator constructor(
 
         generateConstructors(classTypeBuilder)
 
-        if (!isNative && isSingleton) {
+        if (isSingleton) {
             classTypeBuilder.addFunction(
                 FunSpec.builder("____DO_NOT_TOUCH_THIS_isSingleton____")
                     .addModifiers(KModifier.OVERRIDE)
@@ -123,8 +116,8 @@ class Class @JsonCreator constructor(
         baseCompanion?.build()?.let { classTypeBuilder.addType(it) }
 
         generateSignals(classTypeBuilder)
-        generateProperties(icalls, classTypeBuilder)
-        generateMethods(classTypeBuilder, icalls)
+        generateProperties(classTypeBuilder)
+        generateMethods(classTypeBuilder)
 
 
         //Build Type and create file
@@ -162,27 +155,6 @@ class Class @JsonCreator constructor(
         return typeSpec
     }
 
-    private fun generatePointerVariable(typeBuilder: TypeSpec.Builder) {
-        typeBuilder.addProperty(
-            PropertySpec.builder(
-                "ptr",
-                ClassName("kotlinx.cinterop", "COpaquePointer")
-            )
-                .addModifiers(KModifier.INTERNAL, KModifier.LATEINIT)
-                .mutable(true)
-                .build()
-        )
-    }
-
-    private fun generateInitAndDestroy(typeBuilder: TypeSpec.Builder) {
-        typeBuilder.addFunctions(
-            listOf(
-                FunSpec.builder("_onInit").addModifiers(KModifier.OPEN).build(),
-                FunSpec.builder("_onDestroy").addModifiers(KModifier.OPEN).build()
-            )
-        )
-    }
-
     private fun generateConstructorMethod(typeBuilder: TypeSpec.Builder) {
         val constructorFun = FunSpec.builder("callConstructor")
             .addModifiers(KModifier.INLINE)
@@ -216,11 +188,7 @@ class Class @JsonCreator constructor(
         for (i in 0..10) {
             if (i != 0) typeVariablesNames.add(TypeVariableName.invoke("A${i - 1}"))
 
-            val signalType = if (isNative) {
-                ClassName("godot.core", "Signal$i")
-            } else {
-                ClassName("godot.signals", "Signal$i")
-            }
+            val signalType = ClassName("godot.signals", "Signal$i")
 
             val emitFunBuilder = FunSpec.builder("emit")
 
@@ -264,11 +232,7 @@ class Class @JsonCreator constructor(
             )
 
             val objectType = ClassName("godot", "Object")
-            val arrayType = if (isNative) {
-                ClassName("godot.core", "GodotArray")
-            } else {
-                ClassName("godot.core", "VariantArray")
-            }
+            val arrayType = ClassName("godot.core", "VariantArray")
             val connectFun = FunSpec.builder("connect")
                 .receiver(signalParameterizedType)
                 .addTypeVariables(connectTypeVariableNames)
@@ -292,24 +256,13 @@ class Class @JsonCreator constructor(
                             .build()
                     )
                 )
-            if (isNative) {
-                connectFun.addCode("""
-                            |val methodName = (method as %T<%T>).name
-                            |return connect(this@%T, target, methodName, binds, flags)
-                            |""".trimMargin(),
-                    ClassName("kotlin.reflect", "KCallable"),
-                    UNIT,
-                    objectType
-                )
-            } else {
-                connectFun.addCode("""
+            connectFun.addCode("""
                             |val methodName = (method as %T<*>).name.%M()
                             |return connect(target, methodName, binds, flags)
                             |""".trimMargin(),
-                    ClassName("kotlin.reflect", "KCallable"),
-                    MemberName("godot.util", "camelToSnakeCase")
-                )
-            }
+                ClassName("kotlin.reflect", "KCallable"),
+                MemberName("godot.util", "camelToSnakeCase")
+            )
             typeBuilder.addFunction(connectFun.build())
         }
     }
@@ -330,7 +283,6 @@ class Class @JsonCreator constructor(
 
     private fun generateTypesafeRpc(typeBuilder: TypeSpec.Builder) {
         val camelToSnakeCaseUtilFunction = MemberName("godot.util", "camelToSnakeCase")
-        val nodeClassName = ClassName("godot", "Node")
         for (i in 0..10) {
             val kFunctionTypeParameters = mutableListOf<TypeVariableName>()
             if (i != 0) {
@@ -413,76 +365,27 @@ class Class @JsonCreator constructor(
     }
 
     private fun generateConstructors(typeBuilder: TypeSpec.Builder) {
-        if (isNative) {
-            if (isSingleton) {
-                typeBuilder.addInitializerBlock(
-                    CodeBlock.of("""
-                            |%M {
-                            |    val ptr = %M(%T.gdnative.godot_global_get_singleton).%M("$singletonName".%M.ptr)
-                            |    %M(ptr) { "No instance found for singleton $singletonName" }
-                            |    this@$newName.ptr = ptr
-                            |}
-                            |""".trimMargin(),
-                        MemberName("godot.internal.utils", "godotScoped"),
-                        MemberName("godot.internal.type", "nullSafe"),
-                        ClassName("godot.core", "Godot"),
-                        MemberName("kotlinx.cinterop", "invoke"),
-                        MemberName("kotlinx.cinterop", "cstr"),
-                        MemberName("kotlin", "requireNotNull")
+        if (isSingleton) {
+            typeBuilder.addFunction(
+                FunSpec.builder("__new")
+                    .addModifiers(KModifier.OVERRIDE)
+                    .addStatement(
+                        "rawPtr = %T.getSingleton(%M)",
+                        ClassName("godot.core", "TransferContext"),
+                        MemberName("godot", engineSingletonIndexName!!)
                     )
-                )
-            } else {
-
-                val noArgConstructor = if (!isInstanciable) {
-                    FunSpec.constructorBuilder()
-                        .addModifiers(KModifier.INTERNAL)
-                        .callThisConstructor("null")
-                } else {
-                    FunSpec.constructorBuilder()
-                        .callThisConstructor("null")
-                        .addStatement(
-                            """if (%M()) {
-                   |    this.ptr = %M("$newName", "$oldName")
-                   |}
-                   |""".trimMargin(),
-                            MemberName(ClassName("godot.core", "Godot"), "shouldInitPtr"),
-                            MemberName("godot.internal.utils", "getConstructor")
-                        )
-                }
-
-                typeBuilder.addFunction(noArgConstructor.build())
-
-                typeBuilder.primaryConstructor(
-                    FunSpec.constructorBuilder()
-                        .addParameter(ParameterSpec("_ignore", ANY.copy(nullable = true)))
-                        .callSuperConstructor()
-                        .addModifiers(KModifier.INTERNAL)
-                        .build()
-                ).addSuperclassConstructorParameter("_ignore")
-            }
+                    .build()
+            )
         } else {
-            if (isSingleton) {
-                typeBuilder.addFunction(
-                    FunSpec.builder("__new")
-                        .addModifiers(KModifier.OVERRIDE)
-                        .addStatement(
-                            "rawPtr = %T.getSingleton(%M)",
-                            ClassName("godot.core", "TransferContext"),
-                            MemberName("godot", engineSingletonIndexName!!)
-                        )
-                        .build()
-                )
-            } else {
-                typeBuilder.addFunction(
-                    FunSpec.builder("__new")
-                        .addModifiers(KModifier.OVERRIDE)
-                        .addStatement(
-                            "callConstructor(%M)",
-                            MemberName("godot", engineClassDBIndexName)
-                        )
-                        .build()
-                )
-            }
+            typeBuilder.addFunction(
+                FunSpec.builder("__new")
+                    .addModifiers(KModifier.OVERRIDE)
+                    .addStatement(
+                        "callConstructor(%M)",
+                        MemberName("godot", engineClassDBIndexName)
+                    )
+                    .build()
+            )
         }
     }
 
@@ -519,11 +422,10 @@ class Class @JsonCreator constructor(
     }
 
     private fun generateProperties(
-        icalls: MutableSet<ICall>?,
         propertiesReceiverType: TypeSpec.Builder
     ) {
         properties.forEach { property ->
-            val propertySpec = property.generate(this, icalls)
+            val propertySpec = property.generate(this)
             if (propertySpec != null) {
                 propertiesReceiverType.addProperty(propertySpec)
 
@@ -570,27 +472,16 @@ class Class @JsonCreator constructor(
     }
 
     private fun generateMethods(
-        propertiesReceiverType: TypeSpec.Builder,
-        icalls: MutableSet<ICall>?
+        propertiesReceiverType: TypeSpec.Builder
     ) {
-        (if (isNative) methods else methods.filter { !it.isGetterOrSetter })
+        methods.filter { !it.isGetterOrSetter }
             .forEach { method ->
                 // FIX API for JVM
-                val shouldGenerate = (!jvmMethodToNotGenerate.contains(method.engineIndexName) && !isNative) || isNative
+                val shouldGenerate = (!jvmMethodToNotGenerate.contains(method.engineIndexName))
                 if (shouldGenerate) {
-                    propertiesReceiverType.addFunction(method.generate(this, icalls))
+                    propertiesReceiverType.addFunction(method.generate(this))
                 }
             }
-    }
-
-    private fun generateToVariantMethod(propertiesReceiverType: TypeSpec.Builder) {
-        val variantType = ClassName("godot.core", "Variant")
-        propertiesReceiverType.addFunction(
-            FunSpec.builder("toVariant")
-                .returns(variantType)
-                .addStatement("return %T(this)", variantType)
-                .build()
-        )
     }
 
     private fun generateSuppressWarnings(fileBuilder: FileSpec.Builder) {

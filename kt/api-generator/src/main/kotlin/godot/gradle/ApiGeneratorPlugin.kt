@@ -17,7 +17,6 @@ open class ApiGeneratorPluginExtension(objects: ObjectFactory) {
     var outputDir = objects.directoryProperty()
     var sourceJson = objects.fileProperty()
     var docsDir = objects.directoryProperty()
-    var isNative = objects.property<Boolean>()
 }
 
 open class GenerateAPI : DefaultTask() {
@@ -29,13 +28,11 @@ open class GenerateAPI : DefaultTask() {
     @InputDirectory
     val docsDir = project.objects.directoryProperty()
 
-    var isNative = project.objects.property<Boolean>()
-
     @TaskAction
     fun execute() {
         val output = outputDir.get().asFile
         output.deleteRecursively()
-        output.generateApiFrom(sourceJson.get().asFile, isNative.get(), docsDir.get().asFile)
+        output.generateApiFrom(sourceJson.get().asFile, docsDir.get().asFile)
     }
 }
 
@@ -45,7 +42,6 @@ class ApiGeneratorPlugin : Plugin<Project> {
         project.tasks.register("generateAPI", GenerateAPI::class.java) {
             outputDir.set(extension.outputDir)
             sourceJson.set(extension.sourceJson)
-            isNative.set(extension.isNative)
             docsDir.set(extension.docsDir)
 
             group = "godot-jvm"

@@ -13,7 +13,7 @@ import godot.codegen.utils.getPackage
 
 import godot.codegen.utils.convertIfTypeParameter
 
-val signalPackage = if (isNative) "godot.core" else "godot.signals"
+const val signalPackage = "godot.signals"
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 class Signal @JsonCreator constructor(

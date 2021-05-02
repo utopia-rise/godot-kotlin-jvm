@@ -58,7 +58,7 @@ class Property @JsonCreator constructor(
         }
     }
 
-    fun generate(clazz: Class, icalls: MutableSet<ICall>?): PropertySpec? {
+    fun generate(clazz: Class): PropertySpec? {
         if (!hasValidGetter && !hasValidSetter) return null
 
         if (hasValidGetter && !validGetter.returnType.isEnum() && type != validGetter.returnType) {
@@ -85,75 +85,32 @@ class Property @JsonCreator constructor(
 
         if (hasValidSetter) {
             propertySpecBuilder.mutable()
-            if (isNative) {
-                checkNotNull(icalls)
-                val icall = if (index != -1) {
-                    ICall("Unit", listOf(Argument("idx", "Long"), Argument("value", type)))
-                } else {
-                    ICall("Unit", listOf(Argument("value", type)))
-                }
-                icalls.add(icall)
-                propertySpecBuilder.setter(
-                    FunSpec.setterBuilder()
-                        .addParameter("value", propertyType)
-                        .addStatement(
-                            "val mb = %M(\"${clazz.oldName}\",\"${validSetter.oldName}\")",
-                            MemberName("godot.internal.utils", "getMethodBind")
-                        )
-                        .addStatement(
-                            "%M(mb, this.ptr${if (index != -1) ", $index, value)" else ", value)"}",
-                            MemberName("godot.icalls", icall.name)
-                        )
-                        .build()
-                )
-            } else {
-                propertySpecBuilder.setter(
-                    FunSpec.setterBuilder()
-                        .addParameter("value", propertyType)
-                        .generateJvmMethodCall(
-                            engineSetterIndexName,
-                            "Unit",
-                            "%T to value",
-                            listOf(type),
-                            false
-                        )
-                        .build()
-                )
-            }
+            propertySpecBuilder.setter(
+                FunSpec.setterBuilder()
+                    .addParameter("value", propertyType)
+                    .generateJvmMethodCall(
+                        engineSetterIndexName,
+                        "Unit",
+                        "%T to value",
+                        listOf(type),
+                        false
+                    )
+                    .build()
+            )
         }
 
         if (hasValidGetter) {
-            if (isNative) {
-                checkNotNull(icalls)
-                val icall = if (index != -1) {
-                    ICall(type, listOf(Argument("idx", "Long")))
-                } else {
-                    ICall(type, listOf())
-                }
-                icalls.add(icall)
-                propertySpecBuilder.getter(
-                    FunSpec.getterBuilder()
-                        .addStatement("val mb = %M(\"${clazz.oldName}\",\"${validGetter.oldName}\")", MemberName("godot.internal.utils", "getMethodBind"))
-                        //Hard to maintain but do not see how to do better (Pierre-Thomas Meisels)
-                        .addStatement(
-                            "return %M(mb, this.ptr${if (index != -1) ", $index)" else ")"}",
-                            MemberName("godot.icalls", icall.name)
-                        )
-                        .build()
-                )
-            } else {
-                propertySpecBuilder.getter(
-                    FunSpec.getterBuilder()
-                        .generateJvmMethodCall(
-                            engineGetterIndexName,
-                            type,
-                            "",
-                            listOf(),
-                            false
-                        )
-                        .build()
-                )
-            }
+            propertySpecBuilder.getter(
+                FunSpec.getterBuilder()
+                    .generateJvmMethodCall(
+                        engineGetterIndexName,
+                        type,
+                        "",
+                        listOf(),
+                        false
+                    )
+                    .build()
+            )
         } else {
             if (parentMethodToCall != null) {
                 propertySpecBuilder.getter(
