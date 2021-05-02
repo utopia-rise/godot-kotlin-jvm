@@ -6,7 +6,7 @@
 		"singleton": true,
 		"singleton_name": "GlobalConstants",
 		"instanciable": false,
-		"is_reference": true,
+		"is_reference": false,
 		"constants": {
 			"BUTTON_LEFT": 1,
 			"BUTTON_MASK_LEFT": 1,
@@ -312,7 +312,7 @@
 			"KEY_MACRON": 175,
 			"KEY_MASCULINE": 186,
 			"KEY_MASK_ALT": 67108864,
-			"KEY_MASK_CMD": 268435456,
+			"KEY_MASK_CMD": 134217728,
 			"KEY_MASK_CTRL": 268435456,
 			"KEY_MASK_GROUP_SWITCH": 1073741824,
 			"KEY_MASK_KPAD": 536870912,
