@@ -3,10 +3,6 @@
 
 #include "java_instance_wrapper.h"
 
-#define JNI_INIT_STATICS_FOR_SINGLETON(C) \
-    JNI_INIT_STATICS_FOR_CLASS(C) \
-    template<> C* JavaSingletonWrapper<C>::instance{nullptr};
-
 /**
  * JavaSingletonWrapper CRTP. Inherits from JavaInstanceWrapper CRTP.
  * This implements singleton pattern in order to wrap jvm singletons to cpp singletons.
@@ -35,6 +31,9 @@ protected:
 
     JavaSingletonWrapper(const char* p_class_name, jni::JObject p_wrapped, jni::JObject& p_class_loader);
 };
+
+template<class Derived>
+Derived* JavaSingletonWrapper<Derived>::instance{nullptr};
 
 template<class Derived>
 Derived& JavaSingletonWrapper<Derived>::get_instance() {

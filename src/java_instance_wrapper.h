@@ -6,7 +6,7 @@
 
 #define JNI_INIT_STATICS_FOR_CLASS(C) \
     C::JNIMethods C::jni_methods{}; \
-    template<> jni::JClass JavaInstanceWrapper<C>::j_class(static_cast<jclass>(nullptr));
+    template<> jni::JClass JavaInstanceWrapper<C>::j_class(static_cast<jclass>(nullptr)); // NOLINT(cert-err58-cpp)
 
 #define JNI_METHOD(var_name, name, signature) \
     jni::JavaMethodSignature var_name{name, signature};

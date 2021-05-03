@@ -15,11 +15,11 @@ public:
 
     void set_string_max_size(int max_size);
 
-    String poll_string();
+    static String poll_string();
 
-    void queue_string(String str);
+    static void queue_string(const String& str);
 
-    void send_string_to_jvm(String str);
+    void send_string_to_jvm(const String& str);
 
     static void send_string_to_cpp(JNIEnv* p_raw_env, jobject p_instance, jstring p_string);
 

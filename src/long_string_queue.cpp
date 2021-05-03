@@ -1,12 +1,12 @@
 #include "long_string_queue.h"
 #include "jni/class_loader.h"
 
-JNI_INIT_STATICS_FOR_SINGLETON(LongStringQueue)
+JNI_INIT_STATICS_FOR_CLASS(LongStringQueue)
 
 // If changed, remember to change also LongStringQueue::stringMaxSize on JVM side  and the StringTest.kt
 int LongStringQueue::max_string_size = 512;
 
-thread_local static List<String> string_queue;
+thread_local static List<String> string_queue; // NOLINT(cert-err58-cpp)
 
 LongStringQueue::LongStringQueue(jni::JObject p_wrapped, jni::JObject& p_class_loader)
         : JavaSingletonWrapper<LongStringQueue>("godot.core.LongStringQueue", p_wrapped, p_class_loader) {
@@ -35,11 +35,11 @@ String LongStringQueue::poll_string() {
     return string_queue.front()->get();
 }
 
-void LongStringQueue::queue_string(const String str) {
+void LongStringQueue::queue_string(const String& str) {
     string_queue.push_back(str);
 }
 
-void LongStringQueue::send_string_to_jvm(String str) {
+void LongStringQueue::send_string_to_jvm(const String& str) {
     jni::Env env{jni::Jvm::current_env()};
     jni::MethodId method = get_method_id(env, jni_methods.QUEUE_STRING);
     jni::JString java_string = env.new_string(str.utf8().get_data());
