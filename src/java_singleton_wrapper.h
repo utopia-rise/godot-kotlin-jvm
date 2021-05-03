@@ -7,6 +7,15 @@
     JNI_INIT_STATICS_FOR_CLASS(C) \
     template<> C* JavaSingletonWrapper<C>::instance{nullptr};
 
+/**
+ * JavaSingletonWrapper CRTP. Inherits from JavaInstanceWrapper CRTP.
+ * This implements singleton pattern in order to wrap jvm singletons to cpp singletons.
+ * Each inheriting class Derived must define a Derived::init(). This method should return a heap allocated instance of
+ * Derived type.
+ * This instance will be deleted when calling destroy method.
+ *
+ * @tparam Derived
+ */
 template<class Derived>
 class JavaSingletonWrapper : public JavaInstanceWrapper<Derived> {
 
