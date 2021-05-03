@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <core/io/marshalls.h>
 #include "transfer_context.h"
 #include "gd_kotlin.h"
