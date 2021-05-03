@@ -42,3 +42,10 @@ func test_flood_string() -> void:
 	var script = godot_tests_coretypes_StringTest.new()
 	assert_eq(script.fill_the_buffer(longest_short_str, longest_short_str, longest_short_str, longest_short_str, longest_short_str), true, "Should return true when buffer is filled")
 	script.free()
+
+func test_string_length() -> void:
+	var script = godot_tests_coretypes_StringTest.new()
+	assert_eq(script.get_length(""), 0, "Should return the right size of the string")
+	assert_eq(script.get_length("A"), 1, "Should return the right size of the string")
+	assert_eq(script.get_length("abcde"), 5, "Should return the right size of the string")
+	script.free()
