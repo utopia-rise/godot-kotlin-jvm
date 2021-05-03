@@ -19,16 +19,17 @@ public:
     static Derived& get_instance();
     static void destroy();
 
-    ~JavaSingletonWrapper() = default;
     JavaSingletonWrapper(const JavaSingletonWrapper<Derived>&) = delete;
     void operator=(const JavaSingletonWrapper<Derived>&) = delete;
     JavaSingletonWrapper<Derived>& operator=(JavaSingletonWrapper<Derived>&&) noexcept = delete;
     JavaSingletonWrapper(JavaSingletonWrapper<Derived>&& instance) noexcept = delete;
 
 protected:
-    static Derived* instance;
-
     JavaSingletonWrapper(const char* p_class_name, jni::JObject p_wrapped, jni::JObject& p_class_loader);
+    ~JavaSingletonWrapper() = default;
+
+private:
+    static Derived* instance;
 };
 
 template<class Derived>
