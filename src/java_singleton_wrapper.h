@@ -16,11 +16,10 @@ template<class Derived>
 class JavaSingletonWrapper : public JavaInstanceWrapper<Derived> {
 
 public:
-    ~JavaSingletonWrapper() = default;
-
     static Derived& get_instance();
     static void destroy();
 
+    ~JavaSingletonWrapper() = default;
     JavaSingletonWrapper(const JavaSingletonWrapper<Derived>&) = delete;
     void operator=(const JavaSingletonWrapper<Derived>&) = delete;
     JavaSingletonWrapper<Derived>& operator=(JavaSingletonWrapper<Derived>&&) noexcept = delete;
