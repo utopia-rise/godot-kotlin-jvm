@@ -48,4 +48,6 @@ func test_string_length() -> void:
 	assert_eq(script.get_length(""), 0, "Should return the right size of the string")
 	assert_eq(script.get_length("A"), 1, "Should return the right size of the string")
 	assert_eq(script.get_length("abcde"), 5, "Should return the right size of the string")
+	assert_eq("", script.identity(""), "String on JVM side should be same as gdscript one.")
+	assert_eq("A", script.identity("A"), "String on JVM side should be same as gdscript one.")
 	script.free()
