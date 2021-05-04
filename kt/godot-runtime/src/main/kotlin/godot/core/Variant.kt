@@ -131,12 +131,21 @@ enum class VariantType(
                 if(isLong){
                     val str = LongStringQueue.pollString()
                     str
-                }
-                else{
+                } else {
+                    /**
+                     *  A CString is read from the buffer, they all end with a 0 character except if the String is empty
+                     *  "" has a size of 0, but "a" has a size of 2.
+                     *  We only read the buffer if the size is superior to 0.
+                     *  When it's the case, we create a string without the last 0 character.
+                     */
                     val stringSize = buffer.int
-                    val charArray = ByteArray(stringSize)
-                    buffer.get(charArray, 0, stringSize)
-                    val str = String(charArray, Charsets.UTF_8)
+                    val str = if (stringSize == 0) {
+                        String()
+                    } else {
+                        val charArray = ByteArray(stringSize)
+                        buffer.get(charArray, 0, stringSize)
+                        String(charArray, 0, stringSize - 1, Charsets.UTF_8)
+                    }
                     str
                 }
             },

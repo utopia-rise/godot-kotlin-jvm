@@ -11,6 +11,9 @@ class StringTest : Node() {
     fun identity(str: String) = str
 
     @RegisterFunction
+    fun getLength(str: String) = str.length
+
+    @RegisterFunction
     fun fillTheBuffer(str1: String, str2: String, str3: String, str4: String, str5: String): Boolean {
         return true
     }
