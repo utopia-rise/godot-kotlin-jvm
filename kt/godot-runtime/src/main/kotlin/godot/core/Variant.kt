@@ -134,15 +134,18 @@ enum class VariantType(
                 }
                 else{
                     /**
-                     *  We remove the O at the end of the CString in the buffer.
-                     *  Kotlin directly hold the length in the String instance.
+                     *  A CString is read from the buffer, they all end with a 0 character except if the String is empty
+                     *  "" has a size of 0, but "a" has a size of 2.
+                     *  We only read the buffer if the size is superior to 0.
+                     *  When it's the case, we create a string without the last 0 character.
                      */
-                    val stringSize = buffer.int - 1
+                    val stringSize = buffer.int
+                    if(stringSize == 0){
+                        String()
+                    }
                     val charArray = ByteArray(stringSize)
                     buffer.get(charArray, 0, stringSize)
-                    /** We do a simple get to increment the missing the buffer by one because we didn't read the zero character */
-                    buffer.get()
-                    val str = String(charArray, Charsets.UTF_8)
+                    val str = String(charArray, 0, stringSize - 1, Charsets.UTF_8)
                     str
                 }
             },
