@@ -15,6 +15,7 @@ includeBuild("../../kt") {
         substitute(module("com.utopia-rise:godot-kotlin-compiler-plugin-common")).with(project(":godot-kotlin-compiler-plugin-common"))
         substitute(module("com.utopia-rise:godot-kotlin-compiler-plugin")).with(project(":godot-kotlin-compiler-plugin"))
         substitute(module("com.utopia-rise:godot-kotlin-entry-generator")).with(project(":godot-kotlin-entry-generator"))
+        substitute(module("com.utopia-rise:godot-annotation-processor-new")).with(project(":godot-annotation-processor-new"))
     }
 }
 
@@ -22,6 +23,7 @@ pluginManagement {
     repositories {
         mavenCentral()
         gradlePluginPortal()
+        google()
     }
     resolutionStrategy.eachPlugin {
         if (requested.id.id == "com.utopia-rise.godot-kotlin-jvm") {

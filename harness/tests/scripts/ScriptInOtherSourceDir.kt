@@ -6,5 +6,5 @@ import godot.annotation.RegisterFunction
 class ScriptInOtherSourceDir: Node() {
 
 	@RegisterFunction
-	fun greeting() = "HelloWorld"
+	fun greeting() = "HelloWorlasdfd"
 }
