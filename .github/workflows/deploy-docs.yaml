@@ -11,6 +11,9 @@ jobs:
     steps:
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
+      - name: Retreive git tags
+        run: |
+          git fetch --all
       - name: Delete current stable tag
         run: |
           git tag -d stable
