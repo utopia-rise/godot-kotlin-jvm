@@ -8,7 +8,6 @@ plugins {
 apiGenerator {
     outputDir.set(project.file("$rootDir/godot-library/src/main/kotlin/godot/gen"))
     sourceJson.set(project.file("$rootDir/api-generator/src/main/resources/api.json"))
-    isNative.set(false)
     docsDir.set(project.file("$projectDir/../../../../doc/classes"))
 }
 

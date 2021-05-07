@@ -6,13 +6,9 @@ Make sure that Java is installed and its PATH set in your system as well (at lea
 
 2. In the `godot-root` dir, run the following command: `git submodule add git@github.com:utopia-rise/godot-kotlin-jvm.git modules/kotlin_jvm`
 
-3. Pull submodules of our project: 
-    - `cd modules/kotlin_jvm`
-    - `git submodule update --init --recursive`
+3. From the `godot-root` dir, build the engine with our module: `scons -j$(nproc) platform=x11 # your target platform`
 
-4. From the `godot-root` dir, build the engine with our module: `scons -j$(nproc) platform=x11 # your target platform`
-
-5. Build sample
+4. Build sample
     - navigate to `<module-root>/harness/tests`
     - create embedded JVM: `jlink --add-modules java.base,java.logging --output jre`
         - If you want to remote debug add module `jdk.jdwp.agent` to command.
@@ -20,9 +16,9 @@ Make sure that Java is installed and its PATH set in your system as well (at lea
     - Windows: `gradlew build`
 	- Unix: `./gradlew build`
 
-6. In order to run the engine, run `godot.x11.tools.64` located in the `bin` folder of `godot-root`
+5. In order to run the engine, run `godot.x11.tools.64` located in the `bin` folder of `godot-root`
 
-7. In order to debug your JVM code, you should start Godot with command line `--jvm-debug-port=XXXX`, where `XXXX`
+6. In order to debug your JVM code, you should start Godot with command line `--jvm-debug-port=XXXX`, where `XXXX`
 stands for the JMX port of you choice. You can then setup remote debug configuration in Intellij' IDEA.
 
 ## Important things to note:

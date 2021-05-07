@@ -1535,7 +1535,7 @@ object GlobalConstants : Object() {
   /**
    * Command key mask. On macOS, this is equivalent to [KEY_MASK_META]. On other platforms, this is equivalent to [KEY_MASK_CTRL]. This mask should be preferred to [KEY_MASK_META] or [KEY_MASK_CTRL] for system shortcuts as it handles all platforms correctly.
    */
-  final const val KEY_MASK_CMD: Long = 268435456
+  final const val KEY_MASK_CMD: Long = 134217728
 
   /**
    * Ctrl key mask.
