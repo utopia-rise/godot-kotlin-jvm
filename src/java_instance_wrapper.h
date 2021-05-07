@@ -5,8 +5,7 @@
 #include "jni/wrapper.h"
 
 #define JNI_INIT_STATICS_FOR_CLASS(C) \
-    C::JNIMethods C::jni_methods{}; \
-    template<> jni::JClass JavaInstanceWrapper<C>::j_class(static_cast<jclass>(nullptr));
+    C::JNIMethods C::jni_methods{};
 
 #define JNI_METHOD(var_name, name, signature) \
     jni::JavaMethodSignature var_name{name, signature};
@@ -34,6 +33,9 @@ protected:
 
     jni::MethodId get_static_method_id(jni::Env& env, jni::JavaMethodSignature& method_signature);
 };
+
+template<class Derived>
+jni::JClass JavaInstanceWrapper<Derived>::j_class(static_cast<jclass>(nullptr)); // NOLINT(cert-err58-cpp)
 
 template<class Derived>
 JavaInstanceWrapper<Derived>::JavaInstanceWrapper(const char* p_class_name, jni::JObject p_wrapped,
