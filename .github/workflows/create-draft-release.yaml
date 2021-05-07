@@ -12,6 +12,9 @@ jobs:
     steps:
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
+      - name: Fetch all git refs
+        run: |
+          git fetch --all
       - name: Checkout submodules
         uses: snickerbockers/submodules-init@v4
       - name: Set up JDK 11
@@ -23,7 +26,7 @@ jobs:
         with:
           wrapper-directory: kt/
           build-root-directory: kt/
-          arguments: generateChangelog --stacktrace
+          arguments: generateChangelog
       - name: Create draft release
         id: create_release
         uses: actions/create-release@v1
