@@ -23,7 +23,7 @@ jobs:
         with:
           wrapper-directory: kt/
           build-root-directory: kt/
-          arguments: generateChangelog
+          arguments: generateChangelog --stacktrace
       - name: Create draft release
         id: create_release
         uses: actions/create-release@v1
