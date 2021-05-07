@@ -9,6 +9,8 @@ jobs:
   publish_stable_tag:
     runs-on: ubuntu-latest
     steps:
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v2
       - name: Delete current stable tag
         run: |
           git tag -d stable
