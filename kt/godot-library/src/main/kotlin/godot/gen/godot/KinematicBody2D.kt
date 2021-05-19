@@ -117,7 +117,7 @@ open class KinematicBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Returns `true` if the body is on the ceiling. Only updates when calling [moveAndSlide] or [moveAndSlideWithSnap].
+   * Returns `true` if the body collided with the ceiling on the last call of [moveAndSlide] or [moveAndSlideWithSnap]. Otherwise, returns `false`.
    */
   open fun isOnCeiling(): Boolean {
     TransferContext.writeArguments()
@@ -126,7 +126,7 @@ open class KinematicBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Returns `true` if the body is on the floor. Only updates when calling [moveAndSlide] or [moveAndSlideWithSnap].
+   * Returns `true` if the body collided with the floor on the last call of [moveAndSlide] or [moveAndSlideWithSnap]. Otherwise, returns `false`.
    */
   open fun isOnFloor(): Boolean {
     TransferContext.writeArguments()
@@ -135,7 +135,7 @@ open class KinematicBody2D : PhysicsBody2D() {
   }
 
   /**
-   * Returns `true` if the body is on a wall. Only updates when calling [moveAndSlide] or [moveAndSlideWithSnap].
+   * Returns `true` if the body collided with a wall on the last call of [moveAndSlide] or [moveAndSlideWithSnap]. Otherwise, returns `false`.
    */
   open fun isOnWall(): Boolean {
     TransferContext.writeArguments()

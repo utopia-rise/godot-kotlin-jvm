@@ -29,6 +29,8 @@ import kotlin.Suppress
  * [https://godotengine.org/asset-library/asset/528](https://godotengine.org/asset-library/asset/528)
  *
  * Plays an audio stream non-positionally.
+ *
+ * To play audio positionally, use [godot.AudioStreamPlayer2D] or [godot.AudioStreamPlayer3D] instead of [godot.AudioStreamPlayer].
  */
 @GodotBaseType
 open class AudioStreamPlayer : Node() {

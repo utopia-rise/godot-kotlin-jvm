@@ -23,7 +23,7 @@ import kotlin.String
 import kotlin.Suppress
 
 /**
- * Plays 3D sound in 3D space.
+ * Plays positional sound in 3D space.
  *
  * Tutorials:
  * [https://docs.godotengine.org/en/3.3/tutorials/audio/audio_streams.html](https://docs.godotengine.org/en/3.3/tutorials/audio/audio_streams.html)
@@ -31,6 +31,10 @@ import kotlin.Suppress
  * Plays a sound effect with directed sound effects, dampens with distance if needed, generates effect of hearable position in space. For greater realism, a low-pass filter is automatically applied to distant sounds. This can be disabled by setting [attenuationFilterCutoffHz] to `20500`.
  *
  * By default, audio is heard from the camera position. This can be changed by adding a [godot.Listener] node to the scene and enabling it by calling [godot.Listener.makeCurrent] on it.
+ *
+ * See also [godot.AudioStreamPlayer] to play a sound non-positionally.
+ *
+ * **Note:** Hiding an [godot.AudioStreamPlayer3D] node does not disable its audio output. To temporarily disable an [godot.AudioStreamPlayer3D]'s audio output, set [unitDb] to a very low value like `-100` (which isn't audible to human hearing).
  */
 @GodotBaseType
 open class AudioStreamPlayer3D : Spatial() {

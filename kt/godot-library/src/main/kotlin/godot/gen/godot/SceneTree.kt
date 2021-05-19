@@ -34,7 +34,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Manages the game loop via a hierarchy of nodes.
@@ -69,7 +68,7 @@ open class SceneTree : MainLoop() {
   /**
    * Emitted whenever global menu item is clicked.
    */
-  val globalMenuAction: Signal2<Unit, Unit> by signal("id", "meta")
+  val globalMenuAction: Signal2<Any, Any> by signal("id", "meta")
 
   /**
    * Emitted immediately before [godot.Node.Process] is called on every node in the [godot.SceneTree].
@@ -322,6 +321,8 @@ open class SceneTree : MainLoop() {
    * Calls `method` on each member of the given group. You can pass arguments to `method` by specifying them at the end of the method call.
    *
    * **Note:** `method` may only have 5 arguments at most (7 arguments passed to this method in total).
+   *
+   * **Note:** [callGroup] will always call methods with an one-frame delay, in a way similar to [godot.Object.callDeferred]. To call methods immediately, use [callGroupFlags] with the [GROUP_CALL_REALTIME] flag.
    */
   open fun callGroup(
     group: String,
@@ -338,6 +339,8 @@ open class SceneTree : MainLoop() {
    * Calls `method` on each member of the given group, respecting the given [enum GroupCallFlags]. You can pass arguments to `method` by specifying them at the end of the method call.
    *
    * **Note:** `method` may only have 5 arguments at most (8 arguments passed to this method in total).
+   *
+   * **Note:** Group call flags are used to control the method calling behavior. If the [GROUP_CALL_REALTIME] flag is present in the `flags` argument, methods will be called immediately. If this flag isn't present in `flags`, methods will be called with a one-frame delay in a way similar to [callGroup].
    */
   open fun callGroupFlags(
     flags: Long,
