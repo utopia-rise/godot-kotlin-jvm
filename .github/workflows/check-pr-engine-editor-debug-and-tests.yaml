@@ -3,7 +3,7 @@ on: [pull_request]
 
 env:
   SCONS_CACHE_MSVC_CONFIG: true
-  GODOT_BASE_VERSION: 3.3.0
+  GODOT_BASE_VERSION: 3.3.1
 
 jobs:
   build-godot-bootstrap:
@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: 3.3-stable
+          ref: 3.3.1-stable
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
         with:
@@ -64,7 +64,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: 3.3-stable
+          ref: 3.3.1-stable
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
         with:
@@ -118,7 +118,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: 3.3-stable
+          ref: 3.3.1-stable
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2
         with:

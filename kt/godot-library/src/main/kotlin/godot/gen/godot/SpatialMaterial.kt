@@ -211,6 +211,8 @@ open class SpatialMaterial : Material() {
 
   /**
    * If `true`, clearcoat rendering is enabled. Adds a secondary transparent pass to the lighting calculation resulting in an added specular blob. This makes materials appear as if they have a clear layer on them that can be either glossy or rough.
+   *
+   * **Note:** Clearcoat rendering is not visible if the material has [flagsUnshaded] set to `true`.
    */
   open var clearcoatEnabled: Boolean
     get() {
@@ -1313,6 +1315,8 @@ open class SpatialMaterial : Material() {
 
   /**
    * If `true`, rim effect is enabled. Rim lighting increases the brightness at glancing angles on an object.
+   *
+   * **Note:** Rim lighting is not visible if the material has [flagsUnshaded] set to `true`.
    */
   open var rimEnabled: Boolean
     get() {

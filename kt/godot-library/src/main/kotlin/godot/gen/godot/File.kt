@@ -342,6 +342,8 @@ open class File : Reference() {
 
   /**
    * Opens a compressed file for reading or writing.
+   *
+   * **Note:** [openCompressed] can only read files that were saved by Godot, not third-party compression formats. See [godot.GitHub issue #28999](https://github.com/godotengine/godot/issues/28999) for a workaround.
    */
   open fun openCompressed(
     path: String,

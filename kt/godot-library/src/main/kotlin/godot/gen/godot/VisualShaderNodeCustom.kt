@@ -8,6 +8,7 @@ package godot
 import godot.annotation.GodotBaseType
 import godot.core.VariantArray
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
@@ -166,5 +167,15 @@ open class VisualShaderNodeCustom : VisualShaderNode() {
    */
   open fun _getSubcategory(): String {
     throw NotImplementedError("_get_subcategory is not implemented for VisualShaderNodeCustom")
+  }
+
+  open fun _isInitialized(): Boolean {
+    throw NotImplementedError("_is_initialized is not implemented for VisualShaderNodeCustom")
+  }
+
+  open fun _setInitialized(enabled: Boolean) {
+  }
+
+  open fun _setInputPortDefaultValue(port: Long, value: Any?) {
   }
 }
