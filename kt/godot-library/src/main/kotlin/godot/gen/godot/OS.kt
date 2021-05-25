@@ -1288,7 +1288,7 @@ object OS : Object() {
   /**
    * Returns the current UNIX epoch timestamp in seconds.
    *
-   * **Important:** This is the system clock that the user can manully set. **Never use** this method for precise time calculation since its results are also subject to automatic adjustments by the operating system. **Always use** [getTicksUsec] or [getTicksMsec] for precise time calculation instead, since they are guaranteed to be monotonic (i.e. never decrease).
+   * **Important:** This is the system clock that the user can manually set. **Never use** this method for precise time calculation since its results are also subject to automatic adjustments by the operating system. **Always use** [getTicksUsec] or [getTicksMsec] for precise time calculation instead, since they are guaranteed to be monotonic (i.e. never decrease).
    */
   fun getUnixTime(): Long {
     TransferContext.writeArguments()
@@ -1301,7 +1301,7 @@ object OS : Object() {
    *
    * `datetime` must be populated with the following keys: `year`, `month`, `day`, `hour`, `minute`, `second`.
    *
-   * If the dictionary is empty `0` is returned.
+   * If the dictionary is empty `0` is returned. If some keys are omitted, they default to the equivalent values for the UNIX epoch timestamp 0 (1970-01-01 at 00:00:00 UTC).
    *
    * You can pass the output from [getDatetimeFromUnixTime] directly into this function. Daylight Savings Time (`dst`), if present, is ignored.
    */
