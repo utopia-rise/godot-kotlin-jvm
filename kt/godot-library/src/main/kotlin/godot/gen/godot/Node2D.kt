@@ -185,7 +185,7 @@ open class Node2D : CanvasItem() {
     }
 
   /**
-   * Z index. Controls the order in which the nodes render. A node with a higher Z index will display in front of others.
+   * Z index. Controls the order in which the nodes render. A node with a higher Z index will display in front of others. Must be between [godot.VisualServer.CANVAS_ITEM_Z_MIN] and [godot.VisualServer.CANVAS_ITEM_Z_MAX] (inclusive).
    */
   open var zIndex: Long
     get() {
