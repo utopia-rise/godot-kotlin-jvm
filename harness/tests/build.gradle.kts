@@ -27,3 +27,18 @@ dependencies {
 kotlin.sourceSets.main {
     kotlin.srcDirs("scripts")
 }
+
+ksp {
+    arg(
+        "srcDirs",
+        kotlin.sourceSets.main.get().kotlin.srcDirs.joinToString(File.pathSeparator) { it.absolutePath }
+    )
+    arg(
+        "outDir",
+        project.buildDir.resolve("godot").absolutePath
+    )
+    arg(
+        "projectBasePath",
+        projectDir.absolutePath
+    )
+}

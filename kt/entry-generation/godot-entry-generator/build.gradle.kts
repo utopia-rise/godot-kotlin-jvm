@@ -5,16 +5,7 @@ plugins {
     id("com.utopia-rise.godot-publish")
 }
 
-repositories {
-    google()
-}
-
 dependencies {
-    implementation(project(":godot-library"))
-    implementation(project(":godot-entry-generator"))
-
-    compileOnly(kotlin("compiler-embeddable"))
-    implementation("com.google.devtools.ksp:symbol-processing-api:1.5.0-1.0.0-alpha09")
     implementation("com.squareup:kotlinpoet:${DependenciesVersions.kotlinPoetVersion}")
 }
 

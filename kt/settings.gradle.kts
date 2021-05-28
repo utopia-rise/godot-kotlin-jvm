@@ -22,6 +22,7 @@ subdir("entry-generation") {
     include("godot-kotlin-compiler-plugin")
     include("godot-kotlin-entry-generator")
     include("godot-annotation-processor-new")
+    include("godot-entry-generator")
 }
 
 subdir("plugins") {

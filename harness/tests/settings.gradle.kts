@@ -16,6 +16,7 @@ includeBuild("../../kt") {
         substitute(module("com.utopia-rise:godot-kotlin-compiler-plugin")).with(project(":godot-kotlin-compiler-plugin"))
         substitute(module("com.utopia-rise:godot-kotlin-entry-generator")).with(project(":godot-kotlin-entry-generator"))
         substitute(module("com.utopia-rise:godot-annotation-processor-new")).with(project(":godot-annotation-processor-new"))
+        substitute(module("com.utopia-rise:godot-entry-generator")).with(project(":godot-entry-generator"))
     }
 }
 

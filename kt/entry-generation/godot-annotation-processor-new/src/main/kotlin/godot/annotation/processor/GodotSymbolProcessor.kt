@@ -1,6 +1,7 @@
 package godot.annotation.processor
 
 import com.google.devtools.ksp.getAllSuperTypes
+import com.google.devtools.ksp.getConstructors
 import com.google.devtools.ksp.getPropertyDeclarationByName
 import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.KSPLogger
@@ -13,6 +14,9 @@ import com.google.devtools.ksp.symbol.KSFile
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.google.devtools.ksp.symbol.KSName
 import com.google.devtools.ksp.symbol.KSPropertyDeclaration
+import com.google.devtools.ksp.symbol.KSType
+import com.google.devtools.ksp.symbol.KSTypeAlias
+import com.google.devtools.ksp.symbol.KSTypeReference
 import com.google.devtools.ksp.symbol.KSValueParameter
 import com.google.devtools.ksp.symbol.KSVisitorVoid
 import godot.annotation.Export
@@ -22,6 +26,38 @@ import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.annotation.Tool
+import godot.entrygenerator.EntryGenerator
+import godot.entrygenerator.model.ClassAnnotation
+import godot.entrygenerator.model.Clazz
+import godot.entrygenerator.model.ConstructorAnnotation
+import godot.entrygenerator.model.ExportAnnotation
+import godot.entrygenerator.model.FunctionAnnotation
+import godot.entrygenerator.model.GodotAnnotation
+import godot.entrygenerator.model.GodotBaseTypeAnnotation
+import godot.entrygenerator.model.PropertyAnnotation
+import godot.entrygenerator.model.RegisterClassAnnotation
+import godot.entrygenerator.model.RegisterConstructorAnnotation
+import godot.entrygenerator.model.RegisterFunctionAnnotation
+import godot.entrygenerator.model.RegisterPropertyAnnotation
+import godot.entrygenerator.model.RegisterSignalAnnotation
+import godot.entrygenerator.model.RegisteredClass
+import godot.entrygenerator.model.RegisteredConstructor
+import godot.entrygenerator.model.RegisteredFunction
+import godot.entrygenerator.model.RegisteredProperty
+import godot.entrygenerator.model.RpcMode
+import godot.entrygenerator.model.SourceFile
+import godot.entrygenerator.model.ToolAnnotation
+import godot.entrygenerator.model.Type
+import godot.entrygenerator.model.ValueParameter
+import org.jetbrains.kotlin.com.intellij.mock.MockProject
+import org.jetbrains.kotlin.com.intellij.openapi.vfs.StandardFileSystems
+import org.jetbrains.kotlin.com.intellij.openapi.vfs.VirtualFile
+import org.jetbrains.kotlin.com.intellij.openapi.vfs.VirtualFileManager
+import org.jetbrains.kotlin.com.intellij.psi.PsiManager
+import org.jetbrains.kotlin.extensions.PreprocessedFileCreator
+import org.jetbrains.kotlin.idea.KotlinFileType
+import org.jetbrains.kotlin.psi.KtClass
+import org.jetbrains.kotlin.psi.KtFile
 import java.io.File
 
 class GodotSymbolProcessor(
@@ -39,15 +75,29 @@ class GodotSymbolProcessor(
     )
     private lateinit var resolver: Resolver
     private val sourceFilesContainingRegisteredClasses = mutableListOf<SourceFile>()
+    private lateinit var srcDirs: List<String>
+    private lateinit var outDir: String
+    private lateinit var projectBasePath: String
 
     override fun process(resolver: Resolver): List<KSAnnotated> {
         this.resolver = resolver
+        srcDirs = options["srcDirs"]
+            ?.split(File.pathSeparator)
+            ?: throw IllegalStateException("No srcDirs option provided")
+        outDir = options["outDir"]
+            ?: throw IllegalStateException("No outDir option provided")
+        projectBasePath = options["projectBasePath"]
+            ?: throw IllegalStateException("No projectBasePath option provided")
         resolver.getAllFiles().map { it.accept(registerAnnotationVisitor, Unit) }
         return emptyList()
     }
 
     override fun finish() {
         super.finish()
+        EntryGenerator.generateEntryFiles(
+            outDir,
+            sourceFilesContainingRegisteredClasses
+        )
     }
 
     inner class RegistrationAnnotationVisitor : KSVisitorVoid() {
@@ -102,10 +152,16 @@ class GodotSymbolProcessor(
                     .getAllProperties()
                     .mapNotNull { mapPropertyDeclaration(it) }
 
+                val registeredConstructors = classDeclaration
+                    .getConstructors()
+                    .map { mapConstructorDeclaration(it) }
+
                 RegisteredClass(
                     fqName,
                     supertypeDeclarations,
+                    classDeclaration.getResPath(srcDirs, projectBasePath),
                     annotations,
+                    registeredConstructors,
                     registeredFunctions,
                     registeredProperties
                 )
@@ -118,6 +174,22 @@ class GodotSymbolProcessor(
             }
         }
 
+        private fun mapConstructorDeclaration(constructorDeclaration: KSFunctionDeclaration): RegisteredConstructor {
+            return RegisteredConstructor(
+                constructorDeclaration.parameters.map {
+                    mapParameters(
+                        requireNotNull(it.name?.asString()) {
+                            "parameter name of constructor ${constructorDeclaration.qualifiedName} cannot be null"
+                        },
+                        it.type
+                    )
+                },
+                constructorDeclaration
+                    .annotations
+                    .mapNotNull { mapAnnotation(it) as? ConstructorAnnotation }
+            )
+        }
+
         private fun mapPropertyDeclaration(propertyDeclaration: KSPropertyDeclaration): RegisteredProperty? {
             return if (propertyDeclaration.annotations.any { it.fqNameUnsafe == RegisterProperty::class.qualifiedName }) {
                 val fqName = requireNotNull(propertyDeclaration.qualifiedName?.asString()) {
@@ -126,14 +198,40 @@ class GodotSymbolProcessor(
                 val annotations = propertyDeclaration
                     .annotations
                     .mapNotNull { mapAnnotation(it) as? PropertyAnnotation }
+
+                val type = requireNotNull(mapTypeReference(propertyDeclaration.type)) {
+                    "type of property $fqName cannot be null"
+                }
+
                 RegisteredProperty(
                     fqName,
+                    type,
                     propertyDeclaration.isMutable,
                     propertyDeclaration.findOverridee() != null,
                     annotations,
                     ::defaultValueProvider
                 )
             } else null
+        }
+
+        private fun mapTypeReference(type: KSTypeReference?): Type? {
+            type ?: return null
+            val resolvedType = type.resolve()
+            val fqName = requireNotNull(resolvedType.declaration.qualifiedName?.asString()) {
+                "resolvedType $resolvedType cannot have no fqName"
+            }.removeSuffix("?")
+
+            val superTypes = when(val declaration = resolvedType.declaration) {
+                is KSClassDeclaration -> declaration.superTypes.mapNotNull { mapTypeReference(it) }
+                is KSTypeAlias -> listOfNotNull(mapTypeReference(declaration.type))
+                else -> throw IllegalStateException("Unknown declaration type $declaration for type reference")
+            }
+
+            return Type(
+                fqName,
+                resolvedType.isMarkedNullable,
+                superTypes
+            )
         }
 
         private fun mapFunctionDeclaration(functionDeclaration: KSFunctionDeclaration): RegisteredFunction? {
@@ -143,24 +241,37 @@ class GodotSymbolProcessor(
                 }
                 val parameters = functionDeclaration
                     .parameters
-                    .map { mapValueParameters(it) }
+                    .map {
+                        mapParameters(
+                            requireNotNull(it.name?.asString()) {
+                                "Name of function parameter cannot be null. Function: ${functionDeclaration.qualifiedName}"
+                            },
+                            it.type
+                        )
+                    }
                 val annotations = functionDeclaration
                     .annotations
                     .mapNotNull { mapAnnotation(it) as? FunctionAnnotation }
                 RegisteredFunction(
                     fqName,
                     parameters,
-                    functionDeclaration.returnType?.resolve()?.declaration?.qualifiedName?.asString(),
+                    mapTypeReference(functionDeclaration.returnType),
                     annotations
                 )
             } else null
         }
 
-        private fun mapValueParameters(valueParameter: KSValueParameter): ValueParameter {
+        private fun mapParameters(name: String, type: KSTypeReference): ValueParameter {
+            val resolvedType = type.resolve()
             return ValueParameter(
-                requireNotNull(valueParameter.name?.asString()) { "valueParameter name cannot be null: $valueParameter" },
-                requireNotNull(valueParameter.type.resolve().declaration.qualifiedName?.asString()) {
-                    "valueParameter type fqName cannot be null: ${valueParameter.type}"
+                name,
+                requireNotNull(mapTypeReference(type)) {
+                    "type cannot be null for parameter"
+                },
+                resolvedType.arguments.mapNotNull {
+                    mapTypeReference(requireNotNull(it.type) {
+                        "typeArgument's type of type $type cannot be null"
+                    })
                 }
             )
         }
@@ -195,96 +306,87 @@ class GodotSymbolProcessor(
     }
 }
 
-sealed interface GodotJvmSourceElement
-
-data class SourceFile(
-    val absolutePath: String,
-    val registeredClasses: List<RegisteredClass> = emptyList()
-) : GodotJvmSourceElement {
-    val name = absolutePath.substringAfterLast("/").substringAfterLast(File.separator)
-    val extension = absolutePath.substringAfterLast(".")
-}
-
-open class Clazz(
-    open val fqName: String,
-    open val supertypes: List<Clazz> = emptyList(),
-    open val annotations: List<ClassAnnotation> = emptyList()
-) : GodotJvmSourceElement
-
-data class RegisteredClass(
-    override val fqName: String,
-    override val supertypes: List<Clazz>,
-    override val annotations: List<ClassAnnotation> = emptyList(),
-    val functions: List<RegisteredFunction> = emptyList(),
-    val properties: List<RegisteredProperty> = emptyList()
-) : Clazz(fqName, supertypes) {
-    val name = fqName.substringAfterLast(".")
-    val containingPackage = fqName.substringBeforeLast(".")
-}
-
-data class RegisteredFunction(
-    val fqName: String,
-    val parameters: List<ValueParameter> = emptyList(),
-    val returnTypeFqName: String? = null,
-    val annotations: List<FunctionAnnotation> = emptyList()
-) : GodotJvmSourceElement
-
-data class ValueParameter(
-    val name: String,
-    val typeFqName: String
-)
-
-data class RegisteredProperty(
-    val fqName: String,
-    val isMutable: Boolean = true,
-    val isOverridee: Boolean = false,
-    val annotations: List<PropertyAnnotation> = emptyList(),
-    val defaultValueProvider: (RegisteredProperty) -> Pair<String, Array<Any?>> = { "" to arrayOf() }
-) : GodotJvmSourceElement {
-    val name: String = fqName.substringAfterLast(".")
-}
-
-sealed interface GodotAnnotation : GodotJvmSourceElement
-
-object GodotBaseTypeAnnotation : ClassAnnotation
-
-data class RegisterClassAnnotation(
-    val customName: String? = null
-) : ClassAnnotation
-
-object RegisterConstructorAnnotation : GodotAnnotation
-
-data class RegisterFunctionAnnotation(
-    val rpcMode: RpcMode
-) : FunctionAnnotation
-
-data class RegisterPropertyAnnotation(
-    val rpcMode: RpcMode
-) : PropertyAnnotation
-
-object RegisterSignalAnnotation : PropertyAnnotation
-
-object ToolAnnotation : ClassAnnotation
-
-object ExportAnnotation : PropertyAnnotation
-
-sealed interface ClassAnnotation : GodotAnnotation
-sealed interface PropertyAnnotation : GodotAnnotation
-sealed interface FunctionAnnotation : GodotAnnotation
-
-enum class RpcMode {
-    DISABLED,
-    REMOTE,
-    MASTER,
-    PUPPET,
-    SLAVE,
-    REMOTE_SYNC,
-    SYNC,
-    MASTER_SYNC,
-    PUPPET_SYNC
-}
-
 val KSAnnotation.fqNameUnsafe: String
     get() = requireNotNull(this.annotationType.resolve().declaration.qualifiedName?.asString()) {
         "$this has no resolvable fqName"
     }
+
+fun KSClassDeclaration.getResPath(srcDirs: List<String>, projectDir: String): String = containingFile
+    ?.filePath
+    ?.let { filePath ->
+        val srcDir = requireNotNull(
+            srcDirs.filter { srcDir ->
+                filePath.contains(srcDir)
+            }
+                .maxByOrNull { it.length }
+                ?.removePrefix(projectDir)
+                ?.replace(File.separator, "/")
+                ?.removePrefix("/")
+                ?.removeSuffix("/")
+        )
+
+        val relativeFilePath = filePath
+            .substringAfterLast(srcDir)
+            .removePrefix("/")
+
+        "res://$srcDir/$relativeFilePath"
+    }
+    ?: throw IllegalStateException("Cannot get res path for declaration: $qualifiedName")
+
+private fun fqNameToResPath(srcDirs: List<String>, project: MockProject, projectDir: String): Map<String, String> {
+    //Start: taken from CoreEnvironmentUtils createSourceFilesFromSourceRoots inside org.jetbrains.kotlin:kotlin-compiler:1.4.10
+    val localFileSystem = VirtualFileManager
+        .getInstance()
+        .getFileSystem(StandardFileSystems.FILE_PROTOCOL)
+    val psiManager = PsiManager.getInstance(project)
+    val virtualFileCreator = PreprocessedFileCreator(project)
+
+    val processedFiles = hashSetOf<VirtualFile>()
+    //End: taken from CoreEnvironmentUtils createSourceFilesFromSourceRoots inside org.jetbrains.kotlin:kotlin-compiler:1.4.10
+
+    return srcDirs
+        .flatMap { srcDirAbsolutePath ->
+            //Start: taken from CoreEnvironmentUtils createSourceFilesFromSourceRoots inside org.jetbrains.kotlin:kotlin-compiler:1.4.10
+            val vFile = localFileSystem.findFileByPath(srcDirAbsolutePath) ?: return@flatMap emptySequence()
+            if (!vFile.isDirectory && vFile.fileType != KotlinFileType.INSTANCE) {
+                return@flatMap emptySequence()
+            }
+
+            File(srcDirAbsolutePath)
+                .walkTopDown()
+                .map { file ->
+                    if (!file.isFile) return@map null
+
+                    val virtualFile = localFileSystem
+                        .findFileByPath(file.absolutePath)
+                        ?.let(virtualFileCreator::create)
+
+                    if (virtualFile != null && processedFiles.add(virtualFile)) {
+                        val psiFile = psiManager.findFile(virtualFile)
+                        if (psiFile is KtFile) {
+                            psiFile
+                        } else null
+                    } else null
+                }
+                //End: taken from CoreEnvironmentUtils createSourceFilesFromSourceRoots inside org.jetbrains.kotlin:kotlin-compiler:1.4.10
+                .filterNotNull()
+                .flatMap { ktFile ->
+                    ktFile
+                        .children
+                        .filterIsInstance<KtClass>()
+                }
+                .mapNotNull { ktClass ->
+                    val fqName = ktClass.fqName?.asString() ?: return@mapNotNull null
+                    val classFilePath = ktClass
+                        .containingKtFile
+                        .virtualFilePath
+                        .replace(File.separator, "/")
+                        .removePrefix(projectDir.replace(File.separator, "/"))
+                        .removePrefix("/")
+
+                    val resPath = "res://$classFilePath"
+                    fqName to resPath
+                }
+        }
+        .toMap()
+}
