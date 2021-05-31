@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.NIL
@@ -17,6 +17,7 @@ import kotlin.Any
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Helper to generate previews of resources or files.
@@ -26,30 +27,30 @@ import kotlin.Suppress
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getResourcePreviewer].
  */
 @GodotBaseType
-open class EditorResourcePreview : Node() {
+public open class EditorResourcePreview : Node() {
   /**
    * Emitted if a preview was invalidated (changed). `path` corresponds to the path of the preview.
    */
-  val previewInvalidated: Signal1<String> by signal("path")
+  public val previewInvalidated: Signal1<String> by signal("path")
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORRESOURCEPREVIEW)
   }
 
-  open fun _previewReady(
+  public open fun _previewReady(
     arg0: String,
     arg1: Texture,
     arg2: Texture,
     arg3: Long,
     arg4: String,
     arg5: Any?
-  ) {
+  ): Unit {
   }
 
   /**
    * Create an own, custom preview generator.
    */
-  open fun addPreviewGenerator(generator: EditorResourcePreviewGenerator) {
+  public open fun addPreviewGenerator(generator: EditorResourcePreviewGenerator): Unit {
     TransferContext.writeArguments(OBJECT to generator)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_ADD_PREVIEW_GENERATOR, NIL)
@@ -58,7 +59,7 @@ open class EditorResourcePreview : Node() {
   /**
    * Check if the resource changed, if so, it will be invalidated and the corresponding signal emitted.
    */
-  open fun checkForInvalidation(path: String) {
+  public open fun checkForInvalidation(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_CHECK_FOR_INVALIDATION, NIL)
@@ -67,12 +68,12 @@ open class EditorResourcePreview : Node() {
   /**
    * Queue a resource being edited for preview (using an instance). Once the preview is ready, your receiver.receiver_func will be called either containing the preview texture or an empty texture (if no preview was possible). Callback must have the format: (path,texture,userdata). Userdata can be anything.
    */
-  open fun queueEditedResourcePreview(
+  public open fun queueEditedResourcePreview(
     resource: Resource,
-    receiver: Object,
+    `receiver`: Object,
     receiverFunc: String,
     userdata: Any?
-  ) {
+  ): Unit {
     TransferContext.writeArguments(OBJECT to resource, OBJECT to receiver, STRING to receiverFunc,
         ANY to userdata)
     TransferContext.callMethod(rawPtr,
@@ -82,12 +83,12 @@ open class EditorResourcePreview : Node() {
   /**
    * Queue a resource file for preview (using a path). Once the preview is ready, your receiver.receiver_func will be called either containing the preview texture or an empty texture (if no preview was possible). Callback must have the format: (path,texture,userdata). Userdata can be anything.
    */
-  open fun queueResourcePreview(
+  public open fun queueResourcePreview(
     path: String,
-    receiver: Object,
+    `receiver`: Object,
     receiverFunc: String,
     userdata: Any?
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to path, OBJECT to receiver, STRING to receiverFunc, ANY
         to userdata)
     TransferContext.callMethod(rawPtr,
@@ -97,7 +98,7 @@ open class EditorResourcePreview : Node() {
   /**
    * Removes a custom preview generator.
    */
-  open fun removePreviewGenerator(generator: EditorResourcePreviewGenerator) {
+  public open fun removePreviewGenerator(generator: EditorResourcePreviewGenerator): Unit {
     TransferContext.writeArguments(OBJECT to generator)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPREVIEW_REMOVE_PREVIEW_GENERATOR, NIL)

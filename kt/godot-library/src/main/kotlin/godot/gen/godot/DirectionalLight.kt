@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -13,6 +13,7 @@ import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Directional light from a distance, as from the Sun.
@@ -23,18 +24,18 @@ import kotlin.Suppress
  * A directional light is a type of [godot.Light] node that models an infinite number of parallel rays covering the entire scene. It is used for lights with strong intensity that are located far away from the scene to model sunlight or moonlight. The worldspace location of the DirectionalLight transform (origin) is ignored. Only the basis is used to determine light direction.
  */
 @GodotBaseType
-open class DirectionalLight : Light() {
+public open class DirectionalLight : Light() {
   /**
    * If `true`, shadow detail is sacrificed in exchange for smoother transitions between splits.
    */
-  open var directionalShadowBlendSplits: Boolean
+  public open var directionalShadowBlendSplits: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT_GET_DIRECTIONAL_SHADOW_BLEND_SPLITS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT_SET_DIRECTIONAL_SHADOW_BLEND_SPLITS, NIL)
@@ -43,14 +44,14 @@ open class DirectionalLight : Light() {
   /**
    * Optimizes shadow rendering for detail versus movement. See [enum ShadowDepthRange].
    */
-  open var directionalShadowDepthRange: Long
+  public open var directionalShadowDepthRange: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT_GET_DIRECTIONAL_SHADOW_DEPTH_RANGE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT_SET_DIRECTIONAL_SHADOW_DEPTH_RANGE, NIL)
@@ -59,98 +60,97 @@ open class DirectionalLight : Light() {
   /**
    * The light's shadow rendering algorithm. See [enum ShadowMode].
    */
-  open var directionalShadowMode: Long
+  public open var directionalShadowMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT_GET_DIRECTIONAL_SHADOW_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT_SET_DIRECTIONAL_SHADOW_MODE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_DIRECTIONALLIGHT)
   }
 
-  enum class ShadowMode(
+  public enum class ShadowMode(
     id: Long
   ) {
     /**
      * Renders the entire scene's shadow map from an orthogonal point of view. This is the fastest directional shadow mode. May result in blurrier shadows on close objects.
      */
     SHADOW_ORTHOGONAL(0),
-
     /**
      * Splits the view frustum in 2 areas, each with its own shadow map. This shadow mode is a compromise between [SHADOW_ORTHOGONAL] and [godot.SHADOW_PARALLEL_4_SPLITS] in terms of performance.
      */
     SHADOW_PARALLEL_2_SPLITS(1),
-
     /**
      * Splits the view frustum in 4 areas, each with its own shadow map. This is the slowest directional shadow mode.
      */
-    SHADOW_PARALLEL_4_SPLITS(2);
+    SHADOW_PARALLEL_4_SPLITS(2),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class ShadowDepthRange(
+  public enum class ShadowDepthRange(
     id: Long
   ) {
     /**
      * Keeps the shadow stable when the camera moves, at the cost of lower effective shadow resolution.
      */
     SHADOW_DEPTH_RANGE_STABLE(0),
-
     /**
      * Tries to achieve maximum shadow resolution. May result in saw effect on shadow edges. This mode typically works best in games where the camera will often move at high speeds, such as most racing games.
      */
-    SHADOW_DEPTH_RANGE_OPTIMIZED(1);
+    SHADOW_DEPTH_RANGE_OPTIMIZED(1),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Tries to achieve maximum shadow resolution. May result in saw effect on shadow edges. This mode typically works best in games where the camera will often move at high speeds, such as most racing games.
      */
-    final const val SHADOW_DEPTH_RANGE_OPTIMIZED: Long = 1
+    public final const val SHADOW_DEPTH_RANGE_OPTIMIZED: Long = 1
 
     /**
      * Keeps the shadow stable when the camera moves, at the cost of lower effective shadow resolution.
      */
-    final const val SHADOW_DEPTH_RANGE_STABLE: Long = 0
+    public final const val SHADOW_DEPTH_RANGE_STABLE: Long = 0
 
     /**
      * Renders the entire scene's shadow map from an orthogonal point of view. This is the fastest directional shadow mode. May result in blurrier shadows on close objects.
      */
-    final const val SHADOW_ORTHOGONAL: Long = 0
+    public final const val SHADOW_ORTHOGONAL: Long = 0
 
     /**
      * Splits the view frustum in 2 areas, each with its own shadow map. This shadow mode is a compromise between [SHADOW_ORTHOGONAL] and [godot.SHADOW_PARALLEL_4_SPLITS] in terms of performance.
      */
-    final const val SHADOW_PARALLEL_2_SPLITS: Long = 1
+    public final const val SHADOW_PARALLEL_2_SPLITS: Long = 1
 
     /**
      * Splits the view frustum in 4 areas, each with its own shadow map. This is the slowest directional shadow mode.
      */
-    final const val SHADOW_PARALLEL_4_SPLITS: Long = 2
+    public final const val SHADOW_PARALLEL_4_SPLITS: Long = 2
   }
 }

@@ -5,12 +5,13 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A reference to an existing [godot.VisualShaderNodeUniform].
@@ -18,24 +19,24 @@ import kotlin.Suppress
  * Creating a reference to a [godot.VisualShaderNodeUniform] allows you to reuse this uniform in different shaders or shader stages easily.
  */
 @GodotBaseType
-open class VisualShaderNodeUniformRef : VisualShaderNode() {
+public open class VisualShaderNodeUniformRef : VisualShaderNode() {
   /**
    * The name of the uniform which this reference points to.
    */
-  open var uniformName: String
+  public open var uniformName: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEUNIFORMREF_GET_UNIFORM_NAME, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEUNIFORMREF_SET_UNIFORM_NAME, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEUNIFORMREF)
   }
 }

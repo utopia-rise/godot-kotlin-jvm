@@ -11,6 +11,7 @@ import godot.entrygenerator.ext.toKtVariantType
 import godot.entrygenerator.ext.toTypeName
 import godot.entrygenerator.generator.ConstructorRegistrationGenerator
 import godot.entrygenerator.generator.FunctionRegistrationGenerator
+import godot.entrygenerator.generator.SignalRegistrationGenerator
 import godot.entrygenerator.model.RegisterConstructorAnnotation
 import godot.entrygenerator.model.RegisterPropertyAnnotation
 import godot.entrygenerator.model.RegisterSignalAnnotation
@@ -45,15 +46,6 @@ class ClassRegistrarFileBuilder(
             registeredClass.registeredName
         ) //START: registerClass
 
-    private fun registerSignals() {
-        registeredClass
-            .properties
-            .filter { it.annotations.hasAnnotation<RegisterSignalAnnotation>() }
-            .forEach { registeredSignal ->
-
-            }
-    }
-
     private fun registerProperties() {
         registeredClass
             .properties
@@ -80,7 +72,7 @@ class ClassRegistrarFileBuilder(
 
         ConstructorRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
         FunctionRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
-        registerSignals()
+        SignalRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
         registerProperties()
 
         classRegistrarBuilder.addFunction(

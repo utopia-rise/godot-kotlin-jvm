@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -13,6 +13,7 @@ import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Control for holding [godot.Viewport]s.
@@ -22,18 +23,18 @@ import kotlin.Suppress
  * **Note:** Changing a ViewportContainer's [godot.Control.rectScale] will cause its contents to appear distorted. To change its visual size without causing distortion, adjust the node's margins instead (if it's not already in a container).
  */
 @GodotBaseType
-open class ViewportContainer : Container() {
+public open class ViewportContainer : Container() {
   /**
    * If `true`, the viewport will be scaled to the control's size.
    */
-  open var stretch: Boolean
+  public open var stretch: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORTCONTAINER_GET_STRETCH,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORTCONTAINER_SET_STRETCH,
           NIL)
@@ -46,26 +47,26 @@ open class ViewportContainer : Container() {
    *
    * **Note:** [stretch] must be `true` for this property to work.
    */
-  open var stretchShrink: Long
+  public open var stretchShrink: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORTCONTAINER_GET_STRETCH_SHRINK, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VIEWPORTCONTAINER_SET_STRETCH_SHRINK, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VIEWPORTCONTAINER)
   }
 
-  override fun _input(event: InputEvent) {
+  public override fun _input(event: InputEvent): Unit {
   }
 
-  override fun _unhandledInput(event: InputEvent) {
+  public override fun _unhandledInput(event: InputEvent): Unit {
   }
 }

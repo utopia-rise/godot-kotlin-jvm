@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Returns the length of a [godot.core.Vector3] within the visual shader graph.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Translated to `length(p0)` in the shader language.
  */
 @GodotBaseType
-open class VisualShaderNodeVectorLen : VisualShaderNode() {
-  override fun __new() {
+public open class VisualShaderNodeVectorLen : VisualShaderNode() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVECTORLEN)
   }
 }

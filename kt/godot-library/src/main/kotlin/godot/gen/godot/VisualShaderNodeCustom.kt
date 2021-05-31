@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.VariantArray
 import kotlin.Any
 import kotlin.Boolean
@@ -13,6 +13,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Virtual class to define custom [godot.VisualShaderNode]s for use in the Visual Shader Editor.
@@ -31,8 +32,8 @@ import kotlin.Suppress
  * 		```
  */
 @GodotBaseType
-open class VisualShaderNodeCustom : VisualShaderNode() {
-  override fun __new() {
+public open class VisualShaderNodeCustom : VisualShaderNode() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODECUSTOM)
   }
 
@@ -41,7 +42,7 @@ open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * Defining this method is **optional**. If not overridden, the node will be filed under the "Custom" category.
    */
-  open fun _getCategory(): String {
+  public open fun _getCategory(): String {
     throw NotImplementedError("_get_category is not implemented for VisualShaderNodeCustom")
   }
 
@@ -56,7 +57,7 @@ open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * Defining this method is **required**.
    */
-  open fun _getCode(
+  public open fun _getCode(
     inputVars: VariantArray<Any?>,
     outputVars: VariantArray<Any?>,
     mode: Long,
@@ -70,7 +71,7 @@ open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * Defining this method is **optional**.
    */
-  open fun _getDescription(): String {
+  public open fun _getDescription(): String {
     throw NotImplementedError("_get_description is not implemented for VisualShaderNodeCustom")
   }
 
@@ -83,7 +84,7 @@ open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * Defining this method is **optional**.
    */
-  open fun _getGlobalCode(mode: Long): String {
+  public open fun _getGlobalCode(mode: Long): String {
     throw NotImplementedError("_get_global_code is not implemented for VisualShaderNodeCustom")
   }
 
@@ -92,7 +93,7 @@ open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * Defining this method is **required**. If not overridden, the node has no input ports.
    */
-  open fun _getInputPortCount(): Long {
+  public open fun _getInputPortCount(): Long {
     throw NotImplementedError("_get_input_port_count is not implemented for VisualShaderNodeCustom")
   }
 
@@ -101,7 +102,7 @@ open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * Defining this method is **optional**, but recommended. If not overridden, input ports are named as `"in" + str(port)`.
    */
-  open fun _getInputPortName(port: Long): String {
+  public open fun _getInputPortName(port: Long): String {
     throw NotImplementedError("_get_input_port_name is not implemented for VisualShaderNodeCustom")
   }
 
@@ -110,7 +111,7 @@ open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * Defining this method is **optional**, but recommended. If not overridden, input ports will return the [godot.VisualShaderNode.PORT_TYPE_SCALAR] type.
    */
-  open fun _getInputPortType(port: Long): Long {
+  public open fun _getInputPortType(port: Long): Long {
     throw NotImplementedError("_get_input_port_type is not implemented for VisualShaderNodeCustom")
   }
 
@@ -119,7 +120,7 @@ open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * Defining this method is **optional**, but recommended. If not overridden, the node will be named as "Unnamed".
    */
-  open fun _getName(): String {
+  public open fun _getName(): String {
     throw NotImplementedError("_get_name is not implemented for VisualShaderNodeCustom")
   }
 
@@ -128,7 +129,7 @@ open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * Defining this method is **required**. If not overridden, the node has no output ports.
    */
-  open fun _getOutputPortCount(): Long {
+  public open fun _getOutputPortCount(): Long {
     throw
         NotImplementedError("_get_output_port_count is not implemented for VisualShaderNodeCustom")
   }
@@ -138,7 +139,7 @@ open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * Defining this method is **optional**, but recommended. If not overridden, output ports are named as `"out" + str(port)`.
    */
-  open fun _getOutputPortName(port: Long): String {
+  public open fun _getOutputPortName(port: Long): String {
     throw NotImplementedError("_get_output_port_name is not implemented for VisualShaderNodeCustom")
   }
 
@@ -147,7 +148,7 @@ open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * Defining this method is **optional**, but recommended. If not overridden, output ports will return the [godot.VisualShaderNode.PORT_TYPE_SCALAR] type.
    */
-  open fun _getOutputPortType(port: Long): Long {
+  public open fun _getOutputPortType(port: Long): Long {
     throw NotImplementedError("_get_output_port_type is not implemented for VisualShaderNodeCustom")
   }
 
@@ -156,7 +157,7 @@ open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * Defining this method is **optional**. If not overridden, no return icon is shown.
    */
-  open fun _getReturnIconType(): Long {
+  public open fun _getReturnIconType(): Long {
     throw NotImplementedError("_get_return_icon_type is not implemented for VisualShaderNodeCustom")
   }
 
@@ -165,7 +166,7 @@ open class VisualShaderNodeCustom : VisualShaderNode() {
    *
    * Defining this method is **optional**. If not overridden, the node will be filed under the root of the main category (see [_getCategory]).
    */
-  open fun _getSubcategory(): String {
+  public open fun _getSubcategory(): String {
     throw NotImplementedError("_get_subcategory is not implemented for VisualShaderNodeCustom")
   }
 

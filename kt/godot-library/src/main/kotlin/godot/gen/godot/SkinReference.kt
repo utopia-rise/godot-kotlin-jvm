@@ -5,29 +5,30 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType._RID
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
-open class SkinReference : Reference() {
-  override fun __new() {
+public open class SkinReference : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SKINREFERENCE)
   }
 
-  open fun _skinChanged() {
+  public open fun _skinChanged(): Unit {
   }
 
   /**
    *
    */
-  open fun getSkeleton(): RID {
+  public open fun getSkeleton(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKINREFERENCE_GET_SKELETON, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -36,7 +37,7 @@ open class SkinReference : Reference() {
   /**
    *
    */
-  open fun getSkin(): Skin? {
+  public open fun getSkin(): Skin? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKINREFERENCE_GET_SKIN, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Skin?

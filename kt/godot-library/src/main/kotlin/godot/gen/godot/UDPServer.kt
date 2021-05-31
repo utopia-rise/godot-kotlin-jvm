@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Helper class to implement a UDP server.
@@ -76,31 +77,31 @@ import kotlin.Suppress
  * 		```
  */
 @GodotBaseType
-open class UDPServer : Reference() {
+public open class UDPServer : Reference() {
   /**
    * Define the maximum number of pending connections, during [poll], any new pending connection exceeding that value will be automatically dropped. Setting this value to `0` effectively prevents any new pending connection to be accepted (e.g. when all your players have connected).
    */
-  open var maxPendingConnections: Long
+  public open var maxPendingConnections: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_UDPSERVER_GET_MAX_PENDING_CONNECTIONS, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_UDPSERVER_SET_MAX_PENDING_CONNECTIONS, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_UDPSERVER)
   }
 
   /**
    * Returns `true` if a packet with a new address/port combination was received on the socket.
    */
-  open fun isConnectionAvailable(): Boolean {
+  public open fun isConnectionAvailable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_IS_CONNECTION_AVAILABLE,
         BOOL)
@@ -110,7 +111,7 @@ open class UDPServer : Reference() {
   /**
    * Returns `true` if the socket is open and listening on a port.
    */
-  open fun isListening(): Boolean {
+  public open fun isListening(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_IS_LISTENING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -119,7 +120,7 @@ open class UDPServer : Reference() {
   /**
    * Starts the server by opening a UDP socket listening on the given port. You can optionally specify a `bind_address` to only listen for packets sent to that address. See also [godot.PacketPeerUDP.listen].
    */
-  open fun listen(port: Long, bindAddress: String = "*"): GodotError {
+  public open fun listen(port: Long, bindAddress: String = "*"): GodotError {
     TransferContext.writeArguments(LONG to port, STRING to bindAddress)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_LISTEN, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -128,7 +129,7 @@ open class UDPServer : Reference() {
   /**
    * Call this method at regular intervals (e.g. inside [godot.Node.Process]) to process new packets. And packet from known address/port pair will be delivered to the appropriate [godot.PacketPeerUDP], any packet received from an unknown address/port pair will be added as a pending connection (see [isConnectionAvailable], [takeConnection]). The maximum number of pending connection is defined via [maxPendingConnections].
    */
-  open fun poll(): GodotError {
+  public open fun poll(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_POLL, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -137,7 +138,7 @@ open class UDPServer : Reference() {
   /**
    * Stops the server, closing the UDP socket if open. Will close all connected [godot.PacketPeerUDP] accepted via [takeConnection] (remote peers will not be notified).
    */
-  open fun stop() {
+  public open fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_STOP, NIL)
   }
@@ -145,7 +146,7 @@ open class UDPServer : Reference() {
   /**
    * Returns the first pending connection (connected to the appropriate address/port). Will return `null` if no new connection is available. See also [isConnectionAvailable], [godot.PacketPeerUDP.connectToHost].
    */
-  open fun takeConnection(): PacketPeerUDP? {
+  public open fun takeConnection(): PacketPeerUDP? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UDPSERVER_TAKE_CONNECTION, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as PacketPeerUDP?

@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A time-seeking animation node to be used with [godot.AnimationTree].
@@ -29,8 +30,8 @@ import kotlin.Suppress
  * 		```
  */
 @GodotBaseType
-open class AnimationNodeTimeSeek : AnimationNode() {
-  override fun __new() {
+public open class AnimationNodeTimeSeek : AnimationNode() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODETIMESEEK)
   }
 }

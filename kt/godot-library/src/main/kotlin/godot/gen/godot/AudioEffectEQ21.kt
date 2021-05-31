@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Adds a 21-band equalizer audio effect to an Audio bus. Gives you control over frequencies from 22 Hz to 22000 Hz.
@@ -60,8 +61,8 @@ import kotlin.Suppress
  * See also [godot.AudioEffectEQ], [godot.AudioEffectEQ6], [godot.AudioEffectEQ10].
  */
 @GodotBaseType
-open class AudioEffectEQ21 : AudioEffectEQ() {
-  override fun __new() {
+public open class AudioEffectEQ21 : AudioEffectEQ() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTEQ21)
   }
 }

@@ -5,12 +5,13 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A boolean constant to be used within the visual shader graph.
@@ -20,24 +21,24 @@ import kotlin.Suppress
  * Translated to `bool` in the shader language.
  */
 @GodotBaseType
-open class VisualShaderNodeBooleanConstant : VisualShaderNode() {
+public open class VisualShaderNodeBooleanConstant : VisualShaderNode() {
   /**
    * A boolean constant which represents a state of this node.
    */
-  open var constant: Boolean
+  public open var constant: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBOOLEANCONSTANT_GET_CONSTANT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBOOLEANCONSTANT_SET_CONSTANT, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEBOOLEANCONSTANT)
   }
 }

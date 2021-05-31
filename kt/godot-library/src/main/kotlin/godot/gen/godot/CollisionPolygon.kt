@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.PoolVector2Array
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -16,6 +16,7 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.NotImplementedError
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Editor-only class for defining a collision polygon in 3D space.
@@ -23,18 +24,18 @@ import kotlin.Suppress
  * Allows editing a collision polygon's vertices on a selected plane. Can also set a depth perpendicular to that plane. This class is only available in the editor. It will not appear in the scene tree at run-time. Creates a [godot.Shape] for gameplay. Properties modified during gameplay will have no effect.
  */
 @GodotBaseType
-open class CollisionPolygon : Spatial() {
+public open class CollisionPolygon : Spatial() {
   /**
    * Length that the resulting collision extends in either direction perpendicular to its polygon.
    */
-  open var depth: Double
+  public open var depth: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON_GET_DEPTH,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON_SET_DEPTH, NIL)
     }
@@ -42,14 +43,14 @@ open class CollisionPolygon : Spatial() {
   /**
    * If `true`, no collision will be produced.
    */
-  open var disabled: Boolean
+  public open var disabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON_GET_DISABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON_SET_DISABLED,
           NIL)
@@ -58,14 +59,14 @@ open class CollisionPolygon : Spatial() {
   /**
    * The collision margin for the generated [godot.Shape]. See [godot.Shape.margin] for more details.
    */
-  open var margin: Double
+  public open var margin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON_GET_MARGIN,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON_SET_MARGIN, NIL)
     }
@@ -75,23 +76,23 @@ open class CollisionPolygon : Spatial() {
    *
    * **Note:** The returned value is a copy of the original. Methods which mutate the size or properties of the return value will not impact the original polygon. To change properties of the polygon, assign it to a temporary variable and make changes before reassigning the `polygon` member.
    */
-  open var polygon: PoolVector2Array
+  public open var polygon: PoolVector2Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON_GET_POLYGON,
           POOL_VECTOR2_ARRAY)
       return TransferContext.readReturnValue(POOL_VECTOR2_ARRAY, false) as PoolVector2Array
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(POOL_VECTOR2_ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON_SET_POLYGON, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_COLLISIONPOLYGON)
   }
 
-  open fun _isEditable3dPolygon(): Boolean {
+  public open fun _isEditable3dPolygon(): Boolean {
     throw NotImplementedError("_is_editable_3d_polygon is not implemented for CollisionPolygon")
   }
 }

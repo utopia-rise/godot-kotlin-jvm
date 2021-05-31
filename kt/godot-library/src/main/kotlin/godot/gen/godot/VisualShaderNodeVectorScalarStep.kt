@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Calculates a vector Step function within the visual shader graph.
@@ -16,8 +17,8 @@ import kotlin.Suppress
  * Returns `0.0` if `x` is smaller than `edge` and `1.0` otherwise.
  */
 @GodotBaseType
-open class VisualShaderNodeVectorScalarStep : VisualShaderNode() {
-  override fun __new() {
+public open class VisualShaderNodeVectorScalarStep : VisualShaderNode() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVECTORSCALARSTEP)
   }
 }

@@ -5,12 +5,13 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
-open class VisualScriptCondition : VisualScriptNode() {
-  override fun __new() {
+public open class VisualScriptCondition : VisualScriptNode() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSCRIPTCONDITION)
   }
 }

@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.TransferContext
 import godot.core.VariantArray
@@ -21,6 +21,7 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A soft mesh physics body.
@@ -31,18 +32,18 @@ import kotlin.Suppress
  * A deformable physics body. Used to create elastic or deformable objects such as cloth, rubber, or other flexible materials.
  */
 @GodotBaseType
-open class SoftBody : MeshInstance() {
+public open class SoftBody : MeshInstance() {
   /**
    *
    */
-  open var areaAngularStiffness: Double
+  public open var areaAngularStiffness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SOFTBODY_GET_AREAANGULAR_STIFFNESS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SOFTBODY_SET_AREAANGULAR_STIFFNESS, NIL)
@@ -55,14 +56,14 @@ open class SoftBody : MeshInstance() {
    *
    * A contact is detected if object A is in any of the layers that object B scans, or object B is in any layer scanned by object A. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  open var collisionLayer: Long
+  public open var collisionLayer: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_GET_COLLISION_LAYER,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_SET_COLLISION_LAYER, NIL)
     }
@@ -70,13 +71,13 @@ open class SoftBody : MeshInstance() {
   /**
    * The physics layers this SoftBody scans for collisions. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  open var collisionMask: Long
+  public open var collisionMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_GET_COLLISION_MASK, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_SET_COLLISION_MASK, NIL)
     }
@@ -84,14 +85,14 @@ open class SoftBody : MeshInstance() {
   /**
    *
    */
-  open var dampingCoefficient: Double
+  public open var dampingCoefficient: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_GET_DAMPING_COEFFICIENT,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_SET_DAMPING_COEFFICIENT,
           NIL)
@@ -100,14 +101,14 @@ open class SoftBody : MeshInstance() {
   /**
    *
    */
-  open var dragCoefficient: Double
+  public open var dragCoefficient: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_GET_DRAG_COEFFICIENT,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_SET_DRAG_COEFFICIENT,
           NIL)
@@ -116,14 +117,14 @@ open class SoftBody : MeshInstance() {
   /**
    *
    */
-  open var linearStiffness: Double
+  public open var linearStiffness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_GET_LINEAR_STIFFNESS,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_SET_LINEAR_STIFFNESS,
           NIL)
@@ -132,14 +133,14 @@ open class SoftBody : MeshInstance() {
   /**
    * [godot.core.NodePath] to a [godot.CollisionObject] this SoftBody should avoid clipping.
    */
-  open var parentCollisionIgnore: NodePath
+  public open var parentCollisionIgnore: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SOFTBODY_GET_PARENT_COLLISION_IGNORE, NODE_PATH)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SOFTBODY_SET_PARENT_COLLISION_IGNORE, NIL)
@@ -148,14 +149,14 @@ open class SoftBody : MeshInstance() {
   /**
    *
    */
-  open var poseMatchingCoefficient: Double
+  public open var poseMatchingCoefficient: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SOFTBODY_GET_POSE_MATCHING_COEFFICIENT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SOFTBODY_SET_POSE_MATCHING_COEFFICIENT, NIL)
@@ -164,14 +165,14 @@ open class SoftBody : MeshInstance() {
   /**
    *
    */
-  open var pressureCoefficient: Double
+  public open var pressureCoefficient: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_GET_PRESSURE_COEFFICIENT,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_SET_PRESSURE_COEFFICIENT,
           NIL)
@@ -180,13 +181,13 @@ open class SoftBody : MeshInstance() {
   /**
    * If `true`, the [godot.SoftBody] will respond to [godot.RayCast]s.
    */
-  open var rayPickable: Boolean
+  public open var rayPickable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_GET_RAY_PICKABLE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_SET_RAY_PICKABLE, NIL)
     }
@@ -194,14 +195,14 @@ open class SoftBody : MeshInstance() {
   /**
    * Increasing this value will improve the resulting simulation, but can affect performance. Use with care.
    */
-  open var simulationPrecision: Long
+  public open var simulationPrecision: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_GET_SIMULATION_PRECISION,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_SET_SIMULATION_PRECISION,
           NIL)
@@ -210,13 +211,13 @@ open class SoftBody : MeshInstance() {
   /**
    * The SoftBody's mass.
    */
-  open var totalMass: Double
+  public open var totalMass: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_GET_TOTAL_MASS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_SET_TOTAL_MASS, NIL)
     }
@@ -224,30 +225,30 @@ open class SoftBody : MeshInstance() {
   /**
    *
    */
-  open var volumeStiffness: Double
+  public open var volumeStiffness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_GET_VOLUME_STIFFNESS,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_SET_VOLUME_STIFFNESS,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SOFTBODY)
   }
 
-  open fun _drawSoftMesh() {
+  public open fun _drawSoftMesh(): Unit {
   }
 
   /**
    * Adds a body to the list of bodies that this body can't collide with.
    */
-  open fun addCollisionExceptionWith(body: Node) {
+  public open fun addCollisionExceptionWith(body: Node): Unit {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SOFTBODY_ADD_COLLISION_EXCEPTION_WITH, NIL)
@@ -256,7 +257,7 @@ open class SoftBody : MeshInstance() {
   /**
    * Returns an array of nodes that were added as collision exceptions for this body.
    */
-  open fun getCollisionExceptions(): VariantArray<Any?> {
+  public open fun getCollisionExceptions(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_GET_COLLISION_EXCEPTIONS,
         ARRAY)
@@ -266,7 +267,7 @@ open class SoftBody : MeshInstance() {
   /**
    * Returns an individual bit on the collision mask.
    */
-  open fun getCollisionLayerBit(bit: Long): Boolean {
+  public open fun getCollisionLayerBit(bit: Long): Boolean {
     TransferContext.writeArguments(LONG to bit)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_GET_COLLISION_LAYER_BIT,
         BOOL)
@@ -276,7 +277,7 @@ open class SoftBody : MeshInstance() {
   /**
    * Returns an individual bit on the collision mask.
    */
-  open fun getCollisionMaskBit(bit: Long): Boolean {
+  public open fun getCollisionMaskBit(bit: Long): Boolean {
     TransferContext.writeArguments(LONG to bit)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_GET_COLLISION_MASK_BIT,
         BOOL)
@@ -286,7 +287,7 @@ open class SoftBody : MeshInstance() {
   /**
    * Removes a body from the list of bodies that this body can't collide with.
    */
-  open fun removeCollisionExceptionWith(body: Node) {
+  public open fun removeCollisionExceptionWith(body: Node): Unit {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SOFTBODY_REMOVE_COLLISION_EXCEPTION_WITH, NIL)
@@ -295,7 +296,7 @@ open class SoftBody : MeshInstance() {
   /**
    * Sets individual bits on the layer mask. Use this if you only need to change one layer's value.
    */
-  open fun setCollisionLayerBit(bit: Long, value: Boolean) {
+  public open fun setCollisionLayerBit(bit: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to bit, BOOL to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_SET_COLLISION_LAYER_BIT,
         NIL)
@@ -304,7 +305,7 @@ open class SoftBody : MeshInstance() {
   /**
    * Sets individual bits on the collision mask. Use this if you only need to change one layer's value.
    */
-  open fun setCollisionMaskBit(bit: Long, value: Boolean) {
+  public open fun setCollisionMaskBit(bit: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to bit, BOOL to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_SET_COLLISION_MASK_BIT,
         NIL)

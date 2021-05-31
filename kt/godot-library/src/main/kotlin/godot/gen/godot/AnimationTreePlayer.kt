@@ -6,7 +6,7 @@
 package godot
 
 import godot.AnimationTreePlayer
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.NodePath
 import godot.core.PoolStringArray
@@ -28,6 +28,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * *Deprecated.* Animation player that uses a node graph for blending animations. Superseded by [godot.AnimationTree].
@@ -42,18 +43,18 @@ import kotlin.Suppress
  * See [godot.AnimationTree] for a more full-featured replacement of this node.
  */
 @GodotBaseType
-open class AnimationTreePlayer : Node() {
+public open class AnimationTreePlayer : Node() {
   /**
    * If `true`, the [godot.AnimationTreePlayer] is able to play animations.
    */
-  open var active: Boolean
+  public open var active: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_GET_ACTIVE,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_SET_ACTIVE,
           NIL)
@@ -64,14 +65,14 @@ open class AnimationTreePlayer : Node() {
    *
    * It accesses the bones, so it should point to the same node the [godot.AnimationPlayer] would point its Root Node at.
    */
-  open var basePath: NodePath
+  public open var basePath: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_GET_BASE_PATH,
           NODE_PATH)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_SET_BASE_PATH,
           NIL)
@@ -82,14 +83,14 @@ open class AnimationTreePlayer : Node() {
    *
    * Once set, [godot.Animation] nodes can be added to the [godot.AnimationTreePlayer].
    */
-  open var masterPlayer: NodePath
+  public open var masterPlayer: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_GET_MASTER_PLAYER, NODE_PATH)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_SET_MASTER_PLAYER, NIL)
@@ -98,27 +99,27 @@ open class AnimationTreePlayer : Node() {
   /**
    * The thread in which to update animations.
    */
-  open var playbackProcessMode: Long
+  public open var playbackProcessMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_GET_PLAYBACK_PROCESS_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_SET_PLAYBACK_PROCESS_MODE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ANIMATIONTREEPLAYER)
   }
 
   /**
    * Adds a `type` node to the graph with name `id`.
    */
-  open fun addNode(type: Long, id: String) {
+  public open fun addNode(type: Long, id: String): Unit {
     TransferContext.writeArguments(LONG to type, STRING to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_ADD_NODE, NIL)
   }
@@ -126,7 +127,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Shifts position in the animation timeline. `delta` is the time in seconds to shift. Events between the current frame and `delta` are handled.
    */
-  open fun advance(delta: Double) {
+  public open fun advance(delta: Double): Unit {
     TransferContext.writeArguments(DOUBLE to delta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_ADVANCE, NIL)
   }
@@ -134,7 +135,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Returns the [godot.AnimationPlayer]'s [godot.Animation] bound to the [godot.AnimationTreePlayer]'s animation node with name `id`.
    */
-  open fun animationNodeGetAnimation(id: String): Animation? {
+  public open fun animationNodeGetAnimation(id: String): Animation? {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_ANIMATION_NODE_GET_ANIMATION, OBJECT)
@@ -144,7 +145,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Returns the name of the [masterPlayer]'s [godot.Animation] bound to this animation node.
    */
-  open fun animationNodeGetMasterAnimation(id: String): String {
+  public open fun animationNodeGetMasterAnimation(id: String): String {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_ANIMATION_NODE_GET_MASTER_ANIMATION, STRING)
@@ -154,7 +155,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Returns the absolute playback timestamp of the animation node with name `id`.
    */
-  open fun animationNodeGetPosition(id: String): Double {
+  public open fun animationNodeGetPosition(id: String): Double {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_ANIMATION_NODE_GET_POSITION, DOUBLE)
@@ -164,7 +165,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Binds a new [godot.Animation] from the [masterPlayer] to the [godot.AnimationTreePlayer]'s animation node with name `id`.
    */
-  open fun animationNodeSetAnimation(id: String, animation: Animation) {
+  public open fun animationNodeSetAnimation(id: String, animation: Animation): Unit {
     TransferContext.writeArguments(STRING to id, OBJECT to animation)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_ANIMATION_NODE_SET_ANIMATION, NIL)
@@ -173,11 +174,11 @@ open class AnimationTreePlayer : Node() {
   /**
    * If `enable` is `true`, the animation node with ID `id` turns off the track modifying the property at `path`. The modified node's children continue to animate.
    */
-  open fun animationNodeSetFilterPath(
+  public open fun animationNodeSetFilterPath(
     id: String,
     path: NodePath,
     enable: Boolean
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to id, NODE_PATH to path, BOOL to enable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_ANIMATION_NODE_SET_FILTER_PATH, NIL)
@@ -186,7 +187,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Binds the [godot.Animation] named `source` from [masterPlayer] to the animation node `id`. Recalculates caches.
    */
-  open fun animationNodeSetMasterAnimation(id: String, source: String) {
+  public open fun animationNodeSetMasterAnimation(id: String, source: String): Unit {
     TransferContext.writeArguments(STRING to id, STRING to source)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_ANIMATION_NODE_SET_MASTER_ANIMATION, NIL)
@@ -195,7 +196,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Returns whether node `id` and `dst_id` are connected at the specified slot.
    */
-  open fun areNodesConnected(
+  public open fun areNodesConnected(
     id: String,
     dstId: String,
     dstInputIdx: Long
@@ -209,7 +210,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Returns the blend amount of a Blend2 node given its name.
    */
-  open fun blend2NodeGetAmount(id: String): Double {
+  public open fun blend2NodeGetAmount(id: String): Double {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_BLEND2_NODE_GET_AMOUNT, DOUBLE)
@@ -223,7 +224,7 @@ open class AnimationTreePlayer : Node() {
    *
    * At 0, output is input A. Towards 1, the influence of A gets lessened, the influence of B gets raised. At 1, output is input B.
    */
-  open fun blend2NodeSetAmount(id: String, blend: Double) {
+  public open fun blend2NodeSetAmount(id: String, blend: Double): Unit {
     TransferContext.writeArguments(STRING to id, DOUBLE to blend)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_BLEND2_NODE_SET_AMOUNT, NIL)
@@ -232,11 +233,11 @@ open class AnimationTreePlayer : Node() {
   /**
    * If `enable` is `true`, the Blend2 node with name `id` turns off the track modifying the property at `path`. The modified node's children continue to animate.
    */
-  open fun blend2NodeSetFilterPath(
+  public open fun blend2NodeSetFilterPath(
     id: String,
     path: NodePath,
     enable: Boolean
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to id, NODE_PATH to path, BOOL to enable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_BLEND2_NODE_SET_FILTER_PATH, NIL)
@@ -245,7 +246,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Returns the blend amount of a Blend3 node given its name.
    */
-  open fun blend3NodeGetAmount(id: String): Double {
+  public open fun blend3NodeGetAmount(id: String): Double {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_BLEND3_NODE_GET_AMOUNT, DOUBLE)
@@ -259,7 +260,7 @@ open class AnimationTreePlayer : Node() {
    *
    * At -1, output is input B-. From -1 to 0, the influence of B- gets lessened, the influence of A gets raised and the influence of B+ is 0. At 0, output is input A. From 0 to 1, the influence of A gets lessened, the influence of B+ gets raised and the influence of B+ is 0. At 1, output is input B+.
    */
-  open fun blend3NodeSetAmount(id: String, blend: Double) {
+  public open fun blend3NodeSetAmount(id: String, blend: Double): Unit {
     TransferContext.writeArguments(STRING to id, DOUBLE to blend)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_BLEND3_NODE_SET_AMOUNT, NIL)
@@ -268,7 +269,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Returns the blend amount of a Blend4 node given its name.
    */
-  open fun blend4NodeGetAmount(id: String): Vector2 {
+  public open fun blend4NodeGetAmount(id: String): Vector2 {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_BLEND4_NODE_GET_AMOUNT, VECTOR2)
@@ -282,7 +283,7 @@ open class AnimationTreePlayer : Node() {
    *
    * The two pairs are blended like Blend2 and then added together.
    */
-  open fun blend4NodeSetAmount(id: String, blend: Vector2) {
+  public open fun blend4NodeSetAmount(id: String, blend: Vector2): Unit {
     TransferContext.writeArguments(STRING to id, VECTOR2 to blend)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_BLEND4_NODE_SET_AMOUNT, NIL)
@@ -291,7 +292,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Connects node `id` to `dst_id` at the specified input slot.
    */
-  open fun connectNodes(
+  public open fun connectNodes(
     id: String,
     dstId: String,
     dstInputIdx: Long
@@ -305,7 +306,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Disconnects nodes connected to `id` at the specified input slot.
    */
-  open fun disconnectNodes(id: String, dstInputIdx: Long) {
+  public open fun disconnectNodes(id: String, dstInputIdx: Long): Unit {
     TransferContext.writeArguments(STRING to id, LONG to dstInputIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_DISCONNECT_NODES, NIL)
@@ -314,7 +315,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Returns a [godot.core.PoolStringArray] containing the name of all nodes.
    */
-  open fun getNodeList(): PoolStringArray {
+  public open fun getNodeList(): PoolStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_GET_NODE_LIST,
         POOL_STRING_ARRAY)
@@ -324,7 +325,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Returns the mix amount of a Mix node given its name.
    */
-  open fun mixNodeGetAmount(id: String): Double {
+  public open fun mixNodeGetAmount(id: String): Double {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_MIX_NODE_GET_AMOUNT, DOUBLE)
@@ -336,7 +337,7 @@ open class AnimationTreePlayer : Node() {
    *
    * A Mix node adds input b to input a by the amount given by ratio.
    */
-  open fun mixNodeSetAmount(id: String, ratio: Double) {
+  public open fun mixNodeSetAmount(id: String, ratio: Double): Unit {
     TransferContext.writeArguments(STRING to id, DOUBLE to ratio)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_MIX_NODE_SET_AMOUNT, NIL)
@@ -345,7 +346,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Check if a node exists (by name).
    */
-  open fun nodeExists(node: String): Boolean {
+  public open fun nodeExists(node: String): Boolean {
     TransferContext.writeArguments(STRING to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_NODE_EXISTS,
         BOOL)
@@ -355,7 +356,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Returns the input count for a given node. Different types of nodes have different amount of inputs.
    */
-  open fun nodeGetInputCount(id: String): Long {
+  public open fun nodeGetInputCount(id: String): Long {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_NODE_GET_INPUT_COUNT, LONG)
@@ -365,7 +366,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Returns the input source for a given node input.
    */
-  open fun nodeGetInputSource(id: String, idx: Long): String {
+  public open fun nodeGetInputSource(id: String, idx: Long): String {
     TransferContext.writeArguments(STRING to id, LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_NODE_GET_INPUT_SOURCE, STRING)
@@ -375,7 +376,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Returns position of a node in the graph given its name.
    */
-  open fun nodeGetPosition(id: String): Vector2 {
+  public open fun nodeGetPosition(id: String): Vector2 {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_NODE_GET_POSITION, VECTOR2)
@@ -385,7 +386,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Gets the node type, will return from [enum NodeType] enum.
    */
-  open fun nodeGetType(id: String): AnimationTreePlayer.NodeType {
+  public open fun nodeGetType(id: String): AnimationTreePlayer.NodeType {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_NODE_GET_TYPE,
         LONG)
@@ -395,7 +396,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Renames a node in the graph.
    */
-  open fun nodeRename(node: String, newName: String): GodotError {
+  public open fun nodeRename(node: String, newName: String): GodotError {
     TransferContext.writeArguments(STRING to node, STRING to newName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_NODE_RENAME,
         LONG)
@@ -405,7 +406,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Sets the position of a node in the graph given its name and position.
    */
-  open fun nodeSetPosition(id: String, screenPosition: Vector2) {
+  public open fun nodeSetPosition(id: String, screenPosition: Vector2): Unit {
     TransferContext.writeArguments(STRING to id, VECTOR2 to screenPosition)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_NODE_SET_POSITION, NIL)
@@ -414,7 +415,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Returns the autostart delay of a OneShot node given its name.
    */
-  open fun oneshotNodeGetAutorestartDelay(id: String): Double {
+  public open fun oneshotNodeGetAutorestartDelay(id: String): Double {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_ONESHOT_NODE_GET_AUTORESTART_DELAY, DOUBLE)
@@ -424,7 +425,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Returns the autostart random delay of a OneShot node given its name.
    */
-  open fun oneshotNodeGetAutorestartRandomDelay(id: String): Double {
+  public open fun oneshotNodeGetAutorestartRandomDelay(id: String): Double {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_ONESHOT_NODE_GET_AUTORESTART_RANDOM_DELAY,
@@ -435,7 +436,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Returns the fade in time of a OneShot node given its name.
    */
-  open fun oneshotNodeGetFadeinTime(id: String): Double {
+  public open fun oneshotNodeGetFadeinTime(id: String): Double {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_ONESHOT_NODE_GET_FADEIN_TIME, DOUBLE)
@@ -445,7 +446,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Returns the fade out time of a OneShot node given its name.
    */
-  open fun oneshotNodeGetFadeoutTime(id: String): Double {
+  public open fun oneshotNodeGetFadeoutTime(id: String): Double {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_ONESHOT_NODE_GET_FADEOUT_TIME, DOUBLE)
@@ -455,7 +456,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Returns whether a OneShot node will auto restart given its name.
    */
-  open fun oneshotNodeHasAutorestart(id: String): Boolean {
+  public open fun oneshotNodeHasAutorestart(id: String): Boolean {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_ONESHOT_NODE_HAS_AUTORESTART, BOOL)
@@ -465,7 +466,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Returns whether a OneShot node is active given its name.
    */
-  open fun oneshotNodeIsActive(id: String): Boolean {
+  public open fun oneshotNodeIsActive(id: String): Boolean {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_ONESHOT_NODE_IS_ACTIVE, BOOL)
@@ -475,7 +476,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Sets the autorestart property of a OneShot node given its name and value.
    */
-  open fun oneshotNodeSetAutorestart(id: String, enable: Boolean) {
+  public open fun oneshotNodeSetAutorestart(id: String, enable: Boolean): Unit {
     TransferContext.writeArguments(STRING to id, BOOL to enable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_ONESHOT_NODE_SET_AUTORESTART, NIL)
@@ -484,7 +485,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Sets the autorestart delay of a OneShot node given its name and value in seconds.
    */
-  open fun oneshotNodeSetAutorestartDelay(id: String, delaySec: Double) {
+  public open fun oneshotNodeSetAutorestartDelay(id: String, delaySec: Double): Unit {
     TransferContext.writeArguments(STRING to id, DOUBLE to delaySec)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_ONESHOT_NODE_SET_AUTORESTART_DELAY, NIL)
@@ -493,7 +494,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Sets the autorestart random delay of a OneShot node given its name and value in seconds.
    */
-  open fun oneshotNodeSetAutorestartRandomDelay(id: String, randSec: Double) {
+  public open fun oneshotNodeSetAutorestartRandomDelay(id: String, randSec: Double): Unit {
     TransferContext.writeArguments(STRING to id, DOUBLE to randSec)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_ONESHOT_NODE_SET_AUTORESTART_RANDOM_DELAY, NIL)
@@ -502,7 +503,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Sets the fade in time of a OneShot node given its name and value in seconds.
    */
-  open fun oneshotNodeSetFadeinTime(id: String, timeSec: Double) {
+  public open fun oneshotNodeSetFadeinTime(id: String, timeSec: Double): Unit {
     TransferContext.writeArguments(STRING to id, DOUBLE to timeSec)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_ONESHOT_NODE_SET_FADEIN_TIME, NIL)
@@ -511,7 +512,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Sets the fade out time of a OneShot node given its name and value in seconds.
    */
-  open fun oneshotNodeSetFadeoutTime(id: String, timeSec: Double) {
+  public open fun oneshotNodeSetFadeoutTime(id: String, timeSec: Double): Unit {
     TransferContext.writeArguments(STRING to id, DOUBLE to timeSec)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_ONESHOT_NODE_SET_FADEOUT_TIME, NIL)
@@ -520,11 +521,11 @@ open class AnimationTreePlayer : Node() {
   /**
    * If `enable` is `true`, the OneShot node with ID `id` turns off the track modifying the property at `path`. The modified node's children continue to animate.
    */
-  open fun oneshotNodeSetFilterPath(
+  public open fun oneshotNodeSetFilterPath(
     id: String,
     path: NodePath,
     enable: Boolean
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to id, NODE_PATH to path, BOOL to enable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_ONESHOT_NODE_SET_FILTER_PATH, NIL)
@@ -533,7 +534,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Starts a OneShot node given its name.
    */
-  open fun oneshotNodeStart(id: String) {
+  public open fun oneshotNodeStart(id: String): Unit {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_ONESHOT_NODE_START, NIL)
@@ -542,7 +543,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Stops the OneShot node with name `id`.
    */
-  open fun oneshotNodeStop(id: String) {
+  public open fun oneshotNodeStop(id: String): Unit {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_ONESHOT_NODE_STOP, NIL)
@@ -551,7 +552,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Manually recalculates the cache of track information generated from animation nodes. Needed when external sources modify the animation nodes' state.
    */
-  open fun recomputeCaches() {
+  public open fun recomputeCaches(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_RECOMPUTE_CACHES, NIL)
@@ -560,7 +561,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Removes the animation node with name `id`.
    */
-  open fun removeNode(id: String) {
+  public open fun removeNode(id: String): Unit {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_REMOVE_NODE,
         NIL)
@@ -569,7 +570,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Resets this [godot.AnimationTreePlayer].
    */
-  open fun reset() {
+  public open fun reset(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_RESET, NIL)
   }
@@ -577,7 +578,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Returns the time scale value of the TimeScale node with name `id`.
    */
-  open fun timescaleNodeGetScale(id: String): Double {
+  public open fun timescaleNodeGetScale(id: String): Double {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_TIMESCALE_NODE_GET_SCALE, DOUBLE)
@@ -591,7 +592,7 @@ open class AnimationTreePlayer : Node() {
    *
    * If applied after a blend or mix, affects all input animations to that blend or mix.
    */
-  open fun timescaleNodeSetScale(id: String, scale: Double) {
+  public open fun timescaleNodeSetScale(id: String, scale: Double): Unit {
     TransferContext.writeArguments(STRING to id, DOUBLE to scale)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_TIMESCALE_NODE_SET_SCALE, NIL)
@@ -602,7 +603,7 @@ open class AnimationTreePlayer : Node() {
    *
    * This functions as a seek in the [godot.Animation] or the blend or mix of [godot.Animation]s input in it.
    */
-  open fun timeseekNodeSeek(id: String, seconds: Double) {
+  public open fun timeseekNodeSeek(id: String, seconds: Double): Unit {
     TransferContext.writeArguments(STRING to id, DOUBLE to seconds)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_TIMESEEK_NODE_SEEK, NIL)
@@ -611,7 +612,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Deletes the input at `input_idx` for the transition node with name `id`.
    */
-  open fun transitionNodeDeleteInput(id: String, inputIdx: Long) {
+  public open fun transitionNodeDeleteInput(id: String, inputIdx: Long): Unit {
     TransferContext.writeArguments(STRING to id, LONG to inputIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_TRANSITION_NODE_DELETE_INPUT, NIL)
@@ -620,7 +621,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Returns the index of the currently evaluated input for the transition node with name `id`.
    */
-  open fun transitionNodeGetCurrent(id: String): Long {
+  public open fun transitionNodeGetCurrent(id: String): Long {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_TRANSITION_NODE_GET_CURRENT, LONG)
@@ -630,7 +631,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Returns the number of inputs for the transition node with name `id`. You can add inputs by right-clicking on the transition node.
    */
-  open fun transitionNodeGetInputCount(id: String): Long {
+  public open fun transitionNodeGetInputCount(id: String): Long {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_TRANSITION_NODE_GET_INPUT_COUNT, LONG)
@@ -640,7 +641,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Returns the cross fade time for the transition node with name `id`.
    */
-  open fun transitionNodeGetXfadeTime(id: String): Double {
+  public open fun transitionNodeGetXfadeTime(id: String): Double {
     TransferContext.writeArguments(STRING to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_TRANSITION_NODE_GET_XFADE_TIME, DOUBLE)
@@ -650,7 +651,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Returns `true` if the input at `input_idx` on the transition node with name `id` is set to automatically advance to the next input upon completion.
    */
-  open fun transitionNodeHasInputAutoAdvance(id: String, inputIdx: Long): Boolean {
+  public open fun transitionNodeHasInputAutoAdvance(id: String, inputIdx: Long): Boolean {
     TransferContext.writeArguments(STRING to id, LONG to inputIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_TRANSITION_NODE_HAS_INPUT_AUTO_ADVANCE, BOOL)
@@ -660,7 +661,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * The transition node with name `id` sets its current input at `input_idx`.
    */
-  open fun transitionNodeSetCurrent(id: String, inputIdx: Long) {
+  public open fun transitionNodeSetCurrent(id: String, inputIdx: Long): Unit {
     TransferContext.writeArguments(STRING to id, LONG to inputIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_TRANSITION_NODE_SET_CURRENT, NIL)
@@ -669,11 +670,11 @@ open class AnimationTreePlayer : Node() {
   /**
    * The transition node with name `id` advances to its next input automatically when the input at `input_idx` completes.
    */
-  open fun transitionNodeSetInputAutoAdvance(
+  public open fun transitionNodeSetInputAutoAdvance(
     id: String,
     inputIdx: Long,
     enable: Boolean
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to id, LONG to inputIdx, BOOL to enable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_TRANSITION_NODE_SET_INPUT_AUTO_ADVANCE, NIL)
@@ -682,7 +683,7 @@ open class AnimationTreePlayer : Node() {
   /**
    * Resizes the number of inputs available for the transition node with name `id`.
    */
-  open fun transitionNodeSetInputCount(id: String, count: Long) {
+  public open fun transitionNodeSetInputCount(id: String, count: Long): Unit {
     TransferContext.writeArguments(STRING to id, LONG to count)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_TRANSITION_NODE_SET_INPUT_COUNT, NIL)
@@ -691,157 +692,149 @@ open class AnimationTreePlayer : Node() {
   /**
    * The transition node with name `id` sets its cross fade time to `time_sec`.
    */
-  open fun transitionNodeSetXfadeTime(id: String, timeSec: Double) {
+  public open fun transitionNodeSetXfadeTime(id: String, timeSec: Double): Unit {
     TransferContext.writeArguments(STRING to id, DOUBLE to timeSec)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONTREEPLAYER_TRANSITION_NODE_SET_XFADE_TIME, NIL)
   }
 
-  enum class AnimationProcessMode(
+  public enum class AnimationProcessMode(
     id: Long
   ) {
     /**
      * Process animation during the physics process. This is especially useful when animating physics bodies.
      */
     ANIMATION_PROCESS_PHYSICS(0),
-
     /**
      * Process animation during the idle process.
      */
-    ANIMATION_PROCESS_IDLE(1);
+    ANIMATION_PROCESS_IDLE(1),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class NodeType(
+  public enum class NodeType(
     id: Long
   ) {
     /**
      * Output node.
      */
     NODE_OUTPUT(0),
-
     /**
      * Animation node.
      */
     NODE_ANIMATION(1),
-
     /**
      * OneShot node.
      */
     NODE_ONESHOT(2),
-
     /**
      * Mix node.
      */
     NODE_MIX(3),
-
     /**
      * Blend2 node.
      */
     NODE_BLEND2(4),
-
     /**
      * Blend3 node.
      */
     NODE_BLEND3(5),
-
     /**
      * Blend4 node.
      */
     NODE_BLEND4(6),
-
     /**
      * TimeScale node.
      */
     NODE_TIMESCALE(7),
-
     /**
      * TimeSeek node.
      */
     NODE_TIMESEEK(8),
-
     /**
      * Transition node.
      */
-    NODE_TRANSITION(9);
+    NODE_TRANSITION(9),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Process animation during the idle process.
      */
-    final const val ANIMATION_PROCESS_IDLE: Long = 1
+    public final const val ANIMATION_PROCESS_IDLE: Long = 1
 
     /**
      * Process animation during the physics process. This is especially useful when animating physics bodies.
      */
-    final const val ANIMATION_PROCESS_PHYSICS: Long = 0
+    public final const val ANIMATION_PROCESS_PHYSICS: Long = 0
 
     /**
      * Animation node.
      */
-    final const val NODE_ANIMATION: Long = 1
+    public final const val NODE_ANIMATION: Long = 1
 
     /**
      * Blend2 node.
      */
-    final const val NODE_BLEND2: Long = 4
+    public final const val NODE_BLEND2: Long = 4
 
     /**
      * Blend3 node.
      */
-    final const val NODE_BLEND3: Long = 5
+    public final const val NODE_BLEND3: Long = 5
 
     /**
      * Blend4 node.
      */
-    final const val NODE_BLEND4: Long = 6
+    public final const val NODE_BLEND4: Long = 6
 
     /**
      * Mix node.
      */
-    final const val NODE_MIX: Long = 3
+    public final const val NODE_MIX: Long = 3
 
     /**
      * OneShot node.
      */
-    final const val NODE_ONESHOT: Long = 2
+    public final const val NODE_ONESHOT: Long = 2
 
     /**
      * Output node.
      */
-    final const val NODE_OUTPUT: Long = 0
+    public final const val NODE_OUTPUT: Long = 0
 
     /**
      * TimeScale node.
      */
-    final const val NODE_TIMESCALE: Long = 7
+    public final const val NODE_TIMESCALE: Long = 7
 
     /**
      * TimeSeek node.
      */
-    final const val NODE_TIMESEEK: Long = 8
+    public final const val NODE_TIMESEEK: Long = 8
 
     /**
      * Transition node.
      */
-    final const val NODE_TRANSITION: Long = 9
+    public final const val NODE_TRANSITION: Long = 9
   }
 }

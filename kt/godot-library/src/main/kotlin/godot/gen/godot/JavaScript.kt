@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
@@ -14,6 +14,7 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Singleton that connects the engine with the browser's JavaScript context in HTML5 export.
@@ -26,19 +27,19 @@ import kotlin.Suppress
  * **Note:** This singleton can be disabled at build-time to improve security. By default, the JavaScript singleton is enabled. Official export templates also have the JavaScript singleton enabled. See [godot.Compiling for the Web](https://docs.godotengine.org/en/3.3/development/compiling/compiling_for_web.html) in the documentation for more information.
  */
 @GodotBaseType
-object JavaScript : Object() {
-  override fun __new() {
+public object JavaScript : Object() {
+  public override fun __new(): Unit {
     rawPtr = TransferContext.getSingleton(ENGINESINGLETON_JAVASCRIPT)
   }
 
-  override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
+  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    * Execute the string `code` as JavaScript code within the browser window. This is a call to the actual global JavaScript function `eval()`.
    *
    * If `use_global_execution_context` is `true`, the code will be evaluated in the global execution context. Otherwise, it is evaluated in the execution context of a function within the engine's runtime environment.
    */
-  fun eval(code: String, useGlobalExecutionContext: Boolean = false): Any? {
+  public fun eval(code: String, useGlobalExecutionContext: Boolean = false): Any? {
     TransferContext.writeArguments(STRING to code, BOOL to useGlobalExecutionContext)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_EVAL, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?

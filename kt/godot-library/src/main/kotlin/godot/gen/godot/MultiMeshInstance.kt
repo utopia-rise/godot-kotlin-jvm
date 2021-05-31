@@ -5,11 +5,12 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Node that instances a [godot.MultiMesh].
@@ -24,24 +25,24 @@ import kotlin.Suppress
  * This is useful to optimize the rendering of a high amount of instances of a given mesh (for example trees in a forest or grass strands).
  */
 @GodotBaseType
-open class MultiMeshInstance : GeometryInstance() {
+public open class MultiMeshInstance : GeometryInstance() {
   /**
    * The [godot.MultiMesh] resource that will be used and shared among all instances of the [godot.MultiMeshInstance].
    */
-  open var multimesh: MultiMesh?
+  public open var multimesh: MultiMesh?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESHINSTANCE_GET_MULTIMESH,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as MultiMesh?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESHINSTANCE_SET_MULTIMESH,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_MULTIMESHINSTANCE)
   }
 }

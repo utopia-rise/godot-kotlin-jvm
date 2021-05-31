@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PoolStringArray
 import godot.core.TransferContext
@@ -25,50 +25,51 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
-open class WebSocketClient : WebSocketMultiplayerPeer() {
-  val connectionClosed: Signal1<Boolean> by signal("was_clean_close")
+public open class WebSocketClient : WebSocketMultiplayerPeer() {
+  public val connectionClosed: Signal1<Boolean> by signal("was_clean_close")
 
-  val connectionError: Signal0 by signal()
+  public val connectionError: Signal0 by signal()
 
-  val connectionEstablished: Signal1<String> by signal("protocol")
+  public val connectionEstablished: Signal1<String> by signal("protocol")
 
-  val dataReceived: Signal0 by signal()
+  public val dataReceived: Signal0 by signal()
 
-  val serverCloseRequest: Signal2<Long, String> by signal("code", "reason")
+  public val serverCloseRequest: Signal2<Long, String> by signal("code", "reason")
 
-  open var trustedSslCertificate: X509Certificate?
+  public open var trustedSslCertificate: X509Certificate?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_GET_TRUSTED_SSL_CERTIFICATE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as X509Certificate?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_SET_TRUSTED_SSL_CERTIFICATE, NIL)
     }
 
-  open var verifySsl: Boolean
+  public open var verifySsl: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_GET_VERIFY_SSL,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_SET_VERIFY_SSL,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_WEBSOCKETCLIENT)
   }
 
-  open fun connectToUrl(
+  public open fun connectToUrl(
     url: String,
     protocols: PoolStringArray = PoolStringArray(),
     gdMpApi: Boolean = false,
@@ -81,20 +82,20 @@ open class WebSocketClient : WebSocketMultiplayerPeer() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  open fun disconnectFromHost(code: Long = 1000, reason: String = "") {
+  public open fun disconnectFromHost(code: Long = 1000, reason: String = ""): Unit {
     TransferContext.writeArguments(LONG to code, STRING to reason)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_DISCONNECT_FROM_HOST, NIL)
   }
 
-  open fun getConnectedHost(): String {
+  public open fun getConnectedHost(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_GET_CONNECTED_HOST,
         STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  open fun getConnectedPort(): Long {
+  public open fun getConnectedPort(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_GET_CONNECTED_PORT,
         LONG)

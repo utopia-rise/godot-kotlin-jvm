@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.TransferContext
 import godot.core.VariantArray
@@ -20,6 +20,7 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Direct access object to a space in the [godot.Physics2DServer].
@@ -30,8 +31,8 @@ import kotlin.Suppress
  * Direct access object to a space in the [godot.Physics2DServer]. It's used mainly to do queries against objects and areas residing in a given space.
  */
 @GodotBaseType
-open class Physics2DDirectSpaceState : Object() {
-  override fun __new() {
+public open class Physics2DDirectSpaceState : Object() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PHYSICS2DDIRECTSPACESTATE)
   }
 
@@ -42,7 +43,7 @@ open class Physics2DDirectSpaceState : Object() {
    *
    * **Note:** Any [godot.Shape2D]s that the shape is already colliding with e.g. inside of, will be ignored. Use [collideShape] to determine the [godot.Shape2D]s that the shape is already colliding with.
    */
-  open fun castMotion(shape: Physics2DShapeQueryParameters): VariantArray<Any?> {
+  public open fun castMotion(shape: Physics2DShapeQueryParameters): VariantArray<Any?> {
     TransferContext.writeArguments(OBJECT to shape)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICS2DDIRECTSPACESTATE_CAST_MOTION, ARRAY)
@@ -52,7 +53,7 @@ open class Physics2DDirectSpaceState : Object() {
   /**
    * Checks the intersections of a shape, given through a [godot.Physics2DShapeQueryParameters] object, against the space. The resulting array contains a list of points where the shape intersects another. Like with [intersectShape], the number of returned results can be limited to save processing time.
    */
-  open fun collideShape(shape: Physics2DShapeQueryParameters, maxResults: Long = 32):
+  public open fun collideShape(shape: Physics2DShapeQueryParameters, maxResults: Long = 32):
       VariantArray<Any?> {
     TransferContext.writeArguments(OBJECT to shape, LONG to maxResults)
     TransferContext.callMethod(rawPtr,
@@ -79,7 +80,7 @@ open class Physics2DDirectSpaceState : Object() {
    *
    * `shape`: The shape index of the colliding shape.
    */
-  open fun getRestInfo(shape: Physics2DShapeQueryParameters): Dictionary<Any?, Any?> {
+  public open fun getRestInfo(shape: Physics2DShapeQueryParameters): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(OBJECT to shape)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICS2DDIRECTSPACESTATE_GET_REST_INFO, DICTIONARY)
@@ -103,7 +104,7 @@ open class Physics2DDirectSpaceState : Object() {
    *
    * **Note:** [godot.ConcavePolygonShape2D]s and [godot.CollisionPolygon2D]s in `Segments` build mode are not solid shapes. Therefore, they will not be detected.
    */
-  open fun intersectPoint(
+  public open fun intersectPoint(
     point: Vector2,
     maxResults: Long = 32,
     exclude: VariantArray<Any?> = VariantArray(),
@@ -121,7 +122,7 @@ open class Physics2DDirectSpaceState : Object() {
   /**
    *
    */
-  open fun intersectPointOnCanvas(
+  public open fun intersectPointOnCanvas(
     point: Vector2,
     canvasInstanceId: Long,
     maxResults: Long = 32,
@@ -159,7 +160,7 @@ open class Physics2DDirectSpaceState : Object() {
    *
    * Additionally, the method can take an `exclude` array of objects or [RID]s that are to be excluded from collisions, a `collision_mask` bitmask representing the physics layers to check in, or booleans to determine if the ray should collide with [godot.PhysicsBody]s or [godot.Area]s, respectively.
    */
-  open fun intersectRay(
+  public open fun intersectRay(
     from: Vector2,
     to: Vector2,
     exclude: VariantArray<Any?> = VariantArray(),
@@ -191,7 +192,7 @@ open class Physics2DDirectSpaceState : Object() {
    *
    * The number of intersections can be limited with the `max_results` parameter, to reduce the processing time.
    */
-  open fun intersectShape(shape: Physics2DShapeQueryParameters, maxResults: Long = 32):
+  public open fun intersectShape(shape: Physics2DShapeQueryParameters, maxResults: Long = 32):
       VariantArray<Any?> {
     TransferContext.writeArguments(OBJECT to shape, LONG to maxResults)
     TransferContext.callMethod(rawPtr,

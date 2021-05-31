@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -18,6 +18,7 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Button for touch screen devices for gameplay use.
@@ -29,25 +30,25 @@ import kotlin.Suppress
  * You can configure TouchScreenButton to be visible only on touch devices, helping you develop your game both for desktop and mobile devices.
  */
 @GodotBaseType
-open class TouchScreenButton : Node2D() {
-  val signalPressed: Signal0 by signal()
+public open class TouchScreenButton : Node2D() {
+  public val signalPressed: Signal0 by signal()
 
   /**
    * Emitted when the button is released (up).
    */
-  val released: Signal0 by signal()
+  public val released: Signal0 by signal()
 
   /**
    * The button's action. Actions can be handled with [godot.InputEventAction].
    */
-  open var action: String
+  public open var action: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_ACTION,
           STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_ACTION, NIL)
     }
@@ -55,14 +56,14 @@ open class TouchScreenButton : Node2D() {
   /**
    * The button's bitmask.
    */
-  open var bitmask: BitMap?
+  public open var bitmask: BitMap?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_BITMASK,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as BitMap?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_BITMASK,
           NIL)
@@ -71,14 +72,14 @@ open class TouchScreenButton : Node2D() {
   /**
    * The button's texture for the normal state.
    */
-  open var normal: Texture?
+  public open var normal: Texture?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_NORMAL,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_NORMAL, NIL)
     }
@@ -88,14 +89,14 @@ open class TouchScreenButton : Node2D() {
    *
    * **Note:** this is a "pass-by" (not "bypass") press mode.
    */
-  open var passbyPress: Boolean
+  public open var passbyPress: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_PASSBY_PRESS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_PASSBY_PRESS, NIL)
@@ -104,14 +105,14 @@ open class TouchScreenButton : Node2D() {
   /**
    * The button's texture for the pressed state.
    */
-  open var pressed: Texture?
+  public open var pressed: Texture?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_PRESSED,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_PRESSED,
           NIL)
@@ -120,14 +121,14 @@ open class TouchScreenButton : Node2D() {
   /**
    * The button's shape.
    */
-  open var shape: Shape2D?
+  public open var shape: Shape2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_SHAPE,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Shape2D?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_SHAPE, NIL)
     }
@@ -135,14 +136,14 @@ open class TouchScreenButton : Node2D() {
   /**
    * If `true`, the button's shape is centered in the provided texture. If no texture is used, this property has no effect.
    */
-  open var shapeCentered: Boolean
+  public open var shapeCentered: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_SHAPE_CENTERED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_SHAPE_CENTERED, NIL)
@@ -151,14 +152,14 @@ open class TouchScreenButton : Node2D() {
   /**
    * If `true`, the button's shape is visible.
    */
-  open var shapeVisible: Boolean
+  public open var shapeVisible: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_SHAPE_VISIBLE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_SHAPE_VISIBLE, NIL)
@@ -167,67 +168,67 @@ open class TouchScreenButton : Node2D() {
   /**
    * The button's visibility mode. See [enum VisibilityMode] for possible values.
    */
-  open var visibilityMode: Long
+  public open var visibilityMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_VISIBILITY_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_VISIBILITY_MODE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TOUCHSCREENBUTTON)
   }
 
-  override fun _input(event: InputEvent) {
+  public override fun _input(event: InputEvent): Unit {
   }
 
   /**
    * Returns `true` if this button is currently pressed.
    */
-  open fun isPressed(): Boolean {
+  public open fun isPressed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_IS_PRESSED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  enum class VisibilityMode(
+  public enum class VisibilityMode(
     id: Long
   ) {
     /**
      * Always visible.
      */
     VISIBILITY_ALWAYS(0),
-
     /**
      * Visible on touch screens only.
      */
-    VISIBILITY_TOUCHSCREEN_ONLY(1);
+    VISIBILITY_TOUCHSCREEN_ONLY(1),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Always visible.
      */
-    final const val VISIBILITY_ALWAYS: Long = 0
+    public final const val VISIBILITY_ALWAYS: Long = 0
 
     /**
      * Visible on touch screens only.
      */
-    final const val VISIBILITY_TOUCHSCREEN_ONLY: Long = 1
+    public final const val VISIBILITY_TOUCHSCREEN_ONLY: Long = 1
   }
 }

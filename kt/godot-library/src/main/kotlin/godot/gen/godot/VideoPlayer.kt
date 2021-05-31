@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -20,6 +20,7 @@ import kotlin.Double
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Control for playing video streams.
@@ -33,22 +34,22 @@ import kotlin.Suppress
  * **Warning:** On HTML5, video playback *will* perform poorly due to missing architecture-specific assembly optimizations, especially for VP8/VP9.
  */
 @GodotBaseType
-open class VideoPlayer : Control() {
+public open class VideoPlayer : Control() {
   /**
    * Emitted when playback is finished.
    */
-  val finished: Signal0 by signal()
+  public val finished: Signal0 by signal()
 
   /**
    * The embedded audio track to play.
    */
-  open var audioTrack: Long
+  public open var audioTrack: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_GET_AUDIO_TRACK, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_SET_AUDIO_TRACK, NIL)
     }
@@ -56,13 +57,13 @@ open class VideoPlayer : Control() {
   /**
    * If `true`, playback starts when the scene loads.
    */
-  open var autoplay: Boolean
+  public open var autoplay: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_GET_AUTOPLAY, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_SET_AUTOPLAY, NIL)
     }
@@ -70,14 +71,14 @@ open class VideoPlayer : Control() {
   /**
    * Amount of time in milliseconds to store in buffer while playing.
    */
-  open var bufferingMsec: Long
+  public open var bufferingMsec: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_GET_BUFFERING_MSEC,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_SET_BUFFERING_MSEC,
           NIL)
@@ -86,13 +87,13 @@ open class VideoPlayer : Control() {
   /**
    * Audio bus to use for sound playback.
    */
-  open var bus: String
+  public open var bus: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_GET_BUS, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_SET_BUS, NIL)
     }
@@ -100,13 +101,13 @@ open class VideoPlayer : Control() {
   /**
    * If `true`, the video scales to the control size. Otherwise, the control minimum size will be automatically adjusted to match the video stream's dimensions.
    */
-  open var expand: Boolean
+  public open var expand: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_GET_EXPAND, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_SET_EXPAND, NIL)
     }
@@ -114,13 +115,13 @@ open class VideoPlayer : Control() {
   /**
    * If `true`, the video is paused.
    */
-  open var paused: Boolean
+  public open var paused: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_GET_PAUSED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_SET_PAUSED, NIL)
     }
@@ -128,13 +129,13 @@ open class VideoPlayer : Control() {
   /**
    * The assigned video stream. See description for supported formats.
    */
-  open var stream: VideoStream?
+  public open var stream: VideoStream?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_GET_STREAM, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as VideoStream?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_SET_STREAM, NIL)
     }
@@ -144,14 +145,14 @@ open class VideoPlayer : Control() {
    *
    * **Note:** Changing this value won't have any effect as seeking is not implemented yet, except in video formats implemented by a GDNative add-on.
    */
-  open var streamPosition: Double
+  public open var streamPosition: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_GET_STREAM_POSITION,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_SET_STREAM_POSITION,
           NIL)
@@ -160,13 +161,13 @@ open class VideoPlayer : Control() {
   /**
    * Audio volume as a linear value.
    */
-  open var volume: Double
+  public open var volume: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_GET_VOLUME, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_SET_VOLUME, NIL)
     }
@@ -174,25 +175,25 @@ open class VideoPlayer : Control() {
   /**
    * Audio volume in dB.
    */
-  open var volumeDb: Double
+  public open var volumeDb: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_GET_VOLUME_DB, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_SET_VOLUME_DB, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VIDEOPLAYER)
   }
 
   /**
    * Returns the video stream's name, or `"<No Stream>"` if no video stream is assigned.
    */
-  open fun getStreamName(): String {
+  public open fun getStreamName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_GET_STREAM_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -201,7 +202,7 @@ open class VideoPlayer : Control() {
   /**
    * Returns the current frame as a [godot.Texture].
    */
-  open fun getVideoTexture(): Texture? {
+  public open fun getVideoTexture(): Texture? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_GET_VIDEO_TEXTURE,
         OBJECT)
@@ -213,7 +214,7 @@ open class VideoPlayer : Control() {
    *
    * **Note:** The video is still considered playing if paused during playback.
    */
-  open fun isPlaying(): Boolean {
+  public open fun isPlaying(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_IS_PLAYING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -222,7 +223,7 @@ open class VideoPlayer : Control() {
   /**
    * Starts the video playback from the beginning. If the video is paused, this will not unpause the video.
    */
-  open fun play() {
+  public open fun play(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_PLAY, NIL)
   }
@@ -232,7 +233,7 @@ open class VideoPlayer : Control() {
    *
    * **Note:** Although the stream position will be set to 0, the first frame of the video stream won't become the current frame.
    */
-  open fun stop() {
+  public open fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOPLAYER_STOP, NIL)
   }

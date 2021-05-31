@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -21,6 +21,7 @@ import kotlin.Double
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Control that provides single-line string editing.
@@ -66,32 +67,32 @@ import kotlin.Suppress
  * - Command + Right arrow: Like the End key, move the cursor to the end of the line
  */
 @GodotBaseType
-open class LineEdit : Control() {
+public open class LineEdit : Control() {
   /**
    * Emitted when trying to append text that would overflow the [maxLength].
    */
-  val textChangeRejected: Signal0 by signal()
+  public val textChangeRejected: Signal0 by signal()
 
   /**
    * Emitted when the text changes.
    */
-  val textChanged: Signal1<String> by signal("new_text")
+  public val textChanged: Signal1<String> by signal("new_text")
 
   /**
    * Emitted when the user presses [KEY_ENTER] on the [godot.LineEdit].
    */
-  val textEntered: Signal1<String> by signal("new_text")
+  public val textEntered: Signal1<String> by signal("new_text")
 
   /**
    * Text alignment as defined in the [enum Align] enum.
    */
-  open var align: Long
+  public open var align: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_ALIGN, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_ALIGN, NIL)
     }
@@ -99,13 +100,13 @@ open class LineEdit : Control() {
   /**
    * If `true`, the caret (visual cursor) blinks.
    */
-  open var caretBlink: Boolean
+  public open var caretBlink: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_CARET_BLINK, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_CARET_BLINK, NIL)
     }
@@ -113,14 +114,14 @@ open class LineEdit : Control() {
   /**
    * Duration (in seconds) of a caret's blinking cycle.
    */
-  open var caretBlinkSpeed: Double
+  public open var caretBlinkSpeed: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_CARET_BLINK_SPEED,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_CARET_BLINK_SPEED,
           NIL)
@@ -129,13 +130,13 @@ open class LineEdit : Control() {
   /**
    * The cursor's position inside the [godot.LineEdit]. When set, the text may scroll to accommodate it.
    */
-  open var caretPosition: Long
+  public open var caretPosition: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_CARET_POSITION, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_CARET_POSITION, NIL)
     }
@@ -143,14 +144,14 @@ open class LineEdit : Control() {
   /**
    * If `true`, the [godot.LineEdit] will show a clear button if `text` is not empty, which can be used to clear the text quickly.
    */
-  open var clearButtonEnabled: Boolean
+  public open var clearButtonEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_CLEAR_BUTTON_ENABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_CLEAR_BUTTON_ENABLED,
           NIL)
@@ -159,14 +160,14 @@ open class LineEdit : Control() {
   /**
    * If `true`, the context menu will appear when right-clicked.
    */
-  open var contextMenuEnabled: Boolean
+  public open var contextMenuEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_CONTEXT_MENU_ENABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_CONTEXT_MENU_ENABLED,
           NIL)
@@ -175,13 +176,13 @@ open class LineEdit : Control() {
   /**
    * If `false`, existing text cannot be modified and new text cannot be added.
    */
-  open var editable: Boolean
+  public open var editable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_EDITABLE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_EDITABLE, NIL)
     }
@@ -189,14 +190,14 @@ open class LineEdit : Control() {
   /**
    * If `true`, the [godot.LineEdit] width will increase to stay longer than the [text]. It will **not** compress if the [text] is shortened.
    */
-  open var expandToTextLength: Boolean
+  public open var expandToTextLength: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_EXPAND_TO_TEXT_LENGTH, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_EXPAND_TO_TEXT_LENGTH, NIL)
@@ -205,13 +206,13 @@ open class LineEdit : Control() {
   /**
    * Maximum amount of characters that can be entered inside the [godot.LineEdit]. If `0`, there is no limit.
    */
-  open var maxLength: Long
+  public open var maxLength: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_MAX_LENGTH, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_MAX_LENGTH, NIL)
     }
@@ -219,14 +220,14 @@ open class LineEdit : Control() {
   /**
    * Opacity of the [placeholderText]. From `0` to `1`.
    */
-  open var placeholderAlpha: Double
+  public open var placeholderAlpha: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_PLACEHOLDER_ALPHA,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_PLACEHOLDER_ALPHA,
           NIL)
@@ -235,14 +236,14 @@ open class LineEdit : Control() {
   /**
    * Text shown when the [godot.LineEdit] is empty. It is **not** the [godot.LineEdit]'s default value (see [text]).
    */
-  open var placeholderText: String
+  public open var placeholderText: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_PLACEHOLDER_TEXT,
           STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_PLACEHOLDER_TEXT,
           NIL)
@@ -251,13 +252,13 @@ open class LineEdit : Control() {
   /**
    * Sets the icon that will appear in the right end of the [godot.LineEdit] if there's no [text], or always, if [clearButtonEnabled] is set to `false`.
    */
-  open var rightIcon: Texture?
+  public open var rightIcon: Texture?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_RIGHT_ICON, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_RIGHT_ICON, NIL)
     }
@@ -265,13 +266,13 @@ open class LineEdit : Control() {
   /**
    * If `true`, every character is replaced with the secret character (see [secretCharacter]).
    */
-  open var secret: Boolean
+  public open var secret: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_SECRET, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_SECRET, NIL)
     }
@@ -279,14 +280,14 @@ open class LineEdit : Control() {
   /**
    * The character to use to mask secret input (defaults to "*"). Only a single character can be used as the secret character.
    */
-  open var secretCharacter: String
+  public open var secretCharacter: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_SECRET_CHARACTER,
           STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_SECRET_CHARACTER,
           NIL)
@@ -295,14 +296,14 @@ open class LineEdit : Control() {
   /**
    * If `false`, it's impossible to select the text using mouse nor keyboard.
    */
-  open var selectingEnabled: Boolean
+  public open var selectingEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_SELECTING_ENABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_SELECTING_ENABLED,
           NIL)
@@ -311,14 +312,14 @@ open class LineEdit : Control() {
   /**
    * If `false`, using shortcuts will be disabled.
    */
-  open var shortcutKeysEnabled: Boolean
+  public open var shortcutKeysEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_SHORTCUT_KEYS_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_SHORTCUT_KEYS_ENABLED, NIL)
@@ -329,13 +330,13 @@ open class LineEdit : Control() {
    *
    * **Note:** Changing text using this property won't emit the [textChanged] signal.
    */
-  open var text: String
+  public open var text: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_TEXT, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_TEXT, NIL)
     }
@@ -343,39 +344,39 @@ open class LineEdit : Control() {
   /**
    * If `true`, the native virtual keyboard is shown when focused on platforms that support it.
    */
-  open var virtualKeyboardEnabled: Boolean
+  public open var virtualKeyboardEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_VIRTUAL_KEYBOARD_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_VIRTUAL_KEYBOARD_ENABLED, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_LINEEDIT)
   }
 
-  open fun _editorSettingsChanged() {
+  public open fun _editorSettingsChanged(): Unit {
   }
 
-  override fun _guiInput(event: InputEvent) {
+  public override fun _guiInput(event: InputEvent): Unit {
   }
 
-  open fun _textChanged() {
+  public open fun _textChanged(): Unit {
   }
 
-  open fun _toggleDrawCaret() {
+  public open fun _toggleDrawCaret(): Unit {
   }
 
   /**
    * Adds `text` after the cursor. If the resulting value is longer than [maxLength], nothing happens.
    */
-  open fun appendAtCursor(text: String) {
+  public open fun appendAtCursor(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_APPEND_AT_CURSOR, NIL)
   }
@@ -383,7 +384,7 @@ open class LineEdit : Control() {
   /**
    * Erases the [godot.LineEdit]'s [text].
    */
-  open fun clear() {
+  public open fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_CLEAR, NIL)
   }
@@ -391,7 +392,7 @@ open class LineEdit : Control() {
   /**
    * Deletes one character at the cursor's current position (equivalent to pressing the `Delete` key).
    */
-  open fun deleteCharAtCursor() {
+  public open fun deleteCharAtCursor(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_DELETE_CHAR_AT_CURSOR, NIL)
   }
@@ -399,7 +400,7 @@ open class LineEdit : Control() {
   /**
    * Deletes a section of the [text] going from position `from_column` to `to_column`. Both parameters should be within the text's length.
    */
-  open fun deleteText(fromColumn: Long, toColumn: Long) {
+  public open fun deleteText(fromColumn: Long, toColumn: Long): Unit {
     TransferContext.writeArguments(LONG to fromColumn, LONG to toColumn)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_DELETE_TEXT, NIL)
   }
@@ -407,7 +408,7 @@ open class LineEdit : Control() {
   /**
    * Clears the current selection.
    */
-  open fun deselect() {
+  public open fun deselect(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_DESELECT, NIL)
   }
@@ -415,7 +416,7 @@ open class LineEdit : Control() {
   /**
    * Returns the [godot.PopupMenu] of this [godot.LineEdit]. By default, this menu is displayed when right-clicking on the [godot.LineEdit].
    */
-  open fun getMenu(): PopupMenu? {
+  public open fun getMenu(): PopupMenu? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_MENU, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as PopupMenu?
@@ -424,7 +425,7 @@ open class LineEdit : Control() {
   /**
    * Returns the scroll offset due to [caretPosition], as a number of characters.
    */
-  open fun getScrollOffset(): Long {
+  public open fun getScrollOffset(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_GET_SCROLL_OFFSET, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -433,7 +434,7 @@ open class LineEdit : Control() {
   /**
    * Executes a given action as defined in the [enum MenuItems] enum.
    */
-  open fun menuOption(option: Long) {
+  public open fun menuOption(option: Long): Unit {
     TransferContext.writeArguments(LONG to option)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_MENU_OPTION, NIL)
   }
@@ -448,7 +449,7 @@ open class LineEdit : Control() {
    * 				select(2, 5) # Will select "lco".
    * 				```
    */
-  open fun select(from: Long = 0, to: Long = -1) {
+  public open fun select(from: Long = 0, to: Long = -1): Unit {
     TransferContext.writeArguments(LONG to from, LONG to to)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SELECT, NIL)
   }
@@ -456,160 +457,152 @@ open class LineEdit : Control() {
   /**
    * Selects the whole [godot.String].
    */
-  open fun selectAll() {
+  public open fun selectAll(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SELECT_ALL, NIL)
   }
 
-  enum class Align(
+  public enum class Align(
     id: Long
   ) {
     /**
      * Aligns the text on the left-hand side of the [godot.LineEdit].
      */
     ALIGN_LEFT(0),
-
     /**
      * Centers the text in the middle of the [godot.LineEdit].
      */
     ALIGN_CENTER(1),
-
     /**
      * Aligns the text on the right-hand side of the [godot.LineEdit].
      */
     ALIGN_RIGHT(2),
-
     /**
      * Stretches whitespaces to fit the [godot.LineEdit]'s width.
      */
-    ALIGN_FILL(3);
+    ALIGN_FILL(3),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class MenuItems(
+  public enum class MenuItems(
     id: Long
   ) {
     /**
      * Cuts (copies and clears) the selected text.
      */
     MENU_CUT(0),
-
     /**
      * Copies the selected text.
      */
     MENU_COPY(1),
-
     /**
      * Pastes the clipboard text over the selected text (or at the cursor's position).
      *
      * Non-printable escape characters are automatically stripped from the OS clipboard via [godot.String.stripEscapes].
      */
     MENU_PASTE(2),
-
     /**
      * Erases the whole [godot.LineEdit] text.
      */
     MENU_CLEAR(3),
-
     /**
      * Selects the whole [godot.LineEdit] text.
      */
     MENU_SELECT_ALL(4),
-
     /**
      * Undoes the previous action.
      */
     MENU_UNDO(5),
-
     /**
      * Reverse the last undo action.
      */
     MENU_REDO(6),
-
     /**
      * Represents the size of the [enum MenuItems] enum.
      */
-    MENU_MAX(7);
+    MENU_MAX(7),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Centers the text in the middle of the [godot.LineEdit].
      */
-    final const val ALIGN_CENTER: Long = 1
+    public final const val ALIGN_CENTER: Long = 1
 
     /**
      * Stretches whitespaces to fit the [godot.LineEdit]'s width.
      */
-    final const val ALIGN_FILL: Long = 3
+    public final const val ALIGN_FILL: Long = 3
 
     /**
      * Aligns the text on the left-hand side of the [godot.LineEdit].
      */
-    final const val ALIGN_LEFT: Long = 0
+    public final const val ALIGN_LEFT: Long = 0
 
     /**
      * Aligns the text on the right-hand side of the [godot.LineEdit].
      */
-    final const val ALIGN_RIGHT: Long = 2
+    public final const val ALIGN_RIGHT: Long = 2
 
     /**
      * Erases the whole [godot.LineEdit] text.
      */
-    final const val MENU_CLEAR: Long = 3
+    public final const val MENU_CLEAR: Long = 3
 
     /**
      * Copies the selected text.
      */
-    final const val MENU_COPY: Long = 1
+    public final const val MENU_COPY: Long = 1
 
     /**
      * Cuts (copies and clears) the selected text.
      */
-    final const val MENU_CUT: Long = 0
+    public final const val MENU_CUT: Long = 0
 
     /**
      * Represents the size of the [enum MenuItems] enum.
      */
-    final const val MENU_MAX: Long = 7
+    public final const val MENU_MAX: Long = 7
 
     /**
      * Pastes the clipboard text over the selected text (or at the cursor's position).
      *
      * Non-printable escape characters are automatically stripped from the OS clipboard via [godot.String.stripEscapes].
      */
-    final const val MENU_PASTE: Long = 2
+    public final const val MENU_PASTE: Long = 2
 
     /**
      * Reverse the last undo action.
      */
-    final const val MENU_REDO: Long = 6
+    public final const val MENU_REDO: Long = 6
 
     /**
      * Selects the whole [godot.LineEdit] text.
      */
-    final const val MENU_SELECT_ALL: Long = 4
+    public final const val MENU_SELECT_ALL: Long = 4
 
     /**
      * Undoes the previous action.
      */
-    final const val MENU_UNDO: Long = 5
+    public final const val MENU_UNDO: Long = 5
   }
 }

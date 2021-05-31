@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.PoolStringArray
 import godot.core.TransferContext
@@ -22,6 +22,7 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Object that holds the project-independent editor settings.
@@ -45,13 +46,13 @@ import kotlin.Suppress
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getEditorSettings].
  */
 @GodotBaseType
-open class EditorSettings : Resource() {
+public open class EditorSettings : Resource() {
   /**
    * Emitted after any editor setting has changed.
    */
-  val settingsChanged: Signal0 by signal()
+  public val settingsChanged: Signal0 by signal()
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORSETTINGS)
   }
 
@@ -79,7 +80,7 @@ open class EditorSettings : Resource() {
    * 				editor_settings.add_property_info(property_info)
    * 				```
    */
-  open fun addPropertyInfo(info: Dictionary<Any?, Any?>) {
+  public open fun addPropertyInfo(info: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to info)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_ADD_PROPERTY_INFO,
         NIL)
@@ -88,7 +89,7 @@ open class EditorSettings : Resource() {
   /**
    * Erases the setting whose name is specified by `property`.
    */
-  open fun erase(property: String) {
+  public open fun erase(`property`: String): Unit {
     TransferContext.writeArguments(STRING to property)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_ERASE, NIL)
   }
@@ -96,7 +97,7 @@ open class EditorSettings : Resource() {
   /**
    * Returns the list of favorite files and directories for this project.
    */
-  open fun getFavorites(): PoolStringArray {
+  public open fun getFavorites(): PoolStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_FAVORITES,
         POOL_STRING_ARRAY)
@@ -106,7 +107,7 @@ open class EditorSettings : Resource() {
   /**
    * Returns project-specific metadata for the `section` and `key` specified. If the metadata doesn't exist, `default` will be returned instead. See also [setProjectMetadata].
    */
-  open fun getProjectMetadata(
+  public open fun getProjectMetadata(
     section: String,
     key: String,
     default: Any? = null
@@ -120,7 +121,7 @@ open class EditorSettings : Resource() {
   /**
    * Returns the project-specific settings path. Projects all have a unique subdirectory inside the settings path where project-specific settings are saved.
    */
-  open fun getProjectSettingsDir(): String {
+  public open fun getProjectSettingsDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_PROJECT_SETTINGS_DIR, STRING)
@@ -130,7 +131,7 @@ open class EditorSettings : Resource() {
   /**
    * Returns the list of recently visited folders in the file dialog for this project.
    */
-  open fun getRecentDirs(): PoolStringArray {
+  public open fun getRecentDirs(): PoolStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_RECENT_DIRS,
         POOL_STRING_ARRAY)
@@ -140,7 +141,7 @@ open class EditorSettings : Resource() {
   /**
    * Returns the value of the setting specified by `name`. This is equivalent to using [godot.Object.get] on the EditorSettings instance.
    */
-  open fun getSetting(name: String): Any? {
+  public open fun getSetting(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_SETTING, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -153,7 +154,7 @@ open class EditorSettings : Resource() {
    *
    * `settings/templates` - Where export templates are located
    */
-  open fun getSettingsDir(): String {
+  public open fun getSettingsDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_SETTINGS_DIR,
         STRING)
@@ -163,7 +164,7 @@ open class EditorSettings : Resource() {
   /**
    * Returns `true` if the setting specified by `name` exists, `false` otherwise.
    */
-  open fun hasSetting(name: String): Boolean {
+  public open fun hasSetting(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_HAS_SETTING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -172,7 +173,7 @@ open class EditorSettings : Resource() {
   /**
    * Returns `true` if the setting specified by `name` can have its value reverted to the default value, `false` otherwise. When this method returns `true`, a Revert button will display next to the setting in the Editor Settings.
    */
-  open fun propertyCanRevert(name: String): Boolean {
+  public open fun propertyCanRevert(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_PROPERTY_CAN_REVERT,
         BOOL)
@@ -182,7 +183,7 @@ open class EditorSettings : Resource() {
   /**
    * Returns the default value of the setting specified by `name`. This is the value that would be applied when clicking the Revert button in the Editor Settings.
    */
-  open fun propertyGetRevert(name: String): Any? {
+  public open fun propertyGetRevert(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_PROPERTY_GET_REVERT,
         ANY)
@@ -192,7 +193,7 @@ open class EditorSettings : Resource() {
   /**
    * Sets the list of favorite files and directories for this project.
    */
-  open fun setFavorites(dirs: PoolStringArray) {
+  public open fun setFavorites(dirs: PoolStringArray): Unit {
     TransferContext.writeArguments(POOL_STRING_ARRAY to dirs)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_FAVORITES, NIL)
   }
@@ -200,11 +201,11 @@ open class EditorSettings : Resource() {
   /**
    * Sets the initial value of the setting specified by `name` to `value`. This is used to provide a value for the Revert button in the Editor Settings. If `update_current` is true, the current value of the setting will be set to `value` as well.
    */
-  open fun setInitialValue(
+  public open fun setInitialValue(
     name: String,
-    value: Any?,
+    `value`: Any?,
     updateCurrent: Boolean
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value, BOOL to updateCurrent)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_INITIAL_VALUE,
         NIL)
@@ -213,11 +214,11 @@ open class EditorSettings : Resource() {
   /**
    * Sets project-specific metadata with the `section`, `key` and `data` specified. This metadata is stored outside the project folder and therefore won't be checked into version control. See also [getProjectMetadata].
    */
-  open fun setProjectMetadata(
+  public open fun setProjectMetadata(
     section: String,
     key: String,
-    data: Any?
-  ) {
+    `data`: Any?
+  ): Unit {
     TransferContext.writeArguments(STRING to section, STRING to key, ANY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_PROJECT_METADATA,
         NIL)
@@ -226,7 +227,7 @@ open class EditorSettings : Resource() {
   /**
    * Sets the list of recently visited folders in the file dialog for this project.
    */
-  open fun setRecentDirs(dirs: PoolStringArray) {
+  public open fun setRecentDirs(dirs: PoolStringArray): Unit {
     TransferContext.writeArguments(POOL_STRING_ARRAY to dirs)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_RECENT_DIRS, NIL)
   }
@@ -234,15 +235,15 @@ open class EditorSettings : Resource() {
   /**
    * Sets the `value` of the setting specified by `name`. This is equivalent to using [godot.Object.set] on the EditorSettings instance.
    */
-  open fun setSetting(name: String, value: Any?) {
+  public open fun setSetting(name: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_SETTING, NIL)
   }
 
-  companion object {
+  public companion object {
     /**
      * Emitted after any editor setting has changed. It's used by various editor plugins to update their visuals on theme changes or logic on configuration changes.
      */
-    final const val NOTIFICATION_EDITOR_SETTINGS_CHANGED: Long = 10000
+    public final const val NOTIFICATION_EDITOR_SETTINGS_CHANGED: Long = 10000
   }
 }

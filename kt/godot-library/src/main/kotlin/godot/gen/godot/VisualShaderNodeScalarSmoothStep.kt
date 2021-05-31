@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Calculates a scalar SmoothStep function within the visual shader graph.
@@ -16,8 +17,8 @@ import kotlin.Suppress
  * Returns `0.0` if `x` is smaller than `edge0` and `1.0` if `x` is larger than `edge1`. Otherwise the return value is interpolated between `0.0` and `1.0` using Hermite polynomials.
  */
 @GodotBaseType
-open class VisualShaderNodeScalarSmoothStep : VisualShaderNode() {
-  override fun __new() {
+public open class VisualShaderNodeScalarSmoothStep : VisualShaderNode() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODESCALARSMOOTHSTEP)
   }
 }

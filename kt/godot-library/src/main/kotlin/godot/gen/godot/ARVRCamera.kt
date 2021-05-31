@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A camera node with a few overrules for AR/VR applied, such as location tracking.
@@ -19,8 +20,8 @@ import kotlin.Suppress
  * The position and orientation of this node is automatically updated by the ARVR Server to represent the location of the HMD if such tracking is available and can thus be used by game logic. Note that, in contrast to the ARVR Controller, the render thread has access to the most up-to-date tracking data of the HMD and the location of the ARVRCamera can lag a few milliseconds behind what is used for rendering as a result.
  */
 @GodotBaseType
-open class ARVRCamera : Camera() {
-  override fun __new() {
+public open class ARVRCamera : Camera() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ARVRCAMERA)
   }
 }

@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Adds a high-pass filter to the Audio Bus.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Cuts frequencies lower than the [godot.AudioEffectFilter.cutoffHz] and allows higher frequencies to pass.
  */
 @GodotBaseType
-open class AudioEffectHighPassFilter : AudioEffectFilter() {
-  override fun __new() {
+public open class AudioEffectHighPassFilter : AudioEffectFilter() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTHIGHPASSFILTER)
   }
 }

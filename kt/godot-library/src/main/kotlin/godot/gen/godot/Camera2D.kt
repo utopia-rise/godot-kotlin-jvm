@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -34,17 +34,17 @@ import kotlin.Unit
  * Note that the [godot.Camera2D] node's `position` doesn't represent the actual position of the screen, which may differ due to applied smoothing or limits. You can use [getCameraScreenCenter] to get the real position.
  */
 @GodotBaseType
-open class Camera2D : Node2D() {
+public open class Camera2D : Node2D() {
   /**
    * The Camera2D's anchor point. See [enum AnchorMode] constants.
    */
-  open var anchorMode: Long
+  public open var anchorMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_ANCHOR_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_ANCHOR_MODE, NIL)
     }
@@ -52,7 +52,7 @@ open class Camera2D : Node2D() {
   /**
    * If `true`, the camera is the active camera for the current scene. Only one camera can be current, so setting a different camera `current` will disable this one.
    */
-  open val current: Boolean
+  public open val current: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_CURRENT, BOOL)
@@ -62,14 +62,14 @@ open class Camera2D : Node2D() {
   /**
    * The custom [godot.Viewport] node attached to the [godot.Camera2D]. If `null` or not a [godot.Viewport], uses the default viewport instead.
    */
-  open var customViewport: Node?
+  public open var customViewport: Node?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_CUSTOM_VIEWPORT,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Node?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_CUSTOM_VIEWPORT, NIL)
     }
@@ -77,14 +77,14 @@ open class Camera2D : Node2D() {
   /**
    * Bottom margin needed to drag the camera. A value of `1` makes the camera move only when reaching the edge of the screen.
    */
-  open var dragMarginBottom: Double
+  public open var dragMarginBottom: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_DRAG_MARGIN_BOTTOM,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_MARGIN_BOTTOM,
           NIL)
@@ -93,14 +93,14 @@ open class Camera2D : Node2D() {
   /**
    * If `true`, the camera only moves when reaching the horizontal drag margins. If `false`, the camera moves horizontally regardless of margins.
    */
-  open var dragMarginHEnabled: Boolean
+  public open var dragMarginHEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_DRAG_MARGIN_H_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_MARGIN_H_ENABLED, NIL)
@@ -109,14 +109,14 @@ open class Camera2D : Node2D() {
   /**
    * Left margin needed to drag the camera. A value of `1` makes the camera move only when reaching the edge of the screen.
    */
-  open var dragMarginLeft: Double
+  public open var dragMarginLeft: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_DRAG_MARGIN_LEFT,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_MARGIN_LEFT,
           NIL)
@@ -125,14 +125,14 @@ open class Camera2D : Node2D() {
   /**
    * Right margin needed to drag the camera. A value of `1` makes the camera move only when reaching the edge of the screen.
    */
-  open var dragMarginRight: Double
+  public open var dragMarginRight: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_DRAG_MARGIN_RIGHT,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_MARGIN_RIGHT,
           NIL)
@@ -141,14 +141,14 @@ open class Camera2D : Node2D() {
   /**
    * Top margin needed to drag the camera. A value of `1` makes the camera move only when reaching the edge of the screen.
    */
-  open var dragMarginTop: Double
+  public open var dragMarginTop: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_DRAG_MARGIN_TOP,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_MARGIN_TOP, NIL)
     }
@@ -156,14 +156,14 @@ open class Camera2D : Node2D() {
   /**
    * If `true`, the camera only moves when reaching the vertical drag margins. If `false`, the camera moves vertically regardless of margins.
    */
-  open var dragMarginVEnabled: Boolean
+  public open var dragMarginVEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_DRAG_MARGIN_V_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_MARGIN_V_ENABLED, NIL)
@@ -172,14 +172,14 @@ open class Camera2D : Node2D() {
   /**
    * If `true`, draws the camera's drag margin rectangle in the editor.
    */
-  open var editorDrawDragMargin: Boolean
+  public open var editorDrawDragMargin: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_EDITOR_DRAW_DRAG_MARGIN, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_EDITOR_DRAW_DRAG_MARGIN, NIL)
@@ -188,14 +188,14 @@ open class Camera2D : Node2D() {
   /**
    * If `true`, draws the camera's limits rectangle in the editor.
    */
-  open var editorDrawLimits: Boolean
+  public open var editorDrawLimits: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_EDITOR_DRAW_LIMITS,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_EDITOR_DRAW_LIMITS,
           NIL)
@@ -204,14 +204,14 @@ open class Camera2D : Node2D() {
   /**
    * If `true`, draws the camera's screen rectangle in the editor.
    */
-  open var editorDrawScreen: Boolean
+  public open var editorDrawScreen: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_EDITOR_DRAW_SCREEN,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_EDITOR_DRAW_SCREEN,
           NIL)
@@ -220,13 +220,13 @@ open class Camera2D : Node2D() {
   /**
    * Bottom scroll limit in pixels. The camera stops moving when reaching this value.
    */
-  open var limitBottom: Long
+  public open var limitBottom: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_LIMIT_BOTTOM, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_LIMIT_BOTTOM, NIL)
     }
@@ -234,13 +234,13 @@ open class Camera2D : Node2D() {
   /**
    * Left scroll limit in pixels. The camera stops moving when reaching this value.
    */
-  open var limitLeft: Long
+  public open var limitLeft: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_LIMIT_LEFT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_LIMIT_LEFT, NIL)
     }
@@ -248,13 +248,13 @@ open class Camera2D : Node2D() {
   /**
    * Right scroll limit in pixels. The camera stops moving when reaching this value.
    */
-  open var limitRight: Long
+  public open var limitRight: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_LIMIT_RIGHT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_LIMIT_RIGHT, NIL)
     }
@@ -262,13 +262,13 @@ open class Camera2D : Node2D() {
   /**
    * If `true`, the camera smoothly stops when reaches its limits.
    */
-  open var limitSmoothed: Boolean
+  public open var limitSmoothed: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_LIMIT_SMOOTHED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_LIMIT_SMOOTHED, NIL)
     }
@@ -276,13 +276,13 @@ open class Camera2D : Node2D() {
   /**
    * Top scroll limit in pixels. The camera stops moving when reaching this value.
    */
-  open var limitTop: Long
+  public open var limitTop: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_LIMIT_TOP, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_LIMIT_TOP, NIL)
     }
@@ -290,13 +290,13 @@ open class Camera2D : Node2D() {
   /**
    * The camera's offset, useful for looking around or camera shake animations.
    */
-  open var offset: Vector2
+  public open var offset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_OFFSET, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_OFFSET, NIL)
     }
@@ -306,13 +306,13 @@ open class Camera2D : Node2D() {
    *
    * **Note:** Offset H is used only to force offset relative to margins. It's not updated in any way if drag margins are enabled and can be used to set initial offset.
    */
-  open var offsetH: Double
+  public open var offsetH: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_OFFSET_H, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_OFFSET_H, NIL)
     }
@@ -322,13 +322,13 @@ open class Camera2D : Node2D() {
    *
    * **Note:** Used the same as [offsetH].
    */
-  open var offsetV: Double
+  public open var offsetV: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_OFFSET_V, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_OFFSET_V, NIL)
     }
@@ -336,13 +336,13 @@ open class Camera2D : Node2D() {
   /**
    * The camera's process callback. See [enum Camera2DProcessMode].
    */
-  open var processMode: Long
+  public open var processMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_PROCESS_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_PROCESS_MODE, NIL)
     }
@@ -350,13 +350,13 @@ open class Camera2D : Node2D() {
   /**
    * If `true`, the camera rotates with the target.
    */
-  open var rotating: Boolean
+  public open var rotating: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_ROTATING, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_ROTATING, NIL)
     }
@@ -364,14 +364,14 @@ open class Camera2D : Node2D() {
   /**
    * If `true`, the camera smoothly moves towards the target at [smoothingSpeed].
    */
-  open var smoothingEnabled: Boolean
+  public open var smoothingEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_SMOOTHING_ENABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_SMOOTHING_ENABLED,
           NIL)
@@ -380,14 +380,14 @@ open class Camera2D : Node2D() {
   /**
    * Speed in pixels per second of the camera's smoothing effect when [smoothingEnabled] is `true`.
    */
-  open var smoothingSpeed: Double
+  public open var smoothingSpeed: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_SMOOTHING_SPEED,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_SMOOTHING_SPEED, NIL)
     }
@@ -395,48 +395,48 @@ open class Camera2D : Node2D() {
   /**
    * The camera's zoom relative to the viewport. Values larger than `Vector2(1, 1)` zoom out and smaller values zoom in. For an example, use `Vector2(0.5, 0.5)` for a 2× zoom-in, and `Vector2(4, 4)` for a 4× zoom-out.
    */
-  open var zoom: Vector2
+  public open var zoom: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_ZOOM, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_ZOOM, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CAMERA2D)
   }
 
   @CoreTypeHelper
-  open fun offset(schedule: Vector2.() -> Unit): Vector2 = offset.apply{
+  public open fun offset(schedule: Vector2.() -> Unit): Vector2 = offset.apply{
       schedule(this)
       offset = this
   }
 
 
   @CoreTypeHelper
-  open fun zoom(schedule: Vector2.() -> Unit): Vector2 = zoom.apply{
+  public open fun zoom(schedule: Vector2.() -> Unit): Vector2 = zoom.apply{
       schedule(this)
       zoom = this
   }
 
 
-  open fun _makeCurrent(arg0: Object) {
+  public open fun _makeCurrent(arg0: Object): Unit {
   }
 
-  open fun _setCurrent(current: Boolean) {
+  public open fun _setCurrent(current: Boolean): Unit {
   }
 
-  open fun _updateScroll() {
+  public open fun _updateScroll(): Unit {
   }
 
   /**
    * Aligns the camera to the tracked node.
    */
-  open fun align() {
+  public open fun align(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_ALIGN, NIL)
   }
@@ -444,7 +444,7 @@ open class Camera2D : Node2D() {
   /**
    * Removes any [godot.Camera2D] from the ancestor [godot.Viewport]'s internal currently-assigned camera.
    */
-  open fun clearCurrent() {
+  public open fun clearCurrent(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_CLEAR_CURRENT, NIL)
   }
@@ -452,7 +452,7 @@ open class Camera2D : Node2D() {
   /**
    * Forces the camera to update scroll immediately.
    */
-  open fun forceUpdateScroll() {
+  public open fun forceUpdateScroll(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_FORCE_UPDATE_SCROLL, NIL)
   }
@@ -460,7 +460,7 @@ open class Camera2D : Node2D() {
   /**
    * Returns the camera position.
    */
-  open fun getCameraPosition(): Vector2 {
+  public open fun getCameraPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_CAMERA_POSITION,
         VECTOR2)
@@ -470,7 +470,7 @@ open class Camera2D : Node2D() {
   /**
    * Returns the location of the [godot.Camera2D]'s screen-center, relative to the origin.
    */
-  open fun getCameraScreenCenter(): Vector2 {
+  public open fun getCameraScreenCenter(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_CAMERA_SCREEN_CENTER,
         VECTOR2)
@@ -480,7 +480,7 @@ open class Camera2D : Node2D() {
   /**
    * Make this the current 2D camera for the scene (viewport and layer), in case there are many cameras in the scene.
    */
-  open fun makeCurrent() {
+  public open fun makeCurrent(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_MAKE_CURRENT, NIL)
   }
@@ -490,76 +490,76 @@ open class Camera2D : Node2D() {
    *
    * This has no effect if smoothing is disabled.
    */
-  open fun resetSmoothing() {
+  public open fun resetSmoothing(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_RESET_SMOOTHING, NIL)
   }
 
-  enum class Camera2DProcessMode(
+  public enum class Camera2DProcessMode(
     id: Long
   ) {
     /**
      * The camera updates with the `_physics_process` callback.
      */
     CAMERA2D_PROCESS_PHYSICS(0),
-
     /**
      * The camera updates with the `_process` callback.
      */
-    CAMERA2D_PROCESS_IDLE(1);
+    CAMERA2D_PROCESS_IDLE(1),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class AnchorMode(
+  public enum class AnchorMode(
     id: Long
   ) {
     /**
      * The camera's position is fixed so that the top-left corner is always at the origin.
      */
     ANCHOR_MODE_FIXED_TOP_LEFT(0),
-
     /**
      * The camera's position takes into account vertical/horizontal offsets and the screen size.
      */
-    ANCHOR_MODE_DRAG_CENTER(1);
+    ANCHOR_MODE_DRAG_CENTER(1),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * The camera's position takes into account vertical/horizontal offsets and the screen size.
      */
-    final const val ANCHOR_MODE_DRAG_CENTER: Long = 1
+    public final const val ANCHOR_MODE_DRAG_CENTER: Long = 1
 
     /**
      * The camera's position is fixed so that the top-left corner is always at the origin.
      */
-    final const val ANCHOR_MODE_FIXED_TOP_LEFT: Long = 0
+    public final const val ANCHOR_MODE_FIXED_TOP_LEFT: Long = 0
 
     /**
      * The camera updates with the `_process` callback.
      */
-    final const val CAMERA2D_PROCESS_IDLE: Long = 1
+    public final const val CAMERA2D_PROCESS_IDLE: Long = 1
 
     /**
      * The camera updates with the `_physics_process` callback.
      */
-    final const val CAMERA2D_PROCESS_PHYSICS: Long = 0
+    public final const val CAMERA2D_PROCESS_PHYSICS: Long = 0
   }
 }

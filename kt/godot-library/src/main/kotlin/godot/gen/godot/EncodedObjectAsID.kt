@@ -5,12 +5,13 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Holds a reference to an [godot.Object]'s instance ID.
@@ -20,24 +21,24 @@ import kotlin.Suppress
  * This class is used internally by the editor inspector and script debugger, but can also be used in plugins to pass and display objects as their IDs.
  */
 @GodotBaseType
-open class EncodedObjectAsID : Reference() {
+public open class EncodedObjectAsID : Reference() {
   /**
    * The [godot.Object] identifier stored in this [godot.EncodedObjectAsID] instance. The object instance can be retrieved with [@GDScript.instanceFromId].
    */
-  open var objectId: Long
+  public open var objectId: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENCODEDOBJECTASID_GET_OBJECT_ID,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENCODEDOBJECTASID_SET_OBJECT_ID,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ENCODEDOBJECTASID)
   }
 }

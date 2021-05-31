@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Decomposes a [godot.core.Vector3] into three scalars within the visual shader graph.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Takes a `vec3` and decomposes it into three scalar values that can be used as separate inputs.
  */
 @GodotBaseType
-open class VisualShaderNodeVectorDecompose : VisualShaderNode() {
-  override fun __new() {
+public open class VisualShaderNodeVectorDecompose : VisualShaderNode() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVECTORDECOMPOSE)
   }
 }

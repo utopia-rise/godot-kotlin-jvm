@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.Transform
 import godot.core.VariantType.BOOL
@@ -13,6 +13,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.TRANSFORM
 import kotlin.Boolean
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Overrides the location sounds are heard from.
@@ -22,15 +23,15 @@ import kotlin.Suppress
  * **Note:** There is no 2D equivalent for this node yet.
  */
 @GodotBaseType
-open class Listener : Spatial() {
-  override fun __new() {
+public open class Listener : Spatial() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_LISTENER)
   }
 
   /**
    * Disables the listener to use the current camera's listener instead.
    */
-  open fun clearCurrent() {
+  public open fun clearCurrent(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LISTENER_CLEAR_CURRENT, NIL)
   }
@@ -38,7 +39,7 @@ open class Listener : Spatial() {
   /**
    * Returns the listener's global orthonormalized [godot.core.Transform].
    */
-  open fun getListenerTransform(): Transform {
+  public open fun getListenerTransform(): Transform {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LISTENER_GET_LISTENER_TRANSFORM,
         TRANSFORM)
@@ -50,7 +51,7 @@ open class Listener : Spatial() {
    *
    * **Note:** There may be more than one Listener marked as "current" in the scene tree, but only the one that was made current last will be used.
    */
-  open fun isCurrent(): Boolean {
+  public open fun isCurrent(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LISTENER_IS_CURRENT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -59,7 +60,7 @@ open class Listener : Spatial() {
   /**
    * Enables the listener. This will override the current camera's listener.
    */
-  open fun makeCurrent() {
+  public open fun makeCurrent(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LISTENER_MAKE_CURRENT, NIL)
   }

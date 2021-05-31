@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.PoolByteArray
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
@@ -15,6 +15,7 @@ import godot.core.VariantType.STRING
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Access to advanced cryptographic functionalities.
@@ -43,15 +44,15 @@ import kotlin.Suppress
  * **Note:** Not available in HTML5 exports.
  */
 @GodotBaseType
-open class Crypto : Reference() {
-  override fun __new() {
+public open class Crypto : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CRYPTO)
   }
 
   /**
    * Generates a [godot.core.PoolByteArray] of cryptographically secure random bytes with given `size`.
    */
-  open fun generateRandomBytes(size: Long): PoolByteArray {
+  public open fun generateRandomBytes(size: Long): PoolByteArray {
     TransferContext.writeArguments(LONG to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_GENERATE_RANDOM_BYTES,
         POOL_BYTE_ARRAY)
@@ -61,7 +62,7 @@ open class Crypto : Reference() {
   /**
    * Generates an RSA [godot.CryptoKey] that can be used for creating self-signed certificates and passed to [godot.StreamPeerSSL.acceptStream].
    */
-  open fun generateRsa(size: Long): CryptoKey? {
+  public open fun generateRsa(size: Long): CryptoKey? {
     TransferContext.writeArguments(LONG to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTO_GENERATE_RSA, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as CryptoKey?
@@ -80,7 +81,7 @@ open class Crypto : Reference() {
    * 				var cert = crypto.generate_self_signed_certificate(key, "CN=example.com,O=A Game Company,C=IT")
    * 				```
    */
-  open fun generateSelfSignedCertificate(
+  public open fun generateSelfSignedCertificate(
     key: CryptoKey,
     issuerName: String = "CN=myserver,O=myorganisation,C=IT",
     notBefore: String = "20140101000000",

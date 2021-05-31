@@ -5,12 +5,13 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
-open class Physics2DDirectBodyStateSW : Physics2DDirectBodyState() {
-  override fun __new() {
+public open class Physics2DDirectBodyStateSW : Physics2DDirectBodyState() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PHYSICS2DDIRECTBODYSTATESW)
   }
 }

@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
@@ -15,6 +15,7 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Helper class for parsing JSON data.
@@ -22,17 +23,17 @@ import kotlin.Suppress
  * Helper class for parsing JSON data. For usage example and other important hints, see [godot.JSONParseResult].
  */
 @GodotBaseType
-object JSON : Object() {
-  override fun __new() {
+public object JSON : Object() {
+  public override fun __new(): Unit {
     rawPtr = TransferContext.getSingleton(ENGINESINGLETON_JSON)
   }
 
-  override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
+  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    * Parses a JSON-encoded string and returns a [godot.JSONParseResult] containing the result.
    */
-  fun parse(json: String): JSONParseResult? {
+  public fun parse(json: String): JSONParseResult? {
     TransferContext.writeArguments(STRING to json)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__JSON_PARSE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as JSONParseResult?
@@ -68,8 +69,8 @@ object JSON : Object() {
    * 				}
    * 				```
    */
-  fun print(
-    value: Any?,
+  public fun print(
+    `value`: Any?,
     indent: String = "",
     sortKeys: Boolean = false
   ): String {

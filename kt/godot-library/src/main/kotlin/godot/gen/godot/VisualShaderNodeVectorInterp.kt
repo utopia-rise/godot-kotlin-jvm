@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Linearly interpolates between two vectors within the visual shader graph.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Translates to `mix(a, b, weight)` in the shader language, where `weight` is a [godot.core.Vector3] with weights for each component.
  */
 @GodotBaseType
-open class VisualShaderNodeVectorInterp : VisualShaderNode() {
-  override fun __new() {
+public open class VisualShaderNodeVectorInterp : VisualShaderNode() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVECTORINTERP)
   }
 }

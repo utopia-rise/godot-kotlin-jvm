@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PoolVector3Array
 import godot.core.TransferContext
@@ -23,6 +23,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Custom gizmo for editing Spatial objects.
@@ -30,15 +31,15 @@ import kotlin.Suppress
  * Custom gizmo that is used for providing custom visualization and editing (handles) for 3D Spatial objects. See [godot.EditorSpatialGizmoPlugin] for more information.
  */
 @GodotBaseType
-open class EditorSpatialGizmo : SpatialGizmo() {
-  override fun __new() {
+public open class EditorSpatialGizmo : SpatialGizmo() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORSPATIALGIZMO)
   }
 
   /**
    * Adds the specified `segments` to the gizmo's collision shape for picking. Call this function during [redraw].
    */
-  open fun addCollisionSegments(segments: PoolVector3Array) {
+  public open fun addCollisionSegments(segments: PoolVector3Array): Unit {
     TransferContext.writeArguments(POOL_VECTOR3_ARRAY to segments)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSPATIALGIZMO_ADD_COLLISION_SEGMENTS, NIL)
@@ -47,7 +48,7 @@ open class EditorSpatialGizmo : SpatialGizmo() {
   /**
    * Adds collision triangles to the gizmo for picking. A [godot.TriangleMesh] can be generated from a regular [godot.Mesh] too. Call this function during [redraw].
    */
-  open fun addCollisionTriangles(triangles: TriangleMesh) {
+  public open fun addCollisionTriangles(triangles: TriangleMesh): Unit {
     TransferContext.writeArguments(OBJECT to triangles)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSPATIALGIZMO_ADD_COLLISION_TRIANGLES, NIL)
@@ -58,12 +59,12 @@ open class EditorSpatialGizmo : SpatialGizmo() {
    *
    * There are virtual functions which will be called upon editing of these handles. Call this function during [redraw].
    */
-  open fun addHandles(
+  public open fun addHandles(
     handles: PoolVector3Array,
     material: Material,
     billboard: Boolean = false,
     secondary: Boolean = false
-  ) {
+  ): Unit {
     TransferContext.writeArguments(POOL_VECTOR3_ARRAY to handles, OBJECT to material, BOOL to
         billboard, BOOL to secondary)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPATIALGIZMO_ADD_HANDLES, NIL)
@@ -72,12 +73,12 @@ open class EditorSpatialGizmo : SpatialGizmo() {
   /**
    * Adds lines to the gizmo (as sets of 2 points), with a given material. The lines are used for visualizing the gizmo. Call this function during [redraw].
    */
-  open fun addLines(
+  public open fun addLines(
     lines: PoolVector3Array,
     material: Material,
     billboard: Boolean = false,
     modulate: Color = Color(1,1,1,1)
-  ) {
+  ): Unit {
     TransferContext.writeArguments(POOL_VECTOR3_ARRAY to lines, OBJECT to material, BOOL to
         billboard, COLOR to modulate)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPATIALGIZMO_ADD_LINES, NIL)
@@ -86,12 +87,12 @@ open class EditorSpatialGizmo : SpatialGizmo() {
   /**
    * Adds a mesh to the gizmo with the specified `billboard` state, `skeleton` and `material`. If `billboard` is `true`, the mesh will rotate to always face the camera. Call this function during [redraw].
    */
-  open fun addMesh(
+  public open fun addMesh(
     mesh: ArrayMesh,
     billboard: Boolean = false,
     skeleton: SkinReference? = null,
     material: Material? = null
-  ) {
+  ): Unit {
     TransferContext.writeArguments(OBJECT to mesh, BOOL to billboard, OBJECT to skeleton, OBJECT to
         material)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPATIALGIZMO_ADD_MESH, NIL)
@@ -100,11 +101,11 @@ open class EditorSpatialGizmo : SpatialGizmo() {
   /**
    * Adds an unscaled billboard for visualization. Call this function during [redraw].
    */
-  open fun addUnscaledBillboard(
+  public open fun addUnscaledBillboard(
     material: Material,
     defaultScale: Double = 1.0,
     modulate: Color = Color(1,1,1,1)
-  ) {
+  ): Unit {
     TransferContext.writeArguments(OBJECT to material, DOUBLE to defaultScale, COLOR to modulate)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSPATIALGIZMO_ADD_UNSCALED_BILLBOARD, NIL)
@@ -113,7 +114,7 @@ open class EditorSpatialGizmo : SpatialGizmo() {
   /**
    * Removes everything in the gizmo including meshes, collisions and handles.
    */
-  open fun clear() {
+  public open fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPATIALGIZMO_CLEAR, NIL)
   }
@@ -123,11 +124,11 @@ open class EditorSpatialGizmo : SpatialGizmo() {
    *
    * If the `cancel` parameter is `true`, an option to restore the edited value to the original is provided.
    */
-  open fun _commitHandle(
+  public open fun _commitHandle(
     index: Long,
     restore: Any?,
     cancel: Boolean
-  ) {
+  ): Unit {
   }
 
   /**
@@ -135,21 +136,21 @@ open class EditorSpatialGizmo : SpatialGizmo() {
    *
    * Handles can be named for reference to the user when editing.
    */
-  open fun _getHandleName(index: Long): String {
+  public open fun _getHandleName(index: Long): String {
     throw NotImplementedError("get_handle_name is not implemented for EditorSpatialGizmo")
   }
 
   /**
    * Gets actual value of a handle. This value can be anything and used for eventually undoing the motion when calling [commitHandle].
    */
-  open fun _getHandleValue(index: Long): Any? {
+  public open fun _getHandleValue(index: Long): Any? {
     throw NotImplementedError("get_handle_value is not implemented for EditorSpatialGizmo")
   }
 
   /**
    * Returns the [godot.EditorSpatialGizmoPlugin] that owns this gizmo. It's useful to retrieve materials using [godot.EditorSpatialGizmoPlugin.getMaterial].
    */
-  open fun getPlugin(): EditorSpatialGizmoPlugin? {
+  public open fun getPlugin(): EditorSpatialGizmoPlugin? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPATIALGIZMO_GET_PLUGIN,
         OBJECT)
@@ -159,7 +160,7 @@ open class EditorSpatialGizmo : SpatialGizmo() {
   /**
    * Returns the Spatial node associated with this gizmo.
    */
-  open fun getSpatialNode(): Spatial? {
+  public open fun getSpatialNode(): Spatial? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPATIALGIZMO_GET_SPATIAL_NODE,
         OBJECT)
@@ -169,14 +170,14 @@ open class EditorSpatialGizmo : SpatialGizmo() {
   /**
    * Returns `true` if the handle at index `index` is highlighted by being hovered with the mouse.
    */
-  open fun _isHandleHighlighted(index: Long): Boolean {
+  public open fun _isHandleHighlighted(index: Long): Boolean {
     throw NotImplementedError("is_handle_highlighted is not implemented for EditorSpatialGizmo")
   }
 
   /**
    * This function is called when the [godot.Spatial] this gizmo refers to changes (the [godot.Spatial.updateGizmo] is called).
    */
-  open fun _redraw() {
+  public open fun _redraw(): Unit {
   }
 
   /**
@@ -184,17 +185,17 @@ open class EditorSpatialGizmo : SpatialGizmo() {
    *
    * The [godot.Camera] is also provided so screen coordinates can be converted to raycasts.
    */
-  open fun _setHandle(
+  public open fun _setHandle(
     index: Long,
     camera: Camera,
     point: Vector2
-  ) {
+  ): Unit {
   }
 
   /**
    * Sets the gizmo's hidden state. If `true`, the gizmo will be hidden. If `false`, it will be shown.
    */
-  open fun setHidden(hidden: Boolean) {
+  public open fun setHidden(hidden: Boolean): Unit {
     TransferContext.writeArguments(BOOL to hidden)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPATIALGIZMO_SET_HIDDEN, NIL)
   }
@@ -202,7 +203,7 @@ open class EditorSpatialGizmo : SpatialGizmo() {
   /**
    * Sets the reference [godot.Spatial] node for the gizmo. `node` must inherit from [godot.Spatial].
    */
-  open fun setSpatialNode(node: Node) {
+  public open fun setSpatialNode(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPATIALGIZMO_SET_SPATIAL_NODE,
         NIL)

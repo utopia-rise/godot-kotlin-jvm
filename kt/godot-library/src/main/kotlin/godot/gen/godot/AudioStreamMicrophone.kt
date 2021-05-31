@@ -5,15 +5,16 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
-open class AudioStreamMicrophone : AudioStream() {
-  override fun __new() {
+public open class AudioStreamMicrophone : AudioStream() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMMICROPHONE)
   }
 }

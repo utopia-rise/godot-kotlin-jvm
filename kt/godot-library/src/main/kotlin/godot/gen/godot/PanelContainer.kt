@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Panel container type.
@@ -17,8 +18,8 @@ import kotlin.Suppress
  * Panel container type. This container fits controls inside of the delimited area of a stylebox. It's useful for giving controls an outline.
  */
 @GodotBaseType
-open class PanelContainer : Container() {
-  override fun __new() {
+public open class PanelContainer : Container() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PANELCONTAINER)
   }
 }

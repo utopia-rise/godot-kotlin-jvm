@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A [godot.core.Transform] uniform for use within the visual shader graph.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Translated to `uniform mat4` in the shader language.
  */
 @GodotBaseType
-open class VisualShaderNodeTransformUniform : VisualShaderNodeUniform() {
-  override fun __new() {
+public open class VisualShaderNodeTransformUniform : VisualShaderNodeUniform() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMUNIFORM)
   }
 }

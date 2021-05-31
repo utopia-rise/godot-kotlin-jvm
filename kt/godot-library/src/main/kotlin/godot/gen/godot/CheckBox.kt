@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Binary choice user interface widget. See also [godot.CheckButton].
@@ -16,8 +17,8 @@ import kotlin.Suppress
  * See also [godot.BaseButton] which contains common properties and methods associated with this node.
  */
 @GodotBaseType
-open class CheckBox : Button() {
-  override fun __new() {
+public open class CheckBox : Button() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CHECKBOX)
   }
 }

@@ -5,12 +5,13 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A [godot.core.Color] operator to be used within the visual shader graph.
@@ -18,28 +19,28 @@ import kotlin.Suppress
  * Applies [operator] to two color inputs.
  */
 @GodotBaseType
-open class VisualShaderNodeColorOp : VisualShaderNode() {
+public open class VisualShaderNodeColorOp : VisualShaderNode() {
   /**
    * An operator to be applied to the inputs. See [enum Operator] for options.
    */
-  open var operator: Long
+  public open var `operator`: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOLOROP_GET_OPERATOR, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOLOROP_SET_OPERATOR, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODECOLOROP)
   }
 
-  enum class Operator(
+  public enum class Operator(
     id: Long
   ) {
     /**
@@ -50,7 +51,6 @@ open class VisualShaderNodeColorOp : VisualShaderNode() {
      * 			```
      */
     OP_SCREEN(0),
-
     /**
      * Produce a difference effect with the following formula:
      *
@@ -59,7 +59,6 @@ open class VisualShaderNodeColorOp : VisualShaderNode() {
      * 			```
      */
     OP_DIFFERENCE(1),
-
     /**
      * Produce a darken effect with the following formula:
      *
@@ -68,7 +67,6 @@ open class VisualShaderNodeColorOp : VisualShaderNode() {
      * 			```
      */
     OP_DARKEN(2),
-
     /**
      * Produce a lighten effect with the following formula:
      *
@@ -77,7 +75,6 @@ open class VisualShaderNodeColorOp : VisualShaderNode() {
      * 			```
      */
     OP_LIGHTEN(3),
-
     /**
      * Produce an overlay effect with the following formula:
      *
@@ -94,7 +91,6 @@ open class VisualShaderNodeColorOp : VisualShaderNode() {
      * 			```
      */
     OP_OVERLAY(4),
-
     /**
      * Produce a dodge effect with the following formula:
      *
@@ -103,7 +99,6 @@ open class VisualShaderNodeColorOp : VisualShaderNode() {
      * 			```
      */
     OP_DODGE(5),
-
     /**
      * Produce a burn effect with the following formula:
      *
@@ -112,7 +107,6 @@ open class VisualShaderNodeColorOp : VisualShaderNode() {
      * 			```
      */
     OP_BURN(6),
-
     /**
      * Produce a soft light effect with the following formula:
      *
@@ -129,7 +123,6 @@ open class VisualShaderNodeColorOp : VisualShaderNode() {
      * 			```
      */
     OP_SOFT_LIGHT(7),
-
     /**
      * Produce a hard light effect with the following formula:
      *
@@ -145,19 +138,20 @@ open class VisualShaderNodeColorOp : VisualShaderNode() {
      * 			}
      * 			```
      */
-    OP_HARD_LIGHT(8);
+    OP_HARD_LIGHT(8),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Produce a burn effect with the following formula:
      *
@@ -165,7 +159,7 @@ open class VisualShaderNodeColorOp : VisualShaderNode() {
      * 			result = vec3(1.0) - (vec3(1.0) - a) / b;
      * 			```
      */
-    final const val OP_BURN: Long = 6
+    public final const val OP_BURN: Long = 6
 
     /**
      * Produce a darken effect with the following formula:
@@ -174,7 +168,7 @@ open class VisualShaderNodeColorOp : VisualShaderNode() {
      * 			result = min(a, b);
      * 			```
      */
-    final const val OP_DARKEN: Long = 2
+    public final const val OP_DARKEN: Long = 2
 
     /**
      * Produce a difference effect with the following formula:
@@ -183,7 +177,7 @@ open class VisualShaderNodeColorOp : VisualShaderNode() {
      * 			result = abs(a - b);
      * 			```
      */
-    final const val OP_DIFFERENCE: Long = 1
+    public final const val OP_DIFFERENCE: Long = 1
 
     /**
      * Produce a dodge effect with the following formula:
@@ -192,7 +186,7 @@ open class VisualShaderNodeColorOp : VisualShaderNode() {
      * 			result = a / (vec3(1.0) - b);
      * 			```
      */
-    final const val OP_DODGE: Long = 5
+    public final const val OP_DODGE: Long = 5
 
     /**
      * Produce a hard light effect with the following formula:
@@ -209,7 +203,7 @@ open class VisualShaderNodeColorOp : VisualShaderNode() {
      * 			}
      * 			```
      */
-    final const val OP_HARD_LIGHT: Long = 8
+    public final const val OP_HARD_LIGHT: Long = 8
 
     /**
      * Produce a lighten effect with the following formula:
@@ -218,7 +212,7 @@ open class VisualShaderNodeColorOp : VisualShaderNode() {
      * 			result = max(a, b);
      * 			```
      */
-    final const val OP_LIGHTEN: Long = 3
+    public final const val OP_LIGHTEN: Long = 3
 
     /**
      * Produce an overlay effect with the following formula:
@@ -235,7 +229,7 @@ open class VisualShaderNodeColorOp : VisualShaderNode() {
      * 			}
      * 			```
      */
-    final const val OP_OVERLAY: Long = 4
+    public final const val OP_OVERLAY: Long = 4
 
     /**
      * Produce a screen effect with the following formula:
@@ -244,7 +238,7 @@ open class VisualShaderNodeColorOp : VisualShaderNode() {
      * 			result = vec3(1.0) - (vec3(1.0) - a) * (vec3(1.0) - b);
      * 			```
      */
-    final const val OP_SCREEN: Long = 0
+    public final const val OP_SCREEN: Long = 0
 
     /**
      * Produce a soft light effect with the following formula:
@@ -261,6 +255,6 @@ open class VisualShaderNodeColorOp : VisualShaderNode() {
      * 			}
      * 			```
      */
-    final const val OP_SOFT_LIGHT: Long = 7
+    public final const val OP_SOFT_LIGHT: Long = 7
   }
 }

@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.PoolStringArray
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
@@ -24,185 +24,186 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
-open class FileSystemDock : VBoxContainer() {
+public open class FileSystemDock : VBoxContainer() {
   /**
    *
    */
-  val displayModeChanged: Signal0 by signal()
+  public val displayModeChanged: Signal0 by signal()
 
   /**
    *
    */
-  val fileRemoved: Signal1<String> by signal("file")
+  public val fileRemoved: Signal1<String> by signal("file")
 
   /**
    *
    */
-  val filesMoved: Signal2<String, String> by signal("old_file", "new_file")
+  public val filesMoved: Signal2<String, String> by signal("old_file", "new_file")
 
   /**
    *
    */
-  val folderMoved: Signal2<String, String> by signal("old_folder", "new_file")
+  public val folderMoved: Signal2<String, String> by signal("old_folder", "new_file")
 
   /**
    *
    */
-  val folderRemoved: Signal1<String> by signal("folder")
+  public val folderRemoved: Signal1<String> by signal("folder")
 
   /**
    *
    */
-  val inherit: Signal1<String> by signal("file")
+  public val inherit: Signal1<String> by signal("file")
 
   /**
    *
    */
-  val instance: Signal1<PoolStringArray> by signal("files")
+  public val instance: Signal1<PoolStringArray> by signal("files")
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_FILESYSTEMDOCK)
   }
 
-  open fun _bwHistory() {
+  public open fun _bwHistory(): Unit {
   }
 
-  open fun _duplicateOperationConfirm() {
+  public open fun _duplicateOperationConfirm(): Unit {
   }
 
-  open fun _featureProfileChanged() {
+  public open fun _featureProfileChanged(): Unit {
   }
 
-  open fun _fileListActivateFile(arg0: Long) {
+  public open fun _fileListActivateFile(arg0: Long): Unit {
   }
 
-  open fun _fileListGuiInput(arg0: InputEvent) {
+  public open fun _fileListGuiInput(arg0: InputEvent): Unit {
   }
 
-  open fun _fileListRmbOption(option: Long) {
+  public open fun _fileListRmbOption(option: Long): Unit {
   }
 
-  open fun _fileListRmbPressed(arg0: Vector2) {
+  public open fun _fileListRmbPressed(arg0: Vector2): Unit {
   }
 
-  open fun _fileListRmbSelect(arg0: Long, arg1: Vector2) {
+  public open fun _fileListRmbSelect(arg0: Long, arg1: Vector2): Unit {
   }
 
-  open fun _fileListThumbnailDone(
+  public open fun _fileListThumbnailDone(
     arg0: String,
     arg1: Texture,
     arg2: Texture,
     arg3: Any?
-  ) {
+  ): Unit {
   }
 
-  open fun _fileMultiSelected(arg0: Long, arg1: Boolean) {
+  public open fun _fileMultiSelected(arg0: Long, arg1: Boolean): Unit {
   }
 
-  open fun _fileRemoved(arg0: String) {
+  public open fun _fileRemoved(arg0: String): Unit {
   }
 
-  open fun _folderRemoved(arg0: String) {
+  public open fun _folderRemoved(arg0: String): Unit {
   }
 
-  open fun _fsChanged() {
+  public open fun _fsChanged(): Unit {
   }
 
-  open fun _fwHistory() {
+  public open fun _fwHistory(): Unit {
   }
 
-  open fun _makeDirConfirm() {
+  public open fun _makeDirConfirm(): Unit {
   }
 
-  open fun _makeSceneConfirm() {
+  public open fun _makeSceneConfirm(): Unit {
   }
 
-  open fun _moveOperationConfirm(toPath: String, overwrite: Boolean = false) {
+  public open fun _moveOperationConfirm(toPath: String, overwrite: Boolean = false): Unit {
   }
 
-  open fun _moveWithOverwrite() {
+  public open fun _moveWithOverwrite(): Unit {
   }
 
-  open fun _navigateToPath(arg0: String, arg1: Boolean = false) {
+  public open fun _navigateToPath(arg0: String, arg1: Boolean = false): Unit {
   }
 
-  open fun _previewInvalidated(arg0: String) {
+  public open fun _previewInvalidated(arg0: String): Unit {
   }
 
-  open fun _renameOperationConfirm() {
+  public open fun _renameOperationConfirm(): Unit {
   }
 
-  open fun _rescan() {
+  public open fun _rescan(): Unit {
   }
 
-  open fun _resourceCreated() {
+  public open fun _resourceCreated(): Unit {
   }
 
-  open fun _searchChanged(arg0: String, arg1: Control) {
+  public open fun _searchChanged(arg0: String, arg1: Control): Unit {
   }
 
-  open fun _selectFile(arg0: String, arg1: Boolean) {
+  public open fun _selectFile(arg0: String, arg1: Boolean): Unit {
   }
 
-  open fun _toggleFileDisplay() {
+  public open fun _toggleFileDisplay(): Unit {
   }
 
-  open fun _toggleSplitMode(arg0: Boolean) {
+  public open fun _toggleSplitMode(arg0: Boolean): Unit {
   }
 
-  open fun _treeActivateFile() {
+  public open fun _treeActivateFile(): Unit {
   }
 
-  open fun _treeEmptySelected() {
+  public open fun _treeEmptySelected(): Unit {
   }
 
-  open fun _treeGuiInput(arg0: InputEvent) {
+  public open fun _treeGuiInput(arg0: InputEvent): Unit {
   }
 
-  open fun _treeMultiSelected(
+  public open fun _treeMultiSelected(
     arg0: Object,
     arg1: Long,
     arg2: Boolean
-  ) {
+  ): Unit {
   }
 
-  open fun _treeRmbEmpty(arg0: Vector2) {
+  public open fun _treeRmbEmpty(arg0: Vector2): Unit {
   }
 
-  open fun _treeRmbOption(option: Long) {
+  public open fun _treeRmbOption(option: Long): Unit {
   }
 
-  open fun _treeRmbSelect(arg0: Vector2) {
+  public open fun _treeRmbSelect(arg0: Vector2): Unit {
   }
 
-  open fun _treeThumbnailDone(
+  public open fun _treeThumbnailDone(
     arg0: String,
     arg1: Texture,
     arg2: Texture,
     arg3: Any?
-  ) {
+  ): Unit {
   }
 
-  open fun _updateImportDock() {
+  public open fun _updateImportDock(): Unit {
   }
 
-  open fun _updateTree(
+  public open fun _updateTree(
     arg0: PoolStringArray,
     arg1: Boolean,
     arg2: Boolean,
     arg3: Boolean
-  ) {
+  ): Unit {
   }
 
   /**
    *
    */
-  open fun canDropDataFw(
+  public open fun canDropDataFw(
     arg0: Vector2,
     arg1: Any?,
     arg2: Control
@@ -216,11 +217,11 @@ open class FileSystemDock : VBoxContainer() {
   /**
    *
    */
-  open fun dropDataFw(
+  public open fun dropDataFw(
     arg0: Vector2,
     arg1: Any?,
     arg2: Control
-  ) {
+  ): Unit {
     TransferContext.writeArguments(VECTOR2 to arg0, ANY to arg1, OBJECT to arg2)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILESYSTEMDOCK_DROP_DATA_FW, NIL)
   }
@@ -228,7 +229,7 @@ open class FileSystemDock : VBoxContainer() {
   /**
    *
    */
-  open fun getDragDataFw(arg0: Vector2, arg1: Control): Any? {
+  public open fun getDragDataFw(arg0: Vector2, arg1: Control): Any? {
     TransferContext.writeArguments(VECTOR2 to arg0, OBJECT to arg1)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILESYSTEMDOCK_GET_DRAG_DATA_FW,
         ANY)
@@ -238,7 +239,7 @@ open class FileSystemDock : VBoxContainer() {
   /**
    *
    */
-  open fun navigateToPath(arg0: String) {
+  public open fun navigateToPath(arg0: String): Unit {
     TransferContext.writeArguments(STRING to arg0)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILESYSTEMDOCK_NAVIGATE_TO_PATH,
         NIL)

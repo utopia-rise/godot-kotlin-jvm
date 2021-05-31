@@ -5,13 +5,14 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Occludes light cast by a Light2D, casting shadows.
@@ -22,18 +23,18 @@ import kotlin.Suppress
  * Occludes light cast by a Light2D, casting shadows. The LightOccluder2D must be provided with an [godot.OccluderPolygon2D] in order for the shadow to be computed.
  */
 @GodotBaseType
-open class LightOccluder2D : Node2D() {
+public open class LightOccluder2D : Node2D() {
   /**
    * The LightOccluder2D's light mask. The LightOccluder2D will cast shadows only from Light2D(s) that have the same light mask(s).
    */
-  override var lightMask: Long
+  public override var lightMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_GET_LIGHT_MASK,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_SET_LIGHT_MASK,
           NIL)
@@ -42,22 +43,22 @@ open class LightOccluder2D : Node2D() {
   /**
    * The [godot.OccluderPolygon2D] used to compute the shadow.
    */
-  open var occluder: OccluderPolygon2D?
+  public open var occluder: OccluderPolygon2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_GET_OCCLUDER,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as OccluderPolygon2D?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_SET_OCCLUDER, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_LIGHTOCCLUDER2D)
   }
 
-  open fun _polyChanged() {
+  public open fun _polyChanged(): Unit {
   }
 }

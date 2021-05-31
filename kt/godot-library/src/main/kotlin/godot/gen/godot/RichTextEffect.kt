@@ -5,10 +5,11 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Boolean
 import kotlin.NotImplementedError
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A custom effect for use with [godot.RichTextLabel].
@@ -29,15 +30,15 @@ import kotlin.Suppress
  * **Note:** As soon as a [godot.RichTextLabel] contains at least one [godot.RichTextEffect], it will continuously process the effect unless the project is paused. This may impact battery life negatively.
  */
 @GodotBaseType
-open class RichTextEffect : Resource() {
-  override fun __new() {
+public open class RichTextEffect : Resource() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_RICHTEXTEFFECT)
   }
 
   /**
    * Override this method to modify properties in `char_fx`. The method must return `true` if the character could be transformed successfully. If the method returns `false`, it will skip transformation to avoid displaying broken text.
    */
-  open fun _processCustomFx(charFx: CharFXTransform): Boolean {
+  public open fun _processCustomFx(charFx: CharFXTransform): Boolean {
     throw NotImplementedError("_process_custom_fx is not implemented for RichTextEffect")
   }
 }

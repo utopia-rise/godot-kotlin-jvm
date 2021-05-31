@@ -5,11 +5,12 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import kotlin.Boolean
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Base class for reference-counted objects.
@@ -26,10 +27,10 @@ import kotlin.Suppress
  * **Note:** In C#, references will not be freed instantly after they are no longer in use. Instead, garbage collection will run periodically and will free references that are no longer in use. This means that unused references will linger on for a while before being removed.
  */
 @GodotBaseType
-open class Reference : Object() {
-  override fun ____DO_NOT_TOUCH_THIS_isRef____() = true
+public open class Reference : Object() {
+  public override fun ____DO_NOT_TOUCH_THIS_isRef____() = true
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_REFERENCE)
   }
 
@@ -38,7 +39,7 @@ open class Reference : Object() {
    *
    * Returns whether the initialization was successful.
    */
-  open fun initRef(): Boolean {
+  public open fun initRef(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFERENCE_INIT_REF, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -49,7 +50,7 @@ open class Reference : Object() {
    *
    * Returns `true` if the increment was successful, `false` otherwise.
    */
-  open fun reference(): Boolean {
+  public open fun reference(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFERENCE_REFERENCE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -60,7 +61,7 @@ open class Reference : Object() {
    *
    * Returns `true` if the decrement was successful, `false` otherwise.
    */
-  open fun unreference(): Boolean {
+  public open fun unreference(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFERENCE_UNREFERENCE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

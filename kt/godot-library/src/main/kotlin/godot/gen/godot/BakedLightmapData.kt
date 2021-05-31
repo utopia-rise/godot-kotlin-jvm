@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.NodePath
 import godot.core.PoolByteArray
@@ -35,18 +35,18 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-open class BakedLightmapData : Resource() {
+public open class BakedLightmapData : Resource() {
   /**
    *
    */
-  open var bounds: AABB
+  public open var bounds: AABB
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_GET_BOUNDS,
           godot.core.VariantType.AABB)
       return TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(godot.core.VariantType.AABB to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_SET_BOUNDS, NIL)
     }
@@ -54,14 +54,14 @@ open class BakedLightmapData : Resource() {
   /**
    *
    */
-  open var cellSpaceTransform: Transform
+  public open var cellSpaceTransform: Transform
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_GET_CELL_SPACE_TRANSFORM, TRANSFORM)
       return TransferContext.readReturnValue(TRANSFORM, false) as Transform
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(TRANSFORM to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_SET_CELL_SPACE_TRANSFORM, NIL)
@@ -70,14 +70,14 @@ open class BakedLightmapData : Resource() {
   /**
    *
    */
-  open var cellSubdiv: Long
+  public open var cellSubdiv: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_GET_CELL_SUBDIV,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_SET_CELL_SUBDIV,
           NIL)
@@ -86,14 +86,14 @@ open class BakedLightmapData : Resource() {
   /**
    * Global energy multiplier for baked and dynamic capture objects.
    */
-  open var energy: Double
+  public open var energy: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_GET_ENERGY,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_SET_ENERGY, NIL)
     }
@@ -101,14 +101,14 @@ open class BakedLightmapData : Resource() {
   /**
    * Controls whether dynamic capture objects receive environment lighting or not.
    */
-  open var interior: Boolean
+  public open var interior: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_GET_INTERIOR,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_SET_INTERIOR,
           NIL)
@@ -117,53 +117,54 @@ open class BakedLightmapData : Resource() {
   /**
    *
    */
-  open var octree: PoolByteArray
+  public open var octree: PoolByteArray
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_GET_OCTREE,
           POOL_BYTE_ARRAY)
       return TransferContext.readReturnValue(POOL_BYTE_ARRAY, false) as PoolByteArray
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(POOL_BYTE_ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_SET_OCTREE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_BAKEDLIGHTMAPDATA)
   }
 
   @CoreTypeHelper
-  open fun bounds(schedule: AABB.() -> Unit): AABB = bounds.apply{
+  public open fun bounds(schedule: AABB.() -> Unit): AABB = bounds.apply{
       schedule(this)
       bounds = this
   }
 
 
   @CoreTypeHelper
-  open fun cellSpaceTransform(schedule: Transform.() -> Unit): Transform = cellSpaceTransform.apply{
+  public open fun cellSpaceTransform(schedule: Transform.() -> Unit): Transform =
+      cellSpaceTransform.apply{
       schedule(this)
       cellSpaceTransform = this
   }
 
 
-  open fun _getUserData(): VariantArray<Any?> {
+  public open fun _getUserData(): VariantArray<Any?> {
     throw NotImplementedError("_get_user_data is not implemented for BakedLightmapData")
   }
 
-  open fun _setUserData(data: VariantArray<Any?>) {
+  public open fun _setUserData(`data`: VariantArray<Any?>): Unit {
   }
 
   /**
    *
    */
-  open fun addUser(
+  public open fun addUser(
     path: NodePath,
     lightmap: Resource,
     lightmapSlice: Long,
     lightmapUvRect: Rect2,
     instance: Long
-  ) {
+  ): Unit {
     TransferContext.writeArguments(NODE_PATH to path, OBJECT to lightmap, LONG to lightmapSlice,
         RECT2 to lightmapUvRect, LONG to instance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_ADD_USER, NIL)
@@ -172,7 +173,7 @@ open class BakedLightmapData : Resource() {
   /**
    *
    */
-  open fun clearData() {
+  public open fun clearData(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_CLEAR_DATA, NIL)
   }
@@ -180,7 +181,7 @@ open class BakedLightmapData : Resource() {
   /**
    *
    */
-  open fun clearUsers() {
+  public open fun clearUsers(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_CLEAR_USERS, NIL)
   }
@@ -188,7 +189,7 @@ open class BakedLightmapData : Resource() {
   /**
    *
    */
-  open fun getUserCount(): Long {
+  public open fun getUserCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_GET_USER_COUNT,
         LONG)
@@ -198,7 +199,7 @@ open class BakedLightmapData : Resource() {
   /**
    *
    */
-  open fun getUserLightmap(userIdx: Long): Resource? {
+  public open fun getUserLightmap(userIdx: Long): Resource? {
     TransferContext.writeArguments(LONG to userIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_GET_USER_LIGHTMAP,
         OBJECT)
@@ -208,7 +209,7 @@ open class BakedLightmapData : Resource() {
   /**
    *
    */
-  open fun getUserPath(userIdx: Long): NodePath {
+  public open fun getUserPath(userIdx: Long): NodePath {
     TransferContext.writeArguments(LONG to userIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAPDATA_GET_USER_PATH,
         NODE_PATH)

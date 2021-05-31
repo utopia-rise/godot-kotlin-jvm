@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -15,6 +15,7 @@ import godot.core.VariantType.STRING
 import kotlin.Any
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Server that manages all translations.
@@ -26,17 +27,17 @@ import kotlin.Suppress
  * Server that manages all translations. Translations can be set to it and removed from it.
  */
 @GodotBaseType
-object TranslationServer : Object() {
-  override fun __new() {
+public object TranslationServer : Object() {
+  public override fun __new(): Unit {
     rawPtr = TransferContext.getSingleton(ENGINESINGLETON_TRANSLATIONSERVER)
   }
 
-  override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
+  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    * Adds a [godot.Translation] resource.
    */
-  fun addTranslation(translation: Translation) {
+  public fun addTranslation(translation: Translation): Unit {
     TransferContext.writeArguments(OBJECT to translation)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_ADD_TRANSLATION,
         NIL)
@@ -45,7 +46,7 @@ object TranslationServer : Object() {
   /**
    * Clears the server from all translations.
    */
-  fun clear() {
+  public fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_CLEAR, NIL)
   }
@@ -53,7 +54,7 @@ object TranslationServer : Object() {
   /**
    * Returns an Array of all loaded locales of the game.
    */
-  fun getLoadedLocales(): VariantArray<Any?> {
+  public fun getLoadedLocales(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_LOADED_LOCALES, ARRAY)
@@ -63,7 +64,7 @@ object TranslationServer : Object() {
   /**
    * Returns the current locale of the game.
    */
-  fun getLocale(): String {
+  public fun getLocale(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_LOCALE,
         STRING)
@@ -73,7 +74,7 @@ object TranslationServer : Object() {
   /**
    * Returns a locale's language and its variant (e.g. `"en_US"` would return `"English (United States)"`).
    */
-  fun getLocaleName(locale: String): String {
+  public fun getLocaleName(locale: String): String {
     TransferContext.writeArguments(STRING to locale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_GET_LOCALE_NAME,
         STRING)
@@ -83,7 +84,7 @@ object TranslationServer : Object() {
   /**
    * Removes the given translation from the server.
    */
-  fun removeTranslation(translation: Translation) {
+  public fun removeTranslation(translation: Translation): Unit {
     TransferContext.writeArguments(OBJECT to translation)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_REMOVE_TRANSLATION, NIL)
@@ -92,7 +93,7 @@ object TranslationServer : Object() {
   /**
    * Sets the locale of the game.
    */
-  fun setLocale(locale: String) {
+  public fun setLocale(locale: String): Unit {
     TransferContext.writeArguments(STRING to locale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_SET_LOCALE, NIL)
   }
@@ -100,7 +101,7 @@ object TranslationServer : Object() {
   /**
    * Returns the current locale's translation for the given message (key).
    */
-  fun translate(message: String): String {
+  public fun translate(message: String): String {
     TransferContext.writeArguments(STRING to message)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_TRANSLATE, STRING)
     return TransferContext.readReturnValue(STRING, false) as String

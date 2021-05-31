@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Flat button helper class.
@@ -19,8 +20,8 @@ import kotlin.Suppress
  * 		```
  */
 @GodotBaseType
-open class ToolButton : Button() {
-  override fun __new() {
+public open class ToolButton : Button() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TOOLBUTTON)
   }
 }

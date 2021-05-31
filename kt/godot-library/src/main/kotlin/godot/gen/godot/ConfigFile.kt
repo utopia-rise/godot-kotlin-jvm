@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PoolByteArray
 import godot.core.PoolStringArray
@@ -23,6 +23,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Helper class to handle INI-style files.
@@ -58,15 +59,15 @@ import kotlin.Suppress
  * ConfigFiles can also contain manually written comment lines starting with a semicolon (`;`). Those lines will be ignored when parsing the file. Note that comments will be lost when saving the ConfigFile. This can still be useful for dedicated server configuration files, which are typically never overwritten without explicit user action.
  */
 @GodotBaseType
-open class ConfigFile : Reference() {
-  override fun __new() {
+public open class ConfigFile : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CONFIGFILE)
   }
 
   /**
    *
    */
-  open fun clear() {
+  public open fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_CLEAR, NIL)
   }
@@ -74,7 +75,7 @@ open class ConfigFile : Reference() {
   /**
    * Deletes the specified section along with all the key-value pairs inside. Raises an error if the section does not exist.
    */
-  open fun eraseSection(section: String) {
+  public open fun eraseSection(section: String): Unit {
     TransferContext.writeArguments(STRING to section)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_ERASE_SECTION, NIL)
   }
@@ -82,7 +83,7 @@ open class ConfigFile : Reference() {
   /**
    * Deletes the specified key in a section. Raises an error if either the section or the key do not exist.
    */
-  open fun eraseSectionKey(section: String, key: String) {
+  public open fun eraseSectionKey(section: String, key: String): Unit {
     TransferContext.writeArguments(STRING to section, STRING to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_ERASE_SECTION_KEY, NIL)
   }
@@ -90,7 +91,7 @@ open class ConfigFile : Reference() {
   /**
    * Returns an array of all defined key identifiers in the specified section. Raises an error and returns an empty array if the section does not exist.
    */
-  open fun getSectionKeys(section: String): PoolStringArray {
+  public open fun getSectionKeys(section: String): PoolStringArray {
     TransferContext.writeArguments(STRING to section)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_GET_SECTION_KEYS,
         POOL_STRING_ARRAY)
@@ -100,7 +101,7 @@ open class ConfigFile : Reference() {
   /**
    * Returns an array of all defined section identifiers.
    */
-  open fun getSections(): PoolStringArray {
+  public open fun getSections(): PoolStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_GET_SECTIONS,
         POOL_STRING_ARRAY)
@@ -110,7 +111,7 @@ open class ConfigFile : Reference() {
   /**
    * Returns the current value for the specified section and key. If either the section or the key do not exist, the method returns the fallback `default` value. If `default` is not specified or set to `null`, an error is also raised.
    */
-  open fun getValue(
+  public open fun getValue(
     section: String,
     key: String,
     default: Any? = null
@@ -123,7 +124,7 @@ open class ConfigFile : Reference() {
   /**
    * Returns `true` if the specified section exists.
    */
-  open fun hasSection(section: String): Boolean {
+  public open fun hasSection(section: String): Boolean {
     TransferContext.writeArguments(STRING to section)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_HAS_SECTION, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -132,7 +133,7 @@ open class ConfigFile : Reference() {
   /**
    * Returns `true` if the specified section-key pair exists.
    */
-  open fun hasSectionKey(section: String, key: String): Boolean {
+  public open fun hasSectionKey(section: String, key: String): Boolean {
     TransferContext.writeArguments(STRING to section, STRING to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_HAS_SECTION_KEY, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -143,7 +144,7 @@ open class ConfigFile : Reference() {
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  open fun load(path: String): GodotError {
+  public open fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_LOAD, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -154,7 +155,7 @@ open class ConfigFile : Reference() {
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  open fun loadEncrypted(path: String, key: PoolByteArray): GodotError {
+  public open fun loadEncrypted(path: String, key: PoolByteArray): GodotError {
     TransferContext.writeArguments(STRING to path, POOL_BYTE_ARRAY to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_LOAD_ENCRYPTED, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -165,7 +166,7 @@ open class ConfigFile : Reference() {
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  open fun loadEncryptedPass(path: String, password: String): GodotError {
+  public open fun loadEncryptedPass(path: String, password: String): GodotError {
     TransferContext.writeArguments(STRING to path, STRING to password)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_LOAD_ENCRYPTED_PASS,
         LONG)
@@ -177,7 +178,7 @@ open class ConfigFile : Reference() {
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  open fun parse(data: String): GodotError {
+  public open fun parse(`data`: String): GodotError {
     TransferContext.writeArguments(STRING to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_PARSE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -188,7 +189,7 @@ open class ConfigFile : Reference() {
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  open fun save(path: String): GodotError {
+  public open fun save(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_SAVE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -199,7 +200,7 @@ open class ConfigFile : Reference() {
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  open fun saveEncrypted(path: String, key: PoolByteArray): GodotError {
+  public open fun saveEncrypted(path: String, key: PoolByteArray): GodotError {
     TransferContext.writeArguments(STRING to path, POOL_BYTE_ARRAY to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_SAVE_ENCRYPTED, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -210,7 +211,7 @@ open class ConfigFile : Reference() {
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  open fun saveEncryptedPass(path: String, password: String): GodotError {
+  public open fun saveEncryptedPass(path: String, password: String): GodotError {
     TransferContext.writeArguments(STRING to path, STRING to password)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_SAVE_ENCRYPTED_PASS,
         LONG)
@@ -220,11 +221,11 @@ open class ConfigFile : Reference() {
   /**
    * Assigns a value to the specified key of the specified section. If either the section or the key do not exist, they are created. Passing a `null` value deletes the specified key if it exists, and deletes the section if it ends up empty once the key has been removed.
    */
-  open fun setValue(
+  public open fun setValue(
     section: String,
     key: String,
-    value: Any?
-  ) {
+    `value`: Any?
+  ): Unit {
     TransferContext.writeArguments(STRING to section, STRING to key, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_SET_VALUE, NIL)
   }

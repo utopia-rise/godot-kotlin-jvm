@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Empty stylebox (does not display anything).
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Empty stylebox (really does not display anything).
  */
 @GodotBaseType
-open class StyleBoxEmpty : StyleBox() {
-  override fun __new() {
+public open class StyleBoxEmpty : StyleBox() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_STYLEBOXEMPTY)
   }
 }

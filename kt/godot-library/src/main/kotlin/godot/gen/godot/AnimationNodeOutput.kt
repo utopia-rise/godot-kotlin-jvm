@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Generic output node to be added to [godot.AnimationNodeBlendTree].
@@ -15,8 +16,8 @@ import kotlin.Suppress
  * [https://godotengine.org/asset-library/asset/678](https://godotengine.org/asset-library/asset/678)
  */
 @GodotBaseType
-open class AnimationNodeOutput : AnimationNode() {
-  override fun __new() {
+public open class AnimationNodeOutput : AnimationNode() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODEOUTPUT)
   }
 }

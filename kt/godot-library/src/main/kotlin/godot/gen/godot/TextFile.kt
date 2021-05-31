@@ -5,15 +5,16 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
-open class TextFile : Resource() {
-  override fun __new() {
+public open class TextFile : Resource() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TEXTFILE)
   }
 }

@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -13,6 +13,7 @@ import godot.core.VariantType.NIL
 import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Input event type for gamepad joysticks and other motions. For buttons, see `InputEventJoypadButton`.
@@ -23,18 +24,18 @@ import kotlin.Suppress
  * Stores information about joystick motions. One [godot.InputEventJoypadMotion] represents one axis at a time.
  */
 @GodotBaseType
-open class InputEventJoypadMotion : InputEvent() {
+public open class InputEventJoypadMotion : InputEvent() {
   /**
    * Axis identifier. Use one of the [enum JoystickList] axis constants.
    */
-  open var axis: Long
+  public open var axis: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTJOYPADMOTION_GET_AXIS,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTJOYPADMOTION_SET_AXIS,
           NIL)
@@ -43,20 +44,20 @@ open class InputEventJoypadMotion : InputEvent() {
   /**
    * Current position of the joystick on the given axis. The value ranges from `-1.0` to `1.0`. A value of `0` means the axis is in its resting position.
    */
-  open var axisValue: Double
+  public open var axisValue: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTJOYPADMOTION_GET_AXIS_VALUE, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTJOYPADMOTION_SET_AXIS_VALUE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTJOYPADMOTION)
   }
 }

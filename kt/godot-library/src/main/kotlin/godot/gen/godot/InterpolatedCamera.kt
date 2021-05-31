@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -15,6 +15,7 @@ import godot.core.VariantType.NODE_PATH
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * *Deprecated.* Camera which moves toward another node.
@@ -24,18 +25,18 @@ import kotlin.Suppress
  * If it is not [enabled] or does not have a valid target set, InterpolatedCamera acts like a normal Camera.
  */
 @GodotBaseType
-open class InterpolatedCamera : Camera() {
+public open class InterpolatedCamera : Camera() {
   /**
    * If `true`, and a target is set, the camera will move automatically.
    */
-  open var enabled: Boolean
+  public open var enabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INTERPOLATEDCAMERA_GET_ENABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INTERPOLATEDCAMERA_SET_ENABLED,
           NIL)
@@ -44,14 +45,14 @@ open class InterpolatedCamera : Camera() {
   /**
    * How quickly the camera moves toward its target. Higher values will result in tighter camera motion.
    */
-  open var speed: Double
+  public open var speed: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INTERPOLATEDCAMERA_GET_SPEED,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INTERPOLATEDCAMERA_SET_SPEED, NIL)
     }
@@ -59,20 +60,20 @@ open class InterpolatedCamera : Camera() {
   /**
    * The target's [godot.core.NodePath].
    */
-  open var target: NodePath
+  public open var target: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INTERPOLATEDCAMERA_GET_TARGET,
           NODE_PATH)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INTERPOLATEDCAMERA_SET_TARGET,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_INTERPOLATEDCAMERA)
   }
 }

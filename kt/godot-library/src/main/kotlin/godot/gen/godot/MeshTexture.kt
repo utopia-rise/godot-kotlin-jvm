@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -21,18 +21,18 @@ import kotlin.Unit
  * Simple texture that uses a mesh to draw itself. It's limited because flags can't be changed and region drawing is not supported.
  */
 @GodotBaseType
-open class MeshTexture : Texture() {
+public open class MeshTexture : Texture() {
   /**
    * Sets the base texture that the Mesh will use to draw.
    */
-  open var baseTexture: Texture?
+  public open var baseTexture: Texture?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHTEXTURE_GET_BASE_TEXTURE,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHTEXTURE_SET_BASE_TEXTURE, NIL)
     }
@@ -40,14 +40,14 @@ open class MeshTexture : Texture() {
   /**
    * Sets the size of the image, needed for reference.
    */
-  open var imageSize: Vector2
+  public open var imageSize: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHTEXTURE_GET_IMAGE_SIZE,
           VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHTEXTURE_SET_IMAGE_SIZE, NIL)
     }
@@ -55,23 +55,23 @@ open class MeshTexture : Texture() {
   /**
    * Sets the mesh used to draw. It must be a mesh using 2D vertices.
    */
-  open var mesh: Mesh?
+  public open var mesh: Mesh?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHTEXTURE_GET_MESH, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Mesh?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHTEXTURE_SET_MESH, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_MESHTEXTURE)
   }
 
   @CoreTypeHelper
-  open fun imageSize(schedule: Vector2.() -> Unit): Vector2 = imageSize.apply{
+  public open fun imageSize(schedule: Vector2.() -> Unit): Vector2 = imageSize.apply{
       schedule(this)
       imageSize = this
   }

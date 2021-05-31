@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A boolean/vector function for use within the visual shader graph.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Returns an associated vector if the provided boolean value is `true` or `false`.
  */
 @GodotBaseType
-open class VisualShaderNodeSwitch : VisualShaderNode() {
-  override fun __new() {
+public open class VisualShaderNodeSwitch : VisualShaderNode() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODESWITCH)
   }
 }

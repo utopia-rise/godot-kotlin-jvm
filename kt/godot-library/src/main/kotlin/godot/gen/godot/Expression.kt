@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PoolStringArray
 import godot.core.TransferContext
@@ -23,6 +23,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A class that stores an expression you can execute.
@@ -50,8 +51,8 @@ import kotlin.Suppress
  * 		```
  */
 @GodotBaseType
-open class Expression : Reference() {
-  override fun __new() {
+public open class Expression : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EXPRESSION)
   }
 
@@ -60,7 +61,7 @@ open class Expression : Reference() {
    *
    * If you defined input variables in [parse], you can specify their values in the inputs array, in the same order.
    */
-  open fun execute(
+  public open fun execute(
     inputs: VariantArray<Any?> = VariantArray(),
     baseInstance: Object? = null,
     showError: Boolean = true
@@ -73,7 +74,7 @@ open class Expression : Reference() {
   /**
    * Returns the error text if [parse] has failed.
    */
-  open fun getErrorText(): String {
+  public open fun getErrorText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EXPRESSION_GET_ERROR_TEXT, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -82,7 +83,7 @@ open class Expression : Reference() {
   /**
    * Returns `true` if [execute] has failed.
    */
-  open fun hasExecuteFailed(): Boolean {
+  public open fun hasExecuteFailed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EXPRESSION_HAS_EXECUTE_FAILED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -93,7 +94,8 @@ open class Expression : Reference() {
    *
    * You can optionally specify names of variables that may appear in the expression with `input_names`, so that you can bind them when it gets executed.
    */
-  open fun parse(expression: String, inputNames: PoolStringArray = PoolStringArray()): GodotError {
+  public open fun parse(expression: String, inputNames: PoolStringArray = PoolStringArray()):
+      GodotError {
     TransferContext.writeArguments(STRING to expression, POOL_STRING_ARRAY to inputNames)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EXPRESSION_PARSE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

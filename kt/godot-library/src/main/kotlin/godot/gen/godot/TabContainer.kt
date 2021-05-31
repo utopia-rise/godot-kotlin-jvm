@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -19,6 +19,7 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Tabbed container.
@@ -32,33 +33,33 @@ import kotlin.Suppress
  * To hide only a tab's content, nest the content inside a child [godot.Control], so it receives the [godot.TabContainer]'s visibility setting instead.
  */
 @GodotBaseType
-open class TabContainer : Container() {
+public open class TabContainer : Container() {
   /**
    * Emitted when the [godot.TabContainer]'s [godot.Popup] button is clicked. See [setPopup] for details.
    */
-  val prePopupPressed: Signal0 by signal()
+  public val prePopupPressed: Signal0 by signal()
 
   /**
    * Emitted when switching to another tab.
    */
-  val tabChanged: Signal1<Long> by signal("tab")
+  public val tabChanged: Signal1<Long> by signal("tab")
 
   /**
    * Emitted when a tab is selected, even if it is the current tab.
    */
-  val tabSelected: Signal1<Long> by signal("tab")
+  public val tabSelected: Signal1<Long> by signal("tab")
 
   /**
    * If `true`, all tabs are drawn in front of the panel. If `false`, inactive tabs are drawn behind the panel.
    */
-  open var allTabsInFront: Boolean
+  public open var allTabsInFront: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_ALL_TABS_IN_FRONT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_ALL_TABS_IN_FRONT, NIL)
@@ -67,14 +68,14 @@ open class TabContainer : Container() {
   /**
    * The current tab index. When set, this index's [godot.Control] node's `visible` property is set to `true` and all others are set to `false`.
    */
-  open var currentTab: Long
+  public open var currentTab: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_CURRENT_TAB,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_CURRENT_TAB, NIL)
     }
@@ -82,14 +83,14 @@ open class TabContainer : Container() {
   /**
    * If `true`, tabs can be rearranged with mouse drag.
    */
-  open var dragToRearrangeEnabled: Boolean
+  public open var dragToRearrangeEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_DRAG_TO_REARRANGE_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_DRAG_TO_REARRANGE_ENABLED, NIL)
@@ -98,13 +99,13 @@ open class TabContainer : Container() {
   /**
    * The alignment of all tabs in the tab container. See the [enum TabAlign] constants for details.
    */
-  open var tabAlign: Long
+  public open var tabAlign: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TAB_ALIGN, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_TAB_ALIGN, NIL)
     }
@@ -112,14 +113,14 @@ open class TabContainer : Container() {
   /**
    * If `true`, tabs are visible. If `false`, tabs' content and titles are hidden.
    */
-  open var tabsVisible: Boolean
+  public open var tabsVisible: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TABS_VISIBLE,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_TABS_VISIBLE,
           NIL)
@@ -128,42 +129,42 @@ open class TabContainer : Container() {
   /**
    * If `true`, children [godot.Control] nodes that are hidden have their minimum size take into account in the total, instead of only the currently visible one.
    */
-  open var useHiddenTabsForMinSize: Boolean
+  public open var useHiddenTabsForMinSize: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_USE_HIDDEN_TABS_FOR_MIN_SIZE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_USE_HIDDEN_TABS_FOR_MIN_SIZE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TABCONTAINER)
   }
 
-  open fun _childRenamedCallback() {
+  public open fun _childRenamedCallback(): Unit {
   }
 
-  override fun _guiInput(event: InputEvent) {
+  public override fun _guiInput(event: InputEvent): Unit {
   }
 
-  open fun _onMouseExited() {
+  public open fun _onMouseExited(): Unit {
   }
 
-  open fun _onThemeChanged() {
+  public open fun _onThemeChanged(): Unit {
   }
 
-  open fun _updateCurrentTab() {
+  public open fun _updateCurrentTab(): Unit {
   }
 
   /**
    * Returns the child [godot.Control] node located at the active tab index.
    */
-  open fun getCurrentTabControl(): Control? {
+  public open fun getCurrentTabControl(): Control? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_CURRENT_TAB_CONTROL, OBJECT)
@@ -173,7 +174,7 @@ open class TabContainer : Container() {
   /**
    * Returns the [godot.Popup] node instance if one has been set already with [setPopup].
    */
-  open fun getPopup(): Popup? {
+  public open fun getPopup(): Popup? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_POPUP, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Popup?
@@ -182,7 +183,7 @@ open class TabContainer : Container() {
   /**
    * Returns the previously active tab index.
    */
-  open fun getPreviousTab(): Long {
+  public open fun getPreviousTab(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_PREVIOUS_TAB, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -191,7 +192,7 @@ open class TabContainer : Container() {
   /**
    * Returns the [godot.Control] node from the tab at index `tab_idx`.
    */
-  open fun getTabControl(tabIdx: Long): Control? {
+  public open fun getTabControl(tabIdx: Long): Control? {
     TransferContext.writeArguments(LONG to tabIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TAB_CONTROL,
         OBJECT)
@@ -201,7 +202,7 @@ open class TabContainer : Container() {
   /**
    * Returns the number of tabs.
    */
-  open fun getTabCount(): Long {
+  public open fun getTabCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TAB_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -210,7 +211,7 @@ open class TabContainer : Container() {
   /**
    * Returns `true` if the tab at index `tab_idx` is disabled.
    */
-  open fun getTabDisabled(tabIdx: Long): Boolean {
+  public open fun getTabDisabled(tabIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to tabIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TAB_DISABLED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -219,7 +220,7 @@ open class TabContainer : Container() {
   /**
    * Returns the [godot.Texture] for the tab at index `tab_idx` or `null` if the tab has no [godot.Texture].
    */
-  open fun getTabIcon(tabIdx: Long): Texture? {
+  public open fun getTabIcon(tabIdx: Long): Texture? {
     TransferContext.writeArguments(LONG to tabIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TAB_ICON, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Texture?
@@ -228,7 +229,7 @@ open class TabContainer : Container() {
   /**
    * Returns the title of the tab at index `tab_idx`. Tab titles default to the name of the indexed child node, but this can be overridden with [setTabTitle].
    */
-  open fun getTabTitle(tabIdx: Long): String {
+  public open fun getTabTitle(tabIdx: Long): String {
     TransferContext.writeArguments(LONG to tabIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TAB_TITLE, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -237,7 +238,7 @@ open class TabContainer : Container() {
   /**
    * Returns the [godot.TabContainer] rearrange group id.
    */
-  open fun getTabsRearrangeGroup(): Long {
+  public open fun getTabsRearrangeGroup(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TABS_REARRANGE_GROUP, LONG)
@@ -247,7 +248,7 @@ open class TabContainer : Container() {
   /**
    * If set on a [godot.Popup] node instance, a popup menu icon appears in the top-right corner of the [godot.TabContainer]. Clicking it will expand the [godot.Popup] node.
    */
-  open fun setPopup(popup: Node) {
+  public open fun setPopup(popup: Node): Unit {
     TransferContext.writeArguments(OBJECT to popup)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_POPUP, NIL)
   }
@@ -257,7 +258,7 @@ open class TabContainer : Container() {
    *
    * **Note:** Its title text will remain, unless also removed with [setTabTitle].
    */
-  open fun setTabDisabled(tabIdx: Long, disabled: Boolean) {
+  public open fun setTabDisabled(tabIdx: Long, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to tabIdx, BOOL to disabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_TAB_DISABLED, NIL)
   }
@@ -265,7 +266,7 @@ open class TabContainer : Container() {
   /**
    * Sets an icon for the tab at index `tab_idx`.
    */
-  open fun setTabIcon(tabIdx: Long, icon: Texture) {
+  public open fun setTabIcon(tabIdx: Long, icon: Texture): Unit {
     TransferContext.writeArguments(LONG to tabIdx, OBJECT to icon)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_TAB_ICON, NIL)
   }
@@ -273,7 +274,7 @@ open class TabContainer : Container() {
   /**
    * Sets a title for the tab at index `tab_idx`. Tab titles default to the name of the indexed child node, but this can be overridden with [setTabTitle].
    */
-  open fun setTabTitle(tabIdx: Long, title: String) {
+  public open fun setTabTitle(tabIdx: Long, title: String): Unit {
     TransferContext.writeArguments(LONG to tabIdx, STRING to title)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_TAB_TITLE, NIL)
   }
@@ -281,54 +282,53 @@ open class TabContainer : Container() {
   /**
    * Defines rearrange group id, choose for each [godot.TabContainer] the same value to enable tab drag between [godot.TabContainer]. Enable drag with `set_drag_to_rearrange_enabled(true)`.
    */
-  open fun setTabsRearrangeGroup(groupId: Long) {
+  public open fun setTabsRearrangeGroup(groupId: Long): Unit {
     TransferContext.writeArguments(LONG to groupId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_TABS_REARRANGE_GROUP, NIL)
   }
 
-  enum class TabAlign(
+  public enum class TabAlign(
     id: Long
   ) {
     /**
      * Align the tabs to the left.
      */
     ALIGN_LEFT(0),
-
     /**
      * Align the tabs to the center.
      */
     ALIGN_CENTER(1),
-
     /**
      * Align the tabs to the right.
      */
-    ALIGN_RIGHT(2);
+    ALIGN_RIGHT(2),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Align the tabs to the center.
      */
-    final const val ALIGN_CENTER: Long = 1
+    public final const val ALIGN_CENTER: Long = 1
 
     /**
      * Align the tabs to the left.
      */
-    final const val ALIGN_LEFT: Long = 0
+    public final const val ALIGN_LEFT: Long = 0
 
     /**
      * Align the tabs to the right.
      */
-    final const val ALIGN_RIGHT: Long = 2
+    public final const val ALIGN_RIGHT: Long = 2
   }
 }

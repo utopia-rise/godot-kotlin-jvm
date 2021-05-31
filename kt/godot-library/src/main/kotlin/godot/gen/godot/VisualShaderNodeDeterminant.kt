@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Calculates the determinant of a [godot.core.Transform] within the visual shader graph.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Translates to `determinant(x)` in the shader language.
  */
 @GodotBaseType
-open class VisualShaderNodeDeterminant : VisualShaderNode() {
-  override fun __new() {
+public open class VisualShaderNodeDeterminant : VisualShaderNode() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEDETERMINANT)
   }
 }

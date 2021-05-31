@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
@@ -20,6 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A unit of execution in a process.
@@ -32,15 +33,15 @@ import kotlin.Suppress
  * **Note:** Breakpoints won't break on code if it's running in a thread. This is a current limitation of the GDScript debugger.
  */
 @GodotBaseType
-open class Thread : Reference() {
-  override fun __new() {
+public open class Thread : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS__THREAD)
   }
 
   /**
    * Returns the current [godot.Thread]'s ID, uniquely identifying it among all threads. If the [godot.Thread] is not running this returns an empty string.
    */
-  open fun getId(): String {
+  public open fun getId(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__THREAD_GET_ID, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -49,7 +50,7 @@ open class Thread : Reference() {
   /**
    * Returns `true` if this [godot.Thread] is currently active. An active [godot.Thread] cannot start work on a new method but can be joined with [waitToFinish].
    */
-  open fun isActive(): Boolean {
+  public open fun isActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__THREAD_IS_ACTIVE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -60,7 +61,7 @@ open class Thread : Reference() {
    *
    * Returns [OK] on success, or [ERR_CANT_CREATE] on failure.
    */
-  open fun start(
+  public open fun start(
     instance: Object,
     method: String,
     userdata: Any? = null,
@@ -75,54 +76,53 @@ open class Thread : Reference() {
   /**
    * Joins the [godot.Thread] and waits for it to finish. Returns what the method called returned.
    */
-  open fun waitToFinish(): Any? {
+  public open fun waitToFinish(): Any? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__THREAD_WAIT_TO_FINISH, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
-  enum class Priority(
+  public enum class Priority(
     id: Long
   ) {
     /**
      * A thread running with lower priority than normally.
      */
     PRIORITY_LOW(0),
-
     /**
      * A thread with a standard priority.
      */
     PRIORITY_NORMAL(1),
-
     /**
      * A thread running with higher priority than normally.
      */
-    PRIORITY_HIGH(2);
+    PRIORITY_HIGH(2),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * A thread running with higher priority than normally.
      */
-    final const val PRIORITY_HIGH: Long = 2
+    public final const val PRIORITY_HIGH: Long = 2
 
     /**
      * A thread running with lower priority than normally.
      */
-    final const val PRIORITY_LOW: Long = 0
+    public final const val PRIORITY_LOW: Long = 0
 
     /**
      * A thread with a standard priority.
      */
-    final const val PRIORITY_NORMAL: Long = 1
+    public final const val PRIORITY_NORMAL: Long = 1
   }
 }

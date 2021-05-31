@@ -5,12 +5,13 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import kotlin.Double
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Adds a reverberation audio effect to an Audio bus.
@@ -23,18 +24,18 @@ import kotlin.Suppress
  * Simulates rooms of different sizes. Its parameters can be adjusted to simulate the sound of a specific room.
  */
 @GodotBaseType
-open class AudioEffectReverb : AudioEffect() {
+public open class AudioEffectReverb : AudioEffect() {
   /**
    * Defines how reflective the imaginary room's walls are. Value can range from 0 to 1.
    */
-  open var damping: Double
+  public open var damping: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_DAMPING,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_DAMPING,
           NIL)
@@ -43,13 +44,13 @@ open class AudioEffectReverb : AudioEffect() {
   /**
    * Output percent of original sound. At 0, only modified sound is outputted. Value can range from 0 to 1.
    */
-  open var dry: Double
+  public open var dry: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_DRY, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_DRY, NIL)
     }
@@ -57,14 +58,14 @@ open class AudioEffectReverb : AudioEffect() {
   /**
    * High-pass filter passes signals with a frequency higher than a certain cutoff frequency and attenuates signals with frequencies lower than the cutoff frequency. Value can range from 0 to 1.
    */
-  open var hipass: Double
+  public open var hipass: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_HIPASS,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_HIPASS, NIL)
     }
@@ -72,14 +73,14 @@ open class AudioEffectReverb : AudioEffect() {
   /**
    * Output percent of predelay. Value can range from 0 to 1.
    */
-  open var predelayFeedback: Double
+  public open var predelayFeedback: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_PREDELAY_FEEDBACK, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_PREDELAY_FEEDBACK, NIL)
@@ -88,14 +89,14 @@ open class AudioEffectReverb : AudioEffect() {
   /**
    * Time between the original signal and the early reflections of the reverb signal, in milliseconds.
    */
-  open var predelayMsec: Double
+  public open var predelayMsec: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_PREDELAY_MSEC, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_PREDELAY_MSEC, NIL)
@@ -104,14 +105,14 @@ open class AudioEffectReverb : AudioEffect() {
   /**
    * Dimensions of simulated room. Bigger means more echoes. Value can range from 0 to 1.
    */
-  open var roomSize: Double
+  public open var roomSize: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_ROOM_SIZE,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_ROOM_SIZE,
           NIL)
@@ -120,14 +121,14 @@ open class AudioEffectReverb : AudioEffect() {
   /**
    * Widens or narrows the stereo image of the reverb tail. 1 means fully widens. Value can range from 0 to 1.
    */
-  open var spread: Double
+  public open var spread: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_SPREAD,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_SPREAD, NIL)
     }
@@ -135,18 +136,18 @@ open class AudioEffectReverb : AudioEffect() {
   /**
    * Output percent of modified sound. At 0, only original sound is outputted. Value can range from 0 to 1.
    */
-  open var wet: Double
+  public open var wet: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_WET, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_WET, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTREVERB)
   }
 }

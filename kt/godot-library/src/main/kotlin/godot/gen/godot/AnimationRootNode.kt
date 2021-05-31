@@ -5,15 +5,16 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
-open class AnimationRootNode : AnimationNode() {
-  override fun __new() {
+public open class AnimationRootNode : AnimationNode() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ANIMATIONROOTNODE)
   }
 }

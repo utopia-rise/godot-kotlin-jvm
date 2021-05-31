@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.TransferContext
@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * An abstraction of a serialized scene.
@@ -66,22 +67,22 @@ import kotlin.Suppress
  * 		```
  */
 @GodotBaseType
-open class PackedScene : Resource() {
-  override fun __new() {
+public open class PackedScene : Resource() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PACKEDSCENE)
   }
 
-  open fun _getBundledScene(): Dictionary<Any?, Any?> {
+  public open fun _getBundledScene(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_bundled_scene is not implemented for PackedScene")
   }
 
-  open fun _setBundledScene(arg0: Dictionary<Any?, Any?>) {
+  public open fun _setBundledScene(arg0: Dictionary<Any?, Any?>): Unit {
   }
 
   /**
    * Returns `true` if the scene file has nodes.
    */
-  open fun canInstance(): Boolean {
+  public open fun canInstance(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDSCENE_CAN_INSTANCE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -90,7 +91,7 @@ open class PackedScene : Resource() {
   /**
    * Returns the `SceneState` representing the scene file contents.
    */
-  open fun getState(): SceneState? {
+  public open fun getState(): SceneState? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDSCENE_GET_STATE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as SceneState?
@@ -99,7 +100,7 @@ open class PackedScene : Resource() {
   /**
    * Instantiates the scene's node hierarchy. Triggers child scene instantiation(s). Triggers a [godot.Node.NOTIFICATION_INSTANCED] notification on the root node.
    */
-  open fun instance(editState: Long = 0): Node? {
+  public open fun instance(editState: Long = 0): Node? {
     TransferContext.writeArguments(LONG to editState)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDSCENE_INSTANCE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
@@ -108,62 +109,61 @@ open class PackedScene : Resource() {
   /**
    * Pack will ignore any sub-nodes not owned by given node. See [godot.Node.owner].
    */
-  open fun pack(path: Node): GodotError {
+  public open fun pack(path: Node): GodotError {
     TransferContext.writeArguments(OBJECT to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDSCENE_PACK, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  enum class GenEditState(
+  public enum class GenEditState(
     id: Long
   ) {
     /**
      * If passed to [instance], blocks edits to the scene state.
      */
     GEN_EDIT_STATE_DISABLED(0),
-
     /**
      * If passed to [instance], provides local scene resources to the local scene.
      *
      * **Note:** Only available in editor builds.
      */
     GEN_EDIT_STATE_INSTANCE(1),
-
     /**
      * If passed to [instance], provides local scene resources to the local scene. Only the main scene should receive the main edit state.
      *
      * **Note:** Only available in editor builds.
      */
-    GEN_EDIT_STATE_MAIN(2);
+    GEN_EDIT_STATE_MAIN(2),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * If passed to [instance], blocks edits to the scene state.
      */
-    final const val GEN_EDIT_STATE_DISABLED: Long = 0
+    public final const val GEN_EDIT_STATE_DISABLED: Long = 0
 
     /**
      * If passed to [instance], provides local scene resources to the local scene.
      *
      * **Note:** Only available in editor builds.
      */
-    final const val GEN_EDIT_STATE_INSTANCE: Long = 1
+    public final const val GEN_EDIT_STATE_INSTANCE: Long = 1
 
     /**
      * If passed to [instance], provides local scene resources to the local scene. Only the main scene should receive the main edit state.
      *
      * **Note:** Only available in editor builds.
      */
-    final const val GEN_EDIT_STATE_MAIN: Long = 2
+    public final const val GEN_EDIT_STATE_MAIN: Long = 2
   }
 }

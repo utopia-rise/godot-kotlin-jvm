@@ -5,12 +5,13 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.STRING
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Post-processes scenes after import.
@@ -42,15 +43,15 @@ import kotlin.Suppress
  * 		```
  */
 @GodotBaseType
-open class EditorScenePostImport : Reference() {
-  override fun __new() {
+public open class EditorScenePostImport : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORSCENEPOSTIMPORT)
   }
 
   /**
    * Returns the source file path which got imported (e.g. `res://scene.dae`).
    */
-  open fun getSourceFile(): String {
+  public open fun getSourceFile(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSCENEPOSTIMPORT_GET_SOURCE_FILE, STRING)
@@ -60,7 +61,7 @@ open class EditorScenePostImport : Reference() {
   /**
    * Returns the resource folder the imported scene file is located in.
    */
-  open fun getSourceFolder(): String {
+  public open fun getSourceFolder(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSCENEPOSTIMPORT_GET_SOURCE_FOLDER, STRING)
@@ -70,7 +71,7 @@ open class EditorScenePostImport : Reference() {
   /**
    * Called after the scene was imported. This method must return the modified version of the scene.
    */
-  open fun _postImport(scene: Object): Object? {
+  public open fun _postImport(scene: Object): Object? {
     throw NotImplementedError("post_import is not implemented for EditorScenePostImport")
   }
 }

@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Adds a band limit filter to the audio bus.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Limits the frequencies in a range around the [godot.AudioEffectFilter.cutoffHz] and allows frequencies outside of this range to pass.
  */
 @GodotBaseType
-open class AudioEffectBandLimitFilter : AudioEffectFilter() {
-  override fun __new() {
+public open class AudioEffectBandLimitFilter : AudioEffectFilter() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTBANDLIMITFILTER)
   }
 }

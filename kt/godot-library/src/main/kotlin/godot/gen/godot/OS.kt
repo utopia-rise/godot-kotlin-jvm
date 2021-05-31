@@ -6,8 +6,8 @@
 package godot
 
 import godot.OS
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.PoolStringArray
@@ -48,7 +48,7 @@ import kotlin.Unit
  * Operating System functions. OS wraps the most common functionality to communicate with the host operating system, such as the clipboard, video driver, date and time, timers, environment variables, execution of binaries, command line, etc.
  */
 @GodotBaseType
-object OS : Object() {
+public object OS : Object() {
   /**
    * Application handle:
    *
@@ -58,109 +58,109 @@ object OS : Object() {
    *
    * - Android: `JNIEnv*` of the application (not yet implemented)
    */
-  final const val APPLICATION_HANDLE: Long = 0
+  public final const val APPLICATION_HANDLE: Long = 0
 
   /**
    * Friday.
    */
-  final const val DAY_FRIDAY: Long = 5
+  public final const val DAY_FRIDAY: Long = 5
 
   /**
    * Monday.
    */
-  final const val DAY_MONDAY: Long = 1
+  public final const val DAY_MONDAY: Long = 1
 
   /**
    * Saturday.
    */
-  final const val DAY_SATURDAY: Long = 6
+  public final const val DAY_SATURDAY: Long = 6
 
   /**
    * Sunday.
    */
-  final const val DAY_SUNDAY: Long = 0
+  public final const val DAY_SUNDAY: Long = 0
 
   /**
    * Thursday.
    */
-  final const val DAY_THURSDAY: Long = 4
+  public final const val DAY_THURSDAY: Long = 4
 
   /**
    * Tuesday.
    */
-  final const val DAY_TUESDAY: Long = 2
+  public final const val DAY_TUESDAY: Long = 2
 
   /**
    * Wednesday.
    */
-  final const val DAY_WEDNESDAY: Long = 3
+  public final const val DAY_WEDNESDAY: Long = 3
 
   /**
    * Display handle:
    *
    * - Linux: `X11::Display*` for the display
    */
-  final const val DISPLAY_HANDLE: Long = 1
+  public final const val DISPLAY_HANDLE: Long = 1
 
   /**
    * April.
    */
-  final const val MONTH_APRIL: Long = 4
+  public final const val MONTH_APRIL: Long = 4
 
   /**
    * August.
    */
-  final const val MONTH_AUGUST: Long = 8
+  public final const val MONTH_AUGUST: Long = 8
 
   /**
    * December.
    */
-  final const val MONTH_DECEMBER: Long = 12
+  public final const val MONTH_DECEMBER: Long = 12
 
   /**
    * February.
    */
-  final const val MONTH_FEBRUARY: Long = 2
+  public final const val MONTH_FEBRUARY: Long = 2
 
   /**
    * January.
    */
-  final const val MONTH_JANUARY: Long = 1
+  public final const val MONTH_JANUARY: Long = 1
 
   /**
    * July.
    */
-  final const val MONTH_JULY: Long = 7
+  public final const val MONTH_JULY: Long = 7
 
   /**
    * June.
    */
-  final const val MONTH_JUNE: Long = 6
+  public final const val MONTH_JUNE: Long = 6
 
   /**
    * March.
    */
-  final const val MONTH_MARCH: Long = 3
+  public final const val MONTH_MARCH: Long = 3
 
   /**
    * May.
    */
-  final const val MONTH_MAY: Long = 5
+  public final const val MONTH_MAY: Long = 5
 
   /**
    * November.
    */
-  final const val MONTH_NOVEMBER: Long = 11
+  public final const val MONTH_NOVEMBER: Long = 11
 
   /**
    * October.
    */
-  final const val MONTH_OCTOBER: Long = 10
+  public final const val MONTH_OCTOBER: Long = 10
 
   /**
    * September.
    */
-  final const val MONTH_SEPTEMBER: Long = 9
+  public final const val MONTH_SEPTEMBER: Long = 9
 
   /**
    * OpenGL Context:
@@ -171,117 +171,117 @@ object OS : Object() {
    *
    * - MacOS: `NSOpenGLContext*` (not yet implemented)
    */
-  final const val OPENGL_CONTEXT: Long = 4
+  public final const val OPENGL_CONTEXT: Long = 4
 
   /**
    * Plugged in, battery fully charged.
    */
-  final const val POWERSTATE_CHARGED: Long = 4
+  public final const val POWERSTATE_CHARGED: Long = 4
 
   /**
    * Plugged in, battery charging.
    */
-  final const val POWERSTATE_CHARGING: Long = 3
+  public final const val POWERSTATE_CHARGING: Long = 3
 
   /**
    * Plugged in, no battery available.
    */
-  final const val POWERSTATE_NO_BATTERY: Long = 2
+  public final const val POWERSTATE_NO_BATTERY: Long = 2
 
   /**
    * Unplugged, running on battery.
    */
-  final const val POWERSTATE_ON_BATTERY: Long = 1
+  public final const val POWERSTATE_ON_BATTERY: Long = 1
 
   /**
    * Unknown powerstate.
    */
-  final const val POWERSTATE_UNKNOWN: Long = 0
+  public final const val POWERSTATE_UNKNOWN: Long = 0
 
   /**
    * Landscape screen orientation.
    */
-  final const val SCREEN_ORIENTATION_LANDSCAPE: Long = 0
+  public final const val SCREEN_ORIENTATION_LANDSCAPE: Long = 0
 
   /**
    * Portrait screen orientation.
    */
-  final const val SCREEN_ORIENTATION_PORTRAIT: Long = 1
+  public final const val SCREEN_ORIENTATION_PORTRAIT: Long = 1
 
   /**
    * Reverse landscape screen orientation.
    */
-  final const val SCREEN_ORIENTATION_REVERSE_LANDSCAPE: Long = 2
+  public final const val SCREEN_ORIENTATION_REVERSE_LANDSCAPE: Long = 2
 
   /**
    * Reverse portrait screen orientation.
    */
-  final const val SCREEN_ORIENTATION_REVERSE_PORTRAIT: Long = 3
+  public final const val SCREEN_ORIENTATION_REVERSE_PORTRAIT: Long = 3
 
   /**
    * Uses most suitable orientation based on the hardware sensor.
    */
-  final const val SCREEN_ORIENTATION_SENSOR: Long = 6
+  public final const val SCREEN_ORIENTATION_SENSOR: Long = 6
 
   /**
    * Uses landscape or reverse landscape based on the hardware sensor.
    */
-  final const val SCREEN_ORIENTATION_SENSOR_LANDSCAPE: Long = 4
+  public final const val SCREEN_ORIENTATION_SENSOR_LANDSCAPE: Long = 4
 
   /**
    * Uses portrait or reverse portrait based on the hardware sensor.
    */
-  final const val SCREEN_ORIENTATION_SENSOR_PORTRAIT: Long = 5
+  public final const val SCREEN_ORIENTATION_SENSOR_PORTRAIT: Long = 5
 
   /**
    * DCIM (Digital Camera Images) directory path.
    */
-  final const val SYSTEM_DIR_DCIM: Long = 1
+  public final const val SYSTEM_DIR_DCIM: Long = 1
 
   /**
    * Desktop directory path.
    */
-  final const val SYSTEM_DIR_DESKTOP: Long = 0
+  public final const val SYSTEM_DIR_DESKTOP: Long = 0
 
   /**
    * Documents directory path.
    */
-  final const val SYSTEM_DIR_DOCUMENTS: Long = 2
+  public final const val SYSTEM_DIR_DOCUMENTS: Long = 2
 
   /**
    * Downloads directory path.
    */
-  final const val SYSTEM_DIR_DOWNLOADS: Long = 3
+  public final const val SYSTEM_DIR_DOWNLOADS: Long = 3
 
   /**
    * Movies directory path.
    */
-  final const val SYSTEM_DIR_MOVIES: Long = 4
+  public final const val SYSTEM_DIR_MOVIES: Long = 4
 
   /**
    * Music directory path.
    */
-  final const val SYSTEM_DIR_MUSIC: Long = 5
+  public final const val SYSTEM_DIR_MUSIC: Long = 5
 
   /**
    * Pictures directory path.
    */
-  final const val SYSTEM_DIR_PICTURES: Long = 6
+  public final const val SYSTEM_DIR_PICTURES: Long = 6
 
   /**
    * Ringtones directory path.
    */
-  final const val SYSTEM_DIR_RINGTONES: Long = 7
+  public final const val SYSTEM_DIR_RINGTONES: Long = 7
 
   /**
    * The GLES2 rendering backend. It uses OpenGL ES 2.0 on mobile devices, OpenGL 2.1 on desktop platforms and WebGL 1.0 on the web.
    */
-  final const val VIDEO_DRIVER_GLES2: Long = 1
+  public final const val VIDEO_DRIVER_GLES2: Long = 1
 
   /**
    * The GLES3 rendering backend. It uses OpenGL ES 3.0 on mobile devices, OpenGL 3.3 on desktop platforms and WebGL 2.0 on the web.
    */
-  final const val VIDEO_DRIVER_GLES3: Long = 0
+  public final const val VIDEO_DRIVER_GLES3: Long = 0
 
   /**
    * Window handle:
@@ -294,7 +294,7 @@ object OS : Object() {
    *
    * - Android: `jObject` the main android activity (not yet implemented)
    */
-  final const val WINDOW_HANDLE: Long = 2
+  public final const val WINDOW_HANDLE: Long = 2
 
   /**
    * Window view:
@@ -303,18 +303,18 @@ object OS : Object() {
    *
    * - MacOS: `NSView*` of the main windows view (not yet implemented)
    */
-  final const val WINDOW_VIEW: Long = 3
+  public final const val WINDOW_VIEW: Long = 3
 
   /**
    * The clipboard from the host OS. Might be unavailable on some platforms.
    */
-  var clipboard: String
+  public var clipboard: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_CLIPBOARD, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_CLIPBOARD, NIL)
     }
@@ -322,13 +322,13 @@ object OS : Object() {
   /**
    * The current screen index (starting from 0).
    */
-  var currentScreen: Long
+  public var currentScreen: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_CURRENT_SCREEN, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_CURRENT_SCREEN, NIL)
     }
@@ -338,13 +338,13 @@ object OS : Object() {
    *
    * **Note:** This value will be ignored if using [godot.SceneTree.quit] with an `exit_code` argument passed.
    */
-  var exitCode: Long
+  public var exitCode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_EXIT_CODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_EXIT_CODE, NIL)
     }
@@ -352,13 +352,13 @@ object OS : Object() {
   /**
    * If `true`, the engine tries to keep the screen on while the game is running. Useful on mobile.
    */
-  var keepScreenOn: Boolean
+  public var keepScreenOn: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_KEEP_SCREEN_ON, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_KEEP_SCREEN_ON, NIL)
     }
@@ -366,14 +366,14 @@ object OS : Object() {
   /**
    * If `true`, the engine optimizes for low processor usage by only refreshing the screen if needed. Can improve battery consumption on mobile.
    */
-  var lowProcessorUsageMode: Boolean
+  public var lowProcessorUsageMode: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_LOW_PROCESSOR_USAGE_MODE,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_LOW_PROCESSOR_USAGE_MODE,
           NIL)
@@ -382,14 +382,14 @@ object OS : Object() {
   /**
    * The amount of sleeping between frames when the low-processor usage mode is enabled (in microseconds). Higher values will result in lower CPU usage.
    */
-  var lowProcessorUsageModeSleepUsec: Long
+  public var lowProcessorUsageModeSleepUsec: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS__OS_GET_LOW_PROCESSOR_USAGE_MODE_SLEEP_USEC, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS__OS_SET_LOW_PROCESSOR_USAGE_MODE_SLEEP_USEC, NIL)
@@ -398,13 +398,13 @@ object OS : Object() {
   /**
    * The maximum size of the window (without counting window manager decorations). Does not affect fullscreen mode. Set to `(0, 0)` to reset to the system default value.
    */
-  var maxWindowSize: Vector2
+  public var maxWindowSize: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_MAX_WINDOW_SIZE, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_MAX_WINDOW_SIZE, NIL)
     }
@@ -412,13 +412,13 @@ object OS : Object() {
   /**
    * The minimum size of the window (without counting window manager decorations). Does not affect fullscreen mode. Set to `(0, 0)` to reset to the system default value.
    */
-  var minWindowSize: Vector2
+  public var minWindowSize: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_MIN_WINDOW_SIZE, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_MIN_WINDOW_SIZE, NIL)
     }
@@ -426,13 +426,13 @@ object OS : Object() {
   /**
    * The current screen orientation.
    */
-  var screenOrientation: Long
+  public var screenOrientation: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_SCREEN_ORIENTATION, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_SCREEN_ORIENTATION, NIL)
     }
@@ -440,13 +440,13 @@ object OS : Object() {
   /**
    * The current tablet driver in use.
    */
-  var tabletDriver: String
+  public var tabletDriver: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_TABLET_DRIVER, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_TABLET_DRIVER, NIL)
     }
@@ -454,13 +454,13 @@ object OS : Object() {
   /**
    * If `true`, vertical synchronization (Vsync) is enabled.
    */
-  var vsyncEnabled: Boolean
+  public var vsyncEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_VSYNC_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_VSYNC_ENABLED, NIL)
     }
@@ -472,14 +472,14 @@ object OS : Object() {
    *
    * **Note:** This property is only implemented on Windows.
    */
-  var vsyncViaCompositor: Boolean
+  public var vsyncViaCompositor: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_VSYNC_VIA_COMPOSITOR,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_VSYNC_VIA_COMPOSITOR, NIL)
     }
@@ -489,13 +489,13 @@ object OS : Object() {
    *
    * **Note:** Setting `window_borderless` to `false` disables per-pixel transparency.
    */
-  var windowBorderless: Boolean
+  public var windowBorderless: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_WINDOW_BORDERLESS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_WINDOW_BORDERLESS, NIL)
     }
@@ -503,13 +503,13 @@ object OS : Object() {
   /**
    * If `true`, the window is fullscreen.
    */
-  var windowFullscreen: Boolean
+  public var windowFullscreen: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_WINDOW_FULLSCREEN, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_WINDOW_FULLSCREEN, NIL)
     }
@@ -517,13 +517,13 @@ object OS : Object() {
   /**
    * If `true`, the window is maximized.
    */
-  var windowMaximized: Boolean
+  public var windowMaximized: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_WINDOW_MAXIMIZED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_WINDOW_MAXIMIZED, NIL)
     }
@@ -531,13 +531,13 @@ object OS : Object() {
   /**
    * If `true`, the window is minimized.
    */
-  var windowMinimized: Boolean
+  public var windowMinimized: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_WINDOW_MINIMIZED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_WINDOW_MINIMIZED, NIL)
     }
@@ -551,14 +551,14 @@ object OS : Object() {
    *
    * **Note:** This property is implemented on HTML5, Linux, macOS and Windows.
    */
-  var windowPerPixelTransparencyEnabled: Boolean
+  public var windowPerPixelTransparencyEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS__OS_GET_WINDOW_PER_PIXEL_TRANSPARENCY_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS__OS_SET_WINDOW_PER_PIXEL_TRANSPARENCY_ENABLED, NIL)
@@ -567,13 +567,13 @@ object OS : Object() {
   /**
    * The window position relative to the screen, the origin is the top left corner, +Y axis goes to the bottom and +X axis goes to the right.
    */
-  var windowPosition: Vector2
+  public var windowPosition: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_WINDOW_POSITION, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_WINDOW_POSITION, NIL)
     }
@@ -581,13 +581,13 @@ object OS : Object() {
   /**
    * If `true`, the window is resizable by the user.
    */
-  var windowResizable: Boolean
+  public var windowResizable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_WINDOW_RESIZABLE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_WINDOW_RESIZABLE, NIL)
     }
@@ -595,46 +595,46 @@ object OS : Object() {
   /**
    * The size of the window (without counting window manager decorations).
    */
-  var windowSize: Vector2
+  public var windowSize: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_WINDOW_SIZE, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_WINDOW_SIZE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     rawPtr = TransferContext.getSingleton(ENGINESINGLETON_OS)
   }
 
-  override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
+  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   @CoreTypeHelper
-  fun maxWindowSize(schedule: Vector2.() -> Unit): Vector2 = maxWindowSize.apply{
+  public fun maxWindowSize(schedule: Vector2.() -> Unit): Vector2 = maxWindowSize.apply{
       schedule(this)
       maxWindowSize = this
   }
 
 
   @CoreTypeHelper
-  fun minWindowSize(schedule: Vector2.() -> Unit): Vector2 = minWindowSize.apply{
+  public fun minWindowSize(schedule: Vector2.() -> Unit): Vector2 = minWindowSize.apply{
       schedule(this)
       minWindowSize = this
   }
 
 
   @CoreTypeHelper
-  fun windowPosition(schedule: Vector2.() -> Unit): Vector2 = windowPosition.apply{
+  public fun windowPosition(schedule: Vector2.() -> Unit): Vector2 = windowPosition.apply{
       schedule(this)
       windowPosition = this
   }
 
 
   @CoreTypeHelper
-  fun windowSize(schedule: Vector2.() -> Unit): Vector2 = windowSize.apply{
+  public fun windowSize(schedule: Vector2.() -> Unit): Vector2 = windowSize.apply{
       schedule(this)
       windowSize = this
   }
@@ -643,7 +643,7 @@ object OS : Object() {
   /**
    * Displays a modal dialog box using the host OS' facilities. Execution is blocked until the dialog is closed.
    */
-  fun alert(text: String, title: String = "Alert!") {
+  public fun alert(text: String, title: String = "Alert!"): Unit {
     TransferContext.writeArguments(STRING to text, STRING to title)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_ALERT, NIL)
   }
@@ -651,7 +651,7 @@ object OS : Object() {
   /**
    * Returns `true` if the host OS allows drawing.
    */
-  fun canDraw(): Boolean {
+  public fun canDraw(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_CAN_DRAW, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -660,7 +660,7 @@ object OS : Object() {
   /**
    * Returns `true` if the current host platform is using multiple threads.
    */
-  fun canUseThreads(): Boolean {
+  public fun canUseThreads(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_CAN_USE_THREADS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -669,7 +669,7 @@ object OS : Object() {
   /**
    * Centers the window on the screen if in windowed mode.
    */
-  fun centerWindow() {
+  public fun centerWindow(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_CENTER_WINDOW, NIL)
   }
@@ -679,7 +679,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  fun closeMidiInputs() {
+  public fun closeMidiInputs(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_CLOSE_MIDI_INPUTS, NIL)
   }
@@ -687,7 +687,7 @@ object OS : Object() {
   /**
    * Delay execution of the current thread by `msec` milliseconds. `usec` must be greater than or equal to `0`. Otherwise, [delayMsec] will do nothing and will print an error message.
    */
-  fun delayMsec(msec: Long) {
+  public fun delayMsec(msec: Long): Unit {
     TransferContext.writeArguments(LONG to msec)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_DELAY_MSEC, NIL)
   }
@@ -695,7 +695,7 @@ object OS : Object() {
   /**
    * Delay execution of the current thread by `usec` microseconds. `usec` must be greater than or equal to `0`. Otherwise, [delayUsec] will do nothing and will print an error message.
    */
-  fun delayUsec(usec: Long) {
+  public fun delayUsec(usec: Long): Unit {
     TransferContext.writeArguments(LONG to usec)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_DELAY_USEC, NIL)
   }
@@ -705,7 +705,7 @@ object OS : Object() {
    *
    * Entry format per line: "Address - Size - Description".
    */
-  fun dumpMemoryToFile(file: String) {
+  public fun dumpMemoryToFile(`file`: String): Unit {
     TransferContext.writeArguments(STRING to file)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_DUMP_MEMORY_TO_FILE, NIL)
   }
@@ -717,7 +717,7 @@ object OS : Object() {
    *
    * At the end of the file is a statistic of all used Resource Types.
    */
-  fun dumpResourcesToFile(file: String) {
+  public fun dumpResourcesToFile(`file`: String): Unit {
     TransferContext.writeArguments(STRING to file)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_DUMP_RESOURCES_TO_FILE, NIL)
   }
@@ -756,7 +756,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
    */
-  fun execute(
+  public fun execute(
     path: String,
     arguments: PoolStringArray,
     blocking: Boolean = true,
@@ -772,7 +772,7 @@ object OS : Object() {
   /**
    * Returns the scancode of the given string (e.g. "Escape").
    */
-  fun findScancodeFromString(string: String): Long {
+  public fun findScancodeFromString(string: String): Long {
     TransferContext.writeArguments(STRING to string)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_FIND_SCANCODE_FROM_STRING, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -781,7 +781,7 @@ object OS : Object() {
   /**
    * Returns the total number of available audio drivers.
    */
-  fun getAudioDriverCount(): Long {
+  public fun getAudioDriverCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_AUDIO_DRIVER_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -790,7 +790,7 @@ object OS : Object() {
   /**
    * Returns the audio driver name for the given index.
    */
-  fun getAudioDriverName(driver: Long): String {
+  public fun getAudioDriverName(driver: Long): String {
     TransferContext.writeArguments(LONG to driver)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_AUDIO_DRIVER_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -815,7 +815,7 @@ object OS : Object() {
    * 				        arguments[key_value[0].lstrip("--")] = key_value[1]
    * 				```
    */
-  fun getCmdlineArgs(): PoolStringArray {
+  public fun getCmdlineArgs(): PoolStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_CMDLINE_ARGS,
         POOL_STRING_ARRAY)
@@ -829,7 +829,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  fun getConnectedMidiInputs(): PoolStringArray {
+  public fun getConnectedMidiInputs(): PoolStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_CONNECTED_MIDI_INPUTS,
         POOL_STRING_ARRAY)
@@ -839,7 +839,7 @@ object OS : Object() {
   /**
    * Returns the currently used video driver, using one of the values from [enum VideoDriver].
    */
-  fun getCurrentVideoDriver(): OS.VideoDriver {
+  public fun getCurrentVideoDriver(): OS.VideoDriver {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_CURRENT_VIDEO_DRIVER, LONG)
     return OS.VideoDriver.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -848,7 +848,7 @@ object OS : Object() {
   /**
    * Returns current date as a dictionary of keys: `year`, `month`, `day`, `weekday`, `dst` (Daylight Savings Time).
    */
-  fun getDate(utc: Boolean = false): Dictionary<Any?, Any?> {
+  public fun getDate(utc: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to utc)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_DATE, DICTIONARY)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
@@ -857,7 +857,7 @@ object OS : Object() {
   /**
    * Returns current datetime as a dictionary of keys: `year`, `month`, `day`, `weekday`, `dst` (Daylight Savings Time), `hour`, `minute`, `second`.
    */
-  fun getDatetime(utc: Boolean = false): Dictionary<Any?, Any?> {
+  public fun getDatetime(utc: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to utc)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_DATETIME, DICTIONARY)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
@@ -868,7 +868,7 @@ object OS : Object() {
    *
    * The returned Dictionary's values will be the same as [getDatetime], with the exception of Daylight Savings Time as it cannot be determined from the epoch.
    */
-  fun getDatetimeFromUnixTime(unixTimeVal: Long): Dictionary<Any?, Any?> {
+  public fun getDatetimeFromUnixTime(unixTimeVal: Long): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to unixTimeVal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_DATETIME_FROM_UNIX_TIME,
         DICTIONARY)
@@ -878,7 +878,7 @@ object OS : Object() {
   /**
    * Returns the total amount of dynamic memory used (only works in debug).
    */
-  fun getDynamicMemoryUsage(): Long {
+  public fun getDynamicMemoryUsage(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_DYNAMIC_MEMORY_USAGE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -889,7 +889,7 @@ object OS : Object() {
    *
    * **Note:** Double-check the casing of `variable`. Environment variable names are case-sensitive on all platforms except Windows.
    */
-  fun getEnvironment(variable: String): String {
+  public fun getEnvironment(variable: String): String {
     TransferContext.writeArguments(STRING to variable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_ENVIRONMENT, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -898,7 +898,7 @@ object OS : Object() {
   /**
    * Returns the path to the current engine executable.
    */
-  fun getExecutablePath(): String {
+  public fun getExecutablePath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_EXECUTABLE_PATH, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -909,7 +909,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Android.
    */
-  fun getGrantedPermissions(): PoolStringArray {
+  public fun getGrantedPermissions(): PoolStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_GRANTED_PERMISSIONS,
         POOL_STRING_ARRAY)
@@ -923,7 +923,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  fun getImeSelection(): Vector2 {
+  public fun getImeSelection(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_IME_SELECTION, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -936,7 +936,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  fun getImeText(): String {
+  public fun getImeText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_IME_TEXT, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -949,7 +949,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows. Returns `"QWERTY"` on unsupported platforms.
    */
-  fun getLatinKeyboardVariant(): String {
+  public fun getLatinKeyboardVariant(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_LATIN_KEYBOARD_VARIANT,
         STRING)
@@ -959,7 +959,7 @@ object OS : Object() {
   /**
    * Returns the host OS locale.
    */
-  fun getLocale(): String {
+  public fun getLocale(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_LOCALE, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -970,7 +970,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Android and iOS. Returns `"GenericDevice"` on unsupported platforms.
    */
-  fun getModelName(): String {
+  public fun getModelName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_MODEL_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -979,7 +979,7 @@ object OS : Object() {
   /**
    * Returns the name of the host OS. Possible values are: `"Android"`, `"iOS"`, `"HTML5"`, `"OSX"`, `"Server"`, `"Windows"`, `"UWP"`, `"X11"`.
    */
-  fun getName(): String {
+  public fun getName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -990,7 +990,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Linux and Windows (other OSs will soon be supported).
    */
-  fun getNativeHandle(handleType: Long): Long {
+  public fun getNativeHandle(handleType: Long): Long {
     TransferContext.writeArguments(LONG to handleType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_NATIVE_HANDLE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1001,7 +1001,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  fun getPowerPercentLeft(): Long {
+  public fun getPowerPercentLeft(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_POWER_PERCENT_LEFT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1012,7 +1012,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  fun getPowerSecondsLeft(): Long {
+  public fun getPowerSecondsLeft(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_POWER_SECONDS_LEFT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1023,7 +1023,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  fun getPowerState(): OS.PowerState {
+  public fun getPowerState(): OS.PowerState {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_POWER_STATE, LONG)
     return OS.PowerState.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -1034,7 +1034,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
    */
-  fun getProcessId(): Long {
+  public fun getProcessId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_PROCESS_ID, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1043,7 +1043,7 @@ object OS : Object() {
   /**
    * Returns the number of threads available on the host machine.
    */
-  fun getProcessorCount(): Long {
+  public fun getProcessorCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_PROCESSOR_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1052,7 +1052,7 @@ object OS : Object() {
   /**
    * Returns the window size including decorations like window borders.
    */
-  fun getRealWindowSize(): Vector2 {
+  public fun getRealWindowSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_REAL_WINDOW_SIZE, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -1063,7 +1063,7 @@ object OS : Object() {
    *
    * See also [godot.InputEventKey.scancode] and [godot.InputEventKey.getScancodeWithModifiers].
    */
-  fun getScancodeString(code: Long): String {
+  public fun getScancodeString(code: Long): String {
     TransferContext.writeArguments(LONG to code)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_SCANCODE_STRING, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -1072,7 +1072,7 @@ object OS : Object() {
   /**
    * Returns the number of displays attached to the host machine.
    */
-  fun getScreenCount(): Long {
+  public fun getScreenCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_SCREEN_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1096,7 +1096,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Android, Linux, macOS and Windows. Returns `72` on unsupported platforms.
    */
-  fun getScreenDpi(screen: Long = -1): Long {
+  public fun getScreenDpi(screen: Long = -1): Long {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_SCREEN_DPI, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1109,7 +1109,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  fun getScreenMaxScale(): Double {
+  public fun getScreenMaxScale(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_SCREEN_MAX_SCALE, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -1118,7 +1118,7 @@ object OS : Object() {
   /**
    * Returns the position of the specified screen by index. If `screen` is `-1` (the default value), the current screen will be used.
    */
-  fun getScreenPosition(screen: Long = -1): Vector2 {
+  public fun getScreenPosition(screen: Long = -1): Vector2 {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_SCREEN_POSITION, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -1131,7 +1131,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  fun getScreenScale(screen: Long = -1): Double {
+  public fun getScreenScale(screen: Long = -1): Double {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_SCREEN_SCALE, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -1140,7 +1140,7 @@ object OS : Object() {
   /**
    * Returns the dimensions in pixels of the specified screen. If `screen` is `-1` (the default value), the current screen will be used.
    */
-  fun getScreenSize(screen: Long = -1): Vector2 {
+  public fun getScreenSize(screen: Long = -1): Vector2 {
     TransferContext.writeArguments(LONG to screen)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_SCREEN_SIZE, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -1149,7 +1149,7 @@ object OS : Object() {
   /**
    * Returns the amount of time in milliseconds it took for the boot logo to appear.
    */
-  fun getSplashTickMsec(): Long {
+  public fun getSplashTickMsec(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_SPLASH_TICK_MSEC, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1158,7 +1158,7 @@ object OS : Object() {
   /**
    * Returns the maximum amount of static memory used (only works in debug).
    */
-  fun getStaticMemoryPeakUsage(): Long {
+  public fun getStaticMemoryPeakUsage(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_STATIC_MEMORY_PEAK_USAGE,
         LONG)
@@ -1168,7 +1168,7 @@ object OS : Object() {
   /**
    * Returns the amount of static memory being used by the program in bytes.
    */
-  fun getStaticMemoryUsage(): Long {
+  public fun getStaticMemoryUsage(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_STATIC_MEMORY_USAGE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1179,7 +1179,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Android, Linux, macOS and Windows.
    */
-  fun getSystemDir(dir: Long): String {
+  public fun getSystemDir(dir: Long): String {
     TransferContext.writeArguments(LONG to dir)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_SYSTEM_DIR, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -1188,7 +1188,7 @@ object OS : Object() {
   /**
    * Returns the epoch time of the operating system in milliseconds.
    */
-  fun getSystemTimeMsecs(): Long {
+  public fun getSystemTimeMsecs(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_SYSTEM_TIME_MSECS, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1197,7 +1197,7 @@ object OS : Object() {
   /**
    * Returns the epoch time of the operating system in seconds.
    */
-  fun getSystemTimeSecs(): Long {
+  public fun getSystemTimeSecs(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_SYSTEM_TIME_SECS, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1208,7 +1208,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Windows.
    */
-  fun getTabletDriverCount(): Long {
+  public fun getTabletDriverCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_TABLET_DRIVER_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1219,7 +1219,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Windows.
    */
-  fun getTabletDriverName(idx: Long): String {
+  public fun getTabletDriverName(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_TABLET_DRIVER_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -1230,7 +1230,7 @@ object OS : Object() {
    *
    * **Note:** Thread IDs are not deterministic and may be reused across application restarts.
    */
-  fun getThreadCallerId(): Long {
+  public fun getThreadCallerId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_THREAD_CALLER_ID, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1239,7 +1239,7 @@ object OS : Object() {
   /**
    * Returns the amount of time passed in milliseconds since the engine started.
    */
-  fun getTicksMsec(): Long {
+  public fun getTicksMsec(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_TICKS_MSEC, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1248,7 +1248,7 @@ object OS : Object() {
   /**
    * Returns the amount of time passed in microseconds since the engine started.
    */
-  fun getTicksUsec(): Long {
+  public fun getTicksUsec(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_TICKS_USEC, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1257,7 +1257,7 @@ object OS : Object() {
   /**
    * Returns current time as a dictionary of keys: hour, minute, second.
    */
-  fun getTime(utc: Boolean = false): Dictionary<Any?, Any?> {
+  public fun getTime(utc: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to utc)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_TIME, DICTIONARY)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
@@ -1266,7 +1266,7 @@ object OS : Object() {
   /**
    * Returns the current time zone as a dictionary with the keys: bias and name.
    */
-  fun getTimeZoneInfo(): Dictionary<Any?, Any?> {
+  public fun getTimeZoneInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_TIME_ZONE_INFO, DICTIONARY)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
@@ -1279,7 +1279,7 @@ object OS : Object() {
    *
    * **Note:** Returns an empty string on HTML5 and UWP, as this method isn't implemented on those platforms yet.
    */
-  fun getUniqueId(): String {
+  public fun getUniqueId(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_UNIQUE_ID, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -1290,7 +1290,7 @@ object OS : Object() {
    *
    * **Important:** This is the system clock that the user can manually set. **Never use** this method for precise time calculation since its results are also subject to automatic adjustments by the operating system. **Always use** [getTicksUsec] or [getTicksMsec] for precise time calculation instead, since they are guaranteed to be monotonic (i.e. never decrease).
    */
-  fun getUnixTime(): Long {
+  public fun getUnixTime(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_UNIX_TIME, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1305,7 +1305,7 @@ object OS : Object() {
    *
    * You can pass the output from [getDatetimeFromUnixTime] directly into this function. Daylight Savings Time (`dst`), if present, is ignored.
    */
-  fun getUnixTimeFromDatetime(datetime: Dictionary<Any?, Any?>): Long {
+  public fun getUnixTimeFromDatetime(datetime: Dictionary<Any?, Any?>): Long {
     TransferContext.writeArguments(DICTIONARY to datetime)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_UNIX_TIME_FROM_DATETIME,
         LONG)
@@ -1323,7 +1323,7 @@ object OS : Object() {
    *
    * If the project name is empty, `user://` falls back to `res://`.
    */
-  fun getUserDataDir(): String {
+  public fun getUserDataDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_USER_DATA_DIR, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -1332,7 +1332,7 @@ object OS : Object() {
   /**
    * Returns the number of video drivers supported on the current platform.
    */
-  fun getVideoDriverCount(): Long {
+  public fun getVideoDriverCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_VIDEO_DRIVER_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1341,7 +1341,7 @@ object OS : Object() {
   /**
    * Returns the name of the video driver matching the given `driver` index. This index is a value from [enum VideoDriver], and you can use [getCurrentVideoDriver] to get the current backend's index.
    */
-  fun getVideoDriverName(driver: Long): String {
+  public fun getVideoDriverName(driver: Long): String {
     TransferContext.writeArguments(LONG to driver)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_VIDEO_DRIVER_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -1350,7 +1350,7 @@ object OS : Object() {
   /**
    * Returns the on-screen keyboard's height in pixels. Returns 0 if there is no keyboard or if it is currently hidden.
    */
-  fun getVirtualKeyboardHeight(): Long {
+  public fun getVirtualKeyboardHeight(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_VIRTUAL_KEYBOARD_HEIGHT,
         LONG)
@@ -1360,7 +1360,7 @@ object OS : Object() {
   /**
    * Returns unobscured area of the window where interactive controls should be rendered.
    */
-  fun getWindowSafeArea(): Rect2 {
+  public fun getWindowSafeArea(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_WINDOW_SAFE_AREA, RECT2)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
@@ -1371,12 +1371,12 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  fun globalMenuAddItem(
+  public fun globalMenuAddItem(
     menu: String,
     label: String,
     id: Any?,
     meta: Any?
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to menu, STRING to label, ANY to id, ANY to meta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GLOBAL_MENU_ADD_ITEM, NIL)
   }
@@ -1386,7 +1386,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  fun globalMenuAddSeparator(menu: String) {
+  public fun globalMenuAddSeparator(menu: String): Unit {
     TransferContext.writeArguments(STRING to menu)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GLOBAL_MENU_ADD_SEPARATOR, NIL)
   }
@@ -1396,7 +1396,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  fun globalMenuClear(menu: String) {
+  public fun globalMenuClear(menu: String): Unit {
     TransferContext.writeArguments(STRING to menu)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GLOBAL_MENU_CLEAR, NIL)
   }
@@ -1406,7 +1406,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on macOS.
    */
-  fun globalMenuRemoveItem(menu: String, idx: Long) {
+  public fun globalMenuRemoveItem(menu: String, idx: Long): Unit {
     TransferContext.writeArguments(STRING to menu, LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GLOBAL_MENU_REMOVE_ITEM, NIL)
   }
@@ -1416,7 +1416,7 @@ object OS : Object() {
    *
    * **Note:** Double-check the casing of `variable`. Environment variable names are case-sensitive on all platforms except Windows.
    */
-  fun hasEnvironment(variable: String): Boolean {
+  public fun hasEnvironment(variable: String): Boolean {
     TransferContext.writeArguments(STRING to variable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_HAS_ENVIRONMENT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1427,7 +1427,7 @@ object OS : Object() {
    *
    * **Note:** Tag names are case-sensitive.
    */
-  fun hasFeature(tagName: String): Boolean {
+  public fun hasFeature(tagName: String): Boolean {
     TransferContext.writeArguments(STRING to tagName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_HAS_FEATURE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1436,7 +1436,7 @@ object OS : Object() {
   /**
    * Returns `true` if the device has a touchscreen or emulates one.
    */
-  fun hasTouchscreenUiHint(): Boolean {
+  public fun hasTouchscreenUiHint(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_HAS_TOUCHSCREEN_UI_HINT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1445,7 +1445,7 @@ object OS : Object() {
   /**
    * Returns `true` if the platform has a virtual keyboard, `false` otherwise.
    */
-  fun hasVirtualKeyboard(): Boolean {
+  public fun hasVirtualKeyboard(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_HAS_VIRTUAL_KEYBOARD, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1454,7 +1454,7 @@ object OS : Object() {
   /**
    * Hides the virtual keyboard if it is shown, does nothing otherwise.
    */
-  fun hideVirtualKeyboard() {
+  public fun hideVirtualKeyboard(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_HIDE_VIRTUAL_KEYBOARD, NIL)
   }
@@ -1466,7 +1466,7 @@ object OS : Object() {
    *
    * To check whether the Godot binary used to run the project is an export template (debug or release), use `OS.has_feature("standalone")` instead.
    */
-  fun isDebugBuild(): Boolean {
+  public fun isDebugBuild(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_IS_DEBUG_BUILD, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1475,7 +1475,7 @@ object OS : Object() {
   /**
    * Returns `true` if the **OK** button should appear on the left and **Cancel** on the right.
    */
-  fun isOkLeftAndCancelRight(): Boolean {
+  public fun isOkLeftAndCancelRight(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_IS_OK_LEFT_AND_CANCEL_RIGHT,
         BOOL)
@@ -1485,7 +1485,7 @@ object OS : Object() {
   /**
    * Returns `true` if the input scancode corresponds to a Unicode character.
    */
-  fun isScancodeUnicode(code: Long): Boolean {
+  public fun isScancodeUnicode(code: Long): Boolean {
     TransferContext.writeArguments(LONG to code)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_IS_SCANCODE_UNICODE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1494,7 +1494,7 @@ object OS : Object() {
   /**
    * Returns `true` if the engine was executed with `-v` (verbose stdout).
    */
-  fun isStdoutVerbose(): Boolean {
+  public fun isStdoutVerbose(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_IS_STDOUT_VERBOSE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1503,7 +1503,7 @@ object OS : Object() {
   /**
    * If `true`, the `user://` file system is persistent, so that its state is the same after a player quits and starts the game again. Relevant to the HTML5 platform, where this persistence may be unavailable.
    */
-  fun isUserfsPersistent(): Boolean {
+  public fun isUserfsPersistent(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_IS_USERFS_PERSISTENT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1512,7 +1512,7 @@ object OS : Object() {
   /**
    * Returns `true` if the window should always be on top of other windows.
    */
-  fun isWindowAlwaysOnTop(): Boolean {
+  public fun isWindowAlwaysOnTop(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_IS_WINDOW_ALWAYS_ON_TOP, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1523,7 +1523,7 @@ object OS : Object() {
    *
    * **Note:** Only implemented on desktop platforms. On other platforms, it will always return `true`.
    */
-  fun isWindowFocused(): Boolean {
+  public fun isWindowFocused(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_IS_WINDOW_FOCUSED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1534,7 +1534,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  fun keyboardGetCurrentLayout(): Long {
+  public fun keyboardGetCurrentLayout(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_KEYBOARD_GET_CURRENT_LAYOUT,
         LONG)
@@ -1546,7 +1546,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  fun keyboardGetLayoutCount(): Long {
+  public fun keyboardGetLayoutCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_KEYBOARD_GET_LAYOUT_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1557,7 +1557,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  fun keyboardGetLayoutLanguage(index: Long): String {
+  public fun keyboardGetLayoutLanguage(index: Long): String {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_KEYBOARD_GET_LAYOUT_LANGUAGE,
         STRING)
@@ -1569,7 +1569,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  fun keyboardGetLayoutName(index: Long): String {
+  public fun keyboardGetLayoutName(index: Long): String {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_KEYBOARD_GET_LAYOUT_NAME,
         STRING)
@@ -1581,7 +1581,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  fun keyboardSetCurrentLayout(index: Long) {
+  public fun keyboardSetCurrentLayout(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_KEYBOARD_SET_CURRENT_LAYOUT,
         NIL)
@@ -1594,7 +1594,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
    */
-  fun kill(pid: Long): GodotError {
+  public fun kill(pid: Long): GodotError {
     TransferContext.writeArguments(LONG to pid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_KILL, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -1605,7 +1605,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  fun moveWindowToForeground() {
+  public fun moveWindowToForeground(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_MOVE_WINDOW_TO_FOREGROUND, NIL)
   }
@@ -1615,7 +1615,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Android and iOS.
    */
-  fun nativeVideoIsPlaying(): Boolean {
+  public fun nativeVideoIsPlaying(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_NATIVE_VIDEO_IS_PLAYING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1626,7 +1626,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Android and iOS.
    */
-  fun nativeVideoPause() {
+  public fun nativeVideoPause(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_NATIVE_VIDEO_PAUSE, NIL)
   }
@@ -1636,7 +1636,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Android and iOS, and the current Android implementation does not support the `volume`, `audio_track` and `subtitle_track` options.
    */
-  fun nativeVideoPlay(
+  public fun nativeVideoPlay(
     path: String,
     volume: Double,
     audioTrack: String,
@@ -1653,7 +1653,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Android and iOS.
    */
-  fun nativeVideoStop() {
+  public fun nativeVideoStop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_NATIVE_VIDEO_STOP, NIL)
   }
@@ -1663,7 +1663,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Android and iOS.
    */
-  fun nativeVideoUnpause() {
+  public fun nativeVideoUnpause(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_NATIVE_VIDEO_UNPAUSE, NIL)
   }
@@ -1673,7 +1673,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  fun openMidiInputs() {
+  public fun openMidiInputs(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_OPEN_MIDI_INPUTS, NIL)
   }
@@ -1681,7 +1681,7 @@ object OS : Object() {
   /**
    * Shows all resources in the game. Optionally, the list can be written to a file by specifying a file path in `tofile`.
    */
-  fun printAllResources(tofile: String = "") {
+  public fun printAllResources(tofile: String = ""): Unit {
     TransferContext.writeArguments(STRING to tofile)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_PRINT_ALL_RESOURCES, NIL)
   }
@@ -1689,7 +1689,7 @@ object OS : Object() {
   /**
    * Shows the list of loaded textures sorted by size in memory.
    */
-  fun printAllTexturesBySize() {
+  public fun printAllTexturesBySize(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_PRINT_ALL_TEXTURES_BY_SIZE, NIL)
   }
@@ -1697,7 +1697,7 @@ object OS : Object() {
   /**
    * Shows the number of resources loaded by the game of the given types.
    */
-  fun printResourcesByType(types: PoolStringArray) {
+  public fun printResourcesByType(types: PoolStringArray): Unit {
     TransferContext.writeArguments(POOL_STRING_ARRAY to types)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_PRINT_RESOURCES_BY_TYPE, NIL)
   }
@@ -1705,7 +1705,7 @@ object OS : Object() {
   /**
    * Shows all resources currently used by the game.
    */
-  fun printResourcesInUse(short: Boolean = false) {
+  public fun printResourcesInUse(short: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to short)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_PRINT_RESOURCES_IN_USE, NIL)
   }
@@ -1715,7 +1715,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  fun requestAttention() {
+  public fun requestAttention(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_REQUEST_ATTENTION, NIL)
   }
@@ -1723,7 +1723,7 @@ object OS : Object() {
   /**
    * At the moment this function is only used by `AudioDriverOpenSL` to request permission for `RECORD_AUDIO` on Android.
    */
-  fun requestPermission(name: String): Boolean {
+  public fun requestPermission(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_REQUEST_PERMISSION, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1734,7 +1734,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Android.
    */
-  fun requestPermissions(): Boolean {
+  public fun requestPermissions(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_REQUEST_PERMISSIONS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1745,7 +1745,7 @@ object OS : Object() {
    *
    * **Note:** Double-check the casing of `variable`. Environment variable names are case-sensitive on all platforms except Windows.
    */
-  fun setEnvironment(variable: String, value: String): Boolean {
+  public fun setEnvironment(variable: String, `value`: String): Boolean {
     TransferContext.writeArguments(STRING to variable, STRING to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_ENVIRONMENT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1758,7 +1758,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on HTML5, Linux, macOS and Windows.
    */
-  fun setIcon(icon: Image) {
+  public fun setIcon(icon: Image): Unit {
     TransferContext.writeArguments(OBJECT to icon)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_ICON, NIL)
   }
@@ -1774,7 +1774,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  fun setImeActive(active: Boolean) {
+  public fun setImeActive(active: Boolean): Unit {
     TransferContext.writeArguments(BOOL to active)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_IME_ACTIVE, NIL)
   }
@@ -1784,7 +1784,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  fun setImePosition(position: Vector2) {
+  public fun setImePosition(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_IME_POSITION, NIL)
   }
@@ -1796,7 +1796,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
-  fun setNativeIcon(filename: String) {
+  public fun setNativeIcon(filename: String): Unit {
     TransferContext.writeArguments(STRING to filename)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_NATIVE_ICON, NIL)
   }
@@ -1804,7 +1804,7 @@ object OS : Object() {
   /**
    * Sets the name of the current thread.
    */
-  fun setThreadName(name: String): GodotError {
+  public fun setThreadName(name: String): GodotError {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_THREAD_NAME, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -1813,7 +1813,7 @@ object OS : Object() {
   /**
    * Enables backup saves if `enabled` is `true`.
    */
-  fun setUseFileAccessSaveAndSwap(enabled: Boolean) {
+  public fun setUseFileAccessSaveAndSwap(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS__OS_SET_USE_FILE_ACCESS_SAVE_AND_SWAP, NIL)
@@ -1824,7 +1824,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  fun setWindowAlwaysOnTop(enabled: Boolean) {
+  public fun setWindowAlwaysOnTop(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_WINDOW_ALWAYS_ON_TOP, NIL)
   }
@@ -1849,7 +1849,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
-  fun setWindowMousePassthrough(region: PoolVector2Array) {
+  public fun setWindowMousePassthrough(region: PoolVector2Array): Unit {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to region)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_WINDOW_MOUSE_PASSTHROUGH,
         NIL)
@@ -1862,7 +1862,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on HTML5, Linux, macOS and Windows.
    */
-  fun setWindowTitle(title: String) {
+  public fun setWindowTitle(title: String): Unit {
     TransferContext.writeArguments(STRING to title)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_WINDOW_TITLE, NIL)
   }
@@ -1880,7 +1880,7 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, HTML5, Linux, macOS and Windows.
    */
-  fun shellOpen(uri: String): GodotError {
+  public fun shellOpen(uri: String): GodotError {
     TransferContext.writeArguments(STRING to uri)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SHELL_OPEN, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -1895,174 +1895,160 @@ object OS : Object() {
    *
    * **Note:** This method is implemented on Android, iOS and UWP.
    */
-  fun showVirtualKeyboard(existingText: String = "", multiline: Boolean = false) {
+  public fun showVirtualKeyboard(existingText: String = "", multiline: Boolean = false): Unit {
     TransferContext.writeArguments(STRING to existingText, BOOL to multiline)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SHOW_VIRTUAL_KEYBOARD, NIL)
   }
 
-  enum class VideoDriver(
+  public enum class VideoDriver(
     id: Long
   ) {
     /**
      * The GLES3 rendering backend. It uses OpenGL ES 3.0 on mobile devices, OpenGL 3.3 on desktop platforms and WebGL 2.0 on the web.
      */
     VIDEO_DRIVER_GLES3(0),
-
     /**
      * The GLES2 rendering backend. It uses OpenGL ES 2.0 on mobile devices, OpenGL 2.1 on desktop platforms and WebGL 1.0 on the web.
      */
-    VIDEO_DRIVER_GLES2(1);
+    VIDEO_DRIVER_GLES2(1),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class SystemDir(
+  public enum class SystemDir(
     id: Long
   ) {
     /**
      * Desktop directory path.
      */
     SYSTEM_DIR_DESKTOP(0),
-
     /**
      * DCIM (Digital Camera Images) directory path.
      */
     SYSTEM_DIR_DCIM(1),
-
     /**
      * Documents directory path.
      */
     SYSTEM_DIR_DOCUMENTS(2),
-
     /**
      * Downloads directory path.
      */
     SYSTEM_DIR_DOWNLOADS(3),
-
     /**
      * Movies directory path.
      */
     SYSTEM_DIR_MOVIES(4),
-
     /**
      * Music directory path.
      */
     SYSTEM_DIR_MUSIC(5),
-
     /**
      * Pictures directory path.
      */
     SYSTEM_DIR_PICTURES(6),
-
     /**
      * Ringtones directory path.
      */
-    SYSTEM_DIR_RINGTONES(7);
+    SYSTEM_DIR_RINGTONES(7),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class ScreenOrientation(
+  public enum class ScreenOrientation(
     id: Long
   ) {
     /**
      * Landscape screen orientation.
      */
     SCREEN_ORIENTATION_LANDSCAPE(0),
-
     /**
      * Portrait screen orientation.
      */
     SCREEN_ORIENTATION_PORTRAIT(1),
-
     /**
      * Reverse landscape screen orientation.
      */
     SCREEN_ORIENTATION_REVERSE_LANDSCAPE(2),
-
     /**
      * Reverse portrait screen orientation.
      */
     SCREEN_ORIENTATION_REVERSE_PORTRAIT(3),
-
     /**
      * Uses landscape or reverse landscape based on the hardware sensor.
      */
     SCREEN_ORIENTATION_SENSOR_LANDSCAPE(4),
-
     /**
      * Uses portrait or reverse portrait based on the hardware sensor.
      */
     SCREEN_ORIENTATION_SENSOR_PORTRAIT(5),
-
     /**
      * Uses most suitable orientation based on the hardware sensor.
      */
-    SCREEN_ORIENTATION_SENSOR(6);
+    SCREEN_ORIENTATION_SENSOR(6),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class PowerState(
+  public enum class PowerState(
     id: Long
   ) {
     /**
      * Unknown powerstate.
      */
     POWERSTATE_UNKNOWN(0),
-
     /**
      * Unplugged, running on battery.
      */
     POWERSTATE_ON_BATTERY(1),
-
     /**
      * Plugged in, no battery available.
      */
     POWERSTATE_NO_BATTERY(2),
-
     /**
      * Plugged in, battery charging.
      */
     POWERSTATE_CHARGING(3),
-
     /**
      * Plugged in, battery fully charged.
      */
-    POWERSTATE_CHARGED(4);
+    POWERSTATE_CHARGED(4),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class HandleType(
+  public enum class HandleType(
     id: Long
   ) {
     /**
@@ -2075,14 +2061,12 @@ object OS : Object() {
      * - Android: `JNIEnv*` of the application (not yet implemented)
      */
     APPLICATION_HANDLE(0),
-
     /**
      * Display handle:
      *
      * - Linux: `X11::Display*` for the display
      */
     DISPLAY_HANDLE(1),
-
     /**
      * Window handle:
      *
@@ -2095,7 +2079,6 @@ object OS : Object() {
      * - Android: `jObject` the main android activity (not yet implemented)
      */
     WINDOW_HANDLE(2),
-
     /**
      * Window view:
      *
@@ -2104,7 +2087,6 @@ object OS : Object() {
      * - MacOS: `NSView*` of the main windows view (not yet implemented)
      */
     WINDOW_VIEW(3),
-
     /**
      * OpenGL Context:
      *
@@ -2114,136 +2096,122 @@ object OS : Object() {
      *
      * - MacOS: `NSOpenGLContext*` (not yet implemented)
      */
-    OPENGL_CONTEXT(4);
+    OPENGL_CONTEXT(4),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class Month(
+  public enum class Month(
     id: Long
   ) {
     /**
      * January.
      */
     MONTH_JANUARY(1),
-
     /**
      * February.
      */
     MONTH_FEBRUARY(2),
-
     /**
      * March.
      */
     MONTH_MARCH(3),
-
     /**
      * April.
      */
     MONTH_APRIL(4),
-
     /**
      * May.
      */
     MONTH_MAY(5),
-
     /**
      * June.
      */
     MONTH_JUNE(6),
-
     /**
      * July.
      */
     MONTH_JULY(7),
-
     /**
      * August.
      */
     MONTH_AUGUST(8),
-
     /**
      * September.
      */
     MONTH_SEPTEMBER(9),
-
     /**
      * October.
      */
     MONTH_OCTOBER(10),
-
     /**
      * November.
      */
     MONTH_NOVEMBER(11),
-
     /**
      * December.
      */
-    MONTH_DECEMBER(12);
+    MONTH_DECEMBER(12),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class Weekday(
+  public enum class Weekday(
     id: Long
   ) {
     /**
      * Sunday.
      */
     DAY_SUNDAY(0),
-
     /**
      * Monday.
      */
     DAY_MONDAY(1),
-
     /**
      * Tuesday.
      */
     DAY_TUESDAY(2),
-
     /**
      * Wednesday.
      */
     DAY_WEDNESDAY(3),
-
     /**
      * Thursday.
      */
     DAY_THURSDAY(4),
-
     /**
      * Friday.
      */
     DAY_FRIDAY(5),
-
     /**
      * Saturday.
      */
-    DAY_SATURDAY(6);
+    DAY_SATURDAY(6),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 }

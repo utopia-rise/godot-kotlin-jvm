@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.TransferContext
 import godot.core.VariantType.JVM_INT
@@ -16,23 +16,24 @@ import godot.signals.signal
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
-open class WebSocketMultiplayerPeer : NetworkedMultiplayerPeer() {
-  val peerPacket: Signal1<Long> by signal("peer_source")
+public open class WebSocketMultiplayerPeer : NetworkedMultiplayerPeer() {
+  public val peerPacket: Signal1<Long> by signal("peer_source")
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_WEBSOCKETMULTIPLAYERPEER)
   }
 
-  open fun getPeer(peerId: Long): WebSocketPeer? {
+  public open fun getPeer(peerId: Long): WebSocketPeer? {
     TransferContext.writeArguments(LONG to peerId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETMULTIPLAYERPEER_GET_PEER,
         OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as WebSocketPeer?
   }
 
-  open fun setBuffers(
+  public open fun setBuffers(
     inputBufferSizeKb: Long,
     inputMaxPackets: Long,
     outputBufferSizeKb: Long,

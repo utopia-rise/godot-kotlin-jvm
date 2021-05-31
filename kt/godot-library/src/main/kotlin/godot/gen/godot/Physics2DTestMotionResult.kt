@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
@@ -15,16 +15,17 @@ import godot.core.VariantType._RID
 import godot.core.Vector2
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
-open class Physics2DTestMotionResult : Reference() {
+public open class Physics2DTestMotionResult : Reference() {
   /**
    *
    */
-  open val collider: Object?
+  public open val collider: Object?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -35,7 +36,7 @@ open class Physics2DTestMotionResult : Reference() {
   /**
    *
    */
-  open val colliderId: Long
+  public open val colliderId: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -46,7 +47,7 @@ open class Physics2DTestMotionResult : Reference() {
   /**
    *
    */
-  open val colliderRid: RID
+  public open val colliderRid: RID
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -57,7 +58,7 @@ open class Physics2DTestMotionResult : Reference() {
   /**
    *
    */
-  open val colliderShape: Long
+  public open val colliderShape: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -68,7 +69,7 @@ open class Physics2DTestMotionResult : Reference() {
   /**
    *
    */
-  open val colliderVelocity: Vector2
+  public open val colliderVelocity: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -79,7 +80,7 @@ open class Physics2DTestMotionResult : Reference() {
   /**
    *
    */
-  open val collisionNormal: Vector2
+  public open val collisionNormal: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -90,7 +91,7 @@ open class Physics2DTestMotionResult : Reference() {
   /**
    *
    */
-  open val collisionPoint: Vector2
+  public open val collisionPoint: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -101,7 +102,7 @@ open class Physics2DTestMotionResult : Reference() {
   /**
    *
    */
-  open val motion: Vector2
+  public open val motion: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -112,7 +113,7 @@ open class Physics2DTestMotionResult : Reference() {
   /**
    *
    */
-  open val motionRemainder: Vector2
+  public open val motionRemainder: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -120,7 +121,7 @@ open class Physics2DTestMotionResult : Reference() {
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PHYSICS2DTESTMOTIONRESULT)
   }
 }

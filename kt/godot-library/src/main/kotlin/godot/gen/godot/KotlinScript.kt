@@ -5,19 +5,20 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import kotlin.Any
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
-open class KotlinScript : Script() {
-  override fun __new() {
+public open class KotlinScript : Script() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_KOTLINSCRIPT)
   }
 
-  open fun new(vararg __var_args: Any?): Any? {
+  public open fun new(vararg __var_args: Any?): Any? {
     TransferContext.writeArguments( *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KOTLINSCRIPT_NEW, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?

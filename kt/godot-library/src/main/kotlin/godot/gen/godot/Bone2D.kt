@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.Transform2D
 import godot.core.VariantType.DOUBLE
@@ -30,17 +30,17 @@ import kotlin.Unit
  * If in the editor, you can set the rest pose of an entire skeleton using a menu option, from the code, you need to iterate over the bones to set their individual rest poses.
  */
 @GodotBaseType
-open class Bone2D : Node2D() {
+public open class Bone2D : Node2D() {
   /**
    * Length of the bone's representation drawn in the editor's viewport in pixels.
    */
-  open var defaultLength: Double
+  public open var defaultLength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_DEFAULT_LENGTH, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_SET_DEFAULT_LENGTH, NIL)
     }
@@ -48,23 +48,23 @@ open class Bone2D : Node2D() {
   /**
    * Rest transform of the bone. You can reset the node's transforms to this value using [applyRest].
    */
-  open var rest: Transform2D
+  public open var rest: Transform2D
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_REST, TRANSFORM2D)
       return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_SET_REST, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_BONE2D)
   }
 
   @CoreTypeHelper
-  open fun rest(schedule: Transform2D.() -> Unit): Transform2D = rest.apply{
+  public open fun rest(schedule: Transform2D.() -> Unit): Transform2D = rest.apply{
       schedule(this)
       rest = this
   }
@@ -73,7 +73,7 @@ open class Bone2D : Node2D() {
   /**
    * Stores the node's current transforms in [rest].
    */
-  open fun applyRest() {
+  public open fun applyRest(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_APPLY_REST, NIL)
   }
@@ -81,7 +81,7 @@ open class Bone2D : Node2D() {
   /**
    * Returns the node's index as part of the entire skeleton. See [godot.Skeleton2D].
    */
-  open fun getIndexInSkeleton(): Long {
+  public open fun getIndexInSkeleton(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_INDEX_IN_SKELETON, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -90,7 +90,7 @@ open class Bone2D : Node2D() {
   /**
    * Returns the node's [rest] `Transform2D` if it doesn't have a parent, or its rest pose relative to its parent.
    */
-  open fun getSkeletonRest(): Transform2D {
+  public open fun getSkeletonRest(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BONE2D_GET_SKELETON_REST,
         TRANSFORM2D)

@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
@@ -24,6 +24,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * PopupMenu displays a list of options.
@@ -31,32 +32,32 @@ import kotlin.Suppress
  * [godot.PopupMenu] is a [godot.Control] that displays a list of options. They are popular in toolbars or context menus.
  */
 @GodotBaseType
-open class PopupMenu : Popup() {
+public open class PopupMenu : Popup() {
   /**
    * Emitted when user navigated to an item of some `id` using `ui_up` or `ui_down` action.
    */
-  val idFocused: Signal1<Long> by signal("id")
+  public val idFocused: Signal1<Long> by signal("id")
 
   /**
    * Emitted when an item of some `id` is pressed or its accelerator is activated.
    */
-  val idPressed: Signal1<Long> by signal("id")
+  public val idPressed: Signal1<Long> by signal("id")
 
   /**
    * Emitted when an item of some `index` is pressed or its accelerator is activated.
    */
-  val indexPressed: Signal1<Long> by signal("index")
+  public val indexPressed: Signal1<Long> by signal("index")
 
   /**
    * If `true`, allows navigating [godot.PopupMenu] with letter keys.
    */
-  open var allowSearch: Boolean
+  public open var allowSearch: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ALLOW_SEARCH, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ALLOW_SEARCH, NIL)
     }
@@ -64,14 +65,14 @@ open class PopupMenu : Popup() {
   /**
    * If `true`, hides the [godot.PopupMenu] when a checkbox or radio button is selected.
    */
-  open var hideOnCheckableItemSelection: Boolean
+  public open var hideOnCheckableItemSelection: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_HIDE_ON_CHECKABLE_ITEM_SELECTION, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_HIDE_ON_CHECKABLE_ITEM_SELECTION, NIL)
@@ -80,14 +81,14 @@ open class PopupMenu : Popup() {
   /**
    * If `true`, hides the [godot.PopupMenu] when an item is selected.
    */
-  open var hideOnItemSelection: Boolean
+  public open var hideOnItemSelection: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_HIDE_ON_ITEM_SELECTION, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_HIDE_ON_ITEM_SELECTION, NIL)
@@ -96,14 +97,14 @@ open class PopupMenu : Popup() {
   /**
    * If `true`, hides the [godot.PopupMenu] when a state item is selected.
    */
-  open var hideOnStateItemSelection: Boolean
+  public open var hideOnStateItemSelection: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_HIDE_ON_STATE_ITEM_SELECTION, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_HIDE_ON_STATE_ITEM_SELECTION, NIL)
@@ -112,34 +113,34 @@ open class PopupMenu : Popup() {
   /**
    * Sets the delay time in seconds for the submenu item to popup on mouse hovering. If the popup menu is added as a child of another (acting as a submenu), it will inherit the delay time of the parent menu item.
    */
-  open var submenuPopupDelay: Double
+  public open var submenuPopupDelay: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_SUBMENU_POPUP_DELAY,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_SUBMENU_POPUP_DELAY,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_POPUPMENU)
   }
 
-  open fun _getItems(): VariantArray<Any?> {
+  public open fun _getItems(): VariantArray<Any?> {
     throw NotImplementedError("_get_items is not implemented for PopupMenu")
   }
 
-  override fun _guiInput(event: InputEvent) {
+  public override fun _guiInput(event: InputEvent): Unit {
   }
 
-  open fun _setItems(arg0: VariantArray<Any?>) {
+  public open fun _setItems(arg0: VariantArray<Any?>): Unit {
   }
 
-  open fun _submenuTimeout() {
+  public open fun _submenuTimeout(): Unit {
   }
 
   /**
@@ -149,11 +150,11 @@ open class PopupMenu : Popup() {
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
-  open fun addCheckItem(
+  public open fun addCheckItem(
     label: String,
     id: Long = -1,
     accel: Long = 0
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to label, LONG to id, LONG to accel)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_CHECK_ITEM, NIL)
   }
@@ -165,11 +166,11 @@ open class PopupMenu : Popup() {
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
-  open fun addCheckShortcut(
+  public open fun addCheckShortcut(
     shortcut: ShortCut,
     id: Long = -1,
     global: Boolean = false
-  ) {
+  ): Unit {
     TransferContext.writeArguments(OBJECT to shortcut, LONG to id, BOOL to global)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_CHECK_SHORTCUT, NIL)
   }
@@ -181,12 +182,12 @@ open class PopupMenu : Popup() {
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
-  open fun addIconCheckItem(
+  public open fun addIconCheckItem(
     texture: Texture,
     label: String,
     id: Long = -1,
     accel: Long = 0
-  ) {
+  ): Unit {
     TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id, LONG to accel)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_CHECK_ITEM, NIL)
   }
@@ -198,12 +199,12 @@ open class PopupMenu : Popup() {
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
-  open fun addIconCheckShortcut(
+  public open fun addIconCheckShortcut(
     texture: Texture,
     shortcut: ShortCut,
     id: Long = -1,
     global: Boolean = false
-  ) {
+  ): Unit {
     TransferContext.writeArguments(OBJECT to texture, OBJECT to shortcut, LONG to id, BOOL to
         global)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_CHECK_SHORTCUT,
@@ -215,12 +216,12 @@ open class PopupMenu : Popup() {
    *
    * An `id` can optionally be provided, as well as an accelerator (`accel`). If no `id` is provided, one will be created from the index. If no `accel` is provided then the default `0` will be assigned to it. See [getItemAccelerator] for more info on accelerators.
    */
-  open fun addIconItem(
+  public open fun addIconItem(
     texture: Texture,
     label: String,
     id: Long = -1,
     accel: Long = 0
-  ) {
+  ): Unit {
     TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id, LONG to accel)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_ITEM, NIL)
   }
@@ -228,12 +229,12 @@ open class PopupMenu : Popup() {
   /**
    * Same as [addIconCheckItem], but uses a radio check button.
    */
-  open fun addIconRadioCheckItem(
+  public open fun addIconRadioCheckItem(
     texture: Texture,
     label: String,
     id: Long = -1,
     accel: Long = 0
-  ) {
+  ): Unit {
     TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id, LONG to accel)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_RADIO_CHECK_ITEM,
         NIL)
@@ -242,12 +243,12 @@ open class PopupMenu : Popup() {
   /**
    * Same as [addIconCheckShortcut], but uses a radio check button.
    */
-  open fun addIconRadioCheckShortcut(
+  public open fun addIconRadioCheckShortcut(
     texture: Texture,
     shortcut: ShortCut,
     id: Long = -1,
     global: Boolean = false
-  ) {
+  ): Unit {
     TransferContext.writeArguments(OBJECT to texture, OBJECT to shortcut, LONG to id, BOOL to
         global)
     TransferContext.callMethod(rawPtr,
@@ -259,12 +260,12 @@ open class PopupMenu : Popup() {
    *
    * An `id` can optionally be provided. If no `id` is provided, one will be created from the index.
    */
-  open fun addIconShortcut(
+  public open fun addIconShortcut(
     texture: Texture,
     shortcut: ShortCut,
     id: Long = -1,
     global: Boolean = false
-  ) {
+  ): Unit {
     TransferContext.writeArguments(OBJECT to texture, OBJECT to shortcut, LONG to id, BOOL to
         global)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ICON_SHORTCUT, NIL)
@@ -275,11 +276,11 @@ open class PopupMenu : Popup() {
    *
    * An `id` can optionally be provided, as well as an accelerator (`accel`). If no `id` is provided, one will be created from the index. If no `accel` is provided then the default `0` will be assigned to it. See [getItemAccelerator] for more info on accelerators.
    */
-  open fun addItem(
+  public open fun addItem(
     label: String,
     id: Long = -1,
     accel: Long = 0
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to label, LONG to id, LONG to accel)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_ITEM, NIL)
   }
@@ -291,13 +292,13 @@ open class PopupMenu : Popup() {
    *
    * An `id` can optionally be provided, as well as an accelerator (`accel`). If no `id` is provided, one will be created from the index. If no `accel` is provided then the default `0` will be assigned to it. See [getItemAccelerator] for more info on accelerators.
    */
-  open fun addMultistateItem(
+  public open fun addMultistateItem(
     label: String,
     maxStates: Long,
     defaultState: Long = 0,
     id: Long = -1,
     accel: Long = 0
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to label, LONG to maxStates, LONG to defaultState, LONG to
         id, LONG to accel)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_MULTISTATE_ITEM, NIL)
@@ -310,11 +311,11 @@ open class PopupMenu : Popup() {
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
-  open fun addRadioCheckItem(
+  public open fun addRadioCheckItem(
     label: String,
     id: Long = -1,
     accel: Long = 0
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to label, LONG to id, LONG to accel)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_RADIO_CHECK_ITEM, NIL)
   }
@@ -326,11 +327,11 @@ open class PopupMenu : Popup() {
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
-  open fun addRadioCheckShortcut(
+  public open fun addRadioCheckShortcut(
     shortcut: ShortCut,
     id: Long = -1,
     global: Boolean = false
-  ) {
+  ): Unit {
     TransferContext.writeArguments(OBJECT to shortcut, LONG to id, BOOL to global)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_RADIO_CHECK_SHORTCUT,
         NIL)
@@ -341,7 +342,7 @@ open class PopupMenu : Popup() {
    *
    * A `label` can optionally be provided, which will appear at the center of the separator.
    */
-  open fun addSeparator(label: String = "", id: Long = -1) {
+  public open fun addSeparator(label: String = "", id: Long = -1): Unit {
     TransferContext.writeArguments(STRING to label, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_SEPARATOR, NIL)
   }
@@ -351,11 +352,11 @@ open class PopupMenu : Popup() {
    *
    * An `id` can optionally be provided. If no `id` is provided, one will be created from the index.
    */
-  open fun addShortcut(
+  public open fun addShortcut(
     shortcut: ShortCut,
     id: Long = -1,
     global: Boolean = false
-  ) {
+  ): Unit {
     TransferContext.writeArguments(OBJECT to shortcut, LONG to id, BOOL to global)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_SHORTCUT, NIL)
   }
@@ -365,11 +366,11 @@ open class PopupMenu : Popup() {
    *
    * An `id` can optionally be provided. If no `id` is provided, one will be created from the index.
    */
-  open fun addSubmenuItem(
+  public open fun addSubmenuItem(
     label: String,
     submenu: String,
     id: Long = -1
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to label, STRING to submenu, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_ADD_SUBMENU_ITEM, NIL)
   }
@@ -377,7 +378,7 @@ open class PopupMenu : Popup() {
   /**
    * Removes all items from the [godot.PopupMenu].
    */
-  open fun clear() {
+  public open fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_CLEAR, NIL)
   }
@@ -385,7 +386,7 @@ open class PopupMenu : Popup() {
   /**
    *
    */
-  open fun getCurrentIndex(): Long {
+  public open fun getCurrentIndex(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_CURRENT_INDEX, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -394,7 +395,7 @@ open class PopupMenu : Popup() {
   /**
    * Returns the accelerator of the item at index `idx`. Accelerators are special combinations of keys that activate the item, no matter which control is focused.
    */
-  open fun getItemAccelerator(idx: Long): Long {
+  public open fun getItemAccelerator(idx: Long): Long {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_ACCELERATOR,
         LONG)
@@ -404,7 +405,7 @@ open class PopupMenu : Popup() {
   /**
    * Returns the number of items in the [godot.PopupMenu].
    */
-  open fun getItemCount(): Long {
+  public open fun getItemCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -413,7 +414,7 @@ open class PopupMenu : Popup() {
   /**
    * Returns the icon of the item at index `idx`.
    */
-  open fun getItemIcon(idx: Long): Texture? {
+  public open fun getItemIcon(idx: Long): Texture? {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_ICON, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Texture?
@@ -422,7 +423,7 @@ open class PopupMenu : Popup() {
   /**
    * Returns the id of the item at index `idx`. `id` can be manually assigned, while index can not.
    */
-  open fun getItemId(idx: Long): Long {
+  public open fun getItemId(idx: Long): Long {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_ID, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -431,7 +432,7 @@ open class PopupMenu : Popup() {
   /**
    * Returns the index of the item containing the specified `id`. Index is automatically assigned to each item by the engine. Index can not be set manually.
    */
-  open fun getItemIndex(id: Long): Long {
+  public open fun getItemIndex(id: Long): Long {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_INDEX, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -440,7 +441,7 @@ open class PopupMenu : Popup() {
   /**
    * Returns the metadata of the specified item, which might be of any type. You can set it with [setItemMetadata], which provides a simple way of assigning context data to items.
    */
-  open fun getItemMetadata(idx: Long): Any? {
+  public open fun getItemMetadata(idx: Long): Any? {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_METADATA, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -449,7 +450,7 @@ open class PopupMenu : Popup() {
   /**
    * Returns the [godot.ShortCut] associated with the specified `idx` item.
    */
-  open fun getItemShortcut(idx: Long): ShortCut? {
+  public open fun getItemShortcut(idx: Long): ShortCut? {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_SHORTCUT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as ShortCut?
@@ -458,7 +459,7 @@ open class PopupMenu : Popup() {
   /**
    * Returns the submenu name of the item at index `idx`. See [addSubmenuItem] for more info on how to add a submenu.
    */
-  open fun getItemSubmenu(idx: Long): String {
+  public open fun getItemSubmenu(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_SUBMENU, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -467,7 +468,7 @@ open class PopupMenu : Popup() {
   /**
    * Returns the text of the item at index `idx`.
    */
-  open fun getItemText(idx: Long): String {
+  public open fun getItemText(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_TEXT, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -476,7 +477,7 @@ open class PopupMenu : Popup() {
   /**
    * Returns the tooltip associated with the specified index index `idx`.
    */
-  open fun getItemTooltip(idx: Long): String {
+  public open fun getItemTooltip(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_ITEM_TOOLTIP, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -485,7 +486,7 @@ open class PopupMenu : Popup() {
   /**
    * Returns `true` if the popup will be hidden when the window loses focus or not.
    */
-  open fun isHideOnWindowLoseFocus(): Boolean {
+  public open fun isHideOnWindowLoseFocus(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_HIDE_ON_WINDOW_LOSE_FOCUS, BOOL)
@@ -497,7 +498,7 @@ open class PopupMenu : Popup() {
    *
    * **Note:** Checkable items just display a checkmark or radio button, but don't have any built-in checking behavior and must be checked/unchecked manually.
    */
-  open fun isItemCheckable(idx: Long): Boolean {
+  public open fun isItemCheckable(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_ITEM_CHECKABLE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -506,7 +507,7 @@ open class PopupMenu : Popup() {
   /**
    * Returns `true` if the item at index `idx` is checked.
    */
-  open fun isItemChecked(idx: Long): Boolean {
+  public open fun isItemChecked(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_ITEM_CHECKED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -517,7 +518,7 @@ open class PopupMenu : Popup() {
    *
    * See [setItemDisabled] for more info on how to disable an item.
    */
-  open fun isItemDisabled(idx: Long): Boolean {
+  public open fun isItemDisabled(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_ITEM_DISABLED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -528,7 +529,7 @@ open class PopupMenu : Popup() {
    *
    * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in radio groups.
    */
-  open fun isItemRadioCheckable(idx: Long): Boolean {
+  public open fun isItemRadioCheckable(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_ITEM_RADIO_CHECKABLE,
         BOOL)
@@ -538,7 +539,7 @@ open class PopupMenu : Popup() {
   /**
    * Returns `true` if the item is a separator. If it is, it will be displayed as a line. See [addSeparator] for more info on how to add a separator.
    */
-  open fun isItemSeparator(idx: Long): Boolean {
+  public open fun isItemSeparator(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_ITEM_SEPARATOR, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -547,7 +548,7 @@ open class PopupMenu : Popup() {
   /**
    * Returns `true` if the specified item's shortcut is disabled.
    */
-  open fun isItemShortcutDisabled(idx: Long): Boolean {
+  public open fun isItemShortcutDisabled(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_ITEM_SHORTCUT_DISABLED,
         BOOL)
@@ -559,7 +560,7 @@ open class PopupMenu : Popup() {
    *
    * **Note:** The indices of items after the removed item will be shifted by one.
    */
-  open fun removeItem(idx: Long) {
+  public open fun removeItem(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_REMOVE_ITEM, NIL)
   }
@@ -567,7 +568,7 @@ open class PopupMenu : Popup() {
   /**
    * Hides the [godot.PopupMenu] when the window loses focus.
    */
-  open fun setHideOnWindowLoseFocus(enable: Boolean) {
+  public open fun setHideOnWindowLoseFocus(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_HIDE_ON_WINDOW_LOSE_FOCUS, NIL)
@@ -576,7 +577,7 @@ open class PopupMenu : Popup() {
   /**
    * Sets the accelerator of the item at index `idx`. Accelerators are special combinations of keys that activate the item, no matter which control is focused.
    */
-  open fun setItemAccelerator(idx: Long, accel: Long) {
+  public open fun setItemAccelerator(idx: Long, accel: Long): Unit {
     TransferContext.writeArguments(LONG to idx, LONG to accel)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_ACCELERATOR, NIL)
   }
@@ -586,7 +587,7 @@ open class PopupMenu : Popup() {
    *
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually.
    */
-  open fun setItemAsCheckable(idx: Long, enable: Boolean) {
+  public open fun setItemAsCheckable(idx: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx, BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_AS_CHECKABLE,
         NIL)
@@ -595,7 +596,7 @@ open class PopupMenu : Popup() {
   /**
    * Sets the type of the item at the specified index `idx` to radio button. If `false`, sets the type of the item to plain text.
    */
-  open fun setItemAsRadioCheckable(idx: Long, enable: Boolean) {
+  public open fun setItemAsRadioCheckable(idx: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx, BOOL to enable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_AS_RADIO_CHECKABLE, NIL)
@@ -604,7 +605,7 @@ open class PopupMenu : Popup() {
   /**
    * Mark the item at index `idx` as a separator, which means that it would be displayed as a line. If `false`, sets the type of the item to plain text.
    */
-  open fun setItemAsSeparator(idx: Long, enable: Boolean) {
+  public open fun setItemAsSeparator(idx: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx, BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_AS_SEPARATOR,
         NIL)
@@ -613,7 +614,7 @@ open class PopupMenu : Popup() {
   /**
    * Sets the checkstate status of the item at index `idx`.
    */
-  open fun setItemChecked(idx: Long, checked: Boolean) {
+  public open fun setItemChecked(idx: Long, checked: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx, BOOL to checked)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_CHECKED, NIL)
   }
@@ -621,7 +622,7 @@ open class PopupMenu : Popup() {
   /**
    * Enables/disables the item at index `idx`. When it is disabled, it can't be selected and its action can't be invoked.
    */
-  open fun setItemDisabled(idx: Long, disabled: Boolean) {
+  public open fun setItemDisabled(idx: Long, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx, BOOL to disabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_DISABLED, NIL)
   }
@@ -629,7 +630,7 @@ open class PopupMenu : Popup() {
   /**
    * Replaces the [godot.Texture] icon of the specified `idx`.
    */
-  open fun setItemIcon(idx: Long, icon: Texture) {
+  public open fun setItemIcon(idx: Long, icon: Texture): Unit {
     TransferContext.writeArguments(LONG to idx, OBJECT to icon)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_ICON, NIL)
   }
@@ -637,7 +638,7 @@ open class PopupMenu : Popup() {
   /**
    * Sets the `id` of the item at index `idx`.
    */
-  open fun setItemId(idx: Long, id: Long) {
+  public open fun setItemId(idx: Long, id: Long): Unit {
     TransferContext.writeArguments(LONG to idx, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_ID, NIL)
   }
@@ -645,7 +646,7 @@ open class PopupMenu : Popup() {
   /**
    * Sets the metadata of an item, which may be of any type. You can later get it with [getItemMetadata], which provides a simple way of assigning context data to items.
    */
-  open fun setItemMetadata(idx: Long, metadata: Any?) {
+  public open fun setItemMetadata(idx: Long, metadata: Any?): Unit {
     TransferContext.writeArguments(LONG to idx, ANY to metadata)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_METADATA, NIL)
   }
@@ -653,7 +654,7 @@ open class PopupMenu : Popup() {
   /**
    * Sets the state of a multistate item. See [addMultistateItem] for details.
    */
-  open fun setItemMultistate(idx: Long, state: Long) {
+  public open fun setItemMultistate(idx: Long, state: Long): Unit {
     TransferContext.writeArguments(LONG to idx, LONG to state)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_MULTISTATE, NIL)
   }
@@ -661,11 +662,11 @@ open class PopupMenu : Popup() {
   /**
    * Sets a [godot.ShortCut] for the specified item `idx`.
    */
-  open fun setItemShortcut(
+  public open fun setItemShortcut(
     idx: Long,
     shortcut: ShortCut,
     global: Boolean = false
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to idx, OBJECT to shortcut, BOOL to global)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_SHORTCUT, NIL)
   }
@@ -673,7 +674,7 @@ open class PopupMenu : Popup() {
   /**
    * Disables the [godot.ShortCut] of the specified index `idx`.
    */
-  open fun setItemShortcutDisabled(idx: Long, disabled: Boolean) {
+  public open fun setItemShortcutDisabled(idx: Long, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx, BOOL to disabled)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_SHORTCUT_DISABLED, NIL)
@@ -682,7 +683,7 @@ open class PopupMenu : Popup() {
   /**
    * Sets the submenu of the item at index `idx`. The submenu is the name of a child [godot.PopupMenu] node that would be shown when the item is clicked.
    */
-  open fun setItemSubmenu(idx: Long, submenu: String) {
+  public open fun setItemSubmenu(idx: Long, submenu: String): Unit {
     TransferContext.writeArguments(LONG to idx, STRING to submenu)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_SUBMENU, NIL)
   }
@@ -690,7 +691,7 @@ open class PopupMenu : Popup() {
   /**
    * Sets the text of the item at index `idx`.
    */
-  open fun setItemText(idx: Long, text: String) {
+  public open fun setItemText(idx: Long, text: String): Unit {
     TransferContext.writeArguments(LONG to idx, STRING to text)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_TEXT, NIL)
   }
@@ -698,7 +699,7 @@ open class PopupMenu : Popup() {
   /**
    * Sets the [godot.String] tooltip of the item at the specified index `idx`.
    */
-  open fun setItemTooltip(idx: Long, tooltip: String) {
+  public open fun setItemTooltip(idx: Long, tooltip: String): Unit {
     TransferContext.writeArguments(LONG to idx, STRING to tooltip)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_SET_ITEM_TOOLTIP, NIL)
   }
@@ -706,7 +707,7 @@ open class PopupMenu : Popup() {
   /**
    * Toggles the check state of the item of the specified index `idx`.
    */
-  open fun toggleItemChecked(idx: Long) {
+  public open fun toggleItemChecked(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_TOGGLE_ITEM_CHECKED, NIL)
   }
@@ -714,7 +715,7 @@ open class PopupMenu : Popup() {
   /**
    * Cycle to the next state of a multistate item. See [addMultistateItem] for details.
    */
-  open fun toggleItemMultistate(idx: Long) {
+  public open fun toggleItemMultistate(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POPUPMENU_TOGGLE_ITEM_MULTISTATE,
         NIL)

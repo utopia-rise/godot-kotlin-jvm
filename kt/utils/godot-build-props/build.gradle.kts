@@ -43,3 +43,5 @@ publishing {
 }
 
 project.extra["artifacts"] = arrayOf("buildProps")
+
+tasks.withType<Copy> { duplicatesStrategy = DuplicatesStrategy.INCLUDE}

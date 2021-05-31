@@ -37,5 +37,8 @@ object EntryGenerator {
         //constructor overloading
         //one class per file
         //class package name same as file path
+
+        //signal name prefix
+        //signal type check
     }
 }

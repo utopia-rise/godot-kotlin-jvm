@@ -6,9 +6,9 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":godot-annotation-processor"))
+//    implementation(project(":godot-annotation-processor"))
     implementation(project(":godot-kotlin-compiler-plugin-common"))
-    implementation("de.jensklingenberg:mpapt-runtime:${DependenciesVersions.mpaptVersion}")
+//    implementation("de.jensklingenberg:mpapt-runtime:${DependenciesVersions.mpaptVersion}")
     compileOnly(kotlin("compiler-embeddable"))
 }
 

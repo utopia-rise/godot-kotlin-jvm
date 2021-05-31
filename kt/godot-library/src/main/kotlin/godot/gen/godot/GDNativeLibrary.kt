@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.PoolStringArray
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -16,86 +16,87 @@ import godot.core.VariantType.STRING
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
-open class GDNativeLibrary : Resource() {
-  open var configFile: ConfigFile?
+public open class GDNativeLibrary : Resource() {
+  public open var configFile: ConfigFile?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDNATIVELIBRARY_GET_CONFIG_FILE,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as ConfigFile?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDNATIVELIBRARY_SET_CONFIG_FILE,
           NIL)
     }
 
-  open var loadOnce: Boolean
+  public open var loadOnce: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDNATIVELIBRARY_GET_LOAD_ONCE,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDNATIVELIBRARY_SET_LOAD_ONCE,
           NIL)
     }
 
-  open var reloadable: Boolean
+  public open var reloadable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDNATIVELIBRARY_GET_RELOADABLE,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDNATIVELIBRARY_SET_RELOADABLE,
           NIL)
     }
 
-  open var singleton: Boolean
+  public open var singleton: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDNATIVELIBRARY_GET_SINGLETON,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDNATIVELIBRARY_SET_SINGLETON,
           NIL)
     }
 
-  open var symbolPrefix: String
+  public open var symbolPrefix: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDNATIVELIBRARY_GET_SYMBOL_PREFIX,
           STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDNATIVELIBRARY_SET_SYMBOL_PREFIX,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_GDNATIVELIBRARY)
   }
 
-  open fun getCurrentDependencies(): PoolStringArray {
+  public open fun getCurrentDependencies(): PoolStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GDNATIVELIBRARY_GET_CURRENT_DEPENDENCIES, POOL_STRING_ARRAY)
     return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
   }
 
-  open fun getCurrentLibraryPath(): String {
+  public open fun getCurrentLibraryPath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_GDNATIVELIBRARY_GET_CURRENT_LIBRARY_PATH, STRING)

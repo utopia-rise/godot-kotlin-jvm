@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A Fresnel effect to be used within the visual shader graph.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Returns falloff based on the dot product of surface normal and view direction of camera (pass associated inputs to it).
  */
 @GodotBaseType
-open class VisualShaderNodeFresnel : VisualShaderNode() {
-  override fun __new() {
+public open class VisualShaderNodeFresnel : VisualShaderNode() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEFRESNEL)
   }
 }

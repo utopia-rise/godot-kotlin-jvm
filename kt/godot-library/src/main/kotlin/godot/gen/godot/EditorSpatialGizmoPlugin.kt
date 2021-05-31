@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -20,6 +20,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Used by the editor to define Spatial gizmo types.
@@ -30,15 +31,15 @@ import kotlin.Suppress
  * EditorSpatialGizmoPlugin allows you to define a new type of Gizmo. There are two main ways to do so: extending [godot.EditorSpatialGizmoPlugin] for the simpler gizmos, or creating a new [godot.EditorSpatialGizmo] type. See the tutorial in the documentation for more info.
  */
 @GodotBaseType
-open class EditorSpatialGizmoPlugin : Resource() {
-  override fun __new() {
+public open class EditorSpatialGizmoPlugin : Resource() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORSPATIALGIZMOPLUGIN)
   }
 
   /**
    * Adds a new material to the internal material list for the plugin. It can then be accessed with [getMaterial]. Should not be overridden.
    */
-  open fun addMaterial(name: String, material: SpatialMaterial) {
+  public open fun addMaterial(name: String, material: SpatialMaterial): Unit {
     TransferContext.writeArguments(STRING to name, OBJECT to material)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSPATIALGIZMOPLUGIN_ADD_MATERIAL, NIL)
@@ -47,32 +48,32 @@ open class EditorSpatialGizmoPlugin : Resource() {
   /**
    * Override this method to define whether the gizmo can be hidden or not. Returns `true` if not overridden.
    */
-  open fun _canBeHidden(): Boolean {
+  public open fun _canBeHidden(): Boolean {
     throw NotImplementedError("can_be_hidden is not implemented for EditorSpatialGizmoPlugin")
   }
 
   /**
    * Override this method to commit gizmo handles. Called for this plugin's active gizmos.
    */
-  open fun _commitHandle(
+  public open fun _commitHandle(
     gizmo: EditorSpatialGizmo,
     index: Long,
     restore: Any?,
     cancel: Boolean
-  ) {
+  ): Unit {
   }
 
   /**
    * Override this method to return a custom [godot.EditorSpatialGizmo] for the spatial nodes of your choice, return `null` for the rest of nodes. See also [hasGizmo].
    */
-  open fun _createGizmo(spatial: Spatial): EditorSpatialGizmo? {
+  public open fun _createGizmo(spatial: Spatial): EditorSpatialGizmo? {
     throw NotImplementedError("create_gizmo is not implemented for EditorSpatialGizmoPlugin")
   }
 
   /**
    * Creates a handle material with its variants (selected and/or editable) and adds them to the internal material list. They can then be accessed with [getMaterial] and used in [godot.EditorSpatialGizmo.addHandles]. Should not be overridden.
    */
-  open fun createHandleMaterial(name: String, billboard: Boolean = false) {
+  public open fun createHandleMaterial(name: String, billboard: Boolean = false): Unit {
     TransferContext.writeArguments(STRING to name, BOOL to billboard)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSPATIALGIZMOPLUGIN_CREATE_HANDLE_MATERIAL, NIL)
@@ -81,12 +82,12 @@ open class EditorSpatialGizmoPlugin : Resource() {
   /**
    * Creates an icon material with its variants (selected and/or editable) and adds them to the internal material list. They can then be accessed with [getMaterial] and used in [godot.EditorSpatialGizmo.addUnscaledBillboard]. Should not be overridden.
    */
-  open fun createIconMaterial(
+  public open fun createIconMaterial(
     name: String,
     texture: Texture,
     onTop: Boolean = false,
     color: Color = Color(1,1,1,1)
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to name, OBJECT to texture, BOOL to onTop, COLOR to color)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSPATIALGIZMOPLUGIN_CREATE_ICON_MATERIAL, NIL)
@@ -95,13 +96,13 @@ open class EditorSpatialGizmoPlugin : Resource() {
   /**
    * Creates an unshaded material with its variants (selected and/or editable) and adds them to the internal material list. They can then be accessed with [getMaterial] and used in [godot.EditorSpatialGizmo.addMesh] and [godot.EditorSpatialGizmo.addLines]. Should not be overridden.
    */
-  open fun createMaterial(
+  public open fun createMaterial(
     name: String,
     color: Color,
     billboard: Boolean = false,
     onTop: Boolean = false,
     useVertexColor: Boolean = false
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to name, COLOR to color, BOOL to billboard, BOOL to onTop,
         BOOL to useVertexColor)
     TransferContext.callMethod(rawPtr,
@@ -111,21 +112,21 @@ open class EditorSpatialGizmoPlugin : Resource() {
   /**
    * Override this method to provide gizmo's handle names. Called for this plugin's active gizmos.
    */
-  open fun _getHandleName(gizmo: EditorSpatialGizmo, index: Long): String {
+  public open fun _getHandleName(gizmo: EditorSpatialGizmo, index: Long): String {
     throw NotImplementedError("get_handle_name is not implemented for EditorSpatialGizmoPlugin")
   }
 
   /**
    * Gets actual value of a handle from gizmo. Called for this plugin's active gizmos.
    */
-  open fun _getHandleValue(gizmo: EditorSpatialGizmo, index: Long): Any? {
+  public open fun _getHandleValue(gizmo: EditorSpatialGizmo, index: Long): Any? {
     throw NotImplementedError("get_handle_value is not implemented for EditorSpatialGizmoPlugin")
   }
 
   /**
    * Gets material from the internal list of materials. If an [godot.EditorSpatialGizmo] is provided, it will try to get the corresponding variant (selected and/or editable).
    */
-  open fun getMaterial(name: String, gizmo: EditorSpatialGizmo? = null): SpatialMaterial? {
+  public open fun getMaterial(name: String, gizmo: EditorSpatialGizmo? = null): SpatialMaterial? {
     TransferContext.writeArguments(STRING to name, OBJECT to gizmo)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSPATIALGIZMOPLUGIN_GET_MATERIAL, OBJECT)
@@ -135,7 +136,7 @@ open class EditorSpatialGizmoPlugin : Resource() {
   /**
    * Override this method to provide the name that will appear in the gizmo visibility menu.
    */
-  open fun _getName(): String {
+  public open fun _getName(): String {
     throw NotImplementedError("get_name is not implemented for EditorSpatialGizmoPlugin")
   }
 
@@ -144,21 +145,21 @@ open class EditorSpatialGizmoPlugin : Resource() {
    *
    * All built-in editor gizmos return a priority of `-1`. If not overridden, this method will return `0`, which means custom gizmos will automatically override built-in gizmos.
    */
-  open fun _getPriority(): Long {
+  public open fun _getPriority(): Long {
     throw NotImplementedError("get_priority is not implemented for EditorSpatialGizmoPlugin")
   }
 
   /**
    * Override this method to define which Spatial nodes have a gizmo from this plugin. Whenever a [godot.Spatial] node is added to a scene this method is called, if it returns `true` the node gets a generic [godot.EditorSpatialGizmo] assigned and is added to this plugin's list of active gizmos.
    */
-  open fun _hasGizmo(spatial: Spatial): Boolean {
+  public open fun _hasGizmo(spatial: Spatial): Boolean {
     throw NotImplementedError("has_gizmo is not implemented for EditorSpatialGizmoPlugin")
   }
 
   /**
    * Gets whether a handle is highlighted or not. Called for this plugin's active gizmos.
    */
-  open fun _isHandleHighlighted(gizmo: EditorSpatialGizmo, index: Long): Boolean {
+  public open fun _isHandleHighlighted(gizmo: EditorSpatialGizmo, index: Long): Boolean {
     throw
         NotImplementedError("is_handle_highlighted is not implemented for EditorSpatialGizmoPlugin")
   }
@@ -166,7 +167,7 @@ open class EditorSpatialGizmoPlugin : Resource() {
   /**
    * Override this method to define whether a Spatial with this gizmo should be selectable even when the gizmo is hidden.
    */
-  open fun _isSelectableWhenHidden(): Boolean {
+  public open fun _isSelectableWhenHidden(): Boolean {
     throw
         NotImplementedError("is_selectable_when_hidden is not implemented for EditorSpatialGizmoPlugin")
   }
@@ -174,17 +175,17 @@ open class EditorSpatialGizmoPlugin : Resource() {
   /**
    * Callback to redraw the provided gizmo. Called for this plugin's active gizmos.
    */
-  open fun _redraw(gizmo: EditorSpatialGizmo) {
+  public open fun _redraw(gizmo: EditorSpatialGizmo): Unit {
   }
 
   /**
    * Update the value of a handle after it has been updated. Called for this plugin's active gizmos.
    */
-  open fun _setHandle(
+  public open fun _setHandle(
     gizmo: EditorSpatialGizmo,
     index: Long,
     camera: Camera,
     point: Vector2
-  ) {
+  ): Unit {
   }
 }

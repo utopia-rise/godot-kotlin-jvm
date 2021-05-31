@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Meta class for playing back audio.
@@ -17,8 +18,8 @@ import kotlin.Suppress
  * Can play, loop, pause a scroll through audio. See [godot.AudioStream] and [godot.AudioStreamOGGVorbis] for usage.
  */
 @GodotBaseType
-open class AudioStreamPlayback : Reference() {
-  override fun __new() {
+public open class AudioStreamPlayback : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMPLAYBACK)
   }
 }

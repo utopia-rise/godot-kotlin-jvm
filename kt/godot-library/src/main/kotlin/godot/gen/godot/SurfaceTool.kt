@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Plane
 import godot.core.PoolColorArray
@@ -39,6 +39,7 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Helper tool to create geometry.
@@ -67,15 +68,15 @@ import kotlin.Suppress
  * **Note:** Godot uses clockwise [winding order](https://learnopengl.com/Advanced-OpenGL/Face-culling) for front faces of triangle primitive modes.
  */
 @GodotBaseType
-open class SurfaceTool : Reference() {
-  override fun __new() {
+public open class SurfaceTool : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SURFACETOOL)
   }
 
   /**
    * Specifies an array of bones to use for the *next* vertex. `bones` must contain 4 integers.
    */
-  open fun addBones(bones: PoolIntArray) {
+  public open fun addBones(bones: PoolIntArray): Unit {
     TransferContext.writeArguments(POOL_INT_ARRAY to bones)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_BONES, NIL)
   }
@@ -85,7 +86,7 @@ open class SurfaceTool : Reference() {
    *
    * **Note:** The material must have [godot.SpatialMaterial.vertexColorUseAsAlbedo] enabled for the vertex color to be visible.
    */
-  open fun addColor(color: Color) {
+  public open fun addColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_COLOR, NIL)
   }
@@ -93,7 +94,7 @@ open class SurfaceTool : Reference() {
   /**
    * Adds an index to index array if you are using indexed vertices. Does not need to be called before adding vertices.
    */
-  open fun addIndex(index: Long) {
+  public open fun addIndex(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_INDEX, NIL)
   }
@@ -101,7 +102,7 @@ open class SurfaceTool : Reference() {
   /**
    * Specifies a normal to use for the *next* vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
    */
-  open fun addNormal(normal: Vector3) {
+  public open fun addNormal(normal: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to normal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_NORMAL, NIL)
   }
@@ -109,7 +110,7 @@ open class SurfaceTool : Reference() {
   /**
    * Specifies whether the current vertex (if using only vertex arrays) or current index (if also using index arrays) should use smooth normals for normal calculation.
    */
-  open fun addSmoothGroup(smooth: Boolean) {
+  public open fun addSmoothGroup(smooth: Boolean): Unit {
     TransferContext.writeArguments(BOOL to smooth)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_SMOOTH_GROUP, NIL)
   }
@@ -117,7 +118,7 @@ open class SurfaceTool : Reference() {
   /**
    * Specifies a tangent to use for the *next* vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
    */
-  open fun addTangent(tangent: Plane) {
+  public open fun addTangent(tangent: Plane): Unit {
     TransferContext.writeArguments(PLANE to tangent)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_TANGENT, NIL)
   }
@@ -127,14 +128,14 @@ open class SurfaceTool : Reference() {
    *
    * Requires the primitive type be set to [godot.Mesh.PRIMITIVE_TRIANGLES].
    */
-  open fun addTriangleFan(
+  public open fun addTriangleFan(
     vertices: PoolVector3Array,
     uvs: PoolVector2Array = PoolVector2Array(),
     colors: PoolColorArray = PoolColorArray(),
     uv2s: PoolVector2Array = PoolVector2Array(),
     normals: PoolVector3Array = PoolVector3Array(),
     tangents: VariantArray<Any?> = VariantArray()
-  ) {
+  ): Unit {
     TransferContext.writeArguments(POOL_VECTOR3_ARRAY to vertices, POOL_VECTOR2_ARRAY to uvs,
         POOL_COLOR_ARRAY to colors, POOL_VECTOR2_ARRAY to uv2s, POOL_VECTOR3_ARRAY to normals, ARRAY
         to tangents)
@@ -144,7 +145,7 @@ open class SurfaceTool : Reference() {
   /**
    * Specifies a set of UV coordinates to use for the *next* vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
    */
-  open fun addUv(uv: Vector2) {
+  public open fun addUv(uv: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to uv)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_UV, NIL)
   }
@@ -152,7 +153,7 @@ open class SurfaceTool : Reference() {
   /**
    * Specifies an optional second set of UV coordinates to use for the *next* vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
    */
-  open fun addUv2(uv2: Vector2) {
+  public open fun addUv2(uv2: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to uv2)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_UV2, NIL)
   }
@@ -160,7 +161,7 @@ open class SurfaceTool : Reference() {
   /**
    * Specifies the position of current vertex. Should be called after specifying other vertex properties (e.g. Color, UV).
    */
-  open fun addVertex(vertex: Vector3) {
+  public open fun addVertex(vertex: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to vertex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_VERTEX, NIL)
   }
@@ -168,7 +169,7 @@ open class SurfaceTool : Reference() {
   /**
    * Specifies weight values to use for the *next* vertex. `weights` must contain 4 values. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
    */
-  open fun addWeights(weights: PoolRealArray) {
+  public open fun addWeights(weights: PoolRealArray): Unit {
     TransferContext.writeArguments(POOL_REAL_ARRAY to weights)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_WEIGHTS, NIL)
   }
@@ -176,11 +177,11 @@ open class SurfaceTool : Reference() {
   /**
    * Append vertices from a given [godot.Mesh] surface onto the current vertex array with specified [godot.core.Transform].
    */
-  open fun appendFrom(
+  public open fun appendFrom(
     existing: Mesh,
     surface: Long,
     transform: Transform
-  ) {
+  ): Unit {
     TransferContext.writeArguments(OBJECT to existing, LONG to surface, TRANSFORM to transform)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_APPEND_FROM, NIL)
   }
@@ -188,7 +189,7 @@ open class SurfaceTool : Reference() {
   /**
    * Called before adding any vertices. Takes the primitive type as an argument (e.g. [godot.Mesh.PRIMITIVE_TRIANGLES]).
    */
-  open fun begin(primitive: Long) {
+  public open fun begin(primitive: Long): Unit {
     TransferContext.writeArguments(LONG to primitive)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_BEGIN, NIL)
   }
@@ -196,7 +197,7 @@ open class SurfaceTool : Reference() {
   /**
    * Clear all information passed into the surface tool so far.
    */
-  open fun clear() {
+  public open fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_CLEAR, NIL)
   }
@@ -206,7 +207,7 @@ open class SurfaceTool : Reference() {
    *
    * Default flag is [godot.Mesh.ARRAY_COMPRESS_DEFAULT]. See `ARRAY_COMPRESS_*` constants in [enum Mesh.ArrayFormat] for other flags.
    */
-  open fun commit(existing: ArrayMesh? = null, flags: Long = 97280): ArrayMesh? {
+  public open fun commit(existing: ArrayMesh? = null, flags: Long = 97280): ArrayMesh? {
     TransferContext.writeArguments(OBJECT to existing, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_COMMIT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?
@@ -215,7 +216,7 @@ open class SurfaceTool : Reference() {
   /**
    * Commits the data to the same format used by [godot.ArrayMesh.addSurfaceFromArrays]. This way you can further process the mesh data using the [godot.ArrayMesh] API.
    */
-  open fun commitToArrays(): VariantArray<Any?> {
+  public open fun commitToArrays(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_COMMIT_TO_ARRAYS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -224,7 +225,7 @@ open class SurfaceTool : Reference() {
   /**
    * Creates a vertex array from an existing [godot.Mesh].
    */
-  open fun createFrom(existing: Mesh, surface: Long) {
+  public open fun createFrom(existing: Mesh, surface: Long): Unit {
     TransferContext.writeArguments(OBJECT to existing, LONG to surface)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_CREATE_FROM, NIL)
   }
@@ -232,11 +233,11 @@ open class SurfaceTool : Reference() {
   /**
    * Creates a vertex array from the specified blend shape of an existing [godot.Mesh]. This can be used to extract a specific pose from a blend shape.
    */
-  open fun createFromBlendShape(
+  public open fun createFromBlendShape(
     existing: Mesh,
     surface: Long,
     blendShape: String
-  ) {
+  ): Unit {
     TransferContext.writeArguments(OBJECT to existing, LONG to surface, STRING to blendShape)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_CREATE_FROM_BLEND_SHAPE,
         NIL)
@@ -245,7 +246,7 @@ open class SurfaceTool : Reference() {
   /**
    * Removes the index array by expanding the vertex array.
    */
-  open fun deindex() {
+  public open fun deindex(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_DEINDEX, NIL)
   }
@@ -255,7 +256,7 @@ open class SurfaceTool : Reference() {
    *
    * **Note:** [generateNormals] only works if the primitive type to be set to [godot.Mesh.PRIMITIVE_TRIANGLES].
    */
-  open fun generateNormals(flip: Boolean = false) {
+  public open fun generateNormals(flip: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to flip)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GENERATE_NORMALS, NIL)
   }
@@ -263,7 +264,7 @@ open class SurfaceTool : Reference() {
   /**
    * Generates a tangent vector for each vertex. Requires that each vertex have UVs and normals set already.
    */
-  open fun generateTangents() {
+  public open fun generateTangents(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_GENERATE_TANGENTS, NIL)
   }
@@ -271,7 +272,7 @@ open class SurfaceTool : Reference() {
   /**
    * Shrinks the vertex array by creating an index array. This can improve performance by avoiding vertex reuse.
    */
-  open fun index() {
+  public open fun index(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_INDEX, NIL)
   }
@@ -279,7 +280,7 @@ open class SurfaceTool : Reference() {
   /**
    * Sets [godot.Material] to be used by the [godot.Mesh] you are constructing.
    */
-  open fun setMaterial(material: Material) {
+  public open fun setMaterial(material: Material): Unit {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_SET_MATERIAL, NIL)
   }

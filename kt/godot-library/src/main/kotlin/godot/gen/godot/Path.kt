@@ -5,13 +5,14 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Contains a [godot.Curve3D] path for [godot.PathFollow] nodes to follow.
@@ -21,30 +22,30 @@ import kotlin.Suppress
  * Note that the path is considered as relative to the moved nodes (children of [godot.PathFollow]). As such, the curve should usually start with a zero vector `(0, 0, 0)`.
  */
 @GodotBaseType
-open class Path : Spatial() {
+public open class Path : Spatial() {
   /**
    * Emitted when the [curve] changes.
    */
-  val curveChanged: Signal0 by signal()
+  public val curveChanged: Signal0 by signal()
 
   /**
    * A [godot.Curve3D] describing the path.
    */
-  open var curve: Curve3D?
+  public open var curve: Curve3D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATH_GET_CURVE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Curve3D?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PATH_SET_CURVE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PATH)
   }
 
-  open fun _curveChanged() {
+  public open fun _curveChanged(): Unit {
   }
 }

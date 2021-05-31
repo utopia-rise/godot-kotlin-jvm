@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Vertical slider.
@@ -16,8 +17,8 @@ import kotlin.Suppress
  * **Note:** The [godot.Range.changed] and [godot.Range.valueChanged] signals are part of the [godot.Range] class which this class inherits from.
  */
 @GodotBaseType
-open class VSlider : Slider() {
-  override fun __new() {
+public open class VSlider : Slider() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VSLIDER)
   }
 }

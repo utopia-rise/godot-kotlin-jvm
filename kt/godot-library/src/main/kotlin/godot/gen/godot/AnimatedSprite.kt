@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -37,28 +37,28 @@ import kotlin.Unit
  * **Note:** You can associate a set of normal maps by creating additional [godot.SpriteFrames] resources with a `_normal` suffix. For example, having 2 [godot.SpriteFrames] resources `run` and `run_normal` will make it so the `run` animation uses the normal map.
  */
 @GodotBaseType
-open class AnimatedSprite : Node2D() {
+public open class AnimatedSprite : Node2D() {
   /**
    * Emitted when the animation is finished (when it plays the last frame). If the animation is looping, this signal is emitted every time the last frame is drawn.
    */
-  val animationFinished: Signal0 by signal()
+  public val animationFinished: Signal0 by signal()
 
   /**
    * Emitted when [frame] changed.
    */
-  val frameChanged: Signal0 by signal()
+  public val frameChanged: Signal0 by signal()
 
   /**
    * The current animation from the `frames` resource. If this value changes, the `frame` counter is reset.
    */
-  open var animation: String
+  public open var animation: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_GET_ANIMATION,
           STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_SET_ANIMATION, NIL)
     }
@@ -66,13 +66,13 @@ open class AnimatedSprite : Node2D() {
   /**
    * If `true`, texture will be centered.
    */
-  open var centered: Boolean
+  public open var centered: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_GET_CENTERED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_SET_CENTERED, NIL)
     }
@@ -80,13 +80,13 @@ open class AnimatedSprite : Node2D() {
   /**
    * If `true`, texture is flipped horizontally.
    */
-  open var flipH: Boolean
+  public open var flipH: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_GET_FLIP_H, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_SET_FLIP_H, NIL)
     }
@@ -94,13 +94,13 @@ open class AnimatedSprite : Node2D() {
   /**
    * If `true`, texture is flipped vertically.
    */
-  open var flipV: Boolean
+  public open var flipV: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_GET_FLIP_V, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_SET_FLIP_V, NIL)
     }
@@ -108,13 +108,13 @@ open class AnimatedSprite : Node2D() {
   /**
    * The displayed animation frame's index.
    */
-  open var frame: Long
+  public open var frame: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_GET_FRAME, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_SET_FRAME, NIL)
     }
@@ -122,13 +122,13 @@ open class AnimatedSprite : Node2D() {
   /**
    * The [godot.SpriteFrames] resource containing the animation(s).
    */
-  open var frames: SpriteFrames?
+  public open var frames: SpriteFrames?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_GET_FRAMES, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as SpriteFrames?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_SET_FRAMES, NIL)
     }
@@ -136,14 +136,14 @@ open class AnimatedSprite : Node2D() {
   /**
    * The texture's drawing offset.
    */
-  open var offset: Vector2
+  public open var offset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_GET_OFFSET,
           VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_SET_OFFSET, NIL)
     }
@@ -151,44 +151,44 @@ open class AnimatedSprite : Node2D() {
   /**
    * The animation speed is multiplied by this value.
    */
-  open var speedScale: Double
+  public open var speedScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_GET_SPEED_SCALE,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_SET_SPEED_SCALE,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ANIMATEDSPRITE)
   }
 
   @CoreTypeHelper
-  open fun offset(schedule: Vector2.() -> Unit): Vector2 = offset.apply{
+  public open fun offset(schedule: Vector2.() -> Unit): Vector2 = offset.apply{
       schedule(this)
       offset = this
   }
 
 
-  open fun _isPlaying(): Boolean {
+  public open fun _isPlaying(): Boolean {
     throw NotImplementedError("_is_playing is not implemented for AnimatedSprite")
   }
 
-  open fun _resChanged() {
+  public open fun _resChanged(): Unit {
   }
 
-  open fun _setPlaying(playing: Boolean) {
+  public open fun _setPlaying(playing: Boolean): Unit {
   }
 
   /**
    * Returns `true` if an animation is currently being played.
    */
-  open fun isPlaying(): Boolean {
+  public open fun isPlaying(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_IS_PLAYING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -197,7 +197,7 @@ open class AnimatedSprite : Node2D() {
   /**
    * Plays the animation named `anim`. If no `anim` is provided, the current animation is played. If `backwards` is `true`, the animation will be played in reverse.
    */
-  open fun play(anim: String = "", backwards: Boolean = false) {
+  public open fun play(anim: String = "", backwards: Boolean = false): Unit {
     TransferContext.writeArguments(STRING to anim, BOOL to backwards)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_PLAY, NIL)
   }
@@ -205,7 +205,7 @@ open class AnimatedSprite : Node2D() {
   /**
    * Stops the current animation (does not reset the frame counter).
    */
-  open fun stop() {
+  public open fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_STOP, NIL)
   }

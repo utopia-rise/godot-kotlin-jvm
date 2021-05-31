@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -18,6 +18,7 @@ import godot.signals.signal
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Base class for all resources.
@@ -30,25 +31,25 @@ import kotlin.Suppress
  * **Note:** In C#, resources will not be freed instantly after they are no longer in use. Instead, garbage collection will run periodically and will free resources that are no longer in use. This means that unused resources will linger on for a while before being removed.
  */
 @GodotBaseType
-open class Resource : Reference() {
+public open class Resource : Reference() {
   /**
    * Emitted whenever the resource changes.
    *
    * **Note:** This signal is not emitted automatically for custom resources, which means that you need to create a setter and emit the signal yourself.
    */
-  val changed: Signal0 by signal()
+  public val changed: Signal0 by signal()
 
   /**
    * If `true`, the resource will be made unique in each instance of its local scene. It can thus be modified in a scene instance without impacting other instances of that same scene.
    */
-  open var resourceLocalToScene: Boolean
+  public open var resourceLocalToScene: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RESOURCE_GET_RESOURCE_LOCAL_TO_SCENE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RESOURCE_SET_RESOURCE_LOCAL_TO_SCENE, NIL)
@@ -57,14 +58,14 @@ open class Resource : Reference() {
   /**
    * The name of the resource. This is an optional identifier. If [resourceName] is not empty, its value will be displayed to represent the current resource in the editor inspector. For built-in scripts, the [resourceName] will be displayed as the tab name in the script editor.
    */
-  open var resourceName: String
+  public open var resourceName: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_GET_RESOURCE_NAME,
           STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_SET_RESOURCE_NAME, NIL)
     }
@@ -72,26 +73,26 @@ open class Resource : Reference() {
   /**
    * The path to the resource. In case it has its own file, it will return its filepath. If it's tied to the scene, it will return the scene's path, followed by the resource's index.
    */
-  open var resourcePath: String
+  public open var resourcePath: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_GET_RESOURCE_PATH,
           STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_SET_RESOURCE_PATH, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_RESOURCE)
   }
 
   /**
    * Virtual function which can be overridden to customize the behavior value of [setupLocalToScene].
    */
-  open fun _setupLocalToScene() {
+  public open fun _setupLocalToScene(): Unit {
   }
 
   /**
@@ -99,7 +100,7 @@ open class Resource : Reference() {
    *
    * **Note:** If `subresources` is `true`, this method will only perform a shallow copy. Nested resources within subresources will not be duplicated and will still be shared.
    */
-  open fun duplicate(subresources: Boolean = false): Resource? {
+  public open fun duplicate(subresources: Boolean = false): Resource? {
     TransferContext.writeArguments(BOOL to subresources)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_DUPLICATE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Resource?
@@ -118,7 +119,7 @@ open class Resource : Reference() {
    *
    * **Note:** This method is called automatically for built-in resources.
    */
-  open fun emitChanged() {
+  public open fun emitChanged(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_EMIT_CHANGED, NIL)
   }
@@ -126,7 +127,7 @@ open class Resource : Reference() {
   /**
    * If [resourceLocalToScene] is enabled and the resource was loaded from a [godot.PackedScene] instantiation, returns the local scene where this resource's unique copy is in use. Otherwise, returns `null`.
    */
-  open fun getLocalScene(): Node? {
+  public open fun getLocalScene(): Node? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_GET_LOCAL_SCENE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
@@ -135,7 +136,7 @@ open class Resource : Reference() {
   /**
    * Returns the RID of the resource (or an empty RID). Many resources (such as [godot.Texture], [godot.Mesh], etc) are high-level abstractions of resources stored in a server, so this function will return the original RID.
    */
-  open fun getRid(): RID {
+  public open fun getRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_GET_RID, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -146,7 +147,7 @@ open class Resource : Reference() {
    *
    * For most resources, this method performs no base logic. [godot.ViewportTexture] performs custom logic to properly set the proxy texture and flags in the local viewport.
    */
-  open fun setupLocalToScene() {
+  public open fun setupLocalToScene(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_SETUP_LOCAL_TO_SCENE, NIL)
   }
@@ -154,7 +155,7 @@ open class Resource : Reference() {
   /**
    * Sets the path of the resource, potentially overriding an existing cache entry for this path. This differs from setting [resourcePath], as the latter would error out if another resource was already cached for the given path.
    */
-  open fun takeOverPath(path: String) {
+  public open fun takeOverPath(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCE_TAKE_OVER_PATH, NIL)
   }

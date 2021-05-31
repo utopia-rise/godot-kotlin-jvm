@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -14,28 +14,29 @@ import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
-object VisualScriptEditor : Object() {
-  val customNodesUpdated: Signal0 by signal()
+public object VisualScriptEditor : Object() {
+  public val customNodesUpdated: Signal0 by signal()
 
-  override fun __new() {
+  public override fun __new(): Unit {
     rawPtr = TransferContext.getSingleton(ENGINESINGLETON_VISUALSCRIPTEDITOR)
   }
 
-  override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
+  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
-  fun addCustomNode(
+  public fun addCustomNode(
     name: String,
     category: String,
     script: Script
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to name, STRING to category, OBJECT to script)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__VISUALSCRIPTEDITOR_ADD_CUSTOM_NODE,
         NIL)
   }
 
-  fun removeCustomNode(name: String, category: String) {
+  public fun removeCustomNode(name: String, category: String): Unit {
     TransferContext.writeArguments(STRING to name, STRING to category)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS__VISUALSCRIPTEDITOR_REMOVE_CUSTOM_NODE, NIL)

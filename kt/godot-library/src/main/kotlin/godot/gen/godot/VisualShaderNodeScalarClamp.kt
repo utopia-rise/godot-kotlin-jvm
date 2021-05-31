@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Clamps a scalar value within the visual shader graph.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Constrains a value to lie between `min` and `max` values.
  */
 @GodotBaseType
-open class VisualShaderNodeScalarClamp : VisualShaderNode() {
-  override fun __new() {
+public open class VisualShaderNodeScalarClamp : VisualShaderNode() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODESCALARCLAMP)
   }
 }

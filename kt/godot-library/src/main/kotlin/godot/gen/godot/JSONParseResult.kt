@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.LONG
@@ -16,6 +16,7 @@ import kotlin.Any
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Data class wrapper for decoded JSON.
@@ -23,17 +24,17 @@ import kotlin.Suppress
  * Returned by [godot.JSON.parse], [godot.JSONParseResult] contains the decoded JSON or error information if the JSON source wasn't successfully parsed. You can check if the JSON source was successfully parsed with `if json_result.error == OK`.
  */
 @GodotBaseType
-open class JSONParseResult : Reference() {
+public open class JSONParseResult : Reference() {
   /**
    * The error type if the JSON source was not successfully parsed. See the [enum Error] constants.
    */
-  open var error: Object?
+  public open var error: Object?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONPARSERESULT_GET_ERROR, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Object?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONPARSERESULT_SET_ERROR, NIL)
     }
@@ -41,14 +42,14 @@ open class JSONParseResult : Reference() {
   /**
    * The line number where the error occurred if the JSON source was not successfully parsed.
    */
-  open var errorLine: Long
+  public open var errorLine: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONPARSERESULT_GET_ERROR_LINE,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONPARSERESULT_SET_ERROR_LINE,
           NIL)
@@ -57,14 +58,14 @@ open class JSONParseResult : Reference() {
   /**
    * The error message if the JSON source was not successfully parsed. See the [enum Error] constants.
    */
-  open var errorString: String
+  public open var errorString: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONPARSERESULT_GET_ERROR_STRING,
           STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONPARSERESULT_SET_ERROR_STRING,
           NIL)
@@ -85,18 +86,18 @@ open class JSONParseResult : Reference() {
    * 			    push_error("Unexpected results.")
    * 			```
    */
-  open var result: Any?
+  public open var result: Any?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONPARSERESULT_GET_RESULT, ANY)
       return TransferContext.readReturnValue(ANY, true) as Any?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(ANY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONPARSERESULT_SET_RESULT, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_JSONPARSERESULT)
   }
 }

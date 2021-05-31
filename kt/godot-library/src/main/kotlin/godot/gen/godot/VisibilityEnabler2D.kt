@@ -5,13 +5,14 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Enables certain nodes only when approximately visible.
@@ -25,18 +26,18 @@ import kotlin.Suppress
  * **Note:** VisibilityEnabler2D will not affect nodes added after scene initialization.
  */
 @GodotBaseType
-open class VisibilityEnabler2D : VisibilityNotifier2D() {
+public open class VisibilityEnabler2D : VisibilityNotifier2D() {
   /**
    * If `true`, [godot.RigidBody2D] nodes will be paused.
    */
-  open var freezeBodies: Boolean
+  public open var freezeBodies: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_GET_FREEZE_BODIES, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_SET_FREEZE_BODIES, NIL)
@@ -45,14 +46,14 @@ open class VisibilityEnabler2D : VisibilityNotifier2D() {
   /**
    * If `true`, [godot.AnimatedSprite] nodes will be paused.
    */
-  open var pauseAnimatedSprites: Boolean
+  public open var pauseAnimatedSprites: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_GET_PAUSE_ANIMATED_SPRITES, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_SET_PAUSE_ANIMATED_SPRITES, NIL)
@@ -61,14 +62,14 @@ open class VisibilityEnabler2D : VisibilityNotifier2D() {
   /**
    * If `true`, [godot.AnimationPlayer] nodes will be paused.
    */
-  open var pauseAnimations: Boolean
+  public open var pauseAnimations: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_GET_PAUSE_ANIMATIONS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_SET_PAUSE_ANIMATIONS, NIL)
@@ -77,14 +78,14 @@ open class VisibilityEnabler2D : VisibilityNotifier2D() {
   /**
    * If `true`, [godot.Particles2D] nodes will be paused.
    */
-  open var pauseParticles: Boolean
+  public open var pauseParticles: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_GET_PAUSE_PARTICLES, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_SET_PAUSE_PARTICLES, NIL)
@@ -93,14 +94,14 @@ open class VisibilityEnabler2D : VisibilityNotifier2D() {
   /**
    * If `true`, the parent's [godot.Node.PhysicsProcess] will be stopped.
    */
-  open var physicsProcessParent: Boolean
+  public open var physicsProcessParent: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_GET_PHYSICS_PROCESS_PARENT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_SET_PHYSICS_PROCESS_PARENT, NIL)
@@ -109,108 +110,103 @@ open class VisibilityEnabler2D : VisibilityNotifier2D() {
   /**
    * If `true`, the parent's [godot.Node.Process] will be stopped.
    */
-  open var processParent: Boolean
+  public open var processParent: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_GET_PROCESS_PARENT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER2D_SET_PROCESS_PARENT, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISIBILITYENABLER2D)
   }
 
-  open fun _nodeRemoved(arg0: Node) {
+  public open fun _nodeRemoved(arg0: Node): Unit {
   }
 
-  enum class Enabler(
+  public enum class Enabler(
     id: Long
   ) {
     /**
      * This enabler will pause [godot.AnimationPlayer] nodes.
      */
     ENABLER_PAUSE_ANIMATIONS(0),
-
     /**
      * This enabler will freeze [godot.RigidBody2D] nodes.
      */
     ENABLER_FREEZE_BODIES(1),
-
     /**
      * This enabler will stop [godot.Particles2D] nodes.
      */
     ENABLER_PAUSE_PARTICLES(2),
-
     /**
      * This enabler will stop the parent's _process function.
      */
     ENABLER_PARENT_PROCESS(3),
-
     /**
      * This enabler will stop the parent's _physics_process function.
      */
     ENABLER_PARENT_PHYSICS_PROCESS(4),
-
     /**
      * This enabler will stop [godot.AnimatedSprite] nodes animations.
      */
     ENABLER_PAUSE_ANIMATED_SPRITES(5),
-
     /**
      * Represents the size of the [enum Enabler] enum.
      */
-    ENABLER_MAX(6);
+    ENABLER_MAX(6),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * This enabler will freeze [godot.RigidBody2D] nodes.
      */
-    final const val ENABLER_FREEZE_BODIES: Long = 1
+    public final const val ENABLER_FREEZE_BODIES: Long = 1
 
     /**
      * Represents the size of the [enum Enabler] enum.
      */
-    final const val ENABLER_MAX: Long = 6
+    public final const val ENABLER_MAX: Long = 6
 
     /**
      * This enabler will stop the parent's _physics_process function.
      */
-    final const val ENABLER_PARENT_PHYSICS_PROCESS: Long = 4
+    public final const val ENABLER_PARENT_PHYSICS_PROCESS: Long = 4
 
     /**
      * This enabler will stop the parent's _process function.
      */
-    final const val ENABLER_PARENT_PROCESS: Long = 3
+    public final const val ENABLER_PARENT_PROCESS: Long = 3
 
     /**
      * This enabler will stop [godot.AnimatedSprite] nodes animations.
      */
-    final const val ENABLER_PAUSE_ANIMATED_SPRITES: Long = 5
+    public final const val ENABLER_PAUSE_ANIMATED_SPRITES: Long = 5
 
     /**
      * This enabler will pause [godot.AnimationPlayer] nodes.
      */
-    final const val ENABLER_PAUSE_ANIMATIONS: Long = 0
+    public final const val ENABLER_PAUSE_ANIMATIONS: Long = 0
 
     /**
      * This enabler will stop [godot.Particles2D] nodes.
      */
-    final const val ENABLER_PAUSE_PARTICLES: Long = 2
+    public final const val ENABLER_PAUSE_PARTICLES: Long = 2
   }
 }

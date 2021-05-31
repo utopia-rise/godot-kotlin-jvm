@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
@@ -13,6 +13,7 @@ import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Double
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * One-shot timer.
@@ -29,28 +30,28 @@ import kotlin.Suppress
  * 		```
  */
 @GodotBaseType
-open class SceneTreeTimer : Reference() {
+public open class SceneTreeTimer : Reference() {
   /**
    * Emitted when the timer reaches 0.
    */
-  val timeout: Signal0 by signal()
+  public val timeout: Signal0 by signal()
 
   /**
    * The time remaining.
    */
-  open var timeLeft: Double
+  public open var timeLeft: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREETIMER_GET_TIME_LEFT,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREETIMER_SET_TIME_LEFT, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SCENETREETIMER)
   }
 }

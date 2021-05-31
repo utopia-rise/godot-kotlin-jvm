@@ -5,10 +5,11 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Double
 import kotlin.NotImplementedError
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Generic 2D position hint for editing.
@@ -16,15 +17,15 @@ import kotlin.Suppress
  * Generic 2D position hint for editing. It's just like a plain [godot.Node2D], but it displays as a cross in the 2D editor at all times. You can set cross' visual size by using the gizmo in the 2D editor while the node is selected.
  */
 @GodotBaseType
-open class Position2D : Node2D() {
-  override fun __new() {
+public open class Position2D : Node2D() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_POSITION2D)
   }
 
-  open fun _getGizmoExtents(): Double {
+  public open fun _getGizmoExtents(): Double {
     throw NotImplementedError("_get_gizmo_extents is not implemented for Position2D")
   }
 
-  open fun _setGizmoExtents(extents: Double) {
+  public open fun _setGizmoExtents(extents: Double): Unit {
   }
 }

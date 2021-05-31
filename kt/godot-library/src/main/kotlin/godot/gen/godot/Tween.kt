@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
@@ -26,6 +26,7 @@ import kotlin.Double
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Smoothly animates a node's properties over time.
@@ -51,39 +52,39 @@ import kotlin.Suppress
  * [godot.Tween easing and transition types cheatsheet](https://raw.githubusercontent.com/godotengine/godot-docs/master/img/tween_cheatsheet.png)
  */
 @GodotBaseType
-open class Tween : Node() {
+public open class Tween : Node() {
   /**
    * Emitted when all processes in a tween end.
    */
-  val tweenAllCompleted: Signal0 by signal()
+  public val tweenAllCompleted: Signal0 by signal()
 
   /**
    * Emitted when a tween ends.
    */
-  val tweenCompleted: Signal2<Object, NodePath> by signal("object", "key")
+  public val tweenCompleted: Signal2<Object, NodePath> by signal("object", "key")
 
   /**
    * Emitted when a tween starts.
    */
-  val tweenStarted: Signal2<Object, NodePath> by signal("object", "key")
+  public val tweenStarted: Signal2<Object, NodePath> by signal("object", "key")
 
   /**
    * Emitted at each step of the animation.
    */
-  val tweenStep: Signal4<Object, NodePath, Double, Object> by signal("object", "key", "elapsed",
-      "value")
+  public val tweenStep: Signal4<Object, NodePath, Double, Object> by signal("object", "key",
+      "elapsed", "value")
 
   /**
    * The tween's animation process thread. See [enum TweenProcessMode].
    */
-  open var playbackProcessMode: Long
+  public open var playbackProcessMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_GET_PLAYBACK_PROCESS_MODE,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_PLAYBACK_PROCESS_MODE,
           NIL)
@@ -92,13 +93,13 @@ open class Tween : Node() {
   /**
    * The tween's speed multiplier. For example, set it to `1.0` for normal speed, `2.0` for two times normal speed, or `0.5` for half of the normal speed. A value of `0` pauses the animation, but see also [setActive] or [stopAll] for this.
    */
-  open var playbackSpeed: Double
+  public open var playbackSpeed: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_GET_PLAYBACK_SPEED, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_PLAYBACK_SPEED, NIL)
     }
@@ -106,22 +107,22 @@ open class Tween : Node() {
   /**
    * If `true`, the tween loops.
    */
-  open var repeat: Boolean
+  public open var repeat: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_GET_REPEAT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_REPEAT, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TWEEN)
   }
 
-  open fun _removeByUid(uid: Long) {
+  public open fun _removeByUid(uid: Long): Unit {
   }
 
   /**
@@ -129,7 +130,7 @@ open class Tween : Node() {
    *
    * Use [enum TransitionType] for `trans_type` and [enum EaseType] for `ease_type` parameters. These values control the timing and direction of the interpolation. See the class description for more information.
    */
-  open fun followMethod(
+  public open fun followMethod(
     _object: Object,
     method: String,
     initialVal: Any?,
@@ -152,9 +153,9 @@ open class Tween : Node() {
    *
    * Use [enum TransitionType] for `trans_type` and [enum EaseType] for `ease_type` parameters. These values control the timing and direction of the interpolation. See the class description for more information.
    */
-  open fun followProperty(
+  public open fun followProperty(
     _object: Object,
-    property: NodePath,
+    `property`: NodePath,
     initialVal: Any?,
     target: Object,
     targetProperty: NodePath,
@@ -173,7 +174,7 @@ open class Tween : Node() {
   /**
    * Returns the total time needed for all tweens to end. If you have two tweens, one lasting 10 seconds and the other 20 seconds, it would return 20 seconds, as by that time all tweens would have finished.
    */
-  open fun getRuntime(): Double {
+  public open fun getRuntime(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_GET_RUNTIME, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -182,7 +183,7 @@ open class Tween : Node() {
   /**
    * Calls `callback` of `object` after `duration`. `arg1`-`arg5` are arguments to be passed to the callback.
    */
-  open fun interpolateCallback(
+  public open fun interpolateCallback(
     _object: Object,
     duration: Double,
     callback: String,
@@ -201,7 +202,7 @@ open class Tween : Node() {
   /**
    * Calls `callback` of `object` after `duration` on the main thread (similar to [godot.Object.callDeferred]). `arg1`-`arg5` are arguments to be passed to the callback.
    */
-  open fun interpolateDeferredCallback(
+  public open fun interpolateDeferredCallback(
     _object: Object,
     duration: Double,
     callback: String,
@@ -223,7 +224,7 @@ open class Tween : Node() {
    *
    * Use [enum TransitionType] for `trans_type` and [enum EaseType] for `ease_type` parameters. These values control the timing and direction of the interpolation. See the class description for more information.
    */
-  open fun interpolateMethod(
+  public open fun interpolateMethod(
     _object: Object,
     method: String,
     initialVal: Any?,
@@ -244,9 +245,9 @@ open class Tween : Node() {
    *
    * Use [enum TransitionType] for `trans_type` and [enum EaseType] for `ease_type` parameters. These values control the timing and direction of the interpolation. See the class description for more information.
    */
-  open fun interpolateProperty(
+  public open fun interpolateProperty(
     _object: Object,
-    property: NodePath,
+    `property`: NodePath,
     initialVal: Any?,
     finalVal: Any?,
     duration: Double,
@@ -265,7 +266,7 @@ open class Tween : Node() {
    *
    * **Note:** This method doesn't consider tweens that have ended.
    */
-  open fun isActive(): Boolean {
+  public open fun isActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_IS_ACTIVE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -274,7 +275,7 @@ open class Tween : Node() {
   /**
    * Stops animation and removes a tween, given its object and property/method pair. By default, all tweens are removed, unless `key` is specified.
    */
-  open fun remove(_object: Object, key: String = ""): Boolean {
+  public open fun remove(_object: Object, key: String = ""): Boolean {
     TransferContext.writeArguments(OBJECT to _object, STRING to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_REMOVE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -283,7 +284,7 @@ open class Tween : Node() {
   /**
    * Stops animation and removes all tweens.
    */
-  open fun removeAll(): Boolean {
+  public open fun removeAll(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_REMOVE_ALL, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -292,7 +293,7 @@ open class Tween : Node() {
   /**
    * Resets a tween to its initial value (the one given, not the one before the tween), given its object and property/method pair. By default, all tweens are removed, unless `key` is specified.
    */
-  open fun reset(_object: Object, key: String = ""): Boolean {
+  public open fun reset(_object: Object, key: String = ""): Boolean {
     TransferContext.writeArguments(OBJECT to _object, STRING to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_RESET, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -301,7 +302,7 @@ open class Tween : Node() {
   /**
    * Resets all tweens to their initial values (the ones given, not those before the tween).
    */
-  open fun resetAll(): Boolean {
+  public open fun resetAll(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_RESET_ALL, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -310,7 +311,7 @@ open class Tween : Node() {
   /**
    * Continues animating a stopped tween, given its object and property/method pair. By default, all tweens are resumed, unless `key` is specified.
    */
-  open fun resume(_object: Object, key: String = ""): Boolean {
+  public open fun resume(_object: Object, key: String = ""): Boolean {
     TransferContext.writeArguments(OBJECT to _object, STRING to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_RESUME, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -319,7 +320,7 @@ open class Tween : Node() {
   /**
    * Continues animating all stopped tweens.
    */
-  open fun resumeAll(): Boolean {
+  public open fun resumeAll(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_RESUME_ALL, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -328,7 +329,7 @@ open class Tween : Node() {
   /**
    * Sets the interpolation to the given `time` in seconds.
    */
-  open fun seek(time: Double): Boolean {
+  public open fun seek(time: Double): Boolean {
     TransferContext.writeArguments(DOUBLE to time)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SEEK, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -337,7 +338,7 @@ open class Tween : Node() {
   /**
    * Activates/deactivates the tween. See also [stopAll] and [resumeAll].
    */
-  open fun setActive(active: Boolean) {
+  public open fun setActive(active: Boolean): Unit {
     TransferContext.writeArguments(BOOL to active)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_SET_ACTIVE, NIL)
   }
@@ -345,7 +346,7 @@ open class Tween : Node() {
   /**
    * Starts the tween. You can define animations both before and after this.
    */
-  open fun start(): Boolean {
+  public open fun start(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_START, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -354,7 +355,7 @@ open class Tween : Node() {
   /**
    * Stops a tween, given its object and property/method pair. By default, all tweens are stopped, unless `key` is specified.
    */
-  open fun stop(_object: Object, key: String = ""): Boolean {
+  public open fun stop(_object: Object, key: String = ""): Boolean {
     TransferContext.writeArguments(OBJECT to _object, STRING to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_STOP, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -363,7 +364,7 @@ open class Tween : Node() {
   /**
    * Stops animating all tweens.
    */
-  open fun stopAll(): Boolean {
+  public open fun stopAll(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_STOP_ALL, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -374,7 +375,7 @@ open class Tween : Node() {
    *
    * Use [enum TransitionType] for `trans_type` and [enum EaseType] for `ease_type` parameters. These values control the timing and direction of the interpolation. See the class description for more information.
    */
-  open fun targetingMethod(
+  public open fun targetingMethod(
     _object: Object,
     method: String,
     initial: Object,
@@ -397,9 +398,9 @@ open class Tween : Node() {
    *
    * Use [enum TransitionType] for `trans_type` and [enum EaseType] for `ease_type` parameters. These values control the timing and direction of the interpolation. See the class description for more information.
    */
-  open fun targetingProperty(
+  public open fun targetingProperty(
     _object: Object,
-    property: NodePath,
+    `property`: NodePath,
     initial: Object,
     initialVal: NodePath,
     finalVal: Any?,
@@ -418,220 +419,209 @@ open class Tween : Node() {
   /**
    * Returns the current time of the tween.
    */
-  open fun tell(): Double {
+  public open fun tell(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_TELL, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  enum class TransitionType(
+  public enum class TransitionType(
     id: Long
   ) {
     /**
      * The animation is interpolated linearly.
      */
     TRANS_LINEAR(0),
-
     /**
      * The animation is interpolated using a sine function.
      */
     TRANS_SINE(1),
-
     /**
      * The animation is interpolated with a quintic (to the power of 5) function.
      */
     TRANS_QUINT(2),
-
     /**
      * The animation is interpolated with a quartic (to the power of 4) function.
      */
     TRANS_QUART(3),
-
     /**
      * The animation is interpolated with a quadratic (to the power of 2) function.
      */
     TRANS_QUAD(4),
-
     /**
      * The animation is interpolated with an exponential (to the power of x) function.
      */
     TRANS_EXPO(5),
-
     /**
      * The animation is interpolated with elasticity, wiggling around the edges.
      */
     TRANS_ELASTIC(6),
-
     /**
      * The animation is interpolated with a cubic (to the power of 3) function.
      */
     TRANS_CUBIC(7),
-
     /**
      * The animation is interpolated with a function using square roots.
      */
     TRANS_CIRC(8),
-
     /**
      * The animation is interpolated by bouncing at the end.
      */
     TRANS_BOUNCE(9),
-
     /**
      * The animation is interpolated backing out at ends.
      */
-    TRANS_BACK(10);
+    TRANS_BACK(10),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class TweenProcessMode(
+  public enum class TweenProcessMode(
     id: Long
   ) {
     /**
      * The tween updates with the `_physics_process` callback.
      */
     TWEEN_PROCESS_PHYSICS(0),
-
     /**
      * The tween updates with the `_process` callback.
      */
-    TWEEN_PROCESS_IDLE(1);
+    TWEEN_PROCESS_IDLE(1),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class EaseType(
+  public enum class EaseType(
     id: Long
   ) {
     /**
      * The interpolation starts slowly and speeds up towards the end.
      */
     EASE_IN(0),
-
     /**
      * The interpolation starts quickly and slows down towards the end.
      */
     EASE_OUT(1),
-
     /**
      * A combination of [EASE_IN] and [EASE_OUT]. The interpolation is slowest at both ends.
      */
     EASE_IN_OUT(2),
-
     /**
      * A combination of [EASE_IN] and [EASE_OUT]. The interpolation is fastest at both ends.
      */
-    EASE_OUT_IN(3);
+    EASE_OUT_IN(3),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * The interpolation starts slowly and speeds up towards the end.
      */
-    final const val EASE_IN: Long = 0
+    public final const val EASE_IN: Long = 0
 
     /**
      * A combination of [EASE_IN] and [EASE_OUT]. The interpolation is slowest at both ends.
      */
-    final const val EASE_IN_OUT: Long = 2
+    public final const val EASE_IN_OUT: Long = 2
 
     /**
      * The interpolation starts quickly and slows down towards the end.
      */
-    final const val EASE_OUT: Long = 1
+    public final const val EASE_OUT: Long = 1
 
     /**
      * A combination of [EASE_IN] and [EASE_OUT]. The interpolation is fastest at both ends.
      */
-    final const val EASE_OUT_IN: Long = 3
+    public final const val EASE_OUT_IN: Long = 3
 
     /**
      * The animation is interpolated backing out at ends.
      */
-    final const val TRANS_BACK: Long = 10
+    public final const val TRANS_BACK: Long = 10
 
     /**
      * The animation is interpolated by bouncing at the end.
      */
-    final const val TRANS_BOUNCE: Long = 9
+    public final const val TRANS_BOUNCE: Long = 9
 
     /**
      * The animation is interpolated with a function using square roots.
      */
-    final const val TRANS_CIRC: Long = 8
+    public final const val TRANS_CIRC: Long = 8
 
     /**
      * The animation is interpolated with a cubic (to the power of 3) function.
      */
-    final const val TRANS_CUBIC: Long = 7
+    public final const val TRANS_CUBIC: Long = 7
 
     /**
      * The animation is interpolated with elasticity, wiggling around the edges.
      */
-    final const val TRANS_ELASTIC: Long = 6
+    public final const val TRANS_ELASTIC: Long = 6
 
     /**
      * The animation is interpolated with an exponential (to the power of x) function.
      */
-    final const val TRANS_EXPO: Long = 5
+    public final const val TRANS_EXPO: Long = 5
 
     /**
      * The animation is interpolated linearly.
      */
-    final const val TRANS_LINEAR: Long = 0
+    public final const val TRANS_LINEAR: Long = 0
 
     /**
      * The animation is interpolated with a quadratic (to the power of 2) function.
      */
-    final const val TRANS_QUAD: Long = 4
+    public final const val TRANS_QUAD: Long = 4
 
     /**
      * The animation is interpolated with a quartic (to the power of 4) function.
      */
-    final const val TRANS_QUART: Long = 3
+    public final const val TRANS_QUART: Long = 3
 
     /**
      * The animation is interpolated with a quintic (to the power of 5) function.
      */
-    final const val TRANS_QUINT: Long = 2
+    public final const val TRANS_QUINT: Long = 2
 
     /**
      * The animation is interpolated using a sine function.
      */
-    final const val TRANS_SINE: Long = 1
+    public final const val TRANS_SINE: Long = 1
 
     /**
      * The tween updates with the `_process` callback.
      */
-    final const val TWEEN_PROCESS_IDLE: Long = 1
+    public final const val TWEEN_PROCESS_IDLE: Long = 1
 
     /**
      * The tween updates with the `_physics_process` callback.
      */
-    final const val TWEEN_PROCESS_PHYSICS: Long = 0
+    public final const val TWEEN_PROCESS_PHYSICS: Long = 0
   }
 }

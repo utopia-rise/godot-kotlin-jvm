@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -13,67 +13,66 @@ import godot.core.VariantType.STRING
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
-open class VisualScriptInputAction : VisualScriptNode() {
-  open var action: String
+public open class VisualScriptInputAction : VisualScriptNode() {
+  public open var action: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTINPUTACTION_GET_ACTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTINPUTACTION_SET_ACTION, NIL)
     }
 
-  open var mode: Long
+  public open var mode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTINPUTACTION_GET_MODE,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTINPUTACTION_SET_MODE,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSCRIPTINPUTACTION)
   }
 
-  enum class Mode(
+  public enum class Mode(
     id: Long
   ) {
     MODE_PRESSED(0),
-
     MODE_RELEASED(1),
-
     MODE_JUST_PRESSED(2),
+    MODE_JUST_RELEASED(3),
+    ;
 
-    MODE_JUST_RELEASED(3);
-
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
-    final const val MODE_JUST_PRESSED: Long = 2
+  public companion object {
+    public final const val MODE_JUST_PRESSED: Long = 2
 
-    final const val MODE_JUST_RELEASED: Long = 3
+    public final const val MODE_JUST_RELEASED: Long = 3
 
-    final const val MODE_PRESSED: Long = 0
+    public final const val MODE_PRESSED: Long = 0
 
-    final const val MODE_RELEASED: Long = 1
+    public final const val MODE_RELEASED: Long = 1
   }
 }

@@ -5,12 +5,13 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Computes a [godot.core.Transform] function within the visual shader graph.
@@ -18,59 +19,59 @@ import kotlin.Suppress
  * Computes an inverse or transpose function on the provided [godot.core.Transform].
  */
 @GodotBaseType
-open class VisualShaderNodeTransformFunc : VisualShaderNode() {
+public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
   /**
    * The function to be computed. See [enum Function] for options.
    */
-  open var function: Long
+  public open var function: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETRANSFORMFUNC_GET_FUNCTION, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETRANSFORMFUNC_SET_FUNCTION, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMFUNC)
   }
 
-  enum class Function(
+  public enum class Function(
     id: Long
   ) {
     /**
      * Perform the inverse operation on the [godot.core.Transform] matrix.
      */
     FUNC_INVERSE(0),
-
     /**
      * Perform the transpose operation on the [godot.core.Transform] matrix.
      */
-    FUNC_TRANSPOSE(1);
+    FUNC_TRANSPOSE(1),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Perform the inverse operation on the [godot.core.Transform] matrix.
      */
-    final const val FUNC_INVERSE: Long = 0
+    public final const val FUNC_INVERSE: Long = 0
 
     /**
      * Perform the transpose operation on the [godot.core.Transform] matrix.
      */
-    final const val FUNC_TRANSPOSE: Long = 1
+    public final const val FUNC_TRANSPOSE: Long = 1
   }
 }

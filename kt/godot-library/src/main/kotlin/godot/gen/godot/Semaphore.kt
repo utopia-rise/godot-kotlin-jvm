@@ -5,13 +5,14 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.TransferContext
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A synchronization semaphore.
@@ -22,15 +23,15 @@ import kotlin.Suppress
  * A synchronization semaphore which can be used to synchronize multiple [godot.Thread]s. Initialized to zero on creation. Be careful to avoid deadlocks. For a binary version, see [godot.Mutex].
  */
 @GodotBaseType
-open class Semaphore : Reference() {
-  override fun __new() {
+public open class Semaphore : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS__SEMAPHORE)
   }
 
   /**
    * Lowers the [godot.Semaphore], allowing one more thread in. Returns [OK] on success, [ERR_BUSY] otherwise.
    */
-  open fun post(): GodotError {
+  public open fun post(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__SEMAPHORE_POST, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -39,7 +40,7 @@ open class Semaphore : Reference() {
   /**
    * Tries to wait for the [godot.Semaphore], if its value is zero, blocks until non-zero. Returns [OK] on success, [ERR_BUSY] otherwise.
    */
-  open fun wait(): GodotError {
+  public open fun wait(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__SEMAPHORE_WAIT, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

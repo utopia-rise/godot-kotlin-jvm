@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Mesh with a single Point primitive.
@@ -18,8 +19,8 @@ import kotlin.Suppress
  * When using PointMeshes, properties that normally alter vertices will be ignored, including billboard mode, grow, and cull face.
  */
 @GodotBaseType
-open class PointMesh : PrimitiveMesh() {
-  override fun __new() {
+public open class PointMesh : PrimitiveMesh() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_POINTMESH)
   }
 }

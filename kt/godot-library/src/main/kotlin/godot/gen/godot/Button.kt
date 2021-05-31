@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -16,6 +16,7 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Standard themed Button.
@@ -45,17 +46,17 @@ import kotlin.Suppress
  * **Note:** Buttons do not interpret touch input and therefore don't support multitouch, since mouse emulation can only press one button at a given time. Use [godot.TouchScreenButton] for buttons that trigger gameplay movement or actions, as [godot.TouchScreenButton] supports multitouch.
  */
 @GodotBaseType
-open class Button : BaseButton() {
+public open class Button : BaseButton() {
   /**
    * Text alignment policy for the button's text, use one of the [enum TextAlign] constants.
    */
-  open var align: Long
+  public open var align: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_ALIGN, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_ALIGN, NIL)
     }
@@ -63,13 +64,13 @@ open class Button : BaseButton() {
   /**
    * When this property is enabled, text that is too large to fit the button is clipped, when disabled the Button will always be wide enough to hold the text.
    */
-  open var clipText: Boolean
+  public open var clipText: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_CLIP_TEXT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_CLIP_TEXT, NIL)
     }
@@ -77,13 +78,13 @@ open class Button : BaseButton() {
   /**
    * When enabled, the button's icon will expand/shrink to fit the button's size while keeping its aspect.
    */
-  open var expandIcon: Boolean
+  public open var expandIcon: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_EXPAND_ICON, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_EXPAND_ICON, NIL)
     }
@@ -91,13 +92,13 @@ open class Button : BaseButton() {
   /**
    * Flat buttons don't display decoration.
    */
-  open var flat: Boolean
+  public open var flat: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_FLAT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_FLAT, NIL)
     }
@@ -105,13 +106,13 @@ open class Button : BaseButton() {
   /**
    * Button's icon, if text is present the icon will be placed before the text.
    */
-  open var icon: Texture?
+  public open var icon: Texture?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_ICON, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_ICON, NIL)
     }
@@ -119,63 +120,62 @@ open class Button : BaseButton() {
   /**
    * The button's text that will be displayed inside the button's area.
    */
-  open var text: String
+  public open var text: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_GET_TEXT, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_TEXT, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_BUTTON)
   }
 
-  enum class TextAlign(
+  public enum class TextAlign(
     id: Long
   ) {
     /**
      * Align the text to the left.
      */
     ALIGN_LEFT(0),
-
     /**
      * Align the text to the center.
      */
     ALIGN_CENTER(1),
-
     /**
      * Align the text to the right.
      */
-    ALIGN_RIGHT(2);
+    ALIGN_RIGHT(2),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Align the text to the center.
      */
-    final const val ALIGN_CENTER: Long = 1
+    public final const val ALIGN_CENTER: Long = 1
 
     /**
      * Align the text to the left.
      */
-    final const val ALIGN_LEFT: Long = 0
+    public final const val ALIGN_LEFT: Long = 0
 
     /**
      * Align the text to the right.
      */
-    final const val ALIGN_RIGHT: Long = 2
+    public final const val ALIGN_RIGHT: Long = 2
   }
 }

@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
@@ -18,43 +18,44 @@ import kotlin.Any
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
-open class VisualScriptNode : Resource() {
-  val portsChanged: Signal0 by signal()
+public open class VisualScriptNode : Resource() {
+  public val portsChanged: Signal0 by signal()
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSCRIPTNODE)
   }
 
-  open fun _getDefaultInputValues(): VariantArray<Any?> {
+  public open fun _getDefaultInputValues(): VariantArray<Any?> {
     throw NotImplementedError("_get_default_input_values is not implemented for VisualScriptNode")
   }
 
-  open fun _setDefaultInputValues(values: VariantArray<Any?>) {
+  public open fun _setDefaultInputValues(values: VariantArray<Any?>): Unit {
   }
 
-  open fun getDefaultInputValue(portIdx: Long): Any? {
+  public open fun getDefaultInputValue(portIdx: Long): Any? {
     TransferContext.writeArguments(LONG to portIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTNODE_GET_DEFAULT_INPUT_VALUE, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
-  open fun getVisualScript(): VisualScript? {
+  public open fun getVisualScript(): VisualScript? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTNODE_GET_VISUAL_SCRIPT,
         OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as VisualScript?
   }
 
-  open fun portsChangedNotify() {
+  public open fun portsChangedNotify(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTNODE_PORTS_CHANGED_NOTIFY, NIL)
   }
 
-  open fun setDefaultInputValue(portIdx: Long, value: Any?) {
+  public open fun setDefaultInputValue(portIdx: Long, `value`: Any?): Unit {
     TransferContext.writeArguments(LONG to portIdx, ANY to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTNODE_SET_DEFAULT_INPUT_VALUE, NIL)

@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.PoolStringArray
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -16,6 +16,7 @@ import godot.core.VariantType.STRING
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Singleton used to load resource files.
@@ -28,19 +29,19 @@ import kotlin.Suppress
  * It uses the many [godot.ResourceFormatLoader] classes registered in the engine (either built-in or from a plugin) to load files into memory and convert them to a format that can be used by the engine.
  */
 @GodotBaseType
-object ResourceLoader : Object() {
-  override fun __new() {
+public object ResourceLoader : Object() {
+  public override fun __new(): Unit {
     rawPtr = TransferContext.getSingleton(ENGINESINGLETON_RESOURCELOADER)
   }
 
-  override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
+  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    * Returns whether a recognized resource exists for the given `path`.
    *
    * An optional `type_hint` can be used to further specify the [godot.Resource] type that should be handled by the [godot.ResourceFormatLoader].
    */
-  fun exists(path: String, typeHint: String = ""): Boolean {
+  public fun exists(path: String, typeHint: String = ""): Boolean {
     TransferContext.writeArguments(STRING to path, STRING to typeHint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__RESOURCELOADER_EXISTS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -49,7 +50,7 @@ object ResourceLoader : Object() {
   /**
    * Returns the dependencies for the resource at the given `path`.
    */
-  fun getDependencies(path: String): PoolStringArray {
+  public fun getDependencies(path: String): PoolStringArray {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__RESOURCELOADER_GET_DEPENDENCIES,
         POOL_STRING_ARRAY)
@@ -59,7 +60,7 @@ object ResourceLoader : Object() {
   /**
    * Returns the list of recognized extensions for a resource type.
    */
-  fun getRecognizedExtensionsForType(type: String): PoolStringArray {
+  public fun getRecognizedExtensionsForType(type: String): PoolStringArray {
     TransferContext.writeArguments(STRING to type)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS__RESOURCELOADER_GET_RECOGNIZED_EXTENSIONS_FOR_TYPE,
@@ -70,7 +71,7 @@ object ResourceLoader : Object() {
   /**
    * *Deprecated method.* Use [hasCached] or [exists] instead.
    */
-  fun has(path: String): Boolean {
+  public fun has(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__RESOURCELOADER_HAS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -81,7 +82,7 @@ object ResourceLoader : Object() {
    *
    * Once a resource has been loaded by the engine, it is cached in memory for faster access, and future calls to the [load] or [loadInteractive] methods will use the cached version. The cached resource can be overridden by using [godot.Resource.takeOverPath] on a new resource for that same path.
    */
-  fun hasCached(path: String): Boolean {
+  public fun hasCached(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__RESOURCELOADER_HAS_CACHED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -100,7 +101,7 @@ object ResourceLoader : Object() {
    *
    * GDScript has a simplified [@GDScript.load] built-in method which can be used in most situations, leaving the use of [godot.ResourceLoader] for more advanced scenarios.
    */
-  fun load(
+  public fun load(
     path: String,
     typeHint: String = "",
     noCache: Boolean = false
@@ -115,7 +116,7 @@ object ResourceLoader : Object() {
    *
    * An optional `type_hint` can be used to further specify the [godot.Resource] type that should be handled by the [godot.ResourceFormatLoader]. Anything that inherits from [godot.Resource] can be used as a type hint, for example [godot.Image].
    */
-  fun loadInteractive(path: String, typeHint: String = ""): ResourceInteractiveLoader? {
+  public fun loadInteractive(path: String, typeHint: String = ""): ResourceInteractiveLoader? {
     TransferContext.writeArguments(STRING to path, STRING to typeHint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__RESOURCELOADER_LOAD_INTERACTIVE,
         OBJECT)
@@ -125,7 +126,7 @@ object ResourceLoader : Object() {
   /**
    * Changes the behavior on missing sub-resources. The default behavior is to abort loading.
    */
-  fun setAbortOnMissingResources(abort: Boolean) {
+  public fun setAbortOnMissingResources(abort: Boolean): Unit {
     TransferContext.writeArguments(BOOL to abort)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS__RESOURCELOADER_SET_ABORT_ON_MISSING_RESOURCES, NIL)

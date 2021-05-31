@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -28,48 +28,48 @@ import kotlin.Unit
  * **Note:** VisibilityNotifier uses an approximate heuristic for performance reasons. It doesn't take walls and other occlusion into account. The heuristic is an implementation detail and may change in future versions. If you need precise visibility checking, use another method such as adding an [godot.Area] node as a child of a [godot.Camera] node and/or [godot.Vector3.dot].
  */
 @GodotBaseType
-open class VisibilityNotifier : Spatial() {
+public open class VisibilityNotifier : Spatial() {
   /**
    * Emitted when the VisibilityNotifier enters a [godot.Camera]'s view.
    */
-  val cameraEntered: Signal1<Camera> by signal("camera")
+  public val cameraEntered: Signal1<Camera> by signal("camera")
 
   /**
    * Emitted when the VisibilityNotifier exits a [godot.Camera]'s view.
    */
-  val cameraExited: Signal1<Camera> by signal("camera")
+  public val cameraExited: Signal1<Camera> by signal("camera")
 
   /**
    * Emitted when the VisibilityNotifier enters the screen.
    */
-  val screenEntered: Signal0 by signal()
+  public val screenEntered: Signal0 by signal()
 
   /**
    * Emitted when the VisibilityNotifier exits the screen.
    */
-  val screenExited: Signal0 by signal()
+  public val screenExited: Signal0 by signal()
 
   /**
    * The VisibilityNotifier's bounding box.
    */
-  open var aabb: AABB
+  public open var aabb: AABB
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISIBILITYNOTIFIER_GET_AABB,
           godot.core.VariantType.AABB)
       return TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(godot.core.VariantType.AABB to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISIBILITYNOTIFIER_SET_AABB, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISIBILITYNOTIFIER)
   }
 
   @CoreTypeHelper
-  open fun aabb(schedule: AABB.() -> Unit): AABB = aabb.apply{
+  public open fun aabb(schedule: AABB.() -> Unit): AABB = aabb.apply{
       schedule(this)
       aabb = this
   }
@@ -80,7 +80,7 @@ open class VisibilityNotifier : Spatial() {
    *
    * **Note:** It takes one frame for the node's visibility to be assessed once added to the scene tree, so this method will return `false` right after it is instantiated, even if it will be on screen in the draw pass.
    */
-  open fun isOnScreen(): Boolean {
+  public open fun isOnScreen(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISIBILITYNOTIFIER_IS_ON_SCREEN,
         BOOL)

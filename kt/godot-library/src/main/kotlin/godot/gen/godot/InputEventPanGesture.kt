@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
@@ -18,29 +18,29 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-open class InputEventPanGesture : InputEventGesture() {
+public open class InputEventPanGesture : InputEventGesture() {
   /**
    *
    */
-  open var delta: Vector2
+  public open var delta: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTPANGESTURE_GET_DELTA,
           VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTPANGESTURE_SET_DELTA,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTPANGESTURE)
   }
 
   @CoreTypeHelper
-  open fun delta(schedule: Vector2.() -> Unit): Vector2 = delta.apply{
+  public open fun delta(schedule: Vector2.() -> Unit): Vector2 = delta.apply{
       schedule(this)
       delta = this
   }

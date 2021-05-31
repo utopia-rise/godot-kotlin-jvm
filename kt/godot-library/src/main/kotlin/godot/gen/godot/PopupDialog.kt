@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Base class for popup dialogs.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * PopupDialog is a base class for popup dialogs, along with [godot.WindowDialog].
  */
 @GodotBaseType
-open class PopupDialog : Popup() {
-  override fun __new() {
+public open class PopupDialog : Popup() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_POPUPDIALOG)
   }
 }

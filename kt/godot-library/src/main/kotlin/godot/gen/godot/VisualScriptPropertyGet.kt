@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.TransferContext
 import godot.core.VariantType
@@ -17,139 +17,138 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
-open class VisualScriptPropertyGet : VisualScriptNode() {
-  open var baseScript: String
+public open class VisualScriptPropertyGet : VisualScriptNode() {
+  public open var baseScript: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_GET_BASE_SCRIPT, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_SET_BASE_SCRIPT, NIL)
     }
 
-  open var baseType: String
+  public open var baseType: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_GET_BASE_TYPE, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_SET_BASE_TYPE, NIL)
     }
 
-  open var basicType: Long
+  public open var basicType: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_GET_BASIC_TYPE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_SET_BASIC_TYPE, NIL)
     }
 
-  open var index: String
+  public open var index: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_GET_INDEX,
           STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_SET_INDEX,
           NIL)
     }
 
-  open var nodePath: NodePath
+  public open var nodePath: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_GET_NODE_PATH, NODE_PATH)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_SET_NODE_PATH, NIL)
     }
 
-  open var property: String
+  public open var `property`: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_GET_PROPERTY, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_SET_PROPERTY, NIL)
     }
 
-  open var setMode: Long
+  public open var setMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_GET_SET_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_SET_SET_MODE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSCRIPTPROPERTYGET)
   }
 
-  open fun _getTypeCache(): VariantType {
+  public open fun _getTypeCache(): VariantType {
     throw NotImplementedError("_get_type_cache is not implemented for VisualScriptPropertyGet")
   }
 
-  open fun _setTypeCache(typeCache: Long) {
+  public open fun _setTypeCache(typeCache: Long): Unit {
   }
 
-  enum class CallMode(
+  public enum class CallMode(
     id: Long
   ) {
     CALL_MODE_SELF(0),
-
     CALL_MODE_NODE_PATH(1),
-
     CALL_MODE_INSTANCE(2),
+    CALL_MODE_BASIC_TYPE(3),
+    ;
 
-    CALL_MODE_BASIC_TYPE(3);
-
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
-    final const val CALL_MODE_BASIC_TYPE: Long = 3
+  public companion object {
+    public final const val CALL_MODE_BASIC_TYPE: Long = 3
 
-    final const val CALL_MODE_INSTANCE: Long = 2
+    public final const val CALL_MODE_INSTANCE: Long = 2
 
-    final const val CALL_MODE_NODE_PATH: Long = 1
+    public final const val CALL_MODE_NODE_PATH: Long = 1
 
-    final const val CALL_MODE_SELF: Long = 0
+    public final const val CALL_MODE_SELF: Long = 0
   }
 }

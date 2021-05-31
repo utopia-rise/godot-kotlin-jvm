@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -17,6 +17,7 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Placeholder for the root [godot.Node] of a [godot.PackedScene].
@@ -26,15 +27,16 @@ import kotlin.Suppress
  * The InstancePlaceholder does not have a transform. This causes any child nodes to be positioned relatively to the Viewport from point (0,0), rather than their parent as displayed in the editor. Replacing the placeholder with a scene with a transform will transform children relatively to their parent again.
  */
 @GodotBaseType
-open class InstancePlaceholder : Node() {
-  override fun __new() {
+public open class InstancePlaceholder : Node() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_INSTANCEPLACEHOLDER)
   }
 
   /**
    * Not thread-safe. Use [godot.Object.callDeferred] if calling from a thread.
    */
-  open fun createInstance(replace: Boolean = false, customScene: PackedScene? = null): Node? {
+  public open fun createInstance(replace: Boolean = false, customScene: PackedScene? = null):
+      Node? {
     TransferContext.writeArguments(BOOL to replace, OBJECT to customScene)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INSTANCEPLACEHOLDER_CREATE_INSTANCE,
         OBJECT)
@@ -44,7 +46,7 @@ open class InstancePlaceholder : Node() {
   /**
    * Gets the path to the [godot.PackedScene] resource file that is loaded by default when calling [replaceByInstance]. Not thread-safe. Use [godot.Object.callDeferred] if calling from a thread.
    */
-  open fun getInstancePath(): String {
+  public open fun getInstancePath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_INSTANCEPLACEHOLDER_GET_INSTANCE_PATH, STRING)
@@ -54,7 +56,7 @@ open class InstancePlaceholder : Node() {
   /**
    *
    */
-  open fun getStoredValues(withOrder: Boolean = false): Dictionary<Any?, Any?> {
+  public open fun getStoredValues(withOrder: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to withOrder)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_INSTANCEPLACEHOLDER_GET_STORED_VALUES, DICTIONARY)
@@ -64,7 +66,7 @@ open class InstancePlaceholder : Node() {
   /**
    * Replaces this placeholder by the scene handed as an argument, or the original scene if no argument is given. As for all resources, the scene is loaded only if it's not loaded already. By manually loading the scene beforehand, delays caused by this function can be avoided.
    */
-  open fun replaceByInstance(customScene: PackedScene? = null) {
+  public open fun replaceByInstance(customScene: PackedScene? = null): Unit {
     TransferContext.writeArguments(OBJECT to customScene)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_INSTANCEPLACEHOLDER_REPLACE_BY_INSTANCE, NIL)

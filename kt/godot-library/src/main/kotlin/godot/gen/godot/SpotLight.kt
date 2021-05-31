@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A spotlight, such as a reflector spotlight or a lantern.
@@ -19,8 +20,8 @@ import kotlin.Suppress
  * **Note:** By default, only 32 SpotLights may affect a single mesh *resource* at once. Consider splitting your level into several meshes to decrease the likelihood that more than 32 lights will affect the same mesh resource. Splitting the level mesh will also improve frustum culling effectiveness, leading to greater performance. If you need to use more lights per mesh, you can increase [godot.ProjectSettings.rendering/limits/rendering/maxLightsPerObject] at the cost of shader compilation times.
  */
 @GodotBaseType
-open class SpotLight : Light() {
-  override fun __new() {
+public open class SpotLight : Light() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SPOTLIGHT)
   }
 }

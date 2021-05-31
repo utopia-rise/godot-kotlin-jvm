@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -35,19 +35,19 @@ import kotlin.Unit
  * **Note:** After working on a Particles node, remember to update its [visibilityAabb] by selecting it, clicking the **Particles** menu at the top of the 3D editor viewport then choose **Generate Visibility AABB**. Otherwise, particles may suddenly disappear depending on the camera position and angle.
  */
 @GodotBaseType
-open class Particles : GeometryInstance() {
+public open class Particles : GeometryInstance() {
   /**
    * The number of particles emitted in one emission cycle (corresponding to the [lifetime]).
    *
    * **Note:** Changing [amount] will reset the particle emission, therefore removing all particles that were already emitted before changing [amount].
    */
-  open var amount: Long
+  public open var amount: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_GET_AMOUNT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_SET_AMOUNT, NIL)
     }
@@ -55,13 +55,13 @@ open class Particles : GeometryInstance() {
   /**
    * Particle draw order. Uses [enum DrawOrder] values.
    */
-  open var drawOrder: Long
+  public open var drawOrder: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_GET_DRAW_ORDER, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_SET_DRAW_ORDER, NIL)
     }
@@ -69,13 +69,13 @@ open class Particles : GeometryInstance() {
   /**
    * [godot.Mesh] that is drawn for the first draw pass.
    */
-  open var drawPass1: Mesh?
+  public open var drawPass1: Mesh?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_GET_DRAW_PASS_1, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Mesh?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_SET_DRAW_PASS_1, NIL)
     }
@@ -83,13 +83,13 @@ open class Particles : GeometryInstance() {
   /**
    * [godot.Mesh] that is drawn for the second draw pass.
    */
-  open var drawPass2: Mesh?
+  public open var drawPass2: Mesh?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_GET_DRAW_PASS_2, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Mesh?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_SET_DRAW_PASS_2, NIL)
     }
@@ -97,13 +97,13 @@ open class Particles : GeometryInstance() {
   /**
    * [godot.Mesh] that is drawn for the third draw pass.
    */
-  open var drawPass3: Mesh?
+  public open var drawPass3: Mesh?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_GET_DRAW_PASS_3, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Mesh?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_SET_DRAW_PASS_3, NIL)
     }
@@ -111,13 +111,13 @@ open class Particles : GeometryInstance() {
   /**
    * [godot.Mesh] that is drawn for the fourth draw pass.
    */
-  open var drawPass4: Mesh?
+  public open var drawPass4: Mesh?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_GET_DRAW_PASS_4, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Mesh?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_SET_DRAW_PASS_4, NIL)
     }
@@ -125,13 +125,13 @@ open class Particles : GeometryInstance() {
   /**
    * The number of draw passes when rendering particles.
    */
-  open var drawPasses: Long
+  public open var drawPasses: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_GET_DRAW_PASSES, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_SET_DRAW_PASSES, NIL)
     }
@@ -139,13 +139,13 @@ open class Particles : GeometryInstance() {
   /**
    * If `true`, particles are being emitted.
    */
-  open var emitting: Boolean
+  public open var emitting: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_GET_EMITTING, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_SET_EMITTING, NIL)
     }
@@ -153,14 +153,14 @@ open class Particles : GeometryInstance() {
   /**
    * Time ratio between each emission. If `0`, particles are emitted continuously. If `1`, all particles are emitted simultaneously.
    */
-  open var explosiveness: Double
+  public open var explosiveness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_GET_EXPLOSIVENESS,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_SET_EXPLOSIVENESS, NIL)
     }
@@ -168,13 +168,13 @@ open class Particles : GeometryInstance() {
   /**
    * The particle system's frame rate is fixed to a value. For instance, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the simulation of the particle system itself.
    */
-  open var fixedFps: Long
+  public open var fixedFps: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_GET_FIXED_FPS, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_SET_FIXED_FPS, NIL)
     }
@@ -182,13 +182,13 @@ open class Particles : GeometryInstance() {
   /**
    * If `true`, results in fractional delta calculation which has a smoother particles display effect.
    */
-  open var fractDelta: Boolean
+  public open var fractDelta: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_GET_FRACT_DELTA, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_SET_FRACT_DELTA, NIL)
     }
@@ -196,13 +196,13 @@ open class Particles : GeometryInstance() {
   /**
    * The amount of time each particle will exist (in seconds).
    */
-  open var lifetime: Double
+  public open var lifetime: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_GET_LIFETIME, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_SET_LIFETIME, NIL)
     }
@@ -210,13 +210,13 @@ open class Particles : GeometryInstance() {
   /**
    * If `true`, particles use the parent node's coordinate space. If `false`, they use global coordinates.
    */
-  open var localCoords: Boolean
+  public open var localCoords: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_GET_LOCAL_COORDS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_SET_LOCAL_COORDS, NIL)
     }
@@ -224,13 +224,13 @@ open class Particles : GeometryInstance() {
   /**
    * If `true`, only `amount` particles will be emitted.
    */
-  open var oneShot: Boolean
+  public open var oneShot: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_GET_ONE_SHOT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_SET_ONE_SHOT, NIL)
     }
@@ -238,13 +238,13 @@ open class Particles : GeometryInstance() {
   /**
    * Amount of time to preprocess the particles before animation starts. Lets you start the animation some time after particles have started emitting.
    */
-  open var preprocess: Double
+  public open var preprocess: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_GET_PREPROCESS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_SET_PREPROCESS, NIL)
     }
@@ -252,14 +252,14 @@ open class Particles : GeometryInstance() {
   /**
    * [godot.Material] for processing particles. Can be a [godot.ParticlesMaterial] or a [godot.ShaderMaterial].
    */
-  open var processMaterial: Material?
+  public open var processMaterial: Material?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_GET_PROCESS_MATERIAL,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Material?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_SET_PROCESS_MATERIAL,
           NIL)
@@ -268,13 +268,13 @@ open class Particles : GeometryInstance() {
   /**
    * Emission randomness ratio.
    */
-  open var randomness: Double
+  public open var randomness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_GET_RANDOMNESS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_SET_RANDOMNESS, NIL)
     }
@@ -282,13 +282,13 @@ open class Particles : GeometryInstance() {
   /**
    * Speed scaling ratio. A value of `0` can be used to pause the particles.
    */
-  open var speedScale: Double
+  public open var speedScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_GET_SPEED_SCALE, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_SET_SPEED_SCALE, NIL)
     }
@@ -300,25 +300,25 @@ open class Particles : GeometryInstance() {
    *
    * **Note:** If the [godot.ParticlesMaterial] in use is configured to cast shadows, you may want to enlarge this AABB to ensure the shadow is updated when particles are off-screen.
    */
-  open var visibilityAabb: AABB
+  public open var visibilityAabb: AABB
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_GET_VISIBILITY_AABB,
           godot.core.VariantType.AABB)
       return TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(godot.core.VariantType.AABB to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_SET_VISIBILITY_AABB,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PARTICLES)
   }
 
   @CoreTypeHelper
-  open fun visibilityAabb(schedule: AABB.() -> Unit): AABB = visibilityAabb.apply{
+  public open fun visibilityAabb(schedule: AABB.() -> Unit): AABB = visibilityAabb.apply{
       schedule(this)
       visibilityAabb = this
   }
@@ -327,7 +327,7 @@ open class Particles : GeometryInstance() {
   /**
    * Returns the axis-aligned bounding box that contains all the particles that are active in the current frame.
    */
-  open fun captureAabb(): AABB {
+  public open fun captureAabb(): AABB {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_CAPTURE_AABB,
         godot.core.VariantType.AABB)
@@ -337,58 +337,57 @@ open class Particles : GeometryInstance() {
   /**
    * Restarts the particle emission, clearing existing particles.
    */
-  open fun restart() {
+  public open fun restart(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES_RESTART, NIL)
   }
 
-  enum class DrawOrder(
+  public enum class DrawOrder(
     id: Long
   ) {
     /**
      * Particles are drawn in the order emitted.
      */
     DRAW_ORDER_INDEX(0),
-
     /**
      * Particles are drawn in order of remaining lifetime.
      */
     DRAW_ORDER_LIFETIME(1),
-
     /**
      * Particles are drawn in order of depth.
      */
-    DRAW_ORDER_VIEW_DEPTH(2);
+    DRAW_ORDER_VIEW_DEPTH(2),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Particles are drawn in the order emitted.
      */
-    final const val DRAW_ORDER_INDEX: Long = 0
+    public final const val DRAW_ORDER_INDEX: Long = 0
 
     /**
      * Particles are drawn in order of remaining lifetime.
      */
-    final const val DRAW_ORDER_LIFETIME: Long = 1
+    public final const val DRAW_ORDER_LIFETIME: Long = 1
 
     /**
      * Particles are drawn in order of depth.
      */
-    final const val DRAW_ORDER_VIEW_DEPTH: Long = 2
+    public final const val DRAW_ORDER_VIEW_DEPTH: Long = 2
 
     /**
      * Maximum number of draw passes supported.
      */
-    final const val MAX_DRAW_PASSES: Long = 4
+    public final const val MAX_DRAW_PASSES: Long = 4
   }
 }

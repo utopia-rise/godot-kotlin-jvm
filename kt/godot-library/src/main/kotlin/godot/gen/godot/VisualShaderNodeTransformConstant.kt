@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.Transform
 import godot.core.VariantType.NIL
@@ -20,29 +20,29 @@ import kotlin.Unit
  * A constant [godot.core.Transform], which can be used as an input node.
  */
 @GodotBaseType
-open class VisualShaderNodeTransformConstant : VisualShaderNode() {
+public open class VisualShaderNodeTransformConstant : VisualShaderNode() {
   /**
    * A [godot.core.Transform] constant which represents the state of this node.
    */
-  open var constant: Transform
+  public open var constant: Transform
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETRANSFORMCONSTANT_GET_CONSTANT, TRANSFORM)
       return TransferContext.readReturnValue(TRANSFORM, false) as Transform
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(TRANSFORM to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETRANSFORMCONSTANT_SET_CONSTANT, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMCONSTANT)
   }
 
   @CoreTypeHelper
-  open fun constant(schedule: Transform.() -> Unit): Transform = constant.apply{
+  public open fun constant(schedule: Transform.() -> Unit): Transform = constant.apply{
       schedule(this)
       constant = this
   }

@@ -6,9 +6,9 @@ import godot.kotlincompilerplugin.common.CompilerPluginConst
 import godot.utils.GodotBuildProperties
 import org.gradle.api.Project
 import org.gradle.api.provider.Provider
-import org.gradle.kotlin.dsl.apply
-import org.gradle.kotlin.dsl.findByType
-import org.gradle.kotlin.dsl.getByType
+//import org.gradle.kotlin.dsl.apply
+//import org.gradle.kotlin.dsl.findByType
+//import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation
 import org.jetbrains.kotlin.gradle.plugin.KotlinCompilerPluginSupportPlugin
@@ -18,29 +18,29 @@ import java.io.File
 
 
 class GodotPlugin : KotlinCompilerPluginSupportPlugin {
-    override fun apply(target: Project) {
-        val godotExtension = target.extensions.create("godot", GodotExtension::class.java)
-        val jvm = target
-            .extensions
-            .findByType<KotlinJvmProjectExtension>()
-            ?: target.rootProject.extensions.getByType()
-        target.pluginManager.apply(ShadowPlugin::class)
-        setupPlugin(target, godotExtension, jvm)
-    }
+//    override fun apply(target: Project) {
+////        val godotExtension = target.extensions.create("godot", GodotExtension::class.java)
+////        val jvm = target
+////            .extensions
+////            .findByType<KotlinJvmProjectExtension>()
+////            ?: target.rootProject.extensions.getByType()
+////        target.pluginManager.apply(ShadowPlugin::class)
+////        setupPlugin(target, godotExtension, jvm)
+//    }
 
-    private fun setupPlugin(project: Project, godotExtension: GodotExtension, jvm: KotlinJvmProjectExtension) {
-        configureExtensionDefaults(godotExtension)
-        project.afterEvaluate {
-            project.setupConfigurationsAndCompilations(godotExtension, jvm)
-        }
-    }
-
-    private fun configureExtensionDefaults(godotExtension: GodotExtension) {
-        godotExtension.apply {
-            isAndroidExportEnabled.set(false)
-            dxToolPath.set("dx") //default assumes that it's in $PATH
-        }
-    }
+//    private fun setupPlugin(project: Project, godotExtension: GodotExtension, jvm: KotlinJvmProjectExtension) {
+//        configureExtensionDefaults(godotExtension)
+//        project.afterEvaluate {
+//            project.setupConfigurationsAndCompilations(godotExtension, jvm)
+//        }
+//    }
+//
+//    private fun configureExtensionDefaults(godotExtension: GodotExtension) {
+//        godotExtension.apply {
+//            isAndroidExportEnabled.set(false)
+//            dxToolPath.set("dx") //default assumes that it's in $PATH
+//        }
+//    }
 
     //START: Compiler plugin configuration
     override fun applyToCompilation(kotlinCompilation: KotlinCompilation<*>): Provider<List<SubpluginOption>> {

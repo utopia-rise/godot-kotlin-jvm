@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.TransferContext
@@ -35,18 +35,18 @@ import kotlin.Unit
  * By setting various properties on this object, you can control how individual characters will be displayed in a [godot.RichTextEffect].
  */
 @GodotBaseType
-open class CharFXTransform : Reference() {
+public open class CharFXTransform : Reference() {
   /**
    * The index of the current character (starting from 0). Setting this property won't affect drawing.
    */
-  open var absoluteIndex: Long
+  public open var absoluteIndex: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_ABSOLUTE_INDEX, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_ABSOLUTE_INDEX, NIL)
@@ -61,14 +61,14 @@ open class CharFXTransform : Reference() {
    * 			char_fx.character = ord("*")
    * 			```
    */
-  open var character: Long
+  public open var character: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_CHARACTER,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_CHARACTER,
           NIL)
@@ -77,13 +77,13 @@ open class CharFXTransform : Reference() {
   /**
    * The color the character will be drawn with.
    */
-  open var color: Color
+  public open var color: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_COLOR, COLOR)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(COLOR to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_COLOR, NIL)
     }
@@ -93,14 +93,14 @@ open class CharFXTransform : Reference() {
    *
    * **Note:** Time still passes while the [godot.RichTextLabel] is hidden.
    */
-  open var elapsedTime: Double
+  public open var elapsedTime: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_ELAPSED_TIME,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_ELAPSED_TIME,
           NIL)
@@ -115,14 +115,14 @@ open class CharFXTransform : Reference() {
    * 			{"foo": "hello", "bar": true, "baz": 42, "color": Color(1, 1, 1, 1)}
    * 			```
    */
-  open var env: Dictionary<Any?, Any?>
+  public open var env: Dictionary<Any?, Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_ENV,
           DICTIONARY)
       return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DICTIONARY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_ENV, NIL)
     }
@@ -130,14 +130,14 @@ open class CharFXTransform : Reference() {
   /**
    * The position offset the character will be drawn with (in pixels).
    */
-  open var offset: Vector2
+  public open var offset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_OFFSET,
           VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_OFFSET, NIL)
     }
@@ -145,14 +145,14 @@ open class CharFXTransform : Reference() {
   /**
    * The index of the current character (starting from 0). Setting this property won't affect drawing.
    */
-  open var relativeIndex: Long
+  public open var relativeIndex: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_RELATIVE_INDEX, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_RELATIVE_INDEX, NIL)
@@ -161,30 +161,30 @@ open class CharFXTransform : Reference() {
   /**
    * If `true`, the character will be drawn. If `false`, the character will be hidden. Characters around hidden characters will reflow to take the space of hidden characters. If this is not desired, set their [color] to `Color(1, 1, 1, 0)` instead.
    */
-  open var visible: Boolean
+  public open var visible: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_GET_VISIBLE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARFXTRANSFORM_SET_VISIBLE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CHARFXTRANSFORM)
   }
 
   @CoreTypeHelper
-  open fun color(schedule: Color.() -> Unit): Color = color.apply{
+  public open fun color(schedule: Color.() -> Unit): Color = color.apply{
       schedule(this)
       color = this
   }
 
 
   @CoreTypeHelper
-  open fun offset(schedule: Vector2.() -> Unit): Vector2 = offset.apply{
+  public open fun offset(schedule: Vector2.() -> Unit): Vector2 = offset.apply{
       schedule(this)
       offset = this
   }

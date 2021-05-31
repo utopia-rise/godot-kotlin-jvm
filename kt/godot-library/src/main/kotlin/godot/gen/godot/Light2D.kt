@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -34,17 +34,17 @@ import kotlin.Unit
  * **Note:** Light2D can also be used as a mask.
  */
 @GodotBaseType
-open class Light2D : Node2D() {
+public open class Light2D : Node2D() {
   /**
    * The Light2D's [godot.core.Color].
    */
-  open var color: Color
+  public open var color: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_COLOR, COLOR)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(COLOR to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_COLOR, NIL)
     }
@@ -52,13 +52,13 @@ open class Light2D : Node2D() {
   /**
    * If `true`, Light2D will only appear when editing the scene.
    */
-  open var editorOnly: Boolean
+  public open var editorOnly: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_EDITOR_ONLY, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_EDITOR_ONLY, NIL)
     }
@@ -66,13 +66,13 @@ open class Light2D : Node2D() {
   /**
    * If `true`, Light2D will emit light.
    */
-  open var enabled: Boolean
+  public open var enabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_ENABLED, NIL)
     }
@@ -80,13 +80,13 @@ open class Light2D : Node2D() {
   /**
    * The Light2D's energy value. The larger the value, the stronger the light.
    */
-  open var energy: Double
+  public open var energy: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_ENERGY, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_ENERGY, NIL)
     }
@@ -94,13 +94,13 @@ open class Light2D : Node2D() {
   /**
    * The Light2D's mode. See [enum Mode] constants for values.
    */
-  open var mode: Long
+  public open var mode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_MODE, NIL)
     }
@@ -108,13 +108,13 @@ open class Light2D : Node2D() {
   /**
    * The offset of the Light2D's `texture`.
    */
-  open var offset: Vector2
+  public open var offset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_OFFSET, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_OFFSET, NIL)
     }
@@ -122,13 +122,13 @@ open class Light2D : Node2D() {
   /**
    * The height of the Light2D. Used with 2D normal mapping.
    */
-  open var rangeHeight: Double
+  public open var rangeHeight: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_RANGE_HEIGHT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_RANGE_HEIGHT, NIL)
     }
@@ -136,14 +136,14 @@ open class Light2D : Node2D() {
   /**
    * The layer mask. Only objects with a matching mask will be affected by the Light2D.
    */
-  open var rangeItemCullMask: Long
+  public open var rangeItemCullMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_RANGE_ITEM_CULL_MASK,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_RANGE_ITEM_CULL_MASK,
           NIL)
@@ -152,13 +152,13 @@ open class Light2D : Node2D() {
   /**
    * Maximum layer value of objects that are affected by the Light2D.
    */
-  open var rangeLayerMax: Long
+  public open var rangeLayerMax: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_RANGE_LAYER_MAX, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_RANGE_LAYER_MAX, NIL)
     }
@@ -166,13 +166,13 @@ open class Light2D : Node2D() {
   /**
    * Minimum layer value of objects that are affected by the Light2D.
    */
-  open var rangeLayerMin: Long
+  public open var rangeLayerMin: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_RANGE_LAYER_MIN, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_RANGE_LAYER_MIN, NIL)
     }
@@ -180,13 +180,13 @@ open class Light2D : Node2D() {
   /**
    * Maximum `z` value of objects that are affected by the Light2D.
    */
-  open var rangeZMax: Long
+  public open var rangeZMax: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_RANGE_Z_MAX, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_RANGE_Z_MAX, NIL)
     }
@@ -194,13 +194,13 @@ open class Light2D : Node2D() {
   /**
    * Minimum `z` value of objects that are affected by the Light2D.
    */
-  open var rangeZMin: Long
+  public open var rangeZMin: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_RANGE_Z_MIN, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_RANGE_Z_MIN, NIL)
     }
@@ -208,14 +208,14 @@ open class Light2D : Node2D() {
   /**
    * Shadow buffer size.
    */
-  open var shadowBufferSize: Long
+  public open var shadowBufferSize: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_SHADOW_BUFFER_SIZE,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_SHADOW_BUFFER_SIZE,
           NIL)
@@ -224,13 +224,13 @@ open class Light2D : Node2D() {
   /**
    * [godot.core.Color] of shadows cast by the Light2D.
    */
-  open var shadowColor: Color
+  public open var shadowColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_SHADOW_COLOR, COLOR)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(COLOR to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_SHADOW_COLOR, NIL)
     }
@@ -238,13 +238,13 @@ open class Light2D : Node2D() {
   /**
    * If `true`, the Light2D will cast shadows.
    */
-  open var shadowEnabled: Boolean
+  public open var shadowEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_SHADOW_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_SHADOW_ENABLED, NIL)
     }
@@ -252,13 +252,13 @@ open class Light2D : Node2D() {
   /**
    * Shadow filter type. See [enum ShadowFilter] for possible values.
    */
-  open var shadowFilter: Long
+  public open var shadowFilter: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_SHADOW_FILTER, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_SHADOW_FILTER, NIL)
     }
@@ -266,14 +266,14 @@ open class Light2D : Node2D() {
   /**
    * Smoothing value for shadows.
    */
-  open var shadowFilterSmooth: Double
+  public open var shadowFilterSmooth: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_SHADOW_FILTER_SMOOTH,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_SHADOW_FILTER_SMOOTH,
           NIL)
@@ -282,14 +282,14 @@ open class Light2D : Node2D() {
   /**
    * Smooth shadow gradient length.
    */
-  open var shadowGradientLength: Double
+  public open var shadowGradientLength: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_SHADOW_GRADIENT_LENGTH, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_SHADOW_GRADIENT_LENGTH, NIL)
@@ -298,14 +298,14 @@ open class Light2D : Node2D() {
   /**
    * The shadow mask. Used with [godot.LightOccluder2D] to cast shadows. Only occluders with a matching light mask will cast shadows.
    */
-  open var shadowItemCullMask: Long
+  public open var shadowItemCullMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_SHADOW_ITEM_CULL_MASK,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_SHADOW_ITEM_CULL_MASK,
           NIL)
@@ -314,13 +314,13 @@ open class Light2D : Node2D() {
   /**
    * [godot.Texture] used for the Light2D's appearance.
    */
-  open var texture: Texture?
+  public open var texture: Texture?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_TEXTURE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_TEXTURE, NIL)
     }
@@ -328,167 +328,161 @@ open class Light2D : Node2D() {
   /**
    * The `texture`'s scale factor.
    */
-  open var textureScale: Double
+  public open var textureScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_GET_TEXTURE_SCALE, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT2D_SET_TEXTURE_SCALE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_LIGHT2D)
   }
 
   @CoreTypeHelper
-  open fun color(schedule: Color.() -> Unit): Color = color.apply{
+  public open fun color(schedule: Color.() -> Unit): Color = color.apply{
       schedule(this)
       color = this
   }
 
 
   @CoreTypeHelper
-  open fun offset(schedule: Vector2.() -> Unit): Vector2 = offset.apply{
+  public open fun offset(schedule: Vector2.() -> Unit): Vector2 = offset.apply{
       schedule(this)
       offset = this
   }
 
 
   @CoreTypeHelper
-  open fun shadowColor(schedule: Color.() -> Unit): Color = shadowColor.apply{
+  public open fun shadowColor(schedule: Color.() -> Unit): Color = shadowColor.apply{
       schedule(this)
       shadowColor = this
   }
 
 
-  enum class ShadowFilter(
+  public enum class ShadowFilter(
     id: Long
   ) {
     /**
      * No filter applies to the shadow map. See [shadowFilter].
      */
     SHADOW_FILTER_NONE(0),
-
     /**
      * Percentage closer filtering (3 samples) applies to the shadow map. See [shadowFilter].
      */
     SHADOW_FILTER_PCF3(1),
-
     /**
      * Percentage closer filtering (5 samples) applies to the shadow map. See [shadowFilter].
      */
     SHADOW_FILTER_PCF5(2),
-
     /**
      * Percentage closer filtering (7 samples) applies to the shadow map. See [shadowFilter].
      */
     SHADOW_FILTER_PCF7(3),
-
     /**
      * Percentage closer filtering (9 samples) applies to the shadow map. See [shadowFilter].
      */
     SHADOW_FILTER_PCF9(4),
-
     /**
      * Percentage closer filtering (13 samples) applies to the shadow map. See [shadowFilter].
      */
-    SHADOW_FILTER_PCF13(5);
+    SHADOW_FILTER_PCF13(5),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class Mode(
+  public enum class Mode(
     id: Long
   ) {
     /**
      * Adds the value of pixels corresponding to the Light2D to the values of pixels under it. This is the common behavior of a light.
      */
     MODE_ADD(0),
-
     /**
      * Subtracts the value of pixels corresponding to the Light2D to the values of pixels under it, resulting in inversed light effect.
      */
     MODE_SUB(1),
-
     /**
      * Mix the value of pixels corresponding to the Light2D to the values of pixels under it by linear interpolation.
      */
     MODE_MIX(2),
-
     /**
      * The light texture of the Light2D is used as a mask, hiding or revealing parts of the screen underneath depending on the value of each pixel of the light (mask) texture.
      */
-    MODE_MASK(3);
+    MODE_MASK(3),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Adds the value of pixels corresponding to the Light2D to the values of pixels under it. This is the common behavior of a light.
      */
-    final const val MODE_ADD: Long = 0
+    public final const val MODE_ADD: Long = 0
 
     /**
      * The light texture of the Light2D is used as a mask, hiding or revealing parts of the screen underneath depending on the value of each pixel of the light (mask) texture.
      */
-    final const val MODE_MASK: Long = 3
+    public final const val MODE_MASK: Long = 3
 
     /**
      * Mix the value of pixels corresponding to the Light2D to the values of pixels under it by linear interpolation.
      */
-    final const val MODE_MIX: Long = 2
+    public final const val MODE_MIX: Long = 2
 
     /**
      * Subtracts the value of pixels corresponding to the Light2D to the values of pixels under it, resulting in inversed light effect.
      */
-    final const val MODE_SUB: Long = 1
+    public final const val MODE_SUB: Long = 1
 
     /**
      * No filter applies to the shadow map. See [shadowFilter].
      */
-    final const val SHADOW_FILTER_NONE: Long = 0
+    public final const val SHADOW_FILTER_NONE: Long = 0
 
     /**
      * Percentage closer filtering (13 samples) applies to the shadow map. See [shadowFilter].
      */
-    final const val SHADOW_FILTER_PCF13: Long = 5
+    public final const val SHADOW_FILTER_PCF13: Long = 5
 
     /**
      * Percentage closer filtering (3 samples) applies to the shadow map. See [shadowFilter].
      */
-    final const val SHADOW_FILTER_PCF3: Long = 1
+    public final const val SHADOW_FILTER_PCF3: Long = 1
 
     /**
      * Percentage closer filtering (5 samples) applies to the shadow map. See [shadowFilter].
      */
-    final const val SHADOW_FILTER_PCF5: Long = 2
+    public final const val SHADOW_FILTER_PCF5: Long = 2
 
     /**
      * Percentage closer filtering (7 samples) applies to the shadow map. See [shadowFilter].
      */
-    final const val SHADOW_FILTER_PCF7: Long = 3
+    public final const val SHADOW_FILTER_PCF7: Long = 3
 
     /**
      * Percentage closer filtering (9 samples) applies to the shadow map. See [shadowFilter].
      */
-    final const val SHADOW_FILTER_PCF9: Long = 4
+    public final const val SHADOW_FILTER_PCF9: Long = 4
   }
 }

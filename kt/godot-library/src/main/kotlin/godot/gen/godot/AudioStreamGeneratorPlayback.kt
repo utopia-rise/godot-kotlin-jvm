@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.PoolVector2Array
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -17,6 +17,7 @@ import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  *
@@ -25,15 +26,15 @@ import kotlin.Suppress
  * [https://github.com/godotengine/godot-demo-projects/tree/master/audio/generator](https://github.com/godotengine/godot-demo-projects/tree/master/audio/generator)
  */
 @GodotBaseType
-open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() {
-  override fun __new() {
+public open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK)
   }
 
   /**
    *
    */
-  open fun canPushBuffer(amount: Long): Boolean {
+  public open fun canPushBuffer(amount: Long): Boolean {
     TransferContext.writeArguments(LONG to amount)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_CAN_PUSH_BUFFER, BOOL)
@@ -43,7 +44,7 @@ open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() {
   /**
    *
    */
-  open fun clearBuffer() {
+  public open fun clearBuffer(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_CLEAR_BUFFER, NIL)
@@ -52,7 +53,7 @@ open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() {
   /**
    *
    */
-  open fun getFramesAvailable(): Long {
+  public open fun getFramesAvailable(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_GET_FRAMES_AVAILABLE, LONG)
@@ -62,7 +63,7 @@ open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() {
   /**
    *
    */
-  open fun getSkips(): Long {
+  public open fun getSkips(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_GET_SKIPS, LONG)
@@ -72,7 +73,7 @@ open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() {
   /**
    *
    */
-  open fun pushBuffer(frames: PoolVector2Array): Boolean {
+  public open fun pushBuffer(frames: PoolVector2Array): Boolean {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to frames)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_PUSH_BUFFER, BOOL)
@@ -82,7 +83,7 @@ open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() {
   /**
    *
    */
-  open fun pushFrame(frame: Vector2): Boolean {
+  public open fun pushFrame(frame: Vector2): Boolean {
     TransferContext.writeArguments(VECTOR2 to frame)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_PUSH_FRAME, BOOL)

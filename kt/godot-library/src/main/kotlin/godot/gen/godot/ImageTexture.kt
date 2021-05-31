@@ -6,7 +6,7 @@
 package godot
 
 import godot.Image
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.RID
 import godot.core.TransferContext
@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A [godot.Texture] based on an [godot.Image].
@@ -63,18 +64,18 @@ import kotlin.Suppress
  * **Note:** The maximum texture size is 16384×16384 pixels due to graphics hardware limitations.
  */
 @GodotBaseType
-open class ImageTexture : Texture() {
+public open class ImageTexture : Texture() {
   /**
    * The storage quality for [STORAGE_COMPRESS_LOSSY].
    */
-  open var lossyQuality: Double
+  public open var lossyQuality: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_GET_LOSSY_QUALITY,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_SET_LOSSY_QUALITY,
           NIL)
@@ -83,22 +84,22 @@ open class ImageTexture : Texture() {
   /**
    * The storage type (raw, lossy, or compressed).
    */
-  open var storage: Long
+  public open var storage: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_GET_STORAGE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_SET_STORAGE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_IMAGETEXTURE)
   }
 
-  open fun _reloadHook(rid: RID) {
+  public open fun _reloadHook(rid: RID): Unit {
   }
 
   /**
@@ -106,12 +107,12 @@ open class ImageTexture : Texture() {
    *
    * `format` is a value from [enum Image.Format], `flags` is any combination of [enum Texture.Flags].
    */
-  open fun create(
+  public open fun create(
     width: Long,
     height: Long,
     format: Long,
     flags: Long = 7
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to width, LONG to height, LONG to format, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_CREATE, NIL)
   }
@@ -119,7 +120,7 @@ open class ImageTexture : Texture() {
   /**
    * Initializes the texture by allocating and setting the data from an [godot.Image] with `flags` from [enum Texture.Flags]. An sRGB to linear color space conversion can take place, according to [enum Image.Format].
    */
-  open fun createFromImage(image: Image, flags: Long = 7) {
+  public open fun createFromImage(image: Image, flags: Long = 7): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_CREATE_FROM_IMAGE, NIL)
   }
@@ -127,7 +128,7 @@ open class ImageTexture : Texture() {
   /**
    * Returns the format of the texture, one of [enum Image.Format].
    */
-  open fun getFormat(): Image.Format {
+  public open fun getFormat(): Image.Format {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_GET_FORMAT, LONG)
     return Image.Format.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -138,7 +139,7 @@ open class ImageTexture : Texture() {
    *
    * **Note:** the method is deprecated and will be removed in Godot 4.0, use [godot.Image.load] and [createFromImage] instead.
    */
-  open fun load(path: String): GodotError {
+  public open fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_LOAD, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -151,7 +152,7 @@ open class ImageTexture : Texture() {
    *
    * Use this method over [createFromImage] if you need to update the texture frequently, which is faster than allocating additional memory for a new texture each time.
    */
-  open fun setData(image: Image) {
+  public open fun setData(image: Image): Unit {
     TransferContext.writeArguments(OBJECT to image)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_SET_DATA, NIL)
   }
@@ -159,53 +160,52 @@ open class ImageTexture : Texture() {
   /**
    * Resizes the texture to the specified dimensions.
    */
-  open fun setSizeOverride(size: Vector2) {
+  public open fun setSizeOverride(size: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGETEXTURE_SET_SIZE_OVERRIDE, NIL)
   }
 
-  enum class Storage(
+  public enum class Storage(
     id: Long
   ) {
     /**
      * [godot.Image] data is stored raw and unaltered.
      */
     STORAGE_RAW(0),
-
     /**
      * [godot.Image] data is compressed with a lossy algorithm. You can set the storage quality with [lossyQuality].
      */
     STORAGE_COMPRESS_LOSSY(1),
-
     /**
      * [godot.Image] data is compressed with a lossless algorithm.
      */
-    STORAGE_COMPRESS_LOSSLESS(2);
+    STORAGE_COMPRESS_LOSSLESS(2),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * [godot.Image] data is compressed with a lossless algorithm.
      */
-    final const val STORAGE_COMPRESS_LOSSLESS: Long = 2
+    public final const val STORAGE_COMPRESS_LOSSLESS: Long = 2
 
     /**
      * [godot.Image] data is compressed with a lossy algorithm. You can set the storage quality with [lossyQuality].
      */
-    final const val STORAGE_COMPRESS_LOSSY: Long = 1
+    public final const val STORAGE_COMPRESS_LOSSY: Long = 1
 
     /**
      * [godot.Image] data is stored raw and unaltered.
      */
-    final const val STORAGE_RAW: Long = 0
+    public final const val STORAGE_RAW: Long = 0
   }
 }

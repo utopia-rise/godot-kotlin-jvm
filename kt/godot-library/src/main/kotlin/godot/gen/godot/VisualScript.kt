@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.TransferContext
 import godot.core.VariantType
@@ -28,202 +28,203 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
-open class VisualScript : Script() {
-  val nodePortsChanged: Signal2<String, Long> by signal("function", "id")
+public open class VisualScript : Script() {
+  public val nodePortsChanged: Signal2<String, Long> by signal("function", "id")
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSCRIPT)
   }
 
-  open fun _getData(): Dictionary<Any?, Any?> {
+  public open fun _getData(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_data is not implemented for VisualScript")
   }
 
-  open fun _nodePortsChanged(arg0: Long) {
+  public open fun _nodePortsChanged(arg0: Long): Unit {
   }
 
-  open fun _setData(data: Dictionary<Any?, Any?>) {
+  public open fun _setData(`data`: Dictionary<Any?, Any?>): Unit {
   }
 
-  open fun addCustomSignal(name: String) {
+  public open fun addCustomSignal(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_ADD_CUSTOM_SIGNAL, NIL)
   }
 
-  open fun addFunction(name: String) {
+  public open fun addFunction(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_ADD_FUNCTION, NIL)
   }
 
-  open fun addNode(
+  public open fun addNode(
     func: String,
     id: Long,
     node: VisualScriptNode,
     position: Vector2 = Vector2(0.0, 0.0)
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to func, LONG to id, OBJECT to node, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_ADD_NODE, NIL)
   }
 
-  open fun addVariable(
+  public open fun addVariable(
     name: String,
     defaultValue: Any? = null,
     export: Boolean = false
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to name, ANY to defaultValue, BOOL to export)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_ADD_VARIABLE, NIL)
   }
 
-  open fun customSignalAddArgument(
+  public open fun customSignalAddArgument(
     name: String,
     type: Long,
     argname: String,
     index: Long = -1
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to name, LONG to type, STRING to argname, LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_CUSTOM_SIGNAL_ADD_ARGUMENT, NIL)
   }
 
-  open fun customSignalGetArgumentCount(name: String): Long {
+  public open fun customSignalGetArgumentCount(name: String): Long {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_CUSTOM_SIGNAL_GET_ARGUMENT_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  open fun customSignalGetArgumentName(name: String, argidx: Long): String {
+  public open fun customSignalGetArgumentName(name: String, argidx: Long): String {
     TransferContext.writeArguments(STRING to name, LONG to argidx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_CUSTOM_SIGNAL_GET_ARGUMENT_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  open fun customSignalGetArgumentType(name: String, argidx: Long): VariantType {
+  public open fun customSignalGetArgumentType(name: String, argidx: Long): VariantType {
     TransferContext.writeArguments(STRING to name, LONG to argidx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_CUSTOM_SIGNAL_GET_ARGUMENT_TYPE, LONG)
     return VariantType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  open fun customSignalRemoveArgument(name: String, argidx: Long) {
+  public open fun customSignalRemoveArgument(name: String, argidx: Long): Unit {
     TransferContext.writeArguments(STRING to name, LONG to argidx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_CUSTOM_SIGNAL_REMOVE_ARGUMENT, NIL)
   }
 
-  open fun customSignalSetArgumentName(
+  public open fun customSignalSetArgumentName(
     name: String,
     argidx: Long,
     argname: String
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to name, LONG to argidx, STRING to argname)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_CUSTOM_SIGNAL_SET_ARGUMENT_NAME, NIL)
   }
 
-  open fun customSignalSetArgumentType(
+  public open fun customSignalSetArgumentType(
     name: String,
     argidx: Long,
     type: Long
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to name, LONG to argidx, LONG to type)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_CUSTOM_SIGNAL_SET_ARGUMENT_TYPE, NIL)
   }
 
-  open fun customSignalSwapArgument(
+  public open fun customSignalSwapArgument(
     name: String,
     argidx: Long,
     withidx: Long
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to name, LONG to argidx, LONG to withidx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_CUSTOM_SIGNAL_SWAP_ARGUMENT, NIL)
   }
 
-  open fun dataConnect(
+  public open fun dataConnect(
     func: String,
     fromNode: Long,
     fromPort: Long,
     toNode: Long,
     toPort: Long
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to func, LONG to fromNode, LONG to fromPort, LONG to
         toNode, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_DATA_CONNECT, NIL)
   }
 
-  open fun dataDisconnect(
+  public open fun dataDisconnect(
     func: String,
     fromNode: Long,
     fromPort: Long,
     toNode: Long,
     toPort: Long
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to func, LONG to fromNode, LONG to fromPort, LONG to
         toNode, LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_DATA_DISCONNECT, NIL)
   }
 
-  open fun getFunctionNodeId(name: String): Long {
+  public open fun getFunctionNodeId(name: String): Long {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_GET_FUNCTION_NODE_ID,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  open fun getFunctionScroll(name: String): Vector2 {
+  public open fun getFunctionScroll(name: String): Vector2 {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_GET_FUNCTION_SCROLL,
         VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
-  open fun getNode(func: String, id: Long): VisualScriptNode? {
+  public open fun getNode(func: String, id: Long): VisualScriptNode? {
     TransferContext.writeArguments(STRING to func, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_GET_NODE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as VisualScriptNode?
   }
 
-  open fun getNodePosition(func: String, id: Long): Vector2 {
+  public open fun getNodePosition(func: String, id: Long): Vector2 {
     TransferContext.writeArguments(STRING to func, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_GET_NODE_POSITION,
         VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
-  open fun getVariableDefaultValue(name: String): Any? {
+  public open fun getVariableDefaultValue(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_GET_VARIABLE_DEFAULT_VALUE, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
-  open fun getVariableExport(name: String): Boolean {
+  public open fun getVariableExport(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_GET_VARIABLE_EXPORT,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  open fun getVariableInfo(name: String): Dictionary<Any?, Any?> {
+  public open fun getVariableInfo(name: String): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_GET_VARIABLE_INFO,
         DICTIONARY)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
-  open fun hasCustomSignal(name: String): Boolean {
+  public open fun hasCustomSignal(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_HAS_CUSTOM_SIGNAL,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  open fun hasDataConnection(
+  public open fun hasDataConnection(
     func: String,
     fromNode: Long,
     fromPort: Long,
@@ -237,19 +238,19 @@ open class VisualScript : Script() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  open fun hasFunction(name: String): Boolean {
+  public open fun hasFunction(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_HAS_FUNCTION, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  open fun hasNode(func: String, id: Long): Boolean {
+  public open fun hasNode(func: String, id: Long): Boolean {
     TransferContext.writeArguments(STRING to func, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_HAS_NODE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  open fun hasSequenceConnection(
+  public open fun hasSequenceConnection(
     func: String,
     fromNode: Long,
     fromOutput: Long,
@@ -262,106 +263,106 @@ open class VisualScript : Script() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  open fun hasVariable(name: String): Boolean {
+  public open fun hasVariable(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_HAS_VARIABLE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  open fun removeCustomSignal(name: String) {
+  public open fun removeCustomSignal(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_REMOVE_CUSTOM_SIGNAL,
         NIL)
   }
 
-  open fun removeFunction(name: String) {
+  public open fun removeFunction(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_REMOVE_FUNCTION, NIL)
   }
 
-  open fun removeNode(func: String, id: Long) {
+  public open fun removeNode(func: String, id: Long): Unit {
     TransferContext.writeArguments(STRING to func, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_REMOVE_NODE, NIL)
   }
 
-  open fun removeVariable(name: String) {
+  public open fun removeVariable(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_REMOVE_VARIABLE, NIL)
   }
 
-  open fun renameCustomSignal(name: String, newName: String) {
+  public open fun renameCustomSignal(name: String, newName: String): Unit {
     TransferContext.writeArguments(STRING to name, STRING to newName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_RENAME_CUSTOM_SIGNAL,
         NIL)
   }
 
-  open fun renameFunction(name: String, newName: String) {
+  public open fun renameFunction(name: String, newName: String): Unit {
     TransferContext.writeArguments(STRING to name, STRING to newName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_RENAME_FUNCTION, NIL)
   }
 
-  open fun renameVariable(name: String, newName: String) {
+  public open fun renameVariable(name: String, newName: String): Unit {
     TransferContext.writeArguments(STRING to name, STRING to newName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_RENAME_VARIABLE, NIL)
   }
 
-  open fun sequenceConnect(
+  public open fun sequenceConnect(
     func: String,
     fromNode: Long,
     fromOutput: Long,
     toNode: Long
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to func, LONG to fromNode, LONG to fromOutput, LONG to
         toNode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_SEQUENCE_CONNECT, NIL)
   }
 
-  open fun sequenceDisconnect(
+  public open fun sequenceDisconnect(
     func: String,
     fromNode: Long,
     fromOutput: Long,
     toNode: Long
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to func, LONG to fromNode, LONG to fromOutput, LONG to
         toNode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_SEQUENCE_DISCONNECT,
         NIL)
   }
 
-  open fun setFunctionScroll(name: String, ofs: Vector2) {
+  public open fun setFunctionScroll(name: String, ofs: Vector2): Unit {
     TransferContext.writeArguments(STRING to name, VECTOR2 to ofs)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_SET_FUNCTION_SCROLL,
         NIL)
   }
 
-  open fun setInstanceBaseType(type: String) {
+  public open fun setInstanceBaseType(type: String): Unit {
     TransferContext.writeArguments(STRING to type)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_SET_INSTANCE_BASE_TYPE,
         NIL)
   }
 
-  open fun setNodePosition(
+  public open fun setNodePosition(
     func: String,
     id: Long,
     position: Vector2
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to func, LONG to id, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_SET_NODE_POSITION, NIL)
   }
 
-  open fun setVariableDefaultValue(name: String, value: Any?) {
+  public open fun setVariableDefaultValue(name: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_SET_VARIABLE_DEFAULT_VALUE, NIL)
   }
 
-  open fun setVariableExport(name: String, enable: Boolean) {
+  public open fun setVariableExport(name: String, enable: Boolean): Unit {
     TransferContext.writeArguments(STRING to name, BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_SET_VARIABLE_EXPORT,
         NIL)
   }
 
-  open fun setVariableInfo(name: String, value: Dictionary<Any?, Any?>) {
+  public open fun setVariableInfo(name: String, `value`: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(STRING to name, DICTIONARY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_SET_VARIABLE_INFO, NIL)
   }

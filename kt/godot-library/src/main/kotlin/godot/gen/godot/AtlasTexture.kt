@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -27,17 +27,17 @@ import kotlin.Unit
  * **Note:** AtlasTextures don't support repetition. The [godot.Texture.FLAG_REPEAT] and [godot.Texture.FLAG_MIRRORED_REPEAT] flags are ignored when using an AtlasTexture.
  */
 @GodotBaseType
-open class AtlasTexture : Texture() {
+public open class AtlasTexture : Texture() {
   /**
    * The texture that contains the atlas. Can be any [godot.Texture] subtype.
    */
-  open var atlas: Texture?
+  public open var atlas: Texture?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_GET_ATLAS, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_SET_ATLAS, NIL)
     }
@@ -45,14 +45,14 @@ open class AtlasTexture : Texture() {
   /**
    * If `true`, clips the area outside of the region to avoid bleeding of the surrounding texture pixels.
    */
-  open var filterClip: Boolean
+  public open var filterClip: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_GET_FILTER_CLIP,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_SET_FILTER_CLIP, NIL)
     }
@@ -60,13 +60,13 @@ open class AtlasTexture : Texture() {
   /**
    * The margin around the region. The [godot.core.Rect2]'s [godot.Rect2.size] parameter ("w" and "h" in the editor) resizes the texture so it fits within the margin.
    */
-  open var margin: Rect2
+  public open var margin: Rect2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_GET_MARGIN, RECT2)
       return TransferContext.readReturnValue(RECT2, false) as Rect2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(RECT2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_SET_MARGIN, NIL)
     }
@@ -74,30 +74,30 @@ open class AtlasTexture : Texture() {
   /**
    * The AtlasTexture's used region.
    */
-  open var region: Rect2
+  public open var region: Rect2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_GET_REGION, RECT2)
       return TransferContext.readReturnValue(RECT2, false) as Rect2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(RECT2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_SET_REGION, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ATLASTEXTURE)
   }
 
   @CoreTypeHelper
-  open fun margin(schedule: Rect2.() -> Unit): Rect2 = margin.apply{
+  public open fun margin(schedule: Rect2.() -> Unit): Rect2 = margin.apply{
       schedule(this)
       margin = this
   }
 
 
   @CoreTypeHelper
-  open fun region(schedule: Rect2.() -> Unit): Rect2 = region.apply{
+  public open fun region(schedule: Rect2.() -> Unit): Rect2 = region.apply{
       schedule(this)
       region = this
   }

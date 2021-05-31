@@ -5,11 +5,12 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Base script that can be used to add extension functions to the editor.
@@ -31,15 +32,15 @@ import kotlin.Suppress
  * **Note:** The script is run in the Editor context, which means the output is visible in the console window started with the Editor (stdout) instead of the usual Godot **Output** dock.
  */
 @GodotBaseType
-open class EditorScript : Reference() {
-  override fun __new() {
+public open class EditorScript : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORSCRIPT)
   }
 
   /**
    * This method is executed by the Editor when **File > Run** is used.
    */
-  open fun _run() {
+  public open fun _run(): Unit {
   }
 
   /**
@@ -47,7 +48,7 @@ open class EditorScript : Reference() {
    *
    * **Warning:** The implementation of this method is currently disabled.
    */
-  open fun addRootNode(node: Node) {
+  public open fun addRootNode(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSCRIPT_ADD_ROOT_NODE, NIL)
   }
@@ -55,7 +56,7 @@ open class EditorScript : Reference() {
   /**
    * Returns the [godot.EditorInterface] singleton instance.
    */
-  open fun getEditorInterface(): EditorInterface? {
+  public open fun getEditorInterface(): EditorInterface? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSCRIPT_GET_EDITOR_INTERFACE,
         OBJECT)
@@ -65,7 +66,7 @@ open class EditorScript : Reference() {
   /**
    * Returns the Editor's currently active scene.
    */
-  open fun getScene(): Node? {
+  public open fun getScene(): Node? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSCRIPT_GET_SCENE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
