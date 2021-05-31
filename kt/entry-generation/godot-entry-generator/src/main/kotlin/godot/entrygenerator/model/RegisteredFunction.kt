@@ -5,4 +5,7 @@ data class RegisteredFunction(
     val parameters: List<ValueParameter> = emptyList(),
     val returnType: Type? = null,
     val annotations: List<FunctionAnnotation> = emptyList()
-) : GodotJvmSourceElement
+) : GodotJvmSourceElement {
+    val name: String
+        get() = fqName.substringAfterLast(".")
+}

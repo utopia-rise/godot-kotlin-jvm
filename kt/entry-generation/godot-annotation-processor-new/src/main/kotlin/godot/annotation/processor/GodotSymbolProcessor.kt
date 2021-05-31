@@ -310,9 +310,22 @@ class GodotSymbolProcessor(
                     annotation.arguments.first().value as? String
                 )
                 RegisterConstructor::class.qualifiedName -> RegisterConstructorAnnotation
-                RegisterFunction::class.qualifiedName -> RegisterFunctionAnnotation(
-                    RpcMode.DISABLED //TODO
-                )
+                RegisterFunction::class.qualifiedName -> {
+                    val rpcMode = when((annotation.arguments.firstOrNull()?.value as? KSType)?.declaration?.qualifiedName?.asString()) {
+                        "godot.MultiplayerAPI.RPCMode.REMOTE" -> RpcMode.REMOTE
+                        "godot.MultiplayerAPI.RPCMode.MASTER" -> RpcMode.MASTER
+                        "godot.MultiplayerAPI.RPCMode.PUPPET" -> RpcMode.PUPPET
+                        "godot.MultiplayerAPI.RPCMode.SLAVE" -> RpcMode.SLAVE
+                        "godot.MultiplayerAPI.RPCMode.REMOTE_SYNC" -> RpcMode.REMOTE_SYNC
+                        "godot.MultiplayerAPI.RPCMode.SYNC" -> RpcMode.SYNC
+                        "godot.MultiplayerAPI.RPCMode.MASTER_SYNC" -> RpcMode.MASTER_SYNC
+                        "godot.MultiplayerAPI.RPCMode.PUPPET_SYNC" -> RpcMode.PUPPET_SYNC
+                        else -> RpcMode.DISABLED
+                    }
+                    RegisterFunctionAnnotation(
+                        rpcMode
+                    )
+                }
                 RegisterProperty::class.qualifiedName -> RegisterPropertyAnnotation(
                     RpcMode.DISABLED //TODO
                 )

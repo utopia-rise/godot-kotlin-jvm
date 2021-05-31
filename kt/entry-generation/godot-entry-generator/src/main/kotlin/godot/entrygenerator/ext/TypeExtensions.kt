@@ -6,7 +6,8 @@ import godot.entrygenerator.model.Type
 import java.util.*
 
 //TODO: make compatible with other languages
-fun Type.toKtVariantType(): ClassName = when {
+fun Type?.toKtVariantType(): ClassName = when {
+    this == null || fqName == "kotlin.Unit" -> ClassName("godot.core.VariantType", "NIL")
     fqName == "kotlin.Int" -> ClassName("godot.core.VariantType", "JVM_INT")
     fqName == "kotlin.Long" -> ClassName("godot.core.VariantType", "LONG")
     fqName == "kotlin.Float" -> ClassName("godot.core.VariantType", "JVM_FLOAT")

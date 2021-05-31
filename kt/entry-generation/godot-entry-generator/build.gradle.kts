@@ -9,6 +9,12 @@ dependencies {
     implementation("com.squareup:kotlinpoet:${DependenciesVersions.kotlinPoetVersion}")
 }
 
+tasks {
+    withType<KotlinCompile>().all {
+        kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.ExperimentalStdlibApi"
+    }
+}
+
 publishing {
     publications {
         val godotEntryGenerator by creating(MavenPublication::class) {
