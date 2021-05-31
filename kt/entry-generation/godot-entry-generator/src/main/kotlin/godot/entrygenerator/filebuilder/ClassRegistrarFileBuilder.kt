@@ -14,12 +14,13 @@ import godot.entrygenerator.model.RegisterPropertyAnnotation
 import godot.entrygenerator.model.RegisterSignalAnnotation
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.Type
+import java.io.BufferedWriter
 import java.io.File
 import java.util.*
 
 class ClassRegistrarFileBuilder(
     private val registeredClass: RegisteredClass,
-    private val baseOutputPath: String
+    private val appendableProvider: (RegisteredClass) -> BufferedWriter
 ) {
     private val classRegistrarBuilder = TypeSpec
         .classBuilder("${registeredClass.name}Registrar")
@@ -79,6 +80,9 @@ class ClassRegistrarFileBuilder(
                                             typeArgument.fqName.substringAfterLast(".")
                                         )
                                     )
+                                    if (typeArgument.isNullable) {
+                                        append("?")
+                                    }
                                 }
                                 append(">")
                             }
@@ -174,12 +178,14 @@ class ClassRegistrarFileBuilder(
                 .build()
         )
 
-        FileSpec
-            .builder("godot.${registeredClass.containingPackage}", "${registeredClass.name}Entry")
-            .addComment("THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY! ALL CHANGES TO IT WILL BE OVERWRITTEN ON EACH BUILD")
-            .addType(classRegistrarBuilder.build())
-            .build()
-            .writeTo(File(baseOutputPath))
+        appendableProvider(registeredClass).use { bufferedWriter ->
+            FileSpec
+                .builder("godot.${registeredClass.containingPackage}", "${registeredClass.name}Entry")
+                .addComment("THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY! ALL CHANGES TO IT WILL BE OVERWRITTEN ON EACH BUILD")
+                .addType(classRegistrarBuilder.build())
+                .build()
+                .writeTo(bufferedWriter)
+        }
 
         return "%T().register(registry)" to arrayOf(
             ClassName(

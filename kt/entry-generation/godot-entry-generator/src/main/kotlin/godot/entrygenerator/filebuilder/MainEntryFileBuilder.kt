@@ -6,7 +6,7 @@ import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.TypeSpec
-import java.io.File
+import java.io.BufferedWriter
 
 object MainEntryFileBuilder {
     private val entryFileSpec = FileSpec
@@ -26,7 +26,8 @@ object MainEntryFileBuilder {
         .addStatement("%M()", MemberName("godot", "registerEngineTypes"))
         .addStatement("%M()", MemberName("godot", "registerEngineTypeMethods"))
 
-    fun build(outputPath: String) {
+    fun build(outAppendable: () -> BufferedWriter) {
+
         entryFileSpec.addType(
             TypeSpec
                 .classBuilder(ClassName("godot", "Entry"))
@@ -35,8 +36,9 @@ object MainEntryFileBuilder {
                 .addFunction(initEngineTypesFunSpec.build())
                 .build()
         )
-
-        entryFileSpec.build().writeTo(File(outputPath))
+        outAppendable().use {
+            entryFileSpec.build().writeTo(it)
+        }
     }
 
     fun registerClassRegistrar(

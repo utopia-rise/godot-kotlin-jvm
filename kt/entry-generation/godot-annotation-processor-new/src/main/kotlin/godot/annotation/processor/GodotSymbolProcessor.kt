@@ -4,6 +4,7 @@ import com.google.devtools.ksp.getAllSuperTypes
 import com.google.devtools.ksp.getConstructors
 import com.google.devtools.ksp.getPropertyDeclarationByName
 import com.google.devtools.ksp.processing.CodeGenerator
+import com.google.devtools.ksp.processing.Dependencies
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
@@ -59,6 +60,8 @@ import org.jetbrains.kotlin.idea.KotlinFileType
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtFile
 import java.io.File
+import java.io.FileOutputStream
+import java.io.FileWriter
 
 class GodotSymbolProcessor(
     private val options: Map<String, String>,
@@ -75,6 +78,7 @@ class GodotSymbolProcessor(
     )
     private lateinit var resolver: Resolver
     private val sourceFilesContainingRegisteredClasses = mutableListOf<SourceFile>()
+    private val registeredClassToKSFileMap = mutableMapOf<RegisteredClass, KSFile>()
     private lateinit var srcDirs: List<String>
     private lateinit var outDir: String
     private lateinit var projectBasePath: String
@@ -95,8 +99,29 @@ class GodotSymbolProcessor(
     override fun finish() {
         super.finish()
         EntryGenerator.generateEntryFiles(
-            outDir,
-            sourceFilesContainingRegisteredClasses
+            sourceFilesContainingRegisteredClasses,
+            { registeredClass ->
+                codeGenerator.createNewFile(
+                    Dependencies(
+                        false,
+                        requireNotNull(registeredClassToKSFileMap[registeredClass]) {
+                            "No KSFile found for $registeredClass. This should never happen"
+                        }
+                    ),
+                    "godot.${registeredClass.containingPackage}",
+                    "${registeredClass.name}Registrar"
+                ).bufferedWriter()
+            },
+            {
+                codeGenerator.createNewFile(
+                    Dependencies(
+                        true,
+                        *registeredClassToKSFileMap.map { it.value }.toTypedArray()
+                    ),
+                    "godot",
+                    "Entry"
+                ).bufferedWriter()
+            }
         )
     }
 
@@ -119,6 +144,9 @@ class GodotSymbolProcessor(
                             null
                         }
                     }
+                }
+                .onEach { registeredClass ->
+                    registeredClassToKSFileMap[registeredClass] = file
                 }
 
             if (registeredClasses.isNotEmpty()) {

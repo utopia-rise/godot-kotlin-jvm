@@ -10,7 +10,9 @@ open class Clazz(
     val name: String
         get() = fqName.substringAfterLast(".")
     val containingPackage: String
-        get() = fqName.substringBeforeLast(".")
+        get() = if (fqName.contains(".")) {
+            fqName.substringBeforeLast(".")
+        } else ""
 
     internal val directlyInheritsGodotBaseClass: Boolean
         get() = supertypes

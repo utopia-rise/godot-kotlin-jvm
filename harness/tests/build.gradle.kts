@@ -3,6 +3,7 @@ plugins {
     id("com.google.devtools.ksp") version "1.5.0-1.0.0-alpha09"
     kotlin("jvm") version "1.5.0"
 //    id("com.utopia-rise.godot-kotlin-jvm")
+    idea
 }
 
 repositories {
@@ -25,7 +26,13 @@ dependencies {
 
 
 kotlin.sourceSets.main {
-    kotlin.srcDirs("scripts")
+    kotlin.srcDirs("scripts", project.buildDir.resolve("generated/ksp/main/kotlin/"))
+}
+
+idea {
+    module {
+        generatedSourceDirs.add(project.buildDir.resolve("generated/ksp/main/kotlin/"))
+    }
 }
 
 ksp {

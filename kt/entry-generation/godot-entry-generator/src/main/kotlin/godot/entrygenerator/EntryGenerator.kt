@@ -2,13 +2,16 @@ package godot.entrygenerator
 
 import godot.entrygenerator.filebuilder.ClassRegistrarFileBuilder
 import godot.entrygenerator.filebuilder.MainEntryFileBuilder
+import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.SourceFile
+import java.io.BufferedWriter
 
 object EntryGenerator {
 
     fun generateEntryFiles(
-        outputBasePath: String,
-        sourceFiles: List<SourceFile>
+        sourceFiles: List<SourceFile>,
+        appendableProvider: (RegisteredClass) -> BufferedWriter,
+        mainBufferedWriterProvider: () -> BufferedWriter
     ) {
         executeSanityChecks(sourceFiles)
 
@@ -18,12 +21,12 @@ object EntryGenerator {
                     registerClassRegistrar(
                         ClassRegistrarFileBuilder(
                             registeredClass,
-                            outputBasePath
+                            appendableProvider
                         )
                     )
                 }
             }
-            build(outputBasePath)
+            build(mainBufferedWriterProvider)
         }
     }
 
