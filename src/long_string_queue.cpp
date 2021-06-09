@@ -32,7 +32,9 @@ void LongStringQueue::set_string_max_size(int max_size) {
 }
 
 String LongStringQueue::poll_string() {
-    return string_queue.front()->get();
+    String ret = string_queue.front()->get();
+    string_queue.pop_front();
+    return ret;
 }
 
 void LongStringQueue::queue_string(const String& str) {
