@@ -51,7 +51,11 @@ tasks {
                     "- [${commit.abbreviatedId}]($link) ${commit.shortMessage}"
                 }
 
-            project.buildDir.resolve("changelog.md").writeText(changelogString)
+            project.buildDir.resolve("changelog.md").also {
+                if (!it.parentFile.exists()) {
+                    it.parentFile.mkdirs()
+                }
+            }.writeText(changelogString)
         }
     }
     val buildEngineDebug by creating(Exec::class) {

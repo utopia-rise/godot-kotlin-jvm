@@ -88,7 +88,7 @@ open class SpriteFrames : Resource() {
   }
 
   /**
-   * If `true`, the given animation will loop.
+   * Returns `true` if the given animation is configured to loop when it finishes playing. Otherwise, returns `false`.
    */
   open fun getAnimationLoop(anim: String): Boolean {
     TransferContext.writeArguments(STRING to anim)

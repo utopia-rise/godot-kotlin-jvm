@@ -6,7 +6,7 @@
 
 JNI_INIT_STATICS_FOR_CLASS(TransferContext)
 
-thread_local static Variant variant_args[MAX_ARGS_SIZE];
+thread_local static Variant variant_args[MAX_ARGS_SIZE]; // NOLINT(cert-err58-cpp)
 thread_local static const Variant* variant_args_ptr[MAX_ARGS_SIZE];
 thread_local static bool icall_args_init = false;
 

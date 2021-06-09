@@ -9,6 +9,7 @@ import godot.annotation.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
+import godot.core.VariantType.OBJECT
 import kotlin.Double
 import kotlin.Suppress
 
@@ -40,5 +41,14 @@ open class Shape : Resource() {
 
   override fun __new() {
     callConstructor(ENGINECLASS_SHAPE)
+  }
+
+  /**
+   * Returns the [godot.ArrayMesh] used to draw the debug collision for this [godot.Shape].
+   */
+  open fun getDebugMesh(): ArrayMesh? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE_GET_DEBUG_MESH, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?
   }
 }

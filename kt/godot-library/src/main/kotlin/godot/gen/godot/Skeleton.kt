@@ -124,6 +124,16 @@ open class Skeleton : Spatial() {
   }
 
   /**
+   * Returns the overall transform of the specified bone, with respect to the skeleton, but without any global pose overrides. Being relative to the skeleton frame, this is not the actual "global" transform of the bone.
+   */
+  open fun getBoneGlobalPoseNoOverride(boneIdx: Long): Transform {
+    TransferContext.writeArguments(LONG to boneIdx)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SKELETON_GET_BONE_GLOBAL_POSE_NO_OVERRIDE, TRANSFORM)
+    return TransferContext.readReturnValue(TRANSFORM, false) as Transform
+  }
+
+  /**
    * Returns the name of the bone at index `index`.
    */
   open fun getBoneName(boneIdx: Long): String {

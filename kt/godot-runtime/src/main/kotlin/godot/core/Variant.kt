@@ -131,12 +131,21 @@ enum class VariantType(
                 if(isLong){
                     val str = LongStringQueue.pollString()
                     str
-                }
-                else{
+                } else {
+                    /**
+                     *  A CString is read from the buffer, they all end with a 0 character except if the String is empty
+                     *  "" has a size of 0, but "a" has a size of 2.
+                     *  We only read the buffer if the size is superior to 0.
+                     *  When it's the case, we create a string without the last 0 character.
+                     */
                     val stringSize = buffer.int
-                    val charArray = ByteArray(stringSize)
-                    buffer.get(charArray, 0, stringSize)
-                    val str = String(charArray, Charsets.UTF_8)
+                    val str = if (stringSize == 0) {
+                        String()
+                    } else {
+                        val charArray = ByteArray(stringSize)
+                        buffer.get(charArray, 0, stringSize)
+                        String(charArray, 0, stringSize - 1, Charsets.UTF_8)
+                    }
                     str
                 }
             },
@@ -457,14 +466,34 @@ enum class VariantType(
             { buffer: ByteBuffer, any: Any ->
                 when (any) {
                     is Unit -> NIL.toGodotWithoutNullCheck(buffer, any)
+                    is Byte -> JVM_BYTE.toGodotWithoutNullCheck(buffer, any)
                     is Boolean -> BOOL.toGodotWithoutNullCheck(buffer, any)
                     is Int -> JVM_INT.toGodotWithoutNullCheck(buffer, any)
                     is Long -> LONG.toGodotWithoutNullCheck(buffer, any)
                     is Float -> JVM_FLOAT.toGodotWithoutNullCheck(buffer, any)
                     is Double -> DOUBLE.toGodotWithoutNullCheck(buffer, any)
                     is String -> STRING.toGodotWithoutNullCheck(buffer, any)
+                    is Vector2 -> VECTOR2.toGodotWithoutNullCheck(buffer, any)
+                    is Rect2 -> RECT2.toGodotWithoutNullCheck(buffer, any)
+                    is Vector3 -> VECTOR3.toGodotWithoutNullCheck(buffer, any)
+                    is Transform2D -> TRANSFORM2D.toGodotWithoutNullCheck(buffer, any)
+                    is Plane -> PLANE.toGodotWithoutNullCheck(buffer, any)
+                    is Quat -> QUAT.toGodotWithoutNullCheck(buffer, any)
+                    is godot.core.AABB -> AABB.toGodotWithoutNullCheck(buffer, any)
+                    is Basis -> BASIS.toGodotWithoutNullCheck(buffer, any)
+                    is Transform -> TRANSFORM.toGodotWithoutNullCheck(buffer, any)
+                    is Color -> COLOR.toGodotWithoutNullCheck(buffer, any)
+                    is NodePath -> NODE_PATH.toGodotWithoutNullCheck(buffer, any)
+                    is RID -> _RID.toGodotWithoutNullCheck(buffer, any)
                     is VariantArray<*> -> ARRAY.toGodotWithoutNullCheck(buffer, any)
                     is Dictionary<*, *> -> DICTIONARY.toGodotWithoutNullCheck(buffer, any)
+                    is PoolByteArray -> POOL_BYTE_ARRAY.toGodotWithoutNullCheck(buffer, any)
+                    is PoolIntArray -> POOL_INT_ARRAY.toGodotWithoutNullCheck(buffer, any)
+                    is PoolRealArray -> POOL_REAL_ARRAY.toGodotWithoutNullCheck(buffer, any)
+                    is PoolStringArray -> POOL_STRING_ARRAY.toGodotWithoutNullCheck(buffer, any)
+                    is PoolVector2Array -> POOL_VECTOR2_ARRAY.toGodotWithoutNullCheck(buffer, any)
+                    is PoolVector3Array -> POOL_VECTOR3_ARRAY.toGodotWithoutNullCheck(buffer, any)
+                    is PoolColorArray -> POOL_COLOR_ARRAY.toGodotWithoutNullCheck(buffer, any)
                     is KtObject -> OBJECT.toGodotWithoutNullCheck(buffer, any)
                     else -> throw UnsupportedOperationException("Can't convert type ${any::class} to Variant")
                 }

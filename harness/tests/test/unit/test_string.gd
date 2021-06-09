@@ -61,3 +61,12 @@ func test_long_string() -> void:
 	assert_eq(script.fill_the_buffer(long_str, long_str, long_str, long_str, long_str), true, "Should return true when buffer is filled")
 	assert_eq(script.mix_string_and_variant(1, long_str, Vector2(1,1), long_str, 1.0), true, "Should return true when buffer is filled")
 	script.free()
+
+func test_string_length() -> void:
+	var script = godot_tests_coretypes_StringTest.new()
+	assert_eq(script.get_length(""), 0, "Should return the right size of the string")
+	assert_eq(script.get_length("A"), 1, "Should return the right size of the string")
+	assert_eq(script.get_length("abcde"), 5, "Should return the right size of the string")
+	assert_eq("", script.identity(""), "String on JVM side should be same as gdscript one.")
+	assert_eq("A", script.identity("A"), "String on JVM side should be same as gdscript one.")
+	script.free()

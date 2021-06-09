@@ -61,7 +61,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: godotengine/godot
-          ref: ${{ steps.save_release_info.outputs.godot_version }}-stable
+          ref: 3.3.2-stable
 
       - name: Clone Godot JVM module.
         uses: actions/checkout@v2

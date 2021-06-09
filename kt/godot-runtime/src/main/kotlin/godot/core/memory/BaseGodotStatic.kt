@@ -2,11 +2,11 @@ package godot.core.memory
 
 import godot.core.GarbageCollector
 
-interface GodotStatic{
+interface GodotStatic {
 
-    fun registerAsSingleton(){
+    fun registerAsSingleton() {
         GarbageCollector.registerStatic(this)
     }
 
-    fun collect();
+    fun collect()
 }

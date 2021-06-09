@@ -97,6 +97,9 @@ open class CollisionObject : Spatial() {
   ) {
   }
 
+  open fun _shapeChanged(shape: Shape) {
+  }
+
   open fun _updateDebugShapes() {
   }
 

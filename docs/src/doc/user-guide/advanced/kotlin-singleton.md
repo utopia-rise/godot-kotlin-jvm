@@ -1,17 +1,16 @@
-Sometimes you need to store some Godot objects or references in a Kotlin singleton. This can cause some leaks when the program ends because you have to manually free objects and have the references collected. The `GodotStatic` interface lets you implement the function `collect` so you can write the appropriate cleanup code. Then you just need to call `registerAsSingleton` so it will be hooked to the Garbage Collector. 
+Sometimes you need to store some Godot objects or references in a Kotlin singleton. This can cause some leaks when the program ends because you have to manually free objects and have the references collected. 
+This issue is fixed by using the delegate `godotStatic` on singleton properties. Those properties will be freed once the JVM ends. They automatically handle `Object` and `Reference`. You can also freely set a new value and the previous one will be immediatly freed.
 
-```kt
-object MySingleton : GodotStatic {
-    var ref: MyReference? = MyReference()
-    var obj: MyObject = MyObject()
+!!! warning
+    Only use it on a singleton, otherwise all the properties of all instances are going to be kept alive until the end of the JVM.
 
-    init{
-        registerAsSingleton()
+```kotlin
+object GodotStatic {
+    var ref by godotStatic {
+        ResourceLoader.load("res://Spatial.tscn") as PackedScene?
     }
-
-    override fun collect(){
-        obj.free()
-        ref = null
+    var myScene by godotStatic {
+        Node()
     }
 }
 ```

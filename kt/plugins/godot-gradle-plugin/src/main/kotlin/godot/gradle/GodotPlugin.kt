@@ -7,6 +7,7 @@ import godot.utils.GodotBuildProperties
 import org.gradle.api.Project
 import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.apply
+import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation
@@ -19,7 +20,10 @@ import java.io.File
 class GodotPlugin : KotlinCompilerPluginSupportPlugin {
     override fun apply(target: Project) {
         val godotExtension = target.extensions.create("godot", GodotExtension::class.java)
-        val jvm = target.extensions.getByType<KotlinJvmProjectExtension>()
+        val jvm = target
+            .extensions
+            .findByType<KotlinJvmProjectExtension>()
+            ?: target.rootProject.extensions.getByType()
         target.pluginManager.apply(ShadowPlugin::class)
         setupPlugin(target, godotExtension, jvm)
     }

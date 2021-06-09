@@ -24,7 +24,7 @@ open class Sky : Resource() {
    *
    * See [enum RadianceSize] constants for values.
    *
-   * **Note:** Some hardware will have trouble with higher radiance sizes, especially [godot.RADIANCE_SIZE_512] and above. Only use such high values on high-end hardware.
+   * **Note:** You will only benefit from high radiance sizes if you have perfectly sharp reflective surfaces in your project and are not using [godot.ReflectionProbe]s or [godot.GIProbe]s. For most projects, keeping [radianceSize] to the default value is the best compromise between visuals and performance. Be careful when using high radiance size values as these can cause crashes on low-end GPUs.
    */
   open var radianceSize: Long
     get() {
@@ -71,11 +71,15 @@ open class Sky : Resource() {
 
     /**
      * Radiance texture size is 1024×1024 pixels.
+     *
+     * **Note:** [godot.RADIANCE_SIZE_1024] is not exposed in the inspector as it is known to cause GPU hangs on certain systems.
      */
     RADIANCE_SIZE_1024(5),
 
     /**
      * Radiance texture size is 2048×2048 pixels.
+     *
+     * **Note:** [godot.RADIANCE_SIZE_2048] is not exposed in the inspector as it is known to cause GPU hangs on certain systems.
      */
     RADIANCE_SIZE_2048(6),
 
@@ -97,6 +101,8 @@ open class Sky : Resource() {
   companion object {
     /**
      * Radiance texture size is 1024×1024 pixels.
+     *
+     * **Note:** [godot.RADIANCE_SIZE_1024] is not exposed in the inspector as it is known to cause GPU hangs on certain systems.
      */
     final const val RADIANCE_SIZE_1024: Long = 5
 
@@ -107,6 +113,8 @@ open class Sky : Resource() {
 
     /**
      * Radiance texture size is 2048×2048 pixels.
+     *
+     * **Note:** [godot.RADIANCE_SIZE_2048] is not exposed in the inspector as it is known to cause GPU hangs on certain systems.
      */
     final const val RADIANCE_SIZE_2048: Long = 6
 

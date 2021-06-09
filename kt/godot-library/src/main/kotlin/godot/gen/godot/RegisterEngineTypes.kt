@@ -4116,6 +4116,7 @@ private fun registerEngineTypeMethodForClippedCamera() {
 
 private fun registerEngineTypeMethodForCollisionObject() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONOBJECT to "_input_event")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONOBJECT to "_shape_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONOBJECT to "_update_debug_shapes")
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONOBJECT to "create_shape_owner")
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONOBJECT to "get_rid")
@@ -4195,7 +4196,6 @@ private fun registerEngineTypeMethodForCollisionPolygon2D() {
 }
 
 private fun registerEngineTypeMethodForCollisionShape() {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONSHAPE to "_shape_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONSHAPE to "make_convex_from_brothers")
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONSHAPE to "resource_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONSHAPE to "is_disabled")
@@ -9286,6 +9286,7 @@ private fun registerEngineTypeMethodForShaderMaterial() {
 }
 
 private fun registerEngineTypeMethodForShape() {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SHAPE to "get_debug_mesh")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SHAPE to "get_margin")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SHAPE to "set_margin")
 }
@@ -9317,6 +9318,7 @@ private fun registerEngineTypeMethodForSkeleton() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON to "get_bone_count")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON to "get_bone_custom_pose")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON to "get_bone_global_pose")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON to "get_bone_global_pose_no_override")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON to "get_bone_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON to "get_bone_parent")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON to "get_bone_pose")
@@ -12101,6 +12103,10 @@ private fun registerEngineTypeMethodForVisualShaderNodeCustom() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECUSTOM to "_get_output_port_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECUSTOM to "_get_return_icon_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECUSTOM to "_get_subcategory")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECUSTOM to "_is_initialized")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECUSTOM to "_set_initialized")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECUSTOM to
+      "_set_input_port_default_value")
 }
 
 private fun registerEngineTypeMethodForVisualShaderNodeDeterminant() {
