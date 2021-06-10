@@ -15,6 +15,7 @@ import godot.core.Vector2
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Enable OpenGL ES external texture extension.
@@ -29,7 +30,9 @@ open class ExternalTexture : Texture() {
    * External texture size.
    */
   open var size: Vector2
-    get() = super.getTextureSize()
+    @JvmName("getSize_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.getSize()
     set(value) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EXTERNALTEXTURE_SET_SIZE, NIL)

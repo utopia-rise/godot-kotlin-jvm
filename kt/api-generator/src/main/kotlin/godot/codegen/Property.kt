@@ -31,7 +31,7 @@ class Property @JsonCreator constructor(
     lateinit var engineSetterIndexName: String
     lateinit var engineGetterIndexName: String
 
-    var parentMethodToCall: String? = null
+    var shouldRenameJvmProperty = false
 
     init {
         type = type.convertTypeToKotlin()
@@ -112,11 +112,21 @@ class Property @JsonCreator constructor(
                     .build()
             )
         } else {
-            if (parentMethodToCall != null) {
+            if (shouldRenameJvmProperty) {
                 propertySpecBuilder.getter(
                     FunSpec.getterBuilder()
                         .addStatement(
-                            "return super.$parentMethodToCall()"
+                            "return super.$getter()"
+                        )
+                        .addAnnotation(
+                            AnnotationSpec.builder(JvmName::class)
+                                .addMember("\"${getter}_prop\"")
+                                .build()
+                        )
+                        .addAnnotation(
+                            AnnotationSpec.builder(Suppress::class)
+                                .addMember("\"INAPPLICABLE_JVM_NAME\"")
+                                .build()
                         )
                         .build()
                 )

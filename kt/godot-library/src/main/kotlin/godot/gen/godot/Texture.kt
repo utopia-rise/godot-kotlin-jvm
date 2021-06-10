@@ -114,7 +114,7 @@ open class Texture : Resource() {
   /**
    * Returns the texture height.
    */
-  open fun getTextureHeight(): Long {
+  open fun getHeight(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE_GET_HEIGHT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -123,7 +123,7 @@ open class Texture : Resource() {
   /**
    * Returns the texture size.
    */
-  open fun getTextureSize(): Vector2 {
+  open fun getSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE_GET_SIZE, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -132,7 +132,7 @@ open class Texture : Resource() {
   /**
    * Returns the texture width.
    */
-  open fun getTextureWidth(): Long {
+  open fun getWidth(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE_GET_WIDTH, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long

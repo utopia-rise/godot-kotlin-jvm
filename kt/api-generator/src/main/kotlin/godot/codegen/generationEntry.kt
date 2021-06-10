@@ -3,6 +3,7 @@ package godot.codegen
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.squareup.kotlinpoet.*
+import godot.codegen.utils.convertToSnakeCase
 import godot.codegen.utils.getPackage
 import godot.codegen.utils.jvmVariantTypeValue
 import godot.docgen.ClassDoc
@@ -31,11 +32,10 @@ fun File.generateApiFrom(jsonSource: File, docsDir: File? = null) {
         it.properties.forEach { property -> property.initEngineIndexNames(it.engineClassDBIndexName) }
     }
 
-    val methodsToRename = mutableMapOf<Method, String>()
     classes.forEach { clazz ->
         clazz.properties.forEach { property ->
             val method = Method(
-                "get_${property.oldName}",
+                property.getter.convertToSnakeCase(),
                 property.type,
                 isVirtual = false,
                 hasVarargs = false,
@@ -43,17 +43,9 @@ fun File.generateApiFrom(jsonSource: File, docsDir: File? = null) {
             )
             val parentClassAndMethod = tree.getMethodFromAncestor(clazz, method)
             if (parentClassAndMethod != null && !property.hasValidGetter) {
-                val parentMethodName = "get${parentClassAndMethod.first.newName}${property.newName.capitalize()}"
-                property.parentMethodToCall = parentMethodName
-                val find = parentClassAndMethod.first.methods.find { it.newName == "get${property.newName.capitalize()}" }
-                if (find != null) {
-                    methodsToRename[find] = parentMethodName
-                }
+                property.shouldRenameJvmProperty = true
             }
         }
-    }
-    methodsToRename.forEach {
-        it.key.newName = it.value
     }
 
     generateEngineIndexesFile(classes).writeTo(this)

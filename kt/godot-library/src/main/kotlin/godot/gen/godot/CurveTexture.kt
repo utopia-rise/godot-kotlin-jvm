@@ -12,6 +12,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.jvm.JvmName
 
 /**
  * A texture that shows a curve.
@@ -38,7 +39,9 @@ open class CurveTexture : Texture() {
    * The width of the texture.
    */
   open var width: Long
-    get() = super.getTextureWidth()
+    @JvmName("getWidth_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.getWidth()
     set(value) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_SET_WIDTH, NIL)

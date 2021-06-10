@@ -15,7 +15,7 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.String
 import kotlin.Suppress
-import kotlin.UninitializedPropertyAccessException
+import kotlin.jvm.JvmName
 
 /**
  * Input event type for actions.
@@ -46,9 +46,9 @@ open class InputEventAction : InputEvent() {
    * If `true`, the action's state is pressed. If `false`, the action's state is released.
    */
   open var pressed: Boolean
-    get() {
-      throw UninitializedPropertyAccessException("Cannot access property pressed: has no getter")
-    }
+    @JvmName("isPressed_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.isPressed()
     set(value) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTACTION_SET_PRESSED, NIL)

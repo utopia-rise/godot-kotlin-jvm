@@ -650,7 +650,7 @@ open class CanvasItem : Node() {
   /**
    * Returns the global transform matrix of this item.
    */
-  open fun getCanvasItemGlobalTransform(): Transform2D {
+  open fun getGlobalTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_GLOBAL_TRANSFORM,
         TRANSFORM2D)
@@ -680,7 +680,7 @@ open class CanvasItem : Node() {
   /**
    * Returns the transform matrix of this item.
    */
-  open fun getCanvasItemTransform(): Transform2D {
+  open fun getTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_TRANSFORM,
         TRANSFORM2D)

@@ -13,7 +13,7 @@ import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.UninitializedPropertyAccessException
+import kotlin.jvm.JvmName
 
 /**
  * Input event type for keyboard events.
@@ -29,9 +29,9 @@ open class InputEventKey : InputEventWithModifiers() {
    * If `true`, the key was already pressed before this event. It means the user is holding the key down.
    */
   open var echo: Boolean
-    get() {
-      throw UninitializedPropertyAccessException("Cannot access property echo: has no getter")
-    }
+    @JvmName("isEcho_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.isEcho()
     set(value) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_ECHO, NIL)
@@ -41,9 +41,9 @@ open class InputEventKey : InputEventWithModifiers() {
    * If `true`, the key's state is pressed. If `false`, the key's state is released.
    */
   open var pressed: Boolean
-    get() {
-      throw UninitializedPropertyAccessException("Cannot access property pressed: has no getter")
-    }
+    @JvmName("isPressed_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.isPressed()
     set(value) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_PRESSED, NIL)

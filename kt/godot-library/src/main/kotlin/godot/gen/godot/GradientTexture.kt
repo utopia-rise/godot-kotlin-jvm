@@ -12,6 +12,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.jvm.JvmName
 
 /**
  * Gradient-filled texture.
@@ -39,7 +40,9 @@ open class GradientTexture : Texture() {
    * The number of color samples that will be obtained from the [godot.Gradient].
    */
   open var width: Long
-    get() = super.getTextureWidth()
+    @JvmName("getWidth_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.getWidth()
     set(value) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE_SET_WIDTH, NIL)

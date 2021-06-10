@@ -17,6 +17,7 @@ import kotlin.Double
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
+import kotlin.jvm.JvmName
 
 @GodotBaseType
 open class NoiseTexture : Texture() {
@@ -47,7 +48,9 @@ open class NoiseTexture : Texture() {
     }
 
   open var height: Long
-    get() = super.getTextureHeight()
+    @JvmName("getHeight_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.getHeight()
     set(value) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_HEIGHT, NIL)
@@ -76,7 +79,9 @@ open class NoiseTexture : Texture() {
     }
 
   open var width: Long
-    get() = super.getTextureWidth()
+    @JvmName("getWidth_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.getWidth()
     set(value) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_WIDTH, NIL)

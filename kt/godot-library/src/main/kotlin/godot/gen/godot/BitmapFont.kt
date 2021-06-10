@@ -29,7 +29,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
-import kotlin.UninitializedPropertyAccessException
+import kotlin.jvm.JvmName
 
 /**
  * Renders text using fonts under the [godot.BMFont](https://www.angelcode.com/products/bmfont/) format.
@@ -44,7 +44,9 @@ open class BitmapFont : Font() {
    * Ascent (number of pixels above the baseline).
    */
   open var ascent: Double
-    get() = super.getFontAscent()
+    @JvmName("getAscent_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.getAscent()
     set(value) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAPFONT_SET_ASCENT, NIL)
@@ -54,10 +56,9 @@ open class BitmapFont : Font() {
    * If `true`, distance field hint is enabled.
    */
   open var distanceField: Boolean
-    get() {
-      throw
-          UninitializedPropertyAccessException("Cannot access property distanceField: has no getter")
-    }
+    @JvmName("isDistanceFieldHint_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.isDistanceFieldHint()
     set(value) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAPFONT_SET_DISTANCE_FIELD,
@@ -82,7 +83,9 @@ open class BitmapFont : Font() {
    * Total font height (ascent plus descent) in pixels.
    */
   open var height: Double
-    get() = super.getFontHeight()
+    @JvmName("getHeight_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.getHeight()
     set(value) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BITMAPFONT_SET_HEIGHT, NIL)
