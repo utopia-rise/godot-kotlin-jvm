@@ -31,7 +31,8 @@ class Property @JsonCreator constructor(
     lateinit var engineSetterIndexName: String
     lateinit var engineGetterIndexName: String
 
-    var shouldRenameJvmProperty = false
+    var shouldUseSuperGetter = false
+    var shouldUseSuperSetter = false
 
     init {
         type = type.convertTypeToKotlin()
@@ -83,6 +84,26 @@ class Property @JsonCreator constructor(
                 modifiers
             )
 
+        fun generateSuperAccessor(isSetter: Boolean = false): FunSpec {
+            val methodName = if (isSetter) setter else getter
+
+            return FunSpec.getterBuilder()
+                .addStatement(
+                    "return super.$methodName()"
+                )
+                .addAnnotation(
+                    AnnotationSpec.builder(JvmName::class)
+                        .addMember("\"${methodName}_prop\"")
+                        .build()
+                )
+                .addAnnotation(
+                    AnnotationSpec.builder(Suppress::class)
+                        .addMember("\"INAPPLICABLE_JVM_NAME\"")
+                        .build()
+                )
+                .build()
+        }
+
         if (hasValidSetter) {
             propertySpecBuilder.mutable()
             propertySpecBuilder.setter(
@@ -96,6 +117,10 @@ class Property @JsonCreator constructor(
                         false
                     )
                     .build()
+            )
+        } else if (shouldUseSuperSetter) {
+            propertySpecBuilder.setter(
+                generateSuperAccessor(true)
             )
         }
 
@@ -112,23 +137,9 @@ class Property @JsonCreator constructor(
                     .build()
             )
         } else {
-            if (shouldRenameJvmProperty) {
+            if (shouldUseSuperGetter) {
                 propertySpecBuilder.getter(
-                    FunSpec.getterBuilder()
-                        .addStatement(
-                            "return super.$getter()"
-                        )
-                        .addAnnotation(
-                            AnnotationSpec.builder(JvmName::class)
-                                .addMember("\"${getter}_prop\"")
-                                .build()
-                        )
-                        .addAnnotation(
-                            AnnotationSpec.builder(Suppress::class)
-                                .addMember("\"INAPPLICABLE_JVM_NAME\"")
-                                .build()
-                        )
-                        .build()
+                    generateSuperAccessor()
                 )
             } else {
                 propertySpecBuilder.getter(

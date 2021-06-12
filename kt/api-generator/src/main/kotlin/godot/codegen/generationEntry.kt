@@ -34,17 +34,35 @@ fun File.generateApiFrom(jsonSource: File, docsDir: File? = null) {
 
     classes.forEach { clazz ->
         clazz.properties.forEach { property ->
-            val method = Method(
-                property.getter.convertToSnakeCase(),
-                property.type,
-                isVirtual = false,
-                hasVarargs = false,
-                arguments = listOf()
-            )
-            val parentClassAndMethod = tree.getMethodFromAncestor(clazz, method)
-            if (parentClassAndMethod != null && !property.hasValidGetter) {
-                property.shouldRenameJvmProperty = true
+            fun inferMethodAccessorFromParent(isSetter: Boolean = false) {
+                val methodName = if (isSetter) property.setter else property.getter
+                val returnType = if (isSetter) "void" else property.type
+                val arguments = if (isSetter) listOf(Argument(property.oldName, property.type)) else listOf()
+
+                val method = Method(
+                    methodName.convertToSnakeCase(),
+                    returnType,
+                    isVirtual = false,
+                    hasVarargs = false,
+                    arguments = arguments
+                )
+
+                val parentClassAndMethod = tree.getMethodFromAncestor(clazz, method)
+                val hasValidAccessor = if (isSetter) property.hasValidSetter else property.hasValidGetter
+                if (parentClassAndMethod != null && !hasValidAccessor) {
+                    if (isSetter) {
+                        property.shouldUseSuperSetter = true
+                    } else {
+                        property.shouldUseSuperGetter = true
+                    }
+                }
             }
+
+            inferMethodAccessorFromParent()
+
+            // It does not seems to have any case where setter should call parent in api. But in case this happen in
+            // future, this is here.
+            inferMethodAccessorFromParent(true)
         }
     }
 
