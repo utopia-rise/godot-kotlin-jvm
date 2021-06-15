@@ -16,8 +16,8 @@ import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.UninitializedPropertyAccessException
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Input event type for screen touch events.
@@ -67,9 +67,9 @@ open class InputEventScreenTouch : InputEvent() {
    * If `true`, the touch's state is pressed. If `false`, the touch's state is released.
    */
   open var pressed: Boolean
-    get() {
-      throw UninitializedPropertyAccessException("Cannot access property pressed: has no getter")
-    }
+    @JvmName("isPressed_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.isPressed()
     set(value) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENTOUCH_SET_PRESSED,

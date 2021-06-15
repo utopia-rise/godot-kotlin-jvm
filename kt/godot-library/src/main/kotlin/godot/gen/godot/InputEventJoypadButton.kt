@@ -15,7 +15,7 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.UninitializedPropertyAccessException
+import kotlin.jvm.JvmName
 
 /**
  * Input event for gamepad buttons.
@@ -47,9 +47,9 @@ open class InputEventJoypadButton : InputEvent() {
    * If `true`, the button's state is pressed. If `false`, the button's state is released.
    */
   open var pressed: Boolean
-    get() {
-      throw UninitializedPropertyAccessException("Cannot access property pressed: has no getter")
-    }
+    @JvmName("isPressed_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.isPressed()
     set(value) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,

@@ -3,6 +3,7 @@ package godot.codegen
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.squareup.kotlinpoet.*
+import godot.codegen.utils.convertToSnakeCase
 import godot.codegen.utils.getPackage
 import godot.codegen.utils.jvmVariantTypeValue
 import godot.docgen.ClassDoc
@@ -31,29 +32,38 @@ fun File.generateApiFrom(jsonSource: File, docsDir: File? = null) {
         it.properties.forEach { property -> property.initEngineIndexNames(it.engineClassDBIndexName) }
     }
 
-    val methodsToRename = mutableMapOf<Method, String>()
     classes.forEach { clazz ->
         clazz.properties.forEach { property ->
-            val method = Method(
-                "get_${property.oldName}",
-                property.type,
-                isVirtual = false,
-                hasVarargs = false,
-                arguments = listOf()
-            )
-            val parentClassAndMethod = tree.getMethodFromAncestor(clazz, method)
-            if (parentClassAndMethod != null && !property.hasValidGetter) {
-                val parentMethodName = "get${parentClassAndMethod.first.newName}${property.newName.capitalize()}"
-                property.parentMethodToCall = parentMethodName
-                val find = parentClassAndMethod.first.methods.find { it.newName == "get${property.newName.capitalize()}" }
-                if (find != null) {
-                    methodsToRename[find] = parentMethodName
+            fun inferMethodAccessorFromParent(isSetter: Boolean = false) {
+                val methodName = if (isSetter) property.setter else property.getter
+                val returnType = if (isSetter) "void" else property.type
+                val arguments = if (isSetter) listOf(Argument(property.oldName, property.type)) else listOf()
+
+                val method = Method(
+                    methodName.convertToSnakeCase(),
+                    returnType,
+                    isVirtual = false,
+                    hasVarargs = false,
+                    arguments = arguments
+                )
+
+                val parentClassAndMethod = tree.getMethodFromAncestor(clazz, method)
+                val hasValidAccessor = if (isSetter) property.hasValidSetter else property.hasValidGetter
+                if (parentClassAndMethod != null && !hasValidAccessor) {
+                    if (isSetter) {
+                        property.shouldUseSuperSetter = true
+                    } else {
+                        property.shouldUseSuperGetter = true
+                    }
                 }
             }
+
+            inferMethodAccessorFromParent()
+
+            // It does not seems to have any case where setter should call parent in api. But in case this happen in
+            // future, this is here.
+            inferMethodAccessorFromParent(true)
         }
-    }
-    methodsToRename.forEach {
-        it.key.newName = it.value
     }
 
     generateEngineIndexesFile(classes).writeTo(this)

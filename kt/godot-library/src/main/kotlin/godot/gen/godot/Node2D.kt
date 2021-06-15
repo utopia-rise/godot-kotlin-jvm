@@ -22,6 +22,7 @@ import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A 2D game object, inherited by all 2D-related nodes. Has a position, rotation, scale, and Z index.
@@ -97,7 +98,9 @@ open class Node2D : CanvasItem() {
    * Global [godot.core.Transform2D].
    */
   open var globalTransform: Transform2D
-    get() = super.getCanvasItemGlobalTransform()
+    @JvmName("getGlobalTransform_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.getGlobalTransform()
     set(value) {
       TransferContext.writeArguments(TRANSFORM2D to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_GLOBAL_TRANSFORM, NIL)
@@ -164,7 +167,9 @@ open class Node2D : CanvasItem() {
    * Local [godot.core.Transform2D].
    */
   open var transform: Transform2D
-    get() = super.getCanvasItemTransform()
+    @JvmName("getTransform_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.getTransform()
     set(value) {
       TransferContext.writeArguments(TRANSFORM2D to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_TRANSFORM, NIL)

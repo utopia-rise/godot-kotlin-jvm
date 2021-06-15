@@ -15,7 +15,7 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.UninitializedPropertyAccessException
+import kotlin.jvm.JvmName
 
 /**
  * Input event type for mouse button events.
@@ -79,9 +79,9 @@ open class InputEventMouseButton : InputEventMouse() {
    * If `true`, the mouse button's state is pressed. If `false`, the mouse button's state is released.
    */
   open var pressed: Boolean
-    get() {
-      throw UninitializedPropertyAccessException("Cannot access property pressed: has no getter")
-    }
+    @JvmName("isPressed_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.isPressed()
     set(value) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_SET_PRESSED,

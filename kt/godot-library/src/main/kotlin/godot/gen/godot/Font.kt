@@ -77,7 +77,7 @@ open class Font : Resource() {
   /**
    * Returns the font ascent (number of pixels above the baseline).
    */
-  open fun getFontAscent(): Double {
+  open fun getAscent(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_ASCENT, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -104,7 +104,7 @@ open class Font : Resource() {
   /**
    * Returns the total font height (ascent plus descent) in pixels.
    */
-  open fun getFontHeight(): Double {
+  open fun getHeight(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_HEIGHT, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
