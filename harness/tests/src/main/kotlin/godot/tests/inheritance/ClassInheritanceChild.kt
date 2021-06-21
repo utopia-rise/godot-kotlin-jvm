@@ -10,7 +10,7 @@ import godot.signals.signal
 class ClassInheritanceChild : ClassInheritanceParent() {
 
     @RegisterSignal
-    override val signalTestOverridden by signal<String, Int>("blubb", "habbalubb")
+    override val signalTestOverridden by signal<String, Int>("blubb", "habbalubbb")
 
     //---------------- Here to check ------------------
 

@@ -24,7 +24,7 @@ gradlePlugin {
 }
 
 dependencies {
-    implementation(kotlin("gradle-plugin", version = "1.5.0"))
+    implementation(kotlin("gradle-plugin", version = "1.5.10"))
     implementation("com.squareup:kotlinpoet:1.8.0")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.11.0")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.10.1")

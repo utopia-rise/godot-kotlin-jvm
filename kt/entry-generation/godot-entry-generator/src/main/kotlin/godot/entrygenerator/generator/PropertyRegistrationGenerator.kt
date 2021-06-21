@@ -41,7 +41,7 @@ object PropertyRegistrationGenerator {
                         classRegistrarBuilder
                     )
                     registeredProperty.type.fqName.matches(Regex("^kotlin\\.collections\\..*Set\$")) &&
-                        registeredProperty.type.arguments.firstOrNull()?.kind == TypeKind.ENUM_CLASS &&
+                        registeredProperty.type.arguments().firstOrNull()?.kind == TypeKind.ENUM_CLASS &&
                         registeredProperty.annotations.hasAnnotation<EnumFlagHintAnnotation>() -> registerEnumFlag(
                         registeredProperty,
                         className,
@@ -49,7 +49,7 @@ object PropertyRegistrationGenerator {
                         classRegistrarBuilder
                     )
                     registeredProperty.type.fqName.matches(Regex("^kotlin\\.collections\\..*\$")) &&
-                        registeredProperty.type.arguments.firstOrNull()?.kind == TypeKind.ENUM_CLASS -> registerEnumList(
+                        registeredProperty.type.arguments().firstOrNull()?.kind == TypeKind.ENUM_CLASS -> registerEnumList(
                         registeredProperty,
                         className,
                         registerClassControlFlow,
@@ -183,18 +183,18 @@ object PropertyRegistrationGenerator {
         registeredProperty: RegisteredProperty,
         classRegistrarBuilder: TypeSpec.Builder
     ) {
-        val (defaultValueStringTemplate, defaultValueStringTemplateValues) = requireNotNull(registeredProperty.defaultValueTemplateAndArgs) //Fixme
+        val (defaultValueStringTemplate, defaultValueStringTemplateValues) = requireNotNull(registeredProperty.defaultValueTemplateAndArgs()) //Fixme
 
         val returnTypePackagePath = registeredProperty.type.fqName.substringBeforeLast(".")
         val returnTypeSimpleName = registeredProperty.type.fqName.substringAfterLast(".")
         val tmpClassName = ClassName(returnTypePackagePath, returnTypeSimpleName)
         var returnTypeClassName: TypeName = tmpClassName
 
-        if (registeredProperty.type.arguments.isNotEmpty()) {
+        if (registeredProperty.type.arguments().isNotEmpty()) {
             returnTypeClassName = tmpClassName.parameterizedBy(
                 registeredProperty
                     .type
-                    .arguments
+                    .arguments()
                     .map { typeProjection ->
                         val fqName = typeProjection.fqName
                         val isNullable = typeProjection.isNullable

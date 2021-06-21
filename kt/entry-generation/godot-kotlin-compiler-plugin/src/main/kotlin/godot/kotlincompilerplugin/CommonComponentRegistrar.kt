@@ -11,8 +11,6 @@ import godot.entrygenerator.generator.property.defaultvalue.extractor.KtPrefixEx
 import godot.entrygenerator.generator.property.defaultvalue.extractor.KtStringTemplateExpressionExtractor
 import godot.kotlincompilerplugin.common.CompilerPluginConst
 import org.jetbrains.kotlin.analyzer.AnalysisResult
-import org.jetbrains.kotlin.codegen.ClassBuilderFactory
-import org.jetbrains.kotlin.codegen.extensions.ClassBuilderInterceptorExtension
 import org.jetbrains.kotlin.com.intellij.mock.MockProject
 import org.jetbrains.kotlin.com.intellij.openapi.project.Project
 import org.jetbrains.kotlin.com.intellij.openapi.vfs.StandardFileSystems
@@ -28,9 +26,7 @@ import org.jetbrains.kotlin.config.CompilerConfiguration
 import org.jetbrains.kotlin.container.ComponentProvider
 import org.jetbrains.kotlin.context.ProjectContext
 import org.jetbrains.kotlin.descriptors.ModuleDescriptor
-import org.jetbrains.kotlin.diagnostics.DiagnosticSink
 import org.jetbrains.kotlin.extensions.PreprocessedFileCreator
-import org.jetbrains.kotlin.extensions.StorageComponentContainerContributor
 import org.jetbrains.kotlin.idea.KotlinFileType
 import org.jetbrains.kotlin.psi.KtBinaryExpression
 import org.jetbrains.kotlin.psi.KtCallExpression
@@ -43,10 +39,8 @@ import org.jetbrains.kotlin.psi.KtLambdaExpression
 import org.jetbrains.kotlin.psi.KtNameReferenceExpression
 import org.jetbrains.kotlin.psi.KtOperationReferenceExpression
 import org.jetbrains.kotlin.psi.KtPrefixExpression
-import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.psi.KtStringTemplateExpression
 import org.jetbrains.kotlin.psi.psiUtil.parents
-import org.jetbrains.kotlin.resolve.AnalyzerExtensions
 import org.jetbrains.kotlin.resolve.BindingContext
 import org.jetbrains.kotlin.resolve.BindingTrace
 import org.jetbrains.kotlin.resolve.jvm.extensions.AnalysisHandlerExtension
@@ -96,12 +90,13 @@ class CommonComponentRegistrar : ComponentRegistrar {
 }
 
 object PsiProvider {
-    fun providePropertyInitializer(propertyFqName: String): Pair<String, Array<out Any>>? {
+    fun providePropertyInitializer(bindingContext: BindingContext, propertyFqName: String): Pair<String, Array<out Any>>? {
         val propertyInitializerExpression = getPropertyInitializerExpression(propertyFqName) ?: return "%L" to arrayOf("null")
-        return getDefaultValueTemplateStringWithTemplateArguments(propertyInitializerExpression)
+        return getDefaultValueTemplateStringWithTemplateArguments(bindingContext, propertyInitializerExpression)
     }
 
     private fun getDefaultValueTemplateStringWithTemplateArguments(
+        bindingContext: BindingContext,
         expression: KtExpression
     ): Pair<String, Array<out Any>>? {
         return when {
@@ -110,23 +105,25 @@ object PsiProvider {
             //an example would be a negative number like: val foo = -1
             expression is KtPrefixExpression && expression.baseExpression?.let {
                 getDefaultValueTemplateStringWithTemplateArguments(
+                    bindingContext,
                     it
                 )
             } != null -> KtPrefixExpressionExtractor.extract(expression)
             //string assignments but no string templations like ("${someVarToPutInString}"): val foo = "this is awesome"
             expression is KtStringTemplateExpression -> KtStringTemplateExpressionExtractor.extract(expression)
             expression is KtDotQualifiedExpression -> KtDotQualifiedExpressionExtractor.extract(
-                CompilerProjectProvider.bindingContext?.invoke()!!,
+                bindingContext,
                 expression
             )
             //call expressions like constructor calls or function calls
             expression is KtCallExpression -> KtCallExpressionExtractor.extract(
-                CompilerProjectProvider.bindingContext?.invoke()!!,
+                bindingContext,
                 expression,
                 ::getDefaultValueTemplateStringWithTemplateArguments
             )
             //used for flags: val foo = 1 or 3 and 5
             expression is KtBinaryExpression -> KtBinaryExpressionExtractor.extract(
+                bindingContext,
                 expression,
                 ::getDefaultValueTemplateStringWithTemplateArguments
             )

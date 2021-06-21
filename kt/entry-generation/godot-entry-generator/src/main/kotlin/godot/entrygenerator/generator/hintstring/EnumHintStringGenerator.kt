@@ -8,5 +8,5 @@ class EnumHintStringGenerator(
 ) : PropertyHintStringGenerator(registeredProperty) {
 
     override fun getHintString(): String =
-        throw UnsupportedOperationException("Hint string for enums is handled by the binding at runtime.")
+        ""//throw UnsupportedOperationException("Hint string for enums is handled by the binding at runtime.")
 }

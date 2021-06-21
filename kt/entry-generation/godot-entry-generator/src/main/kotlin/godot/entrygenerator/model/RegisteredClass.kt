@@ -17,7 +17,7 @@ data class RegisteredClass(
         get() = annotations
             .getAnnotation<RegisterClassAnnotation>()
             ?.customName
-            ?: name
+            ?: fqName.replace(".", "_")
 
     internal val isTool: Boolean
         get() = annotations.getAnnotation<ToolAnnotation>() != null

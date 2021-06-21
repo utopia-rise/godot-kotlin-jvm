@@ -58,8 +58,8 @@ class Invocation : Spatial() {
 	@RegisterProperty
 	var enumList = listOf(TestEnum.ENUM_1)
 
-    @RegisterProperty
-    var vectorList = PoolVector3Array()
+	@RegisterProperty
+	var vectorList = PoolVector3Array()
 
 	@Export
 	@RegisterProperty
@@ -95,8 +95,8 @@ class Invocation : Spatial() {
 			field = value
 		}
 
-    @RegisterProperty
-    var vector = Vector3()
+	@RegisterProperty
+	var vector = Vector3()
 
 	@Export
 	@RegisterProperty
@@ -371,10 +371,10 @@ class Invocation : Spatial() {
 		name = formerName
 		val test = DateTime.now() //external dependency to test dependency inclusion in dummyCompilation
 
-        val getNode = getNodeAs<Button>("CanvasLayer/Button")
+		val getNode = getNodeAs<Button>("CanvasLayer/Button")
 
-        val path = NodePath("CanvasLayer/Button")
-        val getNode2 = getNodeAs<Button>(path)
+		val path = NodePath("CanvasLayer/Button")
+		val getNode2 = getNodeAs<Button>(path)
 
 		signalNoParam.connect(invocation, invocation::hookNoParam)
 		signalOneParam.connect(invocation, invocation::hookOneParam)
@@ -395,9 +395,9 @@ class Invocation : Spatial() {
 		println("NavMesh instance id after re-re-assign: ${resourceTest.getInstanceId()}")
 
 
-        //Just there to register static instances in the GC
-        GodotStaticDelegateTest.myScene
-        GodotStaticDelegateTest.ref
+		//Just there to register static instances in the GC
+		GodotStaticDelegateTest.myScene
+		GodotStaticDelegateTest.ref
 	}
 
 	init {

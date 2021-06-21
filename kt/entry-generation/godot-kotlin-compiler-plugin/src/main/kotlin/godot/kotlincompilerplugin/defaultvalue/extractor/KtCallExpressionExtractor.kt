@@ -26,11 +26,11 @@ object KtCallExpressionExtractor {
     fun extract(
         bindingContext: BindingContext,
         expression: KtCallExpression,
-        getDefaultValueTemplateStringWithTemplateArguments: (KtExpression) -> Pair<String, Array<out Any>>?
+        getDefaultValueTemplateStringWithTemplateArguments: (BindingContext, KtExpression) -> Pair<String, Array<out Any>>?
     ): Pair<String, Array<out Any>> {
         val ref = expression
             .referenceExpression()
-            ?.getReferenceTargets(bindingContext)
+            ?.getReferenceTargets(bindingContext!!)
             ?.firstOrNull()
 
         if (ref != null) {
@@ -38,7 +38,7 @@ object KtCallExpressionExtractor {
             val transformedArgs = expression
                 .valueArguments
                 .mapNotNull { it.getArgumentExpression() }
-                .map { getDefaultValueTemplateStringWithTemplateArguments(it) }
+                .map { getDefaultValueTemplateStringWithTemplateArguments(bindingContext, it) }
 
             // if an arg is null, then it means that it contained a non static reference
             var hasNullArg = false
@@ -87,7 +87,7 @@ object KtCallExpressionExtractor {
                     return "%M(${transformedArgs.joinToString { it!!.first }})" to params.toTypedArray()
                 }
                 //set's for enum flag registration
-                expression.getType(bindingContext)?.let(KotlinBuiltIns::isSetOrNullableSet) == true -> {
+                expression.getType(bindingContext!!)?.let(KotlinBuiltIns::isSetOrNullableSet) == true -> {
                     //setOf -> ref is null in this case
                     val params = mutableListOf<Any>()
                     params.add(expression.children.first().text)
@@ -97,6 +97,6 @@ object KtCallExpressionExtractor {
             }
         }
 
-        throw IllegalStateException("KtCallExpressionExtractor could not handle expression: $expression")
+        throw IllegalStateException("KtCallExpressionExtractor could not handle expression: ${expression.text}")
     }
 }

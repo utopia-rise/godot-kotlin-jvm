@@ -17,6 +17,7 @@ import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.google.devtools.ksp.symbol.KSPropertyDeclaration
 import com.google.devtools.ksp.symbol.KSType
 import com.google.devtools.ksp.symbol.KSTypeAlias
+import com.google.devtools.ksp.symbol.KSTypeArgument
 import com.google.devtools.ksp.symbol.KSTypeReference
 import com.google.devtools.ksp.symbol.KSVisitorVoid
 import com.google.devtools.ksp.symbol.Modifier
@@ -61,6 +62,8 @@ import godot.entrygenerator.model.Type
 import godot.entrygenerator.model.TypeKind
 import godot.entrygenerator.model.ValueParameter
 import godot.kotlincompilerplugin.PsiProvider
+import org.jetbrains.kotlin.resolve.BindingContext
+import org.jetbrains.kotlin.resolve.BindingTrace
 import java.io.File
 
 class GodotSymbolProcessor(
@@ -82,8 +85,13 @@ class GodotSymbolProcessor(
     private lateinit var srcDirs: List<String>
     private lateinit var outDir: String
     private lateinit var projectBasePath: String
+    private lateinit var bindingContext: BindingContext
 
     override fun process(resolver: Resolver): List<KSAnnotated> {
+        bindingContext = resolver::class.java.getDeclaredField("bindingTrace").let {
+            it.isAccessible = true
+            (it.get(resolver) as BindingTrace).bindingContext
+        }
         this.resolver = resolver
         srcDirs = options["srcDirs"]
             ?.split(File.pathSeparator)
@@ -92,7 +100,7 @@ class GodotSymbolProcessor(
             ?: throw IllegalStateException("No outDir option provided")
         projectBasePath = options["projectBasePath"]
             ?: throw IllegalStateException("No projectBasePath option provided")
-        resolver.getAllFiles().map { it.accept(registerAnnotationVisitor, Unit) }
+        resolver.getAllFiles().toList().map { it.accept(registerAnnotationVisitor, Unit) }
         return emptyList()
     }
 
@@ -184,17 +192,18 @@ class GodotSymbolProcessor(
                 val allProperties = classDeclaration.getAllProperties()
                 val registeredProperties = allProperties
                     .filter { property ->
-                        property.annotations.any { it.fqNameUnsafe == RegisterProperty::class.qualifiedName }
+                        property.annotations.any { it.fqNameUnsafe == RegisterProperty::class.qualifiedName } ||
+                            property.findOverridee()?.annotations?.any { it.fqNameUnsafe == RegisterProperty::class.qualifiedName } == true
                     }
                     .map {
-                        mapPropertyDeclaration(it, declaredProperties)
+                        mapPropertyDeclaration(it, declaredProperties.toList())
                     }
                     .toList()
                 val registeredSignals = allProperties
                     .filter { property ->
                         property.annotations.any { it.fqNameUnsafe == RegisterSignal::class.qualifiedName }
                     }
-                    .map { mapSignalDeclaration(it, declaredProperties) }
+                    .map { mapSignalDeclaration(it, declaredProperties.toList()) }
                     .toList()
                 val registeredConstructors = classDeclaration
                     .getConstructors()
@@ -287,6 +296,16 @@ class GodotSymbolProcessor(
             val annotations = propertyDeclaration
                 .annotations
                 .mapNotNull { mapAnnotation(it) as? PropertyAnnotation }
+                .toMutableList()
+                .also { declaredAnnotations ->
+                    declaredAnnotations.addAll(
+                        propertyDeclaration
+                            .findOverridee()
+                            ?.annotations
+                            ?.mapNotNull { mapAnnotation(it) as? PropertyAnnotation }
+                            ?: emptySequence()
+                    )
+                }
 
             val type = requireNotNull(mapTypeReference(propertyDeclaration.type)) {
                 "type of property $fqName cannot be null"
@@ -301,11 +320,12 @@ class GodotSymbolProcessor(
                 fqName,
                 type,
                 propertyDeclaration.isMutable,
-                propertyDeclaration.findOverridee() != null,
                 propertyDeclaration.modifiers.contains(Modifier.LATEINIT),
-                annotations.toList(),
-                PsiProvider.providePropertyInitializer(defaultValueProviderFqName)
-            )
+                propertyDeclaration.findOverridee() != null,
+                annotations.toList()
+            ) {
+                PsiProvider.providePropertyInitializer(bindingContext, defaultValueProviderFqName)
+            }
         }
 
         private fun mapTypeReference(type: KSTypeReference?): Type? {
@@ -336,7 +356,7 @@ class GodotSymbolProcessor(
                 typeKind,
                 resolvedType.isMarkedNullable,
                 superTypes
-            )
+            ) { resolvedType.arguments.mapNotNull { mapTypeReference(it.type) } }
         }
 
         private fun mapFunctionDeclaration(functionDeclaration: KSFunctionDeclaration): RegisteredFunction? {

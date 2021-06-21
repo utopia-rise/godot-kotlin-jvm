@@ -14,9 +14,9 @@ import org.jetbrains.kotlin.resolve.descriptorUtil.isCompanionObject
 
 object KtDotQualifiedExpressionExtractor {
 
-    fun extract(bindingContext: BindingContext, expression: KtDotQualifiedExpression): Pair<String, Array<out Any>> {
+    fun extract(bindingContext: BindingContext?, expression: KtDotQualifiedExpression): Pair<String, Array<out Any>> {
         val receiver = expression.receiverExpression
-        val receiverRef = receiver.getReferenceTargets(bindingContext).firstOrNull()
+        val receiverRef = receiver.getReferenceTargets(bindingContext!!).firstOrNull()
 
         //Enums
         if (receiverRef != null) {
@@ -44,7 +44,7 @@ object KtDotQualifiedExpressionExtractor {
             val selectorExpression = expression
                 .selectorExpression
                 ?.referenceExpression()
-                ?.getReferenceTargets(bindingContext)
+                ?.getReferenceTargets(bindingContext!!)
                 ?.firstOrNull()
 
             if (selectorExpression?.fqNameSafe?.asString() == "kotlin.text.trimIndent") {

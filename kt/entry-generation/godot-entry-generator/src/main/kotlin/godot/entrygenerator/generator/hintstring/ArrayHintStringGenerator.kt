@@ -18,7 +18,7 @@ class ArrayHintStringGenerator(
      * Hint string array formatting: https://github.com/godotengine/godot/blob/00949f0c5fcc6a4f8382a4a97d5591fd9ec380f8/editor/editor_properties_array_dict.cpp
      */
     override fun getHintString(): String {
-        val elementType = registeredProperty.type.arguments.firstOrNull()
+        val elementType = registeredProperty.type.arguments().firstOrNull()
 
         return when {
             elementType != null && elementType.fqName == "kotlin.Any" -> ""
@@ -41,7 +41,7 @@ class ArrayHintStringGenerator(
                         when {
                             currentElementType.isCompatibleList() -> {
                                 append(":19") //variant.type.array.ordinal
-                                currentElementType = currentElementType.arguments.firstOrNull()
+                                currentElementType = currentElementType.arguments().firstOrNull()
                             }
                             currentElementType.isGodotPrimitive() || currentElementType.isCoreType() -> {
                                 append(":${currentElementType.getAsVariantTypeOrdinal()}")

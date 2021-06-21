@@ -70,7 +70,7 @@ class JvmPrimitivesTypeHintGenerator(
 //                ClassName("godot.core.PropertyHint", "SAVE_FILE")
 //            "godot.annotation.IntIsObjectId" ->
 //                ClassName("godot.core.PropertyHint", "INT_IS_OBJECT_ID")
-//            null -> ClassName("godot.core.PropertyHint", "NONE")
+            null -> ClassName("godot.core.PropertyHint", "NONE")
 
             else -> throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation)
         }
