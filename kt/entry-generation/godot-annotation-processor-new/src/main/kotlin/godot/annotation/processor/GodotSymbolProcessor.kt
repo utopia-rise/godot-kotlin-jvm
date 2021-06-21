@@ -3,12 +3,12 @@ package godot.annotation.processor
 import com.google.devtools.ksp.getAllSuperTypes
 import com.google.devtools.ksp.getConstructors
 import com.google.devtools.ksp.getDeclaredProperties
-import com.google.devtools.ksp.getPropertyDeclarationByName
 import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.Dependencies
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
+import com.google.devtools.ksp.symbol.ClassKind
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSAnnotation
 import com.google.devtools.ksp.symbol.KSClassDeclaration
@@ -19,7 +19,12 @@ import com.google.devtools.ksp.symbol.KSType
 import com.google.devtools.ksp.symbol.KSTypeAlias
 import com.google.devtools.ksp.symbol.KSTypeReference
 import com.google.devtools.ksp.symbol.KSVisitorVoid
+import com.google.devtools.ksp.symbol.Modifier
+import godot.annotation.EnumFlag
 import godot.annotation.Export
+import godot.annotation.IntFlag
+import godot.annotation.MultilineText
+import godot.annotation.PlaceHolderText
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterConstructor
 import godot.annotation.RegisterFunction
@@ -30,10 +35,14 @@ import godot.entrygenerator.EntryGenerator
 import godot.entrygenerator.model.ClassAnnotation
 import godot.entrygenerator.model.Clazz
 import godot.entrygenerator.model.ConstructorAnnotation
+import godot.entrygenerator.model.EnumFlagHintAnnotation
 import godot.entrygenerator.model.ExportAnnotation
 import godot.entrygenerator.model.FunctionAnnotation
 import godot.entrygenerator.model.GodotAnnotation
 import godot.entrygenerator.model.GodotBaseTypeAnnotation
+import godot.entrygenerator.model.IntFlagHintAnnotation
+import godot.entrygenerator.model.MultilineTextHintAnnotation
+import godot.entrygenerator.model.PlaceHolderTextHintAnnotation
 import godot.entrygenerator.model.PropertyAnnotation
 import godot.entrygenerator.model.RegisterClassAnnotation
 import godot.entrygenerator.model.RegisterConstructorAnnotation
@@ -49,6 +58,7 @@ import godot.entrygenerator.model.RpcMode
 import godot.entrygenerator.model.SourceFile
 import godot.entrygenerator.model.ToolAnnotation
 import godot.entrygenerator.model.Type
+import godot.entrygenerator.model.TypeKind
 import godot.entrygenerator.model.ValueParameter
 import godot.kotlincompilerplugin.PsiProvider
 import java.io.File
@@ -263,7 +273,6 @@ class GodotSymbolProcessor(
                     argumentName to argumentType
                 }.toMap(),
                 propertyDeclaration.findOverridee() != null,
-                isInheritedButNotOverridden,
                 annotations.toList()
             )
         }
@@ -283,14 +292,19 @@ class GodotSymbolProcessor(
                 "type of property $fqName cannot be null"
             }
 
+            val isInheritedButNotOverridden = !declaredProperties.map { it.qualifiedName?.asString() }.contains(fqName)
+            val defaultValueProviderFqName = if (isInheritedButNotOverridden) {
+                "${propertyDeclaration.findOverridee()?.qualifiedName?.asString()}"
+            } else fqName
+
             return RegisteredProperty(
                 fqName,
                 type,
                 propertyDeclaration.isMutable,
                 propertyDeclaration.findOverridee() != null,
-                !declaredProperties.map { it.qualifiedName?.asString() }.contains(fqName),
+                propertyDeclaration.modifiers.contains(Modifier.LATEINIT),
                 annotations.toList(),
-                ::defaultValueProvider
+                PsiProvider.providePropertyInitializer(defaultValueProviderFqName)
             )
         }
 
@@ -307,8 +321,19 @@ class GodotSymbolProcessor(
                 else -> throw IllegalStateException("Unknown declaration type $declaration for type reference")
             }
 
+            val typeKind = when((resolvedType.declaration as? KSClassDeclaration)?.classKind) {
+                ClassKind.INTERFACE -> TypeKind.INTERFACE
+                ClassKind.CLASS -> TypeKind.CLASS
+                ClassKind.ENUM_CLASS -> TypeKind.ENUM_CLASS
+                ClassKind.ENUM_ENTRY -> TypeKind.ENUM_ENTRY
+                ClassKind.OBJECT -> TypeKind.OBJECT
+                ClassKind.ANNOTATION_CLASS -> TypeKind.ANNOTATION_CLASS
+                null -> TypeKind.TYPE_ALIAS
+            }
+
             return Type(
                 fqName,
+                typeKind,
                 resolvedType.isMarkedNullable,
                 superTypes
             )
@@ -386,16 +411,14 @@ class GodotSymbolProcessor(
                 Tool::class.qualifiedName -> ToolAnnotation
                 Export::class.qualifiedName -> ExportAnnotation
                 "godot.annotation.GodotBaseType" -> GodotBaseTypeAnnotation //is internal
+                EnumFlag::class.qualifiedName -> EnumFlagHintAnnotation
+                IntFlag::class.qualifiedName -> IntFlagHintAnnotation(listOf()) //fixme
+                MultilineText::class.qualifiedName -> MultilineTextHintAnnotation
+                PlaceHolderText::class.qualifiedName -> PlaceHolderTextHintAnnotation
                 else -> null /*throw IllegalArgumentException(
                     "Unknown annotation: $annotation"
                 )*/
             }
-        }
-
-        private fun defaultValueProvider(registeredProperty: RegisteredProperty): Pair<String, Array<Any?>> {
-            return resolver.getPropertyDeclarationByName(registeredProperty.fqName)?.let { propertyDeclaration ->
-                "" to arrayOf() //TODO
-            } ?: "" to arrayOf()
         }
     }
 }

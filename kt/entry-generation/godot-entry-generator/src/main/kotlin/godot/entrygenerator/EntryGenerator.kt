@@ -40,5 +40,7 @@ object EntryGenerator {
 
         //signal name prefix
         //signal type check
+
+        //export sanity check
     }
 }

@@ -10,6 +10,7 @@ dependencies {
     implementation(project(":godot-kotlin-compiler-plugin-common"))
 //    implementation("de.jensklingenberg:mpapt-runtime:${DependenciesVersions.mpaptVersion}")
     compileOnly(kotlin("compiler-embeddable"))
+    implementation("com.squareup:kotlinpoet:${DependenciesVersions.kotlinPoetVersion}")
 }
 
 tasks {

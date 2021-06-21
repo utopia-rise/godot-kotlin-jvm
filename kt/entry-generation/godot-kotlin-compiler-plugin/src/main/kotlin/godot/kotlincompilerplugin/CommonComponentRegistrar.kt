@@ -1,11 +1,20 @@
 package godot.kotlincompilerplugin
 
-//import de.jensklingenberg.mpapt.common.MpAptProject
-//import godot.annotation.processor.GodotAnnotationProcessor
+import godot.entrygenerator.generator.property.defaultvalue.extractor.KtBinaryExpressionExtractor
+import godot.entrygenerator.generator.property.defaultvalue.extractor.KtCallExpressionExtractor
+import godot.entrygenerator.generator.property.defaultvalue.extractor.KtConstantExpressionExtractor
+import godot.entrygenerator.generator.property.defaultvalue.extractor.KtDotQualifiedExpressionExtractor
+import godot.entrygenerator.generator.property.defaultvalue.extractor.KtLambdaExpressionExtractor
+import godot.entrygenerator.generator.property.defaultvalue.extractor.KtNameReferenceExpressionExtractor
+import godot.entrygenerator.generator.property.defaultvalue.extractor.KtOperationReferenceExpressionExtractor
+import godot.entrygenerator.generator.property.defaultvalue.extractor.KtPrefixExpressionExtractor
+import godot.entrygenerator.generator.property.defaultvalue.extractor.KtStringTemplateExpressionExtractor
 import godot.kotlincompilerplugin.common.CompilerPluginConst
+import org.jetbrains.kotlin.analyzer.AnalysisResult
 import org.jetbrains.kotlin.codegen.ClassBuilderFactory
 import org.jetbrains.kotlin.codegen.extensions.ClassBuilderInterceptorExtension
 import org.jetbrains.kotlin.com.intellij.mock.MockProject
+import org.jetbrains.kotlin.com.intellij.openapi.project.Project
 import org.jetbrains.kotlin.com.intellij.openapi.vfs.StandardFileSystems
 import org.jetbrains.kotlin.com.intellij.openapi.vfs.VirtualFile
 import org.jetbrains.kotlin.com.intellij.openapi.vfs.VirtualFileManager
@@ -16,15 +25,30 @@ import org.jetbrains.kotlin.compiler.plugin.CliOptionProcessingException
 import org.jetbrains.kotlin.compiler.plugin.CommandLineProcessor
 import org.jetbrains.kotlin.compiler.plugin.ComponentRegistrar
 import org.jetbrains.kotlin.config.CompilerConfiguration
+import org.jetbrains.kotlin.container.ComponentProvider
+import org.jetbrains.kotlin.context.ProjectContext
+import org.jetbrains.kotlin.descriptors.ModuleDescriptor
 import org.jetbrains.kotlin.diagnostics.DiagnosticSink
 import org.jetbrains.kotlin.extensions.PreprocessedFileCreator
 import org.jetbrains.kotlin.extensions.StorageComponentContainerContributor
 import org.jetbrains.kotlin.idea.KotlinFileType
+import org.jetbrains.kotlin.psi.KtBinaryExpression
+import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtClass
+import org.jetbrains.kotlin.psi.KtConstantExpression
+import org.jetbrains.kotlin.psi.KtDotQualifiedExpression
 import org.jetbrains.kotlin.psi.KtExpression
 import org.jetbrains.kotlin.psi.KtFile
+import org.jetbrains.kotlin.psi.KtLambdaExpression
+import org.jetbrains.kotlin.psi.KtNameReferenceExpression
+import org.jetbrains.kotlin.psi.KtOperationReferenceExpression
+import org.jetbrains.kotlin.psi.KtPrefixExpression
+import org.jetbrains.kotlin.psi.KtProperty
+import org.jetbrains.kotlin.psi.KtStringTemplateExpression
+import org.jetbrains.kotlin.psi.psiUtil.parents
 import org.jetbrains.kotlin.resolve.AnalyzerExtensions
 import org.jetbrains.kotlin.resolve.BindingContext
+import org.jetbrains.kotlin.resolve.BindingTrace
 import org.jetbrains.kotlin.resolve.jvm.extensions.AnalysisHandlerExtension
 import java.io.File
 
@@ -35,6 +59,19 @@ class CommonComponentRegistrar : ComponentRegistrar {
     ) {
         CompilerProjectProvider.provider = { project }
         CompilerProjectProvider.configuration = { configuration }
+        AnalysisHandlerExtension.registerExtension(project, object : AnalysisHandlerExtension {
+            override fun doAnalysis(
+                project: Project,
+                module: ModuleDescriptor,
+                projectContext: ProjectContext,
+                files: Collection<KtFile>,
+                bindingTrace: BindingTrace,
+                componentProvider: ComponentProvider
+            ): AnalysisResult? {
+                CompilerProjectProvider.bindingContext = { bindingTrace.bindingContext }
+                return super.doAnalysis(project, module, projectContext, files, bindingTrace, componentProvider)
+            }
+        })
 //        val enabled = checkNotNull(configuration.get(CompilerPluginConst.CommandlineArguments.ENABLED)) {
 //            "enabled parameter missing"
 //        }
@@ -59,11 +96,55 @@ class CommonComponentRegistrar : ComponentRegistrar {
 }
 
 object PsiProvider {
-    fun providePropertyInitializer(propertyFqName: String): Pair<String, Array<Any>>? {
-        val containingClassFqName = propertyFqName.substringBeforeLast(".")
-        val propertyInitializerExpression = getPropertyInitializerExpression(propertyFqName)
+    fun providePropertyInitializer(propertyFqName: String): Pair<String, Array<out Any>>? {
+        val propertyInitializerExpression = getPropertyInitializerExpression(propertyFqName) ?: return "%L" to arrayOf("null")
+        return getDefaultValueTemplateStringWithTemplateArguments(propertyInitializerExpression)
+    }
 
-        return null
+    private fun getDefaultValueTemplateStringWithTemplateArguments(
+        expression: KtExpression
+    ): Pair<String, Array<out Any>>? {
+        return when {
+            //normal constant expression like: val foo = 1
+            expression is KtConstantExpression -> KtConstantExpressionExtractor.extract(expression)
+            //an example would be a negative number like: val foo = -1
+            expression is KtPrefixExpression && expression.baseExpression?.let {
+                getDefaultValueTemplateStringWithTemplateArguments(
+                    it
+                )
+            } != null -> KtPrefixExpressionExtractor.extract(expression)
+            //string assignments but no string templations like ("${someVarToPutInString}"): val foo = "this is awesome"
+            expression is KtStringTemplateExpression -> KtStringTemplateExpressionExtractor.extract(expression)
+            expression is KtDotQualifiedExpression -> KtDotQualifiedExpressionExtractor.extract(
+                CompilerProjectProvider.bindingContext?.invoke()!!,
+                expression
+            )
+            //call expressions like constructor calls or function calls
+            expression is KtCallExpression -> KtCallExpressionExtractor.extract(
+                CompilerProjectProvider.bindingContext?.invoke()!!,
+                expression,
+                ::getDefaultValueTemplateStringWithTemplateArguments
+            )
+            //used for flags: val foo = 1 or 3 and 5
+            expression is KtBinaryExpression -> KtBinaryExpressionExtractor.extract(
+                expression,
+                ::getDefaultValueTemplateStringWithTemplateArguments
+            )
+            //static named reference to a global const for example
+            expression is KtNameReferenceExpression -> KtNameReferenceExpressionExtractor.extract(
+                CompilerProjectProvider.bindingContext?.invoke()!!,
+                expression,
+                "propertyDescriptor"
+            )
+            //operators like the `or` operator
+            expression is KtOperationReferenceExpression -> KtOperationReferenceExpressionExtractor.extract(expression)
+            //EnumArray -> int to enum mapping function
+            expression is KtLambdaExpression && expression.parents.firstOrNull { it is KtNameReferenceExpression || it is KtCallExpression } != null -> KtLambdaExpressionExtractor.extract(
+                CompilerProjectProvider.bindingContext?.invoke()!!,
+                expression
+            )
+            else -> null
+        }
     }
 
     fun provideSignalArgumentNames(signalFqName: String): List<String> {
@@ -137,6 +218,7 @@ object PsiProvider {
 internal object CompilerProjectProvider {
     var provider: (() -> MockProject)? = null
     var configuration: (() -> CompilerConfiguration)? = null
+    var bindingContext: (() -> BindingContext)? = null
 }
 
 class CommonGodotKotlinCompilerPluginCommandLineProcessor : CommandLineProcessor {

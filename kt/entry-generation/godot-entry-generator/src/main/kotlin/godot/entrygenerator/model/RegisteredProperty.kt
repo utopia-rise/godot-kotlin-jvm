@@ -4,10 +4,10 @@ data class RegisteredProperty(
     val fqName: String,
     val type: Type,
     val isMutable: Boolean = true,
+    val isLateinit: Boolean = false,
     val isOverridee: Boolean = false,
-    val isInheritedButNotOverridden: Boolean = false,
     val annotations: List<PropertyAnnotation> = emptyList(),
-    val defaultValueProvider: (RegisteredProperty) -> Pair<String, Array<Any?>> = { "" to arrayOf() }
+    val defaultValueTemplateAndArgs: Pair<String, Array<out Any>>? = "" to arrayOf()
 ) : GodotJvmSourceElement {
     val name: String = fqName.substringAfterLast(".")
 }

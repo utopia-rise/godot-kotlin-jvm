@@ -5,21 +5,14 @@ import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeSpec
-import godot.entrygenerator.ext.camelToSnakeCase
 import godot.entrygenerator.ext.hasAnnotation
-import godot.entrygenerator.ext.toKtVariantType
-import godot.entrygenerator.ext.toTypeName
 import godot.entrygenerator.generator.ConstructorRegistrationGenerator
 import godot.entrygenerator.generator.FunctionRegistrationGenerator
+import godot.entrygenerator.generator.PropertyRegistrationGenerator
 import godot.entrygenerator.generator.SignalRegistrationGenerator
-import godot.entrygenerator.model.RegisterConstructorAnnotation
 import godot.entrygenerator.model.RegisterPropertyAnnotation
-import godot.entrygenerator.model.RegisterSignalAnnotation
 import godot.entrygenerator.model.RegisteredClass
-import godot.entrygenerator.model.Type
 import java.io.BufferedWriter
-import java.io.File
-import java.util.*
 
 class ClassRegistrarFileBuilder(
     private val registeredClass: RegisteredClass,
@@ -73,7 +66,7 @@ class ClassRegistrarFileBuilder(
         ConstructorRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
         FunctionRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
         SignalRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow)
-        registerProperties()
+        PropertyRegistrationGenerator.generate(registeredClass, className, registerClassControlFlow, classRegistrarBuilder)
 
         classRegistrarBuilder.addFunction(
             registerClassControlFlow
