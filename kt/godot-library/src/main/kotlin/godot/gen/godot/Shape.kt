@@ -47,7 +47,7 @@ public open class Shape : Resource() {
   /**
    * Returns the [godot.ArrayMesh] used to draw the debug collision for this [godot.Shape].
    */
-  open fun getDebugMesh(): ArrayMesh? {
+  public open fun getDebugMesh(): ArrayMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE_GET_DEBUG_MESH, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?

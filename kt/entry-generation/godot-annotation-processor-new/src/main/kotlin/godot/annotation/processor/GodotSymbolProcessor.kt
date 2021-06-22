@@ -408,25 +408,17 @@ class GodotSymbolProcessor(
                 )
                 RegisterConstructor::class.qualifiedName -> RegisterConstructorAnnotation
                 RegisterFunction::class.qualifiedName -> {
-                    val rpcMode =
-                        when ((annotation.arguments.firstOrNull()?.value as? KSType)?.declaration?.qualifiedName?.asString()) {
-                            "godot.MultiplayerAPI.RPCMode.REMOTE" -> RpcMode.REMOTE
-                            "godot.MultiplayerAPI.RPCMode.MASTER" -> RpcMode.MASTER
-                            "godot.MultiplayerAPI.RPCMode.PUPPET" -> RpcMode.PUPPET
-                            "godot.MultiplayerAPI.RPCMode.SLAVE" -> RpcMode.SLAVE
-                            "godot.MultiplayerAPI.RPCMode.REMOTE_SYNC" -> RpcMode.REMOTE_SYNC
-                            "godot.MultiplayerAPI.RPCMode.SYNC" -> RpcMode.SYNC
-                            "godot.MultiplayerAPI.RPCMode.MASTER_SYNC" -> RpcMode.MASTER_SYNC
-                            "godot.MultiplayerAPI.RPCMode.PUPPET_SYNC" -> RpcMode.PUPPET_SYNC
-                            else -> RpcMode.DISABLED
-                        }
+                    val rpcMode = getRpcMode(annotation)
                     RegisterFunctionAnnotation(
                         rpcMode
                     )
                 }
-                RegisterProperty::class.qualifiedName -> RegisterPropertyAnnotation(
-                    RpcMode.DISABLED //TODO
-                )
+                RegisterProperty::class.qualifiedName -> {
+                    val rpcMode = getRpcMode(annotation)
+                    RegisterPropertyAnnotation(
+                        rpcMode
+                    )
+                }
                 RegisterSignal::class.qualifiedName -> RegisterSignalAnnotation
                 Tool::class.qualifiedName -> ToolAnnotation
                 Export::class.qualifiedName -> ExportAnnotation
@@ -440,6 +432,19 @@ class GodotSymbolProcessor(
                 )*/
             }
         }
+
+        private fun getRpcMode(annotation: KSAnnotation) =
+            when ((annotation.arguments.firstOrNull()?.value as? KSType)?.declaration?.qualifiedName?.asString()) {
+                "godot.MultiplayerAPI.RPCMode.REMOTE" -> RpcMode.REMOTE
+                "godot.MultiplayerAPI.RPCMode.MASTER" -> RpcMode.MASTER
+                "godot.MultiplayerAPI.RPCMode.PUPPET" -> RpcMode.PUPPET
+                "godot.MultiplayerAPI.RPCMode.SLAVE" -> RpcMode.SLAVE
+                "godot.MultiplayerAPI.RPCMode.REMOTESYNC" -> RpcMode.REMOTE_SYNC
+                "godot.MultiplayerAPI.RPCMode.SYNC" -> RpcMode.SYNC
+                "godot.MultiplayerAPI.RPCMode.MASTERSYNC" -> RpcMode.MASTER_SYNC
+                "godot.MultiplayerAPI.RPCMode.PUPPETSYNC" -> RpcMode.PUPPET_SYNC
+                else -> RpcMode.DISABLED
+            }
     }
 }
 

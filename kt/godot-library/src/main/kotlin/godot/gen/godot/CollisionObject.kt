@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
 import godot.core.Transform
@@ -25,6 +25,7 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Base node for collision objects.
@@ -32,34 +33,34 @@ import kotlin.Suppress
  * CollisionObject is the base class for physics objects. It can hold any number of collision [godot.Shape]s. Each shape must be assigned to a *shape owner*. The CollisionObject can have any number of shape owners. Shape owners are not nodes and do not appear in the editor, but are accessible through code using the `shape_owner_*` methods.
  */
 @GodotBaseType
-open class CollisionObject : Spatial() {
+public open class CollisionObject : Spatial() {
   /**
    * Emitted when [_inputEvent] receives an event. See its description for details.
    */
-  val inputEvent: Signal5<Node, InputEvent, Vector3, Vector3, Long> by signal("camera", "event",
-      "click_position", "click_normal", "shape_idx")
+  public val inputEvent: Signal5<Node, InputEvent, Vector3, Vector3, Long> by signal("camera",
+      "event", "click_position", "click_normal", "shape_idx")
 
   /**
    * Emitted when the mouse pointer enters any of this object's shapes.
    */
-  val mouseEntered: Signal0 by signal()
+  public val mouseEntered: Signal0 by signal()
 
   /**
    * Emitted when the mouse pointer exits all this object's shapes.
    */
-  val mouseExited: Signal0 by signal()
+  public val mouseExited: Signal0 by signal()
 
   /**
    * If `true`, the [godot.CollisionObject] will continue to receive input events as the mouse is dragged across its shapes.
    */
-  open var inputCaptureOnDrag: Boolean
+  public open var inputCaptureOnDrag: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_GET_INPUT_CAPTURE_ON_DRAG, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_SET_INPUT_CAPTURE_ON_DRAG, NIL)
@@ -68,45 +69,45 @@ open class CollisionObject : Spatial() {
   /**
    * If `true`, the [godot.CollisionObject]'s shapes will respond to [godot.RayCast]s.
    */
-  open var inputRayPickable: Boolean
+  public open var inputRayPickable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_GET_INPUT_RAY_PICKABLE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_SET_INPUT_RAY_PICKABLE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_COLLISIONOBJECT)
   }
 
   /**
    * Accepts unhandled [godot.InputEvent]s. `click_position` is the clicked location in world space and `click_normal` is the normal vector extending from the clicked surface of the [godot.Shape] at `shape_idx`. Connect to the `input_event` signal to easily pick up these events.
    */
-  open fun _inputEvent(
+  public open fun _inputEvent(
     camera: Object,
     event: InputEvent,
     clickPosition: Vector3,
     clickNormal: Vector3,
     shapeIdx: Long
-  ) {
+  ): Unit {
   }
 
-  open fun _shapeChanged(shape: Shape) {
+  public open fun _shapeChanged(shape: Shape): Unit {
   }
 
-  open fun _updateDebugShapes() {
+  public open fun _updateDebugShapes(): Unit {
   }
 
   /**
    * Creates a new shape owner for the given object. Returns `owner_id` of the new owner for future reference.
    */
-  open fun createShapeOwner(owner: Object): Long {
+  public open fun createShapeOwner(owner: Object): Long {
     TransferContext.writeArguments(OBJECT to owner)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_CREATE_SHAPE_OWNER,
         LONG)
@@ -116,7 +117,7 @@ open class CollisionObject : Spatial() {
   /**
    * Returns the object's [RID].
    */
-  open fun getRid(): RID {
+  public open fun getRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_GET_RID, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -125,7 +126,7 @@ open class CollisionObject : Spatial() {
   /**
    * Returns an [godot.Array] of `owner_id` identifiers. You can use these ids in other methods that take `owner_id` as an argument.
    */
-  open fun getShapeOwners(): VariantArray<Any?> {
+  public open fun getShapeOwners(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_GET_SHAPE_OWNERS,
         ARRAY)
@@ -135,7 +136,7 @@ open class CollisionObject : Spatial() {
   /**
    * If `true`, the shape owner and its shapes are disabled.
    */
-  open fun isShapeOwnerDisabled(ownerId: Long): Boolean {
+  public open fun isShapeOwnerDisabled(ownerId: Long): Boolean {
     TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_IS_SHAPE_OWNER_DISABLED, BOOL)
@@ -145,7 +146,7 @@ open class CollisionObject : Spatial() {
   /**
    * Removes the given shape owner.
    */
-  open fun removeShapeOwner(ownerId: Long) {
+  public open fun removeShapeOwner(ownerId: Long): Unit {
     TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_REMOVE_SHAPE_OWNER,
         NIL)
@@ -154,7 +155,7 @@ open class CollisionObject : Spatial() {
   /**
    * Returns the `owner_id` of the given shape.
    */
-  open fun shapeFindOwner(shapeIndex: Long): Long {
+  public open fun shapeFindOwner(shapeIndex: Long): Long {
     TransferContext.writeArguments(LONG to shapeIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_SHAPE_FIND_OWNER,
         LONG)
@@ -164,7 +165,7 @@ open class CollisionObject : Spatial() {
   /**
    * Adds a [godot.Shape] to the shape owner.
    */
-  open fun shapeOwnerAddShape(ownerId: Long, shape: Shape) {
+  public open fun shapeOwnerAddShape(ownerId: Long, shape: Shape): Unit {
     TransferContext.writeArguments(LONG to ownerId, OBJECT to shape)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_SHAPE_OWNER_ADD_SHAPE, NIL)
@@ -173,7 +174,7 @@ open class CollisionObject : Spatial() {
   /**
    * Removes all shapes from the shape owner.
    */
-  open fun shapeOwnerClearShapes(ownerId: Long) {
+  public open fun shapeOwnerClearShapes(ownerId: Long): Unit {
     TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_SHAPE_OWNER_CLEAR_SHAPES, NIL)
@@ -182,7 +183,7 @@ open class CollisionObject : Spatial() {
   /**
    * Returns the parent object of the given shape owner.
    */
-  open fun shapeOwnerGetOwner(ownerId: Long): Object? {
+  public open fun shapeOwnerGetOwner(ownerId: Long): Object? {
     TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_SHAPE_OWNER_GET_OWNER, OBJECT)
@@ -192,7 +193,7 @@ open class CollisionObject : Spatial() {
   /**
    * Returns the [godot.Shape] with the given id from the given shape owner.
    */
-  open fun shapeOwnerGetShape(ownerId: Long, shapeId: Long): Shape? {
+  public open fun shapeOwnerGetShape(ownerId: Long, shapeId: Long): Shape? {
     TransferContext.writeArguments(LONG to ownerId, LONG to shapeId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_SHAPE_OWNER_GET_SHAPE, OBJECT)
@@ -202,7 +203,7 @@ open class CollisionObject : Spatial() {
   /**
    * Returns the number of shapes the given shape owner contains.
    */
-  open fun shapeOwnerGetShapeCount(ownerId: Long): Long {
+  public open fun shapeOwnerGetShapeCount(ownerId: Long): Long {
     TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_SHAPE_OWNER_GET_SHAPE_COUNT, LONG)
@@ -212,7 +213,7 @@ open class CollisionObject : Spatial() {
   /**
    * Returns the child index of the [godot.Shape] with the given id from the given shape owner.
    */
-  open fun shapeOwnerGetShapeIndex(ownerId: Long, shapeId: Long): Long {
+  public open fun shapeOwnerGetShapeIndex(ownerId: Long, shapeId: Long): Long {
     TransferContext.writeArguments(LONG to ownerId, LONG to shapeId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_SHAPE_OWNER_GET_SHAPE_INDEX, LONG)
@@ -222,7 +223,7 @@ open class CollisionObject : Spatial() {
   /**
    * Returns the shape owner's [godot.core.Transform].
    */
-  open fun shapeOwnerGetTransform(ownerId: Long): Transform {
+  public open fun shapeOwnerGetTransform(ownerId: Long): Transform {
     TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_SHAPE_OWNER_GET_TRANSFORM, TRANSFORM)
@@ -232,7 +233,7 @@ open class CollisionObject : Spatial() {
   /**
    * Removes a shape from the given shape owner.
    */
-  open fun shapeOwnerRemoveShape(ownerId: Long, shapeId: Long) {
+  public open fun shapeOwnerRemoveShape(ownerId: Long, shapeId: Long): Unit {
     TransferContext.writeArguments(LONG to ownerId, LONG to shapeId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_SHAPE_OWNER_REMOVE_SHAPE, NIL)
@@ -241,7 +242,7 @@ open class CollisionObject : Spatial() {
   /**
    * If `true`, disables the given shape owner.
    */
-  open fun shapeOwnerSetDisabled(ownerId: Long, disabled: Boolean) {
+  public open fun shapeOwnerSetDisabled(ownerId: Long, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to ownerId, BOOL to disabled)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_SHAPE_OWNER_SET_DISABLED, NIL)
@@ -250,7 +251,7 @@ open class CollisionObject : Spatial() {
   /**
    * Sets the [godot.core.Transform] of the given shape owner.
    */
-  open fun shapeOwnerSetTransform(ownerId: Long, transform: Transform) {
+  public open fun shapeOwnerSetTransform(ownerId: Long, transform: Transform): Unit {
     TransferContext.writeArguments(LONG to ownerId, TRANSFORM to transform)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_SHAPE_OWNER_SET_TRANSFORM, NIL)

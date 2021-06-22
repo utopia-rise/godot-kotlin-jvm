@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -30,18 +30,18 @@ import kotlin.jvm.JvmName
  * Stores multi-touch press/release information. Supports touch press, touch release and [index] for multi-touch count and order.
  */
 @GodotBaseType
-open class InputEventScreenTouch : InputEvent() {
+public open class InputEventScreenTouch : InputEvent() {
   /**
    * The touch index in the case of a multi-touch event. One index = one finger.
    */
-  open var index: Long
+  public open var index: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENTOUCH_GET_INDEX,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENTOUCH_SET_INDEX,
           NIL)
@@ -50,14 +50,14 @@ open class InputEventScreenTouch : InputEvent() {
   /**
    * The touch position.
    */
-  open var position: Vector2
+  public open var position: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENTOUCH_GET_POSITION, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENTOUCH_SET_POSITION, NIL)
@@ -66,22 +66,22 @@ open class InputEventScreenTouch : InputEvent() {
   /**
    * If `true`, the touch's state is pressed. If `false`, the touch's state is released.
    */
-  open var pressed: Boolean
+  public open var pressed: Boolean
     @JvmName("isPressed_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.isPressed()
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENTOUCH_SET_PRESSED,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTSCREENTOUCH)
   }
 
   @CoreTypeHelper
-  open fun position(schedule: Vector2.() -> Unit): Vector2 = position.apply{
+  public open fun position(schedule: Vector2.() -> Unit): Vector2 = position.apply{
       schedule(this)
       position = this
   }

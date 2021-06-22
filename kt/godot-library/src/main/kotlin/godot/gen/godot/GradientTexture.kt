@@ -5,13 +5,14 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -20,18 +21,18 @@ import kotlin.jvm.JvmName
  * GradientTexture uses a [godot.Gradient] to fill the texture data. The gradient will be filled from left to right using colors obtained from the gradient. This means the texture does not necessarily represent an exact copy of the gradient, but instead an interpolation of samples obtained from the gradient at fixed steps (see [width]).
  */
 @GodotBaseType
-open class GradientTexture : Texture() {
+public open class GradientTexture : Texture() {
   /**
    * The [godot.Gradient] that will be used to fill the texture.
    */
-  open var gradient: Gradient?
+  public open var gradient: Gradient?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE_GET_GRADIENT,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Gradient?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE_SET_GRADIENT, NIL)
     }
@@ -39,19 +40,19 @@ open class GradientTexture : Texture() {
   /**
    * The number of color samples that will be obtained from the [godot.Gradient].
    */
-  open var width: Long
+  public open var width: Long
     @JvmName("getWidth_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getWidth()
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE_SET_WIDTH, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_GRADIENTTEXTURE)
   }
 
-  open fun _update() {
+  public open fun _update(): Unit {
   }
 }

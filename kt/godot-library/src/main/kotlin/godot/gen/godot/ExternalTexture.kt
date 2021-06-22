@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -25,25 +25,25 @@ import kotlin.jvm.JvmName
  * **Note:** This is only supported for Android platforms.
  */
 @GodotBaseType
-open class ExternalTexture : Texture() {
+public open class ExternalTexture : Texture() {
   /**
    * External texture size.
    */
-  open var size: Vector2
+  public open var size: Vector2
     @JvmName("getSize_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getSize()
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EXTERNALTEXTURE_SET_SIZE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EXTERNALTEXTURE)
   }
 
   @CoreTypeHelper
-  open fun size(schedule: Vector2.() -> Unit): Vector2 = size.apply{
+  public open fun size(schedule: Vector2.() -> Unit): Vector2 = size.apply{
       schedule(this)
       size = this
   }
@@ -52,7 +52,7 @@ open class ExternalTexture : Texture() {
   /**
    * Returns the external texture name.
    */
-  open fun getExternalTextureId(): Long {
+  public open fun getExternalTextureId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EXTERNALTEXTURE_GET_EXTERNAL_TEXTURE_ID, LONG)

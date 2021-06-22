@@ -77,10 +77,10 @@ object FunctionRegistrationGenerator {
             RpcMode.MASTER -> ClassName("godot.MultiplayerAPI.RPCMode", "MASTER")
             RpcMode.PUPPET -> ClassName("godot.MultiplayerAPI.RPCMode", "PUPPET")
             RpcMode.SLAVE -> ClassName("godot.MultiplayerAPI.RPCMode", "SLAVE")
-            RpcMode.REMOTE_SYNC -> ClassName("godot.MultiplayerAPI.RPCMode", "REMOTE_SYNC")
+            RpcMode.REMOTE_SYNC -> ClassName("godot.MultiplayerAPI.RPCMode", "REMOTESYNC")
             RpcMode.SYNC -> ClassName("godot.MultiplayerAPI.RPCMode", "SYNC")
-            RpcMode.MASTER_SYNC -> ClassName("godot.MultiplayerAPI.RPCMode", "MASTER_SYNC")
-            RpcMode.PUPPET_SYNC -> ClassName("godot.MultiplayerAPI.RPCMode", "PUPPET_SYNC")
+            RpcMode.MASTER_SYNC -> ClassName("godot.MultiplayerAPI.RPCMode", "MASTERSYNC")
+            RpcMode.PUPPET_SYNC -> ClassName("godot.MultiplayerAPI.RPCMode", "PUPPETSYNC")
         }
     }
 }

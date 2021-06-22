@@ -170,13 +170,13 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
     throw NotImplementedError("_get_subcategory is not implemented for VisualShaderNodeCustom")
   }
 
-  open fun _isInitialized(): Boolean {
+  public open fun _isInitialized(): Boolean {
     throw NotImplementedError("_is_initialized is not implemented for VisualShaderNodeCustom")
   }
 
-  open fun _setInitialized(enabled: Boolean) {
+  public open fun _setInitialized(enabled: Boolean): Unit {
   }
 
-  open fun _setInputPortDefaultValue(port: Long, value: Any?) {
+  public open fun _setInputPortDefaultValue(port: Long, `value`: Any?): Unit {
   }
 }

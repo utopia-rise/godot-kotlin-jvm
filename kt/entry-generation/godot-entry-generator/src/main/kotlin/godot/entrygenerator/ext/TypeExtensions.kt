@@ -9,8 +9,10 @@ import java.util.*
 fun Type?.toKtVariantType(): ClassName = when {
     this == null || fqName == "kotlin.Unit" -> ClassName("godot.core.VariantType", "NIL")
     fqName == "kotlin.Int" -> ClassName("godot.core.VariantType", "JVM_INT")
+    fqName == "godot.util.NaturalT" ||
     fqName == "kotlin.Long" -> ClassName("godot.core.VariantType", "LONG")
     fqName == "kotlin.Float" -> ClassName("godot.core.VariantType", "JVM_FLOAT")
+    fqName == "godot.util.RealT" ||
     fqName == "kotlin.Double" -> ClassName("godot.core.VariantType", "DOUBLE")
     fqName == "kotlin.String" -> ClassName("godot.core.VariantType", "STRING")
     fqName == "kotlin.Boolean" -> ClassName("godot.core.VariantType", "BOOL")

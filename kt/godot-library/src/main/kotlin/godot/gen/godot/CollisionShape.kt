@@ -5,13 +5,14 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Boolean
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Node that represents collision shape data in 3D space.
@@ -22,17 +23,17 @@ import kotlin.Suppress
  * Editor facility for creating and editing collision shapes in 3D space. You can use this node to represent all sorts of collision shapes, for example, add this to an [godot.Area] to give it a detection shape, or add it to a [godot.PhysicsBody] to create a solid object. **IMPORTANT**: this is an Editor-only helper to create shapes, use [godot.CollisionObject.shapeOwnerGetShape] to get the actual shape.
  */
 @GodotBaseType
-open class CollisionShape : Spatial() {
+public open class CollisionShape : Spatial() {
   /**
    * A disabled collision shape has no effect in the world.
    */
-  open var disabled: Boolean
+  public open var disabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE_GET_DISABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE_SET_DISABLED, NIL)
     }
@@ -40,25 +41,25 @@ open class CollisionShape : Spatial() {
   /**
    * The actual shape owned by this collision shape.
    */
-  open var shape: Shape?
+  public open var shape: Shape?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE_GET_SHAPE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Shape?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE_SET_SHAPE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_COLLISIONSHAPE)
   }
 
   /**
    * Sets the collision shape's shape to the addition of all its convexed [godot.MeshInstance] siblings geometry.
    */
-  open fun makeConvexFromBrothers() {
+  public open fun makeConvexFromBrothers(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE_MAKE_CONVEX_FROM_BROTHERS, NIL)
@@ -67,7 +68,7 @@ open class CollisionShape : Spatial() {
   /**
    * If this method exists within a script it will be called whenever the shape resource has been modified.
    */
-  open fun resourceChanged(resource: Resource) {
+  public open fun resourceChanged(resource: Resource): Unit {
     TransferContext.writeArguments(OBJECT to resource)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE_RESOURCE_CHANGED,
         NIL)

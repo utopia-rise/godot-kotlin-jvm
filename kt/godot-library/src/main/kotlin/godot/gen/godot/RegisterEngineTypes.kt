@@ -4,11 +4,12 @@ package godot
 import godot.core.TypeManager
 import godot.core.VariantType.OBJECT
 import godot.core.variantMapper
+import kotlin.Unit
 
-private fun registerEngineTypeMethodForGlobalConstants() {
+private fun registerEngineTypeMethodForGlobalConstants(): Unit {
 }
 
-private fun registerEngineTypeMethodForARVRAnchor() {
+private fun registerEngineTypeMethodForARVRAnchor(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARVRANCHOR to "get_anchor_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARVRANCHOR to "get_is_active")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARVRANCHOR to "get_mesh")
@@ -18,10 +19,10 @@ private fun registerEngineTypeMethodForARVRAnchor() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARVRANCHOR to "set_anchor_id")
 }
 
-private fun registerEngineTypeMethodForARVRCamera() {
+private fun registerEngineTypeMethodForARVRCamera(): Unit {
 }
 
-private fun registerEngineTypeMethodForARVRController() {
+private fun registerEngineTypeMethodForARVRController(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARVRCONTROLLER to "get_controller_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARVRCONTROLLER to "get_hand")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARVRCONTROLLER to "get_is_active")
@@ -35,7 +36,7 @@ private fun registerEngineTypeMethodForARVRController() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARVRCONTROLLER to "set_rumble")
 }
 
-private fun registerEngineTypeMethodForARVRInterface() {
+private fun registerEngineTypeMethodForARVRInterface(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARVRINTERFACE to "get_camera_feed_id")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARVRINTERFACE to "get_capabilities")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARVRINTERFACE to "get_name")
@@ -52,15 +53,15 @@ private fun registerEngineTypeMethodForARVRInterface() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARVRINTERFACE to "set_is_primary")
 }
 
-private fun registerEngineTypeMethodForARVRInterfaceGDNative() {
+private fun registerEngineTypeMethodForARVRInterfaceGDNative(): Unit {
 }
 
-private fun registerEngineTypeMethodForARVROrigin() {
+private fun registerEngineTypeMethodForARVROrigin(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARVRORIGIN to "get_world_scale")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARVRORIGIN to "set_world_scale")
 }
 
-private fun registerEngineTypeMethodForARVRPositionalTracker() {
+private fun registerEngineTypeMethodForARVRPositionalTracker(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARVRPOSITIONALTRACKER to "_set_joy_id")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARVRPOSITIONALTRACKER to "_set_mesh")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARVRPOSITIONALTRACKER to "_set_name")
@@ -82,7 +83,7 @@ private fun registerEngineTypeMethodForARVRPositionalTracker() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARVRPOSITIONALTRACKER to "set_rumble")
 }
 
-private fun registerEngineTypeMethodForARVRServer() {
+private fun registerEngineTypeMethodForARVRServer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARVRSERVER to "center_on_hmd")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARVRSERVER to "find_interface")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARVRSERVER to "get_hmd_transform")
@@ -101,7 +102,7 @@ private fun registerEngineTypeMethodForARVRServer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARVRSERVER to "set_world_scale")
 }
 
-private fun registerEngineTypeMethodForAStar() {
+private fun registerEngineTypeMethodForAStar(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "_compute_cost")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "_estimate_cost")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "add_point")
@@ -129,7 +130,7 @@ private fun registerEngineTypeMethodForAStar() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "set_point_weight_scale")
 }
 
-private fun registerEngineTypeMethodForAStar2D() {
+private fun registerEngineTypeMethodForAStar2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR2D to "_compute_cost")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR2D to "_estimate_cost")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR2D to "add_point")
@@ -157,7 +158,7 @@ private fun registerEngineTypeMethodForAStar2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR2D to "set_point_weight_scale")
 }
 
-private fun registerEngineTypeMethodForAcceptDialog() {
+private fun registerEngineTypeMethodForAcceptDialog(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ACCEPTDIALOG to "_builtin_text_entered")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ACCEPTDIALOG to "_custom_action")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ACCEPTDIALOG to "_ok")
@@ -174,7 +175,7 @@ private fun registerEngineTypeMethodForAcceptDialog() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ACCEPTDIALOG to "set_text")
 }
 
-private fun registerEngineTypeMethodForAnimatedSprite() {
+private fun registerEngineTypeMethodForAnimatedSprite(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDSPRITE to "_is_playing")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDSPRITE to "_res_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDSPRITE to "_set_playing")
@@ -199,7 +200,7 @@ private fun registerEngineTypeMethodForAnimatedSprite() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDSPRITE to "set_speed_scale")
 }
 
-private fun registerEngineTypeMethodForAnimatedSprite3D() {
+private fun registerEngineTypeMethodForAnimatedSprite3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDSPRITE3D to "_is_playing")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDSPRITE3D to "_res_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDSPRITE3D to "_set_playing")
@@ -214,7 +215,7 @@ private fun registerEngineTypeMethodForAnimatedSprite3D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDSPRITE3D to "set_sprite_frames")
 }
 
-private fun registerEngineTypeMethodForAnimatedTexture() {
+private fun registerEngineTypeMethodForAnimatedTexture(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDTEXTURE to "_update_proxy")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDTEXTURE to "get_current_frame")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDTEXTURE to "set_current_frame")
@@ -1252,7 +1253,7 @@ private fun registerEngineTypeMethodForAnimatedTexture() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDTEXTURE to "set_pause")
 }
 
-private fun registerEngineTypeMethodForAnimation() {
+private fun registerEngineTypeMethodForAnimation(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATION to "add_track")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATION to "animation_track_get_key_animation")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATION to "animation_track_insert_key")
@@ -1320,7 +1321,7 @@ private fun registerEngineTypeMethodForAnimation() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATION to "set_step")
 }
 
-private fun registerEngineTypeMethodForAnimationNode() {
+private fun registerEngineTypeMethodForAnimationNode(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODE to "_get_filters")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODE to "_set_filters")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODE to "add_input")
@@ -1345,32 +1346,32 @@ private fun registerEngineTypeMethodForAnimationNode() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODE to "set_filter_enabled")
 }
 
-private fun registerEngineTypeMethodForAnimationNodeAdd2() {
+private fun registerEngineTypeMethodForAnimationNodeAdd2(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEADD2 to "is_using_sync")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEADD2 to "set_use_sync")
 }
 
-private fun registerEngineTypeMethodForAnimationNodeAdd3() {
+private fun registerEngineTypeMethodForAnimationNodeAdd3(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEADD3 to "is_using_sync")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEADD3 to "set_use_sync")
 }
 
-private fun registerEngineTypeMethodForAnimationNodeAnimation() {
+private fun registerEngineTypeMethodForAnimationNodeAnimation(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEANIMATION to "get_animation")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEANIMATION to "set_animation")
 }
 
-private fun registerEngineTypeMethodForAnimationNodeBlend2() {
+private fun registerEngineTypeMethodForAnimationNodeBlend2(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEBLEND2 to "is_using_sync")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEBLEND2 to "set_use_sync")
 }
 
-private fun registerEngineTypeMethodForAnimationNodeBlend3() {
+private fun registerEngineTypeMethodForAnimationNodeBlend3(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEBLEND3 to "is_using_sync")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEBLEND3 to "set_use_sync")
 }
 
-private fun registerEngineTypeMethodForAnimationNodeBlendSpace1D() {
+private fun registerEngineTypeMethodForAnimationNodeBlendSpace1D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEBLENDSPACE1D to "_add_blend_point")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEBLENDSPACE1D to "_tree_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEBLENDSPACE1D to "add_blend_point")
@@ -1707,7 +1708,7 @@ private fun registerEngineTypeMethodForAnimationNodeBlendSpace1D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEBLENDSPACE1D to "set_value_label")
 }
 
-private fun registerEngineTypeMethodForAnimationNodeBlendSpace2D() {
+private fun registerEngineTypeMethodForAnimationNodeBlendSpace2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEBLENDSPACE2D to "_add_blend_point")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEBLENDSPACE2D to "_get_triangles")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEBLENDSPACE2D to "_set_triangles")
@@ -2057,7 +2058,7 @@ private fun registerEngineTypeMethodForAnimationNodeBlendSpace2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEBLENDSPACE2D to "set_y_label")
 }
 
-private fun registerEngineTypeMethodForAnimationNodeBlendTree() {
+private fun registerEngineTypeMethodForAnimationNodeBlendTree(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEBLENDTREE to "_node_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEBLENDTREE to "_tree_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEBLENDTREE to "add_node")
@@ -2073,7 +2074,7 @@ private fun registerEngineTypeMethodForAnimationNodeBlendTree() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEBLENDTREE to "set_graph_offset")
 }
 
-private fun registerEngineTypeMethodForAnimationNodeOneShot() {
+private fun registerEngineTypeMethodForAnimationNodeOneShot(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEONESHOT to "get_mix_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEONESHOT to "set_mix_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEONESHOT to "has_autorestart")
@@ -2092,10 +2093,10 @@ private fun registerEngineTypeMethodForAnimationNodeOneShot() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODEONESHOT to "set_use_sync")
 }
 
-private fun registerEngineTypeMethodForAnimationNodeOutput() {
+private fun registerEngineTypeMethodForAnimationNodeOutput(): Unit {
 }
 
-private fun registerEngineTypeMethodForAnimationNodeStateMachine() {
+private fun registerEngineTypeMethodForAnimationNodeStateMachine(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODESTATEMACHINE to "_tree_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODESTATEMACHINE to "add_node")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODESTATEMACHINE to "add_transition")
@@ -2123,7 +2124,7 @@ private fun registerEngineTypeMethodForAnimationNodeStateMachine() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODESTATEMACHINE to "set_start_node")
 }
 
-private fun registerEngineTypeMethodForAnimationNodeStateMachinePlayback() {
+private fun registerEngineTypeMethodForAnimationNodeStateMachinePlayback(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK to
       "get_current_length")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK to
@@ -2138,7 +2139,7 @@ private fun registerEngineTypeMethodForAnimationNodeStateMachinePlayback() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK to "travel")
 }
 
-private fun registerEngineTypeMethodForAnimationNodeStateMachineTransition() {
+private fun registerEngineTypeMethodForAnimationNodeStateMachineTransition(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION to
       "get_advance_condition")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION to
@@ -2164,13 +2165,13 @@ private fun registerEngineTypeMethodForAnimationNodeStateMachineTransition() {
       "set_xfade_time")
 }
 
-private fun registerEngineTypeMethodForAnimationNodeTimeScale() {
+private fun registerEngineTypeMethodForAnimationNodeTimeScale(): Unit {
 }
 
-private fun registerEngineTypeMethodForAnimationNodeTimeSeek() {
+private fun registerEngineTypeMethodForAnimationNodeTimeSeek(): Unit {
 }
 
-private fun registerEngineTypeMethodForAnimationNodeTransition() {
+private fun registerEngineTypeMethodForAnimationNodeTransition(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODETRANSITION to
       "is_input_set_as_auto_advance")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODETRANSITION to
@@ -2369,7 +2370,7 @@ private fun registerEngineTypeMethodForAnimationNodeTransition() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONNODETRANSITION to "set_cross_fade_time")
 }
 
-private fun registerEngineTypeMethodForAnimationPlayer() {
+private fun registerEngineTypeMethodForAnimationPlayer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONPLAYER to "_animation_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONPLAYER to "_node_removed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONPLAYER to "add_animation")
@@ -2416,13 +2417,13 @@ private fun registerEngineTypeMethodForAnimationPlayer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONPLAYER to "set_root")
 }
 
-private fun registerEngineTypeMethodForAnimationRootNode() {
+private fun registerEngineTypeMethodForAnimationRootNode(): Unit {
 }
 
-private fun registerEngineTypeMethodForAnimationTrackEditPlugin() {
+private fun registerEngineTypeMethodForAnimationTrackEditPlugin(): Unit {
 }
 
-private fun registerEngineTypeMethodForAnimationTree() {
+private fun registerEngineTypeMethodForAnimationTree(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONTREE to "_clear_caches")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONTREE to "_node_removed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONTREE to "_tree_changed")
@@ -2442,7 +2443,7 @@ private fun registerEngineTypeMethodForAnimationTree() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONTREE to "set_tree_root")
 }
 
-private fun registerEngineTypeMethodForAnimationTreePlayer() {
+private fun registerEngineTypeMethodForAnimationTreePlayer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONTREEPLAYER to "add_node")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONTREEPLAYER to "advance")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONTREEPLAYER to
@@ -2533,7 +2534,7 @@ private fun registerEngineTypeMethodForAnimationTreePlayer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATIONTREEPLAYER to "set_animation_process_mode")
 }
 
-private fun registerEngineTypeMethodForArea() {
+private fun registerEngineTypeMethodForArea(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AREA to "_area_enter_tree")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AREA to "_area_exit_tree")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AREA to "_area_inout")
@@ -2586,7 +2587,7 @@ private fun registerEngineTypeMethodForArea() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AREA to "set_space_override_mode")
 }
 
-private fun registerEngineTypeMethodForArea2D() {
+private fun registerEngineTypeMethodForArea2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AREA2D to "_area_enter_tree")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AREA2D to "_area_exit_tree")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AREA2D to "_area_inout")
@@ -2631,7 +2632,7 @@ private fun registerEngineTypeMethodForArea2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AREA2D to "set_space_override_mode")
 }
 
-private fun registerEngineTypeMethodForArrayMesh() {
+private fun registerEngineTypeMethodForArrayMesh(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARRAYMESH to "add_blend_shape")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARRAYMESH to "add_surface_from_arrays")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARRAYMESH to "clear_blend_shapes")
@@ -2654,7 +2655,7 @@ private fun registerEngineTypeMethodForArrayMesh() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARRAYMESH to "set_custom_aabb")
 }
 
-private fun registerEngineTypeMethodForAspectRatioContainer() {
+private fun registerEngineTypeMethodForAspectRatioContainer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASPECTRATIOCONTAINER to "get_alignment_horizontal")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASPECTRATIOCONTAINER to "set_alignment_horizontal")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASPECTRATIOCONTAINER to "get_alignment_vertical")
@@ -2665,7 +2666,7 @@ private fun registerEngineTypeMethodForAspectRatioContainer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASPECTRATIOCONTAINER to "set_stretch_mode")
 }
 
-private fun registerEngineTypeMethodForAtlasTexture() {
+private fun registerEngineTypeMethodForAtlasTexture(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ATLASTEXTURE to "get_atlas")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ATLASTEXTURE to "set_atlas")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ATLASTEXTURE to "has_filter_clip")
@@ -2676,24 +2677,24 @@ private fun registerEngineTypeMethodForAtlasTexture() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ATLASTEXTURE to "set_region")
 }
 
-private fun registerEngineTypeMethodForAudioBusLayout() {
+private fun registerEngineTypeMethodForAudioBusLayout(): Unit {
 }
 
-private fun registerEngineTypeMethodForAudioEffect() {
+private fun registerEngineTypeMethodForAudioEffect(): Unit {
 }
 
-private fun registerEngineTypeMethodForAudioEffectAmplify() {
+private fun registerEngineTypeMethodForAudioEffectAmplify(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTAMPLIFY to "get_volume_db")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTAMPLIFY to "set_volume_db")
 }
 
-private fun registerEngineTypeMethodForAudioEffectBandLimitFilter() {
+private fun registerEngineTypeMethodForAudioEffectBandLimitFilter(): Unit {
 }
 
-private fun registerEngineTypeMethodForAudioEffectBandPassFilter() {
+private fun registerEngineTypeMethodForAudioEffectBandPassFilter(): Unit {
 }
 
-private fun registerEngineTypeMethodForAudioEffectCapture() {
+private fun registerEngineTypeMethodForAudioEffectCapture(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTCAPTURE to "can_get_buffer")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTCAPTURE to "clear_buffer")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTCAPTURE to "get_buffer")
@@ -2705,7 +2706,7 @@ private fun registerEngineTypeMethodForAudioEffectCapture() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTCAPTURE to "set_buffer_length")
 }
 
-private fun registerEngineTypeMethodForAudioEffectChorus() {
+private fun registerEngineTypeMethodForAudioEffectChorus(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTCHORUS to "get_dry")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTCHORUS to "set_dry")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTCHORUS to "get_voice_cutoff_hz")
@@ -2762,7 +2763,7 @@ private fun registerEngineTypeMethodForAudioEffectChorus() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTCHORUS to "set_wet")
 }
 
-private fun registerEngineTypeMethodForAudioEffectCompressor() {
+private fun registerEngineTypeMethodForAudioEffectCompressor(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTCOMPRESSOR to "get_attack_us")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTCOMPRESSOR to "set_attack_us")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTCOMPRESSOR to "get_gain")
@@ -2779,7 +2780,7 @@ private fun registerEngineTypeMethodForAudioEffectCompressor() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTCOMPRESSOR to "set_threshold")
 }
 
-private fun registerEngineTypeMethodForAudioEffectDelay() {
+private fun registerEngineTypeMethodForAudioEffectDelay(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTDELAY to "get_dry")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTDELAY to "set_dry")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTDELAY to "is_feedback_active")
@@ -2808,7 +2809,7 @@ private fun registerEngineTypeMethodForAudioEffectDelay() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTDELAY to "set_tap2_pan")
 }
 
-private fun registerEngineTypeMethodForAudioEffectDistortion() {
+private fun registerEngineTypeMethodForAudioEffectDistortion(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTDISTORTION to "get_drive")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTDISTORTION to "set_drive")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTDISTORTION to "get_keep_hf_hz")
@@ -2821,22 +2822,22 @@ private fun registerEngineTypeMethodForAudioEffectDistortion() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTDISTORTION to "set_pre_gain")
 }
 
-private fun registerEngineTypeMethodForAudioEffectEQ() {
+private fun registerEngineTypeMethodForAudioEffectEQ(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTEQ to "get_band_count")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTEQ to "get_band_gain_db")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTEQ to "set_band_gain_db")
 }
 
-private fun registerEngineTypeMethodForAudioEffectEQ10() {
+private fun registerEngineTypeMethodForAudioEffectEQ10(): Unit {
 }
 
-private fun registerEngineTypeMethodForAudioEffectEQ21() {
+private fun registerEngineTypeMethodForAudioEffectEQ21(): Unit {
 }
 
-private fun registerEngineTypeMethodForAudioEffectEQ6() {
+private fun registerEngineTypeMethodForAudioEffectEQ6(): Unit {
 }
 
-private fun registerEngineTypeMethodForAudioEffectFilter() {
+private fun registerEngineTypeMethodForAudioEffectFilter(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTFILTER to "get_cutoff")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTFILTER to "set_cutoff")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTFILTER to "get_db")
@@ -2847,16 +2848,16 @@ private fun registerEngineTypeMethodForAudioEffectFilter() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTFILTER to "set_resonance")
 }
 
-private fun registerEngineTypeMethodForAudioEffectHighPassFilter() {
+private fun registerEngineTypeMethodForAudioEffectHighPassFilter(): Unit {
 }
 
-private fun registerEngineTypeMethodForAudioEffectHighShelfFilter() {
+private fun registerEngineTypeMethodForAudioEffectHighShelfFilter(): Unit {
 }
 
-private fun registerEngineTypeMethodForAudioEffectInstance() {
+private fun registerEngineTypeMethodForAudioEffectInstance(): Unit {
 }
 
-private fun registerEngineTypeMethodForAudioEffectLimiter() {
+private fun registerEngineTypeMethodForAudioEffectLimiter(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTLIMITER to "get_ceiling_db")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTLIMITER to "set_ceiling_db")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTLIMITER to "get_soft_clip_db")
@@ -2867,21 +2868,21 @@ private fun registerEngineTypeMethodForAudioEffectLimiter() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTLIMITER to "set_threshold_db")
 }
 
-private fun registerEngineTypeMethodForAudioEffectLowPassFilter() {
+private fun registerEngineTypeMethodForAudioEffectLowPassFilter(): Unit {
 }
 
-private fun registerEngineTypeMethodForAudioEffectLowShelfFilter() {
+private fun registerEngineTypeMethodForAudioEffectLowShelfFilter(): Unit {
 }
 
-private fun registerEngineTypeMethodForAudioEffectNotchFilter() {
+private fun registerEngineTypeMethodForAudioEffectNotchFilter(): Unit {
 }
 
-private fun registerEngineTypeMethodForAudioEffectPanner() {
+private fun registerEngineTypeMethodForAudioEffectPanner(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTPANNER to "get_pan")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTPANNER to "set_pan")
 }
 
-private fun registerEngineTypeMethodForAudioEffectPhaser() {
+private fun registerEngineTypeMethodForAudioEffectPhaser(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTPHASER to "get_depth")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTPHASER to "set_depth")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTPHASER to "get_feedback")
@@ -2894,7 +2895,7 @@ private fun registerEngineTypeMethodForAudioEffectPhaser() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTPHASER to "set_rate_hz")
 }
 
-private fun registerEngineTypeMethodForAudioEffectPitchShift() {
+private fun registerEngineTypeMethodForAudioEffectPitchShift(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTPITCHSHIFT to "get_fft_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTPITCHSHIFT to "set_fft_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTPITCHSHIFT to "get_oversampling")
@@ -2903,7 +2904,7 @@ private fun registerEngineTypeMethodForAudioEffectPitchShift() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTPITCHSHIFT to "set_pitch_scale")
 }
 
-private fun registerEngineTypeMethodForAudioEffectRecord() {
+private fun registerEngineTypeMethodForAudioEffectRecord(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTRECORD to "get_recording")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTRECORD to "is_recording_active")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTRECORD to "set_recording_active")
@@ -2911,7 +2912,7 @@ private fun registerEngineTypeMethodForAudioEffectRecord() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTRECORD to "set_format")
 }
 
-private fun registerEngineTypeMethodForAudioEffectReverb() {
+private fun registerEngineTypeMethodForAudioEffectReverb(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTREVERB to "get_damping")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTREVERB to "set_damping")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTREVERB to "get_dry")
@@ -2930,7 +2931,7 @@ private fun registerEngineTypeMethodForAudioEffectReverb() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTREVERB to "set_wet")
 }
 
-private fun registerEngineTypeMethodForAudioEffectSpectrumAnalyzer() {
+private fun registerEngineTypeMethodForAudioEffectSpectrumAnalyzer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER to "get_buffer_length")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER to "set_buffer_length")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER to "get_fft_size")
@@ -2939,12 +2940,12 @@ private fun registerEngineTypeMethodForAudioEffectSpectrumAnalyzer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER to "set_tap_back_pos")
 }
 
-private fun registerEngineTypeMethodForAudioEffectSpectrumAnalyzerInstance() {
+private fun registerEngineTypeMethodForAudioEffectSpectrumAnalyzerInstance(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZERINSTANCE to
       "get_magnitude_for_frequency_range")
 }
 
-private fun registerEngineTypeMethodForAudioEffectStereoEnhance() {
+private fun registerEngineTypeMethodForAudioEffectStereoEnhance(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTSTEREOENHANCE to "get_pan_pullout")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTSTEREOENHANCE to "set_pan_pullout")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTSTEREOENHANCE to "get_surround")
@@ -2953,7 +2954,7 @@ private fun registerEngineTypeMethodForAudioEffectStereoEnhance() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTSTEREOENHANCE to "set_time_pullout")
 }
 
-private fun registerEngineTypeMethodForAudioServer() {
+private fun registerEngineTypeMethodForAudioServer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSERVER to "add_bus")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSERVER to "add_bus_effect")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSERVER to "capture_get_device")
@@ -3002,18 +3003,18 @@ private fun registerEngineTypeMethodForAudioServer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSERVER to "set_global_rate_scale")
 }
 
-private fun registerEngineTypeMethodForAudioStream() {
+private fun registerEngineTypeMethodForAudioStream(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAM to "get_length")
 }
 
-private fun registerEngineTypeMethodForAudioStreamGenerator() {
+private fun registerEngineTypeMethodForAudioStreamGenerator(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMGENERATOR to "get_buffer_length")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMGENERATOR to "set_buffer_length")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMGENERATOR to "get_mix_rate")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMGENERATOR to "set_mix_rate")
 }
 
-private fun registerEngineTypeMethodForAudioStreamGeneratorPlayback() {
+private fun registerEngineTypeMethodForAudioStreamGeneratorPlayback(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK to "can_push_buffer")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK to "clear_buffer")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK to
@@ -3023,7 +3024,7 @@ private fun registerEngineTypeMethodForAudioStreamGeneratorPlayback() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK to "push_frame")
 }
 
-private fun registerEngineTypeMethodForAudioStreamMP3() {
+private fun registerEngineTypeMethodForAudioStreamMP3(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMMP3 to "get_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMMP3 to "set_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMMP3 to "has_loop")
@@ -3032,10 +3033,10 @@ private fun registerEngineTypeMethodForAudioStreamMP3() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMMP3 to "set_loop_offset")
 }
 
-private fun registerEngineTypeMethodForAudioStreamMicrophone() {
+private fun registerEngineTypeMethodForAudioStreamMicrophone(): Unit {
 }
 
-private fun registerEngineTypeMethodForAudioStreamOGGVorbis() {
+private fun registerEngineTypeMethodForAudioStreamOGGVorbis(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMOGGVORBIS to "get_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMOGGVORBIS to "set_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMOGGVORBIS to "has_loop")
@@ -3044,13 +3045,13 @@ private fun registerEngineTypeMethodForAudioStreamOGGVorbis() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMOGGVORBIS to "set_loop_offset")
 }
 
-private fun registerEngineTypeMethodForAudioStreamPlayback() {
+private fun registerEngineTypeMethodForAudioStreamPlayback(): Unit {
 }
 
-private fun registerEngineTypeMethodForAudioStreamPlaybackResampled() {
+private fun registerEngineTypeMethodForAudioStreamPlaybackResampled(): Unit {
 }
 
-private fun registerEngineTypeMethodForAudioStreamPlayer() {
+private fun registerEngineTypeMethodForAudioStreamPlayer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMPLAYER to "_bus_layout_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMPLAYER to "_is_active")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMPLAYER to "_set_playing")
@@ -3076,7 +3077,7 @@ private fun registerEngineTypeMethodForAudioStreamPlayer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMPLAYER to "set_volume_db")
 }
 
-private fun registerEngineTypeMethodForAudioStreamPlayer2D() {
+private fun registerEngineTypeMethodForAudioStreamPlayer2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMPLAYER2D to "_bus_layout_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMPLAYER2D to "_is_active")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMPLAYER2D to "_set_playing")
@@ -3106,7 +3107,7 @@ private fun registerEngineTypeMethodForAudioStreamPlayer2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMPLAYER2D to "set_volume_db")
 }
 
-private fun registerEngineTypeMethodForAudioStreamPlayer3D() {
+private fun registerEngineTypeMethodForAudioStreamPlayer3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMPLAYER3D to "_bus_layout_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMPLAYER3D to "_is_active")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMPLAYER3D to "_set_playing")
@@ -3158,14 +3159,14 @@ private fun registerEngineTypeMethodForAudioStreamPlayer3D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMPLAYER3D to "set_unit_size")
 }
 
-private fun registerEngineTypeMethodForAudioStreamRandomPitch() {
+private fun registerEngineTypeMethodForAudioStreamRandomPitch(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMRANDOMPITCH to "get_audio_stream")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMRANDOMPITCH to "set_audio_stream")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMRANDOMPITCH to "get_random_pitch")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMRANDOMPITCH to "set_random_pitch")
 }
 
-private fun registerEngineTypeMethodForAudioStreamSample() {
+private fun registerEngineTypeMethodForAudioStreamSample(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMSAMPLE to "save_to_wav")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMSAMPLE to "get_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMSAMPLE to "set_data")
@@ -3183,14 +3184,14 @@ private fun registerEngineTypeMethodForAudioStreamSample() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMSAMPLE to "set_stereo")
 }
 
-private fun registerEngineTypeMethodForBackBufferCopy() {
+private fun registerEngineTypeMethodForBackBufferCopy(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BACKBUFFERCOPY to "get_copy_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BACKBUFFERCOPY to "set_copy_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BACKBUFFERCOPY to "get_rect")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BACKBUFFERCOPY to "set_rect")
 }
 
-private fun registerEngineTypeMethodForBakedLightmap() {
+private fun registerEngineTypeMethodForBakedLightmap(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BAKEDLIGHTMAP to "bake")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BAKEDLIGHTMAP to "is_generate_atlas_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BAKEDLIGHTMAP to "set_generate_atlas")
@@ -3240,7 +3241,7 @@ private fun registerEngineTypeMethodForBakedLightmap() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BAKEDLIGHTMAP to "set_use_hdr")
 }
 
-private fun registerEngineTypeMethodForBakedLightmapData() {
+private fun registerEngineTypeMethodForBakedLightmapData(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BAKEDLIGHTMAPDATA to "_get_user_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BAKEDLIGHTMAPDATA to "_set_user_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BAKEDLIGHTMAPDATA to "add_user")
@@ -3263,7 +3264,7 @@ private fun registerEngineTypeMethodForBakedLightmapData() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BAKEDLIGHTMAPDATA to "set_octree")
 }
 
-private fun registerEngineTypeMethodForBaseButton() {
+private fun registerEngineTypeMethodForBaseButton(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BASEBUTTON to "_gui_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BASEBUTTON to "_pressed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BASEBUTTON to "_toggled")
@@ -3292,7 +3293,7 @@ private fun registerEngineTypeMethodForBaseButton() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BASEBUTTON to "set_toggle_mode")
 }
 
-private fun registerEngineTypeMethodForBitMap() {
+private fun registerEngineTypeMethodForBitMap(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BITMAP to "_get_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BITMAP to "_set_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BITMAP to "create")
@@ -3306,7 +3307,7 @@ private fun registerEngineTypeMethodForBitMap() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BITMAP to "set_bit_rect")
 }
 
-private fun registerEngineTypeMethodForBitmapFont() {
+private fun registerEngineTypeMethodForBitmapFont(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BITMAPFONT to "_get_chars")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BITMAPFONT to "_get_kernings")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BITMAPFONT to "_get_textures")
@@ -3328,7 +3329,7 @@ private fun registerEngineTypeMethodForBitmapFont() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BITMAPFONT to "set_height")
 }
 
-private fun registerEngineTypeMethodForBone2D() {
+private fun registerEngineTypeMethodForBone2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BONE2D to "apply_rest")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BONE2D to "get_index_in_skeleton")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BONE2D to "get_skeleton_rest")
@@ -3338,26 +3339,26 @@ private fun registerEngineTypeMethodForBone2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BONE2D to "set_rest")
 }
 
-private fun registerEngineTypeMethodForBoneAttachment() {
+private fun registerEngineTypeMethodForBoneAttachment(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BONEATTACHMENT to "get_bone_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BONEATTACHMENT to "set_bone_name")
 }
 
-private fun registerEngineTypeMethodForBoxContainer() {
+private fun registerEngineTypeMethodForBoxContainer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BOXCONTAINER to "add_spacer")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BOXCONTAINER to "get_alignment")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BOXCONTAINER to "set_alignment")
 }
 
-private fun registerEngineTypeMethodForBoxShape() {
+private fun registerEngineTypeMethodForBoxShape(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BOXSHAPE to "get_extents")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BOXSHAPE to "set_extents")
 }
 
-private fun registerEngineTypeMethodForBulletPhysicsDirectBodyState() {
+private fun registerEngineTypeMethodForBulletPhysicsDirectBodyState(): Unit {
 }
 
-private fun registerEngineTypeMethodForButton() {
+private fun registerEngineTypeMethodForButton(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BUTTON to "get_text_align")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BUTTON to "set_text_align")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BUTTON to "get_clip_text")
@@ -3372,12 +3373,12 @@ private fun registerEngineTypeMethodForButton() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BUTTON to "set_text")
 }
 
-private fun registerEngineTypeMethodForButtonGroup() {
+private fun registerEngineTypeMethodForButtonGroup(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BUTTONGROUP to "get_buttons")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BUTTONGROUP to "get_pressed_button")
 }
 
-private fun registerEngineTypeMethodForCPUParticles() {
+private fun registerEngineTypeMethodForCPUParticles(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES to "_update_render_thread")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES to "convert_from_particles")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES to "restart")
@@ -3511,7 +3512,7 @@ private fun registerEngineTypeMethodForCPUParticles() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES to "set_param_randomness")
 }
 
-private fun registerEngineTypeMethodForCPUParticles2D() {
+private fun registerEngineTypeMethodForCPUParticles2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES2D to "_texture_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES2D to "_update_render_thread")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES2D to "convert_from_particles")
@@ -3642,7 +3643,7 @@ private fun registerEngineTypeMethodForCPUParticles2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES2D to "set_texture")
 }
 
-private fun registerEngineTypeMethodForCSGBox() {
+private fun registerEngineTypeMethodForCSGBox(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGBOX to "get_depth")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGBOX to "set_depth")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGBOX to "get_height")
@@ -3653,10 +3654,10 @@ private fun registerEngineTypeMethodForCSGBox() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGBOX to "set_width")
 }
 
-private fun registerEngineTypeMethodForCSGCombiner() {
+private fun registerEngineTypeMethodForCSGCombiner(): Unit {
 }
 
-private fun registerEngineTypeMethodForCSGCylinder() {
+private fun registerEngineTypeMethodForCSGCylinder(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGCYLINDER to "is_cone")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGCYLINDER to "set_cone")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGCYLINDER to "get_height")
@@ -3671,7 +3672,7 @@ private fun registerEngineTypeMethodForCSGCylinder() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGCYLINDER to "set_smooth_faces")
 }
 
-private fun registerEngineTypeMethodForCSGMesh() {
+private fun registerEngineTypeMethodForCSGMesh(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGMESH to "_mesh_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGMESH to "get_material")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGMESH to "set_material")
@@ -3679,7 +3680,7 @@ private fun registerEngineTypeMethodForCSGMesh() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGMESH to "set_mesh")
 }
 
-private fun registerEngineTypeMethodForCSGPolygon() {
+private fun registerEngineTypeMethodForCSGPolygon(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGPOLYGON to "_has_editable_3d_polygon_no_depth")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGPOLYGON to "_is_editable_3d_polygon")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGPOLYGON to "_path_changed")
@@ -3712,12 +3713,12 @@ private fun registerEngineTypeMethodForCSGPolygon() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGPOLYGON to "set_spin_sides")
 }
 
-private fun registerEngineTypeMethodForCSGPrimitive() {
+private fun registerEngineTypeMethodForCSGPrimitive(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGPRIMITIVE to "is_inverting_faces")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGPRIMITIVE to "set_invert_faces")
 }
 
-private fun registerEngineTypeMethodForCSGShape() {
+private fun registerEngineTypeMethodForCSGShape(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGSHAPE to "_update_shape")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGSHAPE to "get_collision_layer_bit")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGSHAPE to "get_collision_mask_bit")
@@ -3739,7 +3740,7 @@ private fun registerEngineTypeMethodForCSGShape() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGSHAPE to "set_use_collision")
 }
 
-private fun registerEngineTypeMethodForCSGSphere() {
+private fun registerEngineTypeMethodForCSGSphere(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGSPHERE to "get_material")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGSPHERE to "set_material")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGSPHERE to "get_radial_segments")
@@ -3752,7 +3753,7 @@ private fun registerEngineTypeMethodForCSGSphere() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGSPHERE to "set_smooth_faces")
 }
 
-private fun registerEngineTypeMethodForCSGTorus() {
+private fun registerEngineTypeMethodForCSGTorus(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGTORUS to "get_inner_radius")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGTORUS to "set_inner_radius")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGTORUS to "get_material")
@@ -3767,7 +3768,7 @@ private fun registerEngineTypeMethodForCSGTorus() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CSGTORUS to "set_smooth_faces")
 }
 
-private fun registerEngineTypeMethodForCamera() {
+private fun registerEngineTypeMethodForCamera(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERA to "clear_current")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERA to "get_camera_rid")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERA to "get_camera_transform")
@@ -3812,7 +3813,7 @@ private fun registerEngineTypeMethodForCamera() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERA to "set_v_offset")
 }
 
-private fun registerEngineTypeMethodForCamera2D() {
+private fun registerEngineTypeMethodForCamera2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERA2D to "_make_current")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERA2D to "_set_current")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERA2D to "_update_scroll")
@@ -3874,7 +3875,7 @@ private fun registerEngineTypeMethodForCamera2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERA2D to "set_zoom")
 }
 
-private fun registerEngineTypeMethodForCameraFeed() {
+private fun registerEngineTypeMethodForCameraFeed(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERAFEED to "_allocate_texture")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERAFEED to "_set_RGB_img")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERAFEED to "_set_YCbCr_img")
@@ -3890,7 +3891,7 @@ private fun registerEngineTypeMethodForCameraFeed() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERAFEED to "set_transform")
 }
 
-private fun registerEngineTypeMethodForCameraServer() {
+private fun registerEngineTypeMethodForCameraServer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERASERVER to "add_feed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERASERVER to "feeds")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERASERVER to "get_feed")
@@ -3898,7 +3899,7 @@ private fun registerEngineTypeMethodForCameraServer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERASERVER to "remove_feed")
 }
 
-private fun registerEngineTypeMethodForCameraTexture() {
+private fun registerEngineTypeMethodForCameraTexture(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERATEXTURE to "get_camera_feed_id")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERATEXTURE to "set_camera_feed_id")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERATEXTURE to "get_camera_active")
@@ -3907,7 +3908,7 @@ private fun registerEngineTypeMethodForCameraTexture() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAMERATEXTURE to "set_which_feed")
 }
 
-private fun registerEngineTypeMethodForCanvasItem() {
+private fun registerEngineTypeMethodForCanvasItem(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASITEM to "_draw")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASITEM to "_edit_get_pivot")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASITEM to "_edit_get_position")
@@ -3991,7 +3992,7 @@ private fun registerEngineTypeMethodForCanvasItem() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASITEM to "set_visible")
 }
 
-private fun registerEngineTypeMethodForCanvasItemMaterial() {
+private fun registerEngineTypeMethodForCanvasItemMaterial(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASITEMMATERIAL to "get_blend_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASITEMMATERIAL to "set_blend_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASITEMMATERIAL to "get_light_mode")
@@ -4006,7 +4007,7 @@ private fun registerEngineTypeMethodForCanvasItemMaterial() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASITEMMATERIAL to "set_particles_animation")
 }
 
-private fun registerEngineTypeMethodForCanvasLayer() {
+private fun registerEngineTypeMethodForCanvasLayer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASLAYER to "get_canvas")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASLAYER to "get_custom_viewport")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASLAYER to "set_custom_viewport")
@@ -4028,12 +4029,12 @@ private fun registerEngineTypeMethodForCanvasLayer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASLAYER to "set_transform")
 }
 
-private fun registerEngineTypeMethodForCanvasModulate() {
+private fun registerEngineTypeMethodForCanvasModulate(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASMODULATE to "get_color")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASMODULATE to "set_color")
 }
 
-private fun registerEngineTypeMethodForCapsuleMesh() {
+private fun registerEngineTypeMethodForCapsuleMesh(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAPSULEMESH to "get_mid_height")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAPSULEMESH to "set_mid_height")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAPSULEMESH to "get_radial_segments")
@@ -4044,26 +4045,26 @@ private fun registerEngineTypeMethodForCapsuleMesh() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAPSULEMESH to "set_rings")
 }
 
-private fun registerEngineTypeMethodForCapsuleShape() {
+private fun registerEngineTypeMethodForCapsuleShape(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAPSULESHAPE to "get_height")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAPSULESHAPE to "set_height")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAPSULESHAPE to "get_radius")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAPSULESHAPE to "set_radius")
 }
 
-private fun registerEngineTypeMethodForCapsuleShape2D() {
+private fun registerEngineTypeMethodForCapsuleShape2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAPSULESHAPE2D to "get_height")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAPSULESHAPE2D to "set_height")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAPSULESHAPE2D to "get_radius")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CAPSULESHAPE2D to "set_radius")
 }
 
-private fun registerEngineTypeMethodForCenterContainer() {
+private fun registerEngineTypeMethodForCenterContainer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CENTERCONTAINER to "is_using_top_left")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CENTERCONTAINER to "set_use_top_left")
 }
 
-private fun registerEngineTypeMethodForCharFXTransform() {
+private fun registerEngineTypeMethodForCharFXTransform(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CHARFXTRANSFORM to "get_absolute_index")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CHARFXTRANSFORM to "set_absolute_index")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CHARFXTRANSFORM to "get_character")
@@ -4082,18 +4083,18 @@ private fun registerEngineTypeMethodForCharFXTransform() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CHARFXTRANSFORM to "set_visibility")
 }
 
-private fun registerEngineTypeMethodForCheckBox() {
+private fun registerEngineTypeMethodForCheckBox(): Unit {
 }
 
-private fun registerEngineTypeMethodForCheckButton() {
+private fun registerEngineTypeMethodForCheckButton(): Unit {
 }
 
-private fun registerEngineTypeMethodForCircleShape2D() {
+private fun registerEngineTypeMethodForCircleShape2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CIRCLESHAPE2D to "get_radius")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CIRCLESHAPE2D to "set_radius")
 }
 
-private fun registerEngineTypeMethodForClippedCamera() {
+private fun registerEngineTypeMethodForClippedCamera(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CLIPPEDCAMERA to "add_exception")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CLIPPEDCAMERA to "add_exception_rid")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CLIPPEDCAMERA to "clear_exceptions")
@@ -4114,7 +4115,7 @@ private fun registerEngineTypeMethodForClippedCamera() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CLIPPEDCAMERA to "set_process_mode")
 }
 
-private fun registerEngineTypeMethodForCollisionObject() {
+private fun registerEngineTypeMethodForCollisionObject(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONOBJECT to "_input_event")
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONOBJECT to "_shape_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONOBJECT to "_update_debug_shapes")
@@ -4140,7 +4141,7 @@ private fun registerEngineTypeMethodForCollisionObject() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONOBJECT to "set_ray_pickable")
 }
 
-private fun registerEngineTypeMethodForCollisionObject2D() {
+private fun registerEngineTypeMethodForCollisionObject2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONOBJECT2D to "_input_event")
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONOBJECT2D to "create_shape_owner")
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONOBJECT2D to "get_rid")
@@ -4170,7 +4171,7 @@ private fun registerEngineTypeMethodForCollisionObject2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONOBJECT2D to "set_pickable")
 }
 
-private fun registerEngineTypeMethodForCollisionPolygon() {
+private fun registerEngineTypeMethodForCollisionPolygon(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONPOLYGON to "_is_editable_3d_polygon")
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONPOLYGON to "get_depth")
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONPOLYGON to "set_depth")
@@ -4182,7 +4183,7 @@ private fun registerEngineTypeMethodForCollisionPolygon() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONPOLYGON to "set_polygon")
 }
 
-private fun registerEngineTypeMethodForCollisionPolygon2D() {
+private fun registerEngineTypeMethodForCollisionPolygon2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONPOLYGON2D to "get_build_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONPOLYGON2D to "set_build_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONPOLYGON2D to "is_disabled")
@@ -4195,7 +4196,7 @@ private fun registerEngineTypeMethodForCollisionPolygon2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONPOLYGON2D to "set_polygon")
 }
 
-private fun registerEngineTypeMethodForCollisionShape() {
+private fun registerEngineTypeMethodForCollisionShape(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONSHAPE to "make_convex_from_brothers")
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONSHAPE to "resource_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONSHAPE to "is_disabled")
@@ -4204,7 +4205,7 @@ private fun registerEngineTypeMethodForCollisionShape() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONSHAPE to "set_shape")
 }
 
-private fun registerEngineTypeMethodForCollisionShape2D() {
+private fun registerEngineTypeMethodForCollisionShape2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONSHAPE2D to "_shape_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONSHAPE2D to "is_disabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONSHAPE2D to "set_disabled")
@@ -4216,7 +4217,7 @@ private fun registerEngineTypeMethodForCollisionShape2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLLISIONSHAPE2D to "set_shape")
 }
 
-private fun registerEngineTypeMethodForColorPicker() {
+private fun registerEngineTypeMethodForColorPicker(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLORPICKER to "_add_preset_pressed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLORPICKER to "_focus_enter")
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLORPICKER to "_focus_exit")
@@ -4251,7 +4252,7 @@ private fun registerEngineTypeMethodForColorPicker() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLORPICKER to "set_raw_mode")
 }
 
-private fun registerEngineTypeMethodForColorPickerButton() {
+private fun registerEngineTypeMethodForColorPickerButton(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLORPICKERBUTTON to "_color_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLORPICKERBUTTON to "_modal_closed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLORPICKERBUTTON to "get_picker")
@@ -4262,22 +4263,22 @@ private fun registerEngineTypeMethodForColorPickerButton() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLORPICKERBUTTON to "set_edit_alpha")
 }
 
-private fun registerEngineTypeMethodForColorRect() {
+private fun registerEngineTypeMethodForColorRect(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLORRECT to "get_frame_color")
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLORRECT to "set_frame_color")
 }
 
-private fun registerEngineTypeMethodForConcavePolygonShape() {
+private fun registerEngineTypeMethodForConcavePolygonShape(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONCAVEPOLYGONSHAPE to "get_faces")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONCAVEPOLYGONSHAPE to "set_faces")
 }
 
-private fun registerEngineTypeMethodForConcavePolygonShape2D() {
+private fun registerEngineTypeMethodForConcavePolygonShape2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONCAVEPOLYGONSHAPE2D to "get_segments")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONCAVEPOLYGONSHAPE2D to "set_segments")
 }
 
-private fun registerEngineTypeMethodForConeTwistJoint() {
+private fun registerEngineTypeMethodForConeTwistJoint(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONETWISTJOINT to "_get_swing_span")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONETWISTJOINT to "_get_twist_span")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONETWISTJOINT to "_set_swing_span")
@@ -4290,7 +4291,7 @@ private fun registerEngineTypeMethodForConeTwistJoint() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONETWISTJOINT to "set_param")
 }
 
-private fun registerEngineTypeMethodForConfigFile() {
+private fun registerEngineTypeMethodForConfigFile(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONFIGFILE to "clear")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONFIGFILE to "erase_section")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONFIGFILE to "erase_section_key")
@@ -4309,18 +4310,18 @@ private fun registerEngineTypeMethodForConfigFile() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONFIGFILE to "set_value")
 }
 
-private fun registerEngineTypeMethodForConfirmationDialog() {
+private fun registerEngineTypeMethodForConfirmationDialog(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONFIRMATIONDIALOG to "get_cancel")
 }
 
-private fun registerEngineTypeMethodForContainer() {
+private fun registerEngineTypeMethodForContainer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTAINER to "_child_minsize_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTAINER to "_sort_children")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTAINER to "fit_child_in_rect")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTAINER to "queue_sort")
 }
 
-private fun registerEngineTypeMethodForControl() {
+private fun registerEngineTypeMethodForControl(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "_clips_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "_get_minimum_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "_get_tooltip")
@@ -4456,29 +4457,29 @@ private fun registerEngineTypeMethodForControl() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_theme")
 }
 
-private fun registerEngineTypeMethodForConvexPolygonShape() {
+private fun registerEngineTypeMethodForConvexPolygonShape(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONVEXPOLYGONSHAPE to "get_points")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONVEXPOLYGONSHAPE to "set_points")
 }
 
-private fun registerEngineTypeMethodForConvexPolygonShape2D() {
+private fun registerEngineTypeMethodForConvexPolygonShape2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONVEXPOLYGONSHAPE2D to "set_point_cloud")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONVEXPOLYGONSHAPE2D to "get_points")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONVEXPOLYGONSHAPE2D to "set_points")
 }
 
-private fun registerEngineTypeMethodForCrypto() {
+private fun registerEngineTypeMethodForCrypto(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CRYPTO to "generate_random_bytes")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CRYPTO to "generate_rsa")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CRYPTO to "generate_self_signed_certificate")
 }
 
-private fun registerEngineTypeMethodForCryptoKey() {
+private fun registerEngineTypeMethodForCryptoKey(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CRYPTOKEY to "load")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CRYPTOKEY to "save")
 }
 
-private fun registerEngineTypeMethodForCubeMap() {
+private fun registerEngineTypeMethodForCubeMap(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CUBEMAP to "get_height")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CUBEMAP to "get_side")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CUBEMAP to "get_width")
@@ -4491,7 +4492,7 @@ private fun registerEngineTypeMethodForCubeMap() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CUBEMAP to "set_storage")
 }
 
-private fun registerEngineTypeMethodForCubeMesh() {
+private fun registerEngineTypeMethodForCubeMesh(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CUBEMESH to "get_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CUBEMESH to "set_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CUBEMESH to "get_subdivide_depth")
@@ -4502,7 +4503,7 @@ private fun registerEngineTypeMethodForCubeMesh() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CUBEMESH to "set_subdivide_width")
 }
 
-private fun registerEngineTypeMethodForCurve() {
+private fun registerEngineTypeMethodForCurve(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CURVE to "_get_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CURVE to "_set_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CURVE to "add_point")
@@ -4532,7 +4533,7 @@ private fun registerEngineTypeMethodForCurve() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CURVE to "set_min_value")
 }
 
-private fun registerEngineTypeMethodForCurve2D() {
+private fun registerEngineTypeMethodForCurve2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CURVE2D to "_get_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CURVE2D to "_set_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CURVE2D to "add_point")
@@ -4557,7 +4558,7 @@ private fun registerEngineTypeMethodForCurve2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CURVE2D to "set_bake_interval")
 }
 
-private fun registerEngineTypeMethodForCurve3D() {
+private fun registerEngineTypeMethodForCurve3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CURVE3D to "_get_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CURVE3D to "_set_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CURVE3D to "add_point")
@@ -4589,14 +4590,14 @@ private fun registerEngineTypeMethodForCurve3D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CURVE3D to "set_up_vector_enabled")
 }
 
-private fun registerEngineTypeMethodForCurveTexture() {
+private fun registerEngineTypeMethodForCurveTexture(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CURVETEXTURE to "_update")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CURVETEXTURE to "get_curve")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CURVETEXTURE to "set_curve")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CURVETEXTURE to "set_width")
 }
 
-private fun registerEngineTypeMethodForCylinderMesh() {
+private fun registerEngineTypeMethodForCylinderMesh(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CYLINDERMESH to "get_bottom_radius")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CYLINDERMESH to "set_bottom_radius")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CYLINDERMESH to "get_height")
@@ -4609,19 +4610,19 @@ private fun registerEngineTypeMethodForCylinderMesh() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CYLINDERMESH to "set_top_radius")
 }
 
-private fun registerEngineTypeMethodForCylinderShape() {
+private fun registerEngineTypeMethodForCylinderShape(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CYLINDERSHAPE to "get_height")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CYLINDERSHAPE to "set_height")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CYLINDERSHAPE to "get_radius")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CYLINDERSHAPE to "set_radius")
 }
 
-private fun registerEngineTypeMethodForDTLSServer() {
+private fun registerEngineTypeMethodForDTLSServer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_DTLSSERVER to "setup")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DTLSSERVER to "take_connection")
 }
 
-private fun registerEngineTypeMethodForDampedSpringJoint2D() {
+private fun registerEngineTypeMethodForDampedSpringJoint2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_DAMPEDSPRINGJOINT2D to "get_damping")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DAMPEDSPRINGJOINT2D to "set_damping")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DAMPEDSPRINGJOINT2D to "get_length")
@@ -4632,7 +4633,7 @@ private fun registerEngineTypeMethodForDampedSpringJoint2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_DAMPEDSPRINGJOINT2D to "set_stiffness")
 }
 
-private fun registerEngineTypeMethodForDirectionalLight() {
+private fun registerEngineTypeMethodForDirectionalLight(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_DIRECTIONALLIGHT to "is_blend_splits_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DIRECTIONALLIGHT to "set_blend_splits")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DIRECTIONALLIGHT to "get_shadow_depth_range")
@@ -4641,7 +4642,7 @@ private fun registerEngineTypeMethodForDirectionalLight() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_DIRECTIONALLIGHT to "set_shadow_mode")
 }
 
-private fun registerEngineTypeMethodForDynamicFont() {
+private fun registerEngineTypeMethodForDynamicFont(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_DYNAMICFONT to "add_fallback")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DYNAMICFONT to "get_available_chars")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DYNAMICFONT to "get_fallback")
@@ -4670,7 +4671,7 @@ private fun registerEngineTypeMethodForDynamicFont() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_DYNAMICFONT to "set_use_mipmaps")
 }
 
-private fun registerEngineTypeMethodForDynamicFontData() {
+private fun registerEngineTypeMethodForDynamicFontData(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_DYNAMICFONTDATA to "is_antialiased")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DYNAMICFONTDATA to "set_antialiased")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DYNAMICFONTDATA to "get_font_path")
@@ -4679,7 +4680,7 @@ private fun registerEngineTypeMethodForDynamicFontData() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_DYNAMICFONTDATA to "set_hinting")
 }
 
-private fun registerEngineTypeMethodForEditorExportPlugin() {
+private fun registerEngineTypeMethodForEditorExportPlugin(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "_export_begin")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "_export_end")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "_export_file")
@@ -4695,7 +4696,7 @@ private fun registerEngineTypeMethodForEditorExportPlugin() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "skip")
 }
 
-private fun registerEngineTypeMethodForEditorFeatureProfile() {
+private fun registerEngineTypeMethodForEditorFeatureProfile(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFEATUREPROFILE to "get_feature_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFEATUREPROFILE to "is_class_disabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFEATUREPROFILE to "is_class_editor_disabled")
@@ -4709,7 +4710,7 @@ private fun registerEngineTypeMethodForEditorFeatureProfile() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFEATUREPROFILE to "set_disable_feature")
 }
 
-private fun registerEngineTypeMethodForEditorFileDialog() {
+private fun registerEngineTypeMethodForEditorFileDialog(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "_action_pressed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "_cancel_pressed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "_dir_entered")
@@ -4762,7 +4763,7 @@ private fun registerEngineTypeMethodForEditorFileDialog() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILEDIALOG to "set_show_hidden_files")
 }
 
-private fun registerEngineTypeMethodForEditorFileSystem() {
+private fun registerEngineTypeMethodForEditorFileSystem(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEM to "get_file_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEM to "get_filesystem")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEM to "get_filesystem_path")
@@ -4774,7 +4775,7 @@ private fun registerEngineTypeMethodForEditorFileSystem() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEM to "update_script_classes")
 }
 
-private fun registerEngineTypeMethodForEditorFileSystemDirectory() {
+private fun registerEngineTypeMethodForEditorFileSystemDirectory(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEMDIRECTORY to "find_dir_index")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEMDIRECTORY to "find_file_index")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEMDIRECTORY to "get_file")
@@ -4794,7 +4795,7 @@ private fun registerEngineTypeMethodForEditorFileSystemDirectory() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORFILESYSTEMDIRECTORY to "get_subdir_count")
 }
 
-private fun registerEngineTypeMethodForEditorImportPlugin() {
+private fun registerEngineTypeMethodForEditorImportPlugin(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORIMPORTPLUGIN to "get_import_options")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORIMPORTPLUGIN to "get_import_order")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORIMPORTPLUGIN to "get_importer_name")
@@ -4809,7 +4810,7 @@ private fun registerEngineTypeMethodForEditorImportPlugin() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORIMPORTPLUGIN to "import")
 }
 
-private fun registerEngineTypeMethodForEditorInspector() {
+private fun registerEngineTypeMethodForEditorInspector(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTOR to "_edit_request_change")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTOR to "_feature_profile_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTOR to "_filter_changed")
@@ -4827,7 +4828,7 @@ private fun registerEngineTypeMethodForEditorInspector() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTOR to "refresh")
 }
 
-private fun registerEngineTypeMethodForEditorInspectorPlugin() {
+private fun registerEngineTypeMethodForEditorInspectorPlugin(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTORPLUGIN to "add_custom_control")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTORPLUGIN to "add_property_editor")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTORPLUGIN to
@@ -4839,7 +4840,7 @@ private fun registerEngineTypeMethodForEditorInspectorPlugin() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTORPLUGIN to "parse_property")
 }
 
-private fun registerEngineTypeMethodForEditorInterface() {
+private fun registerEngineTypeMethodForEditorInterface(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "edit_node")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "edit_resource")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "get_base_control")
@@ -4877,12 +4878,12 @@ private fun registerEngineTypeMethodForEditorInterface() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "set_distraction_free_mode")
 }
 
-private fun registerEngineTypeMethodForEditorNavigationMeshGenerator() {
+private fun registerEngineTypeMethodForEditorNavigationMeshGenerator(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNAVIGATIONMESHGENERATOR to "bake")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNAVIGATIONMESHGENERATOR to "clear")
 }
 
-private fun registerEngineTypeMethodForEditorPlugin() {
+private fun registerEngineTypeMethodForEditorPlugin(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "add_autoload_singleton")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "add_control_to_bottom_panel")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "add_control_to_container")
@@ -4944,7 +4945,7 @@ private fun registerEngineTypeMethodForEditorPlugin() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPLUGIN to "update_overlays")
 }
 
-private fun registerEngineTypeMethodForEditorProperty() {
+private fun registerEngineTypeMethodForEditorProperty(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "_focusable_focused")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "_gui_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "add_focusable")
@@ -4968,12 +4969,12 @@ private fun registerEngineTypeMethodForEditorProperty() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "set_read_only")
 }
 
-private fun registerEngineTypeMethodForEditorResourceConversionPlugin() {
+private fun registerEngineTypeMethodForEditorResourceConversionPlugin(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCECONVERSIONPLUGIN to "_convert")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCECONVERSIONPLUGIN to "_converts_to")
 }
 
-private fun registerEngineTypeMethodForEditorResourcePreview() {
+private fun registerEngineTypeMethodForEditorResourcePreview(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPREVIEW to "_preview_ready")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPREVIEW to "add_preview_generator")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPREVIEW to "check_for_invalidation")
@@ -4983,7 +4984,7 @@ private fun registerEngineTypeMethodForEditorResourcePreview() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPREVIEW to "remove_preview_generator")
 }
 
-private fun registerEngineTypeMethodForEditorResourcePreviewGenerator() {
+private fun registerEngineTypeMethodForEditorResourcePreviewGenerator(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPREVIEWGENERATOR to
       "can_generate_small_preview")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPREVIEWGENERATOR to "generate")
@@ -4994,7 +4995,7 @@ private fun registerEngineTypeMethodForEditorResourcePreviewGenerator() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORRESOURCEPREVIEWGENERATOR to "handles")
 }
 
-private fun registerEngineTypeMethodForEditorSceneImporter() {
+private fun registerEngineTypeMethodForEditorSceneImporter(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEIMPORTER to "_get_extensions")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEIMPORTER to "_get_import_flags")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEIMPORTER to "_import_animation")
@@ -5005,23 +5006,23 @@ private fun registerEngineTypeMethodForEditorSceneImporter() {
       "import_scene_from_other_importer")
 }
 
-private fun registerEngineTypeMethodForEditorSceneImporterFBX() {
+private fun registerEngineTypeMethodForEditorSceneImporterFBX(): Unit {
 }
 
-private fun registerEngineTypeMethodForEditorScenePostImport() {
+private fun registerEngineTypeMethodForEditorScenePostImport(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEPOSTIMPORT to "get_source_file")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEPOSTIMPORT to "get_source_folder")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCENEPOSTIMPORT to "post_import")
 }
 
-private fun registerEngineTypeMethodForEditorScript() {
+private fun registerEngineTypeMethodForEditorScript(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCRIPT to "_run")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCRIPT to "add_root_node")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCRIPT to "get_editor_interface")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSCRIPT to "get_scene")
 }
 
-private fun registerEngineTypeMethodForEditorSelection() {
+private fun registerEngineTypeMethodForEditorSelection(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSELECTION to "_emit_change")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSELECTION to "_node_removed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSELECTION to "add_node")
@@ -5032,7 +5033,7 @@ private fun registerEngineTypeMethodForEditorSelection() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSELECTION to "remove_node")
 }
 
-private fun registerEngineTypeMethodForEditorSettings() {
+private fun registerEngineTypeMethodForEditorSettings(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "add_property_info")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "erase")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "get_favorites")
@@ -5051,7 +5052,7 @@ private fun registerEngineTypeMethodForEditorSettings() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "set_setting")
 }
 
-private fun registerEngineTypeMethodForEditorSpatialGizmo() {
+private fun registerEngineTypeMethodForEditorSpatialGizmo(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSPATIALGIZMO to "add_collision_segments")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSPATIALGIZMO to "add_collision_triangles")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSPATIALGIZMO to "add_handles")
@@ -5071,7 +5072,7 @@ private fun registerEngineTypeMethodForEditorSpatialGizmo() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSPATIALGIZMO to "set_spatial_node")
 }
 
-private fun registerEngineTypeMethodForEditorSpatialGizmoPlugin() {
+private fun registerEngineTypeMethodForEditorSpatialGizmoPlugin(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSPATIALGIZMOPLUGIN to "add_material")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSPATIALGIZMOPLUGIN to "can_be_hidden")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSPATIALGIZMOPLUGIN to "commit_handle")
@@ -5092,7 +5093,7 @@ private fun registerEngineTypeMethodForEditorSpatialGizmoPlugin() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSPATIALGIZMOPLUGIN to "set_handle")
 }
 
-private fun registerEngineTypeMethodForEditorSpinSlider() {
+private fun registerEngineTypeMethodForEditorSpinSlider(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSPINSLIDER to "_grabber_gui_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSPINSLIDER to "_grabber_mouse_entered")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSPINSLIDER to "_grabber_mouse_exited")
@@ -5108,7 +5109,7 @@ private fun registerEngineTypeMethodForEditorSpinSlider() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSPINSLIDER to "set_read_only")
 }
 
-private fun registerEngineTypeMethodForEditorVCSInterface() {
+private fun registerEngineTypeMethodForEditorVCSInterface(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_commit")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_get_file_diff")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_get_modified_files_data")
@@ -5132,12 +5133,12 @@ private fun registerEngineTypeMethodForEditorVCSInterface() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "unstage_file")
 }
 
-private fun registerEngineTypeMethodForEncodedObjectAsID() {
+private fun registerEngineTypeMethodForEncodedObjectAsID(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ENCODEDOBJECTASID to "get_object_id")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ENCODEDOBJECTASID to "set_object_id")
 }
 
-private fun registerEngineTypeMethodForEnvironment() {
+private fun registerEngineTypeMethodForEnvironment(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ENVIRONMENT to "get_adjustment_brightness")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ENVIRONMENT to "set_adjustment_brightness")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ENVIRONMENT to "get_adjustment_color_correction")
@@ -5308,19 +5309,19 @@ private fun registerEngineTypeMethodForEnvironment() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ENVIRONMENT to "set_tonemap_white")
 }
 
-private fun registerEngineTypeMethodForExpression() {
+private fun registerEngineTypeMethodForExpression(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EXPRESSION to "execute")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EXPRESSION to "get_error_text")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EXPRESSION to "has_execute_failed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EXPRESSION to "parse")
 }
 
-private fun registerEngineTypeMethodForExternalTexture() {
+private fun registerEngineTypeMethodForExternalTexture(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EXTERNALTEXTURE to "get_external_texture_id")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EXTERNALTEXTURE to "set_size")
 }
 
-private fun registerEngineTypeMethodForFileDialog() {
+private fun registerEngineTypeMethodForFileDialog(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_FILEDIALOG to "_action_pressed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FILEDIALOG to "_cancel_pressed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FILEDIALOG to "_dir_entered")
@@ -5362,7 +5363,7 @@ private fun registerEngineTypeMethodForFileDialog() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_FILEDIALOG to "set_show_hidden_files")
 }
 
-private fun registerEngineTypeMethodForFileSystemDock() {
+private fun registerEngineTypeMethodForFileSystemDock(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_FILESYSTEMDOCK to "_bw_history")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FILESYSTEMDOCK to "_duplicate_operation_confirm")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FILESYSTEMDOCK to "_feature_profile_changed")
@@ -5406,7 +5407,7 @@ private fun registerEngineTypeMethodForFileSystemDock() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_FILESYSTEMDOCK to "navigate_to_path")
 }
 
-private fun registerEngineTypeMethodForFont() {
+private fun registerEngineTypeMethodForFont(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONT to "draw")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONT to "draw_char")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONT to "get_ascent")
@@ -5420,7 +5421,7 @@ private fun registerEngineTypeMethodForFont() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONT to "update_changes")
 }
 
-private fun registerEngineTypeMethodForFuncRef() {
+private fun registerEngineTypeMethodForFuncRef(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_FUNCREF to "call_func")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FUNCREF to "call_funcv")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FUNCREF to "is_valid")
@@ -5429,7 +5430,7 @@ private fun registerEngineTypeMethodForFuncRef() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_FUNCREF to "set_function")
 }
 
-private fun registerEngineTypeMethodForGDNative() {
+private fun registerEngineTypeMethodForGDNative(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVE to "call_native")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVE to "initialize")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVE to "terminate")
@@ -5437,7 +5438,7 @@ private fun registerEngineTypeMethodForGDNative() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVE to "set_library")
 }
 
-private fun registerEngineTypeMethodForGDNativeLibrary() {
+private fun registerEngineTypeMethodForGDNativeLibrary(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVELIBRARY to "get_current_dependencies")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVELIBRARY to "get_current_library_path")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVELIBRARY to "get_config_file")
@@ -5452,18 +5453,18 @@ private fun registerEngineTypeMethodForGDNativeLibrary() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVELIBRARY to "set_symbol_prefix")
 }
 
-private fun registerEngineTypeMethodForGDScript() {
+private fun registerEngineTypeMethodForGDScript(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GDSCRIPT to "get_as_byte_code")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GDSCRIPT to "new")
 }
 
-private fun registerEngineTypeMethodForGDScriptFunctionState() {
+private fun registerEngineTypeMethodForGDScriptFunctionState(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GDSCRIPTFUNCTIONSTATE to "_signal_callback")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GDSCRIPTFUNCTIONSTATE to "is_valid")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GDSCRIPTFUNCTIONSTATE to "resume")
 }
 
-private fun registerEngineTypeMethodForGIProbe() {
+private fun registerEngineTypeMethodForGIProbe(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GIPROBE to "bake")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GIPROBE to "debug_bake")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GIPROBE to "get_bias")
@@ -5488,7 +5489,7 @@ private fun registerEngineTypeMethodForGIProbe() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GIPROBE to "set_subdiv")
 }
 
-private fun registerEngineTypeMethodForGIProbeData() {
+private fun registerEngineTypeMethodForGIProbeData(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GIPROBEDATA to "get_bias")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GIPROBEDATA to "set_bias")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GIPROBEDATA to "get_bounds")
@@ -5513,7 +5514,7 @@ private fun registerEngineTypeMethodForGIProbeData() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GIPROBEDATA to "set_to_cell_xform")
 }
 
-private fun registerEngineTypeMethodForGeneric6DOFJoint() {
+private fun registerEngineTypeMethodForGeneric6DOFJoint(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GENERIC6DOFJOINT to "_get_angular_hi_limit_x")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GENERIC6DOFJOINT to "_get_angular_hi_limit_y")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GENERIC6DOFJOINT to "_get_angular_hi_limit_z")
@@ -5684,7 +5685,7 @@ private fun registerEngineTypeMethodForGeneric6DOFJoint() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GENERIC6DOFJOINT to "set_param_z")
 }
 
-private fun registerEngineTypeMethodForGeometryInstance() {
+private fun registerEngineTypeMethodForGeometryInstance(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GEOMETRYINSTANCE to "set_custom_aabb")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GEOMETRYINSTANCE to "get_cast_shadows_setting")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GEOMETRYINSTANCE to "set_cast_shadows_setting")
@@ -5708,7 +5709,7 @@ private fun registerEngineTypeMethodForGeometryInstance() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GEOMETRYINSTANCE to "set_flag")
 }
 
-private fun registerEngineTypeMethodForGradient() {
+private fun registerEngineTypeMethodForGradient(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENT to "add_point")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENT to "get_color")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENT to "get_offset")
@@ -5723,14 +5724,14 @@ private fun registerEngineTypeMethodForGradient() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENT to "set_offsets")
 }
 
-private fun registerEngineTypeMethodForGradientTexture() {
+private fun registerEngineTypeMethodForGradientTexture(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENTTEXTURE to "_update")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENTTEXTURE to "get_gradient")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENTTEXTURE to "set_gradient")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENTTEXTURE to "set_width")
 }
 
-private fun registerEngineTypeMethodForGraphEdit() {
+private fun registerEngineTypeMethodForGraphEdit(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRAPHEDIT to "_connections_layer_draw")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRAPHEDIT to "_graph_node_moved")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRAPHEDIT to "_graph_node_raised")
@@ -5780,7 +5781,7 @@ private fun registerEngineTypeMethodForGraphEdit() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRAPHEDIT to "set_zoom")
 }
 
-private fun registerEngineTypeMethodForGraphNode() {
+private fun registerEngineTypeMethodForGraphNode(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRAPHNODE to "_gui_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRAPHNODE to "clear_all_slots")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRAPHNODE to "clear_slot")
@@ -5815,12 +5816,12 @@ private fun registerEngineTypeMethodForGraphNode() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRAPHNODE to "set_title")
 }
 
-private fun registerEngineTypeMethodForGridContainer() {
+private fun registerEngineTypeMethodForGridContainer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRIDCONTAINER to "get_columns")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRIDCONTAINER to "set_columns")
 }
 
-private fun registerEngineTypeMethodForGridMap() {
+private fun registerEngineTypeMethodForGridMap(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRIDMAP to "_update_octants_callback")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRIDMAP to "clear")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRIDMAP to "clear_baked_meshes")
@@ -5862,29 +5863,29 @@ private fun registerEngineTypeMethodForGridMap() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRIDMAP to "set_use_in_baked_light")
 }
 
-private fun registerEngineTypeMethodForGrooveJoint2D() {
+private fun registerEngineTypeMethodForGrooveJoint2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GROOVEJOINT2D to "get_initial_offset")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GROOVEJOINT2D to "set_initial_offset")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GROOVEJOINT2D to "get_length")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GROOVEJOINT2D to "set_length")
 }
 
-private fun registerEngineTypeMethodForHBoxContainer() {
+private fun registerEngineTypeMethodForHBoxContainer(): Unit {
 }
 
-private fun registerEngineTypeMethodForHScrollBar() {
+private fun registerEngineTypeMethodForHScrollBar(): Unit {
 }
 
-private fun registerEngineTypeMethodForHSeparator() {
+private fun registerEngineTypeMethodForHSeparator(): Unit {
 }
 
-private fun registerEngineTypeMethodForHSlider() {
+private fun registerEngineTypeMethodForHSlider(): Unit {
 }
 
-private fun registerEngineTypeMethodForHSplitContainer() {
+private fun registerEngineTypeMethodForHSplitContainer(): Unit {
 }
 
-private fun registerEngineTypeMethodForHTTPClient() {
+private fun registerEngineTypeMethodForHTTPClient(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPCLIENT to "close")
   TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPCLIENT to "connect_to_host")
   TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPCLIENT to "get_response_body_length")
@@ -5907,7 +5908,7 @@ private fun registerEngineTypeMethodForHTTPClient() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPCLIENT to "set_read_chunk_size")
 }
 
-private fun registerEngineTypeMethodForHTTPRequest() {
+private fun registerEngineTypeMethodForHTTPRequest(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPREQUEST to "_redirect_request")
   TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPREQUEST to "_request_done")
   TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPREQUEST to "_timeout")
@@ -5930,13 +5931,13 @@ private fun registerEngineTypeMethodForHTTPRequest() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPREQUEST to "set_use_threads")
 }
 
-private fun registerEngineTypeMethodForHashingContext() {
+private fun registerEngineTypeMethodForHashingContext(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_HASHINGCONTEXT to "finish")
   TypeManager.engineTypeMethod.add(ENGINECLASS_HASHINGCONTEXT to "start")
   TypeManager.engineTypeMethod.add(ENGINECLASS_HASHINGCONTEXT to "update")
 }
 
-private fun registerEngineTypeMethodForHeightMapShape() {
+private fun registerEngineTypeMethodForHeightMapShape(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_HEIGHTMAPSHAPE to "get_map_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_HEIGHTMAPSHAPE to "set_map_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_HEIGHTMAPSHAPE to "get_map_depth")
@@ -5945,7 +5946,7 @@ private fun registerEngineTypeMethodForHeightMapShape() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_HEIGHTMAPSHAPE to "set_map_width")
 }
 
-private fun registerEngineTypeMethodForHingeJoint() {
+private fun registerEngineTypeMethodForHingeJoint(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_HINGEJOINT to "_get_lower_limit")
   TypeManager.engineTypeMethod.add(ENGINECLASS_HINGEJOINT to "_get_upper_limit")
   TypeManager.engineTypeMethod.add(ENGINECLASS_HINGEJOINT to "_set_lower_limit")
@@ -5968,7 +5969,7 @@ private fun registerEngineTypeMethodForHingeJoint() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_HINGEJOINT to "set_param")
 }
 
-private fun registerEngineTypeMethodForIP() {
+private fun registerEngineTypeMethodForIP(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_IP to "clear_cache")
   TypeManager.engineTypeMethod.add(ENGINECLASS_IP to "erase_resolve_item")
   TypeManager.engineTypeMethod.add(ENGINECLASS_IP to "get_local_addresses")
@@ -5979,7 +5980,7 @@ private fun registerEngineTypeMethodForIP() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_IP to "resolve_hostname_queue_item")
 }
 
-private fun registerEngineTypeMethodForImage() {
+private fun registerEngineTypeMethodForImage(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_IMAGE to "_get_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_IMAGE to "_set_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_IMAGE to "blend_rect")
@@ -6038,7 +6039,7 @@ private fun registerEngineTypeMethodForImage() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_IMAGE to "unlock")
 }
 
-private fun registerEngineTypeMethodForImageTexture() {
+private fun registerEngineTypeMethodForImageTexture(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_IMAGETEXTURE to "_reload_hook")
   TypeManager.engineTypeMethod.add(ENGINECLASS_IMAGETEXTURE to "create")
   TypeManager.engineTypeMethod.add(ENGINECLASS_IMAGETEXTURE to "create_from_image")
@@ -6052,7 +6053,7 @@ private fun registerEngineTypeMethodForImageTexture() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_IMAGETEXTURE to "set_storage")
 }
 
-private fun registerEngineTypeMethodForImmediateGeometry() {
+private fun registerEngineTypeMethodForImmediateGeometry(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_IMMEDIATEGEOMETRY to "add_sphere")
   TypeManager.engineTypeMethod.add(ENGINECLASS_IMMEDIATEGEOMETRY to "add_vertex")
   TypeManager.engineTypeMethod.add(ENGINECLASS_IMMEDIATEGEOMETRY to "begin")
@@ -6065,7 +6066,7 @@ private fun registerEngineTypeMethodForImmediateGeometry() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_IMMEDIATEGEOMETRY to "set_uv2")
 }
 
-private fun registerEngineTypeMethodForInput() {
+private fun registerEngineTypeMethodForInput(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUT to "action_press")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUT to "action_release")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUT to "add_joy_mapping")
@@ -6108,7 +6109,7 @@ private fun registerEngineTypeMethodForInput() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUT to "warp_mouse_position")
 }
 
-private fun registerEngineTypeMethodForInputEvent() {
+private fun registerEngineTypeMethodForInputEvent(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENT to "accumulate")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENT to "as_text")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENT to "get_action_strength")
@@ -6124,7 +6125,7 @@ private fun registerEngineTypeMethodForInputEvent() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENT to "set_device")
 }
 
-private fun registerEngineTypeMethodForInputEventAction() {
+private fun registerEngineTypeMethodForInputEventAction(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTACTION to "get_action")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTACTION to "set_action")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTACTION to "set_pressed")
@@ -6132,12 +6133,12 @@ private fun registerEngineTypeMethodForInputEventAction() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTACTION to "set_strength")
 }
 
-private fun registerEngineTypeMethodForInputEventGesture() {
+private fun registerEngineTypeMethodForInputEventGesture(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTGESTURE to "get_position")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTGESTURE to "set_position")
 }
 
-private fun registerEngineTypeMethodForInputEventJoypadButton() {
+private fun registerEngineTypeMethodForInputEventJoypadButton(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTJOYPADBUTTON to "get_button_index")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTJOYPADBUTTON to "set_button_index")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTJOYPADBUTTON to "set_pressed")
@@ -6145,14 +6146,14 @@ private fun registerEngineTypeMethodForInputEventJoypadButton() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTJOYPADBUTTON to "set_pressure")
 }
 
-private fun registerEngineTypeMethodForInputEventJoypadMotion() {
+private fun registerEngineTypeMethodForInputEventJoypadMotion(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTJOYPADMOTION to "get_axis")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTJOYPADMOTION to "set_axis")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTJOYPADMOTION to "get_axis_value")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTJOYPADMOTION to "set_axis_value")
 }
 
-private fun registerEngineTypeMethodForInputEventKey() {
+private fun registerEngineTypeMethodForInputEventKey(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTKEY to "get_scancode_with_modifiers")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTKEY to "set_echo")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTKEY to "set_pressed")
@@ -6162,7 +6163,7 @@ private fun registerEngineTypeMethodForInputEventKey() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTKEY to "set_unicode")
 }
 
-private fun registerEngineTypeMethodForInputEventMIDI() {
+private fun registerEngineTypeMethodForInputEventMIDI(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTMIDI to "get_channel")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTMIDI to "set_channel")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTMIDI to "get_controller_number")
@@ -6181,12 +6182,12 @@ private fun registerEngineTypeMethodForInputEventMIDI() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTMIDI to "set_velocity")
 }
 
-private fun registerEngineTypeMethodForInputEventMagnifyGesture() {
+private fun registerEngineTypeMethodForInputEventMagnifyGesture(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTMAGNIFYGESTURE to "get_factor")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTMAGNIFYGESTURE to "set_factor")
 }
 
-private fun registerEngineTypeMethodForInputEventMouse() {
+private fun registerEngineTypeMethodForInputEventMouse(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTMOUSE to "get_button_mask")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTMOUSE to "set_button_mask")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTMOUSE to "get_global_position")
@@ -6195,7 +6196,7 @@ private fun registerEngineTypeMethodForInputEventMouse() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTMOUSE to "set_position")
 }
 
-private fun registerEngineTypeMethodForInputEventMouseButton() {
+private fun registerEngineTypeMethodForInputEventMouseButton(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTMOUSEBUTTON to "get_button_index")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTMOUSEBUTTON to "set_button_index")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTMOUSEBUTTON to "is_doubleclick")
@@ -6205,7 +6206,7 @@ private fun registerEngineTypeMethodForInputEventMouseButton() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTMOUSEBUTTON to "set_pressed")
 }
 
-private fun registerEngineTypeMethodForInputEventMouseMotion() {
+private fun registerEngineTypeMethodForInputEventMouseMotion(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTMOUSEMOTION to "get_pressure")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTMOUSEMOTION to "set_pressure")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTMOUSEMOTION to "get_relative")
@@ -6216,12 +6217,12 @@ private fun registerEngineTypeMethodForInputEventMouseMotion() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTMOUSEMOTION to "set_tilt")
 }
 
-private fun registerEngineTypeMethodForInputEventPanGesture() {
+private fun registerEngineTypeMethodForInputEventPanGesture(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTPANGESTURE to "get_delta")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTPANGESTURE to "set_delta")
 }
 
-private fun registerEngineTypeMethodForInputEventScreenDrag() {
+private fun registerEngineTypeMethodForInputEventScreenDrag(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTSCREENDRAG to "get_index")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTSCREENDRAG to "set_index")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTSCREENDRAG to "get_position")
@@ -6232,7 +6233,7 @@ private fun registerEngineTypeMethodForInputEventScreenDrag() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTSCREENDRAG to "set_speed")
 }
 
-private fun registerEngineTypeMethodForInputEventScreenTouch() {
+private fun registerEngineTypeMethodForInputEventScreenTouch(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTSCREENTOUCH to "get_index")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTSCREENTOUCH to "set_index")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTSCREENTOUCH to "get_position")
@@ -6240,7 +6241,7 @@ private fun registerEngineTypeMethodForInputEventScreenTouch() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTSCREENTOUCH to "set_pressed")
 }
 
-private fun registerEngineTypeMethodForInputEventWithModifiers() {
+private fun registerEngineTypeMethodForInputEventWithModifiers(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTWITHMODIFIERS to "get_alt")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTWITHMODIFIERS to "set_alt")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTWITHMODIFIERS to "get_command")
@@ -6253,7 +6254,7 @@ private fun registerEngineTypeMethodForInputEventWithModifiers() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTEVENTWITHMODIFIERS to "set_shift")
 }
 
-private fun registerEngineTypeMethodForInputMap() {
+private fun registerEngineTypeMethodForInputMap(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTMAP to "action_add_event")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTMAP to "action_erase_event")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTMAP to "action_erase_events")
@@ -6268,14 +6269,14 @@ private fun registerEngineTypeMethodForInputMap() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUTMAP to "load_from_globals")
 }
 
-private fun registerEngineTypeMethodForInstancePlaceholder() {
+private fun registerEngineTypeMethodForInstancePlaceholder(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INSTANCEPLACEHOLDER to "create_instance")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INSTANCEPLACEHOLDER to "get_instance_path")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INSTANCEPLACEHOLDER to "get_stored_values")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INSTANCEPLACEHOLDER to "replace_by_instance")
 }
 
-private fun registerEngineTypeMethodForInterpolatedCamera() {
+private fun registerEngineTypeMethodForInterpolatedCamera(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INTERPOLATEDCAMERA to "is_interpolation_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INTERPOLATEDCAMERA to "set_interpolation_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INTERPOLATEDCAMERA to "get_speed")
@@ -6284,7 +6285,7 @@ private fun registerEngineTypeMethodForInterpolatedCamera() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INTERPOLATEDCAMERA to "set_target_path")
 }
 
-private fun registerEngineTypeMethodForItemList() {
+private fun registerEngineTypeMethodForItemList(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ITEMLIST to "_get_items")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ITEMLIST to "_gui_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ITEMLIST to "_scroll_changed")
@@ -6353,10 +6354,10 @@ private fun registerEngineTypeMethodForItemList() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ITEMLIST to "set_select_mode")
 }
 
-private fun registerEngineTypeMethodForJNISingleton() {
+private fun registerEngineTypeMethodForJNISingleton(): Unit {
 }
 
-private fun registerEngineTypeMethodForJSONParseResult() {
+private fun registerEngineTypeMethodForJSONParseResult(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_JSONPARSERESULT to "get_error")
   TypeManager.engineTypeMethod.add(ENGINECLASS_JSONPARSERESULT to "set_error")
   TypeManager.engineTypeMethod.add(ENGINECLASS_JSONPARSERESULT to "get_error_line")
@@ -6367,7 +6368,7 @@ private fun registerEngineTypeMethodForJSONParseResult() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_JSONPARSERESULT to "set_result")
 }
 
-private fun registerEngineTypeMethodForJSONRPC() {
+private fun registerEngineTypeMethodForJSONRPC(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_JSONRPC to "make_notification")
   TypeManager.engineTypeMethod.add(ENGINECLASS_JSONRPC to "make_request")
   TypeManager.engineTypeMethod.add(ENGINECLASS_JSONRPC to "make_response")
@@ -6377,18 +6378,18 @@ private fun registerEngineTypeMethodForJSONRPC() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_JSONRPC to "set_scope")
 }
 
-private fun registerEngineTypeMethodForJavaClass() {
+private fun registerEngineTypeMethodForJavaClass(): Unit {
 }
 
-private fun registerEngineTypeMethodForJavaClassWrapper() {
+private fun registerEngineTypeMethodForJavaClassWrapper(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_JAVACLASSWRAPPER to "wrap")
 }
 
-private fun registerEngineTypeMethodForJavaScript() {
+private fun registerEngineTypeMethodForJavaScript(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_JAVASCRIPT to "eval")
 }
 
-private fun registerEngineTypeMethodForJoint() {
+private fun registerEngineTypeMethodForJoint(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_JOINT to "_body_exit_tree")
   TypeManager.engineTypeMethod.add(ENGINECLASS_JOINT to "get_exclude_nodes_from_collision")
   TypeManager.engineTypeMethod.add(ENGINECLASS_JOINT to "set_exclude_nodes_from_collision")
@@ -6400,7 +6401,7 @@ private fun registerEngineTypeMethodForJoint() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_JOINT to "set_solver_priority")
 }
 
-private fun registerEngineTypeMethodForJoint2D() {
+private fun registerEngineTypeMethodForJoint2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_JOINT2D to "_body_exit_tree")
   TypeManager.engineTypeMethod.add(ENGINECLASS_JOINT2D to "get_bias")
   TypeManager.engineTypeMethod.add(ENGINECLASS_JOINT2D to "set_bias")
@@ -6412,7 +6413,7 @@ private fun registerEngineTypeMethodForJoint2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_JOINT2D to "set_node_b")
 }
 
-private fun registerEngineTypeMethodForKinematicBody() {
+private fun registerEngineTypeMethodForKinematicBody(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICBODY to "get_floor_normal")
   TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICBODY to "get_floor_velocity")
   TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICBODY to "get_slide_collision")
@@ -6434,7 +6435,7 @@ private fun registerEngineTypeMethodForKinematicBody() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICBODY to "set_axis_lock")
 }
 
-private fun registerEngineTypeMethodForKinematicBody2D() {
+private fun registerEngineTypeMethodForKinematicBody2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICBODY2D to "_direct_state_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICBODY2D to "get_floor_normal")
   TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICBODY2D to "get_floor_velocity")
@@ -6453,7 +6454,7 @@ private fun registerEngineTypeMethodForKinematicBody2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICBODY2D to "set_sync_to_physics")
 }
 
-private fun registerEngineTypeMethodForKinematicCollision() {
+private fun registerEngineTypeMethodForKinematicCollision(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICCOLLISION to "get_collider")
   TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICCOLLISION to "get_collider_id")
   TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICCOLLISION to "get_collider_metadata")
@@ -6467,7 +6468,7 @@ private fun registerEngineTypeMethodForKinematicCollision() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICCOLLISION to "get_travel")
 }
 
-private fun registerEngineTypeMethodForKinematicCollision2D() {
+private fun registerEngineTypeMethodForKinematicCollision2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICCOLLISION2D to "get_collider")
   TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICCOLLISION2D to "get_collider_id")
   TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICCOLLISION2D to "get_collider_metadata")
@@ -6481,11 +6482,11 @@ private fun registerEngineTypeMethodForKinematicCollision2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICCOLLISION2D to "get_travel")
 }
 
-private fun registerEngineTypeMethodForKotlinScript() {
+private fun registerEngineTypeMethodForKotlinScript(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_KOTLINSCRIPT to "new")
 }
 
-private fun registerEngineTypeMethodForLabel() {
+private fun registerEngineTypeMethodForLabel(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "get_line_count")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "get_line_height")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "get_total_character_count")
@@ -6512,7 +6513,7 @@ private fun registerEngineTypeMethodForLabel() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "set_visible_characters")
 }
 
-private fun registerEngineTypeMethodForLargeTexture() {
+private fun registerEngineTypeMethodForLargeTexture(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_LARGETEXTURE to "_get_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LARGETEXTURE to "_set_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LARGETEXTURE to "add_piece")
@@ -6525,7 +6526,7 @@ private fun registerEngineTypeMethodForLargeTexture() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_LARGETEXTURE to "set_size")
 }
 
-private fun registerEngineTypeMethodForLight() {
+private fun registerEngineTypeMethodForLight(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT to "is_editor_only")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT to "set_editor_only")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT to "get_bake_mode")
@@ -6554,7 +6555,7 @@ private fun registerEngineTypeMethodForLight() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT to "set_shadow_reverse_cull_face")
 }
 
-private fun registerEngineTypeMethodForLight2D() {
+private fun registerEngineTypeMethodForLight2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT2D to "get_color")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT2D to "set_color")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT2D to "is_editor_only")
@@ -6599,7 +6600,7 @@ private fun registerEngineTypeMethodForLight2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT2D to "set_texture_scale")
 }
 
-private fun registerEngineTypeMethodForLightOccluder2D() {
+private fun registerEngineTypeMethodForLightOccluder2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTOCCLUDER2D to "_poly_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTOCCLUDER2D to "get_occluder_light_mask")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTOCCLUDER2D to "set_occluder_light_mask")
@@ -6607,7 +6608,7 @@ private fun registerEngineTypeMethodForLightOccluder2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHTOCCLUDER2D to "set_occluder_polygon")
 }
 
-private fun registerEngineTypeMethodForLine2D() {
+private fun registerEngineTypeMethodForLine2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_LINE2D to "_curve_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LINE2D to "_gradient_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LINE2D to "add_point")
@@ -6644,7 +6645,7 @@ private fun registerEngineTypeMethodForLine2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_LINE2D to "set_curve")
 }
 
-private fun registerEngineTypeMethodForLineEdit() {
+private fun registerEngineTypeMethodForLineEdit(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_LINEEDIT to "_editor_settings_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LINEEDIT to "_gui_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LINEEDIT to "_text_changed")
@@ -6697,28 +6698,28 @@ private fun registerEngineTypeMethodForLineEdit() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_LINEEDIT to "set_virtual_keyboard_enabled")
 }
 
-private fun registerEngineTypeMethodForLineShape2D() {
+private fun registerEngineTypeMethodForLineShape2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_LINESHAPE2D to "get_d")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LINESHAPE2D to "set_d")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LINESHAPE2D to "get_normal")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LINESHAPE2D to "set_normal")
 }
 
-private fun registerEngineTypeMethodForLinkButton() {
+private fun registerEngineTypeMethodForLinkButton(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_LINKBUTTON to "get_text")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LINKBUTTON to "set_text")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LINKBUTTON to "get_underline_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LINKBUTTON to "set_underline_mode")
 }
 
-private fun registerEngineTypeMethodForListener() {
+private fun registerEngineTypeMethodForListener(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_LISTENER to "clear_current")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LISTENER to "get_listener_transform")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LISTENER to "is_current")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LISTENER to "make_current")
 }
 
-private fun registerEngineTypeMethodForMainLoop() {
+private fun registerEngineTypeMethodForMainLoop(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MAINLOOP to "_drop_files")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MAINLOOP to "_finalize")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MAINLOOP to "_global_menu_action")
@@ -6735,17 +6736,17 @@ private fun registerEngineTypeMethodForMainLoop() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MAINLOOP to "iteration")
 }
 
-private fun registerEngineTypeMethodForMarginContainer() {
+private fun registerEngineTypeMethodForMarginContainer(): Unit {
 }
 
-private fun registerEngineTypeMethodForMaterial() {
+private fun registerEngineTypeMethodForMaterial(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MATERIAL to "get_next_pass")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MATERIAL to "set_next_pass")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MATERIAL to "get_render_priority")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MATERIAL to "set_render_priority")
 }
 
-private fun registerEngineTypeMethodForMenuButton() {
+private fun registerEngineTypeMethodForMenuButton(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MENUBUTTON to "_get_items")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MENUBUTTON to "_set_items")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MENUBUTTON to "_unhandled_key_input")
@@ -6755,7 +6756,7 @@ private fun registerEngineTypeMethodForMenuButton() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MENUBUTTON to "set_switch_on_hover")
 }
 
-private fun registerEngineTypeMethodForMesh() {
+private fun registerEngineTypeMethodForMesh(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESH to "create_convex_shape")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESH to "create_outline")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESH to "create_trimesh_shape")
@@ -6771,7 +6772,7 @@ private fun registerEngineTypeMethodForMesh() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESH to "set_lightmap_size_hint")
 }
 
-private fun registerEngineTypeMethodForMeshDataTool() {
+private fun registerEngineTypeMethodForMeshDataTool(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESHDATATOOL to "clear")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESHDATATOOL to "commit_to_surface")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESHDATATOOL to "create_from_surface")
@@ -6812,7 +6813,7 @@ private fun registerEngineTypeMethodForMeshDataTool() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESHDATATOOL to "set_vertex_weights")
 }
 
-private fun registerEngineTypeMethodForMeshInstance() {
+private fun registerEngineTypeMethodForMeshInstance(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESHINSTANCE to "_mesh_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESHINSTANCE to "_update_skinning")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESHINSTANCE to "create_convex_collision")
@@ -6834,7 +6835,7 @@ private fun registerEngineTypeMethodForMeshInstance() {
       "set_software_skinning_transform_normals")
 }
 
-private fun registerEngineTypeMethodForMeshInstance2D() {
+private fun registerEngineTypeMethodForMeshInstance2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESHINSTANCE2D to "get_mesh")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESHINSTANCE2D to "set_mesh")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESHINSTANCE2D to "get_normal_map")
@@ -6843,7 +6844,7 @@ private fun registerEngineTypeMethodForMeshInstance2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESHINSTANCE2D to "set_texture")
 }
 
-private fun registerEngineTypeMethodForMeshLibrary() {
+private fun registerEngineTypeMethodForMeshLibrary(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESHLIBRARY to "clear")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESHLIBRARY to "create_item")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESHLIBRARY to "find_item_by_name")
@@ -6864,7 +6865,7 @@ private fun registerEngineTypeMethodForMeshLibrary() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESHLIBRARY to "set_item_shapes")
 }
 
-private fun registerEngineTypeMethodForMeshTexture() {
+private fun registerEngineTypeMethodForMeshTexture(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESHTEXTURE to "get_base_texture")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESHTEXTURE to "set_base_texture")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESHTEXTURE to "get_image_size")
@@ -6873,7 +6874,7 @@ private fun registerEngineTypeMethodForMeshTexture() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESHTEXTURE to "set_mesh")
 }
 
-private fun registerEngineTypeMethodForMobileVRInterface() {
+private fun registerEngineTypeMethodForMobileVRInterface(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MOBILEVRINTERFACE to "get_display_to_lens")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MOBILEVRINTERFACE to "set_display_to_lens")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MOBILEVRINTERFACE to "get_display_width")
@@ -6890,7 +6891,7 @@ private fun registerEngineTypeMethodForMobileVRInterface() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MOBILEVRINTERFACE to "set_oversample")
 }
 
-private fun registerEngineTypeMethodForMultiMesh() {
+private fun registerEngineTypeMethodForMultiMesh(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIMESH to "_get_color_array")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIMESH to "_get_custom_data_array")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIMESH to "_get_transform_2d_array")
@@ -6923,12 +6924,12 @@ private fun registerEngineTypeMethodForMultiMesh() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIMESH to "set_visible_instance_count")
 }
 
-private fun registerEngineTypeMethodForMultiMeshInstance() {
+private fun registerEngineTypeMethodForMultiMeshInstance(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIMESHINSTANCE to "get_multimesh")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIMESHINSTANCE to "set_multimesh")
 }
 
-private fun registerEngineTypeMethodForMultiMeshInstance2D() {
+private fun registerEngineTypeMethodForMultiMeshInstance2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIMESHINSTANCE2D to "get_multimesh")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIMESHINSTANCE2D to "set_multimesh")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIMESHINSTANCE2D to "get_normal_map")
@@ -6937,7 +6938,7 @@ private fun registerEngineTypeMethodForMultiMeshInstance2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIMESHINSTANCE2D to "set_texture")
 }
 
-private fun registerEngineTypeMethodForMultiplayerAPI() {
+private fun registerEngineTypeMethodForMultiplayerAPI(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIPLAYERAPI to "_add_peer")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIPLAYERAPI to "_connected_to_server")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIPLAYERAPI to "_connection_failed")
@@ -6963,10 +6964,10 @@ private fun registerEngineTypeMethodForMultiplayerAPI() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_MULTIPLAYERAPI to "set_root_node")
 }
 
-private fun registerEngineTypeMethodForMultiplayerPeerGDNative() {
+private fun registerEngineTypeMethodForMultiplayerPeerGDNative(): Unit {
 }
 
-private fun registerEngineTypeMethodForNativeScript() {
+private fun registerEngineTypeMethodForNativeScript(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NATIVESCRIPT to "get_class_documentation")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NATIVESCRIPT to "get_method_documentation")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NATIVESCRIPT to "get_property_documentation")
@@ -6982,7 +6983,7 @@ private fun registerEngineTypeMethodForNativeScript() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NATIVESCRIPT to "set_script_class_name")
 }
 
-private fun registerEngineTypeMethodForNavigation() {
+private fun registerEngineTypeMethodForNavigation(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION to "get_closest_point")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION to "get_closest_point_normal")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION to "get_closest_point_owner")
@@ -6995,7 +6996,7 @@ private fun registerEngineTypeMethodForNavigation() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION to "set_up_vector")
 }
 
-private fun registerEngineTypeMethodForNavigation2D() {
+private fun registerEngineTypeMethodForNavigation2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2D to "get_closest_point")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2D to "get_closest_point_owner")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2D to "get_simple_path")
@@ -7004,7 +7005,7 @@ private fun registerEngineTypeMethodForNavigation2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2D to "navpoly_set_transform")
 }
 
-private fun registerEngineTypeMethodForNavigationMesh() {
+private fun registerEngineTypeMethodForNavigationMesh(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONMESH to "_get_polygons")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONMESH to "_set_polygons")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONMESH to "add_polygon")
@@ -7062,14 +7063,14 @@ private fun registerEngineTypeMethodForNavigationMesh() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONMESH to "set_vertices")
 }
 
-private fun registerEngineTypeMethodForNavigationMeshInstance() {
+private fun registerEngineTypeMethodForNavigationMeshInstance(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONMESHINSTANCE to "is_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONMESHINSTANCE to "set_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONMESHINSTANCE to "get_navigation_mesh")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONMESHINSTANCE to "set_navigation_mesh")
 }
 
-private fun registerEngineTypeMethodForNavigationPolygon() {
+private fun registerEngineTypeMethodForNavigationPolygon(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONPOLYGON to "_get_outlines")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONPOLYGON to "_get_polygons")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONPOLYGON to "_set_outlines")
@@ -7090,7 +7091,7 @@ private fun registerEngineTypeMethodForNavigationPolygon() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONPOLYGON to "set_vertices")
 }
 
-private fun registerEngineTypeMethodForNavigationPolygonInstance() {
+private fun registerEngineTypeMethodForNavigationPolygonInstance(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONPOLYGONINSTANCE to "_navpoly_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONPOLYGONINSTANCE to "is_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONPOLYGONINSTANCE to "set_enabled")
@@ -7100,7 +7101,7 @@ private fun registerEngineTypeMethodForNavigationPolygonInstance() {
       "set_navigation_polygon")
 }
 
-private fun registerEngineTypeMethodForNetworkedMultiplayerENet() {
+private fun registerEngineTypeMethodForNetworkedMultiplayerENet(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NETWORKEDMULTIPLAYERENET to "close_connection")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NETWORKEDMULTIPLAYERENET to "create_client")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NETWORKEDMULTIPLAYERENET to "create_server")
@@ -7133,7 +7134,7 @@ private fun registerEngineTypeMethodForNetworkedMultiplayerENet() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NETWORKEDMULTIPLAYERENET to "set_dtls_enabled")
 }
 
-private fun registerEngineTypeMethodForNetworkedMultiplayerPeer() {
+private fun registerEngineTypeMethodForNetworkedMultiplayerPeer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NETWORKEDMULTIPLAYERPEER to "get_connection_status")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NETWORKEDMULTIPLAYERPEER to "get_packet_peer")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NETWORKEDMULTIPLAYERPEER to "get_unique_id")
@@ -7147,7 +7148,7 @@ private fun registerEngineTypeMethodForNetworkedMultiplayerPeer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NETWORKEDMULTIPLAYERPEER to "set_transfer_mode")
 }
 
-private fun registerEngineTypeMethodForNinePatchRect() {
+private fun registerEngineTypeMethodForNinePatchRect(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NINEPATCHRECT to "get_h_axis_stretch_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NINEPATCHRECT to "set_h_axis_stretch_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NINEPATCHRECT to "get_v_axis_stretch_mode")
@@ -7168,7 +7169,7 @@ private fun registerEngineTypeMethodForNinePatchRect() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NINEPATCHRECT to "set_texture")
 }
 
-private fun registerEngineTypeMethodForNode() {
+private fun registerEngineTypeMethodForNode(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "_enter_tree")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "_exit_tree")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "_get_configuration_warning")
@@ -7271,7 +7272,7 @@ private fun registerEngineTypeMethodForNode() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "set_process_priority")
 }
 
-private fun registerEngineTypeMethodForNode2D() {
+private fun registerEngineTypeMethodForNode2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE2D to "apply_scale")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE2D to "get_angle_to")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE2D to "get_relative_transform_to_parent")
@@ -7307,7 +7308,7 @@ private fun registerEngineTypeMethodForNode2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE2D to "set_z_index")
 }
 
-private fun registerEngineTypeMethodForNoiseTexture() {
+private fun registerEngineTypeMethodForNoiseTexture(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NOISETEXTURE to "_generate_texture")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NOISETEXTURE to "_queue_update")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NOISETEXTURE to "_thread_done")
@@ -7324,7 +7325,7 @@ private fun registerEngineTypeMethodForNoiseTexture() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NOISETEXTURE to "set_width")
 }
 
-private fun registerEngineTypeMethodForObject() {
+private fun registerEngineTypeMethodForObject(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_OBJECT to "_get")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OBJECT to "_get_property_list")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OBJECT to "_init")
@@ -7373,7 +7374,7 @@ private fun registerEngineTypeMethodForObject() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_OBJECT to "tr")
 }
 
-private fun registerEngineTypeMethodForOccluderPolygon2D() {
+private fun registerEngineTypeMethodForOccluderPolygon2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_OCCLUDERPOLYGON2D to "is_closed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OCCLUDERPOLYGON2D to "set_closed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OCCLUDERPOLYGON2D to "get_cull_mode")
@@ -7382,14 +7383,14 @@ private fun registerEngineTypeMethodForOccluderPolygon2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_OCCLUDERPOLYGON2D to "set_polygon")
 }
 
-private fun registerEngineTypeMethodForOmniLight() {
+private fun registerEngineTypeMethodForOmniLight(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_OMNILIGHT to "get_shadow_detail")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OMNILIGHT to "set_shadow_detail")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OMNILIGHT to "get_shadow_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OMNILIGHT to "set_shadow_mode")
 }
 
-private fun registerEngineTypeMethodForOpenSimplexNoise() {
+private fun registerEngineTypeMethodForOpenSimplexNoise(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_OPENSIMPLEXNOISE to "get_image")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OPENSIMPLEXNOISE to "get_noise_1d")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OPENSIMPLEXNOISE to "get_noise_2d")
@@ -7410,7 +7411,7 @@ private fun registerEngineTypeMethodForOpenSimplexNoise() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_OPENSIMPLEXNOISE to "set_seed")
 }
 
-private fun registerEngineTypeMethodForOptionButton() {
+private fun registerEngineTypeMethodForOptionButton(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_OPTIONBUTTON to "_focused")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OPTIONBUTTON to "_get_items")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OPTIONBUTTON to "_select_int")
@@ -7440,17 +7441,17 @@ private fun registerEngineTypeMethodForOptionButton() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_OPTIONBUTTON to "get_selected")
 }
 
-private fun registerEngineTypeMethodForPCKPacker() {
+private fun registerEngineTypeMethodForPCKPacker(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PCKPACKER to "add_file")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PCKPACKER to "flush")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PCKPACKER to "pck_start")
 }
 
-private fun registerEngineTypeMethodForPHashTranslation() {
+private fun registerEngineTypeMethodForPHashTranslation(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHASHTRANSLATION to "generate")
 }
 
-private fun registerEngineTypeMethodForPackedDataContainer() {
+private fun registerEngineTypeMethodForPackedDataContainer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKEDDATACONTAINER to "_get_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKEDDATACONTAINER to "_iter_get")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKEDDATACONTAINER to "_iter_init")
@@ -7460,7 +7461,7 @@ private fun registerEngineTypeMethodForPackedDataContainer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKEDDATACONTAINER to "size")
 }
 
-private fun registerEngineTypeMethodForPackedDataContainerRef() {
+private fun registerEngineTypeMethodForPackedDataContainerRef(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKEDDATACONTAINERREF to "_is_dictionary")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKEDDATACONTAINERREF to "_iter_get")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKEDDATACONTAINERREF to "_iter_init")
@@ -7468,7 +7469,7 @@ private fun registerEngineTypeMethodForPackedDataContainerRef() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKEDDATACONTAINERREF to "size")
 }
 
-private fun registerEngineTypeMethodForPackedScene() {
+private fun registerEngineTypeMethodForPackedScene(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKEDSCENE to "_get_bundled_scene")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKEDSCENE to "_set_bundled_scene")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKEDSCENE to "can_instance")
@@ -7477,7 +7478,7 @@ private fun registerEngineTypeMethodForPackedScene() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKEDSCENE to "pack")
 }
 
-private fun registerEngineTypeMethodForPacketPeer() {
+private fun registerEngineTypeMethodForPacketPeer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKETPEER to "get_available_packet_count")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKETPEER to "get_packet")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKETPEER to "get_packet_error")
@@ -7490,17 +7491,17 @@ private fun registerEngineTypeMethodForPacketPeer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKETPEER to "set_encode_buffer_max_size")
 }
 
-private fun registerEngineTypeMethodForPacketPeerDTLS() {
+private fun registerEngineTypeMethodForPacketPeerDTLS(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKETPEERDTLS to "connect_to_peer")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKETPEERDTLS to "disconnect_from_peer")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKETPEERDTLS to "get_status")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKETPEERDTLS to "poll")
 }
 
-private fun registerEngineTypeMethodForPacketPeerGDNative() {
+private fun registerEngineTypeMethodForPacketPeerGDNative(): Unit {
 }
 
-private fun registerEngineTypeMethodForPacketPeerStream() {
+private fun registerEngineTypeMethodForPacketPeerStream(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKETPEERSTREAM to "get_input_buffer_max_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKETPEERSTREAM to "set_input_buffer_max_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKETPEERSTREAM to "get_output_buffer_max_size")
@@ -7509,7 +7510,7 @@ private fun registerEngineTypeMethodForPacketPeerStream() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKETPEERSTREAM to "set_stream_peer")
 }
 
-private fun registerEngineTypeMethodForPacketPeerUDP() {
+private fun registerEngineTypeMethodForPacketPeerUDP(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKETPEERUDP to "close")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKETPEERUDP to "connect_to_host")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKETPEERUDP to "get_packet_ip")
@@ -7524,18 +7525,18 @@ private fun registerEngineTypeMethodForPacketPeerUDP() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PACKETPEERUDP to "wait")
 }
 
-private fun registerEngineTypeMethodForPanel() {
+private fun registerEngineTypeMethodForPanel(): Unit {
 }
 
-private fun registerEngineTypeMethodForPanelContainer() {
+private fun registerEngineTypeMethodForPanelContainer(): Unit {
 }
 
-private fun registerEngineTypeMethodForPanoramaSky() {
+private fun registerEngineTypeMethodForPanoramaSky(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PANORAMASKY to "get_panorama")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PANORAMASKY to "set_panorama")
 }
 
-private fun registerEngineTypeMethodForParallaxBackground() {
+private fun registerEngineTypeMethodForParallaxBackground(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARALLAXBACKGROUND to "_camera_moved")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARALLAXBACKGROUND to "get_scroll_base_offset")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARALLAXBACKGROUND to "set_scroll_base_offset")
@@ -7551,7 +7552,7 @@ private fun registerEngineTypeMethodForParallaxBackground() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARALLAXBACKGROUND to "set_scroll_offset")
 }
 
-private fun registerEngineTypeMethodForParallaxLayer() {
+private fun registerEngineTypeMethodForParallaxLayer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARALLAXLAYER to "get_mirroring")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARALLAXLAYER to "set_mirroring")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARALLAXLAYER to "get_motion_offset")
@@ -7560,7 +7561,7 @@ private fun registerEngineTypeMethodForParallaxLayer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARALLAXLAYER to "set_motion_scale")
 }
 
-private fun registerEngineTypeMethodForParticles() {
+private fun registerEngineTypeMethodForParticles(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARTICLES to "capture_aabb")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARTICLES to "restart")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARTICLES to "get_amount")
@@ -7603,7 +7604,7 @@ private fun registerEngineTypeMethodForParticles() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARTICLES to "set_visibility_aabb")
 }
 
-private fun registerEngineTypeMethodForParticles2D() {
+private fun registerEngineTypeMethodForParticles2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARTICLES2D to "capture_rect")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARTICLES2D to "restart")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARTICLES2D to "get_amount")
@@ -7640,7 +7641,7 @@ private fun registerEngineTypeMethodForParticles2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARTICLES2D to "set_visibility_rect")
 }
 
-private fun registerEngineTypeMethodForParticlesMaterial() {
+private fun registerEngineTypeMethodForParticlesMaterial(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARTICLESMATERIAL to "get_param")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARTICLESMATERIAL to "set_param")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARTICLESMATERIAL to "get_param_texture")
@@ -7753,19 +7754,19 @@ private fun registerEngineTypeMethodForParticlesMaterial() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARTICLESMATERIAL to "set_trail_size_modifier")
 }
 
-private fun registerEngineTypeMethodForPath() {
+private fun registerEngineTypeMethodForPath(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PATH to "_curve_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PATH to "get_curve")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PATH to "set_curve")
 }
 
-private fun registerEngineTypeMethodForPath2D() {
+private fun registerEngineTypeMethodForPath2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PATH2D to "_curve_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PATH2D to "get_curve")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PATH2D to "set_curve")
 }
 
-private fun registerEngineTypeMethodForPathFollow() {
+private fun registerEngineTypeMethodForPathFollow(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PATHFOLLOW to "get_cubic_interpolation")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PATHFOLLOW to "set_cubic_interpolation")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PATHFOLLOW to "get_h_offset")
@@ -7782,7 +7783,7 @@ private fun registerEngineTypeMethodForPathFollow() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PATHFOLLOW to "set_v_offset")
 }
 
-private fun registerEngineTypeMethodForPathFollow2D() {
+private fun registerEngineTypeMethodForPathFollow2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PATHFOLLOW2D to "get_cubic_interpolation")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PATHFOLLOW2D to "set_cubic_interpolation")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PATHFOLLOW2D to "get_h_offset")
@@ -7801,11 +7802,11 @@ private fun registerEngineTypeMethodForPathFollow2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PATHFOLLOW2D to "set_v_offset")
 }
 
-private fun registerEngineTypeMethodForPerformance() {
+private fun registerEngineTypeMethodForPerformance(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PERFORMANCE to "get_monitor")
 }
 
-private fun registerEngineTypeMethodForPhysicalBone() {
+private fun registerEngineTypeMethodForPhysicalBone(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE to "_direct_state_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE to "apply_central_impulse")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE to "apply_impulse")
@@ -7831,7 +7832,7 @@ private fun registerEngineTypeMethodForPhysicalBone() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE to "set_weight")
 }
 
-private fun registerEngineTypeMethodForPhysics2DDirectBodyState() {
+private fun registerEngineTypeMethodForPhysics2DDirectBodyState(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DDIRECTBODYSTATE to "add_central_force")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DDIRECTBODYSTATE to "add_force")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DDIRECTBODYSTATE to "add_torque")
@@ -7876,10 +7877,10 @@ private fun registerEngineTypeMethodForPhysics2DDirectBodyState() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DDIRECTBODYSTATE to "set_transform")
 }
 
-private fun registerEngineTypeMethodForPhysics2DDirectBodyStateSW() {
+private fun registerEngineTypeMethodForPhysics2DDirectBodyStateSW(): Unit {
 }
 
-private fun registerEngineTypeMethodForPhysics2DDirectSpaceState() {
+private fun registerEngineTypeMethodForPhysics2DDirectSpaceState(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DDIRECTSPACESTATE to "cast_motion")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DDIRECTSPACESTATE to "collide_shape")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DDIRECTSPACESTATE to "get_rest_info")
@@ -7890,7 +7891,7 @@ private fun registerEngineTypeMethodForPhysics2DDirectSpaceState() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DDIRECTSPACESTATE to "intersect_shape")
 }
 
-private fun registerEngineTypeMethodForPhysics2DServer() {
+private fun registerEngineTypeMethodForPhysics2DServer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DSERVER to "area_add_shape")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DSERVER to "area_attach_canvas_instance_id")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DSERVER to "area_attach_object_instance_id")
@@ -8000,7 +8001,7 @@ private fun registerEngineTypeMethodForPhysics2DServer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DSERVER to "space_set_param")
 }
 
-private fun registerEngineTypeMethodForPhysics2DShapeQueryParameters() {
+private fun registerEngineTypeMethodForPhysics2DShapeQueryParameters(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DSHAPEQUERYPARAMETERS to "set_shape")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DSHAPEQUERYPARAMETERS to
       "is_collide_with_areas_enabled")
@@ -8026,7 +8027,7 @@ private fun registerEngineTypeMethodForPhysics2DShapeQueryParameters() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DSHAPEQUERYPARAMETERS to "set_transform")
 }
 
-private fun registerEngineTypeMethodForPhysics2DShapeQueryResult() {
+private fun registerEngineTypeMethodForPhysics2DShapeQueryResult(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DSHAPEQUERYRESULT to "get_result_count")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DSHAPEQUERYRESULT to "get_result_object")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DSHAPEQUERYRESULT to "get_result_object_id")
@@ -8035,7 +8036,7 @@ private fun registerEngineTypeMethodForPhysics2DShapeQueryResult() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DSHAPEQUERYRESULT to "get_result_rid")
 }
 
-private fun registerEngineTypeMethodForPhysics2DTestMotionResult() {
+private fun registerEngineTypeMethodForPhysics2DTestMotionResult(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DTESTMOTIONRESULT to "get_collider")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DTESTMOTIONRESULT to "get_collider_id")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DTESTMOTIONRESULT to "get_collider_rid")
@@ -8047,7 +8048,7 @@ private fun registerEngineTypeMethodForPhysics2DTestMotionResult() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DTESTMOTIONRESULT to "get_motion_remainder")
 }
 
-private fun registerEngineTypeMethodForPhysicsBody() {
+private fun registerEngineTypeMethodForPhysicsBody(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSBODY to "_get_layers")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSBODY to "_set_layers")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSBODY to "add_collision_exception_with")
@@ -8063,7 +8064,7 @@ private fun registerEngineTypeMethodForPhysicsBody() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSBODY to "set_collision_mask")
 }
 
-private fun registerEngineTypeMethodForPhysicsBody2D() {
+private fun registerEngineTypeMethodForPhysicsBody2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSBODY2D to "_get_layers")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSBODY2D to "_set_layers")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSBODY2D to "add_collision_exception_with")
@@ -8079,7 +8080,7 @@ private fun registerEngineTypeMethodForPhysicsBody2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSBODY2D to "set_collision_mask")
 }
 
-private fun registerEngineTypeMethodForPhysicsDirectBodyState() {
+private fun registerEngineTypeMethodForPhysicsDirectBodyState(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE to "add_central_force")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE to "add_force")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE to "add_torque")
@@ -8123,7 +8124,7 @@ private fun registerEngineTypeMethodForPhysicsDirectBodyState() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE to "set_transform")
 }
 
-private fun registerEngineTypeMethodForPhysicsDirectSpaceState() {
+private fun registerEngineTypeMethodForPhysicsDirectSpaceState(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTSPACESTATE to "cast_motion")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTSPACESTATE to "collide_shape")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTSPACESTATE to "get_rest_info")
@@ -8131,7 +8132,7 @@ private fun registerEngineTypeMethodForPhysicsDirectSpaceState() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTSPACESTATE to "intersect_shape")
 }
 
-private fun registerEngineTypeMethodForPhysicsMaterial() {
+private fun registerEngineTypeMethodForPhysicsMaterial(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSMATERIAL to "is_absorbent")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSMATERIAL to "set_absorbent")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSMATERIAL to "get_bounce")
@@ -8142,7 +8143,7 @@ private fun registerEngineTypeMethodForPhysicsMaterial() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSMATERIAL to "set_rough")
 }
 
-private fun registerEngineTypeMethodForPhysicsServer() {
+private fun registerEngineTypeMethodForPhysicsServer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER to "area_add_shape")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER to "area_attach_object_instance_id")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER to "area_clear_shapes")
@@ -8262,7 +8263,7 @@ private fun registerEngineTypeMethodForPhysicsServer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER to "space_set_param")
 }
 
-private fun registerEngineTypeMethodForPhysicsShapeQueryParameters() {
+private fun registerEngineTypeMethodForPhysicsShapeQueryParameters(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS to "set_shape")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS to
       "is_collide_with_areas_enabled")
@@ -8284,7 +8285,7 @@ private fun registerEngineTypeMethodForPhysicsShapeQueryParameters() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS to "set_transform")
 }
 
-private fun registerEngineTypeMethodForPhysicsShapeQueryResult() {
+private fun registerEngineTypeMethodForPhysicsShapeQueryResult(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSHAPEQUERYRESULT to "get_result_count")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSHAPEQUERYRESULT to "get_result_object")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSHAPEQUERYRESULT to "get_result_object_id")
@@ -8292,7 +8293,7 @@ private fun registerEngineTypeMethodForPhysicsShapeQueryResult() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSHAPEQUERYRESULT to "get_result_rid")
 }
 
-private fun registerEngineTypeMethodForPinJoint() {
+private fun registerEngineTypeMethodForPinJoint(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PINJOINT to "get_param")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PINJOINT to "set_param")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PINJOINT to "get_param")
@@ -8301,12 +8302,12 @@ private fun registerEngineTypeMethodForPinJoint() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PINJOINT to "set_param")
 }
 
-private fun registerEngineTypeMethodForPinJoint2D() {
+private fun registerEngineTypeMethodForPinJoint2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PINJOINT2D to "get_softness")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PINJOINT2D to "set_softness")
 }
 
-private fun registerEngineTypeMethodForPlaneMesh() {
+private fun registerEngineTypeMethodForPlaneMesh(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PLANEMESH to "get_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PLANEMESH to "set_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PLANEMESH to "get_subdivide_depth")
@@ -8315,19 +8316,19 @@ private fun registerEngineTypeMethodForPlaneMesh() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PLANEMESH to "set_subdivide_width")
 }
 
-private fun registerEngineTypeMethodForPlaneShape() {
+private fun registerEngineTypeMethodForPlaneShape(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PLANESHAPE to "get_plane")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PLANESHAPE to "set_plane")
 }
 
-private fun registerEngineTypeMethodForPluginScript() {
+private fun registerEngineTypeMethodForPluginScript(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PLUGINSCRIPT to "new")
 }
 
-private fun registerEngineTypeMethodForPointMesh() {
+private fun registerEngineTypeMethodForPointMesh(): Unit {
 }
 
-private fun registerEngineTypeMethodForPolygon2D() {
+private fun registerEngineTypeMethodForPolygon2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_POLYGON2D to "_get_bones")
   TypeManager.engineTypeMethod.add(ENGINECLASS_POLYGON2D to "_set_bones")
   TypeManager.engineTypeMethod.add(ENGINECLASS_POLYGON2D to "_skeleton_bone_setup_changed")
@@ -8373,7 +8374,7 @@ private fun registerEngineTypeMethodForPolygon2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_POLYGON2D to "set_vertex_colors")
 }
 
-private fun registerEngineTypeMethodForPolygonPathFinder() {
+private fun registerEngineTypeMethodForPolygonPathFinder(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_POLYGONPATHFINDER to "_get_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_POLYGONPATHFINDER to "_set_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_POLYGONPATHFINDER to "find_path")
@@ -8386,7 +8387,7 @@ private fun registerEngineTypeMethodForPolygonPathFinder() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_POLYGONPATHFINDER to "setup")
 }
 
-private fun registerEngineTypeMethodForPopup() {
+private fun registerEngineTypeMethodForPopup(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_POPUP to "popup")
   TypeManager.engineTypeMethod.add(ENGINECLASS_POPUP to "popup_centered")
   TypeManager.engineTypeMethod.add(ENGINECLASS_POPUP to "popup_centered_clamped")
@@ -8397,10 +8398,10 @@ private fun registerEngineTypeMethodForPopup() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_POPUP to "set_exclusive")
 }
 
-private fun registerEngineTypeMethodForPopupDialog() {
+private fun registerEngineTypeMethodForPopupDialog(): Unit {
 }
 
-private fun registerEngineTypeMethodForPopupMenu() {
+private fun registerEngineTypeMethodForPopupMenu(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_POPUPMENU to "_get_items")
   TypeManager.engineTypeMethod.add(ENGINECLASS_POPUPMENU to "_gui_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_POPUPMENU to "_set_items")
@@ -8470,18 +8471,18 @@ private fun registerEngineTypeMethodForPopupMenu() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_POPUPMENU to "set_submenu_popup_delay")
 }
 
-private fun registerEngineTypeMethodForPopupPanel() {
+private fun registerEngineTypeMethodForPopupPanel(): Unit {
 }
 
-private fun registerEngineTypeMethodForPosition2D() {
+private fun registerEngineTypeMethodForPosition2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_POSITION2D to "_get_gizmo_extents")
   TypeManager.engineTypeMethod.add(ENGINECLASS_POSITION2D to "_set_gizmo_extents")
 }
 
-private fun registerEngineTypeMethodForPosition3D() {
+private fun registerEngineTypeMethodForPosition3D(): Unit {
 }
 
-private fun registerEngineTypeMethodForPrimitiveMesh() {
+private fun registerEngineTypeMethodForPrimitiveMesh(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PRIMITIVEMESH to "_update")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PRIMITIVEMESH to "get_mesh_arrays")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PRIMITIVEMESH to "get_custom_aabb")
@@ -8492,7 +8493,7 @@ private fun registerEngineTypeMethodForPrimitiveMesh() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PRIMITIVEMESH to "set_material")
 }
 
-private fun registerEngineTypeMethodForPrismMesh() {
+private fun registerEngineTypeMethodForPrismMesh(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PRISMMESH to "get_left_to_right")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PRISMMESH to "set_left_to_right")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PRISMMESH to "get_size")
@@ -8505,7 +8506,7 @@ private fun registerEngineTypeMethodForPrismMesh() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PRISMMESH to "set_subdivide_width")
 }
 
-private fun registerEngineTypeMethodForProceduralSky() {
+private fun registerEngineTypeMethodForProceduralSky(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROCEDURALSKY to "_thread_done")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROCEDURALSKY to "_update_sky")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROCEDURALSKY to "get_ground_bottom_color")
@@ -8542,12 +8543,12 @@ private fun registerEngineTypeMethodForProceduralSky() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROCEDURALSKY to "set_texture_size")
 }
 
-private fun registerEngineTypeMethodForProgressBar() {
+private fun registerEngineTypeMethodForProgressBar(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROGRESSBAR to "is_percent_visible")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROGRESSBAR to "set_percent_visible")
 }
 
-private fun registerEngineTypeMethodForProjectSettings() {
+private fun registerEngineTypeMethodForProjectSettings(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROJECTSETTINGS to "add_property_info")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROJECTSETTINGS to "clear")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROJECTSETTINGS to "get_order")
@@ -8565,7 +8566,7 @@ private fun registerEngineTypeMethodForProjectSettings() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROJECTSETTINGS to "set_setting")
 }
 
-private fun registerEngineTypeMethodForProximityGroup() {
+private fun registerEngineTypeMethodForProximityGroup(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROXIMITYGROUP to "_proximity_group_broadcast")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROXIMITYGROUP to "broadcast")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROXIMITYGROUP to "get_dispatch_mode")
@@ -8576,17 +8577,17 @@ private fun registerEngineTypeMethodForProximityGroup() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROXIMITYGROUP to "set_group_name")
 }
 
-private fun registerEngineTypeMethodForProxyTexture() {
+private fun registerEngineTypeMethodForProxyTexture(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROXYTEXTURE to "get_base")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROXYTEXTURE to "set_base")
 }
 
-private fun registerEngineTypeMethodForQuadMesh() {
+private fun registerEngineTypeMethodForQuadMesh(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_QUADMESH to "get_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_QUADMESH to "set_size")
 }
 
-private fun registerEngineTypeMethodForRandomNumberGenerator() {
+private fun registerEngineTypeMethodForRandomNumberGenerator(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RANDOMNUMBERGENERATOR to "randf")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RANDOMNUMBERGENERATOR to "randf_range")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RANDOMNUMBERGENERATOR to "randfn")
@@ -8599,7 +8600,7 @@ private fun registerEngineTypeMethodForRandomNumberGenerator() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RANDOMNUMBERGENERATOR to "set_state")
 }
 
-private fun registerEngineTypeMethodForRange() {
+private fun registerEngineTypeMethodForRange(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RANGE to "share")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RANGE to "unshare")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RANGE to "is_greater_allowed")
@@ -8624,7 +8625,7 @@ private fun registerEngineTypeMethodForRange() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RANGE to "set_value")
 }
 
-private fun registerEngineTypeMethodForRayCast() {
+private fun registerEngineTypeMethodForRayCast(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RAYCAST to "add_exception")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RAYCAST to "add_exception_rid")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RAYCAST to "clear_exceptions")
@@ -8652,7 +8653,7 @@ private fun registerEngineTypeMethodForRayCast() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RAYCAST to "set_exclude_parent_body")
 }
 
-private fun registerEngineTypeMethodForRayCast2D() {
+private fun registerEngineTypeMethodForRayCast2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RAYCAST2D to "add_exception")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RAYCAST2D to "add_exception_rid")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RAYCAST2D to "clear_exceptions")
@@ -8680,32 +8681,32 @@ private fun registerEngineTypeMethodForRayCast2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RAYCAST2D to "set_exclude_parent_body")
 }
 
-private fun registerEngineTypeMethodForRayShape() {
+private fun registerEngineTypeMethodForRayShape(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RAYSHAPE to "get_length")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RAYSHAPE to "set_length")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RAYSHAPE to "get_slips_on_slope")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RAYSHAPE to "set_slips_on_slope")
 }
 
-private fun registerEngineTypeMethodForRayShape2D() {
+private fun registerEngineTypeMethodForRayShape2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RAYSHAPE2D to "get_length")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RAYSHAPE2D to "set_length")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RAYSHAPE2D to "get_slips_on_slope")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RAYSHAPE2D to "set_slips_on_slope")
 }
 
-private fun registerEngineTypeMethodForRectangleShape2D() {
+private fun registerEngineTypeMethodForRectangleShape2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RECTANGLESHAPE2D to "get_extents")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RECTANGLESHAPE2D to "set_extents")
 }
 
-private fun registerEngineTypeMethodForReference() {
+private fun registerEngineTypeMethodForReference(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_REFERENCE to "init_ref")
   TypeManager.engineTypeMethod.add(ENGINECLASS_REFERENCE to "reference")
   TypeManager.engineTypeMethod.add(ENGINECLASS_REFERENCE to "unreference")
 }
 
-private fun registerEngineTypeMethodForReferenceRect() {
+private fun registerEngineTypeMethodForReferenceRect(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_REFERENCERECT to "get_border_color")
   TypeManager.engineTypeMethod.add(ENGINECLASS_REFERENCERECT to "set_border_color")
   TypeManager.engineTypeMethod.add(ENGINECLASS_REFERENCERECT to "get_border_width")
@@ -8714,7 +8715,7 @@ private fun registerEngineTypeMethodForReferenceRect() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_REFERENCERECT to "set_editor_only")
 }
 
-private fun registerEngineTypeMethodForReflectionProbe() {
+private fun registerEngineTypeMethodForReflectionProbe(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_REFLECTIONPROBE to "is_box_projection_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_REFLECTIONPROBE to "set_enable_box_projection")
   TypeManager.engineTypeMethod.add(ENGINECLASS_REFLECTIONPROBE to "get_cull_mask")
@@ -8743,7 +8744,7 @@ private fun registerEngineTypeMethodForReflectionProbe() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_REFLECTIONPROBE to "set_update_mode")
 }
 
-private fun registerEngineTypeMethodForRegEx() {
+private fun registerEngineTypeMethodForRegEx(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_REGEX to "clear")
   TypeManager.engineTypeMethod.add(ENGINECLASS_REGEX to "compile")
   TypeManager.engineTypeMethod.add(ENGINECLASS_REGEX to "get_group_count")
@@ -8755,7 +8756,7 @@ private fun registerEngineTypeMethodForRegEx() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_REGEX to "sub")
 }
 
-private fun registerEngineTypeMethodForRegExMatch() {
+private fun registerEngineTypeMethodForRegExMatch(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_REGEXMATCH to "get_end")
   TypeManager.engineTypeMethod.add(ENGINECLASS_REGEXMATCH to "get_group_count")
   TypeManager.engineTypeMethod.add(ENGINECLASS_REGEXMATCH to "get_start")
@@ -8765,7 +8766,7 @@ private fun registerEngineTypeMethodForRegExMatch() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_REGEXMATCH to "get_subject")
 }
 
-private fun registerEngineTypeMethodForRemoteTransform() {
+private fun registerEngineTypeMethodForRemoteTransform(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_REMOTETRANSFORM to "force_update_cache")
   TypeManager.engineTypeMethod.add(ENGINECLASS_REMOTETRANSFORM to "get_remote_node")
   TypeManager.engineTypeMethod.add(ENGINECLASS_REMOTETRANSFORM to "set_remote_node")
@@ -8779,7 +8780,7 @@ private fun registerEngineTypeMethodForRemoteTransform() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_REMOTETRANSFORM to "set_use_global_coordinates")
 }
 
-private fun registerEngineTypeMethodForRemoteTransform2D() {
+private fun registerEngineTypeMethodForRemoteTransform2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_REMOTETRANSFORM2D to "force_update_cache")
   TypeManager.engineTypeMethod.add(ENGINECLASS_REMOTETRANSFORM2D to "get_remote_node")
   TypeManager.engineTypeMethod.add(ENGINECLASS_REMOTETRANSFORM2D to "set_remote_node")
@@ -8793,7 +8794,7 @@ private fun registerEngineTypeMethodForRemoteTransform2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_REMOTETRANSFORM2D to "set_use_global_coordinates")
 }
 
-private fun registerEngineTypeMethodForResource() {
+private fun registerEngineTypeMethodForResource(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCE to "_setup_local_to_scene")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCE to "duplicate")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCE to "emit_changed")
@@ -8809,7 +8810,7 @@ private fun registerEngineTypeMethodForResource() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCE to "set_path")
 }
 
-private fun registerEngineTypeMethodForResourceFormatLoader() {
+private fun registerEngineTypeMethodForResourceFormatLoader(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEFORMATLOADER to "get_dependencies")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEFORMATLOADER to "get_recognized_extensions")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEFORMATLOADER to "get_resource_type")
@@ -8818,16 +8819,16 @@ private fun registerEngineTypeMethodForResourceFormatLoader() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEFORMATLOADER to "rename_dependencies")
 }
 
-private fun registerEngineTypeMethodForResourceFormatSaver() {
+private fun registerEngineTypeMethodForResourceFormatSaver(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEFORMATSAVER to "get_recognized_extensions")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEFORMATSAVER to "recognize")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEFORMATSAVER to "save")
 }
 
-private fun registerEngineTypeMethodForResourceImporter() {
+private fun registerEngineTypeMethodForResourceImporter(): Unit {
 }
 
-private fun registerEngineTypeMethodForResourceInteractiveLoader() {
+private fun registerEngineTypeMethodForResourceInteractiveLoader(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEINTERACTIVELOADER to "get_resource")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEINTERACTIVELOADER to "get_stage")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEINTERACTIVELOADER to "get_stage_count")
@@ -8835,7 +8836,7 @@ private fun registerEngineTypeMethodForResourceInteractiveLoader() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEINTERACTIVELOADER to "wait")
 }
 
-private fun registerEngineTypeMethodForResourcePreloader() {
+private fun registerEngineTypeMethodForResourcePreloader(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEPRELOADER to "_get_resources")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEPRELOADER to "_set_resources")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEPRELOADER to "add_resource")
@@ -8846,11 +8847,11 @@ private fun registerEngineTypeMethodForResourcePreloader() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RESOURCEPRELOADER to "rename_resource")
 }
 
-private fun registerEngineTypeMethodForRichTextEffect() {
+private fun registerEngineTypeMethodForRichTextEffect(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTEFFECT to "_process_custom_fx")
 }
 
-private fun registerEngineTypeMethodForRichTextLabel() {
+private fun registerEngineTypeMethodForRichTextLabel(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "_gui_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "_scroll_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "add_image")
@@ -8913,7 +8914,7 @@ private fun registerEngineTypeMethodForRichTextLabel() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "set_visible_characters")
 }
 
-private fun registerEngineTypeMethodForRigidBody() {
+private fun registerEngineTypeMethodForRigidBody(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RIGIDBODY to "_body_enter_tree")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RIGIDBODY to "_body_exit_tree")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RIGIDBODY to "_direct_state_changed")
@@ -8978,7 +8979,7 @@ private fun registerEngineTypeMethodForRigidBody() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RIGIDBODY to "set_weight")
 }
 
-private fun registerEngineTypeMethodForRigidBody2D() {
+private fun registerEngineTypeMethodForRigidBody2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RIGIDBODY2D to "_body_enter_tree")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RIGIDBODY2D to "_body_exit_tree")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RIGIDBODY2D to "_direct_state_changed")
@@ -9037,10 +9038,10 @@ private fun registerEngineTypeMethodForRigidBody2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RIGIDBODY2D to "set_weight")
 }
 
-private fun registerEngineTypeMethodForRootMotionView() {
+private fun registerEngineTypeMethodForRootMotionView(): Unit {
 }
 
-private fun registerEngineTypeMethodForSceneState() {
+private fun registerEngineTypeMethodForSceneState(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCENESTATE to "get_connection_binds")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCENESTATE to "get_connection_count")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCENESTATE to "get_connection_flags")
@@ -9063,7 +9064,7 @@ private fun registerEngineTypeMethodForSceneState() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCENESTATE to "is_node_instance_placeholder")
 }
 
-private fun registerEngineTypeMethodForSceneTree() {
+private fun registerEngineTypeMethodForSceneTree(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCENETREE to "_change_scene")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCENETREE to "_connected_to_server")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCENETREE to "_connection_failed")
@@ -9119,12 +9120,12 @@ private fun registerEngineTypeMethodForSceneTree() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCENETREE to "set_use_font_oversampling")
 }
 
-private fun registerEngineTypeMethodForSceneTreeTimer() {
+private fun registerEngineTypeMethodForSceneTreeTimer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCENETREETIMER to "get_time_left")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCENETREETIMER to "set_time_left")
 }
 
-private fun registerEngineTypeMethodForScript() {
+private fun registerEngineTypeMethodForScript(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPT to "can_instance")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPT to "get_base_script")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPT to "get_instance_base_type")
@@ -9142,7 +9143,7 @@ private fun registerEngineTypeMethodForScript() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPT to "set_source_code")
 }
 
-private fun registerEngineTypeMethodForScriptCreateDialog() {
+private fun registerEngineTypeMethodForScriptCreateDialog(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTCREATEDIALOG to "_browse_class_in_tree")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTCREATEDIALOG to "_browse_path")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTCREATEDIALOG to "_built_in_pressed")
@@ -9158,7 +9159,7 @@ private fun registerEngineTypeMethodForScriptCreateDialog() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTCREATEDIALOG to "config")
 }
 
-private fun registerEngineTypeMethodForScriptEditor() {
+private fun registerEngineTypeMethodForScriptEditor(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "_add_callback")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "_autosave_scripts")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "_breaked")
@@ -9225,7 +9226,7 @@ private fun registerEngineTypeMethodForScriptEditor() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "open_script_create_dialog")
 }
 
-private fun registerEngineTypeMethodForScrollBar() {
+private fun registerEngineTypeMethodForScrollBar(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCROLLBAR to "_drag_node_exit")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCROLLBAR to "_drag_node_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCROLLBAR to "_gui_input")
@@ -9233,7 +9234,7 @@ private fun registerEngineTypeMethodForScrollBar() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCROLLBAR to "set_custom_step")
 }
 
-private fun registerEngineTypeMethodForScrollContainer() {
+private fun registerEngineTypeMethodForScrollContainer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCROLLCONTAINER to "_ensure_focused_visible")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCROLLCONTAINER to "_gui_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCROLLCONTAINER to "_scroll_moved")
@@ -9254,17 +9255,17 @@ private fun registerEngineTypeMethodForScrollContainer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCROLLCONTAINER to "set_enable_v_scroll")
 }
 
-private fun registerEngineTypeMethodForSegmentShape2D() {
+private fun registerEngineTypeMethodForSegmentShape2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SEGMENTSHAPE2D to "get_a")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SEGMENTSHAPE2D to "set_a")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SEGMENTSHAPE2D to "get_b")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SEGMENTSHAPE2D to "set_b")
 }
 
-private fun registerEngineTypeMethodForSeparator() {
+private fun registerEngineTypeMethodForSeparator(): Unit {
 }
 
-private fun registerEngineTypeMethodForShader() {
+private fun registerEngineTypeMethodForShader(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SHADER to "get_default_texture_param")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SHADER to "get_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SHADER to "has_param")
@@ -9275,7 +9276,7 @@ private fun registerEngineTypeMethodForShader() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SHADER to "set_custom_defines")
 }
 
-private fun registerEngineTypeMethodForShaderMaterial() {
+private fun registerEngineTypeMethodForShaderMaterial(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SHADERMATERIAL to "_shader_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SHADERMATERIAL to "get_shader_param")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SHADERMATERIAL to "property_can_revert")
@@ -9285,13 +9286,13 @@ private fun registerEngineTypeMethodForShaderMaterial() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SHADERMATERIAL to "set_shader")
 }
 
-private fun registerEngineTypeMethodForShape() {
+private fun registerEngineTypeMethodForShape(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SHAPE to "get_debug_mesh")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SHAPE to "get_margin")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SHAPE to "set_margin")
 }
 
-private fun registerEngineTypeMethodForShape2D() {
+private fun registerEngineTypeMethodForShape2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SHAPE2D to "collide")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SHAPE2D to "collide_and_get_contacts")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SHAPE2D to "collide_with_motion")
@@ -9301,7 +9302,7 @@ private fun registerEngineTypeMethodForShape2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SHAPE2D to "set_custom_solver_bias")
 }
 
-private fun registerEngineTypeMethodForShortCut() {
+private fun registerEngineTypeMethodForShortCut(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SHORTCUT to "get_as_text")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SHORTCUT to "is_shortcut")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SHORTCUT to "is_valid")
@@ -9309,7 +9310,7 @@ private fun registerEngineTypeMethodForShortCut() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SHORTCUT to "set_shortcut")
 }
 
-private fun registerEngineTypeMethodForSkeleton() {
+private fun registerEngineTypeMethodForSkeleton(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON to "add_bone")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON to "bind_child_node_to_bone")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON to "clear_bones")
@@ -9342,7 +9343,7 @@ private fun registerEngineTypeMethodForSkeleton() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON to "unparent_bone_and_rest")
 }
 
-private fun registerEngineTypeMethodForSkeleton2D() {
+private fun registerEngineTypeMethodForSkeleton2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON2D to "_update_bone_setup")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON2D to "_update_transform")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON2D to "get_bone")
@@ -9350,7 +9351,7 @@ private fun registerEngineTypeMethodForSkeleton2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETON2D to "get_skeleton")
 }
 
-private fun registerEngineTypeMethodForSkeletonIK() {
+private fun registerEngineTypeMethodForSkeletonIK(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONIK to "get_parent_skeleton")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONIK to "is_running")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONIK to "start")
@@ -9377,7 +9378,7 @@ private fun registerEngineTypeMethodForSkeletonIK() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKELETONIK to "set_use_magnet")
 }
 
-private fun registerEngineTypeMethodForSkin() {
+private fun registerEngineTypeMethodForSkin(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKIN to "add_bind")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKIN to "clear_binds")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKIN to "get_bind_bone")
@@ -9390,18 +9391,18 @@ private fun registerEngineTypeMethodForSkin() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKIN to "set_bind_pose")
 }
 
-private fun registerEngineTypeMethodForSkinReference() {
+private fun registerEngineTypeMethodForSkinReference(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKINREFERENCE to "_skin_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKINREFERENCE to "get_skeleton")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKINREFERENCE to "get_skin")
 }
 
-private fun registerEngineTypeMethodForSky() {
+private fun registerEngineTypeMethodForSky(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKY to "get_radiance_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SKY to "set_radiance_size")
 }
 
-private fun registerEngineTypeMethodForSlider() {
+private fun registerEngineTypeMethodForSlider(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SLIDER to "_gui_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SLIDER to "is_editable")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SLIDER to "set_editable")
@@ -9413,7 +9414,7 @@ private fun registerEngineTypeMethodForSlider() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SLIDER to "set_ticks_on_borders")
 }
 
-private fun registerEngineTypeMethodForSliderJoint() {
+private fun registerEngineTypeMethodForSliderJoint(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SLIDERJOINT to "_get_lower_limit_angular")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SLIDERJOINT to "_get_upper_limit_angular")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SLIDERJOINT to "_set_lower_limit_angular")
@@ -9460,7 +9461,7 @@ private fun registerEngineTypeMethodForSliderJoint() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SLIDERJOINT to "set_param")
 }
 
-private fun registerEngineTypeMethodForSoftBody() {
+private fun registerEngineTypeMethodForSoftBody(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SOFTBODY to "_draw_soft_mesh")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SOFTBODY to "add_collision_exception_with")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SOFTBODY to "get_collision_exceptions")
@@ -9497,7 +9498,7 @@ private fun registerEngineTypeMethodForSoftBody() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SOFTBODY to "set_volume_stiffness")
 }
 
-private fun registerEngineTypeMethodForSpatial() {
+private fun registerEngineTypeMethodForSpatial(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIAL to "_update_gizmo")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIAL to "force_update_transform")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIAL to "get_parent_spatial")
@@ -9550,10 +9551,10 @@ private fun registerEngineTypeMethodForSpatial() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIAL to "set_visible")
 }
 
-private fun registerEngineTypeMethodForSpatialGizmo() {
+private fun registerEngineTypeMethodForSpatialGizmo(): Unit {
 }
 
-private fun registerEngineTypeMethodForSpatialMaterial() {
+private fun registerEngineTypeMethodForSpatialMaterial(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIALMATERIAL to "get_albedo")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIALMATERIAL to "set_albedo")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIALMATERIAL to "get_texture")
@@ -9772,7 +9773,7 @@ private fun registerEngineTypeMethodForSpatialMaterial() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIALMATERIAL to "set_flag")
 }
 
-private fun registerEngineTypeMethodForSpatialVelocityTracker() {
+private fun registerEngineTypeMethodForSpatialVelocityTracker(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIALVELOCITYTRACKER to
       "get_tracked_linear_velocity")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIALVELOCITYTRACKER to "reset")
@@ -9781,7 +9782,7 @@ private fun registerEngineTypeMethodForSpatialVelocityTracker() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIALVELOCITYTRACKER to "set_track_physics_step")
 }
 
-private fun registerEngineTypeMethodForSphereMesh() {
+private fun registerEngineTypeMethodForSphereMesh(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPHEREMESH to "get_height")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPHEREMESH to "set_height")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPHEREMESH to "get_is_hemisphere")
@@ -9794,12 +9795,12 @@ private fun registerEngineTypeMethodForSphereMesh() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPHEREMESH to "set_rings")
 }
 
-private fun registerEngineTypeMethodForSphereShape() {
+private fun registerEngineTypeMethodForSphereShape(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPHERESHAPE to "get_radius")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPHERESHAPE to "set_radius")
 }
 
-private fun registerEngineTypeMethodForSpinBox() {
+private fun registerEngineTypeMethodForSpinBox(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPINBOX to "_gui_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPINBOX to "_line_edit_focus_exit")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPINBOX to "_line_edit_input")
@@ -9817,7 +9818,7 @@ private fun registerEngineTypeMethodForSpinBox() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPINBOX to "set_suffix")
 }
 
-private fun registerEngineTypeMethodForSplitContainer() {
+private fun registerEngineTypeMethodForSplitContainer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPLITCONTAINER to "_gui_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPLITCONTAINER to "clamp_split_offset")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPLITCONTAINER to "is_collapsed")
@@ -9828,10 +9829,10 @@ private fun registerEngineTypeMethodForSplitContainer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPLITCONTAINER to "set_split_offset")
 }
 
-private fun registerEngineTypeMethodForSpotLight() {
+private fun registerEngineTypeMethodForSpotLight(): Unit {
 }
 
-private fun registerEngineTypeMethodForSpringArm() {
+private fun registerEngineTypeMethodForSpringArm(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRINGARM to "add_excluded_object")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRINGARM to "clear_excluded_objects")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRINGARM to "get_hit_length")
@@ -9846,7 +9847,7 @@ private fun registerEngineTypeMethodForSpringArm() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRINGARM to "set_length")
 }
 
-private fun registerEngineTypeMethodForSprite() {
+private fun registerEngineTypeMethodForSprite(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITE to "_texture_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITE to "get_rect")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITE to "is_pixel_opaque")
@@ -9878,7 +9879,7 @@ private fun registerEngineTypeMethodForSprite() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITE to "set_vframes")
 }
 
-private fun registerEngineTypeMethodForSprite3D() {
+private fun registerEngineTypeMethodForSprite3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITE3D to "get_frame")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITE3D to "set_frame")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITE3D to "get_frame_coords")
@@ -9895,7 +9896,7 @@ private fun registerEngineTypeMethodForSprite3D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITE3D to "set_vframes")
 }
 
-private fun registerEngineTypeMethodForSpriteBase3D() {
+private fun registerEngineTypeMethodForSpriteBase3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITEBASE3D to "_im_update")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITEBASE3D to "_queue_update")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITEBASE3D to "generate_triangle_mesh")
@@ -9928,7 +9929,7 @@ private fun registerEngineTypeMethodForSpriteBase3D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITEBASE3D to "set_draw_flag")
 }
 
-private fun registerEngineTypeMethodForSpriteFrames() {
+private fun registerEngineTypeMethodForSpriteFrames(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITEFRAMES to "_get_animations")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITEFRAMES to "_get_frames")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITEFRAMES to "_set_animations")
@@ -9951,7 +9952,7 @@ private fun registerEngineTypeMethodForSpriteFrames() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPRITEFRAMES to "set_frame")
 }
 
-private fun registerEngineTypeMethodForStaticBody() {
+private fun registerEngineTypeMethodForStaticBody(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STATICBODY to "_reload_physics_characteristics")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STATICBODY to "get_bounce")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STATICBODY to "set_bounce")
@@ -9965,7 +9966,7 @@ private fun registerEngineTypeMethodForStaticBody() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STATICBODY to "set_physics_material_override")
 }
 
-private fun registerEngineTypeMethodForStaticBody2D() {
+private fun registerEngineTypeMethodForStaticBody2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STATICBODY2D to "_reload_physics_characteristics")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STATICBODY2D to "get_bounce")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STATICBODY2D to "set_bounce")
@@ -9979,7 +9980,7 @@ private fun registerEngineTypeMethodForStaticBody2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STATICBODY2D to "set_physics_material_override")
 }
 
-private fun registerEngineTypeMethodForStreamPeer() {
+private fun registerEngineTypeMethodForStreamPeer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMPEER to "get_16")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMPEER to "get_32")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMPEER to "get_64")
@@ -10015,7 +10016,7 @@ private fun registerEngineTypeMethodForStreamPeer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMPEER to "set_big_endian")
 }
 
-private fun registerEngineTypeMethodForStreamPeerBuffer() {
+private fun registerEngineTypeMethodForStreamPeerBuffer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMPEERBUFFER to "clear")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMPEERBUFFER to "duplicate")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMPEERBUFFER to "get_position")
@@ -10026,10 +10027,10 @@ private fun registerEngineTypeMethodForStreamPeerBuffer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMPEERBUFFER to "set_data_array")
 }
 
-private fun registerEngineTypeMethodForStreamPeerGDNative() {
+private fun registerEngineTypeMethodForStreamPeerGDNative(): Unit {
 }
 
-private fun registerEngineTypeMethodForStreamPeerSSL() {
+private fun registerEngineTypeMethodForStreamPeerSSL(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMPEERSSL to "accept_stream")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMPEERSSL to "connect_to_stream")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMPEERSSL to "disconnect_from_stream")
@@ -10039,7 +10040,7 @@ private fun registerEngineTypeMethodForStreamPeerSSL() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMPEERSSL to "set_blocking_handshake_enabled")
 }
 
-private fun registerEngineTypeMethodForStreamPeerTCP() {
+private fun registerEngineTypeMethodForStreamPeerTCP(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMPEERTCP to "connect_to_host")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMPEERTCP to "disconnect_from_host")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMPEERTCP to "get_connected_host")
@@ -10049,12 +10050,12 @@ private fun registerEngineTypeMethodForStreamPeerTCP() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMPEERTCP to "set_no_delay")
 }
 
-private fun registerEngineTypeMethodForStreamTexture() {
+private fun registerEngineTypeMethodForStreamTexture(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMTEXTURE to "load")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMTEXTURE to "get_load_path")
 }
 
-private fun registerEngineTypeMethodForStyleBox() {
+private fun registerEngineTypeMethodForStyleBox(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOX to "draw")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOX to "get_center_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOX to "get_current_item_drawn")
@@ -10072,10 +10073,10 @@ private fun registerEngineTypeMethodForStyleBox() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOX to "set_default_margin")
 }
 
-private fun registerEngineTypeMethodForStyleBoxEmpty() {
+private fun registerEngineTypeMethodForStyleBoxEmpty(): Unit {
 }
 
-private fun registerEngineTypeMethodForStyleBoxFlat() {
+private fun registerEngineTypeMethodForStyleBoxFlat(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOXFLAT to "get_border_width_min")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOXFLAT to "set_border_width_all")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOXFLAT to "set_corner_radius_all")
@@ -10128,7 +10129,7 @@ private fun registerEngineTypeMethodForStyleBoxFlat() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOXFLAT to "set_shadow_size")
 }
 
-private fun registerEngineTypeMethodForStyleBoxLine() {
+private fun registerEngineTypeMethodForStyleBoxLine(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOXLINE to "get_color")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOXLINE to "set_color")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOXLINE to "get_grow_begin")
@@ -10141,7 +10142,7 @@ private fun registerEngineTypeMethodForStyleBoxLine() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOXLINE to "set_vertical")
 }
 
-private fun registerEngineTypeMethodForStyleBoxTexture() {
+private fun registerEngineTypeMethodForStyleBoxTexture(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOXTEXTURE to "set_expand_margin_all")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOXTEXTURE to "set_expand_margin_individual")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOXTEXTURE to "get_h_axis_stretch_mode")
@@ -10176,7 +10177,7 @@ private fun registerEngineTypeMethodForStyleBoxTexture() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOXTEXTURE to "set_texture")
 }
 
-private fun registerEngineTypeMethodForSurfaceTool() {
+private fun registerEngineTypeMethodForSurfaceTool(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SURFACETOOL to "add_bones")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SURFACETOOL to "add_color")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SURFACETOOL to "add_index")
@@ -10202,7 +10203,7 @@ private fun registerEngineTypeMethodForSurfaceTool() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SURFACETOOL to "set_material")
 }
 
-private fun registerEngineTypeMethodForTCP_Server() {
+private fun registerEngineTypeMethodForTCP_Server(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TCP_SERVER to "is_connection_available")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TCP_SERVER to "is_listening")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TCP_SERVER to "listen")
@@ -10210,7 +10211,7 @@ private fun registerEngineTypeMethodForTCP_Server() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TCP_SERVER to "take_connection")
 }
 
-private fun registerEngineTypeMethodForTabContainer() {
+private fun registerEngineTypeMethodForTabContainer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "_child_renamed_callback")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "_gui_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "_on_mouse_exited")
@@ -10244,7 +10245,7 @@ private fun registerEngineTypeMethodForTabContainer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "set_use_hidden_tabs_for_min_size")
 }
 
-private fun registerEngineTypeMethodForTabs() {
+private fun registerEngineTypeMethodForTabs(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABS to "_gui_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABS to "_on_mouse_exited")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABS to "_update_hover")
@@ -10279,7 +10280,7 @@ private fun registerEngineTypeMethodForTabs() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABS to "set_tab_close_display_policy")
 }
 
-private fun registerEngineTypeMethodForTextEdit() {
+private fun registerEngineTypeMethodForTextEdit(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTEDIT to "_click_selection_held")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTEDIT to "_cursor_changed_emit")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTEDIT to "_gui_input")
@@ -10395,10 +10396,10 @@ private fun registerEngineTypeMethodForTextEdit() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTEDIT to "set_wrap_enabled")
 }
 
-private fun registerEngineTypeMethodForTextFile() {
+private fun registerEngineTypeMethodForTextFile(): Unit {
 }
 
-private fun registerEngineTypeMethodForTexture() {
+private fun registerEngineTypeMethodForTexture(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURE to "draw")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURE to "draw_rect")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURE to "draw_rect_region")
@@ -10411,13 +10412,13 @@ private fun registerEngineTypeMethodForTexture() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURE to "set_flags")
 }
 
-private fun registerEngineTypeMethodForTexture3D() {
+private fun registerEngineTypeMethodForTexture3D(): Unit {
 }
 
-private fun registerEngineTypeMethodForTextureArray() {
+private fun registerEngineTypeMethodForTextureArray(): Unit {
 }
 
-private fun registerEngineTypeMethodForTextureButton() {
+private fun registerEngineTypeMethodForTextureButton(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREBUTTON to "get_expand")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREBUTTON to "set_expand")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREBUTTON to "get_stretch_mode")
@@ -10436,7 +10437,7 @@ private fun registerEngineTypeMethodForTextureButton() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREBUTTON to "set_pressed_texture")
 }
 
-private fun registerEngineTypeMethodForTextureLayered() {
+private fun registerEngineTypeMethodForTextureLayered(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURELAYERED to "_get_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURELAYERED to "_set_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURELAYERED to "create")
@@ -10451,7 +10452,7 @@ private fun registerEngineTypeMethodForTextureLayered() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURELAYERED to "set_flags")
 }
 
-private fun registerEngineTypeMethodForTextureProgress() {
+private fun registerEngineTypeMethodForTextureProgress(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESS to "get_fill_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESS to "set_fill_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESS to "get_nine_patch_stretch")
@@ -10484,7 +10485,7 @@ private fun registerEngineTypeMethodForTextureProgress() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESS to "set_tint_under")
 }
 
-private fun registerEngineTypeMethodForTextureRect() {
+private fun registerEngineTypeMethodForTextureRect(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURERECT to "_texture_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURERECT to "has_expand")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURERECT to "set_expand")
@@ -10498,7 +10499,7 @@ private fun registerEngineTypeMethodForTextureRect() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURERECT to "set_texture")
 }
 
-private fun registerEngineTypeMethodForTheme() {
+private fun registerEngineTypeMethodForTheme(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_THEME to "_emit_theme_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_THEME to "clear")
   TypeManager.engineTypeMethod.add(ENGINECLASS_THEME to "clear_color")
@@ -10534,7 +10535,7 @@ private fun registerEngineTypeMethodForTheme() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_THEME to "set_default_font")
 }
 
-private fun registerEngineTypeMethodForTileMap() {
+private fun registerEngineTypeMethodForTileMap(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TILEMAP to "_clear_quadrants")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TILEMAP to "_get_old_cell_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TILEMAP to "_get_tile_data")
@@ -10604,7 +10605,7 @@ private fun registerEngineTypeMethodForTileMap() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TILEMAP to "set_tileset")
 }
 
-private fun registerEngineTypeMethodForTileSet() {
+private fun registerEngineTypeMethodForTileSet(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TILESET to "_forward_atlas_subtile_selection")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TILESET to "_forward_subtile_selection")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TILESET to "_is_tile_bound")
@@ -10675,7 +10676,7 @@ private fun registerEngineTypeMethodForTileSet() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TILESET to "tile_set_z_index")
 }
 
-private fun registerEngineTypeMethodForTimer() {
+private fun registerEngineTypeMethodForTimer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TIMER to "is_stopped")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TIMER to "start")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TIMER to "stop")
@@ -10692,10 +10693,10 @@ private fun registerEngineTypeMethodForTimer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TIMER to "set_wait_time")
 }
 
-private fun registerEngineTypeMethodForToolButton() {
+private fun registerEngineTypeMethodForToolButton(): Unit {
 }
 
-private fun registerEngineTypeMethodForTouchScreenButton() {
+private fun registerEngineTypeMethodForTouchScreenButton(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TOUCHSCREENBUTTON to "_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TOUCHSCREENBUTTON to "is_pressed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TOUCHSCREENBUTTON to "get_action")
@@ -10718,7 +10719,7 @@ private fun registerEngineTypeMethodForTouchScreenButton() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TOUCHSCREENBUTTON to "set_visibility_mode")
 }
 
-private fun registerEngineTypeMethodForTranslation() {
+private fun registerEngineTypeMethodForTranslation(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TRANSLATION to "_get_messages")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TRANSLATION to "_set_messages")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TRANSLATION to "add_message")
@@ -10730,7 +10731,7 @@ private fun registerEngineTypeMethodForTranslation() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TRANSLATION to "set_locale")
 }
 
-private fun registerEngineTypeMethodForTranslationServer() {
+private fun registerEngineTypeMethodForTranslationServer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TRANSLATIONSERVER to "add_translation")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TRANSLATIONSERVER to "clear")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TRANSLATIONSERVER to "get_loaded_locales")
@@ -10741,7 +10742,7 @@ private fun registerEngineTypeMethodForTranslationServer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TRANSLATIONSERVER to "translate")
 }
 
-private fun registerEngineTypeMethodForTree() {
+private fun registerEngineTypeMethodForTree(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "_gui_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "_popup_select")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "_range_click_timeout")
@@ -10790,7 +10791,7 @@ private fun registerEngineTypeMethodForTree() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "set_select_mode")
 }
 
-private fun registerEngineTypeMethodForTreeItem() {
+private fun registerEngineTypeMethodForTreeItem(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREEITEM to "add_button")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREEITEM to "call_recursive")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREEITEM to "clear_custom_bg_color")
@@ -10861,10 +10862,10 @@ private fun registerEngineTypeMethodForTreeItem() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREEITEM to "set_disable_folding")
 }
 
-private fun registerEngineTypeMethodForTriangleMesh() {
+private fun registerEngineTypeMethodForTriangleMesh(): Unit {
 }
 
-private fun registerEngineTypeMethodForTween() {
+private fun registerEngineTypeMethodForTween(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TWEEN to "_remove_by_uid")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TWEEN to "follow_method")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TWEEN to "follow_property")
@@ -10896,7 +10897,7 @@ private fun registerEngineTypeMethodForTween() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TWEEN to "set_repeat")
 }
 
-private fun registerEngineTypeMethodForUDPServer() {
+private fun registerEngineTypeMethodForUDPServer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_UDPSERVER to "is_connection_available")
   TypeManager.engineTypeMethod.add(ENGINECLASS_UDPSERVER to "is_listening")
   TypeManager.engineTypeMethod.add(ENGINECLASS_UDPSERVER to "listen")
@@ -10907,7 +10908,7 @@ private fun registerEngineTypeMethodForUDPServer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_UDPSERVER to "set_max_pending_connections")
 }
 
-private fun registerEngineTypeMethodForUPNP() {
+private fun registerEngineTypeMethodForUPNP(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_UPNP to "add_device")
   TypeManager.engineTypeMethod.add(ENGINECLASS_UPNP to "add_port_mapping")
   TypeManager.engineTypeMethod.add(ENGINECLASS_UPNP to "clear_devices")
@@ -10927,7 +10928,7 @@ private fun registerEngineTypeMethodForUPNP() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_UPNP to "set_discover_multicast_if")
 }
 
-private fun registerEngineTypeMethodForUPNPDevice() {
+private fun registerEngineTypeMethodForUPNPDevice(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_UPNPDEVICE to "add_port_mapping")
   TypeManager.engineTypeMethod.add(ENGINECLASS_UPNPDEVICE to "delete_port_mapping")
   TypeManager.engineTypeMethod.add(ENGINECLASS_UPNPDEVICE to "is_valid_gateway")
@@ -10946,7 +10947,7 @@ private fun registerEngineTypeMethodForUPNPDevice() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_UPNPDEVICE to "set_service_type")
 }
 
-private fun registerEngineTypeMethodForUndoRedo() {
+private fun registerEngineTypeMethodForUndoRedo(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_UNDOREDO to "add_do_method")
   TypeManager.engineTypeMethod.add(ENGINECLASS_UNDOREDO to "add_do_property")
   TypeManager.engineTypeMethod.add(ENGINECLASS_UNDOREDO to "add_do_reference")
@@ -10965,22 +10966,22 @@ private fun registerEngineTypeMethodForUndoRedo() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_UNDOREDO to "undo")
 }
 
-private fun registerEngineTypeMethodForVBoxContainer() {
+private fun registerEngineTypeMethodForVBoxContainer(): Unit {
 }
 
-private fun registerEngineTypeMethodForVScrollBar() {
+private fun registerEngineTypeMethodForVScrollBar(): Unit {
 }
 
-private fun registerEngineTypeMethodForVSeparator() {
+private fun registerEngineTypeMethodForVSeparator(): Unit {
 }
 
-private fun registerEngineTypeMethodForVSlider() {
+private fun registerEngineTypeMethodForVSlider(): Unit {
 }
 
-private fun registerEngineTypeMethodForVSplitContainer() {
+private fun registerEngineTypeMethodForVSplitContainer(): Unit {
 }
 
-private fun registerEngineTypeMethodForVehicleBody() {
+private fun registerEngineTypeMethodForVehicleBody(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VEHICLEBODY to "get_brake")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VEHICLEBODY to "set_brake")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VEHICLEBODY to "get_engine_force")
@@ -10989,7 +10990,7 @@ private fun registerEngineTypeMethodForVehicleBody() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VEHICLEBODY to "set_steering")
 }
 
-private fun registerEngineTypeMethodForVehicleWheel() {
+private fun registerEngineTypeMethodForVehicleWheel(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VEHICLEWHEEL to "get_rpm")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VEHICLEWHEEL to "get_skidinfo")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VEHICLEWHEEL to "is_in_contact")
@@ -11023,7 +11024,7 @@ private fun registerEngineTypeMethodForVehicleWheel() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VEHICLEWHEEL to "set_roll_influence")
 }
 
-private fun registerEngineTypeMethodForVideoPlayer() {
+private fun registerEngineTypeMethodForVideoPlayer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIDEOPLAYER to "get_stream_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIDEOPLAYER to "get_video_texture")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIDEOPLAYER to "is_playing")
@@ -11051,25 +11052,25 @@ private fun registerEngineTypeMethodForVideoPlayer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIDEOPLAYER to "set_volume_db")
 }
 
-private fun registerEngineTypeMethodForVideoStream() {
+private fun registerEngineTypeMethodForVideoStream(): Unit {
 }
 
-private fun registerEngineTypeMethodForVideoStreamGDNative() {
+private fun registerEngineTypeMethodForVideoStreamGDNative(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIDEOSTREAMGDNATIVE to "get_file")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIDEOSTREAMGDNATIVE to "set_file")
 }
 
-private fun registerEngineTypeMethodForVideoStreamTheora() {
+private fun registerEngineTypeMethodForVideoStreamTheora(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIDEOSTREAMTHEORA to "get_file")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIDEOSTREAMTHEORA to "set_file")
 }
 
-private fun registerEngineTypeMethodForVideoStreamWebm() {
+private fun registerEngineTypeMethodForVideoStreamWebm(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIDEOSTREAMWEBM to "get_file")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIDEOSTREAMWEBM to "set_file")
 }
 
-private fun registerEngineTypeMethodForViewport() {
+private fun registerEngineTypeMethodForViewport(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "_gui_remove_focus")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "_gui_show_tooltip")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "_own_world_changed")
@@ -11168,7 +11169,7 @@ private fun registerEngineTypeMethodForViewport() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "set_world_2d")
 }
 
-private fun registerEngineTypeMethodForViewportContainer() {
+private fun registerEngineTypeMethodForViewportContainer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORTCONTAINER to "_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORTCONTAINER to "_unhandled_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORTCONTAINER to "is_stretch_enabled")
@@ -11177,12 +11178,12 @@ private fun registerEngineTypeMethodForViewportContainer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORTCONTAINER to "set_stretch_shrink")
 }
 
-private fun registerEngineTypeMethodForViewportTexture() {
+private fun registerEngineTypeMethodForViewportTexture(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORTTEXTURE to "get_viewport_path_in_scene")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORTTEXTURE to "set_viewport_path_in_scene")
 }
 
-private fun registerEngineTypeMethodForVisibilityEnabler() {
+private fun registerEngineTypeMethodForVisibilityEnabler(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISIBILITYENABLER to "_node_removed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISIBILITYENABLER to "is_enabler_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISIBILITYENABLER to "set_enabler")
@@ -11190,7 +11191,7 @@ private fun registerEngineTypeMethodForVisibilityEnabler() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISIBILITYENABLER to "set_enabler")
 }
 
-private fun registerEngineTypeMethodForVisibilityEnabler2D() {
+private fun registerEngineTypeMethodForVisibilityEnabler2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISIBILITYENABLER2D to "_node_removed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISIBILITYENABLER2D to "is_enabler_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISIBILITYENABLER2D to "set_enabler")
@@ -11206,19 +11207,19 @@ private fun registerEngineTypeMethodForVisibilityEnabler2D() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISIBILITYENABLER2D to "set_enabler")
 }
 
-private fun registerEngineTypeMethodForVisibilityNotifier() {
+private fun registerEngineTypeMethodForVisibilityNotifier(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISIBILITYNOTIFIER to "is_on_screen")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISIBILITYNOTIFIER to "get_aabb")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISIBILITYNOTIFIER to "set_aabb")
 }
 
-private fun registerEngineTypeMethodForVisibilityNotifier2D() {
+private fun registerEngineTypeMethodForVisibilityNotifier2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISIBILITYNOTIFIER2D to "is_on_screen")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISIBILITYNOTIFIER2D to "get_rect")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISIBILITYNOTIFIER2D to "set_rect")
 }
 
-private fun registerEngineTypeMethodForVisualInstance() {
+private fun registerEngineTypeMethodForVisualInstance(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALINSTANCE to "_get_visual_instance_rid")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALINSTANCE to "get_aabb")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALINSTANCE to "get_base")
@@ -11231,7 +11232,7 @@ private fun registerEngineTypeMethodForVisualInstance() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALINSTANCE to "set_layer_mask")
 }
 
-private fun registerEngineTypeMethodForVisualScript() {
+private fun registerEngineTypeMethodForVisualScript(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPT to "_get_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPT to "_node_ports_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPT to "_set_data")
@@ -11279,7 +11280,7 @@ private fun registerEngineTypeMethodForVisualScript() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPT to "set_variable_info")
 }
 
-private fun registerEngineTypeMethodForVisualScriptBasicTypeConstant() {
+private fun registerEngineTypeMethodForVisualScriptBasicTypeConstant(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTBASICTYPECONSTANT to "get_basic_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTBASICTYPECONSTANT to "set_basic_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTBASICTYPECONSTANT to
@@ -11288,19 +11289,19 @@ private fun registerEngineTypeMethodForVisualScriptBasicTypeConstant() {
       "set_basic_type_constant")
 }
 
-private fun registerEngineTypeMethodForVisualScriptBuiltinFunc() {
+private fun registerEngineTypeMethodForVisualScriptBuiltinFunc(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTBUILTINFUNC to "get_func")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTBUILTINFUNC to "set_func")
 }
 
-private fun registerEngineTypeMethodForVisualScriptClassConstant() {
+private fun registerEngineTypeMethodForVisualScriptClassConstant(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTCLASSCONSTANT to "get_base_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTCLASSCONSTANT to "set_base_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTCLASSCONSTANT to "get_class_constant")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTCLASSCONSTANT to "set_class_constant")
 }
 
-private fun registerEngineTypeMethodForVisualScriptComment() {
+private fun registerEngineTypeMethodForVisualScriptComment(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTCOMMENT to "get_description")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTCOMMENT to "set_description")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTCOMMENT to "get_size")
@@ -11309,27 +11310,27 @@ private fun registerEngineTypeMethodForVisualScriptComment() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTCOMMENT to "set_title")
 }
 
-private fun registerEngineTypeMethodForVisualScriptComposeArray() {
+private fun registerEngineTypeMethodForVisualScriptComposeArray(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualScriptCondition() {
+private fun registerEngineTypeMethodForVisualScriptCondition(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualScriptConstant() {
+private fun registerEngineTypeMethodForVisualScriptConstant(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTCONSTANT to "get_constant_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTCONSTANT to "set_constant_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTCONSTANT to "get_constant_value")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTCONSTANT to "set_constant_value")
 }
 
-private fun registerEngineTypeMethodForVisualScriptConstructor() {
+private fun registerEngineTypeMethodForVisualScriptConstructor(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTCONSTRUCTOR to "get_constructor")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTCONSTRUCTOR to "set_constructor")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTCONSTRUCTOR to "get_constructor_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTCONSTRUCTOR to "set_constructor_type")
 }
 
-private fun registerEngineTypeMethodForVisualScriptCustomNode() {
+private fun registerEngineTypeMethodForVisualScriptCustomNode(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTCUSTOMNODE to "_get_caption")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTCUSTOMNODE to "_get_category")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTCUSTOMNODE to
@@ -11355,30 +11356,30 @@ private fun registerEngineTypeMethodForVisualScriptCustomNode() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTCUSTOMNODE to "_step")
 }
 
-private fun registerEngineTypeMethodForVisualScriptDeconstruct() {
+private fun registerEngineTypeMethodForVisualScriptDeconstruct(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTDECONSTRUCT to "_get_elem_cache")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTDECONSTRUCT to "_set_elem_cache")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTDECONSTRUCT to "get_deconstruct_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTDECONSTRUCT to "set_deconstruct_type")
 }
 
-private fun registerEngineTypeMethodForVisualScriptEmitSignal() {
+private fun registerEngineTypeMethodForVisualScriptEmitSignal(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTEMITSIGNAL to "get_signal")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTEMITSIGNAL to "set_signal")
 }
 
-private fun registerEngineTypeMethodForVisualScriptEngineSingleton() {
+private fun registerEngineTypeMethodForVisualScriptEngineSingleton(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTENGINESINGLETON to "get_singleton")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTENGINESINGLETON to "set_singleton")
 }
 
-private fun registerEngineTypeMethodForVisualScriptExpression() {
+private fun registerEngineTypeMethodForVisualScriptExpression(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualScriptFunction() {
+private fun registerEngineTypeMethodForVisualScriptFunction(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualScriptFunctionCall() {
+private fun registerEngineTypeMethodForVisualScriptFunctionCall(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTFUNCTIONCALL to "_get_argument_cache")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTFUNCTIONCALL to "_set_argument_cache")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTFUNCTIONCALL to "get_base_script")
@@ -11403,35 +11404,35 @@ private fun registerEngineTypeMethodForVisualScriptFunctionCall() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTFUNCTIONCALL to "set_validate")
 }
 
-private fun registerEngineTypeMethodForVisualScriptFunctionState() {
+private fun registerEngineTypeMethodForVisualScriptFunctionState(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTFUNCTIONSTATE to "_signal_callback")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTFUNCTIONSTATE to "connect_to_signal")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTFUNCTIONSTATE to "is_valid")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTFUNCTIONSTATE to "resume")
 }
 
-private fun registerEngineTypeMethodForVisualScriptGlobalConstant() {
+private fun registerEngineTypeMethodForVisualScriptGlobalConstant(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTGLOBALCONSTANT to "get_global_constant")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTGLOBALCONSTANT to "set_global_constant")
 }
 
-private fun registerEngineTypeMethodForVisualScriptIndexGet() {
+private fun registerEngineTypeMethodForVisualScriptIndexGet(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualScriptIndexSet() {
+private fun registerEngineTypeMethodForVisualScriptIndexSet(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualScriptInputAction() {
+private fun registerEngineTypeMethodForVisualScriptInputAction(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTINPUTACTION to "get_action_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTINPUTACTION to "set_action_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTINPUTACTION to "get_action_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTINPUTACTION to "set_action_mode")
 }
 
-private fun registerEngineTypeMethodForVisualScriptIterator() {
+private fun registerEngineTypeMethodForVisualScriptIterator(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualScriptLists() {
+private fun registerEngineTypeMethodForVisualScriptLists(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTLISTS to "add_input_data_port")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTLISTS to "add_output_data_port")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTLISTS to "remove_input_data_port")
@@ -11442,26 +11443,26 @@ private fun registerEngineTypeMethodForVisualScriptLists() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTLISTS to "set_output_data_port_type")
 }
 
-private fun registerEngineTypeMethodForVisualScriptLocalVar() {
+private fun registerEngineTypeMethodForVisualScriptLocalVar(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTLOCALVAR to "get_var_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTLOCALVAR to "set_var_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTLOCALVAR to "get_var_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTLOCALVAR to "set_var_name")
 }
 
-private fun registerEngineTypeMethodForVisualScriptLocalVarSet() {
+private fun registerEngineTypeMethodForVisualScriptLocalVarSet(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTLOCALVARSET to "get_var_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTLOCALVARSET to "set_var_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTLOCALVARSET to "get_var_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTLOCALVARSET to "set_var_name")
 }
 
-private fun registerEngineTypeMethodForVisualScriptMathConstant() {
+private fun registerEngineTypeMethodForVisualScriptMathConstant(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTMATHCONSTANT to "get_math_constant")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTMATHCONSTANT to "set_math_constant")
 }
 
-private fun registerEngineTypeMethodForVisualScriptNode() {
+private fun registerEngineTypeMethodForVisualScriptNode(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTNODE to "_get_default_input_values")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTNODE to "_set_default_input_values")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTNODE to "get_default_input_value")
@@ -11470,19 +11471,19 @@ private fun registerEngineTypeMethodForVisualScriptNode() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTNODE to "set_default_input_value")
 }
 
-private fun registerEngineTypeMethodForVisualScriptOperator() {
+private fun registerEngineTypeMethodForVisualScriptOperator(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTOPERATOR to "get_operator")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTOPERATOR to "set_operator")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTOPERATOR to "get_typed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTOPERATOR to "set_typed")
 }
 
-private fun registerEngineTypeMethodForVisualScriptPreload() {
+private fun registerEngineTypeMethodForVisualScriptPreload(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTPRELOAD to "get_preload")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTPRELOAD to "set_preload")
 }
 
-private fun registerEngineTypeMethodForVisualScriptPropertyGet() {
+private fun registerEngineTypeMethodForVisualScriptPropertyGet(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTPROPERTYGET to "_get_type_cache")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTPROPERTYGET to "_set_type_cache")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTPROPERTYGET to "get_base_script")
@@ -11501,7 +11502,7 @@ private fun registerEngineTypeMethodForVisualScriptPropertyGet() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTPROPERTYGET to "set_call_mode")
 }
 
-private fun registerEngineTypeMethodForVisualScriptPropertySet() {
+private fun registerEngineTypeMethodForVisualScriptPropertySet(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTPROPERTYSET to "_get_type_cache")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTPROPERTYSET to "_set_type_cache")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTPROPERTYSET to "get_assign_op")
@@ -11522,74 +11523,74 @@ private fun registerEngineTypeMethodForVisualScriptPropertySet() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTPROPERTYSET to "set_call_mode")
 }
 
-private fun registerEngineTypeMethodForVisualScriptResourcePath() {
+private fun registerEngineTypeMethodForVisualScriptResourcePath(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTRESOURCEPATH to "get_resource_path")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTRESOURCEPATH to "set_resource_path")
 }
 
-private fun registerEngineTypeMethodForVisualScriptReturn() {
+private fun registerEngineTypeMethodForVisualScriptReturn(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTRETURN to "is_return_value_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTRETURN to "set_enable_return_value")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTRETURN to "get_return_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTRETURN to "set_return_type")
 }
 
-private fun registerEngineTypeMethodForVisualScriptSceneNode() {
+private fun registerEngineTypeMethodForVisualScriptSceneNode(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTSCENENODE to "get_node_path")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTSCENENODE to "set_node_path")
 }
 
-private fun registerEngineTypeMethodForVisualScriptSceneTree() {
+private fun registerEngineTypeMethodForVisualScriptSceneTree(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualScriptSelect() {
+private fun registerEngineTypeMethodForVisualScriptSelect(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTSELECT to "get_typed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTSELECT to "set_typed")
 }
 
-private fun registerEngineTypeMethodForVisualScriptSelf() {
+private fun registerEngineTypeMethodForVisualScriptSelf(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualScriptSequence() {
+private fun registerEngineTypeMethodForVisualScriptSequence(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTSEQUENCE to "get_steps")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTSEQUENCE to "set_steps")
 }
 
-private fun registerEngineTypeMethodForVisualScriptSubCall() {
+private fun registerEngineTypeMethodForVisualScriptSubCall(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTSUBCALL to "_subcall")
 }
 
-private fun registerEngineTypeMethodForVisualScriptSwitch() {
+private fun registerEngineTypeMethodForVisualScriptSwitch(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualScriptTypeCast() {
+private fun registerEngineTypeMethodForVisualScriptTypeCast(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTTYPECAST to "get_base_script")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTTYPECAST to "set_base_script")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTTYPECAST to "get_base_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTTYPECAST to "set_base_type")
 }
 
-private fun registerEngineTypeMethodForVisualScriptVariableGet() {
+private fun registerEngineTypeMethodForVisualScriptVariableGet(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTVARIABLEGET to "get_variable")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTVARIABLEGET to "set_variable")
 }
 
-private fun registerEngineTypeMethodForVisualScriptVariableSet() {
+private fun registerEngineTypeMethodForVisualScriptVariableSet(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTVARIABLESET to "get_variable")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTVARIABLESET to "set_variable")
 }
 
-private fun registerEngineTypeMethodForVisualScriptWhile() {
+private fun registerEngineTypeMethodForVisualScriptWhile(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualScriptYield() {
+private fun registerEngineTypeMethodForVisualScriptYield(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTYIELD to "get_yield_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTYIELD to "set_yield_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTYIELD to "get_wait_time")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTYIELD to "set_wait_time")
 }
 
-private fun registerEngineTypeMethodForVisualScriptYieldSignal() {
+private fun registerEngineTypeMethodForVisualScriptYieldSignal(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTYIELDSIGNAL to "get_base_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTYIELDSIGNAL to "set_base_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTYIELDSIGNAL to "get_call_mode")
@@ -11600,7 +11601,7 @@ private fun registerEngineTypeMethodForVisualScriptYieldSignal() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSCRIPTYIELDSIGNAL to "set_signal")
 }
 
-private fun registerEngineTypeMethodForVisualServer() {
+private fun registerEngineTypeMethodForVisualServer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSERVER to "black_bars_set_images")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSERVER to "black_bars_set_margins")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSERVER to "camera_create")
@@ -12011,7 +12012,7 @@ private fun registerEngineTypeMethodForVisualServer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSERVER to "set_render_loop_enabled")
 }
 
-private fun registerEngineTypeMethodForVisualShader() {
+private fun registerEngineTypeMethodForVisualShader(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADER to "_input_type_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADER to "_queue_update")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADER to "_update_shader")
@@ -12033,7 +12034,7 @@ private fun registerEngineTypeMethodForVisualShader() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADER to "set_graph_offset")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNode() {
+private fun registerEngineTypeMethodForVisualShaderNode(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODE to "get_input_port_default_value")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODE to "set_input_port_default_value")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODE to "get_default_input_values")
@@ -12042,33 +12043,33 @@ private fun registerEngineTypeMethodForVisualShaderNode() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODE to "set_output_port_for_preview")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeBooleanConstant() {
+private fun registerEngineTypeMethodForVisualShaderNodeBooleanConstant(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEBOOLEANCONSTANT to "get_constant")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEBOOLEANCONSTANT to "set_constant")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeBooleanUniform() {
+private fun registerEngineTypeMethodForVisualShaderNodeBooleanUniform(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeColorConstant() {
+private fun registerEngineTypeMethodForVisualShaderNodeColorConstant(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECOLORCONSTANT to "get_constant")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECOLORCONSTANT to "set_constant")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeColorFunc() {
+private fun registerEngineTypeMethodForVisualShaderNodeColorFunc(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECOLORFUNC to "get_function")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECOLORFUNC to "set_function")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeColorOp() {
+private fun registerEngineTypeMethodForVisualShaderNodeColorOp(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECOLOROP to "get_operator")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECOLOROP to "set_operator")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeColorUniform() {
+private fun registerEngineTypeMethodForVisualShaderNodeColorUniform(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeCompare() {
+private fun registerEngineTypeMethodForVisualShaderNodeCompare(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECOMPARE to "get_condition")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECOMPARE to "set_condition")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECOMPARE to "get_function")
@@ -12077,7 +12078,7 @@ private fun registerEngineTypeMethodForVisualShaderNodeCompare() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECOMPARE to "set_comparison_type")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeCubeMap() {
+private fun registerEngineTypeMethodForVisualShaderNodeCubeMap(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECUBEMAP to "get_cube_map")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECUBEMAP to "set_cube_map")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECUBEMAP to "get_source")
@@ -12086,10 +12087,10 @@ private fun registerEngineTypeMethodForVisualShaderNodeCubeMap() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECUBEMAP to "set_texture_type")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeCubeMapUniform() {
+private fun registerEngineTypeMethodForVisualShaderNodeCubeMapUniform(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeCustom() {
+private fun registerEngineTypeMethodForVisualShaderNodeCustom(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECUSTOM to "_get_category")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECUSTOM to "_get_code")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECUSTOM to "_get_description")
@@ -12109,27 +12110,27 @@ private fun registerEngineTypeMethodForVisualShaderNodeCustom() {
       "_set_input_port_default_value")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeDeterminant() {
+private fun registerEngineTypeMethodForVisualShaderNodeDeterminant(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeDotProduct() {
+private fun registerEngineTypeMethodForVisualShaderNodeDotProduct(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeExpression() {
+private fun registerEngineTypeMethodForVisualShaderNodeExpression(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEEXPRESSION to "get_expression")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEEXPRESSION to "set_expression")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeFaceForward() {
+private fun registerEngineTypeMethodForVisualShaderNodeFaceForward(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeFresnel() {
+private fun registerEngineTypeMethodForVisualShaderNodeFresnel(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeGlobalExpression() {
+private fun registerEngineTypeMethodForVisualShaderNodeGlobalExpression(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeGroupBase() {
+private fun registerEngineTypeMethodForVisualShaderNodeGroupBase(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEGROUPBASE to "add_input_port")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEGROUPBASE to "add_output_port")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEGROUPBASE to "clear_input_ports")
@@ -12157,67 +12158,67 @@ private fun registerEngineTypeMethodForVisualShaderNodeGroupBase() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEGROUPBASE to "set_size")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeIf() {
+private fun registerEngineTypeMethodForVisualShaderNodeIf(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeInput() {
+private fun registerEngineTypeMethodForVisualShaderNodeInput(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEINPUT to "get_input_real_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEINPUT to "get_input_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEINPUT to "set_input_name")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeIs() {
+private fun registerEngineTypeMethodForVisualShaderNodeIs(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEIS to "get_function")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEIS to "set_function")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeOuterProduct() {
+private fun registerEngineTypeMethodForVisualShaderNodeOuterProduct(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeOutput() {
+private fun registerEngineTypeMethodForVisualShaderNodeOutput(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeScalarClamp() {
+private fun registerEngineTypeMethodForVisualShaderNodeScalarClamp(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeScalarConstant() {
+private fun registerEngineTypeMethodForVisualShaderNodeScalarConstant(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODESCALARCONSTANT to "get_constant")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODESCALARCONSTANT to "set_constant")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeScalarDerivativeFunc() {
+private fun registerEngineTypeMethodForVisualShaderNodeScalarDerivativeFunc(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODESCALARDERIVATIVEFUNC to
       "get_function")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODESCALARDERIVATIVEFUNC to
       "set_function")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeScalarFunc() {
+private fun registerEngineTypeMethodForVisualShaderNodeScalarFunc(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODESCALARFUNC to "get_function")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODESCALARFUNC to "set_function")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeScalarInterp() {
+private fun registerEngineTypeMethodForVisualShaderNodeScalarInterp(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeScalarOp() {
+private fun registerEngineTypeMethodForVisualShaderNodeScalarOp(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODESCALAROP to "get_operator")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODESCALAROP to "set_operator")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeScalarSmoothStep() {
+private fun registerEngineTypeMethodForVisualShaderNodeScalarSmoothStep(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeScalarSwitch() {
+private fun registerEngineTypeMethodForVisualShaderNodeScalarSwitch(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeScalarUniform() {
+private fun registerEngineTypeMethodForVisualShaderNodeScalarUniform(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeSwitch() {
+private fun registerEngineTypeMethodForVisualShaderNodeSwitch(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeTexture() {
+private fun registerEngineTypeMethodForVisualShaderNodeTexture(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODETEXTURE to "get_source")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODETEXTURE to "set_source")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODETEXTURE to "get_texture")
@@ -12226,7 +12227,7 @@ private fun registerEngineTypeMethodForVisualShaderNodeTexture() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODETEXTURE to "set_texture_type")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeTextureUniform() {
+private fun registerEngineTypeMethodForVisualShaderNodeTextureUniform(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODETEXTUREUNIFORM to
       "get_color_default")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODETEXTUREUNIFORM to
@@ -12235,111 +12236,111 @@ private fun registerEngineTypeMethodForVisualShaderNodeTextureUniform() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODETEXTUREUNIFORM to "set_texture_type")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeTextureUniformTriplanar() {
+private fun registerEngineTypeMethodForVisualShaderNodeTextureUniformTriplanar(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeTransformCompose() {
+private fun registerEngineTypeMethodForVisualShaderNodeTransformCompose(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeTransformConstant() {
+private fun registerEngineTypeMethodForVisualShaderNodeTransformConstant(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODETRANSFORMCONSTANT to "get_constant")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODETRANSFORMCONSTANT to "set_constant")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeTransformDecompose() {
+private fun registerEngineTypeMethodForVisualShaderNodeTransformDecompose(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeTransformFunc() {
+private fun registerEngineTypeMethodForVisualShaderNodeTransformFunc(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODETRANSFORMFUNC to "get_function")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODETRANSFORMFUNC to "set_function")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeTransformMult() {
+private fun registerEngineTypeMethodForVisualShaderNodeTransformMult(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODETRANSFORMMULT to "get_operator")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODETRANSFORMMULT to "set_operator")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeTransformUniform() {
+private fun registerEngineTypeMethodForVisualShaderNodeTransformUniform(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeTransformVecMult() {
+private fun registerEngineTypeMethodForVisualShaderNodeTransformVecMult(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODETRANSFORMVECMULT to "get_operator")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODETRANSFORMVECMULT to "set_operator")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeUniform() {
+private fun registerEngineTypeMethodForVisualShaderNodeUniform(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEUNIFORM to "get_uniform_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEUNIFORM to "set_uniform_name")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeUniformRef() {
+private fun registerEngineTypeMethodForVisualShaderNodeUniformRef(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEUNIFORMREF to "get_uniform_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEUNIFORMREF to "set_uniform_name")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeVec3Constant() {
+private fun registerEngineTypeMethodForVisualShaderNodeVec3Constant(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEVEC3CONSTANT to "get_constant")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEVEC3CONSTANT to "set_constant")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeVec3Uniform() {
+private fun registerEngineTypeMethodForVisualShaderNodeVec3Uniform(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeVectorClamp() {
+private fun registerEngineTypeMethodForVisualShaderNodeVectorClamp(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeVectorCompose() {
+private fun registerEngineTypeMethodForVisualShaderNodeVectorCompose(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeVectorDecompose() {
+private fun registerEngineTypeMethodForVisualShaderNodeVectorDecompose(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeVectorDerivativeFunc() {
+private fun registerEngineTypeMethodForVisualShaderNodeVectorDerivativeFunc(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEVECTORDERIVATIVEFUNC to
       "get_function")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEVECTORDERIVATIVEFUNC to
       "set_function")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeVectorDistance() {
+private fun registerEngineTypeMethodForVisualShaderNodeVectorDistance(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeVectorFunc() {
+private fun registerEngineTypeMethodForVisualShaderNodeVectorFunc(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEVECTORFUNC to "get_function")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEVECTORFUNC to "set_function")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeVectorInterp() {
+private fun registerEngineTypeMethodForVisualShaderNodeVectorInterp(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeVectorLen() {
+private fun registerEngineTypeMethodForVisualShaderNodeVectorLen(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeVectorOp() {
+private fun registerEngineTypeMethodForVisualShaderNodeVectorOp(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEVECTOROP to "get_operator")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEVECTOROP to "set_operator")
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeVectorRefract() {
+private fun registerEngineTypeMethodForVisualShaderNodeVectorRefract(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeVectorScalarMix() {
+private fun registerEngineTypeMethodForVisualShaderNodeVectorScalarMix(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeVectorScalarSmoothStep() {
+private fun registerEngineTypeMethodForVisualShaderNodeVectorScalarSmoothStep(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeVectorScalarStep() {
+private fun registerEngineTypeMethodForVisualShaderNodeVectorScalarStep(): Unit {
 }
 
-private fun registerEngineTypeMethodForVisualShaderNodeVectorSmoothStep() {
+private fun registerEngineTypeMethodForVisualShaderNodeVectorSmoothStep(): Unit {
 }
 
-private fun registerEngineTypeMethodForWeakRef() {
+private fun registerEngineTypeMethodForWeakRef(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEAKREF to "get_ref")
 }
 
-private fun registerEngineTypeMethodForWebRTCDataChannel() {
+private fun registerEngineTypeMethodForWebRTCDataChannel(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBRTCDATACHANNEL to "close")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBRTCDATACHANNEL to "get_id")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBRTCDATACHANNEL to "get_label")
@@ -12355,10 +12356,10 @@ private fun registerEngineTypeMethodForWebRTCDataChannel() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBRTCDATACHANNEL to "set_write_mode")
 }
 
-private fun registerEngineTypeMethodForWebRTCDataChannelGDNative() {
+private fun registerEngineTypeMethodForWebRTCDataChannelGDNative(): Unit {
 }
 
-private fun registerEngineTypeMethodForWebRTCMultiplayer() {
+private fun registerEngineTypeMethodForWebRTCMultiplayer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBRTCMULTIPLAYER to "add_peer")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBRTCMULTIPLAYER to "close")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBRTCMULTIPLAYER to "get_peer")
@@ -12368,7 +12369,7 @@ private fun registerEngineTypeMethodForWebRTCMultiplayer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBRTCMULTIPLAYER to "remove_peer")
 }
 
-private fun registerEngineTypeMethodForWebRTCPeerConnection() {
+private fun registerEngineTypeMethodForWebRTCPeerConnection(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBRTCPEERCONNECTION to "add_ice_candidate")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBRTCPEERCONNECTION to "close")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBRTCPEERCONNECTION to "create_data_channel")
@@ -12380,10 +12381,10 @@ private fun registerEngineTypeMethodForWebRTCPeerConnection() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBRTCPEERCONNECTION to "set_remote_description")
 }
 
-private fun registerEngineTypeMethodForWebRTCPeerConnectionGDNative() {
+private fun registerEngineTypeMethodForWebRTCPeerConnectionGDNative(): Unit {
 }
 
-private fun registerEngineTypeMethodForWebSocketClient() {
+private fun registerEngineTypeMethodForWebSocketClient(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBSOCKETCLIENT to "connect_to_url")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBSOCKETCLIENT to "disconnect_from_host")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBSOCKETCLIENT to "get_connected_host")
@@ -12394,12 +12395,12 @@ private fun registerEngineTypeMethodForWebSocketClient() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBSOCKETCLIENT to "set_verify_ssl_enabled")
 }
 
-private fun registerEngineTypeMethodForWebSocketMultiplayerPeer() {
+private fun registerEngineTypeMethodForWebSocketMultiplayerPeer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBSOCKETMULTIPLAYERPEER to "get_peer")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBSOCKETMULTIPLAYERPEER to "set_buffers")
 }
 
-private fun registerEngineTypeMethodForWebSocketPeer() {
+private fun registerEngineTypeMethodForWebSocketPeer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBSOCKETPEER to "close")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBSOCKETPEER to "get_connected_host")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBSOCKETPEER to "get_connected_port")
@@ -12410,7 +12411,7 @@ private fun registerEngineTypeMethodForWebSocketPeer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBSOCKETPEER to "was_string_packet")
 }
 
-private fun registerEngineTypeMethodForWebSocketServer() {
+private fun registerEngineTypeMethodForWebSocketServer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBSOCKETSERVER to "disconnect_peer")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBSOCKETSERVER to "get_peer_address")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBSOCKETSERVER to "get_peer_port")
@@ -12428,7 +12429,7 @@ private fun registerEngineTypeMethodForWebSocketServer() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBSOCKETSERVER to "set_ssl_certificate")
 }
 
-private fun registerEngineTypeMethodForWebXRInterface() {
+private fun registerEngineTypeMethodForWebXRInterface(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBXRINTERFACE to "get_controller")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBXRINTERFACE to "is_session_supported")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBXRINTERFACE to "get_bounds_geometry")
@@ -12446,7 +12447,7 @@ private fun registerEngineTypeMethodForWebXRInterface() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WEBXRINTERFACE to "get_visibility_state")
 }
 
-private fun registerEngineTypeMethodForWindowDialog() {
+private fun registerEngineTypeMethodForWindowDialog(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WINDOWDIALOG to "_closed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WINDOWDIALOG to "_gui_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WINDOWDIALOG to "get_close_button")
@@ -12456,7 +12457,7 @@ private fun registerEngineTypeMethodForWindowDialog() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WINDOWDIALOG to "set_title")
 }
 
-private fun registerEngineTypeMethodForWorld() {
+private fun registerEngineTypeMethodForWorld(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WORLD to "get_direct_space_state")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WORLD to "get_environment")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WORLD to "set_environment")
@@ -12466,23 +12467,23 @@ private fun registerEngineTypeMethodForWorld() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WORLD to "get_space")
 }
 
-private fun registerEngineTypeMethodForWorld2D() {
+private fun registerEngineTypeMethodForWorld2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WORLD2D to "get_canvas")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WORLD2D to "get_direct_space_state")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WORLD2D to "get_space")
 }
 
-private fun registerEngineTypeMethodForWorldEnvironment() {
+private fun registerEngineTypeMethodForWorldEnvironment(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_WORLDENVIRONMENT to "get_environment")
   TypeManager.engineTypeMethod.add(ENGINECLASS_WORLDENVIRONMENT to "set_environment")
 }
 
-private fun registerEngineTypeMethodForX509Certificate() {
+private fun registerEngineTypeMethodForX509Certificate(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_X509CERTIFICATE to "load")
   TypeManager.engineTypeMethod.add(ENGINECLASS_X509CERTIFICATE to "save")
 }
 
-private fun registerEngineTypeMethodForXMLParser() {
+private fun registerEngineTypeMethodForXMLParser(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_XMLPARSER to "get_attribute_count")
   TypeManager.engineTypeMethod.add(ENGINECLASS_XMLPARSER to "get_attribute_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_XMLPARSER to "get_attribute_value")
@@ -12502,12 +12503,12 @@ private fun registerEngineTypeMethodForXMLParser() {
   TypeManager.engineTypeMethod.add(ENGINECLASS_XMLPARSER to "skip_section")
 }
 
-private fun registerEngineTypeMethodForYSort() {
+private fun registerEngineTypeMethodForYSort(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_YSORT to "is_sort_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_YSORT to "set_sort_enabled")
 }
 
-private fun registerEngineTypeMethodForClassDB() {
+private fun registerEngineTypeMethodForClassDB(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS__CLASSDB to "can_instance")
   TypeManager.engineTypeMethod.add(ENGINECLASS__CLASSDB to "class_exists")
   TypeManager.engineTypeMethod.add(ENGINECLASS__CLASSDB to "class_get_category")
@@ -12530,7 +12531,7 @@ private fun registerEngineTypeMethodForClassDB() {
   TypeManager.engineTypeMethod.add(ENGINECLASS__CLASSDB to "is_parent_class")
 }
 
-private fun registerEngineTypeMethodForDirectory() {
+private fun registerEngineTypeMethodForDirectory(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS__DIRECTORY to "change_dir")
   TypeManager.engineTypeMethod.add(ENGINECLASS__DIRECTORY to "copy")
   TypeManager.engineTypeMethod.add(ENGINECLASS__DIRECTORY to "current_is_dir")
@@ -12551,7 +12552,7 @@ private fun registerEngineTypeMethodForDirectory() {
   TypeManager.engineTypeMethod.add(ENGINECLASS__DIRECTORY to "rename")
 }
 
-private fun registerEngineTypeMethodForEngine() {
+private fun registerEngineTypeMethodForEngine(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS__ENGINE to "get_author_info")
   TypeManager.engineTypeMethod.add(ENGINECLASS__ENGINE to "get_copyright_info")
   TypeManager.engineTypeMethod.add(ENGINECLASS__ENGINE to "get_donor_info")
@@ -12579,7 +12580,7 @@ private fun registerEngineTypeMethodForEngine() {
   TypeManager.engineTypeMethod.add(ENGINECLASS__ENGINE to "set_time_scale")
 }
 
-private fun registerEngineTypeMethodForFile() {
+private fun registerEngineTypeMethodForFile(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS__FILE to "close")
   TypeManager.engineTypeMethod.add(ENGINECLASS__FILE to "eof_reached")
   TypeManager.engineTypeMethod.add(ENGINECLASS__FILE to "file_exists")
@@ -12629,7 +12630,7 @@ private fun registerEngineTypeMethodForFile() {
   TypeManager.engineTypeMethod.add(ENGINECLASS__FILE to "set_endian_swap")
 }
 
-private fun registerEngineTypeMethodForGeometry() {
+private fun registerEngineTypeMethodForGeometry(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS__GEOMETRY to "build_box_planes")
   TypeManager.engineTypeMethod.add(ENGINECLASS__GEOMETRY to "build_capsule_planes")
   TypeManager.engineTypeMethod.add(ENGINECLASS__GEOMETRY to "build_cylinder_planes")
@@ -12669,12 +12670,12 @@ private fun registerEngineTypeMethodForGeometry() {
   TypeManager.engineTypeMethod.add(ENGINECLASS__GEOMETRY to "triangulate_polygon")
 }
 
-private fun registerEngineTypeMethodForJSON() {
+private fun registerEngineTypeMethodForJSON(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS__JSON to "parse")
   TypeManager.engineTypeMethod.add(ENGINECLASS__JSON to "print")
 }
 
-private fun registerEngineTypeMethodForMarshalls() {
+private fun registerEngineTypeMethodForMarshalls(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS__MARSHALLS to "base64_to_raw")
   TypeManager.engineTypeMethod.add(ENGINECLASS__MARSHALLS to "base64_to_utf8")
   TypeManager.engineTypeMethod.add(ENGINECLASS__MARSHALLS to "base64_to_variant")
@@ -12683,13 +12684,13 @@ private fun registerEngineTypeMethodForMarshalls() {
   TypeManager.engineTypeMethod.add(ENGINECLASS__MARSHALLS to "variant_to_base64")
 }
 
-private fun registerEngineTypeMethodForMutex() {
+private fun registerEngineTypeMethodForMutex(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS__MUTEX to "lock")
   TypeManager.engineTypeMethod.add(ENGINECLASS__MUTEX to "try_lock")
   TypeManager.engineTypeMethod.add(ENGINECLASS__MUTEX to "unlock")
 }
 
-private fun registerEngineTypeMethodForOS() {
+private fun registerEngineTypeMethodForOS(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS__OS to "alert")
   TypeManager.engineTypeMethod.add(ENGINECLASS__OS to "can_draw")
   TypeManager.engineTypeMethod.add(ENGINECLASS__OS to "can_use_threads")
@@ -12844,7 +12845,7 @@ private fun registerEngineTypeMethodForOS() {
   TypeManager.engineTypeMethod.add(ENGINECLASS__OS to "set_window_size")
 }
 
-private fun registerEngineTypeMethodForResourceLoader() {
+private fun registerEngineTypeMethodForResourceLoader(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS__RESOURCELOADER to "exists")
   TypeManager.engineTypeMethod.add(ENGINECLASS__RESOURCELOADER to "get_dependencies")
   TypeManager.engineTypeMethod.add(ENGINECLASS__RESOURCELOADER to
@@ -12856,29 +12857,29 @@ private fun registerEngineTypeMethodForResourceLoader() {
   TypeManager.engineTypeMethod.add(ENGINECLASS__RESOURCELOADER to "set_abort_on_missing_resources")
 }
 
-private fun registerEngineTypeMethodForResourceSaver() {
+private fun registerEngineTypeMethodForResourceSaver(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS__RESOURCESAVER to "get_recognized_extensions")
   TypeManager.engineTypeMethod.add(ENGINECLASS__RESOURCESAVER to "save")
 }
 
-private fun registerEngineTypeMethodForSemaphore() {
+private fun registerEngineTypeMethodForSemaphore(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS__SEMAPHORE to "post")
   TypeManager.engineTypeMethod.add(ENGINECLASS__SEMAPHORE to "wait")
 }
 
-private fun registerEngineTypeMethodForThread() {
+private fun registerEngineTypeMethodForThread(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS__THREAD to "get_id")
   TypeManager.engineTypeMethod.add(ENGINECLASS__THREAD to "is_active")
   TypeManager.engineTypeMethod.add(ENGINECLASS__THREAD to "start")
   TypeManager.engineTypeMethod.add(ENGINECLASS__THREAD to "wait_to_finish")
 }
 
-private fun registerEngineTypeMethodForVisualScriptEditor() {
+private fun registerEngineTypeMethodForVisualScriptEditor(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS__VISUALSCRIPTEDITOR to "add_custom_node")
   TypeManager.engineTypeMethod.add(ENGINECLASS__VISUALSCRIPTEDITOR to "remove_custom_node")
 }
 
-fun registerEngineTypes() {
+public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("GlobalConstants") { GlobalConstants }
   TypeManager.registerSingleton("GlobalConstants")
   TypeManager.registerEngineType("ARVRAnchor", ::ARVRAnchor)
@@ -13552,7 +13553,7 @@ fun registerEngineTypes() {
   TypeManager.registerSingleton("VisualScriptEditor")
 }
 
-fun registerVariantMapping() {
+public fun registerVariantMapping(): Unit {
   variantMapper[GlobalConstants::class] = OBJECT
   variantMapper[ARVRAnchor::class] = OBJECT
   variantMapper[ARVRCamera::class] = OBJECT
@@ -14183,7 +14184,7 @@ fun registerVariantMapping() {
   variantMapper[VisualScriptEditor::class] = OBJECT
 }
 
-fun registerEngineTypeMethods() {
+public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForGlobalConstants()
   registerEngineTypeMethodForARVRAnchor()
   registerEngineTypeMethodForARVRCamera()
