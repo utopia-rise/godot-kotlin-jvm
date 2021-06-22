@@ -31,15 +31,18 @@ pluginBundle {
     }
 }
 
+repositories {
+    google()
+}
+
 dependencies {
     implementation(kotlin("stdlib"))
     implementation(kotlin("gradle-plugin"))
     implementation(kotlin("gradle-plugin-api"))
     implementation("com.github.jengelman.gradle.plugins:shadow:${DependenciesVersions.shadowJarPluginVersion}")
+    implementation("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:1.5.10-1.0.0-beta02")
 
     implementation(project(":godot-build-props"))
-    implementation(project(":godot-kotlin-entry-generator"))
-    compileOnly(project(":godot-kotlin-compiler-plugin-common"))
 }
 
 tasks {

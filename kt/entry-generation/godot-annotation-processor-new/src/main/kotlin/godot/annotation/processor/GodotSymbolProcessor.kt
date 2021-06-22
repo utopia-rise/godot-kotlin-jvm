@@ -17,7 +17,6 @@ import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.google.devtools.ksp.symbol.KSPropertyDeclaration
 import com.google.devtools.ksp.symbol.KSType
 import com.google.devtools.ksp.symbol.KSTypeAlias
-import com.google.devtools.ksp.symbol.KSTypeArgument
 import com.google.devtools.ksp.symbol.KSTypeReference
 import com.google.devtools.ksp.symbol.KSVisitorVoid
 import com.google.devtools.ksp.symbol.Modifier
@@ -32,6 +31,9 @@ import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.annotation.Tool
+import godot.annotation.processor.compiler.CompilerDataProvider
+import godot.annotation.processor.compiler.PsiProvider
+import godot.annotation.processor.utils.LoggerWrapper
 import godot.entrygenerator.EntryGenerator
 import godot.entrygenerator.model.ClassAnnotation
 import godot.entrygenerator.model.Clazz
@@ -61,9 +63,6 @@ import godot.entrygenerator.model.ToolAnnotation
 import godot.entrygenerator.model.Type
 import godot.entrygenerator.model.TypeKind
 import godot.entrygenerator.model.ValueParameter
-import godot.kotlincompilerplugin.PsiProvider
-import org.jetbrains.kotlin.resolve.BindingContext
-import org.jetbrains.kotlin.resolve.BindingTrace
 import java.io.File
 
 class GodotSymbolProcessor(
@@ -79,27 +78,21 @@ class GodotSymbolProcessor(
         RegisterProperty::class.qualifiedName!!,
         RegisterSignal::class.qualifiedName!!
     )
-    private lateinit var resolver: Resolver
     private val sourceFilesContainingRegisteredClasses = mutableListOf<SourceFile>()
     private val registeredClassToKSFileMap = mutableMapOf<RegisteredClass, KSFile>()
-    private lateinit var srcDirs: List<String>
     private lateinit var outDir: String
     private lateinit var projectBasePath: String
-    private lateinit var bindingContext: BindingContext
 
     override fun process(resolver: Resolver): List<KSAnnotated> {
-        bindingContext = resolver::class.java.getDeclaredField("bindingTrace").let {
-            it.isAccessible = true
-            (it.get(resolver) as BindingTrace).bindingContext
-        }
-        this.resolver = resolver
-        srcDirs = options["srcDirs"]
+        CompilerDataProvider.extractNecessaryCompilerClasses(resolver)
+        CompilerDataProvider.srcDirs = options["srcDirs"]
             ?.split(File.pathSeparator)
             ?: throw IllegalStateException("No srcDirs option provided")
         outDir = options["outDir"]
             ?: throw IllegalStateException("No outDir option provided")
         projectBasePath = options["projectBasePath"]
             ?: throw IllegalStateException("No projectBasePath option provided")
+
         resolver.getAllFiles().toList().map { it.accept(registerAnnotationVisitor, Unit) }
         return emptyList()
     }
@@ -107,6 +100,7 @@ class GodotSymbolProcessor(
     override fun finish() {
         super.finish()
         EntryGenerator.generateEntryFiles(
+            LoggerWrapper(logger),
             sourceFilesContainingRegisteredClasses,
             { registeredClass ->
                 codeGenerator.createNewFile(
@@ -213,7 +207,7 @@ class GodotSymbolProcessor(
                 RegisteredClass(
                     fqName,
                     supertypeDeclarations,
-                    classDeclaration.getResPath(srcDirs, projectBasePath),
+                    classDeclaration.getResPath(CompilerDataProvider.srcDirs, projectBasePath),
                     annotations,
                     registeredConstructors,
                     registeredFunctions,
@@ -324,7 +318,7 @@ class GodotSymbolProcessor(
                 propertyDeclaration.findOverridee() != null,
                 annotations.toList()
             ) {
-                PsiProvider.providePropertyInitializer(bindingContext, defaultValueProviderFqName)
+                PsiProvider.providePropertyInitializer(defaultValueProviderFqName)
             }
         }
 

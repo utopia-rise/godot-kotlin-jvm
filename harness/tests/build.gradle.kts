@@ -2,13 +2,10 @@
 plugins {
     kotlin("jvm") version "1.5.10"
     id("com.utopia-rise.godot-kotlin-jvm")
-    id("com.google.devtools.ksp") version "1.5.10-1.0.0-beta02"
-    idea
 }
 
 repositories {
     mavenCentral()
-    google()
 }
 
 //godot {
@@ -19,33 +16,12 @@ repositories {
 
 dependencies {
     implementation("joda-time:joda-time:2.10.6") //external dependency to test dependency inclusion in dummyCompilation
-    implementation("com.utopia-rise:godot-library:0.1.4-3.3.0")
-    implementation("com.utopia-rise:godot-annotation-processor-new:0.1.4-3.3.0")
-    ksp("com.utopia-rise:godot-annotation-processor-new:0.1.4-3.3.0")
+//    implementation("com.utopia-rise:godot-library:0.1.4-3.3.0")
+//    implementation("com.utopia-rise:godot-annotation-processor-new:0.1.4-3.3.0")
+//    ksp("com.utopia-rise:godot-annotation-processor-new:0.1.4-3.3.0")
 }
 
 
 kotlin.sourceSets.main {
-    kotlin.srcDirs("scripts", project.buildDir.resolve("generated/ksp/main/kotlin/"))
-}
-
-idea {
-    module {
-        generatedSourceDirs.add(project.buildDir.resolve("generated/ksp/main/kotlin/"))
-    }
-}
-
-ksp {
-    arg(
-        "srcDirs",
-        kotlin.sourceSets.main.get().kotlin.srcDirs.joinToString(File.pathSeparator) { it.absolutePath }
-    )
-    arg(
-        "outDir",
-        project.buildDir.resolve("godot").absolutePath
-    )
-    arg(
-        "projectBasePath",
-        projectDir.absolutePath
-    )
+    kotlin.srcDirs("scripts")
 }

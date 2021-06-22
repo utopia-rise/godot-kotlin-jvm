@@ -4,11 +4,13 @@ import godot.entrygenerator.filebuilder.ClassRegistrarFileBuilder
 import godot.entrygenerator.filebuilder.MainEntryFileBuilder
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.SourceFile
+import godot.entrygenerator.utils.Logger
 import java.io.BufferedWriter
 
 object EntryGenerator {
 
     fun generateEntryFiles(
+        logger: Logger,
         sourceFiles: List<SourceFile>,
         appendableProvider: (RegisteredClass) -> BufferedWriter,
         mainBufferedWriterProvider: () -> BufferedWriter
