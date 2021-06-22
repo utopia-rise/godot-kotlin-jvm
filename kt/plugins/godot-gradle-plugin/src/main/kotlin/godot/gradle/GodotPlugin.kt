@@ -13,16 +13,17 @@ import java.io.File
 
 class GodotPlugin : Plugin<Project> {
     override fun apply(target: Project) {
+        //apply needed third party plugins
         target.repositories.google() //add google repository for ksp (kotlin symbol processing
         target.pluginManager.apply(KspGradleSubplugin::class.java)
-        target.pluginManager.apply(IdeaPlugin::class.java)
+        target.pluginManager.apply(IdeaPlugin::class.java) //needed so idea can find and index the generated sources from ksp
+        target.pluginManager.apply(ShadowPlugin::class.java)
 
         val godotExtension = target.extensions.create("godot", GodotExtension::class.java)
         val kotlinJvmExtension = target
             .extensions
             .findByType(KotlinJvmProjectExtension::class.java)
             ?: target.rootProject.extensions.getByType(KotlinJvmProjectExtension::class.java)
-        target.pluginManager.apply(ShadowPlugin::class.java)
         val kspExtension = requireNotNull(
             target
                 .extensions
@@ -38,25 +39,9 @@ class GodotPlugin : Plugin<Project> {
             "idea extension not found"
         }
 
-        setupPlugin(
-            target,
-            godotExtension,
-            kotlinJvmExtension,
-            kspExtension,
-            ideaExtension
-        )
-    }
-
-    private fun setupPlugin(
-        project: Project,
-        godotExtension: GodotExtension,
-        kotlinJvmExtension: KotlinJvmProjectExtension,
-        kspExtension: KspExtension,
-        ideaExtension: IdeaModel
-    ) {
         configureExtensionDefaults(godotExtension)
-        configureThirdPartyPlugins(project, kotlinJvmExtension, kspExtension, ideaExtension)
-        project.setupConfigurationsAndCompilations(godotExtension, kotlinJvmExtension)
+        configureThirdPartyPlugins(target, kotlinJvmExtension, kspExtension, ideaExtension)
+        target.setupConfigurationsAndCompilations(godotExtension, kotlinJvmExtension)
     }
 
     private fun configureThirdPartyPlugins(
@@ -81,10 +66,6 @@ class GodotPlugin : Plugin<Project> {
                         .kotlin
                         .srcDirs
                         .joinToString(File.pathSeparator) { it.absolutePath }
-                )
-                arg(
-                    "outDir",
-                    project.buildDir.resolve("godot").absolutePath
                 )
                 arg(
                     "projectBasePath",

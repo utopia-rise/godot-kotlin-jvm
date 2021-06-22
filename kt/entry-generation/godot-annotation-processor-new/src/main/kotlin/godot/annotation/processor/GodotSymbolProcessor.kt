@@ -80,7 +80,6 @@ class GodotSymbolProcessor(
     )
     private val sourceFilesContainingRegisteredClasses = mutableListOf<SourceFile>()
     private val registeredClassToKSFileMap = mutableMapOf<RegisteredClass, KSFile>()
-    private lateinit var outDir: String
     private lateinit var projectBasePath: String
 
     override fun process(resolver: Resolver): List<KSAnnotated> {
@@ -88,8 +87,6 @@ class GodotSymbolProcessor(
         CompilerDataProvider.srcDirs = options["srcDirs"]
             ?.split(File.pathSeparator)
             ?: throw IllegalStateException("No srcDirs option provided")
-        outDir = options["outDir"]
-            ?: throw IllegalStateException("No outDir option provided")
         projectBasePath = options["projectBasePath"]
             ?: throw IllegalStateException("No projectBasePath option provided")
 

@@ -16,9 +16,6 @@ repositories {
 
 dependencies {
     implementation("joda-time:joda-time:2.10.6") //external dependency to test dependency inclusion in dummyCompilation
-//    implementation("com.utopia-rise:godot-library:0.1.4-3.3.0")
-//    implementation("com.utopia-rise:godot-annotation-processor-new:0.1.4-3.3.0")
-//    ksp("com.utopia-rise:godot-annotation-processor-new:0.1.4-3.3.0")
 }
 
 

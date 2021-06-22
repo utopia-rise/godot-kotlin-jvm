@@ -13,7 +13,7 @@ dependencies {
     implementation(project(":godot-library"))
     implementation(project(":godot-entry-generator"))
 
-    implementation("com.google.devtools.ksp:symbol-processing-api:1.5.10-1.0.0-beta02")
+    implementation("com.google.devtools.ksp:symbol-processing-api:${DependenciesVersions.kspVersion}")
     implementation("com.squareup:kotlinpoet:${DependenciesVersions.kotlinPoetVersion}")
 
     compileOnly(kotlin("compiler-embeddable"))
