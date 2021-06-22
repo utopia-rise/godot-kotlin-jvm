@@ -18,7 +18,7 @@ func test_nullables_are_correctly_set_from_function_lika_a_ready_call():
 func test_nullables_are_correctly_set_from_inspector():
 	var test_scene = load("res://Spatial.tscn").instance()
 	get_tree().root.add_child(test_scene)
-	assert_eq(test_scene.test_nullable, 2, "test_nullable should have been set in ready to 2")
+	assert_eq(test_scene.test_nullable, 2, "test_nullable should have been set in inspector to 2")
 	assert_eq(test_scene.lateinit_string, "works also from inspector", "lateinit_string should have been set in ready to works also from inspector")
 	assert_true(test_scene.register_object_nullable == null, "register_object_nullable should still be null")
 	assert_true(test_scene.register_object_nullable_pre_init != null, "register_object_nullable_pre_init should still not be null")
