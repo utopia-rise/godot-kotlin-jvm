@@ -1,6 +1,7 @@
 package godot.entrygenerator.generator.hintstring
 
 import godot.entrygenerator.exceptions.WrongAnnotationUsageException
+import godot.entrygenerator.model.ColorNoAlphaHintAnnotation
 import godot.entrygenerator.model.RegisteredProperty
 
 class CoreTypeHintStringGenerator(
@@ -9,7 +10,7 @@ class CoreTypeHintStringGenerator(
 
     override fun getHintString(): String {
         return when (propertyHintAnnotation) {
-//            "godot.annotation.ColorNoAlpha" -> getColorNoAlphaHintString()
+            ColorNoAlphaHintAnnotation -> getColorNoAlphaHintString()
             //TODO: implement ImageCompressLossy
             //TODO: implement ImageCompressLossLess
             //TODO: implement NodePathToEditedNode

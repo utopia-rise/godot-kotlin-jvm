@@ -8,6 +8,7 @@ import godot.entrygenerator.model.ExpRangeHintAnnotation
 import godot.entrygenerator.model.FileHintAnnotation
 import godot.entrygenerator.model.FloatRangeHintAnnotation
 import godot.entrygenerator.model.IntRangeHintAnnotation
+import godot.entrygenerator.model.LongRangeHintAnnotation
 import godot.entrygenerator.model.MultilineTextHintAnnotation
 import godot.entrygenerator.model.PlaceHolderTextHintAnnotation
 import godot.entrygenerator.model.Range
@@ -23,6 +24,7 @@ class PrimitivesHintStringGenerator(
     override fun getHintString(): String {
         return when (propertyHintAnnotation) {
             is IntRangeHintAnnotation -> getRangeHintString(arrayOf(Int::class))
+            is LongRangeHintAnnotation -> getRangeHintString(arrayOf(Long::class))
             is FloatRangeHintAnnotation -> getRangeHintString(arrayOf(Float::class))
             is DoubleRangeHintAnnotation -> getRangeHintString(arrayOf(Double::class))
             is ExpRangeHintAnnotation -> getRangeHintString(arrayOf(Float::class, Double::class))
@@ -32,9 +34,7 @@ class PrimitivesHintStringGenerator(
 //            "godot.annotation.Layers2DPhysics" -> throw NotImplementedError("@Layers2DPhysics annotation is not yet implemented")
 //            "godot.annotation.Layers3DRender" -> throw NotImplementedError("@Layers3DRender annotation is not yet implemented")
 //            "godot.annotation.Layers3DPhysics" -> throw NotImplementedError("@Layers3DPhysics annotation is not yet implemented")
-            is FileHintAnnotation, is DirHintAnnotation -> getFileOrDirHintString()
-            MultilineTextHintAnnotation -> throw NotImplementedError("@MultilineText annotation is not yet implemented")
-            PlaceHolderTextHintAnnotation -> throw NotImplementedError("@PlaceHolderText annotation is not yet implemented")
+            is FileHintAnnotation -> getFileHintString()
 //            "godot.annotation.TypeString" -> throw NotImplementedError("@TypeString annotation is not yet implemented")
 //            "godot.annotation.MethodOfVariantType" -> throw NotImplementedError("@MethodOfVariantType annotation is not yet implemented")
 //            "godot.annotation.MethodOfBaseType" -> throw NotImplementedError("@MethodOfBaseType annotation is not yet implemented")
@@ -47,6 +47,9 @@ class PrimitivesHintStringGenerator(
 //            "godot.annotation.SaveFile" -> throw NotImplementedError("@SaveFile annotation is not yet implemented")
 //            "godot.annotation.IntIsObjectId" -> throw NotImplementedError("@IntIsObjectId annotation is not yet implemented")
 //            "godot.annotation.Max" -> throw NotImplementedError("@Max annotation is not yet implemented")
+            is DirHintAnnotation,
+            is MultilineTextHintAnnotation,
+            is PlaceHolderTextHintAnnotation,
             null -> ""
             else -> throw IllegalStateException("Unknown annotation $propertyHintAnnotation")
         }
@@ -62,11 +65,22 @@ class PrimitivesHintStringGenerator(
 
         argumentsForStringTemplate.add(propertyHintAnnotation.start)
         argumentsForStringTemplate.add(propertyHintAnnotation.end)
-        if (propertyHintAnnotation.step != -1) {
-            argumentsForStringTemplate.add(propertyHintAnnotation.step)
+        when(val step = propertyHintAnnotation.step) {
+            Int, Long, Float, Double -> if (step != -1) argumentsForStringTemplate.add(propertyHintAnnotation.step)
         }
-        if (propertyHintAnnotation.or != Range.NONE) {
-            argumentsForStringTemplate.add(propertyHintAnnotation.or.name.lowercase(Locale.ENGLISH))
+        when(propertyHintAnnotation) {
+            is DoubleRangeHintAnnotation -> if (propertyHintAnnotation.or != Range.NONE) {
+                argumentsForStringTemplate.add(propertyHintAnnotation.or.name.lowercase(Locale.ENGLISH))
+            }
+            is FloatRangeHintAnnotation -> if (propertyHintAnnotation.or != Range.NONE) {
+                argumentsForStringTemplate.add(propertyHintAnnotation.or.name.lowercase(Locale.ENGLISH))
+            }
+            is IntRangeHintAnnotation -> if (propertyHintAnnotation.or != Range.NONE) {
+                argumentsForStringTemplate.add(propertyHintAnnotation.or.name.lowercase(Locale.ENGLISH))
+            }
+            else -> {
+                //no op
+            }
         }
 
         return argumentsForStringTemplate.joinToString(",")
@@ -86,13 +100,12 @@ class PrimitivesHintStringGenerator(
         }
     }
 
-    private fun getFileOrDirHintString(): String {
-        if (registeredProperty.type.toString() != "String") {
+    private fun getFileHintString(): String {
+        if (registeredProperty.type.fqName != "kotlin.String") {
             throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation, "String")
         }
 
         val extensions = when(propertyHintAnnotation) {
-            is DirHintAnnotation -> propertyHintAnnotation.extensions
             is FileHintAnnotation -> propertyHintAnnotation.extensions
             else -> throw IllegalStateException("Only DirHintAnnotation or FileHintAnnotation expected")
         }.map { it.replace("\"", "") }

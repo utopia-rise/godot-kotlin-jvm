@@ -20,7 +20,12 @@ import com.google.devtools.ksp.symbol.KSTypeAlias
 import com.google.devtools.ksp.symbol.KSTypeReference
 import com.google.devtools.ksp.symbol.KSVisitorVoid
 import com.google.devtools.ksp.symbol.Modifier
+import godot.MultiplayerAPI
+import godot.annotation.ColorNoAlpha
+import godot.annotation.Dir
 import godot.annotation.EnumFlag
+import godot.annotation.EnumTypeHint
+import godot.annotation.ExpEasing
 import godot.annotation.Export
 import godot.annotation.IntFlag
 import godot.annotation.MultilineText
@@ -37,16 +42,26 @@ import godot.annotation.processor.utils.LoggerWrapper
 import godot.entrygenerator.EntryGenerator
 import godot.entrygenerator.model.ClassAnnotation
 import godot.entrygenerator.model.Clazz
+import godot.entrygenerator.model.ColorNoAlphaHintAnnotation
 import godot.entrygenerator.model.ConstructorAnnotation
+import godot.entrygenerator.model.DirHintAnnotation
+import godot.entrygenerator.model.DoubleRangeHintAnnotation
 import godot.entrygenerator.model.EnumFlagHintAnnotation
+import godot.entrygenerator.model.ExpEasingHintAnnotation
+import godot.entrygenerator.model.ExpRangeHintAnnotation
 import godot.entrygenerator.model.ExportAnnotation
+import godot.entrygenerator.model.FileHintAnnotation
+import godot.entrygenerator.model.FloatRangeHintAnnotation
 import godot.entrygenerator.model.FunctionAnnotation
 import godot.entrygenerator.model.GodotAnnotation
 import godot.entrygenerator.model.GodotBaseTypeAnnotation
 import godot.entrygenerator.model.IntFlagHintAnnotation
+import godot.entrygenerator.model.IntRangeHintAnnotation
+import godot.entrygenerator.model.LongRangeHintAnnotation
 import godot.entrygenerator.model.MultilineTextHintAnnotation
 import godot.entrygenerator.model.PlaceHolderTextHintAnnotation
 import godot.entrygenerator.model.PropertyAnnotation
+import godot.entrygenerator.model.Range
 import godot.entrygenerator.model.RegisterClassAnnotation
 import godot.entrygenerator.model.RegisterConstructorAnnotation
 import godot.entrygenerator.model.RegisterFunctionAnnotation
@@ -415,28 +430,127 @@ class GodotSymbolProcessor(
                 Export::class.qualifiedName -> ExportAnnotation
                 "godot.annotation.GodotBaseType" -> GodotBaseTypeAnnotation //is internal
                 EnumFlag::class.qualifiedName -> EnumFlagHintAnnotation
-                IntFlag::class.qualifiedName -> IntFlagHintAnnotation(listOf()) //fixme
+                IntFlag::class.qualifiedName -> IntFlagHintAnnotation(
+                    (annotation.arguments.firstOrNull()?.value as? ArrayList<String>)?.toList() ?: emptyList()
+                )
                 MultilineText::class.qualifiedName -> MultilineTextHintAnnotation
                 PlaceHolderText::class.qualifiedName -> PlaceHolderTextHintAnnotation
-                else -> null /*throw IllegalArgumentException(
+                ColorNoAlpha::class.qualifiedName -> ColorNoAlphaHintAnnotation
+                godot.annotation.IntRange::class.qualifiedName -> {
+                    val start = (annotation.arguments.firstOrNull { it.name?.asString() == "start" }?.value ?: annotation.arguments.first().value) as Int
+                    val end = (annotation.arguments.firstOrNull { it.name?.asString() == "end" }?.value ?: annotation.arguments[1].value) as Int
+                    val step = ((annotation.arguments.firstOrNull { it.name?.asString() == "step" }?.value ?: annotation.arguments[2].value) as? Int) ?: -1
+                    val or = getRangeEnum(annotation)
+
+                    IntRangeHintAnnotation(
+                        start,
+                        end,
+                        step,
+                        or
+                    )
+                }
+                godot.annotation.LongRange::class.qualifiedName -> {
+                    val start = (annotation.arguments.firstOrNull { it.name?.asString() == "start" }?.value ?: annotation.arguments.first().value) as Long
+                    val end = (annotation.arguments.firstOrNull { it.name?.asString() == "end" }?.value ?: annotation.arguments[1].value) as Long
+                    val step = ((annotation.arguments.firstOrNull { it.name?.asString() == "step" }?.value ?: annotation.arguments[2].value) as? Long) ?: -1
+                    val or = getRangeEnum(annotation)
+
+                    LongRangeHintAnnotation(
+                        start,
+                        end,
+                        step,
+                        or
+                    )
+                }
+                godot.annotation.FloatRange::class.qualifiedName -> {
+                    val start = (annotation.arguments.firstOrNull { it.name?.asString() == "start" }?.value ?: annotation.arguments.first().value) as Float
+                    val end = (annotation.arguments.firstOrNull { it.name?.asString() == "end" }?.value ?: annotation.arguments[1].value) as Float
+                    val step = ((annotation.arguments.firstOrNull { it.name?.asString() == "step" }?.value ?: annotation.arguments[2].value) as? Float) ?: -1f
+                    val or = getRangeEnum(annotation)
+
+                    FloatRangeHintAnnotation(
+                        start,
+                        end,
+                        step,
+                        or
+                    )
+                }
+                godot.annotation.DoubleRange::class.qualifiedName -> {
+                    val start = (annotation.arguments.firstOrNull { it.name?.asString() == "start" }?.value ?: annotation.arguments.first().value) as Double
+                    val end = (annotation.arguments.firstOrNull { it.name?.asString() == "end" }?.value ?: annotation.arguments[1].value) as Double
+                    val step = ((annotation.arguments.firstOrNull { it.name?.asString() == "step" }?.value ?: annotation.arguments[2].value) as? Double) ?: -1.0
+                    val or = getRangeEnum(annotation)
+
+                    DoubleRangeHintAnnotation(
+                        start,
+                        end,
+                        step,
+                        or
+                    )
+                }
+                godot.annotation.ExpRange::class.qualifiedName -> {
+                    val start = (annotation.arguments.firstOrNull { it.name?.asString() == "start" }?.value ?: annotation.arguments.first().value) as Float
+                    val end = (annotation.arguments.firstOrNull { it.name?.asString() == "end" }?.value ?: annotation.arguments[1].value) as Float
+                    val step = ((annotation.arguments.firstOrNull { it.name?.asString() == "step" }?.value ?: annotation.arguments[2].value) as? Float) ?: -1f
+
+                    ExpRangeHintAnnotation(
+                        start,
+                        end,
+                        step
+                    )
+                }
+                EnumTypeHint::class.qualifiedName -> null
+                ExpEasing::class.qualifiedName -> {
+                    val attenuation = ((annotation.arguments.firstOrNull { it.name?.asString() == "attenuation" }?.value ?: annotation.arguments.firstOrNull()?.value) as? Boolean) ?: false
+                    val inout = ((annotation.arguments.firstOrNull { it.name?.asString() == "inout" }?.value ?: annotation.arguments[1].value) as? Boolean) ?: false
+                    ExpEasingHintAnnotation(
+                        attenuation,
+                        inout
+                    )
+                }
+                godot.annotation.File::class.qualifiedName -> {
+                    val extensions = ((annotation.arguments.firstOrNull { it.name?.asString() == "extensions" }?.value ?: annotation.arguments.firstOrNull()?.value) as? ArrayList<String>)?.toList() ?: emptyList()
+                    val global = ((annotation.arguments.firstOrNull { it.name?.asString() == "global" }?.value ?: annotation.arguments[1].value) as? Boolean) ?: false
+                    FileHintAnnotation(
+                        extensions, global
+                    )
+                }
+                Dir::class.qualifiedName -> {
+                    val global = ((annotation.arguments.firstOrNull { it.name?.asString() == "global" }?.value ?: annotation.arguments.firstOrNull()?.value) as? Boolean) ?: false
+                    DirHintAnnotation(
+                        global
+                    )
+                }
+                else -> throw IllegalArgumentException(
                     "Unknown annotation: $annotation"
-                )*/
+                )
             }
         }
 
         private fun getRpcMode(annotation: KSAnnotation) =
             when ((annotation.arguments.firstOrNull()?.value as? KSType)?.declaration?.qualifiedName?.asString()) {
-                "godot.MultiplayerAPI.RPCMode.REMOTE" -> RpcMode.REMOTE
-                "godot.MultiplayerAPI.RPCMode.MASTER" -> RpcMode.MASTER
-                "godot.MultiplayerAPI.RPCMode.PUPPET" -> RpcMode.PUPPET
-                "godot.MultiplayerAPI.RPCMode.SLAVE" -> RpcMode.SLAVE
-                "godot.MultiplayerAPI.RPCMode.REMOTESYNC" -> RpcMode.REMOTE_SYNC
-                "godot.MultiplayerAPI.RPCMode.SYNC" -> RpcMode.SYNC
-                "godot.MultiplayerAPI.RPCMode.MASTERSYNC" -> RpcMode.MASTER_SYNC
-                "godot.MultiplayerAPI.RPCMode.PUPPETSYNC" -> RpcMode.PUPPET_SYNC
+                MultiplayerAPI.RPCMode.REMOTE::class.qualifiedName -> RpcMode.REMOTE
+                MultiplayerAPI.RPCMode.MASTER::class.qualifiedName -> RpcMode.MASTER
+                MultiplayerAPI.RPCMode.PUPPET::class.qualifiedName -> RpcMode.PUPPET
+                MultiplayerAPI.RPCMode.SLAVE::class.qualifiedName -> RpcMode.SLAVE
+                MultiplayerAPI.RPCMode.REMOTESYNC::class.qualifiedName -> RpcMode.REMOTE_SYNC
+                MultiplayerAPI.RPCMode.SYNC::class.qualifiedName -> RpcMode.SYNC
+                MultiplayerAPI.RPCMode.MASTERSYNC::class.qualifiedName -> RpcMode.MASTER_SYNC
+                MultiplayerAPI.RPCMode.PUPPETSYNC::class.qualifiedName -> RpcMode.PUPPET_SYNC
                 else -> RpcMode.DISABLED
             }
     }
+
+    private fun getRangeEnum(annotation: KSAnnotation) =
+        ((annotation.arguments.firstOrNull { it.name?.asString() == "or" }?.value
+            ?: annotation.arguments[3].value) as? KSType)?.declaration?.qualifiedName?.asString()?.let { enumFqName ->
+            when (enumFqName) {
+                godot.registration.Range.NONE::class.qualifiedName -> Range.NONE
+                godot.registration.Range.OR_GREATER::class.qualifiedName -> Range.OR_GREATER
+                godot.registration.Range.OR_LESSER::class.qualifiedName -> Range.OR_LESSER
+                else -> throw IllegalArgumentException("Unknown enum $enumFqName for hint annotation IntRange")
+            }
+        } ?: Range.NONE
 }
 
 val KSAnnotation.fqNameUnsafe: String

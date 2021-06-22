@@ -39,7 +39,7 @@ object SignalRegistrationGenerator {
         add(getPropertyReference(registeredSignal, className)) //signalPropertyReference
 
         //a KtFunctionArgument per signal argument
-        registeredSignal.parameterNameToType.entries.forEachIndexed { index, (argumentName, argumentType) ->
+        registeredSignal.parameterNameToType.entries.forEach { (argumentName, argumentType) ->
             add(ClassName("godot.runtime", "KtFunctionArgument"))
             add(argumentType.toKtVariantType())
             add(argumentType.fqName)

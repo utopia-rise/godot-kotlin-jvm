@@ -1,5 +1,5 @@
 package godot.entrygenerator.model
 
 class DirHintAnnotation(
-    val extensions: List<String>
+    val global: Boolean
 ) : PropertyHintAnnotation

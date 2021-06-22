@@ -52,8 +52,10 @@ fun Type.isReference(): Boolean = fqName == "godot.Reference" ||
 
 fun Type.isGodotPrimitive(): Boolean = when (fqName) {
     "kotlin.Int",
+    "godot.util.NaturalT",
     "kotlin.Long",
     "kotlin.Float",
+    "godot.util.RealT",
     "kotlin.Double",
     "kotlin.Boolean",
     "kotlin.Byte",
@@ -65,11 +67,13 @@ fun Type.isGodotPrimitive(): Boolean = when (fqName) {
 fun Type.getAsVariantTypeOrdinal(): Int? = when (fqName) {
     "kotlin.Boolean" -> 1
     "kotlin.Int",
+    "godot.util.NaturalT",
     "kotlin.Long",
     "kotlin.Byte",
     "kotlin.Short",
     "kotlin.Enum" -> 2
     "kotlin.Float",
+    "godot.util.RealT",
     "kotlin.Double" -> 3
     "kotlin.String" -> 4
     "godot.core.Vector2" -> 5

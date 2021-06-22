@@ -39,15 +39,6 @@ class ClassRegistrarFileBuilder(
             registeredClass.registeredName
         ) //START: registerClass
 
-    private fun registerProperties() {
-        registeredClass
-            .properties
-            .filter { it.annotations.hasAnnotation<RegisterPropertyAnnotation>() }
-            .forEach { registeredProperty ->
-
-            }
-    }
-
     fun build(): Pair<String, Array<Any>> {
         if (!registeredClass.directlyInheritsGodotBaseClass) {
             val inheritedClass = registeredClass.supertypes.first()
