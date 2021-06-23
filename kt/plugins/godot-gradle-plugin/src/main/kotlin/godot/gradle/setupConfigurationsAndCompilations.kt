@@ -24,9 +24,9 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
     jvm.target.compilations.getByName("main").apply {
         dependencies {
             compileOnly("com.utopia-rise:godot-library:${GodotBuildProperties.godotKotlinVersion}")
-            implementation("com.utopia-rise:godot-annotation-processor-new:${GodotBuildProperties.godotKotlinVersion}")
+            implementation("com.utopia-rise:godot-kotlin-symbol-processor:${GodotBuildProperties.godotKotlinVersion}")
         }
-        dependencies.add("ksp", "com.utopia-rise:godot-annotation-processor-new:${GodotBuildProperties.godotKotlinVersion}")
+        dependencies.add("ksp", "com.utopia-rise:godot-kotlin-symbol-processor:${GodotBuildProperties.godotKotlinVersion}")
     }
 
     //bootstrap configuration containing all glue code but no user code

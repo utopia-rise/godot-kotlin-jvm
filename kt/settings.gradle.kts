@@ -17,11 +17,7 @@ includeBuild("api-generator") {
 }
 
 subdir("entry-generation") {
-    include("godot-annotation-processor")
-    include("godot-kotlin-compiler-plugin-common")
-    include("godot-kotlin-compiler-plugin")
-    include("godot-kotlin-entry-generator")
-    include("godot-annotation-processor-new")
+    include("godot-kotlin-symbol-processor")
     include("godot-entry-generator")
 }
 
