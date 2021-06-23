@@ -15,7 +15,6 @@ import godot.entrygenerator.model.Range
 import godot.entrygenerator.model.RangeHintAnnotation
 import godot.entrygenerator.model.RegisteredProperty
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.reflect.KClass
 
 class PrimitivesHintStringGenerator(

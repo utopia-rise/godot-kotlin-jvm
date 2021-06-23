@@ -1,8 +1,6 @@
 package godot.entrygenerator.ext
 
 import godot.entrygenerator.model.GodotAnnotation
-import godot.entrygenerator.model.GodotBaseTypeAnnotation
-import kotlin.reflect.KClass
 
 inline fun <reified T> Collection<GodotAnnotation>.hasAnnotation() = this.any {
     it is T

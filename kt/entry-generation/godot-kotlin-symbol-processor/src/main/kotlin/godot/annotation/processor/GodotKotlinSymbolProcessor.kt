@@ -98,10 +98,12 @@ class GodotKotlinSymbolProcessor(
     private lateinit var projectBasePath: String
 
     override fun process(resolver: Resolver): List<KSAnnotated> {
-        CompilerDataProvider.extractNecessaryCompilerClasses(resolver)
-        CompilerDataProvider.srcDirs = options["srcDirs"]
-            ?.split(File.pathSeparator)
-            ?: throw IllegalStateException("No srcDirs option provided")
+        CompilerDataProvider.init(
+            resolver,
+            options["srcDirs"]
+                ?.split(File.pathSeparator)
+                ?: throw IllegalStateException("No srcDirs option provided")
+        )
         projectBasePath = options["projectBasePath"]
             ?: throw IllegalStateException("No projectBasePath option provided")
 

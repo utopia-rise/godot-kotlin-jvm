@@ -5,12 +5,10 @@ import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeSpec
-import godot.entrygenerator.ext.hasAnnotation
 import godot.entrygenerator.generator.ConstructorRegistrationGenerator
 import godot.entrygenerator.generator.FunctionRegistrationGenerator
 import godot.entrygenerator.generator.PropertyRegistrationGenerator
 import godot.entrygenerator.generator.SignalRegistrationGenerator
-import godot.entrygenerator.model.RegisterPropertyAnnotation
 import godot.entrygenerator.model.RegisteredClass
 import java.io.BufferedWriter
 
