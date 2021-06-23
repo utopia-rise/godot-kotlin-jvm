@@ -64,14 +64,14 @@ val KSAnnotation.rangeEnum: Range
 
 val KSAnnotation.rpcModeEnum: RpcMode
     get() = when ((arguments.firstOrNull()?.value as? KSType)?.declaration?.qualifiedName?.asString()) {
-        MultiplayerAPI.RPCMode.REMOTE::class.qualifiedName -> RpcMode.REMOTE
-        MultiplayerAPI.RPCMode.MASTER::class.qualifiedName -> RpcMode.MASTER
-        MultiplayerAPI.RPCMode.PUPPET::class.qualifiedName -> RpcMode.PUPPET
-        MultiplayerAPI.RPCMode.SLAVE::class.qualifiedName -> RpcMode.SLAVE
-        MultiplayerAPI.RPCMode.REMOTESYNC::class.qualifiedName -> RpcMode.REMOTE_SYNC
-        MultiplayerAPI.RPCMode.SYNC::class.qualifiedName -> RpcMode.SYNC
-        MultiplayerAPI.RPCMode.MASTERSYNC::class.qualifiedName -> RpcMode.MASTER_SYNC
-        MultiplayerAPI.RPCMode.PUPPETSYNC::class.qualifiedName -> RpcMode.PUPPET_SYNC
+        "${MultiplayerAPI.RPCMode.REMOTE::class.qualifiedName}.${MultiplayerAPI.RPCMode.REMOTE.name}" -> RpcMode.REMOTE
+        "${MultiplayerAPI.RPCMode.MASTER::class.qualifiedName}.${MultiplayerAPI.RPCMode.MASTER.name}" -> RpcMode.MASTER
+        "${MultiplayerAPI.RPCMode.PUPPET::class.qualifiedName}.${MultiplayerAPI.RPCMode.PUPPET.name}" -> RpcMode.PUPPET
+        "${MultiplayerAPI.RPCMode.SLAVE::class.qualifiedName}.${MultiplayerAPI.RPCMode.SLAVE.name}" -> RpcMode.SLAVE
+        "${MultiplayerAPI.RPCMode.REMOTESYNC::class.qualifiedName}.${MultiplayerAPI.RPCMode.REMOTESYNC.name}" -> RpcMode.REMOTE_SYNC
+        "${MultiplayerAPI.RPCMode.SYNC::class.qualifiedName}.${MultiplayerAPI.RPCMode.SYNC.name}" -> RpcMode.SYNC
+        "${MultiplayerAPI.RPCMode.MASTERSYNC::class.qualifiedName}.${MultiplayerAPI.RPCMode.MASTERSYNC.name}" -> RpcMode.MASTER_SYNC
+        "${MultiplayerAPI.RPCMode.PUPPETSYNC::class.qualifiedName}.${MultiplayerAPI.RPCMode.PUPPETSYNC.name}" -> RpcMode.PUPPET_SYNC
         else -> RpcMode.DISABLED
     }
 
