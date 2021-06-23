@@ -1,4 +1,4 @@
-name: Deploy Godot Kotlin Compiler Plugin
+name: Deploy Godot Kotlin Symbol Processor
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
       - '\d+.\d+.\d+-\d+.\d+.\d+'
 
 jobs:
-  deploy_godot_kotlin_compiler_plugin:
+  deploy_godot_kotlin_symbol_processor:
     runs-on: ubuntu-latest
     steps:
       - name: Get godot version from tag
@@ -31,7 +31,7 @@ jobs:
         with:
           wrapper-directory: modules/kotlin_jvm/kt/
           build-root-directory: modules/kotlin_jvm/kt/
-          arguments: godot-kotlin-compiler-plugin:publish
+          arguments: godot-kotlin-symbol-processor:publish
         env:
           GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII: ${{ secrets.GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII }}
           GODOT_KOTLIN_GPG_KEY_PASSPHRASE: ${{ secrets.GODOT_KOTLIN_GPG_KEY_PASSPHRASE }}

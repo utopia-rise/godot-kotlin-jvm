@@ -1,9 +1,9 @@
-name: Check PR - Entry Generator
+name: Check PR - Godot Kotlin Symbol Processor
 
 on:
   pull_request:
     paths:
-      - 'kt/entry-generation/godot-entry-generator/**'
+      - 'kt/entry-generation/godot-kotlin-symbol-processor/**'
 
 jobs:
   build_entry_generator:
@@ -22,4 +22,4 @@ jobs:
         with:
           wrapper-directory: kt/
           build-root-directory: kt/
-          arguments: :godot-entry-generator:build
+          arguments: :godot-kotlin-symbol-processor:build
