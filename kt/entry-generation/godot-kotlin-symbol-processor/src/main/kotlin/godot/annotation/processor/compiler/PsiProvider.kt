@@ -21,6 +21,11 @@ import org.jetbrains.kotlin.psi.KtStringTemplateExpression
 import org.jetbrains.kotlin.psi.psiUtil.parents
 import java.io.File
 
+/**
+ * Provides default value template string and arguments ready to go for kotlin poet
+ *
+ * Abstracted here rather than in the entry gen to keep it independent of compiler and psi classes
+ */
 object PsiProvider {
     fun providePropertyInitializer(propertyFqName: String): Pair<String, Array<out Any>>? {
         val propertyInitializerExpression =

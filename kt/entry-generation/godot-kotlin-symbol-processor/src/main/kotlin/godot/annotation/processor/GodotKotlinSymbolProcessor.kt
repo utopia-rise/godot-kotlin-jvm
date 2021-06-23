@@ -15,6 +15,12 @@ import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.SourceFile
 import java.io.File
 
+/**
+ * KSP (https://github.com/google/ksp) based kotlin symbol processor
+ *
+ * Acts as a annotation processor on steroids for godot kotlin annotations and maps ksp compiler classes to entry gen
+ * classes so they can be processed language independent.
+ */
 class GodotKotlinSymbolProcessor(
     private val options: Map<String, String>,
     private val codeGenerator: CodeGenerator,
