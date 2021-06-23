@@ -23,7 +23,8 @@ import java.io.File
 
 object PsiProvider {
     fun providePropertyInitializer(propertyFqName: String): Pair<String, Array<out Any>>? {
-        val propertyInitializerExpression = getPropertyInitializerExpression(propertyFqName) ?: return "%L" to arrayOf("null")
+        val propertyInitializerExpression =
+            getPropertyInitializerExpression(propertyFqName) ?: return "%L" to arrayOf("null")
         return getDefaultValueTemplateStringWithTemplateArguments(propertyInitializerExpression)
     }
 
