@@ -67,7 +67,7 @@ class Invocation : Spatial() {
 
 	@Export
 	@RegisterProperty
-	var testNullable: Int? = null
+	var nullableLong: Long? = null
 
 	private var hasInitializedLateInits = false
 
@@ -341,7 +341,7 @@ class Invocation : Spatial() {
 
 	@RegisterFunction
 	fun initNullables() {
-		testNullable = 1
+		nullableLong = 1
 		lateinitString = "works"
 		registerObject = OtherScript()
 		registerObjectNullable = OtherScript()
