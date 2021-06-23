@@ -23,6 +23,8 @@ class GodotKotlinSymbolProcessor(
     private val registeredClassToKSFileMap = mutableMapOf<RegisteredClass, KSFile>()
     private val sourceFilesContainingRegisteredClasses = mutableListOf<SourceFile>()
 
+    private lateinit var projectBasePath: String
+
     override fun process(resolver: Resolver): List<KSAnnotated> {
         CompilerDataProvider.init(
             resolver,
@@ -30,7 +32,7 @@ class GodotKotlinSymbolProcessor(
                 ?.split(File.pathSeparator)
                 ?: throw IllegalStateException("No srcDirs option provided")
         )
-        val projectBasePath = options["projectBasePath"]
+        projectBasePath = options["projectBasePath"]
             ?: throw IllegalStateException("No projectBasePath option provided")
 
         val registerAnnotationVisitor = RegistrationAnnotationVisitor(
@@ -48,6 +50,8 @@ class GodotKotlinSymbolProcessor(
     override fun finish() {
         super.finish()
         EntryGenerator.generateEntryFiles(
+            projectBasePath,
+            CompilerDataProvider.srcDirs,
             LoggerWrapper(logger),
             sourceFilesContainingRegisteredClasses,
             { registeredClass ->
@@ -61,17 +65,16 @@ class GodotKotlinSymbolProcessor(
                     "godot.${registeredClass.containingPackage}",
                     "${registeredClass.name}Registrar"
                 ).bufferedWriter()
-            },
-            {
-                codeGenerator.createNewFile(
-                    Dependencies(
-                        true,
-                        *registeredClassToKSFileMap.map { it.value }.toTypedArray()
-                    ),
-                    "godot",
-                    "Entry"
-                ).bufferedWriter()
             }
-        )
+        ) {
+            codeGenerator.createNewFile(
+                Dependencies(
+                    true,
+                    *registeredClassToKSFileMap.map { it.value }.toTypedArray()
+                ),
+                "godot",
+                "Entry"
+            ).bufferedWriter()
+        }
     }
 }

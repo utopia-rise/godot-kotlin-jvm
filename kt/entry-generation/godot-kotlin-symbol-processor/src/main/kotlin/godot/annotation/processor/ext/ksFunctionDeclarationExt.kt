@@ -9,6 +9,9 @@ import godot.entrygenerator.model.RegisteredFunction
 
 fun KSFunctionDeclaration.mapToRegisteredConstructor(): RegisteredConstructor {
     return RegisteredConstructor(
+        requireNotNull(qualifiedName?.asString() ?: parentDeclaration?.qualifiedName?.asString()) {
+            "Qualified name for a registered constructor declaration cannot be null"
+        },
         parameters.map { ksValueParameter ->
             ksValueParameter.mapToValueParameter()
         },

@@ -1,5 +1,13 @@
 package godot.entrygenerator
 
+import godot.entrygenerator.checks.ClassesPerFileCheck
+import godot.entrygenerator.checks.ConstructorArgCountCheck
+import godot.entrygenerator.checks.ConstructorOverloadingCheck
+import godot.entrygenerator.checks.DefaultConstructorCheck
+import godot.entrygenerator.checks.ExportedMutablilityCheck
+import godot.entrygenerator.checks.PackageSameAsFileNameCheck
+import godot.entrygenerator.checks.SignalNamePrefixCheck
+import godot.entrygenerator.checks.SignalTypeCheck
 import godot.entrygenerator.filebuilder.ClassRegistrarFileBuilder
 import godot.entrygenerator.filebuilder.MainEntryFileBuilder
 import godot.entrygenerator.model.RegisteredClass
@@ -10,12 +18,14 @@ import java.io.BufferedWriter
 object EntryGenerator {
 
     fun generateEntryFiles(
+        projectDir: String,
+        srcDirs: List<String>,
         logger: Logger,
         sourceFiles: List<SourceFile>,
         appendableProvider: (RegisteredClass) -> BufferedWriter,
         mainBufferedWriterProvider: () -> BufferedWriter
     ) {
-        executeSanityChecks(sourceFiles)
+        executeSanityChecks(projectDir, srcDirs, logger, sourceFiles)
 
         with(MainEntryFileBuilder) {
             sourceFiles.forEach { sourceFile ->
@@ -32,17 +42,22 @@ object EntryGenerator {
         }
     }
 
-    private fun executeSanityChecks(sourceFiles: List<SourceFile>) {
-        //TODO
-        //default constructor
-        //constructor arg count
-        //constructor overloading
-        //one class per file
-        //class package name same as file path
+    private fun executeSanityChecks(
+        projectDir: String,
+        srcDirs: List<String>,
+        logger: Logger,
+        sourceFiles: List<SourceFile>
+    ) {
+        ClassesPerFileCheck(logger, sourceFiles).execute()
+        PackageSameAsFileNameCheck(projectDir, srcDirs, logger, sourceFiles).execute()
 
-        //signal name prefix
-        //signal type check
+        DefaultConstructorCheck(logger, sourceFiles).execute()
+        ConstructorArgCountCheck(logger, sourceFiles).execute()
+        ConstructorOverloadingCheck(logger, sourceFiles).execute()
 
-        //export sanity check
+        SignalNamePrefixCheck(logger, sourceFiles).execute()
+        SignalTypeCheck(logger, sourceFiles).execute()
+
+        ExportedMutablilityCheck(logger, sourceFiles).execute()
     }
 }

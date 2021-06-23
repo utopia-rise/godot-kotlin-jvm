@@ -3,8 +3,10 @@ package godot.annotation.processor.ext
 import com.google.devtools.ksp.getAllSuperTypes
 import com.google.devtools.ksp.getConstructors
 import com.google.devtools.ksp.getDeclaredProperties
+import com.google.devtools.ksp.isPublic
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import godot.annotation.RegisterClass
+import godot.annotation.RegisterConstructor
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.annotation.processor.compiler.CompilerDataProvider
@@ -70,6 +72,11 @@ fun KSClassDeclaration.mapToClazz(projectDir: String): Clazz {
             .map { it.mapToRegisteredSignal(declaredProperties.toList()) }
             .toList()
         val registeredConstructors = getConstructors()
+            .filter { it.isPublic() }
+            .filter { constructor ->
+                constructor.annotations.any { it.fqNameUnsafe == RegisterConstructor::class.qualifiedName } ||
+                    constructor.parameters.isEmpty()
+            }
             .map { it.mapToRegisteredConstructor() }
             .toList()
 
