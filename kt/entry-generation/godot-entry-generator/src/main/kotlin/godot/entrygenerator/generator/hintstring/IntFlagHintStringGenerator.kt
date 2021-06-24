@@ -6,7 +6,7 @@ import godot.entrygenerator.model.RegisteredProperty
 
 class IntFlagHintStringGenerator(
     registeredProperty: RegisteredProperty
-) : PropertyHintStringGenerator(registeredProperty) {
+) : PropertyHintStringGenerator<IntFlagHintAnnotation>(registeredProperty) {
 
     override fun getHintString(): String {
         if (registeredProperty.type.fqName != "kotlin.Int") {

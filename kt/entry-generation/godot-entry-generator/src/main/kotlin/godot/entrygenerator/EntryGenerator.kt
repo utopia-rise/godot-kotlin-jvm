@@ -16,6 +16,9 @@ import godot.entrygenerator.utils.Logger
 import java.io.BufferedWriter
 
 object EntryGenerator {
+    private var _logger: Logger? = null
+    internal val logger: Logger
+        get() = _logger ?: throw UninitializedPropertyAccessException("logger not yet initialized. Get logger only after generateEntryFiles was called")
 
     fun generateEntryFiles(
         projectDir: String,
@@ -25,6 +28,7 @@ object EntryGenerator {
         appendableProvider: (RegisteredClass) -> BufferedWriter,
         mainBufferedWriterProvider: () -> BufferedWriter
     ) {
+        _logger = logger
         executeSanityChecks(projectDir, srcDirs, logger, sourceFiles)
 
         with(MainEntryFileBuilder) {

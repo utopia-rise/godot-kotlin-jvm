@@ -5,13 +5,14 @@ import godot.entrygenerator.ext.getCompatibleListType
 import godot.entrygenerator.ext.isCompatibleList
 import godot.entrygenerator.ext.isCoreType
 import godot.entrygenerator.ext.isGodotPrimitive
+import godot.entrygenerator.model.PropertyHintAnnotation
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.Type
 import godot.entrygenerator.model.TypeKind
 
 class ArrayHintStringGenerator(
     registeredProperty: RegisteredProperty
-) : PropertyHintStringGenerator(registeredProperty) {
+) : PropertyHintStringGenerator<PropertyHintAnnotation>(registeredProperty) {
 
 
     /**
