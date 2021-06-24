@@ -6,7 +6,7 @@ on:
       - 'kt/entry-generation/godot-kotlin-symbol-processor/**'
 
 jobs:
-  build_entry_generator:
+  build_godot_kotlin_symbol_processor:
     runs-on: ubuntu-latest
     steps:
       - name: Clone Godot JVM module.
