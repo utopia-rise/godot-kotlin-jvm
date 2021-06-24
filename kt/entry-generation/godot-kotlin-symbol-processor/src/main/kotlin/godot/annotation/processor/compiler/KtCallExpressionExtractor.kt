@@ -87,7 +87,7 @@ object KtCallExpressionExtractor {
                     return "%M(${transformedArgs.joinToString { it!!.first }})" to params.toTypedArray()
                 }
                 //set's for enum flag registration
-                expression.getType(bindingContext!!)?.let(KotlinBuiltIns::isSetOrNullableSet) == true -> {
+                expression.getType(bindingContext)?.let(KotlinBuiltIns::isSetOrNullableSet) == true -> {
                     //setOf -> ref is null in this case
                     val params = mutableListOf<Any>()
                     params.add(expression.children.first().text)

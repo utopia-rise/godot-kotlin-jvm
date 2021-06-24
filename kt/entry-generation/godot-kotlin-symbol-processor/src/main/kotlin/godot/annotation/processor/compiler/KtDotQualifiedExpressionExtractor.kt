@@ -44,7 +44,7 @@ object KtDotQualifiedExpressionExtractor {
             val selectorExpression = expression
                 .selectorExpression
                 ?.referenceExpression()
-                ?.getReferenceTargets(bindingContext!!)
+                ?.getReferenceTargets(bindingContext)
                 ?.firstOrNull()
 
             if (selectorExpression?.fqNameSafe?.asString() == "kotlin.text.trimIndent") {

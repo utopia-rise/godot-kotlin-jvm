@@ -99,6 +99,7 @@ fun KSAnnotation.mapToAnnotation(): GodotAnnotation? {
         "godot.annotation.GodotBaseType" -> GodotBaseTypeAnnotation //is internal
         EnumFlag::class.qualifiedName -> EnumFlagHintAnnotation
         IntFlag::class.qualifiedName -> IntFlagHintAnnotation(
+            @Suppress("UNCHECKED_CAST")
             (arguments.firstOrNull()?.value as? ArrayList<String>)?.toList() ?: emptyList()
         )
         MultilineText::class.qualifiedName -> MultilineTextHintAnnotation
@@ -177,6 +178,7 @@ fun KSAnnotation.mapToAnnotation(): GodotAnnotation? {
             )
         }
         godot.annotation.File::class.qualifiedName -> {
+            @Suppress("UNCHECKED_CAST")
             val extensions = ((arguments.firstOrNull { it.name?.asString() == "extensions" }?.value ?: arguments.firstOrNull()?.value) as? ArrayList<String>)?.toList() ?: emptyList()
             val global = ((arguments.firstOrNull { it.name?.asString() == "global" }?.value ?: arguments[1].value) as? Boolean) ?: false
             FileHintAnnotation(
