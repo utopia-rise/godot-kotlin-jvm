@@ -26,7 +26,7 @@ fun KSTypeReference.mapToType(): Type {
         ClassKind.ENUM_ENTRY -> TypeKind.ENUM_ENTRY
         ClassKind.OBJECT -> TypeKind.OBJECT
         ClassKind.ANNOTATION_CLASS -> TypeKind.ANNOTATION_CLASS
-        null -> TypeKind.TYPE_ALIAS
+        null -> TypeKind.UNKNOWN
     }
 
     return Type(

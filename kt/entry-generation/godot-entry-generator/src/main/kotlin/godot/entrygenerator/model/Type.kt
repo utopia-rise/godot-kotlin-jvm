@@ -15,5 +15,5 @@ enum class TypeKind {
     ENUM_ENTRY,
     OBJECT,
     ANNOTATION_CLASS,
-    TYPE_ALIAS
+    UNKNOWN
 }
