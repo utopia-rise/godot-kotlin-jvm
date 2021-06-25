@@ -44,4 +44,6 @@ publishing {
 
 project.extra["artifacts"] = arrayOf("buildProps")
 
-tasks.withType<Copy> { duplicatesStrategy = DuplicatesStrategy.INCLUDE}
+// copy task needs an explicit duplication strategy set for gradle >= 7
+// see: https://docs.gradle.org/7.0.2/dsl/org.gradle.api.tasks.Copy.html#org.gradle.api.tasks.Copy:duplicatesStrategy
+tasks.withType<Copy> { duplicatesStrategy = DuplicatesStrategy.INCLUDE }
