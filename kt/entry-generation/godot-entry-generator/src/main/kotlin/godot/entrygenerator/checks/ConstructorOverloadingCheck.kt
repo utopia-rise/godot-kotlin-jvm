@@ -13,7 +13,7 @@ class ConstructorOverloadingCheck(logger: Logger, sourceFiles: List<SourceFile>)
                     .groupBy { it.parameters.size }
                     .filter { it.value.size > 1 }
                     .forEach { (argCount, overloadingConstructors) ->
-                        logger.error("Constructor overloading is not yet supported! Overloading constructors in class ${registeredClass.fqName}: ${overloadingConstructors.joinToString { it.fqName }} with arg count: $argCount")
+                        logger.error("Constructor overloading on registered constructors is not yet supported! Overloading constructors in class ${registeredClass.fqName}: ${overloadingConstructors.joinToString { it.fqName }} with arg count: $argCount")
                     }
             }
     }
