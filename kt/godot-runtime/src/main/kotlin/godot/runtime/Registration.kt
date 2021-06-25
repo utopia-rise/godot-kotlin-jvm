@@ -181,8 +181,8 @@ class ClassBuilderDsl<T : KtObject>(
                     ?: variantArrayOf()
             },
             { enumOrdinalVariantArray ->
-                enumOrdinalVariantArray
-                    .map { enumValues<P>()[it] } as L
+                @Suppress("UNCHECKED_CAST")
+                enumOrdinalVariantArray.map { enumValues<P>()[it] } as L
             }
         )
     }

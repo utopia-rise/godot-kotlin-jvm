@@ -13,7 +13,7 @@ class IntFlagHintStringGenerator(
             throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation, Int::class.qualifiedName)
         }
 
-        return (propertyHintAnnotation as? IntFlagHintAnnotation)
+        return propertyHintAnnotation
             ?.names
             ?.joinToString(",") { it.removeSurrounding("\"") }
             ?: ""

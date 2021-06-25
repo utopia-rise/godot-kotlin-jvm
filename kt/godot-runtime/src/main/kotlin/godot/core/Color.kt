@@ -449,13 +449,13 @@ class Color(
                 var v: Int
 
                 when (val c: Char = p_str[i + p_ofs]) {
-                    in '0'..'9' -> v = c.toInt() - '0'.toInt()
+                    in '0'..'9' -> v = c.code - '0'.code
                     in 'a'..'f' -> {
-                        v = c.toInt() - 'a'.toInt()
+                        v = c.code - 'a'.code
                         v += 10
                     }
                     in 'A'..'F' -> {
-                        v = c.toInt() - 'A'.toInt()
+                        v = c.code - 'A'.code
                         v += 10
                     }
                     else -> return -1.0
@@ -744,13 +744,13 @@ class Color(
             val c = shortArrayOf(0, 0)
             val lv = v and 0xF
             if (lv < 10) {
-                c[0] = ('0'.toInt() + lv).toShort()
+                c[0] = ('0'.code + lv).toShort()
             } else {
-                c[0] = ('a'.toInt() + lv - 10).toShort()
+                c[0] = ('a'.code + lv - 10).toShort()
             }
 
             v = v shr 4
-            val cs = String(charArrayOf(c[0].toChar()))
+            val cs = String(charArrayOf(c[0].toInt().toChar()))
             ret = cs + ret
         }
         return ret
