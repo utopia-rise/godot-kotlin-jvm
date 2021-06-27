@@ -65,11 +65,11 @@ class GodotPlugin : Plugin<Project> {
                         .getByName("main")
                         .kotlin
                         .srcDirs
-                        .joinToString(File.pathSeparator) { it.absolutePath }
+                        .joinToString(File.pathSeparator) { it.absolutePath.replace(File.separator, "/") }
                 )
                 arg(
                     "projectBasePath",
-                    project.projectDir.absolutePath
+                    project.projectDir.absolutePath.replace(File.separator, "/")
                 )
             }
 
