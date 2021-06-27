@@ -20,6 +20,7 @@ fun KSClassDeclaration.getResPath(srcDirs: List<String>, projectDir: String): St
     ?.let { filePath ->
         val srcDir = requireNotNull(
             srcDirs
+                .map { it.replace(File.separator, "/") }
                 .filter { srcDir ->
                     filePath.contains(srcDir)
                 }
