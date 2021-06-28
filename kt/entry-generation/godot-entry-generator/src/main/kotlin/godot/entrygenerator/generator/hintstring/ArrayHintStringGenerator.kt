@@ -5,14 +5,14 @@ import godot.entrygenerator.ext.getCompatibleListType
 import godot.entrygenerator.ext.isCompatibleList
 import godot.entrygenerator.ext.isCoreType
 import godot.entrygenerator.ext.isGodotPrimitive
-import godot.entrygenerator.model.PropertyHintAnnotation
+import godot.entrygenerator.model.EnumAnnotation
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.Type
 import godot.entrygenerator.model.TypeKind
 
 class ArrayHintStringGenerator(
     registeredProperty: RegisteredProperty
-) : PropertyHintStringGenerator<PropertyHintAnnotation>(registeredProperty) {
+) : PropertyHintStringGenerator<EnumAnnotation>(registeredProperty) {
 
 
     /**
@@ -24,8 +24,9 @@ class ArrayHintStringGenerator(
         return when {
             elementType != null && elementType.fqName == "kotlin.Any" -> ""
             elementType != null && elementType.kind == TypeKind.ENUM_CLASS -> {
-                // return value is not used, hint is computed at runtime
-                ""
+                propertyHintAnnotation?.enumValueNames?.joinToString(",")?.let { enumValuesHintString ->
+                    "2/3:$enumValuesHintString" //2 = VariantType.LONG.ordinal | 3 = PropertyHint.ENUM.ordinal
+                } ?: ""
             }
             else -> {
                 buildString {

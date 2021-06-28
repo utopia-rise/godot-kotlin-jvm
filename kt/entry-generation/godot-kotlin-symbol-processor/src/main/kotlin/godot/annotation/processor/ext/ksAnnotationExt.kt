@@ -1,6 +1,10 @@
 package godot.annotation.processor.ext
 
+import com.google.devtools.ksp.symbol.ClassKind
 import com.google.devtools.ksp.symbol.KSAnnotation
+import com.google.devtools.ksp.symbol.KSClassDeclaration
+import com.google.devtools.ksp.symbol.KSDeclaration
+import com.google.devtools.ksp.symbol.KSPropertyDeclaration
 import com.google.devtools.ksp.symbol.KSType
 import godot.MultiplayerAPI
 import godot.annotation.ColorNoAlpha
@@ -21,7 +25,8 @@ import godot.annotation.Tool
 import godot.entrygenerator.model.ColorNoAlphaHintAnnotation
 import godot.entrygenerator.model.DirHintAnnotation
 import godot.entrygenerator.model.DoubleRangeHintAnnotation
-import godot.entrygenerator.model.EnumFlagHintAnnotation
+import godot.entrygenerator.model.EnumAnnotation
+import godot.entrygenerator.model.EnumFlagHintStringAnnotation
 import godot.entrygenerator.model.ExpEasingHintAnnotation
 import godot.entrygenerator.model.ExpRangeHintAnnotation
 import godot.entrygenerator.model.ExportAnnotation
@@ -75,7 +80,7 @@ val KSAnnotation.rpcModeEnum: RpcMode
         else -> RpcMode.DISABLED
     }
 
-fun KSAnnotation.mapToAnnotation(): GodotAnnotation? {
+fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): GodotAnnotation? {
     return when (fqNameUnsafe) {
         RegisterClass::class.qualifiedName -> RegisterClassAnnotation(
             arguments.first().value as? String
@@ -97,7 +102,27 @@ fun KSAnnotation.mapToAnnotation(): GodotAnnotation? {
         Tool::class.qualifiedName -> ToolAnnotation
         Export::class.qualifiedName -> ExportAnnotation
         "godot.annotation.GodotBaseType" -> GodotBaseTypeAnnotation //is internal
-        EnumFlag::class.qualifiedName -> EnumFlagHintAnnotation
+        EnumFlag::class.qualifiedName -> {
+            val setType = (parentDeclaration as KSPropertyDeclaration).type.resolve()
+            require(setType.declaration.qualifiedName?.asString()?.matches(Regex("^kotlin\\.collections\\..*Set\$")) ?: false) {
+                "Property annotated with @EnumFlag has to be of type kotlin.collection.Set but was of type ${setType.declaration.qualifiedName?.asString()}"
+            }
+            val enumDeclaration = setType.arguments.first().type?.resolve()?.declaration
+            require(enumDeclaration is KSClassDeclaration) {
+                "Type parameter of EnumFlag set has to be a class declaration"
+            }
+            require(enumDeclaration.classKind == ClassKind.ENUM_CLASS) {
+                "Content type of enumFlag set has to be of class kind ENUM but was class kind ${enumDeclaration.classKind}. Property: ${parentDeclaration.qualifiedName}"
+            }
+            val enumValueNames = enumDeclaration
+                .declarations
+                .filterIsInstance<KSClassDeclaration>()
+                .filter { it.classKind == ClassKind.ENUM_ENTRY }
+                .map { it.simpleName.asString() }
+                .toList()
+
+            EnumFlagHintStringAnnotation(enumValueNames)
+        }
         IntFlag::class.qualifiedName -> IntFlagHintAnnotation(
             @Suppress("UNCHECKED_CAST")
             (arguments.firstOrNull()?.value as? ArrayList<String>)?.toList() ?: emptyList()

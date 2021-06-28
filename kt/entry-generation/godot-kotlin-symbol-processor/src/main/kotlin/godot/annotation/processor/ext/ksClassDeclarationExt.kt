@@ -47,7 +47,7 @@ fun KSClassDeclaration.mapToClazz(projectDir: String): Clazz {
         .map { it.mapToClazz(projectDir) }
         .toList()
     val mappedAnnotations = annotations
-        .mapNotNull { it.mapToAnnotation() as? ClassAnnotation }
+        .mapNotNull { it.mapToAnnotation(this) as? ClassAnnotation }
         .toList()
 
     return if (annotations.any { it.fqNameUnsafe == RegisterClass::class.qualifiedName }) {

@@ -16,7 +16,7 @@ fun KSFunctionDeclaration.mapToRegisteredConstructor(): RegisteredConstructor {
             ksValueParameter.mapToValueParameter()
         },
         annotations
-            .mapNotNull { it.mapToAnnotation() as? ConstructorAnnotation }
+            .mapNotNull { it.mapToAnnotation(this) as? ConstructorAnnotation }
             .toList()
     )
 }
@@ -28,7 +28,7 @@ fun KSFunctionDeclaration.mapToRegisteredFunction(): RegisteredFunction? {
             "Qualified name for a registered function declaration cannot be null"
         }
         val parameters = parameters.map { it.mapToValueParameter() }
-        val annotations = annotations.mapNotNull { it.mapToAnnotation() as? FunctionAnnotation }
+        val annotations = annotations.mapNotNull { it.mapToAnnotation(this) as? FunctionAnnotation }
         RegisteredFunction(
             fqName,
             parameters,

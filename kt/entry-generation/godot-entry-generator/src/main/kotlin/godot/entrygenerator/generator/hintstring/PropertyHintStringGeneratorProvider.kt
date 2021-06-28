@@ -1,15 +1,15 @@
 package godot.entrygenerator.generator.hintstring
 
 import godot.entrygenerator.EntryGenerator
-import godot.entrygenerator.ext.hasAnnotation
 import godot.entrygenerator.ext.isCompatibleList
-import godot.entrygenerator.ext.isCoreType
-import godot.entrygenerator.ext.isGodotPrimitive
 import godot.entrygenerator.ext.isReference
 import godot.entrygenerator.model.ColorNoAlphaHintAnnotation
 import godot.entrygenerator.model.DirHintAnnotation
 import godot.entrygenerator.model.DoubleRangeHintAnnotation
-import godot.entrygenerator.model.EnumFlagHintAnnotation
+import godot.entrygenerator.model.EnumAnnotation
+import godot.entrygenerator.model.EnumFlagHintStringAnnotation
+import godot.entrygenerator.model.EnumHintStringAnnotation
+import godot.entrygenerator.model.EnumListHintStringAnnotation
 import godot.entrygenerator.model.ExpEasingHintAnnotation
 import godot.entrygenerator.model.ExpRangeHintAnnotation
 import godot.entrygenerator.model.FileHintAnnotation
@@ -21,7 +21,6 @@ import godot.entrygenerator.model.MultilineTextHintAnnotation
 import godot.entrygenerator.model.PlaceHolderTextHintAnnotation
 import godot.entrygenerator.model.PropertyHintAnnotation
 import godot.entrygenerator.model.RegisteredProperty
-import godot.entrygenerator.model.TypeKind
 
 
 object PropertyHintStringGeneratorProvider {
@@ -37,7 +36,9 @@ object PropertyHintStringGeneratorProvider {
         return when(hintAnnotations.firstOrNull()) {
             ColorNoAlphaHintAnnotation -> ColorNoAlphaHintStringGenerator(registeredProperty)
             is DirHintAnnotation -> DirHintStringGenerator(registeredProperty)
-            EnumFlagHintAnnotation -> throw UnsupportedOperationException("Hint string for enums is handled by the binding at runtime.")
+            is EnumFlagHintStringAnnotation,
+            is EnumHintStringAnnotation -> EnumHintStringGenerator(registeredProperty)
+            is EnumListHintStringAnnotation -> ArrayHintStringGenerator(registeredProperty)
             is ExpEasingHintAnnotation -> ExpEasingHintStringGenerator(registeredProperty)
             is FileHintAnnotation -> FileHintStringGenerator(registeredProperty)
             is IntFlagHintAnnotation -> IntFlagHintStringGenerator(registeredProperty)

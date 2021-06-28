@@ -126,7 +126,8 @@ class ClassBuilderDsl<T : KtObject>(
         kProperty: KMutableProperty1<T, P>,
         noinline defaultValueProvider: () -> P,
         visibleInEditor: Boolean,
-        rpcModeId: Int = 0
+        rpcModeId: Int = 0,
+        hintString: String
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
         require(!properties.contains(propertyName)) {
@@ -139,7 +140,7 @@ class ClassBuilderDsl<T : KtObject>(
                 propertyName,
                 "Int",
                 PropertyHint.ENUM,
-                enumValues<P>().joinToString { it.name },
+                hintString,
                 visibleInEditor,
                 rpcModeId
             ),
@@ -155,7 +156,8 @@ class ClassBuilderDsl<T : KtObject>(
         kProperty: KMutableProperty1<T, L>,
         noinline defaultValueProvider: () -> L,
         visibleInEditor: Boolean,
-        rpcModeId: Int = 0
+        rpcModeId: Int = 0,
+        hintString: String
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
         require(!properties.contains(propertyName)) {
@@ -168,7 +170,7 @@ class ClassBuilderDsl<T : KtObject>(
                 propertyName,
                 "Int",
                 PropertyHint.ENUM,
-                "2/3:${enumValues<P>().joinToString(",") { it.name }}", //2 = VariantType.LONG.ordinal | 3 = PropertyHint.ENUM.ordinal
+                hintString,
                 visibleInEditor,
                 rpcModeId
             ),
@@ -193,14 +195,22 @@ class ClassBuilderDsl<T : KtObject>(
         kProperty: KMutableProperty1<T, MutableSet<P>>,
         noinline defaultValueProvider: () -> MutableSet<P>,
         visibleInEditor: Boolean,
-        rpcModeId: Int
-    ) = enumFlagProperty(kProperty as KMutableProperty1<T, Set<P>>, defaultValueProvider, visibleInEditor, rpcModeId)
+        rpcModeId: Int,
+        hintString: String
+    ) = enumFlagProperty(
+        kProperty as KMutableProperty1<T, Set<P>>,
+        defaultValueProvider,
+        visibleInEditor,
+        rpcModeId,
+        hintString
+    )
 
     inline fun <reified P : Enum<P>> enumFlagProperty(
         kProperty: KMutableProperty1<T, Set<P>>,
         noinline defaultValueProvider: () -> Set<P>,
         visibleInEditor: Boolean,
-        rpcModeId: Int
+        rpcModeId: Int,
+        hintString: String
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
         require(!properties.contains(propertyName)) {
@@ -213,7 +223,7 @@ class ClassBuilderDsl<T : KtObject>(
                 propertyName,
                 "Int",
                 PropertyHint.FLAGS,
-                enumValues<P>().joinToString { it.name },
+                hintString,
                 visibleInEditor,
                 rpcModeId
             ),

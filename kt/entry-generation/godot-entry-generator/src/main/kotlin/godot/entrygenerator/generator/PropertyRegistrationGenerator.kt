@@ -15,7 +15,7 @@ import godot.entrygenerator.ext.hasAnnotation
 import godot.entrygenerator.ext.toKtVariantType
 import godot.entrygenerator.generator.hintstring.PropertyHintStringGeneratorProvider
 import godot.entrygenerator.generator.typehint.PropertyTypeHintProvider
-import godot.entrygenerator.model.EnumFlagHintAnnotation
+import godot.entrygenerator.model.EnumAnnotation
 import godot.entrygenerator.model.ExportAnnotation
 import godot.entrygenerator.model.RegisterPropertyAnnotation
 import godot.entrygenerator.model.RegisteredClass
@@ -42,7 +42,7 @@ object PropertyRegistrationGenerator {
                     )
                     registeredProperty.type.fqName.matches(Regex("^kotlin\\.collections\\..*Set\$")) &&
                         registeredProperty.type.arguments().firstOrNull()?.kind == TypeKind.ENUM_CLASS &&
-                        registeredProperty.annotations.hasAnnotation<EnumFlagHintAnnotation>() -> registerEnumFlag(
+                        registeredProperty.annotations.hasAnnotation<EnumAnnotation>() -> registerEnumFlag(
                         registeredProperty,
                         className,
                         registerClassControlFlow,
@@ -100,10 +100,14 @@ object PropertyRegistrationGenerator {
 
         registerClassControlFlow
             .addStatement(
-                "enumListProperty(%L,·$defaultValueProvider,·%L,·%T.id.toInt())",
+                "enumListProperty(%L,·$defaultValueProvider,·%L,·%T.id.toInt(),·%S)",
                 getPropertyReference(registeredProperty, className),
                 shouldBeVisibleInEditor(registeredProperty),
-                getRpcModeEnum(registeredProperty)
+                getRpcModeEnum(registeredProperty),
+                PropertyHintStringGeneratorProvider
+                    .provide(registeredProperty)
+                    .getHintString()
+                    .replace("?", ""),
             )
     }
 
@@ -117,10 +121,14 @@ object PropertyRegistrationGenerator {
 
         registerClassControlFlow
             .addStatement(
-                "enumFlagProperty(%L,·$defaultValueProvider,·%L,·%T.id.toInt())",
+                "enumFlagProperty(%L,·$defaultValueProvider,·%L,·%T.id.toInt(),·%S)",
                 getPropertyReference(registeredProperty, className),
                 shouldBeVisibleInEditor(registeredProperty),
-                getRpcModeEnum(registeredProperty)
+                getRpcModeEnum(registeredProperty),
+                PropertyHintStringGeneratorProvider
+                    .provide(registeredProperty)
+                    .getHintString()
+                    .replace("?", ""),
             )
     }
 
@@ -134,10 +142,14 @@ object PropertyRegistrationGenerator {
 
         registerClassControlFlow
             .addStatement(
-                "enumProperty(%L,·$defaultValueProvider,·%L,·%T.id.toInt())",
+                "enumProperty(%L,·$defaultValueProvider,·%L,·%T.id.toInt(),·%S)",
                 getPropertyReference(registeredProperty, className),
                 shouldBeVisibleInEditor(registeredProperty),
-                getRpcModeEnum(registeredProperty)
+                getRpcModeEnum(registeredProperty),
+                PropertyHintStringGeneratorProvider
+                    .provide(registeredProperty)
+                    .getHintString()
+                    .replace("?", ""),
             )
     }
 
