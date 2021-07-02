@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -13,6 +13,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import kotlin.Boolean
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * RemoteTransform2D pushes its own [godot.core.Transform2D] to another [godot.CanvasItem] derived Node in the scene.
@@ -22,18 +23,18 @@ import kotlin.Suppress
  * It can be set to update another Node's position, rotation and/or scale. It can use either global or local coordinates.
  */
 @GodotBaseType
-open class RemoteTransform2D : Node2D() {
+public open class RemoteTransform2D : Node2D() {
   /**
    * The [godot.core.NodePath] to the remote node, relative to the RemoteTransform2D's position in the scene.
    */
-  open var remotePath: NodePath
+  public open var remotePath: NodePath
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_GET_REMOTE_PATH,
           NODE_PATH)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_SET_REMOTE_PATH,
           NIL)
@@ -42,14 +43,14 @@ open class RemoteTransform2D : Node2D() {
   /**
    * If `true`, the remote node's position is updated.
    */
-  open var updatePosition: Boolean
+  public open var updatePosition: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_GET_UPDATE_POSITION, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_SET_UPDATE_POSITION, NIL)
@@ -58,14 +59,14 @@ open class RemoteTransform2D : Node2D() {
   /**
    * If `true`, the remote node's rotation is updated.
    */
-  open var updateRotation: Boolean
+  public open var updateRotation: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_GET_UPDATE_ROTATION, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_SET_UPDATE_ROTATION, NIL)
@@ -74,14 +75,14 @@ open class RemoteTransform2D : Node2D() {
   /**
    * If `true`, the remote node's scale is updated.
    */
-  open var updateScale: Boolean
+  public open var updateScale: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_GET_UPDATE_SCALE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_SET_UPDATE_SCALE, NIL)
@@ -90,27 +91,27 @@ open class RemoteTransform2D : Node2D() {
   /**
    * If `true`, global coordinates are used. If `false`, local coordinates are used.
    */
-  open var useGlobalCoordinates: Boolean
+  public open var useGlobalCoordinates: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_GET_USE_GLOBAL_COORDINATES, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_SET_USE_GLOBAL_COORDINATES, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_REMOTETRANSFORM2D)
   }
 
   /**
    * [godot.RemoteTransform2D] caches the remote node. It may not notice if the remote node disappears; [forceUpdateCache] forces it to update the cache again.
    */
-  open fun forceUpdateCache() {
+  public open fun forceUpdateCache(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_FORCE_UPDATE_CACHE, NIL)

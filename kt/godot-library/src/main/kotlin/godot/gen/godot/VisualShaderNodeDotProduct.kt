@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Calculates a dot product of two vectors within the visual shader graph.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Translates to `dot(a, b)` in the shader language.
  */
 @GodotBaseType
-open class VisualShaderNodeDotProduct : VisualShaderNode() {
-  override fun __new() {
+public open class VisualShaderNodeDotProduct : VisualShaderNode() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEDOTPRODUCT)
   }
 }

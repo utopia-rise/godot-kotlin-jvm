@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -15,6 +15,7 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Class representing a spherical [godot.PrimitiveMesh].
@@ -22,17 +23,17 @@ import kotlin.Suppress
  * Class representing a spherical [godot.PrimitiveMesh].
  */
 @GodotBaseType
-open class SphereMesh : PrimitiveMesh() {
+public open class SphereMesh : PrimitiveMesh() {
   /**
    * Full height of the sphere.
    */
-  open var height: Double
+  public open var height: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPHEREMESH_GET_HEIGHT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPHEREMESH_SET_HEIGHT, NIL)
     }
@@ -42,14 +43,14 @@ open class SphereMesh : PrimitiveMesh() {
    *
    * **Note:** To get a regular hemisphere, the height and radius of the sphere must be equal.
    */
-  open var isHemisphere: Boolean
+  public open var isHemisphere: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPHEREMESH_GET_IS_HEMISPHERE,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPHEREMESH_SET_IS_HEMISPHERE, NIL)
     }
@@ -57,14 +58,14 @@ open class SphereMesh : PrimitiveMesh() {
   /**
    * Number of radial segments on the sphere.
    */
-  open var radialSegments: Long
+  public open var radialSegments: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPHEREMESH_GET_RADIAL_SEGMENTS,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPHEREMESH_SET_RADIAL_SEGMENTS,
           NIL)
@@ -73,13 +74,13 @@ open class SphereMesh : PrimitiveMesh() {
   /**
    * Radius of sphere.
    */
-  open var radius: Double
+  public open var radius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPHEREMESH_GET_RADIUS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPHEREMESH_SET_RADIUS, NIL)
     }
@@ -87,18 +88,18 @@ open class SphereMesh : PrimitiveMesh() {
   /**
    * Number of segments along the height of the sphere.
    */
-  open var rings: Long
+  public open var rings: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPHEREMESH_GET_RINGS, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPHEREMESH_SET_RINGS, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SPHEREMESH)
   }
 }

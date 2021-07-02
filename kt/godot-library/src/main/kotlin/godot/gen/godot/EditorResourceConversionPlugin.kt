@@ -5,31 +5,32 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
-open class EditorResourceConversionPlugin : Reference() {
-  override fun __new() {
+public open class EditorResourceConversionPlugin : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORRESOURCECONVERSIONPLUGIN)
   }
 
   /**
    *
    */
-  open fun _convert(resource: Resource): Resource? {
+  public open fun _convert(resource: Resource): Resource? {
     throw NotImplementedError("_convert is not implemented for EditorResourceConversionPlugin")
   }
 
   /**
    *
    */
-  open fun _convertsTo(): String {
+  public open fun _convertsTo(): String {
     throw NotImplementedError("_converts_to is not implemented for EditorResourceConversionPlugin")
   }
 }

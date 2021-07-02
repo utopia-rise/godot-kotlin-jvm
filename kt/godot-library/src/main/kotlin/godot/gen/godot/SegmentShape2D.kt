@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
@@ -20,17 +20,17 @@ import kotlin.Unit
  * Segment shape for 2D collisions. Consists of two points, `a` and `b`.
  */
 @GodotBaseType
-open class SegmentShape2D : Shape2D() {
+public open class SegmentShape2D : Shape2D() {
   /**
    * The segment's first point position.
    */
-  open var a: Vector2
+  public open var a: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEGMENTSHAPE2D_GET_A, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEGMENTSHAPE2D_SET_A, NIL)
     }
@@ -38,30 +38,30 @@ open class SegmentShape2D : Shape2D() {
   /**
    * The segment's second point position.
    */
-  open var b: Vector2
+  public open var b: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEGMENTSHAPE2D_GET_B, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SEGMENTSHAPE2D_SET_B, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SEGMENTSHAPE2D)
   }
 
   @CoreTypeHelper
-  open fun a(schedule: Vector2.() -> Unit): Vector2 = a.apply{
+  public open fun a(schedule: Vector2.() -> Unit): Vector2 = a.apply{
       schedule(this)
       a = this
   }
 
 
   @CoreTypeHelper
-  open fun b(schedule: Vector2.() -> Unit): Vector2 = b.apply{
+  public open fun b(schedule: Vector2.() -> Unit): Vector2 = b.apply{
       schedule(this)
       b = this
   }

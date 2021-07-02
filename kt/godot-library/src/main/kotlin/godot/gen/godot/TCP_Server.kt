@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A TCP server.
@@ -26,15 +27,15 @@ import kotlin.Suppress
  * A TCP server. Listens to connections on a port and returns a [godot.StreamPeerTCP] when it gets an incoming connection.
  */
 @GodotBaseType
-open class TCP_Server : Reference() {
-  override fun __new() {
+public open class TCP_Server : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TCP_SERVER)
   }
 
   /**
    * Returns `true` if a connection is available for taking.
    */
-  open fun isConnectionAvailable(): Boolean {
+  public open fun isConnectionAvailable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCP_SERVER_IS_CONNECTION_AVAILABLE,
         BOOL)
@@ -44,7 +45,7 @@ open class TCP_Server : Reference() {
   /**
    * Returns `true` if the server is currently listening for connections.
    */
-  open fun isListening(): Boolean {
+  public open fun isListening(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCP_SERVER_IS_LISTENING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -59,7 +60,7 @@ open class TCP_Server : Reference() {
    *
    * If `bind_address` is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc), the server will only listen on the interface with that addresses (or fail if no interface with the given address exists).
    */
-  open fun listen(port: Long, bindAddress: String = "*"): GodotError {
+  public open fun listen(port: Long, bindAddress: String = "*"): GodotError {
     TransferContext.writeArguments(LONG to port, STRING to bindAddress)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCP_SERVER_LISTEN, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -68,7 +69,7 @@ open class TCP_Server : Reference() {
   /**
    * Stops listening.
    */
-  open fun stop() {
+  public open fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCP_SERVER_STOP, NIL)
   }
@@ -76,7 +77,7 @@ open class TCP_Server : Reference() {
   /**
    * If a connection is available, returns a StreamPeerTCP with the connection.
    */
-  open fun takeConnection(): StreamPeerTCP? {
+  public open fun takeConnection(): StreamPeerTCP? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TCP_SERVER_TAKE_CONNECTION, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as StreamPeerTCP?

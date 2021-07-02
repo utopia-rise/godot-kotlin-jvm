@@ -5,12 +5,13 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
-open class VisualScriptSelf : VisualScriptNode() {
-  override fun __new() {
+public open class VisualScriptSelf : VisualScriptNode() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSCRIPTSELF)
   }
 }

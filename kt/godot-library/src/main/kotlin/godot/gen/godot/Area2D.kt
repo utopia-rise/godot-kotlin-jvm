@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
 import godot.core.VariantArray
@@ -39,20 +39,20 @@ import kotlin.Unit
  * 2D area that detects [godot.CollisionObject2D] nodes overlapping, entering, or exiting. Can also alter or override local physics parameters (gravity, damping).
  */
 @GodotBaseType
-open class Area2D : CollisionObject2D() {
+public open class Area2D : CollisionObject2D() {
   /**
    * Emitted when another Area2D enters this Area2D. Requires [monitoring] to be set to `true`.
    *
    * `area` the other Area2D.
    */
-  val areaEntered: Signal1<Area2D> by signal("area")
+  public val areaEntered: Signal1<Area2D> by signal("area")
 
   /**
    * Emitted when another Area2D exits this Area2D. Requires [monitoring] to be set to `true`.
    *
    * `area` the other Area2D.
    */
-  val areaExited: Signal1<Area2D> by signal("area")
+  public val areaExited: Signal1<Area2D> by signal("area")
 
   /**
    * Emitted when one of another Area2D's [godot.Shape2D]s enters one of this Area2D's [godot.Shape2D]s. Requires [monitoring] to be set to `true`.
@@ -65,8 +65,8 @@ open class Area2D : CollisionObject2D() {
    *
    * `local_shape` the index of the [godot.Shape2D] of this Area2D used by the [godot.Physics2DServer].
    */
-  val areaShapeEntered: Signal4<Long, Area2D, Long, Long> by signal("area_id", "area", "area_shape",
-      "local_shape")
+  public val areaShapeEntered: Signal4<Long, Area2D, Long, Long> by signal("area_id", "area",
+      "area_shape", "local_shape")
 
   /**
    * Emitted when one of another Area2D's [godot.Shape2D]s exits one of this Area2D's [godot.Shape2D]s. Requires [monitoring] to be set to `true`.
@@ -79,22 +79,22 @@ open class Area2D : CollisionObject2D() {
    *
    * `local_shape` the index of the [godot.Shape2D] of this Area2D used by the [godot.Physics2DServer].
    */
-  val areaShapeExited: Signal4<Long, Area2D, Long, Long> by signal("area_id", "area", "area_shape",
-      "local_shape")
+  public val areaShapeExited: Signal4<Long, Area2D, Long, Long> by signal("area_id", "area",
+      "area_shape", "local_shape")
 
   /**
    * Emitted when a [godot.PhysicsBody2D] or [godot.TileMap] enters this Area2D. Requires [monitoring] to be set to `true`. [godot.TileMap]s are detected if the [godot.TileSet] has Collision [godot.Shape2D]s.
    *
    * `body` the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody2D] or [godot.TileMap].
    */
-  val bodyEntered: Signal1<Node> by signal("body")
+  public val bodyEntered: Signal1<Node> by signal("body")
 
   /**
    * Emitted when a [godot.PhysicsBody2D] or [godot.TileMap] exits this Area2D. Requires [monitoring] to be set to `true`. [godot.TileMap]s are detected if the [godot.TileSet] has Collision [godot.Shape2D]s.
    *
    * `body` the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody2D] or [godot.TileMap].
    */
-  val bodyExited: Signal1<Node> by signal("body")
+  public val bodyExited: Signal1<Node> by signal("body")
 
   /**
    * Emitted when one of a [godot.PhysicsBody2D] or [godot.TileMap]'s [godot.Shape2D]s enters one of this Area2D's [godot.Shape2D]s. Requires [monitoring] to be set to `true`. [godot.TileMap]s are detected if the [godot.TileSet] has Collision [godot.Shape2D]s.
@@ -107,8 +107,8 @@ open class Area2D : CollisionObject2D() {
    *
    * `local_shape` the index of the [godot.Shape2D] of this Area2D used by the [godot.Physics2DServer].
    */
-  val bodyShapeEntered: Signal4<Long, Node, Long, Long> by signal("body_id", "body", "body_shape",
-      "local_shape")
+  public val bodyShapeEntered: Signal4<Long, Node, Long, Long> by signal("body_id", "body",
+      "body_shape", "local_shape")
 
   /**
    * Emitted when one of a [godot.PhysicsBody2D] or [godot.TileMap]'s [godot.Shape2D]s exits one of this Area2D's [godot.Shape2D]s. Requires [monitoring] to be set to `true`. [godot.TileMap]s are detected if the [godot.TileSet] has Collision [godot.Shape2D]s.
@@ -121,21 +121,21 @@ open class Area2D : CollisionObject2D() {
    *
    * `local_shape` the index of the [godot.Shape2D] of this Area2D used by the [godot.Physics2DServer].
    */
-  val bodyShapeExited: Signal4<Long, Node, Long, Long> by signal("body_id", "body", "body_shape",
-      "local_shape")
+  public val bodyShapeExited: Signal4<Long, Node, Long, Long> by signal("body_id", "body",
+      "body_shape", "local_shape")
 
   /**
    * The rate at which objects stop spinning in this area. Represents the angular velocity lost per second.
    *
    * See [godot.ProjectSettings.physics/2d/defaultAngularDamp] for more details about damping.
    */
-  open var angularDamp: Double
+  public open var angularDamp: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_ANGULAR_DAMP, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_ANGULAR_DAMP, NIL)
     }
@@ -143,13 +143,13 @@ open class Area2D : CollisionObject2D() {
   /**
    * The name of the area's audio bus.
    */
-  open var audioBusName: String
+  public open var audioBusName: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_AUDIO_BUS_NAME, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_AUDIO_BUS_NAME, NIL)
     }
@@ -157,14 +157,14 @@ open class Area2D : CollisionObject2D() {
   /**
    * If `true`, the area's audio bus overrides the default audio bus.
    */
-  open var audioBusOverride: Boolean
+  public open var audioBusOverride: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_AUDIO_BUS_OVERRIDE,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_AUDIO_BUS_OVERRIDE,
           NIL)
@@ -173,13 +173,13 @@ open class Area2D : CollisionObject2D() {
   /**
    * The area's physics layer(s). Collidable objects can exist in any of 32 different layers. A contact is detected if object A is in any of the layers that object B scans, or object B is in any layers that object A scans. See also [collisionMask]. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  open var collisionLayer: Long
+  public open var collisionLayer: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_COLLISION_LAYER, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_COLLISION_LAYER, NIL)
     }
@@ -187,13 +187,13 @@ open class Area2D : CollisionObject2D() {
   /**
    * The physics layers this area scans to determine collision detection. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  open var collisionMask: Long
+  public open var collisionMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_COLLISION_MASK, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_COLLISION_MASK, NIL)
     }
@@ -201,13 +201,13 @@ open class Area2D : CollisionObject2D() {
   /**
    * The area's gravity intensity (ranges from -1024 to 1024). This value multiplies the gravity vector. This is useful to alter the force of gravity without altering its direction.
    */
-  open var gravity: Double
+  public open var gravity: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_GRAVITY, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_GRAVITY, NIL)
     }
@@ -215,14 +215,14 @@ open class Area2D : CollisionObject2D() {
   /**
    * The falloff factor for point gravity. The greater the value, the faster gravity decreases with distance.
    */
-  open var gravityDistanceScale: Double
+  public open var gravityDistanceScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_GRAVITY_DISTANCE_SCALE,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_GRAVITY_DISTANCE_SCALE,
           NIL)
@@ -231,13 +231,13 @@ open class Area2D : CollisionObject2D() {
   /**
    * If `true`, gravity is calculated from a point (set via [gravityVec]). See also [spaceOverride].
    */
-  open var gravityPoint: Boolean
+  public open var gravityPoint: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_GRAVITY_POINT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_GRAVITY_POINT, NIL)
     }
@@ -245,13 +245,13 @@ open class Area2D : CollisionObject2D() {
   /**
    * The area's gravity vector (not normalized). If gravity is a point (see [gravityPoint]), this will be the point of attraction.
    */
-  open var gravityVec: Vector2
+  public open var gravityVec: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_GRAVITY_VEC, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_GRAVITY_VEC, NIL)
     }
@@ -261,13 +261,13 @@ open class Area2D : CollisionObject2D() {
    *
    * See [godot.ProjectSettings.physics/2d/defaultLinearDamp] for more details about damping.
    */
-  open var linearDamp: Double
+  public open var linearDamp: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_LINEAR_DAMP, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_LINEAR_DAMP, NIL)
     }
@@ -275,13 +275,13 @@ open class Area2D : CollisionObject2D() {
   /**
    * If `true`, other monitoring areas can detect this area.
    */
-  open var monitorable: Boolean
+  public open var monitorable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_MONITORABLE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_MONITORABLE, NIL)
     }
@@ -289,13 +289,13 @@ open class Area2D : CollisionObject2D() {
   /**
    * If `true`, the area detects bodies or areas entering and exiting it.
    */
-  open var monitoring: Boolean
+  public open var monitoring: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_MONITORING, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_MONITORING, NIL)
     }
@@ -303,13 +303,13 @@ open class Area2D : CollisionObject2D() {
   /**
    * The area's priority. Higher priority areas are processed first.
    */
-  open var priority: Double
+  public open var priority: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_PRIORITY, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_PRIORITY, NIL)
     }
@@ -317,62 +317,62 @@ open class Area2D : CollisionObject2D() {
   /**
    * Override mode for gravity and damping calculations within this area. See [enum SpaceOverride] for possible values.
    */
-  open var spaceOverride: Long
+  public open var spaceOverride: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_SPACE_OVERRIDE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_SPACE_OVERRIDE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AREA2D)
   }
 
   @CoreTypeHelper
-  open fun gravityVec(schedule: Vector2.() -> Unit): Vector2 = gravityVec.apply{
+  public open fun gravityVec(schedule: Vector2.() -> Unit): Vector2 = gravityVec.apply{
       schedule(this)
       gravityVec = this
   }
 
 
-  open fun _areaEnterTree(id: Long) {
+  public open fun _areaEnterTree(id: Long): Unit {
   }
 
-  open fun _areaExitTree(id: Long) {
+  public open fun _areaExitTree(id: Long): Unit {
   }
 
-  open fun _areaInout(
+  public open fun _areaInout(
     arg0: Long,
     arg1: RID,
     arg2: Long,
     arg3: Long,
     arg4: Long
-  ) {
+  ): Unit {
   }
 
-  open fun _bodyEnterTree(id: Long) {
+  public open fun _bodyEnterTree(id: Long): Unit {
   }
 
-  open fun _bodyExitTree(id: Long) {
+  public open fun _bodyExitTree(id: Long): Unit {
   }
 
-  open fun _bodyInout(
+  public open fun _bodyInout(
     arg0: Long,
     arg1: RID,
     arg2: Long,
     arg3: Long,
     arg4: Long
-  ) {
+  ): Unit {
   }
 
   /**
    * Returns an individual bit on the layer mask. Describes whether other areas will collide with this one on the given layer.
    */
-  open fun getCollisionLayerBit(bit: Long): Boolean {
+  public open fun getCollisionLayerBit(bit: Long): Boolean {
     TransferContext.writeArguments(LONG to bit)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_COLLISION_LAYER_BIT,
         BOOL)
@@ -382,7 +382,7 @@ open class Area2D : CollisionObject2D() {
   /**
    * Returns an individual bit on the collision mask. Describes whether this area will collide with others on the given layer.
    */
-  open fun getCollisionMaskBit(bit: Long): Boolean {
+  public open fun getCollisionMaskBit(bit: Long): Boolean {
     TransferContext.writeArguments(LONG to bit)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_COLLISION_MASK_BIT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -391,7 +391,7 @@ open class Area2D : CollisionObject2D() {
   /**
    * Returns a list of intersecting [godot.Area2D]s. For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.
    */
-  open fun getOverlappingAreas(): VariantArray<Any?> {
+  public open fun getOverlappingAreas(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_OVERLAPPING_AREAS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -400,7 +400,7 @@ open class Area2D : CollisionObject2D() {
   /**
    * Returns a list of intersecting [godot.PhysicsBody2D]s. For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.
    */
-  open fun getOverlappingBodies(): VariantArray<Any?> {
+  public open fun getOverlappingBodies(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_OVERLAPPING_BODIES,
         ARRAY)
@@ -412,7 +412,7 @@ open class Area2D : CollisionObject2D() {
    *
    * **Note:** The result of this test is not immediate after moving objects. For performance, list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
    */
-  open fun overlapsArea(area: Node): Boolean {
+  public open fun overlapsArea(area: Node): Boolean {
     TransferContext.writeArguments(OBJECT to area)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_OVERLAPS_AREA, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -425,7 +425,7 @@ open class Area2D : CollisionObject2D() {
    *
    * The `body` argument can either be a [godot.PhysicsBody2D] or a [godot.TileMap] instance (while TileMaps are not physics body themselves, they register their tiles with collision shapes as a virtual physics body).
    */
-  open fun overlapsBody(body: Node): Boolean {
+  public open fun overlapsBody(body: Node): Boolean {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_OVERLAPS_BODY, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -434,7 +434,7 @@ open class Area2D : CollisionObject2D() {
   /**
    * Set/clear individual bits on the layer mask. This makes getting an area in/out of only one layer easier.
    */
-  open fun setCollisionLayerBit(bit: Long, value: Boolean) {
+  public open fun setCollisionLayerBit(bit: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to bit, BOOL to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_COLLISION_LAYER_BIT, NIL)
   }
@@ -442,73 +442,70 @@ open class Area2D : CollisionObject2D() {
   /**
    * Set/clear individual bits on the collision mask. This makes selecting the areas scanned easier.
    */
-  open fun setCollisionMaskBit(bit: Long, value: Boolean) {
+  public open fun setCollisionMaskBit(bit: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to bit, BOOL to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_COLLISION_MASK_BIT, NIL)
   }
 
-  enum class SpaceOverride(
+  public enum class SpaceOverride(
     id: Long
   ) {
     /**
      * This area does not affect gravity/damping.
      */
     SPACE_OVERRIDE_DISABLED(0),
-
     /**
      * This area adds its gravity/damping values to whatever has been calculated so far (in [priority] order).
      */
     SPACE_OVERRIDE_COMBINE(1),
-
     /**
      * This area adds its gravity/damping values to whatever has been calculated so far (in [priority] order), ignoring any lower priority areas.
      */
     SPACE_OVERRIDE_COMBINE_REPLACE(2),
-
     /**
      * This area replaces any gravity/damping, even the defaults, ignoring any lower priority areas.
      */
     SPACE_OVERRIDE_REPLACE(3),
-
     /**
      * This area replaces any gravity/damping calculated so far (in [priority] order), but keeps calculating the rest of the areas.
      */
-    SPACE_OVERRIDE_REPLACE_COMBINE(4);
+    SPACE_OVERRIDE_REPLACE_COMBINE(4),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * This area adds its gravity/damping values to whatever has been calculated so far (in [priority] order).
      */
-    final const val SPACE_OVERRIDE_COMBINE: Long = 1
+    public final const val SPACE_OVERRIDE_COMBINE: Long = 1
 
     /**
      * This area adds its gravity/damping values to whatever has been calculated so far (in [priority] order), ignoring any lower priority areas.
      */
-    final const val SPACE_OVERRIDE_COMBINE_REPLACE: Long = 2
+    public final const val SPACE_OVERRIDE_COMBINE_REPLACE: Long = 2
 
     /**
      * This area does not affect gravity/damping.
      */
-    final const val SPACE_OVERRIDE_DISABLED: Long = 0
+    public final const val SPACE_OVERRIDE_DISABLED: Long = 0
 
     /**
      * This area replaces any gravity/damping, even the defaults, ignoring any lower priority areas.
      */
-    final const val SPACE_OVERRIDE_REPLACE: Long = 3
+    public final const val SPACE_OVERRIDE_REPLACE: Long = 3
 
     /**
      * This area replaces any gravity/damping calculated so far (in [priority] order), but keeps calculating the rest of the areas.
      */
-    final const val SPACE_OVERRIDE_REPLACE_COMBINE: Long = 4
+    public final const val SPACE_OVERRIDE_REPLACE_COMBINE: Long = 4
   }
 }

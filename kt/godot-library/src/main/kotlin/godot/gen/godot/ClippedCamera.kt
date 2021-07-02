@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -18,6 +18,7 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A [godot.Camera] that includes collision.
@@ -25,18 +26,18 @@ import kotlin.Suppress
  * This node extends [godot.Camera] to add collisions with [godot.Area] and/or [godot.PhysicsBody] nodes. The camera cannot move through colliding objects.
  */
 @GodotBaseType
-open class ClippedCamera : Camera() {
+public open class ClippedCamera : Camera() {
   /**
    * If `true`, the camera stops on contact with [godot.Area]s.
    */
-  open var clipToAreas: Boolean
+  public open var clipToAreas: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLIPPEDCAMERA_GET_CLIP_TO_AREAS,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLIPPEDCAMERA_SET_CLIP_TO_AREAS,
           NIL)
@@ -45,14 +46,14 @@ open class ClippedCamera : Camera() {
   /**
    * If `true`, the camera stops on contact with [godot.PhysicsBody]s.
    */
-  open var clipToBodies: Boolean
+  public open var clipToBodies: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLIPPEDCAMERA_GET_CLIP_TO_BODIES,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLIPPEDCAMERA_SET_CLIP_TO_BODIES,
           NIL)
@@ -61,14 +62,14 @@ open class ClippedCamera : Camera() {
   /**
    * The camera's collision mask. Only objects in at least one collision layer matching the mask will be detected. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  open var collisionMask: Long
+  public open var collisionMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLIPPEDCAMERA_GET_COLLISION_MASK,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLIPPEDCAMERA_SET_COLLISION_MASK,
           NIL)
@@ -77,13 +78,13 @@ open class ClippedCamera : Camera() {
   /**
    * The camera's collision margin. The camera can't get closer than this distance to a colliding object.
    */
-  open var margin: Double
+  public open var margin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLIPPEDCAMERA_GET_MARGIN, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLIPPEDCAMERA_SET_MARGIN, NIL)
     }
@@ -91,27 +92,27 @@ open class ClippedCamera : Camera() {
   /**
    * The camera's process callback. See [enum ProcessMode].
    */
-  open var processMode: Long
+  public open var processMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLIPPEDCAMERA_GET_PROCESS_MODE,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLIPPEDCAMERA_SET_PROCESS_MODE,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CLIPPEDCAMERA)
   }
 
   /**
    * Adds a collision exception so the camera does not collide with the specified node.
    */
-  open fun addException(node: Object) {
+  public open fun addException(node: Object): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLIPPEDCAMERA_ADD_EXCEPTION, NIL)
   }
@@ -119,7 +120,7 @@ open class ClippedCamera : Camera() {
   /**
    * Adds a collision exception so the camera does not collide with the specified [RID].
    */
-  open fun addExceptionRid(rid: RID) {
+  public open fun addExceptionRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLIPPEDCAMERA_ADD_EXCEPTION_RID,
         NIL)
@@ -128,7 +129,7 @@ open class ClippedCamera : Camera() {
   /**
    * Removes all collision exceptions.
    */
-  open fun clearExceptions() {
+  public open fun clearExceptions(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLIPPEDCAMERA_CLEAR_EXCEPTIONS, NIL)
   }
@@ -136,7 +137,7 @@ open class ClippedCamera : Camera() {
   /**
    * Returns the distance the camera has been offset due to a collision.
    */
-  open fun getClipOffset(): Double {
+  public open fun getClipOffset(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLIPPEDCAMERA_GET_CLIP_OFFSET,
         DOUBLE)
@@ -148,7 +149,7 @@ open class ClippedCamera : Camera() {
    *
    * **Note:** Bit indices range from 0-19.
    */
-  open fun getCollisionMaskBit(bit: Long): Boolean {
+  public open fun getCollisionMaskBit(bit: Long): Boolean {
     TransferContext.writeArguments(LONG to bit)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CLIPPEDCAMERA_GET_COLLISION_MASK_BIT, BOOL)
@@ -158,7 +159,7 @@ open class ClippedCamera : Camera() {
   /**
    * Removes a collision exception with the specified node.
    */
-  open fun removeException(node: Object) {
+  public open fun removeException(node: Object): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLIPPEDCAMERA_REMOVE_EXCEPTION, NIL)
   }
@@ -166,7 +167,7 @@ open class ClippedCamera : Camera() {
   /**
    * Removes a collision exception with the specified [RID].
    */
-  open fun removeExceptionRid(rid: RID) {
+  public open fun removeExceptionRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLIPPEDCAMERA_REMOVE_EXCEPTION_RID,
         NIL)
@@ -177,44 +178,44 @@ open class ClippedCamera : Camera() {
    *
    * **Note:** Bit indices range from 0-19.
    */
-  open fun setCollisionMaskBit(bit: Long, value: Boolean) {
+  public open fun setCollisionMaskBit(bit: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to bit, BOOL to value)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CLIPPEDCAMERA_SET_COLLISION_MASK_BIT, NIL)
   }
 
-  enum class ProcessMode(
+  public enum class ProcessMode(
     id: Long
   ) {
     /**
      * The camera updates with the `_physics_process` callback.
      */
     CLIP_PROCESS_PHYSICS(0),
-
     /**
      * The camera updates with the `_process` callback.
      */
-    CLIP_PROCESS_IDLE(1);
+    CLIP_PROCESS_IDLE(1),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * The camera updates with the `_process` callback.
      */
-    final const val CLIP_PROCESS_IDLE: Long = 1
+    public final const val CLIP_PROCESS_IDLE: Long = 1
 
     /**
      * The camera updates with the `_physics_process` callback.
      */
-    final const val CLIP_PROCESS_PHYSICS: Long = 0
+    public final const val CLIP_PROCESS_PHYSICS: Long = 0
   }
 }

@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.VariantArray
 import kotlin.Any
@@ -15,6 +15,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Registers a custom resource importer in the editor. Use the class to parse any file and import it as a new resource type.
@@ -69,29 +70,29 @@ import kotlin.Suppress
  * 		```
  */
 @GodotBaseType
-open class EditorImportPlugin : ResourceImporter() {
-  override fun __new() {
+public open class EditorImportPlugin : ResourceImporter() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORIMPORTPLUGIN)
   }
 
   /**
    * Gets the options and default values for the preset at this index. Returns an Array of Dictionaries with the following keys: `name`, `default_value`, `property_hint` (optional), `hint_string` (optional), `usage` (optional).
    */
-  open fun _getImportOptions(preset: Long): VariantArray<Any?> {
+  public open fun _getImportOptions(preset: Long): VariantArray<Any?> {
     throw NotImplementedError("get_import_options is not implemented for EditorImportPlugin")
   }
 
   /**
    * Gets the order of this importer to be run when importing resources. Higher values will be called later. Use this to ensure the importer runs after the dependencies are already imported.
    */
-  open fun _getImportOrder(): Long {
+  public open fun _getImportOrder(): Long {
     throw NotImplementedError("get_import_order is not implemented for EditorImportPlugin")
   }
 
   /**
    * Gets the unique name of the importer.
    */
-  open fun _getImporterName(): String {
+  public open fun _getImporterName(): String {
     throw NotImplementedError("get_importer_name is not implemented for EditorImportPlugin")
   }
 
@@ -109,56 +110,56 @@ open class EditorImportPlugin : ResourceImporter() {
    *
    * Return `true` to make all options always visible.
    */
-  open fun _getOptionVisibility(option: String, options: Dictionary<Any?, Any?>): Boolean {
+  public open fun _getOptionVisibility(option: String, options: Dictionary<Any?, Any?>): Boolean {
     throw NotImplementedError("get_option_visibility is not implemented for EditorImportPlugin")
   }
 
   /**
    * Gets the number of initial presets defined by the plugin. Use [getImportOptions] to get the default options for the preset and [getPresetName] to get the name of the preset.
    */
-  open fun _getPresetCount(): Long {
+  public open fun _getPresetCount(): Long {
     throw NotImplementedError("get_preset_count is not implemented for EditorImportPlugin")
   }
 
   /**
    * Gets the name of the options preset at this index.
    */
-  open fun _getPresetName(preset: Long): String {
+  public open fun _getPresetName(preset: Long): String {
     throw NotImplementedError("get_preset_name is not implemented for EditorImportPlugin")
   }
 
   /**
    * Gets the priority of this plugin for the recognized extension. Higher priority plugins will be preferred. The default priority is `1.0`.
    */
-  open fun _getPriority(): Double {
+  public open fun _getPriority(): Double {
     throw NotImplementedError("get_priority is not implemented for EditorImportPlugin")
   }
 
   /**
    * Gets the list of file extensions to associate with this loader (case-insensitive). e.g. `["obj"]`.
    */
-  open fun _getRecognizedExtensions(): VariantArray<Any?> {
+  public open fun _getRecognizedExtensions(): VariantArray<Any?> {
     throw NotImplementedError("get_recognized_extensions is not implemented for EditorImportPlugin")
   }
 
   /**
    * Gets the Godot resource type associated with this loader. e.g. `"Mesh"` or `"Animation"`.
    */
-  open fun _getResourceType(): String {
+  public open fun _getResourceType(): String {
     throw NotImplementedError("get_resource_type is not implemented for EditorImportPlugin")
   }
 
   /**
    * Gets the extension used to save this resource in the `.import` directory.
    */
-  open fun _getSaveExtension(): String {
+  public open fun _getSaveExtension(): String {
     throw NotImplementedError("get_save_extension is not implemented for EditorImportPlugin")
   }
 
   /**
    * Gets the name to display in the import window. You should choose this name as a continuation to "Import as", e.g. "Import as Special Mesh".
    */
-  open fun _getVisibleName(): String {
+  public open fun _getVisibleName(): String {
     throw NotImplementedError("get_visible_name is not implemented for EditorImportPlugin")
   }
 
@@ -167,7 +168,7 @@ open class EditorImportPlugin : ResourceImporter() {
    *
    * This method must be overridden to do the actual importing work. See this class' description for an example of overriding this method.
    */
-  open fun _import(
+  public open fun _import(
     sourceFile: String,
     savePath: String,
     options: Dictionary<Any?, Any?>,

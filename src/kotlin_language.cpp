@@ -4,7 +4,7 @@
 #include "gd_kotlin.h"
 #include "godotkotlin_defs.h"
 
-static const String GODOT_ENTRY_PATH{"res://build/godot-entry"};
+static const String GODOT_ENTRY_PATH{"res://build/generated/ksp"};
 
 KotlinLanguage& KotlinLanguage::get_instance() {
     static KotlinLanguage instance;

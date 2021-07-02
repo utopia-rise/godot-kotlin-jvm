@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -18,6 +18,7 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * State machine for control of animations.
@@ -35,22 +36,22 @@ import kotlin.Suppress
  * 		```
  */
 @GodotBaseType
-open class AnimationNodeStateMachine : AnimationRootNode() {
-  override fun __new() {
+public open class AnimationNodeStateMachine : AnimationRootNode() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINE)
   }
 
-  open fun _treeChanged() {
+  public open fun _treeChanged(): Unit {
   }
 
   /**
    * Adds a new node to the graph. The `position` is used for display in the editor.
    */
-  open fun addNode(
+  public open fun addNode(
     name: String,
     node: AnimationNode,
     position: Vector2 = Vector2(0.0, 0.0)
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to name, OBJECT to node, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_ADD_NODE,
         NIL)
@@ -59,11 +60,11 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Adds a transition between the given nodes.
    */
-  open fun addTransition(
+  public open fun addTransition(
     from: String,
     to: String,
     transition: AnimationNodeStateMachineTransition
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to from, STRING to to, OBJECT to transition)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_ADD_TRANSITION, NIL)
@@ -72,7 +73,7 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Returns the graph's end node.
    */
-  open fun getEndNode(): String {
+  public open fun getEndNode(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_GET_END_NODE, STRING)
@@ -82,7 +83,7 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Returns the draw offset of the graph. Used for display in the editor.
    */
-  open fun getGraphOffset(): Vector2 {
+  public open fun getGraphOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_GET_GRAPH_OFFSET, VECTOR2)
@@ -92,7 +93,7 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Returns the animation node with the given name.
    */
-  open fun getNode(name: String): AnimationNode? {
+  public open fun getNode(name: String): AnimationNode? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_GET_NODE,
         OBJECT)
@@ -102,7 +103,7 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Returns the given animation node's name.
    */
-  open fun getNodeName(node: AnimationNode): String {
+  public open fun getNodeName(node: AnimationNode): String {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_GET_NODE_NAME, STRING)
@@ -112,7 +113,7 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Returns the given node's coordinates. Used for display in the editor.
    */
-  open fun getNodePosition(name: String): Vector2 {
+  public open fun getNodePosition(name: String): Vector2 {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_GET_NODE_POSITION, VECTOR2)
@@ -122,7 +123,7 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Returns the graph's end node.
    */
-  open fun getStartNode(): String {
+  public open fun getStartNode(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_GET_START_NODE, STRING)
@@ -132,7 +133,7 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Returns the given transition.
    */
-  open fun getTransition(idx: Long): AnimationNodeStateMachineTransition? {
+  public open fun getTransition(idx: Long): AnimationNodeStateMachineTransition? {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_GET_TRANSITION, OBJECT)
@@ -142,7 +143,7 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Returns the number of connections in the graph.
    */
-  open fun getTransitionCount(): Long {
+  public open fun getTransitionCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_GET_TRANSITION_COUNT, LONG)
@@ -152,7 +153,7 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Returns the given transition's start node.
    */
-  open fun getTransitionFrom(idx: Long): String {
+  public open fun getTransitionFrom(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_GET_TRANSITION_FROM, STRING)
@@ -162,7 +163,7 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Returns the given transition's end node.
    */
-  open fun getTransitionTo(idx: Long): String {
+  public open fun getTransitionTo(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_GET_TRANSITION_TO, STRING)
@@ -172,7 +173,7 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Returns `true` if the graph contains the given node.
    */
-  open fun hasNode(name: String): Boolean {
+  public open fun hasNode(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_HAS_NODE,
         BOOL)
@@ -182,7 +183,7 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Returns `true` if there is a transition between the given nodes.
    */
-  open fun hasTransition(from: String, to: String): Boolean {
+  public open fun hasTransition(from: String, to: String): Boolean {
     TransferContext.writeArguments(STRING to from, STRING to to)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_HAS_TRANSITION, BOOL)
@@ -192,7 +193,7 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Deletes the given node from the graph.
    */
-  open fun removeNode(name: String) {
+  public open fun removeNode(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_REMOVE_NODE, NIL)
@@ -201,7 +202,7 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Deletes the transition between the two specified nodes.
    */
-  open fun removeTransition(from: String, to: String) {
+  public open fun removeTransition(from: String, to: String): Unit {
     TransferContext.writeArguments(STRING to from, STRING to to)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_REMOVE_TRANSITION, NIL)
@@ -210,7 +211,7 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Deletes the given transition by index.
    */
-  open fun removeTransitionByIndex(idx: Long) {
+  public open fun removeTransitionByIndex(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_REMOVE_TRANSITION_BY_INDEX, NIL)
@@ -219,7 +220,7 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Renames the given node.
    */
-  open fun renameNode(name: String, newName: String) {
+  public open fun renameNode(name: String, newName: String): Unit {
     TransferContext.writeArguments(STRING to name, STRING to newName)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_RENAME_NODE, NIL)
@@ -228,7 +229,7 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Replaces the node and keeps its transitions unchanged.
    */
-  open fun replaceNode(name: String, node: AnimationNode) {
+  public open fun replaceNode(name: String, node: AnimationNode): Unit {
     TransferContext.writeArguments(STRING to name, OBJECT to node)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_REPLACE_NODE, NIL)
@@ -237,7 +238,7 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Sets the given node as the graph end point.
    */
-  open fun setEndNode(name: String) {
+  public open fun setEndNode(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_SET_END_NODE, NIL)
@@ -246,7 +247,7 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Sets the draw offset of the graph. Used for display in the editor.
    */
-  open fun setGraphOffset(offset: Vector2) {
+  public open fun setGraphOffset(offset: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_SET_GRAPH_OFFSET, NIL)
@@ -255,7 +256,7 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Sets the node's coordinates. Used for display in the editor.
    */
-  open fun setNodePosition(name: String, position: Vector2) {
+  public open fun setNodePosition(name: String, position: Vector2): Unit {
     TransferContext.writeArguments(STRING to name, VECTOR2 to position)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_SET_NODE_POSITION, NIL)
@@ -264,7 +265,7 @@ open class AnimationNodeStateMachine : AnimationRootNode() {
   /**
    * Sets the given node as the graph start point.
    */
-  open fun setStartNode(name: String) {
+  public open fun setStartNode(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINE_SET_START_NODE, NIL)

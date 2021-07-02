@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.TransferContext
 import godot.core.VariantArray
@@ -22,49 +22,50 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
-open class RegEx : Reference() {
-  override fun __new() {
+public open class RegEx : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_REGEX)
   }
 
-  open fun clear() {
+  public open fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_CLEAR, NIL)
   }
 
-  open fun compile(pattern: String): GodotError {
+  public open fun compile(pattern: String): GodotError {
     TransferContext.writeArguments(STRING to pattern)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_COMPILE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  open fun getGroupCount(): Long {
+  public open fun getGroupCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_GET_GROUP_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  open fun getNames(): VariantArray<Any?> {
+  public open fun getNames(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_GET_NAMES, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
-  open fun getPattern(): String {
+  public open fun getPattern(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_GET_PATTERN, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  open fun isValid(): Boolean {
+  public open fun isValid(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEX_IS_VALID, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  open fun search(
+  public open fun search(
     subject: String,
     offset: Long = 0,
     end: Long = -1
@@ -74,7 +75,7 @@ open class RegEx : Reference() {
     return TransferContext.readReturnValue(OBJECT, true) as RegExMatch?
   }
 
-  open fun searchAll(
+  public open fun searchAll(
     subject: String,
     offset: Long = 0,
     end: Long = -1
@@ -84,7 +85,7 @@ open class RegEx : Reference() {
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
-  open fun sub(
+  public open fun sub(
     subject: String,
     replacement: String,
     all: Boolean = false,

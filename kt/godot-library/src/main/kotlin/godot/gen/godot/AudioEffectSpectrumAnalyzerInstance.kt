@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -14,20 +14,21 @@ import godot.core.Vector2
 import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
-open class AudioEffectSpectrumAnalyzerInstance : AudioEffectInstance() {
-  override fun __new() {
+public open class AudioEffectSpectrumAnalyzerInstance : AudioEffectInstance() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZERINSTANCE)
   }
 
   /**
    *
    */
-  open fun getMagnitudeForFrequencyRange(
+  public open fun getMagnitudeForFrequencyRange(
     fromHz: Double,
     toHz: Double,
     mode: Long = 1
@@ -39,38 +40,38 @@ open class AudioEffectSpectrumAnalyzerInstance : AudioEffectInstance() {
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
-  enum class MagnitudeMode(
+  public enum class MagnitudeMode(
     id: Long
   ) {
     /**
      * Use the average value as magnitude.
      */
     MAGNITUDE_AVERAGE(0),
-
     /**
      * Use the maximum value as magnitude.
      */
-    MAGNITUDE_MAX(1);
+    MAGNITUDE_MAX(1),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Use the average value as magnitude.
      */
-    final const val MAGNITUDE_AVERAGE: Long = 0
+    public final const val MAGNITUDE_AVERAGE: Long = 0
 
     /**
      * Use the maximum value as magnitude.
      */
-    final const val MAGNITUDE_MAX: Long = 1
+    public final const val MAGNITUDE_MAX: Long = 1
   }
 }

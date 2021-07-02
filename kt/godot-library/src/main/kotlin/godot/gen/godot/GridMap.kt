@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
 import godot.core.VariantArray
@@ -29,160 +29,160 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-open class GridMap : Spatial() {
-  val cellSizeChanged: Signal1<Vector3> by signal("cell_size")
+public open class GridMap : Spatial() {
+  public val cellSizeChanged: Signal1<Vector3> by signal("cell_size")
 
-  open var cellCenterX: Boolean
+  public open var cellCenterX: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_CELL_CENTER_X, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_CELL_CENTER_X, NIL)
     }
 
-  open var cellCenterY: Boolean
+  public open var cellCenterY: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_CELL_CENTER_Y, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_CELL_CENTER_Y, NIL)
     }
 
-  open var cellCenterZ: Boolean
+  public open var cellCenterZ: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_CELL_CENTER_Z, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_CELL_CENTER_Z, NIL)
     }
 
-  open var cellOctantSize: Long
+  public open var cellOctantSize: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_CELL_OCTANT_SIZE,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_CELL_OCTANT_SIZE, NIL)
     }
 
-  open var cellScale: Double
+  public open var cellScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_CELL_SCALE, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_CELL_SCALE, NIL)
     }
 
-  open var cellSize: Vector3
+  public open var cellSize: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_CELL_SIZE, VECTOR3)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_CELL_SIZE, NIL)
     }
 
-  open var collisionLayer: Long
+  public open var collisionLayer: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_COLLISION_LAYER, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_COLLISION_LAYER, NIL)
     }
 
-  open var collisionMask: Long
+  public open var collisionMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_COLLISION_MASK, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_COLLISION_MASK, NIL)
     }
 
-  open var meshLibrary: MeshLibrary?
+  public open var meshLibrary: MeshLibrary?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_MESH_LIBRARY, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as MeshLibrary?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_MESH_LIBRARY, NIL)
     }
 
-  open var useInBakedLight: Boolean
+  public open var useInBakedLight: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_USE_IN_BAKED_LIGHT,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_USE_IN_BAKED_LIGHT,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_GRIDMAP)
   }
 
   @CoreTypeHelper
-  open fun cellSize(schedule: Vector3.() -> Unit): Vector3 = cellSize.apply{
+  public open fun cellSize(schedule: Vector3.() -> Unit): Vector3 = cellSize.apply{
       schedule(this)
       cellSize = this
   }
 
 
-  open fun _updateOctantsCallback() {
+  public open fun _updateOctantsCallback(): Unit {
   }
 
-  open fun clear() {
+  public open fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_CLEAR, NIL)
   }
 
-  open fun clearBakedMeshes() {
+  public open fun clearBakedMeshes(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_CLEAR_BAKED_MESHES, NIL)
   }
 
-  open fun getBakeMeshInstance(idx: Long): RID {
+  public open fun getBakeMeshInstance(idx: Long): RID {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_BAKE_MESH_INSTANCE,
         _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
   }
 
-  open fun getBakeMeshes(): VariantArray<Any?> {
+  public open fun getBakeMeshes(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_BAKE_MESHES, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
-  open fun getCellItem(
+  public open fun getCellItem(
     x: Long,
     y: Long,
     z: Long
@@ -192,7 +192,7 @@ open class GridMap : Spatial() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  open fun getCellItemOrientation(
+  public open fun getCellItemOrientation(
     x: Long,
     y: Long,
     z: Long
@@ -203,38 +203,39 @@ open class GridMap : Spatial() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  open fun getCollisionLayerBit(bit: Long): Boolean {
+  public open fun getCollisionLayerBit(bit: Long): Boolean {
     TransferContext.writeArguments(LONG to bit)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_COLLISION_LAYER_BIT,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  open fun getCollisionMaskBit(bit: Long): Boolean {
+  public open fun getCollisionMaskBit(bit: Long): Boolean {
     TransferContext.writeArguments(LONG to bit)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_COLLISION_MASK_BIT,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  open fun getMeshes(): VariantArray<Any?> {
+  public open fun getMeshes(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_MESHES, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
-  open fun getUsedCells(): VariantArray<Any?> {
+  public open fun getUsedCells(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_USED_CELLS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
-  open fun makeBakedMeshes(genLightmapUv: Boolean = false, lightmapUvTexelSize: Double = 0.1) {
+  public open fun makeBakedMeshes(genLightmapUv: Boolean = false, lightmapUvTexelSize: Double =
+      0.1): Unit {
     TransferContext.writeArguments(BOOL to genLightmapUv, DOUBLE to lightmapUvTexelSize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_MAKE_BAKED_MESHES, NIL)
   }
 
-  open fun mapToWorld(
+  public open fun mapToWorld(
     x: Long,
     y: Long,
     z: Long
@@ -244,51 +245,51 @@ open class GridMap : Spatial() {
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
-  open fun resourceChanged(resource: Resource) {
+  public open fun resourceChanged(resource: Resource): Unit {
     TransferContext.writeArguments(OBJECT to resource)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_RESOURCE_CHANGED, NIL)
   }
 
-  open fun setCellItem(
+  public open fun setCellItem(
     x: Long,
     y: Long,
     z: Long,
     item: Long,
     orientation: Long = 0
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to x, LONG to y, LONG to z, LONG to item, LONG to
         orientation)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_CELL_ITEM, NIL)
   }
 
-  open fun setClip(
+  public open fun setClip(
     enabled: Boolean,
     clipabove: Boolean = true,
     floor: Long = 0,
     axis: Long = 0
-  ) {
+  ): Unit {
     TransferContext.writeArguments(BOOL to enabled, BOOL to clipabove, LONG to floor, LONG to axis)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_CLIP, NIL)
   }
 
-  open fun setCollisionLayerBit(bit: Long, value: Boolean) {
+  public open fun setCollisionLayerBit(bit: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to bit, BOOL to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_COLLISION_LAYER_BIT,
         NIL)
   }
 
-  open fun setCollisionMaskBit(bit: Long, value: Boolean) {
+  public open fun setCollisionMaskBit(bit: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to bit, BOOL to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_COLLISION_MASK_BIT, NIL)
   }
 
-  open fun worldToMap(pos: Vector3): Vector3 {
+  public open fun worldToMap(pos: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to pos)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_WORLD_TO_MAP, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
-  companion object {
-    final const val INVALID_CELL_ITEM: Long = -1
+  public companion object {
+    public final const val INVALID_CELL_ITEM: Long = -1
   }
 }

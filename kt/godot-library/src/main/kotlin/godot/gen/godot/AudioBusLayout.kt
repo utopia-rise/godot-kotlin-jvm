@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Stores information about the audio buses.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Stores position, muting, solo, bypass, effects, effect position, volume, and the connections between buses. See [godot.AudioServer] for usage.
  */
 @GodotBaseType
-open class AudioBusLayout : Resource() {
-  override fun __new() {
+public open class AudioBusLayout : Resource() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOBUSLAYOUT)
   }
 }

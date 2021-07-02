@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Internal mesh type.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Mesh type used internally for collision calculations.
  */
 @GodotBaseType
-open class TriangleMesh : Reference() {
-  override fun __new() {
+public open class TriangleMesh : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TRIANGLEMESH)
   }
 }

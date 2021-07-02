@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.TransferContext
 import godot.core.VariantType.JVM_INT
@@ -13,6 +13,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Helper class to implement a DTLS server.
@@ -75,15 +76,15 @@ import kotlin.Suppress
  * 		```
  */
 @GodotBaseType
-open class DTLSServer : Reference() {
-  override fun __new() {
+public open class DTLSServer : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_DTLSSERVER)
   }
 
   /**
    * Setup the DTLS server to use the given `private_key` and provide the given `certificate` to clients. You can pass the optional `chain` parameter to provide additional CA chain information along with the certificate.
    */
-  open fun setup(
+  public open fun setup(
     key: CryptoKey,
     certificate: X509Certificate,
     chain: X509Certificate? = null
@@ -98,7 +99,7 @@ open class DTLSServer : Reference() {
    *
    * **Note**: You must check that the state of the return PacketPeerUDP is [godot.PacketPeerDTLS.STATUS_HANDSHAKING], as it is normal that 50% of the new connections will be invalid due to cookie exchange.
    */
-  open fun takeConnection(udpPeer: PacketPeerUDP): PacketPeerDTLS? {
+  public open fun takeConnection(udpPeer: PacketPeerUDP): PacketPeerDTLS? {
     TransferContext.writeArguments(OBJECT to udpPeer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DTLSSERVER_TAKE_CONNECTION, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as PacketPeerDTLS?

@@ -5,13 +5,14 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -20,17 +21,17 @@ import kotlin.jvm.JvmName
  * Renders a given [godot.Curve] provided to it. Simplifies the task of drawing curves and/or saving them as image files.
  */
 @GodotBaseType
-open class CurveTexture : Texture() {
+public open class CurveTexture : Texture() {
   /**
    * The `curve` rendered onto the texture.
    */
-  open var curve: Curve?
+  public open var curve: Curve?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_GET_CURVE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Curve?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_SET_CURVE, NIL)
     }
@@ -38,19 +39,19 @@ open class CurveTexture : Texture() {
   /**
    * The width of the texture.
    */
-  open var width: Long
+  public open var width: Long
     @JvmName("getWidth_prop")
     @Suppress("INAPPLICABLE_JVM_NAME")
     get() = super.getWidth()
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_SET_WIDTH, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CURVETEXTURE)
   }
 
-  open fun _update() {
+  public open fun _update(): Unit {
   }
 }

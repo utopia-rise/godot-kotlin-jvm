@@ -5,30 +5,31 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Boolean
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
-open class NavigationPolygonInstance : Node2D() {
+public open class NavigationPolygonInstance : Node2D() {
   /**
    *
    */
-  open var enabled: Boolean
+  public open var enabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGONINSTANCE_GET_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGONINSTANCE_SET_ENABLED, NIL)
@@ -37,23 +38,23 @@ open class NavigationPolygonInstance : Node2D() {
   /**
    *
    */
-  open var navpoly: NavigationPolygon?
+  public open var navpoly: NavigationPolygon?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGONINSTANCE_GET_NAVPOLY, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as NavigationPolygon?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGONINSTANCE_SET_NAVPOLY, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_NAVIGATIONPOLYGONINSTANCE)
   }
 
-  open fun _navpolyChanged() {
+  public open fun _navpolyChanged(): Unit {
   }
 }

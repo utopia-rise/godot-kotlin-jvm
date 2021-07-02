@@ -7,7 +7,7 @@ package godot
 
 import godot.ARVRPositionalTracker
 import godot.ARVRServer
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.Basis
 import godot.core.TransferContext
 import godot.core.Transform
@@ -28,6 +28,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A tracked object.
@@ -42,49 +43,49 @@ import kotlin.Suppress
  * The [godot.ARVRController] and [godot.ARVRAnchor] both consume objects of this type and should be used in your project. The positional trackers are just under-the-hood objects that make this all work. These are mostly exposed so that GDNative-based interfaces can interact with them.
  */
 @GodotBaseType
-open class ARVRPositionalTracker : Object() {
+public open class ARVRPositionalTracker : Object() {
   /**
    * The degree to which the tracker rumbles. Ranges from `0.0` to `1.0` with precision `.01`.
    */
-  open var rumble: Double
+  public open var rumble: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRPOSITIONALTRACKER_GET_RUMBLE,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRPOSITIONALTRACKER_SET_RUMBLE,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ARVRPOSITIONALTRACKER)
   }
 
-  open fun _setJoyId(joyId: Long) {
+  public open fun _setJoyId(joyId: Long): Unit {
   }
 
-  open fun _setMesh(mesh: Mesh) {
+  public open fun _setMesh(mesh: Mesh): Unit {
   }
 
-  open fun _setName(name: String) {
+  public open fun _setName(name: String): Unit {
   }
 
-  open fun _setOrientation(orientation: Basis) {
+  public open fun _setOrientation(orientation: Basis): Unit {
   }
 
-  open fun _setRwPosition(rwPosition: Vector3) {
+  public open fun _setRwPosition(rwPosition: Vector3): Unit {
   }
 
-  open fun _setType(type: Long) {
+  public open fun _setType(type: Long): Unit {
   }
 
   /**
    * Returns the hand holding this tracker, if known. See [enum TrackerHand] constants.
    */
-  open fun getHand(): ARVRPositionalTracker.TrackerHand {
+  public open fun getHand(): ARVRPositionalTracker.TrackerHand {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRPOSITIONALTRACKER_GET_HAND,
         LONG)
@@ -94,7 +95,7 @@ open class ARVRPositionalTracker : Object() {
   /**
    * If this is a controller that is being tracked, the controller will also be represented by a joystick entry with this ID.
    */
-  open fun getJoyId(): Long {
+  public open fun getJoyId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRPOSITIONALTRACKER_GET_JOY_ID,
         LONG)
@@ -104,7 +105,7 @@ open class ARVRPositionalTracker : Object() {
   /**
    * Returns the mesh related to a controller or anchor point if one is available.
    */
-  open fun getMesh(): Mesh? {
+  public open fun getMesh(): Mesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRPOSITIONALTRACKER_GET_MESH,
         OBJECT)
@@ -114,7 +115,7 @@ open class ARVRPositionalTracker : Object() {
   /**
    * Returns the controller or anchor point's name if available.
    */
-  open fun getName(): String {
+  public open fun getName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRPOSITIONALTRACKER_GET_NAME,
         STRING)
@@ -124,7 +125,7 @@ open class ARVRPositionalTracker : Object() {
   /**
    * Returns the controller's orientation matrix.
    */
-  open fun getOrientation(): Basis {
+  public open fun getOrientation(): Basis {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ARVRPOSITIONALTRACKER_GET_ORIENTATION, BASIS)
@@ -134,7 +135,7 @@ open class ARVRPositionalTracker : Object() {
   /**
    * Returns the world-space controller position.
    */
-  open fun getPosition(): Vector3 {
+  public open fun getPosition(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRPOSITIONALTRACKER_GET_POSITION,
         VECTOR3)
@@ -144,7 +145,7 @@ open class ARVRPositionalTracker : Object() {
   /**
    * Returns the internal tracker ID. This uniquely identifies the tracker per tracker type and matches the ID you need to specify for nodes such as the [godot.ARVRController] and [godot.ARVRAnchor] nodes.
    */
-  open fun getTrackerId(): Long {
+  public open fun getTrackerId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ARVRPOSITIONALTRACKER_GET_TRACKER_ID, LONG)
@@ -154,7 +155,7 @@ open class ARVRPositionalTracker : Object() {
   /**
    * Returns `true` if this device tracks orientation.
    */
-  open fun getTracksOrientation(): Boolean {
+  public open fun getTracksOrientation(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ARVRPOSITIONALTRACKER_GET_TRACKS_ORIENTATION, BOOL)
@@ -164,7 +165,7 @@ open class ARVRPositionalTracker : Object() {
   /**
    * Returns `true` if this device tracks position.
    */
-  open fun getTracksPosition(): Boolean {
+  public open fun getTracksPosition(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ARVRPOSITIONALTRACKER_GET_TRACKS_POSITION, BOOL)
@@ -174,7 +175,7 @@ open class ARVRPositionalTracker : Object() {
   /**
    * Returns the transform combining this device's orientation and position.
    */
-  open fun getTransform(adjustByReferenceFrame: Boolean): Transform {
+  public open fun getTransform(adjustByReferenceFrame: Boolean): Transform {
     TransferContext.writeArguments(BOOL to adjustByReferenceFrame)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRPOSITIONALTRACKER_GET_TRANSFORM,
         TRANSFORM)
@@ -184,55 +185,54 @@ open class ARVRPositionalTracker : Object() {
   /**
    * Returns the tracker's type.
    */
-  open fun getType(): ARVRServer.TrackerType {
+  public open fun getType(): ARVRServer.TrackerType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRPOSITIONALTRACKER_GET_TYPE,
         LONG)
     return ARVRServer.TrackerType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  enum class TrackerHand(
+  public enum class TrackerHand(
     id: Long
   ) {
     /**
      * The hand this tracker is held in is unknown or not applicable.
      */
     TRACKER_HAND_UNKNOWN(0),
-
     /**
      * This tracker is the left hand controller.
      */
     TRACKER_LEFT_HAND(1),
-
     /**
      * This tracker is the right hand controller.
      */
-    TRACKER_RIGHT_HAND(2);
+    TRACKER_RIGHT_HAND(2),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * The hand this tracker is held in is unknown or not applicable.
      */
-    final const val TRACKER_HAND_UNKNOWN: Long = 0
+    public final const val TRACKER_HAND_UNKNOWN: Long = 0
 
     /**
      * This tracker is the left hand controller.
      */
-    final const val TRACKER_LEFT_HAND: Long = 1
+    public final const val TRACKER_LEFT_HAND: Long = 1
 
     /**
      * This tracker is the right hand controller.
      */
-    final const val TRACKER_RIGHT_HAND: Long = 2
+    public final const val TRACKER_RIGHT_HAND: Long = 2
   }
 }

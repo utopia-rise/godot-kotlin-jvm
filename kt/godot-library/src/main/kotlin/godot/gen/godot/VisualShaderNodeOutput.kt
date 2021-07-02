@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Represents the output shader parameters within the visual shader graph.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * This visual shader node is present in all shader graphs in form of "Output" block with multiple output value ports.
  */
 @GodotBaseType
-open class VisualShaderNodeOutput : VisualShaderNode() {
-  override fun __new() {
+public open class VisualShaderNodeOutput : VisualShaderNode() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEOUTPUT)
   }
 }

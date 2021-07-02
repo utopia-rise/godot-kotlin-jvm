@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
@@ -18,6 +18,7 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Reference to a function in an object.
@@ -27,29 +28,29 @@ import kotlin.Suppress
  * However, by creating a [godot.FuncRef] using the [@GDScript.funcref] function, a reference to a function in a given object can be created, passed around and called.
  */
 @GodotBaseType
-open class FuncRef : Reference() {
+public open class FuncRef : Reference() {
   /**
    * The name of the referenced function.
    */
-  open var function: String
+  public open var function: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FUNCREF_GET_FUNCTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FUNCREF_SET_FUNCTION, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_FUNCREF)
   }
 
   /**
    * Calls the referenced function previously set in [function] or [@GDScript.funcref].
    */
-  open fun callFunc(vararg __var_args: Any?): Any? {
+  public open fun callFunc(vararg __var_args: Any?): Any? {
     TransferContext.writeArguments( *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FUNCREF_CALL_FUNC, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -58,7 +59,7 @@ open class FuncRef : Reference() {
   /**
    * Calls the referenced function previously set in [function] or [@GDScript.funcref]. Contrarily to [callFunc], this method does not support a variable number of arguments but expects all parameters to be passed via a single [godot.Array].
    */
-  open fun callFuncv(argArray: VariantArray<Any?>): Any? {
+  public open fun callFuncv(argArray: VariantArray<Any?>): Any? {
     TransferContext.writeArguments(ARRAY to argArray)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FUNCREF_CALL_FUNCV, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -67,7 +68,7 @@ open class FuncRef : Reference() {
   /**
    * Returns whether the object still exists and has the function assigned.
    */
-  open fun isValid(): Boolean {
+  public open fun isValid(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FUNCREF_IS_VALID, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -76,7 +77,7 @@ open class FuncRef : Reference() {
   /**
    * The object containing the referenced function. This object must be of a type actually inheriting from [godot.Object], not a built-in type such as [int], [godot.core.Vector2] or [godot.core.Dictionary].
    */
-  open fun setInstance(instance: Object) {
+  public open fun setInstance(instance: Object): Unit {
     TransferContext.writeArguments(OBJECT to instance)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FUNCREF_SET_INSTANCE, NIL)
   }

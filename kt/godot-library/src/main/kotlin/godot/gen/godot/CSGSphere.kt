@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -16,67 +16,68 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
-open class CSGSphere : CSGPrimitive() {
-  open var material: Material?
+public open class CSGSphere : CSGPrimitive() {
+  public open var material: Material?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSPHERE_GET_MATERIAL, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Material?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSPHERE_SET_MATERIAL, NIL)
     }
 
-  open var radialSegments: Long
+  public open var radialSegments: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSPHERE_GET_RADIAL_SEGMENTS,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSPHERE_SET_RADIAL_SEGMENTS,
           NIL)
     }
 
-  open var radius: Double
+  public open var radius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSPHERE_GET_RADIUS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSPHERE_SET_RADIUS, NIL)
     }
 
-  open var rings: Long
+  public open var rings: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSPHERE_GET_RINGS, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSPHERE_SET_RINGS, NIL)
     }
 
-  open var smoothFaces: Boolean
+  public open var smoothFaces: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSPHERE_GET_SMOOTH_FACES, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSPHERE_SET_SMOOTH_FACES, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CSGSPHERE)
   }
 }

@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
@@ -20,20 +20,21 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
-open class JSONRPC : Object() {
-  override fun __new() {
+public open class JSONRPC : Object() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_JSONRPC)
   }
 
   /**
    *
    */
-  open fun makeNotification(method: String, params: Any?): Dictionary<Any?, Any?> {
+  public open fun makeNotification(method: String, params: Any?): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to method, ANY to params)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_NOTIFICATION,
         DICTIONARY)
@@ -43,7 +44,7 @@ open class JSONRPC : Object() {
   /**
    *
    */
-  open fun makeRequest(
+  public open fun makeRequest(
     method: String,
     params: Any?,
     id: Any?
@@ -56,7 +57,7 @@ open class JSONRPC : Object() {
   /**
    *
    */
-  open fun makeResponse(result: Any?, id: Any?): Dictionary<Any?, Any?> {
+  public open fun makeResponse(result: Any?, id: Any?): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(ANY to result, ANY to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_RESPONSE, DICTIONARY)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
@@ -65,7 +66,7 @@ open class JSONRPC : Object() {
   /**
    *
    */
-  open fun makeResponseError(
+  public open fun makeResponseError(
     code: Long,
     message: String,
     id: Any? = null
@@ -79,7 +80,7 @@ open class JSONRPC : Object() {
   /**
    *
    */
-  open fun processAction(action: Any?, recurse: Boolean = false): Any? {
+  public open fun processAction(action: Any?, recurse: Boolean = false): Any? {
     TransferContext.writeArguments(ANY to action, BOOL to recurse)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_PROCESS_ACTION, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -88,7 +89,7 @@ open class JSONRPC : Object() {
   /**
    *
    */
-  open fun processString(action: String): String {
+  public open fun processString(action: String): String {
     TransferContext.writeArguments(STRING to action)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_PROCESS_STRING, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -97,73 +98,70 @@ open class JSONRPC : Object() {
   /**
    *
    */
-  open fun setScope(scope: String, target: Object) {
+  public open fun setScope(scope: String, target: Object): Unit {
     TransferContext.writeArguments(STRING to scope, OBJECT to target)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_SET_SCOPE, NIL)
   }
 
-  enum class ErrorCode(
+  public enum class ErrorCode(
     id: Long
   ) {
     /**
      *
      */
     PARSE_ERROR(-32700),
-
     /**
      *
      */
     INTERNAL_ERROR(-32603),
-
     /**
      *
      */
     INVALID_PARAMS(-32602),
-
     /**
      *
      */
     METHOD_NOT_FOUND(-32601),
-
     /**
      *
      */
-    INVALID_REQUEST(-32600);
+    INVALID_REQUEST(-32600),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      *
      */
-    final const val INTERNAL_ERROR: Long = -32603
+    public final const val INTERNAL_ERROR: Long = -32603
 
     /**
      *
      */
-    final const val INVALID_PARAMS: Long = -32602
+    public final const val INVALID_PARAMS: Long = -32602
 
     /**
      *
      */
-    final const val INVALID_REQUEST: Long = -32600
+    public final const val INVALID_REQUEST: Long = -32600
 
     /**
      *
      */
-    final const val METHOD_NOT_FOUND: Long = -32601
+    public final const val METHOD_NOT_FOUND: Long = -32601
 
     /**
      *
      */
-    final const val PARSE_ERROR: Long = -32700
+    public final const val PARSE_ERROR: Long = -32700
   }
 }

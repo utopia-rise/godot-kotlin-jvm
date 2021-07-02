@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.TransferContext
 import godot.core.VariantType.JVM_INT
@@ -14,6 +14,7 @@ import godot.core.VariantType.STRING
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A cryptographic key (RSA).
@@ -25,15 +26,15 @@ import kotlin.Suppress
  * **Note:** Not available in HTML5 exports.
  */
 @GodotBaseType
-open class CryptoKey : Resource() {
-  override fun __new() {
+public open class CryptoKey : Resource() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CRYPTOKEY)
   }
 
   /**
    * Loads a key from `path` ("*.key" file).
    */
-  open fun load(path: String): GodotError {
+  public open fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTOKEY_LOAD, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -42,7 +43,7 @@ open class CryptoKey : Resource() {
   /**
    * Saves a key to the given `path` (should be a "*.key" file).
    */
-  open fun save(path: String): GodotError {
+  public open fun save(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTOKEY_SAVE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

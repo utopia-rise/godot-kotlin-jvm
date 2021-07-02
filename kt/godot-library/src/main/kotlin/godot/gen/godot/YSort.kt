@@ -5,12 +5,13 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Sort all child nodes based on their Y positions.
@@ -20,22 +21,22 @@ import kotlin.Suppress
  * Nesting of YSort nodes is possible. Children YSort nodes will be sorted in the same space as the parent YSort, allowing to better organize a scene or divide it in multiple ones, yet keep the unique sorting.
  */
 @GodotBaseType
-open class YSort : Node2D() {
+public open class YSort : Node2D() {
   /**
    * If `true`, child nodes are sorted, otherwise sorting is disabled.
    */
-  open var sortEnabled: Boolean
+  public open var sortEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_YSORT_GET_SORT_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_YSORT_SET_SORT_ENABLED, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_YSORT)
   }
 }

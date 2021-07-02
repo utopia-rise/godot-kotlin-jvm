@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.TransferContext
 import godot.core.VariantType.JVM_INT
@@ -14,6 +14,7 @@ import godot.core.VariantType.OBJECT
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Interactive [godot.Resource] loader.
@@ -21,15 +22,15 @@ import kotlin.Suppress
  * Interactive [godot.Resource] loader. This object is returned by [godot.ResourceLoader] when performing an interactive load. It allows loading resources with high granularity, which makes it mainly useful for displaying loading bars or percentages.
  */
 @GodotBaseType
-open class ResourceInteractiveLoader : Reference() {
-  override fun __new() {
+public open class ResourceInteractiveLoader : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_RESOURCEINTERACTIVELOADER)
   }
 
   /**
    * Returns the loaded resource if the load operation completed successfully, `null` otherwise.
    */
-  open fun getResource(): Resource? {
+  public open fun getResource(): Resource? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RESOURCEINTERACTIVELOADER_GET_RESOURCE, OBJECT)
@@ -39,7 +40,7 @@ open class ResourceInteractiveLoader : Reference() {
   /**
    * Returns the load stage. The total amount of stages can be queried with [getStageCount].
    */
-  open fun getStage(): Long {
+  public open fun getStage(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEINTERACTIVELOADER_GET_STAGE,
         LONG)
@@ -49,7 +50,7 @@ open class ResourceInteractiveLoader : Reference() {
   /**
    * Returns the total amount of stages (calls to [poll]) needed to completely load this resource.
    */
-  open fun getStageCount(): Long {
+  public open fun getStageCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RESOURCEINTERACTIVELOADER_GET_STAGE_COUNT, LONG)
@@ -65,7 +66,7 @@ open class ResourceInteractiveLoader : Reference() {
    *
    * Returns another [enum Error] code if the poll has failed.
    */
-  open fun poll(): GodotError {
+  public open fun poll(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEINTERACTIVELOADER_POLL,
         LONG)
@@ -79,7 +80,7 @@ open class ResourceInteractiveLoader : Reference() {
    *
    * Returns another [enum Error] code if a poll has failed, aborting the operation.
    */
-  open fun wait(): GodotError {
+  public open fun wait(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCEINTERACTIVELOADER_WAIT,
         LONG)

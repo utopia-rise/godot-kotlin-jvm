@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -30,48 +30,48 @@ import kotlin.Unit
  * This node may contain a sub-tree of any other blend type nodes, such as mix, blend2, blend3, one shot, etc. This is one of the most commonly used roots.
  */
 @GodotBaseType
-open class AnimationNodeBlendTree : AnimationRootNode() {
+public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * The global offset of all sub-nodes.
    */
-  open var graphOffset: Vector2
+  public open var graphOffset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_GET_GRAPH_OFFSET, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_SET_GRAPH_OFFSET, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODEBLENDTREE)
   }
 
   @CoreTypeHelper
-  open fun graphOffset(schedule: Vector2.() -> Unit): Vector2 = graphOffset.apply{
+  public open fun graphOffset(schedule: Vector2.() -> Unit): Vector2 = graphOffset.apply{
       schedule(this)
       graphOffset = this
   }
 
 
-  open fun _nodeChanged(node: String) {
+  public open fun _nodeChanged(node: String): Unit {
   }
 
-  open fun _treeChanged() {
+  public open fun _treeChanged(): Unit {
   }
 
   /**
    * Adds an [godot.AnimationNode] at the given `position`. The `name` is used to identify the created sub-node later.
    */
-  open fun addNode(
+  public open fun addNode(
     name: String,
     node: AnimationNode,
     position: Vector2 = Vector2(0.0, 0.0)
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to name, OBJECT to node, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_ADD_NODE,
         NIL)
@@ -80,11 +80,11 @@ open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Connects the output of an [godot.AnimationNode] as input for another [godot.AnimationNode], at the input port specified by `input_index`.
    */
-  open fun connectNode(
+  public open fun connectNode(
     inputNode: String,
     inputIndex: Long,
     outputNode: String
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to inputNode, LONG to inputIndex, STRING to outputNode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_CONNECT_NODE,
         NIL)
@@ -93,7 +93,7 @@ open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Disconnects the node connected to the specified input.
    */
-  open fun disconnectNode(inputNode: String, inputIndex: Long) {
+  public open fun disconnectNode(inputNode: String, inputIndex: Long): Unit {
     TransferContext.writeArguments(STRING to inputNode, LONG to inputIndex)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_DISCONNECT_NODE, NIL)
@@ -102,7 +102,7 @@ open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Returns the sub-node with the specified `name`.
    */
-  open fun getNode(name: String): AnimationNode? {
+  public open fun getNode(name: String): AnimationNode? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_GET_NODE,
         OBJECT)
@@ -112,7 +112,7 @@ open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Returns the position of the sub-node with the specified `name`.
    */
-  open fun getNodePosition(name: String): Vector2 {
+  public open fun getNodePosition(name: String): Vector2 {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_GET_NODE_POSITION, VECTOR2)
@@ -122,7 +122,7 @@ open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Returns `true` if a sub-node with specified `name` exists.
    */
-  open fun hasNode(name: String): Boolean {
+  public open fun hasNode(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_HAS_NODE,
         BOOL)
@@ -132,7 +132,7 @@ open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Removes a sub-node.
    */
-  open fun removeNode(name: String) {
+  public open fun removeNode(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_REMOVE_NODE,
         NIL)
@@ -141,7 +141,7 @@ open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Changes the name of a sub-node.
    */
-  open fun renameNode(name: String, newName: String) {
+  public open fun renameNode(name: String, newName: String): Unit {
     TransferContext.writeArguments(STRING to name, STRING to newName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_RENAME_NODE,
         NIL)
@@ -150,41 +150,41 @@ open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Modifies the position of a sub-node.
    */
-  open fun setNodePosition(name: String, position: Vector2) {
+  public open fun setNodePosition(name: String, position: Vector2): Unit {
     TransferContext.writeArguments(STRING to name, VECTOR2 to position)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDTREE_SET_NODE_POSITION, NIL)
   }
 
-  companion object {
+  public companion object {
     /**
      * The specified connection already exists.
      */
-    final const val CONNECTION_ERROR_CONNECTION_EXISTS: Long = 5
+    public final const val CONNECTION_ERROR_CONNECTION_EXISTS: Long = 5
 
     /**
      * The input node is `null`.
      */
-    final const val CONNECTION_ERROR_NO_INPUT: Long = 1
+    public final const val CONNECTION_ERROR_NO_INPUT: Long = 1
 
     /**
      * The specified input port is out of range.
      */
-    final const val CONNECTION_ERROR_NO_INPUT_INDEX: Long = 2
+    public final const val CONNECTION_ERROR_NO_INPUT_INDEX: Long = 2
 
     /**
      * The output node is `null`.
      */
-    final const val CONNECTION_ERROR_NO_OUTPUT: Long = 3
+    public final const val CONNECTION_ERROR_NO_OUTPUT: Long = 3
 
     /**
      * Input and output nodes are the same.
      */
-    final const val CONNECTION_ERROR_SAME_NODE: Long = 4
+    public final const val CONNECTION_ERROR_SAME_NODE: Long = 4
 
     /**
      * The connection was successful.
      */
-    final const val CONNECTION_OK: Long = 0
+    public final const val CONNECTION_OK: Long = 0
   }
 }

@@ -6,8 +6,8 @@
 package godot
 
 import godot.Mesh
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.GodotError
 import godot.core.PoolByteArray
@@ -63,18 +63,18 @@ import kotlin.Unit
  * **Note:** Godot uses clockwise [winding order](https://learnopengl.com/Advanced-OpenGL/Face-culling) for front faces of triangle primitive modes.
  */
 @GodotBaseType
-open class ArrayMesh : Mesh() {
+public open class ArrayMesh : Mesh() {
   /**
    * Sets the blend shape mode to one of [enum Mesh.BlendShapeMode].
    */
-  open var blendShapeMode: Long
+  public open var blendShapeMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_BLEND_SHAPE_MODE,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SET_BLEND_SHAPE_MODE,
           NIL)
@@ -83,24 +83,24 @@ open class ArrayMesh : Mesh() {
   /**
    * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when using a shader to offset vertices.
    */
-  open var customAabb: AABB
+  public open var customAabb: AABB
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_CUSTOM_AABB,
           godot.core.VariantType.AABB)
       return TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(godot.core.VariantType.AABB to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SET_CUSTOM_AABB, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ARRAYMESH)
   }
 
   @CoreTypeHelper
-  open fun customAabb(schedule: AABB.() -> Unit): AABB = customAabb.apply{
+  public open fun customAabb(schedule: AABB.() -> Unit): AABB = customAabb.apply{
       schedule(this)
       customAabb = this
   }
@@ -109,7 +109,7 @@ open class ArrayMesh : Mesh() {
   /**
    * Adds name for a blend shape that will be added with [addSurfaceFromArrays]. Must be called before surface is added.
    */
-  open fun addBlendShape(name: String) {
+  public open fun addBlendShape(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_ADD_BLEND_SHAPE, NIL)
   }
@@ -123,12 +123,12 @@ open class ArrayMesh : Mesh() {
    *
    * Adding an index array puts this function into "index mode" where the vertex and other arrays become the sources of data, and the index array defines the order of the vertices.
    */
-  open fun addSurfaceFromArrays(
+  public open fun addSurfaceFromArrays(
     primitive: Long,
     arrays: VariantArray<Any?>,
     blendShapes: VariantArray<Any?> = VariantArray(),
     compressFlags: Long = 97280
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to primitive, ARRAY to arrays, ARRAY to blendShapes, LONG to
         compressFlags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_ADD_SURFACE_FROM_ARRAYS,
@@ -138,7 +138,7 @@ open class ArrayMesh : Mesh() {
   /**
    * Removes all blend shapes from this [godot.ArrayMesh].
    */
-  open fun clearBlendShapes() {
+  public open fun clearBlendShapes(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_CLEAR_BLEND_SHAPES, NIL)
   }
@@ -146,7 +146,7 @@ open class ArrayMesh : Mesh() {
   /**
    * Returns the number of blend shapes that the [godot.ArrayMesh] holds.
    */
-  open fun getBlendShapeCount(): Long {
+  public open fun getBlendShapeCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_BLEND_SHAPE_COUNT,
         LONG)
@@ -156,7 +156,7 @@ open class ArrayMesh : Mesh() {
   /**
    * Returns the name of the blend shape at this index.
    */
-  open fun getBlendShapeName(index: Long): String {
+  public open fun getBlendShapeName(index: Long): String {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_GET_BLEND_SHAPE_NAME,
         STRING)
@@ -166,7 +166,7 @@ open class ArrayMesh : Mesh() {
   /**
    * Will perform a UV unwrap on the [godot.ArrayMesh] to prepare the mesh for lightmapping.
    */
-  open fun lightmapUnwrap(transform: Transform, texelSize: Double): GodotError {
+  public open fun lightmapUnwrap(transform: Transform, texelSize: Double): GodotError {
     TransferContext.writeArguments(TRANSFORM to transform, DOUBLE to texelSize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_LIGHTMAP_UNWRAP, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -175,7 +175,7 @@ open class ArrayMesh : Mesh() {
   /**
    * Will regenerate normal maps for the [godot.ArrayMesh].
    */
-  open fun regenNormalmaps() {
+  public open fun regenNormalmaps(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_REGEN_NORMALMAPS, NIL)
   }
@@ -183,7 +183,7 @@ open class ArrayMesh : Mesh() {
   /**
    * Returns the index of the first surface with this name held within this [godot.ArrayMesh]. If none are found, -1 is returned.
    */
-  open fun surfaceFindByName(name: String): Long {
+  public open fun surfaceFindByName(name: String): Long {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_FIND_BY_NAME,
         LONG)
@@ -193,7 +193,7 @@ open class ArrayMesh : Mesh() {
   /**
    * Returns the length in indices of the index array in the requested surface (see [addSurfaceFromArrays]).
    */
-  open fun surfaceGetArrayIndexLen(surfIdx: Long): Long {
+  public open fun surfaceGetArrayIndexLen(surfIdx: Long): Long {
     TransferContext.writeArguments(LONG to surfIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_ARRAY_INDEX_LEN, LONG)
@@ -203,7 +203,7 @@ open class ArrayMesh : Mesh() {
   /**
    * Returns the length in vertices of the vertex array in the requested surface (see [addSurfaceFromArrays]).
    */
-  open fun surfaceGetArrayLen(surfIdx: Long): Long {
+  public open fun surfaceGetArrayLen(surfIdx: Long): Long {
     TransferContext.writeArguments(LONG to surfIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_ARRAY_LEN,
         LONG)
@@ -213,7 +213,7 @@ open class ArrayMesh : Mesh() {
   /**
    * Returns the format mask of the requested surface (see [addSurfaceFromArrays]).
    */
-  open fun surfaceGetFormat(surfIdx: Long): Long {
+  public open fun surfaceGetFormat(surfIdx: Long): Long {
     TransferContext.writeArguments(LONG to surfIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_FORMAT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -222,7 +222,7 @@ open class ArrayMesh : Mesh() {
   /**
    * Gets the name assigned to this surface.
    */
-  open fun surfaceGetName(surfIdx: Long): String {
+  public open fun surfaceGetName(surfIdx: Long): String {
     TransferContext.writeArguments(LONG to surfIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -231,7 +231,7 @@ open class ArrayMesh : Mesh() {
   /**
    * Returns the primitive type of the requested surface (see [addSurfaceFromArrays]).
    */
-  open fun surfaceGetPrimitiveType(surfIdx: Long): Mesh.PrimitiveType {
+  public open fun surfaceGetPrimitiveType(surfIdx: Long): Mesh.PrimitiveType {
     TransferContext.writeArguments(LONG to surfIdx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_GET_PRIMITIVE_TYPE, LONG)
@@ -241,7 +241,7 @@ open class ArrayMesh : Mesh() {
   /**
    * Removes a surface at position `surf_idx`, shifting greater surfaces one `surf_idx` slot down.
    */
-  open fun surfaceRemove(surfIdx: Long) {
+  public open fun surfaceRemove(surfIdx: Long): Unit {
     TransferContext.writeArguments(LONG to surfIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_REMOVE, NIL)
   }
@@ -249,7 +249,7 @@ open class ArrayMesh : Mesh() {
   /**
    * Sets a name for a given surface.
    */
-  open fun surfaceSetName(surfIdx: Long, name: String) {
+  public open fun surfaceSetName(surfIdx: Long, name: String): Unit {
     TransferContext.writeArguments(LONG to surfIdx, STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_SET_NAME, NIL)
   }
@@ -259,245 +259,230 @@ open class ArrayMesh : Mesh() {
    *
    * **Warning:** Only use if you know what you are doing. You can easily cause crashes by calling this function with improper arguments.
    */
-  open fun surfaceUpdateRegion(
+  public open fun surfaceUpdateRegion(
     surfIdx: Long,
     offset: Long,
-    data: PoolByteArray
-  ) {
+    `data`: PoolByteArray
+  ): Unit {
     TransferContext.writeArguments(LONG to surfIdx, LONG to offset, POOL_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SURFACE_UPDATE_REGION,
         NIL)
   }
 
-  enum class ArrayFormat(
+  public enum class ArrayFormat(
     id: Long
   ) {
     /**
      * Array format will include vertices (mandatory).
      */
     ARRAY_FORMAT_VERTEX(1),
-
     /**
      * Array format will include normals.
      */
     ARRAY_FORMAT_NORMAL(2),
-
     /**
      * Array format will include tangents.
      */
     ARRAY_FORMAT_TANGENT(4),
-
     /**
      * Array format will include a color array.
      */
     ARRAY_FORMAT_COLOR(8),
-
     /**
      * Array format will include UVs.
      */
     ARRAY_FORMAT_TEX_UV(16),
-
     /**
      * Array format will include another set of UVs.
      */
     ARRAY_FORMAT_TEX_UV2(32),
-
     /**
      * Array format will include bone indices.
      */
     ARRAY_FORMAT_BONES(64),
-
     /**
      * Array format will include bone weights.
      */
     ARRAY_FORMAT_WEIGHTS(128),
-
     /**
      * Index array will be used.
      */
-    ARRAY_FORMAT_INDEX(256);
+    ARRAY_FORMAT_INDEX(256),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class ArrayType(
+  public enum class ArrayType(
     id: Long
   ) {
     /**
      * [godot.core.PoolVector3Array], [godot.core.PoolVector2Array], or [godot.Array] of vertex positions.
      */
     ARRAY_VERTEX(0),
-
     /**
      * [godot.core.PoolVector3Array] of vertex normals.
      */
     ARRAY_NORMAL(1),
-
     /**
      * [godot.core.PoolRealArray] of vertex tangents. Each element in groups of 4 floats, first 3 floats determine the tangent, and the last the binormal direction as -1 or 1.
      */
     ARRAY_TANGENT(2),
-
     /**
      * [godot.core.PoolColorArray] of vertex colors.
      */
     ARRAY_COLOR(3),
-
     /**
      * [godot.core.PoolVector2Array] for UV coordinates.
      */
     ARRAY_TEX_UV(4),
-
     /**
      * [godot.core.PoolVector2Array] for second UV coordinates.
      */
     ARRAY_TEX_UV2(5),
-
     /**
      * [godot.core.PoolRealArray] or [godot.core.PoolIntArray] of bone indices. Each element in groups of 4 floats.
      */
     ARRAY_BONES(6),
-
     /**
      * [godot.core.PoolRealArray] of bone weights. Each element in groups of 4 floats.
      */
     ARRAY_WEIGHTS(7),
-
     /**
      * [godot.core.PoolIntArray] of integers used as indices referencing vertices, colors, normals, tangents, and textures. All of those arrays must have the same number of elements as the vertex array. No index can be beyond the vertex array size. When this index array is present, it puts the function into "index mode," where the index selects the *i*'th vertex, normal, tangent, color, UV, etc. This means if you want to have different normals or colors along an edge, you have to duplicate the vertices.
      *
      * For triangles, the index array is interpreted as triples, referring to the vertices of each triangle. For lines, the index array is in pairs indicating the start and end of each line.
      */
     ARRAY_INDEX(8),
-
     /**
      * Represents the size of the [enum ArrayType] enum.
      */
-    ARRAY_MAX(9);
+    ARRAY_MAX(9),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * [godot.core.PoolRealArray] or [godot.core.PoolIntArray] of bone indices. Each element in groups of 4 floats.
      */
-    final const val ARRAY_BONES: Long = 6
+    public final const val ARRAY_BONES: Long = 6
 
     /**
      * [godot.core.PoolColorArray] of vertex colors.
      */
-    final const val ARRAY_COLOR: Long = 3
+    public final const val ARRAY_COLOR: Long = 3
 
     /**
      * Array format will include bone indices.
      */
-    final const val ARRAY_FORMAT_BONES: Long = 64
+    public final const val ARRAY_FORMAT_BONES: Long = 64
 
     /**
      * Array format will include a color array.
      */
-    final const val ARRAY_FORMAT_COLOR: Long = 8
+    public final const val ARRAY_FORMAT_COLOR: Long = 8
 
     /**
      * Index array will be used.
      */
-    final const val ARRAY_FORMAT_INDEX: Long = 256
+    public final const val ARRAY_FORMAT_INDEX: Long = 256
 
     /**
      * Array format will include normals.
      */
-    final const val ARRAY_FORMAT_NORMAL: Long = 2
+    public final const val ARRAY_FORMAT_NORMAL: Long = 2
 
     /**
      * Array format will include tangents.
      */
-    final const val ARRAY_FORMAT_TANGENT: Long = 4
+    public final const val ARRAY_FORMAT_TANGENT: Long = 4
 
     /**
      * Array format will include UVs.
      */
-    final const val ARRAY_FORMAT_TEX_UV: Long = 16
+    public final const val ARRAY_FORMAT_TEX_UV: Long = 16
 
     /**
      * Array format will include another set of UVs.
      */
-    final const val ARRAY_FORMAT_TEX_UV2: Long = 32
+    public final const val ARRAY_FORMAT_TEX_UV2: Long = 32
 
     /**
      * Array format will include vertices (mandatory).
      */
-    final const val ARRAY_FORMAT_VERTEX: Long = 1
+    public final const val ARRAY_FORMAT_VERTEX: Long = 1
 
     /**
      * Array format will include bone weights.
      */
-    final const val ARRAY_FORMAT_WEIGHTS: Long = 128
+    public final const val ARRAY_FORMAT_WEIGHTS: Long = 128
 
     /**
      * [godot.core.PoolIntArray] of integers used as indices referencing vertices, colors, normals, tangents, and textures. All of those arrays must have the same number of elements as the vertex array. No index can be beyond the vertex array size. When this index array is present, it puts the function into "index mode," where the index selects the *i*'th vertex, normal, tangent, color, UV, etc. This means if you want to have different normals or colors along an edge, you have to duplicate the vertices.
      *
      * For triangles, the index array is interpreted as triples, referring to the vertices of each triangle. For lines, the index array is in pairs indicating the start and end of each line.
      */
-    final const val ARRAY_INDEX: Long = 8
+    public final const val ARRAY_INDEX: Long = 8
 
     /**
      * Represents the size of the [enum ArrayType] enum.
      */
-    final const val ARRAY_MAX: Long = 9
+    public final const val ARRAY_MAX: Long = 9
 
     /**
      * [godot.core.PoolVector3Array] of vertex normals.
      */
-    final const val ARRAY_NORMAL: Long = 1
+    public final const val ARRAY_NORMAL: Long = 1
 
     /**
      * [godot.core.PoolRealArray] of vertex tangents. Each element in groups of 4 floats, first 3 floats determine the tangent, and the last the binormal direction as -1 or 1.
      */
-    final const val ARRAY_TANGENT: Long = 2
+    public final const val ARRAY_TANGENT: Long = 2
 
     /**
      * [godot.core.PoolVector2Array] for UV coordinates.
      */
-    final const val ARRAY_TEX_UV: Long = 4
+    public final const val ARRAY_TEX_UV: Long = 4
 
     /**
      * [godot.core.PoolVector2Array] for second UV coordinates.
      */
-    final const val ARRAY_TEX_UV2: Long = 5
+    public final const val ARRAY_TEX_UV2: Long = 5
 
     /**
      * [godot.core.PoolVector3Array], [godot.core.PoolVector2Array], or [godot.Array] of vertex positions.
      */
-    final const val ARRAY_VERTEX: Long = 0
+    public final const val ARRAY_VERTEX: Long = 0
 
     /**
      * [godot.core.PoolRealArray] of bone weights. Each element in groups of 4 floats.
      */
-    final const val ARRAY_WEIGHTS: Long = 7
+    public final const val ARRAY_WEIGHTS: Long = 7
 
     /**
      * Amount of weights/bone indices per vertex (always 4).
      */
-    final const val ARRAY_WEIGHTS_SIZE: Long = 4
+    public final const val ARRAY_WEIGHTS_SIZE: Long = 4
 
     /**
      * Default value used for index_array_len when no indices are present.
      */
-    final const val NO_INDEX_ARRAY: Long = -1
+    public final const val NO_INDEX_ARRAY: Long = -1
   }
 }

@@ -5,11 +5,12 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import kotlin.Double
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Base class for audio streams.
@@ -20,15 +21,15 @@ import kotlin.Suppress
  * Base class for audio streams. Audio streams are used for sound effects and music playback, and support WAV (via [godot.AudioStreamSample]) and OGG (via [godot.AudioStreamOGGVorbis]) file formats.
  */
 @GodotBaseType
-open class AudioStream : Resource() {
-  override fun __new() {
+public open class AudioStream : Resource() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAM)
   }
 
   /**
    * Returns the length of the audio stream in seconds.
    */
-  open fun getLength(): Double {
+  public open fun getLength(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_GET_LENGTH, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double

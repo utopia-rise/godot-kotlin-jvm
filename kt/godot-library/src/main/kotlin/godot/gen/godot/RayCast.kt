@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -38,17 +38,17 @@ import kotlin.Unit
  * RayCast calculates intersection every physics frame (see [godot.Node]), and the result is cached so it can be used later until the next frame. If multiple queries are required between physics frames (or during the same frame), use [forceRaycastUpdate] after adjusting the raycast.
  */
 @GodotBaseType
-open class RayCast : Spatial() {
+public open class RayCast : Spatial() {
   /**
    * The ray's destination point, relative to the RayCast's `position`.
    */
-  open var castTo: Vector3
+  public open var castTo: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_GET_CAST_TO, VECTOR3)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_SET_CAST_TO, NIL)
     }
@@ -56,14 +56,14 @@ open class RayCast : Spatial() {
   /**
    * If `true`, collision with [godot.Area]s will be reported.
    */
-  open var collideWithAreas: Boolean
+  public open var collideWithAreas: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_GET_COLLIDE_WITH_AREAS,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_SET_COLLIDE_WITH_AREAS,
           NIL)
@@ -72,14 +72,14 @@ open class RayCast : Spatial() {
   /**
    * If `true`, collision with [godot.PhysicsBody]s will be reported.
    */
-  open var collideWithBodies: Boolean
+  public open var collideWithBodies: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_GET_COLLIDE_WITH_BODIES,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_SET_COLLIDE_WITH_BODIES,
           NIL)
@@ -88,13 +88,13 @@ open class RayCast : Spatial() {
   /**
    * The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  open var collisionMask: Long
+  public open var collisionMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_GET_COLLISION_MASK, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_SET_COLLISION_MASK, NIL)
     }
@@ -102,13 +102,13 @@ open class RayCast : Spatial() {
   /**
    * If `true`, collisions will be reported.
    */
-  open var enabled: Boolean
+  public open var enabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_GET_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_SET_ENABLED, NIL)
     }
@@ -116,23 +116,23 @@ open class RayCast : Spatial() {
   /**
    * If `true`, collisions will be ignored for this RayCast's immediate parent.
    */
-  open var excludeParent: Boolean
+  public open var excludeParent: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_GET_EXCLUDE_PARENT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_SET_EXCLUDE_PARENT, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_RAYCAST)
   }
 
   @CoreTypeHelper
-  open fun castTo(schedule: Vector3.() -> Unit): Vector3 = castTo.apply{
+  public open fun castTo(schedule: Vector3.() -> Unit): Vector3 = castTo.apply{
       schedule(this)
       castTo = this
   }
@@ -141,7 +141,7 @@ open class RayCast : Spatial() {
   /**
    * Adds a collision exception so the ray does not report collisions with the specified node.
    */
-  open fun addException(node: Object) {
+  public open fun addException(node: Object): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_ADD_EXCEPTION, NIL)
   }
@@ -149,7 +149,7 @@ open class RayCast : Spatial() {
   /**
    * Adds a collision exception so the ray does not report collisions with the specified [RID].
    */
-  open fun addExceptionRid(rid: RID) {
+  public open fun addExceptionRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_ADD_EXCEPTION_RID, NIL)
   }
@@ -157,7 +157,7 @@ open class RayCast : Spatial() {
   /**
    * Removes all collision exceptions for this ray.
    */
-  open fun clearExceptions() {
+  public open fun clearExceptions(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_CLEAR_EXCEPTIONS, NIL)
   }
@@ -169,7 +169,7 @@ open class RayCast : Spatial() {
    *
    * **Note:** `enabled` is not required for this to work.
    */
-  open fun forceRaycastUpdate() {
+  public open fun forceRaycastUpdate(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_FORCE_RAYCAST_UPDATE, NIL)
   }
@@ -177,7 +177,7 @@ open class RayCast : Spatial() {
   /**
    * Returns the first object that the ray intersects, or `null` if no object is intersecting the ray (i.e. [isColliding] returns `false`).
    */
-  open fun getCollider(): Object? {
+  public open fun getCollider(): Object? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_GET_COLLIDER, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Object?
@@ -186,7 +186,7 @@ open class RayCast : Spatial() {
   /**
    * Returns the shape ID of the first object that the ray intersects, or `0` if no object is intersecting the ray (i.e. [isColliding] returns `false`).
    */
-  open fun getColliderShape(): Long {
+  public open fun getColliderShape(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_GET_COLLIDER_SHAPE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -197,7 +197,7 @@ open class RayCast : Spatial() {
    *
    * **Note:** Bit indices range from 0-19.
    */
-  open fun getCollisionMaskBit(bit: Long): Boolean {
+  public open fun getCollisionMaskBit(bit: Long): Boolean {
     TransferContext.writeArguments(LONG to bit)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_GET_COLLISION_MASK_BIT,
         BOOL)
@@ -207,7 +207,7 @@ open class RayCast : Spatial() {
   /**
    * Returns the normal of the intersecting object's shape at the collision point.
    */
-  open fun getCollisionNormal(): Vector3 {
+  public open fun getCollisionNormal(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_GET_COLLISION_NORMAL,
         VECTOR3)
@@ -219,7 +219,7 @@ open class RayCast : Spatial() {
    *
    * **Note:** This point is in the **global** coordinate system.
    */
-  open fun getCollisionPoint(): Vector3 {
+  public open fun getCollisionPoint(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_GET_COLLISION_POINT,
         VECTOR3)
@@ -229,7 +229,7 @@ open class RayCast : Spatial() {
   /**
    * Returns whether any object is intersecting with the ray's vector (considering the vector length).
    */
-  open fun isColliding(): Boolean {
+  public open fun isColliding(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_IS_COLLIDING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -238,7 +238,7 @@ open class RayCast : Spatial() {
   /**
    * Removes a collision exception so the ray does report collisions with the specified node.
    */
-  open fun removeException(node: Object) {
+  public open fun removeException(node: Object): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_REMOVE_EXCEPTION, NIL)
   }
@@ -246,7 +246,7 @@ open class RayCast : Spatial() {
   /**
    * Removes a collision exception so the ray does report collisions with the specified [RID].
    */
-  open fun removeExceptionRid(rid: RID) {
+  public open fun removeExceptionRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_REMOVE_EXCEPTION_RID, NIL)
   }
@@ -256,7 +256,7 @@ open class RayCast : Spatial() {
    *
    * **Note:** Bit indexes range from 0-19.
    */
-  open fun setCollisionMaskBit(bit: Long, value: Boolean) {
+  public open fun setCollisionMaskBit(bit: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to bit, BOOL to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_SET_COLLISION_MASK_BIT, NIL)
   }

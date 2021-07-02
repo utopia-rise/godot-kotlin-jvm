@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PoolByteArray
 import godot.core.TransferContext
@@ -15,6 +15,7 @@ import godot.core.VariantType.POOL_BYTE_ARRAY
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Context to compute cryptographic hashes over multiple iterations.
@@ -48,15 +49,15 @@ import kotlin.Suppress
  * **Note:** Not available in HTML5 exports.
  */
 @GodotBaseType
-open class HashingContext : Reference() {
-  override fun __new() {
+public open class HashingContext : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_HASHINGCONTEXT)
   }
 
   /**
    * Closes the current context, and return the computed hash.
    */
-  open fun finish(): PoolByteArray {
+  public open fun finish(): PoolByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HASHINGCONTEXT_FINISH,
         POOL_BYTE_ARRAY)
@@ -66,7 +67,7 @@ open class HashingContext : Reference() {
   /**
    * Starts a new hash computation of the given `type` (e.g. [godot.HASH_SHA256] to start computation of a SHA-256).
    */
-  open fun start(type: Long): GodotError {
+  public open fun start(type: Long): GodotError {
     TransferContext.writeArguments(LONG to type)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HASHINGCONTEXT_START, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -75,54 +76,53 @@ open class HashingContext : Reference() {
   /**
    * Updates the computation with the given `chunk` of data.
    */
-  open fun update(chunk: PoolByteArray): GodotError {
+  public open fun update(chunk: PoolByteArray): GodotError {
     TransferContext.writeArguments(POOL_BYTE_ARRAY to chunk)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HASHINGCONTEXT_UPDATE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  enum class HashType(
+  public enum class HashType(
     id: Long
   ) {
     /**
      * Hashing algorithm: MD5.
      */
     HASH_MD5(0),
-
     /**
      * Hashing algorithm: SHA-1.
      */
     HASH_SHA1(1),
-
     /**
      * Hashing algorithm: SHA-256.
      */
-    HASH_SHA256(2);
+    HASH_SHA256(2),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Hashing algorithm: MD5.
      */
-    final const val HASH_MD5: Long = 0
+    public final const val HASH_MD5: Long = 0
 
     /**
      * Hashing algorithm: SHA-1.
      */
-    final const val HASH_SHA1: Long = 1
+    public final const val HASH_SHA1: Long = 1
 
     /**
      * Hashing algorithm: SHA-256.
      */
-    final const val HASH_SHA256: Long = 2
+    public final const val HASH_SHA256: Long = 2
   }
 }

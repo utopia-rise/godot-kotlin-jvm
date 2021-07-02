@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
@@ -16,6 +16,7 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A material that uses a custom [godot.Shader] program.
@@ -28,32 +29,32 @@ import kotlin.Suppress
  * **Note:** Due to a renderer limitation, emissive [godot.ShaderMaterial]s cannot emit light when used in a [godot.GIProbe]. Only emissive [godot.SpatialMaterial]s can emit light in a [godot.GIProbe].
  */
 @GodotBaseType
-open class ShaderMaterial : Material() {
+public open class ShaderMaterial : Material() {
   /**
    * The [godot.Shader] program used to render this material.
    */
-  open var shader: Shader?
+  public open var shader: Shader?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_GET_SHADER, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Shader?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SHADERMATERIAL)
   }
 
-  open fun _shaderChanged() {
+  public open fun _shaderChanged(): Unit {
   }
 
   /**
    * Returns the current value set for this material of a uniform in the shader.
    */
-  open fun getShaderParam(param: String): Any? {
+  public open fun getShaderParam(`param`: String): Any? {
     TransferContext.writeArguments(STRING to param)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_GET_SHADER_PARAM,
         ANY)
@@ -63,7 +64,7 @@ open class ShaderMaterial : Material() {
   /**
    * Returns `true` if the property identified by `name` can be reverted to a default value.
    */
-  open fun propertyCanRevert(name: String): Boolean {
+  public open fun propertyCanRevert(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_PROPERTY_CAN_REVERT,
         BOOL)
@@ -73,7 +74,7 @@ open class ShaderMaterial : Material() {
   /**
    * Returns the default value of the material property with given `name`.
    */
-  open fun propertyGetRevert(name: String): Any? {
+  public open fun propertyGetRevert(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_PROPERTY_GET_REVERT,
         ANY)
@@ -83,7 +84,7 @@ open class ShaderMaterial : Material() {
   /**
    * Changes the value set for this material of a uniform in the shader. **Note:** `param` must match the name of the uniform in the code exactly.
    */
-  open fun setShaderParam(param: String, value: Any?) {
+  public open fun setShaderParam(`param`: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to param, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER_PARAM,
         NIL)

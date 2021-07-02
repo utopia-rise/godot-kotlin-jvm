@@ -6,7 +6,7 @@
 package godot
 
 import godot.ARVRPositionalTracker
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A spatial node representing a spatially-tracked controller.
@@ -37,21 +38,21 @@ import kotlin.Suppress
  * The position of the controller node is automatically updated by the [godot.ARVRServer]. This makes this node ideal to add child nodes to visualize the controller.
  */
 @GodotBaseType
-open class ARVRController : Spatial() {
+public open class ARVRController : Spatial() {
   /**
    * Emitted when a button on this controller is pressed.
    */
-  val buttonPressed: Signal1<Long> by signal("button")
+  public val buttonPressed: Signal1<Long> by signal("button")
 
   /**
    * Emitted when a button on this controller is released.
    */
-  val buttonRelease: Signal1<Long> by signal("button")
+  public val buttonRelease: Signal1<Long> by signal("button")
 
   /**
    * Emitted when the mesh associated with the controller changes or when one becomes available. Generally speaking this will be a static mesh after becoming available.
    */
-  val meshUpdated: Signal1<Mesh> by signal("mesh")
+  public val meshUpdated: Signal1<Mesh> by signal("mesh")
 
   /**
    * The controller's ID.
@@ -62,14 +63,14 @@ open class ARVRController : Spatial() {
    *
    * When a controller is turned off, its slot is freed. This ensures controllers will keep the same ID even when controllers with lower IDs are turned off.
    */
-  open var controllerId: Long
+  public open var controllerId: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRCONTROLLER_GET_CONTROLLER_ID,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRCONTROLLER_SET_CONTROLLER_ID,
           NIL)
@@ -80,25 +81,25 @@ open class ARVRController : Spatial() {
    *
    * This is a useful property to animate if you want the controller to vibrate for a limited duration.
    */
-  open var rumble: Double
+  public open var rumble: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRCONTROLLER_GET_RUMBLE, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRCONTROLLER_SET_RUMBLE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ARVRCONTROLLER)
   }
 
   /**
    * If active, returns the name of the associated controller if provided by the AR/VR SDK used.
    */
-  open fun getControllerName(): String {
+  public open fun getControllerName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRCONTROLLER_GET_CONTROLLER_NAME,
         STRING)
@@ -108,7 +109,7 @@ open class ARVRController : Spatial() {
   /**
    * Returns the hand holding this controller, if known. See [enum ARVRPositionalTracker.TrackerHand].
    */
-  open fun getHand(): ARVRPositionalTracker.TrackerHand {
+  public open fun getHand(): ARVRPositionalTracker.TrackerHand {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRCONTROLLER_GET_HAND, LONG)
     return ARVRPositionalTracker.TrackerHand.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -117,7 +118,7 @@ open class ARVRController : Spatial() {
   /**
    * Returns `true` if the bound controller is active. ARVR systems attempt to track active controllers.
    */
-  open fun getIsActive(): Boolean {
+  public open fun getIsActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRCONTROLLER_GET_IS_ACTIVE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -126,7 +127,7 @@ open class ARVRController : Spatial() {
   /**
    * Returns the value of the given axis for things like triggers, touchpads, etc. that are embedded into the controller.
    */
-  open fun getJoystickAxis(axis: Long): Double {
+  public open fun getJoystickAxis(axis: Long): Double {
     TransferContext.writeArguments(LONG to axis)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRCONTROLLER_GET_JOYSTICK_AXIS,
         DOUBLE)
@@ -136,7 +137,7 @@ open class ARVRController : Spatial() {
   /**
    * Returns the ID of the joystick object bound to this. Every controller tracked by the [godot.ARVRServer] that has buttons and axis will also be registered as a joystick within Godot. This means that all the normal joystick tracking and input mapping will work for buttons and axis found on the AR/VR controllers. This ID is purely offered as information so you can link up the controller with its joystick entry.
    */
-  open fun getJoystickId(): Long {
+  public open fun getJoystickId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRCONTROLLER_GET_JOYSTICK_ID,
         LONG)
@@ -146,7 +147,7 @@ open class ARVRController : Spatial() {
   /**
    * If provided by the [godot.ARVRInterface], this returns a mesh associated with the controller. This can be used to visualize the controller.
    */
-  open fun getMesh(): Mesh? {
+  public open fun getMesh(): Mesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRCONTROLLER_GET_MESH, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Mesh?
@@ -155,7 +156,7 @@ open class ARVRController : Spatial() {
   /**
    * Returns `true` if the button at index `button` is pressed. See [enum JoystickList], in particular the `JOY_VR_*` constants.
    */
-  open fun isButtonPressed(button: Long): Long {
+  public open fun isButtonPressed(button: Long): Long {
     TransferContext.writeArguments(LONG to button)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRCONTROLLER_IS_BUTTON_PRESSED,
         LONG)

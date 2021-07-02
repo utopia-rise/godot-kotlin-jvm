@@ -5,12 +5,13 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Keeps children controls centered.
@@ -18,24 +19,24 @@ import kotlin.Suppress
  * CenterContainer keeps children controls centered. This container keeps all children to their minimum size, in the center.
  */
 @GodotBaseType
-open class CenterContainer : Container() {
+public open class CenterContainer : Container() {
   /**
    * If `true`, centers children relative to the [godot.CenterContainer]'s top left corner.
    */
-  open var useTopLeft: Boolean
+  public open var useTopLeft: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CENTERCONTAINER_GET_USE_TOP_LEFT,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CENTERCONTAINER_SET_USE_TOP_LEFT,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CENTERCONTAINER)
   }
 }

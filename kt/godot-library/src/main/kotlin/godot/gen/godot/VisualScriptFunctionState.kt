@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
@@ -19,35 +19,36 @@ import kotlin.Boolean
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
-open class VisualScriptFunctionState : Reference() {
-  override fun __new() {
+public open class VisualScriptFunctionState : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSCRIPTFUNCTIONSTATE)
   }
 
-  open fun _signalCallback(vararg __var_args: Any?): Any? {
+  public open fun _signalCallback(vararg __var_args: Any?): Any? {
     throw NotImplementedError("_signal_callback is not implemented for VisualScriptFunctionState")
   }
 
-  open fun connectToSignal(
+  public open fun connectToSignal(
     obj: Object,
     signals: String,
     args: VariantArray<Any?>
-  ) {
+  ): Unit {
     TransferContext.writeArguments(OBJECT to obj, STRING to signals, ARRAY to args)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONSTATE_CONNECT_TO_SIGNAL, NIL)
   }
 
-  open fun isValid(): Boolean {
+  public open fun isValid(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONSTATE_IS_VALID,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  open fun resume(args: VariantArray<Any?>? = null): Any? {
+  public open fun resume(args: VariantArray<Any?>? = null): Any? {
     TransferContext.writeArguments(ARRAY to args)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONSTATE_RESUME,
         ANY)

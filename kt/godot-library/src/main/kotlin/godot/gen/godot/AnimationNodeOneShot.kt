@@ -6,7 +6,7 @@
 package godot
 
 import godot.AnimationNodeOneShot
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -18,6 +18,7 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Plays an animation once in [godot.AnimationNodeBlendTree].
@@ -28,18 +29,18 @@ import kotlin.Suppress
  * A resource to add to an [godot.AnimationNodeBlendTree]. This node will execute a sub-animation and return once it finishes. Blend times for fading in and out can be customized, as well as filters.
  */
 @GodotBaseType
-open class AnimationNodeOneShot : AnimationNode() {
+public open class AnimationNodeOneShot : AnimationNode() {
   /**
    * If `true`, the sub-animation will restart automatically after finishing.
    */
-  open var autorestart: Boolean
+  public open var autorestart: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_AUTORESTART, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_AUTORESTART, NIL)
@@ -48,14 +49,14 @@ open class AnimationNodeOneShot : AnimationNode() {
   /**
    * The delay after which the automatic restart is triggered, in seconds.
    */
-  open var autorestartDelay: Double
+  public open var autorestartDelay: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_AUTORESTART_DELAY, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_AUTORESTART_DELAY, NIL)
@@ -64,14 +65,14 @@ open class AnimationNodeOneShot : AnimationNode() {
   /**
    * If [autorestart] is `true`, a random additional delay (in seconds) between 0 and this value will be added to [autorestartDelay].
    */
-  open var autorestartRandomDelay: Double
+  public open var autorestartRandomDelay: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_AUTORESTART_RANDOM_DELAY, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_AUTORESTART_RANDOM_DELAY, NIL)
@@ -80,14 +81,14 @@ open class AnimationNodeOneShot : AnimationNode() {
   /**
    *
    */
-  open var fadeinTime: Double
+  public open var fadeinTime: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_FADEIN_TIME, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_FADEIN_TIME, NIL)
@@ -96,14 +97,14 @@ open class AnimationNodeOneShot : AnimationNode() {
   /**
    *
    */
-  open var fadeoutTime: Double
+  public open var fadeoutTime: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_FADEOUT_TIME, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_FADEOUT_TIME, NIL)
@@ -112,27 +113,27 @@ open class AnimationNodeOneShot : AnimationNode() {
   /**
    *
    */
-  open var sync: Boolean
+  public open var sync: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_SYNC,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_SYNC,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODEONESHOT)
   }
 
   /**
    *
    */
-  open fun getMixMode(): AnimationNodeOneShot.MixMode {
+  public open fun getMixMode(): AnimationNodeOneShot.MixMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_MIX_MODE,
         LONG)
@@ -142,44 +143,44 @@ open class AnimationNodeOneShot : AnimationNode() {
   /**
    *
    */
-  open fun setMixMode(mode: Long) {
+  public open fun setMixMode(mode: Long): Unit {
     TransferContext.writeArguments(LONG to mode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_MIX_MODE,
         NIL)
   }
 
-  enum class MixMode(
+  public enum class MixMode(
     id: Long
   ) {
     /**
      *
      */
     MIX_MODE_BLEND(0),
-
     /**
      *
      */
-    MIX_MODE_ADD(1);
+    MIX_MODE_ADD(1),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      *
      */
-    final const val MIX_MODE_ADD: Long = 1
+    public final const val MIX_MODE_ADD: Long = 1
 
     /**
      *
      */
-    final const val MIX_MODE_BLEND: Long = 0
+    public final const val MIX_MODE_BLEND: Long = 0
   }
 }

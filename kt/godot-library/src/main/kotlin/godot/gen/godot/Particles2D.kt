@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -38,19 +38,19 @@ import kotlin.Unit
  * **Note:** Unlike [godot.CPUParticles2D], [godot.Particles2D] currently ignore the texture region defined in [godot.AtlasTexture]s.
  */
 @GodotBaseType
-open class Particles2D : Node2D() {
+public open class Particles2D : Node2D() {
   /**
    * The number of particles emitted in one emission cycle (corresponding to the [lifetime]).
    *
    * **Note:** Changing [amount] will reset the particle emission, therefore removing all particles that were already emitted before changing [amount].
    */
-  open var amount: Long
+  public open var amount: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_GET_AMOUNT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_SET_AMOUNT, NIL)
     }
@@ -58,13 +58,13 @@ open class Particles2D : Node2D() {
   /**
    * Particle draw order. Uses [enum DrawOrder] values.
    */
-  open var drawOrder: Long
+  public open var drawOrder: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_GET_DRAW_ORDER, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_SET_DRAW_ORDER, NIL)
     }
@@ -72,13 +72,13 @@ open class Particles2D : Node2D() {
   /**
    * If `true`, particles are being emitted.
    */
-  open var emitting: Boolean
+  public open var emitting: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_GET_EMITTING, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_SET_EMITTING, NIL)
     }
@@ -86,14 +86,14 @@ open class Particles2D : Node2D() {
   /**
    * How rapidly particles in an emission cycle are emitted. If greater than `0`, there will be a gap in emissions before the next cycle begins.
    */
-  open var explosiveness: Double
+  public open var explosiveness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_GET_EXPLOSIVENESS,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_SET_EXPLOSIVENESS,
           NIL)
@@ -102,13 +102,13 @@ open class Particles2D : Node2D() {
   /**
    * The particle system's frame rate is fixed to a value. For instance, changing the value to 2 will make the particles render at 2 frames per second. Note this does not slow down the simulation of the particle system itself.
    */
-  open var fixedFps: Long
+  public open var fixedFps: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_GET_FIXED_FPS, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_SET_FIXED_FPS, NIL)
     }
@@ -116,13 +116,13 @@ open class Particles2D : Node2D() {
   /**
    * If `true`, results in fractional delta calculation which has a smoother particles display effect.
    */
-  open var fractDelta: Boolean
+  public open var fractDelta: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_GET_FRACT_DELTA, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_SET_FRACT_DELTA, NIL)
     }
@@ -130,13 +130,13 @@ open class Particles2D : Node2D() {
   /**
    * The amount of time each particle will exist (in seconds).
    */
-  open var lifetime: Double
+  public open var lifetime: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_GET_LIFETIME, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_SET_LIFETIME, NIL)
     }
@@ -144,14 +144,14 @@ open class Particles2D : Node2D() {
   /**
    * If `true`, particles use the parent node's coordinate space. If `false`, they use global coordinates.
    */
-  open var localCoords: Boolean
+  public open var localCoords: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_GET_LOCAL_COORDS,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_SET_LOCAL_COORDS, NIL)
     }
@@ -161,14 +161,14 @@ open class Particles2D : Node2D() {
    *
    * **Note:** Godot expects the normal map to use X+, Y-, and Z+ coordinates. See [this page](http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates) for a comparison of normal map coordinates expected by popular engines.
    */
-  open var normalMap: Texture?
+  public open var normalMap: Texture?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_GET_NORMAL_MAP,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_SET_NORMAL_MAP, NIL)
     }
@@ -176,13 +176,13 @@ open class Particles2D : Node2D() {
   /**
    * If `true`, only one emission cycle occurs. If set `true` during a cycle, emission will stop at the cycle's end.
    */
-  open var oneShot: Boolean
+  public open var oneShot: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_GET_ONE_SHOT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_SET_ONE_SHOT, NIL)
     }
@@ -190,14 +190,14 @@ open class Particles2D : Node2D() {
   /**
    * Particle system starts as if it had already run for this many seconds.
    */
-  open var preprocess: Double
+  public open var preprocess: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_GET_PREPROCESS,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_SET_PREPROCESS, NIL)
     }
@@ -205,14 +205,14 @@ open class Particles2D : Node2D() {
   /**
    * [godot.Material] for processing particles. Can be a [godot.ParticlesMaterial] or a [godot.ShaderMaterial].
    */
-  open var processMaterial: Material?
+  public open var processMaterial: Material?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_GET_PROCESS_MATERIAL,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Material?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_SET_PROCESS_MATERIAL,
           NIL)
@@ -221,14 +221,14 @@ open class Particles2D : Node2D() {
   /**
    * Emission lifetime randomness ratio.
    */
-  open var randomness: Double
+  public open var randomness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_GET_RANDOMNESS,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_SET_RANDOMNESS, NIL)
     }
@@ -236,14 +236,14 @@ open class Particles2D : Node2D() {
   /**
    * Particle system's running speed scaling ratio. A value of `0` can be used to pause the particles.
    */
-  open var speedScale: Double
+  public open var speedScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_GET_SPEED_SCALE,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_SET_SPEED_SCALE, NIL)
     }
@@ -251,13 +251,13 @@ open class Particles2D : Node2D() {
   /**
    * Particle texture. If `null`, particles will be squares.
    */
-  open var texture: Texture?
+  public open var texture: Texture?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_GET_TEXTURE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_SET_TEXTURE, NIL)
     }
@@ -267,25 +267,25 @@ open class Particles2D : Node2D() {
    *
    * Grow the rect if particles suddenly appear/disappear when the node enters/exits the screen. The [godot.core.Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.
    */
-  open var visibilityRect: Rect2
+  public open var visibilityRect: Rect2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_GET_VISIBILITY_RECT,
           RECT2)
       return TransferContext.readReturnValue(RECT2, false) as Rect2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(RECT2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_SET_VISIBILITY_RECT,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PARTICLES2D)
   }
 
   @CoreTypeHelper
-  open fun visibilityRect(schedule: Rect2.() -> Unit): Rect2 = visibilityRect.apply{
+  public open fun visibilityRect(schedule: Rect2.() -> Unit): Rect2 = visibilityRect.apply{
       schedule(this)
       visibilityRect = this
   }
@@ -294,7 +294,7 @@ open class Particles2D : Node2D() {
   /**
    * Returns a rectangle containing the positions of all existing particles.
    */
-  open fun captureRect(): Rect2 {
+  public open fun captureRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_CAPTURE_RECT, RECT2)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
@@ -303,43 +303,43 @@ open class Particles2D : Node2D() {
   /**
    * Restarts all the existing particles.
    */
-  open fun restart() {
+  public open fun restart(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLES2D_RESTART, NIL)
   }
 
-  enum class DrawOrder(
+  public enum class DrawOrder(
     id: Long
   ) {
     /**
      * Particles are drawn in the order emitted.
      */
     DRAW_ORDER_INDEX(0),
-
     /**
      * Particles are drawn in order of remaining lifetime.
      */
-    DRAW_ORDER_LIFETIME(1);
+    DRAW_ORDER_LIFETIME(1),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Particles are drawn in the order emitted.
      */
-    final const val DRAW_ORDER_INDEX: Long = 0
+    public final const val DRAW_ORDER_INDEX: Long = 0
 
     /**
      * Particles are drawn in order of remaining lifetime.
      */
-    final const val DRAW_ORDER_LIFETIME: Long = 1
+    public final const val DRAW_ORDER_LIFETIME: Long = 1
   }
 }

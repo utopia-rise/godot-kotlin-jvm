@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.RID
 import godot.core.TransferContext
@@ -23,6 +23,7 @@ import kotlin.Double
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Internationalized font and text drawing support.
@@ -34,8 +35,8 @@ import kotlin.Suppress
  * **Note:** If a BitmapFont doesn't contain a character used in a string, the character in question will be hidden without displaying any replacement character in the string.
  */
 @GodotBaseType
-open class Font : Resource() {
-  override fun __new() {
+public open class Font : Resource() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_FONT)
   }
 
@@ -44,14 +45,14 @@ open class Font : Resource() {
    *
    * See also [godot.CanvasItem.drawString].
    */
-  open fun draw(
+  public open fun draw(
     canvasItem: RID,
     position: Vector2,
     string: String,
     modulate: Color = Color(1,1,1,1),
     clipW: Long = -1,
     outlineModulate: Color = Color(1,1,1,1)
-  ) {
+  ): Unit {
     TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to position, STRING to string, COLOR
         to modulate, LONG to clipW, COLOR to outlineModulate)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_DRAW, NIL)
@@ -60,7 +61,7 @@ open class Font : Resource() {
   /**
    * Draw character `char` into a canvas item using the font at a given position, with `modulate` color, and optionally kerning if `next` is passed. clipping the width. `position` specifies the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis. The width used by the character is returned, making this function useful for drawing strings character by character.
    */
-  open fun drawChar(
+  public open fun drawChar(
     canvasItem: RID,
     position: Vector2,
     char: Long,
@@ -77,7 +78,7 @@ open class Font : Resource() {
   /**
    * Returns the font ascent (number of pixels above the baseline).
    */
-  open fun getAscent(): Double {
+  public open fun getAscent(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_ASCENT, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -86,7 +87,7 @@ open class Font : Resource() {
   /**
    * Returns the size of a character, optionally taking kerning into account if the next character is provided. Note that the height returned is the font height (see [getHeight]) and has no relation to the glyph height.
    */
-  open fun getCharSize(char: Long, next: Long = 0): Vector2 {
+  public open fun getCharSize(char: Long, next: Long = 0): Vector2 {
     TransferContext.writeArguments(LONG to char, LONG to next)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_CHAR_SIZE, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -95,7 +96,7 @@ open class Font : Resource() {
   /**
    * Returns the font descent (number of pixels below the baseline).
    */
-  open fun getDescent(): Double {
+  public open fun getDescent(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_DESCENT, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -104,7 +105,7 @@ open class Font : Resource() {
   /**
    * Returns the total font height (ascent plus descent) in pixels.
    */
-  open fun getHeight(): Double {
+  public open fun getHeight(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_HEIGHT, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -113,7 +114,7 @@ open class Font : Resource() {
   /**
    * Returns the size of a string, taking kerning and advance into account. Note that the height returned is the font height (see [getHeight]) and has no relation to the string.
    */
-  open fun getStringSize(string: String): Vector2 {
+  public open fun getStringSize(string: String): Vector2 {
     TransferContext.writeArguments(STRING to string)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_STRING_SIZE, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -122,7 +123,7 @@ open class Font : Resource() {
   /**
    * Returns the size that the string would have with word wrapping enabled with a fixed `width`.
    */
-  open fun getWordwrapStringSize(string: String, width: Double): Vector2 {
+  public open fun getWordwrapStringSize(string: String, width: Double): Vector2 {
     TransferContext.writeArguments(STRING to string, DOUBLE to width)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_WORDWRAP_STRING_SIZE,
         VECTOR2)
@@ -132,7 +133,7 @@ open class Font : Resource() {
   /**
    * Returns `true` if the font has an outline.
    */
-  open fun hasOutline(): Boolean {
+  public open fun hasOutline(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_HAS_OUTLINE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -141,7 +142,7 @@ open class Font : Resource() {
   /**
    *
    */
-  open fun isDistanceFieldHint(): Boolean {
+  public open fun isDistanceFieldHint(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_IS_DISTANCE_FIELD_HINT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -150,7 +151,7 @@ open class Font : Resource() {
   /**
    * After editing a font (changing size, ascent, char rects, etc.). Call this function to propagate changes to controls that might use it.
    */
-  open fun updateChanges() {
+  public open fun updateChanges(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_UPDATE_CHANGES, NIL)
   }

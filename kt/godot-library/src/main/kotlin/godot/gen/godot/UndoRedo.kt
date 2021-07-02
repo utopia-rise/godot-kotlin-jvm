@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
@@ -20,6 +20,7 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Helper to manage undo/redo operations in the editor or custom tools.
@@ -54,24 +55,24 @@ import kotlin.Suppress
  * If you don't need to register a method, you can leave [addDoMethod] and [addUndoMethod] out; the same goes for properties. You can also register more than one method/property.
  */
 @GodotBaseType
-open class UndoRedo : Object() {
+public open class UndoRedo : Object() {
   /**
    * Called when [undo] or [redo] was called.
    */
-  val versionChanged: Signal0 by signal()
+  public val versionChanged: Signal0 by signal()
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_UNDOREDO)
   }
 
   /**
    * Register a method that will be called when the action is committed.
    */
-  open fun addDoMethod(
+  public open fun addDoMethod(
     _object: Object,
     method: String,
     vararg __var_args: Any?
-  ) {
+  ): Unit {
     TransferContext.writeArguments(OBJECT to _object, STRING to method,  *__var_args.map { ANY to it
         }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_DO_METHOD, NIL)
@@ -80,11 +81,11 @@ open class UndoRedo : Object() {
   /**
    * Register a property value change for "do".
    */
-  open fun addDoProperty(
+  public open fun addDoProperty(
     _object: Object,
-    property: String,
-    value: Any?
-  ) {
+    `property`: String,
+    `value`: Any?
+  ): Unit {
     TransferContext.writeArguments(OBJECT to _object, STRING to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_DO_PROPERTY, NIL)
   }
@@ -92,7 +93,7 @@ open class UndoRedo : Object() {
   /**
    * Register a reference for "do" that will be erased if the "do" history is lost. This is useful mostly for new nodes created for the "do" call. Do not use for resources.
    */
-  open fun addDoReference(_object: Object) {
+  public open fun addDoReference(_object: Object): Unit {
     TransferContext.writeArguments(OBJECT to _object)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_DO_REFERENCE, NIL)
   }
@@ -100,11 +101,11 @@ open class UndoRedo : Object() {
   /**
    * Register a method that will be called when the action is undone.
    */
-  open fun addUndoMethod(
+  public open fun addUndoMethod(
     _object: Object,
     method: String,
     vararg __var_args: Any?
-  ) {
+  ): Unit {
     TransferContext.writeArguments(OBJECT to _object, STRING to method,  *__var_args.map { ANY to it
         }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_UNDO_METHOD, NIL)
@@ -113,11 +114,11 @@ open class UndoRedo : Object() {
   /**
    * Register a property value change for "undo".
    */
-  open fun addUndoProperty(
+  public open fun addUndoProperty(
     _object: Object,
-    property: String,
-    value: Any?
-  ) {
+    `property`: String,
+    `value`: Any?
+  ): Unit {
     TransferContext.writeArguments(OBJECT to _object, STRING to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_UNDO_PROPERTY, NIL)
   }
@@ -125,7 +126,7 @@ open class UndoRedo : Object() {
   /**
    * Register a reference for "undo" that will be erased if the "undo" history is lost. This is useful mostly for nodes removed with the "do" call (not the "undo" call!).
    */
-  open fun addUndoReference(_object: Object) {
+  public open fun addUndoReference(_object: Object): Unit {
     TransferContext.writeArguments(OBJECT to _object)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_UNDO_REFERENCE, NIL)
   }
@@ -135,7 +136,7 @@ open class UndoRedo : Object() {
    *
    * Passing `false` to `increase_version` will prevent the version number to be increased from this.
    */
-  open fun clearHistory(increaseVersion: Boolean = true) {
+  public open fun clearHistory(increaseVersion: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to increaseVersion)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_CLEAR_HISTORY, NIL)
   }
@@ -143,7 +144,7 @@ open class UndoRedo : Object() {
   /**
    * Commit the action. All "do" methods/properties are called/set when this function is called.
    */
-  open fun commitAction() {
+  public open fun commitAction(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_COMMIT_ACTION, NIL)
   }
@@ -153,7 +154,7 @@ open class UndoRedo : Object() {
    *
    * The way actions are merged is dictated by the `merge_mode` argument. See [enum MergeMode] for details.
    */
-  open fun createAction(name: String, mergeMode: Long = 0) {
+  public open fun createAction(name: String, mergeMode: Long = 0): Unit {
     TransferContext.writeArguments(STRING to name, LONG to mergeMode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_CREATE_ACTION, NIL)
   }
@@ -161,7 +162,7 @@ open class UndoRedo : Object() {
   /**
    * Gets the name of the current action.
    */
-  open fun getCurrentActionName(): String {
+  public open fun getCurrentActionName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_GET_CURRENT_ACTION_NAME,
         STRING)
@@ -173,7 +174,7 @@ open class UndoRedo : Object() {
    *
    * This is useful mostly to check if something changed from a saved version.
    */
-  open fun getVersion(): Long {
+  public open fun getVersion(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_GET_VERSION, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -182,7 +183,7 @@ open class UndoRedo : Object() {
   /**
    * Returns `true` if a "redo" action is available.
    */
-  open fun hasRedo(): Boolean {
+  public open fun hasRedo(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_HAS_REDO, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -191,7 +192,7 @@ open class UndoRedo : Object() {
   /**
    * Returns `true` if an "undo" action is available.
    */
-  open fun hasUndo(): Boolean {
+  public open fun hasUndo(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_HAS_UNDO, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -200,7 +201,7 @@ open class UndoRedo : Object() {
   /**
    * Returns `true` if the [godot.UndoRedo] is currently committing the action, i.e. running its "do" method or property change (see [commitAction]).
    */
-  open fun isCommitingAction(): Boolean {
+  public open fun isCommitingAction(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_IS_COMMITING_ACTION, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -209,7 +210,7 @@ open class UndoRedo : Object() {
   /**
    * Redo the last action.
    */
-  open fun redo(): Boolean {
+  public open fun redo(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_REDO, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -218,54 +219,53 @@ open class UndoRedo : Object() {
   /**
    * Undo the last action.
    */
-  open fun undo(): Boolean {
+  public open fun undo(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_UNDO, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  enum class MergeMode(
+  public enum class MergeMode(
     id: Long
   ) {
     /**
      * Makes "do"/"undo" operations stay in separate actions.
      */
     MERGE_DISABLE(0),
-
     /**
      * Makes so that the action's "do" operation is from the first action created and the "undo" operation is from the last subsequent action with the same name.
      */
     MERGE_ENDS(1),
-
     /**
      * Makes subsequent actions with the same name be merged into one.
      */
-    MERGE_ALL(2);
+    MERGE_ALL(2),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Makes subsequent actions with the same name be merged into one.
      */
-    final const val MERGE_ALL: Long = 2
+    public final const val MERGE_ALL: Long = 2
 
     /**
      * Makes "do"/"undo" operations stay in separate actions.
      */
-    final const val MERGE_DISABLE: Long = 0
+    public final const val MERGE_DISABLE: Long = 0
 
     /**
      * Makes so that the action's "do" operation is from the first action created and the "undo" operation is from the last subsequent action with the same name.
      */
-    final const val MERGE_ENDS: Long = 1
+    public final const val MERGE_ENDS: Long = 1
   }
 }

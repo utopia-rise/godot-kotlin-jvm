@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.BOOL
@@ -17,6 +17,7 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.NotImplementedError
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Special button that brings up a [godot.PopupMenu] when clicked.
@@ -28,46 +29,46 @@ import kotlin.Suppress
  * See also [godot.BaseButton] which contains common properties and methods associated with this node.
  */
 @GodotBaseType
-open class MenuButton : Button() {
+public open class MenuButton : Button() {
   /**
    * Emitted when [godot.PopupMenu] of this MenuButton is about to show.
    */
-  val aboutToShow: Signal0 by signal()
+  public val aboutToShow: Signal0 by signal()
 
   /**
    * If `true`, when the cursor hovers above another [godot.MenuButton] within the same parent which also has `switch_on_hover` enabled, it will close the current [godot.MenuButton] and open the other one.
    */
-  open var switchOnHover: Boolean
+  public open var switchOnHover: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_GET_SWITCH_ON_HOVER,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_SET_SWITCH_ON_HOVER,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_MENUBUTTON)
   }
 
-  open fun _getItems(): VariantArray<Any?> {
+  public open fun _getItems(): VariantArray<Any?> {
     throw NotImplementedError("_get_items is not implemented for MenuButton")
   }
 
-  open fun _setItems(arg0: VariantArray<Any?>) {
+  public open fun _setItems(arg0: VariantArray<Any?>): Unit {
   }
 
-  open fun _unhandledKeyInput(arg0: InputEvent) {
+  public open fun _unhandledKeyInput(arg0: InputEvent): Unit {
   }
 
   /**
    * Returns the [godot.PopupMenu] contained in this button.
    */
-  open fun getPopup(): PopupMenu? {
+  public open fun getPopup(): PopupMenu? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_GET_POPUP, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as PopupMenu?
@@ -76,7 +77,7 @@ open class MenuButton : Button() {
   /**
    * If `true`, shortcuts are disabled and cannot be used to trigger the button.
    */
-  open fun setDisableShortcuts(disabled: Boolean) {
+  public open fun setDisableShortcuts(disabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to disabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_SET_DISABLE_SHORTCUTS,
         NIL)

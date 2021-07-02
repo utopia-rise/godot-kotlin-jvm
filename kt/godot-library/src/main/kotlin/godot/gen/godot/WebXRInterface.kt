@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.PoolVector3Array
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
@@ -21,34 +21,35 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
-open class WebXRInterface : ARVRInterface() {
-  val referenceSpaceReset: Signal0 by signal()
+public open class WebXRInterface : ARVRInterface() {
+  public val referenceSpaceReset: Signal0 by signal()
 
-  val select: Signal1<Long> by signal("controller_id")
+  public val select: Signal1<Long> by signal("controller_id")
 
-  val selectend: Signal1<Long> by signal("controller_id")
+  public val selectend: Signal1<Long> by signal("controller_id")
 
-  val selectstart: Signal1<Long> by signal("controller_id")
+  public val selectstart: Signal1<Long> by signal("controller_id")
 
-  val sessionEnded: Signal0 by signal()
+  public val sessionEnded: Signal0 by signal()
 
-  val sessionFailed: Signal1<String> by signal("message")
+  public val sessionFailed: Signal1<String> by signal("message")
 
-  val sessionStarted: Signal0 by signal()
+  public val sessionStarted: Signal0 by signal()
 
-  val sessionSupported: Signal2<String, Boolean> by signal("session_mode", "supported")
+  public val sessionSupported: Signal2<String, Boolean> by signal("session_mode", "supported")
 
-  val squeeze: Signal1<Long> by signal("controller_id")
+  public val squeeze: Signal1<Long> by signal("controller_id")
 
-  val squeezeend: Signal1<Long> by signal("controller_id")
+  public val squeezeend: Signal1<Long> by signal("controller_id")
 
-  val squeezestart: Signal1<Long> by signal("controller_id")
+  public val squeezestart: Signal1<Long> by signal("controller_id")
 
-  val visibilityStateChanged: Signal0 by signal()
+  public val visibilityStateChanged: Signal0 by signal()
 
-  open val boundsGeometry: PoolVector3Array
+  public open val boundsGeometry: PoolVector3Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -56,20 +57,20 @@ open class WebXRInterface : ARVRInterface() {
       return TransferContext.readReturnValue(POOL_VECTOR3_ARRAY, false) as PoolVector3Array
     }
 
-  open var optionalFeatures: String
+  public open var optionalFeatures: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_OPTIONAL_FEATURES, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_SET_OPTIONAL_FEATURES, NIL)
     }
 
-  open val referenceSpaceType: String
+  public open val referenceSpaceType: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -77,46 +78,46 @@ open class WebXRInterface : ARVRInterface() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  open var requestedReferenceSpaceTypes: String
+  public open var requestedReferenceSpaceTypes: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_REQUESTED_REFERENCE_SPACE_TYPES, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_SET_REQUESTED_REFERENCE_SPACE_TYPES, NIL)
     }
 
-  open var requiredFeatures: String
+  public open var requiredFeatures: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_REQUIRED_FEATURES, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_SET_REQUIRED_FEATURES, NIL)
     }
 
-  open var sessionMode: String
+  public open var sessionMode: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_SESSION_MODE,
           STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_SET_SESSION_MODE,
           NIL)
     }
 
-  open val visibilityState: String
+  public open val visibilityState: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -124,18 +125,18 @@ open class WebXRInterface : ARVRInterface() {
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_WEBXRINTERFACE)
   }
 
-  open fun getController(controllerId: Long): ARVRPositionalTracker? {
+  public open fun getController(controllerId: Long): ARVRPositionalTracker? {
     TransferContext.writeArguments(LONG to controllerId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_GET_CONTROLLER,
         OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as ARVRPositionalTracker?
   }
 
-  open fun isSessionSupported(sessionMode: String) {
+  public open fun isSessionSupported(sessionMode: String): Unit {
     TransferContext.writeArguments(STRING to sessionMode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBXRINTERFACE_IS_SESSION_SUPPORTED,
         NIL)

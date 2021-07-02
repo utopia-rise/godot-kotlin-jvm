@@ -5,11 +5,12 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Default environment properties for the entire scene (post-processing effects, lighting and background settings).
@@ -24,24 +25,24 @@ import kotlin.Suppress
  * The [godot.WorldEnvironment] allows the user to specify default lighting parameters (e.g. ambient lighting), various post-processing effects (e.g. SSAO, DOF, Tonemapping), and how to draw the background (e.g. solid color, skybox). Usually, these are added in order to improve the realism/color balance of the scene.
  */
 @GodotBaseType
-open class WorldEnvironment : Node() {
+public open class WorldEnvironment : Node() {
   /**
    * The [godot.Environment] resource used by this [godot.WorldEnvironment], defining the default properties.
    */
-  open var environment: Environment?
+  public open var environment: Environment?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDENVIRONMENT_GET_ENVIRONMENT,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Environment?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLDENVIRONMENT_SET_ENVIRONMENT,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_WORLDENVIRONMENT)
   }
 }

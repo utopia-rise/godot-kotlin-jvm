@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.PoolStringArray
 import kotlin.Any
 import kotlin.Boolean
@@ -13,6 +13,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Loads a specific resource type from a file.
@@ -24,8 +25,8 @@ import kotlin.Suppress
  * **Note:** You can also extend [godot.EditorImportPlugin] if the resource type you need exists but Godot is unable to load its format. Choosing one way over another depends on if the format is suitable or not for the final exported game. For example, it's better to import `.png` textures as `.stex` ([godot.StreamTexture]) first, so they can be loaded with better efficiency on the graphics card.
  */
 @GodotBaseType
-open class ResourceFormatLoader : Reference() {
-  override fun __new() {
+public open class ResourceFormatLoader : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_RESOURCEFORMATLOADER)
   }
 
@@ -34,13 +35,13 @@ open class ResourceFormatLoader : Reference() {
    *
    * **Note:** Custom resource types defined by scripts aren't known by the [godot.ClassDB], so you might just return `"Resource"` for them.
    */
-  open fun _getDependencies(path: String, addTypes: String) {
+  public open fun _getDependencies(path: String, addTypes: String): Unit {
   }
 
   /**
    * Gets the list of extensions for files this loader is able to read.
    */
-  open fun _getRecognizedExtensions(): PoolStringArray {
+  public open fun _getRecognizedExtensions(): PoolStringArray {
     throw
         NotImplementedError("get_recognized_extensions is not implemented for ResourceFormatLoader")
   }
@@ -50,7 +51,7 @@ open class ResourceFormatLoader : Reference() {
    *
    * **Note:** Custom resource types defined by scripts aren't known by the [godot.ClassDB], so you might just return `"Resource"` for them.
    */
-  open fun _getResourceType(path: String): String {
+  public open fun _getResourceType(path: String): String {
     throw NotImplementedError("get_resource_type is not implemented for ResourceFormatLoader")
   }
 
@@ -59,14 +60,14 @@ open class ResourceFormatLoader : Reference() {
    *
    * **Note:** Custom resource types defined by scripts aren't known by the [godot.ClassDB], so you might just handle `"Resource"` for them.
    */
-  open fun _handlesType(typename: String): Boolean {
+  public open fun _handlesType(typename: String): Boolean {
     throw NotImplementedError("handles_type is not implemented for ResourceFormatLoader")
   }
 
   /**
    * Loads a resource when the engine finds this loader to be compatible. If the loaded resource is the result of an import, `original_path` will target the source file. Returns a [godot.Resource] object on success, or an [enum Error] constant in case of failure.
    */
-  open fun _load(path: String, originalPath: String): Any? {
+  public open fun _load(path: String, originalPath: String): Any? {
     throw NotImplementedError("load is not implemented for ResourceFormatLoader")
   }
 
@@ -75,7 +76,7 @@ open class ResourceFormatLoader : Reference() {
    *
    * Returns [OK] on success, or an [enum Error] constant in case of failure.
    */
-  open fun _renameDependencies(path: String, renames: String): Long {
+  public open fun _renameDependencies(path: String, renames: String): Long {
     throw NotImplementedError("rename_dependencies is not implemented for ResourceFormatLoader")
   }
 }

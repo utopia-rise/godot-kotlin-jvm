@@ -6,7 +6,7 @@
 package godot
 
 import godot.StreamPeerTCP
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * TCP stream peer.
@@ -26,15 +27,15 @@ import kotlin.Suppress
  * TCP stream peer. This object can be used to connect to TCP servers, or also is returned by a TCP server.
  */
 @GodotBaseType
-open class StreamPeerTCP : StreamPeer() {
-  override fun __new() {
+public open class StreamPeerTCP : StreamPeer() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_STREAMPEERTCP)
   }
 
   /**
    * Connects to the specified `host:port` pair. A hostname will be resolved if valid. Returns [OK] on success or [FAILED] on failure.
    */
-  open fun connectToHost(host: String, port: Long): GodotError {
+  public open fun connectToHost(host: String, port: Long): GodotError {
     TransferContext.writeArguments(STRING to host, LONG to port)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_CONNECT_TO_HOST, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -43,7 +44,7 @@ open class StreamPeerTCP : StreamPeer() {
   /**
    * Disconnects from host.
    */
-  open fun disconnectFromHost() {
+  public open fun disconnectFromHost(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_DISCONNECT_FROM_HOST,
         NIL)
@@ -52,7 +53,7 @@ open class StreamPeerTCP : StreamPeer() {
   /**
    * Returns the IP of this peer.
    */
-  open fun getConnectedHost(): String {
+  public open fun getConnectedHost(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_CONNECTED_HOST,
         STRING)
@@ -62,7 +63,7 @@ open class StreamPeerTCP : StreamPeer() {
   /**
    * Returns the port of this peer.
    */
-  open fun getConnectedPort(): Long {
+  public open fun getConnectedPort(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_CONNECTED_PORT,
         LONG)
@@ -72,7 +73,7 @@ open class StreamPeerTCP : StreamPeer() {
   /**
    * Returns the status of the connection, see [enum Status].
    */
-  open fun getStatus(): StreamPeerTCP.Status {
+  public open fun getStatus(): StreamPeerTCP.Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_GET_STATUS, LONG)
     return StreamPeerTCP.Status.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -81,7 +82,7 @@ open class StreamPeerTCP : StreamPeer() {
   /**
    * Returns `true` if this peer is currently connected or is connecting to a host, `false` otherwise.
    */
-  open fun isConnectedToHost(): Boolean {
+  public open fun isConnectedToHost(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_IS_CONNECTED_TO_HOST,
         BOOL)
@@ -93,63 +94,61 @@ open class StreamPeerTCP : StreamPeer() {
    *
    * **Note:** It's recommended to leave this disabled for applications that send large packets or need to transfer a lot of data, as enabling this can decrease the total available bandwidth.
    */
-  open fun setNoDelay(enabled: Boolean) {
+  public open fun setNoDelay(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERTCP_SET_NO_DELAY, NIL)
   }
 
-  enum class Status(
+  public enum class Status(
     id: Long
   ) {
     /**
      * The initial status of the [godot.StreamPeerTCP]. This is also the status after disconnecting.
      */
     STATUS_NONE(0),
-
     /**
      * A status representing a [godot.StreamPeerTCP] that is connecting to a host.
      */
     STATUS_CONNECTING(1),
-
     /**
      * A status representing a [godot.StreamPeerTCP] that is connected to a host.
      */
     STATUS_CONNECTED(2),
-
     /**
      * A status representing a [godot.StreamPeerTCP] in error state.
      */
-    STATUS_ERROR(3);
+    STATUS_ERROR(3),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * A status representing a [godot.StreamPeerTCP] that is connected to a host.
      */
-    final const val STATUS_CONNECTED: Long = 2
+    public final const val STATUS_CONNECTED: Long = 2
 
     /**
      * A status representing a [godot.StreamPeerTCP] that is connecting to a host.
      */
-    final const val STATUS_CONNECTING: Long = 1
+    public final const val STATUS_CONNECTING: Long = 1
 
     /**
      * A status representing a [godot.StreamPeerTCP] in error state.
      */
-    final const val STATUS_ERROR: Long = 3
+    public final const val STATUS_ERROR: Long = 3
 
     /**
      * The initial status of the [godot.StreamPeerTCP]. This is also the status after disconnecting.
      */
-    final const val STATUS_NONE: Long = 0
+    public final const val STATUS_NONE: Long = 0
   }
 }

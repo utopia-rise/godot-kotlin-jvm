@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Vertical split container.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Vertical split container. See [godot.SplitContainer]. This goes from top to bottom.
  */
 @GodotBaseType
-open class VSplitContainer : SplitContainer() {
-  override fun __new() {
+public open class VSplitContainer : SplitContainer() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VSPLITCONTAINER)
   }
 }

@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.PoolStringArray
 import godot.core.TransferContext
 import godot.core.VariantArray
@@ -27,6 +27,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Godot editor's script editor.
@@ -34,205 +35,205 @@ import kotlin.Suppress
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getScriptEditor].
  */
 @GodotBaseType
-open class ScriptEditor : PanelContainer() {
+public open class ScriptEditor : PanelContainer() {
   /**
    * Emitted when user changed active script. Argument is a freshly activated [godot.Script].
    */
-  val editorScriptChanged: Signal1<Script> by signal("script")
+  public val editorScriptChanged: Signal1<Script> by signal("script")
 
   /**
    * Emitted when editor is about to close the active script. Argument is a [godot.Script] that is going to be closed.
    */
-  val scriptClose: Signal1<Script> by signal("script")
+  public val scriptClose: Signal1<Script> by signal("script")
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SCRIPTEDITOR)
   }
 
-  open fun _addCallback(
+  public open fun _addCallback(
     arg0: Object,
     arg1: String,
     arg2: PoolStringArray
-  ) {
+  ): Unit {
   }
 
-  open fun _autosaveScripts() {
+  public open fun _autosaveScripts(): Unit {
   }
 
-  open fun _breaked(arg0: Boolean, arg1: Boolean) {
+  public open fun _breaked(arg0: Boolean, arg1: Boolean): Unit {
   }
 
-  open fun _clearExecution(arg0: Reference) {
+  public open fun _clearExecution(arg0: Reference): Unit {
   }
 
-  open fun _closeAllTabs() {
+  public open fun _closeAllTabs(): Unit {
   }
 
-  open fun _closeCurrentTab(arg0: Boolean) {
+  public open fun _closeCurrentTab(arg0: Boolean): Unit {
   }
 
-  open fun _closeDiscardCurrentTab(arg0: String) {
+  public open fun _closeDiscardCurrentTab(arg0: String): Unit {
   }
 
-  open fun _closeDocsTab() {
+  public open fun _closeDocsTab(): Unit {
   }
 
-  open fun _closeOtherTabs() {
+  public open fun _closeOtherTabs(): Unit {
   }
 
-  open fun _copyScriptPath() {
+  public open fun _copyScriptPath(): Unit {
   }
 
-  open fun _editorPause() {
+  public open fun _editorPause(): Unit {
   }
 
-  open fun _editorPlay() {
+  public open fun _editorPlay(): Unit {
   }
 
-  open fun _editorSettingsChanged() {
+  public open fun _editorSettingsChanged(): Unit {
   }
 
-  open fun _editorStop() {
+  public open fun _editorStop(): Unit {
   }
 
-  open fun _fileDialogAction(arg0: String) {
+  public open fun _fileDialogAction(arg0: String): Unit {
   }
 
-  open fun _filterMethodsTextChanged(arg0: String) {
+  public open fun _filterMethodsTextChanged(arg0: String): Unit {
   }
 
-  open fun _filterScriptsTextChanged(arg0: String) {
+  public open fun _filterScriptsTextChanged(arg0: String): Unit {
   }
 
-  open fun _getDebugTooltip(arg0: String, arg1: Node): String {
+  public open fun _getDebugTooltip(arg0: String, arg1: Node): String {
     throw NotImplementedError("_get_debug_tooltip is not implemented for ScriptEditor")
   }
 
-  open fun _gotoScriptLine(arg0: Reference, arg1: Long) {
+  public open fun _gotoScriptLine(arg0: Reference, arg1: Long): Unit {
   }
 
-  open fun _gotoScriptLine2(arg0: Long) {
+  public open fun _gotoScriptLine2(arg0: Long): Unit {
   }
 
-  open fun _helpClassGoto(arg0: String) {
+  public open fun _helpClassGoto(arg0: String): Unit {
   }
 
-  open fun _helpClassOpen(arg0: String) {
+  public open fun _helpClassOpen(arg0: String): Unit {
   }
 
-  open fun _helpOverviewSelected(arg0: Long) {
+  public open fun _helpOverviewSelected(arg0: Long): Unit {
   }
 
-  open fun _helpSearch(arg0: String) {
+  public open fun _helpSearch(arg0: String): Unit {
   }
 
-  open fun _historyBack() {
+  public open fun _historyBack(): Unit {
   }
 
-  open fun _historyForward() {
+  public open fun _historyForward(): Unit {
   }
 
-  open fun _liveAutoReloadRunningScripts() {
+  public open fun _liveAutoReloadRunningScripts(): Unit {
   }
 
-  open fun _membersOverviewSelected(arg0: Long) {
+  public open fun _membersOverviewSelected(arg0: Long): Unit {
   }
 
-  open fun _menuOption(arg0: Long) {
+  public open fun _menuOption(arg0: Long): Unit {
   }
 
-  open fun _onFindInFilesModifiedFiles(arg0: PoolStringArray) {
+  public open fun _onFindInFilesModifiedFiles(arg0: PoolStringArray): Unit {
   }
 
-  open fun _onFindInFilesRequested(arg0: String) {
+  public open fun _onFindInFilesRequested(arg0: String): Unit {
   }
 
-  open fun _onFindInFilesResultSelected(
+  public open fun _onFindInFilesResultSelected(
     arg0: String,
     arg1: Long,
     arg2: Long,
     arg3: Long
-  ) {
+  ): Unit {
   }
 
-  open fun _openRecentScript(arg0: Long) {
+  public open fun _openRecentScript(arg0: Long): Unit {
   }
 
-  open fun _reloadScripts() {
+  public open fun _reloadScripts(): Unit {
   }
 
-  open fun _requestHelp(arg0: String) {
+  public open fun _requestHelp(arg0: String): Unit {
   }
 
-  open fun _resSavedCallback(arg0: Resource) {
+  public open fun _resSavedCallback(arg0: Resource): Unit {
   }
 
-  open fun _resaveScripts(arg0: String) {
+  public open fun _resaveScripts(arg0: String): Unit {
   }
 
-  open fun _saveHistory() {
+  public open fun _saveHistory(): Unit {
   }
 
-  open fun _scriptChanged() {
+  public open fun _scriptChanged(): Unit {
   }
 
-  open fun _scriptCreated(arg0: Script) {
+  public open fun _scriptCreated(arg0: Script): Unit {
   }
 
-  open fun _scriptListGuiInput(arg0: InputEvent) {
+  public open fun _scriptListGuiInput(arg0: InputEvent): Unit {
   }
 
-  open fun _scriptSelected(arg0: Long) {
+  public open fun _scriptSelected(arg0: Long): Unit {
   }
 
-  open fun _scriptSplitDragged(arg0: Double) {
+  public open fun _scriptSplitDragged(arg0: Double): Unit {
   }
 
-  open fun _setExecution(arg0: Reference, arg1: Long) {
+  public open fun _setExecution(arg0: Reference, arg1: Long): Unit {
   }
 
-  open fun _showDebugger(arg0: Boolean) {
+  public open fun _showDebugger(arg0: Boolean): Unit {
   }
 
-  open fun _startFindInFiles(arg0: Boolean) {
+  public open fun _startFindInFiles(arg0: Boolean): Unit {
   }
 
-  open fun _tabChanged(arg0: Long) {
+  public open fun _tabChanged(arg0: Long): Unit {
   }
 
-  open fun _themeOption(arg0: Long) {
+  public open fun _themeOption(arg0: Long): Unit {
   }
 
-  open fun _toggleMembersOverviewAlphaSort(arg0: Boolean) {
+  public open fun _toggleMembersOverviewAlphaSort(arg0: Boolean): Unit {
   }
 
-  open fun _treeChanged() {
+  public open fun _treeChanged(): Unit {
   }
 
-  override fun _unhandledInput(event: InputEvent) {
+  public override fun _unhandledInput(event: InputEvent): Unit {
   }
 
-  open fun _updateAutosaveTimer() {
+  public open fun _updateAutosaveTimer(): Unit {
   }
 
-  open fun _updateMembersOverview() {
+  public open fun _updateMembersOverview(): Unit {
   }
 
-  open fun _updateRecentScripts() {
+  public open fun _updateRecentScripts(): Unit {
   }
 
-  open fun _updateScriptConnections() {
+  public open fun _updateScriptConnections(): Unit {
   }
 
-  open fun _updateScriptNames() {
+  public open fun _updateScriptNames(): Unit {
   }
 
   /**
    *
    */
-  open fun canDropDataFw(
+  public open fun canDropDataFw(
     point: Vector2,
-    data: Any?,
+    `data`: Any?,
     from: Control
   ): Boolean {
     TransferContext.writeArguments(VECTOR2 to point, ANY to data, OBJECT to from)
@@ -243,11 +244,11 @@ open class ScriptEditor : PanelContainer() {
   /**
    *
    */
-  open fun dropDataFw(
+  public open fun dropDataFw(
     point: Vector2,
-    data: Any?,
+    `data`: Any?,
     from: Control
-  ) {
+  ): Unit {
     TransferContext.writeArguments(VECTOR2 to point, ANY to data, OBJECT to from)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_DROP_DATA_FW, NIL)
   }
@@ -255,7 +256,7 @@ open class ScriptEditor : PanelContainer() {
   /**
    * Returns a [godot.Script] that is currently active in editor.
    */
-  open fun getCurrentScript(): Script? {
+  public open fun getCurrentScript(): Script? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_CURRENT_SCRIPT,
         OBJECT)
@@ -265,7 +266,7 @@ open class ScriptEditor : PanelContainer() {
   /**
    *
    */
-  open fun getDragDataFw(point: Vector2, from: Control): Any? {
+  public open fun getDragDataFw(point: Vector2, from: Control): Any? {
     TransferContext.writeArguments(VECTOR2 to point, OBJECT to from)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_DRAG_DATA_FW, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -274,7 +275,7 @@ open class ScriptEditor : PanelContainer() {
   /**
    * Returns an array with all [godot.Script] objects which are currently open in editor.
    */
-  open fun getOpenScripts(): VariantArray<Any?> {
+  public open fun getOpenScripts(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GET_OPEN_SCRIPTS,
         ARRAY)
@@ -284,7 +285,7 @@ open class ScriptEditor : PanelContainer() {
   /**
    * Goes to the specified line in the current script.
    */
-  open fun gotoLine(lineNumber: Long) {
+  public open fun gotoLine(lineNumber: Long): Unit {
     TransferContext.writeArguments(LONG to lineNumber)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_GOTO_LINE, NIL)
   }
@@ -292,7 +293,7 @@ open class ScriptEditor : PanelContainer() {
   /**
    * Opens the script create dialog. The script will extend `base_name`. The file extension can be omitted from `base_path`. It will be added based on the selected scripting language.
    */
-  open fun openScriptCreateDialog(baseName: String, basePath: String) {
+  public open fun openScriptCreateDialog(baseName: String, basePath: String): Unit {
     TransferContext.writeArguments(STRING to baseName, STRING to basePath)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_OPEN_SCRIPT_CREATE_DIALOG, NIL)

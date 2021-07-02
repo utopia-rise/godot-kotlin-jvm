@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.TransferContext
 import godot.core.VariantType.JVM_INT
@@ -13,6 +13,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Int
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A synchronization mutex (mutual exclusion).
@@ -23,15 +24,15 @@ import kotlin.Suppress
  * A synchronization mutex (mutual exclusion). This is used to synchronize multiple [godot.Thread]s, and is equivalent to a binary [godot.Semaphore]. It guarantees that only one thread can ever acquire the lock at a time. A mutex can be used to protect a critical section; however, be careful to avoid deadlocks.
  */
 @GodotBaseType
-open class Mutex : Reference() {
-  override fun __new() {
+public open class Mutex : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS__MUTEX)
   }
 
   /**
    * Locks this [godot.Mutex], blocks until it is unlocked by the current owner.
    */
-  open fun lock() {
+  public open fun lock(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__MUTEX_LOCK, NIL)
   }
@@ -39,7 +40,7 @@ open class Mutex : Reference() {
   /**
    * Tries locking this [godot.Mutex], but does not block. Returns [OK] on success, [ERR_BUSY] otherwise.
    */
-  open fun tryLock(): GodotError {
+  public open fun tryLock(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__MUTEX_TRY_LOCK, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -48,7 +49,7 @@ open class Mutex : Reference() {
   /**
    * Unlocks this [godot.Mutex], leaving it to other threads.
    */
-  open fun unlock() {
+  public open fun unlock(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__MUTEX_UNLOCK, NIL)
   }

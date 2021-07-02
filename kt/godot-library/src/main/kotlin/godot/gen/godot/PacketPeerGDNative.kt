@@ -5,12 +5,13 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
-open class PacketPeerGDNative : PacketPeer() {
-  override fun __new() {
+public open class PacketPeerGDNative : PacketPeer() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PACKETPEERGDNATIVE)
   }
 }

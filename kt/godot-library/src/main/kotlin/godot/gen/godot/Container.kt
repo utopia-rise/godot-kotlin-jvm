@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
@@ -15,6 +15,7 @@ import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Base node for containers.
@@ -24,26 +25,26 @@ import kotlin.Suppress
  * A Control can inherit this to create custom container classes.
  */
 @GodotBaseType
-open class Container : Control() {
+public open class Container : Control() {
   /**
    * Emitted when sorting the children is needed.
    */
-  val sortChildren: Signal0 by signal()
+  public val sortChildren: Signal0 by signal()
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CONTAINER)
   }
 
-  open fun _childMinsizeChanged() {
+  public open fun _childMinsizeChanged(): Unit {
   }
 
-  open fun _sortChildren() {
+  public open fun _sortChildren(): Unit {
   }
 
   /**
    * Fit a child control in a given rect. This is mainly a helper for creating custom container classes.
    */
-  open fun fitChildInRect(child: Control, rect: Rect2) {
+  public open fun fitChildInRect(child: Control, rect: Rect2): Unit {
     TransferContext.writeArguments(OBJECT to child, RECT2 to rect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTAINER_FIT_CHILD_IN_RECT, NIL)
   }
@@ -51,15 +52,15 @@ open class Container : Control() {
   /**
    * Queue resort of the contained children. This is called automatically anyway, but can be called upon request.
    */
-  open fun queueSort() {
+  public open fun queueSort(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTAINER_QUEUE_SORT, NIL)
   }
 
-  companion object {
+  public companion object {
     /**
      * Notification for when sorting the children, it must be obeyed immediately.
      */
-    final const val NOTIFICATION_SORT_CHILDREN: Long = 50
+    public final const val NOTIFICATION_SORT_CHILDREN: Long = 50
   }
 }

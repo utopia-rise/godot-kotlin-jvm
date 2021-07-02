@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Audio effect for audio.
@@ -17,8 +18,8 @@ import kotlin.Suppress
  * Base resource for audio bus. Applies an audio effect on the bus that the resource is applied on.
  */
 @GodotBaseType
-open class AudioEffect : Resource() {
-  override fun __new() {
+public open class AudioEffect : Resource() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECT)
   }
 }

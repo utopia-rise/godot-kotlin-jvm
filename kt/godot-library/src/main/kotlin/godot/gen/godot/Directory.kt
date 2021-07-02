@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -18,6 +18,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Type used to handle the filesystem.
@@ -50,8 +51,8 @@ import kotlin.Suppress
  * 		```
  */
 @GodotBaseType
-open class Directory : Reference() {
-  override fun __new() {
+public open class Directory : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS__DIRECTORY)
   }
 
@@ -60,7 +61,7 @@ open class Directory : Reference() {
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  open fun changeDir(todir: String): GodotError {
+  public open fun changeDir(todir: String): GodotError {
     TransferContext.writeArguments(STRING to todir)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_CHANGE_DIR, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -71,7 +72,7 @@ open class Directory : Reference() {
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  open fun copy(from: String, to: String): GodotError {
+  public open fun copy(from: String, to: String): GodotError {
     TransferContext.writeArguments(STRING to from, STRING to to)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_COPY, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -80,7 +81,7 @@ open class Directory : Reference() {
   /**
    * Returns whether the current item processed with the last [getNext] call is a directory (`.` and `..` are considered directories).
    */
-  open fun currentIsDir(): Boolean {
+  public open fun currentIsDir(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_CURRENT_IS_DIR, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -89,7 +90,7 @@ open class Directory : Reference() {
   /**
    * Returns whether the target directory exists. The argument can be relative to the current directory, or an absolute path.
    */
-  open fun dirExists(path: String): Boolean {
+  public open fun dirExists(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_DIR_EXISTS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -98,7 +99,7 @@ open class Directory : Reference() {
   /**
    * Returns whether the target file exists. The argument can be relative to the current directory, or an absolute path.
    */
-  open fun fileExists(path: String): Boolean {
+  public open fun fileExists(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_FILE_EXISTS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -107,7 +108,7 @@ open class Directory : Reference() {
   /**
    * Returns the absolute path to the currently opened directory (e.g. `res://folder` or `C:\tmp\folder`).
    */
-  open fun getCurrentDir(): String {
+  public open fun getCurrentDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_GET_CURRENT_DIR, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -116,7 +117,7 @@ open class Directory : Reference() {
   /**
    * Returns the currently opened directory's drive index. See [getDrive] to convert returned index to the name of the drive.
    */
-  open fun getCurrentDrive(): Long {
+  public open fun getCurrentDrive(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_GET_CURRENT_DRIVE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -125,7 +126,7 @@ open class Directory : Reference() {
   /**
    * On Windows, returns the name of the drive (partition) passed as an argument (e.g. `C:`). On other platforms, or if the requested drive does not exist, the method returns an empty String.
    */
-  open fun getDrive(idx: Long): String {
+  public open fun getDrive(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_GET_DRIVE, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -134,7 +135,7 @@ open class Directory : Reference() {
   /**
    * On Windows, returns the number of drives (partitions) mounted on the current filesystem. On other platforms, the method returns 0.
    */
-  open fun getDriveCount(): Long {
+  public open fun getDriveCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_GET_DRIVE_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -145,7 +146,7 @@ open class Directory : Reference() {
    *
    * The name of the file or directory is returned (and not its full path). Once the stream has been fully processed, the method returns an empty String and closes the stream automatically (i.e. [listDirEnd] would not be mandatory in such a case).
    */
-  open fun getNext(): String {
+  public open fun getNext(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_GET_NEXT, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -154,7 +155,7 @@ open class Directory : Reference() {
   /**
    * On UNIX desktop systems, returns the available space on the current directory's disk. On other platforms, this information is not available and the method returns 0 or -1.
    */
-  open fun getSpaceLeft(): Long {
+  public open fun getSpaceLeft(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_GET_SPACE_LEFT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -167,7 +168,7 @@ open class Directory : Reference() {
    *
    * If `skip_hidden` is `true`, hidden files are filtered out.
    */
-  open fun listDirBegin(skipNavigational: Boolean = false, skipHidden: Boolean = false):
+  public open fun listDirBegin(skipNavigational: Boolean = false, skipHidden: Boolean = false):
       GodotError {
     TransferContext.writeArguments(BOOL to skipNavigational, BOOL to skipHidden)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_LIST_DIR_BEGIN, LONG)
@@ -177,7 +178,7 @@ open class Directory : Reference() {
   /**
    * Closes the current stream opened with [listDirBegin] (whether it has been fully processed with [getNext] does not matter).
    */
-  open fun listDirEnd() {
+  public open fun listDirEnd(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_LIST_DIR_END, NIL)
   }
@@ -187,7 +188,7 @@ open class Directory : Reference() {
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  open fun makeDir(path: String): GodotError {
+  public open fun makeDir(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_MAKE_DIR, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -198,7 +199,7 @@ open class Directory : Reference() {
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  open fun makeDirRecursive(path: String): GodotError {
+  public open fun makeDirRecursive(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_MAKE_DIR_RECURSIVE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -209,7 +210,7 @@ open class Directory : Reference() {
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  open fun open(path: String): GodotError {
+  public open fun `open`(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_OPEN, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -220,7 +221,7 @@ open class Directory : Reference() {
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  open fun remove(path: String): GodotError {
+  public open fun remove(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_REMOVE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -231,7 +232,7 @@ open class Directory : Reference() {
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  open fun rename(from: String, to: String): GodotError {
+  public open fun rename(from: String, to: String): GodotError {
     TransferContext.writeArguments(STRING to from, STRING to to)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_RENAME, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

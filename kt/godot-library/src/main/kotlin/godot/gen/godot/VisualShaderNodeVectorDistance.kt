@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Returns the distance between two points. To be used within the visual shader graph.
@@ -16,8 +17,8 @@ import kotlin.Suppress
  * Translated to `distance(p0, p1)` in the shader language.
  */
 @GodotBaseType
-open class VisualShaderNodeVectorDistance : VisualShaderNode() {
-  override fun __new() {
+public open class VisualShaderNodeVectorDistance : VisualShaderNode() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVECTORDISTANCE)
   }
 }

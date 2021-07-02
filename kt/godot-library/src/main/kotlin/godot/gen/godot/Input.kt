@@ -6,7 +6,7 @@
 package godot
 
 import godot.Input
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -30,6 +30,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A singleton that deals with inputs.
@@ -40,124 +41,124 @@ import kotlin.Suppress
  * A singleton that deals with inputs. This includes key presses, mouse buttons and movement, joypads, and input actions. Actions and their events can be set in the **Input Map** tab in the **Project > Project Settings**, or with the [godot.InputMap] class.
  */
 @GodotBaseType
-object Input : Object() {
+public object Input : Object() {
   /**
    * Arrow cursor. Standard, default pointing cursor.
    */
-  final const val CURSOR_ARROW: Long = 0
+  public final const val CURSOR_ARROW: Long = 0
 
   /**
    * Window resize mouse cursor. The cursor is a double-headed arrow that goes from the bottom left to the top right. It tells the user they can resize the window or the panel both horizontally and vertically.
    */
-  final const val CURSOR_BDIAGSIZE: Long = 11
+  public final const val CURSOR_BDIAGSIZE: Long = 11
 
   /**
    * Busy cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application isn't usable during the operation (e.g. something is blocking its main thread).
    */
-  final const val CURSOR_BUSY: Long = 5
+  public final const val CURSOR_BUSY: Long = 5
 
   /**
    * Can drop cursor. Usually displayed when dragging something to indicate that it can be dropped at the current position.
    */
-  final const val CURSOR_CAN_DROP: Long = 7
+  public final const val CURSOR_CAN_DROP: Long = 7
 
   /**
    * Cross cursor. Typically appears over regions in which a drawing operation can be performed or for selections.
    */
-  final const val CURSOR_CROSS: Long = 3
+  public final const val CURSOR_CROSS: Long = 3
 
   /**
    * Drag cursor. Usually displayed when dragging something.
    */
-  final const val CURSOR_DRAG: Long = 6
+  public final const val CURSOR_DRAG: Long = 6
 
   /**
    * Window resize mouse cursor. The cursor is a double-headed arrow that goes from the top left to the bottom right, the opposite of [CURSOR_BDIAGSIZE]. It tells the user they can resize the window or the panel both horizontally and vertically.
    */
-  final const val CURSOR_FDIAGSIZE: Long = 12
+  public final const val CURSOR_FDIAGSIZE: Long = 12
 
   /**
    * Forbidden cursor. Indicates that the current action is forbidden (for example, when dragging something) or that the control at a position is disabled.
    */
-  final const val CURSOR_FORBIDDEN: Long = 8
+  public final const val CURSOR_FORBIDDEN: Long = 8
 
   /**
    * Help cursor. Usually a question mark.
    */
-  final const val CURSOR_HELP: Long = 16
+  public final const val CURSOR_HELP: Long = 16
 
   /**
    * Horizontal resize mouse cursor. A double-headed horizontal arrow. It tells the user they can resize the window or the panel horizontally.
    */
-  final const val CURSOR_HSIZE: Long = 10
+  public final const val CURSOR_HSIZE: Long = 10
 
   /**
    * Horizontal split mouse cursor. On Windows, it's the same as [CURSOR_HSIZE].
    */
-  final const val CURSOR_HSPLIT: Long = 15
+  public final const val CURSOR_HSPLIT: Long = 15
 
   /**
    * I-beam cursor. Usually used to show where the text cursor will appear when the mouse is clicked.
    */
-  final const val CURSOR_IBEAM: Long = 1
+  public final const val CURSOR_IBEAM: Long = 1
 
   /**
    * Move cursor. Indicates that something can be moved.
    */
-  final const val CURSOR_MOVE: Long = 13
+  public final const val CURSOR_MOVE: Long = 13
 
   /**
    * Pointing hand cursor. Usually used to indicate the pointer is over a link or other interactable item.
    */
-  final const val CURSOR_POINTING_HAND: Long = 2
+  public final const val CURSOR_POINTING_HAND: Long = 2
 
   /**
    * Vertical resize mouse cursor. A double-headed vertical arrow. It tells the user they can resize the window or the panel vertically.
    */
-  final const val CURSOR_VSIZE: Long = 9
+  public final const val CURSOR_VSIZE: Long = 9
 
   /**
    * Vertical split mouse cursor. On Windows, it's the same as [CURSOR_VSIZE].
    */
-  final const val CURSOR_VSPLIT: Long = 14
+  public final const val CURSOR_VSPLIT: Long = 14
 
   /**
    * Wait cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application is still usable during the operation.
    */
-  final const val CURSOR_WAIT: Long = 4
+  public final const val CURSOR_WAIT: Long = 4
 
   /**
    * Captures the mouse. The mouse will be hidden and its position locked at the center of the screen.
    *
    * **Note:** If you want to process the mouse's movement in this mode, you need to use [godot.InputEventMouseMotion.relative].
    */
-  final const val MOUSE_MODE_CAPTURED: Long = 2
+  public final const val MOUSE_MODE_CAPTURED: Long = 2
 
   /**
    * Makes the mouse cursor visible but confines it to the game window.
    */
-  final const val MOUSE_MODE_CONFINED: Long = 3
+  public final const val MOUSE_MODE_CONFINED: Long = 3
 
   /**
    * Makes the mouse cursor hidden if it is visible.
    */
-  final const val MOUSE_MODE_HIDDEN: Long = 1
+  public final const val MOUSE_MODE_HIDDEN: Long = 1
 
   /**
    * Makes the mouse cursor visible if it is hidden.
    */
-  final const val MOUSE_MODE_VISIBLE: Long = 0
+  public final const val MOUSE_MODE_VISIBLE: Long = 0
 
   /**
    * Emitted when a joypad device has been connected or disconnected.
    */
-  val joyConnectionChanged: Signal2<Long, Boolean> by signal("device", "connected")
+  public val joyConnectionChanged: Signal2<Long, Boolean> by signal("device", "connected")
 
-  override fun __new() {
+  public override fun __new(): Unit {
     rawPtr = TransferContext.getSingleton(ENGINESINGLETON_INPUT)
   }
 
-  override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
+  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    * This will simulate pressing the specified action.
@@ -166,7 +167,7 @@ object Input : Object() {
    *
    * **Note:** This method will not cause any [godot.Node.Input] calls. It is intended to be used with [isActionPressed] and [isActionJustPressed]. If you want to simulate `_input`, use [parseInputEvent] instead.
    */
-  fun actionPress(action: String, strength: Double = 1.0) {
+  public fun actionPress(action: String, strength: Double = 1.0): Unit {
     TransferContext.writeArguments(STRING to action, DOUBLE to strength)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_ACTION_PRESS, NIL)
   }
@@ -174,7 +175,7 @@ object Input : Object() {
   /**
    * If the specified action is already pressed, this will release it.
    */
-  fun actionRelease(action: String) {
+  public fun actionRelease(action: String): Unit {
     TransferContext.writeArguments(STRING to action)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_ACTION_RELEASE, NIL)
   }
@@ -182,7 +183,7 @@ object Input : Object() {
   /**
    * Adds a new mapping entry (in SDL2 format) to the mapping database. Optionally update already connected devices.
    */
-  fun addJoyMapping(mapping: String, updateExisting: Boolean = false) {
+  public fun addJoyMapping(mapping: String, updateExisting: Boolean = false): Unit {
     TransferContext.writeArguments(STRING to mapping, BOOL to updateExisting)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_ADD_JOY_MAPPING, NIL)
   }
@@ -194,7 +195,7 @@ object Input : Object() {
    *
    * **Note:** This method only works on iOS, Android, and UWP. On other platforms, it always returns [godot.Vector3.ZERO]. On Android the unit of measurement for each axis is m/s² while on iOS and UWP it's a multiple of the Earth's gravitational acceleration `g` (~9.81 m/s²).
    */
-  fun getAccelerometer(): Vector3 {
+  public fun getAccelerometer(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_ACCELEROMETER, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
@@ -203,7 +204,7 @@ object Input : Object() {
   /**
    * Returns a value between 0 and 1 representing the intensity of the given action. In a joypad, for example, the further away the axis (analog sticks or L2, R2 triggers) is from the dead zone, the closer the value will be to 1. If the action is mapped to a control that has no axis as the keyboard, the value returned will be 0 or 1.
    */
-  fun getActionStrength(action: String): Double {
+  public fun getActionStrength(action: String): Double {
     TransferContext.writeArguments(STRING to action)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_ACTION_STRENGTH, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -212,7 +213,7 @@ object Input : Object() {
   /**
    * Returns an [godot.Array] containing the device IDs of all currently connected joypads.
    */
-  fun getConnectedJoypads(): VariantArray<Any?> {
+  public fun getConnectedJoypads(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_CONNECTED_JOYPADS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -221,7 +222,7 @@ object Input : Object() {
   /**
    * Returns the currently assigned cursor shape (see [enum CursorShape]).
    */
-  fun getCurrentCursorShape(): Input.CursorShape {
+  public fun getCurrentCursorShape(): Input.CursorShape {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_CURRENT_CURSOR_SHAPE,
         LONG)
@@ -233,7 +234,7 @@ object Input : Object() {
    *
    * **Note:** This method only works on Android and iOS. On other platforms, it always returns [godot.Vector3.ZERO]. On Android the unit of measurement for each axis is m/s² while on iOS it's a multiple of the Earth's gravitational acceleration `g` (~9.81 m/s²).
    */
-  fun getGravity(): Vector3 {
+  public fun getGravity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_GRAVITY, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
@@ -244,7 +245,7 @@ object Input : Object() {
    *
    * **Note:** This method only works on Android and iOS. On other platforms, it always returns [godot.Vector3.ZERO].
    */
-  fun getGyroscope(): Vector3 {
+  public fun getGyroscope(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_GYROSCOPE, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
@@ -253,7 +254,7 @@ object Input : Object() {
   /**
    * Returns the current value of the joypad axis at given index (see [enum JoystickList]).
    */
-  fun getJoyAxis(device: Long, axis: Long): Double {
+  public fun getJoyAxis(device: Long, axis: Long): Double {
     TransferContext.writeArguments(LONG to device, LONG to axis)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_AXIS, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -262,7 +263,7 @@ object Input : Object() {
   /**
    * Returns the index of the provided axis name.
    */
-  fun getJoyAxisIndexFromString(axis: String): Long {
+  public fun getJoyAxisIndexFromString(axis: String): Long {
     TransferContext.writeArguments(STRING to axis)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_AXIS_INDEX_FROM_STRING, LONG)
@@ -272,7 +273,7 @@ object Input : Object() {
   /**
    * Receives a [enum JoystickList] axis and returns its equivalent name as a string.
    */
-  fun getJoyAxisString(axisIndex: Long): String {
+  public fun getJoyAxisString(axisIndex: Long): String {
     TransferContext.writeArguments(LONG to axisIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_AXIS_STRING, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -281,7 +282,7 @@ object Input : Object() {
   /**
    * Returns the index of the provided button name.
    */
-  fun getJoyButtonIndexFromString(button: String): Long {
+  public fun getJoyButtonIndexFromString(button: String): Long {
     TransferContext.writeArguments(STRING to button)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_BUTTON_INDEX_FROM_STRING, LONG)
@@ -291,7 +292,7 @@ object Input : Object() {
   /**
    * Receives a gamepad button from [enum JoystickList] and returns its equivalent name as a string.
    */
-  fun getJoyButtonString(buttonIndex: Long): String {
+  public fun getJoyButtonString(buttonIndex: Long): String {
     TransferContext.writeArguments(LONG to buttonIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_BUTTON_STRING, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -300,7 +301,7 @@ object Input : Object() {
   /**
    * Returns a SDL2-compatible device GUID on platforms that use gamepad remapping. Returns `"Default Gamepad"` otherwise.
    */
-  fun getJoyGuid(device: Long): String {
+  public fun getJoyGuid(device: Long): String {
     TransferContext.writeArguments(LONG to device)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_GUID, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -309,7 +310,7 @@ object Input : Object() {
   /**
    * Returns the name of the joypad at the specified device index.
    */
-  fun getJoyName(device: Long): String {
+  public fun getJoyName(device: Long): String {
     TransferContext.writeArguments(LONG to device)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -318,7 +319,7 @@ object Input : Object() {
   /**
    * Returns the duration of the current vibration effect in seconds.
    */
-  fun getJoyVibrationDuration(device: Long): Double {
+  public fun getJoyVibrationDuration(device: Long): Double {
     TransferContext.writeArguments(LONG to device)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_VIBRATION_DURATION,
         DOUBLE)
@@ -328,7 +329,7 @@ object Input : Object() {
   /**
    * Returns the strength of the joypad vibration: x is the strength of the weak motor, and y is the strength of the strong motor.
    */
-  fun getJoyVibrationStrength(device: Long): Vector2 {
+  public fun getJoyVibrationStrength(device: Long): Vector2 {
     TransferContext.writeArguments(LONG to device)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_JOY_VIBRATION_STRENGTH,
         VECTOR2)
@@ -338,7 +339,7 @@ object Input : Object() {
   /**
    * Returns the mouse speed for the last time the cursor was moved, and this until the next frame where the mouse moves. This means that even if the mouse is not moving, this function will still return the value of the last motion.
    */
-  fun getLastMouseSpeed(): Vector2 {
+  public fun getLastMouseSpeed(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_LAST_MOUSE_SPEED, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -349,7 +350,7 @@ object Input : Object() {
    *
    * **Note:** This method only works on Android, iOS and UWP. On other platforms, it always returns [godot.Vector3.ZERO].
    */
-  fun getMagnetometer(): Vector3 {
+  public fun getMagnetometer(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MAGNETOMETER, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
@@ -358,7 +359,7 @@ object Input : Object() {
   /**
    * Returns mouse buttons as a bitmask. If multiple mouse buttons are pressed at the same time, the bits are added together.
    */
-  fun getMouseButtonMask(): Long {
+  public fun getMouseButtonMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MOUSE_BUTTON_MASK, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -367,7 +368,7 @@ object Input : Object() {
   /**
    * Returns the mouse mode. See the constants for more information.
    */
-  fun getMouseMode(): Input.MouseMode {
+  public fun getMouseMode(): Input.MouseMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_MOUSE_MODE, LONG)
     return Input.MouseMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -378,7 +379,7 @@ object Input : Object() {
    *
    * This is useful for code that needs to run only once when an action is pressed, instead of every frame while it's pressed.
    */
-  fun isActionJustPressed(action: String): Boolean {
+  public fun isActionJustPressed(action: String): Boolean {
     TransferContext.writeArguments(STRING to action)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ACTION_JUST_PRESSED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -387,7 +388,7 @@ object Input : Object() {
   /**
    * Returns `true` when the user stops pressing the action event, meaning it's `true` only on the frame that the user released the button.
    */
-  fun isActionJustReleased(action: String): Boolean {
+  public fun isActionJustReleased(action: String): Boolean {
     TransferContext.writeArguments(STRING to action)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ACTION_JUST_RELEASED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -396,7 +397,7 @@ object Input : Object() {
   /**
    * Returns `true` if you are pressing the action event. Note that if an action has multiple buttons assigned and more than one of them is pressed, releasing one button will release the action, even if some other button assigned to this action is still pressed.
    */
-  fun isActionPressed(action: String): Boolean {
+  public fun isActionPressed(action: String): Boolean {
     TransferContext.writeArguments(STRING to action)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ACTION_PRESSED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -405,7 +406,7 @@ object Input : Object() {
   /**
    * Returns `true` if you are pressing the joypad button (see [enum JoystickList]).
    */
-  fun isJoyButtonPressed(device: Long, button: Long): Boolean {
+  public fun isJoyButtonPressed(device: Long, button: Long): Boolean {
     TransferContext.writeArguments(LONG to device, LONG to button)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_JOY_BUTTON_PRESSED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -414,7 +415,7 @@ object Input : Object() {
   /**
    * Returns `true` if the system knows the specified device. This means that it sets all button and axis indices exactly as defined in [enum JoystickList]. Unknown joypads are not expected to match these constants, but you can still retrieve events from them.
    */
-  fun isJoyKnown(device: Long): Boolean {
+  public fun isJoyKnown(device: Long): Boolean {
     TransferContext.writeArguments(LONG to device)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_JOY_KNOWN, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -423,7 +424,7 @@ object Input : Object() {
   /**
    * Returns `true` if you are pressing the key. You can pass a [enum KeyList] constant.
    */
-  fun isKeyPressed(scancode: Long): Boolean {
+  public fun isKeyPressed(scancode: Long): Boolean {
     TransferContext.writeArguments(LONG to scancode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_KEY_PRESSED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -432,7 +433,7 @@ object Input : Object() {
   /**
    * Returns `true` if you are pressing the mouse button specified with [enum ButtonList].
    */
-  fun isMouseButtonPressed(button: Long): Boolean {
+  public fun isMouseButtonPressed(button: Long): Boolean {
     TransferContext.writeArguments(LONG to button)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_MOUSE_BUTTON_PRESSED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -443,12 +444,12 @@ object Input : Object() {
    *
    * This is used internally and should not have to be called from user scripts. See [joyConnectionChanged] for the signal emitted when this is triggered internally.
    */
-  fun joyConnectionChanged(
+  public fun joyConnectionChanged(
     device: Long,
     connected: Boolean,
     name: String,
     guid: String
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to device, BOOL to connected, STRING to name, STRING to
         guid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_JOY_CONNECTION_CHANGED, NIL)
@@ -466,7 +467,7 @@ object Input : Object() {
    * 				Input.parse_input_event(a)
    * 				```
    */
-  fun parseInputEvent(event: InputEvent) {
+  public fun parseInputEvent(event: InputEvent): Unit {
     TransferContext.writeArguments(OBJECT to event)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_PARSE_INPUT_EVENT, NIL)
   }
@@ -474,7 +475,7 @@ object Input : Object() {
   /**
    * Removes all mappings from the internal database that match the given GUID.
    */
-  fun removeJoyMapping(guid: String) {
+  public fun removeJoyMapping(guid: String): Unit {
     TransferContext.writeArguments(STRING to guid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_REMOVE_JOY_MAPPING, NIL)
   }
@@ -490,11 +491,11 @@ object Input : Object() {
    *
    * **Note:** Only images imported with the **Lossless**, **Lossy** or **Uncompressed** compression modes are supported. The **Video RAM** compression mode can't be used for custom cursors.
    */
-  fun setCustomMouseCursor(
+  public fun setCustomMouseCursor(
     image: Resource,
     shape: Long = 0,
     hotspot: Vector2 = Vector2(0.0, 0.0)
-  ) {
+  ): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to shape, VECTOR2 to hotspot)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_CUSTOM_MOUSE_CURSOR, NIL)
   }
@@ -506,7 +507,7 @@ object Input : Object() {
    *
    * **Note:** This method generates an [godot.InputEventMouseMotion] to update cursor immediately.
    */
-  fun setDefaultCursorShape(shape: Long = 0) {
+  public fun setDefaultCursorShape(shape: Long = 0): Unit {
     TransferContext.writeArguments(LONG to shape)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_DEFAULT_CURSOR_SHAPE, NIL)
   }
@@ -514,7 +515,7 @@ object Input : Object() {
   /**
    * Sets the mouse mode. See the constants for more information.
    */
-  fun setMouseMode(mode: Long) {
+  public fun setMouseMode(mode: Long): Unit {
     TransferContext.writeArguments(LONG to mode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_MOUSE_MODE, NIL)
   }
@@ -524,7 +525,7 @@ object Input : Object() {
    *
    * Input accumulation is enabled by default. It can be disabled to get slightly more precise/reactive input at the cost of increased CPU usage. In applications where drawing freehand lines is required, input accumulation should generally be disabled while the user is drawing the line to get results that closely follow the actual input.
    */
-  fun setUseAccumulatedInput(enable: Boolean) {
+  public fun setUseAccumulatedInput(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_USE_ACCUMULATED_INPUT,
         NIL)
@@ -535,12 +536,12 @@ object Input : Object() {
    *
    * **Note:** Not every hardware is compatible with long effect durations; it is recommended to restart an effect if it has to be played for more than a few seconds.
    */
-  fun startJoyVibration(
+  public fun startJoyVibration(
     device: Long,
     weakMagnitude: Double,
     strongMagnitude: Double,
     duration: Double = 0.0
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to device, DOUBLE to weakMagnitude, DOUBLE to
         strongMagnitude, DOUBLE to duration)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_START_JOY_VIBRATION, NIL)
@@ -549,7 +550,7 @@ object Input : Object() {
   /**
    * Stops the vibration of the joypad.
    */
-  fun stopJoyVibration(device: Long) {
+  public fun stopJoyVibration(device: Long): Unit {
     TransferContext.writeArguments(LONG to device)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_STOP_JOY_VIBRATION, NIL)
   }
@@ -559,7 +560,7 @@ object Input : Object() {
    *
    * **Note:** It needs `VIBRATE` permission for Android at export settings. iOS does not support duration.
    */
-  fun vibrateHandheld(durationMs: Long = 500) {
+  public fun vibrateHandheld(durationMs: Long = 500): Unit {
     TransferContext.writeArguments(LONG to durationMs)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_VIBRATE_HANDHELD, NIL)
   }
@@ -567,141 +568,124 @@ object Input : Object() {
   /**
    * Sets the mouse position to the specified vector.
    */
-  fun warpMousePosition(to: Vector2) {
+  public fun warpMousePosition(to: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to to)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_WARP_MOUSE_POSITION, NIL)
   }
 
-  enum class MouseMode(
+  public enum class MouseMode(
     id: Long
   ) {
     /**
      * Makes the mouse cursor visible if it is hidden.
      */
     MOUSE_MODE_VISIBLE(0),
-
     /**
      * Makes the mouse cursor hidden if it is visible.
      */
     MOUSE_MODE_HIDDEN(1),
-
     /**
      * Captures the mouse. The mouse will be hidden and its position locked at the center of the screen.
      *
      * **Note:** If you want to process the mouse's movement in this mode, you need to use [godot.InputEventMouseMotion.relative].
      */
     MOUSE_MODE_CAPTURED(2),
-
     /**
      * Makes the mouse cursor visible but confines it to the game window.
      */
-    MOUSE_MODE_CONFINED(3);
+    MOUSE_MODE_CONFINED(3),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class CursorShape(
+  public enum class CursorShape(
     id: Long
   ) {
     /**
      * Arrow cursor. Standard, default pointing cursor.
      */
     CURSOR_ARROW(0),
-
     /**
      * I-beam cursor. Usually used to show where the text cursor will appear when the mouse is clicked.
      */
     CURSOR_IBEAM(1),
-
     /**
      * Pointing hand cursor. Usually used to indicate the pointer is over a link or other interactable item.
      */
     CURSOR_POINTING_HAND(2),
-
     /**
      * Cross cursor. Typically appears over regions in which a drawing operation can be performed or for selections.
      */
     CURSOR_CROSS(3),
-
     /**
      * Wait cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application is still usable during the operation.
      */
     CURSOR_WAIT(4),
-
     /**
      * Busy cursor. Indicates that the application is busy performing an operation. This cursor shape denotes that the application isn't usable during the operation (e.g. something is blocking its main thread).
      */
     CURSOR_BUSY(5),
-
     /**
      * Drag cursor. Usually displayed when dragging something.
      */
     CURSOR_DRAG(6),
-
     /**
      * Can drop cursor. Usually displayed when dragging something to indicate that it can be dropped at the current position.
      */
     CURSOR_CAN_DROP(7),
-
     /**
      * Forbidden cursor. Indicates that the current action is forbidden (for example, when dragging something) or that the control at a position is disabled.
      */
     CURSOR_FORBIDDEN(8),
-
     /**
      * Vertical resize mouse cursor. A double-headed vertical arrow. It tells the user they can resize the window or the panel vertically.
      */
     CURSOR_VSIZE(9),
-
     /**
      * Horizontal resize mouse cursor. A double-headed horizontal arrow. It tells the user they can resize the window or the panel horizontally.
      */
     CURSOR_HSIZE(10),
-
     /**
      * Window resize mouse cursor. The cursor is a double-headed arrow that goes from the bottom left to the top right. It tells the user they can resize the window or the panel both horizontally and vertically.
      */
     CURSOR_BDIAGSIZE(11),
-
     /**
      * Window resize mouse cursor. The cursor is a double-headed arrow that goes from the top left to the bottom right, the opposite of [CURSOR_BDIAGSIZE]. It tells the user they can resize the window or the panel both horizontally and vertically.
      */
     CURSOR_FDIAGSIZE(12),
-
     /**
      * Move cursor. Indicates that something can be moved.
      */
     CURSOR_MOVE(13),
-
     /**
      * Vertical split mouse cursor. On Windows, it's the same as [CURSOR_VSIZE].
      */
     CURSOR_VSPLIT(14),
-
     /**
      * Horizontal split mouse cursor. On Windows, it's the same as [CURSOR_HSIZE].
      */
     CURSOR_HSPLIT(15),
-
     /**
      * Help cursor. Usually a question mark.
      */
-    CURSOR_HELP(16);
+    CURSOR_HELP(16),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 }

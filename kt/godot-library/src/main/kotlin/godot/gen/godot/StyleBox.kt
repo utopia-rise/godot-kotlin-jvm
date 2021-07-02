@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Rect2
 import godot.core.TransferContext
@@ -22,6 +22,7 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Base class for drawing stylized boxes for the UI.
@@ -31,7 +32,7 @@ import kotlin.Suppress
  * **Note:** For children of [godot.Control] that have *Theme Properties*, the `focus` [godot.StyleBox] is displayed over the `normal`, `hover` or `pressed` [godot.StyleBox]. This makes the `focus` [godot.StyleBox] more reusable across different nodes.
  */
 @GodotBaseType
-open class StyleBox : Resource() {
+public open class StyleBox : Resource() {
   /**
    * The bottom margin for the contents of this style box. Increasing this value reduces the space available to the contents from the bottom.
    *
@@ -41,14 +42,14 @@ open class StyleBox : Resource() {
    *
    * [getMargin] should be used to fetch this value as consumer instead of reading these properties directly. This is because it correctly respects negative values and the fallback mentioned above.
    */
-  open var contentMarginBottom: Double
+  public open var contentMarginBottom: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_CONTENT_MARGIN_BOTTOM, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOX_SET_CONTENT_MARGIN_BOTTOM, NIL)
@@ -59,14 +60,14 @@ open class StyleBox : Resource() {
    *
    * Refer to [contentMarginBottom] for extra considerations.
    */
-  open var contentMarginLeft: Double
+  public open var contentMarginLeft: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_CONTENT_MARGIN_LEFT,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_SET_CONTENT_MARGIN_LEFT,
           NIL)
@@ -77,14 +78,14 @@ open class StyleBox : Resource() {
    *
    * Refer to [contentMarginBottom] for extra considerations.
    */
-  open var contentMarginRight: Double
+  public open var contentMarginRight: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_CONTENT_MARGIN_RIGHT,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_SET_CONTENT_MARGIN_RIGHT,
           NIL)
@@ -95,20 +96,20 @@ open class StyleBox : Resource() {
    *
    * Refer to [contentMarginBottom] for extra considerations.
    */
-  open var contentMarginTop: Double
+  public open var contentMarginTop: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_CONTENT_MARGIN_TOP,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_SET_CONTENT_MARGIN_TOP,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_STYLEBOX)
   }
 
@@ -117,7 +118,7 @@ open class StyleBox : Resource() {
    *
    * You can get a [RID] value using [godot.Object.getInstanceId] on a [godot.CanvasItem]-derived node.
    */
-  open fun draw(canvasItem: RID, rect: Rect2) {
+  public open fun draw(canvasItem: RID, rect: Rect2): Unit {
     TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_DRAW, NIL)
   }
@@ -125,7 +126,7 @@ open class StyleBox : Resource() {
   /**
    * Returns the size of this [godot.StyleBox] without the margins.
    */
-  open fun getCenterSize(): Vector2 {
+  public open fun getCenterSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_CENTER_SIZE, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -134,7 +135,7 @@ open class StyleBox : Resource() {
   /**
    * Returns the [godot.CanvasItem] that handles its [godot.CanvasItem.NOTIFICATION_DRAW] or [godot.CanvasItem.Draw] callback at this moment.
    */
-  open fun getCurrentItemDrawn(): CanvasItem? {
+  public open fun getCurrentItemDrawn(): CanvasItem? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_CURRENT_ITEM_DRAWN,
         OBJECT)
@@ -146,7 +147,7 @@ open class StyleBox : Resource() {
    *
    * Positive values reduce size inwards, unlike [godot.Control]'s margin values.
    */
-  open fun getMargin(margin: Long): Double {
+  public open fun getMargin(margin: Long): Double {
     TransferContext.writeArguments(LONG to margin)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_MARGIN, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -155,7 +156,7 @@ open class StyleBox : Resource() {
   /**
    * Returns the minimum size that this stylebox can be shrunk to.
    */
-  open fun getMinimumSize(): Vector2 {
+  public open fun getMinimumSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_MINIMUM_SIZE, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -164,7 +165,7 @@ open class StyleBox : Resource() {
   /**
    * Returns the "offset" of a stylebox. This helper function returns a value equivalent to `Vector2(style.get_margin(MARGIN_LEFT), style.get_margin(MARGIN_TOP))`.
    */
-  open fun getOffset(): Vector2 {
+  public open fun getOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_OFFSET, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -173,7 +174,7 @@ open class StyleBox : Resource() {
   /**
    * Test a position in a rectangle, return whether it passes the mask test.
    */
-  open fun testMask(point: Vector2, rect: Rect2): Boolean {
+  public open fun testMask(point: Vector2, rect: Rect2): Boolean {
     TransferContext.writeArguments(VECTOR2 to point, RECT2 to rect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_TEST_MASK, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

@@ -5,18 +5,19 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Any
 import kotlin.NotImplementedError
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
-open class VisualScriptSubCall : VisualScriptNode() {
-  override fun __new() {
+public open class VisualScriptSubCall : VisualScriptNode() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSCRIPTSUBCALL)
   }
 
-  open fun _subcall(arguments: Any?): Any? {
+  public open fun _subcall(arguments: Any?): Any? {
     throw NotImplementedError("_subcall is not implemented for VisualScriptSubCall")
   }
 }

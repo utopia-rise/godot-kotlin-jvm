@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.PoolIntArray
 import godot.core.Rect2
@@ -44,22 +44,22 @@ import kotlin.Unit
  * When doing physics queries against the tilemap, the cell coordinates are encoded as `metadata` for each detected collision shape returned by methods such as [godot.Physics2DDirectSpaceState.intersectShape], [godot.Physics2DDirectBodyState.getContactColliderShapeMetadata], etc.
  */
 @GodotBaseType
-open class TileMap : Node2D() {
+public open class TileMap : Node2D() {
   /**
    * Emitted when a tilemap setting has changed.
    */
-  val settingsChanged: Signal0 by signal()
+  public val settingsChanged: Signal0 by signal()
 
   /**
    * If `true`, the cell's UVs will be clipped.
    */
-  open var cellClipUv: Boolean
+  public open var cellClipUv: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_CLIP_UV, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELL_CLIP_UV, NIL)
     }
@@ -67,14 +67,14 @@ open class TileMap : Node2D() {
   /**
    * The custom [godot.core.Transform2D] to be applied to the TileMap's cells.
    */
-  open var cellCustomTransform: Transform2D
+  public open var cellCustomTransform: Transform2D
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_CUSTOM_TRANSFORM,
           TRANSFORM2D)
       return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(TRANSFORM2D to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELL_CUSTOM_TRANSFORM,
           NIL)
@@ -83,14 +83,14 @@ open class TileMap : Node2D() {
   /**
    * Amount to offset alternating tiles. See [enum HalfOffset] for possible values.
    */
-  open var cellHalfOffset: Long
+  public open var cellHalfOffset: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_HALF_OFFSET,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELL_HALF_OFFSET, NIL)
     }
@@ -98,14 +98,14 @@ open class TileMap : Node2D() {
   /**
    * The TileMap's quadrant size. Optimizes drawing by batching, using chunks of this size.
    */
-  open var cellQuadrantSize: Long
+  public open var cellQuadrantSize: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_QUADRANT_SIZE,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELL_QUADRANT_SIZE,
           NIL)
@@ -114,13 +114,13 @@ open class TileMap : Node2D() {
   /**
    * The TileMap's cell size.
    */
-  open var cellSize: Vector2
+  public open var cellSize: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_SIZE, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELL_SIZE, NIL)
     }
@@ -128,14 +128,14 @@ open class TileMap : Node2D() {
   /**
    * Position for tile origin. See [enum TileOrigin] for possible values.
    */
-  open var cellTileOrigin: Long
+  public open var cellTileOrigin: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_TILE_ORIGIN,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELL_TILE_ORIGIN, NIL)
     }
@@ -143,13 +143,13 @@ open class TileMap : Node2D() {
   /**
    * If `true`, the TileMap's direct children will be drawn in order of their Y coordinate.
    */
-  open var cellYSort: Boolean
+  public open var cellYSort: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_Y_SORT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELL_Y_SORT, NIL)
     }
@@ -159,14 +159,14 @@ open class TileMap : Node2D() {
    *
    * If `false`, the texture position start in the top-left corner unless [compatibilityMode] is enabled.
    */
-  open var centeredTextures: Boolean
+  public open var centeredTextures: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CENTERED_TEXTURES,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CENTERED_TEXTURES,
           NIL)
@@ -175,14 +175,14 @@ open class TileMap : Node2D() {
   /**
    * Bounce value for static body collisions (see `collision_use_kinematic`).
    */
-  open var collisionBounce: Double
+  public open var collisionBounce: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_BOUNCE,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COLLISION_BOUNCE, NIL)
     }
@@ -190,14 +190,14 @@ open class TileMap : Node2D() {
   /**
    * Friction value for static body collisions (see `collision_use_kinematic`).
    */
-  open var collisionFriction: Double
+  public open var collisionFriction: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_FRICTION,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COLLISION_FRICTION,
           NIL)
@@ -206,13 +206,13 @@ open class TileMap : Node2D() {
   /**
    * The collision layer(s) for all colliders in the TileMap. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  open var collisionLayer: Long
+  public open var collisionLayer: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_LAYER, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COLLISION_LAYER, NIL)
     }
@@ -220,13 +220,13 @@ open class TileMap : Node2D() {
   /**
    * The collision mask(s) for all colliders in the TileMap. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  open var collisionMask: Long
+  public open var collisionMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_MASK, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COLLISION_MASK, NIL)
     }
@@ -234,14 +234,14 @@ open class TileMap : Node2D() {
   /**
    * If `true`, TileMap collisions will be handled as a kinematic body. If `false`, collisions will be handled as static body.
    */
-  open var collisionUseKinematic: Boolean
+  public open var collisionUseKinematic: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_USE_KINEMATIC, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COLLISION_USE_KINEMATIC, NIL)
@@ -250,14 +250,14 @@ open class TileMap : Node2D() {
   /**
    * If `true`, this tilemap's collision shape will be added to the collision shape of the parent. The parent has to be a [godot.CollisionObject2D].
    */
-  open var collisionUseParent: Boolean
+  public open var collisionUseParent: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_USE_PARENT,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COLLISION_USE_PARENT,
           NIL)
@@ -270,14 +270,14 @@ open class TileMap : Node2D() {
    *
    * The compatibility mode doesn't work with the [centeredTextures] option, because displacing textures with the [cellTileOrigin] option or in irregular tiles is not relevant when centering those textures.
    */
-  open var compatibilityMode: Boolean
+  public open var compatibilityMode: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COMPATIBILITY_MODE,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COMPATIBILITY_MODE,
           NIL)
@@ -286,13 +286,13 @@ open class TileMap : Node2D() {
   /**
    * The TileMap orientation mode. See [enum Mode] for possible values.
    */
-  open var mode: Long
+  public open var mode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_MODE, NIL)
     }
@@ -300,14 +300,14 @@ open class TileMap : Node2D() {
   /**
    * The light mask assigned to all light occluders in the TileMap. The TileSet's light occluders will cast shadows only from Light2D(s) that have the same light mask(s).
    */
-  open var occluderLightMask: Long
+  public open var occluderLightMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_OCCLUDER_LIGHT_MASK,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_OCCLUDER_LIGHT_MASK,
           NIL)
@@ -316,13 +316,13 @@ open class TileMap : Node2D() {
   /**
    * If `true`, collision shapes are shown in the editor and at run-time. Requires **Visible Collision Shapes** to be enabled in the **Debug** menu for collision shapes to be visible at run-time.
    */
-  open var showCollision: Boolean
+  public open var showCollision: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_SHOW_COLLISION, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_SHOW_COLLISION, NIL)
     }
@@ -330,23 +330,23 @@ open class TileMap : Node2D() {
   /**
    * The assigned [godot.TileSet].
    */
-  open var tileSet: TileSet?
+  public open var tileSet: TileSet?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_TILE_SET, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as TileSet?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_TILE_SET, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TILEMAP)
   }
 
   @CoreTypeHelper
-  open fun cellCustomTransform(schedule: Transform2D.() -> Unit): Transform2D =
+  public open fun cellCustomTransform(schedule: Transform2D.() -> Unit): Transform2D =
       cellCustomTransform.apply{
       schedule(this)
       cellCustomTransform = this
@@ -354,39 +354,39 @@ open class TileMap : Node2D() {
 
 
   @CoreTypeHelper
-  open fun cellSize(schedule: Vector2.() -> Unit): Vector2 = cellSize.apply{
+  public open fun cellSize(schedule: Vector2.() -> Unit): Vector2 = cellSize.apply{
       schedule(this)
       cellSize = this
   }
 
 
-  open fun _clearQuadrants() {
+  public open fun _clearQuadrants(): Unit {
   }
 
-  open fun _getOldCellSize(): Long {
+  public open fun _getOldCellSize(): Long {
     throw NotImplementedError("_get_old_cell_size is not implemented for TileMap")
   }
 
-  open fun _getTileData(): PoolIntArray {
+  public open fun _getTileData(): PoolIntArray {
     throw NotImplementedError("_get_tile_data is not implemented for TileMap")
   }
 
-  open fun _recreateQuadrants() {
+  public open fun _recreateQuadrants(): Unit {
   }
 
-  open fun _setCelld(position: Vector2, data: Dictionary<Any?, Any?>) {
+  public open fun _setCelld(position: Vector2, `data`: Dictionary<Any?, Any?>): Unit {
   }
 
-  open fun _setOldCellSize(size: Long) {
+  public open fun _setOldCellSize(size: Long): Unit {
   }
 
-  open fun _setTileData(arg0: PoolIntArray) {
+  public open fun _setTileData(arg0: PoolIntArray): Unit {
   }
 
   /**
    * Clears all cells.
    */
-  open fun clear() {
+  public open fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_CLEAR, NIL)
   }
@@ -394,7 +394,7 @@ open class TileMap : Node2D() {
   /**
    * Clears cells that do not exist in the tileset.
    */
-  open fun fixInvalidTiles() {
+  public open fun fixInvalidTiles(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_FIX_INVALID_TILES, NIL)
   }
@@ -402,7 +402,7 @@ open class TileMap : Node2D() {
   /**
    * Returns the tile index of the given cell. If no tile exists in the cell, returns [INVALID_CELL].
    */
-  open fun getCell(x: Long, y: Long): Long {
+  public open fun getCell(x: Long, y: Long): Long {
     TransferContext.writeArguments(LONG to x, LONG to y)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -411,7 +411,7 @@ open class TileMap : Node2D() {
   /**
    * Returns the coordinate (subtile column and row) of the autotile variation in the tileset. Returns a zero vector if the cell doesn't have autotiling.
    */
-  open fun getCellAutotileCoord(x: Long, y: Long): Vector2 {
+  public open fun getCellAutotileCoord(x: Long, y: Long): Vector2 {
     TransferContext.writeArguments(LONG to x, LONG to y)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_AUTOTILE_COORD,
         VECTOR2)
@@ -421,7 +421,7 @@ open class TileMap : Node2D() {
   /**
    * Returns the tile index of the cell given by a Vector2. If no tile exists in the cell, returns [INVALID_CELL].
    */
-  open fun getCellv(position: Vector2): Long {
+  public open fun getCellv(position: Vector2): Long {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELLV, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -430,7 +430,7 @@ open class TileMap : Node2D() {
   /**
    * Returns `true` if the given collision layer bit is set.
    */
-  open fun getCollisionLayerBit(bit: Long): Boolean {
+  public open fun getCollisionLayerBit(bit: Long): Boolean {
     TransferContext.writeArguments(LONG to bit)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_LAYER_BIT,
         BOOL)
@@ -440,7 +440,7 @@ open class TileMap : Node2D() {
   /**
    * Returns `true` if the given collision mask bit is set.
    */
-  open fun getCollisionMaskBit(bit: Long): Boolean {
+  public open fun getCollisionMaskBit(bit: Long): Boolean {
     TransferContext.writeArguments(LONG to bit)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_MASK_BIT,
         BOOL)
@@ -450,7 +450,7 @@ open class TileMap : Node2D() {
   /**
    * Returns a [godot.core.Vector2] array with the positions of all cells containing a tile from the tileset (i.e. a tile index different from `-1`).
    */
-  open fun getUsedCells(): VariantArray<Any?> {
+  public open fun getUsedCells(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_USED_CELLS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -459,7 +459,7 @@ open class TileMap : Node2D() {
   /**
    * Returns an array of all cells with the given tile index specified in `id`.
    */
-  open fun getUsedCellsById(id: Long): VariantArray<Any?> {
+  public open fun getUsedCellsById(id: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_USED_CELLS_BY_ID, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -468,7 +468,7 @@ open class TileMap : Node2D() {
   /**
    * Returns a rectangle enclosing the used (non-empty) tiles of the map.
    */
-  open fun getUsedRect(): Rect2 {
+  public open fun getUsedRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_USED_RECT, RECT2)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
@@ -477,7 +477,7 @@ open class TileMap : Node2D() {
   /**
    * Returns `true` if the given cell is transposed, i.e. the X and Y axes are swapped.
    */
-  open fun isCellTransposed(x: Long, y: Long): Boolean {
+  public open fun isCellTransposed(x: Long, y: Long): Boolean {
     TransferContext.writeArguments(LONG to x, LONG to y)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_IS_CELL_TRANSPOSED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -486,7 +486,7 @@ open class TileMap : Node2D() {
   /**
    * Returns `true` if the given cell is flipped in the X axis.
    */
-  open fun isCellXFlipped(x: Long, y: Long): Boolean {
+  public open fun isCellXFlipped(x: Long, y: Long): Boolean {
     TransferContext.writeArguments(LONG to x, LONG to y)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_IS_CELL_X_FLIPPED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -495,7 +495,7 @@ open class TileMap : Node2D() {
   /**
    * Returns `true` if the given cell is flipped in the Y axis.
    */
-  open fun isCellYFlipped(x: Long, y: Long): Boolean {
+  public open fun isCellYFlipped(x: Long, y: Long): Boolean {
     TransferContext.writeArguments(LONG to x, LONG to y)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_IS_CELL_Y_FLIPPED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -513,7 +513,7 @@ open class TileMap : Node2D() {
    *
    * Optionally, the tilemap's half offset can be ignored.
    */
-  open fun mapToWorld(mapPosition: Vector2, ignoreHalfOfs: Boolean = false): Vector2 {
+  public open fun mapToWorld(mapPosition: Vector2, ignoreHalfOfs: Boolean = false): Vector2 {
     TransferContext.writeArguments(VECTOR2 to mapPosition, BOOL to ignoreHalfOfs)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_MAP_TO_WORLD, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -539,7 +539,7 @@ open class TileMap : Node2D() {
    * 				    .set_cell(x, y, tile, flip_x, flip_y, transpose, autotile_coord)
    * 				```
    */
-  open fun setCell(
+  public open fun setCell(
     x: Long,
     y: Long,
     tile: Long,
@@ -547,7 +547,7 @@ open class TileMap : Node2D() {
     flipY: Boolean = false,
     transpose: Boolean = false,
     autotileCoord: Vector2 = Vector2(0.0, 0.0)
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to x, LONG to y, LONG to tile, BOOL to flipX, BOOL to flipY,
         BOOL to transpose, VECTOR2 to autotileCoord)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELL, NIL)
@@ -564,13 +564,13 @@ open class TileMap : Node2D() {
    *
    * If you need these to be immediately updated, you can call [updateDirtyQuadrants].
    */
-  open fun setCellv(
+  public open fun setCellv(
     position: Vector2,
     tile: Long,
     flipX: Boolean = false,
     flipY: Boolean = false,
     transpose: Boolean = false
-  ) {
+  ): Unit {
     TransferContext.writeArguments(VECTOR2 to position, LONG to tile, BOOL to flipX, BOOL to flipY,
         BOOL to transpose)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELLV, NIL)
@@ -579,7 +579,7 @@ open class TileMap : Node2D() {
   /**
    * Sets the given collision layer bit.
    */
-  open fun setCollisionLayerBit(bit: Long, value: Boolean) {
+  public open fun setCollisionLayerBit(bit: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to bit, BOOL to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COLLISION_LAYER_BIT,
         NIL)
@@ -588,7 +588,7 @@ open class TileMap : Node2D() {
   /**
    * Sets the given collision mask bit.
    */
-  open fun setCollisionMaskBit(bit: Long, value: Boolean) {
+  public open fun setCollisionMaskBit(bit: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to bit, BOOL to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COLLISION_MASK_BIT, NIL)
   }
@@ -596,7 +596,7 @@ open class TileMap : Node2D() {
   /**
    * Applies autotiling rules to the cell (and its adjacent cells) referenced by its grid-based X and Y coordinates.
    */
-  open fun updateBitmaskArea(position: Vector2) {
+  public open fun updateBitmaskArea(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_UPDATE_BITMASK_AREA, NIL)
   }
@@ -606,8 +606,8 @@ open class TileMap : Node2D() {
    *
    * Calling with invalid (or missing) parameters applies autotiling rules for the entire tilemap.
    */
-  open fun updateBitmaskRegion(start: Vector2 = Vector2(0.0, 0.0), end: Vector2 = Vector2(0.0,
-      0.0)) {
+  public open fun updateBitmaskRegion(start: Vector2 = Vector2(0.0, 0.0), end: Vector2 =
+      Vector2(0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR2 to start, VECTOR2 to end)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_UPDATE_BITMASK_REGION, NIL)
   }
@@ -615,7 +615,7 @@ open class TileMap : Node2D() {
   /**
    * Updates the tile map's quadrants, allowing things such as navigation and collision shapes to be immediately used if modified.
    */
-  open fun updateDirtyQuadrants() {
+  public open fun updateDirtyQuadrants(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_UPDATE_DIRTY_QUADRANTS, NIL)
   }
@@ -630,165 +630,160 @@ open class TileMap : Node2D() {
    * 				var map_position = my_tilemap.world_to_map(local_position)
    * 				```
    */
-  open fun worldToMap(worldPosition: Vector2): Vector2 {
+  public open fun worldToMap(worldPosition: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to worldPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_WORLD_TO_MAP, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
-  enum class Mode(
+  public enum class Mode(
     id: Long
   ) {
     /**
      * Orthogonal orientation mode.
      */
     MODE_SQUARE(0),
-
     /**
      * Isometric orientation mode.
      */
     MODE_ISOMETRIC(1),
-
     /**
      * Custom orientation mode.
      */
-    MODE_CUSTOM(2);
+    MODE_CUSTOM(2),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class TileOrigin(
+  public enum class TileOrigin(
     id: Long
   ) {
     /**
      * Tile origin at its top-left corner.
      */
     TILE_ORIGIN_TOP_LEFT(0),
-
     /**
      * Tile origin at its center.
      */
     TILE_ORIGIN_CENTER(1),
-
     /**
      * Tile origin at its bottom-left corner.
      */
-    TILE_ORIGIN_BOTTOM_LEFT(2);
+    TILE_ORIGIN_BOTTOM_LEFT(2),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class HalfOffset(
+  public enum class HalfOffset(
     id: Long
   ) {
     /**
      * Half offset on the X coordinate.
      */
     HALF_OFFSET_X(0),
-
     /**
      * Half offset on the Y coordinate.
      */
     HALF_OFFSET_Y(1),
-
     /**
      * Half offset disabled.
      */
     HALF_OFFSET_DISABLED(2),
-
     /**
      * Half offset on the X coordinate (negative).
      */
     HALF_OFFSET_NEGATIVE_X(3),
-
     /**
      * Half offset on the Y coordinate (negative).
      */
-    HALF_OFFSET_NEGATIVE_Y(4);
+    HALF_OFFSET_NEGATIVE_Y(4),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Half offset disabled.
      */
-    final const val HALF_OFFSET_DISABLED: Long = 2
+    public final const val HALF_OFFSET_DISABLED: Long = 2
 
     /**
      * Half offset on the X coordinate (negative).
      */
-    final const val HALF_OFFSET_NEGATIVE_X: Long = 3
+    public final const val HALF_OFFSET_NEGATIVE_X: Long = 3
 
     /**
      * Half offset on the Y coordinate (negative).
      */
-    final const val HALF_OFFSET_NEGATIVE_Y: Long = 4
+    public final const val HALF_OFFSET_NEGATIVE_Y: Long = 4
 
     /**
      * Half offset on the X coordinate.
      */
-    final const val HALF_OFFSET_X: Long = 0
+    public final const val HALF_OFFSET_X: Long = 0
 
     /**
      * Half offset on the Y coordinate.
      */
-    final const val HALF_OFFSET_Y: Long = 1
+    public final const val HALF_OFFSET_Y: Long = 1
 
     /**
      * Returned when a cell doesn't exist.
      */
-    final const val INVALID_CELL: Long = -1
+    public final const val INVALID_CELL: Long = -1
 
     /**
      * Custom orientation mode.
      */
-    final const val MODE_CUSTOM: Long = 2
+    public final const val MODE_CUSTOM: Long = 2
 
     /**
      * Isometric orientation mode.
      */
-    final const val MODE_ISOMETRIC: Long = 1
+    public final const val MODE_ISOMETRIC: Long = 1
 
     /**
      * Orthogonal orientation mode.
      */
-    final const val MODE_SQUARE: Long = 0
+    public final const val MODE_SQUARE: Long = 0
 
     /**
      * Tile origin at its bottom-left corner.
      */
-    final const val TILE_ORIGIN_BOTTOM_LEFT: Long = 2
+    public final const val TILE_ORIGIN_BOTTOM_LEFT: Long = 2
 
     /**
      * Tile origin at its center.
      */
-    final const val TILE_ORIGIN_CENTER: Long = 1
+    public final const val TILE_ORIGIN_CENTER: Long = 1
 
     /**
      * Tile origin at its top-left corner.
      */
-    final const val TILE_ORIGIN_TOP_LEFT: Long = 0
+    public final const val TILE_ORIGIN_TOP_LEFT: Long = 0
   }
 }

@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A time-scaling animation node to be used with [godot.AnimationTree].
@@ -17,8 +18,8 @@ import kotlin.Suppress
  * Allows scaling the speed of the animation (or reversing it) in any children nodes. Setting it to 0 will pause the animation.
  */
 @GodotBaseType
-open class AnimationNodeTimeScale : AnimationNode() {
-  override fun __new() {
+public open class AnimationNodeTimeScale : AnimationNode() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODETIMESCALE)
   }
 }

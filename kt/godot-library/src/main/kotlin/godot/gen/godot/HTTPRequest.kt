@@ -6,7 +6,7 @@
 package godot
 
 import godot.HTTPClient
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PoolByteArray
 import godot.core.PoolStringArray
@@ -24,6 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A node with the ability to send HTTP(S) requests.
@@ -103,24 +104,24 @@ import kotlin.Suppress
  * **Note:** SSL/TLS support is currently limited to TLS 1.0, TLS 1.1, and TLS 1.2. Attempting to connect to a TLS 1.3-only server will return an error.
  */
 @GodotBaseType
-open class HTTPRequest : Node() {
+public open class HTTPRequest : Node() {
   /**
    * Emitted when a request is completed.
    */
-  val requestCompleted: Signal4<Long, Long, PoolStringArray, PoolByteArray> by signal("result",
-      "response_code", "headers", "body")
+  public val requestCompleted: Signal4<Long, Long, PoolStringArray, PoolByteArray> by
+      signal("result", "response_code", "headers", "body")
 
   /**
    * Maximum allowed size for response bodies.
    */
-  open var bodySizeLimit: Long
+  public open var bodySizeLimit: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_BODY_SIZE_LIMIT,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_BODY_SIZE_LIMIT,
           NIL)
@@ -131,14 +132,14 @@ open class HTTPRequest : Node() {
    *
    * Set this to a lower value (e.g. 4096 for 4 KiB) when downloading small files to decrease memory usage at the cost of download speeds.
    */
-  open var downloadChunkSize: Long
+  public open var downloadChunkSize: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_DOWNLOAD_CHUNK_SIZE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_DOWNLOAD_CHUNK_SIZE, NIL)
@@ -147,14 +148,14 @@ open class HTTPRequest : Node() {
   /**
    * The file to download into. Will output any received file into it.
    */
-  open var downloadFile: String
+  public open var downloadFile: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_DOWNLOAD_FILE,
           STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_DOWNLOAD_FILE,
           NIL)
@@ -163,14 +164,14 @@ open class HTTPRequest : Node() {
   /**
    * Maximum number of allowed redirects.
    */
-  open var maxRedirects: Long
+  public open var maxRedirects: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_MAX_REDIRECTS,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_MAX_REDIRECTS,
           NIL)
@@ -179,13 +180,13 @@ open class HTTPRequest : Node() {
   /**
    *
    */
-  open var timeout: Long
+  public open var timeout: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_TIMEOUT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_TIMEOUT, NIL)
     }
@@ -193,39 +194,39 @@ open class HTTPRequest : Node() {
   /**
    * If `true`, multithreading is used to improve performance.
    */
-  open var useThreads: Boolean
+  public open var useThreads: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_USE_THREADS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_USE_THREADS, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_HTTPREQUEST)
   }
 
-  open fun _redirectRequest(arg0: String) {
+  public open fun _redirectRequest(arg0: String): Unit {
   }
 
-  open fun _requestDone(
+  public open fun _requestDone(
     arg0: Long,
     arg1: Long,
     arg2: PoolStringArray,
     arg3: PoolByteArray
-  ) {
+  ): Unit {
   }
 
-  open fun _timeout() {
+  public open fun _timeout(): Unit {
   }
 
   /**
    * Cancels the current request.
    */
-  open fun cancelRequest() {
+  public open fun cancelRequest(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_CANCEL_REQUEST, NIL)
   }
@@ -235,7 +236,7 @@ open class HTTPRequest : Node() {
    *
    * **Note:** Some Web servers may not send a body length. In this case, the value returned will be `-1`. If using chunked transfer encoding, the body length will also be `-1`.
    */
-  open fun getBodySize(): Long {
+  public open fun getBodySize(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_BODY_SIZE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -244,7 +245,7 @@ open class HTTPRequest : Node() {
   /**
    * Returns the amount of bytes this HTTPRequest downloaded.
    */
-  open fun getDownloadedBytes(): Long {
+  public open fun getDownloadedBytes(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_DOWNLOADED_BYTES,
         LONG)
@@ -254,7 +255,7 @@ open class HTTPRequest : Node() {
   /**
    * Returns the current status of the underlying [godot.HTTPClient]. See [enum HTTPClient.Status].
    */
-  open fun getHttpClientStatus(): HTTPClient.Status {
+  public open fun getHttpClientStatus(): HTTPClient.Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_HTTP_CLIENT_STATUS,
         LONG)
@@ -268,7 +269,7 @@ open class HTTPRequest : Node() {
    *
    * **Note:** The `request_data` parameter is ignored if `method` is [godot.HTTPClient.METHOD_GET]. This is because GET methods can't contain request data. As a workaround, you can pass request data as a query string in the URL. See [godot.String.httpEscape] for an example.
    */
-  open fun request(
+  public open fun request(
     url: String,
     customHeaders: PoolStringArray = PoolStringArray(),
     sslValidateDomain: Boolean = true,
@@ -281,148 +282,137 @@ open class HTTPRequest : Node() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  enum class Result(
+  public enum class Result(
     id: Long
   ) {
     /**
      * Request successful.
      */
     RESULT_SUCCESS(0),
-
     /**
      *
      */
     RESULT_CHUNKED_BODY_SIZE_MISMATCH(1),
-
     /**
      * Request failed while connecting.
      */
     RESULT_CANT_CONNECT(2),
-
     /**
      * Request failed while resolving.
      */
     RESULT_CANT_RESOLVE(3),
-
     /**
      * Request failed due to connection (read/write) error.
      */
     RESULT_CONNECTION_ERROR(4),
-
     /**
      * Request failed on SSL handshake.
      */
     RESULT_SSL_HANDSHAKE_ERROR(5),
-
     /**
      * Request does not have a response (yet).
      */
     RESULT_NO_RESPONSE(6),
-
     /**
      * Request exceeded its maximum size limit, see [bodySizeLimit].
      */
     RESULT_BODY_SIZE_LIMIT_EXCEEDED(7),
-
     /**
      * Request failed (currently unused).
      */
     RESULT_REQUEST_FAILED(8),
-
     /**
      * HTTPRequest couldn't open the download file.
      */
     RESULT_DOWNLOAD_FILE_CANT_OPEN(9),
-
     /**
      * HTTPRequest couldn't write to the download file.
      */
     RESULT_DOWNLOAD_FILE_WRITE_ERROR(10),
-
     /**
      * Request reached its maximum redirect limit, see [maxRedirects].
      */
     RESULT_REDIRECT_LIMIT_REACHED(11),
-
     /**
      *
      */
-    RESULT_TIMEOUT(12);
+    RESULT_TIMEOUT(12),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Request exceeded its maximum size limit, see [bodySizeLimit].
      */
-    final const val RESULT_BODY_SIZE_LIMIT_EXCEEDED: Long = 7
+    public final const val RESULT_BODY_SIZE_LIMIT_EXCEEDED: Long = 7
 
     /**
      * Request failed while connecting.
      */
-    final const val RESULT_CANT_CONNECT: Long = 2
+    public final const val RESULT_CANT_CONNECT: Long = 2
 
     /**
      * Request failed while resolving.
      */
-    final const val RESULT_CANT_RESOLVE: Long = 3
+    public final const val RESULT_CANT_RESOLVE: Long = 3
 
     /**
      *
      */
-    final const val RESULT_CHUNKED_BODY_SIZE_MISMATCH: Long = 1
+    public final const val RESULT_CHUNKED_BODY_SIZE_MISMATCH: Long = 1
 
     /**
      * Request failed due to connection (read/write) error.
      */
-    final const val RESULT_CONNECTION_ERROR: Long = 4
+    public final const val RESULT_CONNECTION_ERROR: Long = 4
 
     /**
      * HTTPRequest couldn't open the download file.
      */
-    final const val RESULT_DOWNLOAD_FILE_CANT_OPEN: Long = 9
+    public final const val RESULT_DOWNLOAD_FILE_CANT_OPEN: Long = 9
 
     /**
      * HTTPRequest couldn't write to the download file.
      */
-    final const val RESULT_DOWNLOAD_FILE_WRITE_ERROR: Long = 10
+    public final const val RESULT_DOWNLOAD_FILE_WRITE_ERROR: Long = 10
 
     /**
      * Request does not have a response (yet).
      */
-    final const val RESULT_NO_RESPONSE: Long = 6
+    public final const val RESULT_NO_RESPONSE: Long = 6
 
     /**
      * Request reached its maximum redirect limit, see [maxRedirects].
      */
-    final const val RESULT_REDIRECT_LIMIT_REACHED: Long = 11
+    public final const val RESULT_REDIRECT_LIMIT_REACHED: Long = 11
 
     /**
      * Request failed (currently unused).
      */
-    final const val RESULT_REQUEST_FAILED: Long = 8
+    public final const val RESULT_REQUEST_FAILED: Long = 8
 
     /**
      * Request failed on SSL handshake.
      */
-    final const val RESULT_SSL_HANDSHAKE_ERROR: Long = 5
+    public final const val RESULT_SSL_HANDSHAKE_ERROR: Long = 5
 
     /**
      * Request successful.
      */
-    final const val RESULT_SUCCESS: Long = 0
+    public final const val RESULT_SUCCESS: Long = 0
 
     /**
      *
      */
-    final const val RESULT_TIMEOUT: Long = 12
+    public final const val RESULT_TIMEOUT: Long = 12
   }
 }

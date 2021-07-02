@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
@@ -13,6 +13,7 @@ import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Double
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Base class for scroll bars.
@@ -20,36 +21,36 @@ import kotlin.Suppress
  * Scrollbars are a [godot.Range]-based [godot.Control], that display a draggable area (the size of the page). Horizontal ([godot.HScrollBar]) and Vertical ([godot.VScrollBar]) versions are available.
  */
 @GodotBaseType
-open class ScrollBar : Range() {
+public open class ScrollBar : Range() {
   /**
    * Emitted when the scrollbar is being scrolled.
    */
-  val scrolling: Signal0 by signal()
+  public val scrolling: Signal0 by signal()
 
   /**
    * Overrides the step used when clicking increment and decrement buttons or when using arrow keys when the [godot.ScrollBar] is focused.
    */
-  open var customStep: Double
+  public open var customStep: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLBAR_GET_CUSTOM_STEP, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLBAR_SET_CUSTOM_STEP, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SCROLLBAR)
   }
 
-  open fun _dragNodeExit() {
+  public open fun _dragNodeExit(): Unit {
   }
 
-  open fun _dragNodeInput(arg0: InputEvent) {
+  public open fun _dragNodeInput(arg0: InputEvent): Unit {
   }
 
-  override fun _guiInput(event: InputEvent) {
+  public override fun _guiInput(event: InputEvent): Unit {
   }
 }

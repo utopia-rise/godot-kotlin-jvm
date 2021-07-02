@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Vertical scroll bar.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Vertical version of [godot.ScrollBar], which goes from top (min) to bottom (max).
  */
 @GodotBaseType
-open class VScrollBar : ScrollBar() {
-  override fun __new() {
+public open class VScrollBar : ScrollBar() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VSCROLLBAR)
   }
 }

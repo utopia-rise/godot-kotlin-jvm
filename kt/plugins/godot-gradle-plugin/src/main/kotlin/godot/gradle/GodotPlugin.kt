@@ -1,37 +1,83 @@
 package godot.gradle
 
 import com.github.jengelman.gradle.plugins.shadow.ShadowPlugin
-import godot.gradle.util.absolutePathFixedForWindows
-import godot.kotlincompilerplugin.common.CompilerPluginConst
-import godot.utils.GodotBuildProperties
+import com.google.devtools.ksp.gradle.KspExtension
+import com.google.devtools.ksp.gradle.KspGradleSubplugin
+import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.provider.Provider
-import org.gradle.kotlin.dsl.apply
-import org.gradle.kotlin.dsl.findByType
-import org.gradle.kotlin.dsl.getByType
+import org.gradle.plugins.ide.idea.IdeaPlugin
+import org.gradle.plugins.ide.idea.model.IdeaModel
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
-import org.jetbrains.kotlin.gradle.plugin.KotlinCompilation
-import org.jetbrains.kotlin.gradle.plugin.KotlinCompilerPluginSupportPlugin
-import org.jetbrains.kotlin.gradle.plugin.SubpluginArtifact
-import org.jetbrains.kotlin.gradle.plugin.SubpluginOption
 import java.io.File
 
 
-class GodotPlugin : KotlinCompilerPluginSupportPlugin {
+class GodotPlugin : Plugin<Project> {
     override fun apply(target: Project) {
+        //apply needed third party plugins
+        target.repositories.google() //add google repository for ksp (kotlin symbol processing
+        target.pluginManager.apply(KspGradleSubplugin::class.java)
+        target.pluginManager.apply(IdeaPlugin::class.java) //needed so idea can find and index the generated sources from ksp
+        target.pluginManager.apply(ShadowPlugin::class.java)
+
         val godotExtension = target.extensions.create("godot", GodotExtension::class.java)
-        val jvm = target
+        val kotlinJvmExtension = target
             .extensions
-            .findByType<KotlinJvmProjectExtension>()
-            ?: target.rootProject.extensions.getByType()
-        target.pluginManager.apply(ShadowPlugin::class)
-        setupPlugin(target, godotExtension, jvm)
+            .findByType(KotlinJvmProjectExtension::class.java)
+            ?: target.rootProject.extensions.getByType(KotlinJvmProjectExtension::class.java)
+        val kspExtension = requireNotNull(
+            target
+                .extensions
+                .findByType(KspExtension::class.java)
+        ) {
+            "kspExtension not found"
+        }
+        val ideaExtension = requireNotNull(
+            target
+                .extensions
+                .findByType(IdeaModel::class.java)
+        ) {
+            "idea extension not found"
+        }
+
+        configureExtensionDefaults(godotExtension)
+        configureThirdPartyPlugins(target, kotlinJvmExtension, kspExtension, ideaExtension)
+        target.setupConfigurationsAndCompilations(godotExtension, kotlinJvmExtension)
     }
 
-    private fun setupPlugin(project: Project, godotExtension: GodotExtension, jvm: KotlinJvmProjectExtension) {
-        configureExtensionDefaults(godotExtension)
+    private fun configureThirdPartyPlugins(
+        project: Project,
+        kotlinJvmExtension: KotlinJvmProjectExtension,
+        kspExtension: KspExtension,
+        ideaExtension: IdeaModel
+    ) {
+        kotlinJvmExtension
+            .sourceSets
+            .getByName("main")
+            .kotlin
+            .srcDirs(project.buildDir.resolve("generated/ksp/main/kotlin/"))
+
         project.afterEvaluate {
-            project.setupConfigurationsAndCompilations(godotExtension, jvm)
+            kspExtension.apply {
+                arg(
+                    "srcDirs",
+                    kotlinJvmExtension
+                        .sourceSets
+                        .getByName("main")
+                        .kotlin
+                        .srcDirs
+                        .joinToString(File.pathSeparator) { it.absolutePath.replace(File.separator, "/") }
+                )
+                arg(
+                    "projectBasePath",
+                    project.projectDir.absolutePath.replace(File.separator, "/")
+                )
+            }
+
+            ideaExtension.apply {
+                module { ideaModule ->
+                    ideaModule.generatedSourceDirs.add(project.buildDir.resolve("generated/ksp/main/kotlin/"))
+                }
+            }
         }
     }
 
@@ -41,53 +87,4 @@ class GodotPlugin : KotlinCompilerPluginSupportPlugin {
             dxToolPath.set("dx") //default assumes that it's in $PATH
         }
     }
-
-    //START: Compiler plugin configuration
-    override fun applyToCompilation(kotlinCompilation: KotlinCompilation<*>): Provider<List<SubpluginOption>> {
-        val project = kotlinCompilation.target.project
-
-        val srcDirs = kotlinCompilation
-            .allKotlinSourceSets
-            .flatMap { it.kotlin.srcDirs }
-            .map { it.absolutePathFixedForWindows }
-
-        return project.provider {
-            listOf(
-                SubpluginOption(
-                    CompilerPluginConst.CommandLineOptionNames.enabledOption,
-                    (kotlinCompilation.name == "main").toString() //only apply the plugin to the main compilation.
-                ),
-                SubpluginOption(
-                    CompilerPluginConst.CommandLineOptionNames.serviceFileDirPathOption,
-                    File(project.projectDir, "/src/main/resources/META-INF/services/").apply {
-                        mkdirs()
-                    }.absolutePath
-                ),
-                SubpluginOption(
-                    CompilerPluginConst.CommandLineOptionNames.sourcesDirPathOption,
-                    srcDirs.joinToString(File.pathSeparator)
-                ),
-                SubpluginOption(
-                    CompilerPluginConst.CommandLineOptionNames.projectDirPathOption,
-                    project.projectDir.absolutePath
-                ),
-                SubpluginOption(
-                    CompilerPluginConst.CommandLineOptionNames.entryDirPathOption,
-                    project.buildDir.resolve("godot-entry").absolutePath
-                )
-            )
-        }
-    }
-
-    override fun getCompilerPluginId(): String = CompilerPluginConst.compilerPluginId
-
-    override fun isApplicable(kotlinCompilation: KotlinCompilation<*>): Boolean =
-        kotlinCompilation.target.project.plugins.findPlugin(GodotPlugin::class.java) != null
-
-    override fun getPluginArtifact(): SubpluginArtifact = SubpluginArtifact(
-        groupId = CompilerPluginConst.compilerPluginGroupId,
-        artifactId = CompilerPluginConst.compilerPluginArtifactId,
-        version = GodotBuildProperties.godotKotlinVersion
-    )
-    //END: Compiler plugin configuration
 }

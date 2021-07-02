@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -16,6 +16,7 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Numerical input text field.
@@ -39,17 +40,17 @@ import kotlin.Suppress
  * **Note:** [godot.SpinBox] relies on an underlying [godot.LineEdit] node. To theme a [godot.SpinBox]'s background, add theme items for [godot.LineEdit] and customize them.
  */
 @GodotBaseType
-open class SpinBox : Range() {
+public open class SpinBox : Range() {
   /**
    * Sets the text alignment of the [godot.SpinBox].
    */
-  open var align: Long
+  public open var align: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_ALIGN, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_ALIGN, NIL)
     }
@@ -57,13 +58,13 @@ open class SpinBox : Range() {
   /**
    * If `true`, the [godot.SpinBox] will be editable. Otherwise, it will be read only.
    */
-  open var editable: Boolean
+  public open var editable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_EDITABLE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_EDITABLE, NIL)
     }
@@ -71,13 +72,13 @@ open class SpinBox : Range() {
   /**
    * Adds the specified `prefix` string before the numerical value of the [godot.SpinBox].
    */
-  open var prefix: String
+  public open var prefix: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_PREFIX, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_PREFIX, NIL)
     }
@@ -85,40 +86,40 @@ open class SpinBox : Range() {
   /**
    * Adds the specified `suffix` string after the numerical value of the [godot.SpinBox].
    */
-  open var suffix: String
+  public open var suffix: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_SUFFIX, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_SET_SUFFIX, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SPINBOX)
   }
 
-  override fun _guiInput(event: InputEvent) {
+  public override fun _guiInput(event: InputEvent): Unit {
   }
 
-  open fun _lineEditFocusExit() {
+  public open fun _lineEditFocusExit(): Unit {
   }
 
-  open fun _lineEditInput(arg0: InputEvent) {
+  public open fun _lineEditInput(arg0: InputEvent): Unit {
   }
 
-  open fun _rangeClickTimeout() {
+  public open fun _rangeClickTimeout(): Unit {
   }
 
-  open fun _textEntered(arg0: String) {
+  public open fun _textEntered(arg0: String): Unit {
   }
 
   /**
    * Applies the current value of this [godot.SpinBox].
    */
-  open fun apply() {
+  public open fun apply(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_APPLY, NIL)
   }
@@ -126,7 +127,7 @@ open class SpinBox : Range() {
   /**
    * Returns the [godot.LineEdit] instance from this [godot.SpinBox]. You can use it to access properties and methods of [godot.LineEdit].
    */
-  open fun getLineEdit(): LineEdit? {
+  public open fun getLineEdit(): LineEdit? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPINBOX_GET_LINE_EDIT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as LineEdit?

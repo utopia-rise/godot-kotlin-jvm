@@ -5,12 +5,13 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Custom generator of previews.
@@ -18,8 +19,8 @@ import kotlin.Suppress
  * Custom code to generate previews. Please check `file_dialog/thumbnail_size` in [godot.EditorSettings] to find out the right size to do previews at.
  */
 @GodotBaseType
-open class EditorResourcePreviewGenerator : Reference() {
-  override fun __new() {
+public open class EditorResourcePreviewGenerator : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORRESOURCEPREVIEWGENERATOR)
   }
 
@@ -28,7 +29,7 @@ open class EditorResourcePreviewGenerator : Reference() {
    *
    * By default, it returns `false`.
    */
-  open fun _canGenerateSmallPreview(): Boolean {
+  public open fun _canGenerateSmallPreview(): Boolean {
     throw
         NotImplementedError("can_generate_small_preview is not implemented for EditorResourcePreviewGenerator")
   }
@@ -40,7 +41,7 @@ open class EditorResourcePreviewGenerator : Reference() {
    *
    * Care must be taken because this function is always called from a thread (not the main thread).
    */
-  open fun _generate(from: Resource, size: Vector2): Texture? {
+  public open fun _generate(from: Resource, size: Vector2): Texture? {
     throw NotImplementedError("generate is not implemented for EditorResourcePreviewGenerator")
   }
 
@@ -51,7 +52,7 @@ open class EditorResourcePreviewGenerator : Reference() {
    *
    * Care must be taken because this function is always called from a thread (not the main thread).
    */
-  open fun _generateFromPath(path: String, size: Vector2): Texture? {
+  public open fun _generateFromPath(path: String, size: Vector2): Texture? {
     throw
         NotImplementedError("generate_from_path is not implemented for EditorResourcePreviewGenerator")
   }
@@ -61,7 +62,7 @@ open class EditorResourcePreviewGenerator : Reference() {
    *
    * By default, it returns `false`.
    */
-  open fun _generateSmallPreviewAutomatically(): Boolean {
+  public open fun _generateSmallPreviewAutomatically(): Boolean {
     throw
         NotImplementedError("generate_small_preview_automatically is not implemented for EditorResourcePreviewGenerator")
   }
@@ -69,7 +70,7 @@ open class EditorResourcePreviewGenerator : Reference() {
   /**
    * Returns `true` if your generator supports the resource of type `type`.
    */
-  open fun _handles(type: String): Boolean {
+  public open fun _handles(type: String): Boolean {
     throw NotImplementedError("handles is not implemented for EditorResourcePreviewGenerator")
   }
 }

@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.Transform
 import godot.core.VariantType.BOOL
@@ -20,6 +20,7 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Kinematic body 3D node.
@@ -34,15 +35,15 @@ import kotlin.Suppress
  * **Kinematic characters:** KinematicBody also has an API for moving objects (the [moveAndCollide] and [moveAndSlide] methods) while performing collision tests. This makes them really useful to implement characters that collide against a world, but don't require advanced physics.
  */
 @GodotBaseType
-open class KinematicBody : PhysicsBody() {
-  open var collision_safeMargin: Double
+public open class KinematicBody : PhysicsBody() {
+  public open var collision_safeMargin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_GET_COLLISION_SAFE_MARGIN, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_SET_COLLISION_SAFE_MARGIN, NIL)
@@ -51,14 +52,14 @@ open class KinematicBody : PhysicsBody() {
   /**
    * Lock the body's X axis movement.
    */
-  open var moveLockX: Boolean
+  public open var moveLockX: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_GET_MOVE_LOCK_X,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_SET_MOVE_LOCK_X,
           NIL)
@@ -67,14 +68,14 @@ open class KinematicBody : PhysicsBody() {
   /**
    * Lock the body's Y axis movement.
    */
-  open var moveLockY: Boolean
+  public open var moveLockY: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_GET_MOVE_LOCK_Y,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_SET_MOVE_LOCK_Y,
           NIL)
@@ -83,27 +84,27 @@ open class KinematicBody : PhysicsBody() {
   /**
    * Lock the body's Z axis movement.
    */
-  open var moveLockZ: Boolean
+  public open var moveLockZ: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_GET_MOVE_LOCK_Z,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_SET_MOVE_LOCK_Z,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_KINEMATICBODY)
   }
 
   /**
    * Returns the surface normal of the floor at the last collision point. Only valid after calling [moveAndSlide] or [moveAndSlideWithSnap] and when [isOnFloor] returns `true`.
    */
-  open fun getFloorNormal(): Vector3 {
+  public open fun getFloorNormal(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_GET_FLOOR_NORMAL,
         VECTOR3)
@@ -113,7 +114,7 @@ open class KinematicBody : PhysicsBody() {
   /**
    * Returns the linear velocity of the floor at the last collision point. Only valid after calling [moveAndSlide] or [moveAndSlideWithSnap] and when [isOnFloor] returns `true`.
    */
-  open fun getFloorVelocity(): Vector3 {
+  public open fun getFloorVelocity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_GET_FLOOR_VELOCITY,
         VECTOR3)
@@ -123,7 +124,7 @@ open class KinematicBody : PhysicsBody() {
   /**
    * Returns a [godot.KinematicCollision], which contains information about a collision that occurred during the last call to [moveAndSlide] or [moveAndSlideWithSnap]. Since the body can collide several times in a single call to [moveAndSlide], you must specify the index of the collision in the range 0 to ([getSlideCount] - 1).
    */
-  open fun getSlideCollision(slideIdx: Long): KinematicCollision? {
+  public open fun getSlideCollision(slideIdx: Long): KinematicCollision? {
     TransferContext.writeArguments(LONG to slideIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_GET_SLIDE_COLLISION,
         OBJECT)
@@ -133,7 +134,7 @@ open class KinematicBody : PhysicsBody() {
   /**
    * Returns the number of times the body collided and changed direction during the last call to [moveAndSlide] or [moveAndSlideWithSnap].
    */
-  open fun getSlideCount(): Long {
+  public open fun getSlideCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_GET_SLIDE_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -142,7 +143,7 @@ open class KinematicBody : PhysicsBody() {
   /**
    * Returns `true` if the body collided with the ceiling on the last call of [moveAndSlide] or [moveAndSlideWithSnap]. Otherwise, returns `false`.
    */
-  open fun isOnCeiling(): Boolean {
+  public open fun isOnCeiling(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_IS_ON_CEILING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -151,7 +152,7 @@ open class KinematicBody : PhysicsBody() {
   /**
    * Returns `true` if the body collided with the floor on the last call of [moveAndSlide] or [moveAndSlideWithSnap]. Otherwise, returns `false`.
    */
-  open fun isOnFloor(): Boolean {
+  public open fun isOnFloor(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_IS_ON_FLOOR, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -160,7 +161,7 @@ open class KinematicBody : PhysicsBody() {
   /**
    * Returns `true` if the body collided with a wall on the last call of [moveAndSlide] or [moveAndSlideWithSnap]. Otherwise, returns `false`.
    */
-  open fun isOnWall(): Boolean {
+  public open fun isOnWall(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_IS_ON_WALL, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -171,7 +172,7 @@ open class KinematicBody : PhysicsBody() {
    *
    * If `test_only` is `true`, the body does not move but the would-be collision information is given.
    */
-  open fun moveAndCollide(
+  public open fun moveAndCollide(
     relVec: Vector3,
     infiniteInertia: Boolean = true,
     excludeRaycastShapes: Boolean = true,
@@ -203,7 +204,7 @@ open class KinematicBody : PhysicsBody() {
    *
    * Returns the `linear_velocity` vector, rotated and/or scaled if a slide collision occurred. To get detailed information about collisions that occurred, use [getSlideCollision].
    */
-  open fun moveAndSlide(
+  public open fun moveAndSlide(
     linearVelocity: Vector3,
     upDirection: Vector3 = Vector3(0.0, 0.0, 0.0),
     stopOnSlope: Boolean = false,
@@ -223,7 +224,7 @@ open class KinematicBody : PhysicsBody() {
    *
    * As long as the `snap` vector is in contact with the ground, the body will remain attached to the surface. This means you must disable snap in order to jump, for example. You can do this by setting `snap` to `(0, 0, 0)` or by using [moveAndSlide] instead.
    */
-  open fun moveAndSlideWithSnap(
+  public open fun moveAndSlideWithSnap(
     linearVelocity: Vector3,
     snap: Vector3,
     upDirection: Vector3 = Vector3(0.0, 0.0, 0.0),
@@ -243,7 +244,7 @@ open class KinematicBody : PhysicsBody() {
   /**
    * Checks for collisions without moving the body. Virtually sets the node's position, scale and rotation to that of the given [godot.core.Transform], then tries to move the body along the vector `rel_vec`. Returns `true` if a collision would occur.
    */
-  open fun testMove(
+  public open fun testMove(
     from: Transform,
     relVec: Vector3,
     infiniteInertia: Boolean = true

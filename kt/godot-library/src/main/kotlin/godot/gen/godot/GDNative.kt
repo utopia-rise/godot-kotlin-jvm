@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
@@ -18,25 +18,26 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
-open class GDNative : Reference() {
-  open var library: GDNativeLibrary?
+public open class GDNative : Reference() {
+  public open var library: GDNativeLibrary?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDNATIVE_GET_LIBRARY, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as GDNativeLibrary?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDNATIVE_SET_LIBRARY, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_GDNATIVE)
   }
 
-  open fun callNative(
+  public open fun callNative(
     callingType: String,
     procedureName: String,
     arguments: VariantArray<Any?>
@@ -47,13 +48,13 @@ open class GDNative : Reference() {
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
-  open fun initialize(): Boolean {
+  public open fun initialize(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDNATIVE_INITIALIZE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  open fun terminate(): Boolean {
+  public open fun terminate(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDNATIVE_TERMINATE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean

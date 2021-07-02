@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.TransferContext
 import godot.core.VariantArray
@@ -28,6 +28,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 import kotlin.reflect.KFunction0
 import kotlin.reflect.KFunction1
 import kotlin.reflect.KFunction10
@@ -70,43 +71,43 @@ import kotlin.reflect.KMutableProperty
  * **Networking with nodes:** After connecting to a server (or making one, see [godot.NetworkedMultiplayerENet]), it is possible to use the built-in RPC (remote procedure call) system to communicate over the network. By calling [rpc] with a method name, it will be called locally and in all connected peers (peers = clients and the server that accepts connections). To identify which node receives the RPC call, Godot will use its [godot.core.NodePath] (make sure node names are the same on all peers). Also, take a look at the high-level networking tutorial and corresponding demos.
  */
 @GodotBaseType
-open class Node : Object() {
+public open class Node : Object() {
   /**
    * Emitted when the node is ready.
    */
-  val ready: Signal0 by signal()
+  public val ready: Signal0 by signal()
 
   /**
    * Emitted when the node is renamed.
    */
-  val renamed: Signal0 by signal()
+  public val renamed: Signal0 by signal()
 
   /**
    * Emitted when the node enters the tree.
    */
-  val treeEntered: Signal0 by signal()
+  public val treeEntered: Signal0 by signal()
 
   /**
    * Emitted after the node exits the tree and is no longer active.
    */
-  val treeExited: Signal0 by signal()
+  public val treeExited: Signal0 by signal()
 
   /**
    * Emitted when the node is still active but about to exit the tree. This is the right place for de-initialization (or a "destructor", if you will).
    */
-  val treeExiting: Signal0 by signal()
+  public val treeExiting: Signal0 by signal()
 
   /**
    * The override to the default [godot.MultiplayerAPI]. Set to `null` to use the default [godot.SceneTree] one.
    */
-  open var customMultiplayer: MultiplayerAPI?
+  public open var customMultiplayer: MultiplayerAPI?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CUSTOM_MULTIPLAYER,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_CUSTOM_MULTIPLAYER, NIL)
     }
@@ -114,13 +115,13 @@ open class Node : Object() {
   /**
    * When a scene is instanced from a file, its topmost node contains the filename from which it was loaded.
    */
-  open var filename: String
+  public open var filename: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_FILENAME, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_FILENAME, NIL)
     }
@@ -128,7 +129,7 @@ open class Node : Object() {
   /**
    * The [godot.MultiplayerAPI] instance associated with this node. Either the [customMultiplayer], or the default SceneTree one (if inside tree).
    */
-  open val multiplayer: MultiplayerAPI?
+  public open val multiplayer: MultiplayerAPI?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_MULTIPLAYER, OBJECT)
@@ -140,13 +141,13 @@ open class Node : Object() {
    *
    * **Note:** Auto-generated names might include the `@` character, which is reserved for unique names when using [addChild]. When setting the name manually, any `@` will be removed.
    */
-  open var name: String
+  public open var name: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_NAME, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_NAME, NIL)
     }
@@ -154,13 +155,13 @@ open class Node : Object() {
   /**
    * The node owner. A node can have any other node as owner (as long as it is a valid parent, grandparent, etc. ascending in the tree). When saving a node (using [godot.PackedScene]), all the nodes it owns will be saved with it. This allows for the creation of complex [godot.SceneTree]s, with instancing and subinstancing.
    */
-  open var owner: Node?
+  public open var owner: Node?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_OWNER, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Node?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_OWNER, NIL)
     }
@@ -168,13 +169,13 @@ open class Node : Object() {
   /**
    * Pause mode. How the node will behave if the [godot.SceneTree] is paused.
    */
-  open var pauseMode: Long
+  public open var pauseMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PAUSE_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PAUSE_MODE, NIL)
     }
@@ -182,81 +183,81 @@ open class Node : Object() {
   /**
    * The node's priority in the execution order of the enabled processing callbacks (i.e. [NOTIFICATION_PROCESS], [NOTIFICATION_PHYSICS_PROCESS] and their internal counterparts). Nodes whose process priority value is *lower* will have their processing callbacks executed first.
    */
-  open var processPriority: Long
+  public open var processPriority: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PROCESS_PRIORITY, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_PRIORITY, NIL)
     }
 
-  inline fun <reified FUNCTION : KFunction0<*>> rpc(function: FUNCTION) =
+  public inline fun <reified FUNCTION : KFunction0<*>> rpc(function: FUNCTION) =
       rpc(function.name.camelToSnakeCase())
 
-  inline fun <reified FUNCTION : KFunction0<*>> rpcId(id: Long, function: FUNCTION) = rpcId(id,
-      function.name.camelToSnakeCase())
+  public inline fun <reified FUNCTION : KFunction0<*>> rpcId(id: Long, function: FUNCTION) =
+      rpcId(id, function.name.camelToSnakeCase())
 
-  inline fun <reified FUNCTION : KFunction0<*>> rpcUnreliable(function: FUNCTION) =
+  public inline fun <reified FUNCTION : KFunction0<*>> rpcUnreliable(function: FUNCTION) =
       rpcUnreliable(function.name.camelToSnakeCase())
 
-  inline fun <reified FUNCTION : KFunction0<*>> rpcUnreliableId(id: Long, function: FUNCTION) =
-      rpcUnreliableId(id, function.name.camelToSnakeCase())
+  public inline fun <reified FUNCTION : KFunction0<*>> rpcUnreliableId(id: Long, function: FUNCTION)
+      = rpcUnreliableId(id, function.name.camelToSnakeCase())
 
-  inline fun <ARG0, reified FUNCTION : KFunction1<ARG0, *>> rpc(function: FUNCTION, arg0: ARG0) =
-      rpc(function.name.camelToSnakeCase(), arg0)
+  public inline fun <ARG0, reified FUNCTION : KFunction1<ARG0, *>> rpc(function: FUNCTION,
+      arg0: ARG0) = rpc(function.name.camelToSnakeCase(), arg0)
 
-  inline fun <ARG0, reified FUNCTION : KFunction1<ARG0, *>> rpcId(
+  public inline fun <ARG0, reified FUNCTION : KFunction1<ARG0, *>> rpcId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0
   ) = rpcId(id, function.name.camelToSnakeCase(), arg0)
 
-  inline fun <ARG0, reified FUNCTION : KFunction1<ARG0, *>> rpcUnreliable(function: FUNCTION,
+  public inline fun <ARG0, reified FUNCTION : KFunction1<ARG0, *>> rpcUnreliable(function: FUNCTION,
       arg0: ARG0) = rpcUnreliable(function.name.camelToSnakeCase(), arg0)
 
-  inline fun <ARG0, reified FUNCTION : KFunction1<ARG0, *>> rpcUnreliableId(
+  public inline fun <ARG0, reified FUNCTION : KFunction1<ARG0, *>> rpcUnreliableId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0
   ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0)
 
-  inline fun <ARG0, ARG1, reified FUNCTION : KFunction2<ARG0, ARG1, *>> rpc(
+  public inline fun <ARG0, ARG1, reified FUNCTION : KFunction2<ARG0, ARG1, *>> rpc(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1
   ) = rpc(function.name.camelToSnakeCase(), arg0, arg1)
 
-  inline fun <ARG0, ARG1, reified FUNCTION : KFunction2<ARG0, ARG1, *>> rpcId(
+  public inline fun <ARG0, ARG1, reified FUNCTION : KFunction2<ARG0, ARG1, *>> rpcId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1
   ) = rpcId(id, function.name.camelToSnakeCase(), arg0, arg1)
 
-  inline fun <ARG0, ARG1, reified FUNCTION : KFunction2<ARG0, ARG1, *>> rpcUnreliable(
+  public inline fun <ARG0, ARG1, reified FUNCTION : KFunction2<ARG0, ARG1, *>> rpcUnreliable(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1
   ) = rpcUnreliable(function.name.camelToSnakeCase(), arg0, arg1)
 
-  inline fun <ARG0, ARG1, reified FUNCTION : KFunction2<ARG0, ARG1, *>> rpcUnreliableId(
+  public inline fun <ARG0, ARG1, reified FUNCTION : KFunction2<ARG0, ARG1, *>> rpcUnreliableId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1
   ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0, arg1)
 
-  inline fun <ARG0, ARG1, ARG2, reified FUNCTION : KFunction3<ARG0, ARG1, ARG2, *>> rpc(
+  public inline fun <ARG0, ARG1, ARG2, reified FUNCTION : KFunction3<ARG0, ARG1, ARG2, *>> rpc(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
     arg2: ARG2
   ) = rpc(function.name.camelToSnakeCase(), arg0, arg1, arg2)
 
-  inline fun <ARG0, ARG1, ARG2, reified FUNCTION : KFunction3<ARG0, ARG1, ARG2, *>> rpcId(
+  public inline fun <ARG0, ARG1, ARG2, reified FUNCTION : KFunction3<ARG0, ARG1, ARG2, *>> rpcId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
@@ -264,14 +265,16 @@ open class Node : Object() {
     arg2: ARG2
   ) = rpcId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2)
 
-  inline fun <ARG0, ARG1, ARG2, reified FUNCTION : KFunction3<ARG0, ARG1, ARG2, *>> rpcUnreliable(
+  public inline fun <ARG0, ARG1, ARG2, reified FUNCTION : KFunction3<ARG0, ARG1, ARG2, *>>
+      rpcUnreliable(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
     arg2: ARG2
   ) = rpcUnreliable(function.name.camelToSnakeCase(), arg0, arg1, arg2)
 
-  inline fun <ARG0, ARG1, ARG2, reified FUNCTION : KFunction3<ARG0, ARG1, ARG2, *>> rpcUnreliableId(
+  public inline fun <ARG0, ARG1, ARG2, reified FUNCTION : KFunction3<ARG0, ARG1, ARG2, *>>
+      rpcUnreliableId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
@@ -279,7 +282,8 @@ open class Node : Object() {
     arg2: ARG2
   ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION : KFunction4<ARG0, ARG1, ARG2, ARG3, *>> rpc(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION : KFunction4<ARG0, ARG1, ARG2, ARG3,
+      *>> rpc(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
@@ -287,8 +291,8 @@ open class Node : Object() {
     arg3: ARG3
   ) = rpc(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION : KFunction4<ARG0, ARG1, ARG2, ARG3, *>>
-      rpcId(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION : KFunction4<ARG0, ARG1, ARG2, ARG3,
+      *>> rpcId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
@@ -297,8 +301,8 @@ open class Node : Object() {
     arg3: ARG3
   ) = rpcId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION : KFunction4<ARG0, ARG1, ARG2, ARG3, *>>
-      rpcUnreliable(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION : KFunction4<ARG0, ARG1, ARG2, ARG3,
+      *>> rpcUnreliable(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
@@ -306,8 +310,8 @@ open class Node : Object() {
     arg3: ARG3
   ) = rpcUnreliable(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION : KFunction4<ARG0, ARG1, ARG2, ARG3, *>>
-      rpcUnreliableId(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION : KFunction4<ARG0, ARG1, ARG2, ARG3,
+      *>> rpcUnreliableId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
@@ -316,8 +320,8 @@ open class Node : Object() {
     arg3: ARG3
   ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION : KFunction5<ARG0, ARG1, ARG2, ARG3,
-      ARG4, *>> rpc(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION : KFunction5<ARG0, ARG1, ARG2,
+      ARG3, ARG4, *>> rpc(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
@@ -326,8 +330,8 @@ open class Node : Object() {
     arg4: ARG4
   ) = rpc(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION : KFunction5<ARG0, ARG1, ARG2, ARG3,
-      ARG4, *>> rpcId(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION : KFunction5<ARG0, ARG1, ARG2,
+      ARG3, ARG4, *>> rpcId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
@@ -337,8 +341,8 @@ open class Node : Object() {
     arg4: ARG4
   ) = rpcId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION : KFunction5<ARG0, ARG1, ARG2, ARG3,
-      ARG4, *>> rpcUnreliable(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION : KFunction5<ARG0, ARG1, ARG2,
+      ARG3, ARG4, *>> rpcUnreliable(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
@@ -347,8 +351,8 @@ open class Node : Object() {
     arg4: ARG4
   ) = rpcUnreliable(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION : KFunction5<ARG0, ARG1, ARG2, ARG3,
-      ARG4, *>> rpcUnreliableId(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION : KFunction5<ARG0, ARG1, ARG2,
+      ARG3, ARG4, *>> rpcUnreliableId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
@@ -358,8 +362,8 @@ open class Node : Object() {
     arg4: ARG4
   ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION : KFunction6<ARG0, ARG1, ARG2,
-      ARG3, ARG4, ARG5, *>> rpc(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION : KFunction6<ARG0, ARG1,
+      ARG2, ARG3, ARG4, ARG5, *>> rpc(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
@@ -369,8 +373,8 @@ open class Node : Object() {
     arg5: ARG5
   ) = rpc(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION : KFunction6<ARG0, ARG1, ARG2,
-      ARG3, ARG4, ARG5, *>> rpcId(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION : KFunction6<ARG0, ARG1,
+      ARG2, ARG3, ARG4, ARG5, *>> rpcId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
@@ -381,8 +385,8 @@ open class Node : Object() {
     arg5: ARG5
   ) = rpcId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION : KFunction6<ARG0, ARG1, ARG2,
-      ARG3, ARG4, ARG5, *>> rpcUnreliable(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION : KFunction6<ARG0, ARG1,
+      ARG2, ARG3, ARG4, ARG5, *>> rpcUnreliable(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
@@ -392,8 +396,8 @@ open class Node : Object() {
     arg5: ARG5
   ) = rpcUnreliable(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION : KFunction6<ARG0, ARG1, ARG2,
-      ARG3, ARG4, ARG5, *>> rpcUnreliableId(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION : KFunction6<ARG0, ARG1,
+      ARG2, ARG3, ARG4, ARG5, *>> rpcUnreliableId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
@@ -404,8 +408,8 @@ open class Node : Object() {
     arg5: ARG5
   ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION : KFunction7<ARG0, ARG1,
-      ARG2, ARG3, ARG4, ARG5, ARG6, *>> rpc(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION : KFunction7<ARG0,
+      ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, *>> rpc(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
@@ -416,8 +420,8 @@ open class Node : Object() {
     arg6: ARG6
   ) = rpc(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION : KFunction7<ARG0, ARG1,
-      ARG2, ARG3, ARG4, ARG5, ARG6, *>> rpcId(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION : KFunction7<ARG0,
+      ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, *>> rpcId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
@@ -429,8 +433,8 @@ open class Node : Object() {
     arg6: ARG6
   ) = rpcId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION : KFunction7<ARG0, ARG1,
-      ARG2, ARG3, ARG4, ARG5, ARG6, *>> rpcUnreliable(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION : KFunction7<ARG0,
+      ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, *>> rpcUnreliable(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
@@ -441,8 +445,8 @@ open class Node : Object() {
     arg6: ARG6
   ) = rpcUnreliable(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION : KFunction7<ARG0, ARG1,
-      ARG2, ARG3, ARG4, ARG5, ARG6, *>> rpcUnreliableId(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION : KFunction7<ARG0,
+      ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, *>> rpcUnreliableId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
@@ -455,8 +459,8 @@ open class Node : Object() {
   ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5,
       arg6)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, reified FUNCTION : KFunction8<ARG0,
-      ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, *>> rpc(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, reified FUNCTION :
+      KFunction8<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, *>> rpc(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
@@ -468,8 +472,8 @@ open class Node : Object() {
     arg7: ARG7
   ) = rpc(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, reified FUNCTION : KFunction8<ARG0,
-      ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, *>> rpcId(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, reified FUNCTION :
+      KFunction8<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, *>> rpcId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
@@ -482,8 +486,8 @@ open class Node : Object() {
     arg7: ARG7
   ) = rpcId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, reified FUNCTION : KFunction8<ARG0,
-      ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, *>> rpcUnreliable(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, reified FUNCTION :
+      KFunction8<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, *>> rpcUnreliable(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
@@ -496,8 +500,8 @@ open class Node : Object() {
   ) = rpcUnreliable(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6,
       arg7)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, reified FUNCTION : KFunction8<ARG0,
-      ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, *>> rpcUnreliableId(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, reified FUNCTION :
+      KFunction8<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, *>> rpcUnreliableId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
@@ -511,7 +515,7 @@ open class Node : Object() {
   ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5,
       arg6, arg7)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, reified FUNCTION :
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, reified FUNCTION :
       KFunction9<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, *>> rpc(
     function: FUNCTION,
     arg0: ARG0,
@@ -525,7 +529,7 @@ open class Node : Object() {
     arg8: ARG8
   ) = rpc(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, reified FUNCTION :
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, reified FUNCTION :
       KFunction9<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, *>> rpcId(
     id: Long,
     function: FUNCTION,
@@ -541,7 +545,7 @@ open class Node : Object() {
   ) = rpcId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7,
       arg8)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, reified FUNCTION :
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, reified FUNCTION :
       KFunction9<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, *>> rpcUnreliable(
     function: FUNCTION,
     arg0: ARG0,
@@ -556,7 +560,7 @@ open class Node : Object() {
   ) = rpcUnreliable(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6,
       arg7, arg8)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, reified FUNCTION :
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, reified FUNCTION :
       KFunction9<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, *>> rpcUnreliableId(
     id: Long,
     function: FUNCTION,
@@ -572,7 +576,7 @@ open class Node : Object() {
   ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5,
       arg6, arg7, arg8)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, reified FUNCTION :
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, reified FUNCTION :
       KFunction10<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, *>> rpc(
     function: FUNCTION,
     arg0: ARG0,
@@ -588,7 +592,7 @@ open class Node : Object() {
   ) = rpc(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8,
       arg9)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, reified FUNCTION :
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, reified FUNCTION :
       KFunction10<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, *>> rpcId(
     id: Long,
     function: FUNCTION,
@@ -605,7 +609,7 @@ open class Node : Object() {
   ) = rpcId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7,
       arg8, arg9)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, reified FUNCTION :
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, reified FUNCTION :
       KFunction10<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, *>> rpcUnreliable(
     function: FUNCTION,
     arg0: ARG0,
@@ -621,7 +625,7 @@ open class Node : Object() {
   ) = rpcUnreliable(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6,
       arg7, arg8, arg9)
 
-  inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, reified FUNCTION :
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, reified FUNCTION :
       KFunction10<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, *>> rpcUnreliableId(
     id: Long,
     function: FUNCTION,
@@ -638,25 +642,26 @@ open class Node : Object() {
   ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5,
       arg6, arg7, arg8, arg9)
 
-  inline fun <TYPE, reified PROPERTY : KMutableProperty<TYPE>> rset(property: PROPERTY, value: TYPE)
-      = rset(property.name.camelToSnakeCase(), value)
+  public inline fun <TYPE, reified PROPERTY : KMutableProperty<TYPE>> rset(`property`: PROPERTY,
+      `value`: TYPE) = rset(property.name.camelToSnakeCase(), value)
 
-  inline fun <TYPE, reified PROPERTY : KMutableProperty<TYPE>> rsetId(
+  public inline fun <TYPE, reified PROPERTY : KMutableProperty<TYPE>> rsetId(
     id: Long,
-    property: PROPERTY,
-    value: TYPE
+    `property`: PROPERTY,
+    `value`: TYPE
   ) = rsetId(id, property.name.camelToSnakeCase(), value)
 
-  inline fun <TYPE, reified PROPERTY : KMutableProperty<TYPE>> rsetUnreliable(property: PROPERTY,
-      value: TYPE) = rsetUnreliable(property.name.camelToSnakeCase(), value)
+  public inline fun <TYPE, reified PROPERTY : KMutableProperty<TYPE>>
+      rsetUnreliable(`property`: PROPERTY, `value`: TYPE) =
+      rsetUnreliable(property.name.camelToSnakeCase(), value)
 
-  inline fun <TYPE, reified PROPERTY : KMutableProperty<TYPE>> rsetUnreliableId(
+  public inline fun <TYPE, reified PROPERTY : KMutableProperty<TYPE>> rsetUnreliableId(
     id: Long,
-    property: PROPERTY,
-    value: TYPE
+    `property`: PROPERTY,
+    `value`: TYPE
   ) = rsetUnreliableId(id, property.name.camelToSnakeCase(), value)
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_NODE)
   }
 
@@ -665,7 +670,7 @@ open class Node : Object() {
    *
    * Corresponds to the [NOTIFICATION_ENTER_TREE] notification in [godot.Object.Notification].
    */
-  open fun _enterTree() {
+  public open fun _enterTree(): Unit {
   }
 
   /**
@@ -673,7 +678,7 @@ open class Node : Object() {
    *
    * Corresponds to the [NOTIFICATION_EXIT_TREE] notification in [godot.Object.Notification] and signal [treeExiting]. To get notified when the node has already left the active tree, connect to the [treeExited].
    */
-  open fun _exitTree() {
+  public open fun _exitTree(): Unit {
   }
 
   /**
@@ -683,15 +688,15 @@ open class Node : Object() {
    *
    * Call [updateConfigurationWarning] when the warning needs to be updated for this node.
    */
-  open fun _getConfigurationWarning(): String {
+  public open fun _getConfigurationWarning(): String {
     throw NotImplementedError("_get_configuration_warning is not implemented for Node")
   }
 
-  open fun _getEditorDescription(): String {
+  public open fun _getEditorDescription(): String {
     throw NotImplementedError("_get_editor_description is not implemented for Node")
   }
 
-  open fun _getImportPath(): NodePath {
+  public open fun _getImportPath(): NodePath {
     throw NotImplementedError("_get_import_path is not implemented for Node")
   }
 
@@ -706,7 +711,7 @@ open class Node : Object() {
    *
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not orphan).
    */
-  open fun _input(event: InputEvent) {
+  public open fun _input(event: InputEvent): Unit {
   }
 
   /**
@@ -718,7 +723,7 @@ open class Node : Object() {
    *
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not orphan).
    */
-  open fun _physicsProcess(delta: Double) {
+  public open fun _physicsProcess(delta: Double): Unit {
   }
 
   /**
@@ -730,7 +735,7 @@ open class Node : Object() {
    *
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not orphan).
    */
-  open fun _process(delta: Double) {
+  public open fun _process(delta: Double): Unit {
   }
 
   /**
@@ -742,13 +747,13 @@ open class Node : Object() {
    *
    * **Note:** [_ready] may be called only once for each node. After removing a node from the scene tree and adding again, `_ready` will not be called for the second time. This can be bypassed with requesting another call with [requestReady], which may be called anywhere before adding the node again.
    */
-  open fun _ready() {
+  public open fun _ready(): Unit {
   }
 
-  open fun _setEditorDescription(editorDescription: String) {
+  public open fun _setEditorDescription(editorDescription: String): Unit {
   }
 
-  open fun _setImportPath(importPath: NodePath) {
+  public open fun _setImportPath(importPath: NodePath): Unit {
   }
 
   /**
@@ -762,7 +767,7 @@ open class Node : Object() {
    *
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not orphan).
    */
-  open fun _unhandledInput(event: InputEvent) {
+  public open fun _unhandledInput(event: InputEvent): Unit {
   }
 
   /**
@@ -776,7 +781,7 @@ open class Node : Object() {
    *
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not orphan).
    */
-  open fun _unhandledKeyInput(event: InputEventKey) {
+  public open fun _unhandledKeyInput(event: InputEventKey): Unit {
   }
 
   /**
@@ -794,7 +799,7 @@ open class Node : Object() {
    *
    * **Note:** If you want a child to be persisted to a [godot.PackedScene], you must set [owner] in addition to calling [addChild]. This is typically relevant for [tool scripts](https://godot.readthedocs.io/en/3.2/tutorials/misc/running_code_in_the_editor.html) and [editor plugins](https://godot.readthedocs.io/en/latest/tutorials/plugins/editor/index.html). If [addChild] is called without setting [owner], the newly added [godot.Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.
    */
-  open fun addChild(node: Node, legibleUniqueName: Boolean = false) {
+  public open fun addChild(node: Node, legibleUniqueName: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to node, BOOL to legibleUniqueName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_ADD_CHILD, NIL)
   }
@@ -804,11 +809,11 @@ open class Node : Object() {
    *
    * If `legible_unique_name` is `true`, the child node will have a human-readable name based on the name of the node being instanced instead of its type.
    */
-  open fun addChildBelowNode(
+  public open fun addChildBelowNode(
     node: Node,
     childNode: Node,
     legibleUniqueName: Boolean = false
-  ) {
+  ): Unit {
     TransferContext.writeArguments(OBJECT to node, OBJECT to childNode, BOOL to legibleUniqueName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_ADD_CHILD_BELOW_NODE, NIL)
   }
@@ -818,7 +823,7 @@ open class Node : Object() {
    *
    * The `persistent` option is used when packing node to [godot.PackedScene] and saving to file. Non-persistent groups aren't stored.
    */
-  open fun addToGroup(group: String, persistent: Boolean = false) {
+  public open fun addToGroup(group: String, persistent: Boolean = false): Unit {
     TransferContext.writeArguments(STRING to group, BOOL to persistent)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_ADD_TO_GROUP, NIL)
   }
@@ -826,7 +831,7 @@ open class Node : Object() {
   /**
    * Returns `true` if the node can process while the scene tree is paused (see [pauseMode]). Always returns `true` if the scene tree is not paused, and `false` if the node is not in the tree.
    */
-  open fun canProcess(): Boolean {
+  public open fun canProcess(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_CAN_PROCESS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -839,7 +844,7 @@ open class Node : Object() {
    *
    * **Note:** It will not work properly if the node contains a script with constructor arguments (i.e. needs to supply arguments to [godot.Object.Init] method). In that case, the node will be duplicated without a script.
    */
-  open fun duplicate(flags: Long = 15): Node? {
+  public open fun duplicate(flags: Long = 15): Node? {
     TransferContext.writeArguments(LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_DUPLICATE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
@@ -854,7 +859,7 @@ open class Node : Object() {
    *
    * **Note:** As this method walks through all the descendants of the node, it is the slowest way to get a reference to another node. Whenever possible, consider using [getNode] instead. To avoid using [findNode] too often, consider caching the node reference into a variable.
    */
-  open fun findNode(
+  public open fun findNode(
     mask: String,
     recursive: Boolean = true,
     owned: Boolean = true
@@ -871,7 +876,7 @@ open class Node : Object() {
    *
    * **Note:** As this method walks upwards in the scene tree, it can be slow in large, deeply nested scene trees. Whenever possible, consider using [getNode] instead. To avoid using [findParent] too often, consider caching the node reference into a variable.
    */
-  open fun findParent(mask: String): Node? {
+  public open fun findParent(mask: String): Node? {
     TransferContext.writeArguments(STRING to mask)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_FIND_PARENT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
@@ -882,7 +887,7 @@ open class Node : Object() {
    *
    * To access a child node via its name, use [getNode].
    */
-  open fun getChild(idx: Long): Node? {
+  public open fun getChild(idx: Long): Node? {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CHILD, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
@@ -891,7 +896,7 @@ open class Node : Object() {
   /**
    * Returns the number of child nodes.
    */
-  open fun getChildCount(): Long {
+  public open fun getChildCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CHILD_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -900,7 +905,7 @@ open class Node : Object() {
   /**
    * Returns an array of references to node's children.
    */
-  open fun getChildren(): VariantArray<Any?> {
+  public open fun getChildren(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CHILDREN, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -909,7 +914,7 @@ open class Node : Object() {
   /**
    * Returns an array listing the groups that the node is a member of.
    */
-  open fun getGroups(): VariantArray<Any?> {
+  public open fun getGroups(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_GROUPS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -918,7 +923,7 @@ open class Node : Object() {
   /**
    * Returns the node's index, i.e. its position among the siblings of its parent.
    */
-  open fun getIndex(): Long {
+  public open fun getIndex(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_INDEX, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -927,7 +932,7 @@ open class Node : Object() {
   /**
    * Returns the peer ID of the network master for this node. See [setNetworkMaster].
    */
-  open fun getNetworkMaster(): Long {
+  public open fun getNetworkMaster(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_NETWORK_MASTER, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -960,7 +965,7 @@ open class Node : Object() {
    * 				get_node("/root/MyGame")
    * 				```
    */
-  open fun getNode(path: NodePath): Node? {
+  public open fun getNode(path: NodePath): Node? {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_NODE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
@@ -979,7 +984,7 @@ open class Node : Object() {
    * 				print(get_node_and_resource("Area2D/CollisionShape2D:shape:extents")) # [[godot.CollisionShape2D:1161], [godot.RectangleShape2D:1156], :extents]
    * 				```
    */
-  open fun getNodeAndResource(path: NodePath): VariantArray<Any?> {
+  public open fun getNodeAndResource(path: NodePath): VariantArray<Any?> {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_NODE_AND_RESOURCE, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -988,7 +993,7 @@ open class Node : Object() {
   /**
    * Similar to [getNode], but does not log an error if `path` does not point to a valid [godot.Node].
    */
-  open fun getNodeOrNull(path: NodePath): Node? {
+  public open fun getNodeOrNull(path: NodePath): Node? {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_NODE_OR_NULL, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
@@ -997,7 +1002,7 @@ open class Node : Object() {
   /**
    * Returns the parent node of the current node, or a `null instance` if the node lacks a parent.
    */
-  open fun getParent(): Node? {
+  public open fun getParent(): Node? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PARENT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
@@ -1006,7 +1011,7 @@ open class Node : Object() {
   /**
    * Returns the absolute path of the current node. This only works if the current node is inside the scene tree (see [isInsideTree]).
    */
-  open fun getPath(): NodePath {
+  public open fun getPath(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PATH, NODE_PATH)
     return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
@@ -1015,7 +1020,7 @@ open class Node : Object() {
   /**
    * Returns the relative [godot.core.NodePath] from this node to the specified `node`. Both nodes must be in the same scene or the function will fail.
    */
-  open fun getPathTo(node: Node): NodePath {
+  public open fun getPathTo(node: Node): NodePath {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PATH_TO, NODE_PATH)
     return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
@@ -1024,7 +1029,7 @@ open class Node : Object() {
   /**
    * Returns the time elapsed (in seconds) since the last physics-bound frame (see [_physicsProcess]). This is always a constant value in physics processing unless the frames per second is changed via [godot.Engine.iterationsPerSecond].
    */
-  open fun getPhysicsProcessDeltaTime(): Double {
+  public open fun getPhysicsProcessDeltaTime(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PHYSICS_PROCESS_DELTA_TIME,
         DOUBLE)
@@ -1034,7 +1039,7 @@ open class Node : Object() {
   /**
    * Returns the node's order in the scene tree branch. For example, if called on the first child node the position is `0`.
    */
-  open fun getPositionInParent(): Long {
+  public open fun getPositionInParent(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_POSITION_IN_PARENT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -1043,7 +1048,7 @@ open class Node : Object() {
   /**
    * Returns the time elapsed (in seconds) since the last process callback. This value may vary from frame to frame.
    */
-  open fun getProcessDeltaTime(): Double {
+  public open fun getProcessDeltaTime(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PROCESS_DELTA_TIME, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -1052,7 +1057,7 @@ open class Node : Object() {
   /**
    * Returns `true` if this is an instance load placeholder. See [godot.InstancePlaceholder].
    */
-  open fun getSceneInstanceLoadPlaceholder(): Boolean {
+  public open fun getSceneInstanceLoadPlaceholder(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NODE_GET_SCENE_INSTANCE_LOAD_PLACEHOLDER, BOOL)
@@ -1062,7 +1067,7 @@ open class Node : Object() {
   /**
    * Returns the [godot.SceneTree] that contains this node.
    */
-  open fun getTree(): SceneTree? {
+  public open fun getTree(): SceneTree? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_TREE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as SceneTree?
@@ -1071,7 +1076,7 @@ open class Node : Object() {
   /**
    * Returns the node's [godot.Viewport].
    */
-  open fun getViewport(): Viewport? {
+  public open fun getViewport(): Viewport? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_VIEWPORT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Viewport?
@@ -1080,7 +1085,7 @@ open class Node : Object() {
   /**
    * Returns `true` if the node that the [godot.core.NodePath] points to exists.
    */
-  open fun hasNode(path: NodePath): Boolean {
+  public open fun hasNode(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_HAS_NODE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1089,7 +1094,7 @@ open class Node : Object() {
   /**
    * Returns `true` if the [godot.core.NodePath] points to a valid node and its subname points to a valid resource, e.g. `Area2D/CollisionShape2D:shape`. Properties with a non-[godot.Resource] type (e.g. nodes or primitive math types) are not considered resources.
    */
-  open fun hasNodeAndResource(path: NodePath): Boolean {
+  public open fun hasNodeAndResource(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_HAS_NODE_AND_RESOURCE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1098,7 +1103,7 @@ open class Node : Object() {
   /**
    * Returns `true` if the given node is a direct or indirect child of the current node.
    */
-  open fun isAParentOf(node: Node): Boolean {
+  public open fun isAParentOf(node: Node): Boolean {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_A_PARENT_OF, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1107,7 +1112,7 @@ open class Node : Object() {
   /**
    * Returns `true` if the node is folded (collapsed) in the Scene dock.
    */
-  open fun isDisplayedFolded(): Boolean {
+  public open fun isDisplayedFolded(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_DISPLAYED_FOLDED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1116,7 +1121,7 @@ open class Node : Object() {
   /**
    * Returns `true` if the given node occurs later in the scene hierarchy than the current node.
    */
-  open fun isGreaterThan(node: Node): Boolean {
+  public open fun isGreaterThan(node: Node): Boolean {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_GREATER_THAN, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1125,7 +1130,7 @@ open class Node : Object() {
   /**
    * Returns `true` if this node is in the specified group. See notes in the description, and the group methods in [godot.SceneTree].
    */
-  open fun isInGroup(group: String): Boolean {
+  public open fun isInGroup(group: String): Boolean {
     TransferContext.writeArguments(STRING to group)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_IN_GROUP, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1134,7 +1139,7 @@ open class Node : Object() {
   /**
    * Returns `true` if this node is currently inside a [godot.SceneTree].
    */
-  open fun isInsideTree(): Boolean {
+  public open fun isInsideTree(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_INSIDE_TREE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1143,7 +1148,7 @@ open class Node : Object() {
   /**
    * Returns `true` if the local system is the master of this node.
    */
-  open fun isNetworkMaster(): Boolean {
+  public open fun isNetworkMaster(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_NETWORK_MASTER, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1152,7 +1157,7 @@ open class Node : Object() {
   /**
    * Returns `true` if physics processing is enabled (see [setPhysicsProcess]).
    */
-  open fun isPhysicsProcessing(): Boolean {
+  public open fun isPhysicsProcessing(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PHYSICS_PROCESSING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1161,7 +1166,7 @@ open class Node : Object() {
   /**
    * Returns `true` if internal physics processing is enabled (see [setPhysicsProcessInternal]).
    */
-  open fun isPhysicsProcessingInternal(): Boolean {
+  public open fun isPhysicsProcessingInternal(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PHYSICS_PROCESSING_INTERNAL,
         BOOL)
@@ -1171,7 +1176,7 @@ open class Node : Object() {
   /**
    * Returns `true` if processing is enabled (see [setProcess]).
    */
-  open fun isProcessing(): Boolean {
+  public open fun isProcessing(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1180,7 +1185,7 @@ open class Node : Object() {
   /**
    * Returns `true` if the node is processing input (see [setProcessInput]).
    */
-  open fun isProcessingInput(): Boolean {
+  public open fun isProcessingInput(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING_INPUT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1189,7 +1194,7 @@ open class Node : Object() {
   /**
    * Returns `true` if internal processing is enabled (see [setProcessInternal]).
    */
-  open fun isProcessingInternal(): Boolean {
+  public open fun isProcessingInternal(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING_INTERNAL, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1198,7 +1203,7 @@ open class Node : Object() {
   /**
    * Returns `true` if the node is processing unhandled input (see [setProcessUnhandledInput]).
    */
-  open fun isProcessingUnhandledInput(): Boolean {
+  public open fun isProcessingUnhandledInput(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING_UNHANDLED_INPUT,
         BOOL)
@@ -1208,7 +1213,7 @@ open class Node : Object() {
   /**
    * Returns `true` if the node is processing unhandled key input (see [setProcessUnhandledKeyInput]).
    */
-  open fun isProcessingUnhandledKeyInput(): Boolean {
+  public open fun isProcessingUnhandledKeyInput(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING_UNHANDLED_KEY_INPUT, BOOL)
@@ -1218,7 +1223,7 @@ open class Node : Object() {
   /**
    * Moves a child node to a different position (order) among the other children. Since calls, signals, etc are performed by tree order, changing the order of children nodes may be useful.
    */
-  open fun moveChild(childNode: Node, toPosition: Long) {
+  public open fun moveChild(childNode: Node, toPosition: Long): Unit {
     TransferContext.writeArguments(OBJECT to childNode, LONG to toPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_MOVE_CHILD, NIL)
   }
@@ -1226,7 +1231,7 @@ open class Node : Object() {
   /**
    * Prints all stray nodes (nodes outside the [godot.SceneTree]). Used for debugging. Works only in debug builds.
    */
-  open fun printStrayNodes() {
+  public open fun printStrayNodes(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_PRINT_STRAY_NODES, NIL)
   }
@@ -1245,7 +1250,7 @@ open class Node : Object() {
    * 				TheGame/SplashScreen/Camera2D
    * 				```
    */
-  open fun printTree() {
+  public open fun printTree(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_PRINT_TREE, NIL)
   }
@@ -1264,7 +1269,7 @@ open class Node : Object() {
    * 				       ┖╴Camera2D
    * 				```
    */
-  open fun printTreePretty() {
+  public open fun printTreePretty(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_PRINT_TREE_PRETTY, NIL)
   }
@@ -1272,11 +1277,11 @@ open class Node : Object() {
   /**
    * Calls the given method (if present) with the arguments given in `args` on this node and recursively on all its children. If the `parent_first` argument is `true`, the method will be called on the current node first, then on all its children. If `parent_first` is `false`, the children will be called first.
    */
-  open fun propagateCall(
+  public open fun propagateCall(
     method: String,
     args: VariantArray<Any?> = VariantArray(),
     parentFirst: Boolean = false
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to method, ARRAY to args, BOOL to parentFirst)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_PROPAGATE_CALL, NIL)
   }
@@ -1284,7 +1289,7 @@ open class Node : Object() {
   /**
    * Notifies the current node and all its children recursively by calling [godot.Object.notification] on all of them.
    */
-  open fun propagateNotification(what: Long) {
+  public open fun propagateNotification(what: Long): Unit {
     TransferContext.writeArguments(LONG to what)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_PROPAGATE_NOTIFICATION, NIL)
   }
@@ -1294,7 +1299,7 @@ open class Node : Object() {
    *
    * **Important:** If you have a variable pointing to a node, it will *not* be assigned to `null` once the node is freed. Instead, it will point to a *previously freed instance* and you should validate it with [@GDScript.isInstanceValid] before attempting to call its methods or access its properties.
    */
-  open fun queueFree() {
+  public open fun queueFree(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_QUEUE_FREE, NIL)
   }
@@ -1302,7 +1307,7 @@ open class Node : Object() {
   /**
    * Moves this node to the bottom of parent node's children hierarchy. This is often useful in GUIs ([godot.Control] nodes), because their order of drawing depends on their order in the tree. The top Node is drawn first, then any siblings below the top Node in the hierarchy are successively drawn on top of it. After using `raise`, a Control will be drawn on top of its siblings.
    */
-  open fun raise() {
+  public open fun raise(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RAISE, NIL)
   }
@@ -1310,7 +1315,7 @@ open class Node : Object() {
   /**
    * Removes a node and sets all its children as children of the parent node (if it exists). All event subscriptions that pass by the removed node will be unsubscribed.
    */
-  open fun removeAndSkip() {
+  public open fun removeAndSkip(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REMOVE_AND_SKIP, NIL)
   }
@@ -1318,7 +1323,7 @@ open class Node : Object() {
   /**
    * Removes a child node. The node is NOT deleted and must be deleted manually.
    */
-  open fun removeChild(node: Node) {
+  public open fun removeChild(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REMOVE_CHILD, NIL)
   }
@@ -1326,7 +1331,7 @@ open class Node : Object() {
   /**
    * Removes a node from a group. See notes in the description, and the group methods in [godot.SceneTree].
    */
-  open fun removeFromGroup(group: String) {
+  public open fun removeFromGroup(group: String): Unit {
     TransferContext.writeArguments(STRING to group)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REMOVE_FROM_GROUP, NIL)
   }
@@ -1334,7 +1339,7 @@ open class Node : Object() {
   /**
    * Replaces a node in a scene by the given one. Subscriptions that pass through this node will be lost.
    */
-  open fun replaceBy(node: Node, keepData: Boolean = false) {
+  public open fun replaceBy(node: Node, keepData: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to node, BOOL to keepData)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REPLACE_BY, NIL)
   }
@@ -1342,7 +1347,7 @@ open class Node : Object() {
   /**
    * Requests that `_ready` be called again. Note that the method won't be called immediately, but is scheduled for when the node is added to the scene tree again (see [_ready]). `_ready` is called only for the node which requested it, which means that you need to request ready for each child if you want them to call `_ready` too (in which case, `_ready` will be called in the same order as it would normally).
    */
-  open fun requestReady() {
+  public open fun requestReady(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REQUEST_READY, NIL)
   }
@@ -1352,7 +1357,7 @@ open class Node : Object() {
    *
    * **Note:** You can only safely use RPCs on clients after you received the `connected_to_server` signal from the [godot.SceneTree]. You also need to keep track of the connection state, either by the [godot.SceneTree] signals like `server_disconnected` or by checking `SceneTree.network_peer.get_connection_status() == CONNECTION_CONNECTED`.
    */
-  open fun rpc(method: String, vararg __var_args: Any?): Any? {
+  public open fun rpc(method: String, vararg __var_args: Any?): Any? {
     TransferContext.writeArguments(STRING to method,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -1361,7 +1366,7 @@ open class Node : Object() {
   /**
    * Changes the RPC mode for the given `method` to the given `mode`. See [enum MultiplayerAPI.RPCMode]. An alternative is annotating methods and properties with the corresponding keywords (`remote`, `master`, `puppet`, `remotesync`, `mastersync`, `puppetsync`). By default, methods are not exposed to networking (and RPCs). See also [rset] and [rsetConfig] for properties.
    */
-  open fun rpcConfig(method: String, mode: Long) {
+  public open fun rpcConfig(method: String, mode: Long): Unit {
     TransferContext.writeArguments(STRING to method, LONG to mode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC_CONFIG, NIL)
   }
@@ -1369,7 +1374,7 @@ open class Node : Object() {
   /**
    * Sends a [rpc] to a specific peer identified by `peer_id` (see [godot.NetworkedMultiplayerPeer.setTargetPeer]). Returns an empty [Variant].
    */
-  open fun rpcId(
+  public open fun rpcId(
     peerId: Long,
     method: String,
     vararg __var_args: Any?
@@ -1383,7 +1388,7 @@ open class Node : Object() {
   /**
    * Sends a [rpc] using an unreliable protocol. Returns an empty [Variant].
    */
-  open fun rpcUnreliable(method: String, vararg __var_args: Any?): Any? {
+  public open fun rpcUnreliable(method: String, vararg __var_args: Any?): Any? {
     TransferContext.writeArguments(STRING to method,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC_UNRELIABLE, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -1392,7 +1397,7 @@ open class Node : Object() {
   /**
    * Sends a [rpc] to a specific peer identified by `peer_id` using an unreliable protocol (see [godot.NetworkedMultiplayerPeer.setTargetPeer]). Returns an empty [Variant].
    */
-  open fun rpcUnreliableId(
+  public open fun rpcUnreliableId(
     peerId: Long,
     method: String,
     vararg __var_args: Any?
@@ -1406,7 +1411,7 @@ open class Node : Object() {
   /**
    * Remotely changes a property's value on other peers (and locally). Behaviour depends on the RPC configuration for the given property, see [rsetConfig]. See also [rpc] for RPCs for methods, most information applies to this method as well.
    */
-  open fun rset(property: String, value: Any?) {
+  public open fun rset(`property`: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RSET, NIL)
   }
@@ -1414,7 +1419,7 @@ open class Node : Object() {
   /**
    * Changes the RPC mode for the given `property` to the given `mode`. See [enum MultiplayerAPI.RPCMode]. An alternative is annotating methods and properties with the corresponding keywords (`remote`, `master`, `puppet`, `remotesync`, `mastersync`, `puppetsync`). By default, properties are not exposed to networking (and RPCs). See also [rpc] and [rpcConfig] for methods.
    */
-  open fun rsetConfig(property: String, mode: Long) {
+  public open fun rsetConfig(`property`: String, mode: Long): Unit {
     TransferContext.writeArguments(STRING to property, LONG to mode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RSET_CONFIG, NIL)
   }
@@ -1422,11 +1427,11 @@ open class Node : Object() {
   /**
    * Remotely changes the property's value on a specific peer identified by `peer_id` (see [godot.NetworkedMultiplayerPeer.setTargetPeer]).
    */
-  open fun rsetId(
+  public open fun rsetId(
     peerId: Long,
-    property: String,
-    value: Any?
-  ) {
+    `property`: String,
+    `value`: Any?
+  ): Unit {
     TransferContext.writeArguments(LONG to peerId, STRING to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RSET_ID, NIL)
   }
@@ -1434,7 +1439,7 @@ open class Node : Object() {
   /**
    * Remotely changes the property's value on other peers (and locally) using an unreliable protocol.
    */
-  open fun rsetUnreliable(property: String, value: Any?) {
+  public open fun rsetUnreliable(`property`: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RSET_UNRELIABLE, NIL)
   }
@@ -1442,11 +1447,11 @@ open class Node : Object() {
   /**
    * Remotely changes property's value on a specific peer identified by `peer_id` using an unreliable protocol (see [godot.NetworkedMultiplayerPeer.setTargetPeer]).
    */
-  open fun rsetUnreliableId(
+  public open fun rsetUnreliableId(
     peerId: Long,
-    property: String,
-    value: Any?
-  ) {
+    `property`: String,
+    `value`: Any?
+  ): Unit {
     TransferContext.writeArguments(LONG to peerId, STRING to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RSET_UNRELIABLE_ID, NIL)
   }
@@ -1454,7 +1459,7 @@ open class Node : Object() {
   /**
    * Sets the folded state of the node in the Scene dock.
    */
-  open fun setDisplayFolded(fold: Boolean) {
+  public open fun setDisplayFolded(fold: Boolean): Unit {
     TransferContext.writeArguments(BOOL to fold)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_DISPLAY_FOLDED, NIL)
   }
@@ -1462,7 +1467,7 @@ open class Node : Object() {
   /**
    * Sets the node's network master to the peer with the given peer ID. The network master is the peer that has authority over the node on the network. Useful in conjunction with the `master` and `puppet` keywords. Inherited from the parent node by default, which ultimately defaults to peer ID 1 (the server). If `recursive`, the given peer is recursively set as the master for all children of this node.
    */
-  open fun setNetworkMaster(id: Long, recursive: Boolean = true) {
+  public open fun setNetworkMaster(id: Long, recursive: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to id, BOOL to recursive)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_NETWORK_MASTER, NIL)
   }
@@ -1470,7 +1475,7 @@ open class Node : Object() {
   /**
    * Enables or disables physics (i.e. fixed framerate) processing. When a node is being processed, it will receive a [NOTIFICATION_PHYSICS_PROCESS] at a fixed (usually 60 FPS, see [godot.Engine.iterationsPerSecond] to change) interval (and the [_physicsProcess] callback will be called if exists). Enabled automatically if [_physicsProcess] is overridden. Any calls to this before [_ready] will be ignored.
    */
-  open fun setPhysicsProcess(enable: Boolean) {
+  public open fun setPhysicsProcess(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PHYSICS_PROCESS, NIL)
   }
@@ -1480,7 +1485,7 @@ open class Node : Object() {
    *
    * **Warning:** Built-in Nodes rely on the internal processing for their own logic, so changing this value from your code may lead to unexpected behavior. Script access to this internal logic is provided for specific advanced uses, but is unsafe and not supported.
    */
-  open fun setPhysicsProcessInternal(enable: Boolean) {
+  public open fun setPhysicsProcessInternal(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PHYSICS_PROCESS_INTERNAL,
         NIL)
@@ -1489,7 +1494,7 @@ open class Node : Object() {
   /**
    * Enables or disables processing. When a node is being processed, it will receive a [NOTIFICATION_PROCESS] on every drawn frame (and the [_process] callback will be called if exists). Enabled automatically if [_process] is overridden. Any calls to this before [_ready] will be ignored.
    */
-  open fun setProcess(enable: Boolean) {
+  public open fun setProcess(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS, NIL)
   }
@@ -1497,7 +1502,7 @@ open class Node : Object() {
   /**
    * Enables or disables input processing. This is not required for GUI controls! Enabled automatically if [_input] is overridden. Any calls to this before [_ready] will be ignored.
    */
-  open fun setProcessInput(enable: Boolean) {
+  public open fun setProcessInput(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_INPUT, NIL)
   }
@@ -1507,7 +1512,7 @@ open class Node : Object() {
    *
    * **Warning:** Built-in Nodes rely on the internal processing for their own logic, so changing this value from your code may lead to unexpected behavior. Script access to this internal logic is provided for specific advanced uses, but is unsafe and not supported.
    */
-  open fun setProcessInternal(enable: Boolean) {
+  public open fun setProcessInternal(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_INTERNAL, NIL)
   }
@@ -1515,7 +1520,7 @@ open class Node : Object() {
   /**
    * Enables unhandled input processing. This is not required for GUI controls! It enables the node to receive all input that was not previously handled (usually by a [godot.Control]). Enabled automatically if [_unhandledInput] is overridden. Any calls to this before [_ready] will be ignored.
    */
-  open fun setProcessUnhandledInput(enable: Boolean) {
+  public open fun setProcessUnhandledInput(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_UNHANDLED_INPUT,
         NIL)
@@ -1524,7 +1529,7 @@ open class Node : Object() {
   /**
    * Enables unhandled key input processing. Enabled automatically if [_unhandledKeyInput] is overridden. Any calls to this before [_ready] will be ignored.
    */
-  open fun setProcessUnhandledKeyInput(enable: Boolean) {
+  public open fun setProcessUnhandledKeyInput(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_UNHANDLED_KEY_INPUT, NIL)
@@ -1533,7 +1538,7 @@ open class Node : Object() {
   /**
    * Sets whether this is an instance load placeholder. See [godot.InstancePlaceholder].
    */
-  open fun setSceneInstanceLoadPlaceholder(loadPlaceholder: Boolean) {
+  public open fun setSceneInstanceLoadPlaceholder(loadPlaceholder: Boolean): Unit {
     TransferContext.writeArguments(BOOL to loadPlaceholder)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NODE_SET_SCENE_INSTANCE_LOAD_PLACEHOLDER, NIL)
@@ -1544,294 +1549,291 @@ open class Node : Object() {
    *
    * Use [_getConfigurationWarning] to setup the warning message to display.
    */
-  open fun updateConfigurationWarning() {
+  public open fun updateConfigurationWarning(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_UPDATE_CONFIGURATION_WARNING,
         NIL)
   }
 
-  enum class PauseMode(
+  public enum class PauseMode(
     id: Long
   ) {
     /**
      * Inherits pause mode from the node's parent. For the root node, it is equivalent to [PAUSE_MODE_STOP]. Default.
      */
     PAUSE_MODE_INHERIT(0),
-
     /**
      * Stops processing when the [godot.SceneTree] is paused.
      */
     PAUSE_MODE_STOP(1),
-
     /**
      * Continue to process regardless of the [godot.SceneTree] pause state.
      */
-    PAUSE_MODE_PROCESS(2);
+    PAUSE_MODE_PROCESS(2),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class DuplicateFlags(
+  public enum class DuplicateFlags(
     id: Long
   ) {
     /**
      * Duplicate the node's signals.
      */
     DUPLICATE_SIGNALS(1),
-
     /**
      * Duplicate the node's groups.
      */
     DUPLICATE_GROUPS(2),
-
     /**
      * Duplicate the node's scripts.
      */
     DUPLICATE_SCRIPTS(4),
-
     /**
      * Duplicate using instancing.
      *
      * An instance stays linked to the original so when the original changes, the instance changes too.
      */
-    DUPLICATE_USE_INSTANCING(8);
+    DUPLICATE_USE_INSTANCING(8),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Duplicate the node's groups.
      */
-    final const val DUPLICATE_GROUPS: Long = 2
+    public final const val DUPLICATE_GROUPS: Long = 2
 
     /**
      * Duplicate the node's scripts.
      */
-    final const val DUPLICATE_SCRIPTS: Long = 4
+    public final const val DUPLICATE_SCRIPTS: Long = 4
 
     /**
      * Duplicate the node's signals.
      */
-    final const val DUPLICATE_SIGNALS: Long = 1
+    public final const val DUPLICATE_SIGNALS: Long = 1
 
     /**
      * Duplicate using instancing.
      *
      * An instance stays linked to the original so when the original changes, the instance changes too.
      */
-    final const val DUPLICATE_USE_INSTANCING: Long = 8
+    public final const val DUPLICATE_USE_INSTANCING: Long = 8
 
     /**
      * Notification received from the OS when the app is paused.
      *
      * Specific to the Android platform.
      */
-    final const val NOTIFICATION_APP_PAUSED: Long = 1015
+    public final const val NOTIFICATION_APP_PAUSED: Long = 1015
 
     /**
      * Notification received from the OS when the app is resumed.
      *
      * Specific to the Android platform.
      */
-    final const val NOTIFICATION_APP_RESUMED: Long = 1014
+    public final const val NOTIFICATION_APP_RESUMED: Long = 1014
 
     /**
      * Notification received from Godot's crash handler when the engine is about to crash.
      *
      * Implemented on desktop platforms if the crash handler is enabled.
      */
-    final const val NOTIFICATION_CRASH: Long = 1012
+    public final const val NOTIFICATION_CRASH: Long = 1012
 
     /**
      * Notification received when a drag begins.
      */
-    final const val NOTIFICATION_DRAG_BEGIN: Long = 21
+    public final const val NOTIFICATION_DRAG_BEGIN: Long = 21
 
     /**
      * Notification received when a drag ends.
      */
-    final const val NOTIFICATION_DRAG_END: Long = 22
+    public final const val NOTIFICATION_DRAG_END: Long = 22
 
     /**
      * Notification received when the node enters a [godot.SceneTree].
      */
-    final const val NOTIFICATION_ENTER_TREE: Long = 10
+    public final const val NOTIFICATION_ENTER_TREE: Long = 10
 
     /**
      * Notification received when the node is about to exit a [godot.SceneTree].
      */
-    final const val NOTIFICATION_EXIT_TREE: Long = 11
+    public final const val NOTIFICATION_EXIT_TREE: Long = 11
 
     /**
      * Notification received when the node is instanced.
      */
-    final const val NOTIFICATION_INSTANCED: Long = 20
+    public final const val NOTIFICATION_INSTANCED: Long = 20
 
     /**
      * Notification received every frame when the internal physics process flag is set (see [setPhysicsProcessInternal]).
      */
-    final const val NOTIFICATION_INTERNAL_PHYSICS_PROCESS: Long = 26
+    public final const val NOTIFICATION_INTERNAL_PHYSICS_PROCESS: Long = 26
 
     /**
      * Notification received every frame when the internal process flag is set (see [setProcessInternal]).
      */
-    final const val NOTIFICATION_INTERNAL_PROCESS: Long = 25
+    public final const val NOTIFICATION_INTERNAL_PROCESS: Long = 25
 
     /**
      * Notification received when the node is moved in the parent.
      */
-    final const val NOTIFICATION_MOVED_IN_PARENT: Long = 12
+    public final const val NOTIFICATION_MOVED_IN_PARENT: Long = 12
 
     /**
      * Notification received from the OS when an update of the Input Method Engine occurs (e.g. change of IME cursor position or composition string).
      *
      * Specific to the macOS platform.
      */
-    final const val NOTIFICATION_OS_IME_UPDATE: Long = 1013
+    public final const val NOTIFICATION_OS_IME_UPDATE: Long = 1013
 
     /**
      * Notification received from the OS when the application is exceeding its allocated memory.
      *
      * Specific to the iOS platform.
      */
-    final const val NOTIFICATION_OS_MEMORY_WARNING: Long = 1009
+    public final const val NOTIFICATION_OS_MEMORY_WARNING: Long = 1009
 
     /**
      * Notification received when a node is set as a child of another node.
      *
      * **Note:** This doesn't mean that a node entered the [godot.SceneTree].
      */
-    final const val NOTIFICATION_PARENTED: Long = 18
+    public final const val NOTIFICATION_PARENTED: Long = 18
 
     /**
      * Notification received when the node's [godot.core.NodePath] changed.
      */
-    final const val NOTIFICATION_PATH_CHANGED: Long = 23
+    public final const val NOTIFICATION_PATH_CHANGED: Long = 23
 
     /**
      * Notification received when the node is paused.
      */
-    final const val NOTIFICATION_PAUSED: Long = 14
+    public final const val NOTIFICATION_PAUSED: Long = 14
 
     /**
      * Notification received every frame when the physics process flag is set (see [setPhysicsProcess]).
      */
-    final const val NOTIFICATION_PHYSICS_PROCESS: Long = 16
+    public final const val NOTIFICATION_PHYSICS_PROCESS: Long = 16
 
     /**
      * Notification received when the node is ready, just before [NOTIFICATION_READY] is received. Unlike the latter, it's sent every time the node enters tree, instead of only once.
      */
-    final const val NOTIFICATION_POST_ENTER_TREE: Long = 27
+    public final const val NOTIFICATION_POST_ENTER_TREE: Long = 27
 
     /**
      * Notification received every frame when the process flag is set (see [setProcess]).
      */
-    final const val NOTIFICATION_PROCESS: Long = 17
+    public final const val NOTIFICATION_PROCESS: Long = 17
 
     /**
      * Notification received when the node is ready. See [_ready].
      */
-    final const val NOTIFICATION_READY: Long = 13
+    public final const val NOTIFICATION_READY: Long = 13
 
     /**
      * Notification received when translations may have changed. Can be triggered by the user changing the locale. Can be used to respond to language changes, for example to change the UI strings on the fly. Useful when working with the built-in translation support, like [godot.Object.tr].
      */
-    final const val NOTIFICATION_TRANSLATION_CHANGED: Long = 1010
+    public final const val NOTIFICATION_TRANSLATION_CHANGED: Long = 1010
 
     /**
      * Notification received when a node is unparented (parent removed it from the list of children).
      */
-    final const val NOTIFICATION_UNPARENTED: Long = 19
+    public final const val NOTIFICATION_UNPARENTED: Long = 19
 
     /**
      * Notification received when the node is unpaused.
      */
-    final const val NOTIFICATION_UNPAUSED: Long = 15
+    public final const val NOTIFICATION_UNPAUSED: Long = 15
 
     /**
      * Notification received from the OS when a request for "About" information is sent.
      *
      * Specific to the macOS platform.
      */
-    final const val NOTIFICATION_WM_ABOUT: Long = 1011
+    public final const val NOTIFICATION_WM_ABOUT: Long = 1011
 
     /**
      * Notification received from the OS when the game window is focused.
      *
      * Implemented on all platforms.
      */
-    final const val NOTIFICATION_WM_FOCUS_IN: Long = 1004
+    public final const val NOTIFICATION_WM_FOCUS_IN: Long = 1004
 
     /**
      * Notification received from the OS when the game window is unfocused.
      *
      * Implemented on all platforms.
      */
-    final const val NOTIFICATION_WM_FOCUS_OUT: Long = 1005
+    public final const val NOTIFICATION_WM_FOCUS_OUT: Long = 1005
 
     /**
      * Notification received from the OS when a go back request is sent (e.g. pressing the "Back" button on Android).
      *
      * Specific to the Android platform.
      */
-    final const val NOTIFICATION_WM_GO_BACK_REQUEST: Long = 1007
+    public final const val NOTIFICATION_WM_GO_BACK_REQUEST: Long = 1007
 
     /**
      * Notification received from the OS when the mouse enters the game window.
      *
      * Implemented on desktop and web platforms.
      */
-    final const val NOTIFICATION_WM_MOUSE_ENTER: Long = 1002
+    public final const val NOTIFICATION_WM_MOUSE_ENTER: Long = 1002
 
     /**
      * Notification received from the OS when the mouse leaves the game window.
      *
      * Implemented on desktop and web platforms.
      */
-    final const val NOTIFICATION_WM_MOUSE_EXIT: Long = 1003
+    public final const val NOTIFICATION_WM_MOUSE_EXIT: Long = 1003
 
     /**
      * Notification received from the OS when a quit request is sent (e.g. closing the window with a "Close" button or Alt+F4).
      *
      * Implemented on desktop platforms.
      */
-    final const val NOTIFICATION_WM_QUIT_REQUEST: Long = 1006
+    public final const val NOTIFICATION_WM_QUIT_REQUEST: Long = 1006
 
     /**
      * Notification received from the OS when an unfocus request is sent (e.g. another OS window wants to take the focus).
      *
      * No supported platforms currently send this notification.
      */
-    final const val NOTIFICATION_WM_UNFOCUS_REQUEST: Long = 1008
+    public final const val NOTIFICATION_WM_UNFOCUS_REQUEST: Long = 1008
 
     /**
      * Inherits pause mode from the node's parent. For the root node, it is equivalent to [PAUSE_MODE_STOP]. Default.
      */
-    final const val PAUSE_MODE_INHERIT: Long = 0
+    public final const val PAUSE_MODE_INHERIT: Long = 0
 
     /**
      * Continue to process regardless of the [godot.SceneTree] pause state.
      */
-    final const val PAUSE_MODE_PROCESS: Long = 2
+    public final const val PAUSE_MODE_PROCESS: Long = 2
 
     /**
      * Stops processing when the [godot.SceneTree] is paused.
      */
-    final const val PAUSE_MODE_STOP: Long = 1
+    public final const val PAUSE_MODE_STOP: Long = 1
   }
 }

@@ -196,8 +196,8 @@ class RegisterClassAnnotator : Annotator {
         val containingFileContainsMoreRegisteredClasses = ktClass
             .containingKtFile
             .classes
-            .filter { ktClass ->
-                ktClass
+            .filter { ktClassInSameFile ->
+                ktClassInSameFile
                     .annotations
                     .firstOrNull { annotation -> annotation.qualifiedName == REGISTER_CLASS_ANNOTATION } != null
             }

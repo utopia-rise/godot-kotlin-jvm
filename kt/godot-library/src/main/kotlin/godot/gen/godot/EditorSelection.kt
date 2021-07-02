@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -15,6 +15,7 @@ import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Manages the SceneTree selection in the editor.
@@ -24,20 +25,20 @@ import kotlin.Suppress
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getSelection].
  */
 @GodotBaseType
-open class EditorSelection : Object() {
+public open class EditorSelection : Object() {
   /**
    * Emitted when the selection changes.
    */
-  val selectionChanged: Signal0 by signal()
+  public val selectionChanged: Signal0 by signal()
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORSELECTION)
   }
 
-  open fun _emitChange() {
+  public open fun _emitChange(): Unit {
   }
 
-  open fun _nodeRemoved(arg0: Node) {
+  public open fun _nodeRemoved(arg0: Node): Unit {
   }
 
   /**
@@ -45,7 +46,7 @@ open class EditorSelection : Object() {
    *
    * **Note:** The newly selected node will not be automatically edited in the inspector. If you want to edit a node, use [godot.EditorInterface.editNode].
    */
-  open fun addNode(node: Node) {
+  public open fun addNode(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_ADD_NODE, NIL)
   }
@@ -53,7 +54,7 @@ open class EditorSelection : Object() {
   /**
    * Clear the selection.
    */
-  open fun clear() {
+  public open fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_CLEAR, NIL)
   }
@@ -61,7 +62,7 @@ open class EditorSelection : Object() {
   /**
    * Gets the list of selected nodes.
    */
-  open fun getSelectedNodes(): VariantArray<Any?> {
+  public open fun getSelectedNodes(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_GET_SELECTED_NODES,
         ARRAY)
@@ -71,7 +72,7 @@ open class EditorSelection : Object() {
   /**
    * Gets the list of selected nodes, optimized for transform operations (i.e. moving them, rotating, etc). This list avoids situations where a node is selected and also child/grandchild.
    */
-  open fun getTransformableSelectedNodes(): VariantArray<Any?> {
+  public open fun getTransformableSelectedNodes(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_GET_TRANSFORMABLE_SELECTED_NODES, ARRAY)
@@ -81,7 +82,7 @@ open class EditorSelection : Object() {
   /**
    * Removes a node from the selection.
    */
-  open fun removeNode(node: Node) {
+  public open fun removeNode(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_REMOVE_NODE, NIL)
   }

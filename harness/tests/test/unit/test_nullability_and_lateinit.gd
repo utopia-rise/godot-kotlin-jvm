@@ -7,7 +7,7 @@ func test_nullables_are_correctly_set_from_function_lika_a_ready_call():
 	get_tree().root.add_child(spatial)
 	# simulate _ready call because we don't actually want to set it in ready in the Invocation script for the other tests
 	invocation_script.init_nullables()
-	assert_eq(invocation_script.test_nullable, 1, "test_nullable should have been set in ready to 1")
+	assert_eq(invocation_script.nullable_long, 1, "nullable_long should have been set in ready to 1")
 	assert_eq(invocation_script.lateinit_string, "works", "lateinit_string should have been set in ready to wokrs")
 	# TODO: check type once bug is fixed where with `kotlin_script_Name.new()` does not set the script on the object
 	assert_true(invocation_script.register_object != null, "register_object should have been initialized in ready to an instance of OtherScript")
@@ -18,7 +18,7 @@ func test_nullables_are_correctly_set_from_function_lika_a_ready_call():
 func test_nullables_are_correctly_set_from_inspector():
 	var test_scene = load("res://Spatial.tscn").instance()
 	get_tree().root.add_child(test_scene)
-	assert_eq(test_scene.test_nullable, 2, "test_nullable should have been set in ready to 2")
+	assert_eq(test_scene.nullable_long, 2, "nullable_long should have been set in inspector to 2")
 	assert_eq(test_scene.lateinit_string, "works also from inspector", "lateinit_string should have been set in ready to works also from inspector")
 	assert_true(test_scene.register_object_nullable == null, "register_object_nullable should still be null")
 	assert_true(test_scene.register_object_nullable_pre_init != null, "register_object_nullable_pre_init should still not be null")
@@ -30,7 +30,7 @@ func test_nullables_are_correctly_set_without_attaching_to_a_scene():
 	var invocation_script = godot_tests_Invocation.new()
 	spatial.add_child(invocation_script)
 	invocation_script.init_nullables()
-	assert_eq(invocation_script.test_nullable, 1, "test_nullable should have been set in ready to 1")
+	assert_eq(invocation_script.nullable_long, 1, "nullable_long should have been set in ready to 1")
 	assert_eq(invocation_script.lateinit_string, "works", "lateinit_string should have been set in ready to wokrs")
 	# TODO: check type once bug is fixed where with `kotlin_script_Name.new()` does not set the script on the object
 	assert_true(invocation_script.register_object != null, "register_object should have been initialized in ready to an instance of OtherScript")
@@ -52,9 +52,9 @@ func test_set_nullable_from_gdscript():
 	var spatial = Spatial.new()
 	var invocation_script = godot_tests_Invocation.new()
 	spatial.add_child(invocation_script)
-	assert_eq(invocation_script.test_nullable, null, "test_nullable should be null")
-	invocation_script.test_nullable = 1234
-	assert_eq(invocation_script.test_nullable, 1234, "test_nullable should be 1234")
+	assert_eq(invocation_script.nullable_long, null, "nullable_long should be null")
+	invocation_script.nullable_long = 1234
+	assert_eq(invocation_script.nullable_long, 1234, "nullable_long should be 1234")
 	spatial.free()
 
 
@@ -75,7 +75,7 @@ func test_set_objects_from_gdscript():
 	assert_true(invocation_script.register_object_nullable_pre_init != null, "register_object should have been initialized in ready to an instance of OtherScript")
 	# TODO: check type once bug is fixed where with `kotlin_script_Name.new()` does not set the script on the object
 	assert_true(invocation_script.register_object_non_nullable_pre_init != null, "register_object_nullable should have been initialized in ready to an instance of OtherScript")
-	
+
 	invocation_script.free()
 	spatial.free()
 

@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Adds a notch filter to the Audio bus.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Attenuates frequencies in a narrow band around the [godot.AudioEffectFilter.cutoffHz] and cuts frequencies outside of this range.
  */
 @GodotBaseType
-open class AudioEffectNotchFilter : AudioEffectFilter() {
-  override fun __new() {
+public open class AudioEffectNotchFilter : AudioEffectFilter() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTNOTCHFILTER)
   }
 }

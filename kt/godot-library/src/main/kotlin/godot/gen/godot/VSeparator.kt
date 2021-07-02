@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Vertical version of [godot.Separator].
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Vertical version of [godot.Separator]. Even though it looks vertical, it is used to separate objects horizontally.
  */
 @GodotBaseType
-open class VSeparator : Separator() {
-  override fun __new() {
+public open class VSeparator : Separator() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VSEPARATOR)
   }
 }

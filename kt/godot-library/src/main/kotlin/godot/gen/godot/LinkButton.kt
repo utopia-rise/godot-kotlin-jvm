@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -13,6 +13,7 @@ import godot.core.VariantType.STRING
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Simple button used to represent a link to some resource.
@@ -22,17 +23,17 @@ import kotlin.Suppress
  * See also [godot.BaseButton] which contains common properties and methods associated with this node.
  */
 @GodotBaseType
-open class LinkButton : BaseButton() {
+public open class LinkButton : BaseButton() {
   /**
    * The button's text that will be displayed inside the button's area.
    */
-  open var text: String
+  public open var text: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_GET_TEXT, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_SET_TEXT, NIL)
     }
@@ -40,63 +41,62 @@ open class LinkButton : BaseButton() {
   /**
    * Determines when to show the underline. See [enum UnderlineMode] for options.
    */
-  open var underline: Long
+  public open var underline: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_GET_UNDERLINE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINKBUTTON_SET_UNDERLINE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_LINKBUTTON)
   }
 
-  enum class UnderlineMode(
+  public enum class UnderlineMode(
     id: Long
   ) {
     /**
      * The LinkButton will always show an underline at the bottom of its text.
      */
     UNDERLINE_MODE_ALWAYS(0),
-
     /**
      * The LinkButton will show an underline at the bottom of its text when the mouse cursor is over it.
      */
     UNDERLINE_MODE_ON_HOVER(1),
-
     /**
      * The LinkButton will never show an underline at the bottom of its text.
      */
-    UNDERLINE_MODE_NEVER(2);
+    UNDERLINE_MODE_NEVER(2),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * The LinkButton will always show an underline at the bottom of its text.
      */
-    final const val UNDERLINE_MODE_ALWAYS: Long = 0
+    public final const val UNDERLINE_MODE_ALWAYS: Long = 0
 
     /**
      * The LinkButton will never show an underline at the bottom of its text.
      */
-    final const val UNDERLINE_MODE_NEVER: Long = 2
+    public final const val UNDERLINE_MODE_NEVER: Long = 2
 
     /**
      * The LinkButton will show an underline at the bottom of its text when the mouse cursor is over it.
      */
-    final const val UNDERLINE_MODE_ON_HOVER: Long = 1
+    public final const val UNDERLINE_MODE_ON_HOVER: Long = 1
   }
 }

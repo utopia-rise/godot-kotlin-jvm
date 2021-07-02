@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Checkable button. See also [godot.CheckBox].
@@ -16,8 +17,8 @@ import kotlin.Suppress
  * See also [godot.BaseButton] which contains common properties and methods associated with this node.
  */
 @GodotBaseType
-open class CheckButton : Button() {
-  override fun __new() {
+public open class CheckButton : Button() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CHECKBUTTON)
   }
 }

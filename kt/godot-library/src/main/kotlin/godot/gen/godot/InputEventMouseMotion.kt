@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
@@ -27,18 +27,18 @@ import kotlin.Unit
  * **Note:** By default, this event is only emitted once per frame rendered at most. If you need more precise input reporting, call [godot.Input.setUseAccumulatedInput] with `false` to make events emitted as often as possible. If you use InputEventMouseMotion to draw lines, consider implementing [godot.Bresenham's line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm) as well to avoid visible gaps in lines if the user is moving the mouse quickly.
  */
 @GodotBaseType
-open class InputEventMouseMotion : InputEventMouse() {
+public open class InputEventMouseMotion : InputEventMouse() {
   /**
    * Represents the pressure the user puts on the pen. Ranges from `0.0` to `1.0`.
    */
-  open var pressure: Double
+  public open var pressure: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_GET_PRESSURE, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_SET_PRESSURE, NIL)
@@ -49,14 +49,14 @@ open class InputEventMouseMotion : InputEventMouse() {
    *
    * **Note:** Since [godot.InputEventMouseMotion] is only emitted when the mouse moves, the last event won't have a relative position of `Vector2(0, 0)` when the user stops moving the mouse.
    */
-  open var relative: Vector2
+  public open var relative: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_GET_RELATIVE, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_SET_RELATIVE, NIL)
@@ -65,14 +65,14 @@ open class InputEventMouseMotion : InputEventMouse() {
   /**
    * The mouse speed in pixels per second.
    */
-  open var speed: Vector2
+  public open var speed: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_GET_SPEED,
           VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_SET_SPEED,
           NIL)
@@ -81,39 +81,39 @@ open class InputEventMouseMotion : InputEventMouse() {
   /**
    * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0` for both axes.
    */
-  open var tilt: Vector2
+  public open var tilt: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_GET_TILT,
           VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_SET_TILT,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTMOUSEMOTION)
   }
 
   @CoreTypeHelper
-  open fun relative(schedule: Vector2.() -> Unit): Vector2 = relative.apply{
+  public open fun relative(schedule: Vector2.() -> Unit): Vector2 = relative.apply{
       schedule(this)
       relative = this
   }
 
 
   @CoreTypeHelper
-  open fun speed(schedule: Vector2.() -> Unit): Vector2 = speed.apply{
+  public open fun speed(schedule: Vector2.() -> Unit): Vector2 = speed.apply{
       schedule(this)
       speed = this
   }
 
 
   @CoreTypeHelper
-  open fun tilt(schedule: Vector2.() -> Unit): Vector2 = tilt.apply{
+  public open fun tilt(schedule: Vector2.() -> Unit): Vector2 = tilt.apply{
       schedule(this)
       tilt = this
   }

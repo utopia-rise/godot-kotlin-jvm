@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3
@@ -23,27 +23,27 @@ import kotlin.Unit
  * 3D box shape that can be a child of a [godot.PhysicsBody] or [godot.Area].
  */
 @GodotBaseType
-open class BoxShape : Shape() {
+public open class BoxShape : Shape() {
   /**
    * The box's half extents. The width, height and depth of this shape is twice the half extents.
    */
-  open var extents: Vector3
+  public open var extents: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXSHAPE_GET_EXTENTS, VECTOR3)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BOXSHAPE_SET_EXTENTS, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_BOXSHAPE)
   }
 
   @CoreTypeHelper
-  open fun extents(schedule: Vector3.() -> Unit): Vector3 = extents.apply{
+  public open fun extents(schedule: Vector3.() -> Unit): Vector3 = extents.apply{
       schedule(this)
       extents = this
   }

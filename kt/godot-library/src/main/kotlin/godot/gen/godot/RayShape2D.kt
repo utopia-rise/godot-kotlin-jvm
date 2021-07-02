@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -13,6 +13,7 @@ import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Ray shape for 2D collisions.
@@ -20,17 +21,17 @@ import kotlin.Suppress
  * Ray shape for 2D collisions. A ray is not really a collision body; instead, it tries to separate itself from whatever is touching its far endpoint. It's often useful for characters.
  */
 @GodotBaseType
-open class RayShape2D : Shape2D() {
+public open class RayShape2D : Shape2D() {
   /**
    * The ray's length.
    */
-  open var length: Double
+  public open var length: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYSHAPE2D_GET_LENGTH, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYSHAPE2D_SET_LENGTH, NIL)
     }
@@ -38,20 +39,20 @@ open class RayShape2D : Shape2D() {
   /**
    * If `true`, allow the shape to return the correct normal.
    */
-  open var slipsOnSlope: Boolean
+  public open var slipsOnSlope: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYSHAPE2D_GET_SLIPS_ON_SLOPE,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYSHAPE2D_SET_SLIPS_ON_SLOPE,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_RAYSHAPE2D)
   }
 }

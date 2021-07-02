@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PoolColorArray
 import godot.core.TransferContext
@@ -32,32 +32,32 @@ import kotlin.Unit
  * [godot.Control] node displaying a color picker widget. It's useful for selecting a color from an RGB/RGBA colorspace.
  */
 @GodotBaseType
-open class ColorPicker : BoxContainer() {
+public open class ColorPicker : BoxContainer() {
   /**
    * Emitted when the color is changed.
    */
-  val colorChanged: Signal1<Color> by signal("color")
+  public val colorChanged: Signal1<Color> by signal("color")
 
   /**
    * Emitted when a preset is added.
    */
-  val presetAdded: Signal1<Color> by signal("color")
+  public val presetAdded: Signal1<Color> by signal("color")
 
   /**
    * Emitted when a preset is removed.
    */
-  val presetRemoved: Signal1<Color> by signal("color")
+  public val presetRemoved: Signal1<Color> by signal("color")
 
   /**
    * The currently selected color.
    */
-  open var color: Color
+  public open var color: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_COLOR, COLOR)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(COLOR to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_COLOR, NIL)
     }
@@ -65,14 +65,14 @@ open class ColorPicker : BoxContainer() {
   /**
    * If `true`, the color will apply only after the user releases the mouse button, otherwise it will apply immediately even in mouse motion event (which can cause performance issues).
    */
-  open var deferredMode: Boolean
+  public open var deferredMode: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_DEFERRED_MODE,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_DEFERRED_MODE,
           NIL)
@@ -81,13 +81,13 @@ open class ColorPicker : BoxContainer() {
   /**
    * If `true`, shows an alpha channel slider (transparency).
    */
-  open var editAlpha: Boolean
+  public open var editAlpha: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_EDIT_ALPHA, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_EDIT_ALPHA, NIL)
     }
@@ -97,13 +97,13 @@ open class ColorPicker : BoxContainer() {
    *
    * **Note:** Cannot be enabled if raw mode is on.
    */
-  open var hsvMode: Boolean
+  public open var hsvMode: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_HSV_MODE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_HSV_MODE, NIL)
     }
@@ -111,14 +111,14 @@ open class ColorPicker : BoxContainer() {
   /**
    * If `true`, the "add preset" button is enabled.
    */
-  open var presetsEnabled: Boolean
+  public open var presetsEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_PRESETS_ENABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_PRESETS_ENABLED,
           NIL)
@@ -127,14 +127,14 @@ open class ColorPicker : BoxContainer() {
   /**
    * If `true`, saved color presets are visible.
    */
-  open var presetsVisible: Boolean
+  public open var presetsVisible: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_PRESETS_VISIBLE,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_PRESETS_VISIBLE,
           NIL)
@@ -145,71 +145,71 @@ open class ColorPicker : BoxContainer() {
    *
    * **Note:** Cannot be enabled if HSV mode is on.
    */
-  open var rawMode: Boolean
+  public open var rawMode: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_RAW_MODE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_SET_RAW_MODE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_COLORPICKER)
   }
 
   @CoreTypeHelper
-  open fun color(schedule: Color.() -> Unit): Color = color.apply{
+  public open fun color(schedule: Color.() -> Unit): Color = color.apply{
       schedule(this)
       color = this
   }
 
 
-  open fun _addPresetPressed() {
+  public open fun _addPresetPressed(): Unit {
   }
 
-  open fun _focusEnter() {
+  public open fun _focusEnter(): Unit {
   }
 
-  open fun _focusExit() {
+  public open fun _focusExit(): Unit {
   }
 
-  open fun _hsvDraw(arg0: Long, arg1: Control) {
+  public open fun _hsvDraw(arg0: Long, arg1: Control): Unit {
   }
 
-  open fun _htmlEntered(arg0: String) {
+  public open fun _htmlEntered(arg0: String): Unit {
   }
 
-  open fun _htmlFocusExit() {
+  public open fun _htmlFocusExit(): Unit {
   }
 
-  open fun _presetInput(arg0: InputEvent) {
+  public open fun _presetInput(arg0: InputEvent): Unit {
   }
 
-  open fun _sampleDraw() {
+  public open fun _sampleDraw(): Unit {
   }
 
-  open fun _screenInput(arg0: InputEvent) {
+  public open fun _screenInput(arg0: InputEvent): Unit {
   }
 
-  open fun _screenPickPressed() {
+  public open fun _screenPickPressed(): Unit {
   }
 
-  open fun _textTypeToggled() {
+  public open fun _textTypeToggled(): Unit {
   }
 
-  open fun _updatePresets() {
+  public open fun _updatePresets(): Unit {
   }
 
-  open fun _uvInput(arg0: InputEvent) {
+  public open fun _uvInput(arg0: InputEvent): Unit {
   }
 
-  open fun _valueChanged(arg0: Double) {
+  public open fun _valueChanged(arg0: Double): Unit {
   }
 
-  open fun _wInput(arg0: InputEvent) {
+  public open fun _wInput(arg0: InputEvent): Unit {
   }
 
   /**
@@ -217,7 +217,7 @@ open class ColorPicker : BoxContainer() {
    *
    * **Note:** the presets list is only for *this* color picker.
    */
-  open fun addPreset(color: Color) {
+  public open fun addPreset(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_ADD_PRESET, NIL)
   }
@@ -225,7 +225,7 @@ open class ColorPicker : BoxContainer() {
   /**
    * Removes the given color from the list of color presets of this color picker.
    */
-  open fun erasePreset(color: Color) {
+  public open fun erasePreset(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_ERASE_PRESET, NIL)
   }
@@ -233,7 +233,7 @@ open class ColorPicker : BoxContainer() {
   /**
    * Returns the list of colors in the presets of the color picker.
    */
-  open fun getPresets(): PoolColorArray {
+  public open fun getPresets(): PoolColorArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_PRESETS,
         POOL_COLOR_ARRAY)

@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Base class for separators.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Separator is a [godot.Control] used for separating other controls. It's purely a visual decoration. Horizontal ([godot.HSeparator]) and Vertical ([godot.VSeparator]) versions are available.
  */
 @GodotBaseType
-open class Separator : Control() {
-  override fun __new() {
+public open class Separator : Control() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SEPARATOR)
   }
 }

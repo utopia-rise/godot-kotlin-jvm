@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PoolIntArray
 import godot.core.Rect2
@@ -47,11 +47,11 @@ import kotlin.Unit
  * Item text only supports single-line strings, newline characters (e.g. `\n`) in the string won't produce a newline. Text wrapping is enabled in [ICON_MODE_TOP] mode, but column's width is adjusted to fully fit its content by default. You need to set [fixedColumnWidth] greater than zero to wrap the text.
  */
 @GodotBaseType
-open class ItemList : Control() {
+public open class ItemList : Control() {
   /**
    * Triggered when specified list item is activated via double-clicking or by pressing Enter.
    */
-  val itemActivated: Signal1<Long> by signal("index")
+  public val itemActivated: Signal1<Long> by signal("index")
 
   /**
    * Triggered when specified list item has been selected via right mouse clicking.
@@ -60,42 +60,42 @@ open class ItemList : Control() {
    *
    * [allowRmbSelect] must be enabled.
    */
-  val itemRmbSelected: Signal2<Long, Vector2> by signal("index", "at_position")
+  public val itemRmbSelected: Signal2<Long, Vector2> by signal("index", "at_position")
 
   /**
    * Triggered when specified item has been selected.
    *
    * [allowReselect] must be enabled to reselect an item.
    */
-  val itemSelected: Signal1<Long> by signal("index")
+  public val itemSelected: Signal1<Long> by signal("index")
 
   /**
    * Triggered when a multiple selection is altered on a list allowing multiple selection.
    */
-  val multiSelected: Signal2<Long, Boolean> by signal("index", "selected")
+  public val multiSelected: Signal2<Long, Boolean> by signal("index", "selected")
 
   /**
    * Triggered when a left mouse click is issued within the rect of the list but on empty space.
    */
-  val nothingSelected: Signal0 by signal()
+  public val nothingSelected: Signal0 by signal()
 
   /**
    * Triggered when a right mouse click is issued within the rect of the list but on empty space.
    *
    * [allowRmbSelect] must be enabled.
    */
-  val rmbClicked: Signal1<Vector2> by signal("at_position")
+  public val rmbClicked: Signal1<Vector2> by signal("at_position")
 
   /**
    * If `true`, the currently selected item can be selected again.
    */
-  open var allowReselect: Boolean
+  public open var allowReselect: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ALLOW_RESELECT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ALLOW_RESELECT, NIL)
     }
@@ -103,14 +103,14 @@ open class ItemList : Control() {
   /**
    * If `true`, right mouse button click can select items.
    */
-  open var allowRmbSelect: Boolean
+  public open var allowRmbSelect: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ALLOW_RMB_SELECT,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ALLOW_RMB_SELECT,
           NIL)
@@ -119,13 +119,13 @@ open class ItemList : Control() {
   /**
    * If `true`, the control will automatically resize the height to fit its content.
    */
-  open var autoHeight: Boolean
+  public open var autoHeight: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_AUTO_HEIGHT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_AUTO_HEIGHT, NIL)
     }
@@ -135,14 +135,14 @@ open class ItemList : Control() {
    *
    * A value of zero disables the adjustment, each item will have a width equal to the width of its content and the columns will have an uneven width.
    */
-  open var fixedColumnWidth: Long
+  public open var fixedColumnWidth: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_FIXED_COLUMN_WIDTH,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_FIXED_COLUMN_WIDTH,
           NIL)
@@ -153,14 +153,14 @@ open class ItemList : Control() {
    *
    * If either X or Y component is not greater than zero, icon size won't be affected.
    */
-  open var fixedIconSize: Vector2
+  public open var fixedIconSize: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_FIXED_ICON_SIZE,
           VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_FIXED_ICON_SIZE, NIL)
     }
@@ -168,13 +168,13 @@ open class ItemList : Control() {
   /**
    * The icon position, whether above or to the left of the text. See the [enum IconMode] constants.
    */
-  open var iconMode: Long
+  public open var iconMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ICON_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ICON_MODE, NIL)
     }
@@ -182,13 +182,13 @@ open class ItemList : Control() {
   /**
    * The scale of icon applied after [fixedIconSize] and transposing takes effect.
    */
-  open var iconScale: Double
+  public open var iconScale: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ICON_SCALE, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ICON_SCALE, NIL)
     }
@@ -200,13 +200,13 @@ open class ItemList : Control() {
    *
    * A value of zero means unlimited columns, i.e. all items will be put in the same row.
    */
-  open var maxColumns: Long
+  public open var maxColumns: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_MAX_COLUMNS, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_MAX_COLUMNS, NIL)
     }
@@ -216,13 +216,13 @@ open class ItemList : Control() {
    *
    * **Note:** This property takes effect only when [iconMode] is [ICON_MODE_TOP]. To make the text wrap, [fixedColumnWidth] should be greater than zero.
    */
-  open var maxTextLines: Long
+  public open var maxTextLines: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_MAX_TEXT_LINES, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_MAX_TEXT_LINES, NIL)
     }
@@ -232,14 +232,14 @@ open class ItemList : Control() {
    *
    * If `true`, the width is equal to the largest column width of all columns.
    */
-  open var sameColumnWidth: Boolean
+  public open var sameColumnWidth: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_SAME_COLUMN_WIDTH,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_SAME_COLUMN_WIDTH,
           NIL)
@@ -248,45 +248,45 @@ open class ItemList : Control() {
   /**
    * Allows single or multiple item selection. See the [enum SelectMode] constants.
    */
-  open var selectMode: Long
+  public open var selectMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_SELECT_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_SELECT_MODE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ITEMLIST)
   }
 
   @CoreTypeHelper
-  open fun fixedIconSize(schedule: Vector2.() -> Unit): Vector2 = fixedIconSize.apply{
+  public open fun fixedIconSize(schedule: Vector2.() -> Unit): Vector2 = fixedIconSize.apply{
       schedule(this)
       fixedIconSize = this
   }
 
 
-  open fun _getItems(): VariantArray<Any?> {
+  public open fun _getItems(): VariantArray<Any?> {
     throw NotImplementedError("_get_items is not implemented for ItemList")
   }
 
-  override fun _guiInput(event: InputEvent) {
+  public override fun _guiInput(event: InputEvent): Unit {
   }
 
-  open fun _scrollChanged(arg0: Double) {
+  public open fun _scrollChanged(arg0: Double): Unit {
   }
 
-  open fun _setItems(arg0: VariantArray<Any?>) {
+  public open fun _setItems(arg0: VariantArray<Any?>): Unit {
   }
 
   /**
    * Adds an item to the item list with no text, only an icon.
    */
-  open fun addIconItem(icon: Texture, selectable: Boolean = true) {
+  public open fun addIconItem(icon: Texture, selectable: Boolean = true): Unit {
     TransferContext.writeArguments(OBJECT to icon, BOOL to selectable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_ADD_ICON_ITEM, NIL)
   }
@@ -296,11 +296,11 @@ open class ItemList : Control() {
    *
    * If selectable is `true`, the list item will be selectable.
    */
-  open fun addItem(
+  public open fun addItem(
     text: String,
     icon: Texture? = null,
     selectable: Boolean = true
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to text, OBJECT to icon, BOOL to selectable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_ADD_ITEM, NIL)
   }
@@ -308,7 +308,7 @@ open class ItemList : Control() {
   /**
    * Removes all items from the list.
    */
-  open fun clear() {
+  public open fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_CLEAR, NIL)
   }
@@ -316,7 +316,7 @@ open class ItemList : Control() {
   /**
    * Ensure current selection is visible, adjusting the scroll position as necessary.
    */
-  open fun ensureCurrentIsVisible() {
+  public open fun ensureCurrentIsVisible(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_ENSURE_CURRENT_IS_VISIBLE,
         NIL)
@@ -327,7 +327,7 @@ open class ItemList : Control() {
    *
    * When there is no item at that point, -1 will be returned if `exact` is `true`, and the closest item index will be returned otherwise.
    */
-  open fun getItemAtPosition(position: Vector2, exact: Boolean = false): Long {
+  public open fun getItemAtPosition(position: Vector2, exact: Boolean = false): Long {
     TransferContext.writeArguments(VECTOR2 to position, BOOL to exact)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_AT_POSITION, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -336,7 +336,7 @@ open class ItemList : Control() {
   /**
    * Returns the number of items currently in the list.
    */
-  open fun getItemCount(): Long {
+  public open fun getItemCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -345,7 +345,7 @@ open class ItemList : Control() {
   /**
    * Returns the custom background color of the item specified by `idx` index.
    */
-  open fun getItemCustomBgColor(idx: Long): Color {
+  public open fun getItemCustomBgColor(idx: Long): Color {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_CUSTOM_BG_COLOR,
         COLOR)
@@ -355,7 +355,7 @@ open class ItemList : Control() {
   /**
    * Returns the custom foreground color of the item specified by `idx` index.
    */
-  open fun getItemCustomFgColor(idx: Long): Color {
+  public open fun getItemCustomFgColor(idx: Long): Color {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_CUSTOM_FG_COLOR,
         COLOR)
@@ -365,7 +365,7 @@ open class ItemList : Control() {
   /**
    * Returns the icon associated with the specified index.
    */
-  open fun getItemIcon(idx: Long): Texture? {
+  public open fun getItemIcon(idx: Long): Texture? {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_ICON, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Texture?
@@ -374,7 +374,7 @@ open class ItemList : Control() {
   /**
    * Returns a [godot.core.Color] modulating item's icon at the specified index.
    */
-  open fun getItemIconModulate(idx: Long): Color {
+  public open fun getItemIconModulate(idx: Long): Color {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_ICON_MODULATE,
         COLOR)
@@ -384,7 +384,7 @@ open class ItemList : Control() {
   /**
    * Returns the region of item's icon used. The whole icon will be used if the region has no area.
    */
-  open fun getItemIconRegion(idx: Long): Rect2 {
+  public open fun getItemIconRegion(idx: Long): Rect2 {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_ICON_REGION,
         RECT2)
@@ -394,7 +394,7 @@ open class ItemList : Control() {
   /**
    * Returns the metadata value of the specified index.
    */
-  open fun getItemMetadata(idx: Long): Any? {
+  public open fun getItemMetadata(idx: Long): Any? {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_METADATA, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -403,7 +403,7 @@ open class ItemList : Control() {
   /**
    * Returns the text associated with the specified index.
    */
-  open fun getItemText(idx: Long): String {
+  public open fun getItemText(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_TEXT, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -412,7 +412,7 @@ open class ItemList : Control() {
   /**
    * Returns the tooltip hint associated with the specified index.
    */
-  open fun getItemTooltip(idx: Long): String {
+  public open fun getItemTooltip(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_ITEM_TOOLTIP, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -421,7 +421,7 @@ open class ItemList : Control() {
   /**
    * Returns an array with the indexes of the selected items.
    */
-  open fun getSelectedItems(): PoolIntArray {
+  public open fun getSelectedItems(): PoolIntArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_SELECTED_ITEMS,
         POOL_INT_ARRAY)
@@ -431,7 +431,7 @@ open class ItemList : Control() {
   /**
    * Returns the [godot.Object] ID associated with the list.
    */
-  open fun getVScroll(): VScrollBar? {
+  public open fun getVScroll(): VScrollBar? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_V_SCROLL, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as VScrollBar?
@@ -440,7 +440,7 @@ open class ItemList : Control() {
   /**
    * Returns `true` if one or more items are selected.
    */
-  open fun isAnythingSelected(): Boolean {
+  public open fun isAnythingSelected(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_ANYTHING_SELECTED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -449,7 +449,7 @@ open class ItemList : Control() {
   /**
    * Returns `true` if the item at the specified index is disabled.
    */
-  open fun isItemDisabled(idx: Long): Boolean {
+  public open fun isItemDisabled(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_ITEM_DISABLED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -458,7 +458,7 @@ open class ItemList : Control() {
   /**
    * Returns `true` if the item icon will be drawn transposed, i.e. the X and Y axes are swapped.
    */
-  open fun isItemIconTransposed(idx: Long): Boolean {
+  public open fun isItemIconTransposed(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_ITEM_ICON_TRANSPOSED,
         BOOL)
@@ -468,7 +468,7 @@ open class ItemList : Control() {
   /**
    * Returns `true` if the item at the specified index is selectable.
    */
-  open fun isItemSelectable(idx: Long): Boolean {
+  public open fun isItemSelectable(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_ITEM_SELECTABLE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -477,7 +477,7 @@ open class ItemList : Control() {
   /**
    * Returns `true` if the tooltip is enabled for specified item index.
    */
-  open fun isItemTooltipEnabled(idx: Long): Boolean {
+  public open fun isItemTooltipEnabled(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_ITEM_TOOLTIP_ENABLED,
         BOOL)
@@ -487,7 +487,7 @@ open class ItemList : Control() {
   /**
    * Returns `true` if the item at the specified index is currently selected.
    */
-  open fun isSelected(idx: Long): Boolean {
+  public open fun isSelected(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_SELECTED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -496,7 +496,7 @@ open class ItemList : Control() {
   /**
    * Moves item from index `from_idx` to `to_idx`.
    */
-  open fun moveItem(fromIdx: Long, toIdx: Long) {
+  public open fun moveItem(fromIdx: Long, toIdx: Long): Unit {
     TransferContext.writeArguments(LONG to fromIdx, LONG to toIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_MOVE_ITEM, NIL)
   }
@@ -504,7 +504,7 @@ open class ItemList : Control() {
   /**
    * Removes the item specified by `idx` index from the list.
    */
-  open fun removeItem(idx: Long) {
+  public open fun removeItem(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_REMOVE_ITEM, NIL)
   }
@@ -514,7 +514,7 @@ open class ItemList : Control() {
    *
    * **Note:** This method does not trigger the item selection signal.
    */
-  open fun select(idx: Long, single: Boolean = true) {
+  public open fun select(idx: Long, single: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to idx, BOOL to single)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SELECT, NIL)
   }
@@ -522,7 +522,7 @@ open class ItemList : Control() {
   /**
    * Sets the background color of the item specified by `idx` index to the specified [godot.core.Color].
    */
-  open fun setItemCustomBgColor(idx: Long, customBgColor: Color) {
+  public open fun setItemCustomBgColor(idx: Long, customBgColor: Color): Unit {
     TransferContext.writeArguments(LONG to idx, COLOR to customBgColor)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_CUSTOM_BG_COLOR,
         NIL)
@@ -531,7 +531,7 @@ open class ItemList : Control() {
   /**
    * Sets the foreground color of the item specified by `idx` index to the specified [godot.core.Color].
    */
-  open fun setItemCustomFgColor(idx: Long, customFgColor: Color) {
+  public open fun setItemCustomFgColor(idx: Long, customFgColor: Color): Unit {
     TransferContext.writeArguments(LONG to idx, COLOR to customFgColor)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_CUSTOM_FG_COLOR,
         NIL)
@@ -542,7 +542,7 @@ open class ItemList : Control() {
    *
    * Disabled items cannot be selected and do not trigger activation signals (when double-clicking or pressing Enter).
    */
-  open fun setItemDisabled(idx: Long, disabled: Boolean) {
+  public open fun setItemDisabled(idx: Long, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx, BOOL to disabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_DISABLED, NIL)
   }
@@ -550,7 +550,7 @@ open class ItemList : Control() {
   /**
    * Sets (or replaces) the icon's [godot.Texture] associated with the specified index.
    */
-  open fun setItemIcon(idx: Long, icon: Texture) {
+  public open fun setItemIcon(idx: Long, icon: Texture): Unit {
     TransferContext.writeArguments(LONG to idx, OBJECT to icon)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_ICON, NIL)
   }
@@ -558,7 +558,7 @@ open class ItemList : Control() {
   /**
    * Sets a modulating [godot.core.Color] of the item associated with the specified index.
    */
-  open fun setItemIconModulate(idx: Long, modulate: Color) {
+  public open fun setItemIconModulate(idx: Long, modulate: Color): Unit {
     TransferContext.writeArguments(LONG to idx, COLOR to modulate)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_ICON_MODULATE,
         NIL)
@@ -567,7 +567,7 @@ open class ItemList : Control() {
   /**
    * Sets the region of item's icon used. The whole icon will be used if the region has no area.
    */
-  open fun setItemIconRegion(idx: Long, rect: Rect2) {
+  public open fun setItemIconRegion(idx: Long, rect: Rect2): Unit {
     TransferContext.writeArguments(LONG to idx, RECT2 to rect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_ICON_REGION, NIL)
   }
@@ -575,7 +575,7 @@ open class ItemList : Control() {
   /**
    * Sets whether the item icon will be drawn transposed.
    */
-  open fun setItemIconTransposed(idx: Long, transposed: Boolean) {
+  public open fun setItemIconTransposed(idx: Long, transposed: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx, BOOL to transposed)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_ICON_TRANSPOSED,
         NIL)
@@ -584,7 +584,7 @@ open class ItemList : Control() {
   /**
    * Sets a value (of any type) to be stored with the item associated with the specified index.
    */
-  open fun setItemMetadata(idx: Long, metadata: Any?) {
+  public open fun setItemMetadata(idx: Long, metadata: Any?): Unit {
     TransferContext.writeArguments(LONG to idx, ANY to metadata)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_METADATA, NIL)
   }
@@ -592,7 +592,7 @@ open class ItemList : Control() {
   /**
    * Allows or disallows selection of the item associated with the specified index.
    */
-  open fun setItemSelectable(idx: Long, selectable: Boolean) {
+  public open fun setItemSelectable(idx: Long, selectable: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx, BOOL to selectable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_SELECTABLE, NIL)
   }
@@ -600,7 +600,7 @@ open class ItemList : Control() {
   /**
    * Sets text of the item associated with the specified index.
    */
-  open fun setItemText(idx: Long, text: String) {
+  public open fun setItemText(idx: Long, text: String): Unit {
     TransferContext.writeArguments(LONG to idx, STRING to text)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_TEXT, NIL)
   }
@@ -608,7 +608,7 @@ open class ItemList : Control() {
   /**
    * Sets the tooltip hint for the item associated with the specified index.
    */
-  open fun setItemTooltip(idx: Long, tooltip: String) {
+  public open fun setItemTooltip(idx: Long, tooltip: String): Unit {
     TransferContext.writeArguments(LONG to idx, STRING to tooltip)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_TOOLTIP, NIL)
   }
@@ -616,7 +616,7 @@ open class ItemList : Control() {
   /**
    * Sets whether the tooltip hint is enabled for specified item index.
    */
-  open fun setItemTooltipEnabled(idx: Long, enable: Boolean) {
+  public open fun setItemTooltipEnabled(idx: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to idx, BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_TOOLTIP_ENABLED,
         NIL)
@@ -625,7 +625,7 @@ open class ItemList : Control() {
   /**
    * Sorts items in the list by their text.
    */
-  open fun sortItemsByText() {
+  public open fun sortItemsByText(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SORT_ITEMS_BY_TEXT, NIL)
   }
@@ -633,7 +633,7 @@ open class ItemList : Control() {
   /**
    * Ensures the item associated with the specified index is not selected.
    */
-  open fun unselect(idx: Long) {
+  public open fun unselect(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_UNSELECT, NIL)
   }
@@ -641,76 +641,76 @@ open class ItemList : Control() {
   /**
    * Ensures there are no items selected.
    */
-  open fun unselectAll() {
+  public open fun unselectAll(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_UNSELECT_ALL, NIL)
   }
 
-  enum class SelectMode(
+  public enum class SelectMode(
     id: Long
   ) {
     /**
      * Only allow selecting a single item.
      */
     SELECT_SINGLE(0),
-
     /**
      * Allows selecting multiple items by holding Ctrl or Shift.
      */
-    SELECT_MULTI(1);
+    SELECT_MULTI(1),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class IconMode(
+  public enum class IconMode(
     id: Long
   ) {
     /**
      * Icon is drawn above the text.
      */
     ICON_MODE_TOP(0),
-
     /**
      * Icon is drawn to the left of the text.
      */
-    ICON_MODE_LEFT(1);
+    ICON_MODE_LEFT(1),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Icon is drawn to the left of the text.
      */
-    final const val ICON_MODE_LEFT: Long = 1
+    public final const val ICON_MODE_LEFT: Long = 1
 
     /**
      * Icon is drawn above the text.
      */
-    final const val ICON_MODE_TOP: Long = 0
+    public final const val ICON_MODE_TOP: Long = 0
 
     /**
      * Allows selecting multiple items by holding Ctrl or Shift.
      */
-    final const val SELECT_MULTI: Long = 1
+    public final const val SELECT_MULTI: Long = 1
 
     /**
      * Only allow selecting a single item.
      */
-    final const val SELECT_SINGLE: Long = 0
+    public final const val SELECT_SINGLE: Long = 0
   }
 }

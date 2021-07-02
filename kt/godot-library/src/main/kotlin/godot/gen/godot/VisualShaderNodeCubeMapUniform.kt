@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A [godot.CubeMap] uniform node to be used within the visual shader graph.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Translated to `uniform samplerCube` in the shader language. The output value can be used as port for [godot.VisualShaderNodeCubeMap].
  */
 @GodotBaseType
-open class VisualShaderNodeCubeMapUniform : VisualShaderNodeTextureUniform() {
-  override fun __new() {
+public open class VisualShaderNodeCubeMapUniform : VisualShaderNodeTextureUniform() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODECUBEMAPUNIFORM)
   }
 }

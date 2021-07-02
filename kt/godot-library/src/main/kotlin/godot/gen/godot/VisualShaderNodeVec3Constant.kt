@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR3
@@ -20,29 +20,29 @@ import kotlin.Unit
  * A constant [godot.core.Vector3], which can be used as an input node.
  */
 @GodotBaseType
-open class VisualShaderNodeVec3Constant : VisualShaderNode() {
+public open class VisualShaderNodeVec3Constant : VisualShaderNode() {
   /**
    * A [godot.core.Vector3] constant which represents the state of this node.
    */
-  open var constant: Vector3
+  public open var constant: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVEC3CONSTANT_GET_CONSTANT, VECTOR3)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEVEC3CONSTANT_SET_CONSTANT, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVEC3CONSTANT)
   }
 
   @CoreTypeHelper
-  open fun constant(schedule: Vector3.() -> Unit): Vector3 = constant.apply{
+  public open fun constant(schedule: Vector3.() -> Unit): Vector3 = constant.apply{
       schedule(this)
       constant = this
   }

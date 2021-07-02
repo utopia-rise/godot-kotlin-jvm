@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -41,18 +41,18 @@ import kotlin.Unit
  * **Note:** DynamicFont doesn't support features such as kerning, right-to-left typesetting, ligatures, text shaping, variable fonts and optional font features yet. If you wish to "bake" an optional font feature into a TTF font file, you can use [godot.FontForge](https://fontforge.org/) to do so. In FontForge, use **File > Generate Fonts**, click **Options**, choose the desired features then generate the font.
  */
 @GodotBaseType
-open class DynamicFont : Font() {
+public open class DynamicFont : Font() {
   /**
    * Extra spacing at the bottom in pixels.
    */
-  open var extraSpacingBottom: Long
+  public open var extraSpacingBottom: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_GET_EXTRA_SPACING_BOTTOM, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_SET_EXTRA_SPACING_BOTTOM, NIL)
@@ -63,14 +63,14 @@ open class DynamicFont : Font() {
    *
    * This can be a negative number to make the distance between characters smaller.
    */
-  open var extraSpacingChar: Long
+  public open var extraSpacingChar: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_GET_EXTRA_SPACING_CHAR, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_SET_EXTRA_SPACING_CHAR, NIL)
@@ -81,14 +81,14 @@ open class DynamicFont : Font() {
    *
    * This can be a negative number to make the distance between words smaller.
    */
-  open var extraSpacingSpace: Long
+  public open var extraSpacingSpace: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_GET_EXTRA_SPACING_SPACE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_SET_EXTRA_SPACING_SPACE, NIL)
@@ -97,14 +97,14 @@ open class DynamicFont : Font() {
   /**
    * Extra spacing at the top in pixels.
    */
-  open var extraSpacingTop: Long
+  public open var extraSpacingTop: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_GET_EXTRA_SPACING_TOP,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_SET_EXTRA_SPACING_TOP,
           NIL)
@@ -113,13 +113,13 @@ open class DynamicFont : Font() {
   /**
    * The font data.
    */
-  open var fontData: DynamicFontData?
+  public open var fontData: DynamicFontData?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_GET_FONT_DATA, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as DynamicFontData?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_SET_FONT_DATA, NIL)
     }
@@ -129,14 +129,14 @@ open class DynamicFont : Font() {
    *
    * **Note:** It's recommended to leave this at the default value so that you can adjust it in individual controls. For example, if the outline is made black here, it won't be possible to change its color using a Label's font outline modulate theme item.
    */
-  open var outlineColor: Color
+  public open var outlineColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_GET_OUTLINE_COLOR,
           COLOR)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(COLOR to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_SET_OUTLINE_COLOR,
           NIL)
@@ -145,14 +145,14 @@ open class DynamicFont : Font() {
   /**
    * The font outline's thickness in pixels (not relative to the font size).
    */
-  open var outlineSize: Long
+  public open var outlineSize: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_GET_OUTLINE_SIZE,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_SET_OUTLINE_SIZE, NIL)
     }
@@ -160,13 +160,13 @@ open class DynamicFont : Font() {
   /**
    * The font size in pixels.
    */
-  open var size: Long
+  public open var size: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_GET_SIZE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_SET_SIZE, NIL)
     }
@@ -174,13 +174,13 @@ open class DynamicFont : Font() {
   /**
    * If `true`, filtering is used. This makes the font blurry instead of pixelated when scaling it if font oversampling is disabled or ineffective. It's recommended to enable this when using the font in a control whose size changes over time, unless a pixel art aesthetic is desired.
    */
-  open var useFilter: Boolean
+  public open var useFilter: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_GET_USE_FILTER, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_SET_USE_FILTER, NIL)
     }
@@ -188,23 +188,23 @@ open class DynamicFont : Font() {
   /**
    * If `true`, mipmapping is used. This improves the font's appearance when downscaling it if font oversampling is disabled or ineffective.
    */
-  open var useMipmaps: Boolean
+  public open var useMipmaps: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_GET_USE_MIPMAPS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_SET_USE_MIPMAPS, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_DYNAMICFONT)
   }
 
   @CoreTypeHelper
-  open fun outlineColor(schedule: Color.() -> Unit): Color = outlineColor.apply{
+  public open fun outlineColor(schedule: Color.() -> Unit): Color = outlineColor.apply{
       schedule(this)
       outlineColor = this
   }
@@ -213,7 +213,7 @@ open class DynamicFont : Font() {
   /**
    * Adds a fallback font.
    */
-  open fun addFallback(data: DynamicFontData) {
+  public open fun addFallback(`data`: DynamicFontData): Unit {
     TransferContext.writeArguments(OBJECT to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_ADD_FALLBACK, NIL)
   }
@@ -223,7 +223,7 @@ open class DynamicFont : Font() {
    *
    * If a given character is included in more than one font, it appears only once in the returned string.
    */
-  open fun getAvailableChars(): String {
+  public open fun getAvailableChars(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_GET_AVAILABLE_CHARS,
         STRING)
@@ -233,7 +233,7 @@ open class DynamicFont : Font() {
   /**
    * Returns the fallback font at index `idx`.
    */
-  open fun getFallback(idx: Long): DynamicFontData? {
+  public open fun getFallback(idx: Long): DynamicFontData? {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_GET_FALLBACK, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as DynamicFontData?
@@ -242,7 +242,7 @@ open class DynamicFont : Font() {
   /**
    * Returns the number of fallback fonts.
    */
-  open fun getFallbackCount(): Long {
+  public open fun getFallbackCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_GET_FALLBACK_COUNT,
         LONG)
@@ -252,7 +252,7 @@ open class DynamicFont : Font() {
   /**
    * Removes the fallback font at index `idx`.
    */
-  open fun removeFallback(idx: Long) {
+  public open fun removeFallback(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_REMOVE_FALLBACK, NIL)
   }
@@ -260,63 +260,61 @@ open class DynamicFont : Font() {
   /**
    * Sets the fallback font at index `idx`.
    */
-  open fun setFallback(idx: Long, data: DynamicFontData) {
+  public open fun setFallback(idx: Long, `data`: DynamicFontData): Unit {
     TransferContext.writeArguments(LONG to idx, OBJECT to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONT_SET_FALLBACK, NIL)
   }
 
-  enum class SpacingType(
+  public enum class SpacingType(
     id: Long
   ) {
     /**
      * Spacing at the top.
      */
     SPACING_TOP(0),
-
     /**
      * Spacing at the bottom.
      */
     SPACING_BOTTOM(1),
-
     /**
      * Spacing for each character.
      */
     SPACING_CHAR(2),
-
     /**
      * Spacing for the space character.
      */
-    SPACING_SPACE(3);
+    SPACING_SPACE(3),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Spacing at the bottom.
      */
-    final const val SPACING_BOTTOM: Long = 1
+    public final const val SPACING_BOTTOM: Long = 1
 
     /**
      * Spacing for each character.
      */
-    final const val SPACING_CHAR: Long = 2
+    public final const val SPACING_CHAR: Long = 2
 
     /**
      * Spacing for the space character.
      */
-    final const val SPACING_SPACE: Long = 3
+    public final const val SPACING_SPACE: Long = 3
 
     /**
      * Spacing at the top.
      */
-    final const val SPACING_TOP: Long = 0
+    public final const val SPACING_TOP: Long = 0
   }
 }

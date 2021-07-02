@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.Plane
 import godot.core.PoolIntArray
@@ -32,6 +32,7 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Helper node to calculate generic geometry operations.
@@ -39,77 +40,77 @@ import kotlin.Suppress
  * Geometry provides users with a set of helper functions to create geometric shapes, compute intersections between shapes, and process various other geometric operations.
  */
 @GodotBaseType
-object Geometry : Object() {
+public object Geometry : Object() {
   /**
    * Endpoints are squared off with no extension.
    */
-  final const val END_BUTT: Long = 2
+  public final const val END_BUTT: Long = 2
 
   /**
    * Endpoints are joined using the [enum PolyJoinType] value and the path filled as a polyline.
    */
-  final const val END_JOINED: Long = 1
+  public final const val END_JOINED: Long = 1
 
   /**
    * Endpoints are joined using the [enum PolyJoinType] value and the path filled as a polygon.
    */
-  final const val END_POLYGON: Long = 0
+  public final const val END_POLYGON: Long = 0
 
   /**
    * Endpoints are rounded off and extended by `delta` units.
    */
-  final const val END_ROUND: Long = 4
+  public final const val END_ROUND: Long = 4
 
   /**
    * Endpoints are squared off and extended by `delta` units.
    */
-  final const val END_SQUARE: Long = 3
+  public final const val END_SQUARE: Long = 3
 
   /**
    * There's a necessary limit to mitered joins since offsetting edges that join at very acute angles will produce excessively long and narrow "spikes". For any given edge join, when miter offsetting would exceed that maximum distance, "square" joining is applied.
    */
-  final const val JOIN_MITER: Long = 2
+  public final const val JOIN_MITER: Long = 2
 
   /**
    * While flattened paths can never perfectly trace an arc, they are approximated by a series of arc chords.
    */
-  final const val JOIN_ROUND: Long = 1
+  public final const val JOIN_ROUND: Long = 1
 
   /**
    * Squaring is applied uniformally at all convex edge joins at `1 * delta`.
    */
-  final const val JOIN_SQUARE: Long = 0
+  public final const val JOIN_SQUARE: Long = 0
 
   /**
    * Create regions where subject polygons are filled except where clip polygons are filled.
    */
-  final const val OPERATION_DIFFERENCE: Long = 1
+  public final const val OPERATION_DIFFERENCE: Long = 1
 
   /**
    * Create regions where both subject and clip polygons are filled.
    */
-  final const val OPERATION_INTERSECTION: Long = 2
+  public final const val OPERATION_INTERSECTION: Long = 2
 
   /**
    * Create regions where either subject or clip polygons (or both) are filled.
    */
-  final const val OPERATION_UNION: Long = 0
+  public final const val OPERATION_UNION: Long = 0
 
   /**
    * Create regions where either subject or clip polygons are filled but not where both are filled.
    */
-  final const val OPERATION_XOR: Long = 3
+  public final const val OPERATION_XOR: Long = 3
 
-  override fun __new() {
+  public override fun __new(): Unit {
     rawPtr = TransferContext.getSingleton(ENGINESINGLETON_GEOMETRY)
   }
 
-  override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
+  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    * Returns an array with 6 [godot.core.Plane]s that describe the sides of a box centered at the origin. The box size is defined by `extents`, which represents one (positive) corner of the box (i.e. half its actual size).
    */
-  fun buildBoxPlanes(extents: Vector3): VariantArray<Any?> {
+  public fun buildBoxPlanes(extents: Vector3): VariantArray<Any?> {
     TransferContext.writeArguments(VECTOR3 to extents)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__GEOMETRY_BUILD_BOX_PLANES, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -118,7 +119,7 @@ object Geometry : Object() {
   /**
    * Returns an array of [godot.core.Plane]s closely bounding a faceted capsule centered at the origin with radius `radius` and height `height`. The parameter `sides` defines how many planes will be generated for the side part of the capsule, whereas `lats` gives the number of latitudinal steps at the bottom and top of the capsule. The parameter `axis` describes the axis along which the capsule is oriented (0 for X, 1 for Y, 2 for Z).
    */
-  fun buildCapsulePlanes(
+  public fun buildCapsulePlanes(
     radius: Double,
     height: Double,
     sides: Long,
@@ -135,7 +136,7 @@ object Geometry : Object() {
   /**
    * Returns an array of [godot.core.Plane]s closely bounding a faceted cylinder centered at the origin with radius `radius` and height `height`. The parameter `sides` defines how many planes will be generated for the round part of the cylinder. The parameter `axis` describes the axis along which the cylinder is oriented (0 for X, 1 for Y, 2 for Z).
    */
-  fun buildCylinderPlanes(
+  public fun buildCylinderPlanes(
     radius: Double,
     height: Double,
     sides: Long,
@@ -150,7 +151,7 @@ object Geometry : Object() {
   /**
    * Clips the polygon defined by the points in `points` against the `plane` and returns the points of the clipped polygon.
    */
-  fun clipPolygon(points: PoolVector3Array, plane: Plane): PoolVector3Array {
+  public fun clipPolygon(points: PoolVector3Array, plane: Plane): PoolVector3Array {
     TransferContext.writeArguments(POOL_VECTOR3_ARRAY to points, PLANE to plane)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__GEOMETRY_CLIP_POLYGON,
         POOL_VECTOR3_ARRAY)
@@ -162,7 +163,8 @@ object Geometry : Object() {
    *
    * If `polygon_b` is enclosed by `polygon_a`, returns an outer polygon (boundary) and inner polygon (hole) which could be distinguished by calling [isPolygonClockwise].
    */
-  fun clipPolygons2d(polygonA: PoolVector2Array, polygonB: PoolVector2Array): VariantArray<Any?> {
+  public fun clipPolygons2d(polygonA: PoolVector2Array, polygonB: PoolVector2Array):
+      VariantArray<Any?> {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to polygonA, POOL_VECTOR2_ARRAY to polygonB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__GEOMETRY_CLIP_POLYGONS_2D, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -171,7 +173,7 @@ object Geometry : Object() {
   /**
    * Clips `polyline` against `polygon` and returns an array of clipped polylines. This performs [OPERATION_DIFFERENCE] between the polyline and the polygon. This operation can be thought of as cutting a line with a closed shape.
    */
-  fun clipPolylineWithPolygon2d(polyline: PoolVector2Array, polygon: PoolVector2Array):
+  public fun clipPolylineWithPolygon2d(polyline: PoolVector2Array, polygon: PoolVector2Array):
       VariantArray<Any?> {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to polyline, POOL_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(rawPtr,
@@ -182,7 +184,7 @@ object Geometry : Object() {
   /**
    * Given an array of [godot.core.Vector2]s, returns the convex hull as a list of points in counterclockwise order. The last point is the same as the first one.
    */
-  fun convexHull2d(points: PoolVector2Array): PoolVector2Array {
+  public fun convexHull2d(points: PoolVector2Array): PoolVector2Array {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to points)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__GEOMETRY_CONVEX_HULL_2D,
         POOL_VECTOR2_ARRAY)
@@ -194,7 +196,7 @@ object Geometry : Object() {
    *
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [isPolygonClockwise].
    */
-  fun excludePolygons2d(polygonA: PoolVector2Array, polygonB: PoolVector2Array):
+  public fun excludePolygons2d(polygonA: PoolVector2Array, polygonB: PoolVector2Array):
       VariantArray<Any?> {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to polygonA, POOL_VECTOR2_ARRAY to polygonB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__GEOMETRY_EXCLUDE_POLYGONS_2D,
@@ -205,7 +207,7 @@ object Geometry : Object() {
   /**
    * Returns the 3D point on the 3D segment (`s1`, `s2`) that is closest to `point`. The returned point will always be inside the specified segment.
    */
-  fun getClosestPointToSegment(
+  public fun getClosestPointToSegment(
     point: Vector3,
     s1: Vector3,
     s2: Vector3
@@ -219,7 +221,7 @@ object Geometry : Object() {
   /**
    * Returns the 2D point on the 2D segment (`s1`, `s2`) that is closest to `point`. The returned point will always be inside the specified segment.
    */
-  fun getClosestPointToSegment2d(
+  public fun getClosestPointToSegment2d(
     point: Vector2,
     s1: Vector2,
     s2: Vector2
@@ -233,7 +235,7 @@ object Geometry : Object() {
   /**
    * Returns the 3D point on the 3D line defined by (`s1`, `s2`) that is closest to `point`. The returned point can be inside the segment (`s1`, `s2`) or outside of it, i.e. somewhere on the line extending from the segment.
    */
-  fun getClosestPointToSegmentUncapped(
+  public fun getClosestPointToSegmentUncapped(
     point: Vector3,
     s1: Vector3,
     s2: Vector3
@@ -247,7 +249,7 @@ object Geometry : Object() {
   /**
    * Returns the 2D point on the 2D line defined by (`s1`, `s2`) that is closest to `point`. The returned point can be inside the segment (`s1`, `s2`) or outside of it, i.e. somewhere on the line extending from the segment.
    */
-  fun getClosestPointToSegmentUncapped2d(
+  public fun getClosestPointToSegmentUncapped2d(
     point: Vector2,
     s1: Vector2,
     s2: Vector2
@@ -261,7 +263,7 @@ object Geometry : Object() {
   /**
    * Given the two 3D segments (`p1`, `p2`) and (`q1`, `q2`), finds those two points on the two segments that are closest to each other. Returns a [godot.core.PoolVector3Array] that contains this point on (`p1`, `p2`) as well the accompanying point on (`q1`, `q2`).
    */
-  fun getClosestPointsBetweenSegments(
+  public fun getClosestPointsBetweenSegments(
     p1: Vector3,
     p2: Vector3,
     q1: Vector3,
@@ -276,7 +278,7 @@ object Geometry : Object() {
   /**
    * Given the two 2D segments (`p1`, `q1`) and (`p2`, `q2`), finds those two points on the two segments that are closest to each other. Returns a [godot.core.PoolVector2Array] that contains this point on (`p1`, `q1`) as well the accompanying point on (`p2`, `q2`).
    */
-  fun getClosestPointsBetweenSegments2d(
+  public fun getClosestPointsBetweenSegments2d(
     p1: Vector2,
     q1: Vector2,
     p2: Vector2,
@@ -292,7 +294,7 @@ object Geometry : Object() {
   /**
    * Used internally by the engine.
    */
-  fun getUv84NormalBit(normal: Vector3): Long {
+  public fun getUv84NormalBit(normal: Vector3): Long {
     TransferContext.writeArguments(VECTOR3 to normal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__GEOMETRY_GET_UV84_NORMAL_BIT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -303,7 +305,7 @@ object Geometry : Object() {
    *
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [isPolygonClockwise].
    */
-  fun intersectPolygons2d(polygonA: PoolVector2Array, polygonB: PoolVector2Array):
+  public fun intersectPolygons2d(polygonA: PoolVector2Array, polygonB: PoolVector2Array):
       VariantArray<Any?> {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to polygonA, POOL_VECTOR2_ARRAY to polygonB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__GEOMETRY_INTERSECT_POLYGONS_2D,
@@ -314,7 +316,7 @@ object Geometry : Object() {
   /**
    * Intersects `polyline` with `polygon` and returns an array of intersected polylines. This performs [OPERATION_INTERSECTION] between the polyline and the polygon. This operation can be thought of as chopping a line with a closed shape.
    */
-  fun intersectPolylineWithPolygon2d(polyline: PoolVector2Array, polygon: PoolVector2Array):
+  public fun intersectPolylineWithPolygon2d(polyline: PoolVector2Array, polygon: PoolVector2Array):
       VariantArray<Any?> {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to polyline, POOL_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(rawPtr,
@@ -325,7 +327,7 @@ object Geometry : Object() {
   /**
    * Returns `true` if `point` is inside the circle or if it's located exactly *on* the circle's boundary, otherwise returns `false`.
    */
-  fun isPointInCircle(
+  public fun isPointInCircle(
     point: Vector2,
     circlePosition: Vector2,
     circleRadius: Double
@@ -339,7 +341,7 @@ object Geometry : Object() {
   /**
    * Returns `true` if `point` is inside `polygon` or if it's located exactly *on* polygon's boundary, otherwise returns `false`.
    */
-  fun isPointInPolygon(point: Vector2, polygon: PoolVector2Array): Boolean {
+  public fun isPointInPolygon(point: Vector2, polygon: PoolVector2Array): Boolean {
     TransferContext.writeArguments(VECTOR2 to point, POOL_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__GEOMETRY_IS_POINT_IN_POLYGON, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -348,7 +350,7 @@ object Geometry : Object() {
   /**
    * Returns `true` if `polygon`'s vertices are ordered in clockwise order, otherwise returns `false`.
    */
-  fun isPolygonClockwise(polygon: PoolVector2Array): Boolean {
+  public fun isPolygonClockwise(polygon: PoolVector2Array): Boolean {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__GEOMETRY_IS_POLYGON_CLOCKWISE,
         BOOL)
@@ -360,7 +362,7 @@ object Geometry : Object() {
    *
    * **Note:** The lines are specified using direction vectors, not end points.
    */
-  fun lineIntersectsLine2d(
+  public fun lineIntersectsLine2d(
     fromA: Vector2,
     dirA: Vector2,
     fromB: Vector2,
@@ -376,7 +378,7 @@ object Geometry : Object() {
   /**
    * Given an array of [godot.core.Vector2]s representing tiles, builds an atlas. The returned dictionary has two keys: `points` is a vector of [godot.core.Vector2] that specifies the positions of each tile, `size` contains the overall size of the whole atlas as [godot.core.Vector2].
    */
-  fun makeAtlas(sizes: PoolVector2Array): Dictionary<Any?, Any?> {
+  public fun makeAtlas(sizes: PoolVector2Array): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to sizes)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__GEOMETRY_MAKE_ATLAS, DICTIONARY)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
@@ -387,7 +389,8 @@ object Geometry : Object() {
    *
    * The operation may result in an outer polygon (boundary) and multiple inner polygons (holes) produced which could be distinguished by calling [isPolygonClockwise].
    */
-  fun mergePolygons2d(polygonA: PoolVector2Array, polygonB: PoolVector2Array): VariantArray<Any?> {
+  public fun mergePolygons2d(polygonA: PoolVector2Array, polygonB: PoolVector2Array):
+      VariantArray<Any?> {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to polygonA, POOL_VECTOR2_ARRAY to polygonB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__GEOMETRY_MERGE_POLYGONS_2D, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -409,7 +412,7 @@ object Geometry : Object() {
    * 				print(polygon) # prints [godot.Vector2(50, 50), Vector2(150, 50), Vector2(150, 150), Vector2(50, 150)]
    * 				```
    */
-  fun offsetPolygon2d(
+  public fun offsetPolygon2d(
     polygon: PoolVector2Array,
     delta: Double,
     joinType: Long = 0
@@ -428,7 +431,7 @@ object Geometry : Object() {
    *
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which could be distinguished by calling [isPolygonClockwise].
    */
-  fun offsetPolyline2d(
+  public fun offsetPolyline2d(
     polyline: PoolVector2Array,
     delta: Double,
     joinType: Long = 0,
@@ -443,7 +446,7 @@ object Geometry : Object() {
   /**
    * Returns if `point` is inside the triangle specified by `a`, `b` and `c`.
    */
-  fun pointIsInsideTriangle(
+  public fun pointIsInsideTriangle(
     point: Vector2,
     a: Vector2,
     b: Vector2,
@@ -458,7 +461,7 @@ object Geometry : Object() {
   /**
    * Tests if the 3D ray starting at `from` with the direction of `dir` intersects the triangle specified by `a`, `b` and `c`. If yes, returns the point of intersection as [godot.core.Vector3]. If no intersection takes place, an empty [Variant] is returned.
    */
-  fun rayIntersectsTriangle(
+  public fun rayIntersectsTriangle(
     from: Vector3,
     dir: Vector3,
     a: Vector3,
@@ -475,7 +478,7 @@ object Geometry : Object() {
   /**
    * Given the 2D segment (`segment_from`, `segment_to`), returns the position on the segment (as a number between 0 and 1) at which the segment hits the circle that is located at position `circle_position` and has radius `circle_radius`. If the segment does not intersect the circle, -1 is returned (this is also the case if the line extending the segment would intersect the circle, but the segment does not).
    */
-  fun segmentIntersectsCircle(
+  public fun segmentIntersectsCircle(
     segmentFrom: Vector2,
     segmentTo: Vector2,
     circlePosition: Vector2,
@@ -491,7 +494,7 @@ object Geometry : Object() {
   /**
    * Given a convex hull defined though the [godot.core.Plane]s in the array `planes`, tests if the segment (`from`, `to`) intersects with that hull. If an intersection is found, returns a [godot.core.PoolVector3Array] containing the point the intersection and the hull's normal. If no intersecion is found, an the returned array is empty.
    */
-  fun segmentIntersectsConvex(
+  public fun segmentIntersectsConvex(
     from: Vector3,
     to: Vector3,
     planes: VariantArray<Any?>
@@ -505,7 +508,7 @@ object Geometry : Object() {
   /**
    * Checks if the segment (`from`, `to`) intersects the cylinder with height `height` that is centered at the origin and has radius `radius`. If no, returns an empty [godot.core.PoolVector3Array]. If an intersection takes place, the returned array contains the point of intersection and the cylinder's normal at the point of intersection.
    */
-  fun segmentIntersectsCylinder(
+  public fun segmentIntersectsCylinder(
     from: Vector3,
     to: Vector3,
     height: Double,
@@ -521,7 +524,7 @@ object Geometry : Object() {
   /**
    * Checks if the two segments (`from_a`, `to_a`) and (`from_b`, `to_b`) intersect. If yes, return the point of intersection as [godot.core.Vector2]. If no intersection takes place, returns an empty [Variant].
    */
-  fun segmentIntersectsSegment2d(
+  public fun segmentIntersectsSegment2d(
     fromA: Vector2,
     toA: Vector2,
     fromB: Vector2,
@@ -537,7 +540,7 @@ object Geometry : Object() {
   /**
    * Checks if the segment (`from`, `to`) intersects the sphere that is located at `sphere_position` and has radius `sphere_radius`. If no, returns an empty [godot.core.PoolVector3Array]. If yes, returns a [godot.core.PoolVector3Array] containing the point of intersection and the sphere's normal at the point of intersection.
    */
-  fun segmentIntersectsSphere(
+  public fun segmentIntersectsSphere(
     from: Vector3,
     to: Vector3,
     spherePosition: Vector3,
@@ -553,7 +556,7 @@ object Geometry : Object() {
   /**
    * Tests if the segment (`from`, `to`) intersects the triangle `a`, `b`, `c`. If yes, returns the point of intersection as [godot.core.Vector3]. If no intersection takes place, an empty [Variant] is returned.
    */
-  fun segmentIntersectsTriangle(
+  public fun segmentIntersectsTriangle(
     from: Vector3,
     to: Vector3,
     a: Vector3,
@@ -570,7 +573,7 @@ object Geometry : Object() {
   /**
    * Triangulates the area specified by discrete set of `points` such that no point is inside the circumcircle of any resulting triangle. Returns a [godot.core.PoolIntArray] where each triangle consists of three consecutive point indices into `points` (i.e. the returned array will have `n * 3` elements, with `n` being the number of found triangles). If the triangulation did not succeed, an empty [godot.core.PoolIntArray] is returned.
    */
-  fun triangulateDelaunay2d(points: PoolVector2Array): PoolIntArray {
+  public fun triangulateDelaunay2d(points: PoolVector2Array): PoolIntArray {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to points)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__GEOMETRY_TRIANGULATE_DELAUNAY_2D,
         POOL_INT_ARRAY)
@@ -580,109 +583,103 @@ object Geometry : Object() {
   /**
    * Triangulates the polygon specified by the points in `polygon`. Returns a [godot.core.PoolIntArray] where each triangle consists of three consecutive point indices into `polygon` (i.e. the returned array will have `n * 3` elements, with `n` being the number of found triangles). If the triangulation did not succeed, an empty [godot.core.PoolIntArray] is returned.
    */
-  fun triangulatePolygon(polygon: PoolVector2Array): PoolIntArray {
+  public fun triangulatePolygon(polygon: PoolVector2Array): PoolIntArray {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__GEOMETRY_TRIANGULATE_POLYGON,
         POOL_INT_ARRAY)
     return TransferContext.readReturnValue(POOL_INT_ARRAY, false) as PoolIntArray
   }
 
-  enum class PolyEndType(
+  public enum class PolyEndType(
     id: Long
   ) {
     /**
      * Endpoints are joined using the [enum PolyJoinType] value and the path filled as a polygon.
      */
     END_POLYGON(0),
-
     /**
      * Endpoints are joined using the [enum PolyJoinType] value and the path filled as a polyline.
      */
     END_JOINED(1),
-
     /**
      * Endpoints are squared off with no extension.
      */
     END_BUTT(2),
-
     /**
      * Endpoints are squared off and extended by `delta` units.
      */
     END_SQUARE(3),
-
     /**
      * Endpoints are rounded off and extended by `delta` units.
      */
-    END_ROUND(4);
+    END_ROUND(4),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class PolyBooleanOperation(
+  public enum class PolyBooleanOperation(
     id: Long
   ) {
     /**
      * Create regions where either subject or clip polygons (or both) are filled.
      */
     OPERATION_UNION(0),
-
     /**
      * Create regions where subject polygons are filled except where clip polygons are filled.
      */
     OPERATION_DIFFERENCE(1),
-
     /**
      * Create regions where both subject and clip polygons are filled.
      */
     OPERATION_INTERSECTION(2),
-
     /**
      * Create regions where either subject or clip polygons are filled but not where both are filled.
      */
-    OPERATION_XOR(3);
+    OPERATION_XOR(3),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class PolyJoinType(
+  public enum class PolyJoinType(
     id: Long
   ) {
     /**
      * Squaring is applied uniformally at all convex edge joins at `1 * delta`.
      */
     JOIN_SQUARE(0),
-
     /**
      * While flattened paths can never perfectly trace an arc, they are approximated by a series of arc chords.
      */
     JOIN_ROUND(1),
-
     /**
      * There's a necessary limit to mitered joins since offsetting edges that join at very acute angles will produce excessively long and narrow "spikes". For any given edge join, when miter offsetting would exceed that maximum distance, "square" joining is applied.
      */
-    JOIN_MITER(2);
+    JOIN_MITER(2),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 }

@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.RID
 import godot.core.TransferContext
@@ -25,6 +25,7 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Base class for all 2D shapes.
@@ -35,24 +36,24 @@ import kotlin.Suppress
  * Base class for all 2D shapes. All 2D shape types inherit from this.
  */
 @GodotBaseType
-open class Shape2D : Resource() {
+public open class Shape2D : Resource() {
   /**
    * The shape's custom solver bias.
    */
-  open var customSolverBias: Double
+  public open var customSolverBias: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_GET_CUSTOM_SOLVER_BIAS,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_SET_CUSTOM_SOLVER_BIAS,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SHAPE2D)
   }
 
@@ -61,7 +62,7 @@ open class Shape2D : Resource() {
    *
    * This method needs the transformation matrix for this shape (`local_xform`), the shape to check collisions with (`with_shape`), and the transformation matrix of that shape (`shape_xform`).
    */
-  open fun collide(
+  public open fun collide(
     localXform: Transform2D,
     withShape: Shape2D,
     shapeXform: Transform2D
@@ -77,7 +78,7 @@ open class Shape2D : Resource() {
    *
    * This method needs the transformation matrix for this shape (`local_xform`), the shape to check collisions with (`with_shape`), and the transformation matrix of that shape (`shape_xform`).
    */
-  open fun collideAndGetContacts(
+  public open fun collideAndGetContacts(
     localXform: Transform2D,
     withShape: Shape2D,
     shapeXform: Transform2D
@@ -94,7 +95,7 @@ open class Shape2D : Resource() {
    *
    * This method needs the transformation matrix for this shape (`local_xform`), the movement to test on this shape (`local_motion`), the shape to check collisions with (`with_shape`), the transformation matrix of that shape (`shape_xform`), and the movement to test onto the other object (`shape_motion`).
    */
-  open fun collideWithMotion(
+  public open fun collideWithMotion(
     localXform: Transform2D,
     localMotion: Vector2,
     withShape: Shape2D,
@@ -112,7 +113,7 @@ open class Shape2D : Resource() {
    *
    * This method needs the transformation matrix for this shape (`local_xform`), the movement to test on this shape (`local_motion`), the shape to check collisions with (`with_shape`), the transformation matrix of that shape (`shape_xform`), and the movement to test onto the other object (`shape_motion`).
    */
-  open fun collideWithMotionAndGetContacts(
+  public open fun collideWithMotionAndGetContacts(
     localXform: Transform2D,
     localMotion: Vector2,
     withShape: Shape2D,
@@ -129,7 +130,7 @@ open class Shape2D : Resource() {
   /**
    * Draws a solid shape onto a [godot.CanvasItem] with the [godot.VisualServer] API filled with the specified `color`. The exact drawing method is specific for each shape and cannot be configured.
    */
-  open fun draw(canvasItem: RID, color: Color) {
+  public open fun draw(canvasItem: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to canvasItem, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPE2D_DRAW, NIL)
   }

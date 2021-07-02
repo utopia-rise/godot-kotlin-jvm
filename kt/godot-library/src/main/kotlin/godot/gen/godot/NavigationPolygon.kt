@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.PoolIntArray
 import godot.core.PoolVector2Array
 import godot.core.TransferContext
@@ -18,6 +18,7 @@ import kotlin.Any
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A node that has methods to draw outlines or use indices of vertices to create navigation polygons.
@@ -49,42 +50,42 @@ import kotlin.Suppress
  * 		```
  */
 @GodotBaseType
-open class NavigationPolygon : Resource() {
-  open var vertices: PoolVector2Array
+public open class NavigationPolygon : Resource() {
+  public open var vertices: PoolVector2Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_VERTICES,
           POOL_VECTOR2_ARRAY)
       return TransferContext.readReturnValue(POOL_VECTOR2_ARRAY, false) as PoolVector2Array
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(POOL_VECTOR2_ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_SET_VERTICES,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_NAVIGATIONPOLYGON)
   }
 
-  open fun _getOutlines(): VariantArray<Any?> {
+  public open fun _getOutlines(): VariantArray<Any?> {
     throw NotImplementedError("_get_outlines is not implemented for NavigationPolygon")
   }
 
-  open fun _getPolygons(): VariantArray<Any?> {
+  public open fun _getPolygons(): VariantArray<Any?> {
     throw NotImplementedError("_get_polygons is not implemented for NavigationPolygon")
   }
 
-  open fun _setOutlines(outlines: VariantArray<Any?>) {
+  public open fun _setOutlines(outlines: VariantArray<Any?>): Unit {
   }
 
-  open fun _setPolygons(polygons: VariantArray<Any?>) {
+  public open fun _setPolygons(polygons: VariantArray<Any?>): Unit {
   }
 
   /**
    * Appends a [godot.core.PoolVector2Array] that contains the vertices of an outline to the internal array that contains all the outlines. You have to call [makePolygonsFromOutlines] in order for this array to be converted to polygons that the engine will use.
    */
-  open fun addOutline(outline: PoolVector2Array) {
+  public open fun addOutline(outline: PoolVector2Array): Unit {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to outline)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_ADD_OUTLINE, NIL)
   }
@@ -92,7 +93,7 @@ open class NavigationPolygon : Resource() {
   /**
    * Adds a [godot.core.PoolVector2Array] that contains the vertices of an outline to the internal array that contains all the outlines at a fixed position. You have to call [makePolygonsFromOutlines] in order for this array to be converted to polygons that the engine will use.
    */
-  open fun addOutlineAtIndex(outline: PoolVector2Array, index: Long) {
+  public open fun addOutlineAtIndex(outline: PoolVector2Array, index: Long): Unit {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to outline, LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_ADD_OUTLINE_AT_INDEX, NIL)
@@ -101,7 +102,7 @@ open class NavigationPolygon : Resource() {
   /**
    * Adds a polygon using the indices of the vertices you get when calling [getVertices].
    */
-  open fun addPolygon(polygon: PoolIntArray) {
+  public open fun addPolygon(polygon: PoolIntArray): Unit {
     TransferContext.writeArguments(POOL_INT_ARRAY to polygon)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_ADD_POLYGON, NIL)
   }
@@ -109,7 +110,7 @@ open class NavigationPolygon : Resource() {
   /**
    * Clears the array of the outlines, but it doesn't clear the vertices and the polygons that were created by them.
    */
-  open fun clearOutlines() {
+  public open fun clearOutlines(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_CLEAR_OUTLINES,
         NIL)
@@ -118,7 +119,7 @@ open class NavigationPolygon : Resource() {
   /**
    * Clears the array of polygons, but it doesn't clear the array of outlines and vertices.
    */
-  open fun clearPolygons() {
+  public open fun clearPolygons(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_CLEAR_POLYGONS,
         NIL)
@@ -127,7 +128,7 @@ open class NavigationPolygon : Resource() {
   /**
    * Returns a [godot.core.PoolVector2Array] containing the vertices of an outline that was created in the editor or by script.
    */
-  open fun getOutline(idx: Long): PoolVector2Array {
+  public open fun getOutline(idx: Long): PoolVector2Array {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_OUTLINE,
         POOL_VECTOR2_ARRAY)
@@ -137,7 +138,7 @@ open class NavigationPolygon : Resource() {
   /**
    * Returns the number of outlines that were created in the editor or by script.
    */
-  open fun getOutlineCount(): Long {
+  public open fun getOutlineCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_OUTLINE_COUNT,
         LONG)
@@ -147,7 +148,7 @@ open class NavigationPolygon : Resource() {
   /**
    * Returns a [godot.core.PoolIntArray] containing the indices of the vertices of a created polygon.
    */
-  open fun getPolygon(idx: Long): PoolIntArray {
+  public open fun getPolygon(idx: Long): PoolIntArray {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_POLYGON,
         POOL_INT_ARRAY)
@@ -157,7 +158,7 @@ open class NavigationPolygon : Resource() {
   /**
    * Returns the count of all polygons.
    */
-  open fun getPolygonCount(): Long {
+  public open fun getPolygonCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_GET_POLYGON_COUNT,
         LONG)
@@ -167,7 +168,7 @@ open class NavigationPolygon : Resource() {
   /**
    * Creates polygons from the outlines added in the editor or by script.
    */
-  open fun makePolygonsFromOutlines() {
+  public open fun makePolygonsFromOutlines(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_MAKE_POLYGONS_FROM_OUTLINES, NIL)
@@ -176,7 +177,7 @@ open class NavigationPolygon : Resource() {
   /**
    * Removes an outline created in the editor or by script. You have to call [makePolygonsFromOutlines] for the polygons to update.
    */
-  open fun removeOutline(idx: Long) {
+  public open fun removeOutline(idx: Long): Unit {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_REMOVE_OUTLINE,
         NIL)
@@ -185,7 +186,7 @@ open class NavigationPolygon : Resource() {
   /**
    * Changes an outline created in the editor or by script. You have to call [makePolygonsFromOutlines] for the polygons to update.
    */
-  open fun setOutline(idx: Long, outline: PoolVector2Array) {
+  public open fun setOutline(idx: Long, outline: PoolVector2Array): Unit {
     TransferContext.writeArguments(LONG to idx, POOL_VECTOR2_ARRAY to outline)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONPOLYGON_SET_OUTLINE, NIL)
   }

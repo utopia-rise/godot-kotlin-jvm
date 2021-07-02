@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -26,17 +26,17 @@ import kotlin.Unit
  * **Note:** When using a large textured [godot.CubeMesh] (e.g. as a floor), you may stumble upon UV jittering issues depending on the camera angle. To solve this, increase [subdivideDepth], [subdivideHeight] and [subdivideWidth] until you no longer notice UV jittering.
  */
 @GodotBaseType
-open class CubeMesh : PrimitiveMesh() {
+public open class CubeMesh : PrimitiveMesh() {
   /**
    * Size of the cuboid mesh.
    */
-  open var size: Vector3
+  public open var size: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CUBEMESH_GET_SIZE, VECTOR3)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CUBEMESH_SET_SIZE, NIL)
     }
@@ -44,14 +44,14 @@ open class CubeMesh : PrimitiveMesh() {
   /**
    * Number of extra edge loops inserted along the Z axis.
    */
-  open var subdivideDepth: Long
+  public open var subdivideDepth: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CUBEMESH_GET_SUBDIVIDE_DEPTH,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CUBEMESH_SET_SUBDIVIDE_DEPTH, NIL)
     }
@@ -59,14 +59,14 @@ open class CubeMesh : PrimitiveMesh() {
   /**
    * Number of extra edge loops inserted along the Y axis.
    */
-  open var subdivideHeight: Long
+  public open var subdivideHeight: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CUBEMESH_GET_SUBDIVIDE_HEIGHT,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CUBEMESH_SET_SUBDIVIDE_HEIGHT,
           NIL)
@@ -75,24 +75,24 @@ open class CubeMesh : PrimitiveMesh() {
   /**
    * Number of extra edge loops inserted along the X axis.
    */
-  open var subdivideWidth: Long
+  public open var subdivideWidth: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CUBEMESH_GET_SUBDIVIDE_WIDTH,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CUBEMESH_SET_SUBDIVIDE_WIDTH, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CUBEMESH)
   }
 
   @CoreTypeHelper
-  open fun size(schedule: Vector3.() -> Unit): Vector3 = size.apply{
+  public open fun size(schedule: Vector3.() -> Unit): Vector3 = size.apply{
       schedule(this)
       size = this
   }

@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.TransferContext
 import godot.core.VariantArray
@@ -24,6 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Godot editor's interface.
@@ -33,31 +34,31 @@ import kotlin.Suppress
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorPlugin.getEditorInterface].
  */
 @GodotBaseType
-open class EditorInterface : Node() {
+public open class EditorInterface : Node() {
   /**
    * If `true`, enables distraction-free mode which hides side docks to increase the space available for the main view.
    */
-  open var distractionFreeMode: Boolean
+  public open var distractionFreeMode: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_DISTRACTION_FREE_MODE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_DISTRACTION_FREE_MODE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORINTERFACE)
   }
 
   /**
    * Edits the given [godot.Node]. The node will be also selected if it's inside the scene tree.
    */
-  open fun editNode(node: Node) {
+  public open fun editNode(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_EDIT_NODE, NIL)
   }
@@ -65,7 +66,7 @@ open class EditorInterface : Node() {
   /**
    * Edits the given [godot.Resource].
    */
-  open fun editResource(resource: Resource) {
+  public open fun editResource(resource: Resource): Unit {
     TransferContext.writeArguments(OBJECT to resource)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_EDIT_RESOURCE, NIL)
   }
@@ -73,7 +74,7 @@ open class EditorInterface : Node() {
   /**
    * Returns the main container of Godot editor's window. For example, you can use it to retrieve the size of the container and place your controls accordingly.
    */
-  open fun getBaseControl(): Control? {
+  public open fun getBaseControl(): Control? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_BASE_CONTROL,
         OBJECT)
@@ -83,7 +84,7 @@ open class EditorInterface : Node() {
   /**
    * Returns the current path being viewed in the [godot.FileSystemDock].
    */
-  open fun getCurrentPath(): String {
+  public open fun getCurrentPath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_CURRENT_PATH,
         STRING)
@@ -93,7 +94,7 @@ open class EditorInterface : Node() {
   /**
    * Returns the edited (current) scene's root [godot.Node].
    */
-  open fun getEditedSceneRoot(): Node? {
+  public open fun getEditedSceneRoot(): Node? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITED_SCENE_ROOT, OBJECT)
@@ -105,7 +106,7 @@ open class EditorInterface : Node() {
    *
    * **Note:** This value is set via the `interface/editor/display_scale` and `interface/editor/custom_display_scale` editor settings. Editor must be restarted for changes to be properly applied.
    */
-  open fun getEditorScale(): Double {
+  public open fun getEditorScale(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_SCALE,
         DOUBLE)
@@ -115,7 +116,7 @@ open class EditorInterface : Node() {
   /**
    * Returns the editor's [godot.EditorSettings] instance.
    */
-  open fun getEditorSettings(): EditorSettings? {
+  public open fun getEditorSettings(): EditorSettings? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_SETTINGS,
         OBJECT)
@@ -127,7 +128,7 @@ open class EditorInterface : Node() {
    *
    * **Note:** This returns the main editor control containing the whole editor, not the 2D or 3D viewports specifically.
    */
-  open fun getEditorViewport(): Control? {
+  public open fun getEditorViewport(): Control? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_EDITOR_VIEWPORT,
         OBJECT)
@@ -137,7 +138,7 @@ open class EditorInterface : Node() {
   /**
    * Returns the editor's [godot.FileSystemDock] instance.
    */
-  open fun getFileSystemDock(): FileSystemDock? {
+  public open fun getFileSystemDock(): FileSystemDock? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_FILE_SYSTEM_DOCK, OBJECT)
@@ -147,7 +148,7 @@ open class EditorInterface : Node() {
   /**
    * Returns the editor's [godot.EditorInspector] instance.
    */
-  open fun getInspector(): EditorInspector? {
+  public open fun getInspector(): EditorInspector? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_INSPECTOR,
         OBJECT)
@@ -157,7 +158,7 @@ open class EditorInterface : Node() {
   /**
    * Returns an [godot.Array] with the file paths of the currently opened scenes.
    */
-  open fun getOpenScenes(): VariantArray<Any?> {
+  public open fun getOpenScenes(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_OPEN_SCENES,
         ARRAY)
@@ -167,7 +168,7 @@ open class EditorInterface : Node() {
   /**
    * Returns the name of the scene that is being played. If no scene is currently being played, returns an empty string.
    */
-  open fun getPlayingScene(): String {
+  public open fun getPlayingScene(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_PLAYING_SCENE,
         STRING)
@@ -177,7 +178,7 @@ open class EditorInterface : Node() {
   /**
    * Returns the editor's [godot.EditorFileSystem] instance.
    */
-  open fun getResourceFilesystem(): EditorFileSystem? {
+  public open fun getResourceFilesystem(): EditorFileSystem? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_RESOURCE_FILESYSTEM, OBJECT)
@@ -187,7 +188,7 @@ open class EditorInterface : Node() {
   /**
    * Returns the editor's [godot.EditorResourcePreview] instance.
    */
-  open fun getResourcePreviewer(): EditorResourcePreview? {
+  public open fun getResourcePreviewer(): EditorResourcePreview? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_RESOURCE_PREVIEWER, OBJECT)
@@ -197,7 +198,7 @@ open class EditorInterface : Node() {
   /**
    * Returns the editor's [godot.ScriptEditor] instance.
    */
-  open fun getScriptEditor(): ScriptEditor? {
+  public open fun getScriptEditor(): ScriptEditor? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SCRIPT_EDITOR,
         OBJECT)
@@ -207,7 +208,7 @@ open class EditorInterface : Node() {
   /**
    * Returns the path of the directory currently selected in the [godot.FileSystemDock]. If a file is selected, its base directory will be returned using [godot.String.getBaseDir] instead.
    */
-  open fun getSelectedPath(): String {
+  public open fun getSelectedPath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SELECTED_PATH,
         STRING)
@@ -217,7 +218,7 @@ open class EditorInterface : Node() {
   /**
    * Returns the editor's [godot.EditorSelection] instance.
    */
-  open fun getSelection(): EditorSelection? {
+  public open fun getSelection(): EditorSelection? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_SELECTION,
         OBJECT)
@@ -227,11 +228,11 @@ open class EditorInterface : Node() {
   /**
    * Shows the given property on the given `object` in the editor's Inspector dock. If `inspector_only` is `true`, plugins will not attempt to edit `object`.
    */
-  open fun inspectObject(
+  public open fun inspectObject(
     _object: Object,
     forProperty: String = "",
     inspectorOnly: Boolean = false
-  ) {
+  ): Unit {
     TransferContext.writeArguments(OBJECT to _object, STRING to forProperty, BOOL to inspectorOnly)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_INSPECT_OBJECT, NIL)
   }
@@ -239,7 +240,7 @@ open class EditorInterface : Node() {
   /**
    * Returns `true` if a scene is currently being played, `false` otherwise. Paused scenes are considered as being played.
    */
-  open fun isPlayingScene(): Boolean {
+  public open fun isPlayingScene(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_PLAYING_SCENE,
         BOOL)
@@ -249,7 +250,7 @@ open class EditorInterface : Node() {
   /**
    * Returns `true` if the specified `plugin` is enabled. The plugin name is the same as its directory name.
    */
-  open fun isPluginEnabled(plugin: String): Boolean {
+  public open fun isPluginEnabled(plugin: String): Boolean {
     TransferContext.writeArguments(STRING to plugin)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_PLUGIN_ENABLED,
         BOOL)
@@ -259,7 +260,8 @@ open class EditorInterface : Node() {
   /**
    * Returns mesh previews rendered at the given size as an [godot.Array] of [godot.Texture]s.
    */
-  open fun makeMeshPreviews(meshes: VariantArray<Any?>, previewSize: Long): VariantArray<Any?> {
+  public open fun makeMeshPreviews(meshes: VariantArray<Any?>, previewSize: Long):
+      VariantArray<Any?> {
     TransferContext.writeArguments(ARRAY to meshes, LONG to previewSize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_MAKE_MESH_PREVIEWS,
         ARRAY)
@@ -269,7 +271,7 @@ open class EditorInterface : Node() {
   /**
    * Opens the scene at the given path.
    */
-  open fun openSceneFromPath(sceneFilepath: String) {
+  public open fun openSceneFromPath(sceneFilepath: String): Unit {
     TransferContext.writeArguments(STRING to sceneFilepath)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_OPEN_SCENE_FROM_PATH, NIL)
@@ -278,7 +280,7 @@ open class EditorInterface : Node() {
   /**
    * Plays the currently active scene.
    */
-  open fun playCurrentScene() {
+  public open fun playCurrentScene(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_PLAY_CURRENT_SCENE,
         NIL)
@@ -287,7 +289,7 @@ open class EditorInterface : Node() {
   /**
    * Plays the scene specified by its filepath.
    */
-  open fun playCustomScene(sceneFilepath: String) {
+  public open fun playCustomScene(sceneFilepath: String): Unit {
     TransferContext.writeArguments(STRING to sceneFilepath)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_PLAY_CUSTOM_SCENE,
         NIL)
@@ -296,7 +298,7 @@ open class EditorInterface : Node() {
   /**
    * Plays the main scene.
    */
-  open fun playMainScene() {
+  public open fun playMainScene(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_PLAY_MAIN_SCENE,
         NIL)
@@ -305,7 +307,7 @@ open class EditorInterface : Node() {
   /**
    * Reloads the scene at the given path.
    */
-  open fun reloadSceneFromPath(sceneFilepath: String) {
+  public open fun reloadSceneFromPath(sceneFilepath: String): Unit {
     TransferContext.writeArguments(STRING to sceneFilepath)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_RELOAD_SCENE_FROM_PATH, NIL)
@@ -314,7 +316,7 @@ open class EditorInterface : Node() {
   /**
    * Saves the scene. Returns either `OK` or `ERR_CANT_CREATE` (see [@GlobalScope] constants).
    */
-  open fun saveScene(): GodotError {
+  public open fun saveScene(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SAVE_SCENE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -323,7 +325,7 @@ open class EditorInterface : Node() {
   /**
    * Saves the scene as a file at `path`.
    */
-  open fun saveSceneAs(path: String, withPreview: Boolean = true) {
+  public open fun saveSceneAs(path: String, withPreview: Boolean = true): Unit {
     TransferContext.writeArguments(STRING to path, BOOL to withPreview)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SAVE_SCENE_AS, NIL)
   }
@@ -331,7 +333,7 @@ open class EditorInterface : Node() {
   /**
    * Selects the file, with the path provided by `file`, in the FileSystem dock.
    */
-  open fun selectFile(file: String) {
+  public open fun selectFile(`file`: String): Unit {
     TransferContext.writeArguments(STRING to file)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SELECT_FILE, NIL)
   }
@@ -339,7 +341,7 @@ open class EditorInterface : Node() {
   /**
    * Sets the editor's current main screen to the one specified in `name`. `name` must match the text of the tab in question exactly (`2D`, `3D`, `Script`, `AssetLib`).
    */
-  open fun setMainScreenEditor(name: String) {
+  public open fun setMainScreenEditor(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_MAIN_SCREEN_EDITOR, NIL)
@@ -348,7 +350,7 @@ open class EditorInterface : Node() {
   /**
    * Sets the enabled status of a plugin. The plugin name is the same as its directory name.
    */
-  open fun setPluginEnabled(plugin: String, enabled: Boolean) {
+  public open fun setPluginEnabled(plugin: String, enabled: Boolean): Unit {
     TransferContext.writeArguments(STRING to plugin, BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_SET_PLUGIN_ENABLED,
         NIL)
@@ -357,7 +359,7 @@ open class EditorInterface : Node() {
   /**
    * Stops the scene that is currently playing.
    */
-  open fun stopPlayingScene() {
+  public open fun stopPlayingScene(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_STOP_PLAYING_SCENE,
         NIL)

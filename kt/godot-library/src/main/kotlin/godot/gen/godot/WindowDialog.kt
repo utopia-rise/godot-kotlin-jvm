@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
@@ -14,6 +14,7 @@ import godot.core.VariantType.STRING
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Base class for window dialogs.
@@ -21,17 +22,17 @@ import kotlin.Suppress
  * Windowdialog is the base class for all window-based dialogs. It's a by-default toplevel [godot.Control] that draws a window decoration and allows motion and resizing.
  */
 @GodotBaseType
-open class WindowDialog : Popup() {
+public open class WindowDialog : Popup() {
   /**
    * If `true`, the user can resize the window.
    */
-  open var resizable: Boolean
+  public open var resizable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOWDIALOG_GET_RESIZABLE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOWDIALOG_SET_RESIZABLE, NIL)
     }
@@ -39,33 +40,33 @@ open class WindowDialog : Popup() {
   /**
    * The text displayed in the window's title bar.
    */
-  open var windowTitle: String
+  public open var windowTitle: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOWDIALOG_GET_WINDOW_TITLE,
           STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOWDIALOG_SET_WINDOW_TITLE,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_WINDOWDIALOG)
   }
 
-  open fun _closed() {
+  public open fun _closed(): Unit {
   }
 
-  override fun _guiInput(event: InputEvent) {
+  public override fun _guiInput(event: InputEvent): Unit {
   }
 
   /**
    * Returns the close [godot.TextureButton].
    */
-  open fun getCloseButton(): TextureButton? {
+  public open fun getCloseButton(): TextureButton? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOWDIALOG_GET_CLOSE_BUTTON,
         OBJECT)

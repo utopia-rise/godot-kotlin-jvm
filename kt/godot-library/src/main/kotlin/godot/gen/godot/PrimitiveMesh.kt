@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.TransferContext
 import godot.core.VariantArray
@@ -25,18 +25,18 @@ import kotlin.Unit
  * Base class for all primitive meshes. Handles applying a [godot.Material] to a primitive mesh. Examples include [godot.CapsuleMesh], [godot.CubeMesh], [godot.CylinderMesh], [godot.PlaneMesh], [godot.PrismMesh], [godot.QuadMesh], and [godot.SphereMesh].
  */
 @GodotBaseType
-open class PrimitiveMesh : Mesh() {
+public open class PrimitiveMesh : Mesh() {
   /**
    * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when  using a shader to offset vertices.
    */
-  open var customAabb: AABB
+  public open var customAabb: AABB
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_GET_CUSTOM_AABB,
           godot.core.VariantType.AABB)
       return TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(godot.core.VariantType.AABB to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_SET_CUSTOM_AABB,
           NIL)
@@ -47,14 +47,14 @@ open class PrimitiveMesh : Mesh() {
    *
    * This gives the same result as using [godot.SpatialMaterial.CULL_BACK] in [godot.SpatialMaterial.paramsCullMode].
    */
-  open var flipFaces: Boolean
+  public open var flipFaces: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_GET_FLIP_FACES,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_SET_FLIP_FACES, NIL)
     }
@@ -62,30 +62,30 @@ open class PrimitiveMesh : Mesh() {
   /**
    * The current [godot.Material] of the primitive mesh.
    */
-  open var material: Material?
+  public open var material: Material?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_GET_MATERIAL,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Material?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_SET_MATERIAL, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PRIMITIVEMESH)
   }
 
   @CoreTypeHelper
-  open fun customAabb(schedule: AABB.() -> Unit): AABB = customAabb.apply{
+  public open fun customAabb(schedule: AABB.() -> Unit): AABB = customAabb.apply{
       schedule(this)
       customAabb = this
   }
 
 
-  open fun _update() {
+  public open fun _update(): Unit {
   }
 
   /**
@@ -97,7 +97,7 @@ open class PrimitiveMesh : Mesh() {
    * 				arr_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, c.get_mesh_arrays())
    * 				```
    */
-  open fun getMeshArrays(): VariantArray<Any?> {
+  public open fun getMeshArrays(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_GET_MESH_ARRAYS,
         ARRAY)

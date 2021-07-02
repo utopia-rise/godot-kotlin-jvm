@@ -5,25 +5,26 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
-open class EditorNavigationMeshGenerator : Object() {
-  override fun __new() {
+public open class EditorNavigationMeshGenerator : Object() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORNAVIGATIONMESHGENERATOR)
   }
 
   /**
    *
    */
-  open fun bake(navMesh: NavigationMesh, rootNode: Node) {
+  public open fun bake(navMesh: NavigationMesh, rootNode: Node): Unit {
     TransferContext.writeArguments(OBJECT to navMesh, OBJECT to rootNode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNAVIGATIONMESHGENERATOR_BAKE,
         NIL)
@@ -32,7 +33,7 @@ open class EditorNavigationMeshGenerator : Object() {
   /**
    *
    */
-  open fun clear(navMesh: NavigationMesh) {
+  public open fun clear(navMesh: NavigationMesh): Unit {
     TransferContext.writeArguments(OBJECT to navMesh)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORNAVIGATIONMESHGENERATOR_CLEAR,
         NIL)

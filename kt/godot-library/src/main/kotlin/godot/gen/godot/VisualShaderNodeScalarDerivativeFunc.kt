@@ -5,12 +5,13 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Calculates a scalar derivative within the visual shader graph.
@@ -18,69 +19,68 @@ import kotlin.Suppress
  * This node is only available in `Fragment` and `Light` visual shaders.
  */
 @GodotBaseType
-open class VisualShaderNodeScalarDerivativeFunc : VisualShaderNode() {
+public open class VisualShaderNodeScalarDerivativeFunc : VisualShaderNode() {
   /**
    * The derivative type. See [enum Function] for options.
    */
-  open var function: Long
+  public open var function: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODESCALARDERIVATIVEFUNC_GET_FUNCTION, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODESCALARDERIVATIVEFUNC_SET_FUNCTION, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODESCALARDERIVATIVEFUNC)
   }
 
-  enum class Function(
+  public enum class Function(
     id: Long
   ) {
     /**
      * Sum of absolute derivative in `x` and `y`.
      */
     FUNC_SUM(0),
-
     /**
      * Derivative in `x` using local differencing.
      */
     FUNC_X(1),
-
     /**
      * Derivative in `y` using local differencing.
      */
-    FUNC_Y(2);
+    FUNC_Y(2),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Sum of absolute derivative in `x` and `y`.
      */
-    final const val FUNC_SUM: Long = 0
+    public final const val FUNC_SUM: Long = 0
 
     /**
      * Derivative in `x` using local differencing.
      */
-    final const val FUNC_X: Long = 1
+    public final const val FUNC_X: Long = 1
 
     /**
      * Derivative in `y` using local differencing.
      */
-    final const val FUNC_Y: Long = 2
+    public final const val FUNC_Y: Long = 2
   }
 }

@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.GodotError
 import godot.core.TransferContext
@@ -22,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Contains global variables accessible from everywhere.
@@ -38,12 +39,12 @@ import kotlin.Suppress
  * **Overriding:** Any project setting can be overridden by creating a file named `override.cfg` in the project's root directory. This can also be used in exported projects by placing this file in the same directory as the project binary. Overriding will still take the base project settings' [feature tags](https://docs.godotengine.org/en/latest/tutorials/export/feature_tags.html) in account. Therefore, make sure to *also* override the setting with the desired feature tags if you want them to override base project settings on all platforms and configurations.
  */
 @GodotBaseType
-object ProjectSettings : Object() {
-  override fun __new() {
+public object ProjectSettings : Object() {
+  public override fun __new(): Unit {
     rawPtr = TransferContext.getSingleton(ENGINESINGLETON_PROJECTSETTINGS)
   }
 
-  override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
+  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    * Adds a custom property info to a property. The dictionary must contain:
@@ -69,7 +70,7 @@ object ProjectSettings : Object() {
    * 				ProjectSettings.add_property_info(property_info)
    * 				```
    */
-  fun addPropertyInfo(hint: Dictionary<Any?, Any?>) {
+  public fun addPropertyInfo(hint: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to hint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_ADD_PROPERTY_INFO,
         NIL)
@@ -78,7 +79,7 @@ object ProjectSettings : Object() {
   /**
    * Clears the whole configuration (not recommended, may break things).
    */
-  fun clear(name: String) {
+  public fun clear(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_CLEAR, NIL)
   }
@@ -86,7 +87,7 @@ object ProjectSettings : Object() {
   /**
    * Returns the order of a configuration value (influences when saved to the config file).
    */
-  fun getOrder(name: String): Long {
+  public fun getOrder(name: String): Long {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_ORDER, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -101,7 +102,7 @@ object ProjectSettings : Object() {
    * 				print(ProjectSettings.get_setting("application/config/name"))
    * 				```
    */
-  fun getSetting(name: String): Any? {
+  public fun getSetting(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GET_SETTING, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -126,7 +127,7 @@ object ProjectSettings : Object() {
    * 				    path = OS.get_executable_path().get_base_dir().plus_file("hello.txt")
    * 				```
    */
-  fun globalizePath(path: String): String {
+  public fun globalizePath(path: String): String {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_GLOBALIZE_PATH,
         STRING)
@@ -136,7 +137,7 @@ object ProjectSettings : Object() {
   /**
    * Returns `true` if a configuration value is present.
    */
-  fun hasSetting(name: String): Boolean {
+  public fun hasSetting(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_HAS_SETTING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -149,7 +150,7 @@ object ProjectSettings : Object() {
    *
    * **Note:** The optional `offset` parameter can be used to specify the offset in bytes to the start of the resource pack. This is only supported for .pck files.
    */
-  fun loadResourcePack(
+  public fun loadResourcePack(
     pack: String,
     replaceFiles: Boolean = true,
     offset: Long = 0
@@ -163,7 +164,7 @@ object ProjectSettings : Object() {
   /**
    * Returns the localized path (starting with `res://`) corresponding to the absolute, native OS `path`. See also [globalizePath].
    */
-  fun localizePath(path: String): String {
+  public fun localizePath(path: String): String {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_LOCALIZE_PATH,
         STRING)
@@ -173,7 +174,7 @@ object ProjectSettings : Object() {
   /**
    * Returns `true` if the specified property exists and its initial value differs from the current value.
    */
-  fun propertyCanRevert(name: String): Boolean {
+  public fun propertyCanRevert(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_PROPERTY_CAN_REVERT,
         BOOL)
@@ -183,7 +184,7 @@ object ProjectSettings : Object() {
   /**
    * Returns the specified property's initial value. Returns `null` if the property does not exist.
    */
-  fun propertyGetRevert(name: String): Any? {
+  public fun propertyGetRevert(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_PROPERTY_GET_REVERT,
         ANY)
@@ -195,7 +196,7 @@ object ProjectSettings : Object() {
    *
    * **Note:** This method is intended to be used by editor plugins, as modified [godot.ProjectSettings] can't be loaded back in the running app. If you want to change project settings in exported projects, use [saveCustom] to save `override.cfg` file.
    */
-  fun save(): GodotError {
+  public fun save(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SAVE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -204,7 +205,7 @@ object ProjectSettings : Object() {
   /**
    * Saves the configuration to a custom file. The file extension must be `.godot` (to save in text-based [godot.ConfigFile] format) or `.binary` (to save in binary format). You can also save `override.cfg` file, which is also text, but can be used in exported projects unlike other formats.
    */
-  fun saveCustom(file: String): GodotError {
+  public fun saveCustom(`file`: String): GodotError {
     TransferContext.writeArguments(STRING to file)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SAVE_CUSTOM, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -213,7 +214,7 @@ object ProjectSettings : Object() {
   /**
    * Sets the specified property's initial value. This is the value the property reverts to.
    */
-  fun setInitialValue(name: String, value: Any?) {
+  public fun setInitialValue(name: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_INITIAL_VALUE,
         NIL)
@@ -222,7 +223,7 @@ object ProjectSettings : Object() {
   /**
    * Sets the order of a configuration value (influences when saved to the config file).
    */
-  fun setOrder(name: String, position: Long) {
+  public fun setOrder(name: String, position: Long): Unit {
     TransferContext.writeArguments(STRING to name, LONG to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_ORDER, NIL)
   }
@@ -236,7 +237,7 @@ object ProjectSettings : Object() {
    * 				ProjectSettings.set_setting("application/config/name", "Example")
    * 				```
    */
-  fun setSetting(name: String, value: Any?) {
+  public fun setSetting(name: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROJECTSETTINGS_SET_SETTING, NIL)
   }

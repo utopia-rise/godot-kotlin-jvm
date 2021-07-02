@@ -5,12 +5,13 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Blends two of three animations linearly inside of an [godot.AnimationNodeBlendTree].
@@ -29,23 +30,23 @@ import kotlin.Suppress
  * - A +blend animation to blend with when the blend amount is in the `[0.0, 1.0]` range
  */
 @GodotBaseType
-open class AnimationNodeBlend3 : AnimationNode() {
+public open class AnimationNodeBlend3 : AnimationNode() {
   /**
    * If `true`, sets the `optimization` to `false` when calling [godot.AnimationNode.blendInput], forcing the blended animations to update every frame.
    */
-  open var sync: Boolean
+  public open var sync: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLEND3_GET_SYNC,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLEND3_SET_SYNC, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODEBLEND3)
   }
 }

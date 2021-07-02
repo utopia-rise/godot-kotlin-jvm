@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -17,6 +17,7 @@ import godot.signals.signal
 import kotlin.Any
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Server keeping track of different cameras accessible in Godot.
@@ -26,47 +27,47 @@ import kotlin.Suppress
  * It is notably used to provide AR modules with a video feed from the camera.
  */
 @GodotBaseType
-object CameraServer : Object() {
+public object CameraServer : Object() {
   /**
    * The CbCr component camera image.
    */
-  final const val FEED_CBCR_IMAGE: Long = 1
+  public final const val FEED_CBCR_IMAGE: Long = 1
 
   /**
    * The RGBA camera image.
    */
-  final const val FEED_RGBA_IMAGE: Long = 0
+  public final const val FEED_RGBA_IMAGE: Long = 0
 
   /**
    * The YCbCr camera image.
    */
-  final const val FEED_YCBCR_IMAGE: Long = 0
+  public final const val FEED_YCBCR_IMAGE: Long = 0
 
   /**
    * The Y component camera image.
    */
-  final const val FEED_Y_IMAGE: Long = 0
+  public final const val FEED_Y_IMAGE: Long = 0
 
   /**
    * Emitted when a [godot.CameraFeed] is added (e.g. webcam is plugged in).
    */
-  val cameraFeedAdded: Signal1<Long> by signal("id")
+  public val cameraFeedAdded: Signal1<Long> by signal("id")
 
   /**
    * Emitted when a [godot.CameraFeed] is removed (e.g. webcam is unplugged).
    */
-  val cameraFeedRemoved: Signal1<Long> by signal("id")
+  public val cameraFeedRemoved: Signal1<Long> by signal("id")
 
-  override fun __new() {
+  public override fun __new(): Unit {
     rawPtr = TransferContext.getSingleton(ENGINESINGLETON_CAMERASERVER)
   }
 
-  override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
+  public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
    * Adds a camera feed to the camera server.
    */
-  fun addFeed(feed: CameraFeed) {
+  public fun addFeed(feed: CameraFeed): Unit {
     TransferContext.writeArguments(OBJECT to feed)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_ADD_FEED, NIL)
   }
@@ -74,7 +75,7 @@ object CameraServer : Object() {
   /**
    * Returns an array of [godot.CameraFeed]s.
    */
-  fun feeds(): VariantArray<Any?> {
+  public fun feeds(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_FEEDS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -83,7 +84,7 @@ object CameraServer : Object() {
   /**
    * Returns the [godot.CameraFeed] with this id.
    */
-  fun getFeed(index: Long): CameraFeed? {
+  public fun getFeed(index: Long): CameraFeed? {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_GET_FEED, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as CameraFeed?
@@ -92,7 +93,7 @@ object CameraServer : Object() {
   /**
    * Returns the number of [godot.CameraFeed]s registered.
    */
-  fun getFeedCount(): Long {
+  public fun getFeedCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_GET_FEED_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -101,41 +102,39 @@ object CameraServer : Object() {
   /**
    * Removes a [godot.CameraFeed].
    */
-  fun removeFeed(feed: CameraFeed) {
+  public fun removeFeed(feed: CameraFeed): Unit {
     TransferContext.writeArguments(OBJECT to feed)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERASERVER_REMOVE_FEED, NIL)
   }
 
-  enum class FeedImage(
+  public enum class FeedImage(
     id: Long
   ) {
     /**
      * The RGBA camera image.
      */
     FEED_RGBA_IMAGE(0),
-
     /**
      * The YCbCr camera image.
      */
     FEED_YCBCR_IMAGE(0),
-
     /**
      * The Y component camera image.
      */
     FEED_Y_IMAGE(0),
-
     /**
      * The CbCr component camera image.
      */
-    FEED_CBCR_IMAGE(1);
+    FEED_CBCR_IMAGE(1),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 }

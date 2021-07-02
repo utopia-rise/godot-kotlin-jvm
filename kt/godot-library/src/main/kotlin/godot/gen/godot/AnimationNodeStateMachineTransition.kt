@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -19,6 +19,7 @@ import kotlin.Double
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  *
@@ -27,11 +28,11 @@ import kotlin.Suppress
  * [https://docs.godotengine.org/en/3.3/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/3.3/tutorials/animation/animation_tree.html)
  */
 @GodotBaseType
-open class AnimationNodeStateMachineTransition : Resource() {
+public open class AnimationNodeStateMachineTransition : Resource() {
   /**
    * Emitted when [advanceCondition] is changed.
    */
-  val advanceConditionChanged: Signal0 by signal()
+  public val advanceConditionChanged: Signal0 by signal()
 
   /**
    * Turn on auto advance when this condition is set. The provided name will become a boolean parameter on the [godot.AnimationTree] that can be controlled from code (see [url=https://docs.godotengine.org/en/3.3/tutorials/animation/animation_tree.html#controlling-from-code][/url]). For example, if [godot.AnimationTree.treeRoot] is an [godot.AnimationNodeStateMachine] and [advanceCondition] is set to `"idle"`:
@@ -40,7 +41,7 @@ open class AnimationNodeStateMachineTransition : Resource() {
    * 			$animation_tree["parameters/conditions/idle"] = is_on_floor and (linear_velocity.x == 0)
    * 			```
    */
-  open var advanceCondition: String
+  public open var advanceCondition: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -48,7 +49,7 @@ open class AnimationNodeStateMachineTransition : Resource() {
           STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_SET_ADVANCE_CONDITION, NIL)
@@ -57,14 +58,14 @@ open class AnimationNodeStateMachineTransition : Resource() {
   /**
    * Turn on the transition automatically when this state is reached. This works best with [SWITCH_MODE_AT_END].
    */
-  open var autoAdvance: Boolean
+  public open var autoAdvance: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_GET_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_SET_AUTO_ADVANCE, NIL)
@@ -73,14 +74,14 @@ open class AnimationNodeStateMachineTransition : Resource() {
   /**
    * Don't use this transition during [godot.AnimationNodeStateMachinePlayback.travel] or [autoAdvance].
    */
-  open var disabled: Boolean
+  public open var disabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_GET_DISABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_SET_DISABLED, NIL)
@@ -89,14 +90,14 @@ open class AnimationNodeStateMachineTransition : Resource() {
   /**
    * Lower priority transitions are preferred when travelling through the tree via [godot.AnimationNodeStateMachinePlayback.travel] or [autoAdvance].
    */
-  open var priority: Long
+  public open var priority: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_GET_PRIORITY, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_SET_PRIORITY, NIL)
@@ -105,14 +106,14 @@ open class AnimationNodeStateMachineTransition : Resource() {
   /**
    * The transition type.
    */
-  open var switchMode: Long
+  public open var switchMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_GET_SWITCH_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_SET_SWITCH_MODE, NIL)
@@ -121,65 +122,64 @@ open class AnimationNodeStateMachineTransition : Resource() {
   /**
    * The time to cross-fade between this state and the next.
    */
-  open var xfadeTime: Double
+  public open var xfadeTime: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_GET_XFADE_TIME, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION_SET_XFADE_TIME, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION)
   }
 
-  enum class SwitchMode(
+  public enum class SwitchMode(
     id: Long
   ) {
     /**
      * Switch to the next state immediately. The current state will end and blend into the beginning of the new one.
      */
     SWITCH_MODE_IMMEDIATE(0),
-
     /**
      * Switch to the next state immediately, but will seek the new state to the playback position of the old state.
      */
     SWITCH_MODE_SYNC(1),
-
     /**
      * Wait for the current state playback to end, then switch to the beginning of the next state animation.
      */
-    SWITCH_MODE_AT_END(2);
+    SWITCH_MODE_AT_END(2),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Wait for the current state playback to end, then switch to the beginning of the next state animation.
      */
-    final const val SWITCH_MODE_AT_END: Long = 2
+    public final const val SWITCH_MODE_AT_END: Long = 2
 
     /**
      * Switch to the next state immediately. The current state will end and blend into the beginning of the new one.
      */
-    final const val SWITCH_MODE_IMMEDIATE: Long = 0
+    public final const val SWITCH_MODE_IMMEDIATE: Long = 0
 
     /**
      * Switch to the next state immediately, but will seek the new state to the playback position of the old state.
      */
-    final const val SWITCH_MODE_SYNC: Long = 1
+    public final const val SWITCH_MODE_SYNC: Long = 1
   }
 }

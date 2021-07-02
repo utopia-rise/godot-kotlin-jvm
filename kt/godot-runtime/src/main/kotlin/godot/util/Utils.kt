@@ -1,6 +1,7 @@
 package godot.util
 
 import godot.core.VariantType
+import java.util.*
 import kotlin.math.abs
 
 typealias RealT = Double
@@ -14,7 +15,7 @@ const val nullptr: VoidPtr = 0L
 fun String.camelToSnakeCase(): String {
     return "(?<=[a-zA-Z0-9])[A-Z]".toRegex().replace(this) {
         "_${it.value}"
-    }.toLowerCase()
+    }.lowercase(Locale.ENGLISH)
 }
 
 @Suppress("NOTHING_TO_INLINE")

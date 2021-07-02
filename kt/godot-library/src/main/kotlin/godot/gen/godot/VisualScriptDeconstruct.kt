@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.LONG
@@ -14,30 +14,31 @@ import kotlin.Any
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
-open class VisualScriptDeconstruct : VisualScriptNode() {
-  open var type: Long
+public open class VisualScriptDeconstruct : VisualScriptNode() {
+  public open var type: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTDECONSTRUCT_GET_TYPE,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTDECONSTRUCT_SET_TYPE,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSCRIPTDECONSTRUCT)
   }
 
-  open fun _getElemCache(): VariantArray<Any?> {
+  public open fun _getElemCache(): VariantArray<Any?> {
     throw NotImplementedError("_get_elem_cache is not implemented for VisualScriptDeconstruct")
   }
 
-  open fun _setElemCache(_cache: VariantArray<Any?>) {
+  public open fun _setElemCache(_cache: VariantArray<Any?>): Unit {
   }
 }

@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
@@ -24,18 +24,18 @@ import kotlin.Unit
  * **Note:** Since this node inherits from [godot.Node2D] (and not [godot.Control]), anchors and margins won't apply to child [godot.Control]-derived nodes. This can be problematic when resizing the window. To avoid this, add [godot.Control]-derived nodes as *siblings* to the BackBufferCopy node instead of adding them as children.
  */
 @GodotBaseType
-open class BackBufferCopy : Node2D() {
+public open class BackBufferCopy : Node2D() {
   /**
    * Buffer mode. See [enum CopyMode] constants.
    */
-  open var copyMode: Long
+  public open var copyMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BACKBUFFERCOPY_GET_COPY_MODE,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BACKBUFFERCOPY_SET_COPY_MODE, NIL)
     }
@@ -43,70 +43,69 @@ open class BackBufferCopy : Node2D() {
   /**
    * The area covered by the BackBufferCopy. Only used if [copyMode] is [COPY_MODE_RECT].
    */
-  open var rect: Rect2
+  public open var rect: Rect2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BACKBUFFERCOPY_GET_RECT, RECT2)
       return TransferContext.readReturnValue(RECT2, false) as Rect2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(RECT2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BACKBUFFERCOPY_SET_RECT, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_BACKBUFFERCOPY)
   }
 
   @CoreTypeHelper
-  open fun rect(schedule: Rect2.() -> Unit): Rect2 = rect.apply{
+  public open fun rect(schedule: Rect2.() -> Unit): Rect2 = rect.apply{
       schedule(this)
       rect = this
   }
 
 
-  enum class CopyMode(
+  public enum class CopyMode(
     id: Long
   ) {
     /**
      * Disables the buffering mode. This means the BackBufferCopy node will directly use the portion of screen it covers.
      */
     COPY_MODE_DISABLED(0),
-
     /**
      * BackBufferCopy buffers a rectangular region.
      */
     COPY_MODE_RECT(1),
-
     /**
      * BackBufferCopy buffers the entire screen.
      */
-    COPY_MODE_VIEWPORT(2);
+    COPY_MODE_VIEWPORT(2),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Disables the buffering mode. This means the BackBufferCopy node will directly use the portion of screen it covers.
      */
-    final const val COPY_MODE_DISABLED: Long = 0
+    public final const val COPY_MODE_DISABLED: Long = 0
 
     /**
      * BackBufferCopy buffers a rectangular region.
      */
-    final const val COPY_MODE_RECT: Long = 1
+    public final const val COPY_MODE_RECT: Long = 1
 
     /**
      * BackBufferCopy buffers the entire screen.
      */
-    final const val COPY_MODE_VIEWPORT: Long = 2
+    public final const val COPY_MODE_VIEWPORT: Long = 2
   }
 }

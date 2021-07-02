@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Base resource for video streams.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Base resource type for all video streams. Classes that derive from [godot.VideoStream] can all be used as resource types to play back videos in [godot.VideoPlayer].
  */
 @GodotBaseType
-open class VideoStream : Resource() {
-  override fun __new() {
+public open class VideoStream : Resource() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VIDEOSTREAM)
   }
 }

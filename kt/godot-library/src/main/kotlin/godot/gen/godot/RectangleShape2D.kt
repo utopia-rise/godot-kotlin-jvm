@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
@@ -23,28 +23,28 @@ import kotlin.Unit
  * Rectangle shape for 2D collisions. This shape is useful for modeling box-like 2D objects.
  */
 @GodotBaseType
-open class RectangleShape2D : Shape2D() {
+public open class RectangleShape2D : Shape2D() {
   /**
    * The rectangle's half extents. The width and height of this shape is twice the half extents.
    */
-  open var extents: Vector2
+  public open var extents: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RECTANGLESHAPE2D_GET_EXTENTS,
           VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RECTANGLESHAPE2D_SET_EXTENTS, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_RECTANGLESHAPE2D)
   }
 
   @CoreTypeHelper
-  open fun extents(schedule: Vector2.() -> Unit): Vector2 = extents.apply{
+  public open fun extents(schedule: Vector2.() -> Unit): Vector2 = extents.apply{
       schedule(this)
       extents = this
   }

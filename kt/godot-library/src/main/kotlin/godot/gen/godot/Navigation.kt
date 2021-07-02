@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.PoolVector3Array
 import godot.core.TransferContext
 import godot.core.Transform
@@ -32,27 +32,27 @@ import kotlin.Unit
  * Provides navigation and pathfinding within a collection of [godot.NavigationMesh]es. By default, these will be automatically collected from child [godot.NavigationMeshInstance] nodes, but they can also be added on the fly with [navmeshAdd]. In addition to basic pathfinding, this class also assists with aligning navigation agents with the meshes they are navigating on.
  */
 @GodotBaseType
-open class Navigation : Spatial() {
+public open class Navigation : Spatial() {
   /**
    * Defines which direction is up. By default, this is `(0, 1, 0)`, which is the world's "up" direction.
    */
-  open var upVector: Vector3
+  public open var upVector: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION_GET_UP_VECTOR, VECTOR3)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION_SET_UP_VECTOR, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_NAVIGATION)
   }
 
   @CoreTypeHelper
-  open fun upVector(schedule: Vector3.() -> Unit): Vector3 = upVector.apply{
+  public open fun upVector(schedule: Vector3.() -> Unit): Vector3 = upVector.apply{
       schedule(this)
       upVector = this
   }
@@ -61,7 +61,7 @@ open class Navigation : Spatial() {
   /**
    * Returns the navigation point closest to the point given. Points are in local coordinate space.
    */
-  open fun getClosestPoint(toPoint: Vector3): Vector3 {
+  public open fun getClosestPoint(toPoint: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to toPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION_GET_CLOSEST_POINT,
         VECTOR3)
@@ -71,7 +71,7 @@ open class Navigation : Spatial() {
   /**
    * Returns the surface normal at the navigation point closest to the point given. Useful for rotating a navigation agent according to the navigation mesh it moves on.
    */
-  open fun getClosestPointNormal(toPoint: Vector3): Vector3 {
+  public open fun getClosestPointNormal(toPoint: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to toPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION_GET_CLOSEST_POINT_NORMAL,
         VECTOR3)
@@ -81,7 +81,7 @@ open class Navigation : Spatial() {
   /**
    * Returns the owner of the [godot.NavigationMesh] which contains the navigation point closest to the point given. This is usually a [godot.NavigationMeshInstance]. For meshes added via [navmeshAdd], returns the owner that was given (or `null` if the `owner` parameter was omitted).
    */
-  open fun getClosestPointOwner(toPoint: Vector3): Object? {
+  public open fun getClosestPointOwner(toPoint: Vector3): Object? {
     TransferContext.writeArguments(VECTOR3 to toPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION_GET_CLOSEST_POINT_OWNER,
         OBJECT)
@@ -91,7 +91,7 @@ open class Navigation : Spatial() {
   /**
    * Returns the navigation point closest to the given line segment. When enabling `use_collision`, only considers intersection points between segment and navigation meshes. If multiple intersection points are found, the one closest to the segment start point is returned.
    */
-  open fun getClosestPointToSegment(
+  public open fun getClosestPointToSegment(
     start: Vector3,
     end: Vector3,
     useCollision: Boolean = false
@@ -105,7 +105,7 @@ open class Navigation : Spatial() {
   /**
    * Returns the path between two given points. Points are in local coordinate space. If `optimize` is `true` (the default), the agent properties associated with each [godot.NavigationMesh] (radius, height, etc.) are considered in the path calculation, otherwise they are ignored.
    */
-  open fun getSimplePath(
+  public open fun getSimplePath(
     start: Vector3,
     end: Vector3,
     optimize: Boolean = true
@@ -119,7 +119,7 @@ open class Navigation : Spatial() {
   /**
    * Adds a [godot.NavigationMesh]. Returns an ID for use with [navmeshRemove] or [navmeshSetTransform]. If given, a [godot.core.Transform2D] is applied to the polygon. The optional `owner` is used as return value for [getClosestPointOwner].
    */
-  open fun navmeshAdd(
+  public open fun navmeshAdd(
     mesh: NavigationMesh,
     xform: Transform,
     owner: Object? = null
@@ -132,7 +132,7 @@ open class Navigation : Spatial() {
   /**
    * Removes the [godot.NavigationMesh] with the given ID.
    */
-  open fun navmeshRemove(id: Long) {
+  public open fun navmeshRemove(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION_NAVMESH_REMOVE, NIL)
   }
@@ -140,7 +140,7 @@ open class Navigation : Spatial() {
   /**
    * Sets the transform applied to the [godot.NavigationMesh] with the given ID.
    */
-  open fun navmeshSetTransform(id: Long, xform: Transform) {
+  public open fun navmeshSetTransform(id: Long, xform: Transform): Unit {
     TransferContext.writeArguments(LONG to id, TRANSFORM to xform)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION_NAVMESH_SET_TRANSFORM,
         NIL)

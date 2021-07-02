@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
@@ -13,36 +13,37 @@ import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import kotlin.Boolean
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
-open class SpatialVelocityTracker : Reference() {
+public open class SpatialVelocityTracker : Reference() {
   /**
    *
    */
-  open var trackPhysicsStep: Boolean
+  public open var trackPhysicsStep: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALVELOCITYTRACKER_GET_TRACK_PHYSICS_STEP, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALVELOCITYTRACKER_SET_TRACK_PHYSICS_STEP, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SPATIALVELOCITYTRACKER)
   }
 
   /**
    *
    */
-  open fun getTrackedLinearVelocity(): Vector3 {
+  public open fun getTrackedLinearVelocity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SPATIALVELOCITYTRACKER_GET_TRACKED_LINEAR_VELOCITY, VECTOR3)
@@ -52,7 +53,7 @@ open class SpatialVelocityTracker : Reference() {
   /**
    *
    */
-  open fun reset(position: Vector3) {
+  public open fun reset(position: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALVELOCITYTRACKER_RESET, NIL)
   }
@@ -60,7 +61,7 @@ open class SpatialVelocityTracker : Reference() {
   /**
    *
    */
-  open fun updatePosition(position: Vector3) {
+  public open fun updatePosition(position: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to position)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SPATIALVELOCITYTRACKER_UPDATE_POSITION, NIL)

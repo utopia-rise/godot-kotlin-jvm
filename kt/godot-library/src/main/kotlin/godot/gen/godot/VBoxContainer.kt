@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Vertical box container.
@@ -17,8 +18,8 @@ import kotlin.Suppress
  * Vertical box container. See [godot.BoxContainer].
  */
 @GodotBaseType
-open class VBoxContainer : BoxContainer() {
-  override fun __new() {
+public open class VBoxContainer : BoxContainer() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VBOXCONTAINER)
   }
 }

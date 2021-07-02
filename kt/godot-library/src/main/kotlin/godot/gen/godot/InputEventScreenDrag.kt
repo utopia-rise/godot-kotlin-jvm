@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -25,18 +25,18 @@ import kotlin.Unit
  * Contains screen drag information. See [godot.Node.Input].
  */
 @GodotBaseType
-open class InputEventScreenDrag : InputEvent() {
+public open class InputEventScreenDrag : InputEvent() {
   /**
    * The drag event index in the case of a multi-drag event.
    */
-  open var index: Long
+  public open var index: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_GET_INDEX,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_SET_INDEX,
           NIL)
@@ -45,14 +45,14 @@ open class InputEventScreenDrag : InputEvent() {
   /**
    * The drag position.
    */
-  open var position: Vector2
+  public open var position: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_GET_POSITION,
           VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_SET_POSITION,
           NIL)
@@ -61,14 +61,14 @@ open class InputEventScreenDrag : InputEvent() {
   /**
    * The drag position relative to its start position.
    */
-  open var relative: Vector2
+  public open var relative: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_GET_RELATIVE,
           VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_SET_RELATIVE,
           NIL)
@@ -77,39 +77,39 @@ open class InputEventScreenDrag : InputEvent() {
   /**
    * The drag speed.
    */
-  open var speed: Vector2
+  public open var speed: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_GET_SPEED,
           VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_SET_SPEED,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTSCREENDRAG)
   }
 
   @CoreTypeHelper
-  open fun position(schedule: Vector2.() -> Unit): Vector2 = position.apply{
+  public open fun position(schedule: Vector2.() -> Unit): Vector2 = position.apply{
       schedule(this)
       position = this
   }
 
 
   @CoreTypeHelper
-  open fun relative(schedule: Vector2.() -> Unit): Vector2 = relative.apply{
+  public open fun relative(schedule: Vector2.() -> Unit): Vector2 = relative.apply{
       schedule(this)
       relative = this
   }
 
 
   @CoreTypeHelper
-  open fun speed(schedule: Vector2.() -> Unit): Vector2 = speed.apply{
+  public open fun speed(schedule: Vector2.() -> Unit): Vector2 = speed.apply{
       schedule(this)
       speed = this
   }

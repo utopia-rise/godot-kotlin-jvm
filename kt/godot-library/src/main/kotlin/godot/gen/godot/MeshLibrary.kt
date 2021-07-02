@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.PoolIntArray
 import godot.core.TransferContext
 import godot.core.Transform
@@ -21,6 +21,7 @@ import kotlin.Any
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Library of meshes.
@@ -31,15 +32,15 @@ import kotlin.Suppress
  * A library of meshes. Contains a list of [godot.Mesh] resources, each with a name and ID. Each item can also include collision and navigation shapes. This resource is used in [godot.GridMap].
  */
 @GodotBaseType
-open class MeshLibrary : Resource() {
-  override fun __new() {
+public open class MeshLibrary : Resource() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_MESHLIBRARY)
   }
 
   /**
    * Clears the library.
    */
-  open fun clear() {
+  public open fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_CLEAR, NIL)
   }
@@ -49,7 +50,7 @@ open class MeshLibrary : Resource() {
    *
    * You can get an unused ID from [getLastUnusedItemId].
    */
-  open fun createItem(id: Long) {
+  public open fun createItem(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_CREATE_ITEM, NIL)
   }
@@ -57,7 +58,7 @@ open class MeshLibrary : Resource() {
   /**
    * Returns the first item with the given name.
    */
-  open fun findItemByName(name: String): Long {
+  public open fun findItemByName(name: String): Long {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_FIND_ITEM_BY_NAME, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -66,7 +67,7 @@ open class MeshLibrary : Resource() {
   /**
    * Returns the list of item IDs in use.
    */
-  open fun getItemList(): PoolIntArray {
+  public open fun getItemList(): PoolIntArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_LIST,
         POOL_INT_ARRAY)
@@ -76,7 +77,7 @@ open class MeshLibrary : Resource() {
   /**
    * Returns the item's mesh.
    */
-  open fun getItemMesh(id: Long): Mesh? {
+  public open fun getItemMesh(id: Long): Mesh? {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_MESH, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Mesh?
@@ -85,7 +86,7 @@ open class MeshLibrary : Resource() {
   /**
    * Returns the item's name.
    */
-  open fun getItemName(id: Long): String {
+  public open fun getItemName(id: Long): String {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -94,7 +95,7 @@ open class MeshLibrary : Resource() {
   /**
    * Returns the item's navigation mesh.
    */
-  open fun getItemNavmesh(id: Long): NavigationMesh? {
+  public open fun getItemNavmesh(id: Long): NavigationMesh? {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_NAVMESH,
         OBJECT)
@@ -104,7 +105,7 @@ open class MeshLibrary : Resource() {
   /**
    * Returns the transform applied to the item's navigation mesh.
    */
-  open fun getItemNavmeshTransform(id: Long): Transform {
+  public open fun getItemNavmeshTransform(id: Long): Transform {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_NAVMESH_TRANSFORM, TRANSFORM)
@@ -114,7 +115,7 @@ open class MeshLibrary : Resource() {
   /**
    * When running in the editor, returns a generated item preview (a 3D rendering in isometric perspective). When used in a running project, returns the manually-defined item preview which can be set using [setItemPreview]. Returns an empty [godot.Texture] if no preview was manually set in a running project.
    */
-  open fun getItemPreview(id: Long): Texture? {
+  public open fun getItemPreview(id: Long): Texture? {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_PREVIEW,
         OBJECT)
@@ -126,7 +127,7 @@ open class MeshLibrary : Resource() {
    *
    * The array consists of each [godot.Shape] followed by its [godot.core.Transform].
    */
-  open fun getItemShapes(id: Long): VariantArray<Any?> {
+  public open fun getItemShapes(id: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_SHAPES, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -135,7 +136,7 @@ open class MeshLibrary : Resource() {
   /**
    * Gets an unused ID for a new item.
    */
-  open fun getLastUnusedItemId(): Long {
+  public open fun getLastUnusedItemId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_LAST_UNUSED_ITEM_ID,
         LONG)
@@ -145,7 +146,7 @@ open class MeshLibrary : Resource() {
   /**
    * Removes the item.
    */
-  open fun removeItem(id: Long) {
+  public open fun removeItem(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_REMOVE_ITEM, NIL)
   }
@@ -153,7 +154,7 @@ open class MeshLibrary : Resource() {
   /**
    * Sets the item's mesh.
    */
-  open fun setItemMesh(id: Long, mesh: Mesh) {
+  public open fun setItemMesh(id: Long, mesh: Mesh): Unit {
     TransferContext.writeArguments(LONG to id, OBJECT to mesh)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_MESH, NIL)
   }
@@ -163,7 +164,7 @@ open class MeshLibrary : Resource() {
    *
    * This name is shown in the editor. It can also be used to look up the item later using [findItemByName].
    */
-  open fun setItemName(id: Long, name: String) {
+  public open fun setItemName(id: Long, name: String): Unit {
     TransferContext.writeArguments(LONG to id, STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_NAME, NIL)
   }
@@ -171,7 +172,7 @@ open class MeshLibrary : Resource() {
   /**
    * Sets the item's navigation mesh.
    */
-  open fun setItemNavmesh(id: Long, navmesh: NavigationMesh) {
+  public open fun setItemNavmesh(id: Long, navmesh: NavigationMesh): Unit {
     TransferContext.writeArguments(LONG to id, OBJECT to navmesh)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_NAVMESH, NIL)
   }
@@ -179,7 +180,7 @@ open class MeshLibrary : Resource() {
   /**
    * Sets the transform to apply to the item's navigation mesh.
    */
-  open fun setItemNavmeshTransform(id: Long, navmesh: Transform) {
+  public open fun setItemNavmeshTransform(id: Long, navmesh: Transform): Unit {
     TransferContext.writeArguments(LONG to id, TRANSFORM to navmesh)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_NAVMESH_TRANSFORM, NIL)
@@ -188,7 +189,7 @@ open class MeshLibrary : Resource() {
   /**
    * Sets a texture to use as the item's preview icon in the editor.
    */
-  open fun setItemPreview(id: Long, texture: Texture) {
+  public open fun setItemPreview(id: Long, texture: Texture): Unit {
     TransferContext.writeArguments(LONG to id, OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_PREVIEW, NIL)
   }
@@ -198,7 +199,7 @@ open class MeshLibrary : Resource() {
    *
    * The array should consist of [godot.Shape] objects, each followed by a [godot.core.Transform] that will be applied to it. For shapes that should not have a transform, use [godot.Transform.IDENTITY].
    */
-  open fun setItemShapes(id: Long, shapes: VariantArray<Any?>) {
+  public open fun setItemShapes(id: Long, shapes: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(LONG to id, ARRAY to shapes)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_SHAPES, NIL)
   }

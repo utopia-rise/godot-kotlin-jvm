@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -19,111 +19,112 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
-open class NetworkedMultiplayerENet : NetworkedMultiplayerPeer() {
-  open var alwaysOrdered: Boolean
+public open class NetworkedMultiplayerENet : NetworkedMultiplayerPeer() {
+  public open var alwaysOrdered: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_GET_ALWAYS_ORDERED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_SET_ALWAYS_ORDERED, NIL)
     }
 
-  open var channelCount: Long
+  public open var channelCount: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_GET_CHANNEL_COUNT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_SET_CHANNEL_COUNT, NIL)
     }
 
-  open var compressionMode: Long
+  public open var compressionMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_GET_COMPRESSION_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_SET_COMPRESSION_MODE, NIL)
     }
 
-  open var dtlsVerify: Boolean
+  public open var dtlsVerify: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_GET_DTLS_VERIFY, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_SET_DTLS_VERIFY, NIL)
     }
 
-  open var serverRelay: Boolean
+  public open var serverRelay: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_GET_SERVER_RELAY, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_SET_SERVER_RELAY, NIL)
     }
 
-  open var transferChannel: Long
+  public open var transferChannel: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_GET_TRANSFER_CHANNEL, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_SET_TRANSFER_CHANNEL, NIL)
     }
 
-  open var useDtls: Boolean
+  public open var useDtls: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_GET_USE_DTLS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_SET_USE_DTLS, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_NETWORKEDMULTIPLAYERENET)
   }
 
-  open fun closeConnection(waitUsec: Long = 100) {
+  public open fun closeConnection(waitUsec: Long = 100): Unit {
     TransferContext.writeArguments(LONG to waitUsec)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_CLOSE_CONNECTION, NIL)
   }
 
-  open fun createClient(
+  public open fun createClient(
     address: String,
     port: Long,
     inBandwidth: Long = 0,
@@ -137,7 +138,7 @@ open class NetworkedMultiplayerENet : NetworkedMultiplayerPeer() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  open fun createServer(
+  public open fun createServer(
     port: Long,
     maxClients: Long = 32,
     inBandwidth: Long = 0,
@@ -150,102 +151,99 @@ open class NetworkedMultiplayerENet : NetworkedMultiplayerPeer() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  open fun disconnectPeer(id: Long, now: Boolean = false) {
+  public open fun disconnectPeer(id: Long, now: Boolean = false): Unit {
     TransferContext.writeArguments(LONG to id, BOOL to now)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_DISCONNECT_PEER, NIL)
   }
 
-  open fun getLastPacketChannel(): Long {
+  public open fun getLastPacketChannel(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_GET_LAST_PACKET_CHANNEL, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  open fun getPacketChannel(): Long {
+  public open fun getPacketChannel(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_GET_PACKET_CHANNEL, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  open fun getPeerAddress(id: Long): String {
+  public open fun getPeerAddress(id: Long): String {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_GET_PEER_ADDRESS, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  open fun getPeerPort(id: Long): Long {
+  public open fun getPeerPort(id: Long): Long {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_GET_PEER_PORT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  open fun setBindIp(ip: String) {
+  public open fun setBindIp(ip: String): Unit {
     TransferContext.writeArguments(STRING to ip)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_SET_BIND_IP, NIL)
   }
 
-  open fun setDtlsCertificate(certificate: X509Certificate) {
+  public open fun setDtlsCertificate(certificate: X509Certificate): Unit {
     TransferContext.writeArguments(OBJECT to certificate)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_SET_DTLS_CERTIFICATE, NIL)
   }
 
-  open fun setDtlsKey(key: CryptoKey) {
+  public open fun setDtlsKey(key: CryptoKey): Unit {
     TransferContext.writeArguments(OBJECT to key)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_SET_DTLS_KEY, NIL)
   }
 
-  open fun setPeerTimeout(
+  public open fun setPeerTimeout(
     id: Long,
     timeoutLimit: Long,
     timeoutMin: Long,
     timeoutMax: Long
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to id, LONG to timeoutLimit, LONG to timeoutMin, LONG to
         timeoutMax)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_SET_PEER_TIMEOUT, NIL)
   }
 
-  enum class CompressionMode(
+  public enum class CompressionMode(
     id: Long
   ) {
     COMPRESS_NONE(0),
-
     COMPRESS_RANGE_CODER(1),
-
     COMPRESS_FASTLZ(2),
-
     COMPRESS_ZLIB(3),
+    COMPRESS_ZSTD(4),
+    ;
 
-    COMPRESS_ZSTD(4);
-
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
-    final const val COMPRESS_FASTLZ: Long = 2
+  public companion object {
+    public final const val COMPRESS_FASTLZ: Long = 2
 
-    final const val COMPRESS_NONE: Long = 0
+    public final const val COMPRESS_NONE: Long = 0
 
-    final const val COMPRESS_RANGE_CODER: Long = 1
+    public final const val COMPRESS_RANGE_CODER: Long = 1
 
-    final const val COMPRESS_ZLIB: Long = 3
+    public final const val COMPRESS_ZLIB: Long = 3
 
-    final const val COMPRESS_ZSTD: Long = 4
+    public final const val COMPRESS_ZSTD: Long = 4
   }
 }

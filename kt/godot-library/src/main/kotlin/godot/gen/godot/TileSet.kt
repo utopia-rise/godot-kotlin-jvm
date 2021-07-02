@@ -6,7 +6,7 @@
 package godot
 
 import godot.TileSet
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Rect2
 import godot.core.TransferContext
@@ -33,6 +33,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Tile library for tilemaps.
@@ -45,15 +46,15 @@ import kotlin.Suppress
  * Tiles are referenced by a unique integer ID.
  */
 @GodotBaseType
-open class TileSet : Resource() {
-  override fun __new() {
+public open class TileSet : Resource() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TILESET)
   }
 
   /**
    *
    */
-  open fun _forwardAtlasSubtileSelection(
+  public open fun _forwardAtlasSubtileSelection(
     atlastileId: Long,
     tilemap: Object,
     tileLocation: Vector2
@@ -64,7 +65,7 @@ open class TileSet : Resource() {
   /**
    *
    */
-  open fun _forwardSubtileSelection(
+  public open fun _forwardSubtileSelection(
     autotileId: Long,
     bitmask: Long,
     tilemap: Object,
@@ -78,14 +79,14 @@ open class TileSet : Resource() {
    *
    * **Note:** `neighbor_id` will be `-1` ([godot.TileMap.INVALID_CELL]) when checking a tile against an empty neighbor tile.
    */
-  open fun _isTileBound(drawnId: Long, neighborId: Long): Boolean {
+  public open fun _isTileBound(drawnId: Long, neighborId: Long): Boolean {
     throw NotImplementedError("_is_tile_bound is not implemented for TileSet")
   }
 
   /**
    * Clears all bitmask information of the autotile.
    */
-  open fun autotileClearBitmaskMap(id: Long) {
+  public open fun autotileClearBitmaskMap(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_AUTOTILE_CLEAR_BITMASK_MAP,
         NIL)
@@ -96,7 +97,7 @@ open class TileSet : Resource() {
    *
    * The value is the sum of the values in [enum AutotileBindings] present in the subtile (e.g. a value of 5 means the bitmask has bindings in both the top left and top right).
    */
-  open fun autotileGetBitmask(id: Long, coord: Vector2): Long {
+  public open fun autotileGetBitmask(id: Long, coord: Vector2): Long {
     TransferContext.writeArguments(LONG to id, VECTOR2 to coord)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_AUTOTILE_GET_BITMASK, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -105,7 +106,7 @@ open class TileSet : Resource() {
   /**
    * Returns the [enum BitmaskMode] of the autotile.
    */
-  open fun autotileGetBitmaskMode(id: Long): TileSet.BitmaskMode {
+  public open fun autotileGetBitmaskMode(id: Long): TileSet.BitmaskMode {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_AUTOTILE_GET_BITMASK_MODE,
         LONG)
@@ -117,7 +118,7 @@ open class TileSet : Resource() {
    *
    * The subtile defined as the icon will be used as a fallback when the atlas/autotile's bitmask information is incomplete. It will also be used to represent it in the TileSet editor.
    */
-  open fun autotileGetIconCoordinate(id: Long): Vector2 {
+  public open fun autotileGetIconCoordinate(id: Long): Vector2 {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_AUTOTILE_GET_ICON_COORDINATE, VECTOR2)
@@ -127,7 +128,7 @@ open class TileSet : Resource() {
   /**
    * Returns the light occluder of the subtile from an atlas/autotile given its coordinates.
    */
-  open fun autotileGetLightOccluder(id: Long, coord: Vector2): OccluderPolygon2D? {
+  public open fun autotileGetLightOccluder(id: Long, coord: Vector2): OccluderPolygon2D? {
     TransferContext.writeArguments(LONG to id, VECTOR2 to coord)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_AUTOTILE_GET_LIGHT_OCCLUDER,
         OBJECT)
@@ -137,7 +138,7 @@ open class TileSet : Resource() {
   /**
    * Returns the navigation polygon of the subtile from an atlas/autotile given its coordinates.
    */
-  open fun autotileGetNavigationPolygon(id: Long, coord: Vector2): NavigationPolygon? {
+  public open fun autotileGetNavigationPolygon(id: Long, coord: Vector2): NavigationPolygon? {
     TransferContext.writeArguments(LONG to id, VECTOR2 to coord)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_AUTOTILE_GET_NAVIGATION_POLYGON, OBJECT)
@@ -147,7 +148,7 @@ open class TileSet : Resource() {
   /**
    * Returns the size of the subtiles in an atlas/autotile.
    */
-  open fun autotileGetSize(id: Long): Vector2 {
+  public open fun autotileGetSize(id: Long): Vector2 {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_AUTOTILE_GET_SIZE, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
@@ -156,7 +157,7 @@ open class TileSet : Resource() {
   /**
    * Returns the spacing between subtiles of the atlas/autotile.
    */
-  open fun autotileGetSpacing(id: Long): Long {
+  public open fun autotileGetSpacing(id: Long): Long {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_AUTOTILE_GET_SPACING, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -167,7 +168,7 @@ open class TileSet : Resource() {
    *
    * When more than one subtile has the same bitmask value, one of them will be picked randomly for drawing. Its priority will define how often it will be picked.
    */
-  open fun autotileGetSubtilePriority(id: Long, coord: Vector2): Long {
+  public open fun autotileGetSubtilePriority(id: Long, coord: Vector2): Long {
     TransferContext.writeArguments(LONG to id, VECTOR2 to coord)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_AUTOTILE_GET_SUBTILE_PRIORITY, LONG)
@@ -177,7 +178,7 @@ open class TileSet : Resource() {
   /**
    * Returns the drawing index of the subtile from an atlas/autotile given its coordinates.
    */
-  open fun autotileGetZIndex(id: Long, coord: Vector2): Long {
+  public open fun autotileGetZIndex(id: Long, coord: Vector2): Long {
     TransferContext.writeArguments(LONG to id, VECTOR2 to coord)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_AUTOTILE_GET_Z_INDEX, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -188,11 +189,11 @@ open class TileSet : Resource() {
    *
    * The value is the sum of the values in [enum AutotileBindings] present in the subtile (e.g. a value of 5 means the bitmask has bindings in both the top left and top right).
    */
-  open fun autotileSetBitmask(
+  public open fun autotileSetBitmask(
     id: Long,
     bitmask: Vector2,
     flag: Long
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to id, VECTOR2 to bitmask, LONG to flag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_AUTOTILE_SET_BITMASK, NIL)
   }
@@ -200,7 +201,7 @@ open class TileSet : Resource() {
   /**
    * Sets the [enum BitmaskMode] of the autotile.
    */
-  open fun autotileSetBitmaskMode(id: Long, mode: Long) {
+  public open fun autotileSetBitmaskMode(id: Long, mode: Long): Unit {
     TransferContext.writeArguments(LONG to id, LONG to mode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_AUTOTILE_SET_BITMASK_MODE,
         NIL)
@@ -211,7 +212,7 @@ open class TileSet : Resource() {
    *
    * The subtile defined as the icon will be used as a fallback when the atlas/autotile's bitmask information is incomplete. It will also be used to represent it in the TileSet editor.
    */
-  open fun autotileSetIconCoordinate(id: Long, coord: Vector2) {
+  public open fun autotileSetIconCoordinate(id: Long, coord: Vector2): Unit {
     TransferContext.writeArguments(LONG to id, VECTOR2 to coord)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_AUTOTILE_SET_ICON_COORDINATE, NIL)
@@ -220,11 +221,11 @@ open class TileSet : Resource() {
   /**
    * Sets the light occluder of the subtile from an atlas/autotile given its coordinates.
    */
-  open fun autotileSetLightOccluder(
+  public open fun autotileSetLightOccluder(
     id: Long,
     lightOccluder: OccluderPolygon2D,
     coord: Vector2
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to id, OBJECT to lightOccluder, VECTOR2 to coord)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_AUTOTILE_SET_LIGHT_OCCLUDER,
         NIL)
@@ -233,11 +234,11 @@ open class TileSet : Resource() {
   /**
    * Sets the navigation polygon of the subtile from an atlas/autotile given its coordinates.
    */
-  open fun autotileSetNavigationPolygon(
+  public open fun autotileSetNavigationPolygon(
     id: Long,
     navigationPolygon: NavigationPolygon,
     coord: Vector2
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to id, OBJECT to navigationPolygon, VECTOR2 to coord)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_AUTOTILE_SET_NAVIGATION_POLYGON, NIL)
@@ -246,7 +247,7 @@ open class TileSet : Resource() {
   /**
    * Sets the size of the subtiles in an atlas/autotile.
    */
-  open fun autotileSetSize(id: Long, size: Vector2) {
+  public open fun autotileSetSize(id: Long, size: Vector2): Unit {
     TransferContext.writeArguments(LONG to id, VECTOR2 to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_AUTOTILE_SET_SIZE, NIL)
   }
@@ -254,7 +255,7 @@ open class TileSet : Resource() {
   /**
    * Sets the spacing between subtiles of the atlas/autotile.
    */
-  open fun autotileSetSpacing(id: Long, spacing: Long) {
+  public open fun autotileSetSpacing(id: Long, spacing: Long): Unit {
     TransferContext.writeArguments(LONG to id, LONG to spacing)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_AUTOTILE_SET_SPACING, NIL)
   }
@@ -264,11 +265,11 @@ open class TileSet : Resource() {
    *
    * When more than one subtile has the same bitmask value, one of them will be picked randomly for drawing. Its priority will define how often it will be picked.
    */
-  open fun autotileSetSubtilePriority(
+  public open fun autotileSetSubtilePriority(
     id: Long,
     coord: Vector2,
     priority: Long
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to id, VECTOR2 to coord, LONG to priority)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_AUTOTILE_SET_SUBTILE_PRIORITY, NIL)
@@ -277,11 +278,11 @@ open class TileSet : Resource() {
   /**
    * Sets the drawing index of the subtile from an atlas/autotile given its coordinates.
    */
-  open fun autotileSetZIndex(
+  public open fun autotileSetZIndex(
     id: Long,
     coord: Vector2,
     zIndex: Long
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to id, VECTOR2 to coord, LONG to zIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_AUTOTILE_SET_Z_INDEX, NIL)
   }
@@ -289,7 +290,7 @@ open class TileSet : Resource() {
   /**
    * Clears all tiles.
    */
-  open fun clear() {
+  public open fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_CLEAR, NIL)
   }
@@ -297,7 +298,7 @@ open class TileSet : Resource() {
   /**
    * Creates a new tile with the given ID.
    */
-  open fun createTile(id: Long) {
+  public open fun createTile(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_CREATE_TILE, NIL)
   }
@@ -305,7 +306,7 @@ open class TileSet : Resource() {
   /**
    * Returns the first tile matching the given name.
    */
-  open fun findTileByName(name: String): Long {
+  public open fun findTileByName(name: String): Long {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_FIND_TILE_BY_NAME, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -314,7 +315,7 @@ open class TileSet : Resource() {
   /**
    * Returns the ID following the last currently used ID, useful when creating a new tile.
    */
-  open fun getLastUnusedTileId(): Long {
+  public open fun getLastUnusedTileId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_LAST_UNUSED_TILE_ID,
         LONG)
@@ -324,7 +325,7 @@ open class TileSet : Resource() {
   /**
    * Returns an array of all currently used tile IDs.
    */
-  open fun getTilesIds(): VariantArray<Any?> {
+  public open fun getTilesIds(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_GET_TILES_IDS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -333,7 +334,7 @@ open class TileSet : Resource() {
   /**
    * Removes the given tile ID.
    */
-  open fun removeTile(id: Long) {
+  public open fun removeTile(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_REMOVE_TILE, NIL)
   }
@@ -341,13 +342,13 @@ open class TileSet : Resource() {
   /**
    * Adds a shape to the tile.
    */
-  open fun tileAddShape(
+  public open fun tileAddShape(
     id: Long,
     shape: Shape2D,
     shapeTransform: Transform2D,
     oneWay: Boolean = false,
     autotileCoord: Vector2 = Vector2(0.0, 0.0)
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to id, OBJECT to shape, TRANSFORM2D to shapeTransform, BOOL
         to oneWay, VECTOR2 to autotileCoord)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_ADD_SHAPE, NIL)
@@ -356,7 +357,7 @@ open class TileSet : Resource() {
   /**
    * Returns the tile's light occluder.
    */
-  open fun tileGetLightOccluder(id: Long): OccluderPolygon2D? {
+  public open fun tileGetLightOccluder(id: Long): OccluderPolygon2D? {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_GET_LIGHT_OCCLUDER,
         OBJECT)
@@ -366,7 +367,7 @@ open class TileSet : Resource() {
   /**
    * Returns the tile's material.
    */
-  open fun tileGetMaterial(id: Long): ShaderMaterial? {
+  public open fun tileGetMaterial(id: Long): ShaderMaterial? {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_GET_MATERIAL, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as ShaderMaterial?
@@ -375,7 +376,7 @@ open class TileSet : Resource() {
   /**
    * Returns the tile's modulation color.
    */
-  open fun tileGetModulate(id: Long): Color {
+  public open fun tileGetModulate(id: Long): Color {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_GET_MODULATE, COLOR)
     return TransferContext.readReturnValue(COLOR, false) as Color
@@ -384,7 +385,7 @@ open class TileSet : Resource() {
   /**
    * Returns the tile's name.
    */
-  open fun tileGetName(id: Long): String {
+  public open fun tileGetName(id: Long): String {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_GET_NAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -393,7 +394,7 @@ open class TileSet : Resource() {
   /**
    * Returns the navigation polygon of the tile.
    */
-  open fun tileGetNavigationPolygon(id: Long): NavigationPolygon? {
+  public open fun tileGetNavigationPolygon(id: Long): NavigationPolygon? {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_GET_NAVIGATION_POLYGON,
         OBJECT)
@@ -403,7 +404,7 @@ open class TileSet : Resource() {
   /**
    * Returns the offset of the tile's navigation polygon.
    */
-  open fun tileGetNavigationPolygonOffset(id: Long): Vector2 {
+  public open fun tileGetNavigationPolygonOffset(id: Long): Vector2 {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_TILE_GET_NAVIGATION_POLYGON_OFFSET, VECTOR2)
@@ -413,7 +414,7 @@ open class TileSet : Resource() {
   /**
    * Returns the tile's normal map texture.
    */
-  open fun tileGetNormalMap(id: Long): Texture? {
+  public open fun tileGetNormalMap(id: Long): Texture? {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_GET_NORMAL_MAP, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Texture?
@@ -422,7 +423,7 @@ open class TileSet : Resource() {
   /**
    * Returns the offset of the tile's light occluder.
    */
-  open fun tileGetOccluderOffset(id: Long): Vector2 {
+  public open fun tileGetOccluderOffset(id: Long): Vector2 {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_GET_OCCLUDER_OFFSET,
         VECTOR2)
@@ -432,7 +433,7 @@ open class TileSet : Resource() {
   /**
    * Returns the tile sub-region in the texture.
    */
-  open fun tileGetRegion(id: Long): Rect2 {
+  public open fun tileGetRegion(id: Long): Rect2 {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_GET_REGION, RECT2)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
@@ -441,7 +442,7 @@ open class TileSet : Resource() {
   /**
    * Returns a tile's given shape.
    */
-  open fun tileGetShape(id: Long, shapeId: Long): Shape2D? {
+  public open fun tileGetShape(id: Long, shapeId: Long): Shape2D? {
     TransferContext.writeArguments(LONG to id, LONG to shapeId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_GET_SHAPE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Shape2D?
@@ -450,7 +451,7 @@ open class TileSet : Resource() {
   /**
    * Returns the number of shapes assigned to a tile.
    */
-  open fun tileGetShapeCount(id: Long): Long {
+  public open fun tileGetShapeCount(id: Long): Long {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_GET_SHAPE_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -459,7 +460,7 @@ open class TileSet : Resource() {
   /**
    * Returns the offset of a tile's shape.
    */
-  open fun tileGetShapeOffset(id: Long, shapeId: Long): Vector2 {
+  public open fun tileGetShapeOffset(id: Long, shapeId: Long): Vector2 {
     TransferContext.writeArguments(LONG to id, LONG to shapeId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_GET_SHAPE_OFFSET,
         VECTOR2)
@@ -469,7 +470,7 @@ open class TileSet : Resource() {
   /**
    * Returns the one-way collision value of a tile's shape.
    */
-  open fun tileGetShapeOneWay(id: Long, shapeId: Long): Boolean {
+  public open fun tileGetShapeOneWay(id: Long, shapeId: Long): Boolean {
     TransferContext.writeArguments(LONG to id, LONG to shapeId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_GET_SHAPE_ONE_WAY,
         BOOL)
@@ -479,7 +480,7 @@ open class TileSet : Resource() {
   /**
    *
    */
-  open fun tileGetShapeOneWayMargin(id: Long, shapeId: Long): Double {
+  public open fun tileGetShapeOneWayMargin(id: Long, shapeId: Long): Double {
     TransferContext.writeArguments(LONG to id, LONG to shapeId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_TILE_GET_SHAPE_ONE_WAY_MARGIN, DOUBLE)
@@ -489,7 +490,7 @@ open class TileSet : Resource() {
   /**
    * Returns the [godot.core.Transform2D] of a tile's shape.
    */
-  open fun tileGetShapeTransform(id: Long, shapeId: Long): Transform2D {
+  public open fun tileGetShapeTransform(id: Long, shapeId: Long): Transform2D {
     TransferContext.writeArguments(LONG to id, LONG to shapeId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_GET_SHAPE_TRANSFORM,
         TRANSFORM2D)
@@ -511,7 +512,7 @@ open class TileSet : Resource() {
    * 				}
    * 				```
    */
-  open fun tileGetShapes(id: Long): VariantArray<Any?> {
+  public open fun tileGetShapes(id: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_GET_SHAPES, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -520,7 +521,7 @@ open class TileSet : Resource() {
   /**
    * Returns the tile's texture.
    */
-  open fun tileGetTexture(id: Long): Texture? {
+  public open fun tileGetTexture(id: Long): Texture? {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_GET_TEXTURE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Texture?
@@ -529,7 +530,7 @@ open class TileSet : Resource() {
   /**
    * Returns the texture offset of the tile.
    */
-  open fun tileGetTextureOffset(id: Long): Vector2 {
+  public open fun tileGetTextureOffset(id: Long): Vector2 {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_GET_TEXTURE_OFFSET,
         VECTOR2)
@@ -539,7 +540,7 @@ open class TileSet : Resource() {
   /**
    * Returns the tile's [enum TileMode].
    */
-  open fun tileGetTileMode(id: Long): TileSet.TileMode {
+  public open fun tileGetTileMode(id: Long): TileSet.TileMode {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_GET_TILE_MODE, LONG)
     return TileSet.TileMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -548,7 +549,7 @@ open class TileSet : Resource() {
   /**
    * Returns the tile's Z index (drawing layer).
    */
-  open fun tileGetZIndex(id: Long): Long {
+  public open fun tileGetZIndex(id: Long): Long {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_GET_Z_INDEX, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -557,7 +558,7 @@ open class TileSet : Resource() {
   /**
    * Sets a light occluder for the tile.
    */
-  open fun tileSetLightOccluder(id: Long, lightOccluder: OccluderPolygon2D) {
+  public open fun tileSetLightOccluder(id: Long, lightOccluder: OccluderPolygon2D): Unit {
     TransferContext.writeArguments(LONG to id, OBJECT to lightOccluder)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_SET_LIGHT_OCCLUDER,
         NIL)
@@ -566,7 +567,7 @@ open class TileSet : Resource() {
   /**
    * Sets the tile's material.
    */
-  open fun tileSetMaterial(id: Long, material: ShaderMaterial) {
+  public open fun tileSetMaterial(id: Long, material: ShaderMaterial): Unit {
     TransferContext.writeArguments(LONG to id, OBJECT to material)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_SET_MATERIAL, NIL)
   }
@@ -574,7 +575,7 @@ open class TileSet : Resource() {
   /**
    * Sets the tile's modulation color.
    */
-  open fun tileSetModulate(id: Long, color: Color) {
+  public open fun tileSetModulate(id: Long, color: Color): Unit {
     TransferContext.writeArguments(LONG to id, COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_SET_MODULATE, NIL)
   }
@@ -582,7 +583,7 @@ open class TileSet : Resource() {
   /**
    * Sets the tile's name.
    */
-  open fun tileSetName(id: Long, name: String) {
+  public open fun tileSetName(id: Long, name: String): Unit {
     TransferContext.writeArguments(LONG to id, STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_SET_NAME, NIL)
   }
@@ -590,7 +591,7 @@ open class TileSet : Resource() {
   /**
    * Sets the tile's navigation polygon.
    */
-  open fun tileSetNavigationPolygon(id: Long, navigationPolygon: NavigationPolygon) {
+  public open fun tileSetNavigationPolygon(id: Long, navigationPolygon: NavigationPolygon): Unit {
     TransferContext.writeArguments(LONG to id, OBJECT to navigationPolygon)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_SET_NAVIGATION_POLYGON,
         NIL)
@@ -599,7 +600,7 @@ open class TileSet : Resource() {
   /**
    * Sets an offset for the tile's navigation polygon.
    */
-  open fun tileSetNavigationPolygonOffset(id: Long, navigationPolygonOffset: Vector2) {
+  public open fun tileSetNavigationPolygonOffset(id: Long, navigationPolygonOffset: Vector2): Unit {
     TransferContext.writeArguments(LONG to id, VECTOR2 to navigationPolygonOffset)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_TILE_SET_NAVIGATION_POLYGON_OFFSET, NIL)
@@ -610,7 +611,7 @@ open class TileSet : Resource() {
    *
    * **Note:** Godot expects the normal map to use X+, Y-, and Z+ coordinates. See [this page](http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates) for a comparison of normal map coordinates expected by popular engines.
    */
-  open fun tileSetNormalMap(id: Long, normalMap: Texture) {
+  public open fun tileSetNormalMap(id: Long, normalMap: Texture): Unit {
     TransferContext.writeArguments(LONG to id, OBJECT to normalMap)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_SET_NORMAL_MAP, NIL)
   }
@@ -618,7 +619,7 @@ open class TileSet : Resource() {
   /**
    * Sets an offset for the tile's light occluder.
    */
-  open fun tileSetOccluderOffset(id: Long, occluderOffset: Vector2) {
+  public open fun tileSetOccluderOffset(id: Long, occluderOffset: Vector2): Unit {
     TransferContext.writeArguments(LONG to id, VECTOR2 to occluderOffset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_SET_OCCLUDER_OFFSET,
         NIL)
@@ -627,7 +628,7 @@ open class TileSet : Resource() {
   /**
    * Sets the tile's sub-region in the texture. This is common in texture atlases.
    */
-  open fun tileSetRegion(id: Long, region: Rect2) {
+  public open fun tileSetRegion(id: Long, region: Rect2): Unit {
     TransferContext.writeArguments(LONG to id, RECT2 to region)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_SET_REGION, NIL)
   }
@@ -635,11 +636,11 @@ open class TileSet : Resource() {
   /**
    * Sets a shape for the tile, enabling collision.
    */
-  open fun tileSetShape(
+  public open fun tileSetShape(
     id: Long,
     shapeId: Long,
     shape: Shape2D
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to id, LONG to shapeId, OBJECT to shape)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_SET_SHAPE, NIL)
   }
@@ -647,11 +648,11 @@ open class TileSet : Resource() {
   /**
    * Sets the offset of a tile's shape.
    */
-  open fun tileSetShapeOffset(
+  public open fun tileSetShapeOffset(
     id: Long,
     shapeId: Long,
     shapeOffset: Vector2
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to id, LONG to shapeId, VECTOR2 to shapeOffset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_SET_SHAPE_OFFSET, NIL)
   }
@@ -659,11 +660,11 @@ open class TileSet : Resource() {
   /**
    * Enables one-way collision on a tile's shape.
    */
-  open fun tileSetShapeOneWay(
+  public open fun tileSetShapeOneWay(
     id: Long,
     shapeId: Long,
     oneWay: Boolean
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to id, LONG to shapeId, BOOL to oneWay)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_SET_SHAPE_ONE_WAY, NIL)
   }
@@ -671,11 +672,11 @@ open class TileSet : Resource() {
   /**
    *
    */
-  open fun tileSetShapeOneWayMargin(
+  public open fun tileSetShapeOneWayMargin(
     id: Long,
     shapeId: Long,
     oneWay: Double
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to id, LONG to shapeId, DOUBLE to oneWay)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TILESET_TILE_SET_SHAPE_ONE_WAY_MARGIN, NIL)
@@ -684,11 +685,11 @@ open class TileSet : Resource() {
   /**
    * Sets a [godot.core.Transform2D] on a tile's shape.
    */
-  open fun tileSetShapeTransform(
+  public open fun tileSetShapeTransform(
     id: Long,
     shapeId: Long,
     shapeTransform: Transform2D
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to id, LONG to shapeId, TRANSFORM2D to shapeTransform)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_SET_SHAPE_TRANSFORM,
         NIL)
@@ -697,7 +698,7 @@ open class TileSet : Resource() {
   /**
    * Sets an array of shapes for the tile, enabling collision.
    */
-  open fun tileSetShapes(id: Long, shapes: VariantArray<Any?>) {
+  public open fun tileSetShapes(id: Long, shapes: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(LONG to id, ARRAY to shapes)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_SET_SHAPES, NIL)
   }
@@ -705,7 +706,7 @@ open class TileSet : Resource() {
   /**
    * Sets the tile's texture.
    */
-  open fun tileSetTexture(id: Long, texture: Texture) {
+  public open fun tileSetTexture(id: Long, texture: Texture): Unit {
     TransferContext.writeArguments(LONG to id, OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_SET_TEXTURE, NIL)
   }
@@ -713,7 +714,7 @@ open class TileSet : Resource() {
   /**
    * Sets the tile's texture offset.
    */
-  open fun tileSetTextureOffset(id: Long, textureOffset: Vector2) {
+  public open fun tileSetTextureOffset(id: Long, textureOffset: Vector2): Unit {
     TransferContext.writeArguments(LONG to id, VECTOR2 to textureOffset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_SET_TEXTURE_OFFSET,
         NIL)
@@ -722,7 +723,7 @@ open class TileSet : Resource() {
   /**
    * Sets the tile's [enum TileMode].
    */
-  open fun tileSetTileMode(id: Long, tilemode: Long) {
+  public open fun tileSetTileMode(id: Long, tilemode: Long): Unit {
     TransferContext.writeArguments(LONG to id, LONG to tilemode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_SET_TILE_MODE, NIL)
   }
@@ -730,199 +731,190 @@ open class TileSet : Resource() {
   /**
    * Sets the tile's drawing index.
    */
-  open fun tileSetZIndex(id: Long, zIndex: Long) {
+  public open fun tileSetZIndex(id: Long, zIndex: Long): Unit {
     TransferContext.writeArguments(LONG to id, LONG to zIndex)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESET_TILE_SET_Z_INDEX, NIL)
   }
 
-  enum class TileMode(
+  public enum class TileMode(
     id: Long
   ) {
     /**
      *
      */
     SINGLE_TILE(0),
-
     /**
      *
      */
     AUTO_TILE(1),
-
     /**
      *
      */
-    ATLAS_TILE(2);
+    ATLAS_TILE(2),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class AutotileBindings(
+  public enum class AutotileBindings(
     id: Long
   ) {
     /**
      *
      */
     BIND_TOPLEFT(1),
-
     /**
      *
      */
     BIND_TOP(2),
-
     /**
      *
      */
     BIND_TOPRIGHT(4),
-
     /**
      *
      */
     BIND_LEFT(8),
-
     /**
      *
      */
     BIND_CENTER(16),
-
     /**
      *
      */
     BIND_RIGHT(32),
-
     /**
      *
      */
     BIND_BOTTOMLEFT(64),
-
     /**
      *
      */
     BIND_BOTTOM(128),
-
     /**
      *
      */
-    BIND_BOTTOMRIGHT(256);
+    BIND_BOTTOMRIGHT(256),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class BitmaskMode(
+  public enum class BitmaskMode(
     id: Long
   ) {
     /**
      *
      */
     BITMASK_2X2(0),
-
     /**
      *
      */
     BITMASK_3X3_MINIMAL(1),
-
     /**
      *
      */
-    BITMASK_3X3(2);
+    BITMASK_3X3(2),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      *
      */
-    final const val ATLAS_TILE: Long = 2
+    public final const val ATLAS_TILE: Long = 2
 
     /**
      *
      */
-    final const val AUTO_TILE: Long = 1
+    public final const val AUTO_TILE: Long = 1
 
     /**
      *
      */
-    final const val BIND_BOTTOM: Long = 128
+    public final const val BIND_BOTTOM: Long = 128
 
     /**
      *
      */
-    final const val BIND_BOTTOMLEFT: Long = 64
+    public final const val BIND_BOTTOMLEFT: Long = 64
 
     /**
      *
      */
-    final const val BIND_BOTTOMRIGHT: Long = 256
+    public final const val BIND_BOTTOMRIGHT: Long = 256
 
     /**
      *
      */
-    final const val BIND_CENTER: Long = 16
+    public final const val BIND_CENTER: Long = 16
 
     /**
      *
      */
-    final const val BIND_LEFT: Long = 8
+    public final const val BIND_LEFT: Long = 8
 
     /**
      *
      */
-    final const val BIND_RIGHT: Long = 32
+    public final const val BIND_RIGHT: Long = 32
 
     /**
      *
      */
-    final const val BIND_TOP: Long = 2
+    public final const val BIND_TOP: Long = 2
 
     /**
      *
      */
-    final const val BIND_TOPLEFT: Long = 1
+    public final const val BIND_TOPLEFT: Long = 1
 
     /**
      *
      */
-    final const val BIND_TOPRIGHT: Long = 4
+    public final const val BIND_TOPRIGHT: Long = 4
 
     /**
      *
      */
-    final const val BITMASK_2X2: Long = 0
+    public final const val BITMASK_2X2: Long = 0
 
     /**
      *
      */
-    final const val BITMASK_3X3: Long = 2
+    public final const val BITMASK_3X3: Long = 2
 
     /**
      *
      */
-    final const val BITMASK_3X3_MINIMAL: Long = 1
+    public final const val BITMASK_3X3_MINIMAL: Long = 1
 
     /**
      *
      */
-    final const val SINGLE_TILE: Long = 0
+    public final const val SINGLE_TILE: Long = 0
   }
 }

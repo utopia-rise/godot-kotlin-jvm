@@ -5,10 +5,11 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.OBJECT
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Dialog for confirmation of actions.
@@ -22,15 +23,15 @@ import kotlin.Suppress
  * 		```.
  */
 @GodotBaseType
-open class ConfirmationDialog : AcceptDialog() {
-  override fun __new() {
+public open class ConfirmationDialog : AcceptDialog() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CONFIRMATIONDIALOG)
   }
 
   /**
    * Returns the cancel button.
    */
-  open fun getCancel(): Button? {
+  public open fun getCancel(): Button? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIRMATIONDIALOG_GET_CANCEL,
         OBJECT)

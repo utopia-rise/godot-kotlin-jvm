@@ -5,12 +5,13 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import kotlin.Double
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Capsule shape for 2D collisions.
@@ -18,17 +19,17 @@ import kotlin.Suppress
  * Capsule shape for 2D collisions.
  */
 @GodotBaseType
-open class CapsuleShape2D : Shape2D() {
+public open class CapsuleShape2D : Shape2D() {
   /**
    * The capsule's height.
    */
-  open var height: Double
+  public open var height: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULESHAPE2D_GET_HEIGHT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULESHAPE2D_SET_HEIGHT, NIL)
     }
@@ -36,18 +37,18 @@ open class CapsuleShape2D : Shape2D() {
   /**
    * The capsule's radius.
    */
-  open var radius: Double
+  public open var radius: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULESHAPE2D_GET_RADIUS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULESHAPE2D_SET_RADIUS, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CAPSULESHAPE2D)
   }
 }

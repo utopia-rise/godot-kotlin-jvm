@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -35,18 +35,18 @@ import kotlin.Unit
  * Note: By default Godot will only render 16 reflection probes. If you need more, increase the number of atlas subdivisions. This setting can be found in [godot.ProjectSettings.rendering/quality/reflections/atlasSubdiv].
  */
 @GodotBaseType
-open class ReflectionProbe : VisualInstance() {
+public open class ReflectionProbe : VisualInstance() {
   /**
    * If `true`, enables box projection. This makes reflections look more correct in rectangle-shaped rooms by offsetting the reflection center depending on the camera's location.
    */
-  open var boxProjection: Boolean
+  public open var boxProjection: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_BOX_PROJECTION, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_BOX_PROJECTION, NIL)
@@ -55,14 +55,14 @@ open class ReflectionProbe : VisualInstance() {
   /**
    * Sets the cull mask which determines what objects are drawn by this probe. Every [godot.VisualInstance] with a layer included in this cull mask will be rendered by the probe. It is best to only include large objects which are likely to take up a lot of space in the reflection in order to save on rendering cost.
    */
-  open var cullMask: Long
+  public open var cullMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_CULL_MASK,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_CULL_MASK,
           NIL)
@@ -71,14 +71,14 @@ open class ReflectionProbe : VisualInstance() {
   /**
    * If `true`, computes shadows in the reflection probe. This makes the reflection probe slower to render; you may want to disable this if using the [UPDATE_ALWAYS] [updateMode].
    */
-  open var enableShadows: Boolean
+  public open var enableShadows: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_ENABLE_SHADOWS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_ENABLE_SHADOWS, NIL)
@@ -87,14 +87,14 @@ open class ReflectionProbe : VisualInstance() {
   /**
    * The size of the reflection probe. The larger the extents the more space covered by the probe which will lower the perceived resolution. It is best to keep the extents only as large as you need them.
    */
-  open var extents: Vector3
+  public open var extents: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_EXTENTS,
           VECTOR3)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_EXTENTS, NIL)
     }
@@ -102,14 +102,14 @@ open class ReflectionProbe : VisualInstance() {
   /**
    * Defines the reflection intensity. Intensity modulates the strength of the reflection.
    */
-  open var intensity: Double
+  public open var intensity: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_INTENSITY,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_INTENSITY,
           NIL)
@@ -118,14 +118,14 @@ open class ReflectionProbe : VisualInstance() {
   /**
    * Sets the ambient light color to be used when this probe is set to [interiorEnable].
    */
-  open var interiorAmbientColor: Color
+  public open var interiorAmbientColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_INTERIOR_AMBIENT_COLOR, COLOR)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(COLOR to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_INTERIOR_AMBIENT_COLOR, NIL)
@@ -134,14 +134,14 @@ open class ReflectionProbe : VisualInstance() {
   /**
    * Sets the contribution value for how much the reflection affects the ambient light for this reflection probe when set to [interiorEnable]. Useful so that ambient light matches the color of the room.
    */
-  open var interiorAmbientContrib: Double
+  public open var interiorAmbientContrib: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_INTERIOR_AMBIENT_CONTRIB, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_INTERIOR_AMBIENT_CONTRIB, NIL)
@@ -150,14 +150,14 @@ open class ReflectionProbe : VisualInstance() {
   /**
    * Sets the energy multiplier for this reflection probe's ambient light contribution when set to [interiorEnable].
    */
-  open var interiorAmbientEnergy: Double
+  public open var interiorAmbientEnergy: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_INTERIOR_AMBIENT_ENERGY, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_INTERIOR_AMBIENT_ENERGY, NIL)
@@ -166,14 +166,14 @@ open class ReflectionProbe : VisualInstance() {
   /**
    * If `true`, reflections will ignore sky contribution. Ambient lighting is then controlled by the `interior_ambient_*` properties.
    */
-  open var interiorEnable: Boolean
+  public open var interiorEnable: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_INTERIOR_ENABLE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_INTERIOR_ENABLE, NIL)
@@ -182,14 +182,14 @@ open class ReflectionProbe : VisualInstance() {
   /**
    * Sets the max distance away from the probe an object can be before it is culled.
    */
-  open var maxDistance: Double
+  public open var maxDistance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_MAX_DISTANCE,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_MAX_DISTANCE,
           NIL)
@@ -198,14 +198,14 @@ open class ReflectionProbe : VisualInstance() {
   /**
    * Sets the origin offset to be used when this reflection probe is in box project mode.
    */
-  open var originOffset: Vector3
+  public open var originOffset: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_ORIGIN_OFFSET,
           VECTOR3)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_ORIGIN_OFFSET,
           NIL)
@@ -214,76 +214,77 @@ open class ReflectionProbe : VisualInstance() {
   /**
    * Sets how frequently the probe is updated. Can be [UPDATE_ONCE] or [UPDATE_ALWAYS].
    */
-  open var updateMode: Long
+  public open var updateMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_UPDATE_MODE,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_UPDATE_MODE,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_REFLECTIONPROBE)
   }
 
   @CoreTypeHelper
-  open fun extents(schedule: Vector3.() -> Unit): Vector3 = extents.apply{
+  public open fun extents(schedule: Vector3.() -> Unit): Vector3 = extents.apply{
       schedule(this)
       extents = this
   }
 
 
   @CoreTypeHelper
-  open fun interiorAmbientColor(schedule: Color.() -> Unit): Color = interiorAmbientColor.apply{
+  public open fun interiorAmbientColor(schedule: Color.() -> Unit): Color =
+      interiorAmbientColor.apply{
       schedule(this)
       interiorAmbientColor = this
   }
 
 
   @CoreTypeHelper
-  open fun originOffset(schedule: Vector3.() -> Unit): Vector3 = originOffset.apply{
+  public open fun originOffset(schedule: Vector3.() -> Unit): Vector3 = originOffset.apply{
       schedule(this)
       originOffset = this
   }
 
 
-  enum class UpdateMode(
+  public enum class UpdateMode(
     id: Long
   ) {
     /**
      * Update the probe once on the next frame.
      */
     UPDATE_ONCE(0),
-
     /**
      * Update the probe every frame. This is needed when you want to capture dynamic objects. However, it results in an increased render time. Use [UPDATE_ONCE] whenever possible.
      */
-    UPDATE_ALWAYS(1);
+    UPDATE_ALWAYS(1),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Update the probe every frame. This is needed when you want to capture dynamic objects. However, it results in an increased render time. Use [UPDATE_ONCE] whenever possible.
      */
-    final const val UPDATE_ALWAYS: Long = 1
+    public final const val UPDATE_ALWAYS: Long = 1
 
     /**
      * Update the probe once on the next frame.
      */
-    final const val UPDATE_ONCE: Long = 0
+    public final const val UPDATE_ONCE: Long = 0
   }
 }

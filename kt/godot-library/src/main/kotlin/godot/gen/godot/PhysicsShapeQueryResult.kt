@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
@@ -13,6 +13,7 @@ import godot.core.VariantType.OBJECT
 import godot.core.VariantType._RID
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Result of a 3D shape query in [godot.PhysicsServer].
@@ -20,15 +21,15 @@ import kotlin.Suppress
  * The result of a 3D shape query in [godot.PhysicsServer]. See also [godot.PhysicsShapeQueryParameters].
  */
 @GodotBaseType
-open class PhysicsShapeQueryResult : Reference() {
-  override fun __new() {
+public open class PhysicsShapeQueryResult : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PHYSICSSHAPEQUERYRESULT)
   }
 
   /**
    * Returns the number of objects that intersected with the shape.
    */
-  open fun getResultCount(): Long {
+  public open fun getResultCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYRESULT_GET_RESULT_COUNT, LONG)
@@ -38,7 +39,7 @@ open class PhysicsShapeQueryResult : Reference() {
   /**
    * Returns the [godot.Object] that intersected with the shape at index `idx`.
    */
-  open fun getResultObject(idx: Long): Object? {
+  public open fun getResultObject(idx: Long): Object? {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYRESULT_GET_RESULT_OBJECT, OBJECT)
@@ -48,7 +49,7 @@ open class PhysicsShapeQueryResult : Reference() {
   /**
    * Returns the instance ID of the [godot.Object] that intersected with the shape at index `idx`.
    */
-  open fun getResultObjectId(idx: Long): Long {
+  public open fun getResultObjectId(idx: Long): Long {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYRESULT_GET_RESULT_OBJECT_ID, LONG)
@@ -58,7 +59,7 @@ open class PhysicsShapeQueryResult : Reference() {
   /**
    * Returns the child index of the object's [godot.Shape] that intersected with the shape at index `idx`.
    */
-  open fun getResultObjectShape(idx: Long): Long {
+  public open fun getResultObjectShape(idx: Long): Long {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYRESULT_GET_RESULT_OBJECT_SHAPE, LONG)
@@ -68,7 +69,7 @@ open class PhysicsShapeQueryResult : Reference() {
   /**
    * Returns the [RID] of the object that intersected with the shape at index `idx`.
    */
-  open fun getResultRid(idx: Long): RID {
+  public open fun getResultRid(idx: Long): RID {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYRESULT_GET_RESULT_RID, _RID)

@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Texture with 3 dimensions.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Texture3D is a 3-dimensional texture that has a width, height, and depth.
  */
 @GodotBaseType
-open class Texture3D : TextureLayered() {
-  override fun __new() {
+public open class Texture3D : TextureLayered() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TEXTURE3D)
   }
 }

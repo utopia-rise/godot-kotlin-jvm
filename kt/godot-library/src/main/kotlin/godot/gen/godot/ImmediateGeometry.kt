@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Plane
 import godot.core.TransferContext
@@ -24,6 +24,7 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Draws simple geometry from code.
@@ -39,20 +40,20 @@ import kotlin.Suppress
  * **Note:** In case of missing points when handling large amounts of mesh data, try increasing its buffer size limit under [godot.ProjectSettings.rendering/limits/buffers/immediateBufferSizeKb].
  */
 @GodotBaseType
-open class ImmediateGeometry : GeometryInstance() {
-  override fun __new() {
+public open class ImmediateGeometry : GeometryInstance() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_IMMEDIATEGEOMETRY)
   }
 
   /**
    * Simple helper to draw an UV sphere with given latitude, longitude and radius.
    */
-  open fun addSphere(
+  public open fun addSphere(
     lats: Long,
     lons: Long,
     radius: Double,
     addUv: Boolean = true
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to lats, LONG to lons, DOUBLE to radius, BOOL to addUv)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEGEOMETRY_ADD_SPHERE, NIL)
   }
@@ -60,7 +61,7 @@ open class ImmediateGeometry : GeometryInstance() {
   /**
    * Adds a vertex in local coordinate space with the currently set color/uv/etc.
    */
-  open fun addVertex(position: Vector3) {
+  public open fun addVertex(position: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEGEOMETRY_ADD_VERTEX, NIL)
   }
@@ -70,7 +71,7 @@ open class ImmediateGeometry : GeometryInstance() {
    *
    * For the type of primitive, see the [enum Mesh.PrimitiveType] enum.
    */
-  open fun begin(primitive: Long, texture: Texture? = null) {
+  public open fun begin(primitive: Long, texture: Texture? = null): Unit {
     TransferContext.writeArguments(LONG to primitive, OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEGEOMETRY_BEGIN, NIL)
   }
@@ -78,7 +79,7 @@ open class ImmediateGeometry : GeometryInstance() {
   /**
    * Clears everything that was drawn using begin/end.
    */
-  open fun clear() {
+  public open fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEGEOMETRY_CLEAR, NIL)
   }
@@ -86,7 +87,7 @@ open class ImmediateGeometry : GeometryInstance() {
   /**
    * Ends a drawing context and displays the results.
    */
-  open fun end() {
+  public open fun end(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEGEOMETRY_END, NIL)
   }
@@ -94,7 +95,7 @@ open class ImmediateGeometry : GeometryInstance() {
   /**
    * The current drawing color.
    */
-  open fun setColor(color: Color) {
+  public open fun setColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEGEOMETRY_SET_COLOR, NIL)
   }
@@ -102,7 +103,7 @@ open class ImmediateGeometry : GeometryInstance() {
   /**
    * The next vertex's normal.
    */
-  open fun setNormal(normal: Vector3) {
+  public open fun setNormal(normal: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to normal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEGEOMETRY_SET_NORMAL, NIL)
   }
@@ -110,7 +111,7 @@ open class ImmediateGeometry : GeometryInstance() {
   /**
    * The next vertex's tangent (and binormal facing).
    */
-  open fun setTangent(tangent: Plane) {
+  public open fun setTangent(tangent: Plane): Unit {
     TransferContext.writeArguments(PLANE to tangent)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEGEOMETRY_SET_TANGENT, NIL)
   }
@@ -118,7 +119,7 @@ open class ImmediateGeometry : GeometryInstance() {
   /**
    * The next vertex's UV.
    */
-  open fun setUv(uv: Vector2) {
+  public open fun setUv(uv: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to uv)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEGEOMETRY_SET_UV, NIL)
   }
@@ -126,7 +127,7 @@ open class ImmediateGeometry : GeometryInstance() {
   /**
    * The next vertex's second layer UV.
    */
-  open fun setUv2(uv: Vector2) {
+  public open fun setUv2(uv: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to uv)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMMEDIATEGEOMETRY_SET_UV2, NIL)
   }

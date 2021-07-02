@@ -5,12 +5,13 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A boolean comparison operator to be used within the visual shader graph.
@@ -18,59 +19,59 @@ import kotlin.Suppress
  * Returns the boolean result of the comparison between `INF` or `NaN` and a scalar parameter.
  */
 @GodotBaseType
-open class VisualShaderNodeIs : VisualShaderNode() {
+public open class VisualShaderNodeIs : VisualShaderNode() {
   /**
    * The comparison function. See [enum Function] for options.
    */
-  open var function: Long
+  public open var function: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEIS_GET_FUNCTION,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEIS_SET_FUNCTION,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEIS)
   }
 
-  enum class Function(
+  public enum class Function(
     id: Long
   ) {
     /**
      * Comparison with `INF` (Infinity).
      */
     FUNC_IS_INF(0),
-
     /**
      * Comparison with `NaN` (Not a Number; denotes invalid numeric results, e.g. division by zero).
      */
-    FUNC_IS_NAN(1);
+    FUNC_IS_NAN(1),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Comparison with `INF` (Infinity).
      */
-    final const val FUNC_IS_INF: Long = 0
+    public final const val FUNC_IS_INF: Long = 0
 
     /**
      * Comparison with `NaN` (Not a Number; denotes invalid numeric results, e.g. division by zero).
      */
-    final const val FUNC_IS_NAN: Long = 1
+    public final const val FUNC_IS_NAN: Long = 1
   }
 }

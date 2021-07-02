@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
@@ -29,23 +29,23 @@ import kotlin.Unit
  * General-purpose proximity detection node.
  */
 @GodotBaseType
-open class ProximityGroup : Spatial() {
+public open class ProximityGroup : Spatial() {
   /**
    *
    */
-  val broadcast: Signal2<String, VariantArray<Any?>> by signal("method", "parameters")
+  public val broadcast: Signal2<String, VariantArray<Any?>> by signal("method", "parameters")
 
   /**
    *
    */
-  open var dispatchMode: Long
+  public open var dispatchMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROXIMITYGROUP_GET_DISPATCH_MODE,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROXIMITYGROUP_SET_DISPATCH_MODE,
           NIL)
@@ -54,14 +54,14 @@ open class ProximityGroup : Spatial() {
   /**
    *
    */
-  open var gridRadius: Vector3
+  public open var gridRadius: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROXIMITYGROUP_GET_GRID_RADIUS,
           VECTOR3)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROXIMITYGROUP_SET_GRID_RADIUS,
           NIL)
@@ -70,73 +70,73 @@ open class ProximityGroup : Spatial() {
   /**
    *
    */
-  open var groupName: String
+  public open var groupName: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROXIMITYGROUP_GET_GROUP_NAME,
           STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROXIMITYGROUP_SET_GROUP_NAME,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PROXIMITYGROUP)
   }
 
   @CoreTypeHelper
-  open fun gridRadius(schedule: Vector3.() -> Unit): Vector3 = gridRadius.apply{
+  public open fun gridRadius(schedule: Vector3.() -> Unit): Vector3 = gridRadius.apply{
       schedule(this)
       gridRadius = this
   }
 
 
-  open fun _proximityGroupBroadcast(method: String, parameters: Any?) {
+  public open fun _proximityGroupBroadcast(method: String, parameters: Any?): Unit {
   }
 
   /**
    *
    */
-  open fun broadcast(method: String, parameters: Any?) {
+  public open fun broadcast(method: String, parameters: Any?): Unit {
     TransferContext.writeArguments(STRING to method, ANY to parameters)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROXIMITYGROUP_BROADCAST, NIL)
   }
 
-  enum class DispatchMode(
+  public enum class DispatchMode(
     id: Long
   ) {
     /**
      *
      */
     MODE_PROXY(0),
-
     /**
      *
      */
-    MODE_SIGNAL(1);
+    MODE_SIGNAL(1),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      *
      */
-    final const val MODE_PROXY: Long = 0
+    public final const val MODE_PROXY: Long = 0
 
     /**
      *
      */
-    final const val MODE_SIGNAL: Long = 1
+    public final const val MODE_SIGNAL: Long = 1
   }
 }

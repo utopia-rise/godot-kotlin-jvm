@@ -5,12 +5,13 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.PoolVector2Array
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.POOL_VECTOR2_ARRAY
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Concave polygon 2D shape resource for physics.
@@ -20,24 +21,24 @@ import kotlin.Suppress
  * The main difference between a [godot.ConvexPolygonShape2D] and a [godot.ConcavePolygonShape2D] is that a concave polygon assumes it is concave and uses a more complex method of collision detection, and a convex one forces itself to be convex in order to speed up collision detection.
  */
 @GodotBaseType
-open class ConcavePolygonShape2D : Shape2D() {
+public open class ConcavePolygonShape2D : Shape2D() {
   /**
    * The array of points that make up the [godot.ConcavePolygonShape2D]'s line segments.
    */
-  open var segments: PoolVector2Array
+  public open var segments: PoolVector2Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE2D_GET_SEGMENTS, POOL_VECTOR2_ARRAY)
       return TransferContext.readReturnValue(POOL_VECTOR2_ARRAY, false) as PoolVector2Array
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(POOL_VECTOR2_ARRAY to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE2D_SET_SEGMENTS, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CONCAVEPOLYGONSHAPE2D)
   }
 }

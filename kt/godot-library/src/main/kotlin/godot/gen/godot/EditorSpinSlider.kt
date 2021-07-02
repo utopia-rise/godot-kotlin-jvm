@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
@@ -13,22 +13,23 @@ import godot.core.VariantType.STRING
 import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
-open class EditorSpinSlider : Range() {
+public open class EditorSpinSlider : Range() {
   /**
    *
    */
-  open var flat: Boolean
+  public open var flat: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_GET_FLAT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_SET_FLAT, NIL)
     }
@@ -36,14 +37,14 @@ open class EditorSpinSlider : Range() {
   /**
    *
    */
-  open var label: String
+  public open var label: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_GET_LABEL,
           STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_SET_LABEL, NIL)
     }
@@ -51,41 +52,41 @@ open class EditorSpinSlider : Range() {
   /**
    *
    */
-  open var readOnly: Boolean
+  public open var readOnly: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_GET_READ_ONLY,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSPINSLIDER_SET_READ_ONLY,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORSPINSLIDER)
   }
 
-  open fun _grabberGuiInput(arg0: InputEvent) {
+  public open fun _grabberGuiInput(arg0: InputEvent): Unit {
   }
 
-  open fun _grabberMouseEntered() {
+  public open fun _grabberMouseEntered(): Unit {
   }
 
-  open fun _grabberMouseExited() {
+  public open fun _grabberMouseExited(): Unit {
   }
 
-  override fun _guiInput(event: InputEvent) {
+  public override fun _guiInput(event: InputEvent): Unit {
   }
 
-  open fun _valueFocusExited() {
+  public open fun _valueFocusExited(): Unit {
   }
 
-  open fun _valueInputClosed() {
+  public open fun _valueInputClosed(): Unit {
   }
 
-  open fun _valueInputEntered(arg0: String) {
+  public open fun _valueInputEntered(arg0: String): Unit {
   }
 }

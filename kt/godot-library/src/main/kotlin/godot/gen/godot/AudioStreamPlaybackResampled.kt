@@ -5,15 +5,16 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
-open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
-  override fun __new() {
+public open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMPLAYBACKRESAMPLED)
   }
 }

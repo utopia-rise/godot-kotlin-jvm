@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.PoolStringArray
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -22,6 +22,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Abstract base class for the game's main loop.
@@ -66,32 +67,32 @@ import kotlin.Suppress
  * 		```
  */
 @GodotBaseType
-open class MainLoop : Object() {
+public open class MainLoop : Object() {
   /**
    * Emitted when a user responds to a permission request.
    */
-  val onRequestPermissionsResult: Signal2<String, Boolean> by signal("permission", "granted")
+  public val onRequestPermissionsResult: Signal2<String, Boolean> by signal("permission", "granted")
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_MAINLOOP)
   }
 
   /**
    * Called when files are dragged from the OS file manager and dropped in the game window. The arguments are a list of file paths and the identifier of the screen where the drag originated.
    */
-  open fun _dropFiles(files: PoolStringArray, fromScreen: Long) {
+  public open fun _dropFiles(files: PoolStringArray, fromScreen: Long): Unit {
   }
 
   /**
    * Called before the program exits.
    */
-  open fun _finalize() {
+  public open fun _finalize(): Unit {
   }
 
   /**
    * Called when the user performs an action in the system global menu (e.g. the Mac OS menu bar).
    */
-  open fun _globalMenuAction(id: Any?, meta: Any?) {
+  public open fun _globalMenuAction(id: Any?, meta: Any?): Unit {
   }
 
   /**
@@ -99,26 +100,26 @@ open class MainLoop : Object() {
    *
    * If implemented, the method must return a boolean value. `true` ends the main loop, while `false` lets it proceed to the next frame.
    */
-  open fun _idle(delta: Double): Boolean {
+  public open fun _idle(delta: Double): Boolean {
     throw NotImplementedError("_idle is not implemented for MainLoop")
   }
 
   /**
    * Called once during initialization.
    */
-  open fun _initialize() {
+  public open fun _initialize(): Unit {
   }
 
   /**
    * Called whenever an [godot.InputEvent] is received by the main loop.
    */
-  open fun _inputEvent(event: InputEvent) {
+  public open fun _inputEvent(event: InputEvent): Unit {
   }
 
   /**
    * Deprecated callback, does not do anything. Use [_inputEvent] to parse text input. Will be removed in Godot 4.0.
    */
-  open fun _inputText(text: String) {
+  public open fun _inputText(text: String): Unit {
   }
 
   /**
@@ -126,14 +127,14 @@ open class MainLoop : Object() {
    *
    * If implemented, the method must return a boolean value. `true` ends the main loop, while `false` lets it proceed to the next frame.
    */
-  open fun _iteration(delta: Double): Boolean {
+  public open fun _iteration(delta: Double): Boolean {
     throw NotImplementedError("_iteration is not implemented for MainLoop")
   }
 
   /**
    * Should not be called manually, override [_finalize] instead. Will be removed in Godot 4.0.
    */
-  open fun finish() {
+  public open fun finish(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MAINLOOP_FINISH, NIL)
   }
@@ -141,7 +142,7 @@ open class MainLoop : Object() {
   /**
    * Should not be called manually, override [_idle] instead. Will be removed in Godot 4.0.
    */
-  open fun idle(delta: Double): Boolean {
+  public open fun idle(delta: Double): Boolean {
     TransferContext.writeArguments(DOUBLE to delta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MAINLOOP_IDLE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -150,7 +151,7 @@ open class MainLoop : Object() {
   /**
    * Should not be called manually, override [_initialize] instead. Will be removed in Godot 4.0.
    */
-  open fun init() {
+  public open fun `init`(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MAINLOOP_INIT, NIL)
   }
@@ -158,7 +159,7 @@ open class MainLoop : Object() {
   /**
    * Should not be called manually, override [_inputEvent] instead. Will be removed in Godot 4.0.
    */
-  open fun inputEvent(event: InputEvent) {
+  public open fun inputEvent(event: InputEvent): Unit {
     TransferContext.writeArguments(OBJECT to event)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MAINLOOP_INPUT_EVENT, NIL)
   }
@@ -166,7 +167,7 @@ open class MainLoop : Object() {
   /**
    * Should not be called manually, override [_inputText] instead. Will be removed in Godot 4.0.
    */
-  open fun inputText(text: String) {
+  public open fun inputText(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MAINLOOP_INPUT_TEXT, NIL)
   }
@@ -174,107 +175,107 @@ open class MainLoop : Object() {
   /**
    * Should not be called manually, override [_iteration] instead. Will be removed in Godot 4.0.
    */
-  open fun iteration(delta: Double): Boolean {
+  public open fun iteration(delta: Double): Boolean {
     TransferContext.writeArguments(DOUBLE to delta)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MAINLOOP_ITERATION, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  companion object {
+  public companion object {
     /**
      * Notification received from the OS when the app is paused.
      *
      * Specific to the Android platform.
      */
-    final const val NOTIFICATION_APP_PAUSED: Long = 1015
+    public final const val NOTIFICATION_APP_PAUSED: Long = 1015
 
     /**
      * Notification received from the OS when the app is resumed.
      *
      * Specific to the Android platform.
      */
-    final const val NOTIFICATION_APP_RESUMED: Long = 1014
+    public final const val NOTIFICATION_APP_RESUMED: Long = 1014
 
     /**
      * Notification received from Godot's crash handler when the engine is about to crash.
      *
      * Implemented on desktop platforms if the crash handler is enabled.
      */
-    final const val NOTIFICATION_CRASH: Long = 1012
+    public final const val NOTIFICATION_CRASH: Long = 1012
 
     /**
      * Notification received from the OS when an update of the Input Method Engine occurs (e.g. change of IME cursor position or composition string).
      *
      * Specific to the macOS platform.
      */
-    final const val NOTIFICATION_OS_IME_UPDATE: Long = 1013
+    public final const val NOTIFICATION_OS_IME_UPDATE: Long = 1013
 
     /**
      * Notification received from the OS when the application is exceeding its allocated memory.
      *
      * Specific to the iOS platform.
      */
-    final const val NOTIFICATION_OS_MEMORY_WARNING: Long = 1009
+    public final const val NOTIFICATION_OS_MEMORY_WARNING: Long = 1009
 
     /**
      * Notification received when translations may have changed. Can be triggered by the user changing the locale. Can be used to respond to language changes, for example to change the UI strings on the fly. Useful when working with the built-in translation support, like [godot.Object.tr].
      */
-    final const val NOTIFICATION_TRANSLATION_CHANGED: Long = 1010
+    public final const val NOTIFICATION_TRANSLATION_CHANGED: Long = 1010
 
     /**
      * Notification received from the OS when a request for "About" information is sent.
      *
      * Specific to the macOS platform.
      */
-    final const val NOTIFICATION_WM_ABOUT: Long = 1011
+    public final const val NOTIFICATION_WM_ABOUT: Long = 1011
 
     /**
      * Notification received from the OS when the game window is focused.
      *
      * Implemented on all platforms.
      */
-    final const val NOTIFICATION_WM_FOCUS_IN: Long = 1004
+    public final const val NOTIFICATION_WM_FOCUS_IN: Long = 1004
 
     /**
      * Notification received from the OS when the game window is unfocused.
      *
      * Implemented on all platforms.
      */
-    final const val NOTIFICATION_WM_FOCUS_OUT: Long = 1005
+    public final const val NOTIFICATION_WM_FOCUS_OUT: Long = 1005
 
     /**
      * Notification received from the OS when a go back request is sent (e.g. pressing the "Back" button on Android).
      *
      * Specific to the Android platform.
      */
-    final const val NOTIFICATION_WM_GO_BACK_REQUEST: Long = 1007
+    public final const val NOTIFICATION_WM_GO_BACK_REQUEST: Long = 1007
 
     /**
      * Notification received from the OS when the mouse enters the game window.
      *
      * Implemented on desktop and web platforms.
      */
-    final const val NOTIFICATION_WM_MOUSE_ENTER: Long = 1002
+    public final const val NOTIFICATION_WM_MOUSE_ENTER: Long = 1002
 
     /**
      * Notification received from the OS when the mouse leaves the game window.
      *
      * Implemented on desktop and web platforms.
      */
-    final const val NOTIFICATION_WM_MOUSE_EXIT: Long = 1003
+    public final const val NOTIFICATION_WM_MOUSE_EXIT: Long = 1003
 
     /**
      * Notification received from the OS when a quit request is sent (e.g. closing the window with a "Close" button or Alt+F4).
      *
      * Implemented on desktop platforms.
      */
-    final const val NOTIFICATION_WM_QUIT_REQUEST: Long = 1006
+    public final const val NOTIFICATION_WM_QUIT_REQUEST: Long = 1006
 
     /**
      * Notification received from the OS when an unfocus request is sent (e.g. another OS window wants to take the focus).
      *
      * No supported platforms currently send this notification.
      */
-    final const val NOTIFICATION_WM_UNFOCUS_REQUEST: Long = 1008
+    public final const val NOTIFICATION_WM_UNFOCUS_REQUEST: Long = 1008
   }
 }

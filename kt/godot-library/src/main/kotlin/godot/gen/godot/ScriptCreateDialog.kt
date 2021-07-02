@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
@@ -16,6 +16,7 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * The Editor's popup dialog for creating new [godot.Script] files.
@@ -30,61 +31,61 @@ import kotlin.Suppress
  * 		```
  */
 @GodotBaseType
-open class ScriptCreateDialog : ConfirmationDialog() {
+public open class ScriptCreateDialog : ConfirmationDialog() {
   /**
    * Emitted when the user clicks the OK button.
    */
-  val scriptCreated: Signal1<Script> by signal("script")
+  public val scriptCreated: Signal1<Script> by signal("script")
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SCRIPTCREATEDIALOG)
   }
 
-  open fun _browseClassInTree() {
+  public open fun _browseClassInTree(): Unit {
   }
 
-  open fun _browsePath(arg0: Boolean, arg1: Boolean) {
+  public open fun _browsePath(arg0: Boolean, arg1: Boolean): Unit {
   }
 
-  open fun _builtInPressed() {
+  public open fun _builtInPressed(): Unit {
   }
 
-  open fun _classNameChanged(arg0: String) {
+  public open fun _classNameChanged(arg0: String): Unit {
   }
 
-  open fun _create() {
+  public open fun _create(): Unit {
   }
 
-  open fun _fileSelected(arg0: String) {
+  public open fun _fileSelected(arg0: String): Unit {
   }
 
-  open fun _langChanged(arg0: Long) {
+  public open fun _langChanged(arg0: Long): Unit {
   }
 
-  open fun _parentNameChanged(arg0: String) {
+  public open fun _parentNameChanged(arg0: String): Unit {
   }
 
-  open fun _pathChanged(arg0: String) {
+  public open fun _pathChanged(arg0: String): Unit {
   }
 
-  open fun _pathEntered(arg0: String) {
+  public open fun _pathEntered(arg0: String): Unit {
   }
 
-  open fun _pathHboxSorted() {
+  public open fun _pathHboxSorted(): Unit {
   }
 
-  open fun _templateChanged(arg0: Long) {
+  public open fun _templateChanged(arg0: Long): Unit {
   }
 
   /**
    * Prefills required fields to configure the ScriptCreateDialog for use.
    */
-  open fun config(
+  public open fun config(
     inherits: String,
     path: String,
     builtInEnabled: Boolean = true,
     loadEnabled: Boolean = true
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to inherits, STRING to path, BOOL to builtInEnabled, BOOL
         to loadEnabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTCREATEDIALOG_CONFIG, NIL)

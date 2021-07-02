@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Array of textures stored in a single primitive.
@@ -29,8 +30,8 @@ import kotlin.Suppress
  * Set the integer uniform "index" to show a particular part of the texture as defined by the Horizontal and Vertical Slices in the importer.
  */
 @GodotBaseType
-open class TextureArray : TextureLayered() {
-  override fun __new() {
+public open class TextureArray : TextureLayered() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TEXTUREARRAY)
   }
 }

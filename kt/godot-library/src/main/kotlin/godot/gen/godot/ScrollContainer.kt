@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -17,6 +17,7 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A helper node for displaying scrollable elements such as lists.
@@ -24,28 +25,28 @@ import kotlin.Suppress
  * A ScrollContainer node meant to contain a [godot.Control] child. ScrollContainers will automatically create a scrollbar child ([godot.HScrollBar], [godot.VScrollBar], or both) when needed and will only draw the Control within the ScrollContainer area. Scrollbars will automatically be drawn at the right (for vertical) or bottom (for horizontal) and will enable dragging to move the viewable Control (and its children) within the ScrollContainer. Scrollbars will also automatically resize the grabber based on the [godot.Control.rectMinSize] of the Control relative to the ScrollContainer. Works great with a [godot.Panel] control. You can set `EXPAND` on the children's size flags, so they will upscale to the ScrollContainer's size if it's larger (scroll is invisible for the chosen dimension).
  */
 @GodotBaseType
-open class ScrollContainer : Container() {
+public open class ScrollContainer : Container() {
   /**
    * Emitted when scrolling stops.
    */
-  val scrollEnded: Signal0 by signal()
+  public val scrollEnded: Signal0 by signal()
 
   /**
    * Emitted when scrolling is started.
    */
-  val scrollStarted: Signal0 by signal()
+  public val scrollStarted: Signal0 by signal()
 
   /**
    * If `true`, the ScrollContainer will automatically scroll to focused children (including indirect children) to make sure they are fully visible.
    */
-  open var followFocus: Boolean
+  public open var followFocus: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_FOLLOW_FOCUS,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_FOLLOW_FOCUS,
           NIL)
@@ -54,14 +55,14 @@ open class ScrollContainer : Container() {
   /**
    *
    */
-  open var scrollDeadzone: Long
+  public open var scrollDeadzone: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_SCROLL_DEADZONE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_SCROLL_DEADZONE, NIL)
@@ -70,14 +71,14 @@ open class ScrollContainer : Container() {
   /**
    * The current horizontal scroll value.
    */
-  open var scrollHorizontal: Long
+  public open var scrollHorizontal: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_SCROLL_HORIZONTAL, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_SCROLL_HORIZONTAL, NIL)
@@ -86,14 +87,14 @@ open class ScrollContainer : Container() {
   /**
    * If `true`, enables horizontal scrolling.
    */
-  open var scrollHorizontalEnabled: Boolean
+  public open var scrollHorizontalEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_SCROLL_HORIZONTAL_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_SCROLL_HORIZONTAL_ENABLED, NIL)
@@ -102,14 +103,14 @@ open class ScrollContainer : Container() {
   /**
    * The current vertical scroll value.
    */
-  open var scrollVertical: Long
+  public open var scrollVertical: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_SCROLL_VERTICAL, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_SCROLL_VERTICAL, NIL)
@@ -118,39 +119,39 @@ open class ScrollContainer : Container() {
   /**
    * If `true`, enables vertical scrolling.
    */
-  open var scrollVerticalEnabled: Boolean
+  public open var scrollVerticalEnabled: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_SCROLL_VERTICAL_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_SCROLL_VERTICAL_ENABLED, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SCROLLCONTAINER)
   }
 
-  open fun _ensureFocusedVisible(arg0: Control) {
+  public open fun _ensureFocusedVisible(arg0: Control): Unit {
   }
 
-  override fun _guiInput(event: InputEvent) {
+  public override fun _guiInput(event: InputEvent): Unit {
   }
 
-  open fun _scrollMoved(arg0: Double) {
+  public open fun _scrollMoved(arg0: Double): Unit {
   }
 
-  open fun _updateScrollbarPosition() {
+  public open fun _updateScrollbarPosition(): Unit {
   }
 
   /**
    * Returns the horizontal scrollbar [godot.HScrollBar] of this [godot.ScrollContainer].
    */
-  open fun getHScrollbar(): HScrollBar? {
+  public open fun getHScrollbar(): HScrollBar? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_H_SCROLLBAR,
         OBJECT)
@@ -160,7 +161,7 @@ open class ScrollContainer : Container() {
   /**
    * Returns the vertical scrollbar [godot.VScrollBar] of this [godot.ScrollContainer].
    */
-  open fun getVScrollbar(): VScrollBar? {
+  public open fun getVScrollbar(): VScrollBar? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_V_SCROLLBAR,
         OBJECT)

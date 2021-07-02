@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -18,6 +18,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * UDP packet peer.
@@ -25,15 +26,15 @@ import kotlin.Suppress
  * UDP packet peer. Can be used to send raw UDP packets as well as [Variant]s.
  */
 @GodotBaseType
-open class PacketPeerUDP : PacketPeer() {
-  override fun __new() {
+public open class PacketPeerUDP : PacketPeer() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PACKETPEERUDP)
   }
 
   /**
    * Closes the UDP socket the [godot.PacketPeerUDP] is currently listening on.
    */
-  open fun close() {
+  public open fun close(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_CLOSE, NIL)
   }
@@ -43,7 +44,7 @@ open class PacketPeerUDP : PacketPeer() {
    *
    * **Note:** Connecting to the remote peer does not help to protect from malicious attacks like IP spoofing, etc. Think about using an encryption technique like SSL or DTLS if you feel like your application is transferring sensitive information.
    */
-  open fun connectToHost(host: String, port: Long): GodotError {
+  public open fun connectToHost(host: String, port: Long): GodotError {
     TransferContext.writeArguments(STRING to host, LONG to port)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_CONNECT_TO_HOST, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -52,7 +53,7 @@ open class PacketPeerUDP : PacketPeer() {
   /**
    * Returns the IP of the remote peer that sent the last packet(that was received with [godot.PacketPeer.getPacket] or [godot.PacketPeer.getVar]).
    */
-  open fun getPacketIp(): String {
+  public open fun getPacketIp(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_GET_PACKET_IP, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -61,7 +62,7 @@ open class PacketPeerUDP : PacketPeer() {
   /**
    * Returns the port of the remote peer that sent the last packet(that was received with [godot.PacketPeer.getPacket] or [godot.PacketPeer.getVar]).
    */
-  open fun getPacketPort(): Long {
+  public open fun getPacketPort(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_GET_PACKET_PORT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -70,7 +71,7 @@ open class PacketPeerUDP : PacketPeer() {
   /**
    * Returns `true` if the UDP socket is open and has been connected to a remote address. See [connectToHost].
    */
-  open fun isConnectedToHost(): Boolean {
+  public open fun isConnectedToHost(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_IS_CONNECTED_TO_HOST,
         BOOL)
@@ -80,7 +81,7 @@ open class PacketPeerUDP : PacketPeer() {
   /**
    * Returns whether this [godot.PacketPeerUDP] is listening.
    */
-  open fun isListening(): Boolean {
+  public open fun isListening(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_IS_LISTENING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -93,7 +94,7 @@ open class PacketPeerUDP : PacketPeer() {
    *
    * Note: Some Android devices might require the `CHANGE_WIFI_MULTICAST_STATE` permission for multicast to work.
    */
-  open fun joinMulticastGroup(multicastAddress: String, interfaceName: String): GodotError {
+  public open fun joinMulticastGroup(multicastAddress: String, interfaceName: String): GodotError {
     TransferContext.writeArguments(STRING to multicastAddress, STRING to interfaceName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_JOIN_MULTICAST_GROUP,
         LONG)
@@ -103,7 +104,7 @@ open class PacketPeerUDP : PacketPeer() {
   /**
    * Removes the interface identified by `interface_name` from the multicast group specified by `multicast_address`.
    */
-  open fun leaveMulticastGroup(multicastAddress: String, interfaceName: String): GodotError {
+  public open fun leaveMulticastGroup(multicastAddress: String, interfaceName: String): GodotError {
     TransferContext.writeArguments(STRING to multicastAddress, STRING to interfaceName)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_LEAVE_MULTICAST_GROUP,
         LONG)
@@ -119,7 +120,7 @@ open class PacketPeerUDP : PacketPeer() {
    *
    * If `bind_address` is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc), the peer will only listen on the interface with that addresses (or fail if no interface with the given address exists).
    */
-  open fun listen(
+  public open fun listen(
     port: Long,
     bindAddress: String = "*",
     recvBufSize: Long = 65536
@@ -134,7 +135,7 @@ open class PacketPeerUDP : PacketPeer() {
    *
    * Note: Some Android devices might require the `CHANGE_WIFI_MULTICAST_STATE` permission and this option to be enabled to receive broadcast packets too.
    */
-  open fun setBroadcastEnabled(enabled: Boolean) {
+  public open fun setBroadcastEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_SET_BROADCAST_ENABLED,
         NIL)
@@ -145,7 +146,7 @@ open class PacketPeerUDP : PacketPeer() {
    *
    * Note: [setBroadcastEnabled] must be enabled before sending packets to a broadcast address (e.g. `255.255.255.255`).
    */
-  open fun setDestAddress(host: String, port: Long): GodotError {
+  public open fun setDestAddress(host: String, port: Long): GodotError {
     TransferContext.writeArguments(STRING to host, LONG to port)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_SET_DEST_ADDRESS,
         LONG)
@@ -169,7 +170,7 @@ open class PacketPeerUDP : PacketPeer() {
    * 				        return
    * 				```
    */
-  open fun wait(): GodotError {
+  public open fun wait(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_WAIT, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

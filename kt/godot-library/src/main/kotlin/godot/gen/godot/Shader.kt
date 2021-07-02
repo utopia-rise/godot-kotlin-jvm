@@ -6,7 +6,7 @@
 package godot
 
 import godot.Shader
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A custom shader program.
@@ -30,17 +31,17 @@ import kotlin.Suppress
  * This class allows you to define a custom shader program that can be used by a [godot.ShaderMaterial]. Shaders allow you to write your own custom behavior for rendering objects or updating particle information. For a detailed explanation and usage, please see the tutorials linked below.
  */
 @GodotBaseType
-open class Shader : Resource() {
+public open class Shader : Resource() {
   /**
    * Returns the shader's code as the user has written it, not the full generated code used internally.
    */
-  open var code: String
+  public open var code: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_CODE, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_SET_CODE, NIL)
     }
@@ -50,18 +51,18 @@ open class Shader : Resource() {
    *
    * **Note:** Custom defines are not validated by the Godot shader parser, so care should be taken when using them.
    */
-  open var customDefines: String
+  public open var customDefines: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_CUSTOM_DEFINES, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_SET_CUSTOM_DEFINES, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SHADER)
   }
 
@@ -70,7 +71,7 @@ open class Shader : Resource() {
    *
    * **Note:** `param` must match the name of the uniform in the code exactly.
    */
-  open fun getDefaultTextureParam(param: String): Texture? {
+  public open fun getDefaultTextureParam(`param`: String): Texture? {
     TransferContext.writeArguments(STRING to param)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_DEFAULT_TEXTURE_PARAM,
         OBJECT)
@@ -80,7 +81,7 @@ open class Shader : Resource() {
   /**
    * Returns the shader mode for the shader, either [MODE_CANVAS_ITEM], [MODE_SPATIAL] or [MODE_PARTICLES].
    */
-  open fun getMode(): Shader.Mode {
+  public open fun getMode(): Shader.Mode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_GET_MODE, LONG)
     return Shader.Mode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -91,7 +92,7 @@ open class Shader : Resource() {
    *
    * **Note:** `param` must match the name of the uniform in the code exactly.
    */
-  open fun hasParam(name: String): Boolean {
+  public open fun hasParam(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_HAS_PARAM, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -102,54 +103,53 @@ open class Shader : Resource() {
    *
    * **Note:** `param` must match the name of the uniform in the code exactly.
    */
-  open fun setDefaultTextureParam(param: String, texture: Texture) {
+  public open fun setDefaultTextureParam(`param`: String, texture: Texture): Unit {
     TransferContext.writeArguments(STRING to param, OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADER_SET_DEFAULT_TEXTURE_PARAM,
         NIL)
   }
 
-  enum class Mode(
+  public enum class Mode(
     id: Long
   ) {
     /**
      * Mode used to draw all 3D objects.
      */
     MODE_SPATIAL(0),
-
     /**
      * Mode used to draw all 2D objects.
      */
     MODE_CANVAS_ITEM(1),
-
     /**
      * Mode used to calculate particle information on a per-particle basis. Not used for drawing.
      */
-    MODE_PARTICLES(2);
+    MODE_PARTICLES(2),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Mode used to draw all 2D objects.
      */
-    final const val MODE_CANVAS_ITEM: Long = 1
+    public final const val MODE_CANVAS_ITEM: Long = 1
 
     /**
      * Mode used to calculate particle information on a per-particle basis. Not used for drawing.
      */
-    final const val MODE_PARTICLES: Long = 2
+    public final const val MODE_PARTICLES: Long = 2
 
     /**
      * Mode used to draw all 3D objects.
      */
-    final const val MODE_SPATIAL: Long = 0
+    public final const val MODE_SPATIAL: Long = 0
   }
 }

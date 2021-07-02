@@ -5,11 +5,12 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A type of [godot.Sky] used to draw a background texture.
@@ -21,22 +22,22 @@ import kotlin.Suppress
  * You can use [this tool](https://danilw.github.io/GLSL-howto/cubemap_to_panorama_js/cubemap_to_panorama.html) to convert a cube map to an equirectangular sky map.
  */
 @GodotBaseType
-open class PanoramaSky : Sky() {
+public open class PanoramaSky : Sky() {
   /**
    * [godot.Texture] to be applied to the PanoramaSky.
    */
-  open var panorama: Texture?
+  public open var panorama: Texture?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PANORAMASKY_GET_PANORAMA, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PANORAMASKY_SET_PANORAMA, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PANORAMASKY)
   }
 }

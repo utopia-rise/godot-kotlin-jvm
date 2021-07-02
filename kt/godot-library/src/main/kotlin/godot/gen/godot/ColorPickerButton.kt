@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -31,33 +31,33 @@ import kotlin.Unit
  * See also [godot.BaseButton] which contains common properties and methods associated with this node.
  */
 @GodotBaseType
-open class ColorPickerButton : Button() {
+public open class ColorPickerButton : Button() {
   /**
    * Emitted when the color changes.
    */
-  val colorChanged: Signal1<Color> by signal("color")
+  public val colorChanged: Signal1<Color> by signal("color")
 
   /**
    * Emitted when the [godot.ColorPicker] is created (the button is pressed for the first time).
    */
-  val pickerCreated: Signal0 by signal()
+  public val pickerCreated: Signal0 by signal()
 
   /**
    * Emitted when the [godot.ColorPicker] is closed.
    */
-  val popupClosed: Signal0 by signal()
+  public val popupClosed: Signal0 by signal()
 
   /**
    * The currently selected color.
    */
-  open var color: Color
+  public open var color: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_COLOR,
           COLOR)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(COLOR to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_SET_COLOR, NIL)
     }
@@ -65,40 +65,40 @@ open class ColorPickerButton : Button() {
   /**
    * If `true`, the alpha channel in the displayed [godot.ColorPicker] will be visible.
    */
-  open var editAlpha: Boolean
+  public open var editAlpha: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_EDIT_ALPHA,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_SET_EDIT_ALPHA,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_COLORPICKERBUTTON)
   }
 
   @CoreTypeHelper
-  open fun color(schedule: Color.() -> Unit): Color = color.apply{
+  public open fun color(schedule: Color.() -> Unit): Color = color.apply{
       schedule(this)
       color = this
   }
 
 
-  open fun _colorChanged(arg0: Color) {
+  public open fun _colorChanged(arg0: Color): Unit {
   }
 
-  open fun _modalClosed() {
+  public open fun _modalClosed(): Unit {
   }
 
   /**
    * Returns the [godot.ColorPicker] that this node toggles.
    */
-  open fun getPicker(): ColorPicker? {
+  public open fun getPicker(): ColorPicker? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_PICKER,
         OBJECT)
@@ -108,7 +108,7 @@ open class ColorPickerButton : Button() {
   /**
    * Returns the control's [godot.PopupPanel] which allows you to connect to popup signals. This allows you to handle events when the ColorPicker is shown or hidden.
    */
-  open fun getPopup(): PopupPanel? {
+  public open fun getPopup(): PopupPanel? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_POPUP, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as PopupPanel?

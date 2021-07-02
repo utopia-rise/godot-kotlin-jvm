@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PoolIntArray
 import godot.core.TransferContext
@@ -35,52 +35,52 @@ import kotlin.Unit
  * The visual shader editor creates the shader.
  */
 @GodotBaseType
-open class VisualShader : Shader() {
+public open class VisualShader : Shader() {
   /**
    * The offset vector of the whole graph.
    */
-  open var graphOffset: Vector2
+  public open var graphOffset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_GRAPH_OFFSET,
           VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_SET_GRAPH_OFFSET,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADER)
   }
 
   @CoreTypeHelper
-  open fun graphOffset(schedule: Vector2.() -> Unit): Vector2 = graphOffset.apply{
+  public open fun graphOffset(schedule: Vector2.() -> Unit): Vector2 = graphOffset.apply{
       schedule(this)
       graphOffset = this
   }
 
 
-  open fun _inputTypeChanged(arg0: Long, arg1: Long) {
+  public open fun _inputTypeChanged(arg0: Long, arg1: Long): Unit {
   }
 
-  open fun _queueUpdate() {
+  public open fun _queueUpdate(): Unit {
   }
 
-  open fun _updateShader() {
+  public open fun _updateShader(): Unit {
   }
 
   /**
    * Adds the specified node to the shader.
    */
-  open fun addNode(
+  public open fun addNode(
     type: Long,
     node: VisualShaderNode,
     position: Vector2,
     id: Long
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to type, OBJECT to node, VECTOR2 to position, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_ADD_NODE, NIL)
   }
@@ -88,7 +88,7 @@ open class VisualShader : Shader() {
   /**
    * Returns `true` if the specified nodes and ports can be connected together.
    */
-  open fun canConnectNodes(
+  public open fun canConnectNodes(
     type: Long,
     fromNode: Long,
     fromPort: Long,
@@ -105,7 +105,7 @@ open class VisualShader : Shader() {
   /**
    * Connects the specified nodes and ports.
    */
-  open fun connectNodes(
+  public open fun connectNodes(
     type: Long,
     fromNode: Long,
     fromPort: Long,
@@ -121,13 +121,13 @@ open class VisualShader : Shader() {
   /**
    * Connects the specified nodes and ports, even if they can't be connected. Such connection is invalid and will not function properly.
    */
-  open fun connectNodesForced(
+  public open fun connectNodesForced(
     type: Long,
     fromNode: Long,
     fromPort: Long,
     toNode: Long,
     toPort: Long
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to type, LONG to fromNode, LONG to fromPort, LONG to toNode,
         LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_CONNECT_NODES_FORCED,
@@ -137,13 +137,13 @@ open class VisualShader : Shader() {
   /**
    * Connects the specified nodes and ports.
    */
-  open fun disconnectNodes(
+  public open fun disconnectNodes(
     type: Long,
     fromNode: Long,
     fromPort: Long,
     toNode: Long,
     toPort: Long
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to type, LONG to fromNode, LONG to fromPort, LONG to toNode,
         LONG to toPort)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_DISCONNECT_NODES, NIL)
@@ -152,7 +152,7 @@ open class VisualShader : Shader() {
   /**
    * Returns the shader node instance with specified `type` and `id`.
    */
-  open fun getNode(type: Long, id: Long): VisualShaderNode? {
+  public open fun getNode(type: Long, id: Long): VisualShaderNode? {
     TransferContext.writeArguments(LONG to type, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as VisualShaderNode?
@@ -161,7 +161,7 @@ open class VisualShader : Shader() {
   /**
    * Returns the list of connected nodes with the specified type.
    */
-  open fun getNodeConnections(type: Long): VariantArray<Any?> {
+  public open fun getNodeConnections(type: Long): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to type)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE_CONNECTIONS,
         ARRAY)
@@ -171,7 +171,7 @@ open class VisualShader : Shader() {
   /**
    * Returns the list of all nodes in the shader with the specified type.
    */
-  open fun getNodeList(type: Long): PoolIntArray {
+  public open fun getNodeList(type: Long): PoolIntArray {
     TransferContext.writeArguments(LONG to type)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE_LIST,
         POOL_INT_ARRAY)
@@ -181,7 +181,7 @@ open class VisualShader : Shader() {
   /**
    * Returns the position of the specified node within the shader graph.
    */
-  open fun getNodePosition(type: Long, id: Long): Vector2 {
+  public open fun getNodePosition(type: Long, id: Long): Vector2 {
     TransferContext.writeArguments(LONG to type, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE_POSITION,
         VECTOR2)
@@ -191,7 +191,7 @@ open class VisualShader : Shader() {
   /**
    *
    */
-  open fun getValidNodeId(type: Long): Long {
+  public open fun getValidNodeId(type: Long): Long {
     TransferContext.writeArguments(LONG to type)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_VALID_NODE_ID,
         LONG)
@@ -201,7 +201,7 @@ open class VisualShader : Shader() {
   /**
    * Returns `true` if the specified node and port connection exist.
    */
-  open fun isNodeConnection(
+  public open fun isNodeConnection(
     type: Long,
     fromNode: Long,
     fromPort: Long,
@@ -218,7 +218,7 @@ open class VisualShader : Shader() {
   /**
    * Removes the specified node from the shader.
    */
-  open fun removeNode(type: Long, id: Long) {
+  public open fun removeNode(type: Long, id: Long): Unit {
     TransferContext.writeArguments(LONG to type, LONG to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_REMOVE_NODE, NIL)
   }
@@ -226,7 +226,7 @@ open class VisualShader : Shader() {
   /**
    * Sets the mode of this shader.
    */
-  open fun setMode(mode: Long) {
+  public open fun setMode(mode: Long): Unit {
     TransferContext.writeArguments(LONG to mode)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_SET_MODE, NIL)
   }
@@ -234,77 +234,75 @@ open class VisualShader : Shader() {
   /**
    * Sets the position of the specified node.
    */
-  open fun setNodePosition(
+  public open fun setNodePosition(
     type: Long,
     id: Long,
     position: Vector2
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to type, LONG to id, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_SET_NODE_POSITION, NIL)
   }
 
-  enum class Type(
+  public enum class Type(
     id: Long
   ) {
     /**
      * A vertex shader, operating on vertices.
      */
     TYPE_VERTEX(0),
-
     /**
      * A fragment shader, operating on fragments (pixels).
      */
     TYPE_FRAGMENT(1),
-
     /**
      * A shader for light calculations.
      */
     TYPE_LIGHT(2),
-
     /**
      * Represents the size of the [enum Type] enum.
      */
-    TYPE_MAX(3);
+    TYPE_MAX(3),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      *
      */
-    final const val NODE_ID_INVALID: Long = -1
+    public final const val NODE_ID_INVALID: Long = -1
 
     /**
      *
      */
-    final const val NODE_ID_OUTPUT: Long = 0
+    public final const val NODE_ID_OUTPUT: Long = 0
 
     /**
      * A fragment shader, operating on fragments (pixels).
      */
-    final const val TYPE_FRAGMENT: Long = 1
+    public final const val TYPE_FRAGMENT: Long = 1
 
     /**
      * A shader for light calculations.
      */
-    final const val TYPE_LIGHT: Long = 2
+    public final const val TYPE_LIGHT: Long = 2
 
     /**
      * Represents the size of the [enum Type] enum.
      */
-    final const val TYPE_MAX: Long = 3
+    public final const val TYPE_MAX: Long = 3
 
     /**
      * A vertex shader, operating on vertices.
      */
-    final const val TYPE_VERTEX: Long = 0
+    public final const val TYPE_VERTEX: Long = 0
   }
 }

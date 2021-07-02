@@ -1,19 +1,9 @@
 package godot.gradle
 
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import godot.entrygenerator.EntryGenerator
-import godot.gradle.util.absolutePathFixedForWindows
-import godot.gradle.util.mapOfNonNullValuesOf
 import godot.utils.GodotBuildProperties
 import org.gradle.api.Project
 import org.gradle.api.tasks.Exec
-import org.gradle.kotlin.dsl.creating
-import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.getValue
-import org.gradle.kotlin.dsl.getting
-import org.gradle.kotlin.dsl.invoke
-import org.gradle.kotlin.dsl.kotlin
-import org.gradle.kotlin.dsl.named
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import java.io.File
@@ -23,143 +13,84 @@ import java.io.File
  *
  * ## Overview
  * General overview of what this function set's up to happen on each build the user performs on his code:
- * - Creates a `bootstrap.jar` which contains all glue code for the `cpp -> jvm -> cpp` communication.
+ * - Creates a `bootstrap.jar` which contains all glue code for the `cpp -> jvm -> cpp` communication but no user code.
  * This `bootstrap.jar` is loaded automatically at startup by the `cpp` side of the module
- * - Applies our kotlin compiler plugin to the `main` configuration and compilation to automatically add the kotlin_jvm dependencies to the users project and to generate the entry file.
- * - Creates a second compilation named `game` which inherits the `main` compilation and adds the generated entry file from the `main` compilation to compile it and create a `Shadow Jar (Fat Jar) including all dependencies.
- * - Uses the created `Shadow Jar` named `main.jar` together with the created `bootstrap.jar` at startup
- *
- * ## Why creating a second compilation
- * The second compilation named `game` is needed to add and compile the generated entry file into the resulting jar in one build cycle.
- *
- * When we generate the entry file, we are too late to add additional sources to the current compilation process.
- *
- * Thus we create a second compilation, which inherits the `main` compilation and add the generated entry file from the `main` compilation to it.
- *
- * Leveraging the incremental build capabilities the additional time needed to compile the exact same code again with just one file added (the entry file), the additional time needed is negligible.
- *
- * Another way would be to directly generate Kotlin IR (intermediate representation). Then we would be able to add the generated entry sources to the current compilation process and would not need to do a second compilation.
- *
- * We opted to not do this for maintainability as well as easier debugging for the user as the user can look at the generated entry file, set breakpoints and get a meaningful stacktrace in case of an error.
- *
- * We also not used a normal annotation processor to be able to use the full information the compiler has at compile time for the entry generation process. Again increasing maintainability.
+ * - Applies our kotlin symbol processor to the `main` configuration and compilation to automatically generate the entry files.
+ * - Configures a `Shadow Jar (Fat Jar) which includes all dependencies.
+ * - Uses the created `Shadow Jar` named `main.jar` together with the created `godot-bootstrap.jar` at startup
  */
 fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, jvm: KotlinJvmProjectExtension) {
-    //bootstrap jar containing all glue code
-    val bootstrap = configurations.create("bootstrap") {
-        dependencies {
-            add(name, kotlin("stdlib"))
-            add(name, "com.utopia-rise:godot-library:${GodotBuildProperties.godotKotlinVersion}")
-        }
-    }
-    val main = configurations.create("main").apply {
-        extendsFrom(configurations.getByName("implementation"), configurations.getByName("runtimeOnly"))
-        exclude(
-            mapOfNonNullValuesOf(
-                "group" to "org.jetbrains.kotlin",
-                "module" to null
-            )
-        )
-    }
-    //game configuration extending main configuration -> needed for shadow jar task
-    val gameConfiguration = configurations.create("game").apply {
-        extendsFrom(main)
-    }
-
     //add our dependencies to the main compilation -> convenience for the user
-    val mainCompilation = jvm.target.compilations.getByName("main").apply {
+    jvm.target.compilations.getByName("main").apply {
         dependencies {
             compileOnly("com.utopia-rise:godot-library:${GodotBuildProperties.godotKotlinVersion}")
+            implementation("com.utopia-rise:godot-kotlin-symbol-processor:${GodotBuildProperties.godotKotlinVersion}")
         }
+        dependencies.add("ksp", "com.utopia-rise:godot-kotlin-symbol-processor:${GodotBuildProperties.godotKotlinVersion}")
     }
-    //create a second compilation named `game` and add all sources and dependency of the `main` compilation. Additionally add the generated entry sources generated by the `main` compilation
-    val gameCompilation = jvm.target.compilations.create("game").apply {
-        defaultSourceSet {
-            dependencies {
-                implementation(mainCompilation.compileDependencyFiles + mainCompilation.output.classesDirs)
-            }
-            kotlin.srcDirs(project.buildDir.resolve("godot-entry"))
+
+    //bootstrap configuration containing all glue code but no user code
+    val bootstrapConfiguration = configurations.create("bootstrap") {
+        with(it.dependencies) {
+            add(dependencies.create("org.jetbrains.kotlin:kotlin-stdlib:${jvm.coreLibrariesVersion}"))
+            add(dependencies.create("com.utopia-rise:godot-library:${GodotBuildProperties.godotKotlinVersion}"))
         }
     }
 
-    tasks {
-        val createBuildLock by creating {
+    with(tasks) {
+        val createBuildLock = with(create("createBuildLock")) {
             doFirst {
                 val buildLockDir = getBuildLockDir(projectDir)
                 File(buildLockDir, "buildLock.lock").createNewFile()
             }
         }
 
-        val deleteBuildLock by creating {
+        val deleteBuildLock = with(create("deleteBuildLock")) {
             doLast {
                 val buildLockDir = getBuildLockDir(projectDir)
                 File(buildLockDir, "buildLock.lock").delete()
             }
         }
 
-        val bootstrapJar by creating(ShadowJar::class) {
+        val bootstrapJar = with(create("bootstrapJar", ShadowJar::class.java)) {
             archiveBaseName.set("godot-bootstrap")
-            configurations.add(bootstrap)
             exclude("**/module-info.class") //for android support: excludes java 9+ module info which cannot be parsed by the dx tool
+            configurations.clear()
+            configurations.add(bootstrapConfiguration)
 
             dependsOn(createBuildLock)
         }
 
-        val shadowJar = named<ShadowJar>("shadowJar") {
+        val shadowJar = with(named("shadowJar", ShadowJar::class.java).get()) {
             archiveBaseName.set("main")
             archiveVersion.set("")
             archiveClassifier.set("")
-            configurations.clear()
             exclude("**/module-info.class") //for android support: excludes java 9+ module info which cannot be parsed by the dx tool
-            configurations.add(gameConfiguration)
-            from(gameCompilation.output.classesDirs)
 
             dependencies {
-                exclude(dependency("org.jetbrains.kotlin:kotlin-stdlib.*"))
-                exclude(dependency("com.utopia-rise:godot-library:.*"))
+                it.exclude(it.dependency("org.jetbrains.kotlin:kotlin-stdlib.*"))
+                it.exclude(it.dependency("com.utopia-rise:godot-library:.*"))
             }
 
             dependsOn(createBuildLock)
         }
 
-        /**
-         * This task is mainly for the case if a source file is deleted and no other change has happened.
-         * Then the main configuration does not get recompiled, thus the deletion of the obsolete entry file for that class
-         * does not get triggered, leading to a compiler error.
-         * This task deletes and regenerates the MainEntry file for each build without the need of a recompilation.
-         */
-        val cleanupEntryFiles by creating {
-            group = "godot-kotlin-jvm"
-            description = "Cleanup of old entry files. No need to run manually"
-            doLast {
-                EntryGenerator.deleteOldEntryFilesAndReGenerateMainEntryFile(
-                    mainCompilation
-                        .allKotlinSourceSets
-                        .flatMap { kotlinSourceSet ->
-                            kotlinSourceSet
-                                .kotlin
-                                .srcDirs
-                                .map { it.absolutePathFixedForWindows }
-                        },
-                    project.buildDir.resolve("godot-entry").absolutePath
-                )
-            }
-        }
-
-        val checkDxToolAccessible by creating {
+        val checkDxToolAccessible = with(create("checkDxToolAccessible")) {
             group = "godot-kotlin-jvm"
             description = "Checks if the dx tool is accessible and executable. Needed for android builds only"
 
             doLast {
                 try {
                     val result = exec {
-                        workingDir = projectDir
-                        isIgnoreExitValue = true
+                        with(it) {
+                            workingDir = projectDir
+                            isIgnoreExitValue = true
 
-                        if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows) {
-                            commandLine("cmd", "/c", godotExtension.dxToolPath.get(), "--version")
-                        } else {
-                            commandLine(godotExtension.dxToolPath.get(), "--version")
+                            if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows) {
+                                commandLine("cmd", "/c", godotExtension.dxToolPath.get(), "--version")
+                            } else {
+                                commandLine(godotExtension.dxToolPath.get(), "--version")
+                            }
                         }
                     }
                     if (result.exitValue != 0) {
@@ -171,7 +102,7 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
             }
         }
 
-        val createGodotBootstrapDexJar by creating(Exec::class) {
+        val createGodotBootstrapDexJar = with(create("createGodotBootstrapDexJar", Exec::class.java)) {
             group = "godot-kotlin-jvm"
             description = "Converts the godot-bootstrap.jar to an android compatible version. Needed for android builds only"
 
@@ -187,7 +118,7 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
             }
         }
 
-        val createMainDexJar by creating(Exec::class) {
+        val createMainDexJar = with(create("createMainDexJar", Exec::class.java)) {
             group = "godot-kotlin-jvm"
             description = "Converts the main.jar to an android compatible version. Needed for android builds only"
 
@@ -204,8 +135,8 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
         }
 
         @Suppress("UNUSED_VARIABLE")
-        val build by getting {
-            dependsOn(cleanupEntryFiles, bootstrapJar, shadowJar)
+        val build = with(getByName("build")) {
+            dependsOn(bootstrapJar, shadowJar)
             finalizedBy(deleteBuildLock)
             if(godotExtension.isAndroidExportEnabled.get()) {
                 finalizedBy(createGodotBootstrapDexJar, createMainDexJar)
@@ -213,14 +144,10 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
         }
 
         @Suppress("UNUSED_VARIABLE")
-        val clean by getting {
+        val clean = with(getByName("clean")) {
             dependsOn(createBuildLock)
             finalizedBy(deleteBuildLock)
         }
-
-        //let the main compilation compile task be finalized by the game compilation compile task to catch possible errors
-        //which would only occur in the game compilation early (ex. errors in the entry file which is not compiled in the main compilation)
-        mainCompilation.compileKotlinTask.finalizedBy(gameCompilation.compileKotlinTask)
     }
 }
 

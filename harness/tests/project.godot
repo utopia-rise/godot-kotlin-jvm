@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Spatial",
+"class": "CopyModificationCheckTestClass",
+"language": "Kotlin",
+"path": "res://scripts/CopyModificationCheckTestClass.kt"
+}, {
 "base": "Node",
 "class": "RPCTests",
 "language": "Kotlin",
@@ -44,7 +49,7 @@ _global_script_classes=[ {
 "language": "Kotlin",
 "path": "res://src/main/kotlin/godot/tests/coretypes/BasisTest.kt"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "godot_tests_coretypes_StringTest",
 "language": "Kotlin",
 "path": "res://src/main/kotlin/godot/tests/coretypes/StringTest.kt"
@@ -70,6 +75,7 @@ _global_script_classes=[ {
 "path": "res://src/main/kotlin/godot/tests/subpackage/OtherScript.kt"
 } ]
 _global_script_class_icons={
+"CopyModificationCheckTestClass": "",
 "RPCTests": "",
 "ScriptInOtherSourceDir": "",
 "godot_tests_CoreTypesIdentityTest": "",

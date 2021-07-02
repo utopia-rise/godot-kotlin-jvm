@@ -5,13 +5,14 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.PoolStringArray
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Saves a specific resource type to a file.
@@ -21,15 +22,15 @@ import kotlin.Suppress
  * By default, Godot saves resources as `.tres` (text-based), `.res` (binary) or another built-in format, but you can choose to create your own format by extending this class. Be sure to respect the documented return types and values. You should give it a global class name with `class_name` for it to be registered. Like built-in ResourceFormatSavers, it will be called automatically when saving resources of its recognized type(s). You may also implement a [godot.ResourceFormatLoader].
  */
 @GodotBaseType
-open class ResourceFormatSaver : Reference() {
-  override fun __new() {
+public open class ResourceFormatSaver : Reference() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_RESOURCEFORMATSAVER)
   }
 
   /**
    * Returns the list of extensions available for saving the resource object, provided it is recognized (see [recognize]).
    */
-  open fun _getRecognizedExtensions(resource: Resource): PoolStringArray {
+  public open fun _getRecognizedExtensions(resource: Resource): PoolStringArray {
     throw
         NotImplementedError("get_recognized_extensions is not implemented for ResourceFormatSaver")
   }
@@ -37,7 +38,7 @@ open class ResourceFormatSaver : Reference() {
   /**
    * Returns whether the given resource object can be saved by this saver.
    */
-  open fun _recognize(resource: Resource): Boolean {
+  public open fun _recognize(resource: Resource): Boolean {
     throw NotImplementedError("recognize is not implemented for ResourceFormatSaver")
   }
 
@@ -46,7 +47,7 @@ open class ResourceFormatSaver : Reference() {
    *
    * Returns [OK] on success, or an [enum Error] constant in case of failure.
    */
-  open fun _save(
+  public open fun _save(
     path: String,
     resource: Resource,
     flags: Long

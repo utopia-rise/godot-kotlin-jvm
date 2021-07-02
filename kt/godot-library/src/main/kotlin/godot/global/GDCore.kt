@@ -211,6 +211,6 @@ internal interface GDCore {
 
     /** Returns an integer representing the Unicode code point of the given Unicode character char. */
     fun ord(char: String): Int {
-        return char[0].toInt()
+        return char[0].code
     }
 }

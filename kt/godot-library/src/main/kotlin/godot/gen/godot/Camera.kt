@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
 import godot.core.Transform
@@ -39,17 +39,17 @@ import kotlin.Unit
  * Camera is a special node that displays what is visible from its current location. Cameras register themselves in the nearest [godot.Viewport] node (when ascending the tree). Only one camera can be active per viewport. If no viewport is available ascending the tree, the camera will register in the global viewport. In other words, a camera just provides 3D display capabilities to a [godot.Viewport], and, without one, a scene registered in that [godot.Viewport] (or higher viewports) can't be displayed.
  */
 @GodotBaseType
-open class Camera : Spatial() {
+public open class Camera : Spatial() {
   /**
    * The culling mask that describes which 3D render layers are rendered by this camera.
    */
-  open var cullMask: Long
+  public open var cullMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_GET_CULL_MASK, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_SET_CULL_MASK, NIL)
     }
@@ -57,13 +57,13 @@ open class Camera : Spatial() {
   /**
    * If `true`, the ancestor [godot.Viewport] is currently using this camera.
    */
-  open var current: Boolean
+  public open var current: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_GET_CURRENT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_SET_CURRENT, NIL)
     }
@@ -71,13 +71,13 @@ open class Camera : Spatial() {
   /**
    * If not [DOPPLER_TRACKING_DISABLED], this camera will simulate the [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) for objects changed in particular `_process` methods. See [enum DopplerTracking] for possible values.
    */
-  open var dopplerTracking: Long
+  public open var dopplerTracking: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_GET_DOPPLER_TRACKING, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_SET_DOPPLER_TRACKING, NIL)
     }
@@ -85,13 +85,13 @@ open class Camera : Spatial() {
   /**
    * The [godot.Environment] to use for this camera.
    */
-  open var environment: Environment?
+  public open var environment: Environment?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_GET_ENVIRONMENT, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Environment?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_SET_ENVIRONMENT, NIL)
     }
@@ -99,13 +99,13 @@ open class Camera : Spatial() {
   /**
    * The distance to the far culling boundary for this camera relative to its local Z axis.
    */
-  open var far: Double
+  public open var far: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_GET_FAR, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_SET_FAR, NIL)
     }
@@ -123,13 +123,13 @@ open class Camera : Spatial() {
    *
    * - ~121.63 degrees in a 21:9 viewport
    */
-  open var fov: Double
+  public open var fov: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_GET_FOV, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_SET_FOV, NIL)
     }
@@ -137,14 +137,14 @@ open class Camera : Spatial() {
   /**
    * The camera's frustum offset. This can be changed from the default to create "tilted frustum" effects such as [godot.Y-shearing](https://zdoom.org/wiki/Y-shearing).
    */
-  open var frustumOffset: Vector2
+  public open var frustumOffset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_GET_FRUSTUM_OFFSET,
           VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_SET_FRUSTUM_OFFSET, NIL)
     }
@@ -152,13 +152,13 @@ open class Camera : Spatial() {
   /**
    * The horizontal (X) offset of the camera viewport.
    */
-  open var hOffset: Double
+  public open var hOffset: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_GET_H_OFFSET, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_SET_H_OFFSET, NIL)
     }
@@ -166,13 +166,13 @@ open class Camera : Spatial() {
   /**
    * The axis to lock during [fov]/[size] adjustments. Can be either [KEEP_WIDTH] or [KEEP_HEIGHT].
    */
-  open var keepAspect: Long
+  public open var keepAspect: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_GET_KEEP_ASPECT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_SET_KEEP_ASPECT, NIL)
     }
@@ -180,13 +180,13 @@ open class Camera : Spatial() {
   /**
    * The distance to the near culling boundary for this camera relative to its local Z axis.
    */
-  open var near: Double
+  public open var near: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_GET_NEAR, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_SET_NEAR, NIL)
     }
@@ -194,13 +194,13 @@ open class Camera : Spatial() {
   /**
    * The camera's projection mode. In [PROJECTION_PERSPECTIVE] mode, objects' Z distance from the camera's local space scales their perceived size.
    */
-  open var projection: Long
+  public open var projection: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_GET_PROJECTION, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_SET_PROJECTION, NIL)
     }
@@ -208,13 +208,13 @@ open class Camera : Spatial() {
   /**
    * The camera's size measured as 1/2 the width or height. Only applicable in orthogonal mode. Since [keepAspect] locks on axis, `size` sets the other axis' size length.
    */
-  open var size: Double
+  public open var size: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_GET_SIZE, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_SET_SIZE, NIL)
     }
@@ -222,23 +222,23 @@ open class Camera : Spatial() {
   /**
    * The vertical (Y) offset of the camera viewport.
    */
-  open var vOffset: Double
+  public open var vOffset: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_GET_V_OFFSET, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_SET_V_OFFSET, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CAMERA)
   }
 
   @CoreTypeHelper
-  open fun frustumOffset(schedule: Vector2.() -> Unit): Vector2 = frustumOffset.apply{
+  public open fun frustumOffset(schedule: Vector2.() -> Unit): Vector2 = frustumOffset.apply{
       schedule(this)
       frustumOffset = this
   }
@@ -247,7 +247,7 @@ open class Camera : Spatial() {
   /**
    * If this is the current camera, remove it from being current. If `enable_next` is `true`, request to make the next camera current, if any.
    */
-  open fun clearCurrent(enableNext: Boolean = true) {
+  public open fun clearCurrent(enableNext: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to enableNext)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_CLEAR_CURRENT, NIL)
   }
@@ -255,7 +255,7 @@ open class Camera : Spatial() {
   /**
    * Returns the camera's RID from the [godot.VisualServer].
    */
-  open fun getCameraRid(): RID {
+  public open fun getCameraRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_GET_CAMERA_RID, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -264,7 +264,7 @@ open class Camera : Spatial() {
   /**
    * Gets the camera transform. Subclassed cameras such as [godot.InterpolatedCamera] may provide different transforms than the [godot.Node] transform.
    */
-  open fun getCameraTransform(): Transform {
+  public open fun getCameraTransform(): Transform {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_GET_CAMERA_TRANSFORM,
         TRANSFORM)
@@ -274,7 +274,7 @@ open class Camera : Spatial() {
   /**
    * Returns `true` if the given `layer` in the [cullMask] is enabled, `false` otherwise.
    */
-  open fun getCullMaskBit(layer: Long): Boolean {
+  public open fun getCullMaskBit(layer: Long): Boolean {
     TransferContext.writeArguments(LONG to layer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_GET_CULL_MASK_BIT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -283,7 +283,7 @@ open class Camera : Spatial() {
   /**
    * Returns the camera's frustum planes in world-space units as an array of [godot.core.Plane]s in the following order: near, far, left, top, right, bottom. Not to be confused with [frustumOffset].
    */
-  open fun getFrustum(): VariantArray<Any?> {
+  public open fun getFrustum(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_GET_FRUSTUM, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -294,7 +294,7 @@ open class Camera : Spatial() {
    *
    * **Note:** A position which returns `false` may still be outside the camera's field of view.
    */
-  open fun isPositionBehind(worldPoint: Vector3): Boolean {
+  public open fun isPositionBehind(worldPoint: Vector3): Boolean {
     TransferContext.writeArguments(VECTOR3 to worldPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_IS_POSITION_BEHIND, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -303,7 +303,7 @@ open class Camera : Spatial() {
   /**
    * Makes this camera the current camera for the [godot.Viewport] (see class description). If the camera node is outside the scene tree, it will attempt to become current once it's added.
    */
-  open fun makeCurrent() {
+  public open fun makeCurrent(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_MAKE_CURRENT, NIL)
   }
@@ -311,7 +311,7 @@ open class Camera : Spatial() {
   /**
    * Returns a normal vector from the screen point location directed along the camera. Orthogonal cameras are normalized. Perspective cameras account for perspective, screen width/height, etc.
    */
-  open fun projectLocalRayNormal(screenPoint: Vector2): Vector3 {
+  public open fun projectLocalRayNormal(screenPoint: Vector2): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_PROJECT_LOCAL_RAY_NORMAL,
         VECTOR3)
@@ -321,7 +321,7 @@ open class Camera : Spatial() {
   /**
    * Returns the 3D point in worldspace that maps to the given 2D coordinate in the [godot.Viewport] rectangle on a plane that is the given `z_depth` distance into the scene away from the camera.
    */
-  open fun projectPosition(screenPoint: Vector2, zDepth: Double): Vector3 {
+  public open fun projectPosition(screenPoint: Vector2, zDepth: Double): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint, DOUBLE to zDepth)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_PROJECT_POSITION, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
@@ -330,7 +330,7 @@ open class Camera : Spatial() {
   /**
    * Returns a normal vector in worldspace, that is the result of projecting a point on the [godot.Viewport] rectangle by the camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
    */
-  open fun projectRayNormal(screenPoint: Vector2): Vector3 {
+  public open fun projectRayNormal(screenPoint: Vector2): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_PROJECT_RAY_NORMAL, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
@@ -339,7 +339,7 @@ open class Camera : Spatial() {
   /**
    * Returns a 3D position in worldspace, that is the result of projecting a point on the [godot.Viewport] rectangle by the camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
    */
-  open fun projectRayOrigin(screenPoint: Vector2): Vector3 {
+  public open fun projectRayOrigin(screenPoint: Vector2): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_PROJECT_RAY_ORIGIN, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
@@ -348,7 +348,7 @@ open class Camera : Spatial() {
   /**
    * Enables or disables the given `layer` in the [cullMask].
    */
-  open fun setCullMaskBit(layer: Long, enable: Boolean) {
+  public open fun setCullMaskBit(layer: Long, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to layer, BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_SET_CULL_MASK_BIT, NIL)
   }
@@ -356,12 +356,12 @@ open class Camera : Spatial() {
   /**
    * Sets the camera projection to frustum mode (see [PROJECTION_FRUSTUM]), by specifying a `size`, an `offset`, and the `z_near` and `z_far` clip planes in world-space units.
    */
-  open fun setFrustum(
+  public open fun setFrustum(
     size: Double,
     offset: Vector2,
     zNear: Double,
     zFar: Double
-  ) {
+  ): Unit {
     TransferContext.writeArguments(DOUBLE to size, VECTOR2 to offset, DOUBLE to zNear, DOUBLE to
         zFar)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_SET_FRUSTUM, NIL)
@@ -370,11 +370,11 @@ open class Camera : Spatial() {
   /**
    * Sets the camera projection to orthogonal mode (see [PROJECTION_ORTHOGONAL]), by specifying a `size`, and the `z_near` and `z_far` clip planes in world-space units. (As a hint, 2D games often use this projection, with values specified in pixels.)
    */
-  open fun setOrthogonal(
+  public open fun setOrthogonal(
     size: Double,
     zNear: Double,
     zFar: Double
-  ) {
+  ): Unit {
     TransferContext.writeArguments(DOUBLE to size, DOUBLE to zNear, DOUBLE to zFar)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_SET_ORTHOGONAL, NIL)
   }
@@ -382,11 +382,11 @@ open class Camera : Spatial() {
   /**
    * Sets the camera projection to perspective mode (see [PROJECTION_PERSPECTIVE]), by specifying a `fov` (field of view) angle in degrees, and the `z_near` and `z_far` clip planes in world-space units.
    */
-  open fun setPerspective(
+  public open fun setPerspective(
     fov: Double,
     zNear: Double,
     zFar: Double
-  ) {
+  ): Unit {
     TransferContext.writeArguments(DOUBLE to fov, DOUBLE to zNear, DOUBLE to zFar)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_SET_PERSPECTIVE, NIL)
   }
@@ -403,130 +403,128 @@ open class Camera : Spatial() {
    * 				control.rect_position = get_viewport().get_camera().unproject_position(global_transform.origin)
    * 				```
    */
-  open fun unprojectPosition(worldPoint: Vector3): Vector2 {
+  public open fun unprojectPosition(worldPoint: Vector3): Vector2 {
     TransferContext.writeArguments(VECTOR3 to worldPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA_UNPROJECT_POSITION, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
-  enum class KeepAspect(
+  public enum class KeepAspect(
     id: Long
   ) {
     /**
      * Preserves the horizontal aspect ratio; also known as Vert- scaling. This is usually the best option for projects running in portrait mode, as taller aspect ratios will benefit from a wider vertical FOV.
      */
     KEEP_WIDTH(0),
-
     /**
      * Preserves the vertical aspect ratio; also known as Hor+ scaling. This is usually the best option for projects running in landscape mode, as wider aspect ratios will automatically benefit from a wider horizontal FOV.
      */
-    KEEP_HEIGHT(1);
+    KEEP_HEIGHT(1),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class Projection(
+  public enum class Projection(
     id: Long
   ) {
     /**
      * Perspective projection. Objects on the screen becomes smaller when they are far away.
      */
     PROJECTION_PERSPECTIVE(0),
-
     /**
      * Orthogonal projection, also known as orthographic projection. Objects remain the same size on the screen no matter how far away they are.
      */
     PROJECTION_ORTHOGONAL(1),
-
     /**
      * Frustum projection. This mode allows adjusting [frustumOffset] to create "tilted frustum" effects.
      */
-    PROJECTION_FRUSTUM(2);
+    PROJECTION_FRUSTUM(2),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  enum class DopplerTracking(
+  public enum class DopplerTracking(
     id: Long
   ) {
     /**
      * Disables [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) simulation (default).
      */
     DOPPLER_TRACKING_DISABLED(0),
-
     /**
      * Simulate [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) by tracking positions of objects that are changed in `_process`. Changes in the relative velocity of this camera compared to those objects affect how Audio is perceived (changing the Audio's `pitch shift`).
      */
     DOPPLER_TRACKING_IDLE_STEP(1),
-
     /**
      * Simulate [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) by tracking positions of objects that are changed in `_physics_process`. Changes in the relative velocity of this camera compared to those objects affect how Audio is perceived (changing the Audio's `pitch shift`).
      */
-    DOPPLER_TRACKING_PHYSICS_STEP(2);
+    DOPPLER_TRACKING_PHYSICS_STEP(2),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Disables [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) simulation (default).
      */
-    final const val DOPPLER_TRACKING_DISABLED: Long = 0
+    public final const val DOPPLER_TRACKING_DISABLED: Long = 0
 
     /**
      * Simulate [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) by tracking positions of objects that are changed in `_process`. Changes in the relative velocity of this camera compared to those objects affect how Audio is perceived (changing the Audio's `pitch shift`).
      */
-    final const val DOPPLER_TRACKING_IDLE_STEP: Long = 1
+    public final const val DOPPLER_TRACKING_IDLE_STEP: Long = 1
 
     /**
      * Simulate [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) by tracking positions of objects that are changed in `_physics_process`. Changes in the relative velocity of this camera compared to those objects affect how Audio is perceived (changing the Audio's `pitch shift`).
      */
-    final const val DOPPLER_TRACKING_PHYSICS_STEP: Long = 2
+    public final const val DOPPLER_TRACKING_PHYSICS_STEP: Long = 2
 
     /**
      * Preserves the vertical aspect ratio; also known as Hor+ scaling. This is usually the best option for projects running in landscape mode, as wider aspect ratios will automatically benefit from a wider horizontal FOV.
      */
-    final const val KEEP_HEIGHT: Long = 1
+    public final const val KEEP_HEIGHT: Long = 1
 
     /**
      * Preserves the horizontal aspect ratio; also known as Vert- scaling. This is usually the best option for projects running in portrait mode, as taller aspect ratios will benefit from a wider vertical FOV.
      */
-    final const val KEEP_WIDTH: Long = 0
+    public final const val KEEP_WIDTH: Long = 0
 
     /**
      * Frustum projection. This mode allows adjusting [frustumOffset] to create "tilted frustum" effects.
      */
-    final const val PROJECTION_FRUSTUM: Long = 2
+    public final const val PROJECTION_FRUSTUM: Long = 2
 
     /**
      * Orthogonal projection, also known as orthographic projection. Objects remain the same size on the screen no matter how far away they are.
      */
-    final const val PROJECTION_ORTHOGONAL: Long = 1
+    public final const val PROJECTION_ORTHOGONAL: Long = 1
 
     /**
      * Perspective projection. Objects on the screen becomes smaller when they are far away.
      */
-    final const val PROJECTION_PERSPECTIVE: Long = 0
+    public final const val PROJECTION_PERSPECTIVE: Long = 0
   }
 }

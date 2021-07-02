@@ -5,40 +5,41 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Suppress
+import kotlin.Unit
 
 @GodotBaseType
-open class CSGMesh : CSGPrimitive() {
-  open var material: Material?
+public open class CSGMesh : CSGPrimitive() {
+  public open var material: Material?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGMESH_GET_MATERIAL, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Material?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGMESH_SET_MATERIAL, NIL)
     }
 
-  open var mesh: Mesh?
+  public open var mesh: Mesh?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGMESH_GET_MESH, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Mesh?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGMESH_SET_MESH, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CSGMESH)
   }
 
-  open fun _meshChanged() {
+  public open fun _meshChanged(): Unit {
   }
 }

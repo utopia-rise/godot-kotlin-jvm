@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.PoolByteArray
 import godot.core.TransferContext
@@ -18,39 +18,40 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
-open class PackedDataContainer : Resource() {
-  override fun __new() {
+public open class PackedDataContainer : Resource() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PACKEDDATACONTAINER)
   }
 
-  open fun _getData(): PoolByteArray {
+  public open fun _getData(): PoolByteArray {
     throw NotImplementedError("_get_data is not implemented for PackedDataContainer")
   }
 
-  open fun _iterGet(arg0: Any?): Any? {
+  public open fun _iterGet(arg0: Any?): Any? {
     throw NotImplementedError("_iter_get is not implemented for PackedDataContainer")
   }
 
-  open fun _iterInit(arg0: VariantArray<Any?>): Any? {
+  public open fun _iterInit(arg0: VariantArray<Any?>): Any? {
     throw NotImplementedError("_iter_init is not implemented for PackedDataContainer")
   }
 
-  open fun _iterNext(arg0: VariantArray<Any?>): Any? {
+  public open fun _iterNext(arg0: VariantArray<Any?>): Any? {
     throw NotImplementedError("_iter_next is not implemented for PackedDataContainer")
   }
 
-  open fun _setData(arg0: PoolByteArray) {
+  public open fun _setData(arg0: PoolByteArray): Unit {
   }
 
   /**
    *
    */
-  open fun pack(value: Any?): GodotError {
+  public open fun pack(`value`: Any?): GodotError {
     TransferContext.writeArguments(ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDDATACONTAINER_PACK, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -59,7 +60,7 @@ open class PackedDataContainer : Resource() {
   /**
    *
    */
-  open fun size(): Long {
+  public open fun size(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDDATACONTAINER_SIZE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long

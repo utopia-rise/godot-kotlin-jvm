@@ -5,13 +5,14 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.OBJECT
 import kotlin.Any
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Group of Buttons.
@@ -21,15 +22,15 @@ import kotlin.Suppress
  * [godot.BaseButton.toggleMode] should be `true`.
  */
 @GodotBaseType
-open class ButtonGroup : Resource() {
-  override fun __new() {
+public open class ButtonGroup : Resource() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_BUTTONGROUP)
   }
 
   /**
    * Returns an [godot.Array] of [godot.Button]s who have this as their [godot.ButtonGroup] (see [godot.BaseButton.group]).
    */
-  open fun getButtons(): VariantArray<Any?> {
+  public open fun getButtons(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTONGROUP_GET_BUTTONS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -38,7 +39,7 @@ open class ButtonGroup : Resource() {
   /**
    * Returns the current pressed button.
    */
-  open fun getPressedButton(): BaseButton? {
+  public open fun getPressedButton(): BaseButton? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTONGROUP_GET_PRESSED_BUTTON,
         OBJECT)

@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Performs a uniform texture lookup with triplanar within the visual shader graph.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Performs a lookup operation on the texture provided as a uniform for the shader, with support for triplanar mapping.
  */
 @GodotBaseType
-open class VisualShaderNodeTextureUniformTriplanar : VisualShaderNodeTextureUniform() {
-  override fun __new() {
+public open class VisualShaderNodeTextureUniformTriplanar : VisualShaderNodeTextureUniform() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODETEXTUREUNIFORMTRIPLANAR)
   }
 }

@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
@@ -24,18 +24,18 @@ import kotlin.Unit
  * **Note:** Any changes to this node's position and scale made after it enters the scene will be ignored.
  */
 @GodotBaseType
-open class ParallaxLayer : Node2D() {
+public open class ParallaxLayer : Node2D() {
   /**
    * The ParallaxLayer's [godot.Texture] mirroring. Useful for creating an infinite scrolling background. If an axis is set to `0`, the [godot.Texture] will not be mirrored.
    */
-  open var motionMirroring: Vector2
+  public open var motionMirroring: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARALLAXLAYER_GET_MOTION_MIRRORING, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARALLAXLAYER_SET_MOTION_MIRRORING, NIL)
@@ -44,14 +44,14 @@ open class ParallaxLayer : Node2D() {
   /**
    * The ParallaxLayer's offset relative to the parent ParallaxBackground's [godot.ParallaxBackground.scrollOffset].
    */
-  open var motionOffset: Vector2
+  public open var motionOffset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXLAYER_GET_MOTION_OFFSET,
           VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXLAYER_SET_MOTION_OFFSET,
           NIL)
@@ -60,39 +60,39 @@ open class ParallaxLayer : Node2D() {
   /**
    * Multiplies the ParallaxLayer's motion. If an axis is set to `0`, it will not scroll.
    */
-  open var motionScale: Vector2
+  public open var motionScale: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXLAYER_GET_MOTION_SCALE,
           VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXLAYER_SET_MOTION_SCALE,
           NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PARALLAXLAYER)
   }
 
   @CoreTypeHelper
-  open fun motionMirroring(schedule: Vector2.() -> Unit): Vector2 = motionMirroring.apply{
+  public open fun motionMirroring(schedule: Vector2.() -> Unit): Vector2 = motionMirroring.apply{
       schedule(this)
       motionMirroring = this
   }
 
 
   @CoreTypeHelper
-  open fun motionOffset(schedule: Vector2.() -> Unit): Vector2 = motionOffset.apply{
+  public open fun motionOffset(schedule: Vector2.() -> Unit): Vector2 = motionOffset.apply{
       schedule(this)
       motionOffset = this
   }
 
 
   @CoreTypeHelper
-  open fun motionScale(schedule: Vector2.() -> Unit): Vector2 = motionScale.apply{
+  public open fun motionScale(schedule: Vector2.() -> Unit): Vector2 = motionScale.apply{
       schedule(this)
       motionScale = this
   }

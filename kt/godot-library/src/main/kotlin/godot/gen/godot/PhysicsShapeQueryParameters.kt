@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
 import godot.core.Transform
@@ -32,18 +32,18 @@ import kotlin.Unit
  * This class contains the shape and other parameters for 3D intersection/collision queries. See also [godot.PhysicsShapeQueryResult].
  */
 @GodotBaseType
-open class PhysicsShapeQueryParameters : Reference() {
+public open class PhysicsShapeQueryParameters : Reference() {
   /**
    * If `true`, the query will take [godot.Area]s into account.
    */
-  open var collideWithAreas: Boolean
+  public open var collideWithAreas: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_GET_COLLIDE_WITH_AREAS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_SET_COLLIDE_WITH_AREAS, NIL)
@@ -52,14 +52,14 @@ open class PhysicsShapeQueryParameters : Reference() {
   /**
    * If `true`, the query will take [godot.PhysicsBody]s into account.
    */
-  open var collideWithBodies: Boolean
+  public open var collideWithBodies: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_GET_COLLIDE_WITH_BODIES, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_SET_COLLIDE_WITH_BODIES, NIL)
@@ -68,14 +68,14 @@ open class PhysicsShapeQueryParameters : Reference() {
   /**
    * The physics layer(s) the query will take into account (as a bitmask). See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
-  open var collisionMask: Long
+  public open var collisionMask: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_GET_COLLISION_MASK, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_SET_COLLISION_MASK, NIL)
@@ -84,14 +84,14 @@ open class PhysicsShapeQueryParameters : Reference() {
   /**
    * The list of objects or object [RID]s that will be excluded from collisions.
    */
-  open var exclude: VariantArray<Any?>
+  public open var exclude: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_GET_EXCLUDE, ARRAY)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_SET_EXCLUDE, NIL)
@@ -100,14 +100,14 @@ open class PhysicsShapeQueryParameters : Reference() {
   /**
    * The collision margin for the shape.
    */
-  open var margin: Double
+  public open var margin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_GET_MARGIN, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_SET_MARGIN, NIL)
@@ -116,14 +116,14 @@ open class PhysicsShapeQueryParameters : Reference() {
   /**
    * The queried shape's [RID]. See also [setShape].
    */
-  open var shapeRid: RID
+  public open var shapeRid: RID
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_GET_SHAPE_RID, _RID)
       return TransferContext.readReturnValue(_RID, false) as RID
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(_RID to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_SET_SHAPE_RID, NIL)
@@ -132,25 +132,25 @@ open class PhysicsShapeQueryParameters : Reference() {
   /**
    * The queried shape's transform matrix.
    */
-  open var transform: Transform
+  public open var transform: Transform
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_GET_TRANSFORM, TRANSFORM)
       return TransferContext.readReturnValue(TRANSFORM, false) as Transform
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(TRANSFORM to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_SET_TRANSFORM, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS)
   }
 
   @CoreTypeHelper
-  open fun transform(schedule: Transform.() -> Unit): Transform = transform.apply{
+  public open fun transform(schedule: Transform.() -> Unit): Transform = transform.apply{
       schedule(this)
       transform = this
   }
@@ -159,7 +159,7 @@ open class PhysicsShapeQueryParameters : Reference() {
   /**
    * Sets the [godot.Shape] that will be used for collision/intersection queries.
    */
-  open fun setShape(shape: Resource) {
+  public open fun setShape(shape: Resource): Unit {
     TransferContext.writeArguments(OBJECT to shape)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS_SET_SHAPE, NIL)

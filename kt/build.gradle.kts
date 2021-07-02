@@ -32,7 +32,7 @@ tasks {
         group = "godot-kotlin-jvm"
 
         doLast {
-            val tags = grgit.tag.list().reversed()
+            val tags = grgit.tag.list().reversed().filter { it.name != "stable" }
             val fromTag = tags.getOrNull(1)
             val toTag = tags.getOrNull(0)
             val changeLogPrefix = """

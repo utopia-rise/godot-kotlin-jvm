@@ -5,12 +5,13 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Grid container used to arrange Control-derived children in a grid like layout.
@@ -25,22 +26,22 @@ import kotlin.Suppress
  * **Note:** GridContainer only works with child nodes inheriting from Control. It won't rearrange child nodes inheriting from Node2D.
  */
 @GodotBaseType
-open class GridContainer : Container() {
+public open class GridContainer : Container() {
   /**
    * The number of columns in the [godot.GridContainer]. If modified, [godot.GridContainer] reorders its Control-derived children to accommodate the new layout.
    */
-  open var columns: Long
+  public open var columns: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDCONTAINER_GET_COLUMNS, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDCONTAINER_SET_COLUMNS, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_GRIDCONTAINER)
   }
 }

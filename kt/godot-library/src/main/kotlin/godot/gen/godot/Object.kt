@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.KtObject
 import godot.core.NodePath
@@ -78,13 +78,13 @@ import kotlin.reflect.KCallable
  * **Note:** Due to a bug, you can't create a "plain" Object using `Object.new()`. Instead, use `ClassDB.instance("Object")`. This bug only applies to Object itself, not any of its descendents like [godot.Reference].
  */
 @GodotBaseType
-open class Object : KtObject() {
+public open class Object : KtObject() {
   /**
    * Emitted whenever the object's script is changed.
    */
-  val scriptChanged: Signal0 by signal()
+  public val scriptChanged: Signal0 by signal()
 
-  internal inline fun callConstructor(classIndex: Int) {
+  internal inline fun callConstructor(classIndex: Int): Unit {
     TransferContext.invokeConstructor(classIndex)
     val buffer = TransferContext.buffer
     rawPtr = buffer.long
@@ -92,11 +92,11 @@ open class Object : KtObject() {
     buffer.rewind()
   }
 
-  fun Signal0.emit() {
+  public fun Signal0.emit(): Unit {
     emit(this@Object)
   }
 
-  inline fun <reified K : () -> Unit> Signal0.connect(
+  public inline fun <reified K : () -> Unit> Signal0.connect(
     target: Object,
     method: K,
     binds: VariantArray<Any?>? = null,
@@ -106,11 +106,11 @@ open class Object : KtObject() {
     return connect(target, methodName, binds, flags)
   }
 
-  fun <A0> Signal1<A0>.emit(a0: A0) {
+  public fun <A0> Signal1<A0>.emit(a0: A0): Unit {
     emit(this@Object, a0)
   }
 
-  inline fun <A0, reified K : (A0) -> Unit> Signal1<A0>.connect(
+  public inline fun <A0, reified K : (A0) -> Unit> Signal1<A0>.connect(
     target: Object,
     method: K,
     binds: VariantArray<Any?>? = null,
@@ -120,11 +120,11 @@ open class Object : KtObject() {
     return connect(target, methodName, binds, flags)
   }
 
-  fun <A0, A1> Signal2<A0, A1>.emit(a0: A0, a1: A1) {
+  public fun <A0, A1> Signal2<A0, A1>.emit(a0: A0, a1: A1): Unit {
     emit(this@Object, a0, a1)
   }
 
-  inline fun <A0, A1, reified K : (A0, A1) -> Unit> Signal2<A0, A1>.connect(
+  public inline fun <A0, A1, reified K : (A0, A1) -> Unit> Signal2<A0, A1>.connect(
     target: Object,
     method: K,
     binds: VariantArray<Any?>? = null,
@@ -134,15 +134,15 @@ open class Object : KtObject() {
     return connect(target, methodName, binds, flags)
   }
 
-  fun <A0, A1, A2> Signal3<A0, A1, A2>.emit(
+  public fun <A0, A1, A2> Signal3<A0, A1, A2>.emit(
     a0: A0,
     a1: A1,
     a2: A2
-  ) {
+  ): Unit {
     emit(this@Object, a0, a1, a2)
   }
 
-  inline fun <A0, A1, A2, reified K : (
+  public inline fun <A0, A1, A2, reified K : (
     A0,
     A1,
     A2
@@ -156,16 +156,16 @@ open class Object : KtObject() {
     return connect(target, methodName, binds, flags)
   }
 
-  fun <A0, A1, A2, A3> Signal4<A0, A1, A2, A3>.emit(
+  public fun <A0, A1, A2, A3> Signal4<A0, A1, A2, A3>.emit(
     a0: A0,
     a1: A1,
     a2: A2,
     a3: A3
-  ) {
+  ): Unit {
     emit(this@Object, a0, a1, a2, a3)
   }
 
-  inline fun <A0, A1, A2, A3, reified K : (
+  public inline fun <A0, A1, A2, A3, reified K : (
     A0,
     A1,
     A2,
@@ -180,17 +180,17 @@ open class Object : KtObject() {
     return connect(target, methodName, binds, flags)
   }
 
-  fun <A0, A1, A2, A3, A4> Signal5<A0, A1, A2, A3, A4>.emit(
+  public fun <A0, A1, A2, A3, A4> Signal5<A0, A1, A2, A3, A4>.emit(
     a0: A0,
     a1: A1,
     a2: A2,
     a3: A3,
     a4: A4
-  ) {
+  ): Unit {
     emit(this@Object, a0, a1, a2, a3, a4)
   }
 
-  inline fun <A0, A1, A2, A3, A4, reified K : (
+  public inline fun <A0, A1, A2, A3, A4, reified K : (
     A0,
     A1,
     A2,
@@ -206,18 +206,18 @@ open class Object : KtObject() {
     return connect(target, methodName, binds, flags)
   }
 
-  fun <A0, A1, A2, A3, A4, A5> Signal6<A0, A1, A2, A3, A4, A5>.emit(
+  public fun <A0, A1, A2, A3, A4, A5> Signal6<A0, A1, A2, A3, A4, A5>.emit(
     a0: A0,
     a1: A1,
     a2: A2,
     a3: A3,
     a4: A4,
     a5: A5
-  ) {
+  ): Unit {
     emit(this@Object, a0, a1, a2, a3, a4, a5)
   }
 
-  inline fun <A0, A1, A2, A3, A4, A5, reified K : (
+  public inline fun <A0, A1, A2, A3, A4, A5, reified K : (
     A0,
     A1,
     A2,
@@ -234,7 +234,7 @@ open class Object : KtObject() {
     return connect(target, methodName, binds, flags)
   }
 
-  fun <A0, A1, A2, A3, A4, A5, A6> Signal7<A0, A1, A2, A3, A4, A5, A6>.emit(
+  public fun <A0, A1, A2, A3, A4, A5, A6> Signal7<A0, A1, A2, A3, A4, A5, A6>.emit(
     a0: A0,
     a1: A1,
     a2: A2,
@@ -242,11 +242,11 @@ open class Object : KtObject() {
     a4: A4,
     a5: A5,
     a6: A6
-  ) {
+  ): Unit {
     emit(this@Object, a0, a1, a2, a3, a4, a5, a6)
   }
 
-  inline fun <A0, A1, A2, A3, A4, A5, A6, reified K : (
+  public inline fun <A0, A1, A2, A3, A4, A5, A6, reified K : (
     A0,
     A1,
     A2,
@@ -264,7 +264,7 @@ open class Object : KtObject() {
     return connect(target, methodName, binds, flags)
   }
 
-  fun <A0, A1, A2, A3, A4, A5, A6, A7> Signal8<A0, A1, A2, A3, A4, A5, A6, A7>.emit(
+  public fun <A0, A1, A2, A3, A4, A5, A6, A7> Signal8<A0, A1, A2, A3, A4, A5, A6, A7>.emit(
     a0: A0,
     a1: A1,
     a2: A2,
@@ -273,11 +273,11 @@ open class Object : KtObject() {
     a5: A5,
     a6: A6,
     a7: A7
-  ) {
+  ): Unit {
     emit(this@Object, a0, a1, a2, a3, a4, a5, a6, a7)
   }
 
-  inline fun <A0, A1, A2, A3, A4, A5, A6, A7, reified K : (
+  public inline fun <A0, A1, A2, A3, A4, A5, A6, A7, reified K : (
     A0,
     A1,
     A2,
@@ -296,7 +296,7 @@ open class Object : KtObject() {
     return connect(target, methodName, binds, flags)
   }
 
-  fun <A0, A1, A2, A3, A4, A5, A6, A7, A8> Signal9<A0, A1, A2, A3, A4, A5, A6, A7, A8>.emit(
+  public fun <A0, A1, A2, A3, A4, A5, A6, A7, A8> Signal9<A0, A1, A2, A3, A4, A5, A6, A7, A8>.emit(
     a0: A0,
     a1: A1,
     a2: A2,
@@ -306,11 +306,11 @@ open class Object : KtObject() {
     a6: A6,
     a7: A7,
     a8: A8
-  ) {
+  ): Unit {
     emit(this@Object, a0, a1, a2, a3, a4, a5, a6, a7, a8)
   }
 
-  inline fun <A0, A1, A2, A3, A4, A5, A6, A7, A8, reified K : (
+  public inline fun <A0, A1, A2, A3, A4, A5, A6, A7, A8, reified K : (
     A0,
     A1,
     A2,
@@ -330,7 +330,7 @@ open class Object : KtObject() {
     return connect(target, methodName, binds, flags)
   }
 
-  fun <A0, A1, A2, A3, A4, A5, A6, A7, A8, A9> Signal10<A0, A1, A2, A3, A4, A5, A6, A7, A8,
+  public fun <A0, A1, A2, A3, A4, A5, A6, A7, A8, A9> Signal10<A0, A1, A2, A3, A4, A5, A6, A7, A8,
       A9>.emit(
     a0: A0,
     a1: A1,
@@ -342,11 +342,11 @@ open class Object : KtObject() {
     a7: A7,
     a8: A8,
     a9: A9
-  ) {
+  ): Unit {
     emit(this@Object, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9)
   }
 
-  inline fun <A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, reified K : (
+  public inline fun <A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, reified K : (
     A0,
     A1,
     A2,
@@ -367,7 +367,7 @@ open class Object : KtObject() {
     return connect(target, methodName, binds, flags)
   }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_OBJECT)
   }
 
@@ -376,7 +376,7 @@ open class Object : KtObject() {
    *
    * Returns the given property. Returns `null` if the `property` does not exist.
    */
-  open fun _get(property: String): Any? {
+  public open fun _get(`property`: String): Any? {
     throw NotImplementedError("_get is not implemented for Object")
   }
 
@@ -387,20 +387,20 @@ open class Object : KtObject() {
    *
    * Each property's [godot.core.Dictionary] must contain at least `name: String` and `type: int` (see [enum Variant.Type]) entries. Optionally, it can also include `hint: int` (see [enum PropertyHint]), `hint_string: String`, and `usage: int` (see [enum PropertyUsageFlags]).
    */
-  open fun _getPropertyList(): VariantArray<Any?> {
+  public open fun _getPropertyList(): VariantArray<Any?> {
     throw NotImplementedError("_get_property_list is not implemented for Object")
   }
 
   /**
    * Called when the object is initialized.
    */
-  open fun _init() {
+  public open fun _init(): Unit {
   }
 
   /**
    * Called whenever the object receives a notification, which is identified in `what` by a constant. The base [godot.Object] has two constants [NOTIFICATION_POSTINITIALIZE] and [NOTIFICATION_PREDELETE], but subclasses such as [godot.Node] define a lot more notifications which are also received by this method.
    */
-  open fun _notification(what: Long) {
+  public open fun _notification(what: Long): Unit {
   }
 
   /**
@@ -408,7 +408,7 @@ open class Object : KtObject() {
    *
    * Sets a property. Returns `true` if the `property` exists.
    */
-  open fun _set(property: String, value: Any?): Boolean {
+  public open fun _set(`property`: String, `value`: Any?): Boolean {
     throw NotImplementedError("_set is not implemented for Object")
   }
 
@@ -417,14 +417,15 @@ open class Object : KtObject() {
    *
    * Returns a [godot.String] representing the object. If not overridden, defaults to `"[godot.ClassName:RID]"`.
    */
-  open fun _toString(): String {
+  public open fun _toString(): String {
     throw NotImplementedError("_to_string is not implemented for Object")
   }
 
   /**
    * Adds a user-defined `signal`. Arguments are optional, but can be added as an [godot.Array] of dictionaries, each containing `name: String` and `type: int` (see [enum Variant.Type]) entries.
    */
-  open fun addUserSignal(signal: String, arguments: VariantArray<Any?> = VariantArray()) {
+  public open fun addUserSignal(signal: String, arguments: VariantArray<Any?> = VariantArray()):
+      Unit {
     TransferContext.writeArguments(STRING to signal, ARRAY to arguments)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_ADD_USER_SIGNAL, NIL)
   }
@@ -438,7 +439,7 @@ open class Object : KtObject() {
    *
    * **Note:** In C#, the method name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined methods where you should use the same convention as in the C# source (typically PascalCase).
    */
-  open fun call(method: String, vararg __var_args: Any?): Any? {
+  public open fun call(method: String, vararg __var_args: Any?): Any? {
     TransferContext.writeArguments(STRING to method,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_CALL, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -453,7 +454,7 @@ open class Object : KtObject() {
    *
    * **Note:** In C#, the method name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined methods where you should use the same convention as in the C# source (typically PascalCase).
    */
-  open fun callDeferred(method: String, vararg __var_args: Any?) {
+  public open fun callDeferred(method: String, vararg __var_args: Any?): Unit {
     TransferContext.writeArguments(STRING to method,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_CALL_DEFERRED, NIL)
   }
@@ -465,7 +466,7 @@ open class Object : KtObject() {
    * 				callv("set", [ "position", Vector2(42.0, 0.0) ])
    * 				```
    */
-  open fun callv(method: String, argArray: VariantArray<Any?>): Any? {
+  public open fun callv(method: String, argArray: VariantArray<Any?>): Any? {
     TransferContext.writeArguments(STRING to method, ARRAY to argArray)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_CALLV, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -474,7 +475,7 @@ open class Object : KtObject() {
   /**
    * Returns `true` if the object can translate strings. See [setMessageTranslation] and [tr].
    */
-  open fun canTranslateMessages(): Boolean {
+  public open fun canTranslateMessages(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_CAN_TRANSLATE_MESSAGES, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -504,7 +505,7 @@ open class Object : KtObject() {
    * 				    print("Hit by %s (lvl %d) with weapon %s for %d damage" % [hit_by, level, weapon_type, damage])
    * 				```
    */
-  open fun connect(
+  public open fun connect(
     signal: String,
     target: Object,
     method: String,
@@ -522,11 +523,11 @@ open class Object : KtObject() {
    *
    * If you try to disconnect a connection that does not exist, the method will throw an error. Use [isConnected] to ensure that the connection exists.
    */
-  open fun disconnect(
+  public open fun disconnect(
     signal: String,
     target: Object,
     method: String
-  ) {
+  ): Unit {
     TransferContext.writeArguments(STRING to signal, OBJECT to target, STRING to method)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_DISCONNECT, NIL)
   }
@@ -539,7 +540,7 @@ open class Object : KtObject() {
    * 				emit_signal("game_over")
    * 				```
    */
-  open fun emitSignal(signal: String, vararg __var_args: Any?) {
+  public open fun emitSignal(signal: String, vararg __var_args: Any?): Unit {
     TransferContext.writeArguments(STRING to signal,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_EMIT_SIGNAL, NIL)
   }
@@ -549,7 +550,7 @@ open class Object : KtObject() {
    *
    * **Note:** In C#, the property name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined properties where you should use the same convention as in the C# source (typically PascalCase).
    */
-  open fun get(property: String): Any? {
+  public open fun `get`(`property`: String): Any? {
     TransferContext.writeArguments(STRING to property)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -558,7 +559,7 @@ open class Object : KtObject() {
   /**
    * Returns the object's class as a [godot.String].
    */
-  open fun getClass(): String {
+  public open fun getClass(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_CLASS, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -575,7 +576,7 @@ open class Object : KtObject() {
    *
    * - `method_name` is the name of the method to which the signal is connected.
    */
-  open fun getIncomingConnections(): VariantArray<Any?> {
+  public open fun getIncomingConnections(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_INCOMING_CONNECTIONS,
         ARRAY)
@@ -585,7 +586,7 @@ open class Object : KtObject() {
   /**
    * Gets the object's property indexed by the given [godot.core.NodePath]. The node path should be relative to the current object and can use the colon character (`:`) to access nested properties. Examples: `"position:x"` or `"material:next_pass:blend_mode"`.
    */
-  open fun getIndexed(property: NodePath): Any? {
+  public open fun getIndexed(`property`: NodePath): Any? {
     TransferContext.writeArguments(NODE_PATH to property)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_INDEXED, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -596,7 +597,7 @@ open class Object : KtObject() {
    *
    * This ID can be saved in [godot.EncodedObjectAsID], and can be used to retrieve the object instance with [@GDScript.instanceFromId].
    */
-  open fun getInstanceId(): Long {
+  public open fun getInstanceId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_INSTANCE_ID, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -605,7 +606,7 @@ open class Object : KtObject() {
   /**
    * Returns the object's metadata entry for the given `name`.
    */
-  open fun getMeta(name: String): Any? {
+  public open fun getMeta(name: String): Any? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_META, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -614,7 +615,7 @@ open class Object : KtObject() {
   /**
    * Returns the object's metadata as a [godot.core.PoolStringArray].
    */
-  open fun getMetaList(): PoolStringArray {
+  public open fun getMetaList(): PoolStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_META_LIST,
         POOL_STRING_ARRAY)
@@ -624,7 +625,7 @@ open class Object : KtObject() {
   /**
    * Returns the object's methods and their signatures as an [godot.Array].
    */
-  open fun getMethodList(): VariantArray<Any?> {
+  public open fun getMethodList(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_METHOD_LIST, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -635,7 +636,7 @@ open class Object : KtObject() {
    *
    * Each property's [godot.core.Dictionary] contain at least `name: String` and `type: int` (see [enum Variant.Type]) entries. Optionally, it can also include `hint: int` (see [enum PropertyHint]), `hint_string: String`, and `usage: int` (see [enum PropertyUsageFlags]).
    */
-  open fun getPropertyList(): VariantArray<Any?> {
+  public open fun getPropertyList(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_PROPERTY_LIST, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -644,7 +645,7 @@ open class Object : KtObject() {
   /**
    * Returns the object's [godot.Script] instance, or `null` if none is assigned.
    */
-  open fun getScript(): Reference? {
+  public open fun getScript(): Reference? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_SCRIPT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Reference?
@@ -653,7 +654,7 @@ open class Object : KtObject() {
   /**
    * Returns an [godot.Array] of connections for the given `signal`.
    */
-  open fun getSignalConnectionList(signal: String): VariantArray<Any?> {
+  public open fun getSignalConnectionList(signal: String): VariantArray<Any?> {
     TransferContext.writeArguments(STRING to signal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_SIGNAL_CONNECTION_LIST,
         ARRAY)
@@ -663,7 +664,7 @@ open class Object : KtObject() {
   /**
    * Returns the list of signals as an [godot.Array] of dictionaries.
    */
-  open fun getSignalList(): VariantArray<Any?> {
+  public open fun getSignalList(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_SIGNAL_LIST, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
@@ -672,7 +673,7 @@ open class Object : KtObject() {
   /**
    * Returns `true` if a metadata entry is found with the given `name`.
    */
-  open fun hasMeta(name: String): Boolean {
+  public open fun hasMeta(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_HAS_META, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -681,7 +682,7 @@ open class Object : KtObject() {
   /**
    * Returns `true` if the object contains the given `method`.
    */
-  open fun hasMethod(method: String): Boolean {
+  public open fun hasMethod(method: String): Boolean {
     TransferContext.writeArguments(STRING to method)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_HAS_METHOD, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -690,7 +691,7 @@ open class Object : KtObject() {
   /**
    * Returns `true` if the given `signal` exists.
    */
-  open fun hasSignal(signal: String): Boolean {
+  public open fun hasSignal(signal: String): Boolean {
     TransferContext.writeArguments(STRING to signal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_HAS_SIGNAL, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -699,7 +700,7 @@ open class Object : KtObject() {
   /**
    * Returns `true` if the given user-defined `signal` exists. Only signals added using [addUserSignal] are taken into account.
    */
-  open fun hasUserSignal(signal: String): Boolean {
+  public open fun hasUserSignal(signal: String): Boolean {
     TransferContext.writeArguments(STRING to signal)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_HAS_USER_SIGNAL, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -708,7 +709,7 @@ open class Object : KtObject() {
   /**
    * Returns `true` if signal emission blocking is enabled.
    */
-  open fun isBlockingSignals(): Boolean {
+  public open fun isBlockingSignals(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_IS_BLOCKING_SIGNALS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -717,7 +718,7 @@ open class Object : KtObject() {
   /**
    * Returns `true` if the object inherits from the given `class`.
    */
-  open fun isClass(_class: String): Boolean {
+  public open fun isClass(_class: String): Boolean {
     TransferContext.writeArguments(STRING to _class)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_IS_CLASS, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -726,7 +727,7 @@ open class Object : KtObject() {
   /**
    * Returns `true` if a connection exists for a given `signal`, `target`, and `method`.
    */
-  open fun isConnected(
+  public open fun isConnected(
     signal: String,
     target: Object,
     method: String
@@ -739,7 +740,7 @@ open class Object : KtObject() {
   /**
    * Returns `true` if the [godot.Node.queueFree] method was called for the object.
    */
-  open fun isQueuedForDeletion(): Boolean {
+  public open fun isQueuedForDeletion(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_IS_QUEUED_FOR_DELETION, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -750,7 +751,7 @@ open class Object : KtObject() {
    *
    * If `reversed` is `true`, [_notification] is called first on the object's own class, and then up to its successive parent classes. If `reversed` is `false`, [_notification] is called first on the highest ancestor ([godot.Object] itself), and then down to its successive inheriting classes.
    */
-  open fun notification(what: Long, reversed: Boolean = false) {
+  public open fun notification(what: Long, reversed: Boolean = false): Unit {
     TransferContext.writeArguments(LONG to what, BOOL to reversed)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_NOTIFICATION, NIL)
   }
@@ -758,7 +759,7 @@ open class Object : KtObject() {
   /**
    * Notify the editor that the property list has changed, so that editor plugins can take the new values into account. Does nothing on export builds.
    */
-  open fun propertyListChangedNotify() {
+  public open fun propertyListChangedNotify(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_PROPERTY_LIST_CHANGED_NOTIFY,
         NIL)
@@ -767,7 +768,7 @@ open class Object : KtObject() {
   /**
    * Removes a given entry from the object's metadata. See also [setMeta].
    */
-  open fun removeMeta(name: String) {
+  public open fun removeMeta(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_REMOVE_META, NIL)
   }
@@ -777,7 +778,7 @@ open class Object : KtObject() {
    *
    * **Note:** In C#, the property name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined properties where you should use the same convention as in the C# source (typically PascalCase).
    */
-  open fun set(property: String, value: Any?) {
+  public open fun `set`(`property`: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET, NIL)
   }
@@ -785,7 +786,7 @@ open class Object : KtObject() {
   /**
    * If set to `true`, signal emission is blocked.
    */
-  open fun setBlockSignals(enable: Boolean) {
+  public open fun setBlockSignals(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET_BLOCK_SIGNALS, NIL)
   }
@@ -795,7 +796,7 @@ open class Object : KtObject() {
    *
    * **Note:** In C#, the property name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined properties where you should use the same convention as in the C# source (typically PascalCase).
    */
-  open fun setDeferred(property: String, value: Any?) {
+  public open fun setDeferred(`property`: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET_DEFERRED, NIL)
   }
@@ -809,7 +810,7 @@ open class Object : KtObject() {
    * 				print(position) # (42, -10)
    * 				```
    */
-  open fun setIndexed(property: NodePath, value: Any?) {
+  public open fun setIndexed(`property`: NodePath, `value`: Any?): Unit {
     TransferContext.writeArguments(NODE_PATH to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET_INDEXED, NIL)
   }
@@ -817,7 +818,7 @@ open class Object : KtObject() {
   /**
    * Defines whether the object can translate strings (with calls to [tr]). Enabled by default.
    */
-  open fun setMessageTranslation(enable: Boolean) {
+  public open fun setMessageTranslation(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET_MESSAGE_TRANSLATION, NIL)
   }
@@ -827,7 +828,7 @@ open class Object : KtObject() {
    *
    * To remove a given entry from the object's metadata, use [removeMeta]. Metadata is also removed if its value is set to `null`. This means you can also use `set_meta("name", null)` to remove metadata for `"name"`.
    */
-  open fun setMeta(name: String, value: Any?) {
+  public open fun setMeta(name: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET_META, NIL)
   }
@@ -837,7 +838,7 @@ open class Object : KtObject() {
    *
    * If the object already had a script, the previous script instance will be freed and its variables and state will be lost. The new script's [_init] method will be called.
    */
-  open fun setScript(script: Reference) {
+  public open fun setScript(script: Reference): Unit {
     TransferContext.writeArguments(OBJECT to script)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_SET_SCRIPT, NIL)
   }
@@ -847,7 +848,7 @@ open class Object : KtObject() {
    *
    * Override the method [_toString] to customize the [godot.String] representation.
    */
-  override fun toString(): String {
+  public override fun toString(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_TO_STRING, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -858,74 +859,72 @@ open class Object : KtObject() {
    *
    * Only works if message translation is enabled (which it is by default), otherwise it returns the `message` unchanged. See [setMessageTranslation].
    */
-  open fun tr(message: String): String {
+  public open fun tr(message: String): String {
     TransferContext.writeArguments(STRING to message)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_TR, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  enum class ConnectFlags(
+  public enum class ConnectFlags(
     id: Long
   ) {
     /**
      * Connects a signal in deferred mode. This way, signal emissions are stored in a queue, then set on idle time.
      */
     CONNECT_DEFERRED(1),
-
     /**
      * Persisting connections are saved when the object is serialized to file.
      */
     CONNECT_PERSIST(2),
-
     /**
      * One-shot connections disconnect themselves after emission.
      */
     CONNECT_ONESHOT(4),
-
     /**
      * Connect a signal as reference-counted. This means that a given signal can be connected several times to the same target, and will only be fully disconnected once no references are left.
      */
-    CONNECT_REFERENCE_COUNTED(8);
+    CONNECT_REFERENCE_COUNTED(8),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Connects a signal in deferred mode. This way, signal emissions are stored in a queue, then set on idle time.
      */
-    final const val CONNECT_DEFERRED: Long = 1
+    public final const val CONNECT_DEFERRED: Long = 1
 
     /**
      * One-shot connections disconnect themselves after emission.
      */
-    final const val CONNECT_ONESHOT: Long = 4
+    public final const val CONNECT_ONESHOT: Long = 4
 
     /**
      * Persisting connections are saved when the object is serialized to file.
      */
-    final const val CONNECT_PERSIST: Long = 2
+    public final const val CONNECT_PERSIST: Long = 2
 
     /**
      * Connect a signal as reference-counted. This means that a given signal can be connected several times to the same target, and will only be fully disconnected once no references are left.
      */
-    final const val CONNECT_REFERENCE_COUNTED: Long = 8
+    public final const val CONNECT_REFERENCE_COUNTED: Long = 8
 
     /**
      * Called right when the object is initialized. Not available in script.
      */
-    final const val NOTIFICATION_POSTINITIALIZE: Long = 0
+    public final const val NOTIFICATION_POSTINITIALIZE: Long = 0
 
     /**
      * Called before the object is about to be deleted.
      */
-    final const val NOTIFICATION_PREDELETE: Long = 1
+    public final const val NOTIFICATION_PREDELETE: Long = 1
   }
 }

@@ -5,8 +5,9 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Class for displaying popups with a panel background.
@@ -14,8 +15,8 @@ import kotlin.Suppress
  * Class for displaying popups with a panel background. In some cases it might be simpler to use than [godot.Popup], since it provides a configurable background. If you are making windows, better check [godot.WindowDialog].
  */
 @GodotBaseType
-open class PopupPanel : Popup() {
-  override fun __new() {
+public open class PopupPanel : Popup() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_POPUPPANEL)
   }
 }

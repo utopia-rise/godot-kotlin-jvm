@@ -5,12 +5,13 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * A [godot.core.Color] function to be used within the visual shader graph.
@@ -18,28 +19,28 @@ import kotlin.Suppress
  * Accept a [godot.core.Color] to the input port and transform it according to [function].
  */
 @GodotBaseType
-open class VisualShaderNodeColorFunc : VisualShaderNode() {
+public open class VisualShaderNodeColorFunc : VisualShaderNode() {
   /**
    * A function to be applied to the input color. See [enum Function] for options.
    */
-  open var function: Long
+  public open var function: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOLORFUNC_GET_FUNCTION, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECOLORFUNC_SET_FUNCTION, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODECOLORFUNC)
   }
 
-  enum class Function(
+  public enum class Function(
     id: Long
   ) {
     /**
@@ -54,7 +55,6 @@ open class VisualShaderNodeColorFunc : VisualShaderNode() {
      * 			```
      */
     FUNC_GRAYSCALE(0),
-
     /**
      * Applies sepia tone effect using the following formula:
      *
@@ -66,19 +66,20 @@ open class VisualShaderNodeColorFunc : VisualShaderNode() {
      * 			return vec3(r, g, b);
      * 			```
      */
-    FUNC_SEPIA(1);
+    FUNC_SEPIA(1),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * Converts the color to grayscale using the following formula:
      *
@@ -90,7 +91,7 @@ open class VisualShaderNodeColorFunc : VisualShaderNode() {
      * 			return vec3(max3, max3, max3);
      * 			```
      */
-    final const val FUNC_GRAYSCALE: Long = 0
+    public final const val FUNC_GRAYSCALE: Long = 0
 
     /**
      * Applies sepia tone effect using the following formula:
@@ -103,6 +104,6 @@ open class VisualShaderNodeColorFunc : VisualShaderNode() {
      * 			return vec3(r, g, b);
      * 			```
      */
-    final const val FUNC_SEPIA: Long = 1
+    public final const val FUNC_SEPIA: Long = 1
   }
 }

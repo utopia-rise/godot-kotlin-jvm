@@ -6,7 +6,7 @@
 package godot
 
 import godot.StreamPeerSSL
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -20,6 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * SSL stream peer.
@@ -30,31 +31,31 @@ import kotlin.Suppress
  * SSL stream peer. This object can be used to connect to an SSL server or accept a single SSL client connection.
  */
 @GodotBaseType
-open class StreamPeerSSL : StreamPeer() {
+public open class StreamPeerSSL : StreamPeer() {
   /**
    *
    */
-  open var blockingHandshake: Boolean
+  public open var blockingHandshake: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_GET_BLOCKING_HANDSHAKE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_SET_BLOCKING_HANDSHAKE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_STREAMPEERSSL)
   }
 
   /**
    * Accepts a peer connection as a server using the given `private_key` and providing the given `certificate` to the client. You can pass the optional `chain` parameter to provide additional CA chain information along with the certificate.
    */
-  open fun acceptStream(
+  public open fun acceptStream(
     stream: StreamPeer,
     privateKey: CryptoKey,
     certificate: X509Certificate,
@@ -71,7 +72,7 @@ open class StreamPeerSSL : StreamPeer() {
    *
    * **Note:** Specifying a custom `valid_certificate` is not supported in HTML5 exports due to browsers restrictions.
    */
-  open fun connectToStream(
+  public open fun connectToStream(
     stream: StreamPeer,
     validateCerts: Boolean = false,
     forHostname: String = "",
@@ -87,7 +88,7 @@ open class StreamPeerSSL : StreamPeer() {
   /**
    * Disconnects from host.
    */
-  open fun disconnectFromStream() {
+  public open fun disconnectFromStream(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_DISCONNECT_FROM_STREAM, NIL)
@@ -96,7 +97,7 @@ open class StreamPeerSSL : StreamPeer() {
   /**
    * Returns the status of the connection. See [enum Status] for values.
    */
-  open fun getStatus(): StreamPeerSSL.Status {
+  public open fun getStatus(): StreamPeerSSL.Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_GET_STATUS, LONG)
     return StreamPeerSSL.Status.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -105,73 +106,70 @@ open class StreamPeerSSL : StreamPeer() {
   /**
    * Poll the connection to check for incoming bytes. Call this right before [godot.StreamPeer.getAvailableBytes] for it to work properly.
    */
-  open fun poll() {
+  public open fun poll(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_POLL, NIL)
   }
 
-  enum class Status(
+  public enum class Status(
     id: Long
   ) {
     /**
      * A status representing a [godot.StreamPeerSSL] that is disconnected.
      */
     STATUS_DISCONNECTED(0),
-
     /**
      * A status representing a [godot.StreamPeerSSL] during handshaking.
      */
     STATUS_HANDSHAKING(1),
-
     /**
      * A status representing a [godot.StreamPeerSSL] that is connected to a host.
      */
     STATUS_CONNECTED(2),
-
     /**
      * A status representing a [godot.StreamPeerSSL] in error state.
      */
     STATUS_ERROR(3),
-
     /**
      * An error status that shows a mismatch in the SSL certificate domain presented by the host and the domain requested for validation.
      */
-    STATUS_ERROR_HOSTNAME_MISMATCH(4);
+    STATUS_ERROR_HOSTNAME_MISMATCH(4),
+    ;
 
-    val id: Long
+    public val id: Long
     init {
       this.id = id
     }
 
-    companion object {
-      fun from(value: Long) = values().single { it.id == value }
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
     }
   }
 
-  companion object {
+  public companion object {
     /**
      * A status representing a [godot.StreamPeerSSL] that is connected to a host.
      */
-    final const val STATUS_CONNECTED: Long = 2
+    public final const val STATUS_CONNECTED: Long = 2
 
     /**
      * A status representing a [godot.StreamPeerSSL] that is disconnected.
      */
-    final const val STATUS_DISCONNECTED: Long = 0
+    public final const val STATUS_DISCONNECTED: Long = 0
 
     /**
      * A status representing a [godot.StreamPeerSSL] in error state.
      */
-    final const val STATUS_ERROR: Long = 3
+    public final const val STATUS_ERROR: Long = 3
 
     /**
      * An error status that shows a mismatch in the SSL certificate domain presented by the host and the domain requested for validation.
      */
-    final const val STATUS_ERROR_HOSTNAME_MISMATCH: Long = 4
+    public final const val STATUS_ERROR_HOSTNAME_MISMATCH: Long = 4
 
     /**
      * A status representing a [godot.StreamPeerSSL] during handshaking.
      */
-    final const val STATUS_HANDSHAKING: Long = 1
+    public final const val STATUS_HANDSHAKING: Long = 1
   }
 }

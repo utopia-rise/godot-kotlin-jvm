@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -51,18 +51,18 @@ import kotlin.Unit
  * 		```
  */
 @GodotBaseType
-open class StyleBoxFlat : StyleBox() {
+public open class StyleBoxFlat : StyleBox() {
   /**
    * Antialiasing draws a small ring around the edges, which fades to transparency. As a result, edges look much smoother. This is only noticeable when using rounded corners.
    */
-  open var antiAliasing: Boolean
+  public open var antiAliasing: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_ANTI_ALIASING,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_ANTI_ALIASING,
           NIL)
@@ -71,14 +71,14 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * This changes the size of the faded ring. Higher values can be used to achieve a "blurry" effect.
    */
-  open var antiAliasingSize: Long
+  public open var antiAliasingSize: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_ANTI_ALIASING_SIZE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_ANTI_ALIASING_SIZE, NIL)
@@ -87,13 +87,13 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * The background color of the stylebox.
    */
-  open var bgColor: Color
+  public open var bgColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BG_COLOR, COLOR)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(COLOR to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BG_COLOR, NIL)
     }
@@ -101,14 +101,14 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * If `true`, the border will fade into the background color.
    */
-  open var borderBlend: Boolean
+  public open var borderBlend: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_BLEND,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_BLEND,
           NIL)
@@ -117,14 +117,14 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the color of the border.
    */
-  open var borderColor: Color
+  public open var borderColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_COLOR,
           COLOR)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(COLOR to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_COLOR,
           NIL)
@@ -133,14 +133,14 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * Border width for the bottom border.
    */
-  open var borderWidthBottom: Long
+  public open var borderWidthBottom: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_WIDTH_BOTTOM, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_WIDTH_BOTTOM, NIL)
@@ -149,14 +149,14 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * Border width for the left border.
    */
-  open var borderWidthLeft: Long
+  public open var borderWidthLeft: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_WIDTH_LEFT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_WIDTH_LEFT, NIL)
@@ -165,14 +165,14 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * Border width for the right border.
    */
-  open var borderWidthRight: Long
+  public open var borderWidthRight: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_WIDTH_RIGHT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_WIDTH_RIGHT, NIL)
@@ -181,14 +181,14 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * Border width for the top border.
    */
-  open var borderWidthTop: Long
+  public open var borderWidthTop: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_WIDTH_TOP,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_WIDTH_TOP,
           NIL)
@@ -201,14 +201,14 @@ open class StyleBoxFlat : StyleBox() {
    *
    * A corner detail of `1` will result in chamfered corners instead of rounded corners, which is useful for some artistic effects.
    */
-  open var cornerDetail: Long
+  public open var cornerDetail: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_CORNER_DETAIL,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_DETAIL,
           NIL)
@@ -217,14 +217,14 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * The bottom-left corner's radius. If `0`, the corner is not rounded.
    */
-  open var cornerRadiusBottomLeft: Long
+  public open var cornerRadiusBottomLeft: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_CORNER_RADIUS_BOTTOM_LEFT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS_BOTTOM_LEFT, NIL)
@@ -233,14 +233,14 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * The bottom-right corner's radius. If `0`, the corner is not rounded.
    */
-  open var cornerRadiusBottomRight: Long
+  public open var cornerRadiusBottomRight: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_CORNER_RADIUS_BOTTOM_RIGHT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS_BOTTOM_RIGHT, NIL)
@@ -249,14 +249,14 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * The top-left corner's radius. If `0`, the corner is not rounded.
    */
-  open var cornerRadiusTopLeft: Long
+  public open var cornerRadiusTopLeft: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_CORNER_RADIUS_TOP_LEFT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS_TOP_LEFT, NIL)
@@ -265,14 +265,14 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * The top-right corner's radius. If `0`, the corner is not rounded.
    */
-  open var cornerRadiusTopRight: Long
+  public open var cornerRadiusTopRight: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_CORNER_RADIUS_TOP_RIGHT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS_TOP_RIGHT, NIL)
@@ -281,14 +281,14 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * Toggles drawing of the inner part of the stylebox.
    */
-  open var drawCenter: Boolean
+  public open var drawCenter: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_DRAW_CENTER,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_DRAW_CENTER, NIL)
     }
@@ -296,14 +296,14 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * Expands the stylebox outside of the control rect on the bottom edge. Useful in combination with [borderWidthBottom] to draw a border outside the control rect.
    */
-  open var expandMarginBottom: Double
+  public open var expandMarginBottom: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_EXPAND_MARGIN_BOTTOM, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN_BOTTOM, NIL)
@@ -312,14 +312,14 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * Expands the stylebox outside of the control rect on the left edge. Useful in combination with [borderWidthLeft] to draw a border outside the control rect.
    */
-  open var expandMarginLeft: Double
+  public open var expandMarginLeft: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_EXPAND_MARGIN_LEFT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN_LEFT, NIL)
@@ -328,14 +328,14 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * Expands the stylebox outside of the control rect on the right edge. Useful in combination with [borderWidthRight] to draw a border outside the control rect.
    */
-  open var expandMarginRight: Double
+  public open var expandMarginRight: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_EXPAND_MARGIN_RIGHT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN_RIGHT, NIL)
@@ -344,14 +344,14 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * Expands the stylebox outside of the control rect on the top edge. Useful in combination with [borderWidthTop] to draw a border outside the control rect.
    */
-  open var expandMarginTop: Double
+  public open var expandMarginTop: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_EXPAND_MARGIN_TOP, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN_TOP, NIL)
@@ -360,14 +360,14 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * The color of the shadow. This has no effect if [shadowSize] is lower than 1.
    */
-  open var shadowColor: Color
+  public open var shadowColor: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_SHADOW_COLOR,
           COLOR)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(COLOR to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_SHADOW_COLOR,
           NIL)
@@ -376,14 +376,14 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * The shadow offset in pixels. Adjusts the position of the shadow relatively to the stylebox.
    */
-  open var shadowOffset: Vector2
+  public open var shadowOffset: Vector2
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_SHADOW_OFFSET,
           VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_SHADOW_OFFSET,
           NIL)
@@ -392,45 +392,45 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * The shadow size in pixels.
    */
-  open var shadowSize: Long
+  public open var shadowSize: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_SHADOW_SIZE,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_SHADOW_SIZE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_STYLEBOXFLAT)
   }
 
   @CoreTypeHelper
-  open fun bgColor(schedule: Color.() -> Unit): Color = bgColor.apply{
+  public open fun bgColor(schedule: Color.() -> Unit): Color = bgColor.apply{
       schedule(this)
       bgColor = this
   }
 
 
   @CoreTypeHelper
-  open fun borderColor(schedule: Color.() -> Unit): Color = borderColor.apply{
+  public open fun borderColor(schedule: Color.() -> Unit): Color = borderColor.apply{
       schedule(this)
       borderColor = this
   }
 
 
   @CoreTypeHelper
-  open fun shadowColor(schedule: Color.() -> Unit): Color = shadowColor.apply{
+  public open fun shadowColor(schedule: Color.() -> Unit): Color = shadowColor.apply{
       schedule(this)
       shadowColor = this
   }
 
 
   @CoreTypeHelper
-  open fun shadowOffset(schedule: Vector2.() -> Unit): Vector2 = shadowOffset.apply{
+  public open fun shadowOffset(schedule: Vector2.() -> Unit): Vector2 = shadowOffset.apply{
       schedule(this)
       shadowOffset = this
   }
@@ -439,7 +439,7 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * Returns the smallest border width out of all four borders.
    */
-  open fun getBorderWidthMin(): Long {
+  public open fun getBorderWidthMin(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_WIDTH_MIN,
         LONG)
@@ -449,7 +449,7 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the border width to `width` pixels for all margins.
    */
-  open fun setBorderWidthAll(width: Long) {
+  public open fun setBorderWidthAll(width: Long): Unit {
     TransferContext.writeArguments(LONG to width)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_WIDTH_ALL,
         NIL)
@@ -458,7 +458,7 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the corner radius to `radius` pixels for all corners.
    */
-  open fun setCornerRadiusAll(radius: Long) {
+  public open fun setCornerRadiusAll(radius: Long): Unit {
     TransferContext.writeArguments(LONG to radius)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS_ALL,
         NIL)
@@ -467,12 +467,12 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the corner radius for each corner to `radius_top_left`, `radius_top_right`, `radius_bottom_right`, and `radius_bottom_left` pixels.
    */
-  open fun setCornerRadiusIndividual(
+  public open fun setCornerRadiusIndividual(
     radiusTopLeft: Long,
     radiusTopRight: Long,
     radiusBottomRight: Long,
     radiusBottomLeft: Long
-  ) {
+  ): Unit {
     TransferContext.writeArguments(LONG to radiusTopLeft, LONG to radiusTopRight, LONG to
         radiusBottomRight, LONG to radiusBottomLeft)
     TransferContext.callMethod(rawPtr,
@@ -482,7 +482,7 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the expand margin to `size` pixels for all margins.
    */
-  open fun setExpandMarginAll(size: Double) {
+  public open fun setExpandMarginAll(size: Double): Unit {
     TransferContext.writeArguments(DOUBLE to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN_ALL,
         NIL)
@@ -491,12 +491,12 @@ open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the expand margin for each margin to `size_left`, `size_top`, `size_right`, and `size_bottom` pixels.
    */
-  open fun setExpandMarginIndividual(
+  public open fun setExpandMarginIndividual(
     sizeLeft: Double,
     sizeTop: Double,
     sizeRight: Double,
     sizeBottom: Double
-  ) {
+  ): Unit {
     TransferContext.writeArguments(DOUBLE to sizeLeft, DOUBLE to sizeTop, DOUBLE to sizeRight,
         DOUBLE to sizeBottom)
     TransferContext.callMethod(rawPtr,

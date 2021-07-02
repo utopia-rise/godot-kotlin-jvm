@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.LONG
@@ -15,6 +15,7 @@ import godot.core.Vector3
 import kotlin.Any
 import kotlin.Long
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Collision data for [godot.KinematicBody] collisions.
@@ -24,11 +25,11 @@ import kotlin.Suppress
  * This object contains information about the collision, including the colliding object, the remaining motion, and the collision position. This information can be used to calculate a collision response.
  */
 @GodotBaseType
-open class KinematicCollision : Reference() {
+public open class KinematicCollision : Reference() {
   /**
    * The colliding body.
    */
-  open val collider: Object?
+  public open val collider: Object?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION_GET_COLLIDER,
@@ -39,7 +40,7 @@ open class KinematicCollision : Reference() {
   /**
    * The colliding body's unique instance ID. See [godot.Object.getInstanceId].
    */
-  open val colliderId: Long
+  public open val colliderId: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -50,7 +51,7 @@ open class KinematicCollision : Reference() {
   /**
    * The colliding body's metadata. See [godot.Object].
    */
-  open val colliderMetadata: Any?
+  public open val colliderMetadata: Any?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -61,7 +62,7 @@ open class KinematicCollision : Reference() {
   /**
    * The colliding body's shape.
    */
-  open val colliderShape: Object?
+  public open val colliderShape: Object?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -72,7 +73,7 @@ open class KinematicCollision : Reference() {
   /**
    * The colliding shape's index. See [godot.CollisionObject].
    */
-  open val colliderShapeIndex: Long
+  public open val colliderShapeIndex: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -83,7 +84,7 @@ open class KinematicCollision : Reference() {
   /**
    * The colliding object's velocity.
    */
-  open val colliderVelocity: Vector3
+  public open val colliderVelocity: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -94,7 +95,7 @@ open class KinematicCollision : Reference() {
   /**
    * The moving object's colliding shape.
    */
-  open val localShape: Object?
+  public open val localShape: Object?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
@@ -105,7 +106,7 @@ open class KinematicCollision : Reference() {
   /**
    * The colliding body's shape's normal at the point of collision.
    */
-  open val normal: Vector3
+  public open val normal: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION_GET_NORMAL,
@@ -116,7 +117,7 @@ open class KinematicCollision : Reference() {
   /**
    * The point of collision, in global coordinates.
    */
-  open val position: Vector3
+  public open val position: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION_GET_POSITION,
@@ -127,7 +128,7 @@ open class KinematicCollision : Reference() {
   /**
    * The moving object's remaining movement vector.
    */
-  open val remainder: Vector3
+  public open val remainder: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION_GET_REMAINDER,
@@ -138,7 +139,7 @@ open class KinematicCollision : Reference() {
   /**
    * The distance the moving object traveled before collision.
    */
-  open val travel: Vector3
+  public open val travel: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION_GET_TRAVEL,
@@ -146,7 +147,7 @@ open class KinematicCollision : Reference() {
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_KINEMATICCOLLISION)
   }
 }

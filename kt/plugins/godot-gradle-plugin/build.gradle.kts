@@ -1,6 +1,7 @@
 plugins {
-    `kotlin-dsl`
+    kotlin("jvm")
     `maven-publish`
+    `java-gradle-plugin`
     id("com.gradle.plugin-publish") version "0.14.0"
     id("com.utopia-rise.godot-publish")
     id("org.ajoberstar.grgit")
@@ -30,15 +31,18 @@ pluginBundle {
     }
 }
 
+repositories {
+    google()
+}
+
 dependencies {
     implementation(kotlin("stdlib"))
     implementation(kotlin("gradle-plugin"))
     implementation(kotlin("gradle-plugin-api"))
     implementation("com.github.jengelman.gradle.plugins:shadow:${DependenciesVersions.shadowJarPluginVersion}")
+    implementation("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:${DependenciesVersions.kspVersion}")
 
     implementation(project(":godot-build-props"))
-    implementation(project(":godot-kotlin-entry-generator"))
-    compileOnly(project(":godot-kotlin-compiler-plugin-common"))
 }
 
 tasks {

@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.Transform
 import godot.core.VariantType.BOOL
@@ -37,22 +37,22 @@ import kotlin.Unit
  * **Note:** Unless otherwise specified, all methods that have angle parameters must have angles specified as *radians*. To convert degrees to radians, use [@GDScript.deg2rad].
  */
 @GodotBaseType
-open class Spatial : Node() {
+public open class Spatial : Node() {
   /**
    * Emitted when node visibility changes.
    */
-  val visibilityChanged: Signal0 by signal()
+  public val visibilityChanged: Signal0 by signal()
 
   /**
    * The [godot.SpatialGizmo] for this node. Used for example in [godot.EditorSpatialGizmo] as custom visualization and editing handles in Editor.
    */
-  open var gizmo: SpatialGizmo?
+  public open var gizmo: SpatialGizmo?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_GET_GIZMO, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as SpatialGizmo?
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_SET_GIZMO, NIL)
     }
@@ -60,14 +60,14 @@ open class Spatial : Node() {
   /**
    * World space (global) [godot.core.Transform] of this node.
    */
-  open var globalTransform: Transform
+  public open var globalTransform: Transform
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_GET_GLOBAL_TRANSFORM,
           TRANSFORM)
       return TransferContext.readReturnValue(TRANSFORM, false) as Transform
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(TRANSFORM to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_SET_GLOBAL_TRANSFORM, NIL)
     }
@@ -77,13 +77,13 @@ open class Spatial : Node() {
    *
    * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler angles, which are the three independent parameters of the Euler-angle parametrization of the rotation matrix, are stored in a [godot.core.Vector3] data structure not because the rotation is a vector, but only because [godot.core.Vector3] exists as a convenient data-structure to store 3 floating-point numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
    */
-  open var rotation: Vector3
+  public open var rotation: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_GET_ROTATION, VECTOR3)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_SET_ROTATION, NIL)
     }
@@ -91,14 +91,14 @@ open class Spatial : Node() {
   /**
    * Rotation part of the local transformation in degrees, specified in terms of YXZ-Euler angles in the format (X angle, Y angle, Z angle).
    */
-  open var rotationDegrees: Vector3
+  public open var rotationDegrees: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_GET_ROTATION_DEGREES,
           VECTOR3)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_SET_ROTATION_DEGREES, NIL)
     }
@@ -106,13 +106,13 @@ open class Spatial : Node() {
   /**
    * Scale part of the local transformation.
    */
-  open var scale: Vector3
+  public open var scale: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_GET_SCALE, VECTOR3)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_SET_SCALE, NIL)
     }
@@ -120,13 +120,13 @@ open class Spatial : Node() {
   /**
    * Local space [godot.core.Transform] of this node, with respect to the parent node.
    */
-  open var transform: Transform
+  public open var transform: Transform
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_GET_TRANSFORM, TRANSFORM)
       return TransferContext.readReturnValue(TRANSFORM, false) as Transform
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(TRANSFORM to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_SET_TRANSFORM, NIL)
     }
@@ -134,13 +134,13 @@ open class Spatial : Node() {
   /**
    * Local translation of this node.
    */
-  open var translation: Vector3
+  public open var translation: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_GET_TRANSLATION, VECTOR3)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_SET_TRANSLATION, NIL)
     }
@@ -148,70 +148,71 @@ open class Spatial : Node() {
   /**
    * If `true`, this node is drawn. The node is only visible if all of its antecedents are visible as well (in other words, [isVisibleInTree] must return `true`).
    */
-  open var visible: Boolean
+  public open var visible: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_GET_VISIBLE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_SET_VISIBLE, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SPATIAL)
   }
 
   @CoreTypeHelper
-  open fun globalTransform(schedule: Transform.() -> Unit): Transform = globalTransform.apply{
+  public open fun globalTransform(schedule: Transform.() -> Unit): Transform =
+      globalTransform.apply{
       schedule(this)
       globalTransform = this
   }
 
 
   @CoreTypeHelper
-  open fun rotation(schedule: Vector3.() -> Unit): Vector3 = rotation.apply{
+  public open fun rotation(schedule: Vector3.() -> Unit): Vector3 = rotation.apply{
       schedule(this)
       rotation = this
   }
 
 
   @CoreTypeHelper
-  open fun rotationDegrees(schedule: Vector3.() -> Unit): Vector3 = rotationDegrees.apply{
+  public open fun rotationDegrees(schedule: Vector3.() -> Unit): Vector3 = rotationDegrees.apply{
       schedule(this)
       rotationDegrees = this
   }
 
 
   @CoreTypeHelper
-  open fun scale(schedule: Vector3.() -> Unit): Vector3 = scale.apply{
+  public open fun scale(schedule: Vector3.() -> Unit): Vector3 = scale.apply{
       schedule(this)
       scale = this
   }
 
 
   @CoreTypeHelper
-  open fun transform(schedule: Transform.() -> Unit): Transform = transform.apply{
+  public open fun transform(schedule: Transform.() -> Unit): Transform = transform.apply{
       schedule(this)
       transform = this
   }
 
 
   @CoreTypeHelper
-  open fun translation(schedule: Vector3.() -> Unit): Vector3 = translation.apply{
+  public open fun translation(schedule: Vector3.() -> Unit): Vector3 = translation.apply{
       schedule(this)
       translation = this
   }
 
 
-  open fun _updateGizmo() {
+  public open fun _updateGizmo(): Unit {
   }
 
   /**
    * Forces the transform to update. Transform changes in physics are not instant for performance reasons. Transforms are accumulated and then set. Use this if you need an up-to-date transform when doing physics operations.
    */
-  open fun forceUpdateTransform() {
+  public open fun forceUpdateTransform(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_FORCE_UPDATE_TRANSFORM, NIL)
   }
@@ -219,7 +220,7 @@ open class Spatial : Node() {
   /**
    * Returns the parent [godot.Spatial], or an empty [godot.Object] if no parent exists or parent is not of type [godot.Spatial].
    */
-  open fun getParentSpatial(): Spatial? {
+  public open fun getParentSpatial(): Spatial? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_GET_PARENT_SPATIAL, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Spatial?
@@ -228,7 +229,7 @@ open class Spatial : Node() {
   /**
    * Returns the current [godot.World] resource this [godot.Spatial] node is registered to.
    */
-  open fun getWorld(): World? {
+  public open fun getWorld(): World? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_GET_WORLD, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as World?
@@ -237,7 +238,7 @@ open class Spatial : Node() {
   /**
    * Rotates the global (world) transformation around axis, a unit [godot.core.Vector3], by specified angle in radians. The rotation axis is in global coordinate system.
    */
-  open fun globalRotate(axis: Vector3, angle: Double) {
+  public open fun globalRotate(axis: Vector3, angle: Double): Unit {
     TransferContext.writeArguments(VECTOR3 to axis, DOUBLE to angle)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_GLOBAL_ROTATE, NIL)
   }
@@ -245,7 +246,7 @@ open class Spatial : Node() {
   /**
    * Scales the global (world) transformation by the given [godot.core.Vector3] scale factors.
    */
-  open fun globalScale(scale: Vector3) {
+  public open fun globalScale(scale: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to scale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_GLOBAL_SCALE, NIL)
   }
@@ -253,7 +254,7 @@ open class Spatial : Node() {
   /**
    * Moves the global (world) transformation by [godot.core.Vector3] offset. The offset is in global coordinate system.
    */
-  open fun globalTranslate(offset: Vector3) {
+  public open fun globalTranslate(offset: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_GLOBAL_TRANSLATE, NIL)
   }
@@ -261,7 +262,7 @@ open class Spatial : Node() {
   /**
    * Disables rendering of this node. Changes [visible] to `false`.
    */
-  open fun hide() {
+  public open fun hide(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_HIDE, NIL)
   }
@@ -269,7 +270,7 @@ open class Spatial : Node() {
   /**
    * Returns whether node notifies about its local transformation changes. [godot.Spatial] will not propagate this by default.
    */
-  open fun isLocalTransformNotificationEnabled(): Boolean {
+  public open fun isLocalTransformNotificationEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SPATIAL_IS_LOCAL_TRANSFORM_NOTIFICATION_ENABLED, BOOL)
@@ -279,7 +280,7 @@ open class Spatial : Node() {
   /**
    * Returns whether this node uses a scale of `(1, 1, 1)` or its local transformation scale.
    */
-  open fun isScaleDisabled(): Boolean {
+  public open fun isScaleDisabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_IS_SCALE_DISABLED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -288,7 +289,7 @@ open class Spatial : Node() {
   /**
    * Returns whether this node is set as Toplevel, that is whether it ignores its parent nodes transformations.
    */
-  open fun isSetAsToplevel(): Boolean {
+  public open fun isSetAsToplevel(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_IS_SET_AS_TOPLEVEL, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -297,7 +298,7 @@ open class Spatial : Node() {
   /**
    * Returns whether the node notifies about its global and local transformation changes. [godot.Spatial] will not propagate this by default.
    */
-  open fun isTransformNotificationEnabled(): Boolean {
+  public open fun isTransformNotificationEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SPATIAL_IS_TRANSFORM_NOTIFICATION_ENABLED, BOOL)
@@ -307,7 +308,7 @@ open class Spatial : Node() {
   /**
    * Returns `true` if the node is present in the [godot.SceneTree], its [visible] property is `true` and all its antecedents are also visible. If any antecedent is hidden, this node will not be visible in the scene tree.
    */
-  open fun isVisibleInTree(): Boolean {
+  public open fun isVisibleInTree(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_IS_VISIBLE_IN_TREE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -320,7 +321,7 @@ open class Spatial : Node() {
    *
    * Operations take place in global space.
    */
-  open fun lookAt(target: Vector3, up: Vector3) {
+  public open fun lookAt(target: Vector3, up: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to target, VECTOR3 to up)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_LOOK_AT, NIL)
   }
@@ -328,11 +329,11 @@ open class Spatial : Node() {
   /**
    * Moves the node to the specified `position`, and then rotates itself to point toward the `target` as per [lookAt]. Operations take place in global space.
    */
-  open fun lookAtFromPosition(
+  public open fun lookAtFromPosition(
     position: Vector3,
     target: Vector3,
     up: Vector3
-  ) {
+  ): Unit {
     TransferContext.writeArguments(VECTOR3 to position, VECTOR3 to target, VECTOR3 to up)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_LOOK_AT_FROM_POSITION, NIL)
   }
@@ -340,7 +341,7 @@ open class Spatial : Node() {
   /**
    * Resets this node's transformations (like scale, skew and taper) preserving its rotation and translation by performing Gram-Schmidt orthonormalization on this node's [godot.core.Transform].
    */
-  open fun orthonormalize() {
+  public open fun orthonormalize(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_ORTHONORMALIZE, NIL)
   }
@@ -348,7 +349,7 @@ open class Spatial : Node() {
   /**
    * Rotates the local transformation around axis, a unit [godot.core.Vector3], by specified angle in radians.
    */
-  open fun rotate(axis: Vector3, angle: Double) {
+  public open fun rotate(axis: Vector3, angle: Double): Unit {
     TransferContext.writeArguments(VECTOR3 to axis, DOUBLE to angle)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_ROTATE, NIL)
   }
@@ -356,7 +357,7 @@ open class Spatial : Node() {
   /**
    * Rotates the local transformation around axis, a unit [godot.core.Vector3], by specified angle in radians. The rotation axis is in object-local coordinate system.
    */
-  open fun rotateObjectLocal(axis: Vector3, angle: Double) {
+  public open fun rotateObjectLocal(axis: Vector3, angle: Double): Unit {
     TransferContext.writeArguments(VECTOR3 to axis, DOUBLE to angle)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_ROTATE_OBJECT_LOCAL, NIL)
   }
@@ -364,7 +365,7 @@ open class Spatial : Node() {
   /**
    * Rotates the local transformation around the X axis by angle in radians.
    */
-  open fun rotateX(angle: Double) {
+  public open fun rotateX(angle: Double): Unit {
     TransferContext.writeArguments(DOUBLE to angle)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_ROTATE_X, NIL)
   }
@@ -372,7 +373,7 @@ open class Spatial : Node() {
   /**
    * Rotates the local transformation around the Y axis by angle in radians.
    */
-  open fun rotateY(angle: Double) {
+  public open fun rotateY(angle: Double): Unit {
     TransferContext.writeArguments(DOUBLE to angle)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_ROTATE_Y, NIL)
   }
@@ -380,7 +381,7 @@ open class Spatial : Node() {
   /**
    * Rotates the local transformation around the Z axis by angle in radians.
    */
-  open fun rotateZ(angle: Double) {
+  public open fun rotateZ(angle: Double): Unit {
     TransferContext.writeArguments(DOUBLE to angle)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_ROTATE_Z, NIL)
   }
@@ -388,7 +389,7 @@ open class Spatial : Node() {
   /**
    * Scales the local transformation by given 3D scale factors in object-local coordinate system.
    */
-  open fun scaleObjectLocal(scale: Vector3) {
+  public open fun scaleObjectLocal(scale: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to scale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_SCALE_OBJECT_LOCAL, NIL)
   }
@@ -396,7 +397,7 @@ open class Spatial : Node() {
   /**
    * Makes the node ignore its parents transformations. Node transformations are only in global space.
    */
-  open fun setAsToplevel(enable: Boolean) {
+  public open fun setAsToplevel(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_SET_AS_TOPLEVEL, NIL)
   }
@@ -404,7 +405,7 @@ open class Spatial : Node() {
   /**
    * Sets whether the node uses a scale of `(1, 1, 1)` or its local transformation scale. Changes to the local transformation scale are preserved.
    */
-  open fun setDisableScale(disable: Boolean) {
+  public open fun setDisableScale(disable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to disable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_SET_DISABLE_SCALE, NIL)
   }
@@ -412,7 +413,7 @@ open class Spatial : Node() {
   /**
    * Reset all transformations for this node (sets its [godot.core.Transform] to the identity matrix).
    */
-  open fun setIdentity() {
+  public open fun setIdentity(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_SET_IDENTITY, NIL)
   }
@@ -420,7 +421,7 @@ open class Spatial : Node() {
   /**
    * Sets whether the node ignores notification that its transformation (global or local) changed.
    */
-  open fun setIgnoreTransformNotification(enabled: Boolean) {
+  public open fun setIgnoreTransformNotification(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SPATIAL_SET_IGNORE_TRANSFORM_NOTIFICATION, NIL)
@@ -429,7 +430,7 @@ open class Spatial : Node() {
   /**
    * Sets whether the node notifies about its local transformation changes. [godot.Spatial] will not propagate this by default.
    */
-  open fun setNotifyLocalTransform(enable: Boolean) {
+  public open fun setNotifyLocalTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_SET_NOTIFY_LOCAL_TRANSFORM,
         NIL)
@@ -438,7 +439,7 @@ open class Spatial : Node() {
   /**
    * Sets whether the node notifies about its global and local transformation changes. [godot.Spatial] will not propagate this by default, unless it is in the editor context and it has a valid gizmo.
    */
-  open fun setNotifyTransform(enable: Boolean) {
+  public open fun setNotifyTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_SET_NOTIFY_TRANSFORM, NIL)
   }
@@ -446,7 +447,7 @@ open class Spatial : Node() {
   /**
    * Enables rendering of this node. Changes [visible] to `true`.
    */
-  open fun show() {
+  public open fun show(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_SHOW, NIL)
   }
@@ -454,7 +455,7 @@ open class Spatial : Node() {
   /**
    * Transforms `local_point` from this node's local space to world space.
    */
-  open fun toGlobal(localPoint: Vector3): Vector3 {
+  public open fun toGlobal(localPoint: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to localPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_TO_GLOBAL, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
@@ -463,7 +464,7 @@ open class Spatial : Node() {
   /**
    * Transforms `global_point` from world space to this node's local space.
    */
-  open fun toLocal(globalPoint: Vector3): Vector3 {
+  public open fun toLocal(globalPoint: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to globalPoint)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_TO_LOCAL, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
@@ -474,7 +475,7 @@ open class Spatial : Node() {
    *
    * Note that the translation `offset` is affected by the node's scale, so if scaled by e.g. `(10, 1, 1)`, a translation by an offset of `(2, 0, 0)` would actually add 20 (`2 * 10`) to the X coordinate.
    */
-  open fun translate(offset: Vector3) {
+  public open fun translate(offset: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_TRANSLATE, NIL)
   }
@@ -482,7 +483,7 @@ open class Spatial : Node() {
   /**
    * Changes the node's position by the given offset [godot.core.Vector3] in local space.
    */
-  open fun translateObjectLocal(offset: Vector3) {
+  public open fun translateObjectLocal(offset: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to offset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_TRANSLATE_OBJECT_LOCAL, NIL)
   }
@@ -490,32 +491,32 @@ open class Spatial : Node() {
   /**
    * Updates the [godot.SpatialGizmo] of this node.
    */
-  open fun updateGizmo() {
+  public open fun updateGizmo(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIAL_UPDATE_GIZMO, NIL)
   }
 
-  companion object {
+  public companion object {
     /**
      * Spatial nodes receives this notification when they are registered to new [godot.World] resource.
      */
-    final const val NOTIFICATION_ENTER_WORLD: Long = 41
+    public final const val NOTIFICATION_ENTER_WORLD: Long = 41
 
     /**
      * Spatial nodes receives this notification when they are unregistered from current [godot.World] resource.
      */
-    final const val NOTIFICATION_EXIT_WORLD: Long = 42
+    public final const val NOTIFICATION_EXIT_WORLD: Long = 42
 
     /**
      * Spatial nodes receives this notification when their global transform changes. This means that either the current or a parent node changed its transform.
      *
      * In order for [NOTIFICATION_TRANSFORM_CHANGED] to work, users first need to ask for it, with [setNotifyTransform]. The notification is also sent if the node is in the editor context and it has a valid gizmo.
      */
-    final const val NOTIFICATION_TRANSFORM_CHANGED: Long = 2000
+    public final const val NOTIFICATION_TRANSFORM_CHANGED: Long = 2000
 
     /**
      * Spatial nodes receives this notification when their visibility changes.
      */
-    final const val NOTIFICATION_VISIBILITY_CHANGED: Long = 43
+    public final const val NOTIFICATION_VISIBILITY_CHANGED: Long = 43
   }
 }

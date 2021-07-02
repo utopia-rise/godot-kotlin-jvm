@@ -5,8 +5,8 @@
 
 package godot
 
-import godot.annotation.CoreTypeHelper
-import godot.annotation.GodotBaseType
+import godot.`annotation`.CoreTypeHelper
+import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -26,17 +26,17 @@ import kotlin.Unit
  * [godot.StyleBox] that displays a single line of a given color and thickness. It can be used to draw things like separators.
  */
 @GodotBaseType
-open class StyleBoxLine : StyleBox() {
+public open class StyleBoxLine : StyleBox() {
   /**
    * The line's color.
    */
-  open var color: Color
+  public open var color: Color
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_GET_COLOR, COLOR)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(COLOR to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_COLOR, NIL)
     }
@@ -44,14 +44,14 @@ open class StyleBoxLine : StyleBox() {
   /**
    * The number of pixels the line will extend before the [godot.StyleBoxLine]'s bounds. If set to a negative value, the line will begin inside the [godot.StyleBoxLine]'s bounds.
    */
-  open var growBegin: Double
+  public open var growBegin: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_GET_GROW_BEGIN,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_GROW_BEGIN, NIL)
     }
@@ -59,13 +59,13 @@ open class StyleBoxLine : StyleBox() {
   /**
    * The number of pixels the line will extend past the [godot.StyleBoxLine]'s bounds. If set to a negative value, the line will end inside the [godot.StyleBoxLine]'s bounds.
    */
-  open var growEnd: Double
+  public open var growEnd: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_GET_GROW_END, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_GROW_END, NIL)
     }
@@ -73,13 +73,13 @@ open class StyleBoxLine : StyleBox() {
   /**
    * The line's thickness in pixels.
    */
-  open var thickness: Long
+  public open var thickness: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_GET_THICKNESS, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_THICKNESS, NIL)
     }
@@ -87,23 +87,23 @@ open class StyleBoxLine : StyleBox() {
   /**
    * If `true`, the line will be vertical. If `false`, the line will be horizontal.
    */
-  open var vertical: Boolean
+  public open var vertical: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_GET_VERTICAL, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
-    set(value) {
+    set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXLINE_SET_VERTICAL, NIL)
     }
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_STYLEBOXLINE)
   }
 
   @CoreTypeHelper
-  open fun color(schedule: Color.() -> Unit): Color = color.apply{
+  public open fun color(schedule: Color.() -> Unit): Color = color.apply{
       schedule(this)
       color = this
   }

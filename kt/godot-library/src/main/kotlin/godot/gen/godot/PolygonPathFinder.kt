@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.PoolIntArray
 import godot.core.PoolVector2Array
@@ -26,27 +26,28 @@ import kotlin.Double
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  *
  */
 @GodotBaseType
-open class PolygonPathFinder : Resource() {
-  override fun __new() {
+public open class PolygonPathFinder : Resource() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_POLYGONPATHFINDER)
   }
 
-  open fun _getData(): Dictionary<Any?, Any?> {
+  public open fun _getData(): Dictionary<Any?, Any?> {
     throw NotImplementedError("_get_data is not implemented for PolygonPathFinder")
   }
 
-  open fun _setData(arg0: Dictionary<Any?, Any?>) {
+  public open fun _setData(arg0: Dictionary<Any?, Any?>): Unit {
   }
 
   /**
    *
    */
-  open fun findPath(from: Vector2, to: Vector2): PoolVector2Array {
+  public open fun findPath(from: Vector2, to: Vector2): PoolVector2Array {
     TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_FIND_PATH,
         POOL_VECTOR2_ARRAY)
@@ -56,7 +57,7 @@ open class PolygonPathFinder : Resource() {
   /**
    *
    */
-  open fun getBounds(): Rect2 {
+  public open fun getBounds(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_GET_BOUNDS, RECT2)
     return TransferContext.readReturnValue(RECT2, false) as Rect2
@@ -65,7 +66,7 @@ open class PolygonPathFinder : Resource() {
   /**
    *
    */
-  open fun getClosestPoint(point: Vector2): Vector2 {
+  public open fun getClosestPoint(point: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to point)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_GET_CLOSEST_POINT,
         VECTOR2)
@@ -75,7 +76,7 @@ open class PolygonPathFinder : Resource() {
   /**
    *
    */
-  open fun getIntersections(from: Vector2, to: Vector2): PoolVector2Array {
+  public open fun getIntersections(from: Vector2, to: Vector2): PoolVector2Array {
     TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_GET_INTERSECTIONS,
         POOL_VECTOR2_ARRAY)
@@ -85,7 +86,7 @@ open class PolygonPathFinder : Resource() {
   /**
    *
    */
-  open fun getPointPenalty(idx: Long): Double {
+  public open fun getPointPenalty(idx: Long): Double {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_GET_POINT_PENALTY,
         DOUBLE)
@@ -95,7 +96,7 @@ open class PolygonPathFinder : Resource() {
   /**
    *
    */
-  open fun isPointInside(point: Vector2): Boolean {
+  public open fun isPointInside(point: Vector2): Boolean {
     TransferContext.writeArguments(VECTOR2 to point)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_IS_POINT_INSIDE,
         BOOL)
@@ -105,7 +106,7 @@ open class PolygonPathFinder : Resource() {
   /**
    *
    */
-  open fun setPointPenalty(idx: Long, penalty: Double) {
+  public open fun setPointPenalty(idx: Long, penalty: Double): Unit {
     TransferContext.writeArguments(LONG to idx, DOUBLE to penalty)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_SET_POINT_PENALTY,
         NIL)
@@ -114,7 +115,7 @@ open class PolygonPathFinder : Resource() {
   /**
    *
    */
-  open fun setup(points: PoolVector2Array, connections: PoolIntArray) {
+  public open fun setup(points: PoolVector2Array, connections: PoolIntArray): Unit {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to points, POOL_INT_ARRAY to connections)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGONPATHFINDER_SETUP, NIL)
   }

@@ -5,7 +5,7 @@
 
 package godot
 
-import godot.annotation.GodotBaseType
+import godot.`annotation`.GodotBaseType
 import godot.core.PoolStringArray
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -20,6 +20,7 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.String
 import kotlin.Suppress
+import kotlin.Unit
 
 /**
  * Resource filesystem, as the editor sees it.
@@ -29,35 +30,35 @@ import kotlin.Suppress
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getResourceFilesystem].
  */
 @GodotBaseType
-open class EditorFileSystem : Node() {
+public open class EditorFileSystem : Node() {
   /**
    * Emitted if the filesystem changed.
    */
-  val filesystemChanged: Signal0 by signal()
+  public val filesystemChanged: Signal0 by signal()
 
   /**
    * Emitted if a resource is reimported.
    */
-  val resourcesReimported: Signal1<PoolStringArray> by signal("resources")
+  public val resourcesReimported: Signal1<PoolStringArray> by signal("resources")
 
   /**
    * Emitted if at least one resource is reloaded when the filesystem is scanned.
    */
-  val resourcesReload: Signal1<PoolStringArray> by signal("resources")
+  public val resourcesReload: Signal1<PoolStringArray> by signal("resources")
 
   /**
    * Emitted if the source of any imported file changed.
    */
-  val sourcesChanged: Signal1<Boolean> by signal("exist")
+  public val sourcesChanged: Signal1<Boolean> by signal("exist")
 
-  override fun __new() {
+  public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORFILESYSTEM)
   }
 
   /**
    * Gets the type of the file, given the full path.
    */
-  open fun getFileType(path: String): String {
+  public open fun getFileType(path: String): String {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_FILE_TYPE,
         STRING)
@@ -67,7 +68,7 @@ open class EditorFileSystem : Node() {
   /**
    * Gets the root directory object.
    */
-  open fun getFilesystem(): EditorFileSystemDirectory? {
+  public open fun getFilesystem(): EditorFileSystemDirectory? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_FILESYSTEM,
         OBJECT)
@@ -77,7 +78,7 @@ open class EditorFileSystem : Node() {
   /**
    * Returns a view into the filesystem at `path`.
    */
-  open fun getFilesystemPath(path: String): EditorFileSystemDirectory? {
+  public open fun getFilesystemPath(path: String): EditorFileSystemDirectory? {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_FILESYSTEM_PATH, OBJECT)
@@ -87,7 +88,7 @@ open class EditorFileSystem : Node() {
   /**
    * Returns the scan progress for 0 to 1 if the FS is being scanned.
    */
-  open fun getScanningProgress(): Double {
+  public open fun getScanningProgress(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_SCANNING_PROGRESS, DOUBLE)
@@ -97,7 +98,7 @@ open class EditorFileSystem : Node() {
   /**
    * Returns `true` of the filesystem is being scanned.
    */
-  open fun isScanning(): Boolean {
+  public open fun isScanning(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_IS_SCANNING, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -106,7 +107,7 @@ open class EditorFileSystem : Node() {
   /**
    * Scan the filesystem for changes.
    */
-  open fun scan() {
+  public open fun scan(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_SCAN, NIL)
   }
@@ -114,7 +115,7 @@ open class EditorFileSystem : Node() {
   /**
    * Check if the source of any imported resource changed.
    */
-  open fun scanSources() {
+  public open fun scanSources(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_SCAN_SOURCES, NIL)
   }
@@ -122,7 +123,7 @@ open class EditorFileSystem : Node() {
   /**
    * Update a file information. Call this if an external program (not Godot) modified the file.
    */
-  open fun updateFile(path: String) {
+  public open fun updateFile(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_UPDATE_FILE, NIL)
   }
@@ -130,7 +131,7 @@ open class EditorFileSystem : Node() {
   /**
    * Scans the script files and updates the list of custom class names.
    */
-  open fun updateScriptClasses() {
+  public open fun updateScriptClasses(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_UPDATE_SCRIPT_CLASSES, NIL)
