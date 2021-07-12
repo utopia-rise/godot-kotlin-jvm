@@ -38,7 +38,7 @@ Derived* JavaSingletonWrapper<Derived>::instance{nullptr};
 template<class Derived>
 Derived& JavaSingletonWrapper<Derived>::get_instance() {
     if (unlikely(!instance)) {
-        instance = Derived::init();
+        instance = Derived::init(<#initializer#>, jni::Jvm::HOTSPOT);
     }
     return *instance;
 }

@@ -146,6 +146,7 @@ void GDKotlin::init() {
 
     // Initialize remote jvm debug if one of jvm debug arguments is encountered.
     // Initialize if jvm GC should be forced
+    String jvm_type;
     String jvm_debug_port;
     String jvm_debug_address;
     String jvm_jmx_port;
@@ -156,7 +157,15 @@ void GDKotlin::init() {
     const List<String>& cmdline_args{OS::get_singleton()->get_cmdline_args()};
     for (int i = 0; i < cmdline_args.size(); ++i) {
         const String cmd_arg{cmdline_args[i]};
-        if (cmd_arg.find("--jvm-debug-port") >= 0) {
+        if (cmd_arg.find("--java-vm-type") >= 0 && split_jvm_debug_argument(cmd_arg, jvm_type) == OK) {
+            if (jvm_type.empty()) {
+#ifdef __ANDROID__
+                jvm_type = "art";
+#else
+                jvm_type = "hotspot";
+#endif
+            }
+        } else if (cmd_arg.find("--jvm-debug-port") >= 0) {
             if (split_jvm_debug_argument(cmd_arg, jvm_debug_port) == OK) {
                 if (jvm_debug_port.empty()) {
                     jvm_debug_port = "5005";
@@ -231,48 +240,35 @@ void GDKotlin::init() {
 #endif
     }
 
-    jni::Jvm::init(args);
+    jni::Jvm::Type java_vm_type;
+#ifndef __ANDROID__
+    if (jvm_type == "hotspot") {
+        java_vm_type = jni::Jvm::HOTSPOT;
+    }
+    else if (jvm_type == "graal") {
+        java_vm_type = jni::Jvm::GRAAL;
+    } else {
+        JVM_CRASH_NOW_MSG(vformat("Unknown java vm type %s", jvm_type))
+    }
+#else
+    java_vm_type = jni::Jvm::ART;
+#endif
+
+    jni::Jvm::init(args, java_vm_type);
     LOG_INFO("Starting JVM ...")
     auto project_settings = ProjectSettings::get_singleton();
 
+    jni::Env env{jni::Jvm::current_env()};
+
+    jni::JObject class_loader{_prepare_class_loader(env, java_vm_type)};
+
 #ifdef __ANDROID__
-    String bootstrap_jar_file{"godot-bootstrap-dex.jar"};
     String main_jar_file{"main-dex.jar"};
 #elif !defined(__GRAAL__)
-    String bootstrap_jar_file{"godot-bootstrap.jar"};
     String main_jar_file{"main.jar"};
 #endif
 
-#ifndef __GRAAL__
-    check_and_copy_jar(bootstrap_jar_file);
     check_and_copy_jar(main_jar_file);
-
-#ifdef TOOLS_ENABLED
-    String bootstrap_jar{OS::get_singleton()->get_executable_path().get_base_dir() + "/godot-bootstrap.jar"};
-#else
-    String bootstrap_jar{ProjectSettings::get_singleton()->globalize_path(vformat("user://%s", bootstrap_jar_file))};
-#endif
-
-#ifdef TOOLS_ENABLED
-    JVM_CRASH_COND_MSG(!FileAccess::exists(bootstrap_jar),
-                   "No godot-bootstrap.jar found! This file needs to stay alongside the godot editor executable!")
-#elif DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(!FileAccess::exists(bootstrap_jar), "No godot-bootstrap.jar found!")
-#endif
-
-    LOG_INFO(vformat("Loading bootstrap jar: %s", bootstrap_jar))
-#endif
-    jni::Env env{jni::Jvm::current_env()};
-#ifndef __GRAAL__
-
-    jni::JObject class_loader {ClassLoader::provide_loader(env, bootstrap_jar, jni::JObject(nullptr))};
-    ClassLoader::set_default_loader(class_loader);
-    class_loader.delete_local_ref(env);
-
-    class_loader = ClassLoader::get_default_loader();
-#else
-    jni::JObject class_loader;
-#endif
 
     jni::JClass transfer_ctx_cls = env.load_class("godot.core.TransferContext", class_loader);
     jni::FieldId transfer_ctx_instance_field = transfer_ctx_cls.get_static_field_id(env, "INSTANCE",
@@ -490,6 +486,43 @@ void GDKotlin::check_and_copy_jar(const String& jar_name) {
         memdelete(dir_access);
     }
 #endif
+}
+
+jni::JObject GDKotlin::_prepare_class_loader(jni::Env& p_env, jni::Jvm::Type type) {
+    if (type == jni::Jvm::GRAAL) {
+        return jni::JObject();
+    }
+#ifdef __ANDROID__
+    String bootstrap_jar_file{"godot-bootstrap-dex.jar"};
+    String main_jar_file{"main-dex.jar"};
+#else
+    String bootstrap_jar_file{"godot-bootstrap.jar"};
+#endif
+
+    check_and_copy_jar(bootstrap_jar_file);
+
+#ifdef TOOLS_ENABLED
+    String bootstrap_jar{OS::get_singleton()->get_executable_path().get_base_dir() + "/godot-bootstrap.jar"};
+#else
+    String bootstrap_jar{ProjectSettings::get_singleton()->globalize_path(vformat("user://%s", bootstrap_jar_file))};
+#endif
+
+#ifdef TOOLS_ENABLED
+    JVM_CRASH_COND_MSG(!FileAccess::exists(bootstrap_jar),
+                       "No godot-bootstrap.jar found! This file needs to stay alongside the godot editor executable!")
+#elif DEBUG_ENABLED
+    JVM_CRASH_COND_MSG(!FileAccess::exists(bootstrap_jar), "No godot-bootstrap.jar found!")
+#endif
+
+    LOG_INFO(vformat("Loading bootstrap jar: %s", bootstrap_jar))
+
+    jni::JObject class_loader {ClassLoader::provide_loader(p_env, bootstrap_jar, jni::JObject(nullptr))};
+    ClassLoader::set_default_loader(class_loader);
+    class_loader.delete_local_ref(p_env);
+
+    class_loader = ClassLoader::get_default_loader();
+
+    return class_loader;
 }
 
 GDKotlin::GDKotlin() :

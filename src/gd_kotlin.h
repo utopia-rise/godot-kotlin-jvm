@@ -25,6 +25,7 @@ private:
     Error split_jvm_debug_argument(const String& cmd_arg, String& result);
 
     static void check_and_copy_jar(const String& jar_name);
+    static jni::JObject _prepare_class_loader(jni::Env& p_env, jni::Jvm::Type type);
 
 public:
     TransferContext* transfer_context;

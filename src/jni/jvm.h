@@ -10,10 +10,19 @@ namespace jni {
 
     class Jvm {
     public:
+        enum Type {
+#ifndef __ANDROID__
+            HOTSPOT,
+            GRAAL,
+#endif
+#ifdef __ANDROID__
+            ART
+#endif
+        };
         Jvm(const Jvm&) = delete;
         void operator=(const Jvm&) = delete;
 
-        static void init(const InitArgs&);
+        static void init(const InitArgs& initArgs, Type type);
         static void destroy();
 
         static Env attach();
@@ -27,8 +36,8 @@ namespace jni {
         static Env* env;
         static jint version;
 
-        static JavaVM* create(const InitArgs&);
-        static JavaVM* get_existing();
+        static JavaVM* create(const InitArgs&, Type type);
+        static JavaVM* get_existing(Type vm_type);
     };
 }
 

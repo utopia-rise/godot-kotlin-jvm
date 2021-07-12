@@ -8,7 +8,7 @@ namespace jni {
     Env* Jvm::env = nullptr;
     jint Jvm::version = 0;
 
-    void Jvm::init(const InitArgs& initArgs) {
+    void Jvm::init(const InitArgs& initArgs, Type type) {
         // Do nothing, jvm is already there.
     }
 
@@ -16,7 +16,7 @@ namespace jni {
         // This is not our responsability
     }
 
-    JavaVM* Jvm::create(const InitArgs& initArgs) {
+    JavaVM* Jvm::create(const InitArgs& initArgs, Type type) {
         // Already existing Jvm
         return nullptr;
     }

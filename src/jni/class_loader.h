@@ -10,18 +10,16 @@ private:
     jni::JObject class_loader;
 
     ClassLoader();
-
-    ClassLoader(const ClassLoader&) = delete;
-    void operator=(const ClassLoader&) = delete;
-
-    ClassLoader(ClassLoader&& instance) = delete;
-    void operator=(ClassLoader&$) = delete;
-
     ~ClassLoader() = default;
 
     _FORCE_INLINE_ static ClassLoader& get_instance();
 
 public:
+    ClassLoader(const ClassLoader&) = delete;
+    void operator=(const ClassLoader&) = delete;
+
+    ClassLoader(ClassLoader&& instance) = delete;
+    void operator=(ClassLoader&$) = delete;
 
     static void set_default_loader(jni::JObject& p_class_loader);
 
