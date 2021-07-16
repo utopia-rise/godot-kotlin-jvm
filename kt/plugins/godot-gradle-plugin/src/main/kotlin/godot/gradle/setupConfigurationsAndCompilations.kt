@@ -134,9 +134,18 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
             }
         }
 
+        val generateServiceFile = with(create("generateServiceFile")) {
+            group = "godot-kotlin-jvm"
+            description = "Converts the main.jar to an android compatible version. Needed for android builds only"
+
+            doLast {
+                generateServiceFile()
+            }
+        }
+
         @Suppress("UNUSED_VARIABLE")
         val build = with(getByName("build")) {
-            dependsOn(bootstrapJar, shadowJar)
+            dependsOn(bootstrapJar, shadowJar, generateServiceFile)
             finalizedBy(deleteBuildLock)
             if(godotExtension.isAndroidExportEnabled.get()) {
                 finalizedBy(createGodotBootstrapDexJar, createMainDexJar)
@@ -163,4 +172,10 @@ private fun getBuildLockDir(projectDir: File): File {
         lockDir.mkdirs()
         lockDir
     }
+}
+
+private fun Project.generateServiceFile() {
+    val metaInfServicesDir = projectDir.resolve("src/main/resources/META-INF/services")
+    metaInfServicesDir.mkdirs()
+    File(metaInfServicesDir, "godot.runtime.Entry").writeText("godot.Entry")
 }
