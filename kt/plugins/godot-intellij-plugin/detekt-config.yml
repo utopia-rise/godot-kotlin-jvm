@@ -51,4 +51,5 @@ complexity:
         '**/godot/intellij/plugin/data/cache/signalconnection/SignalConnectionCache.kt',
         '**/godot/intellij/plugin/annotator/clazz/RegisterClassAnnotator.kt',
         '**/godot/intellij/plugin/module/GodotModuleBuilder.kt',
+        '**/godot/intellij/plugin/codevision/GodotCodeVision.kt',
     ]
