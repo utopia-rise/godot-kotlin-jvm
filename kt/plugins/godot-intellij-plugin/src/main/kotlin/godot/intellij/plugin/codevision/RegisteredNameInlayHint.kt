@@ -36,7 +36,7 @@ import javax.swing.JPanel
 @Suppress("UnstableApiUsage")
 class RegisteredNameInlayHint : InlayHintsProvider<NoSettings> {
 
-    override val key: SettingsKey<NoSettings> = SettingsKey("GodotCodeVision")
+    override val key: SettingsKey<NoSettings> = SettingsKey("RegisteredNameInlayHint")
     override val name: String = GodotPluginBundle.message("codeVision.name")
     override val previewText: String? = null
 
