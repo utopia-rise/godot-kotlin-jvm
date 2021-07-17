@@ -20,12 +20,12 @@ plugins {
 //kotlin plugin version: https://plugins.jetbrains.com/plugin/6954-kotlin/versions
 val buildMatrix: Map<String, BuildConfig> = mapOf(
     "IJ203" to BuildConfig(
-        "203.7717.56",
+        "203.8084.24",
         "IJ2020.3",
         "IJ183",
         VersionRange("203.1", "203.*"),
         listOf("2020.1.4", "2020.2.3", "2020.3"),
-        listOf("java", "org.jetbrains.kotlin:203-1.4.32-release-IJ7148.5", "gradle")
+        listOf("java", "org.jetbrains.kotlin:203-1.5.21-release-316-IJ7717.8", "gradle")
     ),
     "IJ211" to BuildConfig(
         "211.7628.21",

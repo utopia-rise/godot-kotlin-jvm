@@ -28,7 +28,9 @@ import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtNamedFunction
 import org.jetbrains.kotlin.psi.KtProperty
+import java.awt.Point
 import java.awt.datatransfer.StringSelection
+import java.awt.event.MouseEvent
 import javax.swing.JPanel
 
 @Suppress("UnstableApiUsage")
@@ -160,9 +162,14 @@ class RegisteredNameInlayHint : InlayHintsProvider<NoSettings> {
                                 convertedName
                             )
                         ),
-                        InlayPresentationFactory.ClickListener { _, _ ->
-                            CopyPasteManager.getInstance().setContents(StringSelection(convertedName))
-                        })
+                        // has to be explicit for backwards compatibility with IJ203
+                        @Suppress("ObjectLiteralToLambda")
+                        object : InlayPresentationFactory.ClickListener {
+                            override fun onClick(event: MouseEvent, translated: Point) {
+                                CopyPasteManager.getInstance().setContents(StringSelection(convertedName))
+                            }
+                        }
+                    )
                 ),
                 indent
             )
