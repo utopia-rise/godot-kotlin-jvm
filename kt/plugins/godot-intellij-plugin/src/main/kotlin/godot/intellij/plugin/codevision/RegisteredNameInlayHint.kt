@@ -27,7 +27,9 @@ import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtFile
 import org.jetbrains.kotlin.psi.KtNamedFunction
 import org.jetbrains.kotlin.psi.KtProperty
+import java.awt.Point
 import java.awt.datatransfer.StringSelection
+import java.awt.event.MouseEvent
 import javax.swing.JPanel
 
 @Suppress("UnstableApiUsage")
@@ -159,7 +161,7 @@ class RegisteredNameInlayHint : InlayHintsProvider<NoSettings> {
                                 convertedName
                             )
                         )
-                    ) { _, _ ->
+                    ) { _: MouseEvent, _: Point ->
                         CopyPasteManager.getInstance()
                             .setContents(StringSelection(convertedName))
                     }
