@@ -6,6 +6,7 @@ import com.intellij.codeInsight.hints.ImmediateConfigurable
 import com.intellij.codeInsight.hints.InlayHintsCollector
 import com.intellij.codeInsight.hints.InlayHintsProvider
 import com.intellij.codeInsight.hints.InlayHintsSink
+import com.intellij.codeInsight.hints.InlayPresentationFactory
 import com.intellij.codeInsight.hints.NoSettings
 import com.intellij.codeInsight.hints.SettingsKey
 import com.intellij.openapi.editor.Editor
@@ -160,11 +161,10 @@ class RegisteredNameInlayHint : InlayHintsProvider<NoSettings> {
                                 "codeVision.registeredName.text",
                                 convertedName
                             )
-                        )
-                    ) { _: MouseEvent, _: Point ->
-                        CopyPasteManager.getInstance()
-                            .setContents(StringSelection(convertedName))
-                    }
+                        ),
+                        InlayPresentationFactory.ClickListener { _, _ ->
+                            CopyPasteManager.getInstance().setContents(StringSelection(convertedName))
+                        })
                 ),
                 indent
             )
