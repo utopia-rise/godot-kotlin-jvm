@@ -31,7 +31,7 @@ import java.awt.datatransfer.StringSelection
 import javax.swing.JPanel
 
 @Suppress("UnstableApiUsage")
-class GodotCodeVision : InlayHintsProvider<NoSettings> {
+class RegisteredNameInlayHint : InlayHintsProvider<NoSettings> {
 
     override val key: SettingsKey<NoSettings> = SettingsKey("GodotCodeVision")
     override val name: String = GodotPluginBundle.message("codeVision.name")
