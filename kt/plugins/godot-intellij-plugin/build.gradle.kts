@@ -16,6 +16,8 @@ plugins {
     id("io.gitlab.arturbosch.detekt") version "1.16.0"
 }
 
+//sdk version: https://github.com/JetBrains/intellij-community/releases
+//kotlin plugin version: https://plugins.jetbrains.com/plugin/6954-kotlin/versions
 val buildMatrix: Map<String, BuildConfig> = mapOf(
     "IJ203" to BuildConfig(
         "203.7717.56",
@@ -26,12 +28,12 @@ val buildMatrix: Map<String, BuildConfig> = mapOf(
         listOf("java", "org.jetbrains.kotlin:203-1.4.32-release-IJ7148.5", "gradle")
     ),
     "IJ211" to BuildConfig(
-        "211.6693.111",
+        "211.7628.21",
         "IJ2021.1",
         "IJ183",
         VersionRange("211.1", "211.*"),
-        listOf("2021.1.1"),
-        listOf("java", "org.jetbrains.kotlin:211-1.4.32-release-IJ6693.72", "gradle")
+        listOf("2021.1.1", "2021.1.2", "2021.1.3"),
+        listOf("java", "org.jetbrains.kotlin:211-1.5.21-release-317-IJ7442.40", "gradle")
     )
 )
 
