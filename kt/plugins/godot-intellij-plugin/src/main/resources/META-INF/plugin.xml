@@ -28,6 +28,7 @@
         <annotator implementationClass="godot.intellij.plugin.annotator.reference.FunctionReferenceAnnotator" language="JVM"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.copy.CopyModificationAnnotator" language="JVM"/>
         <codeInsight.lineMarkerProvider language="JVM" implementationClass="godot.intellij.plugin.linemarker.SignalConnectionLineMarker"/>
+        <codeInsight.inlayProvider language="JVM" implementationClass="godot.intellij.plugin.codevision.RegisteredNameInlayHint"/>
     </extensions>
 
     <resource-bundle>messages.generalLabels</resource-bundle>
