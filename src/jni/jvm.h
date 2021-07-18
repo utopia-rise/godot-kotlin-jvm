@@ -30,14 +30,17 @@ namespace jni {
 
         static Env current_env();
 
+        static Type get_type();
+;
     private:
         Jvm() = default;
         static JavaVM* vm;
         static Env* env;
         static jint version;
+        static Type vm_type;
 
-        static JavaVM* create(const InitArgs&, Type type);
-        static JavaVM* get_existing(Type vm_type);
+        static JavaVM* create(const InitArgs& initArgs);
+        static JavaVM* get_existing();
     };
 }
 

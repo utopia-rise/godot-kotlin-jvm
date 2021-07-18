@@ -7,6 +7,7 @@ namespace jni {
     JavaVM* Jvm::vm = nullptr;
     Env* Jvm::env = nullptr;
     jint Jvm::version = 0;
+    Jvm::Type Jvm::vm_type{Jvm::ART};
 
     void Jvm::init(const InitArgs& initArgs, Type type) {
         // Do nothing, jvm is already there.
@@ -16,7 +17,7 @@ namespace jni {
         // This is not our responsability
     }
 
-    JavaVM* Jvm::create(const InitArgs& initArgs, Type type) {
+    JavaVM* Jvm::create(const InitArgs& initArgs) {
         // Already existing Jvm
         return nullptr;
     }
@@ -38,6 +39,10 @@ namespace jni {
     Env Jvm::current_env() {
         // Call android support get_env method.
         return Env(get_jni_env());
+    }
+
+    Jvm::Type Jvm::get_type() {
+        return vm_type;
     }
 }
 

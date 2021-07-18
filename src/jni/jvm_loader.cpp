@@ -7,8 +7,8 @@
 
 void* jni::JvmLoader::jvmLib{nullptr};
 
-void jni::JvmLoader::load_jvm_lib(Jvm::Type vm_type) {
-    String libPath{get_jvm_lib_path(vm_type)};
+void jni::JvmLoader::load_jvm_lib() {
+    String libPath{get_jvm_lib_path()};
 
     if (OS::get_singleton()->open_dynamic_library(libPath, jvmLib) != OK) {
         LOG_ERROR(String("Failed to load the jvm dynamic library from path ") + libPath + "!")
@@ -22,9 +22,9 @@ void jni::JvmLoader::close_jvm_lib() {
     }
 }
 
-jni::CreateJavaVM jni::JvmLoader::get_create_jvm_function(Jvm::Type vm_type) {
+jni::CreateJavaVM jni::JvmLoader::get_create_jvm_function() {
     if (jvmLib == nullptr) {
-        load_jvm_lib(vm_type);
+        load_jvm_lib();
     }
     void* createJavaVMSymbolHandle;
     if (OS::get_singleton()->get_dynamic_library_symbol_handle(jvmLib, "JNI_CreateJavaVM", createJavaVMSymbolHandle) !=
@@ -35,9 +35,9 @@ jni::CreateJavaVM jni::JvmLoader::get_create_jvm_function(Jvm::Type vm_type) {
     return reinterpret_cast<CreateJavaVM>(createJavaVMSymbolHandle);
 }
 
-jni::GetCreatedJavaVMs jni::JvmLoader::get_get_created_java_vm_function(Jvm::Type vm_type) {
+jni::GetCreatedJavaVMs jni::JvmLoader::get_get_created_java_vm_function() {
     if (jvmLib == nullptr) {
-        load_jvm_lib(vm_type);
+        load_jvm_lib();
     }
     void* getCreatedJavaVMsSymbolHandle;
     if (OS::get_singleton()->get_dynamic_library_symbol_handle(jvmLib, "JNI_GetCreatedJavaVMs",
@@ -48,14 +48,14 @@ jni::GetCreatedJavaVMs jni::JvmLoader::get_get_created_java_vm_function(Jvm::Typ
     return reinterpret_cast<GetCreatedJavaVMs>(getCreatedJavaVMsSymbolHandle);
 }
 
-String jni::JvmLoader::get_jvm_lib_path(Jvm::Type vm_type) {
-    if (vm_type != Jvm::GRAAL && Engine::get_singleton()->is_editor_hint()) {
+String jni::JvmLoader::get_jvm_lib_path() {
+    if (Jvm::get_type() != Jvm::GRAAL && Engine::get_singleton()->is_editor_hint()) {
         LOG_INFO("Godot-JVM: Editor mode, loading jvm from JAVA_HOME")
         return get_path_to_locally_installed_jvm();
     } else {
-        String embeddedJrePath{get_embedded_jre_path(vm_type)};
+        String embeddedJrePath{get_embedded_jre_path()};
         if (!FileAccess::exists(embeddedJrePath)) {
-            if (vm_type == Jvm::GRAAL) {
+            if (Jvm::get_type() == Jvm::GRAAL) {
                 JVM_CRASH_NOW_MSG("Cannot find Graal VM user code native image")
             }
             LOG_WARNING(vformat("Godot-JVM: No embedded jvm found on path: %s!", embeddedJrePath))
@@ -89,14 +89,21 @@ String jni::JvmLoader::get_path_to_locally_installed_jvm() {
     return pathToLocallyInstalledJvmLib;
 }
 
-String jni::JvmLoader::get_embedded_jre_path(jni::Jvm::Type vm_type) {
-    String res_jre_path;
-    if (vm_type == Jvm::GRAAL) {
-        res_jre_path = vformat("res://build/libs/%s", LIB_GRAAL_VM_RELATIVE_PATH);
+String jni::JvmLoader::get_embedded_jre_path() {
+    String jre_path;
+    if (Jvm::get_type() == Jvm::GRAAL) {
+        String user_code_dir{
+#ifdef TOOLS_ENABLED
+            "res://build/libs/"
+#else
+            "user://"
+#endif
+        };
+        jre_path = vformat("%s%s", user_code_dir, LIB_GRAAL_VM_RELATIVE_PATH);
     } else {
-        res_jre_path = vformat("res://jre/%s", LIB_JVM_RELATIVE_PATH);
+        jre_path = vformat("res://jre/%s", LIB_JVM_RELATIVE_PATH);
     }
-    ProjectSettings::get_singleton()->globalize_path(res_jre_path);
+    return ProjectSettings::get_singleton()->globalize_path(jre_path);
 }
 
 #endif

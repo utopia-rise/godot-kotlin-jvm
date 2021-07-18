@@ -13,11 +13,13 @@ namespace jni {
     JavaVM* Jvm::vm = nullptr;
     Env* Jvm::env = nullptr;
     jint Jvm::version = 0;
+    Jvm::Type Jvm::vm_type{Jvm::HOTSPOT};
 
     void Jvm::init(const InitArgs& initArgs, Type type) {
-        JavaVM* res{get_existing(type)};
+        vm_type = type;
+        JavaVM* res{get_existing()};
         if (res == nullptr) {
-            res = create(initArgs, type);
+            res = create(initArgs);
         }
         assert(res != nullptr);
         vm = res;
@@ -30,7 +32,7 @@ namespace jni {
         JvmLoader::close_jvm_lib();
     }
 
-    JavaVM* Jvm::create(const InitArgs& initArgs, Type type) {
+    JavaVM* Jvm::create(const InitArgs& initArgs) {
         size_t nOptions { initArgs.options.size() };
         auto *options = new JavaVMOption[nOptions];
         JavaVMInitArgs args;
@@ -49,7 +51,7 @@ namespace jni {
         std::locale global;
 #endif
 
-        jint result{JvmLoader::get_create_jvm_function(type)(&java_vm, reinterpret_cast<void**>(&jni_env), &args)};
+        jint result{JvmLoader::get_create_jvm_function()(&java_vm, reinterpret_cast<void**>(&jni_env), &args)};
 
         // Set std::local::global to value it was before creating JVM.
         // See https://github.com/utopia-rise/godot-kotlin-jvm/issues/166
@@ -63,10 +65,10 @@ namespace jni {
         return java_vm;
     }
 
-    JavaVM* Jvm::get_existing(Type vm_type) {
+    JavaVM* Jvm::get_existing() {
         JavaVM* buffer[1];
         jsize count;
-        auto result = JvmLoader::get_get_created_java_vm_function(vm_type)(buffer, 1, &count);
+        auto result = JvmLoader::get_get_created_java_vm_function()(buffer, 1, &count);
         JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to retrieve existing vm!")
         if (count > 0) {
             return buffer[0];
@@ -97,6 +99,10 @@ namespace jni {
         auto result = vm->GetEnv((void**) &r_env, version);
         JVM_CRASH_COND_MSG(result == JNI_EDETACHED, "Current thread is not attached!")
         return Env(r_env);
+    }
+
+    Jvm::Type Jvm::get_type() {
+        return vm_type;
     }
 }
 

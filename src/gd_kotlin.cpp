@@ -146,7 +146,13 @@ void GDKotlin::init() {
 
     // Initialize remote jvm debug if one of jvm debug arguments is encountered.
     // Initialize if jvm GC should be forced
-    String jvm_type;
+    String jvm_type{
+#ifdef __ANDROID__
+            "art"
+#else
+            "hotspot"
+#endif
+    };
     String jvm_debug_port;
     String jvm_debug_address;
     String jvm_jmx_port;
@@ -157,14 +163,11 @@ void GDKotlin::init() {
     const List<String>& cmdline_args{OS::get_singleton()->get_cmdline_args()};
     for (int i = 0; i < cmdline_args.size(); ++i) {
         const String cmd_arg{cmdline_args[i]};
-        if (cmd_arg.find("--java-vm-type") >= 0 && split_jvm_debug_argument(cmd_arg, jvm_type) == OK) {
-            if (jvm_type.empty()) {
+        if (cmd_arg.find("--java-vm-type") >= 0) {
+            split_jvm_debug_argument(cmd_arg, jvm_type);
 #ifdef __ANDROID__
-                jvm_type = "art";
-#else
-                jvm_type = "hotspot";
+            LOG_WARNING("You're running android, will use ART.")
 #endif
-            }
         } else if (cmd_arg.find("--jvm-debug-port") >= 0) {
             if (split_jvm_debug_argument(cmd_arg, jvm_debug_port) == OK) {
                 if (jvm_debug_port.empty()) {
@@ -254,6 +257,10 @@ void GDKotlin::init() {
     java_vm_type = jni::Jvm::ART;
 #endif
 
+    if (java_vm_type == jni::Jvm::GRAAL) {
+        check_and_copy_jar(LIB_GRAAL_VM_RELATIVE_PATH);
+    }
+
     jni::Jvm::init(args, java_vm_type);
     LOG_INFO("Starting JVM ...")
     auto project_settings = ProjectSettings::get_singleton();
@@ -264,8 +271,13 @@ void GDKotlin::init() {
 
 #ifdef __ANDROID__
     String main_jar_file{"main-dex.jar"};
-#elif !defined(__GRAAL__)
-    String main_jar_file{"main.jar"};
+#else
+    String main_jar_file;
+    if (jni::Jvm::get_type() == jni::Jvm::GRAAL) {
+        main_jar_file = "graal_usercode";
+    } else {
+        main_jar_file = "main.jar";
+    }
 #endif
 
     check_and_copy_jar(main_jar_file);
@@ -342,11 +354,7 @@ void GDKotlin::init() {
             is_editor,
             project_path,
             jar_path,
-#ifndef __GRAAL__
             main_jar_file,
-#else
-            "graal_usercode",
-#endif
 #ifdef __ANDROID__
             ClassLoader::provide_loader(env, main_jar, class_loader)
 #else
