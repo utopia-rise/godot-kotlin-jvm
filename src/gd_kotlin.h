@@ -9,6 +9,7 @@
 #include "transfer_context.h"
 #include "modules/kotlin_jvm/src/bridges/memory_bridge.h"
 #include "kotlin_script.h"
+#include "gd_kotlin_configuration.h"
 
 class GDKotlin {
 private:
@@ -22,9 +23,13 @@ private:
 
     bool is_gc_started;
 
-    Error split_jvm_debug_argument(const String& cmd_arg, String& result);
+    GdKotlinConfiguration configuration;
 
-    static void check_and_copy_jar(const String& jar_name);
+    void _load_gd_kotlin_configuration();
+
+    Error _split_jvm_debug_argument(const String& cmd_arg, String& result);
+
+    static void _check_and_copy_jar(const String& jar_name);
     static jni::JObject _prepare_class_loader(jni::Env& p_env, jni::Jvm::Type type);
 
 public:
@@ -52,6 +57,8 @@ public:
     void unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes);
 
     KtClass* find_class(const StringName& p_script_path);
+
+    const GdKotlinConfiguration& get_configuration();
 };
 
 

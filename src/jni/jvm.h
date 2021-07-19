@@ -11,13 +11,9 @@ namespace jni {
     class Jvm {
     public:
         enum Type {
-#ifndef __ANDROID__
             HOTSPOT,
             GRAAL,
-#endif
-#ifdef __ANDROID__
             ART
-#endif
         };
         Jvm(const Jvm&) = delete;
         void operator=(const Jvm&) = delete;
@@ -31,7 +27,7 @@ namespace jni {
         static Env current_env();
 
         static Type get_type();
-;
+
     private:
         Jvm() = default;
         static JavaVM* vm;

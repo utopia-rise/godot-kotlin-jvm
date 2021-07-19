@@ -5,6 +5,7 @@
 #include "bridges_manager.h"
 #include "jni/class_loader.h"
 #include <core/io/resource_loader.h>
+#include <core/os/dir_access.h>
 
 #ifndef TOOLS_ENABLED
 
@@ -18,6 +19,8 @@
 #include <platform/android/java_godot_wrapper.h>
 
 #endif
+
+static constexpr const char* gd_kotlin_configuration_path{"res://godot_kotlin_configuration.json"};
 
 GDKotlin& GDKotlin::get_instance() {
     static GDKotlin instance;
@@ -136,6 +139,8 @@ void GDKotlin::init() {
         return;
     }
 
+    _load_gd_kotlin_configuration();
+
     jni::InitArgs args;
 #ifndef __ANDROID__
     args.version = JNI_VERSION_1_8;
@@ -146,11 +151,11 @@ void GDKotlin::init() {
 
     // Initialize remote jvm debug if one of jvm debug arguments is encountered.
     // Initialize if jvm GC should be forced
-    String jvm_type{
+    String jvm_type_argument{
 #ifdef __ANDROID__
             "art"
 #else
-            "hotspot"
+            ""
 #endif
     };
     String jvm_debug_port;
@@ -158,18 +163,17 @@ void GDKotlin::init() {
     String jvm_jmx_port;
     bool is_gc_force_mode{false};
     bool is_gc_activated{true};
-    int jvm_to_engine_max_string_size{LongStringQueue::max_string_size};
     bool should_display_leaked_jvm_instances_on_close{true};
     const List<String>& cmdline_args{OS::get_singleton()->get_cmdline_args()};
     for (int i = 0; i < cmdline_args.size(); ++i) {
         const String cmd_arg{cmdline_args[i]};
         if (cmd_arg.find("--java-vm-type") >= 0) {
-            split_jvm_debug_argument(cmd_arg, jvm_type);
+            _split_jvm_debug_argument(cmd_arg, jvm_type_argument);
 #ifdef __ANDROID__
             LOG_WARNING("You're running android, will use ART.")
 #endif
         } else if (cmd_arg.find("--jvm-debug-port") >= 0) {
-            if (split_jvm_debug_argument(cmd_arg, jvm_debug_port) == OK) {
+            if (_split_jvm_debug_argument(cmd_arg, jvm_debug_port) == OK) {
                 if (jvm_debug_port.empty()) {
                     jvm_debug_port = "5005";
                 }
@@ -177,7 +181,7 @@ void GDKotlin::init() {
                 break;
             }
         } else if (cmd_arg.find("--jvm-debug-address") >= 0) {
-            if (split_jvm_debug_argument(cmd_arg, jvm_debug_address) == OK) {
+            if (_split_jvm_debug_argument(cmd_arg, jvm_debug_address) == OK) {
                 if (jvm_debug_address.empty()) {
                     jvm_debug_address = "*";
                 }
@@ -185,15 +189,15 @@ void GDKotlin::init() {
                 break;
             }
         } else if (cmd_arg.find("--jvm-jmx-port") >= 0) {
-            if (split_jvm_debug_argument(cmd_arg, jvm_jmx_port) == OK) {
+            if (_split_jvm_debug_argument(cmd_arg, jvm_jmx_port) == OK) {
                 if (jvm_jmx_port.empty()) {
                     jvm_jmx_port = "9010";
                 }
             }
         } else if (cmd_arg.find("--jvm-to-engine-max-string-size") >= 0) {
             String result;
-            if (split_jvm_debug_argument(cmd_arg, result) == OK) {
-                jvm_to_engine_max_string_size = result.to_int();
+            if (_split_jvm_debug_argument(cmd_arg, result) == OK) {
+                configuration.set_max_string_size(result.to_int());
                 //https://godot-kotl.in/en/latest/advanced/commandline-args/
                 LOG_WARNING(
                         vformat("Warning ! The max string size was changed to %s which modify the size of the buffer, this is not a recommended practice",
@@ -243,44 +247,41 @@ void GDKotlin::init() {
 #endif
     }
 
-    jni::Jvm::Type java_vm_type;
 #ifndef __ANDROID__
-    if (jvm_type == "hotspot") {
-        java_vm_type = jni::Jvm::HOTSPOT;
+    if (jvm_type_argument == GdKotlinConfiguration::hotspot_string_identifier) {
+        configuration.set_vm_type(jni::Jvm::HOTSPOT);
     }
-    else if (jvm_type == "graal") {
-        java_vm_type = jni::Jvm::GRAAL;
-    } else {
-        JVM_CRASH_NOW_MSG(vformat("Unknown java vm type %s", jvm_type))
+    else if (jvm_type_argument == GdKotlinConfiguration::graal_string_identifier) {
+        configuration.set_vm_type(jni::Jvm::GRAAL);
     }
 #else
-    java_vm_type = jni::Jvm::ART;
+    configuration.set_vm_type(jni::Jvm::ART);
 #endif
 
-    if (java_vm_type == jni::Jvm::GRAAL) {
-        check_and_copy_jar(LIB_GRAAL_VM_RELATIVE_PATH);
+    if (configuration.get_vm_type() == jni::Jvm::GRAAL) {
+        _check_and_copy_jar(LIB_GRAAL_VM_RELATIVE_PATH);
     }
 
-    jni::Jvm::init(args, java_vm_type);
+    jni::Jvm::init(args, configuration.get_vm_type());
     LOG_INFO("Starting JVM ...")
     auto project_settings = ProjectSettings::get_singleton();
 
     jni::Env env{jni::Jvm::current_env()};
 
-    jni::JObject class_loader{_prepare_class_loader(env, java_vm_type)};
+    jni::JObject class_loader{_prepare_class_loader(env, configuration.get_vm_type())};
 
 #ifdef __ANDROID__
     String main_jar_file{"main-dex.jar"};
 #else
     String main_jar_file;
-    if (jni::Jvm::get_type() == jni::Jvm::GRAAL) {
+    if (configuration.get_vm_type() == jni::Jvm::GRAAL) {
         main_jar_file = "graal_usercode";
     } else {
         main_jar_file = "main.jar";
     }
 #endif
 
-    check_and_copy_jar(main_jar_file);
+    _check_and_copy_jar(main_jar_file);
 
     jni::JClass transfer_ctx_cls = env.load_class("godot.core.TransferContext", class_loader);
     jni::FieldId transfer_ctx_instance_field = transfer_ctx_cls.get_static_field_id(env, "INSTANCE",
@@ -290,8 +291,9 @@ void GDKotlin::init() {
     transfer_context = new TransferContext(transfer_ctx_instance, class_loader);
 
     LongStringQueue::get_instance();
-    if (jvm_to_engine_max_string_size != LongStringQueue::max_string_size) {
-        LongStringQueue::get_instance().set_string_max_size(jvm_to_engine_max_string_size);
+    int max_string_size{configuration.get_max_string_size()};
+    if (max_string_size != LongStringQueue::max_string_size) {
+        LongStringQueue::get_instance().set_string_max_size(max_string_size);
     }
 
     //Garbage Collector
@@ -457,7 +459,31 @@ KtClass* GDKotlin::find_class(const StringName& p_script_path) {
     return classes[p_script_path];
 }
 
-Error GDKotlin::split_jvm_debug_argument(const String& cmd_arg, String& result) {
+const GdKotlinConfiguration& GDKotlin::get_configuration() {
+    return configuration;
+}
+
+void GDKotlin::_load_gd_kotlin_configuration() {
+    String configuration_path{gd_kotlin_configuration_path};
+
+    if (FileAccess::exists(configuration_path)) {
+        FileAccessRef configuration_access_read{FileAccess::open(configuration_path, FileAccess::READ)};
+        configuration = GdKotlinConfiguration::from_json(configuration_access_read->get_as_utf8_string());
+        configuration_access_read->close();
+    } else {
+#ifdef TOOLS_ENABLED
+        FileAccessRef file = FileAccess::open(configuration_path, FileAccess::WRITE);
+        configuration = GdKotlinConfiguration();
+        file->store_string(configuration.to_json());
+        file->close();
+#else
+        LOG_ERROR(vformat("Cannot find Godot Kotlin configuration file at: %s. Falling back to default configuration.", configuration_path))
+        configuration = GdKotlinConfiguration();
+#endif
+    }
+}
+
+Error GDKotlin::_split_jvm_debug_argument(const String& cmd_arg, String& result) {
     Vector<String> jvm_debug_split{cmd_arg.split("=")};
 
     if (jvm_debug_split.size() == 2) {
@@ -469,7 +495,7 @@ Error GDKotlin::split_jvm_debug_argument(const String& cmd_arg, String& result) 
     return OK;
 }
 
-void GDKotlin::check_and_copy_jar(const String& jar_name) {
+void GDKotlin::_check_and_copy_jar(const String& jar_name) {
 #ifndef TOOLS_ENABLED
     String libs_res_path{"res://build/libs"};
     String jar_user_path{vformat("user://%s", jar_name)};
@@ -507,7 +533,7 @@ jni::JObject GDKotlin::_prepare_class_loader(jni::Env& p_env, jni::Jvm::Type typ
     String bootstrap_jar_file{"godot-bootstrap.jar"};
 #endif
 
-    check_and_copy_jar(bootstrap_jar_file);
+    _check_and_copy_jar(bootstrap_jar_file);
 
 #ifdef TOOLS_ENABLED
     String bootstrap_jar{OS::get_singleton()->get_executable_path().get_base_dir() + "/godot-bootstrap.jar"};
