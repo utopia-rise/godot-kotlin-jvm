@@ -3,7 +3,6 @@
 #include <modules/kotlin_jvm/src/jni/jvm.h>
 #include "kotlin_editor_export_plugin.h"
 #include "core/os/file_access.h"
-#include "logging.h"
 #include "gd_kotlin.h"
 
 static constexpr const char* all_jvm_feature{"export-all-jvm"};
@@ -12,10 +11,13 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
                                              int p_flags) {
     // Add mandatory jars to pck
     Vector<String> files_to_add;
+
+    bool is_graal_only{false};
     bool is_android_export{p_features.has("Android")};
     if (is_android_export) {
         files_to_add.push_back("res://build/libs/main-dex.jar");
         files_to_add.push_back("res://build/libs/godot-bootstrap-dex.jar");
+        _generate_export_configuration_file(jni::Jvm::ART);
     } else {
         String graal_usercode_lib;
         if (p_features.has("Windows")) {
@@ -29,15 +31,19 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
             files_to_add.push_back("res://build/libs/main.jar");
             files_to_add.push_back("res://build/libs/godot-bootstrap.jar");
             files_to_add.push_back(vformat("res://build/libs/%s", graal_usercode_lib));
+            _generate_export_configuration_file(GDKotlin::get_instance().get_configuration().get_vm_type());
         } else {
             jni::Jvm::Type jvm_type{GDKotlin::get_instance().get_configuration().get_vm_type()};
             switch (jvm_type) {
                 case jni::Jvm::HOTSPOT:
                     files_to_add.push_back("res://build/libs/main.jar");
                     files_to_add.push_back("res://build/libs/godot-bootstrap.jar");
+                    _generate_export_configuration_file(jni::Jvm::HOTSPOT);
                     break;
                 case jni::Jvm::GRAAL:
                     files_to_add.push_back(vformat("res://build/libs/%s", graal_usercode_lib));
+                    _generate_export_configuration_file(jni::Jvm::GRAAL);
+                    is_graal_only = true;
                     break;
                 default:
                     LOG_ERROR("Unknown VM type, aborting export.")
@@ -45,13 +51,14 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
             }
         }
     }
+
     for (int i = 0; i < files_to_add.size(); ++i) {
         const String& file_to_add{files_to_add[i]};
         add_file(file_to_add, FileAccess::get_file_as_array(file_to_add), false);
     }
 
     // Copy JRE for desktop platforms
-    if (!is_android_export) {
+    if (!is_android_export && !is_graal_only) {
         const Vector<String>& path_split = p_path.split("/");
         String export_dir{p_path.replace(path_split[path_split.size() - 1], "")};
         Error error;
@@ -69,6 +76,18 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
         }
         memdelete(dir_access);
     }
+}
+
+void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::Jvm::Type vm_type) {
+    GdKotlinConfiguration configuration;
+    configuration.set_vm_type(vm_type);
+    configuration.set_max_string_size(GDKotlin::get_instance().get_configuration().get_max_string_size());
+    const CharType* json_string{configuration.to_json().c_str()};
+    Vector<uint8_t> json_bytes;
+    for (int i = 0; json_string[i] != '\0'; ++i) {
+        json_bytes.push_back(json_string[i]);
+    }
+    add_file("res://godot_kotlin_configuration.json", json_bytes, false);
 }
 
 #endif

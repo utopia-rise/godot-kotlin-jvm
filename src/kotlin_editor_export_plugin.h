@@ -4,12 +4,16 @@
 
 
 #include <editor/editor_export.h>
+#include "jni/jvm.h"
 
 class KotlinEditorExportPlugin : public EditorExportPlugin {
     GDCLASS(KotlinEditorExportPlugin, EditorExportPlugin)
 
 public:
     void _export_begin(const Set<String> &p_features, bool p_debug, const String &p_path, int p_flags) override;
+
+private:
+    void _generate_export_configuration_file(jni::Jvm::Type vm_type);
 
 };
 

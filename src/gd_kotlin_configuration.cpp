@@ -37,11 +37,11 @@ GdKotlinConfiguration GdKotlinConfiguration::from_json(const String& json_string
         return GdKotlinConfiguration();
     }
 
+    jni::Jvm::Type vm_type;
+    const Dictionary& dictionary{result.operator Dictionary()};
 #ifdef __ANDROID__
     vm_type = jni::Jvm::ART;
 #else
-    const Dictionary& dictionary{result.operator Dictionary()};
-    jni::Jvm::Type vm_type;
     const String& vm{dictionary[vm_type_identifier]};
     if (vm == hotspot_string_identifier) {
         vm_type = jni::Jvm::HOTSPOT;

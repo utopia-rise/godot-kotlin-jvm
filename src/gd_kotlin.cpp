@@ -254,13 +254,13 @@ void GDKotlin::init() {
     else if (jvm_type_argument == GdKotlinConfiguration::graal_string_identifier) {
         configuration.set_vm_type(jni::Jvm::GRAAL);
     }
-#else
-    configuration.set_vm_type(jni::Jvm::ART);
-#endif
 
     if (configuration.get_vm_type() == jni::Jvm::GRAAL) {
         _check_and_copy_jar(LIB_GRAAL_VM_RELATIVE_PATH);
     }
+#else
+    configuration.set_vm_type(jni::Jvm::ART);
+#endif
 
     jni::Jvm::init(args, configuration.get_vm_type());
     LOG_INFO("Starting JVM ...")
