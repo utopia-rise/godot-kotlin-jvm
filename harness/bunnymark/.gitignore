@@ -490,3 +490,5 @@ hs_err_pid*
 build/
 
 /.gradle/
+
+graal/godot-kotlin-graal-jni-config.json

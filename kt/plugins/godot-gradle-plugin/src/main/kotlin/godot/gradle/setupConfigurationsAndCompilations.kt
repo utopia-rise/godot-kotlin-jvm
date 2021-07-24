@@ -7,6 +7,7 @@ import org.gradle.api.Project
 import org.gradle.api.tasks.Exec
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
+import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
 import java.io.File
 import java.io.InputStream
 
@@ -238,11 +239,13 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
                 description = "Checks if the default jni config for Godot Kotlin with graalVM native image is present"
 
                 doLast {
-                    val graalDir = projectDir.resolve("graal").resolve("godot-kotlin-graal-jni-config.json")
-                    if (!graalDir.exists()) {
-                        val jniConfigContent = GodotExtension::class.java.getResource("godot-kotlin-graal-jni-config.json")?.content
+                    val godotKotlinJniConfig = projectDir.resolve("graal").resolve("godot-kotlin-graal-jni-config.json")
+                    if (!godotKotlinJniConfig.exists()) {
+                        val jniConfigContent = GodotExtension::class.java.getResource("godot-kotlin-graal-jni-config.json").content
                         require(jniConfigContent is InputStream)
-                        graalDir.writeBytes(jniConfigContent.readAllBytes())
+                        godotKotlinJniConfig.ensureParentDirsCreated()
+                        godotKotlinJniConfig.createNewFile()
+                        godotKotlinJniConfig.writeBytes(jniConfigContent.readAllBytes())
                     }
                 }
             }
@@ -312,7 +315,7 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
                     commandLine(
                         godotExtension.nativeImageToolPath.get(),
                         "-cp",
-                        "${godotBootstrapJar.absolutePath};${mainJar.absolutePath}",
+                        "${godotBootstrapJar.absolutePath}:${mainJar.absolutePath}",
                         "--shared",
                         "-H:Name=usercode",
                         jniConfigurationFilesArgument,
