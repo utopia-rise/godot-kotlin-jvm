@@ -26,4 +26,10 @@ open class GodotExtension(objects: ObjectFactory) {
      * example: "${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-30"
      */
     var androidCompileSdkDir: File? = null
+
+    val isGraalExportEnabled = objects.property(Boolean::class.java)
+    val nativeImageToolPath = objects.property(String::class.java)
+    val windowsDeveloperVCVarsPath = objects.property(String::class.java)
+    val additionalGraalJniConfigurationFiles = objects.property(Array<String>::class.java)
+    val isGraalVmNativeImageGenerationVerbose = objects.property(Boolean::class.java)
 }

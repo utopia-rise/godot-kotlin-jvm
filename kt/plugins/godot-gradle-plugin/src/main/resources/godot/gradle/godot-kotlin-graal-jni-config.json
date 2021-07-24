@@ -8,7 +8,7 @@
   {
     "name" : "java.io.File",
     "methods" : [
-        { "name" : "<init>", "parameterTypes" : ["java.lang.String"] }
+      { "name" : "<init>", "parameterTypes" : ["java.lang.String"] }
     ]
   },
   {
