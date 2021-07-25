@@ -1,6 +1,5 @@
 plugins {
     kotlin("jvm") version "1.5.21"
-    application
     id("com.utopia-rise.godot-kotlin-jvm")
 }
 
@@ -18,11 +17,6 @@ godot {
 //    isGraalExportEnabled.set(true)
 //    nativeImageToolPath.set("${System.getenv("GRAALVM_HOME")}/bin/native-image")
 //    windowsDeveloperVCVarsPath.set("${System.getenv("VCINSTALLDIR")}/Auxiliary/Build/vcvars64.bat")
-}
-
-application {
-    mainClass.set("godot.GraalFakeMainKt")
-    mainClassName = "godot.GraalFakeMainKt"
 }
 
 dependencies {
