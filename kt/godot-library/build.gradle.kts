@@ -34,12 +34,3 @@ publishing {
         }
     }
 }
-
-// we need to target java 1.6 in order to support android
-// before kotlin 1.5.x, kotlin was actually targeting java 1.6 by default. But since 1.5.x we need to do this explicitly
-// see: https://kotlinlang.org/docs/whatsnew15.html#new-default-jvm-target-1-8
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_6.toString()
-    }
-}

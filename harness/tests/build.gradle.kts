@@ -10,8 +10,9 @@ repositories {
 
 godot {
     //uncomment to test android
-//    isAndroidExportEnabled.set(true)
-//    dxToolPath.set("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/30.0.3/dx")
+    isAndroidExportEnabled.set(true)
+    d8ToolPath = File("/home/cedric/Android/Sdk/build-tools/30.0.3/d8")
+    androidCompileSdkDir = File("/home/cedric/Android/Sdk/platforms/android-30")
 }
 
 dependencies {

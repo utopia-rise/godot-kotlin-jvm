@@ -26,7 +26,10 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
             compileOnly("com.utopia-rise:godot-library:${GodotBuildProperties.godotKotlinVersion}")
             compileOnly("com.utopia-rise:godot-kotlin-symbol-processor:${GodotBuildProperties.godotKotlinVersion}")
         }
-        dependencies.add("ksp", "com.utopia-rise:godot-kotlin-symbol-processor:${GodotBuildProperties.godotKotlinVersion}")
+        dependencies.add(
+            "ksp",
+            "com.utopia-rise:godot-kotlin-symbol-processor:${GodotBuildProperties.godotKotlinVersion}"
+        )
     }
 
     //bootstrap configuration containing all glue code but no user code
@@ -55,7 +58,6 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
 
             val bootstrapJar = with(create("bootstrapJar", ShadowJar::class.java)) {
                 archiveBaseName.set("godot-bootstrap")
-                exclude("**/module-info.class") //for android support: excludes java 9+ module info which cannot be parsed by the dx tool
                 configurations.clear()
                 configurations.add(bootstrapConfiguration)
 
@@ -66,7 +68,6 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
                 archiveBaseName.set("main")
                 archiveVersion.set("")
                 archiveClassifier.set("")
-                exclude("**/module-info.class") //for android support: excludes java 9+ module info which cannot be parsed by the dx tool
 
                 dependencies {
                     it.exclude(it.dependency("org.jetbrains.kotlin:kotlin-stdlib.*"))
@@ -76,39 +77,62 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
                 dependsOn(createBuildLock)
             }
 
-            val checkDxToolAccessible = with(create("checkDxToolAccessible")) {
+            val checkD8ToolAccessible = with(create("checkD8ToolAccessible")) {
                 group = "godot-kotlin-jvm"
-                description = "Checks if the dx tool is accessible and executable. Needed for android builds only"
+                description = "Checks if the d8 tool is accessible and executable. Needed for android builds only"
 
                 doLast {
                     try {
+                        val d8Tool = godotExtension.d8ToolPath
+                            ?: throw IllegalArgumentException("d8 tool not set! Make sure you've either set the ANDROID_SDK_ROOT environment variable or set the d8ToolPath. For more information, visit: https://godot-kotl.in/en/stable/user-guide/exporting/#android")
                         val result = exec {
                             with(it) {
                                 workingDir = projectDir
                                 isIgnoreExitValue = true
 
                                 if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows) {
-                                    commandLine("cmd", "/c", godotExtension.dxToolPath.get(), "--version")
+                                    commandLine("cmd", "/c", d8Tool, "--version")
                                 } else {
-                                    commandLine(godotExtension.dxToolPath.get(), "--version")
+                                    commandLine(d8Tool, "--version")
                                 }
                             }
                         }
                         if (result.exitValue != 0) {
-                            throw IllegalArgumentException("dx tool not found! Make sure the dx tool is in you PATH variable or set \"dxToolPath\" to the absolute path of the dx tool. Normally the dx tool resides in <android-sdk-root>/build-tools/<version>/dx. For more information visit the docs. Provided path: ${godotExtension.dxToolPath.get()}") //TODO: add url once doc ist hosted
+                            throw IllegalArgumentException("d8 tool not found! Make sure you've either set the ANDROID_SDK_ROOT environment variable or set the d8ToolPath. For more information, visit: https://godot-kotl.in/en/stable/user-guide/exporting/#android")
                         }
                     } catch (e: Throwable) {
-                        throw IllegalArgumentException("dx tool not found! Make sure the dx tool is in you PATH variable or set \"dxToolPath\" to the absolute path of the dx tool. Normally the dx tool resides in <android-sdk-root>/build-tools/<version>/dx. For more information visit the docs. Provided path: ${godotExtension.dxToolPath.get()}") //TODO: add url once doc ist hosted
+                        throw IllegalArgumentException("d8 tool not found! Make sure you've either set the ANDROID_SDK_ROOT environment variable or set the d8ToolPath. For more information, visit: https://godot-kotl.in/en/stable/user-guide/exporting/#android")
                     }
                 }
             }
 
+            val checkAndroidJarAccessible = with(create("checkAndroidJarAccessible")) {
+                group = "godot-kotlin-jvm"
+                description = "Checks if the android.jar is present in the provided androidCompileSdkDir. Needed for android builds only"
+
+                doLast {
+                    val androidSdkDir = godotExtension.androidCompileSdkDir
+
+                    when {
+                        androidSdkDir == null -> throw IllegalArgumentException("androidCompileSdkDir not set. Make sure you've either set the ANDROID_SDK_ROOT environment variable or set the androidCompileSdkDir. For more information, visit: https://godot-kotl.in/en/stable/user-guide/exporting/#android")
+                        !androidSdkDir.isDirectory -> throw IllegalArgumentException("the androidCompileSdkDir you provided is not a directory")
+                        else -> {
+                            val content = androidSdkDir.listFiles()
+                            if (content == null || content.none { it.name == "android.jar" }) {
+                                throw IllegalArgumentException("the androidCompileSdkDir you provided does not contain the necessary android.jar file. Check your android sdk setup. Found files: ${content?.joinToString { it.name }}\nFor more information, visit: https://godot-kotl.in/en/stable/user-guide/exporting/#android")
+                            }
+                        }
+                    }
+                }
+            }
+
+            // d8 doc: https://developer.android.com/studio/command-line/d8
             val createGodotBootstrapDexJar = with(create("createGodotBootstrapDexJar", Exec::class.java)) {
                 group = "godot-kotlin-jvm"
                 description =
                     "Converts the godot-bootstrap.jar to an android compatible version. Needed for android builds only"
 
-                dependsOn(checkDxToolAccessible, shadowJar, bootstrapJar)
+                dependsOn(checkD8ToolAccessible, checkAndroidJarAccessible, shadowJar, bootstrapJar)
                 val libsDir = project.buildDir.resolve("libs")
                 val godotBootstrapJar = File(libsDir, "godot-bootstrap.jar")
 
@@ -117,42 +141,68 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
                     commandLine(
                         "cmd",
                         "/c",
-                        godotExtension.dxToolPath.get(),
-                        "--dex",
-                        "--output=\"godot-bootstrap-dex.jar\"",
-                        "\"${godotBootstrapJar.absolutePath}\""
+                        godotExtension.d8ToolPath,
+                        "\"${godotBootstrapJar.absolutePath}\"",
+                        "--output",
+                        "godot-bootstrap-dex.jar",
+                        "--lib",
+                        "${godotExtension.androidCompileSdkDir}/android.jar",
                     )
                 } else {
                     commandLine(
-                        godotExtension.dxToolPath.get(),
-                        "--dex",
-                        "--output=godot-bootstrap-dex.jar",
-                        godotBootstrapJar.absolutePath
+                        godotExtension.d8ToolPath,
+                        godotBootstrapJar.absolutePath,
+                        "--output",
+                        "godot-bootstrap-dex.jar",
+                        "--lib",
+                        "${godotExtension.androidCompileSdkDir}/android.jar",
                     )
                 }
             }
 
-            val createMainDexJar = with(create("createMainDexJar", Exec::class.java)) {
+            // d8 doc: https://developer.android.com/studio/command-line/d8
+            val createMainDexFile = with(create("createMainDexFile", Exec::class.java)) {
                 group = "godot-kotlin-jvm"
-                description = "Converts the main.jar to an android compatible version. Needed for android builds only"
+                description = "Converts the main.jar to an android dex file. Needed for android builds only"
 
-                dependsOn(checkDxToolAccessible, shadowJar, bootstrapJar)
+                dependsOn(checkD8ToolAccessible, checkAndroidJarAccessible, shadowJar, bootstrapJar)
+
                 val libsDir = project.buildDir.resolve("libs")
                 val mainJar = File(libsDir, "main.jar")
+                val godotBootstrapJar = File(libsDir, "godot-bootstrap.jar")
 
                 workingDir = libsDir
                 if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows) {
                     commandLine(
                         "cmd",
                         "/c",
-                        godotExtension.dxToolPath.get(),
-                        "--dex",
-                        "--output=\"main-dex.jar\"",
-                        "\"${mainJar.absolutePath}\""
+                        godotExtension.d8ToolPath,
+                        "\"${mainJar.absolutePath}\"",
+                        "--lib",
+                        "${godotExtension.androidCompileSdkDir}/android.jar",
                     )
                 } else {
-                    commandLine(godotExtension.dxToolPath.get(), "--dex", "--output=main-dex.jar", mainJar.absolutePath)
+                    commandLine(
+                        godotExtension.d8ToolPath,
+                        mainJar.absolutePath,
+                        "--lib",
+                        "${godotExtension.androidCompileSdkDir}/android.jar",
+                        "--classpath",
+                        godotBootstrapJar.absolutePath,
+                    )
                 }
+            }
+
+            val createMainDexJar = with(create("createMainDexJar", ShadowJar::class.java)) {
+                group = "godot-kotlin-jvm"
+                description = "Packs the android dex file of main, together with the needed entry service file into a jar. Needed for android builds only"
+
+                archiveBaseName.set("main-dex")
+
+                from("src/main/resources").include("**/godot.runtime.Entry")
+                from("${project.buildDir.absolutePath}/libs/").include("classes.dex")
+
+                dependsOn(createMainDexFile)
             }
 
             val generateServiceFile = with(create("generateServiceFile")) {
