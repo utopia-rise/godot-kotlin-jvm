@@ -19,6 +19,7 @@ open class GodotExtension(objects: ObjectFactory) {
      * example: "${System.getenv("ANDROID_SDK_ROOT")}/build-tools/31.0.0/d8"
      */
     var d8ToolPath: File? = null
+
     /**
      * path to the sdk dir for your target sdk compilation dir
      *
