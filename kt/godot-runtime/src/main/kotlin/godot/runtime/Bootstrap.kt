@@ -137,15 +137,6 @@ class Bootstrap {
     private fun clearClassesCache() {
         registry?.let {
             unloadClasses(it.classes.toTypedArray())
-            it.classes.forEach { clazz ->
-                clazz.properties.forEach { property ->
-                    val defaultValue = property._defaultValueProvider()
-                    if (defaultValue is KtObject && !defaultValue.____DO_NOT_TOUCH_THIS_isRef____() &&
-                            !defaultValue.____DO_NOT_TOUCH_THIS_isSingleton____()) {
-                        defaultValue.free()
-                    }
-                }
-            }
             it.classes.clear()
         }
     }
