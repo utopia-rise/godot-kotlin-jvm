@@ -34,6 +34,9 @@ The above command will create a very minimal JVM, if you need extra features you
 `godot-bootstrap.jar` and `main.jar` are set into `pck` during the export process. As a real file path is needed to handle them, they are copied on the first game version start from `res://` to `user://` (we check if it exists and also check the md5 hash) to only update when needed. Don't forget to remove them when writing an uninstaller for your game.
 
 ## Android
+!!! warning
+    If you plan to export your game to android, make sure the libraries you use, are actually compatible with android.
+
 In order to build for Android, set the `isAndroidExportEnabled` flag to `true` in your build file.
 
 === "build.gradke.kts"
