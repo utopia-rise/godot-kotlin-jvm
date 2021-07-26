@@ -47,7 +47,7 @@ On android we do not embed a JVM, we use the existing ART provided by the OS. In
 
 - Android SDK installed
 - `d8` tool resolvable by doing one of the following:
-    - (discuraged) only set the `ANDROID_SDK_ROOT` environment variable
+    - (discouraged) only set the `ANDROID_SDK_ROOT` environment variable
     - set `d8ToolPath` to the file path of `d8`:
 
     ```kt
@@ -58,7 +58,7 @@ On android we do not embed a JVM, we use the existing ART provided by the OS. In
     !!! info
         The d8 tool is located at <android-sdk-root>/build-tools/<build-tool-version>/d8
 - `android sdk dir` set by doing one of the following:
-    - (discuraged) only set the `ANDROID_SDK_ROOT` environment variable
+    - (discouraged) only set the `ANDROID_SDK_ROOT` environment variable
     - set `d8ToolPath` to the file path of `d8`:
 
     ```kt
