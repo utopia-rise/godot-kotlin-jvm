@@ -142,11 +142,11 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
                         "cmd",
                         "/c",
                         godotExtension.d8ToolPath,
-                        "\"${godotBootstrapJar.absolutePath}\"",
+                        godotBootstrapJar.absolutePath,
                         "--output",
                         "godot-bootstrap-dex.jar",
                         "--lib",
-                        "${godotExtension.androidCompileSdkDir}/android.jar",
+                        "${godotExtension.androidCompileSdkDir}${File.separator}android.jar",
                     )
                 } else {
                     commandLine(
@@ -177,9 +177,9 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
                         "cmd",
                         "/c",
                         godotExtension.d8ToolPath,
-                        "\"${mainJar.absolutePath}\"",
+                        mainJar.absolutePath,
                         "--lib",
-                        "${godotExtension.androidCompileSdkDir}/android.jar",
+                        "${godotExtension.androidCompileSdkDir}${File.separator}android.jar",
                     )
                 } else {
                     commandLine(
