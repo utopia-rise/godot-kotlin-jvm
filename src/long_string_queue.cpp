@@ -46,7 +46,7 @@ void LongStringQueue::send_string_to_jvm(const String& str) {
     jni::MethodId method = get_method_id(env, jni_methods.QUEUE_STRING);
     jni::JString java_string = env.new_string(str.utf8().get_data());
     jvalue args[1] = {jni::to_jni_arg(java_string)};
-    wrapped.call_object_method(env, method, args);
+    wrapped.call_void_method(env, method, args);
 }
 
 void LongStringQueue::send_string_to_cpp(JNIEnv* p_raw_env, jobject p_instance, jstring p_string) {
