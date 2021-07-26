@@ -43,34 +43,26 @@ In order to build for Android, set the `isAndroidExportEnabled` flag to `true` i
     }
     ```
 
-On android we do not embed a JVM, we use the existing ART provided by the OS. In order for your game to load the necessary jar files, they need to be converted into dex format. Our gradle plugin will handle this for you, but you need to fulfill the following requirements:
+On android, we do not embed a JVM, we use the existing ART provided by the OS. In order for your game to load the necessary jar files, they need to be converted into dex format. Our gradle plugin will handle this for you, but you need to fulfill the following requirements:
 
 - Android SDK installed
-- `d8` tool resolvable by doing one of the following:
-    - (discouraged) only set the `ANDROID_SDK_ROOT` environment variable
-    - set `d8ToolPath` to the file path of `d8`:
-
+- `d8` tool resolvable by setting the `d8ToolPath` to the file path of `d8`:
     ```kt
     godot {
-        d8ToolPath = File("/home/user/Android/Sdk/build-tools/31.0.0/d8")
+        d8ToolPath = File("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/31.0.0/d8")
     }
     ```
     !!! info
-        The d8 tool is located at <android-sdk-root>/build-tools/<build-tool-version>/d8
-- `android sdk dir` set by doing one of the following:
-    - (discouraged) only set the `ANDROID_SDK_ROOT` environment variable
-    - set `d8ToolPath` to the file path of `d8`:
+        The d8 tool is located at \<android-sdk-root\\>/build-tools/\<build-tool-version\>/d8
 
+- Setting the `androidCompileSdkDir` to your target sdk version (most of the time, you want to set it to the newest version available):
     ```kt
     godot {
-        androidCompileSdkDir = File("/home/user/Android/Sdk/platforms/android-30")
+        androidCompileSdkDir = File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-30")
     }
     ```
     !!! info
-        The android sdk dir tool is located at <android-sdk-root>/platforms/<your-target-sdk-version>
-
-!!! warning
-    We strongly advise you to set both `d8ToolPath` and `androidCompileSdkDir` explicitly! If they are not set explicitly, our gradle plugin will auto resolve the path as best as possible from the root of `ANDROID_SDK_ROOT`. But if you have multiple sdk versions and/or multiple build-tools installed, we always take the latest one. But this is not always desired.
+        The android sdk dir tool is located at \<android-sdk-root\>/platforms/\<your-target-sdk-version\>
 
 !!! warning
     Similar to the desktop targets, the game copies the needed jar files to the `user://` directory upon first execution or if the files have changed. On android this is the applications `files` folder. If you do IO operations on Android, never empty the whole `files` folder! Only delete what you have added or exclude the following two files when clearing the `files` folder: `godot-bootstrap-dex.jar` and `main-dex.jar`.
