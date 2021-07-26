@@ -25,7 +25,7 @@ class ClassRegistrarFileBuilder(
     private val registerClassControlFlow = FunSpec
         .builder("register")
         .addModifiers(KModifier.OVERRIDE)
-        .addParameter("registry", ClassName("godot.runtime", "ClassRegistry"))
+        .addParameter("registry", ClassName("godot.registration", "ClassRegistry"))
         .beginControlFlow("with(registry)") //START: with registry
         .beginControlFlow(
             "registerClass<%T>(%S,·%S,·%T::class,·${registeredClass.isTool},·%S,·%S)·{",
@@ -48,7 +48,7 @@ class ClassRegistrarFileBuilder(
             )
         } else {
             classRegistrarBuilder.addSuperinterface(
-                ClassName("godot.runtime", "ClassRegistrar")
+                ClassName("godot.registration", "ClassRegistrar")
             )
         }
 

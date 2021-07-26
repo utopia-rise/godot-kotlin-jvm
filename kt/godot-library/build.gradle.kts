@@ -1,8 +1,10 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
     kotlin("jvm")
     id("com.utopia-rise.api-generator")
     id("com.utopia-rise.godot-publish")
+    id("com.github.johnrengelman.shadow") version DependenciesVersions.shadowJarPluginVersion
 }
 
 apiGenerator {
@@ -11,18 +13,42 @@ apiGenerator {
     docsDir.set(project.file("$projectDir/../../../../doc/classes"))
 }
 
-dependencies {
-    api(project(":godot-runtime"))
-}
-
 tasks {
     compileKotlin {
         dependsOn(generateAPI)
+    }
+
+    build.get().finalizedBy(shadowJar)
+
+    @Suppress("UNUSED_VARIABLE")
+    val jar by getting {
+        outputs.upToDateWhen {
+            // force this to always run. So we ensure that the bootstrap jar in the godot bin dir is always up to date
+            // only relevant for local testing
+            false
+        }
+        finalizedBy(shadowJar)
+    }
+
+    val copyBootstrapJar by creating(Copy::class.java) {
+        group = "godot-kotlin-jvm"
+        from(shadowJar)
+        destinationDir = File("${projectDir.absolutePath}/../../../../bin/")
+        dependsOn(shadowJar)
+    }
+
+    withType<ShadowJar> {
+        archiveBaseName.set("godot-bootstrap")
+        archiveVersion.set("")
+        archiveClassifier.set("")
+        exclude("**/module-info.class") //for android support: excludes java 9+ module info which cannot be parsed by the dx tool
+        finalizedBy(copyBootstrapJar)
     }
 }
 
 publishing {
     publications {
+        @Suppress("UNUSED_VARIABLE")
         val godotLibraryPublication by creating(MavenPublication::class) {
             pom {
                 name.set(project.name)

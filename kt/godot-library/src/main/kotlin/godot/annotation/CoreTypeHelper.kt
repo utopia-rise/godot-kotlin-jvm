@@ -7,4 +7,4 @@ package godot.annotation
  */
 @Target(AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class CoreTypeHelper
+internal annotation class CoreTypeHelper
