@@ -1,6 +1,7 @@
 package godot.gradle
 
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import godot.gradle.exception.D8ToolNotFoundException
 import godot.utils.GodotBuildProperties
 import org.gradle.api.Project
 import org.gradle.api.tasks.Exec
@@ -83,8 +84,7 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
 
                 doLast {
                     try {
-                        val d8Tool = godotExtension.d8ToolPath
-                            ?: throw IllegalArgumentException("d8 tool not set! Make sure you've either set the ANDROID_SDK_ROOT environment variable or set the d8ToolPath. For more information, visit: https://godot-kotl.in/en/stable/user-guide/exporting/#android")
+                        val d8Tool = godotExtension.d8ToolPath ?: throw D8ToolNotFoundException()
                         val result = exec {
                             with(it) {
                                 workingDir = projectDir
@@ -98,10 +98,10 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
                             }
                         }
                         if (result.exitValue != 0) {
-                            throw IllegalArgumentException("d8 tool not found! Make sure you've either set the ANDROID_SDK_ROOT environment variable or set the d8ToolPath. For more information, visit: https://godot-kotl.in/en/stable/user-guide/exporting/#android")
+                            throw D8ToolNotFoundException()
                         }
                     } catch (e: Throwable) {
-                        throw IllegalArgumentException("d8 tool not found! Make sure you've either set the ANDROID_SDK_ROOT environment variable or set the d8ToolPath. For more information, visit: https://godot-kotl.in/en/stable/user-guide/exporting/#android")
+                        throw D8ToolNotFoundException()
                     }
                 }
             }
