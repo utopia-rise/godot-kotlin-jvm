@@ -52,8 +52,6 @@ On android, we do not embed a JVM, we use the existing ART provided by the OS. I
         d8ToolPath = File("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/31.0.0/d8")
     }
     ```
-    !!! info
-        The d8 tool is located at $ANDROID_SDK_ROOT/build-tools/$BUILD-TOOL-VERSION/d8
 
 - Setting the `androidCompileSdkDir` to your target sdk version (most of the time, you want to set it to the newest version available):
     ```kt
@@ -61,8 +59,6 @@ On android, we do not embed a JVM, we use the existing ART provided by the OS. I
         androidCompileSdkDir = File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-30")
     }
     ```
-    !!! info
-        The android sdk dir tool is located at $ANDROID-SDK-ROOT/platforms/$YOUR-TARGET-SDK-VERSION
 
 !!! warning
     Similar to the desktop targets, the game copies the needed jar files to the `user://` directory upon first execution or if the files have changed. On android this is the applications `files` folder. If you do IO operations on Android, never empty the whole `files` folder! Only delete what you have added or exclude the following two files when clearing the `files` folder: `godot-bootstrap-dex.jar` and `main-dex.jar`.
