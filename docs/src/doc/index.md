@@ -21,6 +21,11 @@ If you find bugs, please report an [issue on github](https://github.com/utopia-r
 ## Supported languages
 The only language currently supported is Kotlin. That said it is possible to support other Jvm based languages in the future. If you want to add support for another Jvm based language, feel free to open an [issue](https://github.com/utopia-rise/godot-kotlin-jvm/issues) and we'll explain in detail what is necessary to support another language and help you getting started with development.
 
+## Supported kotlin version
+This module relies on a kotlin compiler plugin for registering your classes and members to godot. As the compiler api from kotlin is not yet stable, we can only support specific kotlin version per release for now. 
+
+The current latest release is compatible with kotlin version `1.5.21`.
+
 ## Custom engine builds
 Get our pre built engine builds and export templates from the latest [github release](https://github.com/utopia-rise/godot-kotlin-jvm/releases).
 
