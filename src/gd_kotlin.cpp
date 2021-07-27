@@ -226,7 +226,7 @@ void GDKotlin::init() {
         }
 
         String debug_command{
-                "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=" + jvm_debug_address + ":" +
+                "-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=" + jvm_debug_address + ":" +
                 jvm_debug_port};
         args.option(debug_command.utf8());
     }
