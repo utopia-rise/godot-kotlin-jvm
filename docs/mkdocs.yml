@@ -57,6 +57,7 @@ nav:
     - Signals: user-guide/signals.md
     - Functions: user-guide/functions.md
     - Exporting: user-guide/exporting.md
+    - Debugging: user-guide/debugging.md
     - Versioning: user-guide/versioning.md
     - Supported platforms: user-guide/supported-platforms.md
     - Advanced:
