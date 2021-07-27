@@ -6,6 +6,7 @@ import com.intellij.psi.PsiDirectory
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiManager
 import com.intellij.psi.PsiTreeChangeEvent
+import com.intellij.psi.impl.file.PsiJavaDirectoryImpl
 import com.intellij.psi.search.FileTypeIndex
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.util.indexing.FileBasedIndex
@@ -36,7 +37,7 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
             .addPsiTreeChangeListener(
                 object : PsiTreeChangeListenerKt {
                     override fun beforeChildRemoval(event: PsiTreeChangeEvent) {
-                        val child = event.child ?: return
+                        val child = event.child
                         if (!child.isInGodotRoot()) return
                         when {
                             // whole file removed
@@ -47,7 +48,7 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
                     }
 
                     override fun beforeChildrenChange(event: PsiTreeChangeEvent) {
-                        val psiFile = event.file ?: return
+                        val psiFile = event.file
                         if (psiFile == null || !psiFile.isInGodotRoot()) return
                         if (psiFile.language == KotlinLanguage.INSTANCE) {
                             // remove class names (will be re registered in [childrenChanged])
@@ -58,14 +59,14 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
                     }
 
                     override fun childrenChanged(event: PsiTreeChangeEvent) {
-                        val psiFile = event.file ?: return
+                        val psiFile = event.file
                         if (psiFile == null || !psiFile.isInGodotRoot()) return
                         if (psiFile.language == KotlinLanguage.INSTANCE) {
                             psiFileChanged(psiFile)
                         }
                     }
 
-                    override fun childMoved(event: PsiTreeChangeEvent) {
+                    override fun beforeChildMovement(event: PsiTreeChangeEvent) {
                         val containingFile: PsiFile = event.child.containingFile ?: return
                         if (!containingFile.isInGodotRoot()) return
 
@@ -81,7 +82,7 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
                                 SceneAction.scriptMoved(
                                     project = project,
                                     oldPath = (event.oldParent as? PsiDirectory)?.virtualFile?.path ?: return,
-                                    newPath = event.child.containingFile.parent?.virtualFile?.path ?: return,
+                                    newPath = (event.newParent as? PsiDirectory)?.virtualFile?.path ?: return,
                                     fqNames = (event.child.containingFile as? KtFile)
                                         ?.classes
                                         ?.mapNotNull { it.getKotlinFqName()?.asString() }
