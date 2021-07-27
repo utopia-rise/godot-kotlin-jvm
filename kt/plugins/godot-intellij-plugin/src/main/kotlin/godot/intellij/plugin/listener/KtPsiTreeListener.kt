@@ -36,7 +36,7 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
             .addPsiTreeChangeListener(
                 object : PsiTreeChangeListenerKt {
                     override fun beforeChildRemoval(event: PsiTreeChangeEvent) {
-                        val child = event.child
+                        val child = event.child ?: return
                         if (!child.isInGodotRoot()) return
                         when {
                             // whole file removed
@@ -47,7 +47,7 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
                     }
 
                     override fun beforeChildrenChange(event: PsiTreeChangeEvent) {
-                        val psiFile = event.file
+                        val psiFile = event.file ?: return
                         if (psiFile == null || !psiFile.isInGodotRoot()) return
                         if (psiFile.language == KotlinLanguage.INSTANCE) {
                             // remove class names (will be re registered in [childrenChanged])
@@ -58,7 +58,7 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
                     }
 
                     override fun childrenChanged(event: PsiTreeChangeEvent) {
-                        val psiFile = event.file
+                        val psiFile = event.file ?: return
                         if (psiFile == null || !psiFile.isInGodotRoot()) return
                         if (psiFile.language == KotlinLanguage.INSTANCE) {
                             psiFileChanged(psiFile)
@@ -66,7 +66,7 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
                     }
 
                     override fun childMoved(event: PsiTreeChangeEvent) {
-                        val containingFile = event.child.containingFile
+                        val containingFile: PsiFile = event.child.containingFile ?: return
                         if (!containingFile.isInGodotRoot()) return
 
                         if (containingFile.language == KotlinLanguage.INSTANCE && containingFile is KtFile) {
