@@ -112,7 +112,7 @@ class GodotPlugin : Plugin<Project> {
             nativeImageToolPath.set("native-image")
             additionalGraalJniConfigurationFiles.set(arrayOf())
             isGraalVmNativeImageGenerationVerbose.set(false)
-            windowsDeveloperVCVarsPath.set("\"%VCINSTALLDIR%\\Auxiliary\\Build\\vcvars64.bat\"")
+            windowsDeveloperVCVarsPath.set("\"%VC_VARS_PATH%\"")
         }
     }
 }
