@@ -44,8 +44,9 @@ jobs:
       matrix:
         name: [ Linux, OSX, Windows ]
         include:
+          # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
           - name: Linux
-            os: ubuntu-latest
+            os: ubuntu-18.04
             platform: x11
           - name: OSX
             os: macos-latest
