@@ -10,6 +10,8 @@ static constexpr const char* configuration_path{"res://godot_kotlin_configuratio
 
 void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool p_debug, const String& p_path,
                                              int p_flags) {
+    LOG_INFO("Beginning Godot-Jvm specific exports.")
+
     // Add mandatory jars to pck
     Vector<String> files_to_add;
 
@@ -18,8 +20,6 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
     if (is_android_export) {
         files_to_add.push_back("res://build/libs/main-dex.jar");
         files_to_add.push_back("res://build/libs/godot-bootstrap-dex.jar");
-        print_line("Exporting main-dex.jar");
-        print_line("Exporting godot-bootstrap-dex.jar");
         _generate_export_configuration_file(jni::Jvm::ART);
     } else {
         String graal_usercode_lib;
@@ -36,9 +36,6 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
             files_to_add.push_back(vformat("res://build/libs/%s", graal_usercode_lib));
             _generate_export_configuration_file(GDKotlin::get_instance().get_configuration().get_vm_type());
 
-            print_line("Exporting main.jar");
-            print_line("Exporting godot-bootstrap.jar");
-            print_line(vformat("Exporting %s", graal_usercode_lib));
         } else {
             if (FileAccess::exists(configuration_path)) {
                 FileAccessRef configuration_access_read{FileAccess::open(configuration_path, FileAccess::READ)};
@@ -51,15 +48,12 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
                         files_to_add.push_back("res://build/libs/godot-bootstrap.jar");
                         _generate_export_configuration_file(jni::Jvm::HOTSPOT);
 
-                        print_line("Exporting main.jar");
-                        print_line("Exporting godot-bootstrap.jar");
                         break;
                     case jni::Jvm::GRAAL:
                         files_to_add.push_back(vformat("res://build/libs/%s", graal_usercode_lib));
                         _generate_export_configuration_file(jni::Jvm::GRAAL);
                         is_graal_only = true;
 
-                        print_line(vformat("Exporting %s", graal_usercode_lib));
                         break;
                     default:
                         LOG_ERROR("Unknown VM type, aborting export.")
@@ -74,6 +68,7 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
     for (int i = 0; i < files_to_add.size(); ++i) {
         const String& file_to_add{files_to_add[i]};
         add_file(file_to_add, FileAccess::get_file_as_array(file_to_add), false);
+        LOG_INFO(vformat("Exporting %s", file_to_add))
     }
 
     // Copy JRE for desktop platforms
@@ -95,6 +90,8 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
         }
         memdelete(dir_access);
     }
+
+    LOG_INFO("Finished Godot-Jvm specific exports.")
 }
 
 void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::Jvm::Type vm_type) {

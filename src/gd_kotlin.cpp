@@ -278,10 +278,9 @@ void GDKotlin::init() {
         main_jar_file = "graal_usercode";
     } else {
         main_jar_file = "main.jar";
+        _check_and_copy_jar(main_jar_file);
     }
 #endif
-
-    _check_and_copy_jar(main_jar_file);
 
     jni::JClass transfer_ctx_cls = env.load_class("godot.core.TransferContext", class_loader);
     jni::FieldId transfer_ctx_instance_field = transfer_ctx_cls.get_static_field_id(env, "INSTANCE",
