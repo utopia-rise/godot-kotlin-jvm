@@ -82,9 +82,31 @@ class GodotPlugin : Plugin<Project> {
     }
 
     private fun configureExtensionDefaults(godotExtension: GodotExtension) {
+        val buildToolsDir = System.getenv("ANDROID_SDK_ROOT")?.let { androidSdkRoot ->
+            File("$androidSdkRoot/build-tools/")
+        }
+        val platformsDir = System.getenv("ANDROID_SDK_ROOT")?.let { androidSdkRoot ->
+            File("$androidSdkRoot/platforms/")
+        }
+        val d8Tool = buildToolsDir
+            ?.listFiles()
+            ?.last { it.isDirectory }
+            ?.resolve("d8")
+
+        val androidCompileSdkDirFile = platformsDir
+            ?.listFiles()
+            ?.last { it.isDirectory }
+
         godotExtension.apply {
             isAndroidExportEnabled.set(false)
-            dxToolPath.set("dx") //default assumes that it's in $PATH
+
+            if (d8Tool != null) {
+                d8ToolPath = d8Tool
+            }
+
+            if (androidCompileSdkDirFile != null) {
+                androidCompileSdkDir = d8Tool
+            }
         }
     }
 }

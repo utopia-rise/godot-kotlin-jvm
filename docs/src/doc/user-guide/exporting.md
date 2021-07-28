@@ -34,6 +34,9 @@ The above command will create a very minimal JVM, if you need extra features you
 `godot-bootstrap.jar` and `main.jar` are set into `pck` during the export process. As a real file path is needed to handle them, they are copied on the first game version start from `res://` to `user://` (we check if it exists and also check the md5 hash) to only update when needed. Don't forget to remove them when writing an uninstaller for your game.
 
 ## Android
+!!! warning
+    If you plan to export your game to android, make sure the libraries you use, are actually compatible with android.
+
 In order to build for Android, set the `isAndroidExportEnabled` flag to `true` in your build file.
 
 === "build.gradke.kts"
@@ -43,17 +46,20 @@ In order to build for Android, set the `isAndroidExportEnabled` flag to `true` i
     }
     ```
 
-On android we do not embed a JVM, we use the existing ART provided by the OS. In order for your game to load the necessary jar files, they need to be converted into dex format. Our gradle plugin will handle this for you, but you need to fulfill the following requirements:
+On android, we do not embed a JVM, we use the existing ART provided by the OS. In order for your game to load the necessary jar files, they need to be converted into dex format. Our gradle plugin will handle this for you, but you need to fulfill the following requirements:
 
 - Android SDK installed
-- `dx` tool resolvable by doing one of the following:
-    - set the `PATH` environment variable to include `<android-sdk-dir>/build-tools/<version>/`
-    - set `dxToolPath` to the file path of `dx`:
-
+- `d8` tool resolvable by setting the `d8ToolPath` to the file path of `d8`:
     ```kt
     godot {
-        isAndroidExportEnabled.set(true)
-        dxToolPath.set("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/30.0.3/dx")
+        d8ToolPath = File("${System.getenv("ANDROID_SDK_ROOT")}/build-tools/31.0.0/d8")
+    }
+    ```
+
+- Setting the `androidCompileSdkDir` to your target sdk version (most of the time, you want to set it to the newest version available):
+    ```kt
+    godot {
+        androidCompileSdkDir = File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-30")
     }
     ```
 

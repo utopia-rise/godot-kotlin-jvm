@@ -356,9 +356,10 @@ void GDKotlin::finish() {
     }
     auto env = jni::Jvm::current_env();
 
+    bootstrap->finish(env);
+    
     delete transfer_context;
     transfer_context = nullptr;
-    bootstrap->finish(env);
     delete bootstrap;
     bootstrap = nullptr;
 

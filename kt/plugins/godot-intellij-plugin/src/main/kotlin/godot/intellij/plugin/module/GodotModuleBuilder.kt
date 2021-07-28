@@ -29,7 +29,8 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
     private val versionKey = Key<String>("VERSION")
     private val kotlinVersionKey = Key<String>("KOTLIN_VERSION")
     private val androidEnabledKey = Key<Boolean>("ANDROID_ENABLED")
-    private val dxToolPathKey = Key<String>("DX_TOOL_PATH")
+    private val d8ToolPathKey = Key<String>("D8_TOOL_PATH")
+    private val androidCompileSdkDirKey = Key<String>("ANDROID_COMPILE_SDK_DIR")
 
     private lateinit var wizardContext: WizardContext
 
@@ -60,7 +61,8 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
             val versionTextField = JTextField("0.0.1-SNAPSHOT")
             val kotlinVersionTextField = JTextField("1.4.32")
             lateinit var androidEnabledCheckBox: JCheckBox
-            lateinit var dxToolPathTextField: TextFieldWithBrowseButton
+            lateinit var d8ToolPathTextField: TextFieldWithBrowseButton
+            lateinit var androidCompileSdkDirTextField: TextFieldWithBrowseButton
 
             override fun getComponent(): JComponent {
                 return panel {
@@ -86,10 +88,10 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                         row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.androidEnabled")) {
                             checkBox("", false).apply { androidEnabledCheckBox = this.component }
                         }
-                        row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.dxToolPath")) {
+                        row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.d8ToolPath")) {
                             textFieldWithBrowseButton(
-                                GodotPluginBundle.message("wizard.projectSettings.buildSettings.dxToolPath.browseDialogTitle"),
-                                "dx",
+                                GodotPluginBundle.message("wizard.projectSettings.buildSettings.d8ToolPath.browseDialogTitle"),
+                                "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/31.0.0/d8",
                                 context.project,
                                 FileChooserDescriptor(true, false, false, false, false, false)
                             ) {
@@ -97,9 +99,25 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                             }
                                 .growPolicy(GrowPolicy.SHORT_TEXT)
                                 .enableIf(androidEnabledCheckBox.selected)
-                                .comment(GodotPluginBundle.message("wizard.projectSettings.buildSettings.dxToolPath.comment"))
+                                .comment(GodotPluginBundle.message("wizard.projectSettings.buildSettings.d8ToolPath.comment"))
                                 .apply {
-                                    dxToolPathTextField = component
+                                    d8ToolPathTextField = component
+                                }
+                        }
+                        row(GodotPluginBundle.message("wizard.projectSettings.buildSettings.androidCompileSdkDir")) {
+                            textFieldWithBrowseButton(
+                                GodotPluginBundle.message("wizard.projectSettings.buildSettings.androidCompileSdkDir.browseDialogTitle"),
+                                "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-30",
+                                context.project,
+                                FileChooserDescriptor(false, true, false, false, false, false)
+                            ) {
+                                it.path
+                            }
+                                .growPolicy(GrowPolicy.SHORT_TEXT)
+                                .enableIf(androidEnabledCheckBox.selected)
+                                .comment(GodotPluginBundle.message("wizard.projectSettings.buildSettings.androidCompileSdkDir.comment"))
+                                .apply {
+                                    androidCompileSdkDirTextField = component
                                 }
                         }
                     }
@@ -113,7 +131,8 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                 context.putUserData(versionKey, versionTextField.text)
                 context.putUserData(kotlinVersionKey, kotlinVersionTextField.text)
                 context.putUserData(androidEnabledKey, androidEnabledCheckBox.isSelected)
-                context.putUserData(dxToolPathKey, dxToolPathTextField.text)
+                context.putUserData(d8ToolPathKey, d8ToolPathTextField.text)
+                context.putUserData(androidCompileSdkDirKey, androidCompileSdkDirTextField.text)
             }
         }
     }
@@ -141,7 +160,8 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                             GodotBuildProperties.godotKotlinVersion
                         )
                         .replace("ANDROID_ENABLED", wizardContext.getUserData(androidEnabledKey)?.toString() ?: "false")
-                        .replace("DX_TOOL_PATH", wizardContext.getUserData(dxToolPathKey) ?: "dx")
+                        .replace("D8_TOOL_PATH", wizardContext.getUserData(d8ToolPathKey) ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/31.0.0/d8")
+                        .replace("ANDROID_COMPILE_SDK_DIR", wizardContext.getUserData(androidCompileSdkDirKey) ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-30")
                 )
             }
             copyTemplateFile(basePath, "settings.gradle.kts") { outFile ->
@@ -172,7 +192,8 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                     outFile
                         .readText()
                         .replace("ANDROID_ENABLED", wizardContext.getUserData(androidEnabledKey)?.toString() ?: "false")
-                        .replace("DX_TOOL_PATH", wizardContext.getUserData(dxToolPathKey) ?: "dx")
+                        .replace("D8_TOOL_PATH", wizardContext.getUserData(d8ToolPathKey) ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/build-tools/31.0.0/d8")
+                        .replace("ANDROID_COMPILE_SDK_DIR", wizardContext.getUserData(androidCompileSdkDirKey) ?: "\${System.getenv(\"ANDROID_SDK_ROOT\")}/platforms/android-30")
                         .let { content ->
                             if (module.parentProjectAlreadyContainsDependency(wizardContext, "godot-library")) {
                                 content.replace(
