@@ -39,21 +39,17 @@ GdKotlinConfiguration GdKotlinConfiguration::from_json(const String& json_string
 
     jni::Jvm::Type vm_type;
     const Dictionary& dictionary{result.operator Dictionary()};
-#ifdef __ANDROID__
-    vm_type = jni::Jvm::ART;
-#else
     const String& vm{dictionary[vm_type_identifier]};
     if (vm == jvm_string_identifier) {
         vm_type = jni::Jvm::JVM;
-    }
-    else if (vm == graal_native_image_string_identifier) {
+    } else if (vm == graal_native_image_string_identifier) {
         vm_type = jni::Jvm::GRAAL_NATIVE_IMAGE;
-    }
-    else {
+    } else if (vm == art_string_identifier) {
+        vm_type = jni::Jvm::ART;
+    } else {
         LOG_WARNING("Wrong JVM type in config, fallback to classic JVM !")
         vm_type = jni::Jvm::JVM;
     }
-#endif
     int max_string_size{LongStringQueue::max_string_size};
     Variant max_string_size_variant{dictionary[max_string_size_identifier]};
     if (max_string_size_variant.get_type() == Variant::INT) {
