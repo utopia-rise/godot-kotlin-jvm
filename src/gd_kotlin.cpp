@@ -149,8 +149,6 @@ void GDKotlin::init() {
     args.option("-Xcheck:jni");
 #endif
 
-    // Initialize remote jvm debug if one of jvm debug arguments is encountered.
-    // Initialize if jvm GC should be forced
     String jvm_type_argument{
 #ifdef __ANDROID__
             "art"
@@ -158,6 +156,9 @@ void GDKotlin::init() {
             ""
 #endif
     };
+
+    // Initialize remote jvm debug if one of jvm debug arguments is encountered.
+    // Initialize if jvm GC should be forced
     String jvm_debug_port;
     String jvm_debug_address;
     String jvm_jmx_port;
@@ -248,14 +249,14 @@ void GDKotlin::init() {
     }
 
 #ifndef __ANDROID__
-    if (jvm_type_argument == GdKotlinConfiguration::hotspot_string_identifier) {
-        configuration.set_vm_type(jni::Jvm::HOTSPOT);
+    if (jvm_type_argument == GdKotlinConfiguration::jvm_string_identifier) {
+        configuration.set_vm_type(jni::Jvm::JVM);
     }
-    else if (jvm_type_argument == GdKotlinConfiguration::graal_string_identifier) {
-        configuration.set_vm_type(jni::Jvm::GRAAL);
+    else if (jvm_type_argument == GdKotlinConfiguration::graal_native_image_string_identifier) {
+        configuration.set_vm_type(jni::Jvm::GRAAL_NATIVE_IMAGE);
     }
 
-    if (configuration.get_vm_type() == jni::Jvm::GRAAL) {
+    if (configuration.get_vm_type() == jni::Jvm::GRAAL_NATIVE_IMAGE) {
         _check_and_copy_jar(LIB_GRAAL_VM_RELATIVE_PATH);
     }
 #else
@@ -274,7 +275,7 @@ void GDKotlin::init() {
     String main_jar_file{"main-dex.jar"};
 #else
     String main_jar_file;
-    if (configuration.get_vm_type() == jni::Jvm::GRAAL) {
+    if (configuration.get_vm_type() == jni::Jvm::GRAAL_NATIVE_IMAGE) {
         main_jar_file = "graal_usercode";
     } else {
         main_jar_file = "main.jar";
@@ -522,7 +523,7 @@ void GDKotlin::_check_and_copy_jar(const String& jar_name) {
 }
 
 jni::JObject GDKotlin::_prepare_class_loader(jni::Env& p_env, jni::Jvm::Type type) {
-    if (type == jni::Jvm::GRAAL) {
+    if (type == jni::Jvm::GRAAL_NATIVE_IMAGE) {
         return jni::JObject();
     }
 #ifdef __ANDROID__

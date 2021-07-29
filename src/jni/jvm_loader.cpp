@@ -49,13 +49,13 @@ jni::GetCreatedJavaVMs jni::JvmLoader::get_get_created_java_vm_function() {
 }
 
 String jni::JvmLoader::get_jvm_lib_path() {
-    if (Jvm::get_type() != Jvm::GRAAL && Engine::get_singleton()->is_editor_hint()) {
+    if (Jvm::get_type() != Jvm::GRAAL_NATIVE_IMAGE && Engine::get_singleton()->is_editor_hint()) {
         LOG_INFO("Godot-JVM: Editor mode, loading jvm from JAVA_HOME")
         return get_path_to_locally_installed_jvm();
     } else {
         String embeddedJrePath{get_embedded_jre_path()};
         if (!FileAccess::exists(embeddedJrePath)) {
-            if (Jvm::get_type() == Jvm::GRAAL) {
+            if (Jvm::get_type() == Jvm::GRAAL_NATIVE_IMAGE) {
                 JVM_CRASH_NOW_MSG("Cannot find Graal VM user code native image")
             }
             LOG_WARNING(vformat("Godot-JVM: No embedded jvm found on path: %s!", embeddedJrePath))
@@ -91,7 +91,7 @@ String jni::JvmLoader::get_path_to_locally_installed_jvm() {
 
 String jni::JvmLoader::get_embedded_jre_path() {
     String jre_path;
-    if (Jvm::get_type() == Jvm::GRAAL) {
+    if (Jvm::get_type() == Jvm::GRAAL_NATIVE_IMAGE) {
         String user_code_dir{
 #ifdef TOOLS_ENABLED
             "res://build/libs/"

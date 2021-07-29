@@ -20,8 +20,8 @@ public:
     GdKotlinConfiguration();
     ~GdKotlinConfiguration() = default;
 
-    static constexpr const char* hotspot_string_identifier{"hotspot"};
-    static constexpr const char* graal_string_identifier{"graal"};
+    static constexpr const char* jvm_string_identifier{"jvm"};
+    static constexpr const char* graal_native_image_string_identifier{"graal_native_image"};
     static constexpr const char* art_string_identifier{"art"};
 
 private:

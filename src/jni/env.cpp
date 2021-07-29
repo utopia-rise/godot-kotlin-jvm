@@ -26,7 +26,7 @@ namespace jni {
     }
 
     JClass Env::load_class(const char* name, JObject class_loader) {
-        static bool is_graal_vm{Jvm::get_type() == Jvm::GRAAL};
+        static bool is_graal_vm{Jvm::get_type() == Jvm::GRAAL_NATIVE_IMAGE};
         if (is_graal_vm) {
             return find_class(String(name).replace(".", "/").utf8());
         } else {

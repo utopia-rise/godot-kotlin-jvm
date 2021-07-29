@@ -2,7 +2,7 @@ The following command line args can be supplied to customize the behaviour or th
 
 | Argument | Default value | Description |
 | --- | --- | ---|
-| --java-vm-type | hotspot | Defines the VM to run on. Possible values are `hotspot` and `graal`. When set to `graal` it uses Graal native image. This has no effect on android platform. |
+| --java-vm-type | jvm | Defines the VM to run on. Possible values are `jvm` and `graal_native_image`. When set to `graal_native_image` it uses Graal native image. This has no effect on android platform. |
 | --jvm-debug-port | | Defines the port to which you can attach a remote debugger. **Note:** the module `jdk.jdwp.agent` is needed in the embedded JRE if you want to debug your application. If you need `jmx`, also the module `jdk.management.agent` is needed |
 | --jvm-debug-address | | Defines which adresses are allowed for debugging |
 | --jvm-jmx-port | | Defines the jmx port. **Note:** the module `jdk.management.agent` is needed in the embedded JRE to be able to use jmx |

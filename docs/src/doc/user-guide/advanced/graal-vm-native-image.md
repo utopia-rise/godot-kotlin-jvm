@@ -1,3 +1,7 @@
+## Default GraalVM native image configuration
+
+**Warning: Reloading is not possible with native-image, as it would require to reload JVM.**
+
 On desktop platform, you can choose to build a [GraalVM native image](https://www.graalvm.org/reference-manual/native-image/).  
 You first need to install graal-vm and its tool native image. Then, you should set `GRAALVM_HOME` environment variable
 to point to GraalVM's home folder.  
@@ -18,3 +22,23 @@ godot {
 
 In order to use the generated native-image, you can pass `--java-vm-type=graal` argument to engine, or simply change
 `godot_kotlin_configuration.json` to set vm_type to `graal`.
+
+## Reflexion and JNI with native image
+
+GraalVM native image performs AOT compilation. In order to be able to use reflexion and jni, you need to provide an
+additional configuration file.  
+This applies also for third party library you use that would do reflexion.
+
+In order to append those configurations add the json in `graal` folder of your project (it should be generated on first
+graal native image use).  
+Then you can add `additionalGraalJniConfigurationFiles` parameter, this way:
+
+```kotlin
+godot {
+    isGraalExportEnabled.set(true)
+    nativeImageToolPath.set("${System.getenv("GRAALVM_HOME")}/bin/native-image")
+    
+    windowsDeveloperVCVarsPath.set(System.getenv("VC_VARS_PATH"))
+    additionalGraalJniConfigurationFiles.set(arrayOf("my-jni-configuration-file.json", "another-conf.json"))
+}
+```

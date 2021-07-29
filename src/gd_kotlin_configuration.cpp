@@ -8,11 +8,11 @@ String GdKotlinConfiguration::to_json() {
 
     String vm_type_value;
     switch (vm_type) {
-        case jni::Jvm::Type::HOTSPOT:
-            vm_type_value = hotspot_string_identifier;
+        case jni::Jvm::Type::JVM:
+            vm_type_value = jvm_string_identifier;
             break;
-        case jni::Jvm::Type::GRAAL:
-            vm_type_value = graal_string_identifier;
+        case jni::Jvm::Type::GRAAL_NATIVE_IMAGE:
+            vm_type_value = graal_native_image_string_identifier;
             break;
         case jni::Jvm::Type::ART:
             vm_type_value = art_string_identifier;
@@ -43,15 +43,15 @@ GdKotlinConfiguration GdKotlinConfiguration::from_json(const String& json_string
     vm_type = jni::Jvm::ART;
 #else
     const String& vm{dictionary[vm_type_identifier]};
-    if (vm == hotspot_string_identifier) {
-        vm_type = jni::Jvm::HOTSPOT;
+    if (vm == jvm_string_identifier) {
+        vm_type = jni::Jvm::JVM;
     }
-    else if (vm == graal_string_identifier) {
-        vm_type = jni::Jvm::GRAAL;
+    else if (vm == graal_native_image_string_identifier) {
+        vm_type = jni::Jvm::GRAAL_NATIVE_IMAGE;
     }
     else {
-        LOG_WARNING("Wrong JVM type in config, fallback to hotspot !")
-        vm_type = jni::Jvm::HOTSPOT;
+        LOG_WARNING("Wrong JVM type in config, fallback to classic JVM !")
+        vm_type = jni::Jvm::JVM;
     }
 #endif
     int max_string_size{LongStringQueue::max_string_size};
@@ -79,7 +79,7 @@ void GdKotlinConfiguration::set_max_string_size(int p_max_string_size) {
     max_string_size = p_max_string_size;
 }
 
-GdKotlinConfiguration::GdKotlinConfiguration() : vm_type(jni::Jvm::HOTSPOT), max_string_size(LongStringQueue::max_string_size) {
+GdKotlinConfiguration::GdKotlinConfiguration() : vm_type(jni::Jvm::JVM), max_string_size(LongStringQueue::max_string_size) {
 
 }
 

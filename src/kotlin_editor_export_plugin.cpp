@@ -43,15 +43,15 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
                 configuration_access_read->close();
                 jni::Jvm::Type jvm_type{configuration.get_vm_type()};
                 switch (jvm_type) {
-                    case jni::Jvm::HOTSPOT:
+                    case jni::Jvm::JVM:
                         files_to_add.push_back("res://build/libs/main.jar");
                         files_to_add.push_back("res://build/libs/godot-bootstrap.jar");
-                        _generate_export_configuration_file(jni::Jvm::HOTSPOT);
+                        _generate_export_configuration_file(jni::Jvm::JVM);
 
                         break;
-                    case jni::Jvm::GRAAL:
+                    case jni::Jvm::GRAAL_NATIVE_IMAGE:
                         files_to_add.push_back(vformat("res://build/libs/%s", graal_usercode_lib));
-                        _generate_export_configuration_file(jni::Jvm::GRAAL);
+                        _generate_export_configuration_file(jni::Jvm::GRAAL_NATIVE_IMAGE);
                         is_graal_only = true;
 
                         break;

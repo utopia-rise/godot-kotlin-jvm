@@ -13,7 +13,7 @@ namespace jni {
     JavaVM* Jvm::vm = nullptr;
     Env* Jvm::env = nullptr;
     jint Jvm::version = 0;
-    Jvm::Type Jvm::vm_type{Jvm::HOTSPOT};
+    Jvm::Type Jvm::vm_type{Jvm::JVM};
 
     void Jvm::init(const InitArgs& initArgs, Type type) {
         vm_type = type;

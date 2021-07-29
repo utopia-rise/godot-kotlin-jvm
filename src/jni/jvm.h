@@ -11,8 +11,8 @@ namespace jni {
     class Jvm {
     public:
         enum Type {
-            HOTSPOT,
-            GRAAL,
+            JVM,
+            GRAAL_NATIVE_IMAGE,
             ART
         };
         Jvm(const Jvm&) = delete;

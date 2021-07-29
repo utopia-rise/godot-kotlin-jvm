@@ -266,15 +266,20 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
 
                 workingDir = libsDir
 
-                val additionalJniConfiguration = godotExtension.additionalGraalJniConfigurationFiles
-                val additionalJoinedJniConfiguration = if (additionalJniConfiguration.get().isNotEmpty()) {
-                    ",${additionalJniConfiguration.get().joinToString(separator = ",") }"
+                val graalDirectory = projectDir.resolve("graal")
+
+                val additionalJniConfiguration = godotExtension.additionalGraalJniConfigurationFiles.get()
+                    .map {
+                        graalDirectory.resolve(it).absolutePath
+                    }
+                val additionalJoinedJniConfiguration = if (additionalJniConfiguration.isNotEmpty()) {
+                    ",${additionalJniConfiguration.joinToString(separator = ",") }"
                 } else {
                     ""
                 }
 
                 val jniConfigurationFilesArgument = "-H:JNIConfigurationFiles=" +
-                        projectDir.resolve("graal").resolve("godot-kotlin-graal-jni-config.json").absolutePath +
+                        graalDirectory.resolve("godot-kotlin-graal-jni-config.json").absolutePath +
                         additionalJoinedJniConfiguration
 
                 val verboseArgument = if (godotExtension.isGraalVmNativeImageGenerationVerbose.get()) {
