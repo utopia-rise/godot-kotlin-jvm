@@ -1,5 +1,5 @@
 ## Prerequisites
-If you want to debug your code and you're already using an embedded jre, make sure you've included the following modules:
+In order to debug your code using an embedded JRE, make sure to include the following modules:
 
 - `jdk.jdwp.agent`
 
