@@ -10,7 +10,7 @@ In order to debug your code using an embedded JRE, make sure to include the foll
 Run your game with the commandline option `--jvm-debug-port=<port (normally 5005)>` and attach a remote debugger.
 
 !!! info
-    If you specify either `--jvm-debug-port` or `--jvm-debug-address` the execution of the game will suspend until you attach a remote debugger.
+    If you specify either `--jvm-debug-port` or `--jvm-debug-address` the execution of the game will suspend until you attach a remote debugger. You can configure this behaviour by specifying `--wait-for-debugger=true` or `--wait-for-debugger=false`
 
 Example:  
 ![remote debug configuration](../assets/img/remote_debug_configuration.png)

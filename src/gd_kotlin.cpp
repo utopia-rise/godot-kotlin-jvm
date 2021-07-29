@@ -162,6 +162,7 @@ void GDKotlin::init() {
     String jvm_jmx_port;
     bool is_gc_force_mode{false};
     bool is_gc_activated{true};
+    bool is_waiting_for_debugger{true};
     bool should_display_leaked_jvm_instances_on_close{true};
     const List<String>& cmdline_args{OS::get_singleton()->get_cmdline_args()};
     for (int i = 0; i < cmdline_args.size(); ++i) {
@@ -184,6 +185,13 @@ void GDKotlin::init() {
                 if (jvm_debug_address.empty()) {
                     jvm_debug_address = "*";
                 }
+            } else {
+                break;
+            }
+        } else if (cmd_arg.find("--wait-for-debugger") >= 0) {
+            String is_waiting_for_debugger_as_string;
+            if (split_jvm_debug_argument(cmd_arg, is_waiting_for_debugger_as_string) == OK) {
+                is_waiting_for_debugger = is_waiting_for_debugger_as_string == "true";
             } else {
                 break;
             }
@@ -225,8 +233,15 @@ void GDKotlin::init() {
             jvm_debug_port = "5005";
         }
 
+        String suspend;
+        if (is_waiting_for_debugger) {
+            suspend = "y";
+        } else {
+            suspend = "n";
+        }
+
         String debug_command{
-                "-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=" + jvm_debug_address + ":" +
+                "-agentlib:jdwp=transport=dt_socket,server=y,suspend=" + suspend + ",address=" + jvm_debug_address + ":" +
                 jvm_debug_port};
         args.option(debug_command.utf8());
     }
@@ -373,7 +388,7 @@ void GDKotlin::finish() {
     auto env = jni::Jvm::current_env();
 
     bootstrap->finish(env);
-    
+
     delete transfer_context;
     transfer_context = nullptr;
     delete bootstrap;
