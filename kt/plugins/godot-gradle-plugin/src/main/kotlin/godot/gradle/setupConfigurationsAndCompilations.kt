@@ -2,6 +2,7 @@ package godot.gradle
 
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import godot.gradle.exception.D8ToolNotFoundException
+import godot.gradle.exception.GraalNativeImageToolNotFountException
 import godot.utils.GodotBuildProperties
 import org.gradle.api.Project
 import org.gradle.api.tasks.Exec
@@ -226,10 +227,10 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
                     try {
                         val result = checkToolAccessible(godotExtension.nativeImageToolPath.get())
                         if (result.exitValue != 0) {
-                            throw IllegalArgumentException("native-image tool not found! Make sure the dx tool is in you PATH variable or set \"dxToolPath\" to the absolute path of the dx tool. Normally the dx tool resides in <android-sdk-root>/build-tools/<version>/dx. For more information visit the docs. Provided path: ${godotExtension.nativeImageToolPath.get()}") //TODO: add url once doc ist hosted
+                            throw GraalNativeImageToolNotFountException()
                         }
                     } catch (e: Throwable) {
-                        throw IllegalArgumentException("native-image tool not found! Make sure the dx tool is in you PATH variable or set \"dxToolPath\" to the absolute path of the dx tool. Normally the dx tool resides in <android-sdk-root>/build-tools/<version>/dx. For more information visit the docs. Provided path: ${godotExtension.nativeImageToolPath.get()}") //TODO: add url once doc ist hosted
+                        throw GraalNativeImageToolNotFountException()
                     }
                 }
             }
