@@ -25,8 +25,6 @@ private:
 
     GdKotlinConfiguration configuration;
 
-    void _load_gd_kotlin_configuration();
-
     Error _split_jvm_debug_argument(const String& cmd_arg, String& result);
 
     static void _check_and_copy_jar(const String& jar_name);

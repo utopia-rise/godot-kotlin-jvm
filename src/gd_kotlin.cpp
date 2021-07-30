@@ -139,8 +139,6 @@ void GDKotlin::init() {
         return;
     }
 
-    _load_gd_kotlin_configuration();
-
     jni::InitArgs args;
 #ifndef __ANDROID__
     args.version = JNI_VERSION_1_8;
@@ -463,26 +461,6 @@ const GdKotlinConfiguration& GDKotlin::get_configuration() {
     return configuration;
 }
 
-void GDKotlin::_load_gd_kotlin_configuration() {
-    String configuration_path{gd_kotlin_configuration_path};
-
-    if (FileAccess::exists(configuration_path)) {
-        FileAccessRef configuration_access_read{FileAccess::open(configuration_path, FileAccess::READ)};
-        configuration = GdKotlinConfiguration::from_json(configuration_access_read->get_as_utf8_string());
-        configuration_access_read->close();
-    } else {
-#ifdef TOOLS_ENABLED
-        FileAccessRef file = FileAccess::open(configuration_path, FileAccess::WRITE);
-        configuration = GdKotlinConfiguration();
-        file->store_string(configuration.to_json());
-        file->close();
-#else
-        LOG_ERROR(vformat("Cannot find Godot Kotlin configuration file at: %s. Falling back to default configuration.", configuration_path))
-        configuration = GdKotlinConfiguration();
-#endif
-    }
-}
-
 Error GDKotlin::_split_jvm_debug_argument(const String& cmd_arg, String& result) {
     Vector<String> jvm_debug_split{cmd_arg.split("=")};
 
@@ -562,7 +540,8 @@ jni::JObject GDKotlin::_prepare_class_loader(jni::Env& p_env, jni::Jvm::Type typ
 GDKotlin::GDKotlin() :
         bootstrap(nullptr),
         is_gc_started(false),
-        transfer_context(nullptr) {
+        transfer_context(nullptr),
+        configuration(GdKotlinConfiguration::load_gd_kotlin_configuration_or_default(gd_kotlin_configuration_path)) {
 }
 
 void GDKotlin::register_members(jni::Env& p_env) {

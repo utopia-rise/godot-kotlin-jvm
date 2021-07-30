@@ -2,6 +2,7 @@
 #include "long_string_queue.h"
 
 #include <core/io/json.h>
+#include <core/os/file_access.h>
 
 String GdKotlinConfiguration::to_json() {
     Dictionary result;
@@ -57,6 +58,27 @@ GdKotlinConfiguration GdKotlinConfiguration::from_json(const String& json_string
     }
 
     return GdKotlinConfiguration(vm_type, max_string_size);
+}
+
+GdKotlinConfiguration GdKotlinConfiguration::load_gd_kotlin_configuration_or_default(const String& configuration_path) {
+    GdKotlinConfiguration configuration;
+    if (FileAccess::exists(configuration_path)) {
+        FileAccessRef configuration_access_read{FileAccess::open(configuration_path, FileAccess::READ)};
+        configuration = GdKotlinConfiguration::from_json(configuration_access_read->get_as_utf8_string());
+        configuration_access_read->close();
+    } else {
+#ifdef TOOLS_ENABLED
+        FileAccessRef file = FileAccess::open(configuration_path, FileAccess::WRITE);
+        configuration = GdKotlinConfiguration();
+        file->store_string(configuration.to_json());
+        file->close();
+#else
+        LOG_ERROR(vformat("Cannot find Godot Kotlin configuration file at: %s. Falling back to default configuration.", configuration_path))
+        configuration = GdKotlinConfiguration();
+#endif
+    }
+
+    return configuration;
 }
 
 jni::Jvm::Type GdKotlinConfiguration::get_vm_type() const {
