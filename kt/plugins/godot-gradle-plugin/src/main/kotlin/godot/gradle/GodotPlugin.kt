@@ -108,7 +108,7 @@ class GodotPlugin : Plugin<Project> {
                 androidCompileSdkDir = d8Tool
             }
 
-            isGraalExportEnabled.set(false)
+            isGraalNativeImageExportEnabled.set(false)
             nativeImageToolPath.set("native-image")
             additionalGraalJniConfigurationFiles.set(arrayOf())
             isGraalVmNativeImageGenerationVerbose.set(false)

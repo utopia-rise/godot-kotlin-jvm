@@ -242,7 +242,7 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
                 doLast {
                     val godotKotlinJniConfig = projectDir.resolve("graal").resolve("godot-kotlin-graal-jni-config.json")
                     if (!godotKotlinJniConfig.exists()) {
-                        val jniConfigContent = GodotExtension::class.java.getResource("godot-kotlin-graal-jni-config.json").content
+                        val jniConfigContent = GodotExtension::class.java.getResource("godot-kotlin-graal-jni-config.json")?.content
                         require(jniConfigContent is InputStream)
                         godotKotlinJniConfig.ensureParentDirsCreated()
                         godotKotlinJniConfig.createNewFile()
@@ -339,7 +339,7 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
                 if (godotExtension.isAndroidExportEnabled.get()) {
                     finalizedBy(createGodotBootstrapDexJar, createMainDexJar)
                 }
-                if (godotExtension.isGraalExportEnabled.get()) {
+                if (godotExtension.isGraalNativeImageExportEnabled.get()) {
                     finalizedBy(createGraalUserCode)
                 }
             }

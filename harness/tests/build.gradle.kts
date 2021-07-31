@@ -14,7 +14,7 @@ godot {
 //    androidCompileSdkDir = File("${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-30")
 
     //uncomment to test graal vm native image
-//    isGraalExportEnabled.set(true)
+//    isGraalNativeImageExportEnabled.set(true)
 //    nativeImageToolPath.set("${System.getenv("GRAALVM_HOME")}/bin/native-image")
 //    windowsDeveloperVCVarsPath.set(System.getenv("VC_VARS_PATH"))
 }
