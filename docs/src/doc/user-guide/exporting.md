@@ -68,15 +68,13 @@ On android, we do not embed a JVM, we use the existing ART provided by the OS. I
 
 ## GraalVM Native Image
 
-*GraalVM native image is a pretty advanced feature and definitely not as easy as it sounds.*
+!!! warning
+    GraalVM native image is a advanced feature and requires a lot of work to support. Especially if you rely on many third party libraries.
 
 In order to build for graalvm, follow `GraalVM native-image` section in advanced user guide.
 
-As `main.jar` and `godot-bootstrap.jar`, `usercode` shared library is set in `pck` during the export process and is copied
-to user directory. Don't forget to destroy them when creating an uninstaller.
+As `main.jar` and `godot-bootstrap.jar`, `usercode` shared library is set in `pck` during the export process and is copied to user directory. Don't forget to destroy them when creating an uninstaller.
 
 - GraalVM native image is not available for android platform.
 
-On desktop platform default export is inferred by the `godot_kotin_configuration.json` file.  
-You still can export for `jvm` and `native-image`, by adding feature `export-all-jvm`. In this case, the default JVM
-started by engine is the one from `godot_kotin_configuration.json` and can be overridden by command line. 
+On desktop platform default export is inferred by the `godot_kotin_configuration.json` file. You still can export for `jvm` and `native-image`, by adding feature `export-all-jvm`. In this case, the default JVM started by engine is the one from `godot_kotin_configuration.json` and can be overridden by command line. 

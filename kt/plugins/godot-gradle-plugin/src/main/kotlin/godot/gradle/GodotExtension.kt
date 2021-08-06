@@ -50,7 +50,7 @@ open class GodotExtension(objects: ObjectFactory) {
     val windowsDeveloperVCVarsPath = objects.property(String::class.java)
 
     /**
-     * Additional Graal JNI/reflexion configurations.
+     * Additional Graal JNI/reflection configurations.
      *
      * example: arrayOf("my-jni-configuration-file.json", "another-conf.json")
      */
