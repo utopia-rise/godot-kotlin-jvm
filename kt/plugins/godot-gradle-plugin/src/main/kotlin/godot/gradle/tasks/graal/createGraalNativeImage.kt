@@ -39,39 +39,25 @@ fun Project.createGraalNativeImageTask(
 
                 val graalDirectory = projectDir.resolve("graal")
 
-                val additionalJniConfiguration = godotJvmExtension.additionalGraalJniConfigurationFiles.get()
-                    .map {
-                        graalDirectory.resolve(it).absolutePath
-                    }
-                val additionalJoinedJniConfiguration = if (additionalJniConfiguration.isNotEmpty()) {
-                    ",${additionalJniConfiguration.joinToString(separator = ",")}"
-                } else {
-                    ""
-                }
-
                 val jniConfigurationFilesArgument = "-H:JNIConfigurationFiles=" +
-                    graalDirectory.resolve("godot-kotlin-graal-jni-config.json").absolutePath +
-                    additionalJoinedJniConfiguration
+                    graalDirectory.resolve("godot-kotlin-graal-jni-config.json").absolutePath + "," +
+                    getGraalVmAdditionalJniConfigs()
 
-                val reflectionConfigurationFilesString = godotJvmExtension
-                    .additionalGraalReflectionConfigurationFiles
-                    .getOrElse(arrayOf())
-                    .joinToString(",")
+                val reflectionConfigurationFilesArgument = "-H:ReflectionConfigurationFiles=${getAdditionalGraalReflectionConfigurationFiles()}"
 
-                val reflectionConfigurationFilesArgument = "-H:ReflectionConfigurationFiles=$reflectionConfigurationFilesString"
-
-                val resourceConfigurationFilesString = godotJvmExtension
-                    .additionalGraalResourceConfigurationFiles
-                    .getOrElse(arrayOf())
-                    .joinToString(",")
-
-                val resourceConfigurationFilesArgument = "-H:ResourceConfigurationFiles=$resourceConfigurationFilesString"
+                val resourceConfigurationFilesArgument = "-H:ResourceConfigurationFiles=${getAdditionalGraalResourceConfigurationFiles()}"
 
                 val verboseArgument = if (godotJvmExtension.isGraalVmNativeImageGenerationVerbose.get()) {
                     "--verbose"
                 } else {
                     ""
                 }
+
+                val graalBinDir = godotJvmExtension
+                    .graalVmDirectory
+                    .get()
+                    .asFile
+                    .resolve("bin")
 
                 if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows) {
                     commandLine(
@@ -84,7 +70,8 @@ fun Project.createGraalNativeImageTask(
 
                         "&&",
 
-                        godotJvmExtension.nativeImageToolPath.get(),
+                        graalBinDir
+                            .resolve("native-image.cmd"),
                         "-cp",
                         "\"${godotBootstrapJar.absolutePath}\";\"${mainJar.absolutePath}\"",
                         "--shared",
@@ -105,7 +92,8 @@ fun Project.createGraalNativeImageTask(
                     )
                 } else {
                     commandLine(
-                        godotJvmExtension.nativeImageToolPath.get(),
+                        graalBinDir
+                            .resolve("native-image"),
                         "-cp",
                         "${godotBootstrapJar.absolutePath}:${mainJar.absolutePath}",
                         "--shared",

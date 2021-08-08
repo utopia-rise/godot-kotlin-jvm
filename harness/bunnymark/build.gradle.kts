@@ -9,6 +9,6 @@ repositories {
 godot {
     //uncomment to test graal vm native image
 //    isGraalNativeImageExportEnabled.set(true)
-//    nativeImageToolPath.set("${System.getenv("GRAALVM_HOME")}/bin/native-image")
+//    graalVmDirectory.set(System.getenv("GRAALVM_HOME"))
 //    windowsDeveloperVCVarsPath.set(System.getenv("VC_VARS_PATH"))
 }

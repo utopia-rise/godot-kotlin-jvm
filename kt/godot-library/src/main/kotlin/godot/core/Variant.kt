@@ -12,6 +12,7 @@ import java.nio.ByteBuffer
 internal val variantMapper = mutableMapOf(
     Unit::class to NIL,
     Any::class to ANY,
+    java.lang.Object::class to ANY,
     Boolean::class to BOOL,
     Int::class to JVM_INT,
     Long::class to LONG,

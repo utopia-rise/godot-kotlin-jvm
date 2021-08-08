@@ -12,6 +12,7 @@ fun Project.setupBuildTask(
     packageBootstrapDexJarTask: TaskProvider<out Task>,
     packageMainDexJarTask: TaskProvider<out Task>,
     createGraalNativeImageTask: TaskProvider<out Task>,
+    createIOSTask: TaskProvider<out Task>,
     createBuildLockTask: TaskProvider<out Task>,
     generateGdIgnoreFilesTask: TaskProvider<out Task>,
 ) {
@@ -30,6 +31,12 @@ fun Project.setupBuildTask(
             }
             if (godotJvmExtension.isGraalNativeImageExportEnabled.get()) {
                 finalizedBy(createGraalNativeImageTask)
+            }
+            if (godotJvmExtension.isIOSExportEnabled.get()) {
+                require(godotJvmExtension.isGraalNativeImageExportEnabled.get()) {
+                    "GraalVM should be enabled when exporting for ios."
+                }
+                finalizedBy(createIOSTask)
             }
         }
     }

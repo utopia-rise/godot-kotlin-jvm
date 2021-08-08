@@ -1,4 +1,4 @@
-#if defined WINDOWS_ENABLED || defined X11_ENABLED || defined MACOS_ENABLED
+#if defined WINDOWS_ENABLED || defined X11_ENABLED || defined MACOS_ENABLED || defined IOS_ENABLED
 
 #include "logging.h"
 

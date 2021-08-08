@@ -1,0 +1,23 @@
+{
+  "resources": [
+    {"pattern": ".*\\.png$"},
+    {"pattern": ".*\\.jpg$"},
+    {"pattern": ".*\\.jpeg$"},
+    {"pattern": ".*\\.gif$"},
+    {"pattern": ".*\\.bmp$"},
+    {"pattern": ".*\\.ttf$"},
+    {"pattern": ".*\\.raw$"},
+    {"pattern": ".*\\.xml$"},
+    {"pattern": ".*\\.fxml$"},
+    {"pattern": ".*\\.css$"},
+    {"pattern": ".*\\.gls$"},
+    {"pattern": ".*\\.json$"},
+    {"pattern": ".*\\.dat$"},
+    {"pattern": ".*\\.license$"},
+    {"pattern": ".*\\.frag$"},
+    {"pattern": ".*\\.vert$"},
+    {"pattern": ".*\\.obj$"},
+    {"pattern": ".*\\.mtl$"},
+    {"pattern": ".*\\.js$"}
+  ]
+}

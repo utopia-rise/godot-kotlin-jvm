@@ -1,11 +1,11 @@
-#include "jvm_loader.h"
+#if defined WINDOWS_ENABLED || defined X11_ENABLED || defined MACOS_ENABLED
 
-#include "jni_constants.h"
+#include "modules/kotlin_jvm/src/jni/jvm_loader.h"
+
+#include <jni/jni_constants.h>
 
 #include <core/config/project_settings.h>
 #include <core/os/os.h>
-
-#ifndef __ANDROID__
 
 void* jni::JvmLoader::jvmLib {nullptr};
 

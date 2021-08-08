@@ -11,7 +11,7 @@ In order to build a native image, you should add configuration to gradle plugin 
 ```kotlin
 godot {
     isGraalExportEnabled.set(true)
-    nativeImageToolPath.set("${System.getenv("GRAALVM_HOME")}/bin/native-image")
+    graalVmDirectory.set(System.getenv("GRAALVM_HOME"))
     
     windowsDeveloperVCVarsPath.set("System.getenv("VC_VARS_PATH")")
 }
@@ -29,7 +29,7 @@ In order to append those configurations add the json in `graal` folder of your p
 ```kotlin
 godot {
     isGraalExportEnabled.set(true)
-    nativeImageToolPath.set("${System.getenv("GRAALVM_HOME")}/bin/native-image")
+    graalVmDirectory.set(System.getenv("GRAALVM_HOME"))
     
     windowsDeveloperVCVarsPath.set(System.getenv("VC_VARS_PATH"))
     additionalGraalJniConfigurationFiles.set(arrayOf("my-jni-configuration-file.json", "another-conf.json"))

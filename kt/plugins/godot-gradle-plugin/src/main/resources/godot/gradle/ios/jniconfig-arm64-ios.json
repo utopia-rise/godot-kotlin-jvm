@@ -1,0 +1,296 @@
+[
+  {
+    "name":"java.io.File",
+    "methods":[{"name":"<init>","parameterTypes":["java.lang.String"] }]
+  }
+,
+  {
+    "name" : "java.io.FileNotFoundException",
+    "methods":[{"name":"<init>","parameterTypes":["java.lang.String","java.lang.String"] }]
+  }
+,
+  {
+    "name" : "java.io.InputStream",
+    "methods" : [
+      {"name":"read","parameterTypes":["byte[]","int","int"] },
+      {"name":"skip","parameterTypes":["long"] }
+    ]
+  }
+,
+  {
+    "name" : "java.lang.Boolean",
+    "methods" : [
+      {"name":"booleanValue","parameterTypes":[] }
+    ]
+  }
+,
+  {
+    "name" : "java.lang.Class",
+    "methods" : [
+      {"name":"forName","parameterTypes":["java.lang.String", "boolean", "java.lang.ClassLoader"] },
+      {"name":"getCanonicalName","parameterTypes":[] },
+      {"name":"getFields","parameterTypes":[] },
+      {"name":"getMethods","parameterTypes":[] },
+      {"name":"getName","parameterTypes":[] },
+      {"name":"isArray","parameterTypes":[] }
+    ]
+  }
+,
+  {
+    "name" : "java.lang.ClassNotFoundException",
+    "methods":[{"name":"<init>","parameterTypes":["java.lang.String"] }]
+  }
+,
+  {
+    "name" : "java.lang.IllegalStateException"
+  }
+,
+  {
+    "name" : "java.lang.Integer",
+    "methods" : [
+      {"name":"<init>","parameterTypes":["int"] },
+      {"name":"intValue","parameterTypes":[] }
+    ]
+  }
+,
+  {
+    "name" : "java.lang.Iterable",
+    "methods" : [
+      {"name":"iterator","parameterTypes":[] }
+    ]
+  }
+,
+  {
+    "name" : "java.lang.Long",
+    "methods" : [
+      {"name":"longValue","parameterTypes":[] }
+    ]
+  }
+,
+  {
+    "name":"java.lang.Number"
+  }
+,
+  {
+    "name":"java.lang.Object",
+    "methods":[{"name":"getClass","parameterTypes":[] }]
+  }
+,
+  {
+    "name":"java.lang.reflect.Method",
+    "methods":[
+      {"name":"getModifiers","parameterTypes":[] },
+      {"name":"getName","parameterTypes":[] },
+      {"name":"getParameterTypes","parameterTypes":[] },
+      {"name":"getReturnType","parameterTypes":[] }
+    ]
+  }
+,
+  {
+    "name" : "java.lang.Runnable",
+    "methods" : [
+      {"name":"run","parameterTypes":[] }
+    ]
+  }
+,
+  {
+    "name" : "java.lang.String",
+    "methods" : [
+      {"name":"<init>","parameterTypes":["byte[]"] },
+      {"name":"<init>","parameterTypes":["byte[]","java.lang.String"] },
+      {"name":"concat","parameterTypes":["java.lang.String"] },
+      {"name":"getBytes","parameterTypes":["java.lang.String"] },
+      {"name":"toLowerCase","parameterTypes":["java.util.Locale"] },
+      {"name":"toUpperCase","parameterTypes":["java.util.Locale"] }
+    ]
+  }
+,
+  {
+    "name": "java.lang.String[]"
+  }
+,
+  {
+    "name" : "java.lang.Throwable",
+    "methods" : [
+      {"name":"getMessage","parameterTypes":[] }
+    ]
+  }
+,
+  {
+    "name" : "java.net.SocketTimeoutException"
+  }
+,
+  {
+    "name" : "java.nio.ByteBuffer",
+    "methods" : [
+      {"name":"array","parameterTypes":[] },
+      {"name":"wrap","parameterTypes":["byte[]"] }
+    ]
+  }
+,
+  {
+    "name" : "java.nio.charset.Charset"
+  }
+,
+  {
+    "name" : "java.util.ArrayList",
+    "methods" : [
+      {"name":"<init>","parameterTypes":[] },
+      {"name":"<init>","parameterTypes":["int"] },
+      {"name":"add","parameterTypes":["java.lang.Object"] },
+      {"name":"get","parameterTypes":["int"] }
+    ]
+  }
+,
+  {
+    "name" : "java.util.HashMap",
+    "methods" : [
+      {"name":"get","parameterTypes":["java.lang.Object"] },
+      {"name":"containsKey","parameterTypes":["java.lang.Object"] },
+      {"name":"keySet","parameterTypes":[] },
+      {"name":"put","parameterTypes":["java.lang.Object","java.lang.Object"] }
+    ]
+  }
+,
+  {
+    "name" : "java.util.HashSet",
+    "methods" : [
+      {"name":"<init>","parameterTypes":[] }
+    ]
+  }
+,
+  {
+    "name" : "java.util.Iterator",
+    "methods" : [
+      {"name":"hasNext","parameterTypes":[] },
+      {"name":"next","parameterTypes":[] }
+    ]
+  }
+,
+  {
+    "name" : "java.util.List",
+    "methods" : [
+      {"name":"add","parameterTypes":["java.lang.Object"] },
+      {"name":"get","parameterTypes":["int"] }
+    ]
+  }
+,
+  {
+    "name" : "java.util.Map",
+    "methods" : [
+      {"name":"get","parameterTypes":["java.lang.Object"] },
+      {"name":"containsKey","parameterTypes":["java.lang.Object"] },
+      {"name":"keySet","parameterTypes":[] }
+    ]
+  }
+,
+  {
+    "name" : "java.util.Set",
+    "methods" : [
+      {"name":"add","parameterTypes":["java.lang.Object"] },
+      {"name":"toArray","parameterTypes":["java.lang.Object[]"] },
+      {"name":"size","parameterTypes":[] }
+    ]
+  }
+,
+  {
+    "name":"java.io.FileDescriptor",
+    "fields":[{"name":"fd"}]
+  }
+,
+  {
+    "name":"java.net.AbstractPlainSocketImpl",
+    "fields":[
+      {"name":"closePending"},
+      {"name":"fdLock"},
+      {"name":"timeout"},
+      {"name":"trafficClass"}
+    ]
+  }
+,
+  {
+    "name":"java.net.Inet4Address",
+    "methods":[{"name":"<init>","parameterTypes":[] }]
+  }
+,
+  {
+    "name":"java.net.Inet6Address",
+    "methods":[{"name":"<init>","parameterTypes":[] }],
+    "fields":[
+      {"name":"holder6"}
+    ]
+  }
+,
+  {
+    "name":"java.net.Inet6Address$Inet6AddressHolder",
+    "fields":[
+      {"name":"ipaddress"},
+      {"name":"scope_id"},
+      {"name":"scope_id_set"},
+      {"name":"scope_ifname"}
+    ]
+  }
+,
+  {
+    "name":"java.net.InetAddress",
+    "fields":[
+      {"name":"holder"},
+      {"name":"preferIPv6Address"}
+    ]
+  }
+,
+  {
+    "name":"java.net.InetAddress$InetAddressHolder",
+    "fields":[
+      {"name":"address"},
+      {"name":"family"},
+      {"name":"hostName"},
+      {"name":"originalHostName"}
+    ]
+  }
+,
+  {
+    "name":"java.net.InterfaceAddress",
+    "methods":[{"name":"<init>","parameterTypes":[] }],
+    "fields":[
+      {"name":"address"},
+      {"name":"broadcast"},
+      {"name":"maskLength"}
+    ]
+  }
+,
+  {
+    "name":"java.net.NetworkInterface",
+    "methods":[{"name":"<init>","parameterTypes":[] }],
+    "fields":[
+      {"name":"addrs"},
+      {"name":"bindings"},
+      {"name":"childs"},
+      {"name":"defaultIndex"},
+      {"name":"displayName"},
+      {"name":"index"},
+      {"name":"name"},
+      {"name":"parent"},
+      {"name":"virtual"}
+    ]
+  }
+,
+  {
+    "name":"java.net.SocketException"
+  }
+,
+  {
+    "name":"java.net.SocketImpl",
+    "fields":[
+      {"name":"address"},
+      {"name":"fd"},
+      {"name":"localport"},
+      {"name":"port"}
+    ]
+  }
+,
+  {
+    "name":"sun.nio.ch.FileChannelImpl",
+    "fields":[{"name":"fd"}]
+  }
+]
