@@ -83,7 +83,7 @@ jobs:
       - name: Configuring Python packages
         run: |
           python -c "import sys; print(sys.version)"
-          python -m pip install scons
+          python -m pip install scons==4.1.0
       - name: Set up JDK 1.8
         if: matrix.platform == 'android'
         uses: actions/setup-java@v1
