@@ -12,6 +12,7 @@ import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeSpec
 import godot.entrygenerator.ext.getAnnotationUnsafe
 import godot.entrygenerator.ext.hasAnnotation
+import godot.entrygenerator.ext.toGodotVariantType
 import godot.entrygenerator.ext.toKtVariantType
 import godot.entrygenerator.generator.hintstring.PropertyHintStringGeneratorProvider
 import godot.entrygenerator.generator.typehint.PropertyTypeHintProvider
@@ -78,7 +79,7 @@ object PropertyRegistrationGenerator {
                 "property(%L,·%T,·%T,·%S,·%T,·%S,·$defaultValueProviderVariableName,·%L,·%T.id.toInt())",
                 getPropertyReference(registeredProperty, className),
                 registeredProperty.type.toKtVariantType(),
-                registeredProperty.type.toKtVariantType(),
+                registeredProperty.type.toGodotVariantType(),
                 typeFqNameWithNullability,
                 PropertyTypeHintProvider.provide(registeredProperty),
                 PropertyHintStringGeneratorProvider

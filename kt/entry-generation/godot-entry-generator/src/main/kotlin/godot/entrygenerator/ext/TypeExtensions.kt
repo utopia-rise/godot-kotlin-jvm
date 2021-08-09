@@ -10,10 +10,10 @@ fun Type?.toKtVariantType(): ClassName = when {
     this == null || fqName == "kotlin.Unit" -> ClassName("godot.core.VariantType", "NIL")
     fqName == "kotlin.Int" -> ClassName("godot.core.VariantType", "JVM_INT")
     fqName == "godot.util.NaturalT" ||
-    fqName == "kotlin.Long" -> ClassName("godot.core.VariantType", "LONG")
+        fqName == "kotlin.Long" -> ClassName("godot.core.VariantType", "LONG")
     fqName == "kotlin.Float" -> ClassName("godot.core.VariantType", "JVM_FLOAT")
     fqName == "godot.util.RealT" ||
-    fqName == "kotlin.Double" -> ClassName("godot.core.VariantType", "DOUBLE")
+        fqName == "kotlin.Double" -> ClassName("godot.core.VariantType", "DOUBLE")
     fqName == "kotlin.String" -> ClassName("godot.core.VariantType", "STRING")
     fqName == "kotlin.Boolean" -> ClassName("godot.core.VariantType", "BOOL")
     fqName == "kotlin.Byte" -> ClassName("godot.core.VariantType", "JVM_BYTE")
@@ -29,6 +29,19 @@ fun Type?.toKtVariantType(): ClassName = when {
     fqName == "kotlin.Any" -> ClassName("godot.core.VariantType", "ANY")
     else -> ClassName("godot.core.VariantType", "OBJECT")
 }
+
+/**
+ * Same as [toKtVariantType] but resolves JVM_* types to actual godot types.
+ *
+ * Calls [toKtVariantType] under the hood for all other types
+ */
+fun Type?.toGodotVariantType(): ClassName = this?.let {
+    when (it.fqName) {
+        "kotlin.Byte", "kotlin.Int" -> ClassName("godot.core.VariantType", "LONG")
+        "kotlin.Float" -> ClassName("godot.core.VariantType", "DOUBLE")
+        else -> toKtVariantType()
+    }
+} ?: toKtVariantType()
 
 fun Type.isCoreType(): Boolean {
     return coreTypes.contains(fqName)
