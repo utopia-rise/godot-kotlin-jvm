@@ -1,4 +1,6 @@
-To build our module, you need to same dependencies as the ones described in the [official Godot documentation](https://docs.godotengine.org/en/stable/development/compiling/index.html).
+To build our module, you need to same dependencies as the ones described in the [official Godot documentation](https://docs.godotengine.org/en/stable/development/compiling/index.html).  
+!!! warning
+   To build godot 3 version on Windows you need scons < 4.2.0.
 
 Make sure that Java is installed and its PATH set in your system as well (at least Java 9 is needed!).
 
