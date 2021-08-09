@@ -57,7 +57,7 @@ jobs:
       - name: Configuring Python packages
         run: |
           python -c "import sys; print(sys.version)"
-          python -m pip install scons==4.1.0
+          python -m pip install -r modules/kotlin_jvm/requirements.txt
       - name: Get number of CPU cores
         id: cpu-cores
         uses: SimenB/github-actions-cpu-cores@v1
