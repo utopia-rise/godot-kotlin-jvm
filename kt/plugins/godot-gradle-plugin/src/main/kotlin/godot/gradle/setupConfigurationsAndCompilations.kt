@@ -2,12 +2,15 @@ package godot.gradle
 
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import godot.gradle.exception.D8ToolNotFoundException
+import godot.gradle.exception.GraalNativeImageToolNotFountException
 import godot.utils.GodotBuildProperties
 import org.gradle.api.Project
 import org.gradle.api.tasks.Exec
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
+import org.jetbrains.kotlin.gradle.internal.ensureParentDirsCreated
 import java.io.File
+import java.io.InputStream
 
 /**
  * Set's up all configurations and compilations needed for kotlin_jvm to work and defines proper task dependencies between them.
@@ -78,6 +81,19 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
                 dependsOn(createBuildLock)
             }
 
+            fun checkToolAccessible(toolPath: String) = exec {
+                with(it) {
+                    workingDir = projectDir
+                    isIgnoreExitValue = true
+
+                    if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows) {
+                        commandLine("cmd", "/c", toolPath, "--version")
+                    } else {
+                        commandLine(toolPath, "--version")
+                    }
+                }
+            }
+
             val checkD8ToolAccessible = with(create("checkD8ToolAccessible")) {
                 group = "godot-kotlin-jvm"
                 description = "Checks if the d8 tool is accessible and executable. Needed for android builds only"
@@ -85,18 +101,7 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
                 doLast {
                     try {
                         val d8Tool = godotExtension.d8ToolPath ?: throw D8ToolNotFoundException()
-                        val result = exec {
-                            with(it) {
-                                workingDir = projectDir
-                                isIgnoreExitValue = true
-
-                                if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows) {
-                                    commandLine("cmd", "/c", d8Tool, "--version")
-                                } else {
-                                    commandLine(d8Tool, "--version")
-                                }
-                            }
-                        }
+                        val result = checkToolAccessible(d8Tool.absolutePath)
                         if (result.exitValue != 0) {
                             throw D8ToolNotFoundException()
                         }
@@ -214,12 +219,128 @@ fun Project.setupConfigurationsAndCompilations(godotExtension: GodotExtension, j
                 }
             }
 
+            val checkNativeImageToolAccessible = with(create("checkNativeImageToolAccessible")) {
+                group = "godot-kotlin-jvm"
+                description = "Checks if the GraalVM native image tool is accessible and executable. Needed for GraalVM native-image builds only"
+
+                doLast {
+                    try {
+                        val result = checkToolAccessible(godotExtension.nativeImageToolPath.get())
+                        if (result.exitValue != 0) {
+                            throw GraalNativeImageToolNotFountException()
+                        }
+                    } catch (e: Throwable) {
+                        throw GraalNativeImageToolNotFountException()
+                    }
+                }
+            }
+
+            val checkIfGraalDefaultJniConfigIsPresent = with(create("createGraalDefaultJniConfigIfNotPresent")) {
+                group = "godot-kotlin-jvm"
+                description = "Checks if the default jni config for Godot Kotlin with graalVM native image is present"
+
+                doLast {
+                    val godotKotlinJniConfig = projectDir.resolve("graal").resolve("godot-kotlin-graal-jni-config.json")
+                    if (!godotKotlinJniConfig.exists()) {
+                        val jniConfigContent = GodotExtension::class.java.getResource("godot-kotlin-graal-jni-config.json")?.content
+                        require(jniConfigContent is InputStream)
+                        godotKotlinJniConfig.ensureParentDirsCreated()
+                        godotKotlinJniConfig.createNewFile()
+                        godotKotlinJniConfig.writeBytes(jniConfigContent.readAllBytes())
+                    }
+                }
+            }
+
+            val createGraalUserCode = with(create("createGraalUserCode", Exec::class.java)) {
+                group = "godot-kotlin-jvm"
+                description = "Converts main.jar and bootstrap.jar into a GraalVM native image."
+
+                dependsOn(checkNativeImageToolAccessible, checkIfGraalDefaultJniConfigIsPresent, shadowJar, bootstrapJar)
+
+                val libsDir = project.buildDir.resolve("libs")
+                val resourcesDir = project.buildDir.resolve("resources")
+
+
+                val mainJar = File(libsDir, "main.jar")
+                val godotBootstrapJar = File(libsDir, "godot-bootstrap.jar")
+
+
+                workingDir = libsDir
+
+                val graalDirectory = projectDir.resolve("graal")
+
+                val additionalJniConfiguration = godotExtension.additionalGraalJniConfigurationFiles.get()
+                    .map {
+                        graalDirectory.resolve(it).absolutePath
+                    }
+                val additionalJoinedJniConfiguration = if (additionalJniConfiguration.isNotEmpty()) {
+                    ",${additionalJniConfiguration.joinToString(separator = ",") }"
+                } else {
+                    ""
+                }
+
+                val jniConfigurationFilesArgument = "-H:JNIConfigurationFiles=" +
+                        graalDirectory.resolve("godot-kotlin-graal-jni-config.json").absolutePath +
+                        additionalJoinedJniConfiguration
+
+                val verboseArgument = if (godotExtension.isGraalVmNativeImageGenerationVerbose.get()) {
+                    "--verbose"
+                } else {
+                    ""
+                }
+
+                if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows) {
+                    commandLine(
+                        "cmd",
+                        "/c",
+
+                        "(",
+
+                        godotExtension.windowsDeveloperVCVarsPath.get(),
+
+                        "&&",
+
+                        godotExtension.nativeImageToolPath.get(),
+                        "-cp",
+                        "\"${godotBootstrapJar.absolutePath}\";\"${mainJar.absolutePath}\"",
+                        "--shared",
+                        "-H:Name=usercode",
+                        jniConfigurationFilesArgument,
+                        "-H:IncludeResources=${
+                            resourcesDir.absolutePath.replace(
+                                '\\',
+                                '/'
+                            )
+                        }/main/META-INF/services/*.*",
+                        "--no-fallback",
+                        verboseArgument,
+
+                        ")"
+                    )
+                } else {
+                    commandLine(
+                        godotExtension.nativeImageToolPath.get(),
+                        "-cp",
+                        "${godotBootstrapJar.absolutePath}:${mainJar.absolutePath}",
+                        "--shared",
+                        "-H:Name=usercode",
+                        jniConfigurationFilesArgument,
+                        "-H:IncludeResources=${resourcesDir.absolutePath}/main/META-INF/services/*.*",
+                        "--no-fallback",
+                        verboseArgument,
+                    )
+                }
+            }
+
             @Suppress("UNUSED_VARIABLE")
             val build = with(getByName("build")) {
                 dependsOn(bootstrapJar, shadowJar, generateServiceFile)
                 finalizedBy(deleteBuildLock)
                 if (godotExtension.isAndroidExportEnabled.get()) {
                     finalizedBy(createGodotBootstrapDexJar, createMainDexJar)
+                }
+                if (godotExtension.isGraalNativeImageExportEnabled.get()) {
+                    finalizedBy(createGraalUserCode)
                 }
             }
 

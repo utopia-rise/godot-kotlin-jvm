@@ -107,6 +107,12 @@ class GodotPlugin : Plugin<Project> {
             if (androidCompileSdkDirFile != null) {
                 androidCompileSdkDir = d8Tool
             }
+
+            isGraalNativeImageExportEnabled.set(false)
+            nativeImageToolPath.set("native-image")
+            additionalGraalJniConfigurationFiles.set(arrayOf())
+            isGraalVmNativeImageGenerationVerbose.set(false)
+            windowsDeveloperVCVarsPath.set("\"%VC_VARS_PATH%\"")
         }
     }
 }

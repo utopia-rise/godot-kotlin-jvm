@@ -49,13 +49,15 @@ jni::GetCreatedJavaVMs jni::JvmLoader::get_get_created_java_vm_function() {
 }
 
 String jni::JvmLoader::get_jvm_lib_path() {
-    if (Engine::get_singleton()->is_editor_hint()) {
+    if (Jvm::get_type() != Jvm::GRAAL_NATIVE_IMAGE && Engine::get_singleton()->is_editor_hint()) {
         LOG_INFO("Godot-JVM: Editor mode, loading jvm from JAVA_HOME")
         return get_path_to_locally_installed_jvm();
     } else {
-        String embeddedJrePath{
-                ProjectSettings::get_singleton()->globalize_path(vformat("res://jre/%s", LIB_JVM_RELATIVE_PATH))};
+        String embeddedJrePath{get_embedded_jre_path()};
         if (!FileAccess::exists(embeddedJrePath)) {
+            if (Jvm::get_type() == Jvm::GRAAL_NATIVE_IMAGE) {
+                JVM_CRASH_NOW_MSG("Cannot find Graal VM user code native image")
+            }
             LOG_WARNING(vformat("Godot-JVM: No embedded jvm found on path: %s!", embeddedJrePath))
 #ifdef DEBUG_ENABLED
             LOG_WARNING(vformat("Godot-JVM: You really should embedd a jre in your game with jlink! See the documentation if you don't know how to do that"))
@@ -85,6 +87,23 @@ String jni::JvmLoader::get_path_to_locally_installed_jvm() {
         exit(1);
     }
     return pathToLocallyInstalledJvmLib;
+}
+
+String jni::JvmLoader::get_embedded_jre_path() {
+    String jre_path;
+    if (Jvm::get_type() == Jvm::GRAAL_NATIVE_IMAGE) {
+        String user_code_dir{
+#ifdef TOOLS_ENABLED
+            "res://build/libs/"
+#else
+            "user://"
+#endif
+        };
+        jre_path = vformat("%s%s", user_code_dir, LIB_GRAAL_VM_RELATIVE_PATH);
+    } else {
+        jre_path = vformat("res://jre/%s", LIB_JVM_RELATIVE_PATH);
+    }
+    return ProjectSettings::get_singleton()->globalize_path(jre_path);
 }
 
 #endif

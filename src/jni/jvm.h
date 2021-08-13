@@ -10,10 +10,15 @@ namespace jni {
 
     class Jvm {
     public:
+        enum Type {
+            JVM,
+            GRAAL_NATIVE_IMAGE,
+            ART
+        };
         Jvm(const Jvm&) = delete;
         void operator=(const Jvm&) = delete;
 
-        static void init(const InitArgs&);
+        static void init(const InitArgs& initArgs, Type type);
         static void destroy();
 
         static Env attach();
@@ -21,13 +26,16 @@ namespace jni {
 
         static Env current_env();
 
+        static Type get_type();
+
     private:
         Jvm() = default;
         static JavaVM* vm;
         static Env* env;
         static jint version;
+        static Type vm_type;
 
-        static JavaVM* create(const InitArgs&);
+        static JavaVM* create(const InitArgs& initArgs);
         static JavaVM* get_existing();
     };
 }

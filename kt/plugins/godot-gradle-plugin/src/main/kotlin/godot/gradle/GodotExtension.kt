@@ -26,4 +26,40 @@ open class GodotExtension(objects: ObjectFactory) {
      * example: "${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-30"
      */
     var androidCompileSdkDir: File? = null
+
+    /**
+     * enable Graal Native Image Export
+     *
+     * if is set to true, native-image tool and graalvm home has to be resolvable
+     */
+    val isGraalNativeImageExportEnabled = objects.property(Boolean::class.java)
+
+    /**
+     * path to the native-image tool used to convert jar to native.
+     *
+     * example: "${System.getenv("GRAALVM_HOME")}/bin/native-image"
+     */
+    val nativeImageToolPath = objects.property(String::class.java)
+
+    /**
+     * Windows specific.
+     * Path to Visual Studio VCVARS to initialize native developer tools.
+     *
+     * example: System.getenv("VC_VARS_PATH")
+     */
+    val windowsDeveloperVCVarsPath = objects.property(String::class.java)
+
+    /**
+     * Additional Graal JNI/reflection configurations.
+     *
+     * example: arrayOf("my-jni-configuration-file.json", "another-conf.json")
+     */
+    val additionalGraalJniConfigurationFiles = objects.property(Array<String>::class.java)
+
+    /**
+     * enable verbose mode on native image generation.
+     *
+     * if set to true, native-image tool will be in verbose mode.
+     */
+    val isGraalVmNativeImageGenerationVerbose = objects.property(Boolean::class.java)
 }

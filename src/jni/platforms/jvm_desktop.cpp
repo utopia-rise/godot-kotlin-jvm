@@ -13,8 +13,10 @@ namespace jni {
     JavaVM* Jvm::vm = nullptr;
     Env* Jvm::env = nullptr;
     jint Jvm::version = 0;
+    Jvm::Type Jvm::vm_type{Jvm::JVM};
 
-    void Jvm::init(const InitArgs& initArgs) {
+    void Jvm::init(const InitArgs& initArgs, Type type) {
+        vm_type = type;
         JavaVM* res{get_existing()};
         if (res == nullptr) {
             res = create(initArgs);
@@ -97,6 +99,10 @@ namespace jni {
         auto result = vm->GetEnv((void**) &r_env, version);
         JVM_CRASH_COND_MSG(result == JNI_EDETACHED, "Current thread is not attached!")
         return Env(r_env);
+    }
+
+    Jvm::Type Jvm::get_type() {
+        return vm_type;
     }
 }
 
