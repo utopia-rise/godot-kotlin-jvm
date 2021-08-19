@@ -1,5 +1,4 @@
 plugins {
-    KOTLIN_DEPENDENCY
     GODOT_KOTLIN_DEPENDENCY
 }
 

@@ -12,4 +12,8 @@ object GodotBuildProperties {
     val godotKotlinVersion by lazy {
         buildProperties["godot.jvm.version"] as String
     }
+
+    val supportedKotlinVersion by lazy {
+        buildProperties["godot.jvm.kotlin.version"] as String
+    }
 }

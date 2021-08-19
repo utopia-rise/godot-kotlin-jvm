@@ -14,7 +14,8 @@ tasks {
     val processResources by getting(Copy::class) {
         outputs.upToDateWhen { false }
         val tokens = mapOf(
-            "version" to version.toString()
+            "version" to version.toString(),
+            "kotlin.version" to DependenciesVersions.supportedKotlinVersion
         )
         from("src/main/resources") {
             include("*.properties")
