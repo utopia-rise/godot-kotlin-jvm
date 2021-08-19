@@ -190,7 +190,7 @@ void GDKotlin::init() {
             }
         } else if (cmd_arg.find("--wait-for-debugger") >= 0) {
             String is_waiting_for_debugger_as_string;
-            if (split_jvm_debug_argument(cmd_arg, is_waiting_for_debugger_as_string) == OK) {
+            if (_split_jvm_debug_argument(cmd_arg, is_waiting_for_debugger_as_string) == OK) {
                 is_waiting_for_debugger = is_waiting_for_debugger_as_string == "true";
             } else {
                 break;
