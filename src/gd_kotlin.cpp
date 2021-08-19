@@ -139,6 +139,11 @@ void GDKotlin::init() {
         return;
     }
 
+    if (Engine::get_singleton()->is_editor_hint() && OS::get_singleton()->get_environment("JAVA_HOME").empty()) {
+        LOG_WARNING("JAVA_HOME not defined. Godot-JVM module won't be loaded!")
+        return;
+    }
+
     jni::InitArgs args;
 #ifndef __ANDROID__
     args.version = JNI_VERSION_1_8;

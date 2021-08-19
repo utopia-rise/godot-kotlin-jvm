@@ -6,6 +6,7 @@
 
 
 #include <editor/editor_plugin.h>
+#include "dialog/error_dialog.h"
 #include "dialog/about_dialog.h"
 #include "dialog/build_dialog.h"
 #include "menu_option.h"
@@ -31,6 +32,7 @@ protected:
 private:
     GodotKotlinJvmEditor();
     AboutDialog* about_dialog;
+    ErrorDialog* error_dialog;
     BuildDialog* build_dialog;
     ToolButton* tool_bar_build_button;
     BottomPanel* bottom_panel;

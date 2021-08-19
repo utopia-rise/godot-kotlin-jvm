@@ -28,7 +28,7 @@ AboutDialog::AboutDialog(): about_dialog_check_box(memnew(CheckBox)) {
     about_vbox->add_child(about_hbox);
 
     TextureRect* about_icon{memnew(TextureRect)};
-    about_icon->set_texture(about_icon->get_icon("NodeWarning", "EditorIcons"));
+    about_icon->set_texture(get_icon("Warning", "EditorIcons"));
     about_hbox->add_child(about_icon);
 
     RichTextLabel* about_label{memnew(RichTextLabel)};

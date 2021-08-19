@@ -143,11 +143,20 @@ void GodotKotlinJvmEditor::_notificationv(int p_notification, bool p_reversed) {
 
         menu_pop_up->add_item("About Godot Kotlin JVM");
         editor_base_control->add_child(about_dialog);
+        editor_base_control->add_child(error_dialog);
 
         FileSystemDock* file_system_dock = get_editor_interface()->get_file_system_dock();
         file_system_dock->connect("files_moved", this, "on_file_system_dock_file_moved");
         file_system_dock->connect("file_removed", this, "on_file_system_dock_file_removed");
         file_system_dock->connect("folder_moved", this, "on_file_system_dock_folder_moved");
+
+        if (OS::get_singleton()->get_environment("JAVA_HOME").empty()) {
+            error_dialog->show_with_error(
+                    "JAVA_HOME not defined",
+                    "JAVA_HOME environment variable is not defined. This is necessary for Godot-Jvm to work while you develop on your machine.\n"
+                    "You can continue to use the editor but all Godot-Jvm related functionality remains disabled until you define JAVA_HOME and restart the editor."
+            );
+        }
     }
 }
 
@@ -183,7 +192,8 @@ GodotKotlinJvmEditor::GodotKotlinJvmEditor() :
         bottom_panel(memnew(BottomPanel)),
         tool_bar_build_button(memnew(ToolButton)),
         build_dialog(memnew(BuildDialog)),
-        about_dialog(memnew(AboutDialog)) {
+        about_dialog(memnew(AboutDialog)),
+        error_dialog(memnew(ErrorDialog)) {
 
 }
 
