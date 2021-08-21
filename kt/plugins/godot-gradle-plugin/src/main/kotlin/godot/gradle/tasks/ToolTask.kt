@@ -2,11 +2,13 @@ package godot.gradle.tasks
 
 import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.tasks.Exec
+import org.gradle.api.tasks.Internal
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 
 abstract class ToolTask: Exec(), GodotJvmTask {
 
-    abstract val toolFile: RegularFileProperty
+    @Internal
+    open val toolFile: RegularFileProperty = throw NotImplementedError()
 
     protected fun checkToolAccessible(notAccessibleCallback: () -> Unit) = try {
         project.exec {
