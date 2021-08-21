@@ -17,6 +17,8 @@ open class AndroidJarAccessible : DefaultTask(), GodotJvmTask {
         val androidSdkDir = project
             .godotJvmExtension
             .androidCompileSdkDir
+            .get()
+            .asFile
 
         when {
             androidSdkDir == null -> throw IllegalArgumentException("androidCompileSdkDir not set. Make sure you've either set the ANDROID_SDK_ROOT environment variable or set the androidCompileSdkDir. For more information, visit: https://godot-kotl.in/en/stable/user-guide/exporting/#android")

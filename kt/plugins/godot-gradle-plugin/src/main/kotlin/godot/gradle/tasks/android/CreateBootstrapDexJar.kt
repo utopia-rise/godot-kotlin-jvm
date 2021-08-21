@@ -11,13 +11,9 @@ import java.io.File
 open class CreateBootstrapDexJar : ToolTask() {
 
     @InputFile
-    override val toolFile = project.objects.fileProperty().apply {
-        this.set(
-            project
-                .godotJvmExtension
-                .d8ToolPath
-        )
-    }
+    override val toolFile = project
+        .godotJvmExtension
+        .d8ToolPath
 
     // d8 doc: https://developer.android.com/studio/command-line/d8
     override fun setup() {
@@ -44,7 +40,6 @@ open class CreateBootstrapDexJar : ToolTask() {
         val androidCompileSdkDir = project
             .godotJvmExtension
             .androidCompileSdkDir
-            ?: throw IllegalStateException("androidCompileSdkDir not set but this should have already thrown in ${TaskRegistry.ANDROID_JAR_ACCESSIBLE.taskName} task")
 
         workingDir = libsDir
         if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows) {
@@ -56,7 +51,7 @@ open class CreateBootstrapDexJar : ToolTask() {
                 "--output",
                 "godot-bootstrap-dex.jar",
                 "--lib",
-                "${androidCompileSdkDir.absolutePath.removeSuffix(File.separator)}${File.separator}android.jar",
+                "${androidCompileSdkDir.get().asFile.absolutePath.removeSuffix(File.separator)}${File.separator}android.jar",
             )
         } else {
             commandLine(
@@ -65,7 +60,7 @@ open class CreateBootstrapDexJar : ToolTask() {
                 "--output",
                 "godot-bootstrap-dex.jar",
                 "--lib",
-                "${androidCompileSdkDir.absolutePath.removeSuffix(File.separator)}/android.jar",
+                "${androidCompileSdkDir.get().asFile.absolutePath.removeSuffix(File.separator)}/android.jar",
             )
         }
     }

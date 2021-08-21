@@ -17,14 +17,14 @@ open class GodotExtension(objects: ObjectFactory) {
      *
      * example: "${System.getenv("ANDROID_SDK_ROOT")}/build-tools/31.0.0/d8"
      */
-    var d8ToolPath: File? = null
+    var d8ToolPath = objects.fileProperty()
 
     /**
      * path to the sdk dir for your target sdk compilation dir
      *
      * example: "${System.getenv("ANDROID_SDK_ROOT")}/platforms/android-30"
      */
-    var androidCompileSdkDir: File? = null
+    var androidCompileSdkDir = objects.fileProperty()
 
     /**
      * enable Graal Native Image Export
@@ -38,7 +38,7 @@ open class GodotExtension(objects: ObjectFactory) {
      *
      * example: "${System.getenv("GRAALVM_HOME")}/bin/native-image"
      */
-    var nativeImageToolPath: File? = null
+    val nativeImageToolPath = objects.fileProperty()
 
     /**
      * Windows specific.
@@ -81,15 +81,15 @@ open class GodotExtension(objects: ObjectFactory) {
         isAndroidExportEnabled.set(false)
 
         if (d8Tool != null) {
-            d8ToolPath = d8Tool
+            d8ToolPath.set(d8Tool)
         }
 
         if (androidCompileSdkDirFile != null) {
-            androidCompileSdkDir = d8Tool
+            androidCompileSdkDir.set(androidCompileSdkDirFile)
         }
 
         isGraalNativeImageExportEnabled.set(false)
-        nativeImageToolPath = System.getenv("native-image")?.let { File(it) }
+        nativeImageToolPath.set(System.getenv("native-image")?.let { File(it) })
         additionalGraalJniConfigurationFiles.set(arrayOf())
         isGraalVmNativeImageGenerationVerbose.set(false)
         windowsDeveloperVCVarsPath.set("\"%VC_VARS_PATH%\"")

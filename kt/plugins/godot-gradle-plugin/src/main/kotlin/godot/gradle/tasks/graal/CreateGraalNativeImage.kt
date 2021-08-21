@@ -10,13 +10,9 @@ import java.io.File
 
 open class CreateGraalNativeImage: ToolTask() {
     @InputFile
-    override val toolFile = project.objects.fileProperty().apply {
-        this.set(
-            project
-                .godotJvmExtension
-                .nativeImageToolPath
-        )
-    }
+    override val toolFile = project
+        .godotJvmExtension
+        .nativeImageToolPath
 
     override fun setup() {
         group = "godot-kotlin-jvm"
