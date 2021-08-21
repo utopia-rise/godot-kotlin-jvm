@@ -9,7 +9,7 @@
 #include <modules/kotlin_jvm/src/editor/godot_kotlin_jvm_editor.h>
 #include "about_dialog.h"
 
-AboutDialog::AboutDialog(): about_dialog_check_box(memnew(CheckBox)) {
+AboutDialog::AboutDialog(): AcceptDialog(), about_dialog_check_box(memnew(CheckBox)) {
     _EDITOR_DEF("kotlin_jvm/editor/show_info_on_start", true, false);
     ClassDB::bind_method(D_METHOD("on_about_to_show"), &AboutDialog::on_about_to_show);
     ClassDB::bind_method(D_METHOD("on_checkbox_toggled"), &AboutDialog::on_checkbox_toggled);

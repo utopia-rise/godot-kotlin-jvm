@@ -7,7 +7,7 @@
 #include <editor/editor_scale.h>
 #include "error_dialog.h"
 
-ErrorDialog::ErrorDialog(): error_message_label(memnew(RichTextLabel)) {
+ErrorDialog::ErrorDialog(): AcceptDialog(), error_message_label(memnew(RichTextLabel)) {
     VBoxContainer* about_vbox{memnew(VBoxContainer)};
     add_child(about_vbox);
 
