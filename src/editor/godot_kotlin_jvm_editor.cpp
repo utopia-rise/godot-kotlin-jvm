@@ -6,6 +6,7 @@
 #include <editor/filesystem_dock.h>
 #include <modules/kotlin_jvm/src/editor/build/build_manager.h>
 #include <scene/gui/control.h>
+#include <modules/kotlin_jvm/src/gd_kotlin.h>
 
 void GodotKotlinJvmEditor::on_file_system_dock_file_moved( // NOLINT(readability-convert-member-functions-to-static)
         const String& file,
@@ -150,11 +151,10 @@ void GodotKotlinJvmEditor::_notificationv(int p_notification, bool p_reversed) {
         file_system_dock->connect("file_removed", this, "on_file_system_dock_file_removed");
         file_system_dock->connect("folder_moved", this, "on_file_system_dock_folder_moved");
 
-        if (OS::get_singleton()->get_environment("JAVA_HOME").empty()) {
-            error_dialog->show_with_error(
-                    "JAVA_HOME not defined",
-                    "JAVA_HOME environment variable is not defined. This is necessary for Godot-Jvm to work while you develop on your machine.\n"
-                    "You can continue to use the editor but all Godot-Jvm related functionality remains disabled until you define JAVA_HOME and restart the editor."
+        if (!GDKotlin::get_instance().is_initialized) {
+            error_dialog->show_with_errors(
+                    "Godot-Jvm configuration errors encountered",
+                    GDKotlin::get_instance().configuration_errors
             );
         }
     }

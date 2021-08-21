@@ -30,6 +30,8 @@ private:
     static void _check_and_copy_jar(const String& jar_name);
     static jni::JObject _prepare_class_loader(jni::Env& p_env, jni::Jvm::Type type);
 
+    bool check_configuration();
+
 public:
     TransferContext* transfer_context;
     Vector<StringName> engine_type_names;
@@ -57,6 +59,10 @@ public:
     KtClass* find_class(const StringName& p_script_path);
 
     const GdKotlinConfiguration& get_configuration();
+
+    bool is_initialized;
+
+    Vector<Pair<String, String>> configuration_errors;
 };
 
 

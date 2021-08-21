@@ -12,6 +12,7 @@ public:
     ErrorDialog();
 
     void show_with_error(const String& error_title, const String& error_message);
+    void show_with_errors(const String& dialog_title, const Vector<Pair<String, String>>& errors);
 
 private:
     RichTextLabel* error_message_label;
