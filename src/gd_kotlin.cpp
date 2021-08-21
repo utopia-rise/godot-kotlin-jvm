@@ -567,13 +567,6 @@ bool GDKotlin::check_configuration() {
                         "You can continue to use the editor but all Godot-Jvm related functionality remains disabled until you define JAVA_HOME and restart the editor."
                 }
         );
-
-        configuration_errors.push_back(
-                {
-                    "Test",
-                    "Habbalubb lubb"
-                }
-                );
         has_configuration_error = true;
     }
     return !has_configuration_error;
