@@ -1,24 +1,35 @@
 package godot.gradle.tasks.graal
 
-import godot.gradle.exception.GraalNativeImageToolNotFountException
+import godot.gradle.exception.D8ToolNotFoundException
 import godot.gradle.ext.godotJvmExtension
 import godot.gradle.tasks.TaskRegistry
 import godot.gradle.tasks.ToolTask
+import org.gradle.api.tasks.InputFile
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 import java.io.File
 
 open class CreateGraalNativeImage: ToolTask() {
-    override val toolFile: File
-        get() = project
-            .godotJvmExtension
-            .nativeImageToolPath
-            ?: throw GraalNativeImageToolNotFountException()
+    @InputFile
+    override val toolFile = project.objects.fileProperty().apply {
+        this.set(
+            project
+                .godotJvmExtension
+                .nativeImageToolPath
+        )
+    }
 
     override fun setup() {
         group = "godot-kotlin-jvm"
         description = "Checks if tha native tool is accessible and converts main.jar and bootstrap.jar into a GraalVM native image."
 
-        checkToolAccessible()
+        if (!project.godotJvmExtension.isGraalNativeImageExportEnabled.get()) {
+            return
+        }
+
+        checkToolAccessible {
+            throw D8ToolNotFoundException()
+        }
+
         dependsOn(
             TaskRegistry.CREATE_GRAAL_DEFAULT_JNI_CONFIG.taskName,
             TaskRegistry.PACKAGE_MAIN_JAR.taskName,
@@ -64,7 +75,7 @@ open class CreateGraalNativeImage: ToolTask() {
                 "(",
                 project.godotJvmExtension.windowsDeveloperVCVarsPath.get(),
                 "&&",
-                toolFile.absolutePath,
+                toolFile.get().asFile.absolutePath,
                 "-cp",
                 "\"${godotBootstrapJar.absolutePath}\";\"${mainJar.absolutePath}\"",
                 "--shared",
@@ -82,7 +93,7 @@ open class CreateGraalNativeImage: ToolTask() {
             )
         } else {
             commandLine(
-                toolFile.absolutePath,
+                toolFile.get().asFile.absolutePath,
                 "-cp",
                 "${godotBootstrapJar.absolutePath}:${mainJar.absolutePath}",
                 "--shared",

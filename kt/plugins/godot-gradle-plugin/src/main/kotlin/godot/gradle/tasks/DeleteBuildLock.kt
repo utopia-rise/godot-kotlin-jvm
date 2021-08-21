@@ -5,8 +5,8 @@ import org.gradle.api.tasks.TaskAction
 open class DeleteBuildLock: BuildLockTask() {
 
     override fun setup() {
-        group = "godot-kotlin-jvm"
-        description = "Deletes the build lock file created by ${TaskRegistry.CREATE_BUILD_LOCK.taskName}"
+        group = "godot-kotlin-jvm-internal"
+        description = "Internal Task! Deletes the build lock file created by ${TaskRegistry.CREATE_BUILD_LOCK.taskName}"
     }
 
     @TaskAction

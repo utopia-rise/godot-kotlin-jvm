@@ -4,23 +4,33 @@ import godot.gradle.exception.D8ToolNotFoundException
 import godot.gradle.ext.godotJvmExtension
 import godot.gradle.tasks.TaskRegistry
 import godot.gradle.tasks.ToolTask
+import org.gradle.api.tasks.InputFile
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 import java.io.File
 
 open class CreateMainDexFile: ToolTask() {
 
-    override val toolFile: File
-        get() = project
-            .godotJvmExtension
-            .d8ToolPath
-            ?: throw D8ToolNotFoundException()
+    @InputFile
+    override val toolFile = project.objects.fileProperty().apply {
+        this.set(
+            project
+                .godotJvmExtension
+                .d8ToolPath
+        )
+    }
 
     // d8 doc: https://developer.android.com/studio/command-line/d8
     override fun setup() {
         group = "godot-kotlin-jvm"
         description = "Converts the main.jar to an android dex file. Needed for android builds only"
 
-        checkToolAccessible()
+        if (!project.godotJvmExtension.isAndroidExportEnabled.get()) {
+            return
+        }
+
+        checkToolAccessible {
+            throw D8ToolNotFoundException()
+        }
         dependsOn(
             TaskRegistry.ANDROID_JAR_ACCESSIBLE.taskName,
             TaskRegistry.PACKAGE_MAIN_JAR.taskName,
@@ -40,7 +50,7 @@ open class CreateMainDexFile: ToolTask() {
             commandLine(
                 "cmd",
                 "/c",
-                toolFile.absolutePath,
+                toolFile.get().asFile.absolutePath,
                 mainJar.absolutePath,
                 "--lib",
                 "${androidCompileSdkDir.absolutePath.removeSuffix(File.separator)}${File.separator}android.jar",
@@ -49,7 +59,7 @@ open class CreateMainDexFile: ToolTask() {
             )
         } else {
             commandLine(
-                toolFile.absolutePath,
+                toolFile.get().asFile.absolutePath,
                 mainJar.absolutePath,
                 "--lib",
                 "${androidCompileSdkDir.absolutePath.removeSuffix(File.separator)}/android.jar",
