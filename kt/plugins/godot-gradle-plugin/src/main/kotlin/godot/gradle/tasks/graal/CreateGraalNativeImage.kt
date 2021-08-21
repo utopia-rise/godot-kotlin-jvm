@@ -1,6 +1,6 @@
 package godot.gradle.tasks.graal
 
-import godot.gradle.exception.D8ToolNotFoundException
+import godot.gradle.exception.GraalNativeImageToolNotFountException
 import godot.gradle.ext.godotJvmExtension
 import godot.gradle.tasks.TaskRegistry
 import godot.gradle.tasks.ToolTask
@@ -23,7 +23,7 @@ open class CreateGraalNativeImage: ToolTask() {
         }
 
         checkToolAccessible {
-            throw D8ToolNotFoundException()
+            throw GraalNativeImageToolNotFountException()
         }
 
         dependsOn(
