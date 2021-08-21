@@ -1,6 +1,5 @@
 package godot.gradle
 
-import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property
 import java.io.File
@@ -39,7 +38,7 @@ open class GodotExtension(objects: ObjectFactory) {
      *
      * example: "${System.getenv("GRAALVM_HOME")}/bin/native-image"
      */
-    val nativeImageToolPath = objects.property(String::class.java)
+    var nativeImageToolPath: File? = null
 
     /**
      * Windows specific.
@@ -62,4 +61,37 @@ open class GodotExtension(objects: ObjectFactory) {
      * if set to true, native-image tool will be in verbose mode.
      */
     val isGraalVmNativeImageGenerationVerbose = objects.property(Boolean::class.java)
+
+    internal fun configureExtensionDefaults() {
+        val buildToolsDir = System.getenv("ANDROID_SDK_ROOT")?.let { androidSdkRoot ->
+            File("$androidSdkRoot/build-tools/")
+        }
+        val platformsDir = System.getenv("ANDROID_SDK_ROOT")?.let { androidSdkRoot ->
+            File("$androidSdkRoot/platforms/")
+        }
+        val d8Tool = buildToolsDir
+            ?.listFiles()
+            ?.last { it.isDirectory }
+            ?.resolve("d8")
+
+        val androidCompileSdkDirFile = platformsDir
+            ?.listFiles()
+            ?.last { it.isDirectory }
+
+        isAndroidExportEnabled.set(false)
+
+        if (d8Tool != null) {
+            d8ToolPath = d8Tool
+        }
+
+        if (androidCompileSdkDirFile != null) {
+            androidCompileSdkDir = d8Tool
+        }
+
+        isGraalNativeImageExportEnabled.set(false)
+        nativeImageToolPath = System.getenv("native-image")?.let { File(it) }
+        additionalGraalJniConfigurationFiles.set(arrayOf())
+        isGraalVmNativeImageGenerationVerbose.set(false)
+        windowsDeveloperVCVarsPath.set("\"%VC_VARS_PATH%\"")
+    }
 }
