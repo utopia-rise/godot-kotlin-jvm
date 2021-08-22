@@ -123,7 +123,9 @@ public open class EditorPlugin : Node() {
   }
 
   /**
-   * Registers a new export plugin. Export plugins are used when the project is being exported. See [godot.EditorExportPlugin] for more information.
+   * Registers a new [godot.EditorExportPlugin]. Export plugins are used to perform tasks when the project is being exported.
+   *
+   * See [addInspectorPlugin] for an example of how to register a plugin.
    */
   public open fun addExportPlugin(plugin: EditorExportPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
@@ -131,7 +133,11 @@ public open class EditorPlugin : Node() {
   }
 
   /**
+   * Registers a new [godot.EditorImportPlugin]. Import plugins are used to import custom and unsupported assets as a custom [godot.Resource] type.
    *
+   * **Note:** If you want to import custom 3D asset formats use [addSceneImportPlugin] instead.
+   *
+   * See [addInspectorPlugin] for an example of how to register a plugin.
    */
   public open fun addImportPlugin(importer: EditorImportPlugin): Unit {
     TransferContext.writeArguments(OBJECT to importer)
@@ -139,7 +145,20 @@ public open class EditorPlugin : Node() {
   }
 
   /**
+   * Registers a new [godot.EditorInspectorPlugin]. Inspector plugins are used to extend [godot.EditorInspector] and provide custom configuration tools for your object's properties.
    *
+   * **Note:** Always use [removeInspectorPlugin] to remove the registered [godot.EditorInspectorPlugin] when your [godot.EditorPlugin] is disabled to prevent leaks and an unexpected behavior.
+   *
+   * ```
+   * 				const MyInspectorPlugin = preload("res://addons/your_addon/path/to/your/script.gd")
+   * 				var inspector_plugin = MyInspectorPlugin.new()
+   *
+   * 				func _enter_tree():
+   * 				    add_inspector_plugin(inspector_plugin)
+   *
+   * 				func _exit_tree():
+   * 				    remove_inspector_plugin(inspector_plugin)
+   * 				```
    */
   public open fun addInspectorPlugin(plugin: EditorInspectorPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
@@ -148,7 +167,7 @@ public open class EditorPlugin : Node() {
   }
 
   /**
-   *
+   * Registers a new [godot.EditorSceneImporter]. Scene importers are used to import custom 3D asset formats as scenes.
    */
   public open fun addSceneImportPlugin(sceneImporter: EditorSceneImporter): Unit {
     TransferContext.writeArguments(OBJECT to sceneImporter)
@@ -157,7 +176,9 @@ public open class EditorPlugin : Node() {
   }
 
   /**
+   * Registers a new [godot.EditorSpatialGizmoPlugin]. Gizmo plugins are used to add custom gizmos to the 3D preview viewport for a [godot.Spatial].
    *
+   * See [addInspectorPlugin] for an example of how to register a plugin.
    */
   public open fun addSpatialGizmoPlugin(plugin: EditorSpatialGizmoPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
@@ -427,7 +448,7 @@ public open class EditorPlugin : Node() {
   }
 
   /**
-   *
+   * Minimizes the bottom panel.
    */
   public open fun hideBottomPanel(): Unit {
     TransferContext.writeArguments()
@@ -435,7 +456,7 @@ public open class EditorPlugin : Node() {
   }
 
   /**
-   *
+   * Makes a specific item in the bottom panel visible.
    */
   public open fun makeBottomPanelItemVisible(item: Control): Unit {
     TransferContext.writeArguments(OBJECT to item)
@@ -505,7 +526,7 @@ public open class EditorPlugin : Node() {
   }
 
   /**
-   *
+   * Removes an export plugin registered by [addExportPlugin].
    */
   public open fun removeExportPlugin(plugin: EditorExportPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
@@ -514,7 +535,7 @@ public open class EditorPlugin : Node() {
   }
 
   /**
-   *
+   * Removes an import plugin registered by [addImportPlugin].
    */
   public open fun removeImportPlugin(importer: EditorImportPlugin): Unit {
     TransferContext.writeArguments(OBJECT to importer)
@@ -523,7 +544,7 @@ public open class EditorPlugin : Node() {
   }
 
   /**
-   *
+   * Removes an inspector plugin registered by [addImportPlugin]
    */
   public open fun removeInspectorPlugin(plugin: EditorInspectorPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)
@@ -532,7 +553,7 @@ public open class EditorPlugin : Node() {
   }
 
   /**
-   *
+   * Removes a scene importer registered by [addSceneImportPlugin].
    */
   public open fun removeSceneImportPlugin(sceneImporter: EditorSceneImporter): Unit {
     TransferContext.writeArguments(OBJECT to sceneImporter)
@@ -541,7 +562,7 @@ public open class EditorPlugin : Node() {
   }
 
   /**
-   *
+   * Removes a gizmo plugin registered by [addSpatialGizmoPlugin].
    */
   public open fun removeSpatialGizmoPlugin(plugin: EditorSpatialGizmoPlugin): Unit {
     TransferContext.writeArguments(OBJECT to plugin)

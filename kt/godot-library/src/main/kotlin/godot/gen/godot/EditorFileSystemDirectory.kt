@@ -109,7 +109,7 @@ public open class EditorFileSystemDirectory : Object() {
   }
 
   /**
-   * Returns the file extension of the file at index `idx`.
+   * Returns the resource type of the file at index `idx`. This returns a string such as `"Resource"` or `"GDScript"`, *not* a file extension such as `".gd"`.
    */
   public open fun getFileType(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)

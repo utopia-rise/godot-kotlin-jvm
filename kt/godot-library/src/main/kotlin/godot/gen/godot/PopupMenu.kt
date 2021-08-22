@@ -384,7 +384,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   *
+   * Returns the index of the currently focused item. Returns `-1` if no item is focused.
    */
   public open fun getCurrentIndex(): Long {
     TransferContext.writeArguments()

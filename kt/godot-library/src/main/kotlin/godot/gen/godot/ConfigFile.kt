@@ -39,19 +39,41 @@ import kotlin.Unit
  *
  * The stored data can be saved to or parsed from a file, though ConfigFile objects can also be used directly without accessing the filesystem.
  *
- * The following example shows how to parse an INI-style file from the system, read its contents and store new values in it:
+ * The following example shows how to create a simple [godot.ConfigFile] and save it on disk:
  *
  * ```
+ * 		# Create new ConfigFile object.
  * 		var config = ConfigFile.new()
- * 		var err = config.load("user://settings.cfg")
- * 		if err == OK: # If not, something went wrong with the file loading
- * 		    # Look for the display/width pair, and default to 1024 if missing
- * 		    var screen_width = config.get_value("display", "width", 1024)
- * 		    # Store a variable if and only if it hasn't been defined yet
- * 		    if not config.has_section_key("audio", "mute"):
- * 		        config.set_value("audio", "mute", false)
- * 		    # Save the changes by overwriting the previous file
- * 		    config.save("user://settings.cfg")
+ *
+ * 		# Store some values.
+ * 		config.set_value("Player1", "player_name", "Steve")
+ * 		config.set_value("Player1", "best_score", 10)
+ * 		config.set_value("Player2", "player_name", "V3geta")
+ * 		config.set_value("Player2", "best_score", 9001)
+ *
+ * 		# Save it to a file (overwrite if already exists).
+ * 		config.save("user://scores.cfg")
+ * 		```
+ *
+ * This example shows how the above file could be loaded:
+ *
+ * ```
+ * 		var score_data = {}
+ * 		var config = ConfigFile.new()
+ *
+ * 		# Load data from a file.
+ * 		var err = config.load("user://scores.cfg")
+ *
+ * 		# If the file didn't load, ignore it.
+ * 		if err != OK:
+ * 		    return
+ *
+ * 		# Iterate over all sections.
+ * 		for player in config.get_sections():
+ * 		    # Fetch the data for each section.
+ * 		    var player_name = config.get_value(player, "player_name")
+ * 		    var player_score = config.get_value(player, "best_score")
+ * 		    score_data[player_name] = player_score
  * 		```
  *
  * Keep in mind that section and property names can't contain spaces. Anything after a space will be ignored on save and on load.

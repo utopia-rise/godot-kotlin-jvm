@@ -197,7 +197,7 @@ public open class Area : CollisionObject() {
     }
 
   /**
-   * The area's gravity intensity (ranges from -1024 to 1024). This value multiplies the gravity vector. This is useful to alter the force of gravity without altering its direction.
+   * The area's gravity intensity (in meters per second squared). This value multiplies the gravity vector. This is useful to alter the force of gravity without altering its direction.
    */
   public open var gravity: Double
     get() {

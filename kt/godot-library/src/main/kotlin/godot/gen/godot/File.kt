@@ -538,6 +538,8 @@ public open class File : Reference() {
 
   /**
    * Stores any Variant value in the file. If `full_objects` is `true`, encoding objects is allowed (and can potentially include code).
+   *
+   * **Note:** Not all properties are included. Only properties that are configured with the [PROPERTY_USAGE_STORAGE] flag set will be serialized. You can add a new usage flag to a property by overriding the [godot.Object.GetPropertyList] method in your class. You can also check how property usage is configured by calling [godot.Object.GetPropertyList]. See [enum PropertyUsageFlags] for the possible usage flags.
    */
   public open fun storeVar(`value`: Any?, fullObjects: Boolean = false): Unit {
     TransferContext.writeArguments(ANY to value, BOOL to fullObjects)

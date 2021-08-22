@@ -56,7 +56,7 @@ public open class EditorFileSystem : Node() {
   }
 
   /**
-   * Gets the type of the file, given the full path.
+   * Returns the resource type of the file, given the full path. This returns a string such as `"Resource"` or `"GDScript"`, *not* a file extension such as `".gd"`.
    */
   public open fun getFileType(path: String): String {
     TransferContext.writeArguments(STRING to path)

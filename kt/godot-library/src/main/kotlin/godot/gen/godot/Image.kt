@@ -251,7 +251,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Generates mipmaps for the image. Mipmaps are precalculated and lower resolution copies of the image. Mipmaps are automatically used if the image needs to be scaled down when rendered. This improves image quality and the performance of the rendering. Returns an error if the image is compressed, in a custom format or if the image's width/height is 0.
+   * Generates mipmaps for the image. Mipmaps are precalculated lower-resolution copies of the image that are automatically used if the image needs to be scaled down when rendered. They help improve image quality and performance when rendering. This method returns an error if the image is compressed, in a custom format, or if the image's width/height is `0`.
    */
   public open fun generateMipmaps(renormalize: Boolean = false): GodotError {
     TransferContext.writeArguments(BOOL to renormalize)
@@ -500,6 +500,8 @@ public open class Image : Resource() {
 
   /**
    * Saves the image as an EXR file to `path`. If `grayscale` is `true` and the image has only one channel, it will be saved explicitly as monochrome rather than one red channel. This function will return [ERR_UNAVAILABLE] if Godot was compiled without the TinyEXR module.
+   *
+   * **Note:** The TinyEXR module is disabled in non-editor builds, which means [saveExr] will return [ERR_UNAVAILABLE] when it is called from an exported project.
    */
   public open fun saveExr(path: String, grayscale: Boolean = false): GodotError {
     TransferContext.writeArguments(STRING to path, BOOL to grayscale)
@@ -660,7 +662,7 @@ public open class Image : Resource() {
     /**
      * Performs bilinear separately on the two most-suited mipmap levels, then linearly interpolates between them.
      *
-     * It's slower than [INTERPOLATE_BILINEAR], but produces higher-quality results with much less aliasing artifacts.
+     * It's slower than [INTERPOLATE_BILINEAR], but produces higher-quality results with far fewer aliasing artifacts.
      *
      * If the image does not have mipmaps, they will be generated and used internally, but no mipmaps will be generated on the resulting image.
      *
@@ -1196,7 +1198,7 @@ public open class Image : Resource() {
     /**
      * Performs bilinear separately on the two most-suited mipmap levels, then linearly interpolates between them.
      *
-     * It's slower than [INTERPOLATE_BILINEAR], but produces higher-quality results with much less aliasing artifacts.
+     * It's slower than [INTERPOLATE_BILINEAR], but produces higher-quality results with far fewer aliasing artifacts.
      *
      * If the image does not have mipmaps, they will be generated and used internally, but no mipmaps will be generated on the resulting image.
      *

@@ -51,7 +51,7 @@ import kotlin.Unit
  *
  * **User Interface nodes and input**
  *
- * Godot sends input events to the scene's root node first, by calling [godot.Node.Input]. [godot.Node.Input] forwards the event down the node tree to the nodes under the mouse cursor, or on keyboard focus. To do so, it calls [godot.MainLoop.InputEvent]. Call [acceptEvent] so no other node receives the event. Once you accepted an input, it becomes handled so [godot.Node.UnhandledInput] will not process it.
+ * Godot sends input events to the scene's root node first, by calling [godot.Node.Input]. [godot.Node.Input] forwards the event down the node tree to the nodes under the mouse cursor, or on keyboard focus. To do so, it calls [godot.MainLoop.InputEvent]. Call [acceptEvent] so no other node receives the event. Once you accept an input, it becomes handled so [godot.Node.UnhandledInput] will not process it.
  *
  * Only one [godot.Control] node can be in keyboard focus. Only the node in focus will receive keyboard events. To get the focus, call [grabFocus]. [godot.Control] nodes lose focus when another node grabs it, or if you hide the node in focus.
  *
@@ -90,11 +90,15 @@ public open class Control : CanvasItem() {
 
   /**
    * Emitted when the mouse enters the control's `Rect` area, provided its [mouseFilter] lets the event reach it.
+   *
+   * **Note:** [mouseEntered] will not be emitted if the mouse enters a child [godot.Control] node before entering the parent's `Rect` area, at least until the mouse is moved to reach the parent's `Rect` area.
    */
   public val mouseEntered: Signal0 by signal()
 
   /**
    * Emitted when the mouse leaves the control's `Rect` area, provided its [mouseFilter] lets the event reach it.
+   *
+   * **Note:** [mouseExited] will be emitted if the mouse enters a child [godot.Control] node, even if the mouse cursor is still inside the parent's `Rect` area.
    */
   public val mouseExited: Signal0 by signal()
 
@@ -667,7 +671,7 @@ public open class Control : CanvasItem() {
    *
    * * control's parent has [mouseFilter] set to [MOUSE_FILTER_STOP] or has accepted the event;
    *
-   * * it happens outside parent's rectangle and the parent has either [rectClipContent] or [_clipsInput] enabled.
+   * * it happens outside the parent's rectangle and the parent has either [rectClipContent] or [_clipsInput] enabled.
    */
   public open fun _guiInput(event: InputEvent): Unit {
   }
@@ -675,7 +679,7 @@ public open class Control : CanvasItem() {
   /**
    * Virtual method to be implemented by the user. Returns a [godot.Control] node that should be used as a tooltip instead of the default one. The `for_text` includes the contents of the [hintTooltip] property.
    *
-   * The returned node must be of type [godot.Control] or Control-derived. It can have child nodes of any type. It is freed when the tooltip disappears, so make sure you always provide a new instance (if you want to use a pre-existing node from your scene tree, you can duplicate it and pass the duplicated instance).When `null` or a non-Control node is returned, the default tooltip will be used instead.
+   * The returned node must be of type [godot.Control] or Control-derived. It can have child nodes of any type. It is freed when the tooltip disappears, so make sure you always provide a new instance (if you want to use a pre-existing node from your scene tree, you can duplicate it and pass the duplicated instance). When `null` or a non-Control node is returned, the default tooltip will be used instead.
    *
    * The returned node will be added as child to a [godot.PopupPanel], so you should only provide the contents of that panel. That [godot.PopupPanel] can be themed using [godot.Theme.setStylebox] for the type `"TooltipPanel"` (see [hintTooltip] for an example).
    *
@@ -1249,7 +1253,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets the anchors to a `preset` from [enum Control.LayoutPreset] enum. This is code equivalent of using the Layout menu in 2D editor.
+   * Sets the anchors to a `preset` from [enum Control.LayoutPreset] enum. This is the code equivalent to using the Layout menu in the 2D editor.
    *
    * If `keep_margins` is `true`, control's position will also be updated.
    */
@@ -1338,7 +1342,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets the margins to a `preset` from [enum Control.LayoutPreset] enum. This is code equivalent of using the Layout menu in 2D editor.
+   * Sets the margins to a `preset` from [enum Control.LayoutPreset] enum. This is the code equivalent to using the Layout menu in the 2D editor.
    *
    * Use parameter `resize_mode` with constants from [enum Control.LayoutPresetMode] to better determine the resulting size of the [godot.Control]. Constant size will be ignored if used with presets that change size, e.g. `PRESET_LEFT_WIDE`.
    *

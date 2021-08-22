@@ -23,7 +23,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * A helper to handle dictionaries which look like JSONRPC documents.
  *
+ * [godot.JSON-RPC](https://www.jsonrpc.org/) is a standard which wraps a method call in a [JSON] object. The object has a particular structure and identifies which method is called, the parameters to that function, and carries an ID to keep track of responses. This class implements that standard on top of [godot.core.Dictionary]; you will have to convert between a [godot.core.Dictionary] and [JSON] with other functions.
  */
 @GodotBaseType
 public open class JSONRPC : Object() {
@@ -32,7 +34,11 @@ public open class JSONRPC : Object() {
   }
 
   /**
+   * Returns a dictionary in the form of a JSON-RPC notification. Notifications are one-shot messages which do not expect a response.
    *
+   * - `method`: Name of the method being called.
+   *
+   * - `params`: An array or dictionary of parameters being passed to the method.
    */
   public open fun makeNotification(method: String, params: Any?): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to method, ANY to params)
@@ -42,7 +48,13 @@ public open class JSONRPC : Object() {
   }
 
   /**
+   * Returns a dictionary in the form of a JSON-RPC request. Requests are sent to a server with the expectation of a response. The ID field is used for the server to specify which exact request it is responding to.
    *
+   * - `method`: Name of the method being called.
+   *
+   * - `params`: An array or dictionary of parameters being passed to the method.
+   *
+   * - `id`: Uniquely identifies this request. The server is expected to send a response with the same ID.
    */
   public open fun makeRequest(
     method: String,
@@ -55,7 +67,11 @@ public open class JSONRPC : Object() {
   }
 
   /**
+   * When a server has received and processed a request, it is expected to send a response. If you did not want a response then you need to have sent a Notification instead.
    *
+   * - `result`: The return value of the function which was called.
+   *
+   * - `id`: The ID of the request this response is targeted to.
    */
   public open fun makeResponse(result: Any?, id: Any?): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(ANY to result, ANY to id)
@@ -64,7 +80,13 @@ public open class JSONRPC : Object() {
   }
 
   /**
+   * Creates a response which indicates a previous reply has failed in some way.
    *
+   * - `code`: The error code corresponding to what kind of error this is. See the [enum ErrorCode] constants.
+   *
+   * - `message`: A custom message about this error.
+   *
+   * - `id`: The request this error is a response to.
    */
   public open fun makeResponseError(
     code: Long,
@@ -78,7 +100,11 @@ public open class JSONRPC : Object() {
   }
 
   /**
+   * Given a Dictionary which takes the form of a JSON-RPC request: unpack the request and run it. Methods are resolved by looking at the field called "method" and looking for an equivalently named function in the JSONRPC object. If one is found that method is called.
    *
+   * To add new supported methods extend the JSONRPC class and call [processAction] on your subclass.
+   *
+   * `action`: The action to be run, as a Dictionary in the form of a JSON-RPC request or notification.
    */
   public open fun processAction(action: Any?, recurse: Boolean = false): Any? {
     TransferContext.writeArguments(ANY to action, BOOL to recurse)
@@ -119,7 +145,7 @@ public open class JSONRPC : Object() {
      */
     INVALID_PARAMS(-32602),
     /**
-     *
+     * A method call was requested but no function of that name existed in the JSONRPC subclass.
      */
     METHOD_NOT_FOUND(-32601),
     /**
@@ -155,7 +181,7 @@ public open class JSONRPC : Object() {
     public final const val INVALID_REQUEST: Long = -32600
 
     /**
-     *
+     * A method call was requested but no function of that name existed in the JSONRPC subclass.
      */
     public final const val METHOD_NOT_FOUND: Long = -32601
 

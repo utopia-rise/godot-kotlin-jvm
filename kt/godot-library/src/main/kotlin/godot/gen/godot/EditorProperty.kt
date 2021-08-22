@@ -211,7 +211,7 @@ public open class EditorProperty : Container() {
   }
 
   /**
-   * Override if you want to allow a custom tooltip over your property.
+   * Must be implemented to provide a custom tooltip to the property editor.
    */
   public open fun getTooltipText(): String {
     TransferContext.writeArguments()
@@ -221,7 +221,7 @@ public open class EditorProperty : Container() {
   }
 
   /**
-   * Adds controls with this function if you want them on the bottom (below the label).
+   * Puts the `editor` control below the property label. The control must be previously added using [godot.Node.addChild].
    */
   public open fun setBottomEditor(editor: Control): Unit {
     TransferContext.writeArguments(OBJECT to editor)

@@ -523,6 +523,8 @@ public open class SceneTree : MainLoop() {
 
   /**
    * Quits the application at the end of the current iteration. A process `exit_code` can optionally be passed as an argument. If this argument is `0` or greater, it will override the [godot.OS.exitCode] defined before quitting the application.
+   *
+   * **Note:** On iOS this method doesn't work. Instead, as recommended by the iOS Human Interface Guidelines, the user is expected to close apps via the Home button.
    */
   public open fun quit(exitCode: Long = -1): Unit {
     TransferContext.writeArguments(LONG to exitCode)
