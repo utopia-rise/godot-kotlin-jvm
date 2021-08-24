@@ -33,12 +33,12 @@ jobs:
         with:
           wrapper-directory: modules/kotlin_jvm/kt/
           build-root-directory: modules/kotlin_jvm/kt/
-          arguments: godot-bootstrap:build
+          arguments: godot-library:build
       - name: Upload godot-bootstrap jar
         uses: actions/upload-artifact@v1
         with:
           name: godot-bootstrap
-          path: modules/kotlin_jvm/kt/godot-bootstrap/build/libs/godot-bootstrap.jar
+          path: modules/kotlin_jvm/kt/godot-library/build/libs/godot-bootstrap.jar
   build-editor-debug:
     strategy:
       matrix:

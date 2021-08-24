@@ -40,7 +40,7 @@ object SignalRegistrationGenerator {
 
         //a KtFunctionArgument per signal argument
         registeredSignal.parameterNameToType.entries.forEach { (argumentName, argumentType) ->
-            add(ClassName("godot.runtime", "KtFunctionArgument"))
+            add(ClassName("godot.registration", "KtFunctionArgument"))
             add(argumentType.toKtVariantType())
             add(argumentType.fqName)
             add(argumentName)

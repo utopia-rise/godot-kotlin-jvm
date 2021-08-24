@@ -38,7 +38,7 @@ object FunctionRegistrationGenerator {
     }
 
     private fun getTemplateArgs(registeredFunction: RegisteredFunction, className: ClassName): List<Any> {
-        val ktFunctionArgumentClassName = ClassName("godot.runtime", "KtFunctionArgument")
+        val ktFunctionArgumentClassName = ClassName("godot.registration", "KtFunctionArgument")
 
         return buildList {
             add(getFunctionReference(registeredFunction, className))

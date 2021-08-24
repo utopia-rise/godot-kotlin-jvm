@@ -107,12 +107,12 @@ jobs:
         with:
           wrapper-directory: modules/kotlin_jvm/kt/
           build-root-directory: modules/kotlin_jvm/kt/
-          arguments: godot-bootstrap:build
+          arguments: godot-library:build
 
       - name: Zip release
         uses: papeloto/action-zip@v1
         with:
-          files: bin/${{ matrix.binary }} modules/kotlin_jvm/kt/godot-bootstrap/build/libs/godot-bootstrap.jar
+          files: bin/${{ matrix.binary }} modules/kotlin_jvm/kt/godot-library/build/libs/godot-bootstrap.jar
           dest: godot-kotlin-jvm_editor_${{ matrix.platform }}_${{ steps.save_release_info.outputs.godot_kotlin_jvm_version }}.zip
 
       - name: Upload zip release

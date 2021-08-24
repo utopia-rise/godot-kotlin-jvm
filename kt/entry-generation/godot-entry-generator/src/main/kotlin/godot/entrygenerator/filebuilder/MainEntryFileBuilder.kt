@@ -15,12 +15,12 @@ object MainEntryFileBuilder {
 
     private val initFunctionSpec = FunSpec
         .builder("init")
-        .receiver(ClassName("godot.runtime.Entry", "Context"))
+        .receiver(ClassName("godot.registration.Entry", "Context"))
         .addModifiers(KModifier.OVERRIDE)
 
     private val initEngineTypesFunSpec = FunSpec
         .builder("initEngineTypes")
-        .receiver(ClassName("godot.runtime.Entry", "Context"))
+        .receiver(ClassName("godot.registration.Entry", "Context"))
         .addModifiers(KModifier.OVERRIDE)
         .addStatement("%M()", MemberName("godot", "registerVariantMapping"))
         .addStatement("%M()", MemberName("godot", "registerEngineTypes"))
@@ -31,7 +31,7 @@ object MainEntryFileBuilder {
         entryFileSpec.addType(
             TypeSpec
                 .classBuilder(ClassName("godot", "Entry"))
-                .superclass(ClassName("godot.runtime", "Entry"))
+                .superclass(ClassName("godot.registration", "Entry"))
                 .addFunction(initFunctionSpec.build())
                 .addFunction(initEngineTypesFunSpec.build())
                 .build()
