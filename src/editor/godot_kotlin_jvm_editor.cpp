@@ -151,10 +151,10 @@ void GodotKotlinJvmEditor::_notificationv(int p_notification, bool p_reversed) {
         file_system_dock->connect("file_removed", this, "on_file_system_dock_file_removed");
         file_system_dock->connect("folder_moved", this, "on_file_system_dock_folder_moved");
 
-        if (!GDKotlin::get_instance().is_initialized) {
+        if (!GDKotlin::get_instance().initialized()) {
             error_dialog->show_with_errors(
                     "Godot-Jvm configuration errors encountered",
-                    GDKotlin::get_instance().configuration_errors
+                    GDKotlin::get_instance().get_configuration_errors()
             );
         }
     }

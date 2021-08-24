@@ -571,3 +571,11 @@ bool GDKotlin::check_configuration() {
     }
     return !has_configuration_error;
 }
+
+bool GDKotlin::initialized() const {
+    return is_initialized;
+}
+
+Vector<Pair<String, String>> GDKotlin::get_configuration_errors() {
+    return configuration_errors;
+}

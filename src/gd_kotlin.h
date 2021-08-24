@@ -32,6 +32,10 @@ private:
 
     bool check_configuration();
 
+    bool is_initialized;
+
+    Vector<Pair<String, String>> configuration_errors;
+
 public:
     TransferContext* transfer_context;
     Vector<StringName> engine_type_names;
@@ -60,9 +64,9 @@ public:
 
     const GdKotlinConfiguration& get_configuration();
 
-    bool is_initialized;
+    bool initialized() const;
 
-    Vector<Pair<String, String>> configuration_errors;
+    Vector<Pair<String, String>> get_configuration_errors();
 };
 
 
