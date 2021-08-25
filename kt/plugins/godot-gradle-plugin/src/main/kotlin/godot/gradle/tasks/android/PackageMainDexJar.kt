@@ -17,7 +17,7 @@ open class PackageMainDexJar: ShadowJar(), GodotJvmTask {
 
         archiveBaseName.set("main-dex")
 
-        from("src/main/resources").include("**/godot.runtime.Entry")
+        from("src/main/resources").include("**/godot.registration.Entry")
         from("${project.buildDir.absolutePath}/libs/").include("classes.dex")
 
         dependsOn(TaskRegistry.CREATE_MAIN_DEX_FILE.taskName)

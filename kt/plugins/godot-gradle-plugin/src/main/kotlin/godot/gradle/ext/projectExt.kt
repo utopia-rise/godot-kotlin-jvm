@@ -27,7 +27,7 @@ fun Project.getBuildLockDir(): File {
 fun Project.generateServiceFile() {
     val metaInfServicesDir = projectDir.resolve("src/main/resources/META-INF/services")
     metaInfServicesDir.mkdirs()
-    File(metaInfServicesDir, "godot.runtime.Entry").writeText("godot.Entry")
+    File(metaInfServicesDir, "godot.registration.Entry").writeText("godot.Entry")
 }
 
 val Project.godotJvmExtension: GodotExtension
