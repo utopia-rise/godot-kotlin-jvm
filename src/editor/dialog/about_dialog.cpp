@@ -9,7 +9,7 @@
 #include <modules/kotlin_jvm/src/editor/godot_kotlin_jvm_editor.h>
 #include "about_dialog.h"
 
-AboutDialog::AboutDialog(): about_dialog_check_box(memnew(CheckBox)) {
+AboutDialog::AboutDialog(): AcceptDialog(), about_dialog_check_box(memnew(CheckBox)) {
     _EDITOR_DEF("kotlin_jvm/editor/show_info_on_start", true, false);
     ClassDB::bind_method(D_METHOD("on_about_to_show"), &AboutDialog::on_about_to_show);
     ClassDB::bind_method(D_METHOD("on_checkbox_toggled"), &AboutDialog::on_checkbox_toggled);
@@ -28,7 +28,7 @@ AboutDialog::AboutDialog(): about_dialog_check_box(memnew(CheckBox)) {
     about_vbox->add_child(about_hbox);
 
     TextureRect* about_icon{memnew(TextureRect)};
-    about_icon->set_texture(about_icon->get_icon("NodeWarning", "EditorIcons"));
+    about_icon->set_texture(get_icon("Warning", "EditorIcons"));
     about_hbox->add_child(about_icon);
 
     RichTextLabel* about_label{memnew(RichTextLabel)};

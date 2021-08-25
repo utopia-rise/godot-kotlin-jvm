@@ -139,6 +139,10 @@ void GDKotlin::init() {
         return;
     }
 
+    if (!check_configuration()) {
+        return;
+    }
+
     jni::InitArgs args;
 #ifndef __ANDROID__
     args.version = JNI_VERSION_1_8;
@@ -264,8 +268,7 @@ void GDKotlin::init() {
 #ifndef __ANDROID__
     if (jvm_type_argument == GdKotlinConfiguration::jvm_string_identifier) {
         configuration.set_vm_type(jni::Jvm::JVM);
-    }
-    else if (jvm_type_argument == GdKotlinConfiguration::graal_native_image_string_identifier) {
+    } else if (jvm_type_argument == GdKotlinConfiguration::graal_native_image_string_identifier) {
         configuration.set_vm_type(jni::Jvm::GRAAL_NATIVE_IMAGE);
     }
 
@@ -376,6 +379,7 @@ void GDKotlin::init() {
             jni::JObject()
 #endif
     );
+    is_initialized = true;
 }
 
 void GDKotlin::finish() {
@@ -543,7 +547,7 @@ jni::JObject GDKotlin::_prepare_class_loader(jni::Env& p_env, jni::Jvm::Type typ
 
     LOG_INFO(vformat("Loading bootstrap jar: %s", bootstrap_jar))
 
-    jni::JObject class_loader {ClassLoader::provide_loader(p_env, bootstrap_jar, jni::JObject(nullptr))};
+    jni::JObject class_loader{ClassLoader::provide_loader(p_env, bootstrap_jar, jni::JObject(nullptr))};
     ClassLoader::set_default_loader(class_loader);
     class_loader.delete_local_ref(p_env);
 
@@ -565,4 +569,28 @@ void GDKotlin::register_members(jni::Env& p_env) {
         map_entry->get()->fetch_members();
         map_entry = map_entry->next();
     }
+}
+
+bool GDKotlin::check_configuration() {
+    bool has_configuration_error = false;
+    if (Engine::get_singleton()->is_editor_hint() && OS::get_singleton()->get_environment("JAVA_HOME").empty()) {
+        LOG_WARNING("JAVA_HOME not defined. Godot-JVM module won't be loaded!")
+        configuration_errors.push_back(
+                {
+                        "JAVA_HOME not defined",
+                        "JAVA_HOME environment variable is not defined. This is necessary for Godot-Jvm to work while you develop on your machine.\n"
+                        "You can continue to use the editor but all Godot-Jvm related functionality remains disabled until you define JAVA_HOME and restart the editor."
+                }
+        );
+        has_configuration_error = true;
+    }
+    return !has_configuration_error;
+}
+
+bool GDKotlin::initialized() const {
+    return is_initialized;
+}
+
+const Vector<Pair<String, String>>& GDKotlin::get_configuration_errors() const {
+    return configuration_errors;
 }

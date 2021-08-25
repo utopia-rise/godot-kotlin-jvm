@@ -6,6 +6,7 @@
 #include <editor/filesystem_dock.h>
 #include <modules/kotlin_jvm/src/editor/build/build_manager.h>
 #include <scene/gui/control.h>
+#include <modules/kotlin_jvm/src/gd_kotlin.h>
 
 void GodotKotlinJvmEditor::on_file_system_dock_file_moved( // NOLINT(readability-convert-member-functions-to-static)
         const String& file,
@@ -143,11 +144,19 @@ void GodotKotlinJvmEditor::_notificationv(int p_notification, bool p_reversed) {
 
         menu_pop_up->add_item("About Godot Kotlin JVM");
         editor_base_control->add_child(about_dialog);
+        editor_base_control->add_child(error_dialog);
 
         FileSystemDock* file_system_dock = get_editor_interface()->get_file_system_dock();
         file_system_dock->connect("files_moved", this, "on_file_system_dock_file_moved");
         file_system_dock->connect("file_removed", this, "on_file_system_dock_file_removed");
         file_system_dock->connect("folder_moved", this, "on_file_system_dock_folder_moved");
+
+        if (!GDKotlin::get_instance().initialized()) {
+            error_dialog->show_with_errors(
+                    "Godot-Jvm configuration errors encountered",
+                    GDKotlin::get_instance().get_configuration_errors()
+            );
+        }
     }
 }
 
@@ -183,7 +192,8 @@ GodotKotlinJvmEditor::GodotKotlinJvmEditor() :
         bottom_panel(memnew(BottomPanel)),
         tool_bar_build_button(memnew(ToolButton)),
         build_dialog(memnew(BuildDialog)),
-        about_dialog(memnew(AboutDialog)) {
+        about_dialog(memnew(AboutDialog)),
+        error_dialog(memnew(ErrorDialog)) {
 
 }
 
