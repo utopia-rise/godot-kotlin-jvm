@@ -113,15 +113,15 @@ public open class Camera : Spatial() {
   /**
    * The camera's field of view angle (in degrees). Only applicable in perspective mode. Since [keepAspect] locks one axis, `fov` sets the other axis' field of view angle.
    *
-   * For reference, the default vertical field of view value (`75.0`) is equivalent to a horizontal FOV of:
+   * For reference, the default vertical field of view value (`70.0`) is equivalent to a horizontal FOV of:
    *
-   * - ~91.31 degrees in a 4:3 viewport
+   * - ~86.07 degrees in a 4:3 viewport
    *
-   * - ~101.67 degrees in a 16:10 viewport
+   * - ~96.50 degrees in a 16:10 viewport
    *
-   * - ~107.51 degrees in a 16:9 viewport
+   * - ~102.45 degrees in a 16:9 viewport
    *
-   * - ~121.63 degrees in a 21:9 viewport
+   * - ~117.06 degrees in a 21:9 viewport
    */
   public open var fov: Double
     get() {
@@ -281,7 +281,7 @@ public open class Camera : Spatial() {
   }
 
   /**
-   * Returns the camera's frustum planes in world-space units as an array of [godot.core.Plane]s in the following order: near, far, left, top, right, bottom. Not to be confused with [frustumOffset].
+   * Returns the camera's frustum planes in world space units as an array of [godot.core.Plane]s in the following order: near, far, left, top, right, bottom. Not to be confused with [frustumOffset].
    */
   public open fun getFrustum(): VariantArray<Any?> {
     TransferContext.writeArguments()
@@ -319,7 +319,7 @@ public open class Camera : Spatial() {
   }
 
   /**
-   * Returns the 3D point in worldspace that maps to the given 2D coordinate in the [godot.Viewport] rectangle on a plane that is the given `z_depth` distance into the scene away from the camera.
+   * Returns the 3D point in world space that maps to the given 2D coordinate in the [godot.Viewport] rectangle on a plane that is the given `z_depth` distance into the scene away from the camera.
    */
   public open fun projectPosition(screenPoint: Vector2, zDepth: Double): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint, DOUBLE to zDepth)
@@ -328,7 +328,7 @@ public open class Camera : Spatial() {
   }
 
   /**
-   * Returns a normal vector in worldspace, that is the result of projecting a point on the [godot.Viewport] rectangle by the camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
+   * Returns a normal vector in world space, that is the result of projecting a point on the [godot.Viewport] rectangle by the camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
    */
   public open fun projectRayNormal(screenPoint: Vector2): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
@@ -337,7 +337,7 @@ public open class Camera : Spatial() {
   }
 
   /**
-   * Returns a 3D position in worldspace, that is the result of projecting a point on the [godot.Viewport] rectangle by the camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
+   * Returns a 3D position in world space, that is the result of projecting a point on the [godot.Viewport] rectangle by the camera projection. This is useful for casting rays in the form of (origin, normal) for object intersection or picking.
    */
   public open fun projectRayOrigin(screenPoint: Vector2): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
@@ -354,7 +354,7 @@ public open class Camera : Spatial() {
   }
 
   /**
-   * Sets the camera projection to frustum mode (see [PROJECTION_FRUSTUM]), by specifying a `size`, an `offset`, and the `z_near` and `z_far` clip planes in world-space units.
+   * Sets the camera projection to frustum mode (see [PROJECTION_FRUSTUM]), by specifying a `size`, an `offset`, and the `z_near` and `z_far` clip planes in world space units.
    */
   public open fun setFrustum(
     size: Double,
@@ -368,7 +368,7 @@ public open class Camera : Spatial() {
   }
 
   /**
-   * Sets the camera projection to orthogonal mode (see [PROJECTION_ORTHOGONAL]), by specifying a `size`, and the `z_near` and `z_far` clip planes in world-space units. (As a hint, 2D games often use this projection, with values specified in pixels.)
+   * Sets the camera projection to orthogonal mode (see [PROJECTION_ORTHOGONAL]), by specifying a `size`, and the `z_near` and `z_far` clip planes in world space units. (As a hint, 2D games often use this projection, with values specified in pixels.)
    */
   public open fun setOrthogonal(
     size: Double,
@@ -380,7 +380,7 @@ public open class Camera : Spatial() {
   }
 
   /**
-   * Sets the camera projection to perspective mode (see [PROJECTION_PERSPECTIVE]), by specifying a `fov` (field of view) angle in degrees, and the `z_near` and `z_far` clip planes in world-space units.
+   * Sets the camera projection to perspective mode (see [PROJECTION_PERSPECTIVE]), by specifying a `fov` (field of view) angle in degrees, and the `z_near` and `z_far` clip planes in world space units.
    */
   public open fun setPerspective(
     fov: Double,
@@ -392,7 +392,7 @@ public open class Camera : Spatial() {
   }
 
   /**
-   * Returns the 2D coordinate in the [godot.Viewport] rectangle that maps to the given 3D point in worldspace.
+   * Returns the 2D coordinate in the [godot.Viewport] rectangle that maps to the given 3D point in world space.
    *
    * **Note:** When using this to position GUI elements over a 3D viewport, use [isPositionBehind] to prevent them from appearing if the 3D point is behind the camera:
    *

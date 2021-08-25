@@ -18,6 +18,9 @@ import kotlin.Unit
 /**
  * A class for generating pseudo-random numbers.
  *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/3.3/tutorials/math/random_number_generation.html](https://docs.godotengine.org/en/3.3/tutorials/math/random_number_generation.html)
+ *
  * RandomNumberGenerator is a class for generating pseudo-random numbers. It currently uses [godot.PCG32](http://www.pcg-random.org/).
  *
  * **Note:** The underlying algorithm is an implementation detail. As a result, it should not be depended upon for reproducible random streams across Godot versions.

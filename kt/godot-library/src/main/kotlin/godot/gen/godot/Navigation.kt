@@ -30,6 +30,8 @@ import kotlin.Unit
  * [https://godotengine.org/asset-library/asset/124](https://godotengine.org/asset-library/asset/124)
  *
  * Provides navigation and pathfinding within a collection of [godot.NavigationMesh]es. By default, these will be automatically collected from child [godot.NavigationMeshInstance] nodes, but they can also be added on the fly with [navmeshAdd]. In addition to basic pathfinding, this class also assists with aligning navigation agents with the meshes they are navigating on.
+ *
+ * **Note:** The current navigation system has many known issues and will not always return optimal paths as expected. These issues will be fixed in Godot 4.0.
  */
 @GodotBaseType
 public open class Navigation : Spatial() {
@@ -104,6 +106,8 @@ public open class Navigation : Spatial() {
 
   /**
    * Returns the path between two given points. Points are in local coordinate space. If `optimize` is `true` (the default), the agent properties associated with each [godot.NavigationMesh] (radius, height, etc.) are considered in the path calculation, otherwise they are ignored.
+   *
+   * **Note:** This method has known issues and will often return non-optimal paths. These issues will be fixed in Godot 4.0.
    */
   public open fun getSimplePath(
     start: Vector3,

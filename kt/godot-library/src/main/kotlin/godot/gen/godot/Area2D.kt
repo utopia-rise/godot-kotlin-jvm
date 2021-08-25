@@ -199,7 +199,7 @@ public open class Area2D : CollisionObject2D() {
     }
 
   /**
-   * The area's gravity intensity (ranges from -1024 to 1024). This value multiplies the gravity vector. This is useful to alter the force of gravity without altering its direction.
+   * The area's gravity intensity (in pixels per second squared). This value multiplies the gravity vector. This is useful to alter the force of gravity without altering its direction.
    */
   public open var gravity: Double
     get() {
@@ -410,7 +410,7 @@ public open class Area2D : CollisionObject2D() {
   /**
    * If `true`, the given area overlaps the Area2D.
    *
-   * **Note:** The result of this test is not immediate after moving objects. For performance, list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
+   * **Note:** The result of this test is not immediate after moving objects. For performance, the list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
    */
   public open fun overlapsArea(area: Node): Boolean {
     TransferContext.writeArguments(OBJECT to area)
@@ -423,7 +423,7 @@ public open class Area2D : CollisionObject2D() {
    *
    * **Note:** The result of this test is not immediate after moving objects. For performance, list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
    *
-   * The `body` argument can either be a [godot.PhysicsBody2D] or a [godot.TileMap] instance (while TileMaps are not physics body themselves, they register their tiles with collision shapes as a virtual physics body).
+   * The `body` argument can either be a [godot.PhysicsBody2D] or a [godot.TileMap] instance (while TileMaps are not physics bodies themselves, they register their tiles with collision shapes as a virtual physics body).
    */
   public open fun overlapsBody(body: Node): Boolean {
     TransferContext.writeArguments(OBJECT to body)

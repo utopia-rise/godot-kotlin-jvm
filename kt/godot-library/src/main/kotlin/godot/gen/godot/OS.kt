@@ -685,7 +685,7 @@ public object OS : Object() {
   }
 
   /**
-   * Delay execution of the current thread by `msec` milliseconds. `usec` must be greater than or equal to `0`. Otherwise, [delayMsec] will do nothing and will print an error message.
+   * Delay execution of the current thread by `msec` milliseconds. `msec` must be greater than or equal to `0`. Otherwise, [delayMsec] will do nothing and will print an error message.
    */
   public fun delayMsec(msec: Long): Unit {
     TransferContext.writeArguments(LONG to msec)
@@ -905,7 +905,7 @@ public object OS : Object() {
   }
 
   /**
-   * With this function you can get the list of dangerous permissions that have been granted to the Android application.
+   * With this function, you can get the list of dangerous permissions that have been granted to the Android application.
    *
    * **Note:** This method is implemented on Android.
    */
@@ -1178,6 +1178,8 @@ public object OS : Object() {
    * Returns the actual path to commonly used folders across different platforms. Available locations are specified in [enum SystemDir].
    *
    * **Note:** This method is implemented on Android, Linux, macOS and Windows.
+   *
+   * **Note:** Shared storage is implemented on Android and allows to differentiate between app specific and shared directories. Shared directories have additional restrictions on Android.
    */
   public fun getSystemDir(dir: Long): String {
     TransferContext.writeArguments(LONG to dir)
@@ -1275,7 +1277,7 @@ public object OS : Object() {
   /**
    * Returns a string that is unique to the device.
    *
-   * **Note:** This string may change without notice if the user reinstalls/upgrades their operating system or changes their hardware. This means it should generally not be used to encrypt persistent data as the data saved prior to an unexpected ID change would become inaccessible. The returned string may also be falsified using external programs, so do not rely on the string returned by [getUniqueId] for security purposes.
+   * **Note:** This string may change without notice if the user reinstalls/upgrades their operating system or changes their hardware. This means it should generally not be used to encrypt persistent data as the data saved before an unexpected ID change would become inaccessible. The returned string may also be falsified using external programs, so do not rely on the string returned by [getUniqueId] for security purposes.
    *
    * **Note:** Returns an empty string on HTML5 and UWP, as this method isn't implemented on those platforms yet.
    */
@@ -1423,7 +1425,7 @@ public object OS : Object() {
   }
 
   /**
-   * Returns `true` if the feature for the given feature tag is supported in the currently running instance, depending on platform, build etc. Can be used to check whether you're currently running a debug build, on a certain platform or arch, etc. Refer to the [godot.Feature Tags](https://docs.godotengine.org/en/3.3/getting_started/workflow/export/feature_tags.html) documentation for more details.
+   * Returns `true` if the feature for the given feature tag is supported in the currently running instance, depending on the platform, build etc. Can be used to check whether you're currently running a debug build, on a certain platform or arch, etc. Refer to the [godot.Feature Tags](https://docs.godotengine.org/en/3.3/getting_started/workflow/export/feature_tags.html) documentation for more details.
    *
    * **Note:** Tag names are case-sensitive.
    */
@@ -1730,7 +1732,7 @@ public object OS : Object() {
   }
 
   /**
-   * With this function you can request dangerous permissions since normal permissions are automatically granted at install time in Android application.
+   * With this function, you can request dangerous permissions since normal permissions are automatically granted at install time in Android applications.
    *
    * **Note:** This method is implemented on Android.
    */

@@ -83,7 +83,7 @@ public open class AnimationTree : Node() {
   /**
    * The path to the Animation track used for root motion. Paths must be valid scene-tree paths to a node, and must be specified starting from the parent node of the node that will reproduce the animation. To specify a track that controls properties or bones, append its name after the path, separated by `":"`. For example, `"character/skeleton:ankle"` or `"character/mesh:transform/local"`.
    *
-   * If the track has type [godot.Animation.TYPE_TRANSFORM], the transformation will be cancelled visually, and the animation will appear to stay in place.
+   * If the track has type [godot.Animation.TYPE_TRANSFORM], the transformation will be cancelled visually, and the animation will appear to stay in place. See also [getRootMotionTransform] and [godot.RootMotionView].
    */
   public open var rootMotionTrack: NodePath
     get() {
@@ -138,7 +138,7 @@ public open class AnimationTree : Node() {
   }
 
   /**
-   * Retrieve the motion of the [rootMotionTrack] as a [godot.core.Transform] that can be used elsewhere. If [rootMotionTrack] is not a path to a track of type [godot.Animation.TYPE_TRANSFORM], returns an identity transformation.
+   * Retrieve the motion of the [rootMotionTrack] as a [godot.core.Transform] that can be used elsewhere. If [rootMotionTrack] is not a path to a track of type [godot.Animation.TYPE_TRANSFORM], returns an identity transformation. See also [rootMotionTrack] and [godot.RootMotionView].
    */
   public open fun getRootMotionTransform(): Transform {
     TransferContext.writeArguments()

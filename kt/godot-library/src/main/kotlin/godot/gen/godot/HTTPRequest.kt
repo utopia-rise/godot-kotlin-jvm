@@ -37,6 +37,8 @@ import kotlin.Unit
  *
  * Can be used to make HTTP requests, i.e. download or upload files or web content via HTTP.
  *
+ * **Warning:** See the notes and warnings on [godot.HTTPClient] for limitations, especially regarding SSL security.
+ *
  * **Example of contacting a REST API and printing one of its returned fields:**
  *
  * ```
@@ -98,10 +100,6 @@ import kotlin.Unit
  * 		    add_child(texture_rect)
  * 		    texture_rect.texture = texture
  * 		```
- *
- * **Note:** When performing HTTP requests from a project exported to HTML5, keep in mind the remote server may not allow requests from foreign origins due to [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS). If you host the server in question, you should modify its backend to allow requests from foreign origins by adding the `Access-Control-Allow-Origin: *` HTTP header.
- *
- * **Note:** SSL/TLS support is currently limited to TLS 1.0, TLS 1.1, and TLS 1.2. Attempting to connect to a TLS 1.3-only server will return an error.
  */
 @GodotBaseType
 public open class HTTPRequest : Node() {

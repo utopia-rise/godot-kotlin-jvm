@@ -465,7 +465,7 @@ public open class Tree : Control() {
   }
 
   /**
-   *
+   * Causes the [godot.Tree] to jump to the specified item.
    */
   public open fun scrollToItem(item: Object): Unit {
     TransferContext.writeArguments(OBJECT to item)

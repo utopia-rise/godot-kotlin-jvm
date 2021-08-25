@@ -22,6 +22,9 @@ import kotlin.Unit
 /**
  * Plugin for adding custom property editors on inspector.
  *
+ * Tutorials:
+ * [https://docs.godotengine.org/en/3.3/tutorials/plugins/editor/inspector_plugins.html](https://docs.godotengine.org/en/3.3/tutorials/plugins/editor/inspector_plugins.html)
+ *
  * These plugins allow adding custom property editors to [godot.EditorInspector].
  *
  * Plugins are registered via [godot.EditorPlugin.addInspectorPlugin].
@@ -43,7 +46,7 @@ public open class EditorInspectorPlugin : Reference() {
   }
 
   /**
-   * Adds a custom control, not necessarily a property editor.
+   * Adds a custom control, which is not necessarily a property editor.
    */
   public open fun addCustomControl(control: Control): Unit {
     TransferContext.writeArguments(OBJECT to control)
@@ -52,7 +55,7 @@ public open class EditorInspectorPlugin : Reference() {
   }
 
   /**
-   * Adds a property editor, this must inherit [godot.EditorProperty].
+   * Adds a property editor for an individual property. The `editor` control must extend [godot.EditorProperty].
    */
   public open fun addPropertyEditor(`property`: String, editor: Control): Unit {
     TransferContext.writeArguments(STRING to property, OBJECT to editor)
@@ -61,7 +64,7 @@ public open class EditorInspectorPlugin : Reference() {
   }
 
   /**
-   * Adds an editor that allows modifying multiple properties, this must inherit [godot.EditorProperty].
+   * Adds an editor that allows modifying multiple properties. The `editor` control must extend [godot.EditorProperty].
    */
   public open fun addPropertyEditorForMultipleProperties(
     label: String,
