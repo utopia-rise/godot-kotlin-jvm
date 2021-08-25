@@ -66,7 +66,7 @@ public:
 
     bool initialized() const;
 
-    Vector<Pair<String, String>> get_configuration_errors();
+    const Vector<Pair<String, String>>& get_configuration_errors() const;
 };
 
 

@@ -576,6 +576,6 @@ bool GDKotlin::initialized() const {
     return is_initialized;
 }
 
-Vector<Pair<String, String>> GDKotlin::get_configuration_errors() {
+const Vector<Pair<String, String>>& GDKotlin::get_configuration_errors() const {
     return configuration_errors;
 }
