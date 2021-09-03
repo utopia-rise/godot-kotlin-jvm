@@ -20,20 +20,28 @@ plugins {
 //kotlin plugin version: https://plugins.jetbrains.com/plugin/6954-kotlin/versions
 val buildMatrix: Map<String, BuildConfig> = mapOf(
     "IJ203" to BuildConfig(
-        "203.8084.24",
-        "IJ2020.3",
-        "IJ183",
-        VersionRange("203.1", "203.*"),
-        listOf("2020.1.4", "2020.2.3", "2020.3"),
-        listOf("java", "org.jetbrains.kotlin:203-1.5.21-release-316-IJ7717.8", "gradle")
+        sdk = "203.8084.24",
+        prefix = "IJ2020.3",
+        extraSource = "IJ183",
+        version = VersionRange("203.1", "203.*"),
+        ideVersionsForVerifierTask = listOf("2020.1.4", "2020.2.3", "2020.3"),
+        deps = listOf("java", "org.jetbrains.kotlin:203-1.5.21-release-316-IJ7717.8", "gradle")
     ),
     "IJ211" to BuildConfig(
-        "211.7628.21",
-        "IJ2021.1",
-        "IJ183",
-        VersionRange("211.1", "211.*"),
-        listOf("2021.1.1", "2021.1.2", "2021.1.3"),
-        listOf("java", "org.jetbrains.kotlin:211-1.5.21-release-317-IJ7442.40", "gradle")
+        sdk = "211.7628.21",
+        prefix = "IJ2021.1",
+        extraSource = "IJ183",
+        version = VersionRange("211.1", "211.*"),
+        ideVersionsForVerifierTask = listOf("2021.1.1", "2021.1.2", "2021.1.3"),
+        deps = listOf("java", "org.jetbrains.kotlin:211-1.5.21-release-317-IJ7442.40", "gradle")
+    ),
+    "IJ212" to BuildConfig(
+        sdk = "212.5080.55",
+        prefix = "IJ2021.2",
+        extraSource = "IJ183",
+        version = VersionRange("212.1", "212.*"),
+        ideVersionsForVerifierTask = listOf("2021.2.1"),
+        deps = listOf("java", "org.jetbrains.kotlin:212-1.5.30-release-409-IJ4638.7", "gradle")
     )
 )
 
@@ -64,7 +72,7 @@ version = if (!releaseMode) {
 
 group = "com.utopia-rise"
 
-val sdkVersion = project.properties["godot.plugins.intellij.version"] ?: "IJ211"
+val sdkVersion = project.properties["godot.plugins.intellij.version"] ?: "IJ212"
 val settings = checkNotNull(buildMatrix[sdkVersion])
 
 // Configure gradle-intellij-plugin plugin.
@@ -80,7 +88,7 @@ intellij {
 }
 
 dependencies {
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.14.2")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.18.1")
     implementation("com.utopia-rise:jvm-godot-resource-serialization:0.1.0")
     implementation(project(":godot-build-props"))
 }
