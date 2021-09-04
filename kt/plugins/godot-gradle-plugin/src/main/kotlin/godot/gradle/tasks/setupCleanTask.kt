@@ -2,13 +2,16 @@ package godot.gradle.tasks
 
 import org.gradle.api.Project
 import org.gradle.api.Task
+import org.gradle.api.tasks.TaskProvider
 
 fun Project.setupCleanTask(
-    createBuildLockTask: Task,
-    deleteBuildLockTask: Task
+    createBuildLockTask: TaskProvider<out Task>,
+    deleteBuildLockTask: TaskProvider<out Task>
 ) {
-    with(tasks.getByName("clean")) {
-        dependsOn(createBuildLockTask)
-        finalizedBy(deleteBuildLockTask)
+    tasks.named("clean") {
+        with(it) {
+            dependsOn(createBuildLockTask)
+            finalizedBy(deleteBuildLockTask)
+        }
     }
 }

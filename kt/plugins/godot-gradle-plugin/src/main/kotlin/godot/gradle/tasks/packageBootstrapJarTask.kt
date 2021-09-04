@@ -3,17 +3,23 @@ package godot.gradle.tasks
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.gradle.api.Project
 import org.gradle.api.Task
+import org.gradle.api.tasks.TaskProvider
 
-fun Project.packageBootstrapJarTask(createBuildLockTask: Task, deleteBuildLockTask: Task): Task {
-    return with(tasks.create("packageBootstrapJar", ShadowJar::class.java)) {
-        group = "godot-kotlin-jvm"
-        description = "Creates a fat jar containing everything needed to load and run the main.jar"
+fun Project.packageBootstrapJarTask(
+    createBuildLockTask: TaskProvider<out Task>,
+    deleteBuildLockTask: TaskProvider<out Task>
+): TaskProvider<out Task> {
+    return tasks.register("packageBootstrapJar", ShadowJar::class.java) {
+        with(it) {
+            group = "godot-kotlin-jvm"
+            description = "Creates a fat jar containing everything needed to load and run the main.jar"
 
-        archiveBaseName.set("godot-bootstrap")
-        configurations.clear()
-        configurations.add(this@packageBootstrapJarTask.configurations.getByName("bootstrap"))
+            archiveBaseName.set("godot-bootstrap")
+            configurations.clear()
+            configurations.add(this@packageBootstrapJarTask.configurations.getByName("bootstrap"))
 
-        dependsOn(createBuildLockTask)
-        finalizedBy(deleteBuildLockTask)
+            dependsOn(createBuildLockTask)
+            finalizedBy(deleteBuildLockTask)
+        }
     }
 }
