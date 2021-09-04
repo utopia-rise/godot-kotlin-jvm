@@ -371,7 +371,7 @@
       { "name" : "registerManagedEngineTypes", "parameterTypes" : ["java.lang.String[]", "java.lang.String[]", "java.lang.String[]", "java.lang.Integer[]"] },
       { "name" : "registerUserTypesNames", "parameterTypes" : ["java.lang.String[]"] },
       { "name" : "registerUserTypesMembers", "parameterTypes" : [] },
-      { "name" : "init", "parameterTypes": ["boolean", "java.lang.String", "java.lang.String", "java.lang.String", "java.lang.ClassLoader"]},
+      { "name" : "init", "parameterTypes": []},
       { "name" : "finish", "parameterTypes" : [] }
     ]
   },

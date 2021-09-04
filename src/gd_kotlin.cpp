@@ -4,6 +4,7 @@
 #include "core/project_settings.h"
 #include "bridges_manager.h"
 #include "jni/class_loader.h"
+#include "jar_path_provider.h"
 #include <core/io/resource_loader.h>
 #include <core/os/dir_access.h>
 
@@ -156,6 +157,7 @@ void GDKotlin::init() {
     LOG_INFO("Starting JVM ...")
     jni::Jvm::init(args, configuration.get_vm_type());
 
+    PathProvider::copy_usercode_jar_if_necessary();
     init_usercode();
     is_initialized = true;
 }
@@ -271,37 +273,24 @@ void GDKotlin::register_members(jni::Env& p_env) {
 }
 
 void GDKotlin::init_usercode() {
-#ifdef __ANDROID__
-    String main_jar_file{"usercode-dex.jar"};
-#else
-    String usercode_jar_name;
-    if (configuration.get_vm_type() == jni::Jvm::GRAAL_NATIVE_IMAGE) {
-        usercode_jar_name = LIB_GRAAL_VM_RELATIVE_PATH;
-    } else {
-        usercode_jar_name = "usercode.jar";
-    }
-#endif
-
-    String usercode_jar{_check_and_copy_jar(usercode_jar_name)};
-
-
+    String runtime_usercode_path{PathProvider::provide_runtime_usercode_path()};
 #ifdef TOOLS_ENABLED
-    if (!FileAccess::exists(usercode_jar)) {
+    if (!FileAccess::exists(runtime_usercode_path)) {
         LOG_WARNING(
                 vformat(
                         "No %s found! You need to build your code in order to use it from within the editor",
-                        usercode_jar_name
+                        PathProvider::get_usercode_name()
                 )
         )
         return;
     }
 #endif
-    JVM_CRASH_COND_MSG(!FileAccess::exists(usercode_jar), vformat("No %s found!", usercode_jar_name))
+    JVM_CRASH_COND_MSG(!FileAccess::exists(runtime_usercode_path), vformat("No %s found!", PathProvider::get_usercode_name()))
 
-    LOG_INFO(vformat("Loading usercode jar: %s", usercode_jar))
+    LOG_INFO(vformat("Loading usercode: %s", runtime_usercode_path))
     jni::Env env{jni::Jvm::current_env()};
 
-    jni::JObject class_loader{_prepare_class_loader(env, configuration.get_vm_type(), usercode_jar)};
+    jni::JObject class_loader{_prepare_class_loader(env, configuration.get_vm_type(), runtime_usercode_path)};
 
     jni::JClass transfer_ctx_cls = env.load_class("godot.core.TransferContext", class_loader);
     jni::FieldId transfer_ctx_instance_field = transfer_ctx_cls.get_static_field_id(
@@ -415,55 +404,4 @@ void GDKotlin::teardown_usercode() {
 
     TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.clear();
     ClassLoader::delete_default_loader(env);
-
-    String usercode_jar_name;
-    if (configuration.get_vm_type() == jni::Jvm::GRAAL_NATIVE_IMAGE) {
-        usercode_jar_name = LIB_GRAAL_VM_RELATIVE_PATH;
-    } else {
-        usercode_jar_name = "usercode.jar";
-    }
-}
-
-String GDKotlin::_check_and_copy_jar(const String& jar_name) {
-#ifndef TOOLS_ENABLED
-    String libs_res_path{"res://build/libs"};
-    String jar_user_path{vformat("user://%s", jar_name)};
-    String jar_res_path{vformat("%s/%s", libs_res_path, jar_name)};
-
-    if (!FileAccess::exists(jar_user_path)
-        || FileAccess::get_md5(jar_user_path) != FileAccess::get_md5(jar_res_path)) {
-#ifdef DEBUG_ENABLED
-        LOG_INFO(vformat("%s jar has changed, will copy it from res...", jar_name));
-#endif
-
-        Error err;
-        DirAccess* dir_access{
-                DirAccess::open(libs_res_path, &err)
-        };
-
-#ifdef DEBUG_ENABLED
-        JVM_CRASH_COND_MSG(err != OK, vformat("Cannot open %s jar in res.", jar_name));
-#endif
-
-        dir_access->copy(jar_res_path, jar_user_path);
-        memdelete(dir_access);
-    }
-    return jar_user_path;
-#else
-    // in tool mode, the jar will be copied by build_lock_watcher in the editor plugin
-#if defined(__linux__) || defined(__APPLE__)
-    String tmp_dir{"/tmp"};
-    Vector<String> project_dir_path_splitted{ProjectSettings::get_singleton()->globalize_path("res://").split("/")};
-    String project_dir_name{project_dir_path_splitted[project_dir_path_splitted.size() - 2]};
-    String build_lock_dir_path{tmp_dir + "/" + project_dir_name + "_buildLockDir"};
-    String jar_path{build_lock_dir_path + "/" + jar_name};
-#elif defined _WIN32 || defined _WIN64
-    String tmp_dir{OS::get_singleton()->get_environment("TMP")};
-    Vector<String> project_dir_path_splitted = ProjectSettings::get_singleton()->globalize_path("res://..").split("\\");
-    String project_dir_name{project_dir_path_splitted[project_dir_path_splitted.size() - 2]};
-    String build_lock_dir_path{tmp_dir + "\\" + project_dir_name + "_buildLockDir"};
-    String jar_path{build_lock_dir_path + "\\" + jar_name};
-#endif
-    return jar_path;
-#endif
 }

@@ -2,6 +2,7 @@
 
 #include <core/os/os.h>
 #include <core/project_settings.h>
+#include <modules/kotlin_jvm/src/jar_path_provider.h>
 
 #ifndef __ANDROID__
 
@@ -99,7 +100,7 @@ String jni::JvmLoader::get_embedded_jre_path() {
             "user://"
 #endif
         };
-        jre_path = vformat("%s%s", user_code_dir, LIB_GRAAL_VM_RELATIVE_PATH);
+        jre_path = vformat("%s%s", user_code_dir, String{USERCODE_NAME} + LIB_GRAAL_VM_EXTENSION);
     } else {
         jre_path = vformat("res://jre/%s", LIB_JVM_RELATIVE_PATH);
     }

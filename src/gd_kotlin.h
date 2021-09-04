@@ -25,8 +25,6 @@ private:
 
     GdKotlinConfiguration configuration;
 
-    static String _check_and_copy_jar(const String& jar_name);
-    static void _check_and_delete_jar(const String& jar_name);
     static jni::JObject _prepare_class_loader(jni::Env& p_env, jni::Jvm::Type type, const String& usercode_jar);
 
     bool check_configuration();

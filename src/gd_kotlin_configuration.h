@@ -12,6 +12,7 @@ public:
     String to_json();
     static constexpr const char* gd_kotlin_configuration_path{"res://godot_kotlin_configuration.json"};
     static GdKotlinConfiguration load_gd_kotlin_configuration_from_json_and_args();
+    static GdKotlinConfiguration load_gd_kotlin_configuration_from_json();
     void assemble_jinit_args(jni::InitArgs* args);
 
     jni::Jvm::Type get_vm_type() const;
@@ -72,6 +73,9 @@ private:
     static Error split_jvm_debug_argument(const String& cmd_arg, String& result);
 
     static jni::Jvm::Type vm_type_from_string(const String& vm_type_as_string);
+
+    static GdKotlinConfiguration load_from_json();
+    static void override_json_config_with_cmd_args(GdKotlinConfiguration* r_configuration);
 
     GdKotlinConfiguration(jni::Jvm::Type p_vm_type, int p_max_string_size);
 };

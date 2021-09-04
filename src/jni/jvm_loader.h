@@ -11,19 +11,16 @@
 
 #ifdef __linux__
 #define LIB_JVM_RELATIVE_PATH "lib/server/libjvm.so"
-#define LIB_GRAAL_VM_RELATIVE_PATH "usercode.so"
 #define FILE_SEPARATOR "/"
 #elif __APPLE__
 #include <TargetConditionals.h>
     #if TARGET_OS_MAC
         #define LIB_JVM_RELATIVE_PATH "lib/server/libjvm.dylib"
-        #define LIB_GRAAL_VM_RELATIVE_PATH "usercode.dylib"
         #define FILE_SEPARATOR "/"
     #endif
 #elif defined _WIN32 || defined _WIN64
 #define FILE_SEPARATOR "\\"
 #define LIB_JVM_RELATIVE_PATH "bin\\server\\jvm.dll"
-#define LIB_GRAAL_VM_RELATIVE_PATH "usercode.dll"
 #endif
 
 namespace jni {

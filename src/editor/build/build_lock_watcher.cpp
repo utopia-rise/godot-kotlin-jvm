@@ -4,6 +4,7 @@
 #include <core/os/os.h>
 #include <core/os/dir_access.h>
 #include <modules/kotlin_jvm/src/gd_kotlin.h>
+#include <modules/kotlin_jvm/src/jar_path_provider.h>
 #include "build_lock_watcher.h"
 
 
@@ -22,73 +23,30 @@ void BuildLockWatcher::_notificationv(int p_notification, bool p_reversed) {
     }
 }
 
-void BuildLockWatcher::reloadIfNeeded() {
-    String original_main_jar_file_path{"res://build/libs/usercode.jar"};
+void BuildLockWatcher::reloadIfNeeded() { // NOLINT(readability-convert-member-functions-to-static)
+    String build_usercode_path = PathProvider::provide_build_usercode_path();
+    String runtime_usercode_path = PathProvider::provide_runtime_usercode_path();
+    String build_lock_dir_path = PathProvider::provide_build_lock_dir_path();
 
-    if (!FileAccess::exists(ProjectSettings::get_singleton()->globalize_path(original_main_jar_file_path))) {
+    if (!FileAccess::exists(ProjectSettings::get_singleton()->globalize_path(build_usercode_path))) {
+        // a gradle clean or no build has happened yet. Teardown any initialized usercode
         GDKotlin::get_instance().teardown_usercode();
 
-
-#if defined(__linux__) || defined(__APPLE__)
-        String tmp_dir{"/tmp"};
-        Vector<String> project_dir_path_splitted{ProjectSettings::get_singleton()->globalize_path("res://").split("/")};
-        String project_dir_name{project_dir_path_splitted[project_dir_path_splitted.size() - 2]};
-        String build_lock_dir_path{tmp_dir + "/" + project_dir_name + "_buildLockDir"};
-        String jar{build_lock_dir_path + "/usercode.jar"};
-#elif defined _WIN32 || defined _WIN64
-        String tmp_dir{OS::get_singleton()->get_environment("TMP")};
-Vector<String> project_dir_path_splitted = ProjectSettings::get_singleton()->globalize_path("res://..").split("\\");
-String project_dir_name{project_dir_path_splitted[project_dir_path_splitted.size() - 2]};
-String build_lock_dir_path{tmp_dir + "\\" + project_dir_name + "_buildLockDir"};
-String jar{build_lock_dir_path + "\\usercode.jar"};
-#endif
-        if (FileAccess::exists(jar)) {
+        // if the runtime usercode exists, delete it as it's now outdated as no build equivalent is present
+        if (FileAccess::exists(runtime_usercode_path)) {
             DirAccess* build_lock_dir{DirAccess::create_for_path(build_lock_dir_path)};
-            build_lock_dir->remove(jar);
+            build_lock_dir->remove(runtime_usercode_path);
             memdelete(build_lock_dir);
         }
 
         return;
     }
 
-#if defined(__linux__) || defined(__APPLE__)
-    String tmp_dir{"/tmp"};
-    Vector<String> project_dir_path_splitted{ProjectSettings::get_singleton()->globalize_path("res://").split("/")};
-    String project_dir_name{project_dir_path_splitted[project_dir_path_splitted.size() - 2]};
-    String build_lock_dir_path{tmp_dir + "/" + project_dir_name + "_buildLockDir"};
-    String build_lock_file_path{build_lock_dir_path + "/buildLock.lock"};
-    String main_jar_file_path{build_lock_dir_path + "/usercode.jar"};
-#elif defined _WIN32 || defined _WIN64
-    String tmp_dir{OS::get_singleton()->get_environment("TMP")};
-    Vector<String> project_dir_path_splitted = ProjectSettings::get_singleton()->globalize_path("res://").split("\\");
-    String project_dir_name{project_dir_path_splitted[project_dir_path_splitted.size() - 2]};
-    String build_lock_dir_path{tmp_dir + "\\" + project_dir_name + "_buildLockDir"};
-    String build_lock_file_path{build_lock_dir_path + "\\buildLock.lock"};
-    String main_jar_file_path{build_lock_dir_path + "\\usercode.jar"};
-#endif
-
-
-    if (!DirAccess::exists(build_lock_dir_path)) {
-        DirAccess* build_lock_dir{DirAccess::create_for_path(build_lock_dir_path)};
-        print_line(build_lock_dir_path);
-        build_lock_dir->make_dir_recursive(build_lock_dir_path);
-        memdelete(build_lock_dir);
-    }
-
-    if (!FileAccess::exists(build_lock_file_path)) {
-        //TODO: find more efficient way. Atm we do this every 0.5 seconds which is far from ideal
-        String original_main_jar_md5{FileAccess::get_md5(original_main_jar_file_path)};
-        String main_jar_md5{FileAccess::get_md5(main_jar_file_path)};
-
-        if (original_main_jar_md5 != main_jar_md5) {
-            GDKotlin::get_instance().teardown_usercode();
-
-            DirAccess* build_lock_dir{DirAccess::create_for_path(build_lock_dir_path)};
-            build_lock_dir->copy(original_main_jar_file_path, main_jar_file_path);
-            memdelete(build_lock_dir);
-
-            GDKotlin::get_instance().init_usercode();
-        }
+    //TODO: find more efficient way. Atm we do this every 0.5 seconds which is far from ideal
+    if (PathProvider::copy_usercode_jar_if_necessary()) {
+        // if the usercode was copied, init the usercode as the new usercode is newer than the old one
+        LOG_INFO("Usercode change detected. Reloading...")
+        GDKotlin::get_instance().init_usercode();
     }
 }
 

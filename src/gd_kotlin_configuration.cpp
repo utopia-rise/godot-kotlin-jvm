@@ -129,101 +129,13 @@ GdKotlinConfiguration::GdKotlinConfiguration(jni::Jvm::Type p_vm_type, int p_max
 }
 
 GdKotlinConfiguration GdKotlinConfiguration::load_gd_kotlin_configuration_from_json_and_args() {
-    GdKotlinConfiguration configuration;
-    if (FileAccess::exists(gd_kotlin_configuration_path)) {
-        FileAccessRef configuration_access_read{FileAccess::open(gd_kotlin_configuration_path, FileAccess::READ)};
-        configuration = GdKotlinConfiguration::from_json(configuration_access_read->get_as_utf8_string());
-        configuration_access_read->close();
-    } else {
-#ifdef TOOLS_ENABLED
-        FileAccessRef file = FileAccess::open(gd_kotlin_configuration_path, FileAccess::WRITE);
-        configuration = GdKotlinConfiguration();
-        file->store_string(configuration.to_json());
-        file->close();
-#else
-        LOG_ERROR(vformat("Cannot find Godot Kotlin configuration file at: %s. Falling back to default configuration.", configuration_path));
-        configuration = GdKotlinConfiguration();
-#endif
-    }
-
-#ifdef __ANDROID__
-    configuration.set_vm_type(jni::Jvm::ART);
-#endif
-
-    const List<String>& cmdline_args{OS::get_singleton()->get_cmdline_args()};
-    const String& arg_prefix{"--"};
-
-    for (int i = 0; i < cmdline_args.size(); ++i) {
-        const String cmd_arg{cmdline_args[i]};
-        if (cmd_arg.find(arg_prefix + vm_type_identifier) >= 0) {
-            String vm_type_as_string;
-            if (split_jvm_debug_argument(cmd_arg, vm_type_as_string) == OK) {
-#ifdef __ANDROID__
-                LOG_WARNING(vformat("You manually defined vm type %s. Since we're running on android, we'll use ART regardless of manual configuration", vm_type_as_string))
-#endif
-            } else {
-                break;
-            }
-        } else if (cmd_arg.find(arg_prefix + jvm_debug_port_identifier) >= 0) {
-            if (split_jvm_debug_argument(cmd_arg, configuration.jvm_debug_port) == OK) {
-                if (configuration.jvm_debug_port.empty()) {
-                    configuration.jvm_debug_port = "5005";
-                }
-            } else {
-                break;
-            }
-        } else if (cmd_arg.find(arg_prefix + jvm_debug_address_identifier) >= 0) {
-            if (split_jvm_debug_argument(cmd_arg, configuration.jvm_debug_address) == OK) {
-                if (configuration.jvm_debug_address.empty()) {
-                    configuration.jvm_debug_address = "*";
-                }
-            } else {
-                break;
-            }
-        } else if (cmd_arg.find(arg_prefix + is_waiting_for_debugger_identifier) >= 0) {
-            String is_waiting_for_debugger_as_string;
-            if (split_jvm_debug_argument(cmd_arg, is_waiting_for_debugger_as_string) == OK) {
-                configuration.is_waiting_for_debugger = is_waiting_for_debugger_as_string == "true";
-            } else {
-                break;
-            }
-        } else if (cmd_arg.find(arg_prefix + jvm_jmx_port_identifier) >= 0) {
-            if (split_jvm_debug_argument(cmd_arg, configuration.jvm_jmx_port) == OK) {
-                if (configuration.jvm_jmx_port.empty()) {
-                    configuration.jvm_jmx_port = "9010";
-                }
-            }
-        } else if (cmd_arg.find(arg_prefix + max_string_size_identifier) >= 0) {
-            String result;
-            if (split_jvm_debug_argument(cmd_arg, result) == OK) {
-                configuration.max_string_size = result.to_int();
-                //https://godot-kotl.in/en/latest/advanced/commandline-args/
-                LOG_WARNING(
-                        vformat("Warning ! The max string size was changed to %s which modify the size of the buffer, this is not a recommended practice",
-                                result)
-                )
-            }
-        } else if (cmd_arg == arg_prefix + jvm_force_gc_identifier) {
-            configuration.is_gc_force_mode = true;
-            //TODO: Link to documentation
-            LOG_WARNING("GC is started in force mode, this should only be done for debugging purpose")
-        } else if (cmd_arg == arg_prefix + jvm_disable_gc_identifier) {
-            configuration.is_gc_activated = false;
-            //TODO: Link to documentation
-            LOG_WARNING(vformat("GC thread was disable. %s should only be used for debugging purpose",
-                                arg_prefix + jvm_disable_gc_identifier))
-        } else if (cmd_arg == arg_prefix + jvm_disable_closing_leaks_identifier) {
-            LOG_WARNING(
-                    vformat(
-                            "JVM leaked instances will not be displayed in console (see %s)",
-                            arg_prefix + jvm_disable_closing_leaks_identifier
-                    )
-            )
-            configuration.should_display_leaked_jvm_instances_on_close = false;
-        }
-    }
-
+    GdKotlinConfiguration configuration = load_from_json();
+    override_json_config_with_cmd_args(&configuration);
     return configuration;
+}
+
+GdKotlinConfiguration GdKotlinConfiguration::load_gd_kotlin_configuration_from_json() {
+    return load_from_json();
 }
 
 const String& GdKotlinConfiguration::get_jvm_debug_port() const {
@@ -328,5 +240,103 @@ jni::Jvm::Type GdKotlinConfiguration::vm_type_from_string(const String& vm_type_
     } else {
         LOG_WARNING("Wrong JVM type in config, fallback to classic JVM !")
         return jni::Jvm::JVM;
+    }
+}
+
+GdKotlinConfiguration GdKotlinConfiguration::load_from_json() {
+    GdKotlinConfiguration configuration;
+    if (FileAccess::exists(gd_kotlin_configuration_path)) {
+        FileAccessRef configuration_access_read{FileAccess::open(gd_kotlin_configuration_path, FileAccess::READ)};
+        configuration = GdKotlinConfiguration::from_json(configuration_access_read->get_as_utf8_string());
+        configuration_access_read->close();
+    } else {
+#ifdef TOOLS_ENABLED
+        FileAccessRef file = FileAccess::open(gd_kotlin_configuration_path, FileAccess::WRITE);
+        configuration = GdKotlinConfiguration();
+        file->store_string(configuration.to_json());
+        file->close();
+#else
+        LOG_ERROR(vformat("Cannot find Godot Kotlin configuration file at: %s. Falling back to default configuration.", configuration_path))
+        configuration = GdKotlinConfiguration();
+#endif
+    }
+#ifdef __ANDROID__
+    configuration.set_vm_type(jni::Jvm::ART);
+#endif
+    return configuration;
+}
+
+void GdKotlinConfiguration::override_json_config_with_cmd_args(GdKotlinConfiguration* r_configuration) {
+    const List<String>& cmdline_args{OS::get_singleton()->get_cmdline_args()};
+    const String& arg_prefix{"--"};
+
+    for (int i = 0; i < cmdline_args.size(); ++i) {
+        const String cmd_arg{cmdline_args[i]};
+        if (cmd_arg.find(arg_prefix + vm_type_identifier) >= 0) {
+            String vm_type_as_string;
+            if (split_jvm_debug_argument(cmd_arg, vm_type_as_string) == OK) {
+#ifdef __ANDROID__
+                LOG_WARNING(vformat("You manually defined vm type %s. Since we're running on android, we'll use ART regardless of manual configuration", vm_type_as_string))
+#endif
+            } else {
+                break;
+            }
+        } else if (cmd_arg.find(arg_prefix + jvm_debug_port_identifier) >= 0) {
+            if (split_jvm_debug_argument(cmd_arg, r_configuration->jvm_debug_port) == OK) {
+                if (r_configuration->jvm_debug_port.empty()) {
+                    r_configuration->jvm_debug_port = "5005";
+                }
+            } else {
+                break;
+            }
+        } else if (cmd_arg.find(arg_prefix + jvm_debug_address_identifier) >= 0) {
+            if (split_jvm_debug_argument(cmd_arg, r_configuration->jvm_debug_address) == OK) {
+                if (r_configuration->jvm_debug_address.empty()) {
+                    r_configuration->jvm_debug_address = "*";
+                }
+            } else {
+                break;
+            }
+        } else if (cmd_arg.find(arg_prefix + is_waiting_for_debugger_identifier) >= 0) {
+            String is_waiting_for_debugger_as_string;
+            if (split_jvm_debug_argument(cmd_arg, is_waiting_for_debugger_as_string) == OK) {
+                r_configuration->is_waiting_for_debugger = is_waiting_for_debugger_as_string == "true";
+            } else {
+                break;
+            }
+        } else if (cmd_arg.find(arg_prefix + jvm_jmx_port_identifier) >= 0) {
+            if (split_jvm_debug_argument(cmd_arg, r_configuration->jvm_jmx_port) == OK) {
+                if (r_configuration->jvm_jmx_port.empty()) {
+                    r_configuration->jvm_jmx_port = "9010";
+                }
+            }
+        } else if (cmd_arg.find(arg_prefix + max_string_size_identifier) >= 0) {
+            String result;
+            if (split_jvm_debug_argument(cmd_arg, result) == OK) {
+                r_configuration->max_string_size = result.to_int();
+                //https://godot-kotl.in/en/latest/advanced/commandline-args/
+                LOG_WARNING(
+                        vformat("Warning ! The max string size was changed to %s which modify the size of the buffer, this is not a recommended practice",
+                                result)
+                )
+            }
+        } else if (cmd_arg == arg_prefix + jvm_force_gc_identifier) {
+            r_configuration->is_gc_force_mode = true;
+            //TODO: Link to documentation
+            LOG_WARNING("GC is started in force mode, this should only be done for debugging purpose")
+        } else if (cmd_arg == arg_prefix + jvm_disable_gc_identifier) {
+            r_configuration->is_gc_activated = false;
+            //TODO: Link to documentation
+            LOG_WARNING(vformat("GC thread was disable. %s should only be used for debugging purpose",
+                                arg_prefix + jvm_disable_gc_identifier))
+        } else if (cmd_arg == arg_prefix + jvm_disable_closing_leaks_identifier) {
+            LOG_WARNING(
+                    vformat(
+                            "JVM leaked instances will not be displayed in console (see %s)",
+                            arg_prefix + jvm_disable_closing_leaks_identifier
+                    )
+            )
+            r_configuration->should_display_leaked_jvm_instances_on_close = false;
+        }
     }
 }

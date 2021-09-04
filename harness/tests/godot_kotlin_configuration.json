@@ -1,1 +1,1 @@
-{"vm_type":"jvm"}
+{"is_waiting_for_debugger":true,"jvm-disable-closing-leaks-warning":true,"jvm-disable-gc":false,"jvm-force-gc":false,"jvm_debug_address":"","jvm_debug_port":"","jvm_jmx_port":"","max_string_size":512,"vm_type":"jvm"}
