@@ -11,6 +11,7 @@
 #include "dialog/build_dialog.h"
 #include "menu_option.h"
 #include "panel/bottom_panel.h"
+#include "build/build_lock_watcher.h"
 
 class GodotKotlinJvmEditor : public EditorPlugin {
 public:
@@ -21,6 +22,7 @@ public:
     GodotKotlinJvmEditor& operator=(const GodotKotlinJvmEditor&) = delete;
 
     Timer* build_check_timer;
+    BuildLockWatcher* build_lock_watcher;
 
     void on_build_check_timeout();
 

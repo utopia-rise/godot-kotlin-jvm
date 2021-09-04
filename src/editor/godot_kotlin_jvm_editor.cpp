@@ -69,6 +69,7 @@ void GodotKotlinJvmEditor::_notificationv(int p_notification, bool p_reversed) {
 
     if (p_notification == NOTIFICATION_READY) {
         _EDITOR_DEF("kotlin_jvm/editor/build_gradle_before_start", true, false);
+        _EDITOR_DEF("kotlin_jvm/editor/build_lock_watch_interval", 0.5, false);
         _GLOBAL_DEF("kotlin_jvm/editor/gradle_wrapper_dir", "res://", false);
         ProjectSettings::get_singleton()->set_custom_property_info(
                 "kotlin_jvm/editor/gradle_wrapper_dir",
@@ -123,6 +124,7 @@ void GodotKotlinJvmEditor::_notificationv(int p_notification, bool p_reversed) {
         build_check_timer->set_one_shot(false);
         build_check_timer->connect("timeout", this, "on_build_check_timeout");
         add_child(build_check_timer);
+        add_child(build_lock_watcher);
 
         add_control_to_bottom_panel(bottom_panel, "Kotlin/JVM");
 
@@ -189,6 +191,7 @@ void GodotKotlinJvmEditor::on_build_check_timeout() { // NOLINT(readability-conv
 
 GodotKotlinJvmEditor::GodotKotlinJvmEditor() :
         build_check_timer(memnew(Timer)),
+        build_lock_watcher(memnew(BuildLockWatcher)),
         bottom_panel(memnew(BottomPanel)),
         tool_bar_build_button(memnew(ToolButton)),
         build_dialog(memnew(BuildDialog)),

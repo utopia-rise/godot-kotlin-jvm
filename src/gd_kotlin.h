@@ -25,10 +25,9 @@ private:
 
     GdKotlinConfiguration configuration;
 
-    Error _split_jvm_debug_argument(const String& cmd_arg, String& result);
-
-    static void _check_and_copy_jar(const String& jar_name);
-    static jni::JObject _prepare_class_loader(jni::Env& p_env, jni::Jvm::Type type);
+    static String _check_and_copy_jar(const String& jar_name);
+    static void _check_and_delete_jar(const String& jar_name);
+    static jni::JObject _prepare_class_loader(jni::Env& p_env, jni::Jvm::Type type, const String& usercode_jar);
 
     bool check_configuration();
 
@@ -51,6 +50,9 @@ public:
     GDKotlin& operator=(const GDKotlin&) = delete;
 
     void init();
+
+    void init_usercode();
+    void teardown_usercode();
 
     void finish();
 
