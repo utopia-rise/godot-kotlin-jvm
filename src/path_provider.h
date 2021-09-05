@@ -1,5 +1,5 @@
-#ifndef GODOT_JVM_JAR_PATH_PROVIDER_H
-#define GODOT_JVM_JAR_PATH_PROVIDER_H
+#ifndef GODOT_JVM_PATH_PROVIDER_H
+#define GODOT_JVM_PATH_PROVIDER_H
 
 
 #include <core/ustring.h>
@@ -33,7 +33,6 @@ public:
     static String provide_build_usercode_path();
     static bool copy_usercode_jar_if_necessary();
     static String get_usercode_name();
-    static String get_usercode_name_for_vm_type(jni::Jvm::Type vm_type);
 
 private:
     PathProvider() = default;
@@ -43,4 +42,4 @@ private:
 };
 
 
-#endif //GODOT_JVM_JAR_PATH_PROVIDER_H
+#endif //GODOT_JVM_PATH_PROVIDER_H

@@ -1,10 +1,11 @@
 #ifdef TOOLS_ENABLED
 
 #include <modules/kotlin_jvm/src/jni/jvm.h>
+#include <libv4l1-videodev.h>
 #include "kotlin_editor_export_plugin.h"
 #include "core/os/file_access.h"
 #include "gd_kotlin.h"
-#include "jar_path_provider.h"
+#include "path_provider.h"
 
 static constexpr const char* all_jvm_feature{"export-all-jvm"};
 
@@ -85,10 +86,10 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
 void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::Jvm::Type vm_type) {
     GdKotlinConfiguration configuration{GdKotlinConfiguration::load_gd_kotlin_configuration_from_json()};
     configuration.set_vm_type(vm_type);
-    const CharType* json_string{configuration.to_json().c_str()};
+    String json{configuration.to_json()};
     Vector<uint8_t> json_bytes;
-    for (int i = 0; json_string[i] != '\0'; ++i) {
-        json_bytes.push_back(json_string[i]);
+    for (int i = 0; json[i] != '\0'; ++i) {
+        json_bytes.push_back(json[i]);
     }
     add_file(GdKotlinConfiguration::gd_kotlin_configuration_path, json_bytes, false);
 }

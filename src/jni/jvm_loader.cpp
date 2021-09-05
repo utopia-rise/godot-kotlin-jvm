@@ -2,7 +2,7 @@
 
 #include <core/os/os.h>
 #include <core/project_settings.h>
-#include <modules/kotlin_jvm/src/jar_path_provider.h>
+#include <modules/kotlin_jvm/src/path_provider.h>
 
 #ifndef __ANDROID__
 

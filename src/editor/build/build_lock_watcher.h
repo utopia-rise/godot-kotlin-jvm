@@ -7,7 +7,7 @@
 #include <scene/main/node.h>
 #include <scene/main/timer.h>
 
-class BuildLockWatcher: public Node {
+class BuildLockWatcher : public Node {
 public:
     BuildLockWatcher();
     void _notificationv(int p_notification, bool p_reversed) override;

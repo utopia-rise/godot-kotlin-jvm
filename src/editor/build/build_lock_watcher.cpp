@@ -4,11 +4,8 @@
 #include <core/os/os.h>
 #include <core/os/dir_access.h>
 #include <modules/kotlin_jvm/src/gd_kotlin.h>
-#include <modules/kotlin_jvm/src/jar_path_provider.h>
+#include <modules/kotlin_jvm/src/path_provider.h>
 #include "build_lock_watcher.h"
-
-
-#endif //TOOLS_ENABLED
 
 void BuildLockWatcher::_notificationv(int p_notification, bool p_reversed) {
     Node::_notificationv(p_notification, p_reversed);
@@ -42,7 +39,7 @@ void BuildLockWatcher::reloadIfNeeded() { // NOLINT(readability-convert-member-f
         return;
     }
 
-    //TODO: find more efficient way. Atm we do this every 0.5 seconds which is far from ideal
+    //TODO: find more efficient way. Atm with this, we calculate 2 md5 hashes every 0.5 seconds which is far from ideal
     if (PathProvider::copy_usercode_jar_if_necessary()) {
         // if the usercode was copied, init the usercode as the new usercode is newer than the old one
         LOG_INFO("Usercode change detected. Reloading...")
@@ -56,3 +53,5 @@ BuildLockWatcher::BuildLockWatcher() : timer(memnew(Timer)) {
             &BuildLockWatcher::reloadIfNeeded
     );
 }
+
+#endif //TOOLS_ENABLED

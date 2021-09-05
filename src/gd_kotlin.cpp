@@ -4,9 +4,8 @@
 #include "core/project_settings.h"
 #include "bridges_manager.h"
 #include "jni/class_loader.h"
-#include "jar_path_provider.h"
+#include "path_provider.h"
 #include <core/io/resource_loader.h>
-#include <core/os/dir_access.h>
 
 #ifndef TOOLS_ENABLED
 
@@ -48,14 +47,14 @@ void unload_classes_hook(JNIEnv* p_env, jobject p_this, jobjectArray p_classes) 
     classes.delete_local_ref(env);
 }
 
-void
-register_engine_types_hook(
+void register_engine_types_hook(
         JNIEnv* p_env,
         jobject p_this,
         jobjectArray p_engine_types,
         jobjectArray p_singleton_names,
         jobjectArray p_method_names,
-        jobjectArray p_types_of_methods) {
+        jobjectArray p_types_of_methods
+) {
 #ifdef DEBUG_ENABLED
     LOG_VERBOSE("Starting to register managed engine types...");
 #endif
@@ -184,8 +183,14 @@ void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
         auto* kt_class = new KtClass(clazz, class_loader);
         classes[kt_class->name] = kt_class;
 #ifdef DEBUG_ENABLED
-        LOG_VERBOSE(vformat("Loaded class %s : %s, as %s", kt_class->name, kt_class->super_class,
-                            kt_class->registered_class_name))
+        LOG_VERBOSE(
+                vformat(
+                        "Loaded class %s : %s, as %s",
+                        kt_class->name,
+                        kt_class->super_class,
+                        kt_class->registered_class_name
+                )
+        )
 #endif
         clazz.delete_local_ref(p_env);
     }
@@ -222,7 +227,7 @@ const GdKotlinConfiguration& GDKotlin::get_configuration() {
 
 jni::JObject GDKotlin::_prepare_class_loader(jni::Env& p_env, jni::Jvm::Type type, const String& usercode_jar) {
     if (type == jni::Jvm::GRAAL_NATIVE_IMAGE) {
-        return jni::JObject();
+        return {};
     }
 
     jni::JObject class_loader{ClassLoader::provide_loader(p_env, usercode_jar, jni::JObject(nullptr))};
@@ -261,7 +266,8 @@ const Vector<Pair<String, String>>& GDKotlin::get_configuration_errors() const {
 GDKotlin::GDKotlin() :
         bootstrap(nullptr),
         is_gc_started(false),
-        transfer_context(nullptr) {
+        transfer_context(nullptr),
+        is_initialized(false) {
 }
 
 void GDKotlin::register_members(jni::Env& p_env) {
@@ -285,7 +291,10 @@ void GDKotlin::init_usercode() {
         return;
     }
 #endif
-    JVM_CRASH_COND_MSG(!FileAccess::exists(runtime_usercode_path), vformat("No %s found!", PathProvider::get_usercode_name()))
+    JVM_CRASH_COND_MSG(
+            !FileAccess::exists(runtime_usercode_path),
+            vformat("No %s found!", PathProvider::get_usercode_name())
+    )
 
     LOG_INFO(vformat("Loading usercode: %s", runtime_usercode_path))
     jni::Env env{jni::Jvm::current_env()};
@@ -372,8 +381,9 @@ void GDKotlin::teardown_usercode() {
     bootstrap = nullptr;
 
     if (is_gc_started) {
-        jni::JClass garbage_collector_cls{env.load_class("godot.core.GarbageCollector",
-                                                         ClassLoader::get_default_loader())};
+        jni::JClass garbage_collector_cls{
+                env.load_class("godot.core.GarbageCollector", ClassLoader::get_default_loader())
+        };
         jni::FieldId garbage_collector_instance_field{
                 garbage_collector_cls.get_static_field_id(env, "INSTANCE", "Lgodot/core/GarbageCollector;")
         };

@@ -32,7 +32,9 @@ String GdKotlinConfiguration::to_json() {
     result[jvm_disable_gc_identifier] = !is_gc_activated;
     result[jvm_disable_closing_leaks_identifier] = should_display_leaked_jvm_instances_on_close;
 
-    return JSON::print(result);
+    String json = JSON::print(result);
+    LOG_VERBOSE(vformat("Output json: %s", json))
+    return json;
 }
 
 GdKotlinConfiguration GdKotlinConfiguration::from_json(const String& json_string) {
@@ -40,6 +42,7 @@ GdKotlinConfiguration GdKotlinConfiguration::from_json(const String& json_string
     String err_string;
     int err_line;
 
+    LOG_VERBOSE(vformat("Parsing %s", json_string))
     Error error{JSON::parse(json_string, result, err_string, err_line)};
 
     if (error != OK || result.get_type() != Variant::DICTIONARY) {
@@ -128,12 +131,22 @@ GdKotlinConfiguration::GdKotlinConfiguration(jni::Jvm::Type p_vm_type, int p_max
 
 }
 
+/**
+ * Used to load the module configuration.
+ * Loads the initial configuration from the json configurations and overrides the values which are passed with cmd line args
+ * To be used primarily for TOOLS_ENABLED (editor mode)
+ */
 GdKotlinConfiguration GdKotlinConfiguration::load_gd_kotlin_configuration_from_json_and_args() {
     GdKotlinConfiguration configuration = load_from_json();
     override_json_config_with_cmd_args(&configuration);
     return configuration;
 }
 
+/**
+ * Used to load the module configuration.
+ * Loads the configuration from the json configurations and ignores the values which are passed with cmd line args
+ * To be used primarily for exports
+ */
 GdKotlinConfiguration GdKotlinConfiguration::load_gd_kotlin_configuration_from_json() {
     return load_from_json();
 }
@@ -256,7 +269,7 @@ GdKotlinConfiguration GdKotlinConfiguration::load_from_json() {
         file->store_string(configuration.to_json());
         file->close();
 #else
-        LOG_ERROR(vformat("Cannot find Godot Kotlin configuration file at: %s. Falling back to default configuration.", configuration_path))
+        LOG_ERROR(vformat("Cannot find Godot Kotlin configuration file at: %s. Falling back to default configuration.", gd_kotlin_configuration_path))
         configuration = GdKotlinConfiguration();
 #endif
     }

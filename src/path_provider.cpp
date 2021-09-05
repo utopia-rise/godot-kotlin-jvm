@@ -1,7 +1,7 @@
 
 #include <core/project_settings.h>
 #include <core/os/dir_access.h>
-#include "jar_path_provider.h"
+#include "path_provider.h"
 #include "gd_kotlin.h"
 
 String PathProvider::provide_runtime_usercode_path() {
@@ -29,10 +29,10 @@ bool PathProvider::copy_usercode_jar_if_necessary() {
 #endif
 
         Error err;
-        DirAccess* dir_access{DirAccess::open(build_usercode_path, &err)};
+        DirAccess* dir_access{DirAccess::open("res://build/libs", &err)};
 
 #ifdef DEBUG_ENABLED
-        JVM_CRASH_COND_MSG(err != OK, vformat("Cannot open %s jar in res.", get_usercode_name()))
+        JVM_CRASH_COND_MSG(err != OK, vformat("Cannot open %s in res. Error was %s", get_usercode_name(), err))
 #endif
 
         dir_access->copy(build_usercode_path, runtime_usercode_path);
@@ -84,22 +84,6 @@ String PathProvider::get_usercode_name() {
     }
     return usercode_name;
 #endif
-}
-
-String PathProvider::get_usercode_name_for_vm_type(jni::Jvm::Type vm_type) {
-    String usercode_name;
-    switch (vm_type) {
-        case jni::Jvm::Type::JVM:
-            usercode_name = String{USERCODE_NAME} + USERCODE_JAR_EXTENSION;
-            break;
-        case jni::Jvm::Type::GRAAL_NATIVE_IMAGE:
-            usercode_name = String{USERCODE_NAME} + LIB_GRAAL_VM_EXTENSION;
-            break;
-        case jni::Jvm::Type::ART:
-            usercode_name = String{USERCODE_NAME} + USERCODE_ANDROID_EXTENSION;
-            break;
-    }
-    return usercode_name;
 }
 
 String PathProvider::provide_build_usercode_path() {
