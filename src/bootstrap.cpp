@@ -54,7 +54,6 @@ Bootstrap::register_hooks(jni::Env& p_env, LoadClassesHook p_load_classes_hook, 
 void Bootstrap::init(jni::Env& p_env) {
     jni::MethodId init_method = get_method_id(p_env, jni_methods.INIT);
     wrapped.call_void_method(p_env, init_method);
-//    engine_types_registered = true;
 }
 
 void Bootstrap::finish(jni::Env& p_env) {

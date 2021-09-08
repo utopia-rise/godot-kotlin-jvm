@@ -1,7 +1,6 @@
 #ifdef TOOLS_ENABLED
 
 #include <modules/kotlin_jvm/src/jni/jvm.h>
-#include <libv4l1-videodev.h>
 #include "kotlin_editor_export_plugin.h"
 #include "core/os/file_access.h"
 #include "gd_kotlin.h"
