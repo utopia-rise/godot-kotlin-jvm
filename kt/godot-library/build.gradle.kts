@@ -30,19 +30,11 @@ tasks {
         finalizedBy(shadowJar)
     }
 
-    val copyBootstrapJar by creating(Copy::class.java) {
-        group = "godot-kotlin-jvm"
-        from(shadowJar)
-        destinationDir = File("${projectDir.absolutePath}/../../../../bin/")
-        dependsOn(shadowJar)
-    }
-
     withType<ShadowJar> {
         archiveBaseName.set("godot-bootstrap")
         archiveVersion.set("")
         archiveClassifier.set("")
         exclude("**/module-info.class") //for android support: excludes java 9+ module info which cannot be parsed by the dx tool
-        finalizedBy(copyBootstrapJar)
     }
 }
 
