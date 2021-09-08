@@ -6,21 +6,18 @@ import org.gradle.api.Task
 import org.gradle.api.tasks.TaskProvider
 
 fun Project.setupBuildTask(
-    packageBootstrapJarTask: TaskProvider<out Task>,
-    packageMainJarTask: TaskProvider<out Task>,
-    generateEntryServiceFileTask: TaskProvider<out Task>,
+    packageUsercodeJarTask: TaskProvider<out Task>,
     deleteBuildLockTask: TaskProvider<out Task>,
-    packageBootstrapDexJarTask: TaskProvider<out Task>,
-    packageMainDexJarTask: TaskProvider<out Task>,
+    packageUsercodeDexJarTask: TaskProvider<out Task>,
     createGraalNativeImageTask: TaskProvider<out Task>,
     createBuildLockTask: TaskProvider<out Task>
 ) {
     tasks.named("build") {
         with(it) {
-            dependsOn(createBuildLockTask, packageBootstrapJarTask, packageMainJarTask, generateEntryServiceFileTask)
+            dependsOn(createBuildLockTask, packageUsercodeJarTask)
             finalizedBy(deleteBuildLockTask)
             if (godotJvmExtension.isAndroidExportEnabled.get()) {
-                finalizedBy(packageBootstrapDexJarTask, packageMainDexJarTask)
+                finalizedBy(packageUsercodeDexJarTask)
             }
             if (godotJvmExtension.isGraalNativeImageExportEnabled.get()) {
                 finalizedBy(createGraalNativeImageTask)

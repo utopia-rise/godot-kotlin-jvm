@@ -415,4 +415,5 @@ void GDKotlin::teardown_usercode() {
 
     TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.clear();
     ClassLoader::delete_default_loader(env);
+    is_usercode_loaded = false;
 }

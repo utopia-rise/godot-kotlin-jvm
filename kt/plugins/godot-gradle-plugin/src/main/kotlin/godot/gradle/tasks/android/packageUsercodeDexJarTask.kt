@@ -8,28 +8,25 @@ import org.gradle.api.tasks.TaskProvider
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 import java.io.File
 
-fun Project.createMainDexFileTask(
+fun Project.packageUsercodeDexJarTask(
     checkAndroidJarAccessibleTask: TaskProvider<out Task>,
     checkD8ToolAccessibleTask: TaskProvider<out Task>,
-    packageBootstrapDexJarTask: TaskProvider<out Task>,
-    packageMainJarTask: TaskProvider<out Task>
+    packageUsercodeJarTask: TaskProvider<out Task>
 ): TaskProvider<out Task> {
-    return tasks.register("createMainDexFile", Exec::class.java) {
+    return tasks.register("packageUsercodeDexJar", Exec::class.java) {
         with(it) {
             group = "godot-kotlin-jvm"
-            description = "Converts the main.jar to an android dex file. Needed for android builds only"
+            description = "Converts the usercode.jar to an android dex jar. Needed for android builds only"
 
             dependsOn(
                 checkD8ToolAccessibleTask,
                 checkAndroidJarAccessibleTask,
-                packageMainJarTask,
-                packageBootstrapDexJarTask
+                packageUsercodeJarTask
             )
 
             doFirst {
                 val libsDir = project.buildDir.resolve("libs")
-                val mainJar = File(libsDir, "main.jar")
-                val godotBootstrapJar = File(libsDir, "godot-bootstrap.jar")
+                val usercodeJar = File(libsDir, "usercode.jar")
 
                 workingDir = libsDir
                 if (DefaultNativePlatform.getCurrentOperatingSystem().isWindows) {
@@ -37,18 +34,20 @@ fun Project.createMainDexFileTask(
                         "cmd",
                         "/c",
                         godotJvmExtension.d8ToolPath.get().asFile.absolutePath,
-                        mainJar.absolutePath,
+                        usercodeJar.absolutePath,
+                        "--output",
+                        "usercode-dex.jar",
                         "--lib",
                         "${godotJvmExtension.androidCompileSdkDir.get().asFile.absolutePath}${File.separator}android.jar",
                     )
                 } else {
                     commandLine(
                         godotJvmExtension.d8ToolPath.get().asFile.absolutePath,
-                        mainJar.absolutePath,
+                        usercodeJar.absolutePath,
+                        "--output",
+                        "usercode-dex.jar",
                         "--lib",
-                        "${godotJvmExtension.androidCompileSdkDir.get().asFile.absolutePath}/android.jar",
-                        "--classpath",
-                        godotBootstrapJar.absolutePath,
+                        "${godotJvmExtension.androidCompileSdkDir.get().asFile.absolutePath}/android.jar"
                     )
                 }
             }

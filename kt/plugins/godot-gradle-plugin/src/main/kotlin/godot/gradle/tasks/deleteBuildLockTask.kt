@@ -11,7 +11,7 @@ fun Project.deleteBuildLockTask(): TaskProvider<Task> {
         with(it) {
             group = "godot-kotlin-jvm-internal"
             description =
-                "Internal task! Deletes the build lock file which prevents the bootstrap to reload user classes while a build/clean is still in progress"
+                "Internal task! Deletes the build lock file which prevents the module to reload user classes while a build/clean is still in progress"
 
             doLast {
                 val buildLockDir = getBuildLockDir()
