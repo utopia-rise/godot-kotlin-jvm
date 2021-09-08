@@ -1,8 +1,5 @@
 ## Default GraalVM native image configuration
 
-!!! warning  
-    Reloading code changes in the editor is not possible with native-image, as it would require to reload the JVM.
-
 On desktop platform, you can choose to build a [GraalVM native image](https://www.graalvm.org/reference-manual/native-image/). You first need to install graal-vm and its tool native image. Then, you should set `GRAALVM_HOME` environment variable to point to GraalVM's home folder.  
 
 On windows, you should add `VC_VARS_PATH` environment variable to point to vcvars bat file. This is mandatory so that we can initialize visual studio tools. (Example: `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat`)

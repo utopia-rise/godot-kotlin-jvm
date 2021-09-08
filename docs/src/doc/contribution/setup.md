@@ -22,24 +22,3 @@ Make sure that Java is installed and its PATH set in your system as well (at lea
 
 6. In order to debug your JVM code, you should start Godot with command line `--jvm-debug-port=XXXX`, where `XXXX`
 stands for the JMX port of you choice. You can then setup remote debug configuration in Intellij' IDEA.
-
-## Important things to note:
-When you build a sample, it generates a `godot-bootstrap.jar` in `build/libs`. This jar is needed by the engine to function correctly. You need to copy this jar to `<godot-root>/bin`. If you want to automate that, consider using the following gradle task in the samples `build.gradle.kts`- but don't commit it!
-
-```kt
-afterEvaluate {
-    tasks {
-        val bootstrapJar = getByName("bootstrapJar")
-        val copyBootstrapJar by creating(Copy::class.java) {
-            group = "godot-jvm"
-            from(bootstrapJar)
-            destinationDir = File("${projectDir.absolutePath}/../../../../bin/")
-            dependsOn(bootstrapJar)
-            println(File("${projectDir.absolutePath}/../../../../bin/").absolutePath)
-        }
-        build.get().dependsOn(copyBootstrapJar)
-    }
-}
-```
-
-If you build the libs from `<module-root>/kt` then this copy task is already present and executed automatically for you.

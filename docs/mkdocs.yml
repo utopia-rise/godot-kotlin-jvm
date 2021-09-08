@@ -64,7 +64,7 @@ nav:
       - Custom src dirs: user-guide/advanced/custom-src-dirs.md
       - Custom gradle wrapper path: user-guide/advanced/custom_gradle_wrapper_path.md
       - Gradle plugin configuration: user-guide/advanced/gradle-plugin-configuration.md
-      - Commandline args: user-guide/advanced/commandline-args.md
+      - Module configuration: user-guide/advanced/module-configuration.md
       - Kotlin singletons: user-guide/advanced/kotlin-singleton.md
       - GraalVM native-image: user-guide/advanced/graal-vm-native-image.md
   - Contributing:
@@ -73,6 +73,5 @@ nav:
     - Setup: contribution/setup.md
     - Build with C# support: contribution/build-with-csharp-support.md
     - Knowledge base:
-        - Artefact differentiation: contribution/knowledge-base/artefact-differentiation.md
         - Entry generation: contribution/knowledge-base/entry-generation.md
         - Shared buffer: contribution/knowledge-base/shared-buffer.md

@@ -87,7 +87,7 @@ In GDScript, some functions are always available like mathematical functions or 
 
 In Kotlin, they are available inside the `GD` singleton. Don't forget that some functions couldn't be reproduced in Kotlin. `load()` is available but `preload()` is not.
 
-## Additiional functions
+## Additional functions
 
 For comfort, some Objects got some additionnal functions to enjoy some Kotlin sugar syntax. You can find them all in this folder: https://github.com/utopia-rise/godot-kotlin-jvm/tree/master/kt/godot-library/src/main/kotlin/godot/extensions
 
