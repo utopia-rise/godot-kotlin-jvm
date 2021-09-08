@@ -21,7 +21,7 @@ fun Project.packageBootstrapDexJarTask(
 
             dependsOn(checkD8ToolAccessibleTask, checkAndroidJarAccessibleTask, packageBootstrapJarTask)
 
-            doLast {
+            doFirst {
                 val libsDir = project.buildDir.resolve("libs")
                 val godotBootstrapJar = File(libsDir, "godot-bootstrap.jar")
 
