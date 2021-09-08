@@ -1,7 +1,6 @@
 #ifdef TOOLS_ENABLED
 
 #include <editor/editor_settings.h>
-#include <core/os/os.h>
 #include <core/os/dir_access.h>
 #include <modules/kotlin_jvm/src/gd_kotlin.h>
 #include <modules/kotlin_jvm/src/path_provider.h>
@@ -15,12 +14,12 @@ void BuildLockWatcher::_notificationv(int p_notification, bool p_reversed) {
         timer->set_wait_time(0.5);
         timer->set_one_shot(false);
         timer->set_wait_time(_EDITOR_GET("kotlin_jvm/editor/build_lock_watch_interval"));
-        timer->connect("timeout", this, "reloadIfNeeded");
+        timer->connect("timeout", this, "reload_if_needed");
         add_child(timer);
     }
 }
 
-void BuildLockWatcher::reloadIfNeeded() { // NOLINT(readability-convert-member-functions-to-static)
+void BuildLockWatcher::reload_if_needed() { // NOLINT(readability-convert-member-functions-to-static)
     String build_usercode_path = PathProvider::provide_build_usercode_path();
     String runtime_usercode_path = PathProvider::provide_runtime_usercode_path();
     String build_lock_dir_path = PathProvider::provide_build_lock_dir_path();
@@ -49,8 +48,8 @@ void BuildLockWatcher::reloadIfNeeded() { // NOLINT(readability-convert-member-f
 
 BuildLockWatcher::BuildLockWatcher() : timer(memnew(Timer)) {
     ClassDB::bind_method(
-            D_METHOD("reloadIfNeeded"),
-            &BuildLockWatcher::reloadIfNeeded
+            D_METHOD("reload_if_needed"),
+            &BuildLockWatcher::reload_if_needed
     );
 }
 

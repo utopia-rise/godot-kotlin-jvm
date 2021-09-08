@@ -15,7 +15,7 @@ public:
 private:
     Timer* timer;
 
-    void reloadIfNeeded();
+    void reload_if_needed();
 };
 
 
