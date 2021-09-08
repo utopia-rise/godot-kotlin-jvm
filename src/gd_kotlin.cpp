@@ -142,6 +142,7 @@ void GDKotlin::init() {
     }
 
     configuration = GdKotlinConfiguration::load_gd_kotlin_configuration_from_json_and_args();
+    PathProvider::copy_usercode_jar_if_necessary();
 
     jni::InitArgs args;
 #ifndef __ANDROID__
@@ -156,7 +157,6 @@ void GDKotlin::init() {
     LOG_INFO("Starting JVM ...")
     jni::Jvm::init(args, configuration.get_vm_type());
 
-    PathProvider::copy_usercode_jar_if_necessary();
     init_usercode();
     is_initialized = true;
 }

@@ -57,7 +57,7 @@ String jni::JvmLoader::get_jvm_lib_path() {
         String embeddedJrePath{get_embedded_jre_path()};
         if (!FileAccess::exists(embeddedJrePath)) {
             if (Jvm::get_type() == Jvm::GRAAL_NATIVE_IMAGE) {
-                JVM_CRASH_NOW_MSG("Cannot find Graal VM user code native image");
+                JVM_CRASH_NOW_MSG(vformat("Cannot find Graal VM user code native image at path %s", embeddedJrePath));
             }
             LOG_WARNING(vformat("Godot-JVM: No embedded jvm found on path: %s!", embeddedJrePath));
 #ifdef DEBUG_ENABLED
@@ -100,7 +100,7 @@ String jni::JvmLoader::get_embedded_jre_path() {
             "user://"
 #endif
         };
-        jre_path = vformat("%s%s", user_code_dir, String{USERCODE_NAME} + LIB_GRAAL_VM_EXTENSION);
+        jre_path = vformat("%s%s", user_code_dir, PathProvider::usercode_name + PathProvider::get_host_dependent_dynamics_lib_extension());
     } else {
         jre_path = vformat("res://jre/%s", LIB_JVM_RELATIVE_PATH);
     }

@@ -9,8 +9,12 @@
 
 static constexpr const char* all_jvm_feature{"export-all-jvm"};
 
-void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool p_debug, const String& p_path,
-                                             int p_flags) {
+void KotlinEditorExportPlugin::_export_begin(
+        const Set<String>& p_features,
+        bool p_debug,
+        const String& p_path,
+        int p_flags
+) {
     LOG_INFO("Beginning Godot-Jvm specific exports.");
 
     // Add mandatory jars to pck
@@ -19,43 +23,51 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
     bool is_graal_only{false};
     bool is_android_export{p_features.has("Android")};
     if (is_android_export) {
-        files_to_add.push_back(PathProvider::provide_build_usercode_path());
+        files_to_add.push_back(
+                vformat(
+                        "res://build/libs/%s",
+                        PathProvider::usercode_name + PathProvider::get_usercode_extension_for_vm_type(jni::Jvm::ART)
+                )
+        );
         _generate_export_configuration_file(jni::Jvm::ART);
     } else {
         String graal_usercode_lib;
         if (p_features.has("Windows")) {
-            graal_usercode_lib = String{USERCODE_NAME} + ".dll";
+            graal_usercode_lib = String{PathProvider::usercode_name} + PathProvider::dynamic_library_extension_win;
         } else if (p_features.has("OSX")) {
-            graal_usercode_lib = String{USERCODE_NAME} + ".dylib";
+            graal_usercode_lib = String{PathProvider::usercode_name} + PathProvider::dynamic_library_extension_osx;
         } else if (p_features.has("X11")) {
-            graal_usercode_lib = String{USERCODE_NAME} + ".so";
+            graal_usercode_lib = String{PathProvider::usercode_name} + PathProvider::dynamic_library_extension_linux;
         }
         if (p_features.has(all_jvm_feature)) {
-            files_to_add.push_back(String{"res://build/libs/"} + USERCODE_NAME + USERCODE_JAR_EXTENSION);
+            files_to_add.push_back(
+                    vformat(
+                            "res://build/libs/%s",
+                            String{PathProvider::usercode_name} + PathProvider::jar_extension
+                    )
+            );
             files_to_add.push_back(vformat("res://build/libs/%s", graal_usercode_lib));
             _generate_export_configuration_file(GDKotlin::get_instance().get_configuration().get_vm_type());
         } else {
             GdKotlinConfiguration configuration{GdKotlinConfiguration::load_gd_kotlin_configuration_from_json()};
             jni::Jvm::Type jvm_type{configuration.get_vm_type()};
-            switch (jvm_type) {
-                case jni::Jvm::JVM:
-                    files_to_add.push_back(String{"res://build/libs/"} + USERCODE_NAME + USERCODE_JAR_EXTENSION);
-                    _generate_export_configuration_file(jni::Jvm::JVM);
-                    break;
-                case jni::Jvm::GRAAL_NATIVE_IMAGE:
-                    files_to_add.push_back(vformat("res://build/libs/%s", graal_usercode_lib));
-                    _generate_export_configuration_file(jni::Jvm::GRAAL_NATIVE_IMAGE);
-                    is_graal_only = true;
-                    break;
-                default:
-                    LOG_ERROR("Unknown VM type, aborting export.");
-                    return;
-            }
+            files_to_add.push_back(
+                    vformat(
+                            "res://build/libs/%s",
+                            String{PathProvider::usercode_name} +
+                            PathProvider::get_usercode_extension_for_vm_type(jvm_type)
+                    )
+            );
+            _generate_export_configuration_file(jvm_type);
+            is_graal_only = jvm_type == jni::Jvm::Type::GRAAL_NATIVE_IMAGE;
         }
     }
 
     for (int i = 0; i < files_to_add.size(); ++i) {
         const String& file_to_add{files_to_add[i]};
+        if (!FileAccess::exists(file_to_add)) {
+            LOG_ERROR(vformat("Tried to export file %s, but it's non existent", file_to_add))
+        }
         add_file(file_to_add, FileAccess::get_file_as_array(file_to_add), false);
         LOG_INFO(vformat("Exporting %s", file_to_add));
     }

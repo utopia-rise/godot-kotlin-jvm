@@ -62,7 +62,8 @@ bool PathProvider::copy_usercode_jar_if_necessary() {
             DirAccess* build_lock_dir{DirAccess::create_for_path(build_lock_dir_path)};
             LOG_INFO(vformat("from path: %s", build_usercode_path))
             LOG_INFO(vformat("to path: %s", runtime_usercode_path))
-            JVM_CRASH_COND_MSG(build_lock_dir->copy(build_usercode_path, runtime_usercode_path) != OK, "Could not copy");
+            JVM_CRASH_COND_MSG(build_lock_dir->copy(build_usercode_path, runtime_usercode_path) != OK,
+                               "Could not copy");
             memdelete(build_lock_dir);
 
             return true;
@@ -74,15 +75,15 @@ bool PathProvider::copy_usercode_jar_if_necessary() {
 
 String PathProvider::get_usercode_name() {
 #ifdef __ANDROID__
-    return String{USERCODE_NAME} + USERCODE_ANDROID_EXTENSION;
+    return String{usercode_name} + jar_extension_android;
 #else
-    String usercode_name;
+    String name;
     if (GDKotlin::get_instance().get_configuration().get_vm_type() == jni::Jvm::GRAAL_NATIVE_IMAGE) {
-        usercode_name = String{USERCODE_NAME} + LIB_GRAAL_VM_EXTENSION;
+        name = String{usercode_name} + get_host_dependent_dynamics_lib_extension();
     } else {
-        usercode_name = String{USERCODE_NAME} + USERCODE_JAR_EXTENSION;
+        name = String{usercode_name} + jar_extension;
     }
-    return usercode_name;
+    return name;
 #endif
 }
 
@@ -113,4 +114,40 @@ String PathProvider::provide_build_lock_file_path() {
     String build_lock_file_path{build_lock_dir_path + "\\buildLock.lock"};
 #endif
     return build_lock_file_path;
+}
+
+String PathProvider::get_host_dependent_dynamics_lib_extension() {
+#ifdef __linux__
+    return dynamic_library_extension_linux;
+#elif __APPLE__
+#include <TargetConditionals.h>
+#if TARGET_OS_MAC
+    return dynamic_library_extension_osx;
+#endif
+#elif defined _WIN32 || defined _WIN64
+return dynamic_library_extension_win;
+#endif
+}
+
+String PathProvider::get_usercode_extension_for_vm_type(jni::Jvm::Type vm_type) {
+    switch (vm_type) {
+        case jni::Jvm::JVM:
+            return jar_extension;
+        case jni::Jvm::ART:
+            return jar_extension_android;
+        case jni::Jvm::GRAAL_NATIVE_IMAGE:
+#ifdef __linux__
+            return dynamic_library_extension_linux;
+#elif __APPLE__
+#include <TargetConditionals.h>
+#if TARGET_OS_MAC
+            return dynamic_library_extension_osx;
+#endif
+#elif defined _WIN32 || defined _WIN64
+            return dynamic_library_extension_win;
+#endif
+        default:
+            LOG_ERROR("Unknown VM type, returning jar extension.")
+            return jar_extension;
+    }
 }
