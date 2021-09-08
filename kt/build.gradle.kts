@@ -140,12 +140,12 @@ tasks {
     }
     val buildAndRunEngineDebug by creating {
         group = "godot-kotlin-jvm"
-        dependsOn(buildEngineDebug, getTasksByName("copyBootstrapJar", true).first())
+        dependsOn(buildEngineDebug)
         finalizedBy(runEngineDebug)
     }
     val buildAndRunEngineReleaseDebug by creating {
         group = "godot-kotlin-jvm"
-        dependsOn(buildEngineReleaseDebug, getTasksByName("copyBootstrapJar", true).first())
+        dependsOn(buildEngineReleaseDebug)
         finalizedBy(runEngineReleaseDebug)
     }
 }
