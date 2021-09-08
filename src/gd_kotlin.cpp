@@ -366,10 +366,11 @@ void GDKotlin::init_usercode() {
     );
 
     bootstrap->init(env);
+    is_usercode_loaded = true;
 }
 
 void GDKotlin::teardown_usercode() {
-    if (!is_gc_started)
+    if (!is_usercode_loaded)
         return;
     auto env = jni::Jvm::current_env();
 

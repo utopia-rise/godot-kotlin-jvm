@@ -23,6 +23,8 @@ private:
 
     bool is_gc_started;
 
+    bool is_usercode_loaded;
+
     GdKotlinConfiguration configuration;
 
     static jni::JObject _prepare_class_loader(jni::Env& p_env, jni::Jvm::Type type, const String& usercode_jar);
