@@ -1,25 +1,28 @@
 #ifdef TOOLS_ENABLED
 
-#include <editor/editor_settings.h>
 #include <core/os/dir_access.h>
 #include <modules/kotlin_jvm/src/gd_kotlin.h>
 #include <modules/kotlin_jvm/src/path_provider.h>
+#include <editor/editor_settings.h>
 #include "build_lock_watcher.h"
 
-void BuildLockWatcher::_notificationv(int p_notification, bool p_reversed) {
-    Node::_notificationv(p_notification, p_reversed);
-
-    if (p_notification == NOTIFICATION_READY) {
-        timer->set_autostart(true);
-        timer->set_wait_time(0.5);
-        timer->set_one_shot(false);
-        timer->set_wait_time(_EDITOR_GET("kotlin_jvm/editor/build_lock_watch_interval"));
-        timer->connect("timeout", this, "reload_if_needed");
-        add_child(timer);
+void BuildLockWatcher::poll_build_lock(__attribute__((unused)) void* p_userdata) {
+    jni::Jvm::attach();
+    while (BuildLockWatcher::get_instance().polling_thread_running) {
+        if (!FileAccess::exists(PathProvider::provide_build_lock_file_path())) {
+            reload_if_needed();
+        }
+        Variant poll_delay_variant = _EDITOR_GET("kotlin_jvm/editor/build_lock_watch_interval");
+        float poll_delay = 1;
+        if (poll_delay_variant.get_type() == Variant::REAL || poll_delay_variant.get_type() == Variant::INT) {
+            poll_delay = poll_delay_variant;
+        }
+        OS::get_singleton()->delay_usec(static_cast<int>(poll_delay * 1000 * 1000));
     }
+    jni::Jvm::detach();
 }
 
-void BuildLockWatcher::reload_if_needed() { // NOLINT(readability-convert-member-functions-to-static)
+void BuildLockWatcher::reload_if_needed() {
     String build_usercode_path = PathProvider::provide_build_usercode_path();
     String runtime_usercode_path = PathProvider::provide_runtime_usercode_path();
     String build_lock_dir_path = PathProvider::provide_build_lock_dir_path();
@@ -38,7 +41,6 @@ void BuildLockWatcher::reload_if_needed() { // NOLINT(readability-convert-member
         return;
     }
 
-    //TODO: find more efficient way. Atm with this, we calculate 2 md5 hashes every 0.5 seconds which is far from ideal
     if (PathProvider::copy_usercode_jar_if_necessary()) {
         // if the usercode was copied, init the usercode as the new usercode is newer than the old one
         LOG_INFO("Usercode change detected. Reloading...")
@@ -46,11 +48,19 @@ void BuildLockWatcher::reload_if_needed() { // NOLINT(readability-convert-member
     }
 }
 
-BuildLockWatcher::BuildLockWatcher() : timer(memnew(Timer)) {
-    ClassDB::bind_method(
-            D_METHOD("reload_if_needed"),
-            &BuildLockWatcher::reload_if_needed
-    );
+BuildLockWatcher& BuildLockWatcher::get_instance() {
+    static BuildLockWatcher instance;
+    return instance;
+}
+
+void BuildLockWatcher::start_polling_thread() {
+    polling_thread_running = true;
+    build_lock_poll_thread.start(poll_build_lock, nullptr);
+}
+
+void BuildLockWatcher::stop_polling() {
+    polling_thread_running = false;
+    build_lock_poll_thread.wait_to_finish();
 }
 
 #endif //TOOLS_ENABLED

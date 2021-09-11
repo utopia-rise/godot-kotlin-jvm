@@ -5,17 +5,22 @@
 
 
 #include <scene/main/node.h>
-#include <scene/main/timer.h>
 
-class BuildLockWatcher : public Node {
+class BuildLockWatcher {
 public:
-    BuildLockWatcher();
-    void _notificationv(int p_notification, bool p_reversed) override;
+    static BuildLockWatcher& get_instance();
+    BuildLockWatcher(const BuildLockWatcher&) = delete;
+    BuildLockWatcher& operator=(const BuildLockWatcher&) = delete;
+    void start_polling_thread();
 
+    void stop_polling();
 private:
-    Timer* timer;
+    BuildLockWatcher() = default;
+    bool polling_thread_running = false;
+    Thread build_lock_poll_thread;
 
-    void reload_if_needed();
+    static void reload_if_needed();
+    static void poll_build_lock(__attribute__((unused)) void* p_userdata);
 };
 
 

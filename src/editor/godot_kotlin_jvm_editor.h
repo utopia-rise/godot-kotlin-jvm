@@ -22,7 +22,6 @@ public:
     GodotKotlinJvmEditor& operator=(const GodotKotlinJvmEditor&) = delete;
 
     Timer* build_check_timer;
-    BuildLockWatcher* build_lock_watcher;
 
     void on_build_check_timeout();
 
