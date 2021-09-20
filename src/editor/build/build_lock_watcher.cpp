@@ -6,7 +6,7 @@
 #include <editor/editor_settings.h>
 #include "build_lock_watcher.h"
 
-void BuildLockWatcher::poll_build_lock(__attribute__((unused)) void* p_userdata) {
+void BuildLockWatcher::poll_build_lock(void* p_userdata) {
     jni::Jvm::attach();
     while (BuildLockWatcher::get_instance().polling_thread_running) {
         if (!FileAccess::exists(PathProvider::provide_build_lock_file_path())) {

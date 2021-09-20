@@ -20,7 +20,7 @@ private:
     Thread build_lock_poll_thread;
 
     static void reload_if_needed();
-    static void poll_build_lock(__attribute__((unused)) void* p_userdata);
+    static void poll_build_lock(void* p_userdata);
 };
 
 
