@@ -23,7 +23,6 @@ public:
     static String provide_build_lock_file_path();
     static String provide_runtime_usercode_path();
     static String provide_build_usercode_path();
-    static bool copy_usercode_jar_if_necessary();
     static String get_usercode_name();
     static String get_host_dependent_dynamics_lib_extension();
     static String get_usercode_extension_for_vm_type(jni::Jvm::Type vm_type);

@@ -1,6 +1,7 @@
 #ifndef GODOT_JVM_GD_KOTLIN_H
 #define GODOT_JVM_GD_KOTLIN_H
 
+#include <modules/kotlin_jvm/src/jni/jvm.h>
 #include "jni/wrapper.h"
 #include "bootstrap.h"
 #include "kt_class.h"
@@ -34,6 +35,10 @@ private:
     bool is_initialized;
 
     Vector<Pair<String, String>> configuration_errors;
+
+#ifdef TOOLS_ENABLED
+    uint64_t copied_user_jar_modification_time = 0;
+#endif
 
 public:
     TransferContext* transfer_context;
@@ -69,6 +74,8 @@ public:
     bool initialized() const;
 
     const Vector<Pair<String, String>>& get_configuration_errors() const;
+
+    bool copy_usercode_jar_if_necessary();
 };
 
 

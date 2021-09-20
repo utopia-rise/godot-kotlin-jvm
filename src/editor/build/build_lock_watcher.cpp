@@ -41,7 +41,7 @@ void BuildLockWatcher::reload_if_needed() {
         return;
     }
 
-    if (PathProvider::copy_usercode_jar_if_necessary()) {
+    if (GDKotlin::get_instance().copy_usercode_jar_if_necessary()) {
         // if the usercode was copied, init the usercode as the new usercode is newer than the old one
         LOG_INFO("Usercode change detected. Reloading...")
         GDKotlin::get_instance().init_usercode();
