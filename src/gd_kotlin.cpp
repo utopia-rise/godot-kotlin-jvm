@@ -426,14 +426,14 @@ bool GDKotlin::copy_usercode_jar_if_necessary() {
 #ifndef TOOLS_ENABLED
     if (!FileAccess::exists(runtime_usercode_path) || FileAccess::get_md5(runtime_usercode_path) != FileAccess::get_md5(build_usercode_path)) {
 #ifdef DEBUG_ENABLED
-        LOG_INFO(vformat("%s has changed, will copy it from res...", get_usercode_name()));
+        LOG_INFO(vformat("%s has changed, will copy it from res...", PathProvider::get_usercode_name()));
 #endif
 
         Error err;
         DirAccess* dir_access{DirAccess::open("res://build/libs", &err)};
 
 #ifdef DEBUG_ENABLED
-        JVM_CRASH_COND_MSG(err != OK, vformat("Cannot open %s in res. Error was %s", get_usercode_name(), err))
+        JVM_CRASH_COND_MSG(err != OK, vformat("Cannot open %s in res. Error was %s", PathProvider::get_usercode_name(), err))
 #endif
 
         dir_access->copy(build_usercode_path, runtime_usercode_path);
