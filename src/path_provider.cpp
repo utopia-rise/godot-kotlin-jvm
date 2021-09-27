@@ -6,7 +6,7 @@
 
 String PathProvider::provide_runtime_usercode_path() {
 #ifdef TOOLS_ENABLED
-    String build_lock_dir_path = provide_build_lock_dir_path();
+    String build_lock_dir_path{provide_build_lock_dir_path()};
 #if defined(__linux__) || defined(__APPLE__)
     String usercode_jar_path{build_lock_dir_path + "/" + get_usercode_name()};
 #elif defined _WIN32 || defined _WIN64
