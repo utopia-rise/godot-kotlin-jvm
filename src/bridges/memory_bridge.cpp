@@ -120,6 +120,10 @@ bool MemoryBridge::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance,
 
 void MemoryBridge::notify_leak(JNIEnv* p_raw_env, jobject p_instance) {
 #ifdef DEBUG_ENABLED
+#ifdef TOOLS_ENABLED
+    LOG_WARNING("JVM instances are leaking.");
+#else
     JVM_CRASH_NOW_MSG("JVM instances are leaking.");
-#endif
+#endif // TOOLS_ENABLED
+#endif // DEBUG_ENABLED
 }
