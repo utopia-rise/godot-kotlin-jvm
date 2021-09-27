@@ -4,6 +4,10 @@
 #include "path_provider.h"
 #include "gd_kotlin.h"
 
+#ifdef __APPLE__
+#include <TargetConditionals.h>
+#endif
+
 String PathProvider::provide_runtime_usercode_path() {
 #ifdef TOOLS_ENABLED
     String build_lock_dir_path{provide_build_lock_dir_path()};
@@ -67,7 +71,6 @@ String PathProvider::get_host_dependent_dynamics_lib_extension() {
 #ifdef __linux__
     return dynamic_library_extension_linux;
 #elif __APPLE__
-#include <TargetConditionals.h>
 #if TARGET_OS_MAC
     return dynamic_library_extension_osx;
 #endif
@@ -86,7 +89,6 @@ String PathProvider::get_usercode_extension_for_vm_type(jni::Jvm::Type vm_type) 
 #ifdef __linux__
             return dynamic_library_extension_linux;
 #elif __APPLE__
-#include <TargetConditionals.h>
 #if TARGET_OS_MAC
             return dynamic_library_extension_osx;
 #endif
