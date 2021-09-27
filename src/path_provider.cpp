@@ -32,6 +32,7 @@ String PathProvider::get_usercode_name() {
 #endif
 }
 
+#ifdef TOOLS_ENABLED
 String PathProvider::provide_build_usercode_path() {
     return "res://build/libs/" + get_usercode_name();
 }
@@ -60,6 +61,7 @@ String PathProvider::provide_build_lock_file_path() {
 #endif
     return build_lock_file_path;
 }
+#endif //TOOLS_ENABLED
 
 String PathProvider::get_host_dependent_dynamics_lib_extension() {
 #ifdef __linux__
