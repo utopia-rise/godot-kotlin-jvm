@@ -32,9 +32,7 @@ String GdKotlinConfiguration::to_json() {
     result[jvm_disable_gc_identifier] = !is_gc_activated;
     result[jvm_disable_closing_leaks_identifier] = should_display_leaked_jvm_instances_on_close;
 
-    String json = JSON::print(result);
-    LOG_VERBOSE(vformat("Output json: %s", json))
-    return json;
+    return JSON::print(result);
 }
 
 GdKotlinConfiguration GdKotlinConfiguration::from_json(const String& json_string) {
