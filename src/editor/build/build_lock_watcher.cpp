@@ -23,9 +23,9 @@ void BuildLockWatcher::poll_build_lock(void* p_userdata) {
 }
 
 void BuildLockWatcher::reload_if_needed() {
-    String build_usercode_path = PathProvider::provide_build_usercode_path();
-    String runtime_usercode_path = PathProvider::provide_runtime_usercode_path();
-    String build_lock_dir_path = PathProvider::provide_build_lock_dir_path();
+    String build_usercode_path{PathProvider::provide_build_usercode_path()};
+    String runtime_usercode_path{PathProvider::provide_runtime_usercode_path()};
+    String build_lock_dir_path{PathProvider::provide_build_lock_dir_path()};
 
     if (!FileAccess::exists(ProjectSettings::get_singleton()->globalize_path(build_usercode_path))) {
         // a gradle clean or no build has happened yet. Teardown any initialized usercode
