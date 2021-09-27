@@ -43,25 +43,21 @@ String PathProvider::provide_build_usercode_path() {
 
 #ifdef TOOLS_ENABLED
 String PathProvider::provide_build_lock_dir_path() {
-    const String tmp_dir{
+    static const String tmp_dir{
 #if defined(__linux__) || defined(__APPLE__)
         "/tmp"
 #elif defined _WIN32 || defined _WIN64
         OS::get_singleton()->get_environment("TMP").replace("\\", "/")
 #endif
     };
-    const Vector<String> project_dir_path_splitted{ProjectSettings::get_singleton()->globalize_path("res://").split("/")};
-    const String& project_dir_name{project_dir_path_splitted[project_dir_path_splitted.size() - 2]};
-    return tmp_dir + "/" + project_dir_name + "_buildLockDir";
+    static const Vector<String> project_dir_path_splitted{ProjectSettings::get_singleton()->globalize_path("res://").split("/")};
+    static const String& project_dir_name{project_dir_path_splitted[project_dir_path_splitted.size() - 2]};
+    static const String build_lock_dir{tmp_dir + "/" + project_dir_name + "_buildLockDir"};
+    return build_lock_dir;
 }
 
 String PathProvider::provide_build_lock_file_path() {
-    String build_lock_dir_path = provide_build_lock_dir_path();
-#if defined(__linux__) || defined(__APPLE__)
-    String build_lock_file_path{build_lock_dir_path + "/buildLock.lock"};
-#elif defined _WIN32 || defined _WIN64
-    String build_lock_file_path{build_lock_dir_path + "\\buildLock.lock"};
-#endif
+    static const String build_lock_file_path{provide_build_lock_dir_path() + "/buildLock.lock"};
     return build_lock_file_path;
 }
 #endif //TOOLS_ENABLED
