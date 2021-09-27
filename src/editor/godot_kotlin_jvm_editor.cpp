@@ -7,6 +7,7 @@
 #include <modules/kotlin_jvm/src/editor/build/build_manager.h>
 #include <scene/gui/control.h>
 #include <modules/kotlin_jvm/src/gd_kotlin.h>
+#include "build/build_lock_watcher.h"
 
 void GodotKotlinJvmEditor::on_file_system_dock_file_moved( // NOLINT(readability-convert-member-functions-to-static)
         const String& file,
