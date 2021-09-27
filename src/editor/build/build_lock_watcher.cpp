@@ -12,8 +12,8 @@ void BuildLockWatcher::poll_build_lock(void* p_userdata) {
         if (!FileAccess::exists(PathProvider::provide_build_lock_file_path())) {
             reload_if_needed();
         }
-        Variant poll_delay_variant = _EDITOR_GET("kotlin_jvm/editor/build_lock_watch_interval");
-        float poll_delay = 1;
+        Variant poll_delay_variant{_EDITOR_GET("kotlin_jvm/editor/build_lock_watch_interval")};
+        float poll_delay{1};
         if (poll_delay_variant.get_type() == Variant::REAL || poll_delay_variant.get_type() == Variant::INT) {
             poll_delay = poll_delay_variant;
         }
