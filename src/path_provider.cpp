@@ -43,17 +43,16 @@ String PathProvider::provide_build_usercode_path() {
 
 #ifdef TOOLS_ENABLED
 String PathProvider::provide_build_lock_dir_path() {
+    const String tmp_dir{
 #if defined(__linux__) || defined(__APPLE__)
-    String tmp_dir{"/tmp"};
-    Vector<String> project_dir_path_splitted{ProjectSettings::get_singleton()->globalize_path("res://").split("/")};
-    String project_dir_name{project_dir_path_splitted[project_dir_path_splitted.size() - 2]};
-    String build_lock_dir_path{tmp_dir + "/" + project_dir_name + "_buildLockDir"};
+        "/tmp"
 #elif defined _WIN32 || defined _WIN64
-    String tmp_dir{OS::get_singleton()->get_environment("TMP")};
-Vector<String> project_dir_path_splitted = ProjectSettings::get_singleton()->globalize_path("res://..").split("\\");
-String project_dir_name{project_dir_path_splitted[project_dir_path_splitted.size() - 2]};
-String build_lock_dir_path{tmp_dir + "\\" + project_dir_name + "_buildLockDir"};
+        OS::get_singleton()->get_environment("TMP").replace("\\", "/")
 #endif
+    };
+    const Vector<String> project_dir_path_splitted{ProjectSettings::get_singleton()->globalize_path("res://").split("/")};
+    const String& project_dir_name{project_dir_path_splitted[project_dir_path_splitted.size() - 2]};
+    const String& build_lock_dir_path{tmp_dir + "/" + project_dir_name + "_buildLockDir"};
     return build_lock_dir_path;
 }
 
