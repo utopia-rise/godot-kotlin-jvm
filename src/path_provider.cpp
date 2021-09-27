@@ -36,11 +36,12 @@ String PathProvider::get_usercode_name() {
 #endif
 }
 
-#ifdef TOOLS_ENABLED
+
 String PathProvider::provide_build_usercode_path() {
     return "res://build/libs/" + get_usercode_name();
 }
 
+#ifdef TOOLS_ENABLED
 String PathProvider::provide_build_lock_dir_path() {
 #if defined(__linux__) || defined(__APPLE__)
     String tmp_dir{"/tmp"};

@@ -420,8 +420,8 @@ void GDKotlin::teardown_usercode() {
 }
 
 bool GDKotlin::copy_usercode_jar_if_necessary() {
-    String build_usercode_path = PathProvider::provide_build_usercode_path();
-    String runtime_usercode_path = PathProvider::provide_runtime_usercode_path();
+    const String& runtime_usercode_path{PathProvider::provide_runtime_usercode_path()};
+    const String& build_usercode_path{PathProvider::provide_build_usercode_path()};
 
 #ifndef TOOLS_ENABLED
     if (!FileAccess::exists(runtime_usercode_path) || FileAccess::get_md5(runtime_usercode_path) != FileAccess::get_md5(build_usercode_path)) {
@@ -442,8 +442,8 @@ bool GDKotlin::copy_usercode_jar_if_necessary() {
     }
     return false;
 #else
-    String build_lock_dir_path = PathProvider::provide_build_lock_dir_path();
-    String build_lock_file_path = PathProvider::provide_build_lock_file_path();
+    const String& build_lock_dir_path{PathProvider::provide_build_lock_dir_path()};
+    const String& build_lock_file_path{PathProvider::provide_build_lock_file_path()};
 
     if (!DirAccess::exists(build_lock_dir_path)) {
         DirAccess* build_lock_dir{DirAccess::create_for_path(build_lock_dir_path)};
@@ -453,7 +453,7 @@ bool GDKotlin::copy_usercode_jar_if_necessary() {
     }
 
     if (!FileAccess::exists(build_lock_file_path)) {
-        uint64_t original_usercode_jar_modification_time = FileAccess::get_modified_time(build_usercode_path);
+        uint64_t original_usercode_jar_modification_time{FileAccess::get_modified_time(build_usercode_path)};
 
         if (original_usercode_jar_modification_time != copied_user_jar_modification_time) {
             // teardown any usercode which might be loaded from the old usercode at this path. Is a no op if no usercode was loaded. Only present in TOOLS_ENABLED anyways
