@@ -63,4 +63,6 @@ void BuildLockWatcher::stop_polling() {
     build_lock_poll_thread.wait_to_finish();
 }
 
+BuildLockWatcher::BuildLockWatcher() = default;
+
 #endif //TOOLS_ENABLED

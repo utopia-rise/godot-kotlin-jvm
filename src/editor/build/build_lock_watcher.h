@@ -15,7 +15,7 @@ public:
 
     void stop_polling();
 private:
-    BuildLockWatcher() = default;
+    BuildLockWatcher();
     bool polling_thread_running = false;
     Thread build_lock_poll_thread;
 
