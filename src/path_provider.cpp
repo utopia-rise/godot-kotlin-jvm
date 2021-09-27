@@ -52,8 +52,7 @@ String PathProvider::provide_build_lock_dir_path() {
     };
     const Vector<String> project_dir_path_splitted{ProjectSettings::get_singleton()->globalize_path("res://").split("/")};
     const String& project_dir_name{project_dir_path_splitted[project_dir_path_splitted.size() - 2]};
-    const String& build_lock_dir_path{tmp_dir + "/" + project_dir_name + "_buildLockDir"};
-    return build_lock_dir_path;
+    return tmp_dir + "/" + project_dir_name + "_buildLockDir";
 }
 
 String PathProvider::provide_build_lock_file_path() {
