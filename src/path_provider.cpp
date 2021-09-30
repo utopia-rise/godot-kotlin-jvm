@@ -9,17 +9,14 @@
 #endif
 
 String PathProvider::provide_runtime_usercode_path() {
+    static const String usercode_jar_path{
 #ifdef TOOLS_ENABLED
-    String build_lock_dir_path{provide_build_lock_dir_path()};
-#if defined(__linux__) || defined(__APPLE__)
-    String usercode_jar_path{build_lock_dir_path + "/" + get_usercode_name()};
-#elif defined _WIN32 || defined _WIN64
-    String usercode_jar_path{build_lock_dir_path + "\\" + get_usercode_name()};
+            provide_build_lock_dir_path() + "/" + get_usercode_name()
+#else
+            ProjectSettings::get_singleton()->globalize_path("user://" + get_usercode_name())
 #endif
+    };
     return usercode_jar_path;
-#else //TOOLS_ENABLED
-    return ProjectSettings::get_singleton()->globalize_path("user://" + get_usercode_name());
-#endif //TOOLS_ENABLED
 }
 
 String PathProvider::get_usercode_name() {

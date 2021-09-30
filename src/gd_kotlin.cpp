@@ -463,7 +463,7 @@ bool GDKotlin::copy_usercode_jar_if_necessary() {
             LOG_INFO(vformat("from path: %s", build_usercode_path))
             LOG_INFO(vformat("to path: %s", runtime_usercode_path))
             JVM_CRASH_COND_MSG(build_lock_dir->copy(build_usercode_path, runtime_usercode_path) != OK,
-                               "Could not copy");
+                               "Could not copy")
             memdelete(build_lock_dir);
 
             copied_user_jar_modification_time = original_usercode_jar_modification_time;
