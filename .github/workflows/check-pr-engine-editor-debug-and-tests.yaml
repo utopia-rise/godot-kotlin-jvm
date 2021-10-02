@@ -48,11 +48,11 @@ jobs:
           - name: Linux
             os: ubuntu-18.04
             platform: x11
-            arch: x86_64
+            arch: 64
           - name: OSX-x64
             os: macos-latest
             platform: osx
-            arch: x86_64
+            arch: 64
           - name: OSX-arm64
             os: macos-latest
             platform: osx
@@ -60,7 +60,7 @@ jobs:
           - name: Windows
             os: windows-latest
             platform: windows
-            arch: x86_64
+            arch: 64
     runs-on: ${{ matrix.os }}
     steps:
       - name: Configure dependencies
@@ -107,11 +107,11 @@ jobs:
         run: |
           scons platform=${{ matrix.platform }} arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
       - name: Upload OSX binary
-        if: matrix.platform == 'osx' && matrix.arch == 'x86_64'
+        if: matrix.platform == 'osx' && matrix.arch == '64'
         uses: actions/upload-artifact@v1
         with:
           name: osx-editor-debug-app
-          path: bin/godot.osx.tools.x86_64
+          path: bin/godot.osx.tools.64
   test-editor-debug:
     needs: [build-editor-debug, build-godot-bootstrap]
     strategy:
@@ -155,6 +155,6 @@ jobs:
           cp godot-bootstrap/godot-bootstrap.jar osx-editor-debug-app/
           cd modules/kotlin_jvm/harness/tests/
           chmod +x run_godot_kotlin_tests.sh
-          chmod +x ../../../../osx-editor-debug-app/godot.osx.tools.x86_64
+          chmod +x ../../../../osx-editor-debug-app/godot.osx.tools.64
           jlink --add-modules java.base,java.logging --output jre
-          ./run_godot_kotlin_tests.sh ../../../../osx-editor-debug-app/godot.osx.tools.x86_64
+          ./run_godot_kotlin_tests.sh ../../../../osx-editor-debug-app/godot.osx.tools.64
