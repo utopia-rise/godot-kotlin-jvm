@@ -42,18 +42,25 @@ jobs:
   build-editor-debug:
     strategy:
       matrix:
-        name: [ Linux, OSX, Windows ]
+        name: [ Linux, OSX-x64, OSX-arm64, Windows ]
         include:
           # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
           - name: Linux
             os: ubuntu-18.04
             platform: x11
-          - name: OSX
+            arch: x86_64
+          - name: OSX-x64
             os: macos-latest
             platform: osx
+            arch: x86_64
+          - name: OSX-arm64
+            os: macos-latest
+            platform: osx
+            arch: arm64
           - name: Windows
             os: windows-latest
             platform: windows
+            arch: x86_64
     runs-on: ${{ matrix.os }}
     steps:
       - name: Configure dependencies
@@ -98,9 +105,9 @@ jobs:
         env:
           SCONS_CACHE: ${{github.workspace}}/${{matrix.platform}}/.scons_cache/
         run: |
-          scons platform=${{ matrix.platform }} -j${{ steps.cpu-cores.outputs.count }}
+          scons platform=${{ matrix.platform }} arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
       - name: Upload OSX binary
-        if: matrix.platform == 'osx'
+        if: matrix.platform == 'osx' && matrix.arch == 'x86_64'
         uses: actions/upload-artifact@v1
         with:
           name: osx-editor-debug-app
