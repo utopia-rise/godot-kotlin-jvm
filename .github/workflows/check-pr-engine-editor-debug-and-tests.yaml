@@ -107,13 +107,39 @@ jobs:
         run: |
           scons platform=${{ matrix.platform }} arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
       - name: Upload OSX binary
-        if: matrix.platform == 'osx' && matrix.arch == '64'
+        if: matrix.platform == 'osx'
+        uses: actions/upload-artifact@v1
+        with:
+          name: osx-editor-debug-app-${{ matrix.arch }}
+          path: bin/godot.osx.tools.${{ matrix.arch }}
+  create-macos-universal:
+    needs: [build-editor-debug]
+    strategy:
+      matrix:
+        os: [ macos-latest ]
+        include:
+          - os: macos-latest
+            java-version: 11
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Download OSX Editor Debug App x64
+        uses: actions/download-artifact@v1
+        with:
+          name: osx-editor-debug-app-64
+      - name: Download OSX Editor Debug App arm64
+        uses: actions/download-artifact@v1
+        with:
+          name: osx-editor-debug-app-arm64
+      - name: Create OSX universal binary
+        run: |
+          lipo -create osx-editor-debug-app-64/godot.osx.tools.64 osx-editor-debug-app-arm64/godot.osx.tools.arm64 -output godot.osx.tools.universal
+      - name: Upload OSX universal binary
         uses: actions/upload-artifact@v1
         with:
           name: osx-editor-debug-app
-          path: bin/godot.osx.tools.64
+          path: godot.osx.tools.universal
   test-editor-debug:
-    needs: [build-editor-debug, build-godot-bootstrap]
+    needs: [create-macos-universal, build-godot-bootstrap]
     strategy:
       matrix:
         os: [macos-latest]
@@ -155,6 +181,6 @@ jobs:
           cp godot-bootstrap/godot-bootstrap.jar osx-editor-debug-app/
           cd modules/kotlin_jvm/harness/tests/
           chmod +x run_godot_kotlin_tests.sh
-          chmod +x ../../../../osx-editor-debug-app/godot.osx.tools.64
+          chmod +x ../../../../osx-editor-debug-app/godot.osx.tools.universal
           jlink --add-modules java.base,java.logging --output jre
-          ./run_godot_kotlin_tests.sh ../../../../osx-editor-debug-app/godot.osx.tools.64
+          ./run_godot_kotlin_tests.sh ../../../../osx-editor-debug-app/godot.osx.tools.universal
