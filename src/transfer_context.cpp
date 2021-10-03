@@ -107,7 +107,7 @@ void TransferContext::read_args(jni::Env& p_env, Variant* args) {
 void TransferContext::icall(
         JNIEnv* rawEnv,
         jobject instance,
-        jlong jPtr,
+        jlong j_ptr,
         jint p_method_index,
         jint expectedReturnType) {
     if (unlikely(!icall_args_init)) {
@@ -130,7 +130,7 @@ void TransferContext::icall(
 
     read_args_to_array(buffer, variant_args, args_size);
 
-    auto* ptr = reinterpret_cast<Object*>(jPtr);
+    auto* ptr{reinterpret_cast<Object*>(static_cast<uintptr_t>(j_ptr))};
 
     int method_index{static_cast<int>(p_method_index)};
     MethodBind* methodBind{GDKotlin::get_instance().engine_type_method[method_index]};
@@ -192,7 +192,7 @@ void TransferContext::set_script(
         jobject p_object,
         jobject p_class_loader) {
     Ref<KotlinScript> kotlin_script{GDKotlin::get_instance().user_scripts[static_cast<int>(p_class_index)]};
-    auto* owner{reinterpret_cast<Object*>(p_raw_ptr)};
+    auto* owner{reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr))};
     auto* kt_object{new KtObject(jni::JObject(p_object), jni::JObject(p_class_loader))};
     auto* script{memnew(KotlinInstance(kt_object, owner, kotlin_script->get_kotlin_class(), kotlin_script.ptr()))};
     owner->set_script_instance(script);
