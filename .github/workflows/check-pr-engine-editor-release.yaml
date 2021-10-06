@@ -9,18 +9,25 @@ jobs:
   build-editor-release:
     strategy:
       matrix:
-        name: [ Linux, OSX, Windows ]
+        name: [ Linux, OSX-x64, OSX-arm64, Windows ]
         include:
           # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
           - name: Linux
             os: ubuntu-18.04
             platform: x11
-          - name: OSX
+            arch: 64
+          - name: OSX-x64
             os: macos-latest
             platform: osx
+            arch: 64
+          - name: OSX-arm64
+            os: macos-latest
+            platform: osx
+            arch: arm64
           - name: Windows
             os: windows-latest
             platform: windows
+            arch: 64
     runs-on: ${{ matrix.os }}
     steps:
       - name: Configure dependencies
@@ -43,7 +50,7 @@ jobs:
         id: editor-release-cache
         uses: actions/cache@v2
         with:
-          path: ${{github.workspace}}/${{matrix.platform}}/.scons_cache/
+          path: ${{github.workspace}}/${{matrix.platform}}/${{matrix.arch}}/.scons_cache/
           key: ${{github.job}}-${{env.GODOT_BASE_VERSION}}-${{github.ref}}-${{github.sha}}
           restore-keys: |
             ${{github.job}}-${{env.GODOT_BASE_VERSION}}-${{github.ref}}-${{github.sha}}
@@ -63,6 +70,6 @@ jobs:
         uses: SimenB/github-actions-cpu-cores@v1
       - name: Build with editor release
         env:
-          SCONS_CACHE: ${{github.workspace}}/${{matrix.platform}}/.scons_cache/
+          SCONS_CACHE: ${{github.workspace}}/${{matrix.platform}}/${{matrix.arch}}/.scons_cache/
         run: |
-          scons platform=${{ matrix.platform }} target=release_debug -j${{ steps.cpu-cores.outputs.count }}
+          scons platform=${{ matrix.platform }} arch=${{ matrix.arch }} target=release_debug -j${{ steps.cpu-cores.outputs.count }}

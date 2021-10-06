@@ -42,18 +42,25 @@ jobs:
   build-editor-debug:
     strategy:
       matrix:
-        name: [ Linux, OSX, Windows ]
+        name: [ Linux, OSX-x64, OSX-arm64, Windows ]
         include:
           # always use the oldest still supported LTS version of github actions. See: https://github.com/utopia-rise/godot-kotlin-jvm/issues/224
           - name: Linux
             os: ubuntu-18.04
             platform: x11
-          - name: OSX
+            arch: 64
+          - name: OSX-x64
             os: macos-latest
             platform: osx
+            arch: 64
+          - name: OSX-arm64
+            os: macos-latest
+            platform: osx
+            arch: arm64
           - name: Windows
             os: windows-latest
             platform: windows
+            arch: 64
     runs-on: ${{ matrix.os }}
     steps:
       - name: Configure dependencies
@@ -76,7 +83,7 @@ jobs:
         id: editor-debug-cache
         uses: actions/cache@v2
         with:
-          path: ${{github.workspace}}/${{matrix.platform}}/.scons_cache/
+          path: ${{github.workspace}}/${{matrix.platform}}/${{matrix.arch}}/.scons_cache/
           key: ${{github.job}}-${{env.GODOT_BASE_VERSION}}-${{github.ref}}-${{github.sha}}
           restore-keys: |
             ${{github.job}}-${{env.GODOT_BASE_VERSION}}-${{github.ref}}-${{github.sha}}
@@ -96,17 +103,43 @@ jobs:
         uses: SimenB/github-actions-cpu-cores@v1
       - name: Build with editor debug
         env:
-          SCONS_CACHE: ${{github.workspace}}/${{matrix.platform}}/.scons_cache/
+          SCONS_CACHE: ${{github.workspace}}/${{matrix.platform}}/${{matrix.arch}}/.scons_cache/
         run: |
-          scons platform=${{ matrix.platform }} -j${{ steps.cpu-cores.outputs.count }}
+          scons platform=${{ matrix.platform }} arch=${{ matrix.arch }} -j${{ steps.cpu-cores.outputs.count }}
       - name: Upload OSX binary
         if: matrix.platform == 'osx'
         uses: actions/upload-artifact@v1
         with:
+          name: osx-editor-debug-app-${{ matrix.arch }}
+          path: bin/godot.osx.tools.${{ matrix.arch }}
+  create-macos-universal:
+    needs: [build-editor-debug]
+    strategy:
+      matrix:
+        os: [ macos-latest ]
+        include:
+          - os: macos-latest
+            java-version: 11
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Download OSX Editor Debug App x64
+        uses: actions/download-artifact@v1
+        with:
+          name: osx-editor-debug-app-64
+      - name: Download OSX Editor Debug App arm64
+        uses: actions/download-artifact@v1
+        with:
+          name: osx-editor-debug-app-arm64
+      - name: Create OSX universal binary
+        run: |
+          lipo -create osx-editor-debug-app-64/godot.osx.tools.64 osx-editor-debug-app-arm64/godot.osx.tools.arm64 -output godot.osx.tools.universal
+      - name: Upload OSX universal binary
+        uses: actions/upload-artifact@v1
+        with:
           name: osx-editor-debug-app
-          path: bin/godot.osx.tools.64
+          path: godot.osx.tools.universal
   test-editor-debug:
-    needs: [build-editor-debug, build-godot-bootstrap]
+    needs: [create-macos-universal, build-godot-bootstrap]
     strategy:
       matrix:
         os: [macos-latest]
@@ -148,6 +181,6 @@ jobs:
           cp godot-bootstrap/godot-bootstrap.jar osx-editor-debug-app/
           cd modules/kotlin_jvm/harness/tests/
           chmod +x run_godot_kotlin_tests.sh
-          chmod +x ../../../../osx-editor-debug-app/godot.osx.tools.64
+          chmod +x ../../../../osx-editor-debug-app/godot.osx.tools.universal
           jlink --add-modules java.base,java.logging --output jre
-          ./run_godot_kotlin_tests.sh ../../../../osx-editor-debug-app/godot.osx.tools.64
+          ./run_godot_kotlin_tests.sh ../../../../osx-editor-debug-app/godot.osx.tools.universal
