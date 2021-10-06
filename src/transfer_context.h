@@ -29,7 +29,7 @@ public:
 
     static void icall(JNIEnv* rawEnv,
                       jobject instance,
-                      jlong jPtr,
+                      jlong j_ptr,
                       jint p_method_index,
                       jint expectedReturnType);
 
