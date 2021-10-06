@@ -71,6 +71,13 @@ jni::JObject& ClassLoader::get_default_loader() {
 }
 
 void ClassLoader::delete_default_loader(jni::Env& env) {
+#ifndef __ANDROID__
+    if (jni::Jvm::get_type() != jni::Jvm::GRAAL_NATIVE_IMAGE) {
+        jni::JClass class_loader_cls{env.find_class("java/net/URLClassLoader")};
+        jni::MethodId close_method_id{class_loader_cls.get_method_id(env, "close", "()V")};
+        get_instance().class_loader.call_void_method(env, close_method_id);
+    }
+#endif
     get_instance().class_loader.delete_global_ref(env);
     get_instance().class_loader = jni::JObject(nullptr);
 }
