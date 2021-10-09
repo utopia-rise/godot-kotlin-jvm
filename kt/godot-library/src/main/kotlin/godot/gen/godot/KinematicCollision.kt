@@ -6,11 +6,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.RID
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR3
+import godot.core.VariantType._RID
 import godot.core.Vector3
 import kotlin.Any
 import kotlin.Long
@@ -57,6 +59,17 @@ public open class KinematicCollision : Reference() {
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION_GET_COLLIDER_METADATA, ANY)
       return TransferContext.readReturnValue(ANY, true) as Any?
+    }
+
+  /**
+   * The colliding body's [RID] used by the [godot.PhysicsServer].
+   */
+  public open val colliderRid: RID
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION_GET_COLLIDER_RID, _RID)
+      return TransferContext.readReturnValue(_RID, false) as RID
     }
 
   /**

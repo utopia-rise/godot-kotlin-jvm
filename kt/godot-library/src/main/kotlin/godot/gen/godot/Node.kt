@@ -113,7 +113,7 @@ public open class Node : Object() {
     }
 
   /**
-   * When a scene is instanced from a file, its topmost node contains the filename from which it was loaded.
+   * If a scene is instantiated from a file, its topmost node contains the absolute file path from which it was loaded in [filename] (e.g. `res://levels/1.tscn`). Otherwise, [filename] is set to an empty string.
    */
   public open var filename: String
     get() {
@@ -822,6 +822,8 @@ public open class Node : Object() {
    * Adds the node to a group. Groups are helpers to name and organize a subset of nodes, for example "enemies" or "collectables". A node can be in any number of groups. Nodes can be assigned a group at any time, but will not be added until they are inside the scene tree (see [isInsideTree]). See notes in the description, and the group methods in [godot.SceneTree].
    *
    * The `persistent` option is used when packing node to [godot.PackedScene] and saving to file. Non-persistent groups aren't stored.
+   *
+   * **Note:** For performance reasons, the order of node groups is *not* guaranteed. The order of node groups should not be relied upon as it can vary across project runs.
    */
   public open fun addToGroup(group: String, persistent: Boolean = false): Unit {
     TransferContext.writeArguments(STRING to group, BOOL to persistent)
@@ -913,6 +915,8 @@ public open class Node : Object() {
 
   /**
    * Returns an array listing the groups that the node is a member of.
+   *
+   * **Note:** For performance reasons, the order of node groups is *not* guaranteed. The order of node groups should not be relied upon as it can vary across project runs.
    */
   public open fun getGroups(): VariantArray<Any?> {
     TransferContext.writeArguments()

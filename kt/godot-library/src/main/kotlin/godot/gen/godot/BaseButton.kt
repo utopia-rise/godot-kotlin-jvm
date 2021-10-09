@@ -91,7 +91,7 @@ public open class BaseButton : Control() {
     }
 
   /**
-   * *Deprecated.* This property has been deprecated due to redundancy and no longer has any effect when set. Please use [godot.Control.focusMode] instead.
+   * *Deprecated.* This property has been deprecated due to redundancy and will be removed in Godot 4.0. This property no longer has any effect when set. Please use [godot.Control.focusMode] instead.
    */
   public open var enabledFocusMode: Long
     get() {

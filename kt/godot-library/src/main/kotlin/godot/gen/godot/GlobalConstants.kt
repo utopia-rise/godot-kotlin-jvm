@@ -524,6 +524,11 @@ public object GlobalConstants : Object() {
   public final const val JOY_BUTTON_21: Long = 21
 
   /**
+   * Gamepad button 22.
+   */
+  public final const val JOY_BUTTON_22: Long = 22
+
+  /**
    * Gamepad button 3.
    */
   public final const val JOY_BUTTON_3: Long = 3
@@ -561,7 +566,7 @@ public object GlobalConstants : Object() {
   /**
    * Represents the maximum number of joystick buttons supported.
    */
-  public final const val JOY_BUTTON_MAX: Long = 22
+  public final const val JOY_BUTTON_MAX: Long = 23
 
   /**
    * Gamepad DPad down.
@@ -604,6 +609,11 @@ public object GlobalConstants : Object() {
   public final const val JOY_DS_Y: Long = 2
 
   /**
+   * Gamepad SDL guide button.
+   */
+  public final const val JOY_GUIDE: Long = 16
+
+  /**
    * Invalid button or axis.
    */
   public final const val JOY_INVALID_OPTION: Long = -1
@@ -626,7 +636,7 @@ public object GlobalConstants : Object() {
   /**
    * Gamepad SDL miscellaneous button.
    */
-  public final const val JOY_MISC1: Long = 16
+  public final const val JOY_MISC1: Long = 17
 
   /**
    * A button on the right Oculus Touch controller, X button on the left controller (also when used in OpenVR).
@@ -661,22 +671,22 @@ public object GlobalConstants : Object() {
   /**
    * Gamepad SDL paddle 1 button.
    */
-  public final const val JOY_PADDLE1: Long = 17
+  public final const val JOY_PADDLE1: Long = 18
 
   /**
    * Gamepad SDL paddle 2 button.
    */
-  public final const val JOY_PADDLE2: Long = 18
+  public final const val JOY_PADDLE2: Long = 19
 
   /**
    * Gamepad SDL paddle 3 button.
    */
-  public final const val JOY_PADDLE3: Long = 19
+  public final const val JOY_PADDLE3: Long = 20
 
   /**
    * Gamepad SDL paddle 4 button.
    */
-  public final const val JOY_PADDLE4: Long = 20
+  public final const val JOY_PADDLE4: Long = 21
 
   /**
    * Gamepad right Shoulder button.
@@ -726,7 +736,7 @@ public object GlobalConstants : Object() {
   /**
    * Gamepad SDL touchpad button.
    */
-  public final const val JOY_TOUCHPAD: Long = 21
+  public final const val JOY_TOUCHPAD: Long = 22
 
   /**
    * VR Controller analog grip (side buttons).
@@ -1536,7 +1546,7 @@ public object GlobalConstants : Object() {
   /**
    * Command key mask. On macOS, this is equivalent to [KEY_MASK_META]. On other platforms, this is equivalent to [KEY_MASK_CTRL]. This mask should be preferred to [KEY_MASK_META] or [KEY_MASK_CTRL] for system shortcuts as it handles all platforms correctly.
    */
-  public final const val KEY_MASK_CMD: Long = 268435456
+  public final const val KEY_MASK_CMD: Long = 134217728
 
   /**
    * Ctrl key mask.
@@ -2290,7 +2300,7 @@ public object GlobalConstants : Object() {
   public final const val PROPERTY_HINT_EXP_EASING: Long = 4
 
   /**
-   * Hints that an integer or float property should be within an exponential range specified via the hint string `"min,max"` or `"min,max,step"`. The hint string can optionally include `"or_greater"` and/or `"or_lesser"` to allow manual input going respectively above the max or below the min values. Example: `"0.01,100,0.01,or_greater"`.
+   * Hints that a float property should be within an exponential range specified via the hint string `"min,max"` or `"min,max,step"`. The hint string can optionally include `"or_greater"` and/or `"or_lesser"` to allow manual input going respectively above the max or below the min values. Example: `"0.01,100,0.01,or_greater"`.
    */
   public final const val PROPERTY_HINT_EXP_RANGE: Long = 2
 

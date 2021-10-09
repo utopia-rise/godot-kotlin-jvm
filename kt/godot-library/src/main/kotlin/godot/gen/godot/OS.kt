@@ -685,7 +685,11 @@ public object OS : Object() {
   }
 
   /**
-   * Delay execution of the current thread by `msec` milliseconds. `msec` must be greater than or equal to `0`. Otherwise, [delayMsec] will do nothing and will print an error message.
+   * Delays execution of the current thread by `msec` milliseconds. `msec` must be greater than or equal to `0`. Otherwise, [delayMsec] will do nothing and will print an error message.
+   *
+   * **Note:** [delayMsec] is a *blocking* way to delay code execution. To delay code execution in a non-blocking way, see [godot.SceneTree.createTimer]. Yielding with [godot.SceneTree.createTimer] will delay the execution of code placed below the `yield` without affecting the rest of the project (or editor, for [godot.EditorPlugin]s and [godot.EditorScript]s).
+   *
+   * **Note:** When [delayMsec] is called on the main thread, it will freeze the project and will prevent it from redrawing and registering input until the delay has passed. When using [delayMsec] as part of an [godot.EditorPlugin] or [godot.EditorScript], it will freeze the editor but won't freeze the project if it is currently running (since the project is an independent child process).
    */
   public fun delayMsec(msec: Long): Unit {
     TransferContext.writeArguments(LONG to msec)
@@ -693,7 +697,11 @@ public object OS : Object() {
   }
 
   /**
-   * Delay execution of the current thread by `usec` microseconds. `usec` must be greater than or equal to `0`. Otherwise, [delayUsec] will do nothing and will print an error message.
+   * Delays execution of the current thread by `usec` microseconds. `usec` must be greater than or equal to `0`. Otherwise, [delayUsec] will do nothing and will print an error message.
+   *
+   * **Note:** [delayUsec] is a *blocking* way to delay code execution. To delay code execution in a non-blocking way, see [godot.SceneTree.createTimer]. Yielding with [godot.SceneTree.createTimer] will delay the execution of code placed below the `yield` without affecting the rest of the project (or editor, for [godot.EditorPlugin]s and [godot.EditorScript]s).
+   *
+   * **Note:** When [delayUsec] is called on the main thread, it will freeze the project and will prevent it from redrawing and registering input until the delay has passed. When using [delayUsec] as part of an [godot.EditorPlugin] or [godot.EditorScript], it will freeze the editor but won't freeze the project if it is currently running (since the project is an independent child process).
    */
   public fun delayUsec(usec: Long): Unit {
     TransferContext.writeArguments(LONG to usec)
@@ -1181,8 +1189,8 @@ public object OS : Object() {
    *
    * **Note:** Shared storage is implemented on Android and allows to differentiate between app specific and shared directories. Shared directories have additional restrictions on Android.
    */
-  public fun getSystemDir(dir: Long): String {
-    TransferContext.writeArguments(LONG to dir)
+  public fun getSystemDir(dir: Long, sharedStorage: Boolean = true): String {
+    TransferContext.writeArguments(LONG to dir, BOOL to sharedStorage)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_SYSTEM_DIR, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }

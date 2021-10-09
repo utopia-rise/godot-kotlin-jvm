@@ -47,7 +47,11 @@ import kotlin.Unit
  *
  * **Note:** RichTextLabel doesn't support entangled BBCode tags. For example, instead of using `**bold*bold italic**italic*`, use `**bold*bold italic****italic*`.
  *
+ * **Note:** `push_*/pop` functions won't affect BBCode.
+ *
  * **Note:** Unlike [godot.Label], RichTextLabel doesn't have a *property* to horizontally align text to the center. Instead, enable [bbcodeEnabled] and surround the text in a `[center]` tag as follows: `[center]Example[/center]`. There is currently no built-in way to vertically align text either, but this can be emulated by relying on anchors/containers and the [fitContentHeight] property.
+ *
+ * **Note:** Unicode characters after `0xffff` (such as most emoji) are *not* supported on Windows. They will display as unknown characters instead. This will be resolved in Godot 4.0.
  */
 @GodotBaseType
 public open class RichTextLabel : Control() {
