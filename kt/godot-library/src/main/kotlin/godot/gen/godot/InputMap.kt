@@ -62,6 +62,16 @@ public object InputMap : Object() {
   }
 
   /**
+   * Returns a deadzone value for the action.
+   */
+  public fun actionGetDeadzone(action: String): Double {
+    TransferContext.writeArguments(STRING to action)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_ACTION_GET_DEADZONE,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
    * Returns `true` if the action has the given [godot.InputEvent] associated with it.
    */
   public fun actionHasEvent(action: String, event: InputEvent): Boolean {

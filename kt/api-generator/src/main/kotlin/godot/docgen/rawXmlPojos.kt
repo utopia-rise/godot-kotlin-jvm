@@ -139,7 +139,14 @@ private fun String.getFormattedDescription(): String = trim()
     .replaceCodeReferences()
     .replaceClassReferences()
     .replaceNewLines()
+    .replaceInvalidCommentSequences()
     .replace(" ", "·") //so kotlin poet does not break where we don't want it
+
+
+/**
+ * Replaces wrong comment characters sequence to avoid invalid comment syntax.
+ */
+fun String.replaceInvalidCommentSequences(): String = this.replace("*/", "* / ")
 
 /**
  * Replaces new line chars with two new line chars so they are rendered on an new line in kdoc

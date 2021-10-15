@@ -6,7 +6,7 @@
 		"singleton": true,
 		"singleton_name": "GlobalConstants",
 		"instanciable": false,
-		"is_reference": true,
+		"is_reference": false,
 		"constants": {
 			"BUTTON_LEFT": 1,
 			"BUTTON_MASK_LEFT": 1,
@@ -110,6 +110,7 @@
 			"JOY_BUTTON_2": 2,
 			"JOY_BUTTON_20": 20,
 			"JOY_BUTTON_21": 21,
+			"JOY_BUTTON_22": 22,
 			"JOY_BUTTON_3": 3,
 			"JOY_BUTTON_4": 4,
 			"JOY_BUTTON_5": 5,
@@ -117,7 +118,7 @@
 			"JOY_BUTTON_7": 7,
 			"JOY_BUTTON_8": 8,
 			"JOY_BUTTON_9": 9,
-			"JOY_BUTTON_MAX": 22,
+			"JOY_BUTTON_MAX": 23,
 			"JOY_DPAD_DOWN": 13,
 			"JOY_DPAD_LEFT": 14,
 			"JOY_DPAD_RIGHT": 15,
@@ -126,21 +127,22 @@
 			"JOY_DS_B": 0,
 			"JOY_DS_X": 3,
 			"JOY_DS_Y": 2,
+			"JOY_GUIDE": 16,
 			"JOY_INVALID_OPTION": -1,
 			"JOY_L": 4,
 			"JOY_L2": 6,
 			"JOY_L3": 8,
-			"JOY_MISC1": 16,
+			"JOY_MISC1": 17,
 			"JOY_OCULUS_AX": 7,
 			"JOY_OCULUS_BY": 1,
 			"JOY_OCULUS_MENU": 3,
 			"JOY_OPENVR_MENU": 1,
 			"JOY_OPENVR_TOUCHPADX": 0,
 			"JOY_OPENVR_TOUCHPADY": 1,
-			"JOY_PADDLE1": 17,
-			"JOY_PADDLE2": 18,
-			"JOY_PADDLE3": 19,
-			"JOY_PADDLE4": 20,
+			"JOY_PADDLE1": 18,
+			"JOY_PADDLE2": 19,
+			"JOY_PADDLE3": 20,
+			"JOY_PADDLE4": 21,
 			"JOY_R": 5,
 			"JOY_R2": 7,
 			"JOY_R3": 9,
@@ -150,7 +152,7 @@
 			"JOY_SONY_TRIANGLE": 3,
 			"JOY_SONY_X": 0,
 			"JOY_START": 11,
-			"JOY_TOUCHPAD": 21,
+			"JOY_TOUCHPAD": 22,
 			"JOY_VR_ANALOG_GRIP": 4,
 			"JOY_VR_ANALOG_TRIGGER": 2,
 			"JOY_VR_GRIP": 2,
@@ -312,7 +314,7 @@
 			"KEY_MACRON": 175,
 			"KEY_MASCULINE": 186,
 			"KEY_MASK_ALT": 67108864,
-			"KEY_MASK_CMD": 268435456,
+			"KEY_MASK_CMD": 134217728,
 			"KEY_MASK_CTRL": 268435456,
 			"KEY_MASK_GROUP_SWITCH": 1073741824,
 			"KEY_MASK_KPAD": 536870912,
@@ -80143,6 +80145,25 @@
 				]
 			},
 			{
+				"name": "action_get_deadzone",
+				"return_type": "float",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": false,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+					{
+						"name": "action",
+						"type": "String",
+						"has_default_value": false,
+						"default_value": ""
+					}
+				]
+			},
+			{
 				"name": "action_has_event",
 				"return_type": "bool",
 				"is_editor": false,
@@ -83710,6 +83731,13 @@
 				"index": -1
 			},
 			{
+				"name": "collider_rid",
+				"type": "RID",
+				"getter": "get_collider_rid",
+				"setter": "",
+				"index": -1
+			},
+			{
 				"name": "collider_shape",
 				"type": "Object",
 				"getter": "get_collider_shape",
@@ -83798,6 +83826,19 @@
 			{
 				"name": "get_collider_metadata",
 				"return_type": "Variant",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_collider_rid",
+				"return_type": "RID",
 				"is_editor": false,
 				"is_noscript": false,
 				"is_const": true,
@@ -83949,6 +83990,13 @@
 				"index": -1
 			},
 			{
+				"name": "collider_rid",
+				"type": "RID",
+				"getter": "get_collider_rid",
+				"setter": "",
+				"index": -1
+			},
+			{
 				"name": "collider_shape",
 				"type": "Object",
 				"getter": "get_collider_shape",
@@ -84037,6 +84085,19 @@
 			{
 				"name": "get_collider_metadata",
 				"return_type": "Variant",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
+				"name": "get_collider_rid",
+				"return_type": "RID",
 				"is_editor": false,
 				"is_noscript": false,
 				"is_const": true,
@@ -188088,6 +188149,19 @@
 				]
 			},
 			{
+				"name": "get_current_outbound_buffered_amount",
+				"return_type": "int",
+				"is_editor": false,
+				"is_noscript": false,
+				"is_const": true,
+				"is_reverse": false,
+				"is_virtual": false,
+				"has_varargs": false,
+				"is_from_script": false,
+				"arguments": [
+				]
+			},
+			{
 				"name": "get_write_mode",
 				"return_type": "enum.WebSocketPeer::WriteMode",
 				"is_editor": false,
@@ -194371,6 +194445,12 @@
 						"type": "int",
 						"has_default_value": false,
 						"default_value": ""
+					},
+					{
+						"name": "shared_storage",
+						"type": "bool",
+						"has_default_value": true,
+						"default_value": "True"
 					}
 				]
 			},

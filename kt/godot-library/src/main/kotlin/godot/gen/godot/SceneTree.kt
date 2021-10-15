@@ -239,7 +239,7 @@ public open class SceneTree : MainLoop() {
   /**
    * If `true`, the [godot.SceneTree] is paused. Doing so will have the following behavior:
    *
-   * - 2D and 3D physics will be stopped.
+   * - 2D and 3D physics will be stopped. This includes signals and collision detection.
    *
    * - [godot.Node.Process], [godot.Node.PhysicsProcess] and [godot.Node.Input] will not be called anymore in nodes.
    */
@@ -319,7 +319,7 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Calls `method` on each member of the given group. You can pass arguments to `method` by specifying them at the end of the method call.
+   * Calls `method` on each member of the given group. You can pass arguments to `method` by specifying them at the end of the method call. This method is equivalent of calling [callGroupFlags] with [GROUP_CALL_DEFAULT] flag.
    *
    * **Note:** `method` may only have 5 arguments at most (7 arguments passed to this method in total).
    *
@@ -341,7 +341,9 @@ public open class SceneTree : MainLoop() {
    *
    * **Note:** `method` may only have 5 arguments at most (8 arguments passed to this method in total).
    *
-   * **Note:** Group call flags are used to control the method calling behavior. If the [GROUP_CALL_REALTIME] flag is present in the `flags` argument, methods will be called immediately. If this flag isn't present in `flags`, methods will be called with a one-frame delay in a way similar to [callGroup].
+   * ```
+   * 				get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME | SceneTree.GROUP_CALL_REVERSE, "bases", "destroy") # Call the method immediately and in reverse order.
+   * 				```
    */
   public open fun callGroupFlags(
     flags: Long,

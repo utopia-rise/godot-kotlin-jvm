@@ -672,6 +672,8 @@ public open class Control : CanvasItem() {
    * * control's parent has [mouseFilter] set to [MOUSE_FILTER_STOP] or has accepted the event;
    *
    * * it happens outside the parent's rectangle and the parent has either [rectClipContent] or [_clipsInput] enabled.
+   *
+   * **Note:** Event position is relative to the control origin.
    */
   public open fun _guiInput(event: InputEvent): Unit {
   }

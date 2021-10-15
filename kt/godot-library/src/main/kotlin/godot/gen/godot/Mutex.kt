@@ -31,6 +31,8 @@ public open class Mutex : Reference() {
 
   /**
    * Locks this [godot.Mutex], blocks until it is unlocked by the current owner.
+   *
+   * **Note:** This function returns without blocking if the thread already has ownership of the mutex.
    */
   public open fun lock(): Unit {
     TransferContext.writeArguments()
@@ -39,6 +41,8 @@ public open class Mutex : Reference() {
 
   /**
    * Tries locking this [godot.Mutex], but does not block. Returns [OK] on success, [ERR_BUSY] otherwise.
+   *
+   * **Note:** This function returns [OK] if the thread already has ownership of the mutex.
    */
   public open fun tryLock(): GodotError {
     TransferContext.writeArguments()
@@ -48,6 +52,8 @@ public open class Mutex : Reference() {
 
   /**
    * Unlocks this [godot.Mutex], leaving it to other threads.
+   *
+   * **Note:** If a thread called [lock] or [tryLock] multiple times while already having ownership of the mutex, it must also call [unlock] the same number of times in order to unlock it correctly.
    */
   public open fun unlock(): Unit {
     TransferContext.writeArguments()

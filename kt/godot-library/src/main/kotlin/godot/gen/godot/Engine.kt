@@ -167,7 +167,7 @@ public object Engine : Object() {
   }
 
   /**
-   * Returns the total number of frames drawn. If the render loop is disabled with `--disable-render-loop` via command line, this returns `0`. See also [getIdleFrames].
+   * Returns the total number of frames drawn. On headless platforms, or if the render loop is disabled with `--disable-render-loop` via command line, [getFramesDrawn] always returns `0`. See [getIdleFrames].
    */
   public fun getFramesDrawn(): Long {
     TransferContext.writeArguments()
@@ -186,7 +186,15 @@ public object Engine : Object() {
   }
 
   /**
-   * Returns the total number of frames passed since engine initialization which is advanced on each **idle frame**, regardless of whether the render loop is enabled. See also [getFramesDrawn].
+   * Returns the total number of frames passed since engine initialization which is advanced on each **idle frame**, regardless of whether the render loop is enabled. See also [getFramesDrawn] and [getPhysicsFrames].
+   *
+   * [getIdleFrames] can be used to run expensive logic less often without relying on a [godot.Timer]:
+   *
+   * ```
+   * 				func _process(_delta):
+   * 				    if Engine.get_idle_frames() % 2 == 0:
+   * 				        pass  # Run expensive logic only once every 2 idle (render) frames here.
+   * 				```
    */
   public fun getIdleFrames(): Long {
     TransferContext.writeArguments()
@@ -223,7 +231,15 @@ public object Engine : Object() {
   }
 
   /**
-   * Returns the total number of frames passed since engine initialization which is advanced on each **physics frame**.
+   * Returns the total number of frames passed since engine initialization which is advanced on each **physics frame**. See also [getIdleFrames].
+   *
+   * [getPhysicsFrames] can be used to run expensive logic less often without relying on a [godot.Timer]:
+   *
+   * ```
+   * 				func _physics_process(_delta):
+   * 				    if Engine.get_physics_frames() % 2 == 0:
+   * 				        pass  # Run expensive logic only once every 2 physics frames here.
+   * 				```
    */
   public fun getPhysicsFrames(): Long {
     TransferContext.writeArguments()

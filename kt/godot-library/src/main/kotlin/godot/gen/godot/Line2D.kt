@@ -39,6 +39,8 @@ import kotlin.Unit
 public open class Line2D : Node2D() {
   /**
    * If `true`, the line's border will be anti-aliased.
+   *
+   * **Note:** Line2D is not accelerated by batching when being anti-aliased.
    */
   public open var antialiased: Boolean
     get() {

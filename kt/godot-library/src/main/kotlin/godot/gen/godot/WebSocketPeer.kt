@@ -45,6 +45,13 @@ public open class WebSocketPeer : PacketPeer() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
+  public open fun getCurrentOutboundBufferedAmount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_GET_CURRENT_OUTBOUND_BUFFERED_AMOUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
   public open fun getWriteMode(): WebSocketPeer.WriteMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_GET_WRITE_MODE, LONG)

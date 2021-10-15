@@ -557,7 +557,9 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns the object's class as a [godot.String].
+   * Returns the object's class as a [godot.String]. See also [isClass].
+   *
+   * **Note:** [getClass] does not take `class_name` declarations into account. If the object has a `class_name` defined, the base class name will be returned instead.
    */
   public open fun getClass(): String {
     TransferContext.writeArguments()
@@ -716,7 +718,9 @@ public open class Object : KtObject() {
   }
 
   /**
-   * Returns `true` if the object inherits from the given `class`.
+   * Returns `true` if the object inherits from the given `class`. See also [getClass].
+   *
+   * **Note:** [isClass] does not take `class_name` declarations into account. If the object has a `class_name` defined, [isClass] will return `false` for that name.
    */
   public open fun isClass(_class: String): Boolean {
     TransferContext.writeArguments(STRING to _class)
