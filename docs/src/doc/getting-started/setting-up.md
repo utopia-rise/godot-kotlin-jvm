@@ -46,7 +46,7 @@ You should have the wrapper setup after running the command above. Up next is se
     ```kt
     plugins {
         kotlin("jvm") version "$kotlinVersion"
-        id("com.utopia-rise.godot-jvm") version "$godotKotlinVersion"
+        id("com.utopia-rise.godot-kotlin-jvm") version "$godotKotlinVersion"
     }
 
     repositories {
