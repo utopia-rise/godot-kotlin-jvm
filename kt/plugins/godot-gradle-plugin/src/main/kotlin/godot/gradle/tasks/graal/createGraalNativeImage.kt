@@ -26,7 +26,7 @@ fun Project.createGraalNativeImageTask(
                 packageBootstrapJarTask
             )
 
-            doLast {
+            doFirst {
                 val libsDir = project.buildDir.resolve("libs")
                 val resourcesDir = project.buildDir.resolve("resources")
 

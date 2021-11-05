@@ -26,7 +26,7 @@ fun Project.createMainDexFileTask(
                 packageBootstrapDexJarTask
             )
 
-            doLast {
+            doFirst {
                 val libsDir = project.buildDir.resolve("libs")
                 val mainJar = File(libsDir, "main.jar")
                 val godotBootstrapJar = File(libsDir, "godot-bootstrap.jar")
