@@ -27,7 +27,7 @@ KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_
     JVM_CRASH_COND_MSG(
             p_arg_count > MAX_CONSTRUCTOR_SIZE,
             vformat("Cannot call constructor with %s, max arg count is %s", p_arg_count, MAX_CONSTRUCTOR_SIZE)
-    )
+    );
 #endif
 
     KtConstructor* constructor{constructors[p_arg_count]};
@@ -36,7 +36,7 @@ KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_
     JVM_CRASH_COND_MSG(
             constructor == nullptr,
             vformat("Cannot find constructor with %s parameters for class %s", p_arg_count, name)
-    )
+    );
 #endif
 
     KtObject* jvm_instance{constructor->create_instance(p_args, p_owner)};
@@ -159,4 +159,9 @@ void KtClass::fetch_members() {
     fetch_properties(env);
     fetch_signals(env);
     fetch_constructors(env);
+}
+
+bool KtClass::is_assignable_from(KtClass* p_class) const {
+    jni::Env env{jni::Jvm::current_env()};
+    return j_class.is_assignable_from(env, p_class->j_class);
 }

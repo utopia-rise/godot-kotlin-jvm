@@ -10,7 +10,7 @@ static constexpr const char* configuration_path{"res://godot_kotlin_configuratio
 
 void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool p_debug, const String& p_path,
                                              int p_flags) {
-    LOG_INFO("Beginning Godot-Jvm specific exports.")
+    LOG_INFO("Beginning Godot-Jvm specific exports.");
 
     // Add mandatory jars to pck
     Vector<String> files_to_add;
@@ -56,11 +56,11 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
 
                         break;
                     default:
-                        LOG_ERROR("Unknown VM type, aborting export.")
+                        LOG_ERROR("Unknown VM type, aborting export.");
                         return;
                 }
             } else {
-                LOG_ERROR(vformat("Cannot find configuration file %s", configuration_path))
+                LOG_ERROR(vformat("Cannot find configuration file %s", configuration_path));
             }
         }
     }
@@ -68,7 +68,7 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
     for (int i = 0; i < files_to_add.size(); ++i) {
         const String& file_to_add{files_to_add[i]};
         add_file(file_to_add, FileAccess::get_file_as_array(file_to_add), false);
-        LOG_INFO(vformat("Exporting %s", file_to_add))
+        LOG_INFO(vformat("Exporting %s", file_to_add));
     }
 
     // Copy JRE for desktop platforms
@@ -83,15 +83,15 @@ void KotlinEditorExportPlugin::_export_begin(const Set<String>& p_features, bool
                     vformat("%s/jre", dir_access->get_current_dir())
             ) != OK) {
                 LOG_ERROR("Cannot copy jre folder to export folder, please make sure you created a jre in project "
-                          "root folder using jlink.")
+                          "root folder using jlink.");
             }
         } else {
-            LOG_ERROR(vformat("Cannot copy JRE folder to %s, error is %s", p_path, error))
+            LOG_ERROR(vformat("Cannot copy JRE folder to %s, error is %s", p_path, error));
         }
         memdelete(dir_access);
     }
 
-    LOG_INFO("Finished Godot-Jvm specific exports.")
+    LOG_INFO("Finished Godot-Jvm specific exports.");
 }
 
 void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::Jvm::Type vm_type) {

@@ -34,7 +34,7 @@ GdKotlinConfiguration GdKotlinConfiguration::from_json(const String& json_string
     Error error{JSON::parse(json_string, result, err_string, err_line)};
 
     if (error != OK || result.get_type() != Variant::DICTIONARY) {
-        LOG_ERROR("Error parsing Godot Kotlin configuration ! Falling back to default configuration")
+        LOG_ERROR("Error parsing Godot Kotlin configuration ! Falling back to default configuration");
         return GdKotlinConfiguration();
     }
 
@@ -48,7 +48,7 @@ GdKotlinConfiguration GdKotlinConfiguration::from_json(const String& json_string
     } else if (vm == art_string_identifier) {
         vm_type = jni::Jvm::ART;
     } else {
-        LOG_WARNING("Wrong JVM type in config, fallback to classic JVM !")
+        LOG_WARNING("Wrong JVM type in config, fallback to classic JVM !");
         vm_type = jni::Jvm::JVM;
     }
     int max_string_size{LongStringQueue::max_string_size};
@@ -73,7 +73,7 @@ GdKotlinConfiguration GdKotlinConfiguration::load_gd_kotlin_configuration_or_def
         file->store_string(configuration.to_json());
         file->close();
 #else
-        LOG_ERROR(vformat("Cannot find Godot Kotlin configuration file at: %s. Falling back to default configuration.", configuration_path))
+        LOG_ERROR(vformat("Cannot find Godot Kotlin configuration file at: %s. Falling back to default configuration.", configuration_path));
         configuration = GdKotlinConfiguration();
 #endif
     }

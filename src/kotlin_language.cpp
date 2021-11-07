@@ -135,6 +135,11 @@ void KotlinLanguage::get_reserved_words(List<String>* p_words) const {
     }
 }
 
+bool KotlinLanguage::is_control_flow_keyword(String p_string) const {
+    //TODO
+    return false;
+}
+
 void KotlinLanguage::get_comment_delimiters(List<String>* p_delimiters) const {
     p_delimiters->push_back("//");
     p_delimiters->push_back("/* */");

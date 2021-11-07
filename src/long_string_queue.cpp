@@ -75,7 +75,7 @@ LongStringQueue* LongStringQueue::init(){
     JVM_CRASH_COND_MSG(
             long_string_queue_instance.is_null(),
             "Failed to retrieve LongStringQueue instance"
-    )
+    );
 
     auto* instance{new LongStringQueue(long_string_queue_instance, class_loader)};
 
