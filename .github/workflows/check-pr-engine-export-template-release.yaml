@@ -92,11 +92,11 @@ jobs:
         run: |
           python -c "import sys; print(sys.version)"
           python -m pip install -r modules/kotlin_jvm/requirements.txt
-      - name: Set up JDK 1.8
+      - name: Set up JDK 11
         if: matrix.platform == 'android'
         uses: actions/setup-java@v1
         with:
-          java-version: 1.8
+          java-version: 11
       - name: Setup Android SDK
         if: matrix.platform == 'android'
         uses: android-actions/setup-android@v2
