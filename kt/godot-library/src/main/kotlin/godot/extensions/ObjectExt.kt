@@ -11,26 +11,26 @@ import kotlin.reflect.KFunction
  * Use [Object.callDeferred] to call functions by string or [callDeferredRawName] for an unconverted version of this function
  */
 inline fun <reified T : KFunction<*>> Object.callDeferred(function: T, vararg args: Any?) =
-    callDeferred(function.name.camelToSnakeCase(), args)
+    callDeferred(function.name.camelToSnakeCase(), *args)
 
 /**
  * Same as [callDeferred] but the function name is not converted to snake_case
  */
 inline fun <reified T : KFunction<*>> Object.callDeferredRawName(function: T, vararg args: Any?) =
-    callDeferred(function.name, args)
+    callDeferred(function.name, *args)
 
 /**
  * **Note:** The function name is converted to snake_case
  * Use [Object.call] to call functions by string or [callRawName] for an unconverted version of this function
  */
 inline fun <reified T : KFunction<*>> Object.call(function: T, vararg args: Any?) =
-    call(function.name.camelToSnakeCase(), args)
+    call(function.name.camelToSnakeCase(), *args)
 
 /**
  * Same as [call] but the function name is not converted to snake_case
  */
 inline fun <reified T : KFunction<*>> Object.callRawName(function: T, vararg args: Any?) =
-    call(function.name, args)
+    call(function.name, *args)
 
 /**
  * **Note:** The function name is converted to snake_case

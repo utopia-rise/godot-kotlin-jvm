@@ -19,22 +19,61 @@ class FuncRefTest : Node() {
     @RegisterProperty(rpcMode = MultiplayerAPI.RPCMode.REMOTE)
     var blubb: Boolean = false
 
+    @RegisterProperty
+    var callFlag = false
+
+    @RegisterProperty
+    var callWithParamFlag = false
+
+    @RegisterProperty
+    var signalCallFlag = false
+
     @RegisterFunction
     override fun _ready() {
-        signalTest.connect(this, ::testFuncRef)
-        rpc(::testFuncRef)
-        rset(::blubb, false)
-        call(::callTest)
-        callDeferred(::callTest)
+        signalTest.connect(this, ::testSignalCallback)
+
+//        Cannot test rpc for now as it needs two godot instances.
+//        rpc(::testFuncRef)
+//        rset(::blubb, false)
     }
 
     @RegisterFunction(MultiplayerAPI.RPCMode.REMOTE)
-    fun testFuncRef() {
-
+    fun testSignalCallback() {
+        signalCallFlag = true
     }
 
     @RegisterFunction
-    fun callTest() {
+    fun testSignalCall() {
+        signalTest.emit()
+    }
 
+    @RegisterFunction
+    fun withoutParamCallback() {
+        callFlag = true
+    }
+
+    @RegisterFunction
+    fun testCallWithoutParam() {
+        call(this::withoutParamCallback)
+    }
+
+    @RegisterFunction
+    fun testCallDeferredWithoutParam() {
+        callDeferred(this::withoutParamCallback)
+    }
+
+    @RegisterFunction
+    fun withParamCallback(flag: Boolean) {
+        callWithParamFlag = flag
+    }
+
+    @RegisterFunction
+    fun testCallWithParam() {
+        call(this::withParamCallback, true)
+    }
+
+    @RegisterFunction
+    fun testCallDeferredWithParam() {
+        callDeferred(this::withParamCallback, true)
     }
 }
