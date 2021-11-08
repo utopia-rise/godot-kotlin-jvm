@@ -73,6 +73,8 @@ public open class EditorInterface : Node() {
 
   /**
    * Returns the main container of Godot editor's window. For example, you can use it to retrieve the size of the container and place your controls accordingly.
+   *
+   * **Warning:** Removing and freeing this node will render the editor useless and may cause a crash.
    */
   public open fun getBaseControl(): Control? {
     TransferContext.writeArguments()
@@ -127,6 +129,8 @@ public open class EditorInterface : Node() {
    * Returns the main editor control. Use this as a parent for main screens.
    *
    * **Note:** This returns the main editor control containing the whole editor, not the 2D or 3D viewports specifically.
+   *
+   * **Warning:** Removing and freeing this node will render a part of the editor useless and may cause a crash.
    */
   public open fun getEditorViewport(): Control? {
     TransferContext.writeArguments()
@@ -137,6 +141,8 @@ public open class EditorInterface : Node() {
 
   /**
    * Returns the editor's [godot.FileSystemDock] instance.
+   *
+   * **Warning:** Removing and freeing this node will render a part of the editor useless and may cause a crash.
    */
   public open fun getFileSystemDock(): FileSystemDock? {
     TransferContext.writeArguments()
@@ -147,6 +153,8 @@ public open class EditorInterface : Node() {
 
   /**
    * Returns the editor's [godot.EditorInspector] instance.
+   *
+   * **Warning:** Removing and freeing this node will render a part of the editor useless and may cause a crash.
    */
   public open fun getInspector(): EditorInspector? {
     TransferContext.writeArguments()
@@ -197,6 +205,8 @@ public open class EditorInterface : Node() {
 
   /**
    * Returns the editor's [godot.ScriptEditor] instance.
+   *
+   * **Warning:** Removing and freeing this node will render a part of the editor useless and may cause a crash.
    */
   public open fun getScriptEditor(): ScriptEditor? {
     TransferContext.writeArguments()

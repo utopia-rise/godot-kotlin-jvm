@@ -8,11 +8,13 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
+import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -80,6 +82,17 @@ public open class Physics2DTestMotionResult : Reference() {
   /**
    *
    */
+  public open val collisionDepth: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICS2DTESTMOTIONRESULT_GET_COLLISION_DEPTH, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+
+  /**
+   *
+   */
   public open val collisionNormal: Vector2
     get() {
       TransferContext.writeArguments()
@@ -97,6 +110,28 @@ public open class Physics2DTestMotionResult : Reference() {
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICS2DTESTMOTIONRESULT_GET_COLLISION_POINT, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    }
+
+  /**
+   *
+   */
+  public open val collisionSafeFraction: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICS2DTESTMOTIONRESULT_GET_COLLISION_SAFE_FRACTION, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+
+  /**
+   *
+   */
+  public open val collisionUnsafeFraction: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICS2DTESTMOTIONRESULT_GET_COLLISION_UNSAFE_FRACTION, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
   /**

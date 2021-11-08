@@ -10,6 +10,8 @@ import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.OBJECT
+import godot.signals.Signal1
+import godot.signals.signal
 import kotlin.Any
 import kotlin.Suppress
 import kotlin.Unit
@@ -23,6 +25,11 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class ButtonGroup : Resource() {
+  /**
+   * Emitted when one of the buttons of the group is pressed.
+   */
+  public val pressed: Signal1<Object> by signal("button")
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_BUTTONGROUP)
   }

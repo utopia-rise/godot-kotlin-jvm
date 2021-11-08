@@ -12,6 +12,8 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
+import godot.core.VariantType.VECTOR2
+import godot.core.Vector2
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
@@ -27,10 +29,6 @@ import kotlin.Unit
  * Sets the active tab's `visible` property to the value `true`. Sets all other children's to `false`.
  *
  * Ignores non-[godot.Control] children.
- *
- * Individual tabs are always visible unless you use [setTabDisabled] and [setTabTitle] to hide it.
- *
- * To hide only a tab's content, nest the content inside a child [godot.Control], so it receives the [godot.TabContainer]'s visibility setting instead.
  */
 @GodotBaseType
 public open class TabContainer : Container() {
@@ -173,6 +171,8 @@ public open class TabContainer : Container() {
 
   /**
    * Returns the [godot.Popup] node instance if one has been set already with [setPopup].
+   *
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
   public open fun getPopup(): Popup? {
     TransferContext.writeArguments()
@@ -218,12 +218,31 @@ public open class TabContainer : Container() {
   }
 
   /**
+   * Returns `true` if the tab at index `tab_idx` is hidden.
+   */
+  public open fun getTabHidden(tabIdx: Long): Boolean {
+    TransferContext.writeArguments(LONG to tabIdx)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TAB_HIDDEN, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    * Returns the [godot.Texture] for the tab at index `tab_idx` or `null` if the tab has no [godot.Texture].
    */
   public open fun getTabIcon(tabIdx: Long): Texture? {
     TransferContext.writeArguments(LONG to tabIdx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TAB_ICON, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Texture?
+  }
+
+  /**
+   * Returns the index of the tab at local coordinates `point`. Returns `-1` if the point is outside the control boundaries or if there's no tab at the queried position.
+   */
+  public open fun getTabIdxAtPoint(point: Vector2): Long {
+    TransferContext.writeArguments(VECTOR2 to point)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TAB_IDX_AT_POINT,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -254,13 +273,19 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * If `disabled` is `false`, hides the tab at index `tab_idx`.
-   *
-   * **Note:** Its title text will remain, unless also removed with [setTabTitle].
+   * If `disabled` is `true`, disables the tab at index `tab_idx`, making it non-interactable.
    */
   public open fun setTabDisabled(tabIdx: Long, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to tabIdx, BOOL to disabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_TAB_DISABLED, NIL)
+  }
+
+  /**
+   * If `hidden` is `true`, hides the tab at index `tab_idx`, making it disappear from the tab area.
+   */
+  public open fun setTabHidden(tabIdx: Long, hidden: Boolean): Unit {
+    TransferContext.writeArguments(LONG to tabIdx, BOOL to hidden)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_TAB_HIDDEN, NIL)
   }
 
   /**
@@ -272,7 +297,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Sets a title for the tab at index `tab_idx`. Tab titles default to the name of the indexed child node, but this can be overridden with [setTabTitle].
+   * Sets a title for the tab at index `tab_idx`. Tab titles default to the name of the indexed child node.
    */
   public open fun setTabTitle(tabIdx: Long, title: String): Unit {
     TransferContext.writeArguments(LONG to tabIdx, STRING to title)
@@ -280,7 +305,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Defines rearrange group id, choose for each [godot.TabContainer] the same value to enable tab drag between [godot.TabContainer]. Enable drag with `set_drag_to_rearrange_enabled(true)`.
+   * Defines rearrange group id, choose for each [godot.TabContainer] the same value to enable tab drag between [godot.TabContainer]. Enable drag with [dragToRearrangeEnabled].
    */
   public open fun setTabsRearrangeGroup(groupId: Long): Unit {
     TransferContext.writeArguments(LONG to groupId)

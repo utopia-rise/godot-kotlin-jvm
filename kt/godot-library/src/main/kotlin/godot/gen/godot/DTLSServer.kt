@@ -97,7 +97,7 @@ public open class DTLSServer : Reference() {
   /**
    * Try to initiate the DTLS handshake with the given `udp_peer` which must be already connected (see [godot.PacketPeerUDP.connectToHost]).
    *
-   * **Note**: You must check that the state of the return PacketPeerUDP is [godot.PacketPeerDTLS.STATUS_HANDSHAKING], as it is normal that 50% of the new connections will be invalid due to cookie exchange.
+   * **Note:** You must check that the state of the return PacketPeerUDP is [godot.PacketPeerDTLS.STATUS_HANDSHAKING], as it is normal that 50% of the new connections will be invalid due to cookie exchange.
    */
   public open fun takeConnection(udpPeer: PacketPeerUDP): PacketPeerDTLS? {
     TransferContext.writeArguments(OBJECT to udpPeer)

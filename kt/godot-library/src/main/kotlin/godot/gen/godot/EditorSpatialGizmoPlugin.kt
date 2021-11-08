@@ -26,7 +26,7 @@ import kotlin.Unit
  * Used by the editor to define Spatial gizmo types.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/plugins/editor/spatial_gizmos.html](https://docs.godotengine.org/en/3.3/tutorials/plugins/editor/spatial_gizmos.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/spatial_gizmos.html](https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/spatial_gizmos.html)
  *
  * EditorSpatialGizmoPlugin allows you to define a new type of Gizmo. There are two main ways to do so: extending [godot.EditorSpatialGizmoPlugin] for the simpler gizmos, or creating a new [godot.EditorSpatialGizmo] type. See the tutorial in the documentation for more info.
  */
@@ -72,9 +72,15 @@ public open class EditorSpatialGizmoPlugin : Resource() {
 
   /**
    * Creates a handle material with its variants (selected and/or editable) and adds them to the internal material list. They can then be accessed with [getMaterial] and used in [godot.EditorSpatialGizmo.addHandles]. Should not be overridden.
+   *
+   * You can optionally provide a texture to use instead of the default icon.
    */
-  public open fun createHandleMaterial(name: String, billboard: Boolean = false): Unit {
-    TransferContext.writeArguments(STRING to name, BOOL to billboard)
+  public open fun createHandleMaterial(
+    name: String,
+    billboard: Boolean = false,
+    texture: Texture? = null
+  ): Unit {
+    TransferContext.writeArguments(STRING to name, BOOL to billboard, OBJECT to texture)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSPATIALGIZMOPLUGIN_CREATE_HANDLE_MATERIAL, NIL)
   }

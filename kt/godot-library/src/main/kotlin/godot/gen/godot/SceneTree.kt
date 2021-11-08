@@ -40,8 +40,8 @@ import kotlin.Unit
  * Manages the game loop via a hierarchy of nodes.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/getting_started/step_by_step/scene_tree.html](https://docs.godotengine.org/en/3.3/getting_started/step_by_step/scene_tree.html)
- * [https://docs.godotengine.org/en/3.3/tutorials/viewports/multiple_resolutions.html](https://docs.godotengine.org/en/3.3/tutorials/viewports/multiple_resolutions.html)
+ * [https://docs.godotengine.org/en/3.4/getting_started/step_by_step/scene_tree.html](https://docs.godotengine.org/en/3.4/getting_started/step_by_step/scene_tree.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/viewports/multiple_resolutions.html](https://docs.godotengine.org/en/3.4/tutorials/viewports/multiple_resolutions.html)
  *
  * As one of the most important classes, the [godot.SceneTree] manages the hierarchy of nodes in a scene as well as scenes themselves. Nodes can be added, retrieved and removed. The whole scene tree (and thus the current scene) can be paused. Scenes can be loaded, switched and reloaded.
  *
@@ -323,6 +323,8 @@ public open class SceneTree : MainLoop() {
    *
    * **Note:** `method` may only have 5 arguments at most (7 arguments passed to this method in total).
    *
+   * **Note:** Due to design limitations, [callGroup] will fail silently if one of the arguments is `null`.
+   *
    * **Note:** [callGroup] will always call methods with an one-frame delay, in a way similar to [godot.Object.callDeferred]. To call methods immediately, use [callGroupFlags] with the [GROUP_CALL_REALTIME] flag.
    */
   public open fun callGroup(
@@ -341,8 +343,11 @@ public open class SceneTree : MainLoop() {
    *
    * **Note:** `method` may only have 5 arguments at most (8 arguments passed to this method in total).
    *
+   * **Note:** Due to design limitations, [callGroupFlags] will fail silently if one of the arguments is `null`.
+   *
    * ```
-   * 				get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME | SceneTree.GROUP_CALL_REVERSE, "bases", "destroy") # Call the method immediately and in reverse order.
+   * 				# Call the method immediately and in reverse order.
+   * 				get_tree().call_group_flags(SceneTree.GROUP_CALL_REALTIME | SceneTree.GROUP_CALL_REVERSE, "bases", "destroy")
    * 				```
    */
   public open fun callGroupFlags(
@@ -600,16 +605,16 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Configures screen stretching to the given [enum StretchMode], [enum StretchAspect], minimum size and `shrink` ratio.
+   * Configures screen stretching to the given [enum StretchMode], [enum StretchAspect], minimum size and `scale`.
    */
   public open fun setScreenStretch(
     mode: Long,
     aspect: Long,
     minsize: Vector2,
-    shrink: Double = 1.0
+    scale: Double = 1.0
   ): Unit {
     TransferContext.writeArguments(LONG to mode, LONG to aspect, VECTOR2 to minsize, DOUBLE to
-        shrink)
+        scale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_SCREEN_STRETCH, NIL)
   }
 

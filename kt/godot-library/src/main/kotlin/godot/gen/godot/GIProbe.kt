@@ -54,7 +54,7 @@ public open class GIProbe : VisualInstance() {
     }
 
   /**
-   * If `true`, the data for this [godot.GIProbe] will be compressed. Compression saves space, but results in far worse visual quality.
+   * *Deprecated.* This property has been deprecated due to known bugs and no longer has any effect when enabled.
    */
   public open var compress: Boolean
     get() {

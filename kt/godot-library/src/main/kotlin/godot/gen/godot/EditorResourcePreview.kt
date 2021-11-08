@@ -68,7 +68,7 @@ public open class EditorResourcePreview : Node() {
   /**
    * Queue the `resource` being edited for preview. Once the preview is ready, the `receiver`'s `receiver_func` will be called. The `receiver_func` must take the following four arguments: [godot.String] path, [godot.Texture] preview, [godot.Texture] thumbnail_preview, [Variant] userdata. `userdata` can be anything, and will be returned when `receiver_func` is called.
    *
-   * **Note**: If it was not possible to create the preview the `receiver_func` will still be called, but the preview will be null.
+   * **Note:** If it was not possible to create the preview the `receiver_func` will still be called, but the preview will be null.
    */
   public open fun queueEditedResourcePreview(
     resource: Resource,
@@ -85,7 +85,7 @@ public open class EditorResourcePreview : Node() {
   /**
    * Queue a resource file located at `path` for preview. Once the preview is ready, the `receiver`'s `receiver_func` will be called. The `receiver_func` must take the following four arguments: [godot.String] path, [godot.Texture] preview, [godot.Texture] thumbnail_preview, [Variant] userdata. `userdata` can be anything, and will be returned when `receiver_func` is called.
    *
-   * **Note**: If it was not possible to create the preview the `receiver_func` will still be called, but the preview will be null.
+   * **Note:** If it was not possible to create the preview the `receiver_func` will still be called, but the preview will be null.
    */
   public open fun queueResourcePreview(
     path: String,

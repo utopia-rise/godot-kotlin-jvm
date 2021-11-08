@@ -28,7 +28,7 @@ import kotlin.Unit
  * Used by the editor to extend its functionality.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/plugins/editor/index.html](https://docs.godotengine.org/en/3.3/tutorials/plugins/editor/index.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/index.html](https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/index.html)
  *
  * Plugins are used by the editor to extend functionality. The most common types of plugins are those which edit a given node or resource type, import plugins and export plugins. See also [godot.EditorScript] to add functions to the editor.
  */
@@ -403,6 +403,8 @@ public open class EditorPlugin : Node() {
    * Gets the Editor's dialogue used for making scripts.
    *
    * **Note:** Users can configure it before use.
+   *
+   * **Warning:** Removing and freeing this node will render a part of the editor useless and may cause a crash.
    */
   public open fun getScriptCreateDialog(): ScriptCreateDialog? {
     TransferContext.writeArguments()

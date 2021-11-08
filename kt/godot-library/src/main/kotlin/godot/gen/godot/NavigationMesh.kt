@@ -28,10 +28,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- *
+ * A mesh to approximate the walkable areas and obstacles.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/124](https://godotengine.org/asset-library/asset/124)
+ *
+ * A navigation mesh is a collection of polygons that define which areas of an environment are traversable to aid agents in pathfinding through complicated spaces.
  */
 @GodotBaseType
 public open class NavigationMesh : Resource() {
@@ -333,7 +335,7 @@ public open class NavigationMesh : Resource() {
   }
 
   /**
-   *
+   * Adds a polygon using the indices of the vertices you get when calling [getVertices].
    */
   public open fun addPolygon(polygon: PoolIntArray): Unit {
     TransferContext.writeArguments(POOL_INT_ARRAY to polygon)
@@ -341,7 +343,7 @@ public open class NavigationMesh : Resource() {
   }
 
   /**
-   *
+   * Clears the array of polygons, but it doesn't clear the array of vertices.
    */
   public open fun clearPolygons(): Unit {
     TransferContext.writeArguments()
@@ -349,7 +351,7 @@ public open class NavigationMesh : Resource() {
   }
 
   /**
-   *
+   * Initializes the navigation mesh by setting the vertices and indices according to a [godot.Mesh].
    */
   public open fun createFromMesh(mesh: Mesh): Unit {
     TransferContext.writeArguments(OBJECT to mesh)
@@ -358,7 +360,7 @@ public open class NavigationMesh : Resource() {
   }
 
   /**
-   *
+   * Returns whether the specified `bit` of the [geometry/collisionMask] is set.
    */
   public open fun getCollisionMaskBit(bit: Long): Boolean {
     TransferContext.writeArguments(LONG to bit)
@@ -368,7 +370,7 @@ public open class NavigationMesh : Resource() {
   }
 
   /**
-   *
+   * Returns a [godot.core.PoolIntArray] containing the indices of the vertices of a created polygon.
    */
   public open fun getPolygon(idx: Long): PoolIntArray {
     TransferContext.writeArguments(LONG to idx)
@@ -378,7 +380,7 @@ public open class NavigationMesh : Resource() {
   }
 
   /**
-   *
+   * Returns the number of polygons in the navigation mesh.
    */
   public open fun getPolygonCount(): Long {
     TransferContext.writeArguments()
@@ -388,7 +390,9 @@ public open class NavigationMesh : Resource() {
   }
 
   /**
+   * If `value` is `true`, sets the specified `bit` in the [geometry/collisionMask].
    *
+   * If `value` is `false`, clears the specified `bit` in the [geometry/collisionMask].
    */
   public open fun setCollisionMaskBit(bit: Long, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to bit, BOOL to value)
@@ -396,35 +400,158 @@ public open class NavigationMesh : Resource() {
         ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_COLLISION_MASK_BIT, NIL)
   }
 
+  public enum class ParsedGeometryType(
+    id: Long
+  ) {
+    /**
+     * Parses mesh instances as geometry. This includes [godot.MeshInstance], [godot.CSGShape], and [godot.GridMap] nodes.
+     */
+    PARSED_GEOMETRY_MESH_INSTANCES(0),
+    /**
+     * Parses [godot.StaticBody] colliders as geometry. The collider should be in any of the layers specified by [geometry/collisionMask].
+     */
+    PARSED_GEOMETRY_STATIC_COLLIDERS(1),
+    /**
+     * Both [PARSED_GEOMETRY_MESH_INSTANCES] and [PARSED_GEOMETRY_STATIC_COLLIDERS].
+     */
+    PARSED_GEOMETRY_BOTH(2),
+    /**
+     * Represents the size of the [enum ParsedGeometryType] enum.
+     */
+    PARSED_GEOMETRY_MAX(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class SamplePartitionType(
+    id: Long
+  ) {
+    /**
+     * Watershed partitioning. Generally the best choice if you precompute the navigation mesh, use this if you have large open areas.
+     */
+    SAMPLE_PARTITION_WATERSHED(0),
+    /**
+     * Monotone partitioning. Use this if you want fast navigation mesh generation.
+     */
+    SAMPLE_PARTITION_MONOTONE(1),
+    /**
+     * Layer partitioning. Good choice to use for tiled navigation mesh with medium and small sized tiles.
+     */
+    SAMPLE_PARTITION_LAYERS(2),
+    /**
+     * Represents the size of the [enum SamplePartitionType] enum.
+     */
+    SAMPLE_PARTITION_MAX(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class SourceGeometryMode(
+    id: Long
+  ) {
+    /**
+     * Scans the child nodes of [godot.NavigationMeshInstance] recursively for geometry.
+     */
+    SOURCE_GEOMETRY_NAVMESH_CHILDREN(0),
+    /**
+     * Scans nodes in a group and their child nodes recursively for geometry. The group is specified by [geometry/sourceGroupName].
+     */
+    SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN(1),
+    /**
+     * Uses nodes in a group for geometry. The group is specified by [geometry/sourceGroupName].
+     */
+    SOURCE_GEOMETRY_GROUPS_EXPLICIT(2),
+    /**
+     * Represents the size of the [enum SourceGeometryMode] enum.
+     */
+    SOURCE_GEOMETRY_MAX(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
   public companion object {
     /**
-     *
+     * Both [PARSED_GEOMETRY_MESH_INSTANCES] and [PARSED_GEOMETRY_STATIC_COLLIDERS].
      */
     public final const val PARSED_GEOMETRY_BOTH: Long = 2
 
     /**
-     *
+     * Represents the size of the [enum ParsedGeometryType] enum.
+     */
+    public final const val PARSED_GEOMETRY_MAX: Long = 3
+
+    /**
+     * Parses mesh instances as geometry. This includes [godot.MeshInstance], [godot.CSGShape], and [godot.GridMap] nodes.
      */
     public final const val PARSED_GEOMETRY_MESH_INSTANCES: Long = 0
 
     /**
-     *
+     * Parses [godot.StaticBody] colliders as geometry. The collider should be in any of the layers specified by [geometry/collisionMask].
      */
     public final const val PARSED_GEOMETRY_STATIC_COLLIDERS: Long = 1
 
     /**
-     *
+     * Layer partitioning. Good choice to use for tiled navigation mesh with medium and small sized tiles.
      */
     public final const val SAMPLE_PARTITION_LAYERS: Long = 2
 
     /**
-     *
+     * Represents the size of the [enum SamplePartitionType] enum.
+     */
+    public final const val SAMPLE_PARTITION_MAX: Long = 3
+
+    /**
+     * Monotone partitioning. Use this if you want fast navigation mesh generation.
      */
     public final const val SAMPLE_PARTITION_MONOTONE: Long = 1
 
     /**
-     *
+     * Watershed partitioning. Generally the best choice if you precompute the navigation mesh, use this if you have large open areas.
      */
     public final const val SAMPLE_PARTITION_WATERSHED: Long = 0
+
+    /**
+     * Uses nodes in a group for geometry. The group is specified by [geometry/sourceGroupName].
+     */
+    public final const val SOURCE_GEOMETRY_GROUPS_EXPLICIT: Long = 2
+
+    /**
+     * Scans nodes in a group and their child nodes recursively for geometry. The group is specified by [geometry/sourceGroupName].
+     */
+    public final const val SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN: Long = 1
+
+    /**
+     * Represents the size of the [enum SourceGeometryMode] enum.
+     */
+    public final const val SOURCE_GEOMETRY_MAX: Long = 3
+
+    /**
+     * Scans the child nodes of [godot.NavigationMeshInstance] recursively for geometry.
+     */
+    public final const val SOURCE_GEOMETRY_NAVMESH_CHILDREN: Long = 0
   }
 }

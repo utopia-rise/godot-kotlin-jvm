@@ -7,9 +7,12 @@ package godot
 
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
+import godot.core.Color
 import godot.core.RID
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.COLOR
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -17,6 +20,7 @@ import godot.core.VariantType.VECTOR3
 import godot.core.VariantType._RID
 import godot.core.Vector3
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -86,7 +90,7 @@ public open class RayCast : Spatial() {
     }
 
   /**
-   * The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.4/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
   public open var collisionMask: Long
     get() {
@@ -97,6 +101,40 @@ public open class RayCast : Spatial() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_SET_COLLISION_MASK, NIL)
+    }
+
+  /**
+   * The custom color to use to draw the shape in the editor and at run-time if **Visible Collision Shapes** is enabled in the **Debug** menu. This color will be highlighted at run-time if the [godot.RayCast] is colliding with something.
+   *
+   * If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in [godot.ProjectSettings.debug/shapes/collision/shapeColor] is used.
+   */
+  public open var debugShapeCustomColor: Color
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RAYCAST_GET_DEBUG_SHAPE_CUSTOM_COLOR, COLOR)
+      return TransferContext.readReturnValue(COLOR, false) as Color
+    }
+    set(`value`) {
+      TransferContext.writeArguments(COLOR to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RAYCAST_SET_DEBUG_SHAPE_CUSTOM_COLOR, NIL)
+    }
+
+  /**
+   * If set to `1`, a line is used as the debug shape. Otherwise, a truncated pyramid is drawn to represent the [godot.RayCast]. Requires **Visible Collision Shapes** to be enabled in the **Debug** menu for the debug shape to be visible at run-time.
+   */
+  public open var debugShapeThickness: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_GET_DEBUG_SHAPE_THICKNESS,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RAYCAST_SET_DEBUG_SHAPE_THICKNESS,
+          NIL)
     }
 
   /**
@@ -135,6 +173,14 @@ public open class RayCast : Spatial() {
   public open fun castTo(schedule: Vector3.() -> Unit): Vector3 = castTo.apply{
       schedule(this)
       castTo = this
+  }
+
+
+  @CoreTypeHelper
+  public open fun debugShapeCustomColor(schedule: Color.() -> Unit): Color =
+      debugShapeCustomColor.apply{
+      schedule(this)
+      debugShapeCustomColor = this
   }
 
 

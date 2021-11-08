@@ -906,6 +906,22 @@ public open class Environment : Resource() {
     }
 
   /**
+   * Takes more samples during downsample pass of glow. This ensures that single pixels are captured by glow which makes the glow look smoother and more stable during movement. However, it is very expensive and makes the glow post process take twice as long.
+   */
+  public open var glowHighQuality: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_HIGH_QUALITY,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_HIGH_QUALITY,
+          NIL)
+    }
+
+  /**
    * The glow intensity. When using the GLES2 renderer, this should be increased to 1.5 to compensate for the lack of HDR rendering.
    */
   public open var glowIntensity: Double
@@ -1463,9 +1479,13 @@ public open class Environment : Resource() {
      */
     TONE_MAPPER_FILMIC(2),
     /**
-     * Academy Color Encoding System tonemapper operator.
+     * Academy Color Encoding System tonemapper operator. Performs an aproximation of the ACES tonemapping curve.
      */
     TONE_MAPPER_ACES(3),
+    /**
+     * High quality Academy Color Encoding System tonemapper operator that matches the industry standard. Performs a more physically accurate curve fit which better simulates how light works in the real world. The color of lights and emissive materials will become lighter as the emissive energy increases, and will eventually become white if the light is bright enough to saturate the camera sensor.
+     */
+    TONE_MAPPER_ACES_FITTED(4),
     ;
 
     public val id: Long
@@ -1722,9 +1742,14 @@ public open class Environment : Resource() {
     public final const val SSAO_QUALITY_MEDIUM: Long = 1
 
     /**
-     * Academy Color Encoding System tonemapper operator.
+     * Academy Color Encoding System tonemapper operator. Performs an aproximation of the ACES tonemapping curve.
      */
     public final const val TONE_MAPPER_ACES: Long = 3
+
+    /**
+     * High quality Academy Color Encoding System tonemapper operator that matches the industry standard. Performs a more physically accurate curve fit which better simulates how light works in the real world. The color of lights and emissive materials will become lighter as the emissive energy increases, and will eventually become white if the light is bright enough to saturate the camera sensor.
+     */
+    public final const val TONE_MAPPER_ACES_FITTED: Long = 4
 
     /**
      * Filmic tonemapper operator.

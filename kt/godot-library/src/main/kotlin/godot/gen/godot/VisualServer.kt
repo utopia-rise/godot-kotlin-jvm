@@ -63,7 +63,7 @@ import kotlin.Unit
  * Server for anything visible.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/optimization/using_servers.html](https://docs.godotengine.org/en/3.3/tutorials/optimization/using_servers.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/optimization/using_servers.html](https://docs.godotengine.org/en/3.4/tutorials/optimization/using_servers.html)
  *
  * Server for anything visible. The visual server is the API backend for everything visible. The whole scene system mounts on it to display.
  *
@@ -106,9 +106,9 @@ public object VisualServer : Object() {
   public final const val ARRAY_COMPRESS_COLOR: Long = 4096
 
   /**
-   * Used to set flags [ARRAY_COMPRESS_NORMAL], [ARRAY_COMPRESS_TANGENT], [ARRAY_COMPRESS_COLOR], [ARRAY_COMPRESS_TEX_UV], [godot.ARRAY_COMPRESS_TEX_UV2] and [ARRAY_COMPRESS_WEIGHTS] quickly.
+   * Used to set flags [ARRAY_COMPRESS_NORMAL], [ARRAY_COMPRESS_TANGENT], [ARRAY_COMPRESS_COLOR], [ARRAY_COMPRESS_TEX_UV], [godot.ARRAY_COMPRESS_TEX_UV2], [ARRAY_COMPRESS_WEIGHTS], and [ARRAY_FLAG_USE_OCTAHEDRAL_COMPRESSION] quickly.
    */
-  public final const val ARRAY_COMPRESS_DEFAULT: Long = 97280
+  public final const val ARRAY_COMPRESS_DEFAULT: Long = 2194432
 
   /**
    * Flag used to mark a compressed index array.
@@ -154,6 +154,11 @@ public object VisualServer : Object() {
    * Flag used to mark that the array contains 2D vertices.
    */
   public final const val ARRAY_FLAG_USE_2D_VERTICES: Long = 262144
+
+  /**
+   * Flag used to mark that the array uses an octahedral representation of normal and tangent vectors rather than cartesian.
+   */
+  public final const val ARRAY_FLAG_USE_OCTAHEDRAL_COMPRESSION: Long = 2097152
 
   /**
    * Flag used to mark a bone information array.
@@ -451,6 +456,11 @@ public object VisualServer : Object() {
   public final const val ENV_TONE_MAPPER_ACES: Long = 3
 
   /**
+   * Use the ACES Fitted tonemapper.
+   */
+  public final const val ENV_TONE_MAPPER_ACES_FITTED: Long = 4
+
+  /**
    * Use the filmic tonemapper.
    */
   public final const val ENV_TONE_MAPPER_FILMIC: Long = 2
@@ -698,12 +708,12 @@ public object VisualServer : Object() {
   /**
    * The light's attenuation.
    */
-  public final const val LIGHT_PARAM_ATTENUATION: Long = 4
+  public final const val LIGHT_PARAM_ATTENUATION: Long = 5
 
   /**
    * Scales the shadow color.
    */
-  public final const val LIGHT_PARAM_CONTACT_SHADOW_SIZE: Long = 7
+  public final const val LIGHT_PARAM_CONTACT_SHADOW_SIZE: Long = 8
 
   /**
    * The light's energy.
@@ -711,64 +721,74 @@ public object VisualServer : Object() {
   public final const val LIGHT_PARAM_ENERGY: Long = 0
 
   /**
+   * Secondary multiplier used with indirect light (light bounces).
+   */
+  public final const val LIGHT_PARAM_INDIRECT_ENERGY: Long = 1
+
+  /**
    * Represents the size of the [enum LightParam] enum.
    */
-  public final const val LIGHT_PARAM_MAX: Long = 15
+  public final const val LIGHT_PARAM_MAX: Long = 16
 
   /**
    * The light's range.
    */
-  public final const val LIGHT_PARAM_RANGE: Long = 3
+  public final const val LIGHT_PARAM_RANGE: Long = 4
 
   /**
    * Bias the shadow lookup to fix self-shadowing artifacts.
    */
-  public final const val LIGHT_PARAM_SHADOW_BIAS: Long = 13
+  public final const val LIGHT_PARAM_SHADOW_BIAS: Long = 14
 
   /**
    * Increases bias on further splits to fix self-shadowing that only occurs far away from the camera.
    */
-  public final const val LIGHT_PARAM_SHADOW_BIAS_SPLIT_SCALE: Long = 14
+  public final const val LIGHT_PARAM_SHADOW_BIAS_SPLIT_SCALE: Long = 15
 
   /**
    * Max distance that shadows will be rendered.
    */
-  public final const val LIGHT_PARAM_SHADOW_MAX_DISTANCE: Long = 8
+  public final const val LIGHT_PARAM_SHADOW_MAX_DISTANCE: Long = 9
 
   /**
    * Normal bias used to offset shadow lookup by object normal. Can be used to fix self-shadowing artifacts.
    */
-  public final const val LIGHT_PARAM_SHADOW_NORMAL_BIAS: Long = 12
+  public final const val LIGHT_PARAM_SHADOW_NORMAL_BIAS: Long = 13
 
   /**
    * Proportion of shadow atlas occupied by the first split.
    */
-  public final const val LIGHT_PARAM_SHADOW_SPLIT_1_OFFSET: Long = 9
+  public final const val LIGHT_PARAM_SHADOW_SPLIT_1_OFFSET: Long = 10
 
   /**
    * Proportion of shadow atlas occupied by the second split.
    */
-  public final const val LIGHT_PARAM_SHADOW_SPLIT_2_OFFSET: Long = 10
+  public final const val LIGHT_PARAM_SHADOW_SPLIT_2_OFFSET: Long = 11
 
   /**
    * Proportion of shadow atlas occupied by the third split. The fourth split occupies the rest.
    */
-  public final const val LIGHT_PARAM_SHADOW_SPLIT_3_OFFSET: Long = 11
+  public final const val LIGHT_PARAM_SHADOW_SPLIT_3_OFFSET: Long = 12
+
+  /**
+   * The light's size, currently only used for soft shadows in baked lightmaps.
+   */
+  public final const val LIGHT_PARAM_SIZE: Long = 2
 
   /**
    * The light's influence on specularity.
    */
-  public final const val LIGHT_PARAM_SPECULAR: Long = 2
+  public final const val LIGHT_PARAM_SPECULAR: Long = 3
 
   /**
    * The spotlight's angle.
    */
-  public final const val LIGHT_PARAM_SPOT_ANGLE: Long = 5
+  public final const val LIGHT_PARAM_SPOT_ANGLE: Long = 6
 
   /**
    * The spotlight's attenuation.
    */
-  public final const val LIGHT_PARAM_SPOT_ATTENUATION: Long = 6
+  public final const val LIGHT_PARAM_SPOT_ATTENUATION: Long = 7
 
   /**
    * Is a spot light.
@@ -2314,12 +2334,13 @@ public object VisualServer : Object() {
     hdrBleedThreshold: Double,
     hdrBleedScale: Double,
     hdrLuminanceCap: Double,
-    bicubicUpscale: Boolean
+    bicubicUpscale: Boolean,
+    highQuality: Boolean
   ): Unit {
     TransferContext.writeArguments(_RID to env, BOOL to enable, LONG to levelFlags, DOUBLE to
         intensity, DOUBLE to strength, DOUBLE to bloomThreshold, LONG to blendMode, DOUBLE to
         hdrBleedThreshold, DOUBLE to hdrBleedScale, DOUBLE to hdrLuminanceCap, BOOL to
-        bicubicUpscale)
+        bicubicUpscale, BOOL to highQuality)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSERVER_ENVIRONMENT_SET_GLOW,
         NIL)
   }
@@ -3512,7 +3533,7 @@ public object VisualServer : Object() {
     primitive: Long,
     arrays: VariantArray<Any?>,
     blendShapes: VariantArray<Any?> = VariantArray(),
-    compressFormat: Long = 97280
+    compressFormat: Long = 2194432
   ): Unit {
     TransferContext.writeArguments(_RID to mesh, LONG to primitive, ARRAY to arrays, ARRAY to
         blendShapes, LONG to compressFormat)
@@ -3704,14 +3725,16 @@ public object VisualServer : Object() {
   }
 
   /**
-   * Function is unused in Godot 3.x.
+   *
    */
   public fun meshSurfaceGetFormatStride(
     format: Long,
     vertexLen: Long,
-    indexLen: Long
+    indexLen: Long,
+    arrayIndex: Long
   ): Long {
-    TransferContext.writeArguments(LONG to format, LONG to vertexLen, LONG to indexLen)
+    TransferContext.writeArguments(LONG to format, LONG to vertexLen, LONG to indexLen, LONG to
+        arrayIndex)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSERVER_MESH_SURFACE_GET_FORMAT_STRIDE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -4178,7 +4201,9 @@ public object VisualServer : Object() {
   }
 
   /**
-   * Sets the material for processing the particles. Note: this is not the material used to draw the materials. Equivalent to [godot.Particles.processMaterial].
+   * Sets the material for processing the particles.
+   *
+   * **Note:** This is not the material used to draw the materials. Equivalent to [godot.Particles.processMaterial].
    */
   public fun particlesSetProcessMaterial(particles: RID, material: RID): Unit {
     TransferContext.writeArguments(_RID to particles, _RID to material)
@@ -4445,6 +4470,15 @@ public object VisualServer : Object() {
     TransferContext.writeArguments(DOUBLE to scale)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSERVER_SET_SHADER_TIME_SCALE,
         NIL)
+  }
+
+  /**
+   * Enables or disables occlusion culling.
+   */
+  public fun setUseOcclusionCulling(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSERVER_SET_USE_OCCLUSION_CULLING, NIL)
   }
 
   /**
@@ -5118,6 +5152,15 @@ public object VisualServer : Object() {
   }
 
   /**
+   * Sets the sharpening `intensity` for the `viewport`. If set to a value greater than `0.0`, contrast-adaptive sharpening will be applied to the 3D viewport. This has a low performance cost and can be used to recover some of the sharpness lost from using FXAA. Values around `0.5` generally give the best results. See also [viewportSetUseFxaa].
+   */
+  public fun viewportSetSharpenIntensity(viewport: RID, intensity: Double): Unit {
+    TransferContext.writeArguments(_RID to viewport, DOUBLE to intensity)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSERVER_VIEWPORT_SET_SHARPEN_INTENSITY, NIL)
+  }
+
+  /**
    * Sets the viewport's width and height.
    */
   public fun viewportSetSize(
@@ -5177,7 +5220,7 @@ public object VisualServer : Object() {
   }
 
   /**
-   * Enables fast approximate antialiasing for this viewport. FXAA is a popular screen-space antialiasing method, which is fast but will make the image look blurry, especially at lower resolutions. It can still work relatively well at large resolutions such as 1440p and 4K.
+   * Enables fast approximate antialiasing for this viewport. FXAA is a popular screen-space antialiasing method, which is fast but will make the image look blurry, especially at lower resolutions. It can still work relatively well at large resolutions such as 1440p and 4K. Some of the lost sharpness can be recovered by enabling contrast-adaptive sharpening (see [viewportSetSharpenIntensity]).
    */
   public fun viewportSetUseFxaa(viewport: RID, fxaa: Boolean): Unit {
     TransferContext.writeArguments(_RID to viewport, BOOL to fxaa)
@@ -6007,6 +6050,10 @@ public object VisualServer : Object() {
      * Use the ACES tonemapper.
      */
     ENV_TONE_MAPPER_ACES(3),
+    /**
+     * Use the ACES Fitted tonemapper.
+     */
+    ENV_TONE_MAPPER_ACES_FITTED(4),
     ;
 
     public val id: Long
@@ -6277,10 +6324,6 @@ public object VisualServer : Object() {
      */
     ARRAY_COMPRESS_WEIGHTS(65536),
     /**
-     * Used to set flags [ARRAY_COMPRESS_NORMAL], [ARRAY_COMPRESS_TANGENT], [ARRAY_COMPRESS_COLOR], [ARRAY_COMPRESS_TEX_UV], [godot.ARRAY_COMPRESS_TEX_UV2] and [ARRAY_COMPRESS_WEIGHTS] quickly.
-     */
-    ARRAY_COMPRESS_DEFAULT(97280),
-    /**
      * Flag used to mark a compressed index array.
      */
     ARRAY_COMPRESS_INDEX(131072),
@@ -6292,6 +6335,14 @@ public object VisualServer : Object() {
      * Flag used to mark that the array uses 16-bit bones instead of 8-bit.
      */
     ARRAY_FLAG_USE_16_BIT_BONES(524288),
+    /**
+     * Flag used to mark that the array uses an octahedral representation of normal and tangent vectors rather than cartesian.
+     */
+    ARRAY_FLAG_USE_OCTAHEDRAL_COMPRESSION(2097152),
+    /**
+     * Used to set flags [ARRAY_COMPRESS_NORMAL], [ARRAY_COMPRESS_TANGENT], [ARRAY_COMPRESS_COLOR], [ARRAY_COMPRESS_TEX_UV], [godot.ARRAY_COMPRESS_TEX_UV2], [ARRAY_COMPRESS_WEIGHTS], and [ARRAY_FLAG_USE_OCTAHEDRAL_COMPRESSION] quickly.
+     */
+    ARRAY_COMPRESS_DEFAULT(2194432),
     ;
 
     public val id: Long
@@ -6397,61 +6448,69 @@ public object VisualServer : Object() {
      */
     LIGHT_PARAM_ENERGY(0),
     /**
+     * Secondary multiplier used with indirect light (light bounces).
+     */
+    LIGHT_PARAM_INDIRECT_ENERGY(1),
+    /**
+     * The light's size, currently only used for soft shadows in baked lightmaps.
+     */
+    LIGHT_PARAM_SIZE(2),
+    /**
      * The light's influence on specularity.
      */
-    LIGHT_PARAM_SPECULAR(2),
+    LIGHT_PARAM_SPECULAR(3),
     /**
      * The light's range.
      */
-    LIGHT_PARAM_RANGE(3),
+    LIGHT_PARAM_RANGE(4),
     /**
      * The light's attenuation.
      */
-    LIGHT_PARAM_ATTENUATION(4),
+    LIGHT_PARAM_ATTENUATION(5),
     /**
      * The spotlight's angle.
      */
-    LIGHT_PARAM_SPOT_ANGLE(5),
+    LIGHT_PARAM_SPOT_ANGLE(6),
     /**
      * The spotlight's attenuation.
      */
-    LIGHT_PARAM_SPOT_ATTENUATION(6),
+    LIGHT_PARAM_SPOT_ATTENUATION(7),
     /**
      * Scales the shadow color.
      */
-    LIGHT_PARAM_CONTACT_SHADOW_SIZE(7),
+    LIGHT_PARAM_CONTACT_SHADOW_SIZE(8),
     /**
      * Max distance that shadows will be rendered.
      */
-    LIGHT_PARAM_SHADOW_MAX_DISTANCE(8),
+    LIGHT_PARAM_SHADOW_MAX_DISTANCE(9),
     /**
      * Proportion of shadow atlas occupied by the first split.
      */
-    LIGHT_PARAM_SHADOW_SPLIT_1_OFFSET(9),
+    LIGHT_PARAM_SHADOW_SPLIT_1_OFFSET(10),
     /**
      * Proportion of shadow atlas occupied by the second split.
      */
-    LIGHT_PARAM_SHADOW_SPLIT_2_OFFSET(10),
+    LIGHT_PARAM_SHADOW_SPLIT_2_OFFSET(11),
     /**
      * Proportion of shadow atlas occupied by the third split. The fourth split occupies the rest.
      */
-    LIGHT_PARAM_SHADOW_SPLIT_3_OFFSET(11),
+    LIGHT_PARAM_SHADOW_SPLIT_3_OFFSET(12),
     /**
      * Normal bias used to offset shadow lookup by object normal. Can be used to fix self-shadowing artifacts.
      */
-    LIGHT_PARAM_SHADOW_NORMAL_BIAS(12),
+    LIGHT_PARAM_SHADOW_NORMAL_BIAS(13),
     /**
      * Bias the shadow lookup to fix self-shadowing artifacts.
      */
-    LIGHT_PARAM_SHADOW_BIAS(13),
+    LIGHT_PARAM_SHADOW_BIAS(14),
     /**
      * Increases bias on further splits to fix self-shadowing that only occurs far away from the camera.
      */
-    LIGHT_PARAM_SHADOW_BIAS_SPLIT_SCALE(14),
+    LIGHT_PARAM_SHADOW_BIAS_SPLIT_SCALE(15),
     /**
      * Represents the size of the [enum LightParam] enum.
      */
-    LIGHT_PARAM_MAX(15),
+    LIGHT_PARAM_MAX(16),
     ;
 
     public val id: Long

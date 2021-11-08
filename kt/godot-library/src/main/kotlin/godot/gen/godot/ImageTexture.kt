@@ -29,7 +29,7 @@ import kotlin.Unit
  * A [godot.Texture] based on an [godot.Image].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/getting_started/workflow/assets/importing_images.html](https://docs.godotengine.org/en/3.3/getting_started/workflow/assets/importing_images.html)
+ * [https://docs.godotengine.org/en/3.4/getting_started/workflow/assets/importing_images.html](https://docs.godotengine.org/en/3.4/getting_started/workflow/assets/importing_images.html)
  *
  * A [godot.Texture] based on an [godot.Image]. For an image to be displayed, an [godot.ImageTexture] has to be created from it using the [createFromImage] method:
  *
@@ -137,7 +137,7 @@ public open class ImageTexture : Texture() {
   /**
    * Loads an image from a file path and creates a texture from it.
    *
-   * **Note:** the method is deprecated and will be removed in Godot 4.0, use [godot.Image.load] and [createFromImage] instead.
+   * **Note:** This method is deprecated and will be removed in Godot 4.0, use [godot.Image.load] and [createFromImage] instead.
    */
   public open fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)

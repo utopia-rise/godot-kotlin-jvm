@@ -83,6 +83,19 @@ public open class CSGPolygon : CSGPrimitive() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON_SET_PATH_INTERVAL, NIL)
     }
 
+  public open var pathIntervalType: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON_GET_PATH_INTERVAL_TYPE,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON_SET_PATH_INTERVAL_TYPE,
+          NIL)
+    }
+
   public open var pathJoined: Boolean
     get() {
       TransferContext.writeArguments()
@@ -127,6 +140,32 @@ public open class CSGPolygon : CSGPrimitive() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON_SET_PATH_ROTATION, NIL)
+    }
+
+  public open var pathSimplifyAngle: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CSGPOLYGON_GET_PATH_SIMPLIFY_ANGLE, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CSGPOLYGON_SET_PATH_SIMPLIFY_ANGLE, NIL)
+    }
+
+  public open var pathUDistance: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON_GET_PATH_U_DISTANCE,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPOLYGON_SET_PATH_U_DISTANCE,
+          NIL)
     }
 
   public open var polygon: PoolVector2Array
@@ -193,6 +232,23 @@ public open class CSGPolygon : CSGPrimitive() {
   public open fun _pathExited(): Unit {
   }
 
+  public enum class PathIntervalType(
+    id: Long
+  ) {
+    PATH_INTERVAL_DISTANCE(0),
+    PATH_INTERVAL_SUBDIVIDE(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
   public enum class PathRotation(
     id: Long
   ) {
@@ -235,6 +291,10 @@ public open class CSGPolygon : CSGPrimitive() {
     public final const val MODE_PATH: Long = 2
 
     public final const val MODE_SPIN: Long = 1
+
+    public final const val PATH_INTERVAL_DISTANCE: Long = 0
+
+    public final const val PATH_INTERVAL_SUBDIVIDE: Long = 1
 
     public final const val PATH_ROTATION_PATH: Long = 1
 

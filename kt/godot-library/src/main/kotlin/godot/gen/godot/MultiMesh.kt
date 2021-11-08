@@ -31,8 +31,8 @@ import kotlin.Unit
  * Provides high-performance mesh instancing.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/3d/vertex_animation/animating_thousands_of_fish.html](https://docs.godotengine.org/en/3.3/tutorials/3d/vertex_animation/animating_thousands_of_fish.html)
- * [https://docs.godotengine.org/en/3.3/tutorials/optimization/using_multimesh.html](https://docs.godotengine.org/en/3.3/tutorials/optimization/using_multimesh.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/3d/vertex_animation/animating_thousands_of_fish.html](https://docs.godotengine.org/en/3.4/tutorials/3d/vertex_animation/animating_thousands_of_fish.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/optimization/using_multimesh.html](https://docs.godotengine.org/en/3.4/tutorials/optimization/using_multimesh.html)
  *
  * MultiMesh provides low-level mesh instancing. Drawing thousands of [godot.MeshInstance] nodes can be slow, since each object is submitted to the GPU then drawn individually.
  *

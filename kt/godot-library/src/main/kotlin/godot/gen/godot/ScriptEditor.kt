@@ -133,6 +133,9 @@ public open class ScriptEditor : PanelContainer() {
   public open fun _historyForward(): Unit {
   }
 
+  public override fun _input(event: InputEvent): Unit {
+  }
+
   public open fun _liveAutoReloadRunningScripts(): Unit {
   }
 
@@ -157,6 +160,9 @@ public open class ScriptEditor : PanelContainer() {
   }
 
   public open fun _openRecentScript(arg0: Long): Unit {
+  }
+
+  public open fun _queueCloseTabs(): Unit {
   }
 
   public open fun _reloadScripts(): Unit {

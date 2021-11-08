@@ -211,6 +211,22 @@ public open class TextureProgress : Range() {
     }
 
   /**
+   * The offset of [textureProgress]. Useful for [textureOver] and [textureUnder] with fancy borders, to avoid transparent margins in your progress texture.
+   */
+  public open var textureProgressOffset: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESS_GET_TEXTURE_PROGRESS_OFFSET, VECTOR2)
+      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESS_SET_TEXTURE_PROGRESS_OFFSET, NIL)
+    }
+
+  /**
    * [godot.Texture] that draws under the progress bar. The bar's background.
    */
   public open var textureUnder: Texture?
@@ -283,6 +299,14 @@ public open class TextureProgress : Range() {
       radialCenterOffset.apply{
       schedule(this)
       radialCenterOffset = this
+  }
+
+
+  @CoreTypeHelper
+  public open fun textureProgressOffset(schedule: Vector2.() -> Unit): Vector2 =
+      textureProgressOffset.apply{
+      schedule(this)
+      textureProgressOffset = this
   }
 
 

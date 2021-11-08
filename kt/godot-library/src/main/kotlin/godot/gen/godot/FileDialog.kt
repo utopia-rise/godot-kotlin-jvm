@@ -251,6 +251,8 @@ public open class FileDialog : ConfirmationDialog() {
 
   /**
    * Returns the LineEdit for the selected file.
+   *
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
   public open fun getLineEdit(): LineEdit? {
     TransferContext.writeArguments()
@@ -260,6 +262,8 @@ public open class FileDialog : ConfirmationDialog() {
 
   /**
    * Returns the vertical box container of the dialog, custom controls can be added to it.
+   *
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
   public open fun getVbox(): VBoxContainer? {
     TransferContext.writeArguments()

@@ -108,6 +108,9 @@ public open class FileSystemDock : VBoxContainer() {
   public open fun _fileRemoved(arg0: String): Unit {
   }
 
+  public open fun _fileSortPopup(arg0: Long): Unit {
+  }
+
   public open fun _folderRemoved(arg0: String): Unit {
   }
 
@@ -204,11 +207,11 @@ public open class FileSystemDock : VBoxContainer() {
    *
    */
   public open fun canDropDataFw(
-    arg0: Vector2,
-    arg1: Any?,
-    arg2: Control
+    point: Vector2,
+    `data`: Any?,
+    from: Control
   ): Boolean {
-    TransferContext.writeArguments(VECTOR2 to arg0, ANY to arg1, OBJECT to arg2)
+    TransferContext.writeArguments(VECTOR2 to point, ANY to data, OBJECT to from)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILESYSTEMDOCK_CAN_DROP_DATA_FW,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -218,19 +221,19 @@ public open class FileSystemDock : VBoxContainer() {
    *
    */
   public open fun dropDataFw(
-    arg0: Vector2,
-    arg1: Any?,
-    arg2: Control
+    point: Vector2,
+    `data`: Any?,
+    from: Control
   ): Unit {
-    TransferContext.writeArguments(VECTOR2 to arg0, ANY to arg1, OBJECT to arg2)
+    TransferContext.writeArguments(VECTOR2 to point, ANY to data, OBJECT to from)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILESYSTEMDOCK_DROP_DATA_FW, NIL)
   }
 
   /**
    *
    */
-  public open fun getDragDataFw(arg0: Vector2, arg1: Control): Any? {
-    TransferContext.writeArguments(VECTOR2 to arg0, OBJECT to arg1)
+  public open fun getDragDataFw(point: Vector2, from: Control): Any? {
+    TransferContext.writeArguments(VECTOR2 to point, OBJECT to from)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILESYSTEMDOCK_GET_DRAG_DATA_FW,
         ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -239,8 +242,8 @@ public open class FileSystemDock : VBoxContainer() {
   /**
    *
    */
-  public open fun navigateToPath(arg0: String): Unit {
-    TransferContext.writeArguments(STRING to arg0)
+  public open fun navigateToPath(path: String): Unit {
+    TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILESYSTEMDOCK_NAVIGATE_TO_PATH,
         NIL)
   }

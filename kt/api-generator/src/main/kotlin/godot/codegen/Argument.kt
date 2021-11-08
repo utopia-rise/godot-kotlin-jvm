@@ -44,6 +44,10 @@ class Argument @JsonCreator constructor(
                 "Dictionary", "Transform", "Transform2D", "VariantArray", "RID", "PoolVector2Array", "PoolStringArray",
                 "PoolVector3Array", "PoolColorArray", "PoolIntArray", "PoolRealArray", "PoolByteArray" -> "$type()"
                 "String" -> "\"$defaultValue\""
+                "NodePath" -> {
+                    val parameter = if (defaultValue.isEmpty()) "" else "\"$defaultValue\""
+                    "$type($parameter)"
+                }
                 else -> defaultValue
             }
         } else {

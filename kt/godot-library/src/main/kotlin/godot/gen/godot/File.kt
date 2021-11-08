@@ -53,7 +53,7 @@ import kotlin.Unit
  * 		    return content
  * 		```
  *
- * In the example above, the file will be saved in the user data folder as specified in the [godot.Data paths](https://docs.godotengine.org/en/3.3/tutorials/io/data_paths.html) documentation.
+ * In the example above, the file will be saved in the user data folder as specified in the [godot.Data paths](https://docs.godotengine.org/en/3.4/tutorials/io/data_paths.html) documentation.
  *
  * **Note:** To access project resources once exported, it is recommended to use [godot.ResourceLoader] instead of the [godot.File] API, as some files are converted to engine-specific formats and their original source files might not be present in the exported PCK package.
  *
@@ -92,9 +92,14 @@ public open class File : Reference() {
   }
 
   /**
-   * Returns `true` if the file cursor has read past the end of the file.
+   * Returns `true` if the file cursor has already read past the end of the file.
    *
-   * **Note:** This function will still return `false` while at the end of the file and only activates when reading past it. This can be confusing but it conforms to how low-level file access works in all operating systems. There is always [getLen] and [getPosition] to implement a custom logic.
+   * **Note:** `eof_reached() == false` cannot be used to check whether there is more data available. To loop while there is more data available, use:
+   *
+   * ```
+   * 				while file.get_position() < file.get_len():
+   * 				    # Read data
+   * 				```
    */
   public open fun eofReached(): Boolean {
     TransferContext.writeArguments()
@@ -180,9 +185,19 @@ public open class File : Reference() {
   }
 
   /**
-   * Returns the next value of the file in CSV (Comma-Separated Values) format. You can pass a different delimiter `delim` to use other than the default `","` (comma). This delimiter must be one-character long.
+   * Returns the next value of the file in CSV (Comma-Separated Values) format. You can pass a different delimiter `delim` to use other than the default `","` (comma). This delimiter must be one-character long, and cannot be a double quotation mark.
    *
-   * Text is interpreted as being UTF-8 encoded.
+   * Text is interpreted as being UTF-8 encoded. Text values must be enclosed in double quotes if they include the delimiter character. Double quotes within a text value can be escaped by doubling their occurrence.
+   *
+   * For example, the following CSV lines are valid and will be properly parsed as two strings each:
+   *
+   * ```
+   * 				Alice,"Hello, Bob!"
+   * 				Bob,Alice! What a surprise!
+   * 				Alice,"I thought you'd reply with ""Hello, world""."
+   * 				```
+   *
+   * Note how the second line can omit the enclosing quotes as it does not include the delimiter. However it *could* very well use quotes, it was only written without for demonstration purposes. The third line must use `""` for each quotation mark that needs to be interpreted as such instead of the end of a text value.
    */
   public open fun getCsvLine(delim: String = ","): PoolStringArray {
     TransferContext.writeArguments(STRING to delim)

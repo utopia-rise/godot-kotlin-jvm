@@ -29,7 +29,7 @@ import kotlin.Unit
  * Controls how an individual character will be displayed in a [godot.RichTextEffect].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/gui/bbcode_in_richtextlabel.html](https://docs.godotengine.org/en/3.3/tutorials/gui/bbcode_in_richtextlabel.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/gui/bbcode_in_richtextlabel.html](https://docs.godotengine.org/en/3.4/tutorials/gui/bbcode_in_richtextlabel.html)
  * [https://github.com/Eoin-ONeill-Yokai/Godot-Rich-Text-Effect-Test-Project](https://github.com/Eoin-ONeill-Yokai/Godot-Rich-Text-Effect-Test-Project)
  *
  * By setting various properties on this object, you can control how individual characters will be displayed in a [godot.RichTextEffect].
@@ -89,7 +89,7 @@ public open class CharFXTransform : Reference() {
     }
 
   /**
-   * The time elapsed since the [godot.RichTextLabel] was added to the scene tree (in seconds). Time stops when the project is paused, unless the [godot.RichTextLabel]'s [godot.Node.pauseMode] is set to [godot.Node.PAUSE_MODE_PROCESS].
+   * The time elapsed since the [godot.RichTextLabel] was added to the scene tree (in seconds). Time stops when the [godot.RichTextLabel] is paused (see [godot.Node.pauseMode]). Resets when the text in the [godot.RichTextLabel] is changed.
    *
    * **Note:** Time still passes while the [godot.RichTextLabel] is hidden.
    */

@@ -19,8 +19,6 @@ import kotlin.Unit
  * Overrides the location sounds are heard from.
  *
  * Once added to the scene tree and enabled using [makeCurrent], this node will override the location sounds are heard from. This can be used to listen from a location different from the [godot.Camera].
- *
- * **Note:** There is no 2D equivalent for this node yet.
  */
 @GodotBaseType
 public open class Listener : Spatial() {

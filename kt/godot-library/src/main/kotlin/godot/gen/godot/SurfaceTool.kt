@@ -205,9 +205,9 @@ public open class SurfaceTool : Reference() {
   /**
    * Returns a constructed [godot.ArrayMesh] from current information passed in. If an existing [godot.ArrayMesh] is passed in as an argument, will add an extra surface to the existing [godot.ArrayMesh].
    *
-   * Default flag is [godot.Mesh.ARRAY_COMPRESS_DEFAULT]. See `ARRAY_COMPRESS_*` constants in [enum Mesh.ArrayFormat] for other flags.
+   * Default flag is [godot.Mesh.ARRAY_COMPRESS_DEFAULT] if compression is enabled. If compression is disabled the default flag is [godot.Mesh.ARRAY_FLAG_USE_OCTAHEDRAL_COMPRESSION]. See `ARRAY_COMPRESS_*` constants in [enum Mesh.ArrayFormat] for other flags.
    */
-  public open fun commit(existing: ArrayMesh? = null, flags: Long = 97280): ArrayMesh? {
+  public open fun commit(existing: ArrayMesh? = null, flags: Long = 2194432): ArrayMesh? {
     TransferContext.writeArguments(OBJECT to existing, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_COMMIT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?
@@ -252,7 +252,7 @@ public open class SurfaceTool : Reference() {
   }
 
   /**
-   * Generates normals from vertices so you do not have to do it manually. If `flip` is `true`, the resulting normals will be inverted. [generateNormals] should be called *after* generating geometry and *before* committing the mesh using [commit] or [commitToArrays].
+   * Generates normals from vertices so you do not have to do it manually. If `flip` is `true`, the resulting normals will be inverted. [generateNormals] should be called *after* generating geometry and *before* committing the mesh using [commit] or [commitToArrays]. For correct display of normal-mapped surfaces, you will also have to generate tangents using [generateTangents].
    *
    * **Note:** [generateNormals] only works if the primitive type to be set to [godot.Mesh.PRIMITIVE_TRIANGLES].
    */
@@ -262,7 +262,7 @@ public open class SurfaceTool : Reference() {
   }
 
   /**
-   * Generates a tangent vector for each vertex. Requires that each vertex have UVs and normals set already.
+   * Generates a tangent vector for each vertex. Requires that each vertex have UVs and normals set already (see [generateNormals]).
    */
   public open fun generateTangents(): Unit {
     TransferContext.writeArguments()

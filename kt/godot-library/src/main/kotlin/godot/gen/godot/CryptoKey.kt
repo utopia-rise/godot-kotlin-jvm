@@ -8,9 +8,11 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.TransferContext
+import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING
+import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
@@ -32,20 +34,51 @@ public open class CryptoKey : Resource() {
   }
 
   /**
-   * Loads a key from `path` ("*.key" file).
+   * Return `true` if this CryptoKey only has the public part, and not the private one.
    */
-  public open fun load(path: String): GodotError {
-    TransferContext.writeArguments(STRING to path)
+  public open fun isPublicOnly(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTOKEY_IS_PUBLIC_ONLY, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Loads a key from `path`. If `public_only` is `true`, only the public key will be loaded.
+   *
+   * **Note:** `path` should be a "*.pub" file if `public_only` is `true`, a "*.key" file otherwise.
+   */
+  public open fun load(path: String, publicOnly: Boolean = false): GodotError {
+    TransferContext.writeArguments(STRING to path, BOOL to publicOnly)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTOKEY_LOAD, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
-   * Saves a key to the given `path` (should be a "*.key" file).
+   * Loads a key from the given `string`. If `public_only` is `true`, only the public key will be loaded.
    */
-  public open fun save(path: String): GodotError {
-    TransferContext.writeArguments(STRING to path)
+  public open fun loadFromString(stringKey: String, publicOnly: Boolean = false): GodotError {
+    TransferContext.writeArguments(STRING to stringKey, BOOL to publicOnly)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTOKEY_LOAD_FROM_STRING, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Saves a key to the given `path`. If `public_only` is `true`, only the public key will be saved.
+   *
+   * **Note:** `path` should be a "*.pub" file if `public_only` is `true`, a "*.key" file otherwise.
+   */
+  public open fun save(path: String, publicOnly: Boolean = false): GodotError {
+    TransferContext.writeArguments(STRING to path, BOOL to publicOnly)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTOKEY_SAVE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Returns a string containing the key in PEM format. If `public_only` is `true`, only the public key will be included.
+   */
+  public open fun saveToString(publicOnly: Boolean = false): String {
+    TransferContext.writeArguments(BOOL to publicOnly)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CRYPTOKEY_SAVE_TO_STRING, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
   }
 }

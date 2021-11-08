@@ -16,9 +16,9 @@ import kotlin.Unit
  * Node that instances a [godot.MultiMesh].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/3d/vertex_animation/animating_thousands_of_fish.html](https://docs.godotengine.org/en/3.3/tutorials/3d/vertex_animation/animating_thousands_of_fish.html)
- * [https://docs.godotengine.org/en/3.3/tutorials/3d/using_multi_mesh_instance.html](https://docs.godotengine.org/en/3.3/tutorials/3d/using_multi_mesh_instance.html)
- * [https://docs.godotengine.org/en/3.3/tutorials/optimization/using_multimesh.html](https://docs.godotengine.org/en/3.3/tutorials/optimization/using_multimesh.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/3d/vertex_animation/animating_thousands_of_fish.html](https://docs.godotengine.org/en/3.4/tutorials/3d/vertex_animation/animating_thousands_of_fish.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/3d/using_multi_mesh_instance.html](https://docs.godotengine.org/en/3.4/tutorials/3d/using_multi_mesh_instance.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/optimization/using_multimesh.html](https://docs.godotengine.org/en/3.4/tutorials/optimization/using_multimesh.html)
  *
  * [godot.MultiMeshInstance] is a specialized node to instance [godot.GeometryInstance]s based on a [godot.MultiMesh] resource.
  *

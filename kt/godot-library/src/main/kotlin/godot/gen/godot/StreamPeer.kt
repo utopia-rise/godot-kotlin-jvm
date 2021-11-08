@@ -269,7 +269,7 @@ public open class StreamPeer : Reference() {
   /**
    * Puts a zero-terminated ASCII string into the stream prepended by a 32-bit unsigned integer representing its size.
    *
-   * Note: To put an ASCII string without prepending its size, you can use [putData]:
+   * **Note:** To put an ASCII string without prepending its size, you can use [putData]:
    *
    * ```
    * 				put_data("Hello world".to_ascii())
@@ -315,7 +315,7 @@ public open class StreamPeer : Reference() {
   /**
    * Puts a zero-terminated UTF-8 string into the stream prepended by a 32 bits unsigned integer representing its size.
    *
-   * Note: To put an UTF-8 string without prepending its size, you can use [putData]:
+   * **Note:** To put an UTF-8 string without prepending its size, you can use [putData]:
    *
    * ```
    * 				put_data("Hello world".to_utf8())

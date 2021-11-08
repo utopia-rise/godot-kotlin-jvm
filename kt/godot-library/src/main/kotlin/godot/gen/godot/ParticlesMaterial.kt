@@ -245,7 +245,7 @@ public open class ParticlesMaterial : Material() {
     }
 
   /**
-   * Each particle's color will vary along this [godot.GradientTexture].
+   * Each particle's color will vary along this [godot.GradientTexture] over its lifetime (multiplied with [color]).
    */
   public open var colorRamp: Texture?
     get() {
@@ -405,6 +405,70 @@ public open class ParticlesMaterial : Material() {
     }
 
   /**
+   * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
+   */
+  public open var emissionRingAxis: Vector3
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_EMISSION_RING_AXIS, VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_EMISSION_RING_AXIS, NIL)
+    }
+
+  /**
+   * The height of the ring when using the emitter [EMISSION_SHAPE_RING].
+   */
+  public open var emissionRingHeight: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_EMISSION_RING_HEIGHT, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_EMISSION_RING_HEIGHT, NIL)
+    }
+
+  /**
+   * The inner radius of the ring when using the emitter [EMISSION_SHAPE_RING].
+   */
+  public open var emissionRingInnerRadius: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_EMISSION_RING_INNER_RADIUS, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_EMISSION_RING_INNER_RADIUS, NIL)
+    }
+
+  /**
+   * The radius of the ring when using the emitter [EMISSION_SHAPE_RING].
+   */
+  public open var emissionRingRadius: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_EMISSION_RING_RADIUS, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_EMISSION_RING_RADIUS, NIL)
+    }
+
+  /**
    * Particles will be emitted inside this region. Use [enum EmissionShape] constants for values.
    */
   public open var emissionShape: Long
@@ -485,7 +549,7 @@ public open class ParticlesMaterial : Material() {
     }
 
   /**
-   * Amount of [spread] in Y/Z plane. A value of `1` restricts particles to X/Z plane.
+   * Amount of [spread] along the Y axis.
    */
   public open var flatness: Double
     get() {
@@ -806,7 +870,7 @@ public open class ParticlesMaterial : Material() {
     }
 
   /**
-   * Each particle's initial direction range from `+spread` to `-spread` degrees. Applied to X/Z plane and Y/Z planes.
+   * Each particle's initial direction range from `+spread` to `-spread` degrees.
    */
   public open var spread: Double
     get() {
@@ -943,6 +1007,13 @@ public open class ParticlesMaterial : Material() {
 
 
   @CoreTypeHelper
+  public open fun emissionRingAxis(schedule: Vector3.() -> Unit): Vector3 = emissionRingAxis.apply{
+      schedule(this)
+      emissionRingAxis = this
+  }
+
+
+  @CoreTypeHelper
   public open fun gravity(schedule: Vector3.() -> Unit): Vector3 = gravity.apply{
       schedule(this)
       gravity = this
@@ -1004,9 +1075,13 @@ public open class ParticlesMaterial : Material() {
      */
     EMISSION_SHAPE_DIRECTED_POINTS(4),
     /**
+     * Particles will be emitted in a ring or cylinder.
+     */
+    EMISSION_SHAPE_RING(5),
+    /**
      * Represents the size of the [enum EmissionShape] enum.
      */
-    EMISSION_SHAPE_MAX(5),
+    EMISSION_SHAPE_MAX(6),
     ;
 
     public val id: Long
@@ -1100,7 +1175,7 @@ public open class ParticlesMaterial : Material() {
     /**
      * Represents the size of the [enum EmissionShape] enum.
      */
-    public final const val EMISSION_SHAPE_MAX: Long = 5
+    public final const val EMISSION_SHAPE_MAX: Long = 6
 
     /**
      * All particles will be emitted from a single point.
@@ -1111,6 +1186,11 @@ public open class ParticlesMaterial : Material() {
      * Particles will be emitted at a position determined by sampling a random point on the [emissionPointTexture]. Particle color will be modulated by [emissionColorTexture].
      */
     public final const val EMISSION_SHAPE_POINTS: Long = 3
+
+    /**
+     * Particles will be emitted in a ring or cylinder.
+     */
+    public final const val EMISSION_SHAPE_RING: Long = 5
 
     /**
      * Particles will be emitted in the volume of a sphere.

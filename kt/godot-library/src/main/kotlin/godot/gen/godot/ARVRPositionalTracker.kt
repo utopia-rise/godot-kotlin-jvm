@@ -34,7 +34,7 @@ import kotlin.Unit
  * A tracked object.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/vr/index.html](https://docs.godotengine.org/en/3.3/tutorials/vr/index.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/vr/index.html](https://docs.godotengine.org/en/3.4/tutorials/vr/index.html)
  *
  * An instance of this object represents a device that is tracked, such as a controller or anchor point. HMDs aren't represented here as they are handled internally.
  *
@@ -43,7 +43,7 @@ import kotlin.Unit
  * The [godot.ARVRController] and [godot.ARVRAnchor] both consume objects of this type and should be used in your project. The positional trackers are just under-the-hood objects that make this all work. These are mostly exposed so that GDNative-based interfaces can interact with them.
  */
 @GodotBaseType
-public open class ARVRPositionalTracker : Object() {
+public open class ARVRPositionalTracker : Reference() {
   /**
    * The degree to which the tracker rumbles. Ranges from `0.0` to `1.0` with precision `.01`.
    */

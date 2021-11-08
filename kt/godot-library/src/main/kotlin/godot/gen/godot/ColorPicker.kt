@@ -29,7 +29,9 @@ import kotlin.Unit
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/146](https://godotengine.org/asset-library/asset/146)
  *
- * [godot.Control] node displaying a color picker widget. It's useful for selecting a color from an RGB/RGBA colorspace.
+ * Displays a color picker widget. Useful for selecting a color from an RGB/RGBA colorspace.
+ *
+ * **Note:** This control is the color picker widget itself. You can use a [godot.ColorPickerButton] instead if you need a button that brings up a [godot.ColorPicker] in a pop-up.
  */
 @GodotBaseType
 public open class ColorPicker : BoxContainer() {
@@ -191,6 +193,9 @@ public open class ColorPicker : BoxContainer() {
   public open fun _sampleDraw(): Unit {
   }
 
+  public open fun _sampleInput(arg0: InputEvent): Unit {
+  }
+
   public open fun _screenInput(arg0: InputEvent): Unit {
   }
 
@@ -215,7 +220,7 @@ public open class ColorPicker : BoxContainer() {
   /**
    * Adds the given color to a list of color presets. The presets are displayed in the color picker and the user will be able to select them.
    *
-   * **Note:** the presets list is only for *this* color picker.
+   * **Note:** The presets list is only for *this* color picker.
    */
   public open fun addPreset(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)

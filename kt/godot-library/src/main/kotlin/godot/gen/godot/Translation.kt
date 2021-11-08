@@ -22,8 +22,8 @@ import kotlin.Unit
  * Language Translation.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/i18n/internationalizing_games.html](https://docs.godotengine.org/en/3.3/tutorials/i18n/internationalizing_games.html)
- * [https://docs.godotengine.org/en/3.3/tutorials/i18n/locales.html](https://docs.godotengine.org/en/3.3/tutorials/i18n/locales.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/i18n/internationalizing_games.html](https://docs.godotengine.org/en/3.4/tutorials/i18n/internationalizing_games.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/i18n/locales.html](https://docs.godotengine.org/en/3.4/tutorials/i18n/locales.html)
  *
  * Translations are resources that can be loaded and unloaded on demand. They map a string to another string.
  */
@@ -45,6 +45,13 @@ public open class Translation : Resource() {
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TRANSLATION)
+  }
+
+  /**
+   * Virtual method to override [getMessage].
+   */
+  public open fun _getMessage(srcMessage: String): String {
+    throw NotImplementedError("_get_message is not implemented for Translation")
   }
 
   public open fun _getMessages(): PoolStringArray {

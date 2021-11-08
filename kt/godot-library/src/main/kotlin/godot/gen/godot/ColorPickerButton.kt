@@ -29,6 +29,8 @@ import kotlin.Unit
  * Encapsulates a [godot.ColorPicker] making it accessible by pressing a button. Pressing the button will toggle the [godot.ColorPicker] visibility.
  *
  * See also [godot.BaseButton] which contains common properties and methods associated with this node.
+ *
+ * **Note:** By default, the button may not be wide enough for the color preview swatch to be visible. Make sure to set [godot.Control.rectMinSize] to a big enough value to give the button enough space.
  */
 @GodotBaseType
 public open class ColorPickerButton : Button() {
@@ -89,6 +91,9 @@ public open class ColorPickerButton : Button() {
   }
 
 
+  public open fun _aboutToShow(): Unit {
+  }
+
   public open fun _colorChanged(arg0: Color): Unit {
   }
 
@@ -97,6 +102,8 @@ public open class ColorPickerButton : Button() {
 
   /**
    * Returns the [godot.ColorPicker] that this node toggles.
+   *
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
   public open fun getPicker(): ColorPicker? {
     TransferContext.writeArguments()
@@ -107,6 +114,8 @@ public open class ColorPickerButton : Button() {
 
   /**
    * Returns the control's [godot.PopupPanel] which allows you to connect to popup signals. This allows you to handle events when the ColorPicker is shown or hidden.
+   *
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
   public open fun getPopup(): PopupPanel? {
     TransferContext.writeArguments()

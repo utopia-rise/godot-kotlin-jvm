@@ -42,7 +42,7 @@ public object Engine : Object() {
    * 			    simulate_physics()
    * 			```
    *
-   * See [godot.Running code in the editor](https://docs.godotengine.org/en/3.3/tutorials/misc/running_code_in_the_editor.html) in the documentation for more information.
+   * See [godot.Running code in the editor](https://docs.godotengine.org/en/3.4/tutorials/misc/running_code_in_the_editor.html) in the documentation for more information.
    *
    * **Note:** To detect whether the script is run from an editor *build* (e.g. when pressing `F5`), use [godot.OS.hasFeature] with the `"editor"` argument instead. `OS.has_feature("editor")` will evaluate to `true` both when the code is running in the editor and when running the project from the editor, but it will evaluate to `false` when the code is run from an exported project.
    */
@@ -88,6 +88,26 @@ public object Engine : Object() {
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_SET_PHYSICS_JITTER_FIX,
+          NIL)
+    }
+
+  /**
+   * If `false`, stops printing error and warning messages to the console and editor Output log. This can be used to hide error and warning messages during unit test suite runs. This property is equivalent to the [godot.ProjectSettings.application/run/disableStderr] project setting.
+   *
+   * **Warning:** If you set this to `false` anywhere in the project, important error messages may be hidden even if they are emitted from other scripts. If this is set to `false` in a `@tool` script, this will also impact the editor itself. Do *not* report bugs before ensuring error messages are enabled (as they are by default).
+   *
+   * **Note:** This property does not impact the editor's Errors tab when running a project from the editor.
+   */
+  public var printErrorMessages: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_GET_PRINT_ERROR_MESSAGES,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_SET_PRINT_ERROR_MESSAGES,
           NIL)
     }
 

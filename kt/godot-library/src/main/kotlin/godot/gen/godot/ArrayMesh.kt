@@ -34,7 +34,7 @@ import kotlin.Unit
  * [godot.Mesh] type that provides utility for constructing a surface from arrays.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/content/procedural_geometry/arraymesh.html](https://docs.godotengine.org/en/3.3/tutorials/content/procedural_geometry/arraymesh.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/content/procedural_geometry/arraymesh.html](https://docs.godotengine.org/en/3.4/tutorials/content/procedural_geometry/arraymesh.html)
  *
  * The [godot.ArrayMesh] is used to construct a [godot.Mesh] by specifying the attributes as arrays.
  *
@@ -125,7 +125,7 @@ public open class ArrayMesh : Mesh() {
     primitive: Long,
     arrays: VariantArray<Any?>,
     blendShapes: VariantArray<Any?> = VariantArray(),
-    compressFlags: Long = 97280
+    compressFlags: Long = 2194432
   ): Unit {
     TransferContext.writeArguments(LONG to primitive, ARRAY to arrays, ARRAY to blendShapes, LONG to
         compressFlags)
@@ -139,6 +139,14 @@ public open class ArrayMesh : Mesh() {
   public open fun clearBlendShapes(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_CLEAR_BLEND_SHAPES, NIL)
+  }
+
+  /**
+   * Removes all surfaces from this [godot.ArrayMesh].
+   */
+  public open fun clearSurfaces(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_CLEAR_SURFACES, NIL)
   }
 
   /**
@@ -176,6 +184,14 @@ public open class ArrayMesh : Mesh() {
   public open fun regenNormalmaps(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_REGEN_NORMALMAPS, NIL)
+  }
+
+  /**
+   *
+   */
+  public open fun setBlendShapeName(index: Long, name: String): Unit {
+    TransferContext.writeArguments(LONG to index, STRING to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARRAYMESH_SET_BLEND_SHAPE_NAME, NIL)
   }
 
   /**

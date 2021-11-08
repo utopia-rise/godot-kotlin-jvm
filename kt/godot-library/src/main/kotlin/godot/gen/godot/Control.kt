@@ -143,7 +143,7 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Anchors the top edge of the node to the origin, the center or the end of its parent control. It changes how the top margin updates when the node moves or changes size. You can use  one of the [enum Anchor] constants for convenience.
+   * Anchors the top edge of the node to the origin, the center or the end of its parent control. It changes how the top margin updates when the node moves or changes size. You can use one of the [enum Anchor] constants for convenience.
    */
   public open val anchorTop: Double
     get() {
@@ -199,7 +199,7 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Tells Godot which node it should give keyboard focus to if the user presses the right arrow on the keyboard or right on a gamepad  by default. You can change the key by editing the `ui_right` input action. The node must be a [godot.Control]. If this property is not set, Godot will give focus to the closest [godot.Control] to the bottom of this one.
+   * Tells Godot which node it should give keyboard focus to if the user presses the right arrow on the keyboard or right on a gamepad by default. You can change the key by editing the `ui_right` input action. The node must be a [godot.Control]. If this property is not set, Godot will give focus to the closest [godot.Control] to the bottom of this one.
    */
   public open var focusNeighbourRight: NodePath
     get() {
@@ -515,7 +515,7 @@ public open class Control : CanvasItem() {
   /**
    * The node's scale, relative to its [rectSize]. Change this property to scale the node around its [rectPivotOffset]. The Control's [hintTooltip] will also scale according to this value.
    *
-   * **Note:** This property is mainly intended to be used for animation purposes. Text inside the Control will look pixelated or blurry when the Control is scaled. To support multiple resolutions in your project, use an appropriate viewport stretch mode as described in the [documentation](https://docs.godotengine.org/en/3.3/tutorials/viewports/multiple_resolutions.html) instead of scaling Controls individually.
+   * **Note:** This property is mainly intended to be used for animation purposes. Text inside the Control will look pixelated or blurry when the Control is scaled. To support multiple resolutions in your project, use an appropriate viewport stretch mode as described in the [documentation](https://docs.godotengine.org/en/3.4/tutorials/viewports/multiple_resolutions.html) instead of scaling Controls individually.
    *
    * **Note:** If the Control node is a child of a [godot.Container] node, the scale will be reset to `Vector2(1, 1)` when the scene is instanced. To set the Control's scale when it's instanced, wait for one frame using `yield(get_tree(), "idle_frame")` then set its [rectScale] property.
    */
@@ -742,19 +742,17 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Overrides the [godot.core.Color] with given `name` in the [theme] resource the control uses.
+   * Creates a local override for a theme [godot.core.Color] with the specified `name`. Local overrides always take precedence when fetching theme items for the control. An override cannot be removed, but it can be overridden with the corresponding default value.
    *
-   * **Note:** Unlike other theme overrides, there is no way to undo a color override without manually assigning the previous color.
+   * See also [getColor].
    *
    * **Example of overriding a label's color and resetting it later:**
    *
    * ```
-   * 				# Override the child node "MyLabel"'s font color to orange.
+   * 				# Given the child Label node "MyLabel", override its font color with a custom value.
    * 				$MyLabel.add_color_override("font_color", Color(1, 0.5, 0))
-   *
-   * 				# Reset the color by creating a new node to get the default value:
-   * 				var default_label_color = Label.new().get_color("font_color")
-   * 				$MyLabel.add_color_override("font_color", default_label_color)
+   * 				# Reset the font color of the child label.
+   * 				$MyLabel.add_color_override("font_color", get_color("font_color", "Label"))
    * 				```
    */
   public open fun addColorOverride(name: String, color: Color): Unit {
@@ -763,7 +761,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Overrides an integer constant with given `name` in the [theme] resource the control uses. If the `constant` is `0`, the override is cleared and the constant from assigned [godot.Theme] is used.
+   * Creates a local override for a theme constant with the specified `name`. Local overrides always take precedence when fetching theme items for the control. An override cannot be removed, but it can be overridden with the corresponding default value.
+   *
+   * See also [getConstant].
    */
   public open fun addConstantOverride(name: String, constant: Long): Unit {
     TransferContext.writeArguments(STRING to name, LONG to constant)
@@ -771,7 +771,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Overrides the font with given `name` in the [theme] resource the control uses. If `font` is `null` or invalid, the override is cleared and the font from assigned [godot.Theme] is used.
+   * Creates a local override for a theme [godot.Font] with the specified `name`. Local overrides always take precedence when fetching theme items for the control. An override can be removed by assigning it a `null` value.
+   *
+   * See also [getFont].
    */
   public open fun addFontOverride(name: String, font: Font): Unit {
     TransferContext.writeArguments(STRING to name, OBJECT to font)
@@ -779,7 +781,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Overrides the icon with given `name` in the [theme] resource the control uses. If `icon` is `null` or invalid, the override is cleared and the icon from assigned [godot.Theme] is used.
+   * Creates a local override for a theme icon with the specified `name`. Local overrides always take precedence when fetching theme items for the control. An override can be removed by assigning it a `null` value.
+   *
+   * See also [getIcon].
    */
   public open fun addIconOverride(name: String, texture: Texture): Unit {
     TransferContext.writeArguments(STRING to name, OBJECT to texture)
@@ -787,7 +791,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Overrides the [godot.Shader] with given `name` in the [theme] resource the control uses. If `shader` is `null` or invalid, the override is cleared and the shader from assigned [godot.Theme] is used.
+   * Creates a local override for a theme shader with the specified `name`. Local overrides always take precedence when fetching theme items for the control. An override can be removed by assigning it a `null` value.
    */
   public open fun addShaderOverride(name: String, shader: Shader): Unit {
     TransferContext.writeArguments(STRING to name, OBJECT to shader)
@@ -795,7 +799,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Overrides the [godot.StyleBox] with given `name` in the [theme] resource the control uses. If `stylebox` is empty or invalid, the override is cleared and the [godot.StyleBox] from assigned [godot.Theme] is used.
+   * Creates a local override for a theme [godot.StyleBox] with the specified `name`. Local overrides always take precedence when fetching theme items for the control. An override can be removed by assigning it a `null` value.
+   *
+   * See also [getStylebox].
    *
    * **Example of modifying a property in a StyleBox by duplicating it:**
    *
@@ -807,8 +813,7 @@ public open class Control : CanvasItem() {
    * 				new_stylebox_normal.border_width_top = 3
    * 				new_stylebox_normal.border_color = Color(0, 1, 0.5)
    * 				$MyButton.add_stylebox_override("normal", new_stylebox_normal)
-   *
-   * 				# Remove the stylebox override:
+   * 				# Remove the stylebox override.
    * 				$MyButton.add_stylebox_override("normal", null)
    * 				```
    */
@@ -887,15 +892,20 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns a color from assigned [godot.Theme] with given `name` and associated with [godot.Control] of given `node_type`.
+   * Returns a [godot.core.Color] from the first matching [godot.Theme] in the tree if that [godot.Theme] has a color item with the specified `name` and `theme_type`. If `theme_type` is omitted the class name of the current control is used as the type. If the type is a class name its parent classes are also checked, in order of inheritance.
+   *
+   * For the current control its local overrides are considered first (see [addColorOverride]), then its assigned [theme]. After the current control, each parent control and its assigned [theme] are considered; controls without a [theme] assigned are skipped. If no matching [godot.Theme] is found in the tree, a custom project [godot.Theme] (see [godot.ProjectSettings.gui/theme/custom]) and the default [godot.Theme] are used.
    *
    * ```
    * 				func _ready():
-   * 				    modulate = get_color("font_color", "Button") #get the color defined for button fonts
+   * 				    # Get the font color defined for the current Control's class, if it exists.
+   * 				    modulate = get_color("font_color")
+   * 				    # Get the font color defined for the Button class.
+   * 				    modulate = get_color("font_color", "Button")
    * 				```
    */
-  public open fun getColor(name: String, nodeType: String = ""): Color {
-    TransferContext.writeArguments(STRING to name, STRING to nodeType)
+  public open fun getColor(name: String, themeType: String = ""): Color {
+    TransferContext.writeArguments(STRING to name, STRING to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_COLOR, COLOR)
     return TransferContext.readReturnValue(COLOR, false) as Color
   }
@@ -911,10 +921,12 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns a constant from assigned [godot.Theme] with given `name` and associated with [godot.Control] of given `node_type`.
+   * Returns a constant from the first matching [godot.Theme] in the tree if that [godot.Theme] has a constant item with the specified `name` and `theme_type`.
+   *
+   * See [getColor] for details.
    */
-  public open fun getConstant(name: String, nodeType: String = ""): Long {
-    TransferContext.writeArguments(STRING to name, STRING to nodeType)
+  public open fun getConstant(name: String, themeType: String = ""): Long {
+    TransferContext.writeArguments(STRING to name, STRING to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_CONSTANT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
@@ -963,10 +975,12 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns a font from assigned [godot.Theme] with given `name` and associated with [godot.Control] of given `node_type`.
+   * Returns a [godot.Font] from the first matching [godot.Theme] in the tree if that [godot.Theme] has a font item with the specified `name` and `theme_type`.
+   *
+   * See [getColor] for details.
    */
-  public open fun getFont(name: String, nodeType: String = ""): Font? {
-    TransferContext.writeArguments(STRING to name, STRING to nodeType)
+  public open fun getFont(name: String, themeType: String = ""): Font? {
+    TransferContext.writeArguments(STRING to name, STRING to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_FONT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Font?
   }
@@ -981,10 +995,12 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns an icon from assigned [godot.Theme] with given `name` and associated with [godot.Control] of given `node_type`.
+   * Returns an icon from the first matching [godot.Theme] in the tree if that [godot.Theme] has an icon item with the specified `name` and `theme_type`.
+   *
+   * See [getColor] for details.
    */
-  public open fun getIcon(name: String, nodeType: String = ""): Texture? {
-    TransferContext.writeArguments(STRING to name, STRING to nodeType)
+  public open fun getIcon(name: String, themeType: String = ""): Texture? {
+    TransferContext.writeArguments(STRING to name, STRING to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_ICON, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Texture?
   }
@@ -1036,12 +1052,26 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns a [godot.StyleBox] from assigned [godot.Theme] with given `name` and associated with [godot.Control] of given `node_type`.
+   * Returns a [godot.StyleBox] from the first matching [godot.Theme] in the tree if that [godot.Theme] has a stylebox item with the specified `name` and `theme_type`.
+   *
+   * See [getColor] for details.
    */
-  public open fun getStylebox(name: String, nodeType: String = ""): StyleBox? {
-    TransferContext.writeArguments(STRING to name, STRING to nodeType)
+  public open fun getStylebox(name: String, themeType: String = ""): StyleBox? {
+    TransferContext.writeArguments(STRING to name, STRING to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_STYLEBOX, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as StyleBox?
+  }
+
+  /**
+   * Returns the default font from the first matching [godot.Theme] in the tree if that [godot.Theme] has a valid [godot.Theme.defaultFont] value.
+   *
+   * See [getColor] for details.
+   */
+  public open fun getThemeDefaultFont(): Font? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_THEME_DEFAULT_FONT,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Font?
   }
 
   /**
@@ -1075,16 +1105,20 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if [godot.core.Color] with given `name` and associated with [godot.Control] of given `node_type` exists in assigned [godot.Theme].
+   * Returns `true` if there is a matching [godot.Theme] in the tree that has a color item with the specified `name` and `theme_type`.
+   *
+   * See [getColor] for details.
    */
-  public open fun hasColor(name: String, nodeType: String = ""): Boolean {
-    TransferContext.writeArguments(STRING to name, STRING to nodeType)
+  public open fun hasColor(name: String, themeType: String = ""): Boolean {
+    TransferContext.writeArguments(STRING to name, STRING to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_COLOR, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Returns `true` if [godot.core.Color] with given `name` has a valid override in this [godot.Control] node.
+   * Returns `true` if there is a local override for a theme [godot.core.Color] with the specified `name` in this [godot.Control] node.
+   *
+   * See [addColorOverride].
    */
   public open fun hasColorOverride(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
@@ -1093,16 +1127,20 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if constant with given `name` and associated with [godot.Control] of given `node_type` exists in assigned [godot.Theme].
+   * Returns `true` if there is a matching [godot.Theme] in the tree that has a constant item with the specified `name` and `theme_type`.
+   *
+   * See [getColor] for details.
    */
-  public open fun hasConstant(name: String, nodeType: String = ""): Boolean {
-    TransferContext.writeArguments(STRING to name, STRING to nodeType)
+  public open fun hasConstant(name: String, themeType: String = ""): Boolean {
+    TransferContext.writeArguments(STRING to name, STRING to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_CONSTANT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Returns `true` if constant with given `name` has a valid override in this [godot.Control] node.
+   * Returns `true` if there is a local override for a theme constant with the specified `name` in this [godot.Control] node.
+   *
+   * See [addConstantOverride].
    */
   public open fun hasConstantOverride(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
@@ -1120,16 +1158,20 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if font with given `name` and associated with [godot.Control] of given `node_type` exists in assigned [godot.Theme].
+   * Returns `true` if there is a matching [godot.Theme] in the tree that has a font item with the specified `name` and `theme_type`.
+   *
+   * See [getColor] for details.
    */
-  public open fun hasFont(name: String, nodeType: String = ""): Boolean {
-    TransferContext.writeArguments(STRING to name, STRING to nodeType)
+  public open fun hasFont(name: String, themeType: String = ""): Boolean {
+    TransferContext.writeArguments(STRING to name, STRING to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_FONT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Returns `true` if font with given `name` has a valid override in this [godot.Control] node.
+   * Returns `true` if there is a local override for a theme [godot.Font] with the specified `name` in this [godot.Control] node.
+   *
+   * See [addFontOverride].
    */
   public open fun hasFontOverride(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
@@ -1138,16 +1180,20 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if icon with given `name` and associated with [godot.Control] of given `node_type` exists in assigned [godot.Theme].
+   * Returns `true` if there is a matching [godot.Theme] in the tree that has an icon item with the specified `name` and `theme_type`.
+   *
+   * See [getColor] for details.
    */
-  public open fun hasIcon(name: String, nodeType: String = ""): Boolean {
-    TransferContext.writeArguments(STRING to name, STRING to nodeType)
+  public open fun hasIcon(name: String, themeType: String = ""): Boolean {
+    TransferContext.writeArguments(STRING to name, STRING to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_ICON, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Returns `true` if icon with given `name` has a valid override in this [godot.Control] node.
+   * Returns `true` if there is a local override for a theme icon with the specified `name` in this [godot.Control] node.
+   *
+   * See [addIconOverride].
    */
   public open fun hasIconOverride(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
@@ -1167,7 +1213,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if [godot.Shader] with given `name` has a valid override in this [godot.Control] node.
+   * Returns `true` if there is a local override for a theme shader with the specified `name` in this [godot.Control] node.
+   *
+   * See [addShaderOverride].
    */
   public open fun hasShaderOverride(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
@@ -1176,16 +1224,20 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if [godot.StyleBox] with given `name` and associated with [godot.Control] of given `node_type` exists in assigned [godot.Theme].
+   * Returns `true` if there is a matching [godot.Theme] in the tree that has a stylebox item with the specified `name` and `theme_type`.
+   *
+   * See [getColor] for details.
    */
-  public open fun hasStylebox(name: String, nodeType: String = ""): Boolean {
-    TransferContext.writeArguments(STRING to name, STRING to nodeType)
+  public open fun hasStylebox(name: String, themeType: String = ""): Boolean {
+    TransferContext.writeArguments(STRING to name, STRING to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_HAS_STYLEBOX, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Returns `true` if [godot.StyleBox] with given `name` has a valid override in this [godot.Control] node.
+   * Returns `true` if there is a local override for a theme [godot.StyleBox] with the specified `name` in this [godot.Control] node.
+   *
+   * See [addStyleboxOverride].
    */
   public open fun hasStyleboxOverride(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)

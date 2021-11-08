@@ -76,9 +76,11 @@ public open class InputEvent : Resource() {
 
   /**
    * Returns a value between 0.0 and 1.0 depending on the given actions' state. Useful for getting the value of events of type [godot.InputEventJoypadMotion].
+   *
+   * If `exact_match` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
-  public open fun getActionStrength(action: String): Double {
-    TransferContext.writeArguments(STRING to action)
+  public open fun getActionStrength(action: String, exactMatch: Boolean = false): Double {
+    TransferContext.writeArguments(STRING to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_GET_ACTION_STRENGTH,
         DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
@@ -86,27 +88,37 @@ public open class InputEvent : Resource() {
 
   /**
    * Returns `true` if this input event matches a pre-defined action of any type.
+   *
+   * If `exact_match` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
-  public open fun isAction(action: String): Boolean {
-    TransferContext.writeArguments(STRING to action)
+  public open fun isAction(action: String, exactMatch: Boolean = false): Boolean {
+    TransferContext.writeArguments(STRING to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_IS_ACTION, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
    * Returns `true` if the given action is being pressed (and is not an echo event for [godot.InputEventKey] events, unless `allow_echo` is `true`). Not relevant for events of type [godot.InputEventMouseMotion] or [godot.InputEventScreenDrag].
+   *
+   * If `exact_match` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
-  public open fun isActionPressed(action: String, allowEcho: Boolean = false): Boolean {
-    TransferContext.writeArguments(STRING to action, BOOL to allowEcho)
+  public open fun isActionPressed(
+    action: String,
+    allowEcho: Boolean = false,
+    exactMatch: Boolean = false
+  ): Boolean {
+    TransferContext.writeArguments(STRING to action, BOOL to allowEcho, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_IS_ACTION_PRESSED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
    * Returns `true` if the given action is released (i.e. not pressed). Not relevant for events of type [godot.InputEventMouseMotion] or [godot.InputEventScreenDrag].
+   *
+   * If `exact_match` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
-  public open fun isActionReleased(action: String): Boolean {
-    TransferContext.writeArguments(STRING to action)
+  public open fun isActionReleased(action: String, exactMatch: Boolean = false): Boolean {
+    TransferContext.writeArguments(STRING to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_IS_ACTION_RELEASED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -139,10 +151,12 @@ public open class InputEvent : Resource() {
   }
 
   /**
-   * Returns `true` if the given input event is checking for the same key ([godot.InputEventKey]), button ([godot.InputEventJoypadButton]) or action ([godot.InputEventAction]).
+   * Returns `true` if the specified `event` matches this event. Only valid for action events i.e key ([godot.InputEventKey]), button ([godot.InputEventMouseButton] or [godot.InputEventJoypadButton]), axis [godot.InputEventJoypadMotion] or action ([godot.InputEventAction]) events.
+   *
+   * If `exact_match` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
-  public open fun shortcutMatch(event: InputEvent): Boolean {
-    TransferContext.writeArguments(OBJECT to event)
+  public open fun shortcutMatch(event: InputEvent, exactMatch: Boolean = true): Boolean {
+    TransferContext.writeArguments(OBJECT to event, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_SHORTCUT_MATCH, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }

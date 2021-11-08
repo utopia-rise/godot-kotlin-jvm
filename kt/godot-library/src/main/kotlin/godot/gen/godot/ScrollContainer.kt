@@ -136,7 +136,7 @@ public open class ScrollContainer : Container() {
     callConstructor(ENGINECLASS_SCROLLCONTAINER)
   }
 
-  public open fun _ensureFocusedVisible(arg0: Control): Unit {
+  public open fun _guiFocusChanged(arg0: Control): Unit {
   }
 
   public override fun _guiInput(event: InputEvent): Unit {
@@ -149,7 +149,18 @@ public open class ScrollContainer : Container() {
   }
 
   /**
+   * Ensures the given `control` is visible (must be a direct or indirect child of the ScrollContainer). Used by [followFocus].
+   */
+  public open fun ensureControlVisible(control: Control): Unit {
+    TransferContext.writeArguments(OBJECT to control)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_ENSURE_CONTROL_VISIBLE, NIL)
+  }
+
+  /**
    * Returns the horizontal scrollbar [godot.HScrollBar] of this [godot.ScrollContainer].
+   *
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to disable the horizontal scrollbar, use [scrollHorizontalEnabled]. If you want to only hide it instead, use its [godot.CanvasItem.visible] property.
    */
   public open fun getHScrollbar(): HScrollBar? {
     TransferContext.writeArguments()
@@ -160,6 +171,8 @@ public open class ScrollContainer : Container() {
 
   /**
    * Returns the vertical scrollbar [godot.VScrollBar] of this [godot.ScrollContainer].
+   *
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to disable the vertical scrollbar, use [scrollVerticalEnabled]. If you want to only hide it instead, use its [godot.CanvasItem.visible] property.
    */
   public open fun getVScrollbar(): VScrollBar? {
     TransferContext.writeArguments()

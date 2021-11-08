@@ -16,7 +16,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * Godot editor's control for editing numeric values.
  *
+ * This [godot.Control] node is used in the editor's Inspector dock to allow editing of numeric values. Can be used with [godot.EditorInspectorPlugin] to recreate the same behavior.
  */
 @GodotBaseType
 public open class EditorSpinSlider : Range() {
@@ -88,5 +90,8 @@ public open class EditorSpinSlider : Range() {
   }
 
   public open fun _valueInputEntered(arg0: String): Unit {
+  }
+
+  public open fun _valueInputGuiInput(event: InputEvent): Unit {
   }
 }

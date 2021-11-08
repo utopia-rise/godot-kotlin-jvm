@@ -430,6 +430,8 @@ public open class ItemList : Control() {
 
   /**
    * Returns the [godot.Object] ID associated with the list.
+   *
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
   public open fun getVScroll(): VScrollBar? {
     TransferContext.writeArguments()

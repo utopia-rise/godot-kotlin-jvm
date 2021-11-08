@@ -9,12 +9,14 @@ import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
 import godot.core.Vector2
 import kotlin.Any
+import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -162,5 +164,15 @@ public open class KinematicCollision2D : Reference() {
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_KINEMATICCOLLISION2D)
+  }
+
+  /**
+   * The collision angle according to `up_direction`, which is `Vector2.UP` by default. This value is always positive.
+   */
+  public open fun getAngle(upDirection: Vector2 = Vector2(0.0, -1.0)): Double {
+    TransferContext.writeArguments(VECTOR2 to upDirection)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_ANGLE,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 }

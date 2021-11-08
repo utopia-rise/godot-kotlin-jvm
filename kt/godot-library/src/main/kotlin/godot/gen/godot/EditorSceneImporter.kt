@@ -83,9 +83,11 @@ public open class EditorSceneImporter : Reference() {
   public open fun importSceneFromOtherImporter(
     path: String,
     flags: Long,
-    bakeFps: Long
+    bakeFps: Long,
+    compressFlags: Long
   ): Node? {
-    TransferContext.writeArguments(STRING to path, LONG to flags, LONG to bakeFps)
+    TransferContext.writeArguments(STRING to path, LONG to flags, LONG to bakeFps, LONG to
+        compressFlags)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORSCENEIMPORTER_IMPORT_SCENE_FROM_OTHER_IMPORTER, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
@@ -136,10 +138,5 @@ public open class EditorSceneImporter : Reference() {
      *
      */
     public final const val IMPORT_SCENE: Long = 1
-
-    /**
-     *
-     */
-    public final const val IMPORT_USE_COMPRESSION: Long = 2048
   }
 }

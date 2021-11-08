@@ -26,13 +26,15 @@ import kotlin.Unit
  * Captures its surroundings to create reflections.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/3d/reflection_probes.html](https://docs.godotengine.org/en/3.3/tutorials/3d/reflection_probes.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/3d/reflection_probes.html](https://docs.godotengine.org/en/3.4/tutorials/3d/reflection_probes.html)
  *
  * Capture its surroundings as a dual paraboloid image, and stores versions of it with increasing levels of blur to simulate different material roughnesses.
  *
  * The [godot.ReflectionProbe] is used to create high-quality reflections at the cost of performance. It can be combined with [godot.GIProbe]s and Screen Space Reflections to achieve high quality reflections. [godot.ReflectionProbe]s render all objects within their [cullMask], so updating them can be quite expensive. It is best to update them once with the important static objects and then leave them.
  *
- * Note: By default Godot will only render 16 reflection probes. If you need more, increase the number of atlas subdivisions. This setting can be found in [godot.ProjectSettings.rendering/quality/reflections/atlasSubdiv].
+ * **Note:** By default Godot will only render 16 reflection probes. If you need more, increase the number of atlas subdivisions. This setting can be found in [godot.ProjectSettings.rendering/quality/reflections/atlasSubdiv].
+ *
+ * **Note:** The GLES2 backend will only display two reflection probes at the same time for a single mesh. If possible, split up large meshes that span over multiple reflection probes into smaller ones.
  */
 @GodotBaseType
 public open class ReflectionProbe : VisualInstance() {

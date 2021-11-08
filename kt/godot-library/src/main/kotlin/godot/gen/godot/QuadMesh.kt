@@ -10,7 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
+import godot.core.VariantType.VECTOR3
 import godot.core.Vector2
+import godot.core.Vector3
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -24,6 +26,21 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class QuadMesh : PrimitiveMesh() {
+  /**
+   * Offset of the generated Quad. Useful for particles.
+   */
+  public open var centerOffset: Vector3
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_QUADMESH_GET_CENTER_OFFSET,
+          VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_QUADMESH_SET_CENTER_OFFSET, NIL)
+    }
+
   /**
    * Size on the X and Y axes.
    */
@@ -41,6 +58,13 @@ public open class QuadMesh : PrimitiveMesh() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_QUADMESH)
   }
+
+  @CoreTypeHelper
+  public open fun centerOffset(schedule: Vector3.() -> Unit): Vector3 = centerOffset.apply{
+      schedule(this)
+      centerOffset = this
+  }
+
 
   @CoreTypeHelper
   public open fun size(schedule: Vector2.() -> Unit): Vector2 = size.apply{

@@ -33,8 +33,8 @@ import kotlin.Unit
  * Low-level hyper-text transfer protocol client.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/networking/http_client_class.html](https://docs.godotengine.org/en/3.3/tutorials/networking/http_client_class.html)
- * [https://docs.godotengine.org/en/3.3/tutorials/networking/ssl_certificates.html](https://docs.godotengine.org/en/3.3/tutorials/networking/ssl_certificates.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/networking/http_client_class.html](https://docs.godotengine.org/en/3.4/tutorials/networking/http_client_class.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/networking/ssl_certificates.html](https://docs.godotengine.org/en/3.4/tutorials/networking/ssl_certificates.html)
  *
  * Hyper-text transfer protocol client (sometimes called "User Agent"). Used to make HTTP requests to download web content, upload files and other data or to communicate with various services, among other use cases. **See the [godot.HTTPRequest] node for a higher-level alternative.**
  *

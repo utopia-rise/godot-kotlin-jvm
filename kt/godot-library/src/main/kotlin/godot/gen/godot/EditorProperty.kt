@@ -102,7 +102,7 @@ public open class EditorProperty : Container() {
     }
 
   /**
-   * Used by the inspector, set to `true` when the property must draw with error color. This is used for editable children's properties.
+   * Used by the inspector, set to `true` when the property is drawn with the editor theme's warning color. This is used for editable children's properties.
    */
   public open var drawRed: Boolean
     get() {

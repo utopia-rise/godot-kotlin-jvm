@@ -27,7 +27,7 @@ public open class Material : Resource() {
   /**
    * Sets the [godot.Material] to be used for the next pass. This renders the object again using a different material.
    *
-   * **Note:** only applies to [godot.SpatialMaterial]s and [godot.ShaderMaterial]s with type "Spatial".
+   * **Note:** This only applies to [godot.SpatialMaterial]s and [godot.ShaderMaterial]s with type "Spatial".
    */
   public open var nextPass: Material?
     get() {
@@ -43,7 +43,7 @@ public open class Material : Resource() {
   /**
    * Sets the render priority for transparent objects in 3D scenes. Higher priority objects will be sorted in front of lower priority objects.
    *
-   * **Note:** this only applies to sorting of transparent objects. This will not impact how transparent objects are sorted relative to opaque objects. This is because opaque objects are not sorted, while transparent objects are sorted from back to front (subject to priority).
+   * **Note:** This only applies to sorting of transparent objects. This will not impact how transparent objects are sorted relative to opaque objects. This is because opaque objects are not sorted, while transparent objects are sorted from back to front (subject to priority).
    */
   public open var renderPriority: Long
     get() {

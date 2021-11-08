@@ -17,7 +17,7 @@ import kotlin.Unit
  * Base class for keys events with modifiers.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/3.3/tutorials/inputs/inputevent.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html)
  *
  * Contains keys events information with modifiers support like `Shift` or `Alt`. See [godot.Node.Input].
  */

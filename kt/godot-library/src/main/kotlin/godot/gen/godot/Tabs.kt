@@ -236,7 +236,7 @@ public open class Tabs : Control() {
   }
 
   /**
-   * Returns the title of the tab at index `tab_idx`. Tab titles default to the name of the indexed child node, but this can be overridden with [setTabTitle].
+   * Returns the title of the tab at index `tab_idx`.
    */
   public open fun getTabTitle(tabIdx: Long): String {
     TransferContext.writeArguments(LONG to tabIdx)
@@ -278,9 +278,7 @@ public open class Tabs : Control() {
   }
 
   /**
-   * If `disabled` is `false`, hides the tab at index `tab_idx`.
-   *
-   * **Note:** Its title text will remain unless it is also removed with [setTabTitle].
+   * If `disabled` is `true`, disables the tab at index `tab_idx`, making it non-interactable.
    */
   public open fun setTabDisabled(tabIdx: Long, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to tabIdx, BOOL to disabled)
@@ -304,7 +302,7 @@ public open class Tabs : Control() {
   }
 
   /**
-   * Defines the rearrange group ID. Choose for each [godot.Tabs] the same value to dragging tabs between [godot.Tabs]. Enable drag with `set_drag_to_rearrange_enabled(true)`.
+   * Defines the rearrange group ID. Choose for each [godot.Tabs] the same value to dragging tabs between [godot.Tabs]. Enable drag with [dragToRearrangeEnabled].
    */
   public open fun setTabsRearrangeGroup(groupId: Long): Unit {
     TransferContext.writeArguments(LONG to groupId)

@@ -15,12 +15,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * Node that instances navigation meshes into a scenario.
  *
+ * NavigationMeshInstance is a node that takes a [godot.NavigationMesh] resource and adds it to the current scenario by creating an instance of it.
  */
 @GodotBaseType
 public open class NavigationMeshInstance : Spatial() {
   /**
-   *
+   * If `true`, the navigation mesh will be used by [godot.Navigation].
    */
   public open var enabled: Boolean
     get() {
@@ -36,7 +38,7 @@ public open class NavigationMeshInstance : Spatial() {
     }
 
   /**
-   *
+   * The [godot.NavigationMesh] resource for the instance.
    */
   public open var navmesh: NavigationMesh?
     get() {

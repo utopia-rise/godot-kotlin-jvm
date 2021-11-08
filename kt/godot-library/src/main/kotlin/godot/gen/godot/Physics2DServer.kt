@@ -10,7 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
 import godot.core.Transform2D
+import godot.core.VariantArray
 import godot.core.VariantType.ANY
+import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
@@ -352,11 +354,6 @@ public object Physics2DServer : Object() {
    * Constant to set/get the maximum distance a pair of bodies has to move before their collision status has to be recalculated.
    */
   public final const val SPACE_PARAM_CONTACT_RECYCLE_RADIUS: Long = 0
-
-  /**
-   *
-   */
-  public final const val SPACE_PARAM_TEST_MOTION_MIN_CONTACT_DEPTH: Long = 7
 
   public override fun __new(): Unit {
     rawPtr = TransferContext.getSingleton(ENGINESINGLETON_PHYSICS2DSERVER)
@@ -1134,10 +1131,13 @@ public object Physics2DServer : Object() {
     motion: Vector2,
     infiniteInertia: Boolean,
     margin: Double = 0.08,
-    result: Physics2DTestMotionResult? = null
+    result: Physics2DTestMotionResult? = null,
+    excludeRaycastShapes: Boolean = true,
+    exclude: VariantArray<Any?> = VariantArray()
   ): Boolean {
     TransferContext.writeArguments(_RID to body, TRANSFORM2D to from, VECTOR2 to motion, BOOL to
-        infiniteInertia, DOUBLE to margin, OBJECT to result)
+        infiniteInertia, DOUBLE to margin, OBJECT to result, BOOL to excludeRaycastShapes, ARRAY to
+        exclude)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICS2DSERVER_BODY_TEST_MOTION,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -1350,6 +1350,15 @@ public object Physics2DServer : Object() {
   public fun setActive(active: Boolean): Unit {
     TransferContext.writeArguments(BOOL to active)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICS2DSERVER_SET_ACTIVE, NIL)
+  }
+
+  /**
+   * Sets the amount of iterations for calculating velocities of colliding bodies. The greater the amount of iterations, the more accurate the collisions will be. However, a greater amount of iterations requires more CPU power, which can decrease performance. The default value is `8`.
+   */
+  public fun setCollisionIterations(iterations: Long): Unit {
+    TransferContext.writeArguments(LONG to iterations)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICS2DSERVER_SET_COLLISION_ITERATIONS, NIL)
   }
 
   /**
@@ -1657,10 +1666,6 @@ public object Physics2DServer : Object() {
      * Constant to set/get the default solver bias for all physics constraints. A solver bias is a factor controlling how much two objects "rebound", after violating a constraint, to avoid leaving them in that state because of numerical imprecision.
      */
     SPACE_PARAM_CONSTRAINT_DEFAULT_BIAS(6),
-    /**
-     *
-     */
-    SPACE_PARAM_TEST_MOTION_MIN_CONTACT_DEPTH(7),
     ;
 
     public val id: Long

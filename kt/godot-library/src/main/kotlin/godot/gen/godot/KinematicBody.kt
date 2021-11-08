@@ -36,6 +36,54 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class KinematicBody : PhysicsBody() {
+  /**
+   * Lock the body's X axis movement.
+   */
+  public open var axisLockMotionX: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_GET_AXIS_LOCK_MOTION_X, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_SET_AXIS_LOCK_MOTION_X, NIL)
+    }
+
+  /**
+   * Lock the body's Y axis movement.
+   */
+  public open var axisLockMotionY: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_GET_AXIS_LOCK_MOTION_Y, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_SET_AXIS_LOCK_MOTION_Y, NIL)
+    }
+
+  /**
+   * Lock the body's Z axis movement.
+   */
+  public open var axisLockMotionZ: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_GET_AXIS_LOCK_MOTION_Z, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_SET_AXIS_LOCK_MOTION_Z, NIL)
+    }
+
   public open var collision_safeMargin: Double
     get() {
       TransferContext.writeArguments()
@@ -49,8 +97,21 @@ public open class KinematicBody : PhysicsBody() {
           ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_SET_COLLISION_SAFE_MARGIN, NIL)
     }
 
+  public open var motion_syncToPhysics: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_GET_MOTION_SYNC_TO_PHYSICS, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_SET_MOTION_SYNC_TO_PHYSICS, NIL)
+    }
+
   /**
-   * Lock the body's X axis movement.
+   * Lock the body's X axis movement. Deprecated alias for [axisLockMotionX].
    */
   public open var moveLockX: Boolean
     get() {
@@ -66,7 +127,7 @@ public open class KinematicBody : PhysicsBody() {
     }
 
   /**
-   * Lock the body's Y axis movement.
+   * Lock the body's Y axis movement. Deprecated alias for [axisLockMotionY].
    */
   public open var moveLockY: Boolean
     get() {
@@ -82,7 +143,7 @@ public open class KinematicBody : PhysicsBody() {
     }
 
   /**
-   * Lock the body's Z axis movement.
+   * Lock the body's Z axis movement. Deprecated alias for [axisLockMotionZ].
    */
   public open var moveLockZ: Boolean
     get() {
@@ -99,6 +160,19 @@ public open class KinematicBody : PhysicsBody() {
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_KINEMATICBODY)
+  }
+
+  public open fun _directStateChanged(arg0: Object): Unit {
+  }
+
+  /**
+   * Returns the floor's collision angle at the last collision point according to `up_direction`, which is `Vector3.UP` by default. This value is always positive and only valid after calling [moveAndSlide] and when [isOnFloor] returns `true`.
+   */
+  public open fun getFloorAngle(upDirection: Vector3 = Vector3(0.0, 1.0, 0.0)): Double {
+    TransferContext.writeArguments(VECTOR3 to upDirection)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_GET_FLOOR_ANGLE,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
@@ -119,6 +193,16 @@ public open class KinematicBody : PhysicsBody() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_GET_FLOOR_VELOCITY,
         VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+  }
+
+  /**
+   * Returns a [godot.KinematicCollision], which contains information about the latest collision that occurred during the last call to [moveAndSlide].
+   */
+  public open fun getLastSlideCollision(): KinematicCollision? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_GET_LAST_SLIDE_COLLISION, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as KinematicCollision?
   }
 
   /**
@@ -203,6 +287,8 @@ public open class KinematicBody : PhysicsBody() {
    * If `infinite_inertia` is `true`, body will be able to push [godot.RigidBody] nodes, but it won't also detect any collisions with them. If `false`, it will interact with [godot.RigidBody] nodes like with [godot.StaticBody].
    *
    * Returns the `linear_velocity` vector, rotated and/or scaled if a slide collision occurred. To get detailed information about collisions that occurred, use [getSlideCollision].
+   *
+   * When the body touches a moving platform, the platform's velocity is automatically added to the body motion. If a collision occurs due to the platform's motion, it will always be first in the slide collisions.
    */
   public open fun moveAndSlide(
     linearVelocity: Vector3,

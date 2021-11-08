@@ -25,7 +25,7 @@ import kotlin.Unit
  * Singleton that manages [godot.InputEventAction].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/inputs/inputevent.html#inputmap](https://docs.godotengine.org/en/3.3/tutorials/inputs/inputevent.html#inputmap)
+ * [https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html#inputmap](https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html#inputmap)
  *
  * Manages all [godot.InputEventAction] which can be created/modified from the project settings menu **Project > Project Settings > Input Map** or in code with [addAction] and [actionAddEvent]. See [godot.Node.Input].
  */
@@ -108,9 +108,15 @@ public object InputMap : Object() {
 
   /**
    * Returns `true` if the given event is part of an existing action. This method ignores keyboard modifiers if the given [godot.InputEvent] is not pressed (for proper release detection). See [actionHasEvent] if you don't want this behavior.
+   *
+   * If `exact_match` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
-  public fun eventIsAction(event: InputEvent, action: String): Boolean {
-    TransferContext.writeArguments(OBJECT to event, STRING to action)
+  public fun eventIsAction(
+    event: InputEvent,
+    action: String,
+    exactMatch: Boolean = false
+  ): Boolean {
+    TransferContext.writeArguments(OBJECT to event, STRING to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTMAP_EVENT_IS_ACTION, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }

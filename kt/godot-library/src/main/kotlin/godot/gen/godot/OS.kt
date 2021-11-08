@@ -334,6 +334,20 @@ public object OS : Object() {
     }
 
   /**
+   * If `true`, the engine filters the time delta measured between each frame, and attempts to compensate for random variation. This will only operate on systems where V-Sync is active.
+   */
+  public var deltaSmoothing: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_DELTA_SMOOTHING, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_SET_DELTA_SMOOTHING, NIL)
+    }
+
+  /**
    * The exit code passed to the OS when the main loop exits. By convention, an exit code of `0` indicates success whereas a non-zero exit code indicates an error. For portability reasons, the exit code should be set between 0 and 125 (inclusive).
    *
    * **Note:** This value will be ignored if using [godot.SceneTree.quit] with an `exit_code` argument passed.
@@ -410,7 +424,9 @@ public object OS : Object() {
     }
 
   /**
-   * The minimum size of the window (without counting window manager decorations). Does not affect fullscreen mode. Set to `(0, 0)` to reset to the system default value.
+   * The minimum size of the window in pixels (without counting window manager decorations). Does not affect fullscreen mode. Set to `(0, 0)` to reset to the system's default value.
+   *
+   * **Note:** By default, the project window has a minimum size of `Vector2(64, 64)`. This prevents issues that can arise when the window is resized to a near-zero size.
    */
   public var minWindowSize: Vector2
     get() {
@@ -543,13 +559,13 @@ public object OS : Object() {
     }
 
   /**
-   * If `true`, the window background is transparent and window frame is removed.
+   * If `true`, the window background is transparent and the window frame is removed.
    *
    * Use `get_tree().get_root().set_transparent_background(true)` to disable main viewport background rendering.
    *
-   * **Note:** This property has no effect if **Project > Project Settings > Display > Window > Per-pixel transparency > Allowed** setting is disabled.
+   * **Note:** This property has no effect if [godot.ProjectSettings.display/window/perPixelTransparency/allowed] setting is disabled.
    *
-   * **Note:** This property is implemented on HTML5, Linux, macOS and Windows.
+   * **Note:** This property is implemented on HTML5, Linux, macOS, Windows, and Android. It can't be changed at runtime for Android. Use [godot.ProjectSettings.display/window/perPixelTransparency/enabled] to set it at startup instead.
    */
   public var windowPerPixelTransparencyEnabled: Boolean
     get() {
@@ -805,13 +821,24 @@ public object OS : Object() {
   }
 
   /**
+   * Returns the *global* cache data directory according to the operating system's standards. On desktop platforms, this path can be overridden by setting the `XDG_CACHE_HOME` environment variable before starting the project. See [godot.File paths in Godot projects](https://docs.godotengine.org/en/latest/tutorials/io/data_paths.html) in the documentation for more information. See also [getConfigDir] and [getDataDir].
+   *
+   * Not to be confused with [getUserDataDir], which returns the *project-specific* user data path.
+   */
+  public fun getCacheDir(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_CACHE_DIR, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
    * Returns the command-line arguments passed to the engine.
    *
    * Command-line arguments can be written in any form, including both `--key value` and `--key=value` forms so they can be properly parsed, as long as custom command-line arguments do not conflict with engine arguments.
    *
    * You can also incorporate environment variables using the [getEnvironment] method.
    *
-   * You can set `editor/main_run_args` in the Project Settings to define command-line arguments to be passed by the editor when running the project.
+   * You can set [godot.ProjectSettings.editor/mainRunArgs] to define command-line arguments to be passed by the editor when running the project.
    *
    * Here's a minimal example on how to parse command-line arguments into a dictionary using the `--key=value` form for arguments:
    *
@@ -828,6 +855,17 @@ public object OS : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_CMDLINE_ARGS,
         POOL_STRING_ARRAY)
     return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
+  }
+
+  /**
+   * Returns the *global* user configuration directory according to the operating system's standards. On desktop platforms, this path can be overridden by setting the `XDG_CONFIG_HOME` environment variable before starting the project. See [godot.File paths in Godot projects](https://docs.godotengine.org/en/latest/tutorials/io/data_paths.html) in the documentation for more information. See also [getCacheDir] and [getDataDir].
+   *
+   * Not to be confused with [getUserDataDir], which returns the *project-specific* user data path.
+   */
+  public fun getConfigDir(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_CONFIG_DIR, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**
@@ -851,6 +889,17 @@ public object OS : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_CURRENT_VIDEO_DRIVER, LONG)
     return OS.VideoDriver.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Returns the *global* user data directory according to the operating system's standards. On desktop platforms, this path can be overridden by setting the `XDG_DATA_HOME` environment variable before starting the project. See [godot.File paths in Godot projects](https://docs.godotengine.org/en/latest/tutorials/io/data_paths.html) in the documentation for more information. See also [getCacheDir] and [getConfigDir].
+   *
+   * Not to be confused with [getUserDataDir], which returns the *project-specific* user data path.
+   */
+  public fun getDataDir(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_DATA_DIR, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**
@@ -965,11 +1014,32 @@ public object OS : Object() {
   }
 
   /**
-   * Returns the host OS locale.
+   * Returns the host OS locale as a string of the form `language_Script_COUNTRY_VARIANT@extra`. If you want only the language code and not the fully specified locale from the OS, you can use [getLocaleLanguage].
+   *
+   * `language` - 2 or 3-letter [language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes), in lower case.
+   *
+   * `Script` - optional, 4-letter [script code](https://en.wikipedia.org/wiki/ISO_15924), in title case.
+   *
+   * `COUNTRY` - optional, 2 or 3-letter [country code](https://en.wikipedia.org/wiki/ISO_3166-1), in upper case.
+   *
+   * `VARIANT` - optional, language variant, region and sort order. Variant can have any number of underscored keywords.
+   *
+   * `extra` - optional, semicolon separated list of additional key words. Currency, calendar, sort order and numbering system information.
    */
   public fun getLocale(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_LOCALE, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Returns the host OS locale's 2 or 3-letter [language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) as a string which should be consistent on all platforms. This is equivalent to extracting the `language` part of the [getLocale] string.
+   *
+   * This can be used to narrow down fully specified locale strings to only the "common" language code, when you don't need the additional information about country code or variants. For example, for a French Canadian user with `fr_CA` locale, this would return `fr`.
+   */
+  public fun getLocaleLanguage(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__OS_GET_LOCALE_LANGUAGE, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
@@ -1332,6 +1402,8 @@ public object OS : Object() {
    * On Windows, this is `%APPDATA%\Godot\app_userdata\[project_name]`, or `%APPDATA%\[custom_name]` if `use_custom_user_dir` is set. `%APPDATA%` expands to `%USERPROFILE%\AppData\Roaming`.
    *
    * If the project name is empty, `user://` falls back to `res://`.
+   *
+   * Not to be confused with [getDataDir], which returns the *global* (non-project-specific) user data directory.
    */
   public fun getUserDataDir(): String {
     TransferContext.writeArguments()
@@ -1433,7 +1505,7 @@ public object OS : Object() {
   }
 
   /**
-   * Returns `true` if the feature for the given feature tag is supported in the currently running instance, depending on the platform, build etc. Can be used to check whether you're currently running a debug build, on a certain platform or arch, etc. Refer to the [godot.Feature Tags](https://docs.godotengine.org/en/3.3/getting_started/workflow/export/feature_tags.html) documentation for more details.
+   * Returns `true` if the feature for the given feature tag is supported in the currently running instance, depending on the platform, build etc. Can be used to check whether you're currently running a debug build, on a certain platform or arch, etc. Refer to the [godot.Feature Tags](https://docs.godotengine.org/en/3.4/getting_started/workflow/export/feature_tags.html) documentation for more details.
    *
    * **Note:** Tag names are case-sensitive.
    */
@@ -1623,7 +1695,7 @@ public object OS : Object() {
   /**
    * Returns `true` if native video is playing.
    *
-   * **Note:** This method is implemented on Android and iOS.
+   * **Note:** This method is only implemented on iOS.
    */
   public fun nativeVideoIsPlaying(): Boolean {
     TransferContext.writeArguments()
@@ -1634,7 +1706,7 @@ public object OS : Object() {
   /**
    * Pauses native video playback.
    *
-   * **Note:** This method is implemented on Android and iOS.
+   * **Note:** This method is only implemented on iOS.
    */
   public fun nativeVideoPause(): Unit {
     TransferContext.writeArguments()
@@ -1644,7 +1716,7 @@ public object OS : Object() {
   /**
    * Plays native video from the specified path, at the given volume and with audio and subtitle tracks.
    *
-   * **Note:** This method is implemented on Android and iOS, and the current Android implementation does not support the `volume`, `audio_track` and `subtitle_track` options.
+   * **Note:** This method is only implemented on iOS.
    */
   public fun nativeVideoPlay(
     path: String,
@@ -1661,7 +1733,7 @@ public object OS : Object() {
   /**
    * Stops native video playback.
    *
-   * **Note:** This method is implemented on Android and iOS.
+   * **Note:** This method is implemented on iOS.
    */
   public fun nativeVideoStop(): Unit {
     TransferContext.writeArguments()
@@ -1671,7 +1743,7 @@ public object OS : Object() {
   /**
    * Resumes native video playback.
    *
-   * **Note:** This method is implemented on Android and iOS.
+   * **Note:** This method is implemented on iOS.
    */
   public fun nativeVideoUnpause(): Unit {
     TransferContext.writeArguments()

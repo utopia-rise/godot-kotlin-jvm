@@ -53,21 +53,6 @@ public open class TextureLayered : Resource() {
   }
 
   /**
-   * Creates the [godot.Texture3D] or [godot.TextureArray] with specified `width`, `height`, and `depth`. See [enum Image.Format] for `format` options. See [enum Flags] enumerator for `flags` options.
-   */
-  public open fun create(
-    width: Long,
-    height: Long,
-    depth: Long,
-    format: Long,
-    flags: Long = 4
-  ): Unit {
-    TransferContext.writeArguments(LONG to width, LONG to height, LONG to depth, LONG to format,
-        LONG to flags)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURELAYERED_CREATE, NIL)
-  }
-
-  /**
    * Returns the depth of the texture. Depth is the 3rd dimension (typically Z-axis).
    */
   public open fun getDepth(): Long {
@@ -149,13 +134,23 @@ public open class TextureLayered : Resource() {
      */
     FLAG_REPEAT(2),
     /**
+     * Default flags for [godot.Texture3D]. [FLAG_FILTER] is enabled.
+     */
+    FLAGS_DEFAULT_TEXTURE_3D(4),
+    /**
      * Use filtering when reading from texture. Filtering smooths out pixels. Turning filtering off is slightly faster and more appropriate when you need access to individual pixels.
      */
     FLAG_FILTER(4),
     /**
-     * Equivalent to [FLAG_FILTER].
+     * Default flags for [godot.TextureArray]. [FLAG_MIPMAPS], [FLAG_REPEAT] and [FLAG_FILTER] are enabled.
      */
-    FLAGS_DEFAULT(4),
+    FLAGS_DEFAULT_TEXTURE_ARRAY(7),
+    /**
+     * Uses anisotropic mipmap filtering. Generates smaller versions of the same texture with different aspect ratios.
+     *
+     * This results in better-looking textures when viewed from oblique angles.
+     */
+    FLAG_ANISOTROPIC_FILTER(8),
     ;
 
     public val id: Long
@@ -170,9 +165,21 @@ public open class TextureLayered : Resource() {
 
   public companion object {
     /**
-     * Equivalent to [FLAG_FILTER].
+     * Default flags for [godot.Texture3D]. [FLAG_FILTER] is enabled.
      */
-    public final const val FLAGS_DEFAULT: Long = 4
+    public final const val FLAGS_DEFAULT_TEXTURE_3D: Long = 4
+
+    /**
+     * Default flags for [godot.TextureArray]. [FLAG_MIPMAPS], [FLAG_REPEAT] and [FLAG_FILTER] are enabled.
+     */
+    public final const val FLAGS_DEFAULT_TEXTURE_ARRAY: Long = 7
+
+    /**
+     * Uses anisotropic mipmap filtering. Generates smaller versions of the same texture with different aspect ratios.
+     *
+     * This results in better-looking textures when viewed from oblique angles.
+     */
+    public final const val FLAG_ANISOTROPIC_FILTER: Long = 8
 
     /**
      * Use filtering when reading from texture. Filtering smooths out pixels. Turning filtering off is slightly faster and more appropriate when you need access to individual pixels.
