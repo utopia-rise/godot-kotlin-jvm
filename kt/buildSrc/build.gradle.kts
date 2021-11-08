@@ -25,5 +25,5 @@ gradlePlugin {
 }
 
 dependencies {
-    implementation(kotlin("gradle-plugin", version = "1.5.21"))
+    implementation(kotlin("gradle-plugin", version = "1.5.31"))
 }
