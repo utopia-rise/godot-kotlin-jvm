@@ -6,6 +6,7 @@ import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.TypeSpec
+import godot.entrygenerator.model.RegisteredClass
 import java.io.BufferedWriter
 
 object MainEntryFileBuilder {
@@ -26,6 +27,11 @@ object MainEntryFileBuilder {
         .addStatement("%M()", MemberName("godot", "registerEngineTypes"))
         .addStatement("%M()", MemberName("godot", "registerEngineTypeMethods"))
 
+    private val registerUserTypesVariantMappingsFunSpec = FunSpec
+        .builder("registerUserTypeVariantMappings")
+        .receiver(ClassName("godot.registration.Entry", "Context"))
+        .addModifiers(KModifier.OVERRIDE)
+
     fun build(outAppendable: () -> BufferedWriter) {
 
         entryFileSpec.addType(
@@ -34,6 +40,7 @@ object MainEntryFileBuilder {
                 .superclass(ClassName("godot.registration", "Entry"))
                 .addFunction(initFunctionSpec.build())
                 .addFunction(initEngineTypesFunSpec.build())
+                .addFunction(registerUserTypesVariantMappingsFunSpec.build())
                 .build()
         )
         outAppendable().use {
@@ -47,5 +54,14 @@ object MainEntryFileBuilder {
         val (templateString, templateArgs) = classRegistrarBuilder.build()
         initFunctionSpec.addStatement(templateString, *templateArgs)
         return this
+    }
+
+    fun registerUserTypesVariantMappings(registeredClass: RegisteredClass) {
+        registerUserTypesVariantMappingsFunSpec.addStatement(
+            "%M[%T::class] = %T",
+            MemberName("godot.core", "variantMapper"),
+            ClassName(registeredClass.containingPackage, registeredClass.name),
+            ClassName("godot.core.VariantType", "OBJECT")
+        )
     }
 }

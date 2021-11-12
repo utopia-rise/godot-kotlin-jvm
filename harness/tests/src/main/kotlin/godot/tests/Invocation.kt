@@ -654,4 +654,7 @@ class Invocation : Spatial() {
 	} else {
 		"not null"
 	}
+
+    @RegisterFunction
+    fun createVariantArrayOfUserType() = variantArrayOf<OtherScript>()
 }

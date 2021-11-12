@@ -117,6 +117,7 @@ internal class Bootstrap {
 
                 if (!engineTypesRegistered) {
                     context.initEngineTypes()
+                    context.registerUserTypeVariantMappings()
                     registerManagedEngineTypes(
                         TypeManager.engineTypeNames.toTypedArray(),
                         TypeManager.engineSingletonsNames.toTypedArray(),

@@ -40,6 +40,8 @@ object EntryGenerator {
                             appendableProvider
                         )
                     )
+
+                    registerUserTypesVariantMappings(registeredClass)
                 }
             }
             build(mainBufferedWriterProvider)
