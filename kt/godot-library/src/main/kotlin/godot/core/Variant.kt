@@ -5,7 +5,8 @@ import godot.core.VariantType.AABB
 import godot.util.toRealT
 import java.nio.ByteBuffer
 
-val variantMapper = mutableMapOf(
+@PublishedApi
+internal val variantMapper = mutableMapOf(
         Unit::class to NIL,
         Any::class to ANY,
         Boolean::class to BOOL,

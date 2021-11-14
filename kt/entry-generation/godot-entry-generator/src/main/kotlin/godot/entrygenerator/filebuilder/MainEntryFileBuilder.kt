@@ -1,13 +1,10 @@
 package godot.entrygenerator.filebuilder
 
-import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.FileSpec
-import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.MemberName
-import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.*
+import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import godot.entrygenerator.model.RegisteredClass
 import java.io.BufferedWriter
+import kotlin.reflect.KClass
 
 object MainEntryFileBuilder {
     private val entryFileSpec = FileSpec
@@ -28,9 +25,17 @@ object MainEntryFileBuilder {
         .addStatement("%M()", MemberName("godot", "registerEngineTypeMethods"))
 
     private val registerUserTypesVariantMappingsFunSpec = FunSpec
-        .builder("registerUserTypeVariantMappings")
+        .builder("getRegisteredClasses")
         .receiver(ClassName("godot.registration.Entry", "Context"))
         .addModifiers(KModifier.OVERRIDE)
+        .returns(
+            List::class
+                .asTypeName()
+                .parameterizedBy(
+                    KClass::class.asTypeName()
+                        .parameterizedBy(STAR)
+                )
+        )
 
     fun build(outAppendable: () -> BufferedWriter) {
 
@@ -56,12 +61,20 @@ object MainEntryFileBuilder {
         return this
     }
 
-    fun registerUserTypesVariantMappings(registeredClass: RegisteredClass) {
+    fun registerUserTypesVariantMappings(registeredClasses: List<RegisteredClass>) {
         registerUserTypesVariantMappingsFunSpec.addStatement(
-            "%M[%T::class] = %T",
-            MemberName("godot.core", "variantMapper"),
-            ClassName(registeredClass.containingPackage, registeredClass.name),
-            ClassName("godot.core.VariantType", "OBJECT")
+            "val ret = %M<%T<*>>()",
+            MemberName("kotlin.collections", "mutableListOf"),
+            ClassName("kotlin.reflect", "KClass")
+        )
+        for (registeredClass in registeredClasses) {
+            registerUserTypesVariantMappingsFunSpec.addStatement(
+                "ret.add(%T::class)",
+                ClassName(registeredClass.containingPackage, registeredClass.name)
+            )
+        }
+        registerUserTypesVariantMappingsFunSpec.addStatement(
+            "return ret"
         )
     }
 }

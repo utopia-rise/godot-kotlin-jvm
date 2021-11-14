@@ -40,10 +40,9 @@ object EntryGenerator {
                             appendableProvider
                         )
                     )
-
-                    registerUserTypesVariantMappings(registeredClass)
                 }
             }
+            registerUserTypesVariantMappings(sourceFiles.map { it.registeredClasses }.flatten())
             build(mainBufferedWriterProvider)
         }
     }
