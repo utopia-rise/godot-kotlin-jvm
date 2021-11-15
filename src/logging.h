@@ -9,10 +9,10 @@
 #include <core/print_string.h>
 
 #define LOG_VERBOSE(message) \
-    print_verbose(vformat("Godot-JVM: %s", message));
+    print_verbose(vformat("Godot-JVM: %s", message))
 
 #define LOG_INFO(message) \
-    do { print_line(vformat("Godot-JVM: %s", message)); } while(false)
+    print_line(vformat("Godot-JVM: %s", message))
 
 #define LOG_WARNING(message) \
     WARN_PRINT(vformat("Godot-JVM: %s", message))

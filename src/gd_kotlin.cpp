@@ -58,7 +58,7 @@ register_engine_types_hook(
         jobjectArray p_method_names,
         jobjectArray p_types_of_methods) {
 #ifdef DEBUG_ENABLED
-    LOG_VERBOSE("Starting to register managed engine types...")
+    LOG_VERBOSE("Starting to register managed engine types...");
 #endif
     jni::Env env(p_env);
 
@@ -69,7 +69,7 @@ register_engine_types_hook(
         GDKotlin::get_instance().engine_type_names.insert(i, class_name);
         TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS[class_name] = i;
 #ifdef DEBUG_ENABLED
-        LOG_VERBOSE(vformat("Registered %s engine type with index %s.", class_name, i))
+        LOG_VERBOSE(vformat("Registered %s engine type with index %s.", class_name, i));
 #endif
         type.delete_local_ref(env);
     }
@@ -108,7 +108,7 @@ register_engine_types_hook(
     types_of_methods.delete_local_ref(env);
     integer_class.delete_local_ref(env);
 #ifdef DEBUG_ENABLED
-    LOG_VERBOSE("Done registering managed engine types...")
+    LOG_VERBOSE("Done registering managed engine types...");
 #endif
 }
 
@@ -134,7 +134,7 @@ void register_user_types_members_hook(JNIEnv* p_env, jobject p_this) {
 void GDKotlin::init() {
     if (Main::is_project_manager()) {
 #ifdef DEBUG_ENABLED
-        LOG_VERBOSE("Detected that we're in the project manager. Won't initialize kotlin lang.")
+        LOG_VERBOSE("Detected that we're in the project manager. Won't initialize kotlin lang.");
 #endif
         return;
     }
@@ -261,7 +261,7 @@ void GDKotlin::init() {
         args.option("-Dcom.sun.management.jmxremote.authenticate=false");
         args.option("-Dcom.sun.management.jmxremote.ssl=false");
 #ifdef DEBUG_ENABLED
-        LOG_VERBOSE(vformat("Started JMX on port: %s", jvm_jmx_port))
+        LOG_VERBOSE(vformat("Started JMX on port: %s", jvm_jmx_port));
 #endif
     }
 
@@ -327,14 +327,14 @@ void GDKotlin::init() {
     if (is_gc_activated) {
         if (is_gc_force_mode) {
 #ifdef DEBUG_ENABLED
-            LOG_VERBOSE("Starting GC thread with force mode.")
+            LOG_VERBOSE("Starting GC thread with force mode.");
 #endif
         }
         jni::MethodId start_method_id{garbage_collector_cls.get_method_id(env, "start", "(Z)V")};
         jvalue start_args[2] = {jni::to_jni_arg(is_gc_force_mode)};
         garbage_collector_instance.call_void_method(env, start_method_id, start_args);
 #ifdef DEBUG_ENABLED
-        LOG_VERBOSE("GC thread started.")
+        LOG_VERBOSE("GC thread started.");
 #endif
         is_gc_started = true;
     }
@@ -385,7 +385,7 @@ void GDKotlin::init() {
 void GDKotlin::finish() {
     if (Main::is_project_manager()) {
 #ifdef DEBUG_ENABLED
-        LOG_VERBOSE("Detected that we're in the project manager. No cleanup necessary")
+        LOG_VERBOSE("Detected that we're in the project manager. No cleanup necessary");
 #endif
         return;
     }
@@ -415,7 +415,7 @@ void GDKotlin::finish() {
             OS::get_singleton()->delay_usec(600000);
         }
 #ifdef DEBUG_ENABLED
-        LOG_VERBOSE("JVM GC thread was closed")
+        LOG_VERBOSE("JVM GC thread was closed");
 #endif
         jni::MethodId clean_up_method_id{garbage_collector_cls.get_method_id(env, "cleanUp", "()V")};
         garbage_collector_instance.call_void_method(env, clean_up_method_id);
@@ -445,7 +445,7 @@ void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
         classes[kt_class->name] = kt_class;
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE(vformat("Loaded class %s : %s, as %s", kt_class->name, kt_class->super_class,
-                            kt_class->registered_class_name))
+                            kt_class->registered_class_name));
 #endif
         clazz.delete_local_ref(p_env);
     }
@@ -459,7 +459,7 @@ void GDKotlin::unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes) 
     while (current != nullptr) {
         KtClass* kt_class = current->value();
 #ifdef DEBUG_ENABLED
-        LOG_VERBOSE(vformat("Unloading class %s : %s", kt_class->name, kt_class->super_class))
+        LOG_VERBOSE(vformat("Unloading class %s : %s", kt_class->name, kt_class->super_class));
 #endif
         delete kt_class;
         current = current->next();

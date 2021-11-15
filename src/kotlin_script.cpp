@@ -54,7 +54,7 @@ ScriptInstance* KotlinScript::instance_create(Object* p_this) {
 ScriptInstance* KotlinScript::_instance_create(const Variant** p_args, int p_argcount, Object* p_this) {
     KtClass* kt_class{get_kotlin_class()};
 #ifdef DEBUG_ENABLED
-    LOG_VERBOSE(vformat("Try to create %s instance.", kt_class->name))
+    LOG_VERBOSE(vformat("Try to create %s instance.", kt_class->name));
 #endif
     jni::Env env = jni::Jvm::current_env();
     KtObject* wrapped = kt_class->create_instance(env, p_args, p_argcount, p_this);
