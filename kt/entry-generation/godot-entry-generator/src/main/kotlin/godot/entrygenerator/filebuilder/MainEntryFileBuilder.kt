@@ -62,19 +62,13 @@ object MainEntryFileBuilder {
     }
 
     fun registerUserTypesVariantMappings(registeredClasses: List<RegisteredClass>) {
-        registerUserTypesVariantMappingsFunSpec.addStatement(
-            "val ret = %M<%T<*>>()",
-            MemberName("kotlin.collections", "mutableListOf"),
-            ClassName("kotlin.reflect", "KClass")
-        )
-        for (registeredClass in registeredClasses) {
-            registerUserTypesVariantMappingsFunSpec.addStatement(
-                "ret.add(%T::class)",
-                ClassName(registeredClass.containingPackage, registeredClass.name)
-            )
+        val listOfArguments = registeredClasses.map {
+            ClassName(it.containingPackage, it.name)
         }
         registerUserTypesVariantMappingsFunSpec.addStatement(
-            "return ret"
+            "return %M(${listOfArguments.joinToString { "%T::class" }})",
+            MemberName("kotlin.collections", "listOf"),
+            *listOfArguments.toTypedArray()
         )
     }
 }

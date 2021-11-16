@@ -42,7 +42,7 @@ object EntryGenerator {
                     )
                 }
             }
-            registerUserTypesVariantMappings(sourceFiles.map { it.registeredClasses }.flatten())
+            registerUserTypesVariantMappings(sourceFiles.flatMap { it.registeredClasses })
             build(mainBufferedWriterProvider)
         }
     }
