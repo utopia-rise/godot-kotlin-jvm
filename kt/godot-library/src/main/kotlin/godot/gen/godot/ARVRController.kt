@@ -29,7 +29,7 @@ import kotlin.Unit
  * A spatial node representing a spatially-tracked controller.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/vr/index.html](https://docs.godotengine.org/en/3.3/tutorials/vr/index.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/vr/index.html](https://docs.godotengine.org/en/3.4/tutorials/vr/index.html)
  *
  * This is a helper spatial node that is linked to the tracking of controllers. It also offers several handy passthroughs to the state of buttons and such on the controllers.
  *

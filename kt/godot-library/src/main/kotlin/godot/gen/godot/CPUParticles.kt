@@ -242,7 +242,7 @@ public open class CPUParticles : GeometryInstance() {
     }
 
   /**
-   * Unused for 3D particles.
+   * Each particle's initial color. To have particle display color in a [godot.SpatialMaterial] make sure to set [godot.SpatialMaterial.vertexColorUseAsAlbedo] to `true`.
    */
   public open var color: Color
     get() {
@@ -256,7 +256,7 @@ public open class CPUParticles : GeometryInstance() {
     }
 
   /**
-   * Unused for 3D particles.
+   * Each particle's color will vary along this [godot.GradientTexture] over its lifetime (multiplied with [color]).
    */
   public open var colorRamp: Gradient?
     get() {
@@ -407,6 +407,70 @@ public open class CPUParticles : GeometryInstance() {
       TransferContext.writeArguments(POOL_VECTOR3_ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES_SET_EMISSION_POINTS,
           NIL)
+    }
+
+  /**
+   * The axis for the ring shaped emitter when using [EMISSION_SHAPE_RING].
+   */
+  public open var emissionRingAxis: Vector3
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES_GET_EMISSION_RING_AXIS, VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES_SET_EMISSION_RING_AXIS, NIL)
+    }
+
+  /**
+   * The height for the ring shaped emitter when using [EMISSION_SHAPE_RING].
+   */
+  public open var emissionRingHeight: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES_GET_EMISSION_RING_HEIGHT, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES_SET_EMISSION_RING_HEIGHT, NIL)
+    }
+
+  /**
+   * The inner radius for the ring shaped emitter when using [EMISSION_SHAPE_RING].
+   */
+  public open var emissionRingInnerRadius: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES_GET_EMISSION_RING_INNER_RADIUS, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES_SET_EMISSION_RING_INNER_RADIUS, NIL)
+    }
+
+  /**
+   * The radius for the ring shaped emitter when using [EMISSION_SHAPE_RING].
+   */
+  public open var emissionRingRadius: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES_GET_EMISSION_RING_RADIUS, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES_SET_EMISSION_RING_RADIUS, NIL)
     }
 
   /**
@@ -1058,6 +1122,13 @@ public open class CPUParticles : GeometryInstance() {
 
 
   @CoreTypeHelper
+  public open fun emissionRingAxis(schedule: Vector3.() -> Unit): Vector3 = emissionRingAxis.apply{
+      schedule(this)
+      emissionRingAxis = this
+  }
+
+
+  @CoreTypeHelper
   public open fun gravity(schedule: Vector3.() -> Unit): Vector3 = gravity.apply{
       schedule(this)
       gravity = this
@@ -1139,9 +1210,13 @@ public open class CPUParticles : GeometryInstance() {
      */
     EMISSION_SHAPE_DIRECTED_POINTS(4),
     /**
+     * Particles will be emitted in a ring or cylinder.
+     */
+    EMISSION_SHAPE_RING(5),
+    /**
      * Represents the size of the [enum EmissionShape] enum.
      */
-    EMISSION_SHAPE_MAX(5),
+    EMISSION_SHAPE_MAX(6),
     ;
 
     public val id: Long
@@ -1277,7 +1352,7 @@ public open class CPUParticles : GeometryInstance() {
     /**
      * Represents the size of the [enum EmissionShape] enum.
      */
-    public final const val EMISSION_SHAPE_MAX: Long = 5
+    public final const val EMISSION_SHAPE_MAX: Long = 6
 
     /**
      * All particles will be emitted from a single point.
@@ -1288,6 +1363,11 @@ public open class CPUParticles : GeometryInstance() {
      * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle color will be modulated by [emissionColors].
      */
     public final const val EMISSION_SHAPE_POINTS: Long = 3
+
+    /**
+     * Particles will be emitted in a ring or cylinder.
+     */
+    public final const val EMISSION_SHAPE_RING: Long = 5
 
     /**
      * Particles will be emitted in the volume of a sphere.

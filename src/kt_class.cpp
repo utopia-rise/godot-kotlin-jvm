@@ -27,7 +27,7 @@ KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_
     JVM_CRASH_COND_MSG(
             p_arg_count > MAX_CONSTRUCTOR_SIZE,
             vformat("Cannot call constructor with %s, max arg count is %s", p_arg_count, MAX_CONSTRUCTOR_SIZE)
-    )
+    );
 #endif
 
     KtConstructor* constructor{constructors[p_arg_count]};
@@ -36,13 +36,13 @@ KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_
     JVM_CRASH_COND_MSG(
             constructor == nullptr,
             vformat("Cannot find constructor with %s parameters for class %s", p_arg_count, name)
-    )
+    );
 #endif
 
     KtObject* jvm_instance{constructor->create_instance(p_args, p_owner)};
 
 #ifdef DEBUG_ENABLED
-    LOG_VERBOSE(vformat("Instantiated an object of type %s", name))
+    LOG_VERBOSE(vformat("Instantiated an object of type %s", name));
 #endif
 
     return jvm_instance;
@@ -94,7 +94,7 @@ void KtClass::fetch_methods(jni::Env& env) {
         auto* ktFunction { new KtFunction(functionsArray.get(env, i), ClassLoader::get_default_loader()) };
         methods[ktFunction->get_name()] = ktFunction;
 #ifdef DEBUG_ENABLED
-        LOG_VERBOSE(vformat("Fetched method %s for class %s", ktFunction->get_name(), name))
+        LOG_VERBOSE(vformat("Fetched method %s for class %s", ktFunction->get_name(), name));
 #endif
     }
 }
@@ -106,7 +106,7 @@ void KtClass::fetch_properties(jni::Env& env) {
         auto* ktProperty { new KtProperty(propertiesArray.get(env, i), ClassLoader::get_default_loader()) };
         properties[ktProperty->get_name()] = ktProperty;
 #ifdef DEBUG_ENABLED
-        LOG_VERBOSE(vformat("Fetched property %s for class %s", ktProperty->get_name(), name))
+        LOG_VERBOSE(vformat("Fetched property %s for class %s", ktProperty->get_name(), name));
 #endif
     }
 }
@@ -120,7 +120,7 @@ void KtClass::fetch_signals(jni::Env& env) {
         };
         signal_infos[kt_signal_info->name] = kt_signal_info;
 #ifdef DEBUG_ENABLED
-        LOG_VERBOSE(vformat("Fetched signal %s for class %s", kt_signal_info->name, name))
+        LOG_VERBOSE(vformat("Fetched signal %s for class %s", kt_signal_info->name, name));
 #endif
     }
 }
@@ -134,7 +134,7 @@ void KtClass::fetch_constructors(jni::Env &env) {
         if (constructor.obj != nullptr) {
             kt_constructor = new KtConstructor(constructor, ClassLoader::get_default_loader());
 #ifdef DEBUG_ENABLED
-            LOG_VERBOSE(vformat("Fetched constructor with %s parameters for class %s", i, name))
+            LOG_VERBOSE(vformat("Fetched constructor with %s parameters for class %s", i, name));
 #endif
         }
         constructors[i] = kt_constructor;
@@ -159,4 +159,9 @@ void KtClass::fetch_members() {
     fetch_properties(env);
     fetch_signals(env);
     fetch_constructors(env);
+}
+
+bool KtClass::is_assignable_from(KtClass* p_class) const {
+    jni::Env env{jni::Jvm::current_env()};
+    return j_class.is_assignable_from(env, p_class->j_class);
 }

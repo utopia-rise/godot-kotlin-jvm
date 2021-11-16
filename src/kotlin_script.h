@@ -26,6 +26,8 @@ public:
 
     bool can_instance() const override;
 
+    bool inherits_script(const Ref<Script> &p_script) const override;
+
     Ref<Script> get_base_script() const override;
 
     StringName get_instance_base_type() const override;

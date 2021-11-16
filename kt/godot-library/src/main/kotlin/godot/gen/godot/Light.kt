@@ -131,6 +131,20 @@ public open class Light : VisualInstance() {
     }
 
   /**
+   * The size of the light in Godot units. Only considered in baked lightmaps and only if [lightBakeMode] is set to [BAKE_ALL]. Increasing this value will make the shadows appear blurrier. This can be used to simulate area lights to an extent.
+   */
+  public open var lightSize: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT_GET_LIGHT_SIZE, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT_SET_LIGHT_SIZE, NIL)
+    }
+
+  /**
    * The intensity of the specular blob in objects affected by the light. At `0`, the light becomes a pure diffuse light. When not baking emission, this can be used to avoid unrealistic reflections when placing lights above an emissive surface.
    */
   public open var lightSpecular: Double
@@ -277,61 +291,65 @@ public open class Light : VisualInstance() {
      */
     PARAM_INDIRECT_ENERGY(1),
     /**
+     * Constant for accessing [lightSize].
+     */
+    PARAM_SIZE(2),
+    /**
      * Constant for accessing [lightSpecular].
      */
-    PARAM_SPECULAR(2),
+    PARAM_SPECULAR(3),
     /**
      * Constant for accessing [godot.OmniLight.omniRange] or [godot.SpotLight.spotRange].
      */
-    PARAM_RANGE(3),
+    PARAM_RANGE(4),
     /**
      * Constant for accessing [godot.OmniLight.omniAttenuation] or [godot.SpotLight.spotAttenuation].
      */
-    PARAM_ATTENUATION(4),
+    PARAM_ATTENUATION(5),
     /**
      * Constant for accessing [godot.SpotLight.spotAngle].
      */
-    PARAM_SPOT_ANGLE(5),
+    PARAM_SPOT_ANGLE(6),
     /**
      * Constant for accessing [godot.SpotLight.spotAngleAttenuation].
      */
-    PARAM_SPOT_ATTENUATION(6),
+    PARAM_SPOT_ATTENUATION(7),
     /**
      * Constant for accessing [shadowContact].
      */
-    PARAM_CONTACT_SHADOW_SIZE(7),
+    PARAM_CONTACT_SHADOW_SIZE(8),
     /**
      * Constant for accessing [godot.DirectionalLight.directionalShadowMaxDistance].
      */
-    PARAM_SHADOW_MAX_DISTANCE(8),
+    PARAM_SHADOW_MAX_DISTANCE(9),
     /**
      * Constant for accessing [godot.DirectionalLight.directionalShadowSplit1].
      */
-    PARAM_SHADOW_SPLIT_1_OFFSET(9),
+    PARAM_SHADOW_SPLIT_1_OFFSET(10),
     /**
      * Constant for accessing [godot.DirectionalLight.directionalShadowSplit2].
      */
-    PARAM_SHADOW_SPLIT_2_OFFSET(10),
+    PARAM_SHADOW_SPLIT_2_OFFSET(11),
     /**
      * Constant for accessing [godot.DirectionalLight.directionalShadowSplit3].
      */
-    PARAM_SHADOW_SPLIT_3_OFFSET(11),
+    PARAM_SHADOW_SPLIT_3_OFFSET(12),
     /**
      * Constant for accessing [godot.DirectionalLight.directionalShadowNormalBias].
      */
-    PARAM_SHADOW_NORMAL_BIAS(12),
+    PARAM_SHADOW_NORMAL_BIAS(13),
     /**
      * Constant for accessing [shadowBias].
      */
-    PARAM_SHADOW_BIAS(13),
+    PARAM_SHADOW_BIAS(14),
     /**
      * Constant for accessing [godot.DirectionalLight.directionalShadowBiasSplitScale].
      */
-    PARAM_SHADOW_BIAS_SPLIT_SCALE(14),
+    PARAM_SHADOW_BIAS_SPLIT_SCALE(15),
     /**
      * Represents the size of the [enum Param] enum.
      */
-    PARAM_MAX(15),
+    PARAM_MAX(16),
     ;
 
     public val id: Long
@@ -367,12 +385,12 @@ public open class Light : VisualInstance() {
     /**
      * Constant for accessing [godot.OmniLight.omniAttenuation] or [godot.SpotLight.spotAttenuation].
      */
-    public final const val PARAM_ATTENUATION: Long = 4
+    public final const val PARAM_ATTENUATION: Long = 5
 
     /**
      * Constant for accessing [shadowContact].
      */
-    public final const val PARAM_CONTACT_SHADOW_SIZE: Long = 7
+    public final const val PARAM_CONTACT_SHADOW_SIZE: Long = 8
 
     /**
      * Constant for accessing [lightEnergy].
@@ -387,61 +405,66 @@ public open class Light : VisualInstance() {
     /**
      * Represents the size of the [enum Param] enum.
      */
-    public final const val PARAM_MAX: Long = 15
+    public final const val PARAM_MAX: Long = 16
 
     /**
      * Constant for accessing [godot.OmniLight.omniRange] or [godot.SpotLight.spotRange].
      */
-    public final const val PARAM_RANGE: Long = 3
+    public final const val PARAM_RANGE: Long = 4
 
     /**
      * Constant for accessing [shadowBias].
      */
-    public final const val PARAM_SHADOW_BIAS: Long = 13
+    public final const val PARAM_SHADOW_BIAS: Long = 14
 
     /**
      * Constant for accessing [godot.DirectionalLight.directionalShadowBiasSplitScale].
      */
-    public final const val PARAM_SHADOW_BIAS_SPLIT_SCALE: Long = 14
+    public final const val PARAM_SHADOW_BIAS_SPLIT_SCALE: Long = 15
 
     /**
      * Constant for accessing [godot.DirectionalLight.directionalShadowMaxDistance].
      */
-    public final const val PARAM_SHADOW_MAX_DISTANCE: Long = 8
+    public final const val PARAM_SHADOW_MAX_DISTANCE: Long = 9
 
     /**
      * Constant for accessing [godot.DirectionalLight.directionalShadowNormalBias].
      */
-    public final const val PARAM_SHADOW_NORMAL_BIAS: Long = 12
+    public final const val PARAM_SHADOW_NORMAL_BIAS: Long = 13
 
     /**
      * Constant for accessing [godot.DirectionalLight.directionalShadowSplit1].
      */
-    public final const val PARAM_SHADOW_SPLIT_1_OFFSET: Long = 9
+    public final const val PARAM_SHADOW_SPLIT_1_OFFSET: Long = 10
 
     /**
      * Constant for accessing [godot.DirectionalLight.directionalShadowSplit2].
      */
-    public final const val PARAM_SHADOW_SPLIT_2_OFFSET: Long = 10
+    public final const val PARAM_SHADOW_SPLIT_2_OFFSET: Long = 11
 
     /**
      * Constant for accessing [godot.DirectionalLight.directionalShadowSplit3].
      */
-    public final const val PARAM_SHADOW_SPLIT_3_OFFSET: Long = 11
+    public final const val PARAM_SHADOW_SPLIT_3_OFFSET: Long = 12
+
+    /**
+     * Constant for accessing [lightSize].
+     */
+    public final const val PARAM_SIZE: Long = 2
 
     /**
      * Constant for accessing [lightSpecular].
      */
-    public final const val PARAM_SPECULAR: Long = 2
+    public final const val PARAM_SPECULAR: Long = 3
 
     /**
      * Constant for accessing [godot.SpotLight.spotAngle].
      */
-    public final const val PARAM_SPOT_ANGLE: Long = 5
+    public final const val PARAM_SPOT_ANGLE: Long = 6
 
     /**
      * Constant for accessing [godot.SpotLight.spotAngleAttenuation].
      */
-    public final const val PARAM_SPOT_ATTENUATION: Long = 6
+    public final const val PARAM_SPOT_ATTENUATION: Long = 7
   }
 }

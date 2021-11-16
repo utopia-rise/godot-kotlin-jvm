@@ -32,9 +32,11 @@ import kotlin.Unit
  * Prerendered indirect light map for a scene.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/3d/baked_lightmaps.html](https://docs.godotengine.org/en/3.3/tutorials/3d/baked_lightmaps.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/3d/baked_lightmaps.html](https://docs.godotengine.org/en/3.4/tutorials/3d/baked_lightmaps.html)
  *
  * Baked lightmaps are an alternative workflow for adding indirect (or baked) lighting to a scene. Unlike the [godot.GIProbe] approach, baked lightmaps work fine on low-end PCs and mobile devices as they consume almost no resources in run-time.
+ *
+ * **Note:** Due to how lightmaps work, most properties only have a visible effect once lightmaps are baked again.
  */
 @GodotBaseType
 public open class BakedLightmap : VisualInstance() {
@@ -71,7 +73,7 @@ public open class BakedLightmap : VisualInstance() {
     }
 
   /**
-   * Raycasting bias used during baking to avoid floating point precission issues.
+   * Raycasting bias used during baking to avoid floating point precision issues.
    */
   public open var bias: Double
     get() {
@@ -85,7 +87,25 @@ public open class BakedLightmap : VisualInstance() {
     }
 
   /**
-   * Number of light bounces that are taken into account during baking.
+   * The energy multiplier for each bounce. Higher values will make indirect lighting brighter. A value of `1.0` represents physically accurate behavior, but higher values can be used to make indirect lighting propagate more visibly when using a low number of bounces. This can be used to speed up bake times by lowering the number of [bounces] then increasing [bounceIndirectEnergy]. Unlike [godot.BakedLightmapData.energy], this property does not affect direct lighting emitted by light nodes, emissive materials and the environment.
+   *
+   * **Note:** [bounceIndirectEnergy] only has an effect if [bounces] is set to a value greater than or equal to `1`.
+   */
+  public open var bounceIndirectEnergy: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAP_GET_BOUNCE_INDIRECT_ENERGY, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BAKEDLIGHTMAP_SET_BOUNCE_INDIRECT_ENERGY, NIL)
+    }
+
+  /**
+   * Number of light bounces that are taken into account during baking. See also [bounceIndirectEnergy].
    */
   public open var bounces: Long
     get() {
@@ -416,7 +436,7 @@ public open class BakedLightmap : VisualInstance() {
 
 
   /**
-   * Bakes the lightmap, scanning from the given `from_node` root and saves the resulting [godot.BakedLightmapData] in `data_save_path`. If no save path is provided it will try to match the path from the current [lightData].
+   * Bakes the lightmap, scanning from the given `from_node` root and saves the resulting [godot.BakedLightmapData] in `data_save_path`. If no root node is provided, parent of this node will be used as root instead. If no save path is provided it will try to match the path from the current [lightData].
    */
   public open fun bake(fromNode: Node? = null, dataSavePath: String = ""): BakedLightmap.BakeError {
     TransferContext.writeArguments(OBJECT to fromNode, STRING to dataSavePath)
@@ -487,9 +507,13 @@ public open class BakedLightmap : VisualInstance() {
      */
     BAKE_ERROR_USER_ABORTED(6),
     /**
-     *
+     * Returns if lightmapper can't be created. Unless you are using a custom lightmapper, please report this as bug.
      */
     BAKE_ERROR_NO_LIGHTMAPPER(7),
+    /**
+     * There is no root node to start baking from. Either provide `from_node` argument or attach this node to a parent that should be used as root.
+     */
+    BAKE_ERROR_NO_ROOT(8),
     ;
 
     public val id: Long
@@ -550,7 +574,7 @@ public open class BakedLightmap : VisualInstance() {
     public final const val BAKE_ERROR_LIGHTMAP_SIZE: Long = 4
 
     /**
-     *
+     * Returns if lightmapper can't be created. Unless you are using a custom lightmapper, please report this as bug.
      */
     public final const val BAKE_ERROR_NO_LIGHTMAPPER: Long = 7
 
@@ -558,6 +582,11 @@ public open class BakedLightmap : VisualInstance() {
      * Currently unused.
      */
     public final const val BAKE_ERROR_NO_MESHES: Long = 2
+
+    /**
+     * There is no root node to start baking from. Either provide `from_node` argument or attach this node to a parent that should be used as root.
+     */
+    public final const val BAKE_ERROR_NO_ROOT: Long = 8
 
     /**
      * Returns if no viable save path is found. This can happen where an [imagePath] is not specified or when the save location is invalid.

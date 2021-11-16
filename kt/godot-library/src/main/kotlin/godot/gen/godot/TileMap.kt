@@ -204,7 +204,7 @@ public open class TileMap : Node2D() {
     }
 
   /**
-   * The collision layer(s) for all colliders in the TileMap. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The collision layer(s) for all colliders in the TileMap. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.4/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
   public open var collisionLayer: Long
     get() {
@@ -218,7 +218,7 @@ public open class TileMap : Node2D() {
     }
 
   /**
-   * The collision mask(s) for all colliders in the TileMap. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The collision mask(s) for all colliders in the TileMap. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.4/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
   public open var collisionMask: Long
     get() {

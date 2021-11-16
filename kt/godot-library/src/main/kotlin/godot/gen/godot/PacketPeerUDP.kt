@@ -92,7 +92,7 @@ public open class PacketPeerUDP : PacketPeer() {
    *
    * You can join the same multicast group with multiple interfaces. Use [godot.IP.getLocalInterfaces] to know which are available.
    *
-   * Note: Some Android devices might require the `CHANGE_WIFI_MULTICAST_STATE` permission for multicast to work.
+   * **Note:** Some Android devices might require the `CHANGE_WIFI_MULTICAST_STATE` permission for multicast to work.
    */
   public open fun joinMulticastGroup(multicastAddress: String, interfaceName: String): GodotError {
     TransferContext.writeArguments(STRING to multicastAddress, STRING to interfaceName)
@@ -133,7 +133,7 @@ public open class PacketPeerUDP : PacketPeer() {
   /**
    * Enable or disable sending of broadcast packets (e.g. `set_dest_address("255.255.255.255", 4343)`. This option is disabled by default.
    *
-   * Note: Some Android devices might require the `CHANGE_WIFI_MULTICAST_STATE` permission and this option to be enabled to receive broadcast packets too.
+   * **Note:** Some Android devices might require the `CHANGE_WIFI_MULTICAST_STATE` permission and this option to be enabled to receive broadcast packets too.
    */
   public open fun setBroadcastEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
@@ -144,7 +144,7 @@ public open class PacketPeerUDP : PacketPeer() {
   /**
    * Sets the destination address and port for sending packets and variables. A hostname will be resolved using DNS if needed.
    *
-   * Note: [setBroadcastEnabled] must be enabled before sending packets to a broadcast address (e.g. `255.255.255.255`).
+   * **Note:** [setBroadcastEnabled] must be enabled before sending packets to a broadcast address (e.g. `255.255.255.255`).
    */
   public open fun setDestAddress(host: String, port: Long): GodotError {
     TransferContext.writeArguments(STRING to host, LONG to port)

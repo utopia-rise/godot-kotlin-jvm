@@ -1326,6 +1326,8 @@ public open class Node : Object() {
 
   /**
    * Removes a child node. The node is NOT deleted and must be deleted manually.
+   *
+   * **Note:** This function may set the [owner] of the removed Node (or its descendants) to be `null`, if that [owner] is no longer a parent or ancestor.
    */
   public open fun removeChild(node: Node): Unit {
     TransferContext.writeArguments(OBJECT to node)

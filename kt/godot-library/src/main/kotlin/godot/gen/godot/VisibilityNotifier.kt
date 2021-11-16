@@ -28,7 +28,7 @@ import kotlin.Unit
  * **Note:** VisibilityNotifier uses an approximate heuristic for performance reasons. It doesn't take walls and other occlusion into account. The heuristic is an implementation detail and may change in future versions. If you need precise visibility checking, use another method such as adding an [godot.Area] node as a child of a [godot.Camera] node and/or [godot.Vector3.dot].
  */
 @GodotBaseType
-public open class VisibilityNotifier : Spatial() {
+public open class VisibilityNotifier : CullInstance() {
   /**
    * Emitted when the VisibilityNotifier enters a [godot.Camera]'s view.
    */

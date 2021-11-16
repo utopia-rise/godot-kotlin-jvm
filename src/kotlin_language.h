@@ -25,6 +25,8 @@ public:
 
     void get_reserved_words(List<String>* p_words) const override;
 
+    bool is_control_flow_keyword(String p_keyword) const override;
+
     void get_comment_delimiters(List<String>* p_delimiters) const override;
 
     void get_string_delimiters(List<String>* p_delimiters) const override;

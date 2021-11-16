@@ -12,6 +12,7 @@ import godot.core.PoolVector3Array
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
+import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -20,6 +21,7 @@ import godot.core.VariantType.POOL_VECTOR3_ARRAY
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import kotlin.Any
+import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
@@ -63,9 +65,13 @@ public open class Mesh : Resource() {
 
   /**
    * Calculate a [godot.ConvexPolygonShape] from the mesh.
+   *
+   * If `clean` is `true` (default), duplicate and interior vertices are removed automatically. You can set it to `false` to make the process faster if not needed.
+   *
+   * If `simplify` is `true`, the geometry can be further simplified to reduce the amount of vertices. Disabled by default.
    */
-  public open fun createConvexShape(): Shape? {
-    TransferContext.writeArguments()
+  public open fun createConvexShape(clean: Boolean = true, simplify: Boolean = false): Shape? {
+    TransferContext.writeArguments(BOOL to clean, BOOL to simplify)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESH_CREATE_CONVEX_SHAPE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Shape?
   }
@@ -307,10 +313,6 @@ public open class Mesh : Resource() {
      */
     ARRAY_COMPRESS_WEIGHTS(65536),
     /**
-     * Used to set flags [ARRAY_COMPRESS_VERTEX], [ARRAY_COMPRESS_NORMAL], [ARRAY_COMPRESS_TANGENT], [ARRAY_COMPRESS_COLOR], [ARRAY_COMPRESS_TEX_UV], [godot.ARRAY_COMPRESS_TEX_UV2] and [ARRAY_COMPRESS_WEIGHTS] quickly.
-     */
-    ARRAY_COMPRESS_DEFAULT(97280),
-    /**
      * Flag used to mark a compressed index array.
      */
     ARRAY_COMPRESS_INDEX(131072),
@@ -322,6 +324,14 @@ public open class Mesh : Resource() {
      * Flag used to mark that the array uses 16-bit bones instead of 8-bit.
      */
     ARRAY_FLAG_USE_16_BIT_BONES(524288),
+    /**
+     * Flag used to mark that the array uses an octahedral representation of normal and tangent vectors rather than cartesian.
+     */
+    ARRAY_FLAG_USE_OCTAHEDRAL_COMPRESSION(2097152),
+    /**
+     * Used to set flags [ARRAY_COMPRESS_VERTEX], [ARRAY_COMPRESS_NORMAL], [ARRAY_COMPRESS_TANGENT], [ARRAY_COMPRESS_COLOR], [ARRAY_COMPRESS_TEX_UV], [godot.ARRAY_COMPRESS_TEX_UV2], [ARRAY_COMPRESS_WEIGHTS], and [ARRAY_FLAG_USE_OCTAHEDRAL_COMPRESSION] quickly.
+     */
+    ARRAY_COMPRESS_DEFAULT(2194432),
     ;
 
     public val id: Long
@@ -416,9 +426,9 @@ public open class Mesh : Resource() {
     public final const val ARRAY_COMPRESS_COLOR: Long = 4096
 
     /**
-     * Used to set flags [ARRAY_COMPRESS_VERTEX], [ARRAY_COMPRESS_NORMAL], [ARRAY_COMPRESS_TANGENT], [ARRAY_COMPRESS_COLOR], [ARRAY_COMPRESS_TEX_UV], [godot.ARRAY_COMPRESS_TEX_UV2] and [ARRAY_COMPRESS_WEIGHTS] quickly.
+     * Used to set flags [ARRAY_COMPRESS_VERTEX], [ARRAY_COMPRESS_NORMAL], [ARRAY_COMPRESS_TANGENT], [ARRAY_COMPRESS_COLOR], [ARRAY_COMPRESS_TEX_UV], [godot.ARRAY_COMPRESS_TEX_UV2], [ARRAY_COMPRESS_WEIGHTS], and [ARRAY_FLAG_USE_OCTAHEDRAL_COMPRESSION] quickly.
      */
-    public final const val ARRAY_COMPRESS_DEFAULT: Long = 97280
+    public final const val ARRAY_COMPRESS_DEFAULT: Long = 2194432
 
     /**
      * Flag used to mark a compressed index array.
@@ -464,6 +474,11 @@ public open class Mesh : Resource() {
      * Flag used to mark that the array contains 2D vertices.
      */
     public final const val ARRAY_FLAG_USE_2D_VERTICES: Long = 262144
+
+    /**
+     * Flag used to mark that the array uses an octahedral representation of normal and tangent vectors rather than cartesian.
+     */
+    public final const val ARRAY_FLAG_USE_OCTAHEDRAL_COMPRESSION: Long = 2097152
 
     /**
      * Mesh array contains bones.

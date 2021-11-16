@@ -25,7 +25,7 @@ import kotlin.Unit
  *
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/3.3/tutorials/animation/animation_tree.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/3.4/tutorials/animation/animation_tree.html)
  */
 @GodotBaseType
 public open class AnimationNodeStateMachineTransition : Resource() {
@@ -35,7 +35,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   public val advanceConditionChanged: Signal0 by signal()
 
   /**
-   * Turn on auto advance when this condition is set. The provided name will become a boolean parameter on the [godot.AnimationTree] that can be controlled from code (see [url=https://docs.godotengine.org/en/3.3/tutorials/animation/animation_tree.html#controlling-from-code][/url]). For example, if [godot.AnimationTree.treeRoot] is an [godot.AnimationNodeStateMachine] and [advanceCondition] is set to `"idle"`:
+   * Turn on auto advance when this condition is set. The provided name will become a boolean parameter on the [godot.AnimationTree] that can be controlled from code (see [url=https://docs.godotengine.org/en/3.4/tutorials/animation/animation_tree.html#controlling-from-code][/url]). For example, if [godot.AnimationTree.treeRoot] is an [godot.AnimationNodeStateMachine] and [advanceCondition] is set to `"idle"`:
    *
    * ```
    * 			$animation_tree["parameters/conditions/idle"] = is_on_floor and (linear_velocity.x == 0)

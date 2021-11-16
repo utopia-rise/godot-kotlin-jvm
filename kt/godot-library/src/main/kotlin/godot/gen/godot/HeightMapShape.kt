@@ -16,7 +16,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Height map shape for 3D physics (Bullet only).
+ * Height map shape for 3D physics.
  *
  * Height map shape resource, which can be added to a [godot.PhysicsBody] or [godot.Area].
  */

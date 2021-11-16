@@ -25,7 +25,7 @@ import kotlin.Unit
  * 2D sprite node in 3D world, that can use multiple 2D textures for animation.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/2d/2d_sprite_animation.html](https://docs.godotengine.org/en/3.3/tutorials/2d/2d_sprite_animation.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/2d/2d_sprite_animation.html](https://docs.godotengine.org/en/3.4/tutorials/2d/2d_sprite_animation.html)
  *
  * Animations are created using a [godot.SpriteFrames] resource, which can be configured in the editor via the SpriteFrames panel.
  */

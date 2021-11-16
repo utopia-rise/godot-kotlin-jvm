@@ -32,7 +32,7 @@ import kotlin.Unit
  * Server for AR and VR features.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/vr/index.html](https://docs.godotengine.org/en/3.3/tutorials/vr/index.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/vr/index.html](https://docs.godotengine.org/en/3.4/tutorials/vr/index.html)
  *
  * The AR/VR server is the heart of our Advanced and Virtual Reality solution and handles all the processing.
  */
@@ -141,6 +141,22 @@ public object ARVRServer : Object() {
   public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
   /**
+   * Registers an [godot.ARVRInterface] object.
+   */
+  public fun addInterface(_interface: ARVRInterface): Unit {
+    TransferContext.writeArguments(OBJECT to _interface)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRSERVER_ADD_INTERFACE, NIL)
+  }
+
+  /**
+   * Registers a new [godot.ARVRPositionalTracker] that tracks a spatial location in real space.
+   */
+  public fun addTracker(tracker: ARVRPositionalTracker): Unit {
+    TransferContext.writeArguments(OBJECT to tracker)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRSERVER_ADD_TRACKER, NIL)
+  }
+
+  /**
    * This is an important function to understand correctly. AR and VR platforms all handle positioning slightly differently.
    *
    * For platforms that do not offer spatial tracking, our origin point (0,0,0) is the location of our HMD, but you have little control over the direction the player is facing in the real world.
@@ -156,6 +172,15 @@ public object ARVRServer : Object() {
   public fun centerOnHmd(rotationMode: Long, keepHeight: Boolean): Unit {
     TransferContext.writeArguments(LONG to rotationMode, BOOL to keepHeight)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRSERVER_CENTER_ON_HMD, NIL)
+  }
+
+  /**
+   * Clears our current primary interface if it is set to the provided interface.
+   */
+  public fun clearPrimaryInterfaceIf(_interface: ARVRInterface): Unit {
+    TransferContext.writeArguments(OBJECT to _interface)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ARVRSERVER_CLEAR_PRIMARY_INTERFACE_IF, NIL)
   }
 
   /**
@@ -261,6 +286,22 @@ public object ARVRServer : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRSERVER_GET_TRACKER_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Removes this interface.
+   */
+  public fun removeInterface(_interface: ARVRInterface): Unit {
+    TransferContext.writeArguments(OBJECT to _interface)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRSERVER_REMOVE_INTERFACE, NIL)
+  }
+
+  /**
+   * Removes this positional tracker.
+   */
+  public fun removeTracker(tracker: ARVRPositionalTracker): Unit {
+    TransferContext.writeArguments(OBJECT to tracker)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ARVRSERVER_REMOVE_TRACKER, NIL)
   }
 
   public enum class RotationMode(

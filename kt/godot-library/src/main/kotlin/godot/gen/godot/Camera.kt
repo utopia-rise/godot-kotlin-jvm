@@ -69,7 +69,9 @@ public open class Camera : Spatial() {
     }
 
   /**
-   * If not [DOPPLER_TRACKING_DISABLED], this camera will simulate the [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) for objects changed in particular `_process` methods. See [enum DopplerTracking] for possible values.
+   * If not [DOPPLER_TRACKING_DISABLED], this camera will simulate the [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) for objects changed in particular `_process` methods. The Doppler effect is only simulated for [godot.AudioStreamPlayer3D] nodes that have [godot.AudioStreamPlayer3D.dopplerTracking] set to a value other than [godot.AudioStreamPlayer3D.DOPPLER_TRACKING_DISABLED].
+   *
+   * **Note:** To toggle the Doppler effect preview in the editor, use the Perspective menu in the top-left corner of the 3D viewport and toggle **Enable Doppler**.
    */
   public open var dopplerTracking: Long
     get() {
@@ -262,7 +264,7 @@ public open class Camera : Spatial() {
   }
 
   /**
-   * Gets the camera transform. Subclassed cameras such as [godot.InterpolatedCamera] may provide different transforms than the [godot.Node] transform.
+   * Returns the transform of the camera plus the vertical ([vOffset]) and horizontal ([hOffset]) offsets; and any other adjustments made to the position and orientation of the camera by subclassed cameras such as [godot.ClippedCamera], [godot.InterpolatedCamera] and [godot.ARVRCamera].
    */
   public open fun getCameraTransform(): Transform {
     TransferContext.writeArguments()

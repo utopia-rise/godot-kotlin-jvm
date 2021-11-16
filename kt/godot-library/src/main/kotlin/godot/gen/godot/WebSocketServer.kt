@@ -10,6 +10,7 @@ import godot.core.GodotError
 import godot.core.PoolStringArray
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -21,6 +22,7 @@ import godot.signals.Signal2
 import godot.signals.Signal3
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -59,6 +61,19 @@ public open class WebSocketServer : WebSocketMultiplayerPeer() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_SET_CA_CHAIN, NIL)
+    }
+
+  public open var handshakeTimeout: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_GET_HANDSHAKE_TIMEOUT, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_SET_HANDSHAKE_TIMEOUT, NIL)
     }
 
   public open var privateKey: CryptoKey?

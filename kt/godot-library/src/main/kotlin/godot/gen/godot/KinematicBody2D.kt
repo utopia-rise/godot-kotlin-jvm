@@ -70,6 +70,16 @@ public open class KinematicBody2D : PhysicsBody2D() {
   }
 
   /**
+   * Returns the floor's collision angle at the last collision point according to `up_direction`, which is `Vector2.UP` by default. This value is always positive and only valid after calling [moveAndSlide] and when [isOnFloor] returns `true`.
+   */
+  public open fun getFloorAngle(upDirection: Vector2 = Vector2(0.0, -1.0)): Double {
+    TransferContext.writeArguments(VECTOR2 to upDirection)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY2D_GET_FLOOR_ANGLE,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
    * Returns the surface normal of the floor at the last collision point. Only valid after calling [moveAndSlide] or [moveAndSlideWithSnap] and when [isOnFloor] returns `true`.
    */
   public open fun getFloorNormal(): Vector2 {
@@ -87,6 +97,16 @@ public open class KinematicBody2D : PhysicsBody2D() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY2D_GET_FLOOR_VELOCITY,
         VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Returns a [godot.KinematicCollision2D], which contains information about the latest collision that occurred during the last call to [moveAndSlide].
+   */
+  public open fun getLastSlideCollision(): KinematicCollision2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_KINEMATICBODY2D_GET_LAST_SLIDE_COLLISION, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as KinematicCollision2D?
   }
 
   /**
@@ -180,6 +200,8 @@ public open class KinematicBody2D : PhysicsBody2D() {
    * If `infinite_inertia` is `true`, body will be able to push [godot.RigidBody2D] nodes, but it won't also detect any collisions with them. If `false`, it will interact with [godot.RigidBody2D] nodes like with [godot.StaticBody2D].
    *
    * Returns the `linear_velocity` vector, rotated and/or scaled if a slide collision occurred. To get detailed information about collisions that occurred, use [getSlideCollision].
+   *
+   * When the body touches a moving platform, the platform's velocity is automatically added to the body motion. If a collision occurs due to the platform's motion, it will always be first in the slide collisions.
    */
   public open fun moveAndSlide(
     linearVelocity: Vector2,

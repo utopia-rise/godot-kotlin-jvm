@@ -101,9 +101,13 @@ public open class MeshInstance : GeometryInstance() {
 
   /**
    * This helper creates a [godot.StaticBody] child node with a [godot.ConvexPolygonShape] collision shape calculated from the mesh geometry. It's mainly used for testing.
+   *
+   * If `clean` is `true` (default), duplicate and interior vertices are removed automatically. You can set it to `false` to make the process faster if not needed.
+   *
+   * If `simplify` is `true`, the geometry can be further simplified to reduce the amount of vertices. Disabled by default.
    */
-  public open fun createConvexCollision(): Unit {
-    TransferContext.writeArguments()
+  public open fun createConvexCollision(clean: Boolean = true, simplify: Boolean = false): Unit {
+    TransferContext.writeArguments(BOOL to clean, BOOL to simplify)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_CREATE_CONVEX_COLLISION, NIL)
   }
@@ -115,6 +119,15 @@ public open class MeshInstance : GeometryInstance() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_CREATE_DEBUG_TANGENTS,
         NIL)
+  }
+
+  /**
+   * This helper creates a [godot.StaticBody] child node with multiple [godot.ConvexPolygonShape] collision shapes calculated from the mesh geometry via convex decomposition. It's mainly used for testing.
+   */
+  public open fun createMultipleConvexCollisions(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_MESHINSTANCE_CREATE_MULTIPLE_CONVEX_COLLISIONS, NIL)
   }
 
   /**

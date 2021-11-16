@@ -5,6 +5,7 @@
 
 package godot
 
+import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -12,6 +13,8 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.VECTOR2
+import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -68,6 +71,19 @@ public open class NoiseTexture : Texture() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_NOISE, NIL)
     }
 
+  public open var noiseOffset: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_GET_NOISE_OFFSET,
+          VECTOR2)
+      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_NOISE_OFFSET,
+          NIL)
+    }
+
   public open var seamless: Boolean
     get() {
       TransferContext.writeArguments()
@@ -91,6 +107,13 @@ public open class NoiseTexture : Texture() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_NOISETEXTURE)
   }
+
+  @CoreTypeHelper
+  public open fun noiseOffset(schedule: Vector2.() -> Unit): Vector2 = noiseOffset.apply{
+      schedule(this)
+      noiseOffset = this
+  }
+
 
   public open fun _generateTexture(): Image? {
     throw NotImplementedError("_generate_texture is not implemented for NoiseTexture")

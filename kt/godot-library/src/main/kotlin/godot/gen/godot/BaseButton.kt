@@ -139,7 +139,9 @@ public open class BaseButton : Control() {
     }
 
   /**
-   * If `true`, the button's state is pressed. Means the button is pressed down or toggled (if [toggleMode] is active).
+   * If `true`, the button's state is pressed. Means the button is pressed down or toggled (if [toggleMode] is active). Only works if [toggleMode] is `true`.
+   *
+   * **Note:** Setting [pressed] will result in [toggled] to be emitted. If you want to change the pressed state without emitting that signal, use [setPressedNoSignal].
    */
   public open var pressed: Boolean
     get() {
@@ -234,6 +236,17 @@ public open class BaseButton : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_IS_HOVERED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Changes the [pressed] state of the button, without emitting [toggled]. Use when you just want to change the state of the button without sending the pressed event (e.g. when initializing scene). Only works if [toggleMode] is `true`.
+   *
+   * **Note:** This method doesn't unpress other buttons in its button [group].
+   */
+  public open fun setPressedNoSignal(pressed: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to pressed)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_PRESSED_NO_SIGNAL,
+        NIL)
   }
 
   public enum class ActionMode(

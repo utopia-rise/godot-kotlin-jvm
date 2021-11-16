@@ -62,6 +62,19 @@ public open class NetworkedMultiplayerENet : NetworkedMultiplayerPeer() {
           ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_SET_COMPRESSION_MODE, NIL)
     }
 
+  public open var dtlsHostname: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_GET_DTLS_HOSTNAME, STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NETWORKEDMULTIPLAYERENET_SET_DTLS_HOSTNAME, NIL)
+    }
+
   public open var dtlsVerify: Boolean
     get() {
       TransferContext.writeArguments()

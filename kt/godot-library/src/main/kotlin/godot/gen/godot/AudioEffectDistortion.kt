@@ -21,7 +21,7 @@ import kotlin.Unit
  * Modify the sound to make it distorted.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/audio/audio_buses.html](https://docs.godotengine.org/en/3.3/tutorials/audio/audio_buses.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/audio/audio_buses.html](https://docs.godotengine.org/en/3.4/tutorials/audio/audio_buses.html)
  *
  * Different types are available: clip, tan, lo-fi (bit crushing), overdrive, or waveshape.
  *

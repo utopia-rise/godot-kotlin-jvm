@@ -16,6 +16,25 @@ bool KotlinScript::can_instance() const {
 #endif
 }
 
+bool KotlinScript::inherits_script(const Ref<Script>& p_script) const {
+    Ref<KotlinScript> script{p_script};
+    if (script.is_null()) {
+        return false;
+    }
+
+    KtClass* inheritor_class{get_kotlin_class()};
+    KtClass* parent_class{script->get_kotlin_class()};
+    if (inheritor_class == nullptr || parent_class == nullptr) {
+        return false;
+    }
+
+    if (inheritor_class == parent_class) {
+        return true;
+    }
+
+    return parent_class->is_assignable_from(inheritor_class);
+}
+
 Ref<Script> KotlinScript::get_base_script() const {
     return Ref<Script>();
 }
@@ -35,7 +54,7 @@ ScriptInstance* KotlinScript::instance_create(Object* p_this) {
 ScriptInstance* KotlinScript::_instance_create(const Variant** p_args, int p_argcount, Object* p_this) {
     KtClass* kt_class{get_kotlin_class()};
 #ifdef DEBUG_ENABLED
-    LOG_VERBOSE(vformat("Try to create %s instance.", kt_class->name))
+    LOG_VERBOSE(vformat("Try to create %s instance.", kt_class->name));
 #endif
     jni::Env env = jni::Jvm::current_env();
     KtObject* wrapped = kt_class->create_instance(env, p_args, p_argcount, p_this);

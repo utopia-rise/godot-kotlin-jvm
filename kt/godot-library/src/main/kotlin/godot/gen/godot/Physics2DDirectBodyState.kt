@@ -31,7 +31,7 @@ import kotlin.Unit
  * Direct access object to a physics body in the [godot.Physics2DServer].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/physics/ray-casting.html](https://docs.godotengine.org/en/3.3/tutorials/physics/ray-casting.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/physics/ray-casting.html](https://docs.godotengine.org/en/3.4/tutorials/physics/ray-casting.html)
  *
  * Provides direct access to a physics body in the [godot.Physics2DServer], allowing safe changes to physics properties. This object is passed via the direct state callback of rigid/character bodies, and is intended for changing the direct state of that body. See [godot.RigidBody2D.IntegrateForces].
  */
@@ -360,6 +360,16 @@ public open class Physics2DDirectBodyState : Object() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICS2DDIRECTBODYSTATE_GET_SPACE_STATE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Physics2DDirectSpaceState?
+  }
+
+  /**
+   * Returns the body's velocity at the given relative position, including both translation and rotation.
+   */
+  public open fun getVelocityAtLocalPosition(localPosition: Vector2): Vector2 {
+    TransferContext.writeArguments(VECTOR2 to localPosition)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICS2DDIRECTBODYSTATE_GET_VELOCITY_AT_LOCAL_POSITION, VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
   /**

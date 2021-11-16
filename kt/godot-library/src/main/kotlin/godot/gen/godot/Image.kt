@@ -39,7 +39,7 @@ import kotlin.Unit
  * Image datatype.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/getting_started/workflow/assets/importing_images.html](https://docs.godotengine.org/en/3.3/getting_started/workflow/assets/importing_images.html)
+ * [https://docs.godotengine.org/en/3.4/getting_started/workflow/assets/importing_images.html](https://docs.godotengine.org/en/3.4/getting_started/workflow/assets/importing_images.html)
  *
  * Native image datatype. Contains image data which can be converted to an [godot.ImageTexture] and provides commonly used *image processing* methods. The maximum width and height for an [godot.Image] are [MAX_WIDTH] and [MAX_HEIGHT].
  *
@@ -388,7 +388,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Loads an image from file `path`. See [godot.Supported image formats](https://docs.godotengine.org/en/3.3/getting_started/workflow/assets/importing_images.html#supported-image-formats) for a list of supported image formats and limitations.
+   * Loads an image from file `path`. See [godot.Supported image formats](https://docs.godotengine.org/en/3.4/getting_started/workflow/assets/importing_images.html#supported-image-formats) for a list of supported image formats and limitations.
    *
    * **Warning:** This method should only be used in the editor or in cases when you need to load external images at run-time, such as images located at the `user://` directory, and may not work in exported projects.
    *
@@ -737,6 +737,8 @@ public open class Image : Resource() {
     FORMAT_LA8(1),
     /**
      * OpenGL texture format `RED` with a single component and a bitdepth of 8.
+     *
+     * **Note:** When using the GLES2 backend, this uses the alpha channel instead of the red channel for storage.
      */
     FORMAT_R8(2),
     /**
@@ -1090,6 +1092,8 @@ public open class Image : Resource() {
 
     /**
      * OpenGL texture format `RED` with a single component and a bitdepth of 8.
+     *
+     * **Note:** When using the GLES2 backend, this uses the alpha channel instead of the red channel for storage.
      */
     public final const val FORMAT_R8: Long = 2
 

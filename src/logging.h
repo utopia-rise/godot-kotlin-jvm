@@ -9,10 +9,10 @@
 #include <core/print_string.h>
 
 #define LOG_VERBOSE(message) \
-    print_verbose(vformat("Godot-JVM: %s", message));
+    print_verbose(vformat("Godot-JVM: %s", message))
 
 #define LOG_INFO(message) \
-    print_line(vformat("Godot-JVM: %s", message));
+    print_line(vformat("Godot-JVM: %s", message))
 
 #define LOG_WARNING(message) \
     WARN_PRINT(vformat("Godot-JVM: %s", message))
@@ -25,9 +25,6 @@
 
 #define JVM_ERR_FAIL_COND_V_MSG(condition, ret_var, message) \
     ERR_FAIL_COND_V_MSG(condition, ret_var, vformat("Godot-JVM: %s", message))
-
-#define JVM_ERR_FAIL_COND_MSG(condition, message) \
-    ERR_FAIL_COND_MSG(condition, vformat("Godot-JVM: %s", message))
 
 #define JVM_CRASH_COND_MSG(condition, message) \
     CRASH_COND_MSG(condition, vformat("Godot-JVM: %s", message))

@@ -87,7 +87,7 @@ public open class TouchScreenButton : Node2D() {
   /**
    * If `true`, the [pressed] and [released] signals are emitted whenever a pressed finger goes in and out of the button, even if the pressure started outside the active area of the button.
    *
-   * **Note:** this is a "pass-by" (not "bypass") press mode.
+   * **Note:** This is a "pass-by" (not "bypass") press mode.
    */
   public open var passbyPress: Boolean
     get() {

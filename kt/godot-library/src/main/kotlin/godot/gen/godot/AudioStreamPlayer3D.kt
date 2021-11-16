@@ -27,7 +27,7 @@ import kotlin.Unit
  * Plays positional sound in 3D space.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/audio/audio_streams.html](https://docs.godotengine.org/en/3.3/tutorials/audio/audio_streams.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/audio/audio_streams.html](https://docs.godotengine.org/en/3.4/tutorials/audio/audio_streams.html)
  *
  * Plays a sound effect with directed sound effects, dampens with distance if needed, generates effect of hearable position in space. For greater realism, a low-pass filter is automatically applied to distant sounds. This can be disabled by setting [attenuationFilterCutoffHz] to `20500`.
  *
@@ -140,7 +140,9 @@ public open class AudioStreamPlayer3D : Spatial() {
     }
 
   /**
-   * Decides in which step the Doppler effect should be calculated.
+   * Decides in which step the [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) should be calculated.
+   *
+   * **Note:** Only effective if the current [godot.Camera]'s [godot.Camera.dopplerTracking] property is set to a value other than [godot.Camera.DOPPLER_TRACKING_DISABLED].
    */
   public open var dopplerTracking: Long
     get() {
@@ -418,7 +420,7 @@ public open class AudioStreamPlayer3D : Spatial() {
      */
     ATTENUATION_LOGARITHMIC(2),
     /**
-     * No dampening of loudness according to distance. The sound will still be heard positionally, unlike an [godot.AudioStreamPlayer].
+     * No dampening of loudness according to distance. The sound will still be heard positionally, unlike an [godot.AudioStreamPlayer]. [ATTENUATION_DISABLED] can be combined with a [maxDistance] value greater than `0.0` to achieve linear attenuation clamped to a sphere of a defined size.
      */
     ATTENUATION_DISABLED(3),
     ;
@@ -464,11 +466,11 @@ public open class AudioStreamPlayer3D : Spatial() {
      */
     DOPPLER_TRACKING_DISABLED(0),
     /**
-     * Executes doppler tracking in idle step.
+     * Executes doppler tracking in idle step (every rendered frame).
      */
     DOPPLER_TRACKING_IDLE_STEP(1),
     /**
-     * Executes doppler tracking in physics step.
+     * Executes doppler tracking in physics step (every simulated physics frame).
      */
     DOPPLER_TRACKING_PHYSICS_STEP(2),
     ;
@@ -485,7 +487,7 @@ public open class AudioStreamPlayer3D : Spatial() {
 
   public companion object {
     /**
-     * No dampening of loudness according to distance. The sound will still be heard positionally, unlike an [godot.AudioStreamPlayer].
+     * No dampening of loudness according to distance. The sound will still be heard positionally, unlike an [godot.AudioStreamPlayer]. [ATTENUATION_DISABLED] can be combined with a [maxDistance] value greater than `0.0` to achieve linear attenuation clamped to a sphere of a defined size.
      */
     public final const val ATTENUATION_DISABLED: Long = 3
 
@@ -510,12 +512,12 @@ public open class AudioStreamPlayer3D : Spatial() {
     public final const val DOPPLER_TRACKING_DISABLED: Long = 0
 
     /**
-     * Executes doppler tracking in idle step.
+     * Executes doppler tracking in idle step (every rendered frame).
      */
     public final const val DOPPLER_TRACKING_IDLE_STEP: Long = 1
 
     /**
-     * Executes doppler tracking in physics step.
+     * Executes doppler tracking in physics step (every simulated physics frame).
      */
     public final const val DOPPLER_TRACKING_PHYSICS_STEP: Long = 2
 

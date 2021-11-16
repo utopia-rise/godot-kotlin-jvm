@@ -139,6 +139,16 @@ public object IP : Object() {
   }
 
   /**
+   * Return resolved addresses, or an empty array if an error happened or resolution didn't happen yet (see [getResolveItemStatus]).
+   */
+  public fun getResolveItemAddresses(id: Long): VariantArray<Any?> {
+    TransferContext.writeArguments(LONG to id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_GET_RESOLVE_ITEM_ADDRESSES,
+        ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+  }
+
+  /**
    * Returns a queued hostname's status as a [enum ResolverStatus] constant, given its queue `id`.
    */
   public fun getResolveItemStatus(id: Long): IP.ResolverStatus {
@@ -154,6 +164,16 @@ public object IP : Object() {
     TransferContext.writeArguments(STRING to host, LONG to ipType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Resolves a given hostname in a blocking way. Addresses are returned as an [godot.Array] of IPv4 or IPv6 depending on `ip_type`.
+   */
+  public fun resolveHostnameAddresses(host: String, ipType: Long = 3): VariantArray<Any?> {
+    TransferContext.writeArguments(STRING to host, LONG to ipType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME_ADDRESSES,
+        ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
   /**

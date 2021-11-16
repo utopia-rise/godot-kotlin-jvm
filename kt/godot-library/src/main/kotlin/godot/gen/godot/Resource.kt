@@ -24,7 +24,7 @@ import kotlin.Unit
  * Base class for all resources.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/getting_started/workflow/best_practices/node_alternatives.html](https://docs.godotengine.org/en/3.3/getting_started/workflow/best_practices/node_alternatives.html)
+ * [https://docs.godotengine.org/en/3.4/getting_started/workflow/best_practices/node_alternatives.html](https://docs.godotengine.org/en/3.4/getting_started/workflow/best_practices/node_alternatives.html)
  *
  * Resource is the base class for all Godot-specific resource types, serving primarily as data containers. Since they inherit from [godot.Reference], resources are reference-counted and freed when no longer in use. They are also cached once loaded from disk, so that any further attempts to load a resource from a given path will return the same reference (all this in contrast to a [godot.Node], which is not reference-counted and can be instanced from disk as many times as desired). Resources can be saved externally on disk or bundled into another object, such as a [godot.Node] or another resource.
  *
@@ -96,7 +96,9 @@ public open class Resource : Reference() {
   }
 
   /**
-   * Duplicates the resource, returning a new resource. By default, sub-resources are shared between resource copies for efficiency. This can be changed by passing `true` to the `subresources` argument which will copy the subresources.
+   * Duplicates the resource, returning a new resource with the exported members copied. **Note:** To duplicate the resource the constructor is called without arguments. This method will error when the constructor doesn't have default values.
+   *
+   * By default, sub-resources are shared between resource copies for efficiency. This can be changed by passing `true` to the `subresources` argument which will copy the subresources.
    *
    * **Note:** If `subresources` is `true`, this method will only perform a shallow copy. Nested resources within subresources will not be duplicated and will still be shared.
    *

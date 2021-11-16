@@ -18,7 +18,7 @@ import kotlin.Unit
  * Base class for all 3D shape resources.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/physics/physics_introduction.html](https://docs.godotengine.org/en/3.4/tutorials/physics/physics_introduction.html)
  *
  * Base class for all 3D shape resources. Nodes that inherit from this can be used as shapes for a [godot.PhysicsBody] or [godot.Area] objects.
  */

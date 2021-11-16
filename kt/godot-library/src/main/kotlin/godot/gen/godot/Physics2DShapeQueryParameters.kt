@@ -31,7 +31,7 @@ import kotlin.Unit
 /**
  * Parameters to be sent to a 2D shape physics query.
  *
- * This class contains the shape and other parameters for 2D intersection/collision queries. See also [godot.Physics2DShapeQueryResult].
+ * This class contains the shape and other parameters for 2D intersection/collision queries.
  */
 @GodotBaseType
 public open class Physics2DShapeQueryParameters : Reference() {
@@ -68,7 +68,7 @@ public open class Physics2DShapeQueryParameters : Reference() {
     }
 
   /**
-   * The physics layer(s) the query will take into account (as a bitmask). See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The physics layer(s) the query will take into account (as a bitmask). See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.4/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
   public open var collisionLayer: Long
     get() {

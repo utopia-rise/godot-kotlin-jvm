@@ -13,7 +13,7 @@ import kotlin.Unit
  * A camera node with a few overrules for AR/VR applied, such as location tracking.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/vr/index.html](https://docs.godotengine.org/en/3.3/tutorials/vr/index.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/vr/index.html](https://docs.godotengine.org/en/3.4/tutorials/vr/index.html)
  *
  * This is a helper spatial node for our camera; note that, if stereoscopic rendering is applicable (VR-HMD), most of the camera properties are ignored, as the HMD information overrides them. The only properties that can be trusted are the near and far planes.
  *

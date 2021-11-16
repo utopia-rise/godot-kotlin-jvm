@@ -69,6 +69,30 @@ public object ClassDB : Object() {
   }
 
   /**
+   * Returns an array with all the keys in `enum` of `class` or its ancestry.
+   */
+  public fun classGetEnumConstants(
+    _class: String,
+    _enum: String,
+    noInheritance: Boolean = false
+  ): PoolStringArray {
+    TransferContext.writeArguments(STRING to _class, STRING to _enum, BOOL to noInheritance)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__CLASSDB_CLASS_GET_ENUM_CONSTANTS,
+        POOL_STRING_ARRAY)
+    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
+  }
+
+  /**
+   * Returns an array with all the enums of `class` or its ancestry.
+   */
+  public fun classGetEnumList(_class: String, noInheritance: Boolean = false): PoolStringArray {
+    TransferContext.writeArguments(STRING to _class, BOOL to noInheritance)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__CLASSDB_CLASS_GET_ENUM_LIST,
+        POOL_STRING_ARRAY)
+    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
+  }
+
+  /**
    * Returns the value of the integer constant `name` of `class` or its ancestry. Always returns 0 when the constant could not be found.
    */
   public fun classGetIntegerConstant(_class: String, name: String): Long {
@@ -76,6 +100,20 @@ public object ClassDB : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__CLASSDB_CLASS_GET_INTEGER_CONSTANT,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns which enum the integer constant `name` of `class` or its ancestry belongs to.
+   */
+  public fun classGetIntegerConstantEnum(
+    _class: String,
+    name: String,
+    noInheritance: Boolean = false
+  ): String {
+    TransferContext.writeArguments(STRING to _class, STRING to name, BOOL to noInheritance)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS__CLASSDB_CLASS_GET_INTEGER_CONSTANT_ENUM, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**
@@ -141,6 +179,19 @@ public object ClassDB : Object() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__CLASSDB_CLASS_GET_SIGNAL_LIST,
         ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+  }
+
+  /**
+   * Returns whether `class` or its ancestry has an enum called `name` or not.
+   */
+  public fun classHasEnum(
+    _class: String,
+    name: String,
+    noInheritance: Boolean = false
+  ): Boolean {
+    TransferContext.writeArguments(STRING to _class, STRING to name, BOOL to noInheritance)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__CLASSDB_CLASS_HAS_ENUM, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**

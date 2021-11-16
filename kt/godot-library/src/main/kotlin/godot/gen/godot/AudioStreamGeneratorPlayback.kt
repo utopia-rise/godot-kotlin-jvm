@@ -20,10 +20,12 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- *
+ * Plays back audio generated using [godot.AudioStreamGenerator].
  *
  * Tutorials:
- * [https://github.com/godotengine/godot-demo-projects/tree/master/audio/generator](https://github.com/godotengine/godot-demo-projects/tree/master/audio/generator)
+ * [Godot 3.2 will get new audio features](Godot 3.2 will get new audio features)
+ *
+ * This class is meant to be used with [godot.AudioStreamGenerator] to play back the generated audio in real-time.
  */
 @GodotBaseType
 public open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() {
@@ -32,7 +34,7 @@ public open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() 
   }
 
   /**
-   *
+   * Returns `true` if a buffer of the size `amount` can be pushed to the audio sample data buffer without overflowing it, `false` otherwise.
    */
   public open fun canPushBuffer(amount: Long): Boolean {
     TransferContext.writeArguments(LONG to amount)
@@ -42,7 +44,7 @@ public open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() 
   }
 
   /**
-   *
+   * Clears the audio sample data buffer.
    */
   public open fun clearBuffer(): Unit {
     TransferContext.writeArguments()
@@ -51,7 +53,7 @@ public open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() 
   }
 
   /**
-   *
+   * Returns the number of audio data frames left to play. If this returned number reaches `0`, the audio will stop playing until frames are added again. Therefore, make sure your script can always generate and push new audio frames fast enough to avoid audio cracking.
    */
   public open fun getFramesAvailable(): Long {
     TransferContext.writeArguments()
@@ -71,7 +73,7 @@ public open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() 
   }
 
   /**
-   *
+   * Pushes several audio data frames to the buffer. This is usually more efficient than [pushFrame] in C# and compiled languages via GDNative, but [pushBuffer] may be *less* efficient in GDScript.
    */
   public open fun pushBuffer(frames: PoolVector2Array): Boolean {
     TransferContext.writeArguments(POOL_VECTOR2_ARRAY to frames)
@@ -81,7 +83,7 @@ public open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() 
   }
 
   /**
-   *
+   * Pushes a single audio data frame to the buffer. This is usually less efficient than [pushBuffer] in C# and compiled languages via GDNative, but [pushFrame] may be *more* efficient in GDScript.
    */
   public open fun pushFrame(frame: Vector2): Boolean {
     TransferContext.writeArguments(VECTOR2 to frame)

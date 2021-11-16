@@ -48,11 +48,22 @@ public open class Thread : Reference() {
   }
 
   /**
-   * Returns `true` if this [godot.Thread] is currently active. An active [godot.Thread] cannot start work on a new method but can be joined with [waitToFinish].
+   * Returns `true` if this [godot.Thread] has been started. Once started, this will return `true` until it is joined using [waitToFinish]. For checking if a [godot.Thread] is still executing its task, use [isAlive].
    */
   public open fun isActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__THREAD_IS_ACTIVE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if this [godot.Thread] is currently running. This is useful for determining if [waitToFinish] can be called without blocking the calling thread.
+   *
+   * To check if a [godot.Thread] is joinable, use [isActive].
+   */
+  public open fun isAlive(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__THREAD_IS_ALIVE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -74,7 +85,13 @@ public open class Thread : Reference() {
   }
 
   /**
-   * Joins the [godot.Thread] and waits for it to finish. Returns what the method called returned.
+   * Joins the [godot.Thread] and waits for it to finish. Returns the output of the method passed to [start].
+   *
+   * Should either be used when you want to retrieve the value returned from the method called by the [godot.Thread] or before freeing the instance that contains the [godot.Thread].
+   *
+   * To determine if this can be called without blocking the calling thread, check if [isAlive] is `false`.
+   *
+   * **Note:** After the [godot.Thread] finishes joining it will be disposed. If you want to use it again you will have to create a new instance of it.
    */
   public open fun waitToFinish(): Any? {
     TransferContext.writeArguments()

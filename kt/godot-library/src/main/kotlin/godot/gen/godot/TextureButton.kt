@@ -45,6 +45,34 @@ public open class TextureButton : BaseButton() {
     }
 
   /**
+   * If `true`, texture is flipped horizontally.
+   */
+  public open var flipH: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_FLIP_H, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_FLIP_H, NIL)
+    }
+
+  /**
+   * If `true`, texture is flipped vertically.
+   */
+  public open var flipV: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_FLIP_V, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_FLIP_V, NIL)
+    }
+
+  /**
    * Controls the texture's behavior when you resize the node's bounding rectangle, **only if** [expand] is `true`. Set it to one of the [enum StretchMode] constants. See the constants to learn more.
    */
   public open var stretchMode: Long

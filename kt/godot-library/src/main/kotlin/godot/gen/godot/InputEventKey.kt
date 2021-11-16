@@ -20,7 +20,7 @@ import kotlin.jvm.JvmName
  * Input event type for keyboard events.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/3.3/tutorials/inputs/inputevent.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html)
  *
  * Stores key presses on the keyboard. Supports key presses, key releases and [echo] events.
  */
@@ -39,6 +39,24 @@ public open class InputEventKey : InputEventWithModifiers() {
     }
 
   /**
+   * Key physical scancode, which corresponds to one of the [enum KeyList] constants. Represent the physical location of a key on the 101/102-key US QWERTY keyboard.
+   *
+   * To get a human-readable representation of the [godot.InputEventKey], use `OS.get_scancode_string(event.physical_scancode)` where `event` is the [godot.InputEventKey].
+   */
+  public open var physicalScancode: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_PHYSICAL_SCANCODE, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_SET_PHYSICAL_SCANCODE, NIL)
+    }
+
+  /**
    * If `true`, the key's state is pressed. If `false`, the key's state is released.
    */
   public open var pressed: Boolean
@@ -51,7 +69,7 @@ public open class InputEventKey : InputEventWithModifiers() {
     }
 
   /**
-   * The key scancode, which corresponds to one of the [enum KeyList] constants.
+   * The key scancode, which corresponds to one of the [enum KeyList] constants. Represent key in the current keyboard layout.
    *
    * To get a human-readable representation of the [godot.InputEventKey], use `OS.get_scancode_string(event.scancode)` where `event` is the [godot.InputEventKey].
    */
@@ -82,6 +100,18 @@ public open class InputEventKey : InputEventWithModifiers() {
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTKEY)
+  }
+
+  /**
+   * Returns the physical scancode combined with modifier keys such as `Shift` or `Alt`. See also [godot.InputEventWithModifiers].
+   *
+   * To get a human-readable representation of the [godot.InputEventKey] with modifiers, use `OS.get_scancode_string(event.get_physical_scancode_with_modifiers())` where `event` is the [godot.InputEventKey].
+   */
+  public open fun getPhysicalScancodeWithModifiers(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_INPUTEVENTKEY_GET_PHYSICAL_SCANCODE_WITH_MODIFIERS, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**

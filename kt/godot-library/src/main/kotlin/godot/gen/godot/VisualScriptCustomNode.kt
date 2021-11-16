@@ -34,6 +34,16 @@ public open class VisualScriptCustomNode : VisualScriptNode() {
         NotImplementedError("_get_input_value_port_count is not implemented for VisualScriptCustomNode")
   }
 
+  public open fun _getInputValuePortHint(idx: Long): Long {
+    throw
+        NotImplementedError("_get_input_value_port_hint is not implemented for VisualScriptCustomNode")
+  }
+
+  public open fun _getInputValuePortHintString(idx: Long): String {
+    throw
+        NotImplementedError("_get_input_value_port_hint_string is not implemented for VisualScriptCustomNode")
+  }
+
   public open fun _getInputValuePortName(idx: Long): String {
     throw
         NotImplementedError("_get_input_value_port_name is not implemented for VisualScriptCustomNode")
@@ -57,6 +67,16 @@ public open class VisualScriptCustomNode : VisualScriptNode() {
   public open fun _getOutputValuePortCount(): Long {
     throw
         NotImplementedError("_get_output_value_port_count is not implemented for VisualScriptCustomNode")
+  }
+
+  public open fun _getOutputValuePortHint(idx: Long): Long {
+    throw
+        NotImplementedError("_get_output_value_port_hint is not implemented for VisualScriptCustomNode")
+  }
+
+  public open fun _getOutputValuePortHintString(idx: Long): String {
+    throw
+        NotImplementedError("_get_output_value_port_hint_string is not implemented for VisualScriptCustomNode")
   }
 
   public open fun _getOutputValuePortName(idx: Long): String {

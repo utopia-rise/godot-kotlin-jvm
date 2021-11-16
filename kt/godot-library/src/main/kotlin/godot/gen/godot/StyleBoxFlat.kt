@@ -73,15 +73,15 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * This changes the size of the faded ring. Higher values can be used to achieve a "blurry" effect.
    */
-  public open var antiAliasingSize: Long
+  public open var antiAliasingSize: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_ANTI_ALIASING_SIZE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+          ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_ANTI_ALIASING_SIZE, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_ANTI_ALIASING_SIZE, NIL)
     }

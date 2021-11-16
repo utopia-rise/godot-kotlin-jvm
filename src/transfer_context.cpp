@@ -125,7 +125,7 @@ void TransferContext::icall(
 
 #ifdef DEBUG_ENABLED
     JVM_CRASH_COND_MSG(args_size > MAX_ARGS_SIZE,
-                       vformat("Cannot have more than %s arguments for method call.", MAX_ARGS_SIZE))
+                       vformat("Cannot have more than %s arguments for method call.", MAX_ARGS_SIZE));
 #endif
 
     read_args_to_array(buffer, variant_args, args_size);
@@ -136,7 +136,7 @@ void TransferContext::icall(
     MethodBind* methodBind{GDKotlin::get_instance().engine_type_method[method_index]};
 
 #ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(!methodBind, vformat("Cannot find method with id %s", method_index))
+    JVM_CRASH_COND_MSG(!methodBind, vformat("Cannot find method with id %s", method_index));
 #endif
 
     Variant::CallError r_error{Variant::CallError::CALL_OK};
@@ -144,7 +144,7 @@ void TransferContext::icall(
 
 #ifdef DEBUG_ENABLED
     JVM_CRASH_COND_MSG(r_error.error != Variant::CallError::CALL_OK,
-                       vformat("Call to method with id %s failed.", method_index))
+                       vformat("Call to method with id %s failed.", method_index));
 #endif
 
     write_return_value(buffer, ret_value);
@@ -158,7 +158,7 @@ void TransferContext::invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, 
     int id;
 
 #ifdef DEBUG_ENABLED
-    JVM_ERR_FAIL_COND_MSG(!ptr, vformat("Failed to instantiate class %s", class_name))
+    JVM_ERR_FAIL_COND_MSG(!ptr, vformat("Failed to instantiate class %s", class_name));
 #endif
 
     if (auto* ref = Object::cast_to<Reference>(ptr)) {
@@ -202,7 +202,7 @@ void TransferContext::free_object(JNIEnv* p_raw_env, jobject p_instance, jlong p
     auto* owner = reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr));
 
 #ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(Object::cast_to<Reference>(owner), "Can't 'free' a reference.")
+    JVM_CRASH_COND_MSG(Object::cast_to<Reference>(owner), "Can't 'free' a reference.");
 #endif
 
     memdelete(owner);

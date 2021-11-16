@@ -67,6 +67,8 @@ public open class MenuButton : Button() {
 
   /**
    * Returns the [godot.PopupMenu] contained in this button.
+   *
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
   public open fun getPopup(): PopupMenu? {
     TransferContext.writeArguments()

@@ -39,6 +39,16 @@ import kotlin.Unit
 @GodotBaseType
 public open class Spatial : Node() {
   /**
+   * Emitted by portal system gameplay monitor when a node enters the gameplay area.
+   */
+  public val gameplayEntered: Signal0 by signal()
+
+  /**
+   * Emitted by portal system gameplay monitor when a node exits the gameplay area.
+   */
+  public val gameplayExited: Signal0 by signal()
+
+  /**
    * Emitted when node visibility changes.
    */
   public val visibilityChanged: Signal0 by signal()
@@ -498,9 +508,19 @@ public open class Spatial : Node() {
 
   public companion object {
     /**
+     * Spatial nodes receives this notification if the portal system gameplay monitor detects they have entered the gameplay area.
+     */
+    public final const val NOTIFICATION_ENTER_GAMEPLAY: Long = 45
+
+    /**
      * Spatial nodes receives this notification when they are registered to new [godot.World] resource.
      */
     public final const val NOTIFICATION_ENTER_WORLD: Long = 41
+
+    /**
+     * Spatial nodes receives this notification if the portal system gameplay monitor detects they have exited the gameplay area.
+     */
+    public final const val NOTIFICATION_EXIT_GAMEPLAY: Long = 46
 
     /**
      * Spatial nodes receives this notification when they are unregistered from current [godot.World] resource.

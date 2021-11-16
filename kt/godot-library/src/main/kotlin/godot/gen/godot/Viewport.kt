@@ -13,6 +13,7 @@ import godot.core.TransferContext
 import godot.core.Transform2D
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -26,6 +27,7 @@ import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -168,7 +170,7 @@ public open class Viewport : Node() {
     }
 
   /**
-   * Enables fast approximate antialiasing. FXAA is a popular screen-space antialiasing method, which is fast but will make the image look blurry, especially at lower resolutions. It can still work relatively well at large resolutions such as 1440p and 4K.
+   * Enables fast approximate antialiasing. FXAA is a popular screen-space antialiasing method, which is fast but will make the image look blurry, especially at lower resolutions. It can still work relatively well at large resolutions such as 1440p and 4K. Some of the lost sharpness can be recovered by enabling contrast-adaptive sharpening (see [sharpenIntensity]).
    */
   public open var fxaa: Boolean
     get() {
@@ -262,7 +264,7 @@ public open class Viewport : Node() {
     }
 
   /**
-   * If `true`, the result after 3D rendering will not have a linear to sRGB color conversion applied. This is important when the viewport is used as a render target where the result is used as a texture on a 3D object rendered in another viewport. It is also important if the viewport is used to create data that is not color based (noise, heightmaps, pickmaps, etc.). Do not enable this when the viewport is used as a texture on a 2D object or if the viewport is your final output.
+   * If `true`, the result after 3D rendering will not have a linear to sRGB color conversion applied. This is important when the viewport is used as a render target where the result is used as a texture on a 3D object rendered in another viewport. It is also important if the viewport is used to create data that is not color based (noise, heightmaps, pickmaps, etc.). Do not enable this when the viewport is used as a texture on a 2D object or if the viewport is your final output. For the GLES2 driver this will convert the sRGB output to linear, this should only be used for VR plugins that require input in linear color space!
    */
   public open var keep3dLinear: Boolean
     get() {
@@ -468,7 +470,23 @@ public open class Viewport : Node() {
     }
 
   /**
-   * The width and height of viewport.
+   * If set to a value greater than `0.0`, contrast-adaptive sharpening will be applied to the 3D viewport. This has a low performance cost and can be used to recover some of the sharpness lost from using FXAA. Values around `0.5` generally give the best results. See also [fxaa].
+   */
+  public open var sharpenIntensity: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHARPEN_INTENSITY,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SHARPEN_INTENSITY,
+          NIL)
+    }
+
+  /**
+   * The width and height of viewport. Must be set to a value greater than or equal to 2 pixels on both dimensions. Otherwise, nothing will be displayed.
    */
   public open var size: Vector2
     get() {

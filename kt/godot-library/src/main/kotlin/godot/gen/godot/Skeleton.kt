@@ -277,6 +277,14 @@ public open class Skeleton : Spatial() {
   }
 
   /**
+   *
+   */
+  public open fun setBoneName(boneIdx: Long, name: String): Unit {
+    TransferContext.writeArguments(LONG to boneIdx, STRING to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON_SET_BONE_NAME, NIL)
+  }
+
+  /**
    * Sets the bone index `parent_idx` as the parent of the bone at `bone_idx`. If -1, then bone has no parent.
    *
    * **Note:** `parent_idx` must be less than `bone_idx`.

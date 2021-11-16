@@ -21,8 +21,8 @@ import kotlin.Unit
  * Server that manages all translations.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/i18n/internationalizing_games.html](https://docs.godotengine.org/en/3.3/tutorials/i18n/internationalizing_games.html)
- * [https://docs.godotengine.org/en/3.3/tutorials/i18n/locales.html](https://docs.godotengine.org/en/3.3/tutorials/i18n/locales.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/i18n/internationalizing_games.html](https://docs.godotengine.org/en/3.4/tutorials/i18n/internationalizing_games.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/i18n/locales.html](https://docs.godotengine.org/en/3.4/tutorials/i18n/locales.html)
  *
  * Server that manages all translations. Translations can be set to it and removed from it.
  */
@@ -52,7 +52,7 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns an Array of all loaded locales of the game.
+   * Returns an array of all loaded locales of the project.
    */
   public fun getLoadedLocales(): VariantArray<Any?> {
     TransferContext.writeArguments()
@@ -62,7 +62,9 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Returns the current locale of the game.
+   * Returns the current locale of the project.
+   *
+   * See also [godot.OS.getLocale] and [godot.OS.getLocaleLanguage] to query the locale of the user system.
    */
   public fun getLocale(): String {
     TransferContext.writeArguments()
@@ -91,7 +93,9 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Sets the locale of the game.
+   * Sets the locale of the project. The `locale` string will be standardized to match known locales (e.g. `en-US` would be matched to `en_US`).
+   *
+   * If translations have been loaded beforehand for the new locale, they will be applied.
    */
   public fun setLocale(locale: String): Unit {
     TransferContext.writeArguments(STRING to locale)

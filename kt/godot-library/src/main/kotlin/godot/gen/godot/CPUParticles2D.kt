@@ -31,7 +31,7 @@ import kotlin.Unit
  * CPU-based 2D particle emitter.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/2d/particle_systems_2d.html](https://docs.godotengine.org/en/3.3/tutorials/2d/particle_systems_2d.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/2d/particle_systems_2d.html](https://docs.godotengine.org/en/3.4/tutorials/2d/particle_systems_2d.html)
  *
  * CPU-based 2D particle node used to create a variety of particle systems and effects.
  *
@@ -262,7 +262,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   /**
-   * Each particle's color will vary along this [godot.Gradient].
+   * Each particle's color will vary along this [godot.Gradient] (multiplied with [color]).
    */
   public open var colorRamp: Gradient?
     get() {

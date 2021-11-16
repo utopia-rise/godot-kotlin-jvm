@@ -23,7 +23,7 @@ import kotlin.Unit
  * Plugin for adding custom property editors on inspector.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/plugins/editor/inspector_plugins.html](https://docs.godotengine.org/en/3.3/tutorials/plugins/editor/inspector_plugins.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/inspector_plugins.html](https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/inspector_plugins.html)
  *
  * These plugins allow adding custom property editors to [godot.EditorInspector].
  *

@@ -102,6 +102,8 @@ public open class AcceptDialog : WindowDialog() {
    * Adds a button with label `text` and a custom `action` to the dialog and returns the created button. `action` will be passed to the [customAction] signal when pressed.
    *
    * If `true`, `right` will place the button to the right of any sibling buttons.
+   *
+   * You can use [removeButton] method to remove a button created with this method from the dialog.
    */
   public open fun addButton(
     text: String,
@@ -115,6 +117,8 @@ public open class AcceptDialog : WindowDialog() {
 
   /**
    * Adds a button with label `name` and a cancel action to the dialog and returns the created button.
+   *
+   * You can use [removeButton] method to remove a button created with this method from the dialog.
    */
   public open fun addCancel(name: String): Button? {
     TransferContext.writeArguments(STRING to name)
@@ -124,6 +128,8 @@ public open class AcceptDialog : WindowDialog() {
 
   /**
    * Returns the label used for built-in text.
+   *
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
   public open fun getLabel(): Label? {
     TransferContext.writeArguments()
@@ -133,6 +139,8 @@ public open class AcceptDialog : WindowDialog() {
 
   /**
    * Returns the OK [godot.Button] instance.
+   *
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
   public open fun getOk(): Button? {
     TransferContext.writeArguments()
@@ -147,5 +155,13 @@ public open class AcceptDialog : WindowDialog() {
     TransferContext.writeArguments(OBJECT to lineEdit)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_REGISTER_TEXT_ENTER,
         NIL)
+  }
+
+  /**
+   * Removes the `button` from the dialog. Does NOT free the `button`. The `button` must be a [godot.Button] added with [addButton] or [addCancel] method. After removal, pressing the `button` will no longer emit this dialog's [customAction] signal or cancel this dialog.
+   */
+  public open fun removeButton(button: Control): Unit {
+    TransferContext.writeArguments(OBJECT to button)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ACCEPTDIALOG_REMOVE_BUTTON, NIL)
   }
 }

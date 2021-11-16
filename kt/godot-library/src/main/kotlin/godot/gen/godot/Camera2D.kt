@@ -261,6 +261,10 @@ public open class Camera2D : Node2D() {
 
   /**
    * If `true`, the camera smoothly stops when reaches its limits.
+   *
+   * This has no effect if smoothing is disabled.
+   *
+   * **Note:** To immediately update the camera's position to be within limits without smoothing, even with this setting enabled, invoke [resetSmoothing].
    */
   public open var limitSmoothed: Boolean
     get() {

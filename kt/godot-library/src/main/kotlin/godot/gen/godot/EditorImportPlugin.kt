@@ -21,11 +21,11 @@ import kotlin.Unit
  * Registers a custom resource importer in the editor. Use the class to parse any file and import it as a new resource type.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/plugins/editor/import_plugins.html](https://docs.godotengine.org/en/3.3/tutorials/plugins/editor/import_plugins.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/import_plugins.html](https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/import_plugins.html)
  *
  * EditorImportPlugins provide a way to extend the editor's resource import functionality. Use them to import resources from custom files or to provide alternatives to the editor's existing importers. Register your [godot.EditorPlugin] with [godot.EditorPlugin.addImportPlugin].
  *
- * EditorImportPlugins work by associating with specific file extensions and a resource type. See [getRecognizedExtensions] and [getResourceType]. They may optionally specify some import presets that affect the import process. EditorImportPlugins are responsible for creating the resources and saving them in the `.import` directory.
+ * EditorImportPlugins work by associating with specific file extensions and a resource type. See [getRecognizedExtensions] and [getResourceType]. They may optionally specify some import presets that affect the import process. EditorImportPlugins are responsible for creating the resources and saving them in the `.import` directory (see [godot.ProjectSettings.application/config/useHiddenProjectDataDirectory]).
  *
  * Below is an example EditorImportPlugin that imports a [godot.Mesh] from a file with the extension ".special" or ".spec":
  *
@@ -83,7 +83,7 @@ public open class EditorImportPlugin : ResourceImporter() {
   }
 
   /**
-   * Gets the order of this importer to be run when importing resources. Higher values will be called later. Use this to ensure the importer runs after the dependencies are already imported.
+   * Gets the order of this importer to be run when importing resources. Importers with *lower* import orders will be called first, and higher values will be called later. Use this to ensure the importer runs after the dependencies are already imported. The default import order is `0` unless overridden by a specific importer. See [enum ResourceImporter.ImportOrder] for some predefined values.
    */
   public open fun _getImportOrder(): Long {
     throw NotImplementedError("get_import_order is not implemented for EditorImportPlugin")
@@ -150,7 +150,7 @@ public open class EditorImportPlugin : ResourceImporter() {
   }
 
   /**
-   * Gets the extension used to save this resource in the `.import` directory.
+   * Gets the extension used to save this resource in the `.import` directory (see [godot.ProjectSettings.application/config/useHiddenProjectDataDirectory]).
    */
   public open fun _getSaveExtension(): String {
     throw NotImplementedError("get_save_extension is not implemented for EditorImportPlugin")

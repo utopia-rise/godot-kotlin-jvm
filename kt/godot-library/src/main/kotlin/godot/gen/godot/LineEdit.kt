@@ -13,7 +13,6 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
-import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
@@ -69,9 +68,9 @@ import kotlin.Unit
 @GodotBaseType
 public open class LineEdit : Control() {
   /**
-   * Emitted when trying to append text that would overflow the [maxLength].
+   * Emitted when appending text that overflows the [maxLength]. The appended text is truncated to fit [maxLength], and the part that couldn't fit is passed as the `rejected_substring` argument.
    */
-  public val textChangeRejected: Signal0 by signal()
+  public val textChangeRejected: Signal1<String> by signal("rejected_substring")
 
   /**
    * Emitted when the text changes.
@@ -205,6 +204,20 @@ public open class LineEdit : Control() {
 
   /**
    * Maximum amount of characters that can be entered inside the [godot.LineEdit]. If `0`, there is no limit.
+   *
+   * When a limit is defined, characters that would exceed [maxLength] are truncated. This happens both for existing [text] contents when setting the max length, or for new text inserted in the [godot.LineEdit], including pasting. If any input text is truncated, the [textChangeRejected] signal is emitted with the truncated substring as parameter.
+   *
+   * **Example:**
+   *
+   * ```
+   * 			text = "Hello world"
+   * 			max_length = 5
+   * 			# `text` becomes "Hello".
+   * 			max_length = 10
+   * 			text += " goodbye"
+   * 			# `text` becomes "Hello good".
+   * 			# `text_change_rejected` is emitted with "bye" as parameter.
+   * 			```
    */
   public open var maxLength: Long
     get() {
@@ -415,6 +428,8 @@ public open class LineEdit : Control() {
 
   /**
    * Returns the [godot.PopupMenu] of this [godot.LineEdit]. By default, this menu is displayed when right-clicking on the [godot.LineEdit].
+   *
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
   public open fun getMenu(): PopupMenu? {
     TransferContext.writeArguments()

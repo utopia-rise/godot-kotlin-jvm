@@ -107,6 +107,8 @@ namespace jni {
 
         JObject call_static_object_method(Env& env, MethodId method, jvalue* args = {});
         JObject get_static_object_field(Env& env, FieldId field);
+
+        bool is_assignable_from(Env& env, JClass p_other) const;
     };
 
 }

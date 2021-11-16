@@ -15,6 +15,7 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.VariantType.POOL_BYTE_ARRAY
 import godot.core.VariantType.POOL_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.signals.Signal4
@@ -30,8 +31,8 @@ import kotlin.Unit
  * A node with the ability to send HTTP(S) requests.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/networking/http_request_class.html](https://docs.godotengine.org/en/3.3/tutorials/networking/http_request_class.html)
- * [https://docs.godotengine.org/en/3.3/tutorials/networking/ssl_certificates.html](https://docs.godotengine.org/en/3.3/tutorials/networking/ssl_certificates.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/networking/http_request_class.html](https://docs.godotengine.org/en/3.4/tutorials/networking/http_request_class.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/networking/ssl_certificates.html](https://docs.godotengine.org/en/3.4/tutorials/networking/ssl_certificates.html)
  *
  * A node with the ability to send HTTP requests. Uses [godot.HTTPClient] internally.
  *
@@ -277,6 +278,24 @@ public open class HTTPRequest : Node() {
     TransferContext.writeArguments(STRING to url, POOL_STRING_ARRAY to customHeaders, BOOL to
         sslValidateDomain, LONG to method, STRING to requestData)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_REQUEST, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Creates request on the underlying [godot.HTTPClient] using a raw array of bytes for the request body. If there is no configuration errors, it tries to connect using [godot.HTTPClient.connectToHost] and passes parameters onto [godot.HTTPClient.request].
+   *
+   * Returns [OK] if request is successfully created. (Does not imply that the server has responded), [ERR_UNCONFIGURED] if not in the tree, [ERR_BUSY] if still processing previous request, [ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [ERR_CANT_CONNECT] if not using thread and the [godot.HTTPClient] cannot connect to host.
+   */
+  public open fun requestRaw(
+    url: String,
+    customHeaders: PoolStringArray = PoolStringArray(),
+    sslValidateDomain: Boolean = true,
+    method: Long = 0,
+    requestDataRaw: PoolByteArray = PoolByteArray()
+  ): GodotError {
+    TransferContext.writeArguments(STRING to url, POOL_STRING_ARRAY to customHeaders, BOOL to
+        sslValidateDomain, LONG to method, POOL_BYTE_ARRAY to requestDataRaw)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_REQUEST_RAW, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 

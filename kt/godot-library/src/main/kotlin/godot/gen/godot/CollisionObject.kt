@@ -35,10 +35,10 @@ import kotlin.Unit
 @GodotBaseType
 public open class CollisionObject : Spatial() {
   /**
-   * Emitted when [_inputEvent] receives an event. See its description for details.
+   * Emitted when the object receives an unhandled [godot.InputEvent]. `position` is the location in world space of the mouse pointer on the surface of the shape with index `shape_idx` and `normal` is the normal vector of the surface at that point.
    */
   public val inputEvent: Signal5<Node, InputEvent, Vector3, Vector3, Long> by signal("camera",
-      "event", "click_position", "click_normal", "shape_idx")
+      "event", "position", "normal", "shape_idx")
 
   /**
    * Emitted when the mouse pointer enters any of this object's shapes.
@@ -49,6 +49,42 @@ public open class CollisionObject : Spatial() {
    * Emitted when the mouse pointer exits all this object's shapes.
    */
   public val mouseExited: Signal0 by signal()
+
+  /**
+   * The physics layers this CollisionObject3D is in. Collision objects can exist in one or more of 32 different layers. See also [collisionMask].
+   *
+   * **Note:** A contact is detected if object A is in any of the layers that object B scans, or object B is in any layers that object A scans. See [godot.Collision layers and masks](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   */
+  public open var collisionLayer: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_GET_COLLISION_LAYER, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_SET_COLLISION_LAYER, NIL)
+    }
+
+  /**
+   * The physics layers this CollisionObject3D scans. Collision objects can scan one or more of 32 different layers. See also [collisionLayer].
+   *
+   * **Note:** A contact is detected if object A is in any of the layers that object B scans, or object B is in any layers that object A scans. See [godot.Collision layers and masks](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   */
+  public open var collisionMask: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_GET_COLLISION_MASK, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_SET_COLLISION_MASK, NIL)
+    }
 
   /**
    * If `true`, the [godot.CollisionObject] will continue to receive input events as the mouse is dragged across its shapes.
@@ -87,13 +123,13 @@ public open class CollisionObject : Spatial() {
   }
 
   /**
-   * Accepts unhandled [godot.InputEvent]s. `click_position` is the clicked location in world space and `click_normal` is the normal vector extending from the clicked surface of the [godot.Shape] at `shape_idx`. Connect to the `input_event` signal to easily pick up these events.
+   * Receives unhandled [godot.InputEvent]s. `position` is the location in world space of the mouse pointer on the surface of the shape with index `shape_idx` and `normal` is the normal vector of the surface at that point. Connect to the [inputEvent] signal to easily pick up these events.
    */
   public open fun _inputEvent(
     camera: Object,
     event: InputEvent,
-    clickPosition: Vector3,
-    clickNormal: Vector3,
+    position: Vector3,
+    normal: Vector3,
     shapeIdx: Long
   ): Unit {
   }
@@ -112,6 +148,26 @@ public open class CollisionObject : Spatial() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_CREATE_SHAPE_OWNER,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns whether or not the specified `bit` of the [collisionLayer] is set.
+   */
+  public open fun getCollisionLayerBit(bit: Long): Boolean {
+    TransferContext.writeArguments(LONG to bit)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_GET_COLLISION_LAYER_BIT, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns whether or not the specified `bit` of the [collisionMask] is set.
+   */
+  public open fun getCollisionMaskBit(bit: Long): Boolean {
+    TransferContext.writeArguments(LONG to bit)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_GET_COLLISION_MASK_BIT, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -150,6 +206,28 @@ public open class CollisionObject : Spatial() {
     TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_REMOVE_SHAPE_OWNER,
         NIL)
+  }
+
+  /**
+   * If `value` is `true`, sets the specified `bit` in the the [collisionLayer].
+   *
+   * If `value` is `false`, clears the specified `bit` in the the [collisionLayer].
+   */
+  public open fun setCollisionLayerBit(bit: Long, `value`: Boolean): Unit {
+    TransferContext.writeArguments(LONG to bit, BOOL to value)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_SET_COLLISION_LAYER_BIT, NIL)
+  }
+
+  /**
+   * If `value` is `true`, sets the specified `bit` in the the [collisionMask].
+   *
+   * If `value` is `false`, clears the specified `bit` in the the [collisionMask].
+   */
+  public open fun setCollisionMaskBit(bit: Long, `value`: Boolean): Unit {
+    TransferContext.writeArguments(LONG to bit, BOOL to value)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT_SET_COLLISION_MASK_BIT, NIL)
   }
 
   /**

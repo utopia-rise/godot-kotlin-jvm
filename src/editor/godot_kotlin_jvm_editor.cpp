@@ -17,7 +17,7 @@ void GodotKotlinJvmEditor::on_file_system_dock_file_moved( // NOLINT(readability
                 "You should not move kotlin source files in the godot editor! Use the IDE for that. File moved: %s -> %s",
                 file,
                 new_file
-        ))
+        ));
     }
 }
 
@@ -28,7 +28,7 @@ void GodotKotlinJvmEditor::on_file_system_dock_file_removed( // NOLINT(readabili
         LOG_WARNING(vformat(
                 "You should not remove kotlin source files in the godot editor! Use the IDE for that. File removed: %s",
                 file
-        ))
+        ));
     }
 }
 
@@ -55,7 +55,7 @@ void GodotKotlinJvmEditor::on_menu_option_pressed(int menu_option) {
             break;
         default: LOG_ERROR(
                 "Invalid menu option. Please file a bugreport to https://github.com/utopia-rise/godot-kotlin-jvm/issues"
-        )
+        );
     }
 }
 

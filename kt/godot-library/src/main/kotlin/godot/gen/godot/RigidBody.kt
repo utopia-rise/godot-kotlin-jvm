@@ -8,6 +8,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Basis
+import godot.core.RID
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -65,34 +66,34 @@ public open class RigidBody : PhysicsBody() {
   /**
    * Emitted when one of this RigidBody's [godot.Shape]s collides with another [godot.PhysicsBody] or [godot.GridMap]'s [godot.Shape]s. Requires [contactMonitor] to be set to `true` and [contactsReported] to be set high enough to detect all the collisions. [godot.GridMap]s are detected if the [godot.MeshLibrary] has Collision [godot.Shape]s.
    *
-   * `body_id` the [RID] of the other [godot.PhysicsBody] or [godot.MeshLibrary]'s [godot.CollisionObject] used by the [godot.PhysicsServer].
+   * `body_rid` the [RID] of the other [godot.PhysicsBody] or [godot.MeshLibrary]'s [godot.CollisionObject] used by the [godot.PhysicsServer].
    *
    * `body` the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody] or [godot.GridMap].
    *
-   * `body_shape` the index of the [godot.Shape] of the other [godot.PhysicsBody] or [godot.GridMap] used by the [godot.PhysicsServer].
+   * `body_shape_index` the index of the [godot.Shape] of the other [godot.PhysicsBody] or [godot.GridMap] used by the [godot.PhysicsServer]. Get the [godot.CollisionShape] node with `body.shape_owner_get_owner(body_shape_index)`.
    *
-   * `local_shape` the index of the [godot.Shape] of this RigidBody used by the [godot.PhysicsServer].
+   * `local_shape_index` the index of the [godot.Shape] of this RigidBody used by the [godot.PhysicsServer]. Get the [godot.CollisionShape] node with `self.shape_owner_get_owner(local_shape_index)`.
    *
    * **Note:** Bullet physics cannot identify the shape index when using a [godot.ConcavePolygonShape]. Don't use multiple [godot.CollisionShape]s when using a [godot.ConcavePolygonShape] with Bullet physics if you need shape indices.
    */
-  public val bodyShapeEntered: Signal4<Long, Node, Long, Long> by signal("body_id", "body",
-      "body_shape", "local_shape")
+  public val bodyShapeEntered: Signal4<RID, Node, Long, Long> by signal("body_rid", "body",
+      "body_shape_index", "local_shape_index")
 
   /**
    * Emitted when the collision between one of this RigidBody's [godot.Shape]s and another [godot.PhysicsBody] or [godot.GridMap]'s [godot.Shape]s ends. Requires [contactMonitor] to be set to `true` and [contactsReported] to be set high enough to detect all the collisions. [godot.GridMap]s are detected if the [godot.MeshLibrary] has Collision [godot.Shape]s.
    *
-   * `body_id` the [RID] of the other [godot.PhysicsBody] or [godot.MeshLibrary]'s [godot.CollisionObject] used by the [godot.PhysicsServer]. [godot.GridMap]s are detected if the Meshes have [godot.Shape]s.
+   * `body_rid` the [RID] of the other [godot.PhysicsBody] or [godot.MeshLibrary]'s [godot.CollisionObject] used by the [godot.PhysicsServer]. [godot.GridMap]s are detected if the Meshes have [godot.Shape]s.
    *
    * `body` the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody] or [godot.GridMap].
    *
-   * `body_shape` the index of the [godot.Shape] of the other [godot.PhysicsBody] or [godot.GridMap] used by the [godot.PhysicsServer].
+   * `body_shape_index` the index of the [godot.Shape] of the other [godot.PhysicsBody] or [godot.GridMap] used by the [godot.PhysicsServer]. Get the [godot.CollisionShape] node with `body.shape_owner_get_owner(body_shape_index)`.
    *
-   * `local_shape` the index of the [godot.Shape] of this RigidBody used by the [godot.PhysicsServer].
+   * `local_shape_index` the index of the [godot.Shape] of this RigidBody used by the [godot.PhysicsServer]. Get the [godot.CollisionShape] node with `self.shape_owner_get_owner(local_shape_index)`.
    *
    * **Note:** Bullet physics cannot identify the shape index when using a [godot.ConcavePolygonShape]. Don't use multiple [godot.CollisionShape]s when using a [godot.ConcavePolygonShape] with Bullet physics if you need shape indices.
    */
-  public val bodyShapeExited: Signal4<Long, Node, Long, Long> by signal("body_id", "body",
-      "body_shape", "local_shape")
+  public val bodyShapeExited: Signal4<RID, Node, Long, Long> by signal("body_rid", "body",
+      "body_shape_index", "local_shape_index")
 
   /**
    * Emitted when the physics engine changes the body's sleeping state.

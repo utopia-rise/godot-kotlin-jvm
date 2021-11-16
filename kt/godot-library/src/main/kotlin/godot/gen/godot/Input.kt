@@ -189,6 +189,16 @@ public object Input : Object() {
   }
 
   /**
+   * Sends all input events which are in the current buffer to the game loop. These events may have been buffered as a result of accumulated input ([setUseAccumulatedInput]) or agile input flushing ([godot.ProjectSettings.inputDevices/buffering/agileEventFlushing]).
+   *
+   * The engine will already do this itself at key execution points (at least once per frame). However, this can be useful in advanced cases where you want precise control over the timing of event handling.
+   */
+  public fun flushBufferedEvents(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_FLUSH_BUFFERED_EVENTS, NIL)
+  }
+
+  /**
    * Returns the acceleration of the device's accelerometer sensor, if the device has one. Otherwise, the method returns [godot.Vector3.ZERO].
    *
    * Note this method returns an empty [godot.core.Vector3] when running from the editor even when your device has an accelerometer. You must export your project to a supported device to read values from the accelerometer.
@@ -202,11 +212,36 @@ public object Input : Object() {
   }
 
   /**
-   * Returns a value between 0 and 1 representing the intensity of the given action. In a joypad, for example, the further away the axis (analog sticks or L2, R2 triggers) is from the dead zone, the closer the value will be to 1. If the action is mapped to a control that has no axis as the keyboard, the value returned will be 0 or 1.
+   * Returns a value between 0 and 1 representing the raw intensity of the given action, ignoring the action's deadzone. In most cases, you should use [getActionStrength] instead.
+   *
+   * If `exact` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
-  public fun getActionStrength(action: String): Double {
-    TransferContext.writeArguments(STRING to action)
+  public fun getActionRawStrength(action: String, exact: Boolean = false): Double {
+    TransferContext.writeArguments(STRING to action, BOOL to exact)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_ACTION_RAW_STRENGTH,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Returns a value between 0 and 1 representing the intensity of the given action. In a joypad, for example, the further away the axis (analog sticks or L2, R2 triggers) is from the dead zone, the closer the value will be to 1. If the action is mapped to a control that has no axis as the keyboard, the value returned will be 0 or 1.
+   *
+   * If `exact` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   */
+  public fun getActionStrength(action: String, exact: Boolean = false): Double {
+    TransferContext.writeArguments(STRING to action, BOOL to exact)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_ACTION_STRENGTH, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Get axis input by specifying two actions, one negative and one positive.
+   *
+   * This is a shorthand for writing `Input.get_action_strength("positive_action") - Input.get_action_strength("negative_action")`.
+   */
+  public fun getAxis(negativeAction: String, positiveAction: String): Double {
+    TransferContext.writeArguments(STRING to negativeAction, STRING to positiveAction)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_AXIS, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
@@ -375,30 +410,56 @@ public object Input : Object() {
   }
 
   /**
+   * Gets an input vector by specifying four actions for the positive and negative X and Y axes.
+   *
+   * This method is useful when getting vector input, such as from a joystick, directional pad, arrows, or WASD. The vector has its length limited to 1 and has a circular deadzone, which is useful for using vector input as movement.
+   *
+   * By default, the deadzone is automatically calculated from the average of the action deadzones. However, you can override the deadzone to be whatever you want (on the range of 0 to 1).
+   */
+  public fun getVector(
+    negativeX: String,
+    positiveX: String,
+    negativeY: String,
+    positiveY: String,
+    deadzone: Double = -1.0
+  ): Vector2 {
+    TransferContext.writeArguments(STRING to negativeX, STRING to positiveX, STRING to negativeY,
+        STRING to positiveY, DOUBLE to deadzone)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_GET_VECTOR, VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
    * Returns `true` when the user starts pressing the action event, meaning it's `true` only on the frame that the user pressed down the button.
    *
    * This is useful for code that needs to run only once when an action is pressed, instead of every frame while it's pressed.
+   *
+   * If `exact` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
-  public fun isActionJustPressed(action: String): Boolean {
-    TransferContext.writeArguments(STRING to action)
+  public fun isActionJustPressed(action: String, exact: Boolean = false): Boolean {
+    TransferContext.writeArguments(STRING to action, BOOL to exact)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ACTION_JUST_PRESSED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
    * Returns `true` when the user stops pressing the action event, meaning it's `true` only on the frame that the user released the button.
+   *
+   * If `exact` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
-  public fun isActionJustReleased(action: String): Boolean {
-    TransferContext.writeArguments(STRING to action)
+  public fun isActionJustReleased(action: String, exact: Boolean = false): Boolean {
+    TransferContext.writeArguments(STRING to action, BOOL to exact)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ACTION_JUST_RELEASED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
    * Returns `true` if you are pressing the action event. Note that if an action has multiple buttons assigned and more than one of them is pressed, releasing one button will release the action, even if some other button assigned to this action is still pressed.
+   *
+   * If `exact` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
-  public fun isActionPressed(action: String): Boolean {
-    TransferContext.writeArguments(STRING to action)
+  public fun isActionPressed(action: String, exact: Boolean = false): Boolean {
+    TransferContext.writeArguments(STRING to action, BOOL to exact)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_ACTION_PRESSED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
@@ -481,6 +542,16 @@ public object Input : Object() {
   }
 
   /**
+   * Sets the acceleration value of the accelerometer sensor. Can be used for debugging on devices without a hardware sensor, for example in an editor on a PC.
+   *
+   * **Note:** This value can be immediately overwritten by the hardware sensor value on Android and iOS.
+   */
+  public fun setAccelerometer(`value`: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_ACCELEROMETER, NIL)
+  }
+
+  /**
    * Sets a custom mouse cursor image, which is only visible inside the game window. The hotspot can also be specified. Passing `null` to the image parameter resets to the system cursor. See [enum CursorShape] for the list of shapes.
    *
    * `image`'s size must be lower than 256×256.
@@ -510,6 +581,36 @@ public object Input : Object() {
   public fun setDefaultCursorShape(shape: Long = 0): Unit {
     TransferContext.writeArguments(LONG to shape)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_DEFAULT_CURSOR_SHAPE, NIL)
+  }
+
+  /**
+   * Sets the gravity value of the accelerometer sensor. Can be used for debugging on devices without a hardware sensor, for example in an editor on a PC.
+   *
+   * **Note:** This value can be immediately overwritten by the hardware sensor value on Android and iOS.
+   */
+  public fun setGravity(`value`: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_GRAVITY, NIL)
+  }
+
+  /**
+   * Sets the value of the rotation rate of the gyroscope sensor. Can be used for debugging on devices without a hardware sensor, for example in an editor on a PC.
+   *
+   * **Note:** This value can be immediately overwritten by the hardware sensor value on Android and iOS.
+   */
+  public fun setGyroscope(`value`: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_GYROSCOPE, NIL)
+  }
+
+  /**
+   * Sets the value of the magnetic field of the magnetometer sensor. Can be used for debugging on devices without a hardware sensor, for example in an editor on a PC.
+   *
+   * **Note:** This value can be immediately overwritten by the hardware sensor value on Android and iOS.
+   */
+  public fun setMagnetometer(`value`: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_MAGNETOMETER, NIL)
   }
 
   /**

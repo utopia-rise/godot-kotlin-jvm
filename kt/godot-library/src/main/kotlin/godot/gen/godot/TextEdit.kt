@@ -36,6 +36,8 @@ import kotlin.Unit
  * Multiline text editing control.
  *
  * TextEdit is meant for editing large, multiline text. It also has facilities for editing code, such as syntax highlighting support and multiple levels of undo/redo.
+ *
+ * **Note:** When holding down `Alt`, the vertical scroll wheel will scroll 5 times as fast as it would normally do. This also works in the Godot script editor.
  */
 @GodotBaseType
 public open class TextEdit : Control() {
@@ -314,7 +316,7 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * The current horizontal scroll value.
+   * If there is a horizontal scrollbar, this determines the current horizontal scroll value in pixels.
    */
   public open var scrollHorizontal: Long
     get() {
@@ -330,7 +332,7 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * The current vertical scroll value.
+   * If there is a vertical scrollbar, this determines the current vertical scroll value in line numbers, starting at 0 for the top line.
    */
   public open var scrollVertical: Double
     get() {
@@ -696,6 +698,8 @@ public open class TextEdit : Control() {
 
   /**
    * Returns the [godot.PopupMenu] of this [godot.TextEdit]. By default, this menu is displayed when right-clicking on the [godot.TextEdit].
+   *
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
   public open fun getMenu(): PopupMenu? {
     TransferContext.writeArguments()
@@ -768,6 +772,24 @@ public open class TextEdit : Control() {
   public open fun hasKeywordColor(keyword: String): Boolean {
     TransferContext.writeArguments(STRING to keyword)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_HAS_KEYWORD_COLOR, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if a "redo" action is available.
+   */
+  public open fun hasRedo(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_HAS_REDO, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if an "undo" action is available.
+   */
+  public open fun hasUndo(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_HAS_UNDO, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

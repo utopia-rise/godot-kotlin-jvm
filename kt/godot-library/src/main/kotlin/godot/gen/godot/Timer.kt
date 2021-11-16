@@ -107,7 +107,9 @@ public open class Timer : Node() {
     }
 
   /**
-   * Wait time in seconds.
+   * The wait time in seconds.
+   *
+   * **Note:** Timers can only emit once per rendered frame at most (or once per physics frame if [processMode] is [TIMER_PROCESS_PHYSICS]). This means very low wait times (lower than 0.05 seconds) will behave in significantly different ways depending on the rendered framerate. For very low wait times, it is recommended to use a process loop in a script instead of using a Timer node.
    */
   public open var waitTime: Double
     get() {
@@ -136,7 +138,7 @@ public open class Timer : Node() {
   /**
    * Starts the timer. Sets `wait_time` to `time_sec` if `time_sec > 0`. This also resets the remaining time to `wait_time`.
    *
-   * **Note:** this method will not resume a paused timer. See [paused].
+   * **Note:** This method will not resume a paused timer. See [paused].
    */
   public open fun start(timeSec: Double = -1.0): Unit {
     TransferContext.writeArguments(DOUBLE to timeSec)

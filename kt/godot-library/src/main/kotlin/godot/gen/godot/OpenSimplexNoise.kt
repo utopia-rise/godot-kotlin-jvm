@@ -87,8 +87,12 @@ public open class OpenSimplexNoise : Resource() {
     callConstructor(ENGINECLASS_OPENSIMPLEXNOISE)
   }
 
-  public open fun getImage(width: Long, height: Long): Image? {
-    TransferContext.writeArguments(LONG to width, LONG to height)
+  public open fun getImage(
+    width: Long,
+    height: Long,
+    noiseOffset: Vector2 = Vector2(0.0, 0.0)
+  ): Image? {
+    TransferContext.writeArguments(LONG to width, LONG to height, VECTOR2 to noiseOffset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENSIMPLEXNOISE_GET_IMAGE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Image?
   }

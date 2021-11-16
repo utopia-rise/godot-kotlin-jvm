@@ -84,6 +84,16 @@ public open class MeshLibrary : Resource() {
   }
 
   /**
+   * Returns the transform applied to the item's mesh.
+   */
+  public open fun getItemMeshTransform(id: Long): Transform {
+    TransferContext.writeArguments(LONG to id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_GET_ITEM_MESH_TRANSFORM,
+        TRANSFORM)
+    return TransferContext.readReturnValue(TRANSFORM, false) as Transform
+  }
+
+  /**
    * Returns the item's name.
    */
   public open fun getItemName(id: Long): String {
@@ -157,6 +167,15 @@ public open class MeshLibrary : Resource() {
   public open fun setItemMesh(id: Long, mesh: Mesh): Unit {
     TransferContext.writeArguments(LONG to id, OBJECT to mesh)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_MESH, NIL)
+  }
+
+  /**
+   * Sets the transform to apply to the item's mesh.
+   */
+  public open fun setItemMeshTransform(id: Long, meshTransform: Transform): Unit {
+    TransferContext.writeArguments(LONG to id, TRANSFORM to meshTransform)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHLIBRARY_SET_ITEM_MESH_TRANSFORM,
+        NIL)
   }
 
   /**

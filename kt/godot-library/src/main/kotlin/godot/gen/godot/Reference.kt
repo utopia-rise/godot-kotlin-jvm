@@ -16,7 +16,7 @@ import kotlin.Unit
  * Base class for reference-counted objects.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/getting_started/workflow/best_practices/node_alternatives.html](https://docs.godotengine.org/en/3.3/getting_started/workflow/best_practices/node_alternatives.html)
+ * [https://docs.godotengine.org/en/3.4/getting_started/workflow/best_practices/node_alternatives.html](https://docs.godotengine.org/en/3.4/getting_started/workflow/best_practices/node_alternatives.html)
  *
  * Base class for any object that keeps a reference count. [godot.Resource] and many other helper objects inherit this class.
  *

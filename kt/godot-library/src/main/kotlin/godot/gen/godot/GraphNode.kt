@@ -203,7 +203,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns the color of the input connection `idx`.
+   * Returns the [godot.core.Color] of the input connection `idx`.
    */
   public open fun getConnectionInputColor(idx: Long): Color {
     TransferContext.writeArguments(LONG to idx)
@@ -243,7 +243,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns the color of the output connection `idx`.
+   * Returns the [godot.core.Color] of the output connection `idx`.
    */
   public open fun getConnectionOutputColor(idx: Long): Color {
     TransferContext.writeArguments(LONG to idx)
@@ -283,7 +283,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns the color set to `idx` left (input) slot.
+   * Returns the left (input) [godot.core.Color] of the slot `idx`.
    */
   public open fun getSlotColorLeft(idx: Long): Color {
     TransferContext.writeArguments(LONG to idx)
@@ -293,7 +293,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns the color set to `idx` right (output) slot.
+   * Returns the right (output) [godot.core.Color] of the slot `idx`.
    */
   public open fun getSlotColorRight(idx: Long): Color {
     TransferContext.writeArguments(LONG to idx)
@@ -303,7 +303,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns the (integer) type of left (input) `idx` slot.
+   * Returns the left (input) type of the slot `idx`.
    */
   public open fun getSlotTypeLeft(idx: Long): Long {
     TransferContext.writeArguments(LONG to idx)
@@ -312,7 +312,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns the (integer) type of right (output) `idx` slot.
+   * Returns the right (output) type of the slot `idx`.
    */
   public open fun getSlotTypeRight(idx: Long): Long {
     TransferContext.writeArguments(LONG to idx)
@@ -321,7 +321,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns `true` if left (input) slot `idx` is enabled, `false` otherwise.
+   * Returns `true` if left (input) side of the slot `idx` is enabled.
    */
   public open fun isSlotEnabledLeft(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
@@ -331,7 +331,7 @@ public open class GraphNode : Container() {
   }
 
   /**
-   * Returns `true` if right (output) slot `idx` is enabled, `false` otherwise.
+   * Returns `true` if right (output) side of the slot `idx` is enabled.
    */
   public open fun isSlotEnabledRight(idx: Long): Boolean {
     TransferContext.writeArguments(LONG to idx)
@@ -352,6 +352,8 @@ public open class GraphNode : Container() {
    * `custom_left`/`right` is a custom texture for this side's port.
    *
    * **Note:** This method only sets properties of the slot. To create the slot, add a [godot.Control]-derived child to the GraphNode.
+   *
+   * Individual properties can be set using one of the `set_slot_*` methods. You must enable at least one side of the slot to do so.
    */
   public open fun setSlot(
     idx: Long,
@@ -368,6 +370,56 @@ public open class GraphNode : Container() {
         colorLeft, BOOL to enableRight, LONG to typeRight, COLOR to colorRight, OBJECT to
         customLeft, OBJECT to customRight)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SLOT, NIL)
+  }
+
+  /**
+   * Sets the [godot.core.Color] of the left (input) side of the slot `idx` to `color_left`.
+   */
+  public open fun setSlotColorLeft(idx: Long, colorLeft: Color): Unit {
+    TransferContext.writeArguments(LONG to idx, COLOR to colorLeft)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SLOT_COLOR_LEFT, NIL)
+  }
+
+  /**
+   * Sets the [godot.core.Color] of the right (output) side of the slot `idx` to `color_right`.
+   */
+  public open fun setSlotColorRight(idx: Long, colorRight: Color): Unit {
+    TransferContext.writeArguments(LONG to idx, COLOR to colorRight)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SLOT_COLOR_RIGHT, NIL)
+  }
+
+  /**
+   * Toggles the left (input) side of the slot `idx`. If `enable_left` is `true`, a port will appear on the left side and the slot will be able to be connected from this side.
+   */
+  public open fun setSlotEnabledLeft(idx: Long, enableLeft: Boolean): Unit {
+    TransferContext.writeArguments(LONG to idx, BOOL to enableLeft)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SLOT_ENABLED_LEFT,
+        NIL)
+  }
+
+  /**
+   * Toggles the right (output) side of the slot `idx`. If `enable_right` is `true`, a port will appear on the right side and the slot will be able to be connected from this side.
+   */
+  public open fun setSlotEnabledRight(idx: Long, enableRight: Boolean): Unit {
+    TransferContext.writeArguments(LONG to idx, BOOL to enableRight)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SLOT_ENABLED_RIGHT,
+        NIL)
+  }
+
+  /**
+   * Sets the left (input) type of the slot `idx` to `type_left`.
+   */
+  public open fun setSlotTypeLeft(idx: Long, typeLeft: Long): Unit {
+    TransferContext.writeArguments(LONG to idx, LONG to typeLeft)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SLOT_TYPE_LEFT, NIL)
+  }
+
+  /**
+   * Sets the right (output) type of the slot `idx` to `type_right`.
+   */
+  public open fun setSlotTypeRight(idx: Long, typeRight: Long): Unit {
+    TransferContext.writeArguments(LONG to idx, LONG to typeRight)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRAPHNODE_SET_SLOT_TYPE_RIGHT, NIL)
   }
 
   public enum class Overlay(

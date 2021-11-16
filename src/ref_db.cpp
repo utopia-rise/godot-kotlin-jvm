@@ -47,7 +47,7 @@ void RefDB::remove_ref(Reference* ref, uint32_t counter) {
         }
 #ifdef DEBUG_ENABLED
         JVM_ERR_FAIL_COND_MSG(index_ptr->counter < 0,
-                              vformat("A reference %s has its JVM counter set below 0", ref->to_string()))
+                              vformat("A reference %s has its JVM counter set below 0", ref->to_string()));
         index_ptr->counter = 0;
 #endif
         freeIds.push_back(*index_ptr);

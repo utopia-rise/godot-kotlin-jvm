@@ -51,6 +51,42 @@ public open class CollisionObject2D : Node2D() {
   public val mouseExited: Signal0 by signal()
 
   /**
+   * The physics layers this CollisionObject2D is in. Collision objects can exist in one or more of 32 different layers. See also [collisionMask].
+   *
+   * **Note:** A contact is detected if object A is in any of the layers that object B scans, or object B is in any layers that object A scans. See [godot.Collision layers and masks](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   */
+  public open var collisionLayer: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_GET_COLLISION_LAYER, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_SET_COLLISION_LAYER, NIL)
+    }
+
+  /**
+   * The physics layers this CollisionObject2D scans. Collision objects can scan one or more of 32 different layers. See also [collisionLayer].
+   *
+   * **Note:** A contact is detected if object A is in any of the layers that object B scans, or object B is in any layers that object A scans. See [godot.Collision layers and masks](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   */
+  public open var collisionMask: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_GET_COLLISION_MASK, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_SET_COLLISION_MASK, NIL)
+    }
+
+  /**
    * If `true`, this object is pickable. A pickable object can detect the mouse pointer entering/leaving, and if the mouse is inside it, report input events. Requires at least one `collision_layer` bit to be set.
    */
   public open var inputPickable: Boolean
@@ -88,6 +124,26 @@ public open class CollisionObject2D : Node2D() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_CREATE_SHAPE_OWNER, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns whether or not the specified `bit` of the [collisionLayer] is set.
+   */
+  public open fun getCollisionLayerBit(bit: Long): Boolean {
+    TransferContext.writeArguments(LONG to bit)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_GET_COLLISION_LAYER_BIT, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns whether or not the specified `bit` of the [collisionMask] is set.
+   */
+  public open fun getCollisionMaskBit(bit: Long): Boolean {
+    TransferContext.writeArguments(LONG to bit)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_GET_COLLISION_MASK_BIT, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -146,6 +202,28 @@ public open class CollisionObject2D : Node2D() {
     TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_REMOVE_SHAPE_OWNER, NIL)
+  }
+
+  /**
+   * If `value` is `true`, sets the specified `bit` in the the [collisionLayer].
+   *
+   * If `value` is `false`, clears the specified `bit` in the the [collisionLayer].
+   */
+  public open fun setCollisionLayerBit(bit: Long, `value`: Boolean): Unit {
+    TransferContext.writeArguments(LONG to bit, BOOL to value)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_SET_COLLISION_LAYER_BIT, NIL)
+  }
+
+  /**
+   * If `value` is `true`, sets the specified `bit` in the the [collisionMask].
+   *
+   * If `value` is `false`, clears the specified `bit` in the the [collisionMask].
+   */
+  public open fun setCollisionMaskBit(bit: Long, `value`: Boolean): Unit {
+    TransferContext.writeArguments(LONG to bit, BOOL to value)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT2D_SET_COLLISION_MASK_BIT, NIL)
   }
 
   /**

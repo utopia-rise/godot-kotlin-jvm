@@ -10,7 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.TransferContext
 import godot.core.Transform
+import godot.core.VariantArray
 import godot.core.VariantType.ANY
+import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
@@ -671,11 +673,6 @@ public object PhysicsServer : Object() {
    * Constant to set/get the maximum distance a pair of bodies has to move before their collision status has to be recalculated.
    */
   public final const val SPACE_PARAM_CONTACT_RECYCLE_RADIUS: Long = 0
-
-  /**
-   *
-   */
-  public final const val SPACE_PARAM_TEST_MOTION_MIN_CONTACT_DEPTH: Long = 8
 
   public override fun __new(): Unit {
     rawPtr = TransferContext.getSingleton(ENGINESINGLETON_PHYSICSSERVER)
@@ -1447,6 +1444,25 @@ public object PhysicsServer : Object() {
   }
 
   /**
+   * Returns `true` if a collision would result from moving in the given direction from a given point in space. [godot.PhysicsTestMotionResult] can be passed to return additional information in.
+   */
+  public fun bodyTestMotion(
+    body: RID,
+    from: Transform,
+    motion: Vector3,
+    infiniteInertia: Boolean,
+    result: PhysicsTestMotionResult? = null,
+    excludeRaycastShapes: Boolean = true,
+    exclude: VariantArray<Any?> = VariantArray()
+  ): Boolean {
+    TransferContext.writeArguments(_RID to body, TRANSFORM to from, VECTOR3 to motion, BOOL to
+        infiniteInertia, OBJECT to result, BOOL to excludeRaycastShapes, ARRAY to exclude)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER_BODY_TEST_MOTION,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    * Gets a cone_twist_joint parameter (see [enum ConeTwistJointParam] constants).
    */
   public fun coneTwistJointGetParam(joint: RID, `param`: Long): Double {
@@ -1764,6 +1780,17 @@ public object PhysicsServer : Object() {
   public fun setActive(active: Boolean): Unit {
     TransferContext.writeArguments(BOOL to active)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER_SET_ACTIVE, NIL)
+  }
+
+  /**
+   * Sets the amount of iterations for calculating velocities of colliding bodies. The greater the amount of iterations, the more accurate the collisions will be. However, a greater amount of iterations requires more CPU power, which can decrease performance. The default value is `8`.
+   *
+   * **Note:** Only has an effect when using the GodotPhysics engine, not the default Bullet physics engine.
+   */
+  public fun setCollisionIterations(iterations: Long): Unit {
+    TransferContext.writeArguments(LONG to iterations)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER_SET_COLLISION_ITERATIONS, NIL)
   }
 
   /**
@@ -2123,10 +2150,6 @@ public object PhysicsServer : Object() {
      * Constant to set/get the default solver bias for all physics constraints. A solver bias is a factor controlling how much two objects "rebound", after violating a constraint, to avoid leaving them in that state because of numerical imprecision.
      */
     SPACE_PARAM_CONSTRAINT_DEFAULT_BIAS(7),
-    /**
-     *
-     */
-    SPACE_PARAM_TEST_MOTION_MIN_CONTACT_DEPTH(8),
     ;
 
     public val id: Long

@@ -26,7 +26,7 @@ import kotlin.Unit
  * Direct access object to a space in the [godot.Physics2DServer].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/physics/ray-casting.html](https://docs.godotengine.org/en/3.3/tutorials/physics/ray-casting.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/physics/ray-casting.html](https://docs.godotengine.org/en/3.4/tutorials/physics/ray-casting.html)
  *
  * Direct access object to a space in the [godot.Physics2DServer]. It's used mainly to do queries against objects and areas residing in a given space.
  */

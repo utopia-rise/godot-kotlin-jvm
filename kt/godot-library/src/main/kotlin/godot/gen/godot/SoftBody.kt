@@ -16,6 +16,8 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.VECTOR3
+import godot.core.Vector3
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -27,7 +29,7 @@ import kotlin.Unit
  * A soft mesh physics body.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/physics/soft_body.html](https://docs.godotengine.org/en/3.3/tutorials/physics/soft_body.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/physics/soft_body.html](https://docs.godotengine.org/en/3.4/tutorials/physics/soft_body.html)
  *
  * A deformable physics body. Used to create elastic or deformable objects such as cloth, rubber, or other flexible materials.
  */
@@ -54,7 +56,7 @@ public open class SoftBody : MeshInstance() {
    *
    * Collidable objects can exist in any of 32 different layers. These layers work like a tagging system, and are not visual. A collidable can use these layers to select with which objects it can collide, using the collision_mask property.
    *
-   * A contact is detected if object A is in any of the layers that object B scans, or object B is in any layer scanned by object A. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * A contact is detected if object A is in any of the layers that object B scans, or object B is in any layer scanned by object A. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.4/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
   public open var collisionLayer: Long
     get() {
@@ -69,7 +71,7 @@ public open class SoftBody : MeshInstance() {
     }
 
   /**
-   * The physics layers this SoftBody scans for collisions. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.3/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * The physics layers this SoftBody scans for collisions. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.4/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
   public open var collisionMask: Long
     get() {
@@ -144,6 +146,21 @@ public open class SoftBody : MeshInstance() {
       TransferContext.writeArguments(NODE_PATH to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SOFTBODY_SET_PARENT_COLLISION_IGNORE, NIL)
+    }
+
+  /**
+   * If `true`, the [godot.SoftBody] is simulated in physics. Can be set to `false` to pause the physics simulation.
+   */
+  public open var physicsEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_GET_PHYSICS_ENABLED,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_SET_PHYSICS_ENABLED, NIL)
     }
 
   /**
@@ -285,6 +302,25 @@ public open class SoftBody : MeshInstance() {
   }
 
   /**
+   * Returns local translation of a vertex in the surface array.
+   */
+  public open fun getPointTransform(pointIndex: Long): Vector3 {
+    TransferContext.writeArguments(LONG to pointIndex)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_GET_POINT_TRANSFORM,
+        VECTOR3)
+    return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+  }
+
+  /**
+   * Returns `true` if vertex is set to pinned.
+   */
+  public open fun isPointPinned(pointIndex: Long): Boolean {
+    TransferContext.writeArguments(LONG to pointIndex)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_IS_POINT_PINNED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    * Removes a body from the list of bodies that this body can't collide with.
    */
   public open fun removeCollisionExceptionWith(body: Node): Unit {
@@ -309,5 +345,17 @@ public open class SoftBody : MeshInstance() {
     TransferContext.writeArguments(LONG to bit, BOOL to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_SET_COLLISION_MASK_BIT,
         NIL)
+  }
+
+  /**
+   * Sets the pinned state of a surface vertex. When set to `true`, the optional `attachment_path` can define a [godot.Spatial] the pinned vertex will be attached to.
+   */
+  public open fun setPointPinned(
+    pointIndex: Long,
+    pinned: Boolean,
+    attachmentPath: NodePath = NodePath()
+  ): Unit {
+    TransferContext.writeArguments(LONG to pointIndex, BOOL to pinned, NODE_PATH to attachmentPath)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTBODY_SET_POINT_PINNED, NIL)
   }
 }

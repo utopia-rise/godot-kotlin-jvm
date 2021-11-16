@@ -41,6 +41,8 @@ public:
 
     void fetch_members();
 
+    bool is_assignable_from(KtClass* p_class) const;
+
 private:
     HashMap<StringName, KtFunction*> methods;
     HashMap<StringName, KtProperty*> properties;

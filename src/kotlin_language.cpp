@@ -135,6 +135,23 @@ void KotlinLanguage::get_reserved_words(List<String>* p_words) const {
     }
 }
 
+bool KotlinLanguage::is_control_flow_keyword(String p_keyword) const {
+    return
+    p_keyword == "break" ||
+    p_keyword == "catch" ||
+    p_keyword == "continue" ||
+    p_keyword == "do" ||
+    p_keyword == "else" ||
+    p_keyword == "finally" ||
+    p_keyword == "for" ||
+    p_keyword == "if" ||
+    p_keyword == "return" ||
+    p_keyword == "when" ||
+    p_keyword == "throw" ||
+    p_keyword == "try" ||
+    p_keyword == "while";
+}
+
 void KotlinLanguage::get_comment_delimiters(List<String>* p_delimiters) const {
     p_delimiters->push_back("//");
     p_delimiters->push_back("/* */");

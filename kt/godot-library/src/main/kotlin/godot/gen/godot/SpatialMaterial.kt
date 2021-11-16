@@ -27,7 +27,7 @@ import kotlin.Unit
  * Default 3D rendering material.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.3/tutorials/3d/spatial_material.html](https://docs.godotengine.org/en/3.3/tutorials/3d/spatial_material.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/3d/spatial_material.html](https://docs.godotengine.org/en/3.4/tutorials/3d/spatial_material.html)
  *
  * This provides a default material with a wide variety of rendering features and properties without the need to write shader code. See the tutorial below for details.
  */
@@ -765,7 +765,7 @@ public open class SpatialMaterial : Material() {
   /**
    * If `true`, render point size can be changed.
    *
-   * **Note:** this is only effective for objects whose geometry is point-based rather than triangle-based. See also [paramsPointSize].
+   * **Note:** This is only effective for objects whose geometry is point-based rather than triangle-based. See also [paramsPointSize].
    */
   public open var flagsUsePointSize: Boolean
     get() {
@@ -846,7 +846,7 @@ public open class SpatialMaterial : Material() {
   /**
    * Sets the size of the specular lobe. The specular lobe is the bright spot that is reflected from light sources.
    *
-   * **Note:** unlike [metallic], this is not energy-conserving, so it should be left at `0.5` in most cases. See also [roughness].
+   * **Note:** Unlike [metallic], this is not energy-conserving, so it should be left at `0.5` in most cases. See also [roughness].
    */
   public open var metallicSpecular: Double
     get() {
@@ -926,7 +926,9 @@ public open class SpatialMaterial : Material() {
     }
 
   /**
-   * Texture used to specify the normal at a given pixel. The `normal_texture` only uses the red and green channels. The normal read from `normal_texture` is oriented around the surface normal provided by the [godot.Mesh].
+   * Texture used to specify the normal at a given pixel. The `normal_texture` only uses the red and green channels; the blue and alpha channels are ignored. The normal read from `normal_texture` is oriented around the surface normal provided by the [godot.Mesh].
+   *
+   * **Note:** The mesh must have both normals and tangents defined in its vertex data. Otherwise, the normal map won't render correctly and will only appear to darken the whole surface. If creating geometry with [godot.SurfaceTool], you can use [godot.SurfaceTool.generateNormals] and [godot.SurfaceTool.generateTangents] to automatically generate normals and tangents respectively.
    *
    * **Note:** Godot expects the normal map to use X+, Y-, and Z+ coordinates. See [this page](http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates) for a comparison of normal map coordinates expected by popular engines.
    */
@@ -1236,7 +1238,7 @@ public open class SpatialMaterial : Material() {
     }
 
   /**
-   * If `true`, the refraction effect is enabled. Distorts transparency based on light from behind the object.
+   * If `true`, the refraction effect is enabled. Refraction distorts transparency based on light from behind the object. When using the GLES3 backend, the material's roughness value will affect the blurriness of the refraction. Higher roughness values will make the refraction look blurrier.
    */
   public open var refractionEnabled: Boolean
     get() {
@@ -1252,7 +1254,7 @@ public open class SpatialMaterial : Material() {
     }
 
   /**
-   * The strength of the refraction effect.
+   * The strength of the refraction effect. Higher values result in a more distorted appearance for the refraction.
    */
   public open var refractionScale: Double
     get() {
@@ -1284,7 +1286,7 @@ public open class SpatialMaterial : Material() {
     }
 
   /**
-   * Specifies the channel of the [aoTexture] in which the ambient occlusion information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
+   * Specifies the channel of the [refractionTexture] in which the refraction information is stored. This is useful when you store the information for multiple effects in a single texture. For example if you stored metallic in the red channel, roughness in the blue, and ambient occlusion in the green you could reduce the number of textures you use.
    */
   public open var refractionTextureChannel: Long
     get() {
