@@ -1,6 +1,6 @@
 plugins {
     // no need to apply kotlin jvm plugin. Our plugin already applies the correct version for you
-//    kotlin("jvm") version "1.5.21"
+//    kotlin("jvm") version "1.5.31"
     id("com.utopia-rise.godot-kotlin-jvm")
 }
 

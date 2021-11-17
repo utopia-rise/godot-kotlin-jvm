@@ -25,7 +25,6 @@ import godot.annotation.Tool
 import godot.entrygenerator.model.ColorNoAlphaHintAnnotation
 import godot.entrygenerator.model.DirHintAnnotation
 import godot.entrygenerator.model.DoubleRangeHintAnnotation
-import godot.entrygenerator.model.EnumAnnotation
 import godot.entrygenerator.model.EnumFlagHintStringAnnotation
 import godot.entrygenerator.model.ExpEasingHintAnnotation
 import godot.entrygenerator.model.ExpRangeHintAnnotation
@@ -60,9 +59,9 @@ val KSAnnotation.rangeEnum: Range
         ?.asString()
         ?.let { enumFqName ->
             when (enumFqName) {
-                godot.registration.Range.NONE::class.qualifiedName -> Range.NONE
-                godot.registration.Range.OR_GREATER::class.qualifiedName -> Range.OR_GREATER
-                godot.registration.Range.OR_LESSER::class.qualifiedName -> Range.OR_LESSER
+                "${godot.registration.Range::class.qualifiedName}.${godot.registration.Range.NONE.name}" -> Range.NONE
+                "${godot.registration.Range::class.qualifiedName}.${godot.registration.Range.OR_GREATER.name}" -> Range.OR_GREATER
+                "${godot.registration.Range::class.qualifiedName}.${godot.registration.Range.OR_LESSER.name}" -> Range.OR_LESSER
                 else -> throw IllegalArgumentException("Unknown enum $enumFqName for hint annotation IntRange")
             }
         } ?: Range.NONE
