@@ -65,7 +65,7 @@ void KotlinEditorExportPlugin::_export_begin(
     for (int i = 0; i < files_to_add.size(); ++i) {
         const String& file_to_add{files_to_add[i]};
         if (!FileAccess::exists(file_to_add)) {
-            LOG_ERROR(vformat("Tried to export file %s, but it's non existent", file_to_add))
+            LOG_ERROR(vformat("Tried to export file %s, but it's non existent", file_to_add));
         }
         add_file(file_to_add, FileAccess::get_file_as_array(file_to_add), false);
         LOG_INFO(vformat("Exporting %s", file_to_add));

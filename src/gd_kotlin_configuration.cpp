@@ -40,7 +40,7 @@ GdKotlinConfiguration GdKotlinConfiguration::from_json(const String& json_string
     String err_string;
     int err_line;
 
-    LOG_VERBOSE(vformat("Parsing %s", json_string))
+    LOG_VERBOSE(vformat("Parsing %s", json_string));
     Error error{JSON::parse(json_string, result, err_string, err_line)};
 
     if (error != OK || result.get_type() != Variant::DICTIONARY) {
@@ -236,7 +236,7 @@ void GdKotlinConfiguration::assemble_jinit_args(jni::InitArgs* args) {
         args->option("-Dcom.sun.management.jmxremote.authenticate=false");
         args->option("-Dcom.sun.management.jmxremote.ssl=false");
 #ifdef DEBUG_ENABLED
-        LOG_VERBOSE(vformat("Started JMX on port: %s", jvm_jmx_port))
+        LOG_VERBOSE(vformat("Started JMX on port: %s", jvm_jmx_port));
 #endif
     }
 }
@@ -249,7 +249,7 @@ jni::Jvm::Type GdKotlinConfiguration::vm_type_from_string(const String& vm_type_
     } else if (vm_type_as_string == art_string_identifier) {
         return jni::Jvm::ART;
     } else {
-        LOG_WARNING("Wrong JVM type in config, fallback to classic JVM !")
+        LOG_WARNING("Wrong JVM type in config, fallback to classic JVM !");
         return jni::Jvm::JVM;
     }
 }
@@ -329,24 +329,26 @@ void GdKotlinConfiguration::override_json_config_with_cmd_args(GdKotlinConfigura
                 LOG_WARNING(
                         vformat("Warning ! The max string size was changed to %s which modify the size of the buffer, this is not a recommended practice",
                                 result)
-                )
+                );
             }
         } else if (cmd_arg == arg_prefix + jvm_force_gc_identifier) {
             r_configuration->is_gc_force_mode = true;
             //TODO: Link to documentation
-            LOG_WARNING("GC is started in force mode, this should only be done for debugging purpose")
+            LOG_WARNING("GC is started in force mode, this should only be done for debugging purpose");
         } else if (cmd_arg == arg_prefix + jvm_disable_gc_identifier) {
             r_configuration->is_gc_activated = false;
             //TODO: Link to documentation
-            LOG_WARNING(vformat("GC thread was disable. %s should only be used for debugging purpose",
-                                arg_prefix + jvm_disable_gc_identifier))
+            LOG_WARNING(
+                    vformat("GC thread was disable. %s should only be used for debugging purpose",
+                            arg_prefix + jvm_disable_gc_identifier)
+            );
         } else if (cmd_arg == arg_prefix + jvm_disable_closing_leaks_identifier) {
             LOG_WARNING(
                     vformat(
                             "JVM leaked instances will not be displayed in console (see %s)",
                             arg_prefix + jvm_disable_closing_leaks_identifier
                     )
-            )
+            );
             r_configuration->should_display_leaked_jvm_instances_on_close = false;
         }
     }

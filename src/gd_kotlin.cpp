@@ -155,7 +155,7 @@ void GDKotlin::init() {
 
     configuration.assemble_jinit_args(&args);
 
-    LOG_INFO("Starting JVM ...")
+    LOG_INFO("Starting JVM ...");
     jni::Jvm::init(args, configuration.get_vm_type());
 
     init_usercode();
@@ -165,18 +165,18 @@ void GDKotlin::init() {
 void GDKotlin::finish() {
     if (Main::is_project_manager()) {
 #ifdef DEBUG_ENABLED
-        LOG_VERBOSE("Detected that we're in the project manager. No cleanup necessary")
+        LOG_VERBOSE("Detected that we're in the project manager. No cleanup necessary");
 #endif
         return;
     }
     teardown_usercode();
     jni::Jvm::destroy();
-    LOG_INFO("Shutting down JVM ...")
+    LOG_INFO("Shutting down JVM ...");
 }
 
 void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
 #ifdef DEBUG_ENABLED
-    LOG_INFO("Loading classes ...")
+    LOG_INFO("Loading classes ...");
 #endif
     jni::JObject class_loader = ClassLoader::get_default_loader();
     for (auto i = 0; i < p_classes.length(p_env); i++) {
@@ -191,7 +191,7 @@ void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
                         kt_class->super_class,
                         kt_class->registered_class_name
                 )
-        )
+        );
 #endif
         clazz.delete_local_ref(p_env);
     }
@@ -199,7 +199,7 @@ void GDKotlin::register_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
 
 void GDKotlin::unregister_classes(jni::Env& p_env, jni::JObjectArray p_classes) {
 #ifdef DEBUG_ENABLED
-    LOG_INFO("Unloading classes ...")
+    LOG_INFO("Unloading classes ...");
 #endif
     Map<StringName, KtClass*>::Element* current = classes.front();
     while (current != nullptr) {
@@ -243,7 +243,7 @@ jni::JObject GDKotlin::_prepare_class_loader(jni::Env& p_env, jni::Jvm::Type typ
 bool GDKotlin::check_configuration() {
     bool has_configuration_error = false;
     if (Engine::get_singleton()->is_editor_hint() && OS::get_singleton()->get_environment("JAVA_HOME").empty()) {
-        LOG_WARNING("JAVA_HOME not defined. Godot-JVM module won't be loaded!")
+        LOG_WARNING("JAVA_HOME not defined. Godot-JVM module won't be loaded!");
         configuration_errors.push_back(
                 {
                         "JAVA_HOME not defined",
@@ -288,16 +288,16 @@ void GDKotlin::init_usercode() {
                         "No %s found! You need to build your code in order to use it from within the editor",
                         PathProvider::get_usercode_name()
                 )
-        )
+        );
         return;
     }
 #endif
     JVM_CRASH_COND_MSG(
             !FileAccess::exists(runtime_usercode_path),
             vformat("No %s found!", PathProvider::get_usercode_name())
-    )
+    );
 
-    LOG_INFO(vformat("Loading usercode: %s", runtime_usercode_path))
+    LOG_INFO(vformat("Loading usercode: %s", runtime_usercode_path));
     jni::Env env{jni::Jvm::current_env()};
 
     jni::JObject class_loader{_prepare_class_loader(env, configuration.get_vm_type(), runtime_usercode_path)};
@@ -460,10 +460,12 @@ bool GDKotlin::copy_usercode_jar_if_necessary() {
             get_instance().teardown_usercode();
 
             DirAccess* build_lock_dir{DirAccess::create_for_path(build_lock_dir_path)};
-            LOG_INFO(vformat("from path: %s", build_usercode_path))
-            LOG_INFO(vformat("to path: %s", runtime_usercode_path))
-            JVM_CRASH_COND_MSG(build_lock_dir->copy(build_usercode_path, runtime_usercode_path) != OK,
-                               "Could not copy")
+            LOG_INFO(vformat("from path: %s", build_usercode_path));
+            LOG_INFO(vformat("to path: %s", runtime_usercode_path));
+            JVM_CRASH_COND_MSG(
+                    build_lock_dir->copy(build_usercode_path, runtime_usercode_path) != OK,
+                    "Could not copy"
+            );
             memdelete(build_lock_dir);
 
             copied_user_jar_modification_time = original_usercode_jar_modification_time;

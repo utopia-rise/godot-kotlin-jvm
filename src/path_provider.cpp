@@ -88,7 +88,7 @@ String PathProvider::get_usercode_extension_for_vm_type(jni::Jvm::Type vm_type) 
             return dynamic_library_extension_win;
 #endif
         default:
-            LOG_ERROR("Unknown VM type, returning jar extension.")
+            LOG_ERROR("Unknown VM type, returning jar extension.");
             return jar_extension;
     }
 }
