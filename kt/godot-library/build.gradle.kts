@@ -56,7 +56,7 @@ publishing {
             }
             artifactId = "godot-library"
             description = "Contains godot api as kotlin classes and jvm cpp interaction code."
-            from(components.getByName("java"))
+            artifact(tasks.jar)
         }
     }
 }
