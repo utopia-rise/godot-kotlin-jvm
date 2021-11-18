@@ -1,8 +1,9 @@
 package godot.runtime
 
 import godot.core.KtClass
-import godot.core.KtObject
 import godot.core.TypeManager
+import godot.core.VariantType
+import godot.core.variantMapper
 import godot.registration.ClassRegistry
 import godot.registration.Entry
 import godot.util.err
@@ -117,6 +118,9 @@ internal class Bootstrap {
 
                 if (!engineTypesRegistered) {
                     context.initEngineTypes()
+                    for (clazz in context.getRegisteredClasses()) {
+                        variantMapper[clazz] = VariantType.OBJECT
+                    }
                     registerManagedEngineTypes(
                         TypeManager.engineTypeNames.toTypedArray(),
                         TypeManager.engineSingletonsNames.toTypedArray(),

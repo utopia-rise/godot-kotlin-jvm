@@ -1,12 +1,10 @@
 package godot.entrygenerator.filebuilder
 
-import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.FileSpec
-import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.MemberName
-import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.*
+import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
+import godot.entrygenerator.model.RegisteredClass
 import java.io.BufferedWriter
+import kotlin.reflect.KClass
 
 object MainEntryFileBuilder {
     private val entryFileSpec = FileSpec
@@ -26,6 +24,19 @@ object MainEntryFileBuilder {
         .addStatement("%M()", MemberName("godot", "registerEngineTypes"))
         .addStatement("%M()", MemberName("godot", "registerEngineTypeMethods"))
 
+    private val registerUserTypesVariantMappingsFunSpec = FunSpec
+        .builder("getRegisteredClasses")
+        .receiver(ClassName("godot.registration.Entry", "Context"))
+        .addModifiers(KModifier.OVERRIDE)
+        .returns(
+            List::class
+                .asTypeName()
+                .parameterizedBy(
+                    KClass::class.asTypeName()
+                        .parameterizedBy(STAR)
+                )
+        )
+
     fun build(outAppendable: () -> BufferedWriter) {
 
         entryFileSpec.addType(
@@ -34,6 +45,7 @@ object MainEntryFileBuilder {
                 .superclass(ClassName("godot.registration", "Entry"))
                 .addFunction(initFunctionSpec.build())
                 .addFunction(initEngineTypesFunSpec.build())
+                .addFunction(registerUserTypesVariantMappingsFunSpec.build())
                 .build()
         )
         outAppendable().use {
@@ -47,5 +59,16 @@ object MainEntryFileBuilder {
         val (templateString, templateArgs) = classRegistrarBuilder.build()
         initFunctionSpec.addStatement(templateString, *templateArgs)
         return this
+    }
+
+    fun registerUserTypesVariantMappings(registeredClasses: List<RegisteredClass>) {
+        val listOfArguments = registeredClasses.map {
+            ClassName(it.containingPackage, it.name)
+        }
+        registerUserTypesVariantMappingsFunSpec.addStatement(
+            "return %M(${listOfArguments.joinToString { "%T::class" }})",
+            MemberName("kotlin.collections", "listOf"),
+            *listOfArguments.toTypedArray()
+        )
     }
 }

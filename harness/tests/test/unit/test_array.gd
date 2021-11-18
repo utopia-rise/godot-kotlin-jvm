@@ -51,6 +51,12 @@ func test_array_typed_not_null_remove():
 	assert_eq(invocation_script.nav_meshes_size(), 0, "Array size should be 0")
 	invocation_script.free()
 
+func test_create_user_type_variant_array():
+	var invocation_script = godot_tests_Invocation.new()
+	var user_type_variant_array = invocation_script.create_variant_array_of_user_type()
+	assert_not_null(user_type_variant_array, "Should return an empty user typed variant array.")
+	invocation_script.free()
+
 #TODO : Should be uncommented when registering nullable is done
 #func test_array_nullable_append():
 #	var invocation_script = godot_tests_Invocation.new()
