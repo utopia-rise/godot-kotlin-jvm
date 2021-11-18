@@ -295,11 +295,11 @@ class Invocation : Spatial() {
 
 	@Export
 	@RegisterProperty
-	var stringtemplation = "blubb ${17 + 25}"
+	var stringtemplation = "blibb ${17 + 25}"
 
 	@Export
 	@RegisterProperty
-	var testString = "Two eggs in a boiler. One says: it's hot here, isn't ? The other: oh my god, an egg talking!"
+	var testString = "Huhu!!! Two eggs in a boiler. One says: it's hot here, isn't ? The other: oh my god, an egg talking!"
 
 	@Export
 	@RegisterProperty

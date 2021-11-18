@@ -6,6 +6,7 @@
 
 
 #include <editor/editor_plugin.h>
+#include <modules/kotlin_jvm/src/editor/build/build_lock_watcher.h>
 #include "dialog/error_dialog.h"
 #include "dialog/about_dialog.h"
 #include "dialog/build_dialog.h"
@@ -36,6 +37,7 @@ private:
     BuildDialog* build_dialog;
     ToolButton* tool_bar_build_button;
     BottomPanel* bottom_panel;
+    BuildLockWatcher* build_lock_watcher;
 
     void on_build_project_pressed();
 

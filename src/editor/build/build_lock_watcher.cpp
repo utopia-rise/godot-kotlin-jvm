@@ -6,9 +6,8 @@
 #include <editor/editor_settings.h>
 #include "build_lock_watcher.h"
 
-void BuildLockWatcher::poll_build_lock(void* p_userdata) {
-    jni::Jvm::attach();
-    while (BuildLockWatcher::get_instance().polling_thread_running) {
+void BuildLockWatcher::poll_build_lock() {
+    while (polling_thread_running) {
         if (!FileAccess::exists(PathProvider::provide_build_lock_file_path())) {
             reload_if_needed();
         }
@@ -19,43 +18,34 @@ void BuildLockWatcher::poll_build_lock(void* p_userdata) {
         }
         OS::get_singleton()->delay_usec(static_cast<int>(poll_delay * 1000 * 1000));
     }
-    jni::Jvm::detach();
 }
 
 void BuildLockWatcher::reload_if_needed() {
     const String& build_usercode_path{PathProvider::provide_build_usercode_path()};
-    const String& runtime_usercode_path{PathProvider::provide_runtime_usercode_path()};
+    const String& currently_loaded_usercode_path{GDKotlin::get_instance().get_currently_loaded_usercode_path()};
     const String& build_lock_dir_path{PathProvider::provide_build_lock_dir_path()};
 
     if (!FileAccess::exists(ProjectSettings::get_singleton()->globalize_path(build_usercode_path))) {
         // a gradle clean or no build has happened yet. Teardown any initialized usercode
-        GDKotlin::get_instance().teardown_usercode();
-
-        // if the runtime usercode exists, delete it as it's now outdated as no build equivalent is present
-        if (FileAccess::exists(runtime_usercode_path)) {
-            DirAccess* build_lock_dir{DirAccess::create_for_path(build_lock_dir_path)};
-            build_lock_dir->remove(runtime_usercode_path);
-            memdelete(build_lock_dir);
-        }
-
+        call_deferred("trigger_teardown_usercode");
         return;
     }
 
-    if (GDKotlin::get_instance().copy_usercode_jar_if_necessary()) {
+    String new_path;
+    if (GDKotlin::get_instance().copy_usercode_jar_if_necessary(new_path)) {
         // if the usercode was copied, init the usercode as the new usercode is newer than the old one
         LOG_INFO("Usercode change detected. Reloading...");
-        GDKotlin::get_instance().init_usercode();
+        call_deferred("trigger_re_init_usercode", new_path);
     }
 }
 
-BuildLockWatcher& BuildLockWatcher::get_instance() {
-    static BuildLockWatcher instance;
-    return instance;
+void forward_poll_build_lock(void * context) {
+    static_cast<BuildLockWatcher *>(context)->poll_build_lock();
 }
 
 void BuildLockWatcher::start_polling_thread() {
     polling_thread_running = true;
-    build_lock_poll_thread.start(poll_build_lock, nullptr);
+    build_lock_poll_thread.start(forward_poll_build_lock, this);
 }
 
 void BuildLockWatcher::stop_polling() {
@@ -63,6 +53,20 @@ void BuildLockWatcher::stop_polling() {
     build_lock_poll_thread.wait_to_finish();
 }
 
-BuildLockWatcher::BuildLockWatcher() = default;
+// ONLY call on main thread!
+void BuildLockWatcher::trigger_re_init_usercode(const String& new_path) { // NOLINT(readability-convert-member-functions-to-static)
+    GDKotlin::get_instance().teardown_usercode();
+    GDKotlin::get_instance().init_usercode(new_path);
+}
+
+// ONLY call on main thread!
+void BuildLockWatcher::trigger_teardown_usercode() { // NOLINT(readability-convert-member-functions-to-static)
+    GDKotlin::get_instance().teardown_usercode();
+}
+
+BuildLockWatcher::BuildLockWatcher() {
+    ClassDB::bind_method(D_METHOD("trigger_re_init_usercode"), &BuildLockWatcher::trigger_re_init_usercode, Variant::STRING);
+    ClassDB::bind_method(D_METHOD("trigger_teardown_usercode"), &BuildLockWatcher::trigger_teardown_usercode);
+}
 
 #endif //TOOLS_ENABLED

@@ -9,13 +9,17 @@
 #endif
 
 String PathProvider::provide_runtime_usercode_path() {
-    static const String usercode_jar_path{
 #ifdef TOOLS_ENABLED
-            provide_build_lock_dir_path() + "/" + get_usercode_name()
-#else
-            ProjectSettings::get_singleton()->globalize_path("user://" + get_usercode_name())
-#endif
+    RandomPCG rng;
+    rng.randomize();
+    static const String usercode_jar_path{
+            vformat("%s/%s_%s", provide_build_lock_dir_path(), rng.rand(), get_usercode_name())
     };
+#else
+    static const String usercode_jar_path{
+            ProjectSettings::get_singleton()->globalize_path("user://" + get_usercode_name())
+    };
+#endif
     return usercode_jar_path;
 }
 

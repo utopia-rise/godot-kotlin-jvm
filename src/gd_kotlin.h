@@ -38,6 +38,7 @@ private:
 
 #ifdef TOOLS_ENABLED
     uint64_t copied_user_jar_modification_time = 0;
+    String currently_loaded_usercode_path;
 #endif
 
 public:
@@ -56,7 +57,7 @@ public:
 
     void init();
 
-    void init_usercode();
+    void init_usercode(const String& path);
     void teardown_usercode();
 
     void finish();
@@ -75,7 +76,9 @@ public:
 
     const Vector<Pair<String, String>>& get_configuration_errors() const;
 
-    bool copy_usercode_jar_if_necessary();
+    bool copy_usercode_jar_if_necessary(String& r_new_path);
+
+    const String& get_currently_loaded_usercode_path();
 };
 
 

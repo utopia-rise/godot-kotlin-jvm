@@ -6,21 +6,23 @@
 
 #include <scene/main/node.h>
 
-class BuildLockWatcher {
+class BuildLockWatcher: public Node {
 public:
-    static BuildLockWatcher& get_instance();
-    BuildLockWatcher(const BuildLockWatcher&) = delete;
-    BuildLockWatcher& operator=(const BuildLockWatcher&) = delete;
-    void start_polling_thread();
-
-    void stop_polling();
-private:
     BuildLockWatcher();
+    void start_polling_thread();
+    void stop_polling();
+    void poll_build_lock();
+
+protected:
+
+
+private:
     bool polling_thread_running = false;
     Thread build_lock_poll_thread;
 
-    static void reload_if_needed();
-    static void poll_build_lock(void* p_userdata);
+    void reload_if_needed();
+    void trigger_re_init_usercode(const String& new_path);
+    void trigger_teardown_usercode();
 };
 
 

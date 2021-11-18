@@ -185,5 +185,5 @@ private val coreTypes = listOf(
     "godot.core.Transform2DArray",
     "godot.core.TransformArray",
     "godot.core.Vector2Array",
-    "godot.core.Vector3Array"
+    "godot.core.Vector3Array",
 )

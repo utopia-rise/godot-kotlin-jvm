@@ -130,6 +130,10 @@ void register_user_types_members_hook(JNIEnv* p_env, jobject p_this) {
     GDKotlin::get_instance().register_members(env);
 }
 
+void trigger_teardown_usercode() {
+    GDKotlin::get_instance().teardown_usercode();
+}
+
 void GDKotlin::init() {
     if (Main::is_project_manager()) {
 #ifdef DEBUG_ENABLED
@@ -143,7 +147,8 @@ void GDKotlin::init() {
     }
 
     configuration = GdKotlinConfiguration::load_gd_kotlin_configuration_from_json_and_args();
-    copy_usercode_jar_if_necessary();
+    String usercode_path;
+    copy_usercode_jar_if_necessary(usercode_path);
 
     jni::InitArgs args;
 #ifndef __ANDROID__
@@ -158,7 +163,7 @@ void GDKotlin::init() {
     LOG_INFO("Starting JVM ...");
     jni::Jvm::init(args, configuration.get_vm_type());
 
-    init_usercode();
+    init_usercode(usercode_path);
     is_initialized = true;
 }
 
@@ -279,10 +284,9 @@ void GDKotlin::register_members(jni::Env& p_env) {
     }
 }
 
-void GDKotlin::init_usercode() {
-    String runtime_usercode_path{PathProvider::provide_runtime_usercode_path()};
+void GDKotlin::init_usercode(const String& path) {
 #ifdef TOOLS_ENABLED
-    if (!FileAccess::exists(runtime_usercode_path)) {
+    if (!FileAccess::exists(path)) {
         LOG_WARNING(
                 vformat(
                         "No %s found! You need to build your code in order to use it from within the editor",
@@ -293,14 +297,17 @@ void GDKotlin::init_usercode() {
     }
 #endif
     JVM_CRASH_COND_MSG(
-            !FileAccess::exists(runtime_usercode_path),
+            !FileAccess::exists(path),
             vformat("No %s found!", PathProvider::get_usercode_name())
     );
 
-    LOG_INFO(vformat("Loading usercode: %s", runtime_usercode_path));
+    LOG_INFO(vformat("Loading usercode: %s", path));
+#ifdef TOOLS_ENABLED
+    currently_loaded_usercode_path = path;
+#endif
     jni::Env env{jni::Jvm::current_env()};
 
-    jni::JObject class_loader{_prepare_class_loader(env, configuration.get_vm_type(), runtime_usercode_path)};
+    jni::JObject class_loader{_prepare_class_loader(env, configuration.get_vm_type(), path)};
 
     jni::JClass transfer_ctx_cls = env.load_class("godot.core.TransferContext", class_loader);
     jni::FieldId transfer_ctx_instance_field = transfer_ctx_cls.get_static_field_id(
@@ -417,9 +424,14 @@ void GDKotlin::teardown_usercode() {
     TypeManager::get_instance().JAVA_ENGINE_TYPES_CONSTRUCTORS.clear();
     ClassLoader::delete_default_loader(env);
     is_usercode_loaded = false;
+#ifdef TOOLS_ENABLED
+    DirAccess::remove_file_or_error(currently_loaded_usercode_path);
+    currently_loaded_usercode_path = String{};
+#endif
 }
 
-bool GDKotlin::copy_usercode_jar_if_necessary() {
+
+bool GDKotlin::copy_usercode_jar_if_necessary(String& r_new_path) {
     const String& runtime_usercode_path{PathProvider::provide_runtime_usercode_path()};
     const String& build_usercode_path{PathProvider::provide_build_usercode_path()};
 
@@ -438,8 +450,10 @@ bool GDKotlin::copy_usercode_jar_if_necessary() {
 
         dir_access->copy(build_usercode_path, runtime_usercode_path);
         memdelete(dir_access);
+        r_new_path = runtime_usercode_path;
         return true;
     }
+    r_new_path = runtime_usercode_path;
     return false;
 #else
     const String& build_lock_dir_path{PathProvider::provide_build_lock_dir_path()};
@@ -447,7 +461,6 @@ bool GDKotlin::copy_usercode_jar_if_necessary() {
 
     if (!DirAccess::exists(build_lock_dir_path)) {
         DirAccess* build_lock_dir{DirAccess::create_for_path(build_lock_dir_path)};
-        print_line(build_lock_dir_path);
         build_lock_dir->make_dir_recursive(build_lock_dir_path);
         memdelete(build_lock_dir);
     }
@@ -456,9 +469,6 @@ bool GDKotlin::copy_usercode_jar_if_necessary() {
         uint64_t original_usercode_jar_modification_time{FileAccess::get_modified_time(build_usercode_path)};
 
         if (original_usercode_jar_modification_time != copied_user_jar_modification_time) {
-            // teardown any usercode which might be loaded from the old usercode at this path. Is a no op if no usercode was loaded. Only present in TOOLS_ENABLED anyways
-            get_instance().teardown_usercode();
-
             DirAccess* build_lock_dir{DirAccess::create_for_path(build_lock_dir_path)};
             LOG_INFO(vformat("from path: %s", build_usercode_path));
             LOG_INFO(vformat("to path: %s", runtime_usercode_path));
@@ -466,12 +476,21 @@ bool GDKotlin::copy_usercode_jar_if_necessary() {
                     build_lock_dir->copy(build_usercode_path, runtime_usercode_path) != OK,
                     "Could not copy"
             );
+            JVM_CRASH_COND_MSG(
+                    build_lock_dir->copy(build_usercode_path, runtime_usercode_path) != OK,
+                    "Could not copy"
+            );
             memdelete(build_lock_dir);
 
             copied_user_jar_modification_time = original_usercode_jar_modification_time;
+            r_new_path = runtime_usercode_path;
             return true;
         }
     }
 #endif
     return false;
+}
+
+const String& GDKotlin::get_currently_loaded_usercode_path() {
+    return currently_loaded_usercode_path;
 }

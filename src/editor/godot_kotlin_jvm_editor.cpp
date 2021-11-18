@@ -160,9 +160,10 @@ void GodotKotlinJvmEditor::_notificationv(int p_notification, bool p_reversed) {
             );
         }
 
-        BuildLockWatcher::get_instance().start_polling_thread();
+        add_child(build_lock_watcher);
+        build_lock_watcher->start_polling_thread();
     } else if (p_notification == NOTIFICATION_EXIT_TREE) {
-        BuildLockWatcher::get_instance().stop_polling();
+        build_lock_watcher->stop_polling();
     }
 }
 
@@ -199,7 +200,8 @@ GodotKotlinJvmEditor::GodotKotlinJvmEditor() :
         tool_bar_build_button(memnew(ToolButton)),
         build_dialog(memnew(BuildDialog)),
         about_dialog(memnew(AboutDialog)),
-        error_dialog(memnew(ErrorDialog)) {
+        error_dialog(memnew(ErrorDialog)),
+        build_lock_watcher(memnew(BuildLockWatcher)) {
 }
 
 #endif //TOOLS_ENABLED
