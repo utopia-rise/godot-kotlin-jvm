@@ -8,6 +8,6 @@ repositories {
 
 godot {
     isAndroidExportEnabled.set(ANDROID_ENABLED)
-    d8ToolPath = File("D8_TOOL_PATH")
-    androidCompileSdkDir = File("ANDROID_COMPILE_SDK_DIR")
+    d8ToolPath.set(File("D8_TOOL_PATH"))
+    androidCompileSdkDir.set(File("ANDROID_COMPILE_SDK_DIR"))
 }
