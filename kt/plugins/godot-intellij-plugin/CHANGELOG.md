@@ -3,7 +3,7 @@
 # godot-kotlin-idea-plugin Changelog
 
 ## [0.3.1-3.4.0]
-### Add support for IDEA 2021.2.
+### Add support for IDEA 2021.2.x
 - Updates the plugin to work with current IDEA versions
 
 ## [0.1.0-3.2.3]
