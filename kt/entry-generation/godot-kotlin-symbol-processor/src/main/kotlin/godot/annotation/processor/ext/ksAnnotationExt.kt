@@ -215,8 +215,6 @@ fun KSAnnotation.mapToAnnotation(parentDeclaration: KSDeclaration): GodotAnnotat
                 global
             )
         }
-        else -> throw IllegalArgumentException(
-            "Unknown annotation: ${this.fqNameUnsafe}"
-        )
+        else -> null
     }
 }
