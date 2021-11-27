@@ -36,6 +36,8 @@ fun Project.packageBootstrapDexJarTask(
                         "godot-bootstrap-dex.jar",
                         "--lib",
                         "${godotJvmExtension.androidCompileSdkDir.get().asFile.absolutePath}${File.separator}android.jar",
+                        "--min-api",
+                        godotJvmExtension.androidMinApi.get(),
                     )
                 } else {
                     commandLine(
@@ -45,6 +47,8 @@ fun Project.packageBootstrapDexJarTask(
                         "godot-bootstrap-dex.jar",
                         "--lib",
                         "${godotJvmExtension.androidCompileSdkDir.get().asFile.absolutePath}/android.jar",
+                        "--min-api",
+                        godotJvmExtension.androidMinApi.get(),
                     )
                 }
             }

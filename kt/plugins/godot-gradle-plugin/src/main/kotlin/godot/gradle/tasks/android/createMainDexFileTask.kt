@@ -40,6 +40,8 @@ fun Project.createMainDexFileTask(
                         mainJar.absolutePath,
                         "--lib",
                         "${godotJvmExtension.androidCompileSdkDir.get().asFile.absolutePath}${File.separator}android.jar",
+                        "--min-api",
+                        godotJvmExtension.androidMinApi.get(),
                     )
                 } else {
                     commandLine(
@@ -49,6 +51,8 @@ fun Project.createMainDexFileTask(
                         "${godotJvmExtension.androidCompileSdkDir.get().asFile.absolutePath}/android.jar",
                         "--classpath",
                         godotBootstrapJar.absolutePath,
+                        "--min-api",
+                        godotJvmExtension.androidMinApi.get(),
                     )
                 }
             }
