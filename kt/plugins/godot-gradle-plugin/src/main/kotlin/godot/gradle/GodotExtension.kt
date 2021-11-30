@@ -27,6 +27,13 @@ open class GodotExtension(objects: ObjectFactory) {
     var androidCompileSdkDir = objects.fileProperty()
 
     /**
+     * Min android api version.
+     *
+     * example: 21
+     */
+    var androidMinApi = objects.property(Int::class.java)
+
+    /**
      * enable Graal Native Image Export
      *
      * if is set to true, native-image tool and graalvm home has to be resolvable
@@ -87,6 +94,8 @@ open class GodotExtension(objects: ObjectFactory) {
         if (androidCompileSdkDirFile != null) {
             androidCompileSdkDir.set(androidCompileSdkDirFile)
         }
+
+        androidMinApi.set(21)
 
         isGraalNativeImageExportEnabled.set(false)
         nativeImageToolPath.set(System.getenv("native-image")?.let { File(it) })

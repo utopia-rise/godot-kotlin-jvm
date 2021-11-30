@@ -63,6 +63,13 @@ On android, we do not embed a JVM, we use the existing ART provided by the OS. I
     }
     ```
 
+- Setting the `androidMinApi` (equivalent to `--min-api` argument of `d8` tool), default is `21`:
+    ```kt
+    godot {
+        androidMinApi = 22
+    }
+    ```
+
 !!! warning
     Similar to the desktop targets, the game copies the needed jar files to the `user://` directory upon first execution or if the files have changed. On android this is the applications `files` folder. If you do IO operations on Android, never empty the whole `files` folder! Only delete what you have added or exclude the following two files when clearing the `files` folder: `godot-bootstrap-dex.jar` and `main-dex.jar`.
 
