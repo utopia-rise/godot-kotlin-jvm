@@ -2,6 +2,11 @@
 
 # godot-kotlin-idea-plugin Changelog
 
+## [0.3.3-3.4.0]
+### Add support for IDEA 2021.3.x
+- Update the plugin to work with IDEA versions 2021.3.x
+- Introduce "GodotSceneFile" file type to mark godot's scene files in the project tree and to improve indexing performance
+
 ## [0.3.1-3.4.0]
 ### Add support for IDEA 2021.2.x
 - Updates the plugin to work with current IDEA versions

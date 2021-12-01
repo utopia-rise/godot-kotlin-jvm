@@ -22,6 +22,7 @@ import godot.intellij.plugin.data.model.REGISTER_FUNCTION_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_SIGNAL_ANNOTATION
 import godot.intellij.plugin.extension.camelToSnakeCase
+import godot.intellij.plugin.extension.getRegisteredClassName
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.psi.KtClass
@@ -36,7 +37,7 @@ import javax.swing.JPanel
 @Suppress("UnstableApiUsage")
 class RegisteredNameInlayHint : InlayHintsProvider<NoSettings> {
 
-    override val key: SettingsKey<NoSettings> = SettingsKey("RegisteredNameInlayHint")
+    override val key: SettingsKey<NoSettings> = SettingsKey("kotlin.references.types.hints")
     override val name: String = GodotPluginBundle.message("codeVision.name")
     override val previewText: String? = null
 
@@ -87,11 +88,7 @@ class RegisteredNameInlayHint : InlayHintsProvider<NoSettings> {
                         showCodeVision(
                             textOffset = ktClass.textOffset,
                             startOffset = ktClass.startOffset,
-                            convertedName = ktClass
-                                .fqName
-                                ?.asString()
-                                ?.replace(".", "_")
-                                ?: "<unknown>",
+                            convertedName = ktClass.getRegisteredClassName()?.second ?: "<unknown>",
                             editor = editor,
                             sink = sink
                         )

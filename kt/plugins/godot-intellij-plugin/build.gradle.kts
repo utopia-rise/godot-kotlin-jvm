@@ -16,7 +16,7 @@ plugins {
     id("io.gitlab.arturbosch.detekt") version "1.16.0"
 }
 
-//sdk version: https://github.com/JetBrains/intellij-community/releases
+//sdk version: https://github.com/JetBrains/intellij-community/tags
 //kotlin plugin version: https://plugins.jetbrains.com/plugin/6954-kotlin/versions
 val buildMatrix: Map<String, BuildConfig> = mapOf(
     "IJ203" to BuildConfig(
@@ -42,6 +42,14 @@ val buildMatrix: Map<String, BuildConfig> = mapOf(
         version = VersionRange("212.1", "212.*"),
         ideVersionsForVerifierTask = listOf("2021.2.1"),
         deps = listOf("java", "org.jetbrains.kotlin:212-1.5.30-release-409-IJ4638.7", "gradle")
+    ),
+    "IJ213" to BuildConfig(
+        sdk = "213.5744.223",
+        prefix = "IJ2021.3",
+        extraSource = "IJ183",
+        version = VersionRange("212.1", "213.*"),
+        ideVersionsForVerifierTask = listOf("2021.3"),
+        deps = listOf("java", "org.jetbrains.kotlin:213-1.5.10-release-IJ5333@Ideadev", "gradle")
     )
 )
 
@@ -49,6 +57,9 @@ repositories {
     maven {
         url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
     }
+//    maven {
+//        url = uri("https://plugins.jetbrains.com/plugins/ideadev/6954-kotlin")
+//    }
     mavenCentral()
 }
 
@@ -72,7 +83,7 @@ version = if (!releaseMode) {
 
 group = "com.utopia-rise"
 
-val sdkVersion = project.properties["godot.plugins.intellij.version"] ?: "IJ212"
+val sdkVersion = project.properties["godot.plugins.intellij.version"] ?: "IJ213"
 val settings = checkNotNull(buildMatrix[sdkVersion])
 
 // Configure gradle-intellij-plugin plugin.
@@ -83,6 +94,10 @@ intellij {
     type = "IC"
     downloadSources = true
     updateSinceUntilBuild = true
+
+//    pluginsRepo {
+//        custom("https://plugins.jetbrains.com/plugins/ideadev/6954-kotlin")
+//    }
 
     setPlugins(*settings.deps.toTypedArray())
 }
@@ -160,5 +175,8 @@ tasks {
 
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions {
+            freeCompilerArgs += "-Xjvm-default=all"
+        }
     }
 }

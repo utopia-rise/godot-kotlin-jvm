@@ -10,7 +10,6 @@ import godot.intellij.plugin.data.model.CORE_TYPE_HELPER_ANNOTATION
 import godot.intellij.plugin.extension.registerProblem
 import org.jetbrains.kotlin.descriptors.impl.ClassConstructorDescriptorImpl
 import org.jetbrains.kotlin.idea.caches.resolve.analyze
-import org.jetbrains.kotlin.idea.debugger.sequence.psi.resolveType
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.idea.util.module
 import org.jetbrains.kotlin.js.descriptorUtils.getJetTypeFqName
@@ -218,7 +217,8 @@ private fun KotlinType.isPoolArray(): Boolean = poolArrays
 
 private fun KtExpression.resolveTypeSafe(): KotlinType? {
     return try {
-        resolveType()
+        // implementation of now deprecated resolveType()
+        analyze(BodyResolveMode.PARTIAL).getType(this)
     } catch (e: NullPointerException) {
         null
     }
