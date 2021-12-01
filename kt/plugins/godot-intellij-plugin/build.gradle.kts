@@ -57,9 +57,6 @@ repositories {
     maven {
         url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
     }
-//    maven {
-//        url = uri("https://plugins.jetbrains.com/plugins/ideadev/6954-kotlin")
-//    }
     mavenCentral()
 }
 
@@ -94,10 +91,6 @@ intellij {
     type = "IC"
     downloadSources = true
     updateSinceUntilBuild = true
-
-//    pluginsRepo {
-//        custom("https://plugins.jetbrains.com/plugins/ideadev/6954-kotlin")
-//    }
 
     setPlugins(*settings.deps.toTypedArray())
 }
