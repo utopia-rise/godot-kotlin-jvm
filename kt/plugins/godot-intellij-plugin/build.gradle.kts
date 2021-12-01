@@ -49,6 +49,7 @@ val buildMatrix: Map<String, BuildConfig> = mapOf(
         extraSource = "IJ183",
         version = VersionRange("212.1", "213.*"),
         ideVersionsForVerifierTask = listOf("2021.3"),
+        //TODO: replace kotlin plugin version with release channel once released by Jetbrains
         deps = listOf("java", "org.jetbrains.kotlin:213-1.5.10-release-IJ5333@Ideadev", "gradle")
     )
 )
