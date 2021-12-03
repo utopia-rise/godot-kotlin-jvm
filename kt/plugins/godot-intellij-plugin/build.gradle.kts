@@ -46,7 +46,7 @@ val buildMatrix: Map<String, BuildConfig> = mapOf(
     "IJ213" to BuildConfig(
         sdk = "213.5744.223",
         prefix = "IJ2021.3",
-        extraSource = "IJ183",
+        extraSource = "IJ213",
         version = VersionRange("212.1", "213.*"),
         ideVersionsForVerifierTask = listOf("2021.3"),
         //TODO: replace kotlin plugin version with release channel once released by Jetbrains
@@ -94,6 +94,14 @@ intellij {
     updateSinceUntilBuild = true
 
     setPlugins(*settings.deps.toTypedArray())
+}
+
+kotlin {
+    sourceSets {
+        main {
+            kotlin.srcDirs("src/${settings.extraSource}/kotlin")
+        }
+    }
 }
 
 dependencies {
