@@ -100,7 +100,7 @@ public open class CPUParticles : GeometryInstance() {
     }
 
   /**
-   * Initial angular velocity applied to each particle. Sets the speed of rotation of the particle.
+   * Initial angular velocity applied to each particle in *degrees* per second. Sets the speed of rotation of the particle.
    */
   public open var angularVelocity: Double
     get() {

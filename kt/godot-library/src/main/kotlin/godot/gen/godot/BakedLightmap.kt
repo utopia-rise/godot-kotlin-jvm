@@ -36,6 +36,8 @@ import kotlin.Unit
  *
  * Baked lightmaps are an alternative workflow for adding indirect (or baked) lighting to a scene. Unlike the [godot.GIProbe] approach, baked lightmaps work fine on low-end PCs and mobile devices as they consume almost no resources in run-time.
  *
+ * **Procedural generation:** Lightmap baking functionality is only available in the editor. This means [godot.BakedLightmap] is not suited to procedurally generated or user-built levels. For procedurally generated or user-built levels, use [godot.GIProbe] instead.
+ *
  * **Note:** Due to how lightmaps work, most properties only have a visible effect once lightmaps are baked again.
  */
 @GodotBaseType

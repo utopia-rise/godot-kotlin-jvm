@@ -16,9 +16,9 @@ import kotlin.Unit
 /**
  * Array of textures stored in a single primitive.
  *
- * [godot.TextureArray]s store an array of [godot.Image]s in a single [godot.Texture] primitive. Each layer of the texture array has its own mipmap chain. This makes it is a good alternative to texture atlases.
+ * [godot.TextureArray]s store an array of [godot.Image]s in a single [godot.Texture] primitive. Each layer of the texture array has its own mipmap chain. This makes it is a good alternative to texture atlases. See also [godot.Texture3D].
  *
- * [godot.TextureArray]s must be displayed using shaders. After importing your file as a [godot.TextureArray] and setting the appropriate Horizontal and Vertical Slices, display it by setting it as a uniform to a shader, for example:
+ * [godot.TextureArray]s must be displayed using shaders. After importing your file as a [godot.TextureArray] and setting the appropriate Horizontal and Vertical Slices, display it by setting it as a uniform to a shader, for example (2D):
  *
  * ```
  * 		shader_type canvas_item;
@@ -32,6 +32,21 @@ import kotlin.Unit
  * 		```
  *
  * Set the integer uniform "index" to show a particular part of the texture as defined by the Horizontal and Vertical Slices in the importer.
+ *
+ * **Note:** When sampling an albedo texture from a texture array in 3D, the sRGB -> linear conversion hint (`hint_albedo`) should be used to prevent colors from looking washed out:
+ *
+ * ```
+ * 		shader_type spatial;
+ *
+ * 		uniform sampler2DArray tex : hint_albedo;
+ * 		uniform int index;
+ *
+ * 		void fragment() {
+ * 		    ALBEDO = texture(tex, vec3(UV.x, UV.y, float(index)));
+ * 		}
+ * 		```
+ *
+ * **Note:** [godot.TextureArray]s can only be sampled in shaders in the GLES3 backend. In GLES2, their data can be accessed via scripting, but there is no way to render them in a hardware-accelerated manner.
  */
 @GodotBaseType
 public open class TextureArray : TextureLayered() {

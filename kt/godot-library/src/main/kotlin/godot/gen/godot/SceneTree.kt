@@ -40,8 +40,8 @@ import kotlin.Unit
  * Manages the game loop via a hierarchy of nodes.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/getting_started/step_by_step/scene_tree.html](https://docs.godotengine.org/en/3.4/getting_started/step_by_step/scene_tree.html)
- * [https://docs.godotengine.org/en/3.4/tutorials/viewports/multiple_resolutions.html](https://docs.godotengine.org/en/3.4/tutorials/viewports/multiple_resolutions.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/scripting/scene_tree.html](https://docs.godotengine.org/en/3.4/tutorials/scripting/scene_tree.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/rendering/multiple_resolutions.html](https://docs.godotengine.org/en/3.4/tutorials/rendering/multiple_resolutions.html)
  *
  * As one of the most important classes, the [godot.SceneTree] manages the hierarchy of nodes in a scene as well as scenes themselves. Nodes can be added, retrieved and removed. The whole scene tree (and thus the current scene) can be paused. Scenes can be loaded, switched and reloaded.
  *
@@ -281,7 +281,11 @@ public open class SceneTree : MainLoop() {
     }
 
   /**
-   * If `true`, font oversampling is used.
+   * If `true`, font oversampling is enabled. This means that [godot.DynamicFont]s will be rendered at higher or lower size than configured based on the viewport's scaling ratio. For example, in a viewport scaled with a factor 1.5, a font configured with size 14 would be rendered with size 21 (`14 * 1.5`).
+   *
+   * **Note:** Font oversampling is only used if the viewport stretch mode is [STRETCH_MODE_VIEWPORT], and if the stretch aspect mode is different from [STRETCH_ASPECT_IGNORE].
+   *
+   * **Note:** This property is set automatically for the active [godot.SceneTree] when the project starts based on the configuration of `rendering/quality/dynamic_fonts/use_oversampling` in [godot.ProjectSettings]. The property can however be overridden at runtime as needed.
    */
   public open var useFontOversampling: Boolean
     get() {

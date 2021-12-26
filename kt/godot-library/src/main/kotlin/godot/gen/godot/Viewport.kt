@@ -50,6 +50,8 @@ import kotlin.Unit
  * Also, viewports can be assigned to different screens in case the devices have multiple screens.
  *
  * Finally, viewports can also behave as render targets, in which case they will not be visible unless the associated texture is used to draw.
+ *
+ * **Note:** By default, a newly created Viewport in Godot 3.x will appear to be upside down. Enabling [renderTargetVFlip] will display the Viewport with the correct orientation.
  */
 @GodotBaseType
 public open class Viewport : Node() {
@@ -372,7 +374,7 @@ public open class Viewport : Node() {
     }
 
   /**
-   * If `true`, the result of rendering will be flipped vertically.
+   * If `true`, the result of rendering will be flipped vertically. Since Viewports in Godot 3.x render upside-down, it's recommended to set this to `true` in most situations.
    */
   public open var renderTargetVFlip: Boolean
     get() {
@@ -626,7 +628,7 @@ public open class Viewport : Node() {
   }
 
   /**
-   * Returns the 3D world of the viewport, or if none the world of the parent viewport.
+   * Returns the first valid [godot.World] for this viewport, searching the [world] property of itself and any Viewport ancestor.
    */
   public open fun findWorld(): World? {
     TransferContext.writeArguments()
@@ -635,7 +637,7 @@ public open class Viewport : Node() {
   }
 
   /**
-   * Returns the 2D world of the viewport.
+   * Returns the first valid [godot.World2D] for this viewport, searching the [world2d] property of itself and any Viewport ancestor.
    */
   public open fun findWorld2d(): World2D? {
     TransferContext.writeArguments()

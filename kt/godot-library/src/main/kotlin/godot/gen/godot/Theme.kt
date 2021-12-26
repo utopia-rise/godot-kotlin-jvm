@@ -28,7 +28,7 @@ import kotlin.Unit
  * Theme for controls.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/gui/gui_skinning.html](https://docs.godotengine.org/en/3.4/tutorials/gui/gui_skinning.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/ui/gui_skinning.html](https://docs.godotengine.org/en/3.4/tutorials/ui/gui_skinning.html)
  *
  * A theme for skinning controls. Controls can be skinned individually, but for complex applications, it's more practical to just create a global theme that defines everything. This theme can be applied to any [godot.Control]; the Control and its children will automatically use it.
  *

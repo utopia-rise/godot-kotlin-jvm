@@ -37,7 +37,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Initial rotation applied to each particle, in degrees.
    *
-   * Only applied when [flagDisableZ] or [flagRotateY] are `true` or the [godot.SpatialMaterial] being used to draw the particle is using [godot.SpatialMaterial.BILLBOARD_PARTICLES].
+   * **Note:** Only applied when [flagDisableZ] or [flagRotateY] are `true` or the [godot.SpatialMaterial] being used to draw the particle is using [godot.SpatialMaterial.BILLBOARD_PARTICLES].
    */
   public open var angle: Double
     get() {
@@ -84,9 +84,9 @@ public open class ParticlesMaterial : Material() {
     }
 
   /**
-   * Initial angular velocity applied to each particle. Sets the speed of rotation of the particle.
+   * Initial angular velocity applied to each particle in *degrees* per second. Sets the speed of rotation of the particle.
    *
-   * Only applied when [flagDisableZ] or [flagRotateY] are `true` or the [godot.SpatialMaterial] being used to draw the particle is using [godot.SpatialMaterial.BILLBOARD_PARTICLES].
+   * **Note:** Only applied when [flagDisableZ] or [flagRotateY] are `true` or the [godot.SpatialMaterial] being used to draw the particle is using [godot.SpatialMaterial.BILLBOARD_PARTICLES].
    */
   public open var angularVelocity: Double
     get() {
@@ -727,7 +727,7 @@ public open class ParticlesMaterial : Material() {
   /**
    * Orbital velocity applied to each particle. Makes the particles circle around origin. Specified in number of full rotations around origin per second.
    *
-   * Only available when [flagDisableZ] is `true`.
+   * **Note:** Only available when [flagDisableZ] is `true`.
    */
   public open var orbitVelocity: Double
     get() {

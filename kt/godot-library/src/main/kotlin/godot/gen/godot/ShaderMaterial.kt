@@ -22,7 +22,7 @@ import kotlin.Unit
  * A material that uses a custom [godot.Shader] program.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/shading/index.html](https://docs.godotengine.org/en/3.4/tutorials/shading/index.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/shaders/index.html](https://docs.godotengine.org/en/3.4/tutorials/shaders/index.html)
  *
  * A material that uses a custom [godot.Shader] program to render either items to screen or process particles. You can create multiple materials for the same shader but configure different values for the uniforms defined in the shader.
  *

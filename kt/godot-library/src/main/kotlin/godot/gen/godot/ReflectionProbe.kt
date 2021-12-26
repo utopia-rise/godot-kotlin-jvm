@@ -23,16 +23,18 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Captures its surroundings to create reflections.
+ * Captures its surroundings to create fast, accurate reflections from a given point.
  *
  * Tutorials:
  * [https://docs.godotengine.org/en/3.4/tutorials/3d/reflection_probes.html](https://docs.godotengine.org/en/3.4/tutorials/3d/reflection_probes.html)
  *
  * Capture its surroundings as a dual paraboloid image, and stores versions of it with increasing levels of blur to simulate different material roughnesses.
  *
- * The [godot.ReflectionProbe] is used to create high-quality reflections at the cost of performance. It can be combined with [godot.GIProbe]s and Screen Space Reflections to achieve high quality reflections. [godot.ReflectionProbe]s render all objects within their [cullMask], so updating them can be quite expensive. It is best to update them once with the important static objects and then leave them.
+ * The [godot.ReflectionProbe] is used to create high-quality reflections at a low performance cost (when [updateMode] is [UPDATE_ONCE]). [godot.ReflectionProbe]s can be blended together and with the rest of the scene smoothly. [godot.ReflectionProbe]s can also be combined with [godot.GIProbe] and screen-space reflections ([godot.Environment.ssReflectionsEnabled]) to get more accurate reflections in specific areas. [godot.ReflectionProbe]s render all objects within their [cullMask], so updating them can be quite expensive. It is best to update them once with the important static objects and then leave them as-is.
  *
- * **Note:** By default Godot will only render 16 reflection probes. If you need more, increase the number of atlas subdivisions. This setting can be found in [godot.ProjectSettings.rendering/quality/reflections/atlasSubdiv].
+ * **Note:** Unlike [godot.GIProbe], [godot.ReflectionProbe]s only source their environment from a [godot.WorldEnvironment] node. If you specify an [godot.Environment] resource within a [godot.Camera] node, it will be ignored by the [godot.ReflectionProbe]. This can lead to incorrect lighting within the [godot.ReflectionProbe].
+ *
+ * **Note:** By default, Godot will only render 16 reflection probes. If you need more, increase the number of atlas subdivisions. This setting can be found in [godot.ProjectSettings.rendering/quality/reflections/atlasSubdiv].
  *
  * **Note:** The GLES2 backend will only display two reflection probes at the same time for a single mesh. If possible, split up large meshes that span over multiple reflection probes into smaller ones.
  */
@@ -40,6 +42,8 @@ import kotlin.Unit
 public open class ReflectionProbe : VisualInstance() {
   /**
    * If `true`, enables box projection. This makes reflections look more correct in rectangle-shaped rooms by offsetting the reflection center depending on the camera's location.
+   *
+   * **Note:** To better fit rectangle-shaped rooms that are not aligned to the grid, you can rotate the [godot.ReflectionProbe] node.
    */
   public open var boxProjection: Boolean
     get() {
@@ -55,7 +59,7 @@ public open class ReflectionProbe : VisualInstance() {
     }
 
   /**
-   * Sets the cull mask which determines what objects are drawn by this probe. Every [godot.VisualInstance] with a layer included in this cull mask will be rendered by the probe. It is best to only include large objects which are likely to take up a lot of space in the reflection in order to save on rendering cost.
+   * Sets the cull mask which determines what objects are drawn by this probe. Every [godot.VisualInstance] with a layer included in this cull mask will be rendered by the probe. To improve performance, it is best to only include large objects which are likely to take up a lot of space in the reflection.
    */
   public open var cullMask: Long
     get() {
@@ -88,6 +92,8 @@ public open class ReflectionProbe : VisualInstance() {
 
   /**
    * The size of the reflection probe. The larger the extents the more space covered by the probe which will lower the perceived resolution. It is best to keep the extents only as large as you need them.
+   *
+   * **Note:** To better fit areas that are not aligned to the grid, you can rotate the [godot.ReflectionProbe] node.
    */
   public open var extents: Vector3
     get() {
@@ -182,7 +188,7 @@ public open class ReflectionProbe : VisualInstance() {
     }
 
   /**
-   * Sets the max distance away from the probe an object can be before it is culled.
+   * The maximum distance away from the [godot.ReflectionProbe] an object can be before it is culled. Decrease this to improve performance, especially when using the [UPDATE_ALWAYS] [updateMode].
    */
   public open var maxDistance: Double
     get() {
@@ -198,7 +204,7 @@ public open class ReflectionProbe : VisualInstance() {
     }
 
   /**
-   * Sets the origin offset to be used when this reflection probe is in box project mode.
+   * Sets the origin offset to be used when this [godot.ReflectionProbe] is in [boxProjection] mode. This can be set to a non-zero value to ensure a reflection fits a rectangle-shaped room, while reducing the amount of objects that "get in the way" of the reflection.
    */
   public open var originOffset: Vector3
     get() {
@@ -214,7 +220,7 @@ public open class ReflectionProbe : VisualInstance() {
     }
 
   /**
-   * Sets how frequently the probe is updated. Can be [UPDATE_ONCE] or [UPDATE_ALWAYS].
+   * Sets how frequently the [godot.ReflectionProbe] is updated. Can be [UPDATE_ONCE] or [UPDATE_ALWAYS].
    */
   public open var updateMode: Long
     get() {
@@ -259,11 +265,11 @@ public open class ReflectionProbe : VisualInstance() {
     id: Long
   ) {
     /**
-     * Update the probe once on the next frame.
+     * Update the probe once on the next frame (recommended for most objects). The corresponding radiance map will be generated over the following six frames. This takes more time to update than [UPDATE_ALWAYS], but it has a lower performance cost and can result in higher-quality reflections. The ReflectionProbe is updated when its transform changes, but not when nearby geometry changes. You can force a [godot.ReflectionProbe] update by moving the [godot.ReflectionProbe] slightly in any direction.
      */
     UPDATE_ONCE(0),
     /**
-     * Update the probe every frame. This is needed when you want to capture dynamic objects. However, it results in an increased render time. Use [UPDATE_ONCE] whenever possible.
+     * Update the probe every frame. This provides better results for fast-moving dynamic objects (such as cars). However, it has a significant performance cost. Due to the cost, it's recommended to only use one ReflectionProbe with [UPDATE_ALWAYS] at most per scene. For all other use cases, use [UPDATE_ONCE].
      */
     UPDATE_ALWAYS(1),
     ;
@@ -280,12 +286,12 @@ public open class ReflectionProbe : VisualInstance() {
 
   public companion object {
     /**
-     * Update the probe every frame. This is needed when you want to capture dynamic objects. However, it results in an increased render time. Use [UPDATE_ONCE] whenever possible.
+     * Update the probe every frame. This provides better results for fast-moving dynamic objects (such as cars). However, it has a significant performance cost. Due to the cost, it's recommended to only use one ReflectionProbe with [UPDATE_ALWAYS] at most per scene. For all other use cases, use [UPDATE_ONCE].
      */
     public final const val UPDATE_ALWAYS: Long = 1
 
     /**
-     * Update the probe once on the next frame.
+     * Update the probe once on the next frame (recommended for most objects). The corresponding radiance map will be generated over the following six frames. This takes more time to update than [UPDATE_ALWAYS], but it has a lower performance cost and can result in higher-quality reflections. The ReflectionProbe is updated when its transform changes, but not when nearby geometry changes. You can force a [godot.ReflectionProbe] update by moving the [godot.ReflectionProbe] slightly in any direction.
      */
     public final const val UPDATE_ONCE: Long = 0
   }

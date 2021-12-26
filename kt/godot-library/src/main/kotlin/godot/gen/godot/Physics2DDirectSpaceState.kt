@@ -100,7 +100,9 @@ public open class Physics2DDirectSpaceState : Object() {
    *
    * `shape`: The shape index of the colliding shape.
    *
-   * Additionally, the method can take an `exclude` array of objects or [RID]s that are to be excluded from collisions, a `collision_mask` bitmask representing the physics layers to check in, or booleans to determine if the ray should collide with [godot.PhysicsBody]s or [godot.Area]s, respectively.
+   * The number of intersections can be limited with the `max_results` parameter, to reduce the processing time.
+   *
+   * Additionally, the method can take an `exclude` array of objects or [RID]s that are to be excluded from collisions, a `collision_mask` bitmask representing the physics layers to check in, or booleans to determine if the ray should collide with [godot.PhysicsBody2D]s or [godot.Area2D]s, respectively.
    *
    * **Note:** [godot.ConcavePolygonShape2D]s and [godot.CollisionPolygon2D]s in `Segments` build mode are not solid shapes. Therefore, they will not be detected.
    */
@@ -120,7 +122,23 @@ public open class Physics2DDirectSpaceState : Object() {
   }
 
   /**
+   * Checks whether a point is inside any solid shape, in a specific canvas layer given by `canvas_instance_id`. The shapes the point is inside of are returned in an array containing dictionaries with the following fields:
    *
+   * `collider`: The colliding object.
+   *
+   * `collider_id`: The colliding object's ID.
+   *
+   * `metadata`: The intersecting shape's metadata. This metadata is different from [godot.Object.getMeta], and is set with [godot.Physics2DServer.shapeSetData].
+   *
+   * `rid`: The intersecting object's [RID].
+   *
+   * `shape`: The shape index of the colliding shape.
+   *
+   * The number of intersections can be limited with the `max_results` parameter, to reduce the processing time.
+   *
+   * Additionally, the method can take an `exclude` array of objects or [RID]s that are to be excluded from collisions, a `collision_mask` bitmask representing the physics layers to check in, or booleans to determine if the ray should collide with [godot.PhysicsBody2D]s or [godot.Area2D]s, respectively.
+   *
+   * **Note:** [godot.ConcavePolygonShape2D]s and [godot.CollisionPolygon2D]s in `Segments` build mode are not solid shapes. Therefore, they will not be detected.
    */
   public open fun intersectPointOnCanvas(
     point: Vector2,
@@ -158,7 +176,7 @@ public open class Physics2DDirectSpaceState : Object() {
    *
    * If the ray did not intersect anything, then an empty dictionary is returned instead.
    *
-   * Additionally, the method can take an `exclude` array of objects or [RID]s that are to be excluded from collisions, a `collision_mask` bitmask representing the physics layers to check in, or booleans to determine if the ray should collide with [godot.PhysicsBody]s or [godot.Area]s, respectively.
+   * Additionally, the method can take an `exclude` array of objects or [RID]s that are to be excluded from collisions, a `collision_mask` bitmask representing the physics layers to check in, or booleans to determine if the ray should collide with [godot.PhysicsBody2D]s or [godot.Area2D]s, respectively.
    */
   public open fun intersectRay(
     from: Vector2,

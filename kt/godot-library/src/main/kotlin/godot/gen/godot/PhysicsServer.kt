@@ -1087,8 +1087,6 @@ public object PhysicsServer : Object() {
 
   /**
    * Returns the physics layer or layers a body can collide with.
-   *
-   * -
    */
   public fun bodyGetCollisionMask(body: RID): Long {
     TransferContext.writeArguments(_RID to body)
@@ -1098,7 +1096,7 @@ public object PhysicsServer : Object() {
   }
 
   /**
-   * Returns the [godot.PhysicsDirectBodyState] of the body.
+   * Returns the [godot.PhysicsDirectBodyState] of the body. Returns `null` if the body is destroyed or removed from the physics space.
    */
   public fun bodyGetDirectState(body: RID): PhysicsDirectBodyState? {
     TransferContext.writeArguments(_RID to body)

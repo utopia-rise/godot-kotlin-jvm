@@ -88,7 +88,7 @@ public open class EditorSpatialGizmo : SpatialGizmo() {
    * Adds a mesh to the gizmo with the specified `billboard` state, `skeleton` and `material`. If `billboard` is `true`, the mesh will rotate to always face the camera. Call this function during [redraw].
    */
   public open fun addMesh(
-    mesh: ArrayMesh,
+    mesh: Mesh,
     billboard: Boolean = false,
     skeleton: SkinReference? = null,
     material: Material? = null

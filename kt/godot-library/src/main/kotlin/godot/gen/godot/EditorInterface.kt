@@ -64,11 +64,25 @@ public open class EditorInterface : Node() {
   }
 
   /**
-   * Edits the given [godot.Resource].
+   * Edits the given [godot.Resource]. If the resource is a [godot.Script] you can also edit it with [editScript] to specify the line and column position.
    */
   public open fun editResource(resource: Resource): Unit {
     TransferContext.writeArguments(OBJECT to resource)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_EDIT_RESOURCE, NIL)
+  }
+
+  /**
+   * Edits the given [godot.Script]. The line and column on which to open the script can also be specified. The script will be open with the user-configured editor for the script's language which may be an external editor.
+   */
+  public open fun editScript(
+    script: Script,
+    line: Long = -1,
+    column: Long = 0,
+    grabFocus: Boolean = true
+  ): Unit {
+    TransferContext.writeArguments(OBJECT to script, LONG to line, LONG to column, BOOL to
+        grabFocus)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_EDIT_SCRIPT, NIL)
   }
 
   /**

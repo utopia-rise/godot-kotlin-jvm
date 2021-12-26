@@ -189,6 +189,26 @@ public open class RoomManager : Spatial() {
     }
 
   /**
+   * In order to reduce processing for roaming objects, an expansion is applied to their AABB as they move. This expanded volume is used to calculate which rooms the roaming object is within. If the object's exact AABB is still within this expanded volume on the next move, there is no need to reprocess the object, which can save considerable CPU.
+   *
+   * The downside is that if the expansion is too much, the object may end up unexpectedly sprawling into neighbouring rooms and showing up where it might otherwise be culled.
+   *
+   * In order to balance roaming performance against culling accuracy, this expansion margin can be customized by the user. It will typically depend on your room and object sizes, and movement speeds. The default value should work reasonably in most circumstances.
+   */
+  public open var roamingExpansionMargin: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ROOMMANAGER_GET_ROAMING_EXPANSION_MARGIN, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ROOMMANAGER_SET_ROAMING_EXPANSION_MARGIN, NIL)
+    }
+
+  /**
    * During the conversion process, the geometry of objects within [godot.Room]s, or a custom specified manual bound, are used to generate a **convex hull bound**.
    *
    * This convex hull is **required** in the visibility system, and is used for many purposes. Most importantly, it is used to decide whether the [godot.Camera] (or an object) is within a [godot.Room]. The convex hull generating algorithm is good, but occasionally it can create too many (or too few) planes to give a good representation of the room volume.

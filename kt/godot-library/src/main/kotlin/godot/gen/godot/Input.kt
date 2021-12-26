@@ -501,6 +501,15 @@ public object Input : Object() {
   }
 
   /**
+   * Returns `true` if you are pressing the key in the physical location on the 101/102-key US QWERTY keyboard. You can pass a [enum KeyList] constant.
+   */
+  public fun isPhysicalKeyPressed(scancode: Long): Boolean {
+    TransferContext.writeArguments(LONG to scancode)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_IS_PHYSICAL_KEY_PRESSED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    * Notifies the [godot.Input] singleton that a connection has changed, to update the state for the `device` index.
    *
    * This is used internally and should not have to be called from user scripts. See [joyConnectionChanged] for the signal emitted when this is triggered internally.

@@ -21,7 +21,7 @@ import kotlin.Unit
  *
  * If you just want to receive notifications, use [godot.VisibilityNotifier] instead.
  *
- * **Note:** VisibilityEnabler uses an approximate heuristic for performance reasons. It doesn't take walls and other occlusion into account. The heuristic is an implementation detail and may change in future versions. If you need precise visibility checking, use another method such as adding an [godot.Area] node as a child of a [godot.Camera] node and/or [godot.Vector3.dot].
+ * **Note:** VisibilityEnabler uses an approximate heuristic for performance reasons. It doesn't take walls and other occlusion into account (unless you are using [godot.Portal]s). The heuristic is an implementation detail and may change in future versions. If you need precise visibility checking, use another method such as adding an [godot.Area] node as a child of a [godot.Camera] node and/or [godot.Vector3.dot].
  *
  * **Note:** VisibilityEnabler will not affect nodes added after scene initialization.
  */

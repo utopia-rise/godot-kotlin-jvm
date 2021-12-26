@@ -120,7 +120,7 @@ public open class RigidBody : PhysicsBody() {
     }
 
   /**
-   * RigidBody's rotational velocity.
+   * The body's rotational velocity in axis-angle format. The magnitude of the vector is the rotation rate in *radians* per second.
    */
   public open var angularVelocity: Vector3
     get() {
@@ -377,7 +377,7 @@ public open class RigidBody : PhysicsBody() {
     }
 
   /**
-   * The body's linear velocity. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [_integrateForces] as your process loop for precise control of the body state.
+   * The body's linear velocity in units per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [_integrateForces] as your process loop for precise control of the body state.
    */
   public open var linearVelocity: Vector3
     get() {

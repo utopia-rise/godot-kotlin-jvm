@@ -49,7 +49,7 @@ import kotlin.reflect.KCallable
  * Base class for all non-built-in types.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/getting_started/scripting/gdscript/gdscript_exports.html#advanced-exports](https://docs.godotengine.org/en/3.4/getting_started/scripting/gdscript/gdscript_exports.html#advanced-exports)
+ * [https://docs.godotengine.org/en/3.4/tutorials/scripting/gdscript/gdscript_exports.html#advanced-exports](https://docs.godotengine.org/en/3.4/tutorials/scripting/gdscript/gdscript_exports.html#advanced-exports)
  *
  * Every class which is not a built-in type inherits from this class.
  *
@@ -587,6 +587,8 @@ public open class Object : KtObject() {
 
   /**
    * Gets the object's property indexed by the given [godot.core.NodePath]. The node path should be relative to the current object and can use the colon character (`:`) to access nested properties. Examples: `"position:x"` or `"material:next_pass:blend_mode"`.
+   *
+   * **Note:** Even though the method takes [godot.core.NodePath] argument, it doesn't support actual paths to [godot.Node]s in the scene tree, only colon-separated sub-property paths. For the purpose of nodes, use [godot.Node.getNodeAndResource] instead.
    */
   public open fun getIndexed(`property`: NodePath): Any? {
     TransferContext.writeArguments(NODE_PATH to property)

@@ -116,7 +116,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   /**
-   * The body's rotational velocity.
+   * The body's rotational velocity in *radians* per second.
    */
   public open var angularVelocity: Double
     get() {
@@ -327,7 +327,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   /**
-   * The body's linear velocity.
+   * The body's linear velocity in pixels per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [_integrateForces] as your process loop for precise control of the body state.
    */
   public open var linearVelocity: Vector2
     get() {

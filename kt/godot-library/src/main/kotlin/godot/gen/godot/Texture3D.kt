@@ -16,7 +16,9 @@ import kotlin.Unit
 /**
  * Texture with 3 dimensions.
  *
- * Texture3D is a 3-dimensional texture that has a width, height, and depth.
+ * Texture3D is a 3-dimensional [godot.Texture] that has a width, height, and depth. See also [godot.TextureArray].
+ *
+ * **Note:** [godot.Texture3D]s can only be sampled in shaders in the GLES3 backend. In GLES2, their data can be accessed via scripting, but there is no way to render them in a hardware-accelerated manner.
  */
 @GodotBaseType
 public open class Texture3D : TextureLayered() {

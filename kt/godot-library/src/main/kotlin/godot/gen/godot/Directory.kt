@@ -24,7 +24,7 @@ import kotlin.Unit
  * Type used to handle the filesystem.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/getting_started/step_by_step/filesystem.html](https://docs.godotengine.org/en/3.4/getting_started/step_by_step/filesystem.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/scripting/filesystem.html](https://docs.godotengine.org/en/3.4/tutorials/scripting/filesystem.html)
  *
  * Directory type. It is used to manage directories and their content (not restricted to the project folder).
  *

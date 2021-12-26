@@ -38,7 +38,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PhysicsDirectBodyState : Object() {
   /**
-   * The body's rotational velocity.
+   * The body's rotational velocity in axis-angle format. The magnitude of the vector is the rotation rate in *radians* per second.
    */
   public open var angularVelocity: Vector3
     get() {
@@ -87,7 +87,7 @@ public open class PhysicsDirectBodyState : Object() {
     }
 
   /**
-   * The body's linear velocity.
+   * The body's linear velocity in units per second.
    */
   public open var linearVelocity: Vector3
     get() {

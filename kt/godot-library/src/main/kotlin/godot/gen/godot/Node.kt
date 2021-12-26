@@ -853,7 +853,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Finds a descendant of this node whose name matches `mask` as in [godot.String.match] (i.e. case-sensitive, but `"*"` matches zero or more characters and `"?"` matches any single character except `"."`).
+   * Finds a descendant of this node whose name matches `mask` as in [godot.String.match] (i.e. case-sensitive, but `"*"` matches zero or more characters and `"?"` matches any single character except `"."`). Returns `null` if no matching [godot.Node] is found.
    *
    * **Note:** It does not match against the full path, just against individual node names.
    *
@@ -917,6 +917,16 @@ public open class Node : Object() {
    * Returns an array listing the groups that the node is a member of.
    *
    * **Note:** For performance reasons, the order of node groups is *not* guaranteed. The order of node groups should not be relied upon as it can vary across project runs.
+   *
+   * **Note:** The engine uses some group names internally (all starting with an underscore). To avoid conflicts with internal groups, do not add custom groups whose name starts with an underscore. To exclude internal groups while looping over [getGroups], use the following snippet:
+   *
+   * ```
+   * 				# Stores the node's non-internal groups only (as an array of Strings).
+   * 				var non_internal_groups = []
+   * 				for group in get_groups():
+   * 				    if not group.begins_with("_"):
+   * 				        non_internal_groups.push_back(group)
+   * 				```
    */
   public open fun getGroups(): VariantArray<Any?> {
     TransferContext.writeArguments()
@@ -1344,6 +1354,8 @@ public open class Node : Object() {
 
   /**
    * Replaces a node in a scene by the given one. Subscriptions that pass through this node will be lost.
+   *
+   * Note that the replaced node is not automatically freed, so you either need to keep it in a variable for later use or free it using [godot.Object.free].
    */
   public open fun replaceBy(node: Node, keepData: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to node, BOOL to keepData)

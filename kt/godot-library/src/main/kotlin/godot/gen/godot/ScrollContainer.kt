@@ -150,6 +150,14 @@ public open class ScrollContainer : Container() {
 
   /**
    * Ensures the given `control` is visible (must be a direct or indirect child of the ScrollContainer). Used by [followFocus].
+   *
+   * **Note:** This will not work on a node that was just added during the same frame. If you want to scroll to a newly added child, you must wait until the next frame using [godot.SceneTree.idleFrame]:
+   *
+   * ```
+   * 				add_child(child_node)
+   * 				yield(get_tree(), "idle_frame")
+   * 				ensure_control_visible(child_node)
+   * 				```
    */
   public open fun ensureControlVisible(control: Control): Unit {
     TransferContext.writeArguments(OBJECT to control)

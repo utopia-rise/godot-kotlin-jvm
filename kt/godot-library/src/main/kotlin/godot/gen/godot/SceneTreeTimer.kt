@@ -28,6 +28,8 @@ import kotlin.Unit
  * 		    yield(get_tree().create_timer(1.0), "timeout")
  * 		    print("Timer ended.")
  * 		```
+ *
+ * The timer will be automatically freed after its time elapses.
  */
 @GodotBaseType
 public open class SceneTreeTimer : Reference() {
@@ -37,7 +39,7 @@ public open class SceneTreeTimer : Reference() {
   public val timeout: Signal0 by signal()
 
   /**
-   * The time remaining.
+   * The time remaining (in seconds).
    */
   public open var timeLeft: Double
     get() {

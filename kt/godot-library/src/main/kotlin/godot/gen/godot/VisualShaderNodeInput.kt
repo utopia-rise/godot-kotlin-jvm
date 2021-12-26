@@ -19,7 +19,7 @@ import kotlin.Unit
  *
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/shading/shading_reference/index.html](https://docs.godotengine.org/en/3.4/tutorials/shading/shading_reference/index.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/shaders/shader_reference/index.html](https://docs.godotengine.org/en/3.4/tutorials/shaders/shader_reference/index.html)
  *
  * Gives access to input variables (built-ins) available for the shader. See the shading reference for the list of available built-ins for each shader type (check `Tutorials` section for link).
  */

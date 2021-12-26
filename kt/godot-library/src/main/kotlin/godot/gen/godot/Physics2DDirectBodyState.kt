@@ -38,7 +38,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Physics2DDirectBodyState : Object() {
   /**
-   * The body's rotational velocity.
+   * The body's rotational velocity in *radians* per second.
    */
   public open var angularVelocity: Double
     get() {
@@ -76,7 +76,7 @@ public open class Physics2DDirectBodyState : Object() {
     }
 
   /**
-   * The body's linear velocity.
+   * The body's linear velocity in pixels per second.
    */
   public open var linearVelocity: Vector2
     get() {

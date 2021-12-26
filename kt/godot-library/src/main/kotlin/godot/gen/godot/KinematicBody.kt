@@ -252,7 +252,7 @@ public open class KinematicBody : PhysicsBody() {
   }
 
   /**
-   * Moves the body along the vector `rel_vec`. The body will stop if it collides. Returns a [godot.KinematicCollision], which contains information about the collision.
+   * Moves the body along the vector `rel_vec`. The body will stop if it collides. Returns a [godot.KinematicCollision], which contains information about the collision when stopped, or when touching another body along the motion.
    *
    * If `test_only` is `true`, the body does not move but the would-be collision information is given.
    */
@@ -328,7 +328,9 @@ public open class KinematicBody : PhysicsBody() {
   }
 
   /**
-   * Checks for collisions without moving the body. Virtually sets the node's position, scale and rotation to that of the given [godot.core.Transform], then tries to move the body along the vector `rel_vec`. Returns `true` if a collision would occur.
+   * Checks for collisions without moving the body. Virtually sets the node's position, scale and rotation to that of the given [godot.core.Transform], then tries to move the body along the vector `rel_vec`. Returns `true` if a collision would stop the body from moving along the whole path.
+   *
+   * Use [moveAndCollide] instead for detecting collision with touching bodies.
    */
   public open fun testMove(
     from: Transform,
