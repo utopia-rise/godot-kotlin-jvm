@@ -41,14 +41,14 @@ class GodotSceneBulkFileListener(private val project: Project) : BulkFileListene
             }
     }
 
-    private fun initialIndexing() = getContainingFiles { vFiles ->
+    private fun initialIndexing() = provideContainingFilesAsync { vFiles ->
         vFiles.forEach { vFile ->
             virtualFileChanged(vFile)
         }
     }
 
     @Suppress("UnstableApiUsage")
-    private fun getContainingFiles(callback: (List<VirtualFile>) -> Unit) {
+    private fun provideContainingFilesAsync(callback: (List<VirtualFile>) -> Unit) {
         ApplicationManager.getApplication().runReadAction {
             val files = FileTypeIndex
                 .getFiles(GodotSceneFileType.INSTANCE, GlobalSearchScope.allScope(project))
