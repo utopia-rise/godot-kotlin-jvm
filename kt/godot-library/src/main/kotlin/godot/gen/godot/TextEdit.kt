@@ -8,6 +8,8 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PoolIntArray
+import godot.core.PoolStringArray
+import godot.core.Rect2
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -18,7 +20,11 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_INT_ARRAY
+import godot.core.VariantType.POOL_STRING_ARRAY
+import godot.core.VariantType.RECT2
 import godot.core.VariantType.STRING
+import godot.core.VariantType.VECTOR2
+import godot.core.Vector2
 import godot.signals.Signal0
 import godot.signals.Signal1
 import godot.signals.Signal2
@@ -70,6 +76,21 @@ public open class TextEdit : Control() {
    * Emitted when the text changes.
    */
   public val textChanged: Signal0 by signal()
+
+  /**
+   * If `true`, the bookmark gutter is visible.
+   */
+  public open var bookmarkGutter: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_BOOKMARK_GUTTER,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_BOOKMARK_GUTTER, NIL)
+    }
 
   /**
    * If `true`, the breakpoint gutter is visible.
@@ -688,12 +709,59 @@ public open class TextEdit : Control() {
   }
 
   /**
+   * Returns the line and column at the given position. In the returned vector, `x` is the column, `y` is the line.
+   */
+  public open fun getLineColumnAtPos(position: Vector2): Vector2 {
+    TransferContext.writeArguments(VECTOR2 to position)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_COLUMN_AT_POS,
+        VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
    * Returns the amount of total lines in the text.
    */
   public open fun getLineCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the height of a largest line.
+   */
+  public open fun getLineHeight(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_HEIGHT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the width in pixels of the `wrap_index` on `line`.
+   */
+  public open fun getLineWidth(line: Long, wrapIndex: Long = -1): Long {
+    TransferContext.writeArguments(LONG to line, LONG to wrapIndex)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WIDTH, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the number of times the given line is wrapped.
+   */
+  public open fun getLineWrapCount(line: Long): Long {
+    TransferContext.writeArguments(LONG to line)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WRAP_COUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns an array of [godot.String]s representing each wrapped index.
+   */
+  public open fun getLineWrappedText(line: Long): PoolStringArray {
+    TransferContext.writeArguments(LONG to line)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_LINE_WRAPPED_TEXT,
+        POOL_STRING_ARRAY)
+    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
   }
 
   /**
@@ -705,6 +773,30 @@ public open class TextEdit : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_MENU, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as PopupMenu?
+  }
+
+  /**
+   * Returns the local position for the given `line` and `column`. If `x` or `y` of the returned vector equal `-1`, the position is outside of the viewable area of the control.
+   *
+   * **Note:** The Y position corresponds to the bottom side of the line. Use [getRectAtLineColumn] to get the top side position.
+   */
+  public open fun getPosAtLineColumn(line: Long, column: Long): Vector2 {
+    TransferContext.writeArguments(LONG to line, LONG to column)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_POS_AT_LINE_COLUMN,
+        VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Returns the local position and size for the grapheme at the given `line` and `column`. If `x` or `y` position of the returned rect equal `-1`, the position is outside of the viewable area of the control.
+   *
+   * **Note:** The Y position of the returned rect corresponds to the top side of the line, unlike [getPosAtLineColumn] which returns the bottom side.
+   */
+  public open fun getRectAtLineColumn(line: Long, column: Long): Rect2 {
+    TransferContext.writeArguments(LONG to line, LONG to column)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_RECT_AT_LINE_COLUMN,
+        RECT2)
+    return TransferContext.readReturnValue(RECT2, false) as Rect2
   }
 
   /**
@@ -752,6 +844,16 @@ public open class TextEdit : Control() {
   public open fun getSelectionToLine(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_SELECTION_TO_LINE,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the total width of all gutters and internal padding.
+   */
+  public open fun getTotalGutterWidth(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_GET_TOTAL_GUTTER_WIDTH,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
@@ -845,6 +947,15 @@ public open class TextEdit : Control() {
   public open fun isLineSetAsSafe(line: Long): Boolean {
     TransferContext.writeArguments(LONG to line)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_LINE_SET_AS_SAFE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns if the given line is wrapped.
+   */
+  public open fun isLineWrapped(line: Long): Boolean {
+    TransferContext.writeArguments(LONG to line)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_IS_LINE_WRAPPED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

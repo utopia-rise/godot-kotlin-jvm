@@ -30,7 +30,7 @@ import kotlin.Unit
  * A class stored as a resource.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/getting_started/step_by_step/scripting.html](https://docs.godotengine.org/en/3.4/getting_started/step_by_step/scripting.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/scripting/index.html](https://docs.godotengine.org/en/3.4/tutorials/scripting/index.html)
  *
  * A class stored as a resource. A script extends the functionality of all objects that instance it.
  *

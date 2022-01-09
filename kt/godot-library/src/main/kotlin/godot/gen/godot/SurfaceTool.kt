@@ -176,6 +176,8 @@ public open class SurfaceTool : Reference() {
 
   /**
    * Append vertices from a given [godot.Mesh] surface onto the current vertex array with specified [godot.core.Transform].
+   *
+   * **Note:** Using [appendFrom] on a [godot.Thread] is much slower as the GPU must communicate data back to the CPU, while also causing the main thread to stall (as OpenGL is not thread-safe). Consider requesting a copy of the mesh, converting it to an [godot.ArrayMesh] and adding vertices manually instead.
    */
   public open fun appendFrom(
     existing: Mesh,

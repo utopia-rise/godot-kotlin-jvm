@@ -809,7 +809,7 @@ public object Physics2DServer : Object() {
   }
 
   /**
-   * Returns the [godot.Physics2DDirectBodyState] of the body.
+   * Returns the [godot.Physics2DDirectBodyState] of the body. Returns `null` if the body is destroyed or removed from the physics space.
    */
   public fun bodyGetDirectState(body: RID): Physics2DDirectBodyState? {
     TransferContext.writeArguments(_RID to body)

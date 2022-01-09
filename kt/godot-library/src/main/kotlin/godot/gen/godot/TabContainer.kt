@@ -26,9 +26,11 @@ import kotlin.Unit
 /**
  * Tabbed container.
  *
- * Sets the active tab's `visible` property to the value `true`. Sets all other children's to `false`.
+ * Arranges [godot.Control] children into a tabbed view, creating a tab for each one. The active tab's corresponding [godot.Control] has its `visible` property set to `true`, and all other children's to `false`.
  *
  * Ignores non-[godot.Control] children.
+ *
+ * **Note:** The drawing of the clickable tabs themselves is handled by this node. Adding [godot.Tabs] as children is not needed.
  */
 @GodotBaseType
 public open class TabContainer : Container() {

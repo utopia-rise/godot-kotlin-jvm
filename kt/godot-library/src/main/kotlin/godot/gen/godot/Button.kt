@@ -105,6 +105,8 @@ public open class Button : BaseButton() {
 
   /**
    * Button's icon, if text is present the icon will be placed before the text.
+   *
+   * To edit margin and spacing of the icon, use `hseparation` theme property of [godot.Button] and `content_margin_*` properties of the used [godot.StyleBox]es.
    */
   public open var icon: Texture?
     get() {

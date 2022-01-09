@@ -25,7 +25,7 @@ import kotlin.Unit
  *
  * If you want nodes to be disabled automatically when they exit the screen, use [godot.VisibilityEnabler] instead.
  *
- * **Note:** VisibilityNotifier uses an approximate heuristic for performance reasons. It doesn't take walls and other occlusion into account. The heuristic is an implementation detail and may change in future versions. If you need precise visibility checking, use another method such as adding an [godot.Area] node as a child of a [godot.Camera] node and/or [godot.Vector3.dot].
+ * **Note:** VisibilityNotifier uses an approximate heuristic for performance reasons. It doesn't take walls and other occlusion into account (unless you are using [godot.Portal]s). The heuristic is an implementation detail and may change in future versions. If you need precise visibility checking, use another method such as adding an [godot.Area] node as a child of a [godot.Camera] node and/or [godot.Vector3.dot].
  */
 @GodotBaseType
 public open class VisibilityNotifier : CullInstance() {

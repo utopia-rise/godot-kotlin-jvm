@@ -63,7 +63,7 @@ import kotlin.Unit
  * Server for anything visible.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/optimization/using_servers.html](https://docs.godotengine.org/en/3.4/tutorials/optimization/using_servers.html)
+ * [https://docs.godotengine.org/en/3.4/tutorials/performance/using_servers.html](https://docs.godotengine.org/en/3.4/tutorials/performance/using_servers.html)
  *
  * Server for anything visible. The visual server is the API backend for everything visible. The whole scene system mounts on it to display.
  *
