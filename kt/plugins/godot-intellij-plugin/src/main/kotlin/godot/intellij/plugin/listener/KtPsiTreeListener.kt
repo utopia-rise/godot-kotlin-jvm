@@ -1,5 +1,6 @@
 package godot.intellij.plugin.listener
 
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.project.DumbService
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiDirectory
@@ -8,7 +9,6 @@ import com.intellij.psi.PsiManager
 import com.intellij.psi.PsiTreeChangeEvent
 import com.intellij.psi.search.FileTypeIndex
 import com.intellij.psi.search.GlobalSearchScope
-import com.intellij.util.indexing.FileBasedIndex
 import godot.intellij.plugin.ProjectDisposable
 import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCacheProvider
 import godot.intellij.plugin.extension.getGodotRoot
@@ -26,7 +26,11 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
     init {
         DumbService.getInstance(project).runWhenSmart {
             setupListener()
-            initialIndexing()
+            ApplicationManager.getApplication().executeOnPooledThread {
+                // needs to run in background initially to avoid:
+                // java.lang.Throwable: Slow operations are prohibited on EDT. See SlowOperations.assertSlowOperationsAreAllowed javadoc.
+                initialIndexing()
+            }
         }
     }
 
@@ -96,20 +100,24 @@ class KtPsiTreeListener(private val project: Project) : ProjectDisposable {
     }
 
     private fun initialIndexing() {
-        @Suppress("UnstableApiUsage")
-        FileBasedIndex
-            .getInstance()
-            .getContainingFiles(
-                FileTypeIndex.NAME,
-                KotlinFileType.INSTANCE,
-                GlobalSearchScope.projectScope(project)
-            )
-            .forEach { vFile ->
-                if (!vFile.isInGodotRoot(project)) return
-                PsiManager.getInstance(project).findFile(vFile)?.let { psiFile ->
-                    psiFileChanged(psiFile)
-                }
+        ApplicationManager.getApplication().runReadAction {
+            @Suppress("UnstableApiUsage")
+            val files = FileTypeIndex
+                .getFiles(KotlinFileType.INSTANCE, GlobalSearchScope.allScope(project))
+                .toList()
+
+            ApplicationManager.getApplication().executeOnPooledThread {
+                files
+                    .filter { it.isInGodotRoot(project) }
+                    .forEach { vFile ->
+                        ApplicationManager.getApplication().runReadAction {
+                            PsiManager.getInstance(project).findFile(vFile)?.let { psiFile ->
+                                psiFileChanged(psiFile)
+                            }
+                        }
+                    }
             }
+        }
     }
 
     private fun psiFileRemoved(psiFile: PsiFile) {

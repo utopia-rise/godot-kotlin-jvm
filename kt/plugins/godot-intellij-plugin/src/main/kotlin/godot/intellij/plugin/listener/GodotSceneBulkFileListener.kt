@@ -1,6 +1,6 @@
 package godot.intellij.plugin.listener
 
-import com.intellij.openapi.fileTypes.PlainTextFileType
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.project.DumbService
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.roots.ProjectFileIndex
@@ -9,24 +9,30 @@ import com.intellij.openapi.vfs.newvfs.BulkFileListener
 import com.intellij.openapi.vfs.newvfs.events.VFileEvent
 import com.intellij.psi.search.FileTypeIndex
 import com.intellij.psi.search.GlobalSearchScope
-import com.intellij.util.indexing.FileBasedIndex
 import com.utopiarise.serialization.godot.scene.sceneFromTscn
 import godot.intellij.plugin.ProjectDisposable
 import godot.intellij.plugin.data.cache.signalconnection.SignalConnectionCacheProvider
 import godot.intellij.plugin.extension.getGodotRoot
+import godot.intellij.plugin.language.scene.filetype.GodotSceneFileType
 
 class GodotSceneBulkFileListener(private val project: Project) : BulkFileListener, ProjectDisposable {
 
     init {
         DumbService.getInstance(project).runWhenSmart {
-            initialIndexing()
+            ApplicationManager.getApplication().executeOnPooledThread {
+                // needs to run in background initially to avoid:
+                // java.lang.Throwable: Slow operations are prohibited on EDT. See SlowOperations.assertSlowOperationsAreAllowed javadoc.
+                initialIndexing()
+            }
         }
     }
 
     override fun after(events: MutableList<out VFileEvent>) {
         events
             .filter {
-                !project.isDisposed && it.file?.let { vFile -> ProjectFileIndex.getInstance(project).isInContent(vFile) } ?: false
+                !project.isDisposed && it.file?.let { vFile ->
+                    ProjectFileIndex.getInstance(project).isInContent(vFile)
+                } ?: false
             }
             .forEach { event ->
                 event.file?.let { file ->
@@ -35,24 +41,29 @@ class GodotSceneBulkFileListener(private val project: Project) : BulkFileListene
             }
     }
 
-    private fun initialIndexing() = getContainingFiles()
-        .forEach { vFile ->
+    private fun initialIndexing() = provideContainingFilesAsync { vFiles ->
+        vFiles.forEach { vFile ->
             virtualFileChanged(vFile)
         }
+    }
 
     @Suppress("UnstableApiUsage")
-    private fun getContainingFiles() = FileBasedIndex
-        .getInstance()
-        .getContainingFiles(
-            FileTypeIndex.NAME,
-            PlainTextFileType.INSTANCE,
-            GlobalSearchScope.projectScope(project)
-        )
+    private fun provideContainingFilesAsync(callback: (List<VirtualFile>) -> Unit) {
+        ApplicationManager.getApplication().runReadAction {
+            val files = FileTypeIndex
+                .getFiles(GodotSceneFileType.INSTANCE, GlobalSearchScope.allScope(project))
+                .toList()
+
+            ApplicationManager.getApplication().executeOnPooledThread {
+                callback(files)
+            }
+        }
+    }
 
     private fun virtualFileChanged(file: VirtualFile) {
         val godotRoot = file.getGodotRoot(project) ?: return
 
-        if (file.extension == "tscn" && file.isValid && file.isInLocalFileSystem) {
+        if (file.extension == GodotSceneFileType.EXTENSION && file.isValid && file.isInLocalFileSystem) {
             val path = file.canonicalPath ?: return
             val signals = try {
                 sceneFromTscn(path)
