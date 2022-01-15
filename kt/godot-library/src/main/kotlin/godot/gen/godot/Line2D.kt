@@ -153,7 +153,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * The direction difference in radians between vector points. This value is only used if `joint mode` is set to [LINE_JOINT_SHARP].
+   * The direction difference in radians between vector points. This value is only used if [jointMode] is set to [LINE_JOINT_SHARP].
    */
   public open var sharpLimit: Double
     get() {

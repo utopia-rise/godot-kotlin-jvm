@@ -25,7 +25,7 @@ import kotlin.Unit
  * Singleton that manages [godot.InputEventAction].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html#inputmap](https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html#inputmap)
+ * [$DOCS_URL/tutorials/inputs/inputevent.html#inputmap]($DOCS_URL/tutorials/inputs/inputevent.html#inputmap)
  *
  * Manages all [godot.InputEventAction] which can be created/modified from the project settings menu **Project > Project Settings > Input Map** or in code with [addAction] and [actionAddEvent]. See [godot.Node.Input].
  */

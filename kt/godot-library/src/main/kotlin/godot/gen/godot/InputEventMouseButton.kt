@@ -22,7 +22,7 @@ import kotlin.jvm.JvmName
  * Input event type for mouse button events.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/inputs/mouse_and_input_coordinates.html](https://docs.godotengine.org/en/3.4/tutorials/inputs/mouse_and_input_coordinates.html)
+ * [$DOCS_URL/tutorials/inputs/mouse_and_input_coordinates.html]($DOCS_URL/tutorials/inputs/mouse_and_input_coordinates.html)
  *
  * Contains mouse click information. See [godot.Node.Input].
  */

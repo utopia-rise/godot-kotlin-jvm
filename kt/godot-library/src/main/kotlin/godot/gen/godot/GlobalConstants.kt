@@ -2105,39 +2105,94 @@ public object GlobalConstants : Object() {
   public final const val METHOD_FLAG_VIRTUAL: Long = 32
 
   /**
-   * MIDI aftertouch message.
+   * MIDI active sensing message. This message is intended to be sent repeatedly to tell the receiver that a connection is alive.
+   */
+  public final const val MIDI_MESSAGE_ACTIVE_SENSING: Long = 254
+
+  /**
+   * MIDI aftertouch message. This message is most often sent by pressing down on the key after it "bottoms out".
    */
   public final const val MIDI_MESSAGE_AFTERTOUCH: Long = 10
 
   /**
-   * MIDI channel pressure message.
+   * MIDI channel pressure message. This message is most often sent by pressing down on the key after it "bottoms out". This message is different from polyphonic after-touch as it indicates the highest pressure across all keys.
    */
   public final const val MIDI_MESSAGE_CHANNEL_PRESSURE: Long = 13
 
   /**
-   * MIDI control change message.
+   * MIDI continue message. Continue at the point the sequence was stopped.
+   */
+  public final const val MIDI_MESSAGE_CONTINUE: Long = 251
+
+  /**
+   * MIDI control change message. This message is sent when a controller value changes. Controllers include devices such as pedals and levers.
    */
   public final const val MIDI_MESSAGE_CONTROL_CHANGE: Long = 11
 
   /**
-   * MIDI note OFF message.
+   * MIDI note OFF message. See the documentation of [godot.InputEventMIDI] for information of how to use MIDI inputs.
    */
   public final const val MIDI_MESSAGE_NOTE_OFF: Long = 8
 
   /**
-   * MIDI note ON message.
+   * MIDI note ON message. See the documentation of [godot.InputEventMIDI] for information of how to use MIDI inputs.
    */
   public final const val MIDI_MESSAGE_NOTE_ON: Long = 9
 
   /**
-   * MIDI pitch bend message.
+   * MIDI pitch bend message. This message is sent to indicate a change in the pitch bender (wheel or lever, typically).
    */
   public final const val MIDI_MESSAGE_PITCH_BEND: Long = 14
 
   /**
-   * MIDI program change message.
+   * MIDI program change message. This message sent when the program patch number changes.
    */
   public final const val MIDI_MESSAGE_PROGRAM_CHANGE: Long = 12
+
+  /**
+   * MIDI quarter frame message. Contains timing information that is used to synchronize MIDI devices. Getting this data is not implemented in Godot.
+   */
+  public final const val MIDI_MESSAGE_QUARTER_FRAME: Long = 241
+
+  /**
+   * MIDI song position pointer message. Gives the number of 16th notes since the start of the song. Getting this data is not implemented in Godot.
+   */
+  public final const val MIDI_MESSAGE_SONG_POSITION_POINTER: Long = 242
+
+  /**
+   * MIDI song select message. Specifies which sequence or song is to be played. Getting this data is not implemented in Godot.
+   */
+  public final const val MIDI_MESSAGE_SONG_SELECT: Long = 243
+
+  /**
+   * MIDI start message. Start the current sequence playing. This message will be followed with Timing Clocks.
+   */
+  public final const val MIDI_MESSAGE_START: Long = 250
+
+  /**
+   * MIDI stop message. Stop the current sequence.
+   */
+  public final const val MIDI_MESSAGE_STOP: Long = 252
+
+  /**
+   * MIDI system exclusive message. This has behavior exclusive to the device you're receiving input from. Getting this data is not implemented in Godot.
+   */
+  public final const val MIDI_MESSAGE_SYSTEM_EXCLUSIVE: Long = 240
+
+  /**
+   * MIDI system reset message. Reset all receivers in the system to power-up status. It should not be sent on power-up itself.
+   */
+  public final const val MIDI_MESSAGE_SYSTEM_RESET: Long = 255
+
+  /**
+   * MIDI timing clock message. Sent 24 times per quarter note when synchronization is required.
+   */
+  public final const val MIDI_MESSAGE_TIMING_CLOCK: Long = 248
+
+  /**
+   * MIDI tune request message. Upon receiving a tune request, all analog synthesizers should tune their oscillators.
+   */
+  public final const val MIDI_MESSAGE_TUNE_REQUEST: Long = 246
 
   /**
    * Methods that return [enum Error] return [OK] when no error occurred. Note that many functions don't return an error code but will print error messages to standard output.

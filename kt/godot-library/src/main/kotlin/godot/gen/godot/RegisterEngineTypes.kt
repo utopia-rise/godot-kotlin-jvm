@@ -189,10 +189,7 @@ private fun registerEngineTypeMethodForAcceptDialog(): Unit {
 }
 
 private fun registerEngineTypeMethodForAnimatedSprite(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDSPRITE to "_is_playing")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDSPRITE to "_res_changed")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDSPRITE to "_set_playing")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDSPRITE to "is_playing")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDSPRITE to "play")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDSPRITE to "stop")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDSPRITE to "get_animation")
@@ -209,6 +206,8 @@ private fun registerEngineTypeMethodForAnimatedSprite(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDSPRITE to "set_sprite_frames")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDSPRITE to "get_offset")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDSPRITE to "set_offset")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDSPRITE to "is_playing")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDSPRITE to "set_playing")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDSPRITE to "get_speed_scale")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ANIMATEDSPRITE to "set_speed_scale")
 }
@@ -3359,9 +3358,6 @@ private fun registerEngineTypeMethodForBoxShape(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BOXSHAPE to "set_extents")
 }
 
-private fun registerEngineTypeMethodForBulletPhysicsDirectBodyState(): Unit {
-}
-
 private fun registerEngineTypeMethodForButton(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BUTTON to "get_text_align")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BUTTON to "set_text_align")
@@ -3414,6 +3410,8 @@ private fun registerEngineTypeMethodForCPUParticles(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES to "set_param_randomness")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES to "get_color")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES to "set_color")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES to "get_color_initial_ramp")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES to "set_color_initial_ramp")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES to "get_color_ramp")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES to "set_color_ramp")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES to "get_param")
@@ -3557,6 +3555,8 @@ private fun registerEngineTypeMethodForCPUParticles2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES2D to "set_param_randomness")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES2D to "get_color")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES2D to "set_color")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES2D to "get_color_initial_ramp")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES2D to "set_color_initial_ramp")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES2D to "get_color_ramp")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES2D to "set_color_ramp")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CPUPARTICLES2D to "get_param")
@@ -4419,6 +4419,12 @@ private fun registerEngineTypeMethodForControl(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "has_stylebox_override")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "minimum_size_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "release_focus")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "remove_color_override")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "remove_constant_override")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "remove_font_override")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "remove_icon_override")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "remove_shader_override")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "remove_stylebox_override")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_anchor")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_anchor_and_margin")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_anchors_and_margins_preset")
@@ -4733,6 +4739,8 @@ private fun registerEngineTypeMethodForDynamicFontData(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_DYNAMICFONTDATA to "set_font_path")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DYNAMICFONTDATA to "get_hinting")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DYNAMICFONTDATA to "set_hinting")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DYNAMICFONTDATA to "get_override_oversampling")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DYNAMICFONTDATA to "set_override_oversampling")
 }
 
 private fun registerEngineTypeMethodForEditorExportPlugin(): Unit {
@@ -4747,6 +4755,7 @@ private fun registerEngineTypeMethodForEditorExportPlugin(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "add_ios_linker_flags")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "add_ios_plist_content")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "add_ios_project_static_lib")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "add_osx_plugin_file")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "add_shared_object")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITOREXPORTPLUGIN to "skip")
 }
@@ -4877,6 +4886,7 @@ private fun registerEngineTypeMethodForEditorInspector(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTOR to "_property_checked")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTOR to "_property_keyed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTOR to "_property_keyed_with_value")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTOR to "_property_pinned")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTOR to "_property_selected")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTOR to "_resource_selected")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINSPECTOR to "_vscroll_changed")
@@ -4932,11 +4942,6 @@ private fun registerEngineTypeMethodForEditorInterface(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to
       "is_distraction_free_mode_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORINTERFACE to "set_distraction_free_mode")
-}
-
-private fun registerEngineTypeMethodForEditorNavigationMeshGenerator(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNAVIGATIONMESHGENERATOR to "bake")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORNAVIGATIONMESHGENERATOR to "clear")
 }
 
 private fun registerEngineTypeMethodForEditorPlugin(): Unit {
@@ -5004,6 +5009,9 @@ private fun registerEngineTypeMethodForEditorPlugin(): Unit {
 private fun registerEngineTypeMethodForEditorProperty(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "_focusable_focused")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "_gui_input")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "_menu_option")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "_unhandled_key_input")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "_update_revert_and_pin_status")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "add_focusable")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "emit_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORPROPERTY to "get_edited_object")
@@ -5201,27 +5209,39 @@ private fun registerEngineTypeMethodForEditorSpinSlider(): Unit {
 }
 
 private fun registerEngineTypeMethodForEditorVCSInterface(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_checkout_branch")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_commit")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_get_file_diff")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_create_branch")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_create_remote")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_discard_file")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_fetch")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_get_branch_list")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_get_current_branch_name")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_get_diff")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_get_line_diff")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_get_modified_files_data")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_get_project_name")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_get_previous_commits")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_get_remotes")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_get_vcs_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_initialize")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_is_vcs_initialized")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_pull")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_push")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_remove_branch")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_remove_remote")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_set_credentials")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_shut_down")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_stage_file")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "_unstage_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "commit")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "get_file_diff")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "get_modified_files_data")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "get_project_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "get_vcs_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "initialize")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "is_addon_ready")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "is_vcs_initialized")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "shut_down")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "stage_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "unstage_file")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to
+      "add_diff_hunks_into_diff_file")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to
+      "add_line_diffs_into_diff_hunk")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "create_commit")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "create_diff_file")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "create_diff_hunk")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "create_diff_line")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "create_status_file")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORVCSINTERFACE to "popup_error")
 }
 
 private fun registerEngineTypeMethodForEncodedObjectAsID(): Unit {
@@ -6020,6 +6040,8 @@ private fun registerEngineTypeMethodForGeometryInstance(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GEOMETRYINSTANCE to "set_lod_min_distance")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GEOMETRYINSTANCE to "get_lod_min_hysteresis")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GEOMETRYINSTANCE to "set_lod_min_hysteresis")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_GEOMETRYINSTANCE to "get_material_overlay")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_GEOMETRYINSTANCE to "set_material_overlay")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GEOMETRYINSTANCE to "get_material_override")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GEOMETRYINSTANCE to "set_material_override")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GEOMETRYINSTANCE to "get_flag")
@@ -6046,6 +6068,25 @@ private fun registerEngineTypeMethodForGradientTexture(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENTTEXTURE to "get_gradient")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENTTEXTURE to "set_gradient")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENTTEXTURE to "set_width")
+}
+
+private fun registerEngineTypeMethodForGradientTexture2D(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENTTEXTURE2D to "_queue_update")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENTTEXTURE2D to "_update")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENTTEXTURE2D to "get_fill")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENTTEXTURE2D to "set_fill")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENTTEXTURE2D to "get_fill_from")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENTTEXTURE2D to "set_fill_from")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENTTEXTURE2D to "get_fill_to")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENTTEXTURE2D to "set_fill_to")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENTTEXTURE2D to "get_gradient")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENTTEXTURE2D to "set_gradient")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENTTEXTURE2D to "set_height")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENTTEXTURE2D to "get_repeat")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENTTEXTURE2D to "set_repeat")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENTTEXTURE2D to "is_using_hdr")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENTTEXTURE2D to "set_use_hdr")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENTTEXTURE2D to "set_width")
 }
 
 private fun registerEngineTypeMethodForGraphEdit(): Unit {
@@ -6190,6 +6231,8 @@ private fun registerEngineTypeMethodForGridMap(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRIDMAP to "set_collision_mask")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRIDMAP to "get_mesh_library")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRIDMAP to "set_mesh_library")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_GRIDMAP to "get_physics_material")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_GRIDMAP to "set_physics_material")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRIDMAP to "get_use_in_baked_light")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRIDMAP to "set_use_in_baked_light")
 }
@@ -6237,6 +6280,8 @@ private fun registerEngineTypeMethodForHTTPClient(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPCLIENT to "read_response_body_chunk")
   TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPCLIENT to "request")
   TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPCLIENT to "request_raw")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPCLIENT to "set_http_proxy")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPCLIENT to "set_https_proxy")
   TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPCLIENT to "is_blocking_mode_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPCLIENT to "set_blocking_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPCLIENT to "get_connection")
@@ -6255,6 +6300,8 @@ private fun registerEngineTypeMethodForHTTPRequest(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPREQUEST to "get_http_client_status")
   TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPREQUEST to "request")
   TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPREQUEST to "request_raw")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPREQUEST to "set_http_proxy")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPREQUEST to "set_https_proxy")
   TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPREQUEST to "get_body_size_limit")
   TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPREQUEST to "set_body_size_limit")
   TypeManager.engineTypeMethod.add(ENGINECLASS_HTTPREQUEST to "get_download_chunk_size")
@@ -6339,6 +6386,7 @@ private fun registerEngineTypeMethodForImage(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_IMAGE to "detect_alpha")
   TypeManager.engineTypeMethod.add(ENGINECLASS_IMAGE to "expand_x2_hq2x")
   TypeManager.engineTypeMethod.add(ENGINECLASS_IMAGE to "fill")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_IMAGE to "fill_rect")
   TypeManager.engineTypeMethod.add(ENGINECLASS_IMAGE to "fix_alpha_edges")
   TypeManager.engineTypeMethod.add(ENGINECLASS_IMAGE to "flip_x")
   TypeManager.engineTypeMethod.add(ENGINECLASS_IMAGE to "flip_y")
@@ -6805,6 +6853,10 @@ private fun registerEngineTypeMethodForKinematicBody(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICBODY to "set_axis_lock")
   TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICBODY to "get_axis_lock")
   TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICBODY to "set_axis_lock")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICBODY to
+      "get_moving_platform_apply_velocity_on_leave")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICBODY to
+      "set_moving_platform_apply_velocity_on_leave")
 }
 
 private fun registerEngineTypeMethodForKinematicBody2D(): Unit {
@@ -6826,6 +6878,10 @@ private fun registerEngineTypeMethodForKinematicBody2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICBODY2D to "set_safe_margin")
   TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICBODY2D to "is_sync_to_physics_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICBODY2D to "set_sync_to_physics")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICBODY2D to
+      "get_moving_platform_apply_velocity_on_leave")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_KINEMATICBODY2D to
+      "set_moving_platform_apply_velocity_on_leave")
 }
 
 private fun registerEngineTypeMethodForKinematicCollision(): Unit {
@@ -7377,10 +7433,12 @@ private fun registerEngineTypeMethodForNavigation(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION to "get_closest_point_normal")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION to "get_closest_point_owner")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION to "get_closest_point_to_segment")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION to "get_rid")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION to "get_simple_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION to "navmesh_add")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION to "navmesh_remove")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION to "navmesh_set_transform")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION to "get_cell_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION to "set_cell_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION to "get_edge_connection_margin")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION to "set_edge_connection_margin")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION to "get_up_vector")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION to "set_up_vector")
 }
@@ -7388,10 +7446,110 @@ private fun registerEngineTypeMethodForNavigation(): Unit {
 private fun registerEngineTypeMethodForNavigation2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2D to "get_closest_point")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2D to "get_closest_point_owner")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2D to "get_rid")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2D to "get_simple_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2D to "navpoly_add")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2D to "navpoly_remove")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2D to "navpoly_set_transform")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2D to "get_cell_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2D to "set_cell_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2D to "get_edge_connection_margin")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2D to "set_edge_connection_margin")
+}
+
+private fun registerEngineTypeMethodForNavigation2DServer(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "agent_create")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "agent_is_map_changed")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "agent_set_callback")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "agent_set_map")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "agent_set_max_neighbors")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "agent_set_max_speed")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "agent_set_neighbor_dist")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "agent_set_position")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "agent_set_radius")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "agent_set_target_velocity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "agent_set_time_horizon")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "agent_set_velocity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "free")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "map_create")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "map_get_cell_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "map_get_closest_point")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "map_get_closest_point_owner")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to
+      "map_get_edge_connection_margin")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "map_get_path")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "map_is_active")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "map_set_active")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "map_set_cell_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to
+      "map_set_edge_connection_margin")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "region_create")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "region_set_map")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "region_set_navpoly")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATION2DSERVER to "region_set_transform")
+}
+
+private fun registerEngineTypeMethodForNavigationAgent(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "_avoidance_done")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "distance_to_target")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "get_final_location")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "get_nav_path")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "get_nav_path_index")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "get_navigation")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "get_next_location")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "get_target_location")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "is_navigation_finished")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "is_target_reachable")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "is_target_reached")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "set_navigation")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "set_target_location")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "set_velocity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "get_agent_height_offset")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "set_agent_height_offset")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "get_ignore_y")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "set_ignore_y")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "get_max_neighbors")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "set_max_neighbors")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "get_max_speed")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "set_max_speed")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "get_neighbor_dist")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "set_neighbor_dist")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "get_path_max_distance")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "set_path_max_distance")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "get_radius")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "set_radius")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "get_target_desired_distance")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "set_target_desired_distance")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "get_time_horizon")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT to "set_time_horizon")
+}
+
+private fun registerEngineTypeMethodForNavigationAgent2D(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "_avoidance_done")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "distance_to_target")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "get_final_location")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "get_nav_path")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "get_nav_path_index")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "get_navigation")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "get_next_location")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "get_target_location")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "is_navigation_finished")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "is_target_reachable")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "is_target_reached")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "set_navigation")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "set_target_location")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "set_velocity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "get_max_neighbors")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "set_max_neighbors")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "get_max_speed")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "set_max_speed")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "get_neighbor_dist")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "set_neighbor_dist")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "get_path_max_distance")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "set_path_max_distance")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "get_radius")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "set_radius")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "get_target_desired_distance")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "set_target_desired_distance")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "get_time_horizon")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "set_time_horizon")
 }
 
 private fun registerEngineTypeMethodForNavigationMesh(): Unit {
@@ -7452,11 +7610,36 @@ private fun registerEngineTypeMethodForNavigationMesh(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONMESH to "set_vertices")
 }
 
+private fun registerEngineTypeMethodForNavigationMeshGenerator(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONMESHGENERATOR to "bake")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONMESHGENERATOR to "clear")
+}
+
 private fun registerEngineTypeMethodForNavigationMeshInstance(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONMESHINSTANCE to "_bake_finished")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONMESHINSTANCE to "bake_navigation_mesh")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONMESHINSTANCE to "is_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONMESHINSTANCE to "set_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONMESHINSTANCE to "get_navigation_mesh")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONMESHINSTANCE to "set_navigation_mesh")
+}
+
+private fun registerEngineTypeMethodForNavigationObstacle(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONOBSTACLE to "get_navigation")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONOBSTACLE to "set_navigation")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONOBSTACLE to "is_radius_estimated")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONOBSTACLE to "set_estimate_radius")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONOBSTACLE to "get_radius")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONOBSTACLE to "set_radius")
+}
+
+private fun registerEngineTypeMethodForNavigationObstacle2D(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONOBSTACLE2D to "get_navigation")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONOBSTACLE2D to "set_navigation")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONOBSTACLE2D to "is_radius_estimated")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONOBSTACLE2D to "set_estimate_radius")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONOBSTACLE2D to "get_radius")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONOBSTACLE2D to "set_radius")
 }
 
 private fun registerEngineTypeMethodForNavigationPolygon(): Unit {
@@ -7488,6 +7671,44 @@ private fun registerEngineTypeMethodForNavigationPolygonInstance(): Unit {
       "get_navigation_polygon")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONPOLYGONINSTANCE to
       "set_navigation_polygon")
+}
+
+private fun registerEngineTypeMethodForNavigationServer(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "agent_create")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "agent_is_map_changed")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "agent_set_callback")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "agent_set_map")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "agent_set_max_neighbors")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "agent_set_max_speed")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "agent_set_neighbor_dist")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "agent_set_position")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "agent_set_radius")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "agent_set_target_velocity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "agent_set_time_horizon")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "agent_set_velocity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "free")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "map_create")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "map_get_cell_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "map_get_closest_point")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "map_get_closest_point_normal")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "map_get_closest_point_owner")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to
+      "map_get_closest_point_to_segment")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "map_get_edge_connection_margin")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "map_get_path")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "map_get_up")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "map_is_active")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "map_set_active")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "map_set_cell_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "map_set_edge_connection_margin")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "map_set_up")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "process")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "region_bake_navmesh")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "region_create")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "region_set_map")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "region_set_navmesh")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "region_set_transform")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONSERVER to "set_active")
 }
 
 private fun registerEngineTypeMethodForNetworkedMultiplayerENet(): Unit {
@@ -7572,6 +7793,7 @@ private fun registerEngineTypeMethodForNode(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "_ready")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "_set_editor_description")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "_set_import_path")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "_set_property_pinned")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "_unhandled_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "_unhandled_key_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "add_child")
@@ -8083,6 +8305,8 @@ private fun registerEngineTypeMethodForParticlesMaterial(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARTICLESMATERIAL to "set_param_randomness")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARTICLESMATERIAL to "get_color")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARTICLESMATERIAL to "set_color")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PARTICLESMATERIAL to "get_color_initial_ramp")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PARTICLESMATERIAL to "set_color_initial_ramp")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARTICLESMATERIAL to "get_color_ramp")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARTICLESMATERIAL to "set_color_ramp")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PARTICLESMATERIAL to "get_param")
@@ -8302,9 +8526,6 @@ private fun registerEngineTypeMethodForPhysics2DDirectBodyState(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DDIRECTBODYSTATE to "get_total_linear_damp")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DDIRECTBODYSTATE to "get_transform")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICS2DDIRECTBODYSTATE to "set_transform")
-}
-
-private fun registerEngineTypeMethodForPhysics2DDirectBodyStateSW(): Unit {
 }
 
 private fun registerEngineTypeMethodForPhysics2DDirectSpaceState(): Unit {
@@ -9687,13 +9908,14 @@ private fun registerEngineTypeMethodForScriptEditor(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "_on_find_in_files_modified_files")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "_on_find_in_files_requested")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "_on_find_in_files_result_selected")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "_on_replace_in_files_requested")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "_open_recent_script")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "_queue_close_tabs")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "_reload_scripts")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "_request_help")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "_res_saved_callback")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "_resave_scripts")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "_save_history")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "_scene_saved_callback")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "_script_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "_script_created")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "_script_list_gui_input")
@@ -9720,6 +9942,7 @@ private fun registerEngineTypeMethodForScriptEditor(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "get_open_scripts")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "goto_line")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "open_script_create_dialog")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITOR to "reload_scripts")
 }
 
 private fun registerEngineTypeMethodForScrollBar(): Unit {
@@ -10078,6 +10301,8 @@ private fun registerEngineTypeMethodForSpatialMaterial(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIALMATERIAL to "set_texture")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIALMATERIAL to "get_ao_texture_channel")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIALMATERIAL to "set_ao_texture_channel")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIALMATERIAL to "get_async_mode")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIALMATERIAL to "set_async_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIALMATERIAL to "get_clearcoat")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIALMATERIAL to "set_clearcoat")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPATIALMATERIAL to "get_feature")
@@ -11221,6 +11446,29 @@ private fun registerEngineTypeMethodForTileSet(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TILESET to "tile_set_z_index")
 }
 
+private fun registerEngineTypeMethodForTime(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_date_dict_from_system")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_date_dict_from_unix_time")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_date_string_from_system")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_date_string_from_unix_time")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_datetime_dict_from_string")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_datetime_dict_from_system")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_datetime_dict_from_unix_time")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_datetime_string_from_dict")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_datetime_string_from_system")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_datetime_string_from_unix_time")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_ticks_msec")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_ticks_usec")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_time_dict_from_system")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_time_dict_from_unix_time")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_time_string_from_system")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_time_string_from_unix_time")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_time_zone_from_system")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_unix_time_from_datetime_dict")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_unix_time_from_datetime_string")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_unix_time_from_system")
+}
+
 private fun registerEngineTypeMethodForTimer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TIMER to "is_stopped")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TIMER to "start")
@@ -11296,7 +11544,6 @@ private fun registerEngineTypeMethodForTree(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "_text_editor_enter")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "_text_editor_modal_close")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "_value_editor_changed")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "are_column_titles_visible")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "clear")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "create_item")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "edit_selected")
@@ -11320,11 +11567,12 @@ private fun registerEngineTypeMethodForTree(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "set_column_expand")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "set_column_min_width")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "set_column_title")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "set_column_titles_visible")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "get_allow_reselect")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "set_allow_reselect")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "get_allow_rmb_select")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "set_allow_rmb_select")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "are_column_titles_visible")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "set_column_titles_visible")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "get_columns")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "set_columns")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "get_drop_mode_flags")
@@ -11537,6 +11785,7 @@ private fun registerEngineTypeMethodForVehicleBody(): Unit {
 }
 
 private fun registerEngineTypeMethodForVehicleWheel(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VEHICLEWHEEL to "get_contact_body")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VEHICLEWHEEL to "get_rpm")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VEHICLEWHEEL to "get_skidinfo")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VEHICLEWHEEL to "is_in_contact")
@@ -11711,6 +11960,8 @@ private fun registerEngineTypeMethodForViewport(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "set_transparent_background")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "get_usage")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "set_usage")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "get_use_32_bpc_depth")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "set_use_32_bpc_depth")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "get_world")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "set_world")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "get_world_2d")
@@ -12330,6 +12581,8 @@ private fun registerEngineTypeMethodForVisualServer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSERVER to "instance_geometry_set_draw_range")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSERVER to "instance_geometry_set_flag")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSERVER to
+      "instance_geometry_set_material_overlay")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSERVER to
       "instance_geometry_set_material_override")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSERVER to "instance_set_base")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSERVER to "instance_set_blend_shape_weight")
@@ -12487,6 +12740,7 @@ private fun registerEngineTypeMethodForVisualServer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSERVER to "set_boot_image")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSERVER to "set_debug_generate_wireframes")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSERVER to "set_default_clear_color")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSERVER to "set_shader_async_hidden_forbidden")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSERVER to "set_shader_time_scale")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSERVER to "set_use_occlusion_culling")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSERVER to "shader_create")
@@ -12607,6 +12861,14 @@ private fun registerEngineTypeMethodForVisualShaderNodeBooleanConstant(): Unit {
 }
 
 private fun registerEngineTypeMethodForVisualShaderNodeBooleanUniform(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM to
+      "get_default_value")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM to
+      "set_default_value")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM to
+      "is_default_value_enabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM to
+      "set_default_value_enabled")
 }
 
 private fun registerEngineTypeMethodForVisualShaderNodeColorConstant(): Unit {
@@ -12625,6 +12887,12 @@ private fun registerEngineTypeMethodForVisualShaderNodeColorOp(): Unit {
 }
 
 private fun registerEngineTypeMethodForVisualShaderNodeColorUniform(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECOLORUNIFORM to "get_default_value")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECOLORUNIFORM to "set_default_value")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECOLORUNIFORM to
+      "is_default_value_enabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECOLORUNIFORM to
+      "set_default_value_enabled")
 }
 
 private fun registerEngineTypeMethodForVisualShaderNodeCompare(): Unit {
@@ -12771,6 +13039,20 @@ private fun registerEngineTypeMethodForVisualShaderNodeScalarSwitch(): Unit {
 }
 
 private fun registerEngineTypeMethodForVisualShaderNodeScalarUniform(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODESCALARUNIFORM to "get_default_value")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODESCALARUNIFORM to "set_default_value")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODESCALARUNIFORM to
+      "is_default_value_enabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODESCALARUNIFORM to
+      "set_default_value_enabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODESCALARUNIFORM to "get_hint")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODESCALARUNIFORM to "set_hint")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODESCALARUNIFORM to "get_max")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODESCALARUNIFORM to "set_max")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODESCALARUNIFORM to "get_min")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODESCALARUNIFORM to "set_min")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODESCALARUNIFORM to "get_step")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODESCALARUNIFORM to "set_step")
 }
 
 private fun registerEngineTypeMethodForVisualShaderNodeSwitch(): Unit {
@@ -12819,6 +13101,14 @@ private fun registerEngineTypeMethodForVisualShaderNodeTransformMult(): Unit {
 }
 
 private fun registerEngineTypeMethodForVisualShaderNodeTransformUniform(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODETRANSFORMUNIFORM to
+      "get_default_value")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODETRANSFORMUNIFORM to
+      "set_default_value")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODETRANSFORMUNIFORM to
+      "is_default_value_enabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODETRANSFORMUNIFORM to
+      "set_default_value_enabled")
 }
 
 private fun registerEngineTypeMethodForVisualShaderNodeTransformVecMult(): Unit {
@@ -12842,6 +13132,12 @@ private fun registerEngineTypeMethodForVisualShaderNodeVec3Constant(): Unit {
 }
 
 private fun registerEngineTypeMethodForVisualShaderNodeVec3Uniform(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEVEC3UNIFORM to "get_default_value")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEVEC3UNIFORM to "set_default_value")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEVEC3UNIFORM to
+      "is_default_value_enabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEVEC3UNIFORM to
+      "set_default_value_enabled")
 }
 
 private fun registerEngineTypeMethodForVisualShaderNodeVectorClamp(): Unit {
@@ -13265,6 +13561,7 @@ private fun registerEngineTypeMethodForOS(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS__OS to "can_use_threads")
   TypeManager.engineTypeMethod.add(ENGINECLASS__OS to "center_window")
   TypeManager.engineTypeMethod.add(ENGINECLASS__OS to "close_midi_inputs")
+  TypeManager.engineTypeMethod.add(ENGINECLASS__OS to "crash")
   TypeManager.engineTypeMethod.add(ENGINECLASS__OS to "delay_msec")
   TypeManager.engineTypeMethod.add(ENGINECLASS__OS to "delay_usec")
   TypeManager.engineTypeMethod.add(ENGINECLASS__OS to "dump_memory_to_file")
@@ -13291,6 +13588,7 @@ private fun registerEngineTypeMethodForOS(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS__OS to "get_latin_keyboard_variant")
   TypeManager.engineTypeMethod.add(ENGINECLASS__OS to "get_locale")
   TypeManager.engineTypeMethod.add(ENGINECLASS__OS to "get_locale_language")
+  TypeManager.engineTypeMethod.add(ENGINECLASS__OS to "get_main_thread_id")
   TypeManager.engineTypeMethod.add(ENGINECLASS__OS to "get_model_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS__OS to "get_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS__OS to "get_native_handle")
@@ -13560,7 +13858,6 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("BoneAttachment", ::BoneAttachment)
   TypeManager.registerEngineType("BoxContainer", ::BoxContainer)
   TypeManager.registerEngineType("BoxShape", ::BoxShape)
-  TypeManager.registerEngineType("BulletPhysicsDirectBodyState", ::BulletPhysicsDirectBodyState)
   TypeManager.registerEngineType("Button", ::Button)
   TypeManager.registerEngineType("ButtonGroup", ::ButtonGroup)
   TypeManager.registerEngineType("CPUParticles", ::CPUParticles)
@@ -13636,7 +13933,6 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("EditorInspector", ::EditorInspector)
   TypeManager.registerEngineType("EditorInspectorPlugin", ::EditorInspectorPlugin)
   TypeManager.registerEngineType("EditorInterface", ::EditorInterface)
-  TypeManager.registerEngineType("EditorNavigationMeshGenerator", ::EditorNavigationMeshGenerator)
   TypeManager.registerEngineType("EditorPlugin", ::EditorPlugin)
   TypeManager.registerEngineType("EditorProperty", ::EditorProperty)
   TypeManager.registerEngineType("EditorResourceConversionPlugin", ::EditorResourceConversionPlugin)
@@ -13686,6 +13982,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("GeometryInstance", ::GeometryInstance)
   TypeManager.registerEngineType("Gradient", ::Gradient)
   TypeManager.registerEngineType("GradientTexture", ::GradientTexture)
+  TypeManager.registerEngineType("GradientTexture2D", ::GradientTexture2D)
   TypeManager.registerEngineType("GraphEdit", ::GraphEdit)
   TypeManager.registerEngineType("GraphNode", ::GraphNode)
   TypeManager.registerEngineType("GridContainer", ::GridContainer)
@@ -13775,10 +14072,20 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("NativeScript", ::NativeScript)
   TypeManager.registerEngineType("Navigation", ::Navigation)
   TypeManager.registerEngineType("Navigation2D", ::Navigation2D)
+  TypeManager.registerEngineType("Navigation2DServer") { Navigation2DServer }
+  TypeManager.registerSingleton("Navigation2DServer")
+  TypeManager.registerEngineType("NavigationAgent", ::NavigationAgent)
+  TypeManager.registerEngineType("NavigationAgent2D", ::NavigationAgent2D)
   TypeManager.registerEngineType("NavigationMesh", ::NavigationMesh)
+  TypeManager.registerEngineType("NavigationMeshGenerator") { NavigationMeshGenerator }
+  TypeManager.registerSingleton("NavigationMeshGenerator")
   TypeManager.registerEngineType("NavigationMeshInstance", ::NavigationMeshInstance)
+  TypeManager.registerEngineType("NavigationObstacle", ::NavigationObstacle)
+  TypeManager.registerEngineType("NavigationObstacle2D", ::NavigationObstacle2D)
   TypeManager.registerEngineType("NavigationPolygon", ::NavigationPolygon)
   TypeManager.registerEngineType("NavigationPolygonInstance", ::NavigationPolygonInstance)
+  TypeManager.registerEngineType("NavigationServer") { NavigationServer }
+  TypeManager.registerSingleton("NavigationServer")
   TypeManager.registerEngineType("NetworkedMultiplayerENet", ::NetworkedMultiplayerENet)
   TypeManager.registerEngineType("NetworkedMultiplayerPeer", ::NetworkedMultiplayerPeer)
   TypeManager.registerEngineType("NinePatchRect", ::NinePatchRect)
@@ -13820,7 +14127,6 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerSingleton("Performance")
   TypeManager.registerEngineType("PhysicalBone", ::PhysicalBone)
   TypeManager.registerEngineType("Physics2DDirectBodyState", ::Physics2DDirectBodyState)
-  TypeManager.registerEngineType("Physics2DDirectBodyStateSW", ::Physics2DDirectBodyStateSW)
   TypeManager.registerEngineType("Physics2DDirectSpaceState", ::Physics2DDirectSpaceState)
   TypeManager.registerEngineType("Physics2DServer") { Physics2DServer }
   TypeManager.registerSingleton("Physics2DServer")
@@ -13954,6 +14260,8 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("Theme", ::Theme)
   TypeManager.registerEngineType("TileMap", ::TileMap)
   TypeManager.registerEngineType("TileSet", ::TileSet)
+  TypeManager.registerEngineType("Time") { Time }
+  TypeManager.registerSingleton("Time")
   TypeManager.registerEngineType("Timer", ::Timer)
   TypeManager.registerEngineType("ToolButton", ::ToolButton)
   TypeManager.registerEngineType("TouchScreenButton", ::TouchScreenButton)
@@ -14256,7 +14564,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[BoneAttachment::class] = OBJECT
   variantMapper[BoxContainer::class] = OBJECT
   variantMapper[BoxShape::class] = OBJECT
-  variantMapper[BulletPhysicsDirectBodyState::class] = OBJECT
   variantMapper[Button::class] = OBJECT
   variantMapper[ButtonGroup::class] = OBJECT
   variantMapper[CPUParticles::class] = OBJECT
@@ -14331,7 +14638,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[EditorInspector::class] = OBJECT
   variantMapper[EditorInspectorPlugin::class] = OBJECT
   variantMapper[EditorInterface::class] = OBJECT
-  variantMapper[EditorNavigationMeshGenerator::class] = OBJECT
   variantMapper[EditorPlugin::class] = OBJECT
   variantMapper[EditorProperty::class] = OBJECT
   variantMapper[EditorResourceConversionPlugin::class] = OBJECT
@@ -14381,6 +14687,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[GeometryInstance::class] = OBJECT
   variantMapper[Gradient::class] = OBJECT
   variantMapper[GradientTexture::class] = OBJECT
+  variantMapper[GradientTexture2D::class] = OBJECT
   variantMapper[GraphEdit::class] = OBJECT
   variantMapper[GraphNode::class] = OBJECT
   variantMapper[GridContainer::class] = OBJECT
@@ -14465,10 +14772,17 @@ public fun registerVariantMapping(): Unit {
   variantMapper[NativeScript::class] = OBJECT
   variantMapper[Navigation::class] = OBJECT
   variantMapper[Navigation2D::class] = OBJECT
+  variantMapper[Navigation2DServer::class] = OBJECT
+  variantMapper[NavigationAgent::class] = OBJECT
+  variantMapper[NavigationAgent2D::class] = OBJECT
   variantMapper[NavigationMesh::class] = OBJECT
+  variantMapper[NavigationMeshGenerator::class] = OBJECT
   variantMapper[NavigationMeshInstance::class] = OBJECT
+  variantMapper[NavigationObstacle::class] = OBJECT
+  variantMapper[NavigationObstacle2D::class] = OBJECT
   variantMapper[NavigationPolygon::class] = OBJECT
   variantMapper[NavigationPolygonInstance::class] = OBJECT
+  variantMapper[NavigationServer::class] = OBJECT
   variantMapper[NetworkedMultiplayerENet::class] = OBJECT
   variantMapper[NetworkedMultiplayerPeer::class] = OBJECT
   variantMapper[NinePatchRect::class] = OBJECT
@@ -14509,7 +14823,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[Performance::class] = OBJECT
   variantMapper[PhysicalBone::class] = OBJECT
   variantMapper[Physics2DDirectBodyState::class] = OBJECT
-  variantMapper[Physics2DDirectBodyStateSW::class] = OBJECT
   variantMapper[Physics2DDirectSpaceState::class] = OBJECT
   variantMapper[Physics2DServer::class] = OBJECT
   variantMapper[Physics2DShapeQueryParameters::class] = OBJECT
@@ -14640,6 +14953,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[Theme::class] = OBJECT
   variantMapper[TileMap::class] = OBJECT
   variantMapper[TileSet::class] = OBJECT
+  variantMapper[Time::class] = OBJECT
   variantMapper[Timer::class] = OBJECT
   variantMapper[ToolButton::class] = OBJECT
   variantMapper[TouchScreenButton::class] = OBJECT
@@ -14915,7 +15229,6 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForBoneAttachment()
   registerEngineTypeMethodForBoxContainer()
   registerEngineTypeMethodForBoxShape()
-  registerEngineTypeMethodForBulletPhysicsDirectBodyState()
   registerEngineTypeMethodForButton()
   registerEngineTypeMethodForButtonGroup()
   registerEngineTypeMethodForCPUParticles()
@@ -14990,7 +15303,6 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForEditorInspector()
   registerEngineTypeMethodForEditorInspectorPlugin()
   registerEngineTypeMethodForEditorInterface()
-  registerEngineTypeMethodForEditorNavigationMeshGenerator()
   registerEngineTypeMethodForEditorPlugin()
   registerEngineTypeMethodForEditorProperty()
   registerEngineTypeMethodForEditorResourceConversionPlugin()
@@ -15040,6 +15352,7 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForGeometryInstance()
   registerEngineTypeMethodForGradient()
   registerEngineTypeMethodForGradientTexture()
+  registerEngineTypeMethodForGradientTexture2D()
   registerEngineTypeMethodForGraphEdit()
   registerEngineTypeMethodForGraphNode()
   registerEngineTypeMethodForGridContainer()
@@ -15124,10 +15437,17 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForNativeScript()
   registerEngineTypeMethodForNavigation()
   registerEngineTypeMethodForNavigation2D()
+  registerEngineTypeMethodForNavigation2DServer()
+  registerEngineTypeMethodForNavigationAgent()
+  registerEngineTypeMethodForNavigationAgent2D()
   registerEngineTypeMethodForNavigationMesh()
+  registerEngineTypeMethodForNavigationMeshGenerator()
   registerEngineTypeMethodForNavigationMeshInstance()
+  registerEngineTypeMethodForNavigationObstacle()
+  registerEngineTypeMethodForNavigationObstacle2D()
   registerEngineTypeMethodForNavigationPolygon()
   registerEngineTypeMethodForNavigationPolygonInstance()
+  registerEngineTypeMethodForNavigationServer()
   registerEngineTypeMethodForNetworkedMultiplayerENet()
   registerEngineTypeMethodForNetworkedMultiplayerPeer()
   registerEngineTypeMethodForNinePatchRect()
@@ -15168,7 +15488,6 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForPerformance()
   registerEngineTypeMethodForPhysicalBone()
   registerEngineTypeMethodForPhysics2DDirectBodyState()
-  registerEngineTypeMethodForPhysics2DDirectBodyStateSW()
   registerEngineTypeMethodForPhysics2DDirectSpaceState()
   registerEngineTypeMethodForPhysics2DServer()
   registerEngineTypeMethodForPhysics2DShapeQueryParameters()
@@ -15299,6 +15618,7 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForTheme()
   registerEngineTypeMethodForTileMap()
   registerEngineTypeMethodForTileSet()
+  registerEngineTypeMethodForTime()
   registerEngineTypeMethodForTimer()
   registerEngineTypeMethodForToolButton()
   registerEngineTypeMethodForTouchScreenButton()

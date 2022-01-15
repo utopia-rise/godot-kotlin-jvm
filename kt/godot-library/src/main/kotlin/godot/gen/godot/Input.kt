@@ -436,7 +436,7 @@ public object Input : Object() {
    *
    * If `exact` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    *
-   * **Note:** Due to keyboard ghosting, [isActionJustPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples](https://docs.godotengine.org/en/3.4/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
+   * **Note:** Due to keyboard ghosting, [isActionJustPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples]($DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
    */
   public fun isActionJustPressed(action: String, exact: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING to action, BOOL to exact)
@@ -460,7 +460,7 @@ public object Input : Object() {
    *
    * If `exact` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    *
-   * **Note:** Due to keyboard ghosting, [isActionPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples](https://docs.godotengine.org/en/3.4/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
+   * **Note:** Due to keyboard ghosting, [isActionPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples]($DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
    */
   public fun isActionPressed(action: String, exact: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING to action, BOOL to exact)
@@ -491,7 +491,7 @@ public object Input : Object() {
    *
    * [isKeyPressed] is only recommended over [isPhysicalKeyPressed] in non-game applications. This ensures that shortcut keys behave as expected depending on the user's keyboard layout, as keyboard shortcuts are generally dependent on the keyboard layout in non-game applications. If in doubt, use [isPhysicalKeyPressed].
    *
-   * **Note:** Due to keyboard ghosting, [isKeyPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples](https://docs.godotengine.org/en/3.4/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
+   * **Note:** Due to keyboard ghosting, [isKeyPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples]($DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
    */
   public fun isKeyPressed(scancode: Long): Boolean {
     TransferContext.writeArguments(LONG to scancode)
@@ -513,7 +513,7 @@ public object Input : Object() {
    *
    * [isPhysicalKeyPressed] is recommended over [isKeyPressed] for in-game actions, as it will make W/A/S/D layouts work regardless of the user's keyboard layout. [isPhysicalKeyPressed] will also ensure that the top row number keys work on any keyboard layout. If in doubt, use [isPhysicalKeyPressed].
    *
-   * **Note:** Due to keyboard ghosting, [isPhysicalKeyPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples](https://docs.godotengine.org/en/3.4/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
+   * **Note:** Due to keyboard ghosting, [isPhysicalKeyPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples]($DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
    */
   public fun isPhysicalKeyPressed(scancode: Long): Boolean {
     TransferContext.writeArguments(LONG to scancode)
@@ -688,9 +688,7 @@ public object Input : Object() {
   }
 
   /**
-   * Sets the mouse position to the specified vector, provided in pixels and relative to an origin at the upper left corner of the game window.
-   *
-   * Mouse position is clipped to the limits of the screen resolution, or to the limits of the game window if [enum MouseMode] is set to [MOUSE_MODE_CONFINED].
+   * Sets the mouse position to the specified vector.
    */
   public fun warpMousePosition(to: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to to)

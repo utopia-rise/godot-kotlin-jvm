@@ -27,7 +27,7 @@ import kotlin.Unit
  * Plays positional sound in 3D space.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/audio/audio_streams.html](https://docs.godotengine.org/en/3.4/tutorials/audio/audio_streams.html)
+ * [$DOCS_URL/tutorials/audio/audio_streams.html]($DOCS_URL/tutorials/audio/audio_streams.html)
  *
  * Plays a sound effect with directed sound effects, dampens with distance if needed, generates effect of hearable position in space. For greater realism, a low-pass filter is automatically applied to distant sounds. This can be disabled by setting [attenuationFilterCutoffHz] to `20500`.
  *

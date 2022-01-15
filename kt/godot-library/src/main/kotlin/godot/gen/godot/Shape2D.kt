@@ -31,7 +31,7 @@ import kotlin.Unit
  * Base class for all 2D shapes.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/physics/physics_introduction.html](https://docs.godotengine.org/en/3.4/tutorials/physics/physics_introduction.html)
+ * [$DOCS_URL/tutorials/physics/physics_introduction.html]($DOCS_URL/tutorials/physics/physics_introduction.html)
  *
  * Base class for all 2D shapes. All 2D shape types inherit from this.
  */

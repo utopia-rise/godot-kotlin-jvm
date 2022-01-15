@@ -27,7 +27,7 @@ import kotlin.Unit
  * Default 3D rendering material.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/3d/spatial_material.html](https://docs.godotengine.org/en/3.4/tutorials/3d/spatial_material.html)
+ * [$DOCS_URL/tutorials/3d/spatial_material.html]($DOCS_URL/tutorials/3d/spatial_material.html)
  *
  * This provides a default material with a wide variety of rendering features and properties without the need to write shader code. See the tutorial below for details.
  */
@@ -197,6 +197,24 @@ public open class SpatialMaterial : Material() {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_AO_TEXTURE_CHANNEL, NIL)
+    }
+
+  /**
+   * If [godot.ProjectSettings.rendering/gles3/shaders/shaderCompilationMode] is `Synchronous` (with or without cache), this determines how this material must behave in regards to asynchronous shader compilation.
+   *
+   * [ASYNC_MODE_VISIBLE] is the default and the best for most cases.
+   */
+  public open var asyncMode: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_ASYNC_MODE,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_ASYNC_MODE,
+          NIL)
     }
 
   /**
@@ -1727,6 +1745,31 @@ public open class SpatialMaterial : Material() {
   }
 
 
+  public enum class AsyncMode(
+    id: Long
+  ) {
+    /**
+     * The real conditioned shader needed on each situation will be sent for background compilation. In the meantime, a very complex shader that adapts to every situation will be used ("ubershader"). This ubershader is much slower to render, but will keep the game running without stalling to compile. Once shader compilation is done, the ubershader is replaced by the traditional optimized shader.
+     */
+    ASYNC_MODE_VISIBLE(0),
+    /**
+     * Anything with this material applied won't be rendered while this material's shader is being compiled.
+     *
+     * This is useful for optimization, in cases where the visuals won't suffer from having certain non-essential elements missing during the short time their shaders are being compiled.
+     */
+    ASYNC_MODE_HIDDEN(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
   public enum class EmissionOperator(
     id: Long
   ) {
@@ -2277,6 +2320,18 @@ public open class SpatialMaterial : Material() {
   }
 
   public companion object {
+    /**
+     * Anything with this material applied won't be rendered while this material's shader is being compiled.
+     *
+     * This is useful for optimization, in cases where the visuals won't suffer from having certain non-essential elements missing during the short time their shaders are being compiled.
+     */
+    public final const val ASYNC_MODE_HIDDEN: Long = 1
+
+    /**
+     * The real conditioned shader needed on each situation will be sent for background compilation. In the meantime, a very complex shader that adapts to every situation will be used ("ubershader"). This ubershader is much slower to render, but will keep the game running without stalling to compile. Once shader compilation is done, the ubershader is replaced by the traditional optimized shader.
+     */
+    public final const val ASYNC_MODE_VISIBLE: Long = 0
+
     /**
      * Billboard mode is disabled.
      */

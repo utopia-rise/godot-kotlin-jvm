@@ -15,7 +15,7 @@ import kotlin.Unit
  * A custom effect for use with [godot.RichTextLabel].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/ui/bbcode_in_richtextlabel.html](https://docs.godotengine.org/en/3.4/tutorials/ui/bbcode_in_richtextlabel.html)
+ * [$DOCS_URL/tutorials/ui/bbcode_in_richtextlabel.html]($DOCS_URL/tutorials/ui/bbcode_in_richtextlabel.html)
  * [https://github.com/Eoin-ONeill-Yokai/Godot-Rich-Text-Effect-Test-Project](https://github.com/Eoin-ONeill-Yokai/Godot-Rich-Text-Effect-Test-Project)
  *
  * A custom effect for use with [godot.RichTextLabel].

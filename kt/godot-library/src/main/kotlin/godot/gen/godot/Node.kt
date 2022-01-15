@@ -758,6 +758,9 @@ public open class Node : Object() {
   public open fun _setImportPath(importPath: NodePath): Unit {
   }
 
+  public open fun _setPropertyPinned(`property`: String, pinned: Boolean): Unit {
+  }
+
   /**
    * Called when an [godot.InputEvent] hasn't been consumed by [_input] or any GUI. The input event propagates up through the node tree until a node consumes it.
    *
@@ -955,7 +958,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Fetches a node. The [godot.core.NodePath] can be either a relative path (from the current node) or an absolute path (in the scene tree) to a node. If the path does not exist, a `null instance` is returned and an error is logged. Attempts to access methods on the return value will result in an "Attempt to call <method> on a null instance." error.
+   * Fetches a node. The [godot.core.NodePath] can be either a relative path (from the current node) or an absolute path (in the scene tree) to a node. If the path does not exist, `null` is returned and an error is logged. Attempts to access methods on the return value will result in an "Attempt to call <method> on a null instance." error.
    *
    * **Note:** Fetching absolute paths only works when the node is inside the scene tree (see [isInsideTree]).
    *
@@ -1016,7 +1019,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Returns the parent node of the current node, or a `null instance` if the node lacks a parent.
+   * Returns the parent node of the current node, or `null` if the node lacks a parent.
    */
   public open fun getParent(): Node? {
     TransferContext.writeArguments()
@@ -1357,7 +1360,9 @@ public open class Node : Object() {
   /**
    * Replaces a node in a scene by the given one. Subscriptions that pass through this node will be lost.
    *
-   * Note that the replaced node is not automatically freed, so you either need to keep it in a variable for later use or free it using [godot.Object.free].
+   * **Note:** The given node will become the new parent of any child nodes that the replaced node had.
+   *
+   * **Note:** The replaced node is not automatically freed, so you either need to keep it in a variable for later use or free it using [godot.Object.free].
    */
   public open fun replaceBy(node: Node, keepData: Boolean = false): Unit {
     TransferContext.writeArguments(OBJECT to node, BOOL to keepData)

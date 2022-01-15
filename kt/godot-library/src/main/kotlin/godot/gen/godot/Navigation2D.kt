@@ -7,18 +7,17 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PoolVector2Array
+import godot.core.RID
 import godot.core.TransferContext
-import godot.core.Transform2D
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.LONG
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
 import godot.core.VariantType.POOL_VECTOR2_ARRAY
-import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
+import godot.core.VariantType._RID
 import godot.core.Vector2
 import kotlin.Boolean
-import kotlin.Long
+import kotlin.Double
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -28,12 +27,41 @@ import kotlin.Unit
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/117](https://godotengine.org/asset-library/asset/117)
  *
- * Navigation2D provides navigation and pathfinding within a 2D area, specified as a collection of [godot.NavigationPolygon] resources. By default, these are automatically collected from child [godot.NavigationPolygonInstance] nodes, but they can also be added on the fly with [navpolyAdd].
- *
- * **Note:** The current navigation system has many known issues and will not always return optimal paths as expected. These issues will be fixed in Godot 4.0.
+ * Navigation2D provides navigation and pathfinding within a 2D area, specified as a collection of [godot.NavigationPolygon] resources. By default, these are automatically collected from child [godot.NavigationPolygonInstance] nodes.
  */
 @GodotBaseType
 public open class Navigation2D : Node2D() {
+  /**
+   * The XY plane cell size to use for fields.
+   */
+  public open var cellSize: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION2D_GET_CELL_SIZE,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION2D_SET_CELL_SIZE, NIL)
+    }
+
+  /**
+   * This value is used to detect the near edges to connect compatible regions.
+   */
+  public open var edgeConnectionMargin: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATION2D_GET_EDGE_CONNECTION_MARGIN, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NAVIGATION2D_SET_EDGE_CONNECTION_MARGIN, NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_NAVIGATION2D)
   }
@@ -49,19 +77,26 @@ public open class Navigation2D : Node2D() {
   }
 
   /**
-   * Returns the owner of the [godot.NavigationPolygon] which contains the navigation point closest to the point given. This is usually a [godot.NavigationPolygonInstance]. For polygons added via [navpolyAdd], returns the owner that was given (or `null` if the `owner` parameter was omitted).
+   * Returns the owner of the [godot.NavigationPolygon] which contains the navigation point closest to the point given. This is usually a [godot.NavigationPolygonInstance].
    */
-  public open fun getClosestPointOwner(toPoint: Vector2): Object? {
+  public open fun getClosestPointOwner(toPoint: Vector2): RID {
     TransferContext.writeArguments(VECTOR2 to toPoint)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NAVIGATION2D_GET_CLOSEST_POINT_OWNER, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Object?
+        ENGINEMETHOD_ENGINECLASS_NAVIGATION2D_GET_CLOSEST_POINT_OWNER, _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
+   * Returns the object's [RID].
+   */
+  public open fun getRid(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION2D_GET_RID, _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
   }
 
   /**
    * Returns the path between two given points. Points are in local coordinate space. If `optimize` is `true` (the default), the path is smoothed by merging path segments where possible.
-   *
-   * **Note:** This method has known issues and will often return non-optimal paths. These issues will be fixed in Godot 4.0.
    */
   public open fun getSimplePath(
     start: Vector2,
@@ -72,35 +107,5 @@ public open class Navigation2D : Node2D() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION2D_GET_SIMPLE_PATH,
         POOL_VECTOR2_ARRAY)
     return TransferContext.readReturnValue(POOL_VECTOR2_ARRAY, false) as PoolVector2Array
-  }
-
-  /**
-   * Adds a [godot.NavigationPolygon]. Returns an ID for use with [navpolyRemove] or [navpolySetTransform]. If given, a [godot.core.Transform2D] is applied to the polygon. The optional `owner` is used as return value for [getClosestPointOwner].
-   */
-  public open fun navpolyAdd(
-    mesh: NavigationPolygon,
-    xform: Transform2D,
-    owner: Object? = null
-  ): Long {
-    TransferContext.writeArguments(OBJECT to mesh, TRANSFORM2D to xform, OBJECT to owner)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION2D_NAVPOLY_ADD, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  /**
-   * Removes the [godot.NavigationPolygon] with the given ID.
-   */
-  public open fun navpolyRemove(id: Long): Unit {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION2D_NAVPOLY_REMOVE, NIL)
-  }
-
-  /**
-   * Sets the transform applied to the [godot.NavigationPolygon] with the given ID.
-   */
-  public open fun navpolySetTransform(id: Long, xform: Transform2D): Unit {
-    TransferContext.writeArguments(LONG to id, TRANSFORM2D to xform)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATION2D_NAVPOLY_SET_TRANSFORM,
-        NIL)
   }
 }

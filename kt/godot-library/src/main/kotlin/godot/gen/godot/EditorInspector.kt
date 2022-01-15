@@ -120,6 +120,9 @@ public open class EditorInspector : ScrollContainer() {
   ): Unit {
   }
 
+  public open fun _propertyPinned(path: String, pinned: Boolean): Unit {
+  }
+
   public open fun _propertySelected(arg0: String, arg1: Long): Unit {
   }
 

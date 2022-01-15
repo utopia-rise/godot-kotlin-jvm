@@ -24,7 +24,7 @@ import kotlin.Unit
  * Type used to handle the filesystem.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/scripting/filesystem.html](https://docs.godotengine.org/en/3.4/tutorials/scripting/filesystem.html)
+ * [$DOCS_URL/tutorials/scripting/filesystem.html]($DOCS_URL/tutorials/scripting/filesystem.html)
  *
  * Directory type. It is used to manage directories and their content (not restricted to the project folder).
  *
@@ -124,7 +124,13 @@ public open class Directory : Reference() {
   }
 
   /**
-   * On Windows, returns the name of the drive (partition) passed as an argument (e.g. `C:`). On other platforms, or if the requested drive does not exist, the method returns an empty String.
+   * On Windows, returns the name of the drive (partition) passed as an argument (e.g. `C:`).
+   *
+   * On macOS, returns the path to the mounted volume passed as an argument.
+   *
+   * On Linux, returns the path to the mounted volume or GTK 3 bookmark passed as an argument.
+   *
+   * On other platforms, or if the requested drive does not exist, the method returns an empty String.
    */
   public open fun getDrive(idx: Long): String {
     TransferContext.writeArguments(LONG to idx)
@@ -133,7 +139,13 @@ public open class Directory : Reference() {
   }
 
   /**
-   * On Windows, returns the number of drives (partitions) mounted on the current filesystem. On other platforms, the method returns 0.
+   * On Windows, returns the number of drives (partitions) mounted on the current filesystem.
+   *
+   * On macOS, returns the number of mounted volumes.
+   *
+   * On Linux, returns the number of mounted volumes and GTK 3 bookmarks.
+   *
+   * On other platforms, the method returns 0.
    */
   public open fun getDriveCount(): Long {
     TransferContext.writeArguments()

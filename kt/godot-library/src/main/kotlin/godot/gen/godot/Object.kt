@@ -49,7 +49,7 @@ import kotlin.reflect.KCallable
  * Base class for all non-built-in types.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/scripting/gdscript/gdscript_exports.html#advanced-exports](https://docs.godotengine.org/en/3.4/tutorials/scripting/gdscript/gdscript_exports.html#advanced-exports)
+ * [$DOCS_URL/tutorials/scripting/gdscript/gdscript_exports.html#advanced-exports]($DOCS_URL/tutorials/scripting/gdscript/gdscript_exports.html#advanced-exports)
  *
  * Every class which is not a built-in type inherits from this class.
  *

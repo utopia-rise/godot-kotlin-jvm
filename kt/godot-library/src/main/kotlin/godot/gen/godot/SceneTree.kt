@@ -40,8 +40,8 @@ import kotlin.Unit
  * Manages the game loop via a hierarchy of nodes.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/scripting/scene_tree.html](https://docs.godotengine.org/en/3.4/tutorials/scripting/scene_tree.html)
- * [https://docs.godotengine.org/en/3.4/tutorials/rendering/multiple_resolutions.html](https://docs.godotengine.org/en/3.4/tutorials/rendering/multiple_resolutions.html)
+ * [$DOCS_URL/tutorials/scripting/scene_tree.html]($DOCS_URL/tutorials/scripting/scene_tree.html)
+ * [$DOCS_URL/tutorials/rendering/multiple_resolutions.html]($DOCS_URL/tutorials/rendering/multiple_resolutions.html)
  *
  * As one of the most important classes, the [godot.SceneTree] manages the hierarchy of nodes in a scene as well as scenes themselves. Nodes can be added, retrieved and removed. The whole scene tree (and thus the current scene) can be paused. Scenes can be loaded, switched and reloaded.
  *

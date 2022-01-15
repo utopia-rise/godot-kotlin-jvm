@@ -142,7 +142,22 @@ public open class EditorExportPlugin : Reference() {
   }
 
   /**
-   * Adds a shared object with the given `tags` and destination `path`.
+   * Adds file or directory matching `path` to `PlugIns` directory of macOS app bundle.
+   *
+   * **Note:** This is useful only for macOS exports.
+   */
+  public open fun addOsxPluginFile(path: String): Unit {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_OSX_PLUGIN_FILE, NIL)
+  }
+
+  /**
+   * Adds a shared object or a directory containing only shared objects with the given `tags` and destination `path`.
+   *
+   * **Note:** In case of macOS exports, those shared objects will be added to `Frameworks` directory of app bundle.
+   *
+   * In case of a directory code-sign will error if you place non code object in directory.
    */
   public open fun addSharedObject(path: String, tags: PoolStringArray): Unit {
     TransferContext.writeArguments(STRING to path, POOL_STRING_ARRAY to tags)

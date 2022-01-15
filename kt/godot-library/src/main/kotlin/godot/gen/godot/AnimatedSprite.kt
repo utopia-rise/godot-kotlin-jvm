@@ -21,7 +21,6 @@ import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
-import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -149,6 +148,20 @@ public open class AnimatedSprite : Node2D() {
     }
 
   /**
+   * If `true`, the [animation] is currently playing.
+   */
+  public open var playing: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_GET_PLAYING, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_SET_PLAYING, NIL)
+    }
+
+  /**
    * The animation speed is multiplied by this value.
    */
   public open var speedScale: Double
@@ -175,23 +188,7 @@ public open class AnimatedSprite : Node2D() {
   }
 
 
-  public open fun _isPlaying(): Boolean {
-    throw NotImplementedError("_is_playing is not implemented for AnimatedSprite")
-  }
-
   public open fun _resChanged(): Unit {
-  }
-
-  public open fun _setPlaying(playing: Boolean): Unit {
-  }
-
-  /**
-   * Returns `true` if an animation is currently being played.
-   */
-  public open fun isPlaying(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE_IS_PLAYING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**

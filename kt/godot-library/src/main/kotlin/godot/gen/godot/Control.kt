@@ -523,7 +523,7 @@ public open class Control : CanvasItem() {
   /**
    * The node's scale, relative to its [rectSize]. Change this property to scale the node around its [rectPivotOffset]. The Control's [hintTooltip] will also scale according to this value.
    *
-   * **Note:** This property is mainly intended to be used for animation purposes. Text inside the Control will look pixelated or blurry when the Control is scaled. To support multiple resolutions in your project, use an appropriate viewport stretch mode as described in the [documentation](https://docs.godotengine.org/en/3.4/tutorials/rendering/multiple_resolutions.html) instead of scaling Controls individually.
+   * **Note:** This property is mainly intended to be used for animation purposes. Text inside the Control will look pixelated or blurry when the Control is scaled. To support multiple resolutions in your project, use an appropriate viewport stretch mode as described in the [documentation]($DOCS_URL/tutorials/rendering/multiple_resolutions.html) instead of scaling Controls individually.
    *
    * **Note:** If the Control node is a child of a [godot.Container] node, the scale will be reset to `Vector2(1, 1)` when the scene is instanced. To set the Control's scale when it's instanced, wait for one frame using `yield(get_tree(), "idle_frame")` then set its [rectScale] property.
    */
@@ -648,6 +648,8 @@ public open class Control : CanvasItem() {
    * Virtual method to be implemented by the user. Returns the minimum size for this control. Alternative to [rectMinSize] for controlling minimum size via code. The actual minimum size will be the max value of these two (in each axis separately).
    *
    * If not overridden, defaults to [godot.Vector2.ZERO].
+   *
+   * **Note:** This method will not be called when the script is attached to a [godot.Control] node that already overrides its minimum size (e.g. [godot.Label], [godot.Button], [godot.PanelContainer] etc.). It can only be used with most basic GUI nodes, like [godot.Control], [godot.Container], [godot.Panel] etc.
    */
   public open fun _getMinimumSize(): Vector2 {
     throw NotImplementedError("_get_minimum_size is not implemented for Control")
@@ -750,9 +752,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme [godot.core.Color] with the specified `name`. Local overrides always take precedence when fetching theme items for the control. An override cannot be removed, but it can be overridden with the corresponding default value.
+   * Creates a local override for a theme [godot.core.Color] with the specified `name`. Local overrides always take precedence when fetching theme items for the control.
    *
-   * See also [getColor].
+   * See also [getColor], [removeColorOverride].
    *
    * **Example of overriding a label's color and resetting it later:**
    *
@@ -769,9 +771,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme constant with the specified `name`. Local overrides always take precedence when fetching theme items for the control. An override cannot be removed, but it can be overridden with the corresponding default value.
+   * Creates a local override for a theme constant with the specified `name`. Local overrides always take precedence when fetching theme items for the control.
    *
-   * See also [getConstant].
+   * See also [getConstant], [removeConstantOverride].
    */
   public open fun addConstantOverride(name: String, constant: Long): Unit {
     TransferContext.writeArguments(STRING to name, LONG to constant)
@@ -779,7 +781,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme [godot.Font] with the specified `name`. Local overrides always take precedence when fetching theme items for the control. An override can be removed by assigning it a `null` value.
+   * Creates a local override for a theme [godot.Font] with the specified `name`. Local overrides always take precedence when fetching theme items for the control.
+   *
+   * **Note:** An override can be removed by assigning it a `null` value. This behavior is deprecated and will be removed in 4.0, use [removeFontOverride] instead.
    *
    * See also [getFont].
    */
@@ -789,7 +793,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme icon with the specified `name`. Local overrides always take precedence when fetching theme items for the control. An override can be removed by assigning it a `null` value.
+   * Creates a local override for a theme icon with the specified `name`. Local overrides always take precedence when fetching theme items for the control.
+   *
+   * **Note:** An override can be removed by assigning it a `null` value. This behavior is deprecated and will be removed in 4.0, use [removeIconOverride] instead.
    *
    * See also [getIcon].
    */
@@ -799,7 +805,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme shader with the specified `name`. Local overrides always take precedence when fetching theme items for the control. An override can be removed by assigning it a `null` value.
+   * Creates a local override for a theme shader with the specified `name`. Local overrides always take precedence when fetching theme items for the control.
+   *
+   * **Note:** An override can be removed by assigning it a `null` value. This behavior is deprecated and will be removed in 4.0, use [removeShaderOverride] instead.
    */
   public open fun addShaderOverride(name: String, shader: Shader): Unit {
     TransferContext.writeArguments(STRING to name, OBJECT to shader)
@@ -807,7 +815,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Creates a local override for a theme [godot.StyleBox] with the specified `name`. Local overrides always take precedence when fetching theme items for the control. An override can be removed by assigning it a `null` value.
+   * Creates a local override for a theme [godot.StyleBox] with the specified `name`. Local overrides always take precedence when fetching theme items for the control.
+   *
+   * **Note:** An override can be removed by assigning it a `null` value. This behavior is deprecated and will be removed in 4.0, use [removeStyleboxOverride] instead.
    *
    * See also [getStylebox].
    *
@@ -1267,6 +1277,56 @@ public open class Control : CanvasItem() {
   public open fun releaseFocus(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_RELEASE_FOCUS, NIL)
+  }
+
+  /**
+   * Removes a theme override for a [godot.core.Color] with the given `name`.
+   */
+  public open fun removeColorOverride(name: String): Unit {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_REMOVE_COLOR_OVERRIDE, NIL)
+  }
+
+  /**
+   * Removes a theme override for a constant with the given `name`.
+   */
+  public open fun removeConstantOverride(name: String): Unit {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_REMOVE_CONSTANT_OVERRIDE,
+        NIL)
+  }
+
+  /**
+   * Removes a theme override for a [godot.Font] with the given `name`.
+   */
+  public open fun removeFontOverride(name: String): Unit {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_REMOVE_FONT_OVERRIDE, NIL)
+  }
+
+  /**
+   * Removes a theme override for an icon with the given `name`.
+   */
+  public open fun removeIconOverride(name: String): Unit {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_REMOVE_ICON_OVERRIDE, NIL)
+  }
+
+  /**
+   * Removes a theme override for a shader with the given `name`.
+   */
+  public open fun removeShaderOverride(name: String): Unit {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_REMOVE_SHADER_OVERRIDE, NIL)
+  }
+
+  /**
+   * Removes a theme override for a [godot.StyleBox] with the given `name`.
+   */
+  public open fun removeStyleboxOverride(name: String): Unit {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_REMOVE_STYLEBOX_OVERRIDE,
+        NIL)
   }
 
   /**

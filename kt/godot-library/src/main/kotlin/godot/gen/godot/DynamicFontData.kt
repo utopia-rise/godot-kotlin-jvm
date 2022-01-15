@@ -8,10 +8,12 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -71,6 +73,22 @@ public open class DynamicFontData : Resource() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DYNAMICFONTDATA_SET_HINTING, NIL)
+    }
+
+  /**
+   * If set to a value greater than `0.0`, it will override default font oversampling, ignoring [godot.SceneTree.useFontOversampling] value and viewport stretch mode.
+   */
+  public open var overrideOversampling: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_DYNAMICFONTDATA_GET_OVERRIDE_OVERSAMPLING, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_DYNAMICFONTDATA_SET_OVERRIDE_OVERSAMPLING, NIL)
     }
 
   public override fun __new(): Unit {

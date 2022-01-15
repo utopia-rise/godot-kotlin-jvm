@@ -260,6 +260,12 @@ public open class SceneState : Reference() {
      * **Note:** Only available in editor builds.
      */
     GEN_EDIT_STATE_MAIN(2),
+    /**
+     * If passed to [godot.PackedScene.instance], it's similar to [GEN_EDIT_STATE_MAIN], but for the case where the scene is being instantiated to be the base of another one.
+     *
+     * **Note:** Only available in editor builds.
+     */
+    GEN_EDIT_STATE_MAIN_INHERITED(3),
     ;
 
     public val id: Long
@@ -291,5 +297,12 @@ public open class SceneState : Reference() {
      * **Note:** Only available in editor builds.
      */
     public final const val GEN_EDIT_STATE_MAIN: Long = 2
+
+    /**
+     * If passed to [godot.PackedScene.instance], it's similar to [GEN_EDIT_STATE_MAIN], but for the case where the scene is being instantiated to be the base of another one.
+     *
+     * **Note:** Only available in editor builds.
+     */
+    public final const val GEN_EDIT_STATE_MAIN_INHERITED: Long = 3
   }
 }

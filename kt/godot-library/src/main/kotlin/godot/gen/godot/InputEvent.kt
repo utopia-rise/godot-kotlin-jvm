@@ -102,7 +102,7 @@ public open class InputEvent : Resource() {
    *
    * If `exact_match` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    *
-   * **Note:** Due to keyboard ghosting, [isActionPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples](https://docs.godotengine.org/en/3.4/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
+   * **Note:** Due to keyboard ghosting, [isActionPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples]($DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
    */
   public open fun isActionPressed(
     action: String,
@@ -146,7 +146,7 @@ public open class InputEvent : Resource() {
   /**
    * Returns `true` if this input event is pressed. Not relevant for events of type [godot.InputEventMouseMotion] or [godot.InputEventScreenDrag].
    *
-   * **Note:** Due to keyboard ghosting, [isActionPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples](https://docs.godotengine.org/en/3.4/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
+   * **Note:** Due to keyboard ghosting, [isActionPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples]($DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
    */
   public open fun isPressed(): Boolean {
     TransferContext.writeArguments()

@@ -250,9 +250,11 @@ public open class Viewport : Node() {
     }
 
   /**
-   * If `true`, the viewport rendering will receive benefits from High Dynamic Range algorithm. High Dynamic Range allows the viewport to receive values that are outside the 0-1 range. In Godot HDR uses 16 bits, meaning it does not store the full range of a floating point number.
+   * If `true`, the viewport rendering will receive benefits from High Dynamic Range algorithm. High Dynamic Range allows the viewport to receive values that are outside the 0-1 range. In Godot, HDR uses half floating-point precision (16-bit) by default. To use full floating-point precision (32-bit), enable [use32BpcDepth].
    *
    * **Note:** Requires [usage] to be set to [godot.USAGE_3D] or [godot.USAGE_3D_NO_EFFECTS], since HDR is not supported for 2D.
+   *
+   * **Note:** Only available on the GLES3 backend.
    */
   public open var hdr: Boolean
     get() {
@@ -543,6 +545,26 @@ public open class Viewport : Node() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USAGE, NIL)
+    }
+
+  /**
+   * If `true`, allocates the viewport's framebuffer with full floating-point precision (32-bit) instead of half floating-point precision (16-bit). Only effective when [hdr] is also enabled.
+   *
+   * **Note:** Enabling this setting does not improve rendering quality. Using full floating-point precision is slower, and is generally only needed for advanced shaders that require a high level of precision. To reduce banding, enable [debanding] instead.
+   *
+   * **Note:** Only available on the GLES3 backend.
+   */
+  public open var use32BpcDepth: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_USE_32_BPC_DEPTH,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USE_32_BPC_DEPTH,
+          NIL)
     }
 
   /**

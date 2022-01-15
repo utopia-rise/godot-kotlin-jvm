@@ -18,7 +18,7 @@ import kotlin.Unit
  * Node used for displaying a [godot.Mesh] in 2D.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/2d/2d_meshes.html](https://docs.godotengine.org/en/3.4/tutorials/2d/2d_meshes.html)
+ * [$DOCS_URL/tutorials/2d/2d_meshes.html]($DOCS_URL/tutorials/2d/2d_meshes.html)
  *
  * Node used for displaying a [godot.Mesh] in 2D. Can be constructed from an existing [godot.Sprite] via a tool in the editor toolbar. Select "Sprite" then "Convert to Mesh2D", select settings in popup and press "Create Mesh2D".
  */

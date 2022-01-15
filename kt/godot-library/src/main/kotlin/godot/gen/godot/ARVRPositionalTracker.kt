@@ -34,7 +34,7 @@ import kotlin.Unit
  * A tracked object.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/vr/index.html](https://docs.godotengine.org/en/3.4/tutorials/vr/index.html)
+ * [$DOCS_URL/tutorials/vr/index.html]($DOCS_URL/tutorials/vr/index.html)
  *
  * An instance of this object represents a device that is tracked, such as a controller or anchor point. HMDs aren't represented here as they are handled internally.
  *

@@ -63,7 +63,7 @@ import kotlin.Unit
  * Server for anything visible.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/performance/using_servers.html](https://docs.godotengine.org/en/3.4/tutorials/performance/using_servers.html)
+ * [$DOCS_URL/tutorials/performance/using_servers.html]($DOCS_URL/tutorials/performance/using_servers.html)
  *
  * Server for anything visible. The visual server is the API backend for everything visible. The whole scene system mounts on it to display.
  *
@@ -2996,6 +2996,15 @@ public object VisualServer : Object() {
   }
 
   /**
+   * Sets a material that will be rendered for all surfaces on top of active materials for the mesh associated with this instance. Equivalent to [godot.GeometryInstance.materialOverlay].
+   */
+  public fun instanceGeometrySetMaterialOverlay(instance: RID, material: RID): Unit {
+    TransferContext.writeArguments(_RID to instance, _RID to material)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSERVER_INSTANCE_GEOMETRY_SET_MATERIAL_OVERLAY, NIL)
+  }
+
+  /**
    * Sets a material that will override the material for all surfaces on the mesh associated with this instance. Equivalent to [godot.GeometryInstance.materialOverride].
    */
   public fun instanceGeometrySetMaterialOverride(instance: RID, material: RID): Unit {
@@ -4459,6 +4468,19 @@ public object VisualServer : Object() {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSERVER_SET_DEFAULT_CLEAR_COLOR, NIL)
+  }
+
+  /**
+   * If asynchronous shader compilation is enabled, this controls whether [godot.SpatialMaterial.ASYNC_MODE_HIDDEN] is obeyed.
+   *
+   * For instance, you may want to enable this temporarily before taking a screenshot. This ensures everything is visible even if shaders with async mode *hidden* are not ready yet.
+   *
+   * Reflection probes use this internally to ensure they capture everything regardless the shaders are ready or not.
+   */
+  public fun setShaderAsyncHiddenForbidden(forbidden: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to forbidden)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSERVER_SET_SHADER_ASYNC_HIDDEN_FORBIDDEN, NIL)
   }
 
   /**

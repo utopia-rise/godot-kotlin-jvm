@@ -31,8 +31,8 @@ import kotlin.Unit
  * A node with the ability to send HTTP(S) requests.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/networking/http_request_class.html](https://docs.godotengine.org/en/3.4/tutorials/networking/http_request_class.html)
- * [https://docs.godotengine.org/en/3.4/tutorials/networking/ssl_certificates.html](https://docs.godotengine.org/en/3.4/tutorials/networking/ssl_certificates.html)
+ * [$DOCS_URL/tutorials/networking/http_request_class.html]($DOCS_URL/tutorials/networking/http_request_class.html)
+ * [$DOCS_URL/tutorials/networking/ssl_certificates.html]($DOCS_URL/tutorials/networking/ssl_certificates.html)
  *
  * A node with the ability to send HTTP requests. Uses [godot.HTTPClient] internally.
  *
@@ -297,6 +297,26 @@ public open class HTTPRequest : Node() {
         sslValidateDomain, LONG to method, POOL_BYTE_ARRAY to requestDataRaw)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_REQUEST_RAW, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Sets the proxy server for HTTP requests.
+   *
+   * The proxy server is unset if `host` is empty or `port` is -1.
+   */
+  public open fun setHttpProxy(host: String, port: Long): Unit {
+    TransferContext.writeArguments(STRING to host, LONG to port)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_HTTP_PROXY, NIL)
+  }
+
+  /**
+   * Sets the proxy server for HTTPS requests.
+   *
+   * The proxy server is unset if `host` is empty or `port` is -1.
+   */
+  public open fun setHttpsProxy(host: String, port: Long): Unit {
+    TransferContext.writeArguments(STRING to host, LONG to port)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_HTTPS_PROXY, NIL)
   }
 
   public enum class Result(

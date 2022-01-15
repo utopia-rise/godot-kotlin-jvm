@@ -158,6 +158,22 @@ public open class Tree : Control() {
     }
 
   /**
+   * If `true`, column titles are visible.
+   */
+  public open var columnTitlesVisible: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_COLUMN_TITLES_VISIBLE,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SET_COLUMN_TITLES_VISIBLE,
+          NIL)
+    }
+
+  /**
    * The number of columns.
    */
   public open var columns: Long
@@ -252,16 +268,6 @@ public open class Tree : Control() {
   }
 
   public open fun _valueEditorChanged(arg0: Double): Unit {
-  }
-
-  /**
-   * Returns `true` if the column titles are being shown.
-   */
-  public open fun areColumnTitlesVisible(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_ARE_COLUMN_TITLES_VISIBLE,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -494,14 +500,6 @@ public open class Tree : Control() {
   public open fun setColumnTitle(column: Long, title: String): Unit {
     TransferContext.writeArguments(LONG to column, STRING to title)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SET_COLUMN_TITLE, NIL)
-  }
-
-  /**
-   * If `true`, column titles are visible.
-   */
-  public open fun setColumnTitlesVisible(visible: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to visible)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SET_COLUMN_TITLES_VISIBLE, NIL)
   }
 
   public enum class SelectMode(

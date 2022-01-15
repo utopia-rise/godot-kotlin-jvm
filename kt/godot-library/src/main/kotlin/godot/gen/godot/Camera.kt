@@ -469,11 +469,11 @@ public open class Camera : Spatial() {
      */
     DOPPLER_TRACKING_DISABLED(0),
     /**
-     * Simulate [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) by tracking positions of objects that are changed in `_process`. Changes in the relative velocity of this camera compared to those objects affect how Audio is perceived (changing the Audio's `pitch shift`).
+     * Simulate [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) by tracking positions of objects that are changed in `_process`. Changes in the relative velocity of this camera compared to those objects affect how audio is perceived (changing the audio's [godot.AudioStreamPlayer3D.pitchScale]).
      */
     DOPPLER_TRACKING_IDLE_STEP(1),
     /**
-     * Simulate [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) by tracking positions of objects that are changed in `_physics_process`. Changes in the relative velocity of this camera compared to those objects affect how Audio is perceived (changing the Audio's `pitch shift`).
+     * Simulate [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) by tracking positions of objects that are changed in `_physics_process`. Changes in the relative velocity of this camera compared to those objects affect how audio is perceived (changing the audio's [godot.AudioStreamPlayer3D.pitchScale]).
      */
     DOPPLER_TRACKING_PHYSICS_STEP(2),
     ;
@@ -495,12 +495,12 @@ public open class Camera : Spatial() {
     public final const val DOPPLER_TRACKING_DISABLED: Long = 0
 
     /**
-     * Simulate [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) by tracking positions of objects that are changed in `_process`. Changes in the relative velocity of this camera compared to those objects affect how Audio is perceived (changing the Audio's `pitch shift`).
+     * Simulate [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) by tracking positions of objects that are changed in `_process`. Changes in the relative velocity of this camera compared to those objects affect how audio is perceived (changing the audio's [godot.AudioStreamPlayer3D.pitchScale]).
      */
     public final const val DOPPLER_TRACKING_IDLE_STEP: Long = 1
 
     /**
-     * Simulate [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) by tracking positions of objects that are changed in `_physics_process`. Changes in the relative velocity of this camera compared to those objects affect how Audio is perceived (changing the Audio's `pitch shift`).
+     * Simulate [godot.Doppler effect](https://en.wikipedia.org/wiki/Doppler_effect) by tracking positions of objects that are changed in `_physics_process`. Changes in the relative velocity of this camera compared to those objects affect how audio is perceived (changing the audio's [godot.AudioStreamPlayer3D.pitchScale]).
      */
     public final const val DOPPLER_TRACKING_PHYSICS_STEP: Long = 2
 

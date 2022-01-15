@@ -20,7 +20,7 @@ import kotlin.Unit
  * Input event type for screen drag events. Only available on mobile devices.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html)
+ * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
  *
  * Contains screen drag information. See [godot.Node.Input].
  */

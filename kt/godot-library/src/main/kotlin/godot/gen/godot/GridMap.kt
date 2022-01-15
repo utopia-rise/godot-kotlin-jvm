@@ -132,6 +132,18 @@ public open class GridMap : Spatial() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_MESH_LIBRARY, NIL)
     }
 
+  public open var physicsMaterial: PhysicsMaterial?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_GET_PHYSICS_MATERIAL,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_PHYSICS_MATERIAL, NIL)
+    }
+
   public open var useInBakedLight: Boolean
     get() {
       TransferContext.writeArguments()

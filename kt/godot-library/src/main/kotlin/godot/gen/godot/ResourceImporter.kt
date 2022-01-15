@@ -14,7 +14,7 @@ import kotlin.Unit
  * Base class for the implementation of core resource importers.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/import_plugins.html](https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/import_plugins.html)
+ * [$DOCS_URL/tutorials/plugins/editor/import_plugins.html]($DOCS_URL/tutorials/plugins/editor/import_plugins.html)
  *
  * This is the base class for the resource importers implemented in core. To implement your own resource importers using editor plugins, see [godot.EditorImportPlugin].
  */

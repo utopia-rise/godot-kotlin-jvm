@@ -28,7 +28,7 @@ import kotlin.Unit
  * Used by the editor to extend its functionality.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/index.html](https://docs.godotengine.org/en/3.4/tutorials/plugins/editor/index.html)
+ * [$DOCS_URL/tutorials/plugins/editor/index.html]($DOCS_URL/tutorials/plugins/editor/index.html)
  *
  * Plugins are used by the editor to extend functionality. The most common types of plugins are those which edit a given node or resource type, import plugins and export plugins. See also [godot.EditorScript] to add functions to the editor.
  */

@@ -53,7 +53,7 @@ public open class CollisionObject2D : Node2D() {
   /**
    * The physics layers this CollisionObject2D is in. Collision objects can exist in one or more of 32 different layers. See also [collisionMask].
    *
-   * **Note:** A contact is detected if object A is in any of the layers that object B scans, or object B is in any layers that object A scans. See [godot.Collision layers and masks](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * **Note:** A contact is detected if object A is in any of the layers that object B scans, or object B is in any layers that object A scans. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
   public open var collisionLayer: Long
     get() {
@@ -71,7 +71,7 @@ public open class CollisionObject2D : Node2D() {
   /**
    * The physics layers this CollisionObject2D scans. Collision objects can scan one or more of 32 different layers. See also [collisionLayer].
    *
-   * **Note:** A contact is detected if object A is in any of the layers that object B scans, or object B is in any layers that object A scans. See [godot.Collision layers and masks](https://docs.godotengine.org/en/latest/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
+   * **Note:** A contact is detected if object A is in any of the layers that object B scans, or object B is in any layers that object A scans. See [godot.Collision layers and masks]($DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
    */
   public open var collisionMask: Long
     get() {

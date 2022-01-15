@@ -159,13 +159,13 @@ public open class ScriptEditor : PanelContainer() {
   ): Unit {
   }
 
+  public open fun _onReplaceInFilesRequested(arg0: String): Unit {
+  }
+
   public open fun _openRecentScript(arg0: Long): Unit {
   }
 
   public open fun _queueCloseTabs(): Unit {
-  }
-
-  public open fun _reloadScripts(): Unit {
   }
 
   public open fun _requestHelp(arg0: String): Unit {
@@ -178,6 +178,9 @@ public open class ScriptEditor : PanelContainer() {
   }
 
   public open fun _saveHistory(): Unit {
+  }
+
+  public open fun _sceneSavedCallback(arg0: String): Unit {
   }
 
   public open fun _scriptChanged(): Unit {
@@ -303,5 +306,13 @@ public open class ScriptEditor : PanelContainer() {
     TransferContext.writeArguments(STRING to baseName, STRING to basePath)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_OPEN_SCRIPT_CREATE_DIALOG, NIL)
+  }
+
+  /**
+   * Reload all currently opened scripts from disk in case the file contents are newer.
+   */
+  public open fun reloadScripts(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCRIPTEDITOR_RELOAD_SCRIPTS, NIL)
   }
 }

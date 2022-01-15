@@ -27,7 +27,7 @@ import kotlin.Unit
  * Plays positional sound in 2D space.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/audio/audio_streams.html](https://docs.godotengine.org/en/3.4/tutorials/audio/audio_streams.html)
+ * [$DOCS_URL/tutorials/audio/audio_streams.html]($DOCS_URL/tutorials/audio/audio_streams.html)
  *
  * Plays audio that dampens with distance from screen center.
  *
