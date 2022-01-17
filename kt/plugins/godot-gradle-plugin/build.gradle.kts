@@ -59,7 +59,6 @@ dependencies {
     implementation(project(":godot-build-props"))
     // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
     implementation("org.apache.commons:commons-lang3:3.12.0")
-    implementation("org.apache.httpcomponents.client5:httpclient5:5.1.2")
     implementation("com.konghq:unirest-java:3.13.6")
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
