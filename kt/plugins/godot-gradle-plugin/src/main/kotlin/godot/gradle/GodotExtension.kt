@@ -1,5 +1,7 @@
 package godot.gradle
 
+import godot.gradle.tasks.godotruntime.OS
+import org.apache.commons.lang3.SystemUtils
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property
 import java.io.File
@@ -69,6 +71,28 @@ open class GodotExtension(objects: ObjectFactory) {
      */
     val isGraalVmNativeImageGenerationVerbose = objects.property(Boolean::class.java)
 
+    /**
+     * Properties to download a prebuilt Godot binary that contains the kotlin/JVM module.
+     *
+     *
+     * the version of the module we want to download. If unset, no download will happen.
+     * example: 0.3.3-3.4.2
+     * */
+    val godotKotlinJVMVersion = objects.property(String::class.java)
+
+    /**
+     * The base url to the "repository" where the binaries are stored.
+     * It will be resolved as <godotKotlinJVMDownloadBaseURL>/<godotKotlinJVMVersion>/<platform specific download, eg: godotKotlinJVMDownloadBaseURL>
+     * The default points to the releases section of the official github repository.
+     * example for the full resolved url: https://github.com/utopia-rise/godot-kotlin-jvm/releases/download/0.3.3-3.4.2/godot-kotlin-jvm_editor_x11_.zip
+     * */
+    val godotKotlinJVMDownloadBaseURL = objects.property(String::class.java)
+    /**
+     * The target OS for godot.
+     * */
+    val os= objects.property(OS::class.java)
+
+
     internal fun configureExtensionDefaults() {
         val buildToolsDir = System.getenv("ANDROID_SDK_ROOT")?.let { androidSdkRoot ->
             File("$androidSdkRoot/build-tools/")
@@ -102,5 +126,16 @@ open class GodotExtension(objects: ObjectFactory) {
         additionalGraalJniConfigurationFiles.set(arrayOf())
         isGraalVmNativeImageGenerationVerbose.set(false)
         windowsDeveloperVCVarsPath.set("\"%VC_VARS_PATH%\"")
+
+        godotKotlinJVMVersion.set("")
+        godotKotlinJVMDownloadBaseURL.set("https://github.com/utopia-rise/godot-kotlin-jvm/releases/download/")
+        when {
+            SystemUtils.IS_OS_WINDOWS -> os.set(OS.WINDOWS)
+            SystemUtils.IS_OS_MAC -> os.set(OS.MAC)
+            //linux is treated as the default fallback.
+            else -> {
+                os.set(OS.LINUX)
+            }
+        }
     }
 }

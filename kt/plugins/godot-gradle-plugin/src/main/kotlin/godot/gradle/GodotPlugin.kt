@@ -15,7 +15,6 @@ class GodotPlugin : Plugin<Project> {
         target.extensions.create("godot", GodotExtension::class.java).also {
             it.configureExtensionDefaults()
         }
-
         target.configureThirdPartyPlugins()
         target.setupConfigurationsAndCompilations()
         target.setupTasks()

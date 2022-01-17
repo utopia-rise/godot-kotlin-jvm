@@ -5,12 +5,15 @@ plugins {
 
 buildscript {
     repositories {
-        jcenter()
+        //jcenter()
+        mavenCentral()
         gradlePluginPortal()
+        google()
     }
 }
 repositories {
-    jcenter()
+    //jcenter()
+    mavenCentral()
     gradlePluginPortal()
 }
 

@@ -1,3 +1,4 @@
+
 plugins {
     kotlin("jvm")
     `maven-publish`
@@ -33,6 +34,19 @@ pluginBundle {
 
 repositories {
     google()
+    mavenCentral()
+    mavenLocal()
+}
+
+sourceSets{
+
+    create("functionalTest"){
+        java.srcDirs.add(file("src/functionalTest/kotlin"))
+        resources.srcDirs.add(file("src/functionalTest/resources"))
+
+        compileClasspath += sourceSets.main.get().output+configurations.testRuntimeClasspath
+        runtimeClasspath += output+compileClasspath
+    }
 }
 
 dependencies {
@@ -43,6 +57,13 @@ dependencies {
     implementation("com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:${DependenciesVersions.kspVersion}")
 
     implementation(project(":godot-build-props"))
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    implementation("org.apache.commons:commons-lang3:3.12.0")
+    implementation("org.apache.httpcomponents.client5:httpclient5:5.1.2")
+    implementation("com.konghq:unirest-java:3.13.6")
+
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
+    testImplementation(gradleTestKit())
 }
 
 tasks {
@@ -73,3 +94,19 @@ var tagOnCurrentCommit = grgit.tag.list().firstOrNull { tag -> tag.commit.id == 
 var releaseMode = tagOnCurrentCommit != null
 
 fun isSnapshotBuild(): Boolean = tagOnCurrentCommit?.name?.endsWith("SNAPSHOT") == true
+
+val functionalTest = task<Test>("functionalTest"){
+    description = "runs functional tests"
+    group = "verification"
+    testClassesDirs = sourceSets.getByName("functionalTest").output.classesDirs
+    classpath= sourceSets.getByName("functionalTest").runtimeClasspath
+
+}
+
+tasks.withType<Test> {
+    //enable support fot Junit5
+    useJUnitPlatform()
+
+}
+
+tasks.getByName("check").dependsOn(functionalTest)

@@ -24,6 +24,7 @@ subprojects {
     repositories {
         mavenCentral()
         gradlePluginPortal()
+        google()
     }
 }
 

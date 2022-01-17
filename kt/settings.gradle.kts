@@ -1,6 +1,12 @@
 include("godot-library")
 
 pluginManagement {
+    repositories {
+        // jcenter()
+        mavenCentral() // use this instead
+        google()
+        gradlePluginPortal()
+    }
     resolutionStrategy.eachPlugin {
         if (requested.id.id == "com.utopia-rise.api-generator") {
             useModule("com.utopia-rise:api-generator:0.0.1")

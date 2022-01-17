@@ -8,6 +8,7 @@ import godot.gradle.tasks.android.packageMainDexJarTask
 import godot.gradle.tasks.createBuildLockTask
 import godot.gradle.tasks.deleteBuildLockTask
 import godot.gradle.tasks.generateEntryServiceFileTask
+import godot.gradle.tasks.godotruntime.*
 import godot.gradle.tasks.graal.checkNativeImageToolAccessibleTask
 import godot.gradle.tasks.graal.checkPresenceOfDefaultGraalJniConfigTask
 import godot.gradle.tasks.graal.createGraalNativeImageTask
@@ -18,8 +19,28 @@ import godot.gradle.tasks.setupCleanTask
 import org.gradle.api.Project
 
 fun Project.setupTasks() {
+
+    //we run this before evaluation, we want to be able to configure them in the DSL
+    //any other stage, and any task configurations are going to be impossible
+    //START: godot runtime specific tasks
+    val godotBinaryDownloadTask = createGodotBinaryDownloadTask()
+
+    @Suppress("UNUSED_VARIABLE")
+    val godotBinarySetupTask = createGodotBinarySetupTask(
+        downloadTask = godotBinaryDownloadTask.get(),
+    )
+
+    val godotEditorBinaryExecTask = createGodotEditorBinaryExecTask()
+
+    @Suppress("UNUSED_VARIABLE")
+    val godotEditorBinaryRunTask = createGodotEditorBinaryRunTask(
+        execTask = godotEditorBinaryExecTask.get(),
+        downloadTask = godotBinarySetupTask.get(),
+    )
+    //END: godot runtime specific tasks
+
     afterEvaluate {
-        with(it) {
+        with(this) {
             val createBuildLockTask = createBuildLockTask()
             val deleteBuildLockTask = deleteBuildLockTask()
             val generateEntryServiceFileTask = generateEntryServiceFileTask()
@@ -63,6 +84,7 @@ fun Project.setupTasks() {
             )
             // END: graal native image specific tasks
 
+
             @Suppress("UNUSED_VARIABLE")
             val buildTask = setupBuildTask(
                 createBuildLockTask = createBuildLockTask,
@@ -80,6 +102,19 @@ fun Project.setupTasks() {
                 createBuildLockTask = createBuildLockTask,
                 deleteBuildLockTask = deleteBuildLockTask,
             )
+            //START: godot runtime specific tasks
+
+            //this task needs to be configured at this stage, when the configuration is ready.
+            val godotBinaryExtractTask = createGodotBinaryExtractTask()
+            val godotEditorPermissionTask = createGodotEditorPermissionTasks(
+                extractTask= godotBinaryExtractTask.get(),
+                execTask = godotEditorBinaryExecTask.get(),
+                downloadTask = godotBinaryDownloadTask.get()
+            )
+            godotBinaryDownloadTask.get().finalizedBy(godotBinaryExtractTask)
+            godotEditorBinaryExecTask.get().dependsOn(godotBinaryExtractTask)
+            //godotEditorBinaryRunTask.get().dependsOn(godotBinaryExtractTask)
+            //END: godot runtime specific tasks
         }
     }
 }
