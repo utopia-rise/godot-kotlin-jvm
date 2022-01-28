@@ -3,7 +3,7 @@
 
 
 #include <jni.h>
-#include <core/vector.h>
+#include <core/templates/vector.h>
 
 namespace jni {
 

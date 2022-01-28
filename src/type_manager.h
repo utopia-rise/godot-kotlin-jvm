@@ -2,8 +2,8 @@
 #define GODOT_JVM_TYPE_MANAGER_H
 
 
-#include <core/string_name.h>
-#include <core/hash_map.h>
+#include <core/string/string_name.h>
+#include <core/templates/hash_map.h>
 
 class TypeManager {
 private:

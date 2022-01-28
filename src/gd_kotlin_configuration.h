@@ -2,7 +2,6 @@
 #define GODOT_JVM_GD_KOTLIN_CONFIGURATION_H
 
 
-#include <core/reference.h>
 #include <modules/kotlin_jvm/src/jni/jvm.h>
 
 class GdKotlinConfiguration {

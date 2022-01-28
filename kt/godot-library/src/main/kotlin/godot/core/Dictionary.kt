@@ -176,7 +176,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
      * Returns true if the dictionary is empty.
      */
     fun empty(): Boolean {
-        Bridge.engine_call_empty(_handle)
+        Bridge.engine_call_is_empty(_handle)
         return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
     }
 
@@ -317,7 +317,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V>{
 
         external fun engine_call_clear(_handle: VoidPtr)
         external fun engine_call_duplicate(_handle: VoidPtr)
-        external fun engine_call_empty(_handle: VoidPtr)
+        external fun engine_call_is_empty(_handle: VoidPtr)
         external fun engine_call_erase(_handle: VoidPtr)
         external fun engine_call_get(_handle: VoidPtr)
         external fun engine_call_has(_handle: VoidPtr)

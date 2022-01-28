@@ -1,26 +1,25 @@
-#include <core/os/file_access.h>
 #include "kt_resource_format_loader.h"
 #include "kotlin_language.h"
 #include "kotlin_script.h"
 #include "logging.h"
 
 Error kt_read_all_file_utf8(const String &p_path, String &r_content) {
-    PoolVector<uint8_t> sourcef;
+    Vector<uint8_t> sourcef;
     Error err;
-    FileAccess *f = FileAccess::open(p_path, FileAccess::READ, &err);
+    FileAccess *file_access = FileAccess::open(p_path, FileAccess::READ, &err);
     JVM_ERR_FAIL_COND_V_MSG(err != OK, err, "Cannot open file '" + p_path + "'.");
 
-    int len = f->get_len();
+    uint64_t len = file_access->get_length();
     sourcef.resize(len + 1);
-    PoolVector<uint8_t>::Write w = sourcef.write();
-    int r = f->get_buffer(w.ptr(), len);
-    f->close();
-    memdelete(f);
+    uint8_t* w = sourcef.ptrw();
+    int r = file_access->get_buffer(w, len);
+    file_access->close();
+    memdelete(file_access);
     ERR_FAIL_COND_V(r != len, ERR_CANT_OPEN);
     w[len] = 0;
 
     String source;
-    if (source.parse_utf8((const char *)w.ptr())) {
+    if (source.parse_utf8((const char *)w)) {
         ERR_FAIL_V(ERR_INVALID_DATA);
     }
 
@@ -28,14 +27,15 @@ Error kt_read_all_file_utf8(const String &p_path, String &r_content) {
     return OK;
 }
 
-RES KtResourceFormatLoader::load(const String& p_path, const String& p_original_path, Error* r_error) {
+RES KtResourceFormatLoader::load(const String &p_path, const String &p_original_path, Error *r_error,
+                                 bool p_use_sub_threads, float *r_progress, CacheMode p_cache_mode) {
     Ref<KotlinScript> ref {memnew(KotlinScript)};
     ref->set_path(p_original_path, true);
     ref->reload(false);
 
 #if defined(DEBUG_ENABLED) || defined(TOOLS_ENABLED)
     String source_code;
-    Error load_err = kt_read_all_file_utf8(p_original_path, source_code);
+    Error load_err{kt_read_all_file_utf8(p_original_path, source_code)};
     ref->set_source_code(source_code);
     if (r_error) {
         *r_error = load_err;

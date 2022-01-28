@@ -2,7 +2,7 @@
 #include "jni_constants.h"
 
 #include <core/os/os.h>
-#include <core/project_settings.h>
+#include <core/config/project_settings.h>
 
 #ifndef __ANDROID__
 
@@ -75,7 +75,7 @@ String jni::JvmLoader::get_jvm_lib_path() {
 String jni::JvmLoader::get_path_to_locally_installed_jvm() {
     String javaHome{OS::get_singleton()->get_environment("JAVA_HOME")};
 
-    if (javaHome.empty()) {
+    if (javaHome.is_empty()) {
         LOG_ERROR("JAVA_HOME is not defined! Exiting...");
         exit(1);
     }

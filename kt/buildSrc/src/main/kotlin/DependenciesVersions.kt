@@ -1,5 +1,5 @@
 object DependenciesVersions {
-    const val godotVersion: String = "3.5.1"
+    const val godotVersion: String = "4.0.0"
 
     // https://github.com/johnrengelman/shadow/releases
     const val shadowJarPluginVersion: String = "7.1.2"

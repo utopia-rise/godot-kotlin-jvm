@@ -47,7 +47,7 @@ class PoolStringArray : NativeCoreType, Iterable<String> {
      * Returns true if the array is empty.
      */
     fun empty(): Boolean {
-        Bridge.engine_call_empty(_handle)
+        Bridge.engine_call_is_empty(_handle)
         return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
     }
 
@@ -73,7 +73,7 @@ class PoolStringArray : NativeCoreType, Iterable<String> {
      * Reverses the order of the elements in the array.
      */
     fun invert() {
-        Bridge.engine_call_invert(_handle)
+        Bridge.engine_call_reverse(_handle)
     }
 
     /**
@@ -98,7 +98,7 @@ class PoolStringArray : NativeCoreType, Iterable<String> {
      */
     fun remove(idx: Int) {
         TransferContext.writeArguments(VariantType.JVM_INT to idx)
-        Bridge.engine_call_remove(_handle)
+        Bridge.engine_call_remove_at(_handle)
     }
 
     /**
@@ -161,13 +161,13 @@ class PoolStringArray : NativeCoreType, Iterable<String> {
 
         external fun engine_call_append(_handle: VoidPtr)
         external fun engine_call_appendArray(_handle: VoidPtr)
-        external fun engine_call_empty(_handle: VoidPtr)
+        external fun engine_call_is_empty(_handle: VoidPtr)
         external fun engine_call_get(_handle: VoidPtr)
         external fun engine_call_insert(_handle: VoidPtr)
-        external fun engine_call_invert(_handle: VoidPtr)
+        external fun engine_call_reverse(_handle: VoidPtr)
         external fun engine_call_join(_handle: VoidPtr)
         external fun engine_call_pushback(_handle: VoidPtr)
-        external fun engine_call_remove(_handle: VoidPtr)
+        external fun engine_call_remove_at(_handle: VoidPtr)
         external fun engine_call_resize(_handle: VoidPtr)
         external fun engine_call_set(_handle: VoidPtr)
         external fun engine_call_size(_handle: VoidPtr)

@@ -34,7 +34,7 @@ private:
     AboutDialog* about_dialog;
     ErrorDialog* error_dialog;
     BuildDialog* build_dialog;
-    ToolButton* tool_bar_build_button;
+    Button* tool_bar_build_button;
     BottomPanel* bottom_panel;
 
     void on_build_project_pressed();

@@ -1,4 +1,4 @@
-#include <core/project_settings.h>
+#include <core/config/project_settings.h>
 #include "kotlin_language.h"
 #include "kotlin_script.h"
 #include "gd_kotlin.h"
@@ -162,57 +162,71 @@ void KotlinLanguage::get_string_delimiters(List<String>* p_delimiters) const {
     p_delimiters->push_back("\" \"");
 }
 
-Ref<Script> KotlinLanguage::get_template(const String& p_class_name, const String& p_base_class_name) const {
-    String kotlinClassTemplate {
-        "%PACKAGE%"
-        "import " GODOT_KOTLIN_PACKAGE ".%BASE%\n"
-        "import godot.annotation.RegisterClass\n"
-        "import godot.annotation.RegisterFunction\n"
-        "\n"
-        "@RegisterClass\n"
-        "class %CLASS% : %BASE%() {\n"
-        "\n"
-        "    // Declare member variables here. Examples:\n"
-        "    // val a = 2;\n"
-        "    // val b = \"text\";\n"
-        "\n"
-        "    // Called when the node enters the scene tree for the first time.\n"
-        "    @RegisterFunction\n"
-        "    override fun _ready() {\n"
-        "        \n"
-        "    }\n"
-        "\n"
-        "    // Called every frame. 'delta' is the elapsed time since the previous frame.\n"
-        "    @RegisterFunction\n"
-        "    override fun _process(delta: Double) {\n"
-        "        \n"
-        "    }\n"
-        "}\n"
-    };
-    kotlinClassTemplate = kotlinClassTemplate.replace("%BASE%", p_base_class_name).replace("%CLASS%", p_class_name);
+//TODO/4.0: Create template files like gdscript and c# and load them with KotlinLanguage::get_built_in_templates
+//Ref<Script> KotlinLanguage::get_template(const String& p_class_name, const String& p_base_class_name) const {
+//    String kotlinClassTemplate {
+//        "%PACKAGE%"
+//        "import " GODOT_KOTLIN_PACKAGE ".%BASE%\n"
+//        "import godot.annotation.RegisterClass\n"
+//        "import godot.annotation.RegisterFunction\n"
+//        "\n"
+//        "@RegisterClass\n"
+//        "class %CLASS% : %BASE%() {\n"
+//        "\n"
+//        "    // Declare member variables here. Examples:\n"
+//        "    // val a = 2;\n"
+//        "    // val b = \"text\";\n"
+//        "\n"
+//        "    // Called when the node enters the scene tree for the first time.\n"
+//        "    @RegisterFunction\n"
+//        "    override fun _ready() {\n"
+//        "        \n"
+//        "    }\n"
+//        "\n"
+//        "    // Called every frame. 'delta' is the elapsed time since the previous frame.\n"
+//        "    @RegisterFunction\n"
+//        "    override fun _process(delta: Double) {\n"
+//        "        \n"
+//        "    }\n"
+//        "}\n"
+//    };
+//    kotlinClassTemplate = kotlinClassTemplate.replace("%BASE%", p_base_class_name).replace("%CLASS%", p_class_name);
+//    Ref<KotlinScript> script;
+//    script.instance();
+//    script->set_source_code(kotlinClassTemplate);
+//    script->set_name(p_class_name);
+//    return script;
+//}
+
+Ref<Script> KotlinLanguage::make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const {
     Ref<KotlinScript> script;
-    script.instance();
-    script->set_source_code(kotlinClassTemplate);
-    script->set_name(p_class_name);
+    //TODO/4.0: process template
+//    script.instantiate();
+//
+//    String processed_template{
+//        p_template
+//            .replace("_BASE_", p_base_class_name)
+//            .replace("_CLASS_", p_class_name)
+//            .replace("_TS_", GODOT_KOTLIN_IDENTATION)
+//    };
+//    script->set_source_code(processed_template);
     return script;
 }
 
-void KotlinLanguage::make_template(const String& p_class_name, const String& p_base_class_name, Ref<Script>& p_script) {
-    p_script->set_source_code(
-            p_script->get_source_code()
-            .replace("%BASE%", p_base_class_name)
-            .replace("%CLASS%", p_class_name)
-            .replace("%TS%", GODOT_KOTLIN_IDENTATION)
-    );
+Vector<ScriptLanguage::ScriptTemplate> KotlinLanguage::get_built_in_templates(StringName p_object) {
+    //TODO/4.0: load templates
+    return {};
 }
 
 bool KotlinLanguage::is_using_templates() {
     return true;
 }
 
-bool KotlinLanguage::validate(const String &p_script, int &r_line_error, int &r_col_error, String &r_test_error,
-                              const String &p_path, List<String> *r_functions, List<Warning> *r_warnings,
-                              Set<int> *r_safe_lines) const {
+bool KotlinLanguage::validate(const String& p_script, const String& p_path, List<String>* r_functions,
+                              List<ScriptLanguage::ScriptError>* r_errors, List<ScriptLanguage::Warning>* r_warnings,
+                              Set<int>* r_safe_lines) const {
+
+    //TODO
     return true;
 }
 
@@ -237,15 +251,11 @@ bool KotlinLanguage::supports_builtin_mode() const {
     return false;
 }
 
-bool KotlinLanguage::can_inherit_from_file() {
-    return ScriptLanguage::can_inherit_from_file();
-}
-
 int KotlinLanguage::find_function(const String& p_function, const String& p_code) const {
     return 0;
 }
 
-String KotlinLanguage::make_function(const String& p_class, const String& p_name, const PoolStringArray& p_args) const {
+String KotlinLanguage::make_function(const String& p_class, const String& p_name, const PackedStringArray& p_args) const {
     //TODO : need to think about how to get arguments types.
     return String();
 }

@@ -1,4 +1,3 @@
-#include <core/reference.h>
 #include <modules/kotlin_jvm/src/gd_kotlin.h>
 #include "variant_array_bridge.h"
 #include "constants.h"
@@ -25,25 +24,25 @@ VariantArrayBridge::VariantArrayBridge(jni::JObject p_wrapped, jni::JObject p_cl
         const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_clear
     };
-    jni::JNativeMethod engine_call_empty_method {
-        const_cast<char*>("engine_call_empty"),
+    jni::JNativeMethod engine_call_is_empty_method {
+        const_cast<char*>("engine_call_is_empty"),
         const_cast<char*>("(J)V"),
-        (void*) VariantArrayBridge::engine_call_empty
+        (void*) VariantArrayBridge::engine_call_is_empty
     };
     jni::JNativeMethod engine_call_hash_method {
         const_cast<char*>("engine_call_hash"),
         const_cast<char*>("(J)V"),
         (void*) VariantArrayBridge::engine_call_hash
     };
-    jni::JNativeMethod engine_call_invert_method {
-        const_cast<char*>("engine_call_invert"),
+    jni::JNativeMethod engine_call_reverse_method {
+        const_cast<char*>("engine_call_reverse"),
         const_cast<char*>("(J)V"),
-        (void*) VariantArrayBridge::engine_call_invert
+        (void*) VariantArrayBridge::engine_call_reverse
     };
-    jni::JNativeMethod engine_call_remove_method {
-        const_cast<char*>("engine_call_remove"),
+    jni::JNativeMethod engine_call_remove_at_method {
+        const_cast<char*>("engine_call_remove_at"),
         const_cast<char*>("(J)V"),
-        (void*) VariantArrayBridge::engine_call_remove
+        (void*) VariantArrayBridge::engine_call_remove_at
     };
     jni::JNativeMethod engine_call_resize_method {
         const_cast<char*>("engine_call_resize"),
@@ -176,10 +175,10 @@ VariantArrayBridge::VariantArrayBridge(jni::JObject p_wrapped, jni::JObject p_cl
 
     methods.push_back(engine_call_get_size_method);
     methods.push_back(engine_call_clear_method);
-    methods.push_back(engine_call_empty_method);
+    methods.push_back(engine_call_is_empty_method);
     methods.push_back(engine_call_hash_method);
-    methods.push_back(engine_call_invert_method);
-    methods.push_back(engine_call_remove_method);
+    methods.push_back(engine_call_reverse_method);
+    methods.push_back(engine_call_remove_at_method);
     methods.push_back(engine_call_resize_method);
     methods.push_back(engine_call_shuffle_method);
     methods.push_back(engine_call_sort_method);
@@ -225,9 +224,10 @@ void VariantArrayBridge::engine_call_clear(JNIEnv* p_raw_env, jobject p_instance
     from_uint_to_ptr<Array>(p_raw_ptr)->clear();
 }
 
-void VariantArrayBridge::engine_call_empty(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+//TODO/4.0: modify naming in jvm code
+void VariantArrayBridge::engine_call_is_empty(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{p_raw_env};
-    Variant variant{from_uint_to_ptr<Array>(p_raw_ptr)->empty()};
+    Variant variant{from_uint_to_ptr<Array>(p_raw_ptr)->is_empty()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 
@@ -237,15 +237,17 @@ void VariantArrayBridge::engine_call_hash(JNIEnv* p_raw_env, jobject p_instance,
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 
-void VariantArrayBridge::engine_call_invert(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
-    from_uint_to_ptr<Array>(p_raw_ptr)->invert();
+//TODO/4.0: modify naming in jvm code
+void VariantArrayBridge::engine_call_reverse(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    from_uint_to_ptr<Array>(p_raw_ptr)->reverse();
 }
 
-void VariantArrayBridge::engine_call_remove(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+//TODO/4.0: modify naming in jvm code
+void VariantArrayBridge::engine_call_remove_at(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{p_raw_env};
     Variant args[1] = {};
     GDKotlin::get_instance().transfer_context->read_args(env, args);
-    from_uint_to_ptr<Array>(p_raw_ptr)->remove(args[0].operator int64_t());
+    from_uint_to_ptr<Array>(p_raw_ptr)->remove_at(args[0].operator int64_t());
 }
 
 void VariantArrayBridge::engine_call_resize(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
@@ -263,11 +265,12 @@ void VariantArrayBridge::engine_call_sort(JNIEnv* p_raw_env, jobject p_instance,
     from_uint_to_ptr<Array>(p_raw_ptr)->sort();
 }
 
+//TODO/4.0: modify method signature in jvm code (from object + method name to callable)
 void VariantArrayBridge::engine_call_sortCustom(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{p_raw_env};
-    Variant args[2] = {};
+    Variant args[1] = {};
     GDKotlin::get_instance().transfer_context->read_args(env, args);
-    from_uint_to_ptr<Array>(p_raw_ptr)->sort_custom(args[0].operator Object *(), args[1].operator String());
+    from_uint_to_ptr<Array>(p_raw_ptr)->sort_custom(args[0].operator Callable());
 }
 
 void VariantArrayBridge::engine_call_append(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
@@ -286,13 +289,14 @@ void VariantArrayBridge::engine_call_bsearch(JNIEnv* p_raw_env, jobject p_instan
     transfer_context->write_return_value(env, variant);
 }
 
+//TODO/4.0: modify method signature in jvm code (from object + method name to callable)
 void VariantArrayBridge::engine_call_bsearchCustom(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{p_raw_env};
-    Variant args[4] = {};
+    Variant args[3] = {};
     TransferContext* transfer_context{GDKotlin::get_instance().transfer_context};
     transfer_context->read_args(env, args);
     Variant variant{from_uint_to_ptr<Array>(p_raw_ptr)->bsearch_custom(
-            args[0], args[1].operator Object *(), args[2].operator String(), args[3].operator bool()
+            args[0], args[1].operator Callable(), args[2].operator bool()
     )};
     transfer_context->write_return_value(env, variant);
 }

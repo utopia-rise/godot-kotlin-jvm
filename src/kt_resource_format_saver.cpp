@@ -1,8 +1,6 @@
-#include <core/os/file_access.h>
 #include "kt_resource_format_saver.h"
 #include "kotlin_language.h"
 #include "kotlin_script.h"
-#include "logging.h"
 
 void KtResourceFormatSaver::get_recognized_extensions(const RES& p_resource, List<String>* p_extensions) const {
     if (Object::cast_to<KotlinScript>(p_resource.ptr())) {

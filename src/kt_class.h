@@ -2,7 +2,7 @@
 #define GODOT_JVM_KTCLASS_H
 
 #include "jni/wrapper.h"
-#include <core/reference.h>
+#include <core/object/ref_counted.h>
 #include "kt_object.h"
 #include "kt_function.h"
 #include "kt_signal_info.h"

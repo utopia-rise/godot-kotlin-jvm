@@ -1,7 +1,6 @@
 #ifndef GODOT_JVM_BRIDGES_UTILS_H
 #define GODOT_JVM_BRIDGES_UTILS_H
 
-#include <core/array.h>
 #include <modules/kotlin_jvm/src/jni/wrapper.h>
 
 namespace bridges {

@@ -1,7 +1,6 @@
-#include <core/object.h>
-#include <core/reference.h>
 #include <modules/kotlin_jvm/src/logging.h>
 #include <modules/kotlin_jvm/src/ref_db.h>
+#include <core/object/object.h>
 #include "memory_bridge.h"
 #include "constants.h"
 
@@ -49,11 +48,11 @@ MemoryBridge::MemoryBridge(jni::JObject p_wrapped, jni::JObject p_class_loader) 
 
 bool MemoryBridge::check_instance(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jlong instance_id) {
     auto* instance{reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr))};
-    return ObjectDB::instance_validate(instance) && instance->get_instance_id() == static_cast<ObjectID>(instance_id);
+    return instance == ObjectDB::get_instance(static_cast<ObjectID>(instance_id));
 }
 
 bool MemoryBridge::unref(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr, jint p_counter) {
-    if (auto* reference{reinterpret_cast<Reference*>(static_cast<uintptr_t>(p_raw_ptr))}) {
+    if (auto* reference{reinterpret_cast<RefCounted*>(static_cast<uintptr_t>(p_raw_ptr))}) {
         auto counter = static_cast<uint32_t>(p_counter);
         RefDB::get_instance().remove_ref(reference, counter);
     }
@@ -64,7 +63,7 @@ bool MemoryBridge::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance,
     Variant::Type variant_type{static_cast<Variant::Type>(var_type)};
     bool has_free{false};
     switch (variant_type) {
-        case Variant::_RID:
+        case Variant::RID:
             memdelete(reinterpret_cast<RID*>(p_raw_ptr));
             has_free = true;
             break;
@@ -80,32 +79,40 @@ bool MemoryBridge::unref_native_core_type(JNIEnv* p_raw_env, jobject p_instance,
             memdelete(reinterpret_cast<NodePath*>(p_raw_ptr));
             has_free = true;
             break;
-        case Variant::POOL_BYTE_ARRAY:
-            memdelete(reinterpret_cast<PoolByteArray*>(p_raw_ptr));
+        case Variant::PACKED_BYTE_ARRAY:
+            memdelete(reinterpret_cast<PackedByteArray*>(p_raw_ptr));
             has_free = true;
             break;
-        case Variant::POOL_INT_ARRAY:
-            memdelete(reinterpret_cast<PoolIntArray*>(p_raw_ptr));
+        case Variant::PACKED_INT32_ARRAY:
+            memdelete(reinterpret_cast<PackedInt32Array*>(p_raw_ptr));
             has_free = true;
             break;
-        case Variant::POOL_REAL_ARRAY:
-            memdelete(reinterpret_cast<PoolRealArray*>(p_raw_ptr));
+        case Variant::PACKED_INT64_ARRAY:
+            memdelete(reinterpret_cast<PackedInt64Array*>(p_raw_ptr));
             has_free = true;
             break;
-        case Variant::POOL_STRING_ARRAY:
-            memdelete(reinterpret_cast<PoolStringArray*>(p_raw_ptr));
+        case Variant::PACKED_FLOAT32_ARRAY:
+            memdelete(reinterpret_cast<PackedFloat32Array*>(p_raw_ptr));
             has_free = true;
             break;
-        case Variant::POOL_VECTOR2_ARRAY:
-            memdelete(reinterpret_cast<PoolVector2Array*>(p_raw_ptr));
+        case Variant::PACKED_FLOAT64_ARRAY:
+            memdelete(reinterpret_cast<PackedFloat64Array*>(p_raw_ptr));
             has_free = true;
             break;
-        case Variant::POOL_VECTOR3_ARRAY:
-            memdelete(reinterpret_cast<PoolVector3Array*>(p_raw_ptr));
+        case Variant::PACKED_STRING_ARRAY:
+            memdelete(reinterpret_cast<PackedStringArray*>(p_raw_ptr));
             has_free = true;
             break;
-        case Variant::POOL_COLOR_ARRAY:
-            memdelete(reinterpret_cast<PoolColorArray*>(p_raw_ptr));
+        case Variant::PACKED_VECTOR2_ARRAY:
+            memdelete(reinterpret_cast<PackedVector2Array*>(p_raw_ptr));
+            has_free = true;
+            break;
+        case Variant::PACKED_VECTOR3_ARRAY:
+            memdelete(reinterpret_cast<PackedVector3Array*>(p_raw_ptr));
+            has_free = true;
+            break;
+        case Variant::PACKED_COLOR_ARRAY:
+            memdelete(reinterpret_cast<PackedColorArray*>(p_raw_ptr));
             has_free = true;
             break;
         default:

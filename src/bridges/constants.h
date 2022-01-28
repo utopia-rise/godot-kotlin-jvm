@@ -11,13 +11,16 @@ namespace bridges {
     static const char* RID_BRIDGE_CLASS_NAME = "godot.core.RID$Bridge";
     static const char* NODE_PATH_BRIDGE_CLASS_NAME = "godot.core.NodePath$Bridge";
 
-    static const char* POOL_BYTE_ARRAY_BRIDGE_CLASS_NAME = "godot.core.PoolByteArray$Bridge";
-    static const char* POOL_COLOR_ARRAY_BRIDGE_CLASS_NAME = "godot.core.PoolColorArray$Bridge";
-    static const char* POOL_INT_ARRAY_BRIDGE_CLASS_NAME = "godot.core.PoolIntArray$Bridge";
-    static const char* POOL_REAL_ARRAY_BRIDGE_CLASS_NAME = "godot.core.PoolRealArray$Bridge";
-    static const char* POOL_STRING_ARRAY_BRIDGE_CLASS_NAME = "godot.core.PoolStringArray$Bridge";
-    static const char* POOL_VECTOR2_ARRAY_BRIDGE_CLASS_NAME = "godot.core.PoolVector2Array$Bridge";
-    static const char* POOL_VECTOR3_ARRAY_BRIDGE_CLASS_NAME = "godot.core.PoolVector3Array$Bridge";
+    //TODO/4.0: Change class names in JVM
+    static const char* PACKED_BYTE_ARRAY_BRIDGE_CLASS_NAME = "godot.core.PackedByteArray$Bridge";
+    static const char* PACKED_COLOR_ARRAY_BRIDGE_CLASS_NAME = "godot.core.PackedColorArray$Bridge";
+    static const char* PACKED_INT_32_ARRAY_BRIDGE_CLASS_NAME = "godot.core.PackedInt32Array$Bridge";
+    static const char* PACKED_INT_64_ARRAY_BRIDGE_CLASS_NAME = "godot.core.PackedInt64Array$Bridge";
+    static const char* PACKED_FLOAT_32_ARRAY_BRIDGE_CLASS_NAME = "godot.core.PackedFloat32Array$Bridge";
+    static const char* PACKED_FLOAT_64_ARRAY_BRIDGE_CLASS_NAME = "godot.core.PackedFloat64Array$Bridge";
+    static const char* PACKED_STRING_ARRAY_BRIDGE_CLASS_NAME = "godot.core.PackedStringArray$Bridge";
+    static const char* PACKED_VECTOR2_ARRAY_BRIDGE_CLASS_NAME = "godot.core.PackedVector2Array$Bridge";
+    static const char* PACKED_VECTOR3_ARRAY_BRIDGE_CLASS_NAME = "godot.core.PackedVector3Array$Bridge";
 }
 
 #endif //GODOT_JVM_CONSTANTS_H

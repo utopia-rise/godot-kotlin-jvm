@@ -4,18 +4,19 @@
 
 #include <modules/kotlin_jvm/src/bridges/memory_bridge.h>
 #include <modules/kotlin_jvm/src/bridges/variant_array_bridge.h>
-#include <core/variant.h>
 #include <modules/kotlin_jvm/src/bridges/dictionary_bridge.h>
 #include <modules/kotlin_jvm/src/bridges/rid_bridge.h>
 #include <modules/kotlin_jvm/src/bridges/node_path_bridge.h>
-#include <modules/kotlin_jvm/src/bridges/pool_byte_array_bridge.h>
-#include <modules/kotlin_jvm/src/bridges/pool_color_array_bridge.h>
-#include <modules/kotlin_jvm/src/bridges/pool_int_array_bridge.h>
-#include <modules/kotlin_jvm/src/bridges/pool_real_array_bridge.h>
-#include <modules/kotlin_jvm/src/bridges/pool_string_array_bridge.h>
-#include <modules/kotlin_jvm/src/bridges/pool_vector2_array_bridge.h>
-#include <modules/kotlin_jvm/src/bridges/pool_vector3_array_bridge.h>
+#include <modules/kotlin_jvm/src/bridges/packed_byte_array_bridge.h>
+#include <modules/kotlin_jvm/src/bridges/packed_color_array_bridge.h>
+#include <modules/kotlin_jvm/src/bridges/packed_int_32_array_bridge.h>
+#include <modules/kotlin_jvm/src/bridges/packed_float_32_array_bridge.h>
+#include <modules/kotlin_jvm/src/bridges/packed_string_array_bridge.h>
+#include <modules/kotlin_jvm/src/bridges/packed_vector2_array_bridge.h>
+#include <modules/kotlin_jvm/src/bridges/packed_vector3_array_bridge.h>
 #include <modules/kotlin_jvm/src/bridges/gd_print_bridge.h>
+#include <modules/kotlin_jvm/src/bridges/packed_int_64_array_bridge.h>
+#include <modules/kotlin_jvm/src/bridges/packed_float_64_array_bridge.h>
 
 class BridgesManager {
 private:
@@ -28,13 +29,15 @@ private:
     bridges::RidBridge* rid_bridge;
     bridges::NodePathBridge* node_path_bridge;
 
-    bridges::PoolByteArrayBridge* pool_byte_array_bridge;
-    bridges::PoolColorArrayBridge* pool_color_array_bridge;
-    bridges::PoolIntArrayBridge* pool_int_array_bridge;
-    bridges::PoolRealArrayBridge* pool_real_array_bridge;
-    bridges::PoolStringArrayBridge* pool_string_array_bridge;
-    bridges::PoolVector2ArrayBridge* pool_vector2_array_bridge;
-    bridges::PoolVector3ArrayBridge* pool_vector3_array_bridge;
+    bridges::PackedByteArrayBridge* packed_byte_array_bridge;
+    bridges::PackedColorArrayBridge* packed_color_array_bridge;
+    bridges::PackedInt32IntArrayBridge* packed_int_32_array_bridge;
+    bridges::PackedInt64IntArrayBridge* packed_int_64_array_bridge;
+    bridges::PackedFloat32ArrayBridge* packed_float_32_array_bridge;
+    bridges::PackedFloat64ArrayBridge* packed_float_64_array_bridge;
+    bridges::PackedStringArrayBridge* packed_string_array_bridge;
+    bridges::PackedVector2ArrayBridge* packed_vector2_array_bridge;
+    bridges::PackedVector3ArrayBridge* packed_vector3_array_bridge;
 
     BridgesManager();
     ~BridgesManager() = default;

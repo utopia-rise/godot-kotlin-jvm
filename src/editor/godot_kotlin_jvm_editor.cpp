@@ -36,7 +36,7 @@ void GodotKotlinJvmEditor::on_file_system_dock_folder_moved( // NOLINT(readabili
 ) {
     DirAccess* dir_access = DirAccess::create_for_path(new_folder);
     String file_path = dir_access->get_next();
-    while (!file_path.empty()) {
+    while (!file_path.is_empty()) {
         if (file_path.ends_with(".kt")) {
             LOG_WARNING(
                     vformat("You should not move folders with kotlin source files in the godot editor! Use the IDE for that. Folder moved: %s",
@@ -49,7 +49,7 @@ void GodotKotlinJvmEditor::on_file_system_dock_folder_moved( // NOLINT(readabili
 void GodotKotlinJvmEditor::on_menu_option_pressed(int menu_option) {
     switch (menu_option) {
         case ABOUT_KOTLIN_JVM:
-            about_dialog->popup_centered_minsize();
+            about_dialog->popup_centered();
             break;
         default: LOG_ERROR(
                 "Invalid menu option. Please file a bugreport to https://github.com/utopia-rise/godot-kotlin-jvm/issues"
@@ -59,7 +59,7 @@ void GodotKotlinJvmEditor::on_menu_option_pressed(int menu_option) {
 
 void GodotKotlinJvmEditor::on_build_project_pressed() {
     BuildManager::get_instance().build_project_non_blocking();
-    build_dialog->popup_centered_minsize();
+    build_dialog->popup_centered();
 }
 
 void GodotKotlinJvmEditor::_notificationv(int p_notification, bool p_reversed) {
@@ -119,22 +119,24 @@ void GodotKotlinJvmEditor::_notificationv(int p_notification, bool p_reversed) {
         build_check_timer->set_autostart(false);
         build_check_timer->set_wait_time(0.2);
         build_check_timer->set_one_shot(false);
-        build_check_timer->connect("timeout", this, "on_build_check_timeout");
+        build_check_timer->connect(SNAME("timeout"), callable_mp(this, &GodotKotlinJvmEditor::on_build_check_timeout));
         add_child(build_check_timer);
 
         add_control_to_bottom_panel(bottom_panel, "Kotlin/JVM");
 
         PopupMenu* menu_pop_up{memnew(PopupMenu)};
         menu_pop_up->hide();
-        menu_pop_up->set_as_toplevel(true);
-        menu_pop_up->connect("id_pressed", this, "on_menu_option_pressed");
+
+        //TODO/4.0: Check if still necessary and how to do it, as it now inherits from Window and not CanvasItem.
+//        menu_pop_up->set_as_toplevel(true);
+        menu_pop_up->connect(SNAME("id_pressed"), callable_mp(this, &GodotKotlinJvmEditor::on_menu_option_pressed));
 
         add_tool_submenu_item("Kotlin/JVM", menu_pop_up);
 
         tool_bar_build_button->set_text("Build");
         tool_bar_build_button->set_tooltip("Build gradle project");
         tool_bar_build_button->set_focus_mode(Control::FOCUS_NONE);
-        tool_bar_build_button->connect("pressed", this, "on_build_project_pressed");
+        tool_bar_build_button->connect(SNAME("pressed"), callable_mp(this, &GodotKotlinJvmEditor::on_build_project_pressed));
 
         add_control_to_container(CustomControlContainer::CONTAINER_TOOLBAR, tool_bar_build_button);
 
@@ -145,9 +147,9 @@ void GodotKotlinJvmEditor::_notificationv(int p_notification, bool p_reversed) {
         editor_base_control->add_child(error_dialog);
 
         FileSystemDock* file_system_dock = get_editor_interface()->get_file_system_dock();
-        file_system_dock->connect("files_moved", this, "on_file_system_dock_file_moved");
-        file_system_dock->connect("file_removed", this, "on_file_system_dock_file_removed");
-        file_system_dock->connect("folder_moved", this, "on_file_system_dock_folder_moved");
+        file_system_dock->connect(SNAME("files_moved"), callable_mp(this, &GodotKotlinJvmEditor::on_file_system_dock_file_moved));
+        file_system_dock->connect(SNAME("file_removed"), callable_mp(this, &GodotKotlinJvmEditor::on_file_system_dock_file_removed));
+        file_system_dock->connect(SNAME("folder_moved"), callable_mp(this, &GodotKotlinJvmEditor::on_file_system_dock_folder_moved));
 
         if (!GDKotlin::get_instance().initialized()) {
             error_dialog->show_with_errors(
@@ -188,11 +190,11 @@ void GodotKotlinJvmEditor::on_build_check_timeout() { // NOLINT(readability-conv
 GodotKotlinJvmEditor::GodotKotlinJvmEditor() :
         build_check_timer(memnew(Timer)),
         bottom_panel(memnew(BottomPanel)),
-        tool_bar_build_button(memnew(ToolButton)),
+        tool_bar_build_button(memnew(Button)),
         build_dialog(memnew(BuildDialog)),
         about_dialog(memnew(AboutDialog)),
         error_dialog(memnew(ErrorDialog)) {
-
+    tool_bar_build_button->set_flat(true);
 }
 
 #endif //TOOLS_ENABLED
