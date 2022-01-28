@@ -2,7 +2,7 @@
 #include "long_string_queue.h"
 
 #include <core/io/json.h>
-#include <core/os/file_access.h>
+#include <core/io/file_access.h>
 
 String GdKotlinConfiguration::to_json() {
     Dictionary result;
@@ -23,15 +23,13 @@ String GdKotlinConfiguration::to_json() {
     result[vm_type_identifier] = vm_type_value;
     result[max_string_size_identifier] = max_string_size;
 
-    return JSON::print(result);
+    return Variant(result).to_json_string();
 }
 
 GdKotlinConfiguration GdKotlinConfiguration::from_json(const String& json_string) {
-    Variant result;
-    String err_string;
-    int err_line;
-
-    Error error{JSON::parse(json_string, result, err_string, err_line)};
+    JSON json;
+    Error error{json.parse(json_string)};
+    Variant result{json.get_data()};
 
     if (error != OK || result.get_type() != Variant::DICTIONARY) {
         LOG_ERROR("Error parsing Godot Kotlin configuration ! Falling back to default configuration");

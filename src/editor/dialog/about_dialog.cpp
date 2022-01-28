@@ -17,7 +17,7 @@ AboutDialog::AboutDialog(): AcceptDialog(), about_dialog_check_box(memnew(CheckB
 
     set_title("About Godot Kotlin JVM");
 
-    connect("about_to_show", this, "on_about_to_show");
+    connect(SNAME("about_to_show"), callable_mp(this, &AboutDialog::on_about_to_show));
 
     // Main VBoxContainer (icon + label on top, checkbox at bottom)
     VBoxContainer* about_vbox{memnew(VBoxContainer)};
@@ -28,14 +28,14 @@ AboutDialog::AboutDialog(): AcceptDialog(), about_dialog_check_box(memnew(CheckB
     about_vbox->add_child(about_hbox);
 
     TextureRect* about_icon{memnew(TextureRect)};
-    about_icon->set_texture(get_icon("Warning", "EditorIcons"));
+    about_icon->set_texture(get_theme_icon("Warning", "EditorIcons"));
     about_hbox->add_child(about_icon);
 
     RichTextLabel* about_label{memnew(RichTextLabel)};
     about_hbox->add_child(about_label);
     about_label->set_custom_minimum_size(Size2{600, 150} * EDSCALE);
     about_label->set_v_size_flags(Control::SizeFlags::SIZE_EXPAND_FILL);
-    about_label->set_bbcode(
+    about_label->set_text(
             "Godot Kotlin JVM is a community project and is in no way related to Godot or Jetbrains.\n\n"
             "The project is in alpha stage and, while already usable, it is not meant for use in production.\n"
             "Future updates might still include breaking changes.\n\n"
@@ -43,11 +43,11 @@ AboutDialog::AboutDialog(): AcceptDialog(), about_dialog_check_box(memnew(CheckB
     );
     about_label->set_scroll_active(false);
     about_label->set_use_bbcode(true);
-    about_label->connect("meta_clicked", this, "on_url_clicked");
+    about_label->connect(SNAME("meta_clicked"), callable_mp(this, &AboutDialog::on_url_clicked));
 
     about_vbox->add_child(about_dialog_check_box);
     about_dialog_check_box->set_text("Show this info when starting the editor");
-    about_dialog_check_box->connect("toggled", this, "on_checkbox_toggled");
+    about_dialog_check_box->connect(SNAME("toggled"), callable_mp(this, &AboutDialog::on_checkbox_toggled));
 }
 
 void AboutDialog::on_about_to_show() {
@@ -89,7 +89,7 @@ void AboutDialog::_notificationv(int p_notification, bool p_reversed) {
         if (show_on_start) {
             // Once shown a first time, it can be seen again via the Kotlin JVM menu - it doesn't have to be exclusive from that time on.
             set_exclusive(true);
-            popup_centered_minsize();
+            popup_centered();
             set_exclusive(false);
         }
     }

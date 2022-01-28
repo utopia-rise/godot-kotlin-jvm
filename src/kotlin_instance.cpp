@@ -66,12 +66,11 @@ bool KotlinInstance::has_method(const StringName& p_method) const {
 }
 
 Variant
-KotlinInstance::call(const StringName& p_method, const Variant& p_arg1, const Variant& p_arg2, const Variant& p_arg3,
-                     const Variant& p_arg4, const Variant& p_arg5, const Variant& p_arg6, const Variant& p_arg7, const Variant& p_arg8) {
-    return ScriptInstance::call(p_method, p_arg1, p_arg2, p_arg3, p_arg4, p_arg5, p_arg6, p_arg7, p_arg8);
+KotlinInstance::call(const StringName& p_method, VARIANT_ARG_DECLARE) {
+    return ScriptInstance::call(p_method, VARIANT_ARG_PASS);
 }
 
-Variant KotlinInstance::call(const StringName& p_method, const Variant** p_args, int p_argcount, Variant::CallError& r_error) {
+Variant KotlinInstance::call(const StringName& p_method, const Variant** p_args, int p_argcount, Callable::CallError& r_error) {
     jni::LocalFrame local_frame(100);
 
     KtFunction* function { kt_class->get_method(p_method) };
@@ -79,23 +78,23 @@ Variant KotlinInstance::call(const StringName& p_method, const Variant** p_args,
     if (function) {
         function->invoke(this->wrapped_object, p_args, p_argcount, ret_var);
     } else {
-        r_error.error = Variant::CallError::CALL_ERROR_INVALID_METHOD;
+        r_error.error = Callable::CallError::CALL_ERROR_INVALID_METHOD;
     }
     return ret_var;
 }
 
-void KotlinInstance::call_multilevel(const StringName& p_method, const Variant& p_arg1, const Variant& p_arg2,
-                                     const Variant& p_arg3, const Variant& p_arg4, const Variant& p_arg5, const Variant& p_arg6, const Variant& p_arg7, const Variant& p_arg8) {
-    ScriptInstance::call_multilevel(p_method, p_arg1, p_arg2, p_arg3, p_arg4, p_arg5, p_arg6, p_arg7, p_arg8);
-}
-
-void KotlinInstance::call_multilevel(const StringName& p_method, const Variant** p_args, int p_argcount) {
-    ScriptInstance::call_multilevel(p_method, p_args, p_argcount);
-}
-
-void KotlinInstance::call_multilevel_reversed(const StringName& p_method, const Variant** p_args, int p_argcount) {
-    ScriptInstance::call_multilevel_reversed(p_method, p_args, p_argcount);
-}
+//void KotlinInstance::call_multilevel(const StringName& p_method, const Variant& p_arg1, const Variant& p_arg2,
+//                                     const Variant& p_arg3, const Variant& p_arg4, const Variant& p_arg5) {
+//    ScriptInstance::call_multilevel(p_method, p_arg1, p_arg2, p_arg3, p_arg4, p_arg5);
+//}
+//
+//void KotlinInstance::call_multilevel(const StringName& p_method, const Variant** p_args, int p_argcount) {
+//    ScriptInstance::call_multilevel(p_method, p_args, p_argcount);
+//}
+//
+//void KotlinInstance::call_multilevel_reversed(const StringName& p_method, const Variant** p_args, int p_argcount) {
+//    ScriptInstance::call_multilevel_reversed(p_method, p_args, p_argcount);
+//}
 
 void KotlinInstance::notification(int p_notification) {
 
@@ -129,23 +128,28 @@ Variant KotlinInstance::property_get_fallback(const StringName& p_name, bool* r_
     return ScriptInstance::property_get_fallback(p_name, r_valid);
 }
 
-MultiplayerAPI::RPCMode KotlinInstance::get_rpc_mode(const StringName& p_method) const {
-    KtFunction* function { kt_class->get_method(p_method) };
-
-    if (function) {
-        return function->get_rpc_mode();
-    } else {
-        return MultiplayerAPI::RPC_MODE_DISABLED;
-    }
-}
-
-MultiplayerAPI::RPCMode KotlinInstance::get_rset_mode(const StringName& p_variable) const {
-    KtProperty* ktProperty { kt_class->get_property(p_variable) };
-    if (ktProperty) {
-        return ktProperty->get_rpc_mode();
-    } else {
-        return MultiplayerAPI::RPC_MODE_DISABLED;
-    }
+//TODO/4.0: Implement new RPC methods
+//Multiplayer::RPCMode KotlinInstance::get_rpc_mode(const StringName& p_method) const {
+//    KtFunction* function { kt_class->get_method(p_method) };
+//
+//    if (function) {
+//        return function->get_rpc_mode();
+//    } else {
+//        return Multiplayer::RPC_MODE_DISABLED;
+//    }
+//}
+//
+//Multiplayer::RPCMode KotlinInstance::get_rset_mode(const StringName& p_variable) const {
+//    KtProperty* ktProperty { kt_class->get_property(p_variable) };
+//    if (ktProperty) {
+//        return ktProperty->get_rpc_mode();
+//    } else {
+//        return Multiplayer::RPC_MODE_DISABLED;
+//    }
+//}
+//
+const Vector<Multiplayer::RPCConfig> KotlinInstance::get_rpc_methods() const {
+    return Vector<Multiplayer::RPCConfig>();
 }
 
 ScriptLanguage* KotlinInstance::get_language() {

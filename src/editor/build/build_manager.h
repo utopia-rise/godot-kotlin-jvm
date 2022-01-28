@@ -4,7 +4,6 @@
 #ifndef GODOT_JVM_BUILD_MANAGER_H
 #define GODOT_JVM_BUILD_MANAGER_H
 
-#include <core/error_list.h>
 #include <core/os/os.h>
 #include <core/os/thread.h>
 

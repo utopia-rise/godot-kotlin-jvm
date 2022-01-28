@@ -2,7 +2,6 @@
 
 #include <modules/kotlin_jvm/src/jni/jvm.h>
 #include "kotlin_editor_export_plugin.h"
-#include "core/os/file_access.h"
 #include "gd_kotlin.h"
 
 static constexpr const char* all_jvm_feature{"export-all-jvm"};
@@ -98,7 +97,7 @@ void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::Jvm::Typ
     GdKotlinConfiguration configuration;
     configuration.set_vm_type(vm_type);
     configuration.set_max_string_size(GDKotlin::get_instance().get_configuration().get_max_string_size());
-    const CharType* json_string{configuration.to_json().c_str()};
+    const char32_t* json_string{configuration.to_json().get_data()};
     Vector<uint8_t> json_bytes;
     for (int i = 0; json_string[i] != '\0'; ++i) {
         json_bytes.push_back(json_string[i]);

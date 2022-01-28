@@ -68,7 +68,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * Returns true if the array is empty.
      */
     fun empty(): Boolean {
-        Bridge.engine_call_empty(_handle)
+        Bridge.engine_call_is_empty(_handle)
         return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
     }
 
@@ -84,7 +84,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * Reverses the order of the elements in the array.
      */
     fun invert() {
-        Bridge.engine_call_invert(_handle)
+        Bridge.engine_call_reverse(_handle)
     }
 
     override fun remove(element: T): Boolean {
@@ -101,7 +101,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      */
     fun remove(position: Int) {
         TransferContext.writeArguments(VariantType.JVM_INT to position)
-        Bridge.engine_call_remove(_handle)
+        Bridge.engine_call_remove_at(_handle)
     }
 
     override fun removeAll(elements: Collection<T>): Boolean {
@@ -419,10 +419,10 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
 
         external fun engine_call_get_size(_handle: VoidPtr)
         external fun engine_call_clear(_handle: VoidPtr)
-        external fun engine_call_empty(_handle: VoidPtr)
+        external fun engine_call_is_empty(_handle: VoidPtr)
         external fun engine_call_hash(_handle: VoidPtr)
-        external fun engine_call_invert(_handle: VoidPtr)
-        external fun engine_call_remove(_handle: VoidPtr)
+        external fun engine_call_reverse(_handle: VoidPtr)
+        external fun engine_call_remove_at(_handle: VoidPtr)
         external fun engine_call_resize(_handle: VoidPtr)
         external fun engine_call_shuffle(_handle: VoidPtr)
         external fun engine_call_sort(_handle: VoidPtr)

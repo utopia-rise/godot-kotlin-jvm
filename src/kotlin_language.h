@@ -1,6 +1,6 @@
 #ifndef GODOT_JVM_KOTLIN_LANGUAGE_H
 #define GODOT_JVM_KOTLIN_LANGUAGE_H
-#include <core/script_language.h>
+#include <core/object/script_language.h>
 
 class KotlinLanguage : public ScriptLanguage {
 public:
@@ -31,14 +31,15 @@ public:
 
     void get_string_delimiters(List<String>* p_delimiters) const override;
 
-    Ref<Script> get_template(const String& p_class_name, const String& p_base_class_name) const override;
+    Ref<Script> make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const override;
 
-    void make_template(const String& p_class_name, const String& p_base_class_name, Ref<Script>& p_script) override;
+    Vector<ScriptTemplate> get_built_in_templates(StringName p_object) override;
 
     bool is_using_templates() override;
 
-    bool validate(const String& p_script, int& r_line_error, int& r_col_error, String& r_test_error, const String& p_path,
-             List<String>* r_functions, List<Warning>* r_warnings, Set<int>* r_safe_lines) const override;
+    bool validate(const String& p_script, const String& p_path, List<String>* r_functions,
+                  List<ScriptLanguage::ScriptError>* r_errors = nullptr, List<ScriptLanguage::Warning>* r_warnings = nullptr,
+                  Set<int>* r_safe_lines = nullptr) const override;
 
     String validate_path(const String& p_path) const override;
 
@@ -48,11 +49,9 @@ public:
 
     bool supports_builtin_mode() const override;
 
-    bool can_inherit_from_file() override;
-
     int find_function(const String& p_function, const String& p_code) const override;
 
-    String make_function(const String& p_class, const String& p_name, const PoolStringArray& p_args) const override;
+    String make_function(const String& p_class, const String& p_name, const PackedStringArray& p_args) const override;
 
     Error open_in_external_editor(const Ref<Script>& p_script, int p_line, int p_col) override;
 

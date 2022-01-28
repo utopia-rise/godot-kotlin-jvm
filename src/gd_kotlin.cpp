@@ -1,15 +1,13 @@
-#include <core/print_string.h>
 #include <main/main.h>
 #include "gd_kotlin.h"
-#include "core/project_settings.h"
 #include "bridges_manager.h"
 #include "jni/class_loader.h"
 #include <core/io/resource_loader.h>
-#include <core/os/dir_access.h>
+#include <core/config/project_settings.h>
 
 #ifndef TOOLS_ENABLED
 
-#include <core/os/dir_access.h>
+#include <core/io/dir_access.h>
 
 #endif
 
@@ -178,7 +176,7 @@ void GDKotlin::init() {
 #endif
         } else if (cmd_arg.find("--jvm-debug-port") >= 0) {
             if (_split_jvm_debug_argument(cmd_arg, jvm_debug_port) == OK) {
-                if (jvm_debug_port.empty()) {
+                if (jvm_debug_port.is_empty()) {
                     jvm_debug_port = "5005";
                 }
             } else {
@@ -186,7 +184,7 @@ void GDKotlin::init() {
             }
         } else if (cmd_arg.find("--jvm-debug-address") >= 0) {
             if (_split_jvm_debug_argument(cmd_arg, jvm_debug_address) == OK) {
-                if (jvm_debug_address.empty()) {
+                if (jvm_debug_address.is_empty()) {
                     jvm_debug_address = "*";
                 }
             } else {
@@ -201,7 +199,7 @@ void GDKotlin::init() {
             }
         } else if (cmd_arg.find("--jvm-jmx-port") >= 0) {
             if (_split_jvm_debug_argument(cmd_arg, jvm_jmx_port) == OK) {
-                if (jvm_jmx_port.empty()) {
+                if (jvm_jmx_port.is_empty()) {
                     jvm_jmx_port = "9010";
                 }
             }
@@ -230,10 +228,10 @@ void GDKotlin::init() {
         }
     }
 
-    if (!jvm_debug_port.empty() || !jvm_debug_address.empty()) {
-        if (jvm_debug_address.empty()) {
+    if (!jvm_debug_port.is_empty() || !jvm_debug_address.is_empty()) {
+        if (jvm_debug_address.is_empty()) {
             jvm_debug_address = "*";
-        } else if (jvm_debug_port.empty()) {
+        } else if (jvm_debug_port.is_empty()) {
             jvm_debug_port = "5005";
         }
 
@@ -250,7 +248,7 @@ void GDKotlin::init() {
         args.option(debug_command.utf8());
     }
 
-    if (!jvm_jmx_port.empty()) {
+    if (!jvm_jmx_port.is_empty()) {
         String port_command{"-Dcom.sun.management.jmxremote.port=" + jvm_jmx_port};
         String rmi_port{"-Dcom.sun.management.jmxremote.rmi.port=" + jvm_jmx_port};
         args.option("-Djava.rmi.server.hostname=127.0.0.1");
@@ -573,7 +571,7 @@ void GDKotlin::register_members(jni::Env& p_env) {
 
 bool GDKotlin::check_configuration() {
     bool has_configuration_error = false;
-    if (Engine::get_singleton()->is_editor_hint() && OS::get_singleton()->get_environment("JAVA_HOME").empty()) {
+    if (Engine::get_singleton()->is_editor_hint() && OS::get_singleton()->get_environment("JAVA_HOME").is_empty()) {
         LOG_WARNING("JAVA_HOME not defined. Godot-JVM module won't be loaded!");
         configuration_errors.push_back(
                 {

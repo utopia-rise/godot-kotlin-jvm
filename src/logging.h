@@ -5,8 +5,7 @@
 #ifndef GODOT_JVM_LOGGING_H
 #define GODOT_JVM_LOGGING_H
 
-#include <core/engine.h>
-#include <core/print_string.h>
+#include <core/string/print_string.h>
 
 #define LOG_VERBOSE(message) \
     print_verbose(vformat("Godot-JVM: %s", message))

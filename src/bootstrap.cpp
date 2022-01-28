@@ -1,5 +1,4 @@
 #include "bootstrap.h"
-#include <core/print_string.h>
 
 
 JNI_INIT_STATICS_FOR_CLASS(Bootstrap)

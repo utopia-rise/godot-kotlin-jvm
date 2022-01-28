@@ -4,7 +4,7 @@
 
 #include <core/io/marshalls.h>
 #include <core/os/os.h>
-#include "core/variant.h"
+#include "core/variant/variant.h"
 #include "jni/wrapper.h"
 #include "shared_buffer.h"
 #include "type_manager.h"
@@ -12,16 +12,18 @@
 #include "logging.h"
 #include "long_string_queue.h"
 
+
+//TODO/4.0 implement new types
 namespace ktvariant {
 
     const int LONG_SIZE = 8;
-    const int REAL_SIZE = 8;
+    const int FLOAT64_SIZE = 8;
     const int BOOL_SIZE = 4;
 
     const int PTR_SIZE = 8;
 
     const int INT_SIZE = 4;
-    const int FLOAT_SIZE = 4;
+    const int FLOAT32_SIZE = 4;
 
 
     static void set_variant_type(SharedBuffer* des, Variant::Type variant_type) {
@@ -37,8 +39,8 @@ namespace ktvariant {
         des->increment_position(encode_uint64(static_cast<int64_t>(src), des->get_cursor()));
     }
 
-    static void to_kvariant_fromREAL(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, Variant::Type::REAL);
+    static void to_kvariant_fromFLOAT(SharedBuffer* des, const Variant& src) {
+        set_variant_type(des, Variant::Type::FLOAT);
         des->increment_position(encode_double(src.operator double_t(), des->get_cursor()));
     }
 
@@ -101,15 +103,15 @@ namespace ktvariant {
     }
 
     static void to_kvariant_fromPLANE(SharedBuffer* des, const Variant& src) {
-        Plane src_plane{src};
+        Plane src_plane{src.operator Plane()};
         set_variant_type(des, Variant::Type::PLANE);
         append_vector3(des, src_plane.normal);
         des->increment_position(encode_float(src_plane.d, des->get_cursor()));
     }
 
-    static void to_kvariant_fromQUAT(SharedBuffer* des, const Variant& src) {
-        Quat src_quat{src.operator Quat()};
-        set_variant_type(des, Variant::Type::QUAT);
+    static void to_kvariant_fromQUATERNION(SharedBuffer* des, const Variant& src) {
+        Quaternion src_quat{src.operator Quaternion()};
+        set_variant_type(des, Variant::Type::QUATERNION);
         des->increment_position(encode_float(src_quat.x, des->get_cursor()));
         des->increment_position(encode_float(src_quat.y, des->get_cursor()));
         des->increment_position(encode_float(src_quat.z, des->get_cursor()));
@@ -134,9 +136,9 @@ namespace ktvariant {
         append_basis(des, src);
     }
 
-    static void to_kvariant_fromTRANSFORM(SharedBuffer* des, const Variant& src) {
-        Transform src_transform{src.operator Transform()};
-        set_variant_type(des, Variant::Type::TRANSFORM);
+    static void to_kvariant_fromTRANSFORM3D(SharedBuffer* des, const Variant& src) {
+        Transform3D src_transform{src.operator Transform3D()};
+        set_variant_type(des, Variant::Type::TRANSFORM3D);
         append_basis(des, src_transform.basis);
         append_vector3(des, src_transform.origin);
     }
@@ -150,92 +152,17 @@ namespace ktvariant {
         des->increment_position(encode_float(src_color.a, des->get_cursor()));
     }
 
-    static void to_kvariant_fromDICTIONARY(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, Variant::Type::DICTIONARY);
+    template<Variant::Type VariantType, class TNativeCoreType>
+    static void to_kvariant_fromNATIVECORETYPE(SharedBuffer* des, const Variant& src) {
+        set_variant_type(des, VariantType);
         des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(memnew(Dictionary(src.operator Dictionary()))),
-                              des->get_cursor())
-        );
-    }
-
-    static void to_kvariant_fromARRAY(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, Variant::Type::ARRAY);
-        des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(memnew(Array(src.operator Array()))), des->get_cursor())
-        );
-    }
-
-    static void to_kvariant_fromNODEPATH(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, Variant::Type::NODE_PATH);
-        des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(memnew(NodePath(src.operator NodePath()))), des->get_cursor())
-        );
-    }
-
-    static void to_kvariant_fromRID(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, Variant::Type::_RID);
-        des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(memnew(RID(src.operator RID()))), des->get_cursor())
-        );
-    }
-
-    static void to_kvariant_fromPOOLBYTEARRAY(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, Variant::Type::POOL_BYTE_ARRAY);
-        des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolByteArray(src.operator PoolByteArray()))),
-                              des->get_cursor())
-        );
-    }
-
-    static void to_kvariant_fromPOOLINTARRAY(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, Variant::Type::POOL_INT_ARRAY);
-        des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolIntArray(src.operator PoolIntArray()))),
-                              des->get_cursor())
-        );
-    }
-
-    static void to_kvariant_fromPOOLREALARRAY(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, Variant::Type::POOL_REAL_ARRAY);
-        des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolRealArray(src.operator PoolRealArray()))),
-                              des->get_cursor())
-        );
-    }
-
-    static void to_kvariant_fromPOOLSTRINGARRAY(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, Variant::Type::POOL_STRING_ARRAY);
-        des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolStringArray(src.operator PoolStringArray()))),
-                              des->get_cursor())
-        );
-    }
-
-    static void to_kvariant_fromPOOLVECTOR2ARRAY(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, Variant::Type::POOL_VECTOR2_ARRAY);
-        des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolVector2Array(src.operator PoolVector2Array()))),
-                              des->get_cursor())
-        );
-    }
-
-    static void to_kvariant_fromPOOLVECTOR3ARRAY(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, Variant::Type::POOL_VECTOR3_ARRAY);
-        des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolVector3Array(src.operator PoolVector3Array()))),
-                              des->get_cursor())
-        );
-    }
-
-    static void to_kvariant_fromPOOLCOLORARRAY(SharedBuffer* des, const Variant& src) {
-        set_variant_type(des, Variant::Type::POOL_COLOR_ARRAY);
-        des->increment_position(
-                encode_uint64(reinterpret_cast<uintptr_t>(memnew(PoolColorArray(src.operator PoolColorArray()))),
+                encode_uint64(reinterpret_cast<uintptr_t>(memnew(TNativeCoreType(src.operator TNativeCoreType()))),
                               des->get_cursor())
         );
     }
 
     static void to_kvariant_fromOBJECT(SharedBuffer* des, const Variant& src) {
+        //TODO/4.0: rework object cpp -> jvm
         Object* ptr{src};
 
         // TODO : Investigate on nullable management of Godot. Is Object the only nullable type ?
@@ -258,10 +185,10 @@ namespace ktvariant {
             }
         }
 
-        bool is_ref{src.is_ref()};
+        bool is_ref{src.is_ref_counted()};
         uint64_t id;
         if (is_ref) {
-            auto* ref = reinterpret_cast<Reference*>(ptr);
+            auto* ref = reinterpret_cast<RefCounted*>(ptr);
             id = RefDB::get_instance().get_ref_id(ref);
 
         } else {
@@ -289,29 +216,31 @@ namespace ktvariant {
         to_kt_array[Variant::NIL] = to_kvariant_fromNIL;
         to_kt_array[Variant::BOOL] = to_kvariant_fromBOOL;
         to_kt_array[Variant::INT] = to_kvariant_fromINT;
-        to_kt_array[Variant::REAL] = to_kvariant_fromREAL;
+        to_kt_array[Variant::FLOAT] = to_kvariant_fromFLOAT;
         to_kt_array[Variant::STRING] = to_kvariant_fromSTRING;
         to_kt_array[Variant::VECTOR2] = to_kvariant_fromVECTOR2;
         to_kt_array[Variant::RECT2] = to_kvariant_fromRECT2;
         to_kt_array[Variant::VECTOR3] = to_kvariant_fromVECTOR3;
         to_kt_array[Variant::TRANSFORM2D] = to_kvariant_fromTRANSFORM2D;
         to_kt_array[Variant::PLANE] = to_kvariant_fromPLANE;
-        to_kt_array[Variant::QUAT] = to_kvariant_fromQUAT;
+        to_kt_array[Variant::QUATERNION] = to_kvariant_fromQUATERNION;
         to_kt_array[Variant::AABB] = to_kvariant_fromAABB;
         to_kt_array[Variant::BASIS] = to_kvariant_fromBASIS;
-        to_kt_array[Variant::TRANSFORM] = to_kvariant_fromTRANSFORM;
+        to_kt_array[Variant::TRANSFORM3D] = to_kvariant_fromTRANSFORM3D;
         to_kt_array[Variant::COLOR] = to_kvariant_fromCOLOR;
-        to_kt_array[Variant::DICTIONARY] = to_kvariant_fromDICTIONARY;
-        to_kt_array[Variant::ARRAY] = to_kvariant_fromARRAY;
-        to_kt_array[Variant::NODE_PATH] = to_kvariant_fromNODEPATH;
-        to_kt_array[Variant::_RID] = to_kvariant_fromRID;
-        to_kt_array[Variant::POOL_BYTE_ARRAY] = to_kvariant_fromPOOLBYTEARRAY;
-        to_kt_array[Variant::POOL_INT_ARRAY] = to_kvariant_fromPOOLINTARRAY;
-        to_kt_array[Variant::POOL_REAL_ARRAY] = to_kvariant_fromPOOLREALARRAY;
-        to_kt_array[Variant::POOL_STRING_ARRAY] = to_kvariant_fromPOOLSTRINGARRAY;
-        to_kt_array[Variant::POOL_VECTOR2_ARRAY] = to_kvariant_fromPOOLVECTOR2ARRAY;
-        to_kt_array[Variant::POOL_VECTOR3_ARRAY] = to_kvariant_fromPOOLVECTOR3ARRAY;
-        to_kt_array[Variant::POOL_COLOR_ARRAY] = to_kvariant_fromPOOLCOLORARRAY;
+        to_kt_array[Variant::DICTIONARY] = to_kvariant_fromNATIVECORETYPE<Variant::DICTIONARY, Dictionary>;
+        to_kt_array[Variant::ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::ARRAY, Array>;
+        to_kt_array[Variant::NODE_PATH] = to_kvariant_fromNATIVECORETYPE<Variant::NODE_PATH, NodePath>;
+        to_kt_array[Variant::RID] = to_kvariant_fromNATIVECORETYPE<Variant::RID, RID>;
+        to_kt_array[Variant::PACKED_BYTE_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_BYTE_ARRAY, PackedByteArray>;
+        to_kt_array[Variant::PACKED_INT32_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_INT32_ARRAY, PackedInt32Array>;
+        to_kt_array[Variant::PACKED_INT64_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_INT64_ARRAY, PackedInt64Array>;
+        to_kt_array[Variant::PACKED_FLOAT32_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_FLOAT32_ARRAY, PackedFloat32Array>;
+        to_kt_array[Variant::PACKED_FLOAT64_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_FLOAT64_ARRAY, PackedFloat64Array>;
+        to_kt_array[Variant::PACKED_STRING_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_STRING_ARRAY, PackedStringArray>;
+        to_kt_array[Variant::PACKED_VECTOR2_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_VECTOR2_ARRAY, PackedVector2Array>;
+        to_kt_array[Variant::PACKED_VECTOR3_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_VECTOR3_ARRAY, PackedVector3Array>;
+        to_kt_array[Variant::PACKED_COLOR_ARRAY] = to_kvariant_fromNATIVECORETYPE<Variant::PACKED_COLOR_ARRAY, PackedColorArray>;
         to_kt_array[Variant::OBJECT] = to_kvariant_fromOBJECT;
     }
 
@@ -335,9 +264,9 @@ namespace ktvariant {
         return Variant(ulong);
     }
 
-    static Variant from_kvariant_tokRealValue(SharedBuffer* byte_buffer) {
+    static Variant from_kvariant_tokFloat64Value(SharedBuffer* byte_buffer) {
         double real{decode_double(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(REAL_SIZE);
+        byte_buffer->increment_position(FLOAT64_SIZE);
         return Variant(real);
     }
 
@@ -365,9 +294,9 @@ namespace ktvariant {
 
     static inline Vector2 to_godot_vector2(SharedBuffer* byte_buffer) {
         float x{decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT_SIZE);
+        byte_buffer->increment_position(FLOAT32_SIZE);
         float y{decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT_SIZE);
+        byte_buffer->increment_position(FLOAT32_SIZE);
         return {x, y};
     }
 
@@ -408,23 +337,23 @@ namespace ktvariant {
     static Variant from_kvariant_tokPlaneValue(SharedBuffer* byte_buffer) {
         Vector3 norm{to_godot_vector3(byte_buffer)};
         float d{decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT_SIZE);
+        byte_buffer->increment_position(FLOAT32_SIZE);
         return Variant(
                 Plane(norm, d)
         );
     }
 
-    static Variant from_kvariant_tokQuatValue(SharedBuffer* byte_buffer) {
+    static Variant from_kvariant_tokQuaternionValue(SharedBuffer* byte_buffer) {
         float x{decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT_SIZE);
+        byte_buffer->increment_position(FLOAT32_SIZE);
         float y{decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT_SIZE);
+        byte_buffer->increment_position(FLOAT32_SIZE);
         float z{decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT_SIZE);
+        byte_buffer->increment_position(FLOAT32_SIZE);
         float w{decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT_SIZE);
+        byte_buffer->increment_position(FLOAT32_SIZE);
         return Variant(
-                Quat(x, y, z, w)
+                Quaternion(x, y, z, w)
         );
     }
 
@@ -447,23 +376,23 @@ namespace ktvariant {
         return Variant(to_godot_basis(byte_buffer));
     }
 
-    static Variant from_kvariant_tokTransformValue(SharedBuffer* byte_buffer) {
+    static Variant from_kvariant_tokTransform3DValue(SharedBuffer* byte_buffer) {
         const Basis& basis{to_godot_basis(byte_buffer)};
         const Vector3& origin{to_godot_vector3(byte_buffer)};
         return Variant(
-                Transform(basis, origin)
+                Transform3D(basis, origin)
         );
     }
 
     static Variant from_kvariant_tokColorValue(SharedBuffer* byte_buffer) {
         float r{decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT_SIZE);
+        byte_buffer->increment_position(FLOAT32_SIZE);
         float g{decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT_SIZE);
+        byte_buffer->increment_position(FLOAT32_SIZE);
         float b{decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT_SIZE);
+        byte_buffer->increment_position(FLOAT32_SIZE);
         float a{decode_float(byte_buffer->get_cursor())};
-        byte_buffer->increment_position(FLOAT_SIZE);
+        byte_buffer->increment_position(FLOAT32_SIZE);
         return Variant(Color(r, g, b, a));
     }
 
@@ -475,45 +404,49 @@ namespace ktvariant {
     }
 
     static Variant from_kvariant_toKObjectValue(SharedBuffer* byte_buffer) {
+        //TODO/4.0: rework object jvm -> cpp
+
         auto ptr{static_cast<uintptr_t>(decode_uint64(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(PTR_SIZE);
         bool is_ref{static_cast<bool>(decode_uint32(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(BOOL_SIZE);
-        if (is_ref) {
-            REF ref{REF(reinterpret_cast<Reference*>(ptr))};
+        /*if (is_ref) {
+            REF ref{REF(reinterpret_cast<RefCounted*>(ptr))};
             return Variant(ref.get_ref_ptr());
-        } else {
+        } else {*/
             return Variant(reinterpret_cast<Object*>(ptr));
-        }
+        //}
     }
 
     static void init_to_gd_methods(Variant (* to_gd_array[Variant::Type::VARIANT_MAX])(SharedBuffer* byte_buffer)) {
         to_gd_array[Variant::NIL] = from_kvariant_tokNilValue;
         to_gd_array[Variant::BOOL] = from_kvariant_tokBoolValue;
         to_gd_array[Variant::INT] = from_kvariant_tokLongValue;
-        to_gd_array[Variant::REAL] = from_kvariant_tokRealValue;
+        to_gd_array[Variant::FLOAT] = from_kvariant_tokFloat64Value;
         to_gd_array[Variant::STRING] = from_kvariant_tokStringValue;
         to_gd_array[Variant::VECTOR2] = from_kvariant_tokVector2Value;
         to_gd_array[Variant::RECT2] = from_kvariant_tokRect2Value;
         to_gd_array[Variant::VECTOR3] = from_kvariant_tokVector3Value;
         to_gd_array[Variant::TRANSFORM2D] = from_kvariant_tokTransform2DValue;
         to_gd_array[Variant::PLANE] = from_kvariant_tokPlaneValue;
-        to_gd_array[Variant::QUAT] = from_kvariant_tokQuatValue;
+        to_gd_array[Variant::QUATERNION] = from_kvariant_tokQuaternionValue;
         to_gd_array[Variant::AABB] = from_kvariant_tokAabbValue;
         to_gd_array[Variant::BASIS] = from_kvariant_tokBasisValue;
-        to_gd_array[Variant::TRANSFORM] = from_kvariant_tokTransformValue;
+        to_gd_array[Variant::TRANSFORM3D] = from_kvariant_tokTransform3DValue;
         to_gd_array[Variant::COLOR] = from_kvariant_tokColorValue;
         to_gd_array[Variant::DICTIONARY] = from_kvariant_tokVariantNativeCoreTypeValue<Dictionary>;
         to_gd_array[Variant::ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<Array>;
         to_gd_array[Variant::NODE_PATH] = from_kvariant_tokVariantNativeCoreTypeValue<NodePath>;
-        to_gd_array[Variant::_RID] = from_kvariant_tokVariantNativeCoreTypeValue<RID>;
-        to_gd_array[Variant::POOL_BYTE_ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<PoolByteArray>;
-        to_gd_array[Variant::POOL_INT_ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<PoolIntArray>;
-        to_gd_array[Variant::POOL_REAL_ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<PoolRealArray>;
-        to_gd_array[Variant::POOL_STRING_ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<PoolStringArray>;
-        to_gd_array[Variant::POOL_VECTOR2_ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<PoolVector2Array>;
-        to_gd_array[Variant::POOL_VECTOR3_ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<PoolVector3Array>;
-        to_gd_array[Variant::POOL_COLOR_ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<PoolColorArray>;
+        to_gd_array[Variant::RID] = from_kvariant_tokVariantNativeCoreTypeValue<RID>;
+        to_gd_array[Variant::PACKED_BYTE_ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<PackedByteArray>;
+        to_gd_array[Variant::PACKED_INT32_ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<PackedInt32Array>;
+        to_gd_array[Variant::PACKED_INT64_ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<PackedInt64Array>;
+        to_gd_array[Variant::PACKED_FLOAT32_ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<PackedFloat32Array>;
+        to_gd_array[Variant::PACKED_FLOAT64_ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<PackedFloat64Array>;
+        to_gd_array[Variant::PACKED_STRING_ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<PackedStringArray>;
+        to_gd_array[Variant::PACKED_VECTOR2_ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<PackedVector2Array>;
+        to_gd_array[Variant::PACKED_VECTOR3_ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<PackedVector3Array>;
+        to_gd_array[Variant::PACKED_COLOR_ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<PackedColorArray>;
         to_gd_array[Variant::OBJECT] = from_kvariant_toKObjectValue;
     }
 

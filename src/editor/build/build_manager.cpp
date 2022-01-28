@@ -1,7 +1,6 @@
 
 #ifdef TOOLS_ENABLED
 
-#include <core/variant_parser.h>
 #include <editor/editor_node.h>
 
 #include "../godot_kotlin_jvm_editor.h"
@@ -114,12 +113,11 @@ Error BuildManager::build_blocking() {
     Error result = OS::get_singleton()->execute(
             gradle_command,
             args,
-            true,
-            nullptr,
             &build_log,
             &exit_code,
             true,
-            &build_mutex
+            &build_mutex,
+            false
     );
 
     build_mutex.lock();

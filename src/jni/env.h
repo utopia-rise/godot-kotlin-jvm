@@ -2,7 +2,7 @@
 #define GODOT_LOADER_ENV_H
 #include <jni.h>
 #include "types.h"
-#include "core/ustring.h"
+#include <core/string/ustring.h>
 #include <modules/kotlin_jvm/src/logging.h>
 
 

@@ -1,7 +1,7 @@
 #ifndef GODOT_JVM_KOTLIN_SCRIPT_H
 #define GODOT_JVM_KOTLIN_SCRIPT_H
 
-#include "core/script_language.h"
+#include "core/object/script_language.h"
 #include "kt_class.h"
 
 class KotlinScript : public Script {
@@ -22,9 +22,9 @@ public:
 
     KtClass* get_kotlin_class() const;
 
-    Variant _new(const Variant** p_args, int p_argcount, Variant::CallError& r_error);
+    Variant _new(const Variant** p_args, int p_argcount, Callable::CallError& r_error);
 
-    bool can_instance() const override;
+    bool can_instantiate() const override;
 
     bool inherits_script(const Ref<Script> &p_script) const override;
 
@@ -65,6 +65,12 @@ public:
     void get_script_property_list(List<PropertyInfo>* p_list) const override;
 
     void set_path(const String& p_path, bool p_take_over) override;
+
+    const Vector<Multiplayer::RPCConfig> get_rpc_methods() const override;
+
+#ifdef TOOLS_ENABLED
+    const Vector<DocData::ClassDoc>& get_documentation() const override;
+#endif
 
 
 // This concerns placeholders script instances only
