@@ -13071,7 +13071,7 @@ private fun registerEngineTypeMethodForYSort(): Unit {
 }
 
 private fun registerEngineTypeMethodForClassDB(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS__CLASSDB to "can_instance")
+  TypeManager.engineTypeMethod.add(ENGINECLASS__CLASSDB to "can_instantiate")
   TypeManager.engineTypeMethod.add(ENGINECLASS__CLASSDB to "class_exists")
   TypeManager.engineTypeMethod.add(ENGINECLASS__CLASSDB to "class_get_category")
   TypeManager.engineTypeMethod.add(ENGINECLASS__CLASSDB to "class_get_enum_constants")

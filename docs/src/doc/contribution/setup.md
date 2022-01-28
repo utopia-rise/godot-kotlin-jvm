@@ -4,7 +4,7 @@ To build our module, you need to same dependencies as the ones described in the 
 
 Make sure that Java is installed and its PATH set in your system as well (at least Java 9 is needed!).
 
-1. Clone godot repo with the stable tag you want do deveop for (3.4.2-stable in this example). `git clone git@github.com:godotengine/godot.git 3.4.2-stable --recursive`
+1. Clone godot repo with the stable tag you want do deveop for (master in this example). `git clone git@github.com:godotengine/godot.git master --recursive`
 
 2. In the `godot-root` dir, run the following command: `git submodule add git@github.com:utopia-rise/godot-kotlin-jvm.git modules/kotlin_jvm`
 

@@ -139,11 +139,11 @@ void TransferContext::icall(
     JVM_CRASH_COND_MSG(!methodBind, vformat("Cannot find method with id %s", method_index));
 #endif
 
-    Variant::CallError r_error{Variant::CallError::CALL_OK};
+    Callable::CallError r_error{Callable::CallError::CALL_OK};
     const Variant& ret_value{methodBind->call(ptr, variant_args_ptr, args_size, r_error)};
 
 #ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(r_error.error != Variant::CallError::CALL_OK,
+    JVM_CRASH_COND_MSG(r_error.error != Callable::CallError::CALL_OK,
                        vformat("Call to method with id %s failed.", method_index));
 #endif
 
@@ -152,16 +152,16 @@ void TransferContext::icall(
 
 void TransferContext::invoke_constructor(JNIEnv* p_raw_env, jobject p_instance, jint p_class_index) {
     const StringName& class_name{GDKotlin::get_instance().engine_type_names[static_cast<int>(p_class_index)]};
-    Object* ptr = ClassDB::instance(class_name);
+    Object* ptr = ClassDB::instantiate(class_name);
 
     auto raw_ptr = reinterpret_cast<uintptr_t>(ptr);
-    int id;
+    uint64_t id;
 
 #ifdef DEBUG_ENABLED
     JVM_ERR_FAIL_COND_MSG(!ptr, vformat("Failed to instantiate class %s", class_name));
 #endif
 
-    if (auto* ref = Object::cast_to<Reference>(ptr)) {
+    if (auto* ref = Object::cast_to<RefCounted>(ptr)) {
         id = RefDB::get_instance().get_ref_id(ref);
     } else {
         id = ptr->get_instance_id();
@@ -202,7 +202,7 @@ void TransferContext::free_object(JNIEnv* p_raw_env, jobject p_instance, jlong p
     auto* owner = reinterpret_cast<Object*>(static_cast<uintptr_t>(p_raw_ptr));
 
 #ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(Object::cast_to<Reference>(owner), "Can't 'free' a reference.");
+    JVM_CRASH_COND_MSG(Object::cast_to<RefCounted>(owner), "Can't 'free' a reference.");
 #endif
 
     memdelete(owner);

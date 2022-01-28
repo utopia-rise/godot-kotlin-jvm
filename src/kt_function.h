@@ -2,11 +2,11 @@
 #define GODOT_JVM_KT_FUNCTION_H
 
 
-#include <core/object.h>
+#include <core/object/object.h>
+#include <core/multiplayer/multiplayer.h>
 #include "kt_property.h"
 #include "kt_object.h"
 #include "java_instance_wrapper.h"
-#include <core/io/multiplayer_api.h>
 
 struct KtFunctionInfo : public JavaInstanceWrapper<KtFunctionInfo> {
     KtFunctionInfo(jni::JObject p_wrapped, jni::JObject& p_class_loader);
@@ -15,7 +15,7 @@ struct KtFunctionInfo : public JavaInstanceWrapper<KtFunctionInfo> {
     String name;
     List<KtPropertyInfo*> arguments;
     KtPropertyInfo* return_val;
-    MultiplayerAPI::RPCMode rpc_mode;
+    Multiplayer::RPCMode rpc_mode;
 
     MethodInfo to_method_info() const;
 
@@ -39,7 +39,7 @@ public:
 
     StringName get_name() const;
     int get_parameter_count() const;
-    MultiplayerAPI::RPCMode get_rpc_mode() const;
+    Multiplayer::RPCMode get_rpc_mode() const;
 
     MethodInfo get_member_info();
     KtFunctionInfo* get_kt_function_info();

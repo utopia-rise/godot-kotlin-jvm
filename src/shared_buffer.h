@@ -2,7 +2,7 @@
 #define GODOT_JVM_SHARED_BUFFER_H
 
 
-#include <core/variant.h>
+#include <core/variant/variant.h>
 
 class SharedBuffer {
 private:

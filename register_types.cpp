@@ -18,7 +18,7 @@ Ref<KtResourceFormatSaver> resource_format_saver;
 #ifdef TOOLS_ENABLED
 static void editor_init() {
     Ref<KotlinEditorExportPlugin> export_plugin;
-    export_plugin.instance();
+    export_plugin.instantiate();
     EditorExport::get_singleton()->add_export_plugin(export_plugin);
 }
 
@@ -30,9 +30,9 @@ static EditorPlugin* godot_kotlin_jvm_editor_plugin_creator_func(EditorNode* edi
 void register_kotlin_jvm_types() {
     ClassDB::register_class<KotlinScript>();
     ScriptServer::register_language(&KotlinLanguage::get_instance());
-    resource_format_loader.instance();
+    resource_format_loader.instantiate();
     ResourceLoader::add_resource_format_loader(resource_format_loader);
-    resource_format_saver.instance();
+    resource_format_saver.instantiate();
     ResourceSaver::add_resource_format_saver(resource_format_saver);
 
 #ifdef TOOLS_ENABLED

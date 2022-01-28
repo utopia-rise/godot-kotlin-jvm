@@ -1,9 +1,9 @@
 #ifndef GODOT_JVM_KT_OBJECT_H
 #define GODOT_JVM_KT_OBJECT_H
 
-#include <core/string_name.h>
-#include <core/variant.h>
-#include <core/reference.h>
+#include <core/string/string_name.h>
+#include <core/variant/variant.h>
+#include <core/object/ref_counted.h>
 #include "jni/wrapper.h"
 #include "java_instance_wrapper.h"
 

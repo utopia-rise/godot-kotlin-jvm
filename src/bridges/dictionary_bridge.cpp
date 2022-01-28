@@ -25,10 +25,10 @@ DictionaryBridge::DictionaryBridge(jni::JObject p_wrapped, jni::JObject p_class_
             "(J)V",
             (void*) DictionaryBridge::engine_call_duplicate
     };
-    jni::JNativeMethod engine_call_empty_method{
-            "engine_call_empty",
+    jni::JNativeMethod engine_call_is_empty_method{
+            "engine_call_is_empty",
             "(J)V",
-            (void*) DictionaryBridge::engine_call_empty
+            (void*) DictionaryBridge::engine_call_is_empty
     };
     jni::JNativeMethod engine_call_erase_method{
             "engine_call_erase",
@@ -90,7 +90,7 @@ DictionaryBridge::DictionaryBridge(jni::JObject p_wrapped, jni::JObject p_class_
     methods.push_back(engine_call_constructor_method);
     methods.push_back(engine_call_clear_method);
     methods.push_back(engine_call_duplicate_method);
-    methods.push_back(engine_call_empty_method);
+    methods.push_back(engine_call_is_empty_method);
     methods.push_back(engine_call_erase_method);
     methods.push_back(engine_call_get_method);
     methods.push_back(engine_call_has_method);
@@ -125,9 +125,10 @@ void DictionaryBridge::engine_call_duplicate(JNIEnv* p_raw_env, jobject p_instan
     transfer_context->write_return_value(env, variant);
 }
 
-void DictionaryBridge::engine_call_empty(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+//TODO/4.0: modify naming in jvm code
+void DictionaryBridge::engine_call_is_empty(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env{p_raw_env};
-    Variant variant{from_uint_to_ptr<Dictionary>(p_raw_ptr)->empty()};
+    Variant variant{from_uint_to_ptr<Dictionary>(p_raw_ptr)->is_empty()};
     GDKotlin::get_instance().transfer_context->write_return_value(env, variant);
 }
 

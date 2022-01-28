@@ -16,11 +16,11 @@ BottomPanel::BottomPanel() :
 
     set_h_size_flags(SizeFlags::SIZE_EXPAND_FILL);
     set_v_size_flags(SizeFlags::SIZE_EXPAND_FILL);
-    set_anchors_and_margins_preset(LayoutPreset::PRESET_WIDE);
+    set_anchors_and_offsets_preset(LayoutPreset::PRESET_WIDE);
 
     TabContainer* panel_tabs{memnew(TabContainer)};
     add_child(panel_tabs);
-    panel_tabs->set_tab_align(TabContainer::ALIGN_LEFT);
+    panel_tabs->set_tab_alignment(TabContainer::ALIGNMENT_LEFT);
     panel_tabs->set_custom_minimum_size(Size2{0, 288} * EDSCALE);
     panel_tabs->set_v_size_flags(SizeFlags::SIZE_EXPAND_FILL);
 
@@ -42,7 +42,7 @@ void BottomPanel::add_builds_tab(TabContainer* panel_tabs) {
     toolbar_hbox->add_child(build_button);
     build_button->set_text(TTR("Build Project"));
     build_button->set_focus_mode(FocusMode::FOCUS_NONE);
-    build_button->connect("pressed", this, "on_build_button_pressed");
+    build_button->connect(SNAME("pressed"), callable_mp(this, &BottomPanel::on_build_button_pressed));
 
     toolbar_hbox->add_spacer();
 
@@ -51,7 +51,7 @@ void BottomPanel::add_builds_tab(TabContainer* panel_tabs) {
     toolbar_hbox->add_child(clear_log_button);
     clear_log_button->set_text(TTR("Clear Output"));
     clear_log_button->set_focus_mode(FocusMode::FOCUS_NONE);
-    clear_log_button->connect("pressed", this, "on_clear_log_button_pressed");
+    clear_log_button->connect(SNAME("pressed"), callable_mp(this, &BottomPanel::on_clear_log_button_pressed));
 
     //build output label
     build_tab->add_child(log_scroll_container);
@@ -73,7 +73,7 @@ void BottomPanel::on_clear_log_button_pressed() {
 
 void BottomPanel::update_log_output() {
     //set at beginning because once at bottom it should stay at the bottom. even if new input is added
-    log_scroll_container->set_v_scroll(static_cast<int>(log_scroll_container->get_v_scrollbar()->get_max()));
+    log_scroll_container->set_v_scroll(static_cast<int>(log_scroll_container->get_v_scroll_bar()->get_max()));
     log_label->set_text(BuildManager::get_instance().get_log());
 }
 

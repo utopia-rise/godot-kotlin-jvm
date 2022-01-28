@@ -1,5 +1,3 @@
-#include <core/rid.h>
-#include <core/resource.h>
 #include <modules/kotlin_jvm/src/gd_kotlin.h>
 #include "rid_bridge.h"
 #include "constants.h"

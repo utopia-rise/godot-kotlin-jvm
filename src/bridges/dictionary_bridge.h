@@ -3,7 +3,6 @@
 
 
 #include <modules/kotlin_jvm/src/java_instance_wrapper.h>
-#include <core/dictionary.h>
 
 namespace bridges {
 
@@ -15,7 +14,7 @@ namespace bridges {
         static uintptr_t engine_call_constructor(JNIEnv* p_raw_env, jobject p_instance);
         static void engine_call_clear(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_duplicate(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
-        static void engine_call_empty(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_is_empty(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_erase(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_get(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_has(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);

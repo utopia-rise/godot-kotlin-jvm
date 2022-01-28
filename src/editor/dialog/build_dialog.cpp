@@ -10,7 +10,7 @@ BuildDialog::BuildDialog(): scroll_container(memnew(ScrollContainer)), log_label
     ClassDB::bind_method(D_METHOD("on_build_dialog_hide"), &BuildDialog::on_build_dialog_hide);
 
     set_title("Building...");
-    connect("popup_hide", this, "on_build_dialog_hide");
+    connect(SNAME("popup_hide"), callable_mp(this, &BuildDialog::on_build_dialog_hide));
 
     scroll_container->set_custom_minimum_size(Size2{600, 400} * EDSCALE);
     add_child(scroll_container);
@@ -25,7 +25,7 @@ void BuildDialog::on_build_dialog_hide() {
 
 void BuildDialog::update_state() {
     log_label->set_text(BuildManager::get_instance().get_log());
-    scroll_container->set_v_scroll(static_cast<int>(scroll_container->get_v_scrollbar()->get_max()));
+    scroll_container->set_v_scroll(static_cast<int>(scroll_container->get_v_scroll_bar()->get_max()));
 
     if (BuildManager::get_instance().is_build_finished() && BuildManager::get_instance().last_build_successful()) {
         hide();

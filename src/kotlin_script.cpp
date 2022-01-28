@@ -4,7 +4,7 @@
 #include "gd_kotlin.h"
 #include "logging.h"
 
-bool KotlinScript::can_instance() const {
+bool KotlinScript::can_instantiate() const {
 #ifdef TOOLS_ENABLED
     if (Engine::get_singleton()->is_editor_hint()) {
         return false;
@@ -66,7 +66,7 @@ bool KotlinScript::instance_has(const Object* p_this) const {
 }
 
 bool KotlinScript::has_source_code() const {
-    return !source.empty();
+    return !source.is_empty();
 }
 
 String KotlinScript::get_source_code() const {
@@ -154,13 +154,13 @@ KtClass* KotlinScript::get_kotlin_class() const {
 #endif
 }
 
-Variant KotlinScript::_new(const Variant** p_args, int p_argcount, Variant::CallError& r_error) {
-    r_error.error = Variant::CallError::CALL_OK;
+Variant KotlinScript::_new(const Variant** p_args, int p_argcount, Callable::CallError& r_error) {
+    r_error.error = Callable::CallError::CALL_OK;
 
-    Object* owner{ClassDB::instance(get_kotlin_class()->base_godot_class)};
+    Object* owner{ClassDB::instantiate(get_kotlin_class()->base_godot_class)};
 
     REF ref;
-    auto* r{Object::cast_to<Reference>(owner)};
+    auto* r{Object::cast_to<RefCounted>(owner)};
     if (r) {
         ref = REF(r);
     }
@@ -195,7 +195,7 @@ void KotlinScript::set_path(const String& p_path, bool p_take_over) {
                            .trim_suffix("/")
                            .replace("/", ".")};
 
-    if (!package.empty()) {
+    if (!package.is_empty()) {
         package = "package " + package + "\n\n";
     }
 
@@ -203,6 +203,19 @@ void KotlinScript::set_path(const String& p_path, bool p_take_over) {
     set_source_code(source_code);
 #endif
 }
+
+const Vector<Multiplayer::RPCConfig> KotlinScript::get_rpc_methods() const {
+    //TODO/4.0: Implement new RPC methods
+    return Vector<Multiplayer::RPCConfig>();
+}
+
+#ifdef TOOLS_ENABLED
+const Vector<DocData::ClassDoc>& KotlinScript::get_documentation() const {
+    //TODO
+    static Vector<DocData::ClassDoc> docs;
+    return docs;
+}
+#endif
 
 KotlinScript::KotlinScript() : kotlin_class(nullptr) {
 

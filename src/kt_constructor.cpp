@@ -16,7 +16,7 @@ KtObject* KtConstructor::create_instance(const Variant **p_args, Object *p_owner
     GDKotlin::get_instance().transfer_context->write_args(env, p_args, parameter_count);
 
     uint64_t id;
-    if (auto* ref{Object::cast_to<Reference>(p_owner)}) {
+    if (auto* ref{Object::cast_to<RefCounted>(p_owner)}) {
         id = RefDB::get_instance().get_ref_id(ref);
     } else {
         id = p_owner->get_instance_id();

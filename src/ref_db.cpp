@@ -1,20 +1,20 @@
 #include "ref_db.h"
 #include "logging.h"
 
-uint64_t RefDB::get_ref_id(Reference* ref) {
+uint64_t RefDB::get_ref_id(RefCounted* ref) {
     static uint64_t id = 0;
     RefIndex index;
 
     {
         auto ptr{reinterpret_cast<uint64_t>(ref)};
-        MutexLock lock{mut};
+        MutexLock<BinaryMutex> lock{mut};
         RefIndex* index_ptr{ref_map.getptr(ptr)};
         if (index_ptr) {
             index_ptr->counter++;
             return index_ptr->index;
         }
 
-        if (freeIds.empty()) {
+        if (freeIds.is_empty()) {
             index = RefIndex{id};
             id++;
         } else {
@@ -33,10 +33,10 @@ uint64_t RefDB::get_ref_id(Reference* ref) {
     return index.index;
 }
 
-void RefDB::remove_ref(Reference* ref, uint32_t counter) {
+void RefDB::remove_ref(RefCounted* ref, uint32_t counter) {
     {
         auto ptr{reinterpret_cast<uint64_t>(ref)};
-        MutexLock lock{mut};
+        MutexLock<BinaryMutex> lock{mut};
         RefIndex* index_ptr{ref_map.getptr(ptr)};
         if (!index_ptr) {
             return;
