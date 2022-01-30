@@ -24,6 +24,7 @@ class Argument @JsonCreator constructor(
     val applyDefault: String?
 
     init {
+        if (name.contains("AESContext")) println()
         name = name.convertToCamelCase().escapeKotlinReservedNames()
         type = type.convertTypeToKotlin()
 
@@ -43,7 +44,6 @@ class Argument @JsonCreator constructor(
                     .replace(")", ".0)")}"
                 "Dictionary", "Transform", "Transform2D", "VariantArray", "RID", "PoolVector2Array", "PoolStringArray",
                 "PoolVector3Array", "PoolColorArray", "PoolIntArray", "PoolRealArray", "PoolByteArray" -> "$type()"
-                "String" -> "\"$defaultValue\""
                 "NodePath" -> {
                     val parameter = if (defaultValue.isEmpty()) "" else "\"$defaultValue\""
                     "$type($parameter)"

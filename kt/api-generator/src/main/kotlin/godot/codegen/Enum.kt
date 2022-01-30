@@ -17,7 +17,10 @@ class Enum @JsonCreator constructor(
 ) {
 
     fun generate(containingClassName: String): TypeSpec {
-        val enumBuilder = TypeSpec.enumBuilder(name.escapeUnderscore())
+        val enumBuilder = TypeSpec.enumBuilder(
+            name.escapeUnderscore()
+                .replace(".", "")
+        )
         enumBuilder.primaryConstructor(
             FunSpec.constructorBuilder()
                 .addParameter("id", Long::class)

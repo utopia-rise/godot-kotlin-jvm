@@ -147,6 +147,11 @@ fun String.convertToSnakeCase(): String =
     }.toString()
 
 fun String.convertTypeToKotlin(): String {
+    if (startsWith("enum.")){
+        return this
+            .replace("enum.", "")
+            .replace("::", ".")
+    }
     return when(this) {
         "int" -> "Long"
         "float" -> "Double"

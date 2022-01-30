@@ -3,6 +3,7 @@ package godot.codegen
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.squareup.kotlinpoet.*
+import godot.codegen.models.ApiDescription
 import godot.codegen.utils.convertToSnakeCase
 import godot.codegen.utils.getPackage
 import godot.codegen.utils.jvmVariantTypeValue
@@ -22,6 +23,7 @@ val jvmMethodToNotGenerate = listOf(
 
 fun File.generateApiFrom(jsonSource: File, docsDir: File? = null) {
     classDocs = docsDir?.let { DocGen.deserializeDoc(it) } ?: mapOf()
+    val apiDescription = ObjectMapper().readValue(jsonSource, object : TypeReference<ApiDescription>() {})
     val classes: List<Class> = ObjectMapper().readValue(jsonSource, object : TypeReference<ArrayList<Class>>() {})
 
     tree = classes.buildTree()
