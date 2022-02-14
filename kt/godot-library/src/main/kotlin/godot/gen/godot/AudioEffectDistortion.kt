@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -21,7 +21,7 @@ import kotlin.Unit
  * Modify the sound to make it distorted.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/audio/audio_buses.html](https://docs.godotengine.org/en/3.4/tutorials/audio/audio_buses.html)
+ * [$DOCS_URL/tutorials/audio/audio_buses.html]($DOCS_URL/tutorials/audio/audio_buses.html)
  *
  * Different types are available: clip, tan, lo-fi (bit crushing), overdrive, or waveshape.
  *
@@ -30,19 +30,35 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioEffectDistortion : AudioEffect() {
   /**
-   * Distortion power. Value can range from 0 to 1.
+   * Distortion type.
    */
-  public open var drive: Double
+  public open var mode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_GET_DRIVE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_GET_MODE,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_SET_MODE,
+          NIL)
+    }
+
+  /**
+   * Increases or decreases the volume before the effect. Value can range from -60 to 60.
+   */
+  public open var preGain: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_GET_PRE_GAIN, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_SET_DRIVE,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_SET_PRE_GAIN, NIL)
     }
 
   /**
@@ -62,18 +78,18 @@ public open class AudioEffectDistortion : AudioEffect() {
     }
 
   /**
-   * Distortion type.
+   * Distortion power. Value can range from 0 to 1.
    */
-  public open var mode: Long
+  public open var drive: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_GET_MODE,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_GET_DRIVE,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_SET_MODE,
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_SET_DRIVE,
           NIL)
     }
 
@@ -91,22 +107,6 @@ public open class AudioEffectDistortion : AudioEffect() {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_SET_POST_GAIN, NIL)
-    }
-
-  /**
-   * Increases or decreases the volume before the effect. Value can range from -60 to 60.
-   */
-  public open var preGain: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_GET_PRE_GAIN, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTDISTORTION_SET_PRE_GAIN, NIL)
     }
 
   public override fun __new(): Unit {
@@ -148,30 +148,5 @@ public open class AudioEffectDistortion : AudioEffect() {
     }
   }
 
-  public companion object {
-    /**
-     *
-     */
-    public final const val MODE_ATAN: Long = 1
-
-    /**
-     * Digital distortion effect which cuts off peaks at the top and bottom of the waveform.
-     */
-    public final const val MODE_CLIP: Long = 0
-
-    /**
-     * Low-resolution digital distortion effect. You can use it to emulate the sound of early digital audio devices.
-     */
-    public final const val MODE_LOFI: Long = 2
-
-    /**
-     * Emulates the warm distortion produced by a field effect transistor, which is commonly used in solid-state musical instrument amplifiers.
-     */
-    public final const val MODE_OVERDRIVE: Long = 3
-
-    /**
-     * Waveshaper distortions are used mainly by electronic musicians to achieve an extra-abrasive sound.
-     */
-    public final const val MODE_WAVESHAPE: Long = 4
-  }
+  public companion object
 }

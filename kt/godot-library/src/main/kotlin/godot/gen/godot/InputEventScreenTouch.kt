@@ -1,11 +1,10 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -25,12 +24,12 @@ import kotlin.jvm.JvmName
  * (only available on mobile devices)
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html)
+ * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
  *
  * Stores multi-touch press/release information. Supports touch press, touch release and [index] for multi-touch count and order.
  */
 @GodotBaseType
-public open class InputEventScreenTouch : InputEvent() {
+public open class InputEventScreenTouch : InputEventFromWindow() {
   /**
    * The touch index in the case of a multi-touch event. One index = one finger.
    */
@@ -48,7 +47,7 @@ public open class InputEventScreenTouch : InputEvent() {
     }
 
   /**
-   * The touch position.
+   * The touch position, in screen (global) coordinates.
    */
   public open var position: Vector2
     get() {
@@ -80,10 +79,5 @@ public open class InputEventScreenTouch : InputEvent() {
     callConstructor(ENGINECLASS_INPUTEVENTSCREENTOUCH)
   }
 
-  @CoreTypeHelper
-  public open fun position(schedule: Vector2.() -> Unit): Vector2 = position.apply{
-      schedule(this)
-      position = this
-  }
-
+  public companion object
 }

@@ -1,11 +1,10 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -19,6 +18,20 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFSpecGloss : Resource() {
+  public open var diffuseImg: Object?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSPECGLOSS_GET_DIFFUSE_IMG,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Object?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSPECGLOSS_SET_DIFFUSE_IMG,
+          NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
+    }
+
   public open var diffuseFactor: Color
     get() {
       TransferContext.writeArguments()
@@ -29,19 +42,6 @@ public open class GLTFSpecGloss : Resource() {
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSPECGLOSS_SET_DIFFUSE_FACTOR,
-          NIL)
-    }
-
-  public open var diffuseImg: Image?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSPECGLOSS_GET_DIFFUSE_IMG,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Image?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSPECGLOSS_SET_DIFFUSE_IMG,
           NIL)
     }
 
@@ -58,19 +58,6 @@ public open class GLTFSpecGloss : Resource() {
           NIL)
     }
 
-  public open var specGlossImg: Image?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSPECGLOSS_GET_SPEC_GLOSS_IMG,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Image?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSPECGLOSS_SET_SPEC_GLOSS_IMG,
-          NIL)
-    }
-
   public open var specularFactor: Color
     get() {
       TransferContext.writeArguments()
@@ -84,21 +71,23 @@ public open class GLTFSpecGloss : Resource() {
           NIL)
     }
 
+  public open var specGlossImg: Object?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSPECGLOSS_GET_SPEC_GLOSS_IMG,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Object?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSPECGLOSS_SET_SPEC_GLOSS_IMG,
+          NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_GLTFSPECGLOSS)
   }
 
-  @CoreTypeHelper
-  public open fun diffuseFactor(schedule: Color.() -> Unit): Color = diffuseFactor.apply{
-      schedule(this)
-      diffuseFactor = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun specularFactor(schedule: Color.() -> Unit): Color = specularFactor.apply{
-      schedule(this)
-      specularFactor = this
-  }
-
+  public companion object
 }

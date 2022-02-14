@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -33,9 +33,24 @@ import kotlin.Unit
  * **Note:** Breakpoints won't break on code if it's running in a thread. This is a current limitation of the GDScript debugger.
  */
 @GodotBaseType
-public open class Thread : Reference() {
+public open class Thread : RefCounted() {
   public override fun __new(): Unit {
-    callConstructor(ENGINECLASS__THREAD)
+    callConstructor(ENGINECLASS_THREAD)
+  }
+
+  /**
+   * Starts a new [godot.Thread] that calls `callable` with `userdata` passed as an argument. Even if no userdata is passed, `callable` must accept one argument and it will be null. The `priority` of the [godot.Thread] can be changed by passing a value from the [enum Priority] enum.
+   *
+   * Returns [OK] on success, or [ERR_CANT_CREATE] on failure.
+   */
+  public open fun start(
+    callable: Callable,
+    userdata: Any? = null,
+    priority: Thread.Priority = Priority.PRIORITY_NORMAL
+  ): GodotError {
+    TransferContext.writeArguments(OBJECT to callable, ANY to userdata, LONG to priority.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_START, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
@@ -43,49 +58,32 @@ public open class Thread : Reference() {
    */
   public open fun getId(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__THREAD_GET_ID, STRING)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_GET_ID, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**
    * Returns `true` if this [godot.Thread] has been started. Once started, this will return `true` until it is joined using [waitToFinish]. For checking if a [godot.Thread] is still executing its task, use [isAlive].
    */
-  public open fun isActive(): Boolean {
+  public open fun isStarted(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__THREAD_IS_ACTIVE, BOOL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_IS_STARTED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
    * Returns `true` if this [godot.Thread] is currently running. This is useful for determining if [waitToFinish] can be called without blocking the calling thread.
    *
-   * To check if a [godot.Thread] is joinable, use [isActive].
+   * To check if a [godot.Thread] is joinable, use [isStarted].
    */
   public open fun isAlive(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__THREAD_IS_ALIVE, BOOL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_IS_ALIVE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Starts a new [godot.Thread] that runs `method` on object `instance` with `userdata` passed as an argument. Even if no userdata is passed, `method` must accept one argument and it will be null. The `priority` of the [godot.Thread] can be changed by passing a value from the [enum Priority] enum.
-   *
-   * Returns [OK] on success, or [ERR_CANT_CREATE] on failure.
-   */
-  public open fun start(
-    instance: Object,
-    method: String,
-    userdata: Any? = null,
-    priority: Long = 1
-  ): GodotError {
-    TransferContext.writeArguments(OBJECT to instance, STRING to method, ANY to userdata, LONG to
-        priority)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__THREAD_START, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  /**
-   * Joins the [godot.Thread] and waits for it to finish. Returns the output of the method passed to [start].
+   * Joins the [godot.Thread] and waits for it to finish. Returns the output of the [godot.Callable] passed to [start].
    *
    * Should either be used when you want to retrieve the value returned from the method called by the [godot.Thread] or before freeing the instance that contains the [godot.Thread].
    *
@@ -95,7 +93,7 @@ public open class Thread : Reference() {
    */
   public open fun waitToFinish(): Any? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__THREAD_WAIT_TO_FINISH, ANY)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_WAIT_TO_FINISH, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
@@ -126,20 +124,5 @@ public open class Thread : Reference() {
     }
   }
 
-  public companion object {
-    /**
-     * A thread running with higher priority than normally.
-     */
-    public final const val PRIORITY_HIGH: Long = 2
-
-    /**
-     * A thread running with lower priority than normally.
-     */
-    public final const val PRIORITY_LOW: Long = 0
-
-    /**
-     * A thread with a standard priority.
-     */
-    public final const val PRIORITY_NORMAL: Long = 1
-  }
+  public companion object
 }

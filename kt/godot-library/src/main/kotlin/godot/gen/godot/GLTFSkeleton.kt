@@ -1,13 +1,13 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.PoolIntArray
+import godot.core.PackedInt32Array
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -15,7 +15,7 @@ import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.core.VariantType.POOL_INT_ARRAY
+import godot.core.VariantType.PACKED_INT_32_ARRAY
 import kotlin.Any
 import kotlin.Long
 import kotlin.Suppress
@@ -23,40 +23,27 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class GLTFSkeleton : Resource() {
-  public open var godotBoneNode: Dictionary<Any?, Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_GODOT_BONE_NODE,
-          DICTIONARY)
-      return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DICTIONARY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_SET_GODOT_BONE_NODE,
-          NIL)
-    }
-
-  public open var joints: PoolIntArray
+  public open var joints: PackedInt32Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_JOINTS,
-          POOL_INT_ARRAY)
-      return TransferContext.readReturnValue(POOL_INT_ARRAY, false) as PoolIntArray
+          PACKED_INT_32_ARRAY)
+      return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
     }
     set(`value`) {
-      TransferContext.writeArguments(POOL_INT_ARRAY to value)
+      TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_SET_JOINTS, NIL)
     }
 
-  public open var roots: PoolIntArray
+  public open var roots: PackedInt32Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_ROOTS,
-          POOL_INT_ARRAY)
-      return TransferContext.readReturnValue(POOL_INT_ARRAY, false) as PoolIntArray
+          PACKED_INT_32_ARRAY)
+      return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
     }
     set(`value`) {
-      TransferContext.writeArguments(POOL_INT_ARRAY to value)
+      TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_SET_ROOTS, NIL)
     }
 
@@ -73,15 +60,28 @@ public open class GLTFSkeleton : Resource() {
           NIL)
     }
 
+  public open var godotBoneNode: Dictionary<Any?, Any?>
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_GODOT_BONE_NODE,
+          DICTIONARY)
+      return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DICTIONARY to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_SET_GODOT_BONE_NODE,
+          NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_GLTFSKELETON)
   }
 
-  public open fun getBoneAttachment(idx: Long): BoneAttachment? {
-    TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_BONE_ATTACHMENT,
+  public open fun getGodotSkeleton(): Skeleton3D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_GODOT_SKELETON,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as BoneAttachment?
+    return TransferContext.readReturnValue(OBJECT, true) as Skeleton3D?
   }
 
   public open fun getBoneAttachmentCount(): Long {
@@ -91,10 +91,12 @@ public open class GLTFSkeleton : Resource() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public open fun getGodotSkeleton(): Skeleton? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_GODOT_SKELETON,
+  public open fun getBoneAttachment(idx: Long): BoneAttachment3D? {
+    TransferContext.writeArguments(LONG to idx)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSKELETON_GET_BONE_ATTACHMENT,
         OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Skeleton?
+    return TransferContext.readReturnValue(OBJECT, true) as BoneAttachment3D?
   }
+
+  public companion object
 }

@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -63,11 +63,5 @@ public open class VisualScriptYield : VisualScriptNode() {
     }
   }
 
-  public companion object {
-    public final const val YIELD_FRAME: Long = 1
-
-    public final const val YIELD_PHYSICS_FRAME: Long = 2
-
-    public final const val YIELD_WAIT: Long = 3
-  }
+  public companion object
 }

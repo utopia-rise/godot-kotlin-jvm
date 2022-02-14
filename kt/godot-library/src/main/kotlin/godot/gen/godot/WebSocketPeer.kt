@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -26,6 +26,31 @@ public open class WebSocketPeer : PacketPeer() {
     callConstructor(ENGINECLASS_WEBSOCKETPEER)
   }
 
+  public open fun getWriteMode(): WebSocketPeer.WriteMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_GET_WRITE_MODE, LONG)
+    return WebSocketPeer.WriteMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  public open fun setWriteMode(mode: WebSocketPeer.WriteMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_SET_WRITE_MODE, NIL)
+  }
+
+  public open fun isConnectedToHost(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_IS_CONNECTED_TO_HOST,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  public open fun wasStringPacket(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_WAS_STRING_PACKET,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
   public open fun close(code: Long = 1000, reason: String = ""): Unit {
     TransferContext.writeArguments(LONG to code, STRING to reason)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_CLOSE, NIL)
@@ -45,41 +70,16 @@ public open class WebSocketPeer : PacketPeer() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public open fun getCurrentOutboundBufferedAmount(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_GET_CURRENT_OUTBOUND_BUFFERED_AMOUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  public open fun getWriteMode(): WebSocketPeer.WriteMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_GET_WRITE_MODE, LONG)
-    return WebSocketPeer.WriteMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  public open fun isConnectedToHost(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_IS_CONNECTED_TO_HOST,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
   public open fun setNoDelay(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_SET_NO_DELAY, NIL)
   }
 
-  public open fun setWriteMode(mode: Long): Unit {
-    TransferContext.writeArguments(LONG to mode)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_SET_WRITE_MODE, NIL)
-  }
-
-  public open fun wasStringPacket(): Boolean {
+  public open fun getCurrentOutboundBufferedAmount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_WAS_STRING_PACKET,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WEBSOCKETPEER_GET_CURRENT_OUTBOUND_BUFFERED_AMOUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   public enum class WriteMode(
@@ -99,9 +99,5 @@ public open class WebSocketPeer : PacketPeer() {
     }
   }
 
-  public companion object {
-    public final const val WRITE_MODE_BINARY: Long = 1
-
-    public final const val WRITE_MODE_TEXT: Long = 0
-  }
+  public companion object
 }

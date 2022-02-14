@@ -1,21 +1,18 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
-import godot.AnimationNodeOneShot
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Double
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -30,6 +27,54 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AnimationNodeOneShot : AnimationNode() {
+  /**
+   *
+   */
+  public open var mixMode: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_MIX_MODE,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_MIX_MODE,
+          NIL)
+    }
+
+  /**
+   *
+   */
+  public open var fadeinTime: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_FADEIN_TIME, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_FADEIN_TIME, NIL)
+    }
+
+  /**
+   *
+   */
+  public open var fadeoutTime: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_FADEOUT_TIME, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_FADEOUT_TIME, NIL)
+    }
+
   /**
    * If `true`, the sub-animation will restart automatically after finishing.
    */
@@ -81,38 +126,6 @@ public open class AnimationNodeOneShot : AnimationNode() {
   /**
    *
    */
-  public open var fadeinTime: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_FADEIN_TIME, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_FADEIN_TIME, NIL)
-    }
-
-  /**
-   *
-   */
-  public open var fadeoutTime: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_FADEOUT_TIME, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_FADEOUT_TIME, NIL)
-    }
-
-  /**
-   *
-   */
   public open var sync: Boolean
     get() {
       TransferContext.writeArguments()
@@ -128,25 +141,6 @@ public open class AnimationNodeOneShot : AnimationNode() {
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODEONESHOT)
-  }
-
-  /**
-   *
-   */
-  public open fun getMixMode(): AnimationNodeOneShot.MixMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_GET_MIX_MODE,
-        LONG)
-    return AnimationNodeOneShot.MixMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  /**
-   *
-   */
-  public open fun setMixMode(mode: Long): Unit {
-    TransferContext.writeArguments(LONG to mode)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEONESHOT_SET_MIX_MODE,
-        NIL)
   }
 
   public enum class MixMode(
@@ -172,15 +166,5 @@ public open class AnimationNodeOneShot : AnimationNode() {
     }
   }
 
-  public companion object {
-    /**
-     *
-     */
-    public final const val MIX_MODE_ADD: Long = 1
-
-    /**
-     *
-     */
-    public final const val MIX_MODE_BLEND: Long = 0
-  }
+  public companion object
 }

@@ -1,17 +1,19 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.StringName
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
+import godot.core.VariantType.STRING_NAME
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.String
@@ -22,11 +24,9 @@ import kotlin.Unit
  * A material that uses a custom [godot.Shader] program.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/shaders/index.html](https://docs.godotengine.org/en/3.4/tutorials/shaders/index.html)
+ * [$DOCS_URL/tutorials/shaders/index.html]($DOCS_URL/tutorials/shaders/index.html)
  *
  * A material that uses a custom [godot.Shader] program to render either items to screen or process particles. You can create multiple materials for the same shader but configure different values for the uniforms defined in the shader.
- *
- * **Note:** Due to a renderer limitation, emissive [godot.ShaderMaterial]s cannot emit light when used in a [godot.GIProbe]. Only emissive [godot.SpatialMaterial]s can emit light in a [godot.GIProbe].
  */
 @GodotBaseType
 public open class ShaderMaterial : Material() {
@@ -42,20 +42,29 @@ public open class ShaderMaterial : Material() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER, NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SHADERMATERIAL)
   }
 
-  public open fun _shaderChanged(): Unit {
+  /**
+   * Changes the value set for this material of a uniform in the shader.
+   *
+   * **Note:** `param` must match the name of the uniform in the code exactly.
+   */
+  public open fun setShaderParam(`param`: StringName, `value`: Any): Unit {
+    TransferContext.writeArguments(STRING_NAME to param, ANY to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER_PARAM,
+        NIL)
   }
 
   /**
    * Returns the current value set for this material of a uniform in the shader.
    */
-  public open fun getShaderParam(`param`: String): Any? {
-    TransferContext.writeArguments(STRING to param)
+  public open fun getShaderParam(`param`: StringName): Any? {
+    TransferContext.writeArguments(STRING_NAME to param)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_GET_SHADER_PARAM,
         ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
@@ -81,14 +90,5 @@ public open class ShaderMaterial : Material() {
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
-  /**
-   * Changes the value set for this material of a uniform in the shader.
-   *
-   * **Note:** `param` must match the name of the uniform in the code exactly.
-   */
-  public open fun setShaderParam(`param`: String, `value`: Any?): Unit {
-    TransferContext.writeArguments(STRING to param, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHADERMATERIAL_SET_SHADER_PARAM,
-        NIL)
-  }
+  public companion object
 }

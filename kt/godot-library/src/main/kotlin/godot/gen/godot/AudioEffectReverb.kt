@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -26,48 +26,19 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioEffectReverb : AudioEffect() {
   /**
-   * Defines how reflective the imaginary room's walls are. Value can range from 0 to 1.
+   * Time between the original signal and the early reflections of the reverb signal, in milliseconds.
    */
-  public open var damping: Double
+  public open var predelayMsec: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_DAMPING,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_PREDELAY_MSEC, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_DAMPING,
-          NIL)
-    }
-
-  /**
-   * Output percent of original sound. At 0, only modified sound is outputted. Value can range from 0 to 1.
-   */
-  public open var dry: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_DRY, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_DRY, NIL)
-    }
-
-  /**
-   * High-pass filter passes signals with a frequency higher than a certain cutoff frequency and attenuates signals with frequencies lower than the cutoff frequency. Value can range from 0 to 1.
-   */
-  public open var hipass: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_HIPASS,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_HIPASS, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_PREDELAY_MSEC, NIL)
     }
 
   /**
@@ -87,22 +58,6 @@ public open class AudioEffectReverb : AudioEffect() {
     }
 
   /**
-   * Time between the original signal and the early reflections of the reverb signal, in milliseconds.
-   */
-  public open var predelayMsec: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_PREDELAY_MSEC, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_PREDELAY_MSEC, NIL)
-    }
-
-  /**
    * Dimensions of simulated room. Bigger means more echoes. Value can range from 0 to 1.
    */
   public open var roomSize: Double
@@ -115,6 +70,22 @@ public open class AudioEffectReverb : AudioEffect() {
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_ROOM_SIZE,
+          NIL)
+    }
+
+  /**
+   * Defines how reflective the imaginary room's walls are. Value can range from 0 to 1.
+   */
+  public open var damping: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_DAMPING,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_DAMPING,
           NIL)
     }
 
@@ -134,6 +105,35 @@ public open class AudioEffectReverb : AudioEffect() {
     }
 
   /**
+   * High-pass filter passes signals with a frequency higher than a certain cutoff frequency and attenuates signals with frequencies lower than the cutoff frequency. Value can range from 0 to 1.
+   */
+  public open var hipass: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_HIPASS,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_HIPASS, NIL)
+    }
+
+  /**
+   * Output percent of original sound. At 0, only modified sound is outputted. Value can range from 0 to 1.
+   */
+  public open var dry: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_GET_DRY, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTREVERB_SET_DRY, NIL)
+    }
+
+  /**
    * Output percent of modified sound. At 0, only original sound is outputted. Value can range from 0 to 1.
    */
   public open var wet: Double
@@ -150,4 +150,6 @@ public open class AudioEffectReverb : AudioEffect() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTREVERB)
   }
+
+  public companion object
 }

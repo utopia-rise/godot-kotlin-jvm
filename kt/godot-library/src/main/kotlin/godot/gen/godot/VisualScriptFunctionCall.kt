@@ -1,12 +1,11 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.Dictionary
 import godot.core.NodePath
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
@@ -14,27 +13,25 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.STRING
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Long
-import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptFunctionCall : VisualScriptNode() {
-  public open var baseScript: String
+  public open var callMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_GET_BASE_SCRIPT, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_GET_CALL_MODE, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_BASE_SCRIPT, NIL)
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_CALL_MODE, NIL)
     }
 
   public open var baseType: String
@@ -50,6 +47,32 @@ public open class VisualScriptFunctionCall : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_BASE_TYPE, NIL)
     }
 
+  public open var baseScript: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_GET_BASE_SCRIPT, STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_BASE_SCRIPT, NIL)
+    }
+
+  public open var singleton: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_GET_SINGLETON, STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_SINGLETON, NIL)
+    }
+
   public open var basicType: Long
     get() {
       TransferContext.writeArguments()
@@ -61,32 +84,6 @@ public open class VisualScriptFunctionCall : VisualScriptNode() {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_BASIC_TYPE, NIL)
-    }
-
-  public open var callMode: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_GET_CALL_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_CALL_MODE, NIL)
-    }
-
-  public open var function: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_GET_FUNCTION, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
-    }
-    set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_FUNCTION, NIL)
     }
 
   public open var nodePath: NodePath
@@ -102,30 +99,17 @@ public open class VisualScriptFunctionCall : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_NODE_PATH, NIL)
     }
 
-  public open var rpcCallMode: Long
+  public open var function: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_GET_RPC_CALL_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_RPC_CALL_MODE, NIL)
-    }
-
-  public open var singleton: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_GET_SINGLETON, STRING)
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_GET_FUNCTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_SINGLETON, NIL)
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_FUNCTION, NIL)
     }
 
   public open var useDefaultArgs: Long
@@ -154,15 +138,21 @@ public open class VisualScriptFunctionCall : VisualScriptNode() {
           ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_VALIDATE, NIL)
     }
 
+  public open var rpcCallMode: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_GET_RPC_CALL_MODE, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONCALL_SET_RPC_CALL_MODE, NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSCRIPTFUNCTIONCALL)
-  }
-
-  public open fun _getArgumentCache(): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_get_argument_cache is not implemented for VisualScriptFunctionCall")
-  }
-
-  public open fun _setArgumentCache(argumentCache: Dictionary<Any?, Any?>): Unit {
   }
 
   public enum class RPCCallMode(
@@ -205,25 +195,5 @@ public open class VisualScriptFunctionCall : VisualScriptNode() {
     }
   }
 
-  public companion object {
-    public final const val CALL_MODE_BASIC_TYPE: Long = 3
-
-    public final const val CALL_MODE_INSTANCE: Long = 2
-
-    public final const val CALL_MODE_NODE_PATH: Long = 1
-
-    public final const val CALL_MODE_SELF: Long = 0
-
-    public final const val CALL_MODE_SINGLETON: Long = 4
-
-    public final const val RPC_DISABLED: Long = 0
-
-    public final const val RPC_RELIABLE: Long = 1
-
-    public final const val RPC_RELIABLE_TO_ID: Long = 3
-
-    public final const val RPC_UNRELIABLE: Long = 2
-
-    public final const val RPC_UNRELIABLE_TO_ID: Long = 4
-  }
+  public companion object
 }

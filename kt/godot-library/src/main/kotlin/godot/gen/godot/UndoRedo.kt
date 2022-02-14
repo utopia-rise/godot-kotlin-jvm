@@ -1,11 +1,12 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.StringName
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
@@ -13,6 +14,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
+import godot.core.VariantType.STRING_NAME
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Any
@@ -31,24 +33,103 @@ import kotlin.Unit
  *
  * Here's an example on how to add an action to the Godot editor's own [godot.UndoRedo], from a plugin:
  *
- * ```
- * 		var undo_redo = get_undo_redo() # Method of EditorPlugin.
+ * [codeblocks]
  *
- * 		func do_something():
- * 		    pass # Put your code here.
+ * [gdscript]
  *
- * 		func undo_something():
- * 		    pass # Put here the code that reverts what's done by "do_something()".
+ * var undo_redo = get_undo_redo() # Method of EditorPlugin.
  *
- * 		func _on_MyButton_pressed():
- * 		    var node = get_node("MyNode2D")
- * 		    undo_redo.create_action("Move the node")
- * 		    undo_redo.add_do_method(self, "do_something")
- * 		    undo_redo.add_undo_method(self, "undo_something")
- * 		    undo_redo.add_do_property(node, "position", Vector2(100,100))
- * 		    undo_redo.add_undo_property(node, "position", node.position)
- * 		    undo_redo.commit_action()
- * 		```
+ *
+ *
+ * func do_something():
+ *
+ *     pass # Put your code here.
+ *
+ *
+ *
+ * func undo_something():
+ *
+ *     pass # Put here the code that reverts what's done by "do_something()".
+ *
+ *
+ *
+ * func _on_MyButton_pressed():
+ *
+ *     var node = get_node("MyNode2D")
+ *
+ *     undo_redo.create_action("Move the node")
+ *
+ *     undo_redo.add_do_method(self, "do_something")
+ *
+ *     undo_redo.add_undo_method(self, "undo_something")
+ *
+ *     undo_redo.add_do_property(node, "position", Vector2(100,100))
+ *
+ *     undo_redo.add_undo_property(node, "position", node.position)
+ *
+ *     undo_redo.commit_action()
+ *
+ * [/gdscript]
+ *
+ * [csharp]
+ *
+ * public UndoRedo UndoRedo;
+ *
+ *
+ *
+ * public override void _Ready()
+ *
+ * {
+ *
+ *     UndoRedo = GetUndoRedo(); // Method of EditorPlugin.
+ *
+ * }
+ *
+ *
+ *
+ * public void DoSomething()
+ *
+ * {
+ *
+ *     // Put your code here.
+ *
+ * }
+ *
+ *
+ *
+ * public void UndoSomething()
+ *
+ * {
+ *
+ *     // Put here the code that reverts what's done by "DoSomething()".
+ *
+ * }
+ *
+ *
+ *
+ * private void OnMyButtonPressed()
+ *
+ * {
+ *
+ *     var node = GetNode<Node2D>("MyNode2D");
+ *
+ *     UndoRedo.CreateAction("Move the node");
+ *
+ *     UndoRedo.AddDoMethod(this, nameof(DoSomething));
+ *
+ *     UndoRedo.AddUndoMethod(this, nameof(UndoSomething));
+ *
+ *     UndoRedo.AddDoProperty(node, "position", new Vector2(100, 100));
+ *
+ *     UndoRedo.AddUndoProperty(node, "position", node.Position);
+ *
+ *     UndoRedo.CommitAction();
+ *
+ * }
+ *
+ * [/csharp]
+ *
+ * [/codeblocks]
  *
  * [createAction], [addDoMethod], [addUndoMethod], [addDoProperty], [addUndoProperty], and [commitAction] should be called one after the other, like in the example. Not doing so could lead to crashes.
  *
@@ -66,16 +147,59 @@ public open class UndoRedo : Object() {
   }
 
   /**
+   * Create a new action. After this is called, do all your calls to [addDoMethod], [addUndoMethod], [addDoProperty], and [addUndoProperty], then commit the action with [commitAction].
+   *
+   * The way actions are merged is dictated by the `merge_mode` argument. See [enum MergeMode] for details.
+   */
+  public open fun createAction(name: String, mergeMode: UndoRedo.MergeMode =
+      MergeMode.MERGE_DISABLE): Unit {
+    TransferContext.writeArguments(STRING to name, LONG to mergeMode.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_CREATE_ACTION, NIL)
+  }
+
+  /**
+   * Commit the action. If `execute` is true (default), all "do" methods/properties are called/set when this function is called.
+   */
+  public open fun commitAction(execute: Boolean = true): Unit {
+    TransferContext.writeArguments(BOOL to execute)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_COMMIT_ACTION, NIL)
+  }
+
+  /**
+   * Returns `true` if the [godot.UndoRedo] is currently committing the action, i.e. running its "do" method or property change (see [commitAction]).
+   */
+  public open fun isCommittingAction(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_IS_COMMITTING_ACTION, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
    * Register a method that will be called when the action is committed.
    */
   public open fun addDoMethod(
     _object: Object,
-    method: String,
+    method: StringName,
     vararg __var_args: Any?
-  ): Unit {
-    TransferContext.writeArguments(OBJECT to _object, STRING to method,  *__var_args.map { ANY to it
-        }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_DO_METHOD, NIL)
+  ): void? {
+    TransferContext.writeArguments(OBJECT to _object, STRING_NAME to method,  *__var_args.map { ANY
+        to it }.toTypedArray())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_DO_METHOD, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as void?
+  }
+
+  /**
+   * Register a method that will be called when the action is undone.
+   */
+  public open fun addUndoMethod(
+    _object: Object,
+    method: StringName,
+    vararg __var_args: Any?
+  ): void? {
+    TransferContext.writeArguments(OBJECT to _object, STRING_NAME to method,  *__var_args.map { ANY
+        to it }.toTypedArray())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_UNDO_METHOD, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as void?
   }
 
   /**
@@ -83,11 +207,23 @@ public open class UndoRedo : Object() {
    */
   public open fun addDoProperty(
     _object: Object,
-    `property`: String,
-    `value`: Any?
+    `property`: StringName,
+    `value`: Any
   ): Unit {
-    TransferContext.writeArguments(OBJECT to _object, STRING to property, ANY to value)
+    TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property, ANY to value)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_DO_PROPERTY, NIL)
+  }
+
+  /**
+   * Register a property value change for "undo".
+   */
+  public open fun addUndoProperty(
+    _object: Object,
+    `property`: StringName,
+    `value`: Any
+  ): Unit {
+    TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property, ANY to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_UNDO_PROPERTY, NIL)
   }
 
   /**
@@ -99,36 +235,56 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Register a method that will be called when the action is undone.
-   */
-  public open fun addUndoMethod(
-    _object: Object,
-    method: String,
-    vararg __var_args: Any?
-  ): Unit {
-    TransferContext.writeArguments(OBJECT to _object, STRING to method,  *__var_args.map { ANY to it
-        }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_UNDO_METHOD, NIL)
-  }
-
-  /**
-   * Register a property value change for "undo".
-   */
-  public open fun addUndoProperty(
-    _object: Object,
-    `property`: String,
-    `value`: Any?
-  ): Unit {
-    TransferContext.writeArguments(OBJECT to _object, STRING to property, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_UNDO_PROPERTY, NIL)
-  }
-
-  /**
    * Register a reference for "undo" that will be erased if the "undo" history is lost. This is useful mostly for nodes removed with the "do" call (not the "undo" call!).
    */
   public open fun addUndoReference(_object: Object): Unit {
     TransferContext.writeArguments(OBJECT to _object)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_UNDO_REFERENCE, NIL)
+  }
+
+  /**
+   * Marks the next "do" and "undo" operations to be processed even if the action gets merged with another in the [MERGE_ENDS] mode. Return to normal operation using [endForceKeepInMergeEnds].
+   */
+  public open fun startForceKeepInMergeEnds(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_UNDOREDO_START_FORCE_KEEP_IN_MERGE_ENDS, NIL)
+  }
+
+  /**
+   * Stops marking operations as to be processed even if the action gets merged with another in the [MERGE_ENDS] mode. See [startForceKeepInMergeEnds].
+   */
+  public open fun endForceKeepInMergeEnds(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_UNDOREDO_END_FORCE_KEEP_IN_MERGE_ENDS, NIL)
+  }
+
+  /**
+   * Returns how many elements are in the history.
+   */
+  public open fun getHistoryCount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_GET_HISTORY_COUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Gets the index of the current action.
+   */
+  public open fun getCurrentAction(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_GET_CURRENT_ACTION, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Gets the action name from its index.
+   */
+  public open fun getActionName(id: Long): String {
+    TransferContext.writeArguments(LONG to id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_GET_ACTION_NAME, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**
@@ -142,51 +298,13 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Commit the action. All "do" methods/properties are called/set when this function is called.
-   */
-  public open fun commitAction(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_COMMIT_ACTION, NIL)
-  }
-
-  /**
-   * Create a new action. After this is called, do all your calls to [addDoMethod], [addUndoMethod], [addDoProperty], and [addUndoProperty], then commit the action with [commitAction].
-   *
-   * The way actions are merged is dictated by the `merge_mode` argument. See [enum MergeMode] for details.
-   */
-  public open fun createAction(name: String, mergeMode: Long = 0): Unit {
-    TransferContext.writeArguments(STRING to name, LONG to mergeMode)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_CREATE_ACTION, NIL)
-  }
-
-  /**
-   * Gets the name of the current action.
+   * Gets the name of the current action, equivalent to `get_action_name(get_current_action())`.
    */
   public open fun getCurrentActionName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_GET_CURRENT_ACTION_NAME,
         STRING)
     return TransferContext.readReturnValue(STRING, false) as String
-  }
-
-  /**
-   * Gets the version. Every time a new action is committed, the [godot.UndoRedo]'s version number is increased automatically.
-   *
-   * This is useful mostly to check if something changed from a saved version.
-   */
-  public open fun getVersion(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_GET_VERSION, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  /**
-   * Returns `true` if a "redo" action is available.
-   */
-  public open fun hasRedo(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_HAS_REDO, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -199,12 +317,23 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Returns `true` if the [godot.UndoRedo] is currently committing the action, i.e. running its "do" method or property change (see [commitAction]).
+   * Returns `true` if a "redo" action is available.
    */
-  public open fun isCommitingAction(): Boolean {
+  public open fun hasRedo(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_IS_COMMITING_ACTION, BOOL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_HAS_REDO, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Gets the version. Every time a new action is committed, the [godot.UndoRedo]'s version number is increased automatically.
+   *
+   * This is useful mostly to check if something changed from a saved version.
+   */
+  public open fun getVersion(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_GET_VERSION, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -233,7 +362,7 @@ public open class UndoRedo : Object() {
      */
     MERGE_DISABLE(0),
     /**
-     * Makes so that the action's "do" operation is from the first action created and the "undo" operation is from the last subsequent action with the same name.
+     * Makes so that the action's "undo" operations are from the first action created and the "do" operations are from the last subsequent action with the same name.
      */
     MERGE_ENDS(1),
     /**
@@ -252,20 +381,5 @@ public open class UndoRedo : Object() {
     }
   }
 
-  public companion object {
-    /**
-     * Makes subsequent actions with the same name be merged into one.
-     */
-    public final const val MERGE_ALL: Long = 2
-
-    /**
-     * Makes "do"/"undo" operations stay in separate actions.
-     */
-    public final const val MERGE_DISABLE: Long = 0
-
-    /**
-     * Makes so that the action's "do" operation is from the first action created and the "undo" operation is from the last subsequent action with the same name.
-     */
-    public final const val MERGE_ENDS: Long = 1
-  }
+  public companion object
 }

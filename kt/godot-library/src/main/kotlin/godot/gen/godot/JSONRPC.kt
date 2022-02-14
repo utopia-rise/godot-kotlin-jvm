@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -34,17 +34,33 @@ public open class JSONRPC : Object() {
   }
 
   /**
-   * Returns a dictionary in the form of a JSON-RPC notification. Notifications are one-shot messages which do not expect a response.
    *
-   * - `method`: Name of the method being called.
-   *
-   * - `params`: An array or dictionary of parameters being passed to the method.
    */
-  public open fun makeNotification(method: String, params: Any?): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(STRING to method, ANY to params)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_NOTIFICATION,
-        DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+  public open fun setScope(scope: String, target: Object): Unit {
+    TransferContext.writeArguments(STRING to scope, OBJECT to target)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_SET_SCOPE, NIL)
+  }
+
+  /**
+   * Given a Dictionary which takes the form of a JSON-RPC request: unpack the request and run it. Methods are resolved by looking at the field called "method" and looking for an equivalently named function in the JSONRPC object. If one is found that method is called.
+   *
+   * To add new supported methods extend the JSONRPC class and call [processAction] on your subclass.
+   *
+   * `action`: The action to be run, as a Dictionary in the form of a JSON-RPC request or notification.
+   */
+  public open fun processAction(action: Any, recurse: Boolean = false): Any? {
+    TransferContext.writeArguments(ANY to action, BOOL to recurse)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_PROCESS_ACTION, ANY)
+    return TransferContext.readReturnValue(ANY, true) as Any?
+  }
+
+  /**
+   *
+   */
+  public open fun processString(action: String): String {
+    TransferContext.writeArguments(STRING to action)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_PROCESS_STRING, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**
@@ -58,8 +74,8 @@ public open class JSONRPC : Object() {
    */
   public open fun makeRequest(
     method: String,
-    params: Any?,
-    id: Any?
+    params: Any,
+    id: Any
   ): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to method, ANY to params, ANY to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_REQUEST, DICTIONARY)
@@ -73,9 +89,23 @@ public open class JSONRPC : Object() {
    *
    * - `id`: The ID of the request this response is targeted to.
    */
-  public open fun makeResponse(result: Any?, id: Any?): Dictionary<Any?, Any?> {
+  public open fun makeResponse(result: Any, id: Any): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(ANY to result, ANY to id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_RESPONSE, DICTIONARY)
+    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+  }
+
+  /**
+   * Returns a dictionary in the form of a JSON-RPC notification. Notifications are one-shot messages which do not expect a response.
+   *
+   * - `method`: Name of the method being called.
+   *
+   * - `params`: An array or dictionary of parameters being passed to the method.
+   */
+  public open fun makeNotification(method: String, params: Any): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments(STRING to method, ANY to params)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_MAKE_NOTIFICATION,
+        DICTIONARY)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
@@ -99,36 +129,6 @@ public open class JSONRPC : Object() {
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
-  /**
-   * Given a Dictionary which takes the form of a JSON-RPC request: unpack the request and run it. Methods are resolved by looking at the field called "method" and looking for an equivalently named function in the JSONRPC object. If one is found that method is called.
-   *
-   * To add new supported methods extend the JSONRPC class and call [processAction] on your subclass.
-   *
-   * `action`: The action to be run, as a Dictionary in the form of a JSON-RPC request or notification.
-   */
-  public open fun processAction(action: Any?, recurse: Boolean = false): Any? {
-    TransferContext.writeArguments(ANY to action, BOOL to recurse)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_PROCESS_ACTION, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
-  }
-
-  /**
-   *
-   */
-  public open fun processString(action: String): String {
-    TransferContext.writeArguments(STRING to action)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_PROCESS_STRING, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
-  }
-
-  /**
-   *
-   */
-  public open fun setScope(scope: String, target: Object): Unit {
-    TransferContext.writeArguments(STRING to scope, OBJECT to target)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JSONRPC_SET_SCOPE, NIL)
-  }
-
   public enum class ErrorCode(
     id: Long
   ) {
@@ -139,11 +139,7 @@ public open class JSONRPC : Object() {
     /**
      *
      */
-    INTERNAL_ERROR(-32603),
-    /**
-     *
-     */
-    INVALID_PARAMS(-32602),
+    INVALID_REQUEST(-32600),
     /**
      * A method call was requested but no function of that name existed in the JSONRPC subclass.
      */
@@ -151,7 +147,11 @@ public open class JSONRPC : Object() {
     /**
      *
      */
-    INVALID_REQUEST(-32600),
+    INVALID_PARAMS(-32602),
+    /**
+     *
+     */
+    INTERNAL_ERROR(-32603),
     ;
 
     public val id: Long
@@ -164,30 +164,5 @@ public open class JSONRPC : Object() {
     }
   }
 
-  public companion object {
-    /**
-     *
-     */
-    public final const val INTERNAL_ERROR: Long = -32603
-
-    /**
-     *
-     */
-    public final const val INVALID_PARAMS: Long = -32602
-
-    /**
-     *
-     */
-    public final const val INVALID_REQUEST: Long = -32600
-
-    /**
-     * A method call was requested but no function of that name existed in the JSONRPC subclass.
-     */
-    public final const val METHOD_NOT_FOUND: Long = -32601
-
-    /**
-     *
-     */
-    public final const val PARSE_ERROR: Long = -32700
-  }
+  public companion object
 }

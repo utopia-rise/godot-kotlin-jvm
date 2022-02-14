@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -35,16 +35,83 @@ public open class BaseButton : Control() {
   public val buttonDown: Signal0 by signal()
 
   /**
+   * Emitted when the button was just toggled between pressed and normal states (only if [toggleMode] is active). The new state is contained in the `button_pressed` argument.
+   */
+  public val toggled: Signal1<Boolean> by signal("buttonPressed")
+
+  /**
+   * Emitted when the button is toggled or pressed. This is on [buttonDown] if [actionMode] is [ACTION_MODE_BUTTON_PRESS] and on [buttonUp] otherwise.
+   *
+   * If you need to know the button's pressed state (and [toggleMode] is active), use [toggled] instead.
+   */
+  public val pressed: Signal0 by signal()
+
+  /**
    * Emitted when the button stops being held down.
    */
   public val buttonUp: Signal0 by signal()
 
-  public val signalPressed: Signal0 by signal()
+  /**
+   * If `true`, the button is in disabled state and can't be clicked or toggled.
+   */
+  public open var disabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_DISABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_DISABLED, NIL)
+    }
 
   /**
-   * Emitted when the button was just toggled between pressed and normal states (only if [toggleMode] is active). The new state is contained in the `button_pressed` argument.
+   * If `true`, the button is in toggle mode. Makes the button flip state between pressed and unpressed each time its area is clicked.
    */
-  public val toggled: Signal1<Boolean> by signal("button_pressed")
+  public open var toggleMode: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_TOGGLE_MODE, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_TOGGLE_MODE, NIL)
+    }
+
+  /**
+   * If `true`, the button will add information about its shortcut in the tooltip.
+   */
+  public open var shortcutInTooltip: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_SHORTCUT_IN_TOOLTIP, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_SHORTCUT_IN_TOOLTIP, NIL)
+    }
+
+  /**
+   * If `true`, the button's state is pressed. Means the button is pressed down or toggled (if [toggleMode] is active). Only works if [toggleMode] is `true`.
+   *
+   * **Note:** Setting [buttonPressed] will result in [toggled] to be emitted. If you want to change the pressed state without emitting that signal, use [setPressedNoSignal].
+   */
+  public open var buttonPressed: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_BUTTON_PRESSED,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_BUTTON_PRESSED,
+          NIL)
+    }
 
   /**
    * Determines when the button is considered clicked, one of the [enum ActionMode] constants.
@@ -63,7 +130,7 @@ public open class BaseButton : Control() {
   /**
    * Binary mask to choose which mouse buttons this button will respond to.
    *
-   * To allow both left-click and right-click, use `BUTTON_MASK_LEFT | BUTTON_MASK_RIGHT`.
+   * To allow both left-click and right-click, use `MOUSE_BUTTON_MASK_LEFT | MOUSE_BUTTON_MASK_RIGHT`.
    */
   public open var buttonMask: Long
     get() {
@@ -74,50 +141,6 @@ public open class BaseButton : Control() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_BUTTON_MASK, NIL)
-    }
-
-  /**
-   * If `true`, the button is in disabled state and can't be clicked or toggled.
-   */
-  public open var disabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_DISABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_DISABLED, NIL)
-    }
-
-  /**
-   * *Deprecated.* This property has been deprecated due to redundancy and will be removed in Godot 4.0. This property no longer has any effect when set. Please use [godot.Control.focusMode] instead.
-   */
-  public open var enabledFocusMode: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_ENABLED_FOCUS_MODE,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_ENABLED_FOCUS_MODE,
-          NIL)
-    }
-
-  /**
-   * [godot.ButtonGroup] associated to the button.
-   */
-  public open var group: ButtonGroup?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_GROUP, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as ButtonGroup?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_GROUP, NIL)
     }
 
   /**
@@ -139,70 +162,55 @@ public open class BaseButton : Control() {
     }
 
   /**
-   * If `true`, the button's state is pressed. Means the button is pressed down or toggled (if [toggleMode] is active). Only works if [toggleMode] is `true`.
-   *
-   * **Note:** Setting [pressed] will result in [toggled] to be emitted. If you want to change the pressed state without emitting that signal, use [setPressedNoSignal].
+   * [godot.Shortcut] associated to the button.
    */
-  public open var pressed: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_PRESSED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_PRESSED, NIL)
-    }
-
-  /**
-   * [godot.ShortCut] associated to the button.
-   */
-  public open var shortcut: ShortCut?
+  public open var shortcut: Shortcut?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_SHORTCUT, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as ShortCut?
+      return TransferContext.readReturnValue(OBJECT, true) as Shortcut?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_SHORTCUT, NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
-   * If `true`, the button will add information about its shortcut in the tooltip.
+   * The [godot.ButtonGroup] associated with the button. Not to be confused with node groups.
    */
-  public open var shortcutInTooltip: Boolean
+  public open var buttonGroup: ButtonGroup?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_SHORTCUT_IN_TOOLTIP, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_BUTTON_GROUP,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as ButtonGroup?
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_SHORTCUT_IN_TOOLTIP, NIL)
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_BUTTON_GROUP, NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
-   * If `true`, the button is in toggle mode. Makes the button flip state between pressed and unpressed each time its area is clicked.
+   * The [godot.Node] which must be a parent of the focused GUI [godot.Control] for the shortcut to be activated. If `null`, the shortcut can be activated when any control is focused (a global shortcut). This allows shortcuts to be accepted only when the user has a certain area of the GUI focused.
    */
-  public open var toggleMode: Boolean
+  public open var shortcutContext: Node?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_TOGGLE_MODE, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_SHORTCUT_CONTEXT,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Node?
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_TOGGLE_MODE, NIL)
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_SHORTCUT_CONTEXT,
+          NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_BASEBUTTON)
-  }
-
-  public override fun _guiInput(event: InputEvent): Unit {
   }
 
   /**
@@ -217,16 +225,15 @@ public open class BaseButton : Control() {
   public open fun _toggled(buttonPressed: Boolean): Unit {
   }
 
-  public override fun _unhandledInput(event: InputEvent): Unit {
-  }
-
   /**
-   * Returns the visual state used to draw the button. This is useful mainly when implementing your own draw code by either overriding _draw() or connecting to "draw" signal. The visual state of the button is defined by the [enum DrawMode] enum.
+   * Changes the [buttonPressed] state of the button, without emitting [toggled]. Use when you just want to change the state of the button without sending the pressed event (e.g. when initializing scene). Only works if [toggleMode] is `true`.
+   *
+   * **Note:** This method doesn't unpress other buttons in [buttonGroup].
    */
-  public open fun getDrawMode(): BaseButton.DrawMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_DRAW_MODE, LONG)
-    return BaseButton.DrawMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  public open fun setPressedNoSignal(pressed: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to pressed)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_PRESSED_NO_SIGNAL,
+        NIL)
   }
 
   /**
@@ -239,14 +246,12 @@ public open class BaseButton : Control() {
   }
 
   /**
-   * Changes the [pressed] state of the button, without emitting [toggled]. Use when you just want to change the state of the button without sending the pressed event (e.g. when initializing scene). Only works if [toggleMode] is `true`.
-   *
-   * **Note:** This method doesn't unpress other buttons in its button [group].
+   * Returns the visual state used to draw the button. This is useful mainly when implementing your own draw code by either overriding _draw() or connecting to "draw" signal. The visual state of the button is defined by the [enum DrawMode] enum.
    */
-  public open fun setPressedNoSignal(pressed: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pressed)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_SET_PRESSED_NO_SIGNAL,
-        NIL)
+  public open fun getDrawMode(): BaseButton.DrawMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BASEBUTTON_GET_DRAW_MODE, LONG)
+    return BaseButton.DrawMode.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   public enum class ActionMode(
@@ -307,40 +312,5 @@ public open class BaseButton : Control() {
     }
   }
 
-  public companion object {
-    /**
-     * Require just a press to consider the button clicked.
-     */
-    public final const val ACTION_MODE_BUTTON_PRESS: Long = 0
-
-    /**
-     * Require a press and a subsequent release before considering the button clicked.
-     */
-    public final const val ACTION_MODE_BUTTON_RELEASE: Long = 1
-
-    /**
-     * The state of buttons are disabled.
-     */
-    public final const val DRAW_DISABLED: Long = 3
-
-    /**
-     * The state of buttons are hovered.
-     */
-    public final const val DRAW_HOVER: Long = 2
-
-    /**
-     * The state of buttons are both hovered and pressed.
-     */
-    public final const val DRAW_HOVER_PRESSED: Long = 4
-
-    /**
-     * The normal state (i.e. not pressed, not hovered, not toggled and enabled) of buttons.
-     */
-    public final const val DRAW_NORMAL: Long = 0
-
-    /**
-     * The state of buttons are pressed.
-     */
-    public final const val DRAW_PRESSED: Long = 1
-  }
+  public companion object
 }

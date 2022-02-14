@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -19,7 +19,7 @@ import kotlin.Unit
  * Adds a filter to the audio bus.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/audio/audio_buses.html](https://docs.godotengine.org/en/3.4/tutorials/audio/audio_buses.html)
+ * [$DOCS_URL/tutorials/audio/audio_buses.html]($DOCS_URL/tutorials/audio/audio_buses.html)
  *
  * Allows frequencies other than the [cutoffHz] to pass.
  */
@@ -42,17 +42,19 @@ public open class AudioEffectFilter : AudioEffect() {
     }
 
   /**
-   *
+   * Amount of boost in the frequency range near the cutoff frequency.
    */
-  public open var db: Long
+  public open var resonance: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTFILTER_GET_DB, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTFILTER_GET_RESONANCE,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTFILTER_SET_DB, NIL)
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTFILTER_SET_RESONANCE,
+          NIL)
     }
 
   /**
@@ -71,19 +73,17 @@ public open class AudioEffectFilter : AudioEffect() {
     }
 
   /**
-   * Amount of boost in the frequency range near the cutoff frequency.
+   *
    */
-  public open var resonance: Double
+  public open var db: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTFILTER_GET_RESONANCE,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTFILTER_GET_DB, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTFILTER_SET_RESONANCE,
-          NIL)
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTFILTER_SET_DB, NIL)
     }
 
   public override fun __new(): Unit {
@@ -121,25 +121,5 @@ public open class AudioEffectFilter : AudioEffect() {
     }
   }
 
-  public companion object {
-    /**
-     *
-     */
-    public final const val FILTER_12DB: Long = 1
-
-    /**
-     *
-     */
-    public final const val FILTER_18DB: Long = 2
-
-    /**
-     *
-     */
-    public final const val FILTER_24DB: Long = 3
-
-    /**
-     *
-     */
-    public final const val FILTER_6DB: Long = 0
-  }
+  public companion object
 }

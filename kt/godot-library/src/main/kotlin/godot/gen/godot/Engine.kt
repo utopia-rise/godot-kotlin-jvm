@@ -1,12 +1,14 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
+import godot.core.PackedStringArray
+import godot.core.StringName
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -16,7 +18,9 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
+import godot.core.VariantType.STRING_NAME
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -32,228 +36,90 @@ import kotlin.Unit
  */
 @GodotBaseType
 public object Engine : Object() {
-  /**
-   * If `true`, the script is currently running inside the editor. This is useful for `tool` scripts to conditionally draw editor helpers, or prevent accidentally running "game" code that would affect the scene state while in the editor:
-   *
-   * ```
-   * 			if Engine.editor_hint:
-   * 			    draw_gizmos()
-   * 			else:
-   * 			    simulate_physics()
-   * 			```
-   *
-   * See [godot.Running code in the editor](https://docs.godotengine.org/en/3.4/tutorials/misc/running_code_in_the_editor.html) in the documentation for more information.
-   *
-   * **Note:** To detect whether the script is run from an editor *build* (e.g. when pressing `F5`), use [godot.OS.hasFeature] with the `"editor"` argument instead. `OS.has_feature("editor")` will evaluate to `true` both when the code is running in the editor and when running the project from the editor, but it will evaluate to `false` when the code is run from an exported project.
-   */
-  public var editorHint: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_GET_EDITOR_HINT, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_SET_EDITOR_HINT, NIL)
-    }
-
-  /**
-   * The number of fixed iterations per second. This controls how often physics simulation and [godot.Node.PhysicsProcess] methods are run. This value should generally always be set to `60` or above, as Godot doesn't interpolate the physics step. As a result, values lower than `60` will look stuttery. This value can be increased to make input more reactive or work around collision tunneling issues, but keep in mind doing so will increase CPU usage. See also [targetFps] and [godot.ProjectSettings.physics/common/physicsFps].
-   *
-   * **Note:** Only 8 physics ticks may be simulated per rendered frame at most. If more than 8 physics ticks have to be simulated per rendered frame to keep up with rendering, the game will appear to slow down (even if `delta` is used consistently in physics calculations). Therefore, it is recommended not to increase [godot.Engine.iterationsPerSecond] above 240. Otherwise, the game will slow down when the rendering framerate goes below 30 FPS.
-   */
-  public var iterationsPerSecond: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_GET_ITERATIONS_PER_SECOND,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_SET_ITERATIONS_PER_SECOND,
-          NIL)
-    }
-
-  /**
-   * Controls how much physics ticks are synchronized with real time. For 0 or less, the ticks are synchronized. Such values are recommended for network games, where clock synchronization matters. Higher values cause higher deviation of the in-game clock and real clock but smooth out framerate jitters. The default value of 0.5 should be fine for most; values above 2 could cause the game to react to dropped frames with a noticeable delay and are not recommended.
-   *
-   * **Note:** For best results, when using a custom physics interpolation solution, the physics jitter fix should be disabled by setting [physicsJitterFix] to `0`.
-   */
-  public var physicsJitterFix: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_GET_PHYSICS_JITTER_FIX,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_SET_PHYSICS_JITTER_FIX,
-          NIL)
-    }
-
-  /**
-   * If `false`, stops printing error and warning messages to the console and editor Output log. This can be used to hide error and warning messages during unit test suite runs. This property is equivalent to the [godot.ProjectSettings.application/run/disableStderr] project setting.
-   *
-   * **Warning:** If you set this to `false` anywhere in the project, important error messages may be hidden even if they are emitted from other scripts. If this is set to `false` in a `@tool` script, this will also impact the editor itself. Do *not* report bugs before ensuring error messages are enabled (as they are by default).
-   *
-   * **Note:** This property does not impact the editor's Errors tab when running a project from the editor.
-   */
-  public var printErrorMessages: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_GET_PRINT_ERROR_MESSAGES,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_SET_PRINT_ERROR_MESSAGES,
-          NIL)
-    }
-
-  /**
-   * The desired frames per second. If the hardware cannot keep up, this setting may not be respected. A value of 0 means no limit.
-   */
-  public var targetFps: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_GET_TARGET_FPS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_SET_TARGET_FPS, NIL)
-    }
-
-  /**
-   * Controls how fast or slow the in-game clock ticks versus the real life one. It defaults to 1.0. A value of 2.0 means the game moves twice as fast as real life, whilst a value of 0.5 means the game moves at half the regular speed.
-   */
-  public var timeScale: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_GET_TIME_SCALE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_SET_TIME_SCALE, NIL)
-    }
-
   public override fun __new(): Unit {
-    rawPtr = TransferContext.getSingleton(ENGINESINGLETON_ENGINE)
+    rawPtr = TransferContext.getSingleton(ENGINECLASS_ENGINE)
   }
 
   public override fun ____DO_NOT_TOUCH_THIS_isSingleton____() = true
 
-  /**
-   * Returns engine author information in a Dictionary.
-   *
-   * `lead_developers`    - Array of Strings, lead developer names
-   *
-   * `founders`           - Array of Strings, founder names
-   *
-   * `project_managers`   - Array of Strings, project manager names
-   *
-   * `developers`         - Array of Strings, developer names
-   */
-  public fun getAuthorInfo(): Dictionary<Any?, Any?> {
+  public open fun setPhysicsTicksPerSecond(physicsTicksPerSecond: Long): Unit {
+    TransferContext.writeArguments(LONG to physicsTicksPerSecond)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_SET_PHYSICS_TICKS_PER_SECOND,
+        NIL)
+  }
+
+  public open fun getPhysicsTicksPerSecond(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_GET_AUTHOR_INFO, DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_PHYSICS_TICKS_PER_SECOND,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  public open fun setPhysicsJitterFix(physicsJitterFix: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to physicsJitterFix)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_SET_PHYSICS_JITTER_FIX, NIL)
+  }
+
+  public open fun getPhysicsJitterFix(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_PHYSICS_JITTER_FIX,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
-   * Returns an Array of copyright information Dictionaries.
-   *
-   * `name`    - String, component name
-   *
-   * `parts`   - Array of Dictionaries {`files`, `copyright`, `license`} describing subsections of the component
+   * Returns the fraction through the current physics tick we are at the time of rendering the frame. This can be used to implement fixed timestep interpolation.
    */
-  public fun getCopyrightInfo(): VariantArray<Any?> {
+  public open fun getPhysicsInterpolationFraction(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_GET_COPYRIGHT_INFO, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ENGINE_GET_PHYSICS_INTERPOLATION_FRACTION, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  public open fun setTargetFps(targetFps: Long): Unit {
+    TransferContext.writeArguments(LONG to targetFps)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_SET_TARGET_FPS, NIL)
+  }
+
+  public open fun getTargetFps(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_TARGET_FPS, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  public open fun setTimeScale(timeScale: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to timeScale)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_SET_TIME_SCALE, NIL)
+  }
+
+  public open fun getTimeScale(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_TIME_SCALE, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
-   * Returns a Dictionary of Arrays of donor names.
-   *
-   * {`platinum_sponsors`, `gold_sponsors`, `silver_sponsors`, `bronze_sponsors`, `mini_sponsors`, `gold_donors`, `silver_donors`, `bronze_donors`}
+   * Returns the total number of frames drawn. On headless platforms, or if the render loop is disabled with `--disable-render-loop` via command line, [getFramesDrawn] always returns `0`. See [getProcessFrames].
    */
-  public fun getDonorInfo(): Dictionary<Any?, Any?> {
+  public open fun getFramesDrawn(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_GET_DONOR_INFO, DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
-  }
-
-  /**
-   * Returns the total number of frames drawn. On headless platforms, or if the render loop is disabled with `--disable-render-loop` via command line, [getFramesDrawn] always returns `0`. See [getIdleFrames].
-   */
-  public fun getFramesDrawn(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_GET_FRAMES_DRAWN, LONG)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_FRAMES_DRAWN, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
    * Returns the frames per second of the running game.
    */
-  public fun getFramesPerSecond(): Double {
+  public open fun getFramesPerSecond(): Double {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_GET_FRAMES_PER_SECOND,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_FRAMES_PER_SECOND,
         DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
-   * Returns the total number of frames passed since engine initialization which is advanced on each **idle frame**, regardless of whether the render loop is enabled. See also [getFramesDrawn] and [getPhysicsFrames].
-   *
-   * [getIdleFrames] can be used to run expensive logic less often without relying on a [godot.Timer]:
-   *
-   * ```
-   * 				func _process(_delta):
-   * 				    if Engine.get_idle_frames() % 2 == 0:
-   * 				        pass  # Run expensive logic only once every 2 idle (render) frames here.
-   * 				```
-   */
-  public fun getIdleFrames(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_GET_IDLE_FRAMES, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  /**
-   * Returns Dictionary of licenses used by Godot and included third party components.
-   */
-  public fun getLicenseInfo(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_GET_LICENSE_INFO,
-        DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
-  }
-
-  /**
-   * Returns Godot license text.
-   */
-  public fun getLicenseText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_GET_LICENSE_TEXT, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
-  }
-
-  /**
-   * Returns the main loop object (see [godot.MainLoop] and [godot.SceneTree]).
-   */
-  public fun getMainLoop(): MainLoop? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_GET_MAIN_LOOP, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as MainLoop?
-  }
-
-  /**
-   * Returns the total number of frames passed since engine initialization which is advanced on each **physics frame**. See also [getIdleFrames].
+   * Returns the total number of frames passed since engine initialization which is advanced on each **physics frame**. See also [getProcessFrames].
    *
    * [getPhysicsFrames] can be used to run expensive logic less often without relying on a [godot.Timer]:
    *
@@ -263,29 +129,36 @@ public object Engine : Object() {
    * 				        pass  # Run expensive logic only once every 2 physics frames here.
    * 				```
    */
-  public fun getPhysicsFrames(): Long {
+  public open fun getPhysicsFrames(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_GET_PHYSICS_FRAMES, LONG)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_PHYSICS_FRAMES, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
-   * Returns the fraction through the current physics tick we are at the time of rendering the frame. This can be used to implement fixed timestep interpolation.
+   * Returns the total number of frames passed since engine initialization which is advanced on each **process frame**, regardless of whether the render loop is enabled. See also [getFramesDrawn] and [getPhysicsFrames].
+   *
+   * [getProcessFrames] can be used to run expensive logic less often without relying on a [godot.Timer]:
+   *
+   * ```
+   * 				func _process(_delta):
+   * 				    if Engine.get_process_frames() % 2 == 0:
+   * 				        pass  # Run expensive logic only once every 2 process (render) frames here.
+   * 				```
    */
-  public fun getPhysicsInterpolationFraction(): Double {
+  public open fun getProcessFrames(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS__ENGINE_GET_PHYSICS_INTERPOLATION_FRACTION, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_PROCESS_FRAMES, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
-   * Returns a global singleton with given `name`. Often used for plugins, e.g. `GodotPayment` on Android.
+   * Returns the main loop object (see [godot.MainLoop] and [godot.SceneTree]).
    */
-  public fun getSingleton(name: String): Object? {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_GET_SINGLETON, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Object?
+  public open fun getMainLoop(): MainLoop? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_MAIN_LOOP, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as MainLoop?
   }
 
   /**
@@ -311,35 +184,190 @@ public object Engine : Object() {
    *
    * The `hex` value is encoded as follows, from left to right: one byte for the major, one byte for the minor, one byte for the patch version. For example, "3.1.12" would be `0x03010C`. **Note:** It's still an int internally, and printing it will give you its decimal representation, which is not particularly meaningful. Use hexadecimal literals for easy version comparisons from code:
    *
-   * ```
-   * 				if Engine.get_version_info().hex >= 0x030200:
-   * 				    # Do things specific to version 3.2 or later
-   * 				else:
-   * 				    # Do things specific to versions before 3.2
-   * 				```
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * if Engine.get_version_info().hex >= 0x030200:
+   *
+   *     # Do things specific to version 3.2 or later
+   *
+   * else:
+   *
+   *     # Do things specific to versions before 3.2
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * if ((int)Engine.GetVersionInfo()["hex"] >= 0x030200)
+   *
+   * {
+   *
+   *     // Do things specific to version 3.2 or later
+   *
+   * }
+   *
+   * else
+   *
+   * {
+   *
+   *     // Do things specific to versions before 3.2
+   *
+   * }
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    */
-  public fun getVersionInfo(): Dictionary<Any?, Any?> {
+  public open fun getVersionInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_GET_VERSION_INFO,
-        DICTIONARY)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_VERSION_INFO, DICTIONARY)
     return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
   /**
-   * Returns `true` if a singleton with given `name` exists in global scope.
+   * Returns engine author information in a Dictionary.
+   *
+   * `lead_developers`    - Array of Strings, lead developer names
+   *
+   * `founders`           - Array of Strings, founder names
+   *
+   * `project_managers`   - Array of Strings, project manager names
+   *
+   * `developers`         - Array of Strings, developer names
    */
-  public fun hasSingleton(name: String): Boolean {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_HAS_SINGLETON, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  public open fun getAuthorInfo(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_AUTHOR_INFO, DICTIONARY)
+    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+  }
+
+  /**
+   * Returns an Array of copyright information Dictionaries.
+   *
+   * `name`    - String, component name
+   *
+   * `parts`   - Array of Dictionaries {`files`, `copyright`, `license`} describing subsections of the component
+   */
+  public open fun getCopyrightInfo(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_COPYRIGHT_INFO, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+  }
+
+  /**
+   * Returns a Dictionary of Arrays of donor names.
+   *
+   * {`platinum_sponsors`, `gold_sponsors`, `silver_sponsors`, `bronze_sponsors`, `mini_sponsors`, `gold_donors`, `silver_donors`, `bronze_donors`}
+   */
+  public open fun getDonorInfo(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_DONOR_INFO, DICTIONARY)
+    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+  }
+
+  /**
+   * Returns Dictionary of licenses used by Godot and included third party components.
+   */
+  public open fun getLicenseInfo(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_LICENSE_INFO, DICTIONARY)
+    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+  }
+
+  /**
+   * Returns Godot license text.
+   */
+  public open fun getLicenseText(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_LICENSE_TEXT, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**
    * Returns `true` if the game is inside the fixed process and physics phase of the game loop.
    */
-  public fun isInPhysicsFrame(): Boolean {
+  public open fun isInPhysicsFrame(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__ENGINE_IS_IN_PHYSICS_FRAME, BOOL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_IS_IN_PHYSICS_FRAME, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if a singleton with given `name` exists in global scope.
+   */
+  public open fun hasSingleton(name: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_HAS_SINGLETON, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns a global singleton with given `name`. Often used for plugins, e.g. GodotPayments.
+   */
+  public open fun getSingleton(name: StringName): Object? {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_SINGLETON, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Object?
+  }
+
+  /**
+   *
+   */
+  public open fun registerSingleton(name: StringName, instance: Object): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, OBJECT to instance)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_REGISTER_SINGLETON, NIL)
+  }
+
+  /**
+   *
+   */
+  public open fun unregisterSingleton(name: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_UNREGISTER_SINGLETON, NIL)
+  }
+
+  /**
+   *
+   */
+  public open fun getSingletonList(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_SINGLETON_LIST,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * Returns `true` if the script is currently running inside the editor, `false` otherwise. This is useful for `@tool` scripts to conditionally draw editor helpers, or prevent accidentally running "game" code that would affect the scene state while in the editor:
+   *
+   * ```
+   * 				if Engine.is_editor_hint():
+   * 				    draw_gizmos()
+   * 				else:
+   * 				    simulate_physics()
+   * 				```
+   *
+   * See [godot.Running code in the editor]($DOCS_URL/tutorials/plugins/running_code_in_the_editor.html) in the documentation for more information.
+   *
+   * **Note:** To detect whether the script is run from an editor *build* (e.g. when pressing [kbd]F5[/kbd]), use [godot.OS.hasFeature] with the `"editor"` argument instead. `OS.has_feature("editor")` will evaluate to `true` both when the code is running in the editor and when running the project from the editor, but it will evaluate to `false` when the code is run from an exported project.
+   */
+  public open fun isEditorHint(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_IS_EDITOR_HINT, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  public open fun setPrintErrorMessages(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_SET_PRINT_ERROR_MESSAGES,
+        NIL)
+  }
+
+  public open fun isPrintingErrorMessages(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_IS_PRINTING_ERROR_MESSAGES,
+        BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 }

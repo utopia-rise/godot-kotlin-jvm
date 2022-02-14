@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -21,6 +21,22 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeTextureUniform : VisualShaderNodeUniform() {
   /**
+   * Defines the type of data provided by the source texture. See [enum TextureType] for options.
+   */
+  public open var textureType: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREUNIFORM_GET_TEXTURE_TYPE, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREUNIFORM_SET_TEXTURE_TYPE, NIL)
+    }
+
+  /**
    * Sets the default color if no texture is assigned to the uniform.
    */
   public open var colorDefault: Long
@@ -37,19 +53,35 @@ public open class VisualShaderNodeTextureUniform : VisualShaderNodeUniform() {
     }
 
   /**
-   * Defines the type of data provided by the source texture. See [enum TextureType] for options.
+   * Sets the texture filtering mode. See [enum TextureFilter] for options.
    */
-  public open var textureType: Long
+  public open var textureFilter: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREUNIFORM_GET_TEXTURE_TYPE, LONG)
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREUNIFORM_GET_TEXTURE_FILTER, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREUNIFORM_SET_TEXTURE_TYPE, NIL)
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREUNIFORM_SET_TEXTURE_FILTER, NIL)
+    }
+
+  /**
+   * Sets the texture repeating mode. See [enum TextureRepeat] for options.
+   */
+  public open var textureRepeat: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREUNIFORM_GET_TEXTURE_REPEAT, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODETEXTUREUNIFORM_SET_TEXTURE_REPEAT, NIL)
     }
 
   public override fun __new(): Unit {
@@ -70,11 +102,15 @@ public open class VisualShaderNodeTextureUniform : VisualShaderNodeUniform() {
     /**
      * Adds `hint_normal` as hint to the uniform declaration, which internally converts the texture for proper usage as normal map.
      */
-    TYPE_NORMALMAP(2),
+    TYPE_NORMAL_MAP(2),
     /**
-     * Adds `hint_aniso` as hint to the uniform declaration to use for a flowmap.
+     * Adds `hint_anisotropy` as hint to the uniform declaration to use for a flowmap.
      */
-    TYPE_ANISO(3),
+    TYPE_ANISOTROPY(3),
+    /**
+     * Represents the size of the [enum TextureType] enum.
+     */
+    TYPE_MAX(4),
     ;
 
     public val id: Long
@@ -98,6 +134,10 @@ public open class VisualShaderNodeTextureUniform : VisualShaderNodeUniform() {
      * Defaults to black color.
      */
     COLOR_DEFAULT_BLACK(1),
+    /**
+     * Represents the size of the [enum ColorDefault] enum.
+     */
+    COLOR_DEFAULT_MAX(2),
     ;
 
     public val id: Long
@@ -110,35 +150,83 @@ public open class VisualShaderNodeTextureUniform : VisualShaderNodeUniform() {
     }
   }
 
-  public companion object {
+  public enum class TextureFilter(
+    id: Long
+  ) {
     /**
-     * Defaults to black color.
+     *
      */
-    public final const val COLOR_DEFAULT_BLACK: Long = 1
+    FILTER_DEFAULT(0),
+    /**
+     *
+     */
+    FILTER_NEAREST(1),
+    /**
+     *
+     */
+    FILTER_LINEAR(2),
+    /**
+     *
+     */
+    FILTER_NEAREST_MIPMAP(3),
+    /**
+     *
+     */
+    FILTER_LINEAR_MIPMAP(4),
+    /**
+     *
+     */
+    FILTER_NEAREST_MIPMAP_ANISOTROPIC(5),
+    /**
+     *
+     */
+    FILTER_LINEAR_MIPMAP_ANISOTROPIC(6),
+    /**
+     * Represents the size of the [enum TextureFilter] enum.
+     */
+    FILTER_MAX(7),
+    ;
 
-    /**
-     * Defaults to white color.
-     */
-    public final const val COLOR_DEFAULT_WHITE: Long = 0
+    public val id: Long
+    init {
+      this.id = id
+    }
 
-    /**
-     * Adds `hint_aniso` as hint to the uniform declaration to use for a flowmap.
-     */
-    public final const val TYPE_ANISO: Long = 3
-
-    /**
-     * Adds `hint_albedo` as hint to the uniform declaration for proper sRGB to linear conversion.
-     */
-    public final const val TYPE_COLOR: Long = 1
-
-    /**
-     * No hints are added to the uniform declaration.
-     */
-    public final const val TYPE_DATA: Long = 0
-
-    /**
-     * Adds `hint_normal` as hint to the uniform declaration, which internally converts the texture for proper usage as normal map.
-     */
-    public final const val TYPE_NORMALMAP: Long = 2
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
   }
+
+  public enum class TextureRepeat(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    REPEAT_DEFAULT(0),
+    /**
+     *
+     */
+    REPEAT_ENABLED(1),
+    /**
+     *
+     */
+    REPEAT_DISABLED(2),
+    /**
+     * Represents the size of the [enum TextureRepeat] enum.
+     */
+    REPEAT_MAX(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public companion object
 }

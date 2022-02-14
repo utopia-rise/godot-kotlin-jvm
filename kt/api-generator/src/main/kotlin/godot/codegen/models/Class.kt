@@ -14,4 +14,17 @@ data class Class @JsonCreator constructor (
     @JsonProperty("properties") val properties: List<Property>?,
     @JsonProperty("constants") val constants: List<Constant>?,
     @JsonProperty("signals") val signals : List<Signal>?
-)
+) {
+    fun copy(newName: String) = Class(
+        newName,
+        isRefCounted,
+        isInstantiable,
+        inherits,
+        apiType,
+        enums,
+        methods,
+        properties,
+        constants,
+        signals
+    )
+}

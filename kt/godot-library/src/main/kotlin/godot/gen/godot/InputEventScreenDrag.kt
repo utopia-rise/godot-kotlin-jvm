@@ -1,11 +1,10 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
@@ -20,12 +19,12 @@ import kotlin.Unit
  * Input event type for screen drag events. Only available on mobile devices.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html)
+ * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
  *
  * Contains screen drag information. See [godot.Node.Input].
  */
 @GodotBaseType
-public open class InputEventScreenDrag : InputEvent() {
+public open class InputEventScreenDrag : InputEventFromWindow() {
   /**
    * The drag event index in the case of a multi-drag event.
    */
@@ -75,18 +74,18 @@ public open class InputEventScreenDrag : InputEvent() {
     }
 
   /**
-   * The drag speed.
+   * The drag velocity.
    */
-  public open var speed: Vector2
+  public open var velocity: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_GET_SPEED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_GET_VELOCITY,
           VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_SET_SPEED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTSCREENDRAG_SET_VELOCITY,
           NIL)
     }
 
@@ -94,24 +93,5 @@ public open class InputEventScreenDrag : InputEvent() {
     callConstructor(ENGINECLASS_INPUTEVENTSCREENDRAG)
   }
 
-  @CoreTypeHelper
-  public open fun position(schedule: Vector2.() -> Unit): Vector2 = position.apply{
-      schedule(this)
-      position = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun relative(schedule: Vector2.() -> Unit): Vector2 = relative.apply{
-      schedule(this)
-      relative = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun speed(schedule: Vector2.() -> Unit): Vector2 = speed.apply{
-      schedule(this)
-      speed = this
-  }
-
+  public companion object
 }

@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -51,6 +51,10 @@ public open class VisualShaderNodeIs : VisualShaderNode() {
      * Comparison with `NaN` (Not a Number; denotes invalid numeric results, e.g. division by zero).
      */
     FUNC_IS_NAN(1),
+    /**
+     * Represents the size of the [enum Function] enum.
+     */
+    FUNC_MAX(2),
     ;
 
     public val id: Long
@@ -63,15 +67,5 @@ public open class VisualShaderNodeIs : VisualShaderNode() {
     }
   }
 
-  public companion object {
-    /**
-     * Comparison with `INF` (Infinity).
-     */
-    public final const val FUNC_IS_INF: Long = 0
-
-    /**
-     * Comparison with `NaN` (Not a Number; denotes invalid numeric results, e.g. division by zero).
-     */
-    public final const val FUNC_IS_NAN: Long = 1
-  }
+  public companion object
 }

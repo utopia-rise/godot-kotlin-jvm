@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -28,6 +28,22 @@ public open class SplitContainer : Container() {
    * Emitted when the dragger is dragged by user.
    */
   public val dragged: Signal1<Long> by signal("offset")
+
+  /**
+   * The initial offset of the splitting between the two [godot.Control]s, with `0` being at the end of the first [godot.Control].
+   */
+  public open var splitOffset: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_GET_SPLIT_OFFSET,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_SET_SPLIT_OFFSET,
+          NIL)
+    }
 
   /**
    * If `true`, the area of the first [godot.Control] will be collapsed and the dragger will be disabled.
@@ -60,27 +76,8 @@ public open class SplitContainer : Container() {
           ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_SET_DRAGGER_VISIBILITY, NIL)
     }
 
-  /**
-   * The initial offset of the splitting between the two [godot.Control]s, with `0` being at the end of the first [godot.Control].
-   */
-  public open var splitOffset: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_GET_SPLIT_OFFSET,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPLITCONTAINER_SET_SPLIT_OFFSET,
-          NIL)
-    }
-
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SPLITCONTAINER)
-  }
-
-  public override fun _guiInput(event: InputEvent): Unit {
   }
 
   /**
@@ -119,20 +116,5 @@ public open class SplitContainer : Container() {
     }
   }
 
-  public companion object {
-    /**
-     * The split dragger is never visible.
-     */
-    public final const val DRAGGER_HIDDEN: Long = 1
-
-    /**
-     * The split dragger is never visible and its space collapsed.
-     */
-    public final const val DRAGGER_HIDDEN_COLLAPSED: Long = 2
-
-    /**
-     * The split dragger is visible when the cursor hovers it.
-     */
-    public final const val DRAGGER_VISIBLE: Long = 0
-  }
+  public companion object
 }

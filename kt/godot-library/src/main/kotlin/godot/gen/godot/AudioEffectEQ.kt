@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -29,12 +29,11 @@ public open class AudioEffectEQ : AudioEffect() {
   }
 
   /**
-   * Returns the number of bands of the equalizer.
+   * Sets band's gain at the specified index, in dB.
    */
-  public open fun getBandCount(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTEQ_GET_BAND_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+  public open fun setBandGainDb(bandIdx: Long, volumeDb: Double): Unit {
+    TransferContext.writeArguments(LONG to bandIdx, DOUBLE to volumeDb)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTEQ_SET_BAND_GAIN_DB, NIL)
   }
 
   /**
@@ -48,10 +47,13 @@ public open class AudioEffectEQ : AudioEffect() {
   }
 
   /**
-   * Sets band's gain at the specified index, in dB.
+   * Returns the number of bands of the equalizer.
    */
-  public open fun setBandGainDb(bandIdx: Long, volumeDb: Double): Unit {
-    TransferContext.writeArguments(LONG to bandIdx, DOUBLE to volumeDb)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTEQ_SET_BAND_GAIN_DB, NIL)
+  public open fun getBandCount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTEQ_GET_BAND_COUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
+
+  public companion object
 }

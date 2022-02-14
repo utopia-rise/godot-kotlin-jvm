@@ -1,11 +1,10 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -35,11 +34,6 @@ import kotlin.Unit
 @GodotBaseType
 public open class ColorPickerButton : Button() {
   /**
-   * Emitted when the color changes.
-   */
-  public val colorChanged: Signal1<Color> by signal("color")
-
-  /**
    * Emitted when the [godot.ColorPicker] is created (the button is pressed for the first time).
    */
   public val pickerCreated: Signal0 by signal()
@@ -48,6 +42,11 @@ public open class ColorPickerButton : Button() {
    * Emitted when the [godot.ColorPicker] is closed.
    */
   public val popupClosed: Signal0 by signal()
+
+  /**
+   * Emitted when the color changes.
+   */
+  public val colorChanged: Signal1<Color> by signal("color")
 
   /**
    * The currently selected color.
@@ -84,22 +83,6 @@ public open class ColorPickerButton : Button() {
     callConstructor(ENGINECLASS_COLORPICKERBUTTON)
   }
 
-  @CoreTypeHelper
-  public open fun color(schedule: Color.() -> Unit): Color = color.apply{
-      schedule(this)
-      color = this
-  }
-
-
-  public open fun _aboutToShow(): Unit {
-  }
-
-  public open fun _colorChanged(arg0: Color): Unit {
-  }
-
-  public open fun _modalClosed(): Unit {
-  }
-
   /**
    * Returns the [godot.ColorPicker] that this node toggles.
    *
@@ -115,11 +98,13 @@ public open class ColorPickerButton : Button() {
   /**
    * Returns the control's [godot.PopupPanel] which allows you to connect to popup signals. This allows you to handle events when the ColorPicker is shown or hidden.
    *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.Window.visible] property.
    */
   public open fun getPopup(): PopupPanel? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_POPUP, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as PopupPanel?
   }
+
+  public companion object
 }

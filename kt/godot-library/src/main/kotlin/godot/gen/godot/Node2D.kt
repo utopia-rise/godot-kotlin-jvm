@@ -1,11 +1,10 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.Transform2D
@@ -34,6 +33,74 @@ import kotlin.jvm.JvmName
  */
 @GodotBaseType
 public open class Node2D : CanvasItem() {
+  /**
+   * Position, relative to the node's parent.
+   */
+  public open var position: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_POSITION, VECTOR2)
+      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_POSITION, NIL)
+    }
+
+  /**
+   * Rotation in radians, relative to the node's parent.
+   */
+  public open var rotation: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_ROTATION, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_ROTATION, NIL)
+    }
+
+  /**
+   * The node's scale. Unscaled value: `(1, 1)`.
+   */
+  public open var scale: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_SCALE, VECTOR2)
+      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_SCALE, NIL)
+    }
+
+  /**
+   *
+   */
+  public open var skew: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_SKEW, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_SKEW, NIL)
+    }
+
+  /**
+   * Local [godot.core.Transform2D].
+   */
+  public open var transform: Transform2D
+    @JvmName("getTransform_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.getTransform()
+    set(`value`) {
+      TransferContext.writeArguments(TRANSFORM2D to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_TRANSFORM, NIL)
+    }
+
   /**
    * Global position.
    */
@@ -65,22 +132,6 @@ public open class Node2D : CanvasItem() {
     }
 
   /**
-   * Global rotation in degrees.
-   */
-  public open var globalRotationDegrees: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NODE2D_GET_GLOBAL_ROTATION_DEGREES, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NODE2D_SET_GLOBAL_ROTATION_DEGREES, NIL)
-    }
-
-  /**
    * Global scale.
    */
   public open var globalScale: Vector2
@@ -107,72 +158,17 @@ public open class Node2D : CanvasItem() {
     }
 
   /**
-   * Position, relative to the node's parent.
+   * Z index. Controls the order in which the nodes render. A node with a higher Z index will display in front of others. Must be between [godot.RenderingServer.CANVAS_ITEM_Z_MIN] and [godot.RenderingServer.CANVAS_ITEM_Z_MAX] (inclusive).
    */
-  public open var position: Vector2
+  public open var zIndex: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_POSITION, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_Z_INDEX, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_POSITION, NIL)
-    }
-
-  /**
-   * Rotation in radians, relative to the node's parent.
-   */
-  public open var rotation: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_ROTATION, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_ROTATION, NIL)
-    }
-
-  /**
-   * Rotation in degrees, relative to the node's parent.
-   */
-  public open var rotationDegrees: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_ROTATION_DEGREES,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_ROTATION_DEGREES, NIL)
-    }
-
-  /**
-   * The node's scale. Unscaled value: `(1, 1)`.
-   */
-  public open var scale: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_SCALE, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-    }
-    set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_SCALE, NIL)
-    }
-
-  /**
-   * Local [godot.core.Transform2D].
-   */
-  public open var transform: Transform2D
-    @JvmName("getTransform_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
-    get() = super.getTransform()
-    set(`value`) {
-      TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_TRANSFORM, NIL)
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_Z_INDEX, NIL)
     }
 
   /**
@@ -190,109 +186,31 @@ public open class Node2D : CanvasItem() {
     }
 
   /**
-   * Z index. Controls the order in which the nodes render. A node with a higher Z index will display in front of others. Must be between [godot.VisualServer.CANVAS_ITEM_Z_MIN] and [godot.VisualServer.CANVAS_ITEM_Z_MAX] (inclusive).
+   * If `true`, child nodes with the lowest Y position are drawn before those with a higher Y position. If `false`, Y-sorting is disabled. Y-sorting only affects children that inherit from [godot.CanvasItem].
+   *
+   * You can nest nodes with Y-sorting. Child Y-sorted nodes are sorted in the same space as the parent Y-sort. This feature allows you to organize a scene better or divide it into multiple ones without changing your scene tree.
    */
-  public open var zIndex: Long
+  public open var ySortEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_Z_INDEX, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_Y_SORT_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_Z_INDEX, NIL)
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_SET_Y_SORT_ENABLED, NIL)
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_NODE2D)
   }
 
-  @CoreTypeHelper
-  public open fun globalPosition(schedule: Vector2.() -> Unit): Vector2 = globalPosition.apply{
-      schedule(this)
-      globalPosition = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun globalScale(schedule: Vector2.() -> Unit): Vector2 = globalScale.apply{
-      schedule(this)
-      globalScale = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun globalTransform(schedule: Transform2D.() -> Unit): Transform2D =
-      globalTransform.apply{
-      schedule(this)
-      globalTransform = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun position(schedule: Vector2.() -> Unit): Vector2 = position.apply{
-      schedule(this)
-      position = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun scale(schedule: Vector2.() -> Unit): Vector2 = scale.apply{
-      schedule(this)
-      scale = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun transform(schedule: Transform2D.() -> Unit): Transform2D = transform.apply{
-      schedule(this)
-      transform = this
-  }
-
-
   /**
-   * Multiplies the current scale by the `ratio` vector.
+   * Applies a rotation to the node, in radians, starting from its current rotation.
    */
-  public open fun applyScale(ratio: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to ratio)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_APPLY_SCALE, NIL)
-  }
-
-  /**
-   * Returns the angle between the node and the `point` in radians.
-   *
-   * [godot.Illustration of the returned angle.](https://raw.githubusercontent.com/godotengine/godot-docs/master/img/node2d_get_angle_to.png)
-   */
-  public open fun getAngleTo(point: Vector2): Double {
-    TransferContext.writeArguments(VECTOR2 to point)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_ANGLE_TO, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
-  }
-
-  /**
-   * Returns the [godot.core.Transform2D] relative to this node's parent.
-   */
-  public open fun getRelativeTransformToParent(parent: Node): Transform2D {
-    TransferContext.writeArguments(OBJECT to parent)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NODE2D_GET_RELATIVE_TRANSFORM_TO_PARENT, TRANSFORM2D)
-    return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
-  }
-
-  /**
-   * Adds the `offset` vector to the node's global position.
-   */
-  public open fun globalTranslate(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GLOBAL_TRANSLATE, NIL)
-  }
-
-  /**
-   * Rotates the node so it points towards the `point`, which is expected to use global coordinates.
-   */
-  public open fun lookAt(point: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to point)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_LOOK_AT, NIL)
+  public open fun rotate(radians: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to radians)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_ROTATE, NIL)
   }
 
   /**
@@ -312,20 +230,46 @@ public open class Node2D : CanvasItem() {
   }
 
   /**
-   * Applies a rotation to the node, in radians, starting from its current rotation.
+   * Translates the node by the given `offset` in local coordinates.
    */
-  public open fun rotate(radians: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to radians)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_ROTATE, NIL)
+  public open fun translate(offset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to offset)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_TRANSLATE, NIL)
   }
 
   /**
-   * Transforms the provided local position into a position in global coordinate space. The input is expected to be local relative to the [godot.Node2D] it is called on. e.g. Applying this method to the positions of child nodes will correctly transform their positions into the global coordinate space, but applying it to a node's own position will give an incorrect result, as it will incorporate the node's own transformation into its global position.
+   * Adds the `offset` vector to the node's global position.
    */
-  public open fun toGlobal(localPoint: Vector2): Vector2 {
-    TransferContext.writeArguments(VECTOR2 to localPoint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_TO_GLOBAL, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  public open fun globalTranslate(offset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to offset)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GLOBAL_TRANSLATE, NIL)
+  }
+
+  /**
+   * Multiplies the current scale by the `ratio` vector.
+   */
+  public open fun applyScale(ratio: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to ratio)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_APPLY_SCALE, NIL)
+  }
+
+  /**
+   * Rotates the node so it points towards the `point`, which is expected to use global coordinates.
+   */
+  public open fun lookAt(point: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to point)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_LOOK_AT, NIL)
+  }
+
+  /**
+   * Returns the angle between the node and the `point` in radians.
+   *
+   * [godot.Illustration of the returned angle.](https://raw.githubusercontent.com/godotengine/godot-docs/master/img/node2d_get_angle_to.png)
+   */
+  public open fun getAngleTo(point: Vector2): Double {
+    TransferContext.writeArguments(VECTOR2 to point)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_GET_ANGLE_TO, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
@@ -338,10 +282,23 @@ public open class Node2D : CanvasItem() {
   }
 
   /**
-   * Translates the node by the given `offset` in local coordinates.
+   * Transforms the provided local position into a position in global coordinate space. The input is expected to be local relative to the [godot.Node2D] it is called on. e.g. Applying this method to the positions of child nodes will correctly transform their positions into the global coordinate space, but applying it to a node's own position will give an incorrect result, as it will incorporate the node's own transformation into its global position.
    */
-  public open fun translate(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_TRANSLATE, NIL)
+  public open fun toGlobal(localPoint: Vector2): Vector2 {
+    TransferContext.writeArguments(VECTOR2 to localPoint)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE2D_TO_GLOBAL, VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
+
+  /**
+   * Returns the [godot.core.Transform2D] relative to this node's parent.
+   */
+  public open fun getRelativeTransformToParent(parent: Node): Transform2D {
+    TransferContext.writeArguments(OBJECT to parent)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NODE2D_GET_RELATIVE_TRANSFORM_TO_PARENT, TRANSFORM2D)
+    return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
+  }
+
+  public companion object
 }

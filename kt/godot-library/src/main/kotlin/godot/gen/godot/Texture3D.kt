@@ -1,43 +1,87 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
+import godot.Image
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
+import godot.core.VariantArray
+import godot.core.VariantType.ARRAY
+import godot.core.VariantType.BOOL
+import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
+import kotlin.Any
+import kotlin.Boolean
+import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Texture with 3 dimensions.
  *
- * Texture3D is a 3-dimensional [godot.Texture] that has a width, height, and depth. See also [godot.TextureArray].
- *
- * **Note:** [godot.Texture3D]s can only be sampled in shaders in the GLES3 backend. In GLES2, their data can be accessed via scripting, but there is no way to render them in a hardware-accelerated manner.
  */
 @GodotBaseType
-public open class Texture3D : TextureLayered() {
+public open class Texture3D : Texture() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TEXTURE3D)
   }
 
   /**
-   * Creates the Texture3D with specified `width`, `height`, and `depth`. See [enum Image.Format] for `format` options. See [enum TextureLayered.Flags] enumerator for `flags` options.
+   *
    */
-  public open fun create(
-    width: Long,
-    height: Long,
-    depth: Long,
-    format: Long,
-    flags: Long = 4
-  ): Unit {
-    TransferContext.writeArguments(LONG to width, LONG to height, LONG to depth, LONG to format,
-        LONG to flags)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_CREATE, NIL)
+  public open fun getFormat(): Image.Format {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_FORMAT, LONG)
+    return Image.Format.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
+
+  /**
+   *
+   */
+  public open fun getWidth(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_WIDTH, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   *
+   */
+  public open fun getHeight(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_HEIGHT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   *
+   */
+  public open fun getDepth(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_DEPTH, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   *
+   */
+  public open fun hasMipmaps(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_HAS_MIPMAPS, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   *
+   */
+  public open fun getData(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTURE3D_GET_DATA, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+  }
+
+  public companion object
 }

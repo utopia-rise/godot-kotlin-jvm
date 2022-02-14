@@ -1,11 +1,10 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
@@ -20,7 +19,7 @@ import kotlin.Unit
  * A constant [godot.core.Vector3], which can be used as an input node.
  */
 @GodotBaseType
-public open class VisualShaderNodeVec3Constant : VisualShaderNode() {
+public open class VisualShaderNodeVec3Constant : VisualShaderNodeConstant() {
   /**
    * A [godot.core.Vector3] constant which represents the state of this node.
    */
@@ -41,10 +40,5 @@ public open class VisualShaderNodeVec3Constant : VisualShaderNode() {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVEC3CONSTANT)
   }
 
-  @CoreTypeHelper
-  public open fun constant(schedule: Vector3.() -> Unit): Vector3 = constant.apply{
-      schedule(this)
-      constant = this
-  }
-
+  public companion object
 }

@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -22,14 +22,14 @@ import kotlin.jvm.JvmName
  * Input event for gamepad buttons.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html)
+ * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
  *
  * Input event type for gamepad buttons. For gamepad analog sticks and joysticks, see [godot.InputEventJoypadMotion].
  */
 @GodotBaseType
 public open class InputEventJoypadButton : InputEvent() {
   /**
-   * Button identifier. One of the [enum JoystickList] button constants.
+   * Button identifier. One of the [enum JoyButton] button constants.
    */
   public open var buttonIndex: Long
     get() {
@@ -42,19 +42,6 @@ public open class InputEventJoypadButton : InputEvent() {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTJOYPADBUTTON_SET_BUTTON_INDEX, NIL)
-    }
-
-  /**
-   * If `true`, the button's state is pressed. If `false`, the button's state is released.
-   */
-  public open var pressed: Boolean
-    @JvmName("isPressed_prop")
-    @Suppress("INAPPLICABLE_JVM_NAME")
-    get() = super.isPressed()
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTJOYPADBUTTON_SET_PRESSED, NIL)
     }
 
   /**
@@ -73,7 +60,22 @@ public open class InputEventJoypadButton : InputEvent() {
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTJOYPADBUTTON_SET_PRESSURE, NIL)
     }
 
+  /**
+   * If `true`, the button's state is pressed. If `false`, the button's state is released.
+   */
+  public open var pressed: Boolean
+    @JvmName("isPressed_prop")
+    @Suppress("INAPPLICABLE_JVM_NAME")
+    get() = super.isPressed()
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTJOYPADBUTTON_SET_PRESSED, NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTJOYPADBUTTON)
   }
+
+  public companion object
 }

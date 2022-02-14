@@ -1,19 +1,19 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
-import godot.core.PoolByteArray
+import godot.core.PackedByteArray
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.core.VariantType.POOL_BYTE_ARRAY
+import godot.core.VariantType.PACKED_BYTE_ARRAY
 import godot.core.VariantType.STRING
 import kotlin.Boolean
 import kotlin.Int
@@ -36,15 +36,15 @@ public open class AudioStreamSample : AudioStream() {
    *
    * **Note:** This property expects signed PCM8 data. To convert unsigned PCM8 to signed PCM8, subtract 128 from each byte.
    */
-  public open var `data`: PoolByteArray
+  public open var `data`: PackedByteArray
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_GET_DATA,
-          POOL_BYTE_ARRAY)
-      return TransferContext.readReturnValue(POOL_BYTE_ARRAY, false) as PoolByteArray
+          PACKED_BYTE_ARRAY)
+      return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
     }
     set(`value`) {
-      TransferContext.writeArguments(POOL_BYTE_ARRAY to value)
+      TransferContext.writeArguments(PACKED_BYTE_ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_SET_DATA, NIL)
     }
 
@@ -61,6 +61,22 @@ public open class AudioStreamSample : AudioStream() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_SET_FORMAT, NIL)
+    }
+
+  /**
+   * The loop mode. This information will be imported automatically from the WAV file if present. See [enum LoopMode] constants for values.
+   */
+  public open var loopMode: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_GET_LOOP_MODE,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_SET_LOOP_MODE,
+          NIL)
     }
 
   /**
@@ -92,22 +108,6 @@ public open class AudioStreamSample : AudioStream() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_SET_LOOP_END,
-          NIL)
-    }
-
-  /**
-   * The loop mode. This information will be imported automatically from the WAV file if present. See [enum LoopMode] constants for values.
-   */
-  public open var loopMode: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_GET_LOOP_MODE,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMSAMPLE_SET_LOOP_MODE,
           NIL)
     }
 
@@ -175,7 +175,7 @@ public open class AudioStreamSample : AudioStream() {
     /**
      * Audio loops the data between [loopBegin] and [loopEnd], playing back and forth.
      */
-    LOOP_PING_PONG(2),
+    LOOP_PINGPONG(2),
     /**
      * Audio loops the data between [loopBegin] and [loopEnd], playing backward only.
      */
@@ -219,40 +219,5 @@ public open class AudioStreamSample : AudioStream() {
     }
   }
 
-  public companion object {
-    /**
-     * 16-bit audio codec.
-     */
-    public final const val FORMAT_16_BITS: Long = 1
-
-    /**
-     * 8-bit audio codec.
-     */
-    public final const val FORMAT_8_BITS: Long = 0
-
-    /**
-     * Audio is compressed using IMA ADPCM.
-     */
-    public final const val FORMAT_IMA_ADPCM: Long = 2
-
-    /**
-     * Audio loops the data between [loopBegin] and [loopEnd], playing backward only.
-     */
-    public final const val LOOP_BACKWARD: Long = 3
-
-    /**
-     * Audio does not loop.
-     */
-    public final const val LOOP_DISABLED: Long = 0
-
-    /**
-     * Audio loops the data between [loopBegin] and [loopEnd], playing forward only.
-     */
-    public final const val LOOP_FORWARD: Long = 1
-
-    /**
-     * Audio loops the data between [loopBegin] and [loopEnd], playing back and forth.
-     */
-    public final const val LOOP_PING_PONG: Long = 2
-  }
+  public companion object
 }

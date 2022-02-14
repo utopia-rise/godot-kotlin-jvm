@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -17,7 +17,7 @@ import kotlin.Unit
  * Audio stream that generates sounds procedurally.
  *
  * Tutorials:
- * [Godot 3.2 will get new audio features](Godot 3.2 will get new audio features)
+ * [https://godotengine.org/article/godot-32-will-get-new-audio-features](https://godotengine.org/article/godot-32-will-get-new-audio-features)
  *
  * This audio stream does not play back sounds, but expects a script to generate audio data for it instead. See also [godot.AudioStreamGeneratorPlayback].
  *
@@ -27,22 +27,6 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AudioStreamGenerator : AudioStream() {
-  /**
-   * The length of the buffer to generate (in seconds). Lower values result in less latency, but require the script to generate audio data faster, resulting in increased CPU usage and more risk for audio cracking if the CPU can't keep up.
-   */
-  public open var bufferLength: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATOR_GET_BUFFER_LENGTH, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATOR_SET_BUFFER_LENGTH, NIL)
-    }
-
   /**
    * The sample rate to use (in Hz). Higher values are more demanding for the CPU to generate, but result in better quality.
    *
@@ -63,7 +47,25 @@ public open class AudioStreamGenerator : AudioStream() {
           NIL)
     }
 
+  /**
+   * The length of the buffer to generate (in seconds). Lower values result in less latency, but require the script to generate audio data faster, resulting in increased CPU usage and more risk for audio cracking if the CPU can't keep up.
+   */
+  public open var bufferLength: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATOR_GET_BUFFER_LENGTH, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATOR_SET_BUFFER_LENGTH, NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMGENERATOR)
   }
+
+  public companion object
 }

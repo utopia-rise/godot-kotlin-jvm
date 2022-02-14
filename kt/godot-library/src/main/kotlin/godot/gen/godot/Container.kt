@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -27,26 +27,17 @@ import kotlin.Unit
 @GodotBaseType
 public open class Container : Control() {
   /**
+   * Emitted when children are going to be sorted.
+   */
+  public val preSortChildren: Signal0 by signal()
+
+  /**
    * Emitted when sorting the children is needed.
    */
   public val sortChildren: Signal0 by signal()
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CONTAINER)
-  }
-
-  public open fun _childMinsizeChanged(): Unit {
-  }
-
-  public open fun _sortChildren(): Unit {
-  }
-
-  /**
-   * Fit a child control in a given rect. This is mainly a helper for creating custom container classes.
-   */
-  public open fun fitChildInRect(child: Control, rect: Rect2): Unit {
-    TransferContext.writeArguments(OBJECT to child, RECT2 to rect)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTAINER_FIT_CHILD_IN_RECT, NIL)
   }
 
   /**
@@ -57,10 +48,23 @@ public open class Container : Control() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTAINER_QUEUE_SORT, NIL)
   }
 
+  /**
+   * Fit a child control in a given rect. This is mainly a helper for creating custom container classes.
+   */
+  public open fun fitChildInRect(child: Control, rect: Rect2): Unit {
+    TransferContext.writeArguments(OBJECT to child, RECT2 to rect)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTAINER_FIT_CHILD_IN_RECT, NIL)
+  }
+
   public companion object {
+    /**
+     * Notification just before children are going to be sorted, in case there's something to process beforehand.
+     */
+    public final const val NOTIFICATION_PRE_SORT_CHILDREN: Long = 50
+
     /**
      * Notification for when sorting the children, it must be obeyed immediately.
      */
-    public final const val NOTIFICATION_SORT_CHILDREN: Long = 50
+    public final const val NOTIFICATION_SORT_CHILDREN: Long = 51
   }
 }

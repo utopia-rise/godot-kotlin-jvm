@@ -1,17 +1,17 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.PoolVector2Array
+import godot.core.PackedVector2Array
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.core.VariantType.POOL_VECTOR2_ARRAY
+import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
@@ -60,15 +60,15 @@ public open class OccluderPolygon2D : Resource() {
    *
    * **Note:** The returned value is a copy of the underlying array, rather than a reference.
    */
-  public open var polygon: PoolVector2Array
+  public open var polygon: PackedVector2Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERPOLYGON2D_GET_POLYGON,
-          POOL_VECTOR2_ARRAY)
-      return TransferContext.readReturnValue(POOL_VECTOR2_ARRAY, false) as PoolVector2Array
+          PACKED_VECTOR2_ARRAY)
+      return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
     }
     set(`value`) {
-      TransferContext.writeArguments(POOL_VECTOR2_ARRAY to value)
+      TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OCCLUDERPOLYGON2D_SET_POLYGON,
           NIL)
     }
@@ -104,20 +104,5 @@ public open class OccluderPolygon2D : Resource() {
     }
   }
 
-  public companion object {
-    /**
-     * Culling is performed in the clockwise direction. See [cullMode].
-     */
-    public final const val CULL_CLOCKWISE: Long = 1
-
-    /**
-     * Culling is performed in the counterclockwise direction. See [cullMode].
-     */
-    public final const val CULL_COUNTER_CLOCKWISE: Long = 2
-
-    /**
-     * Culling is disabled. See [cullMode].
-     */
-    public final const val CULL_DISABLED: Long = 0
-  }
+  public companion object
 }

@@ -1,35 +1,36 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
-import godot.core.Dictionary
-import godot.core.PoolIntArray
+import godot.core.Color
+import godot.core.RID
 import godot.core.Rect2
 import godot.core.TransferContext
-import godot.core.Transform2D
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.COLOR
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.RECT2
-import godot.core.VariantType.TRANSFORM2D
+import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2
+import godot.core.VariantType.VECTOR2I
+import godot.core.VariantType._RID
 import godot.core.Vector2
+import godot.core.Vector2i
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
-import kotlin.Double
 import kotlin.Long
 import kotlin.NotImplementedError
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -39,60 +40,28 @@ import kotlin.Unit
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/113](https://godotengine.org/asset-library/asset/113)
  *
- * Node for 2D tile-based maps. Tilemaps use a [godot.TileSet] which contain a list of tiles (textures plus optional collision, navigation, and/or occluder shapes) which are used to create grid-based maps.
- *
- * When doing physics queries against the tilemap, the cell coordinates are encoded as `metadata` for each detected collision shape returned by methods such as [godot.Physics2DDirectSpaceState.intersectShape], [godot.Physics2DDirectBodyState.getContactColliderShapeMetadata], etc.
+ * Node for 2D tile-based maps. Tilemaps use a [godot.TileSet] which contain a list of tiles which are used to create grid-based maps. A TileMap may have several layers, layouting tiles on top of each other.
  */
 @GodotBaseType
 public open class TileMap : Node2D() {
   /**
-   * Emitted when a tilemap setting has changed.
+   * Emitted when the [godot.TileSet] of this TileMap changes.
    */
-  public val settingsChanged: Signal0 by signal()
+  public val changed: Signal0 by signal()
 
   /**
-   * If `true`, the cell's UVs will be clipped.
+   * The assigned [godot.TileSet].
    */
-  public open var cellClipUv: Boolean
+  public open var tileSet: TileSet?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_CLIP_UV, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_TILE_SET, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as TileSet?
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELL_CLIP_UV, NIL)
-    }
-
-  /**
-   * The custom [godot.core.Transform2D] to be applied to the TileMap's cells.
-   */
-  public open var cellCustomTransform: Transform2D
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_CUSTOM_TRANSFORM,
-          TRANSFORM2D)
-      return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
-    }
-    set(`value`) {
-      TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELL_CUSTOM_TRANSFORM,
-          NIL)
-    }
-
-  /**
-   * Amount to offset alternating tiles. See [enum HalfOffset] for possible values.
-   */
-  public open var cellHalfOffset: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_HALF_OFFSET,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELL_HALF_OFFSET, NIL)
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_TILE_SET, NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
@@ -112,283 +81,349 @@ public open class TileMap : Node2D() {
     }
 
   /**
-   * The TileMap's cell size.
-   */
-  public open var cellSize: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_SIZE, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-    }
-    set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELL_SIZE, NIL)
-    }
-
-  /**
-   * Position for tile origin. See [enum TileOrigin] for possible values.
-   */
-  public open var cellTileOrigin: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_TILE_ORIGIN,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELL_TILE_ORIGIN, NIL)
-    }
-
-  /**
-   * If `true`, the TileMap's direct children will be drawn in order of their Y coordinate.
-   */
-  public open var cellYSort: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_Y_SORT, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELL_Y_SORT, NIL)
-    }
-
-  /**
-   * If `true`, the textures will be centered in the middle of each tile. This is useful for certain isometric or top-down modes when textures are made larger or smaller than the tiles (e.g. to avoid flickering on tile edges). The offset is still applied, but from the center of the tile. If used, [compatibilityMode] is ignored.
+   * If enabled, the TileMap will see its collisions synced to the physics tick and change its collision type from static to kinematic. This is required to create TileMap-based moving platform.
    *
-   * If `false`, the texture position start in the top-left corner unless [compatibilityMode] is enabled.
+   * **Note:** Enabling `collision_animatable` may have a small performance impact, only do it if the TileMap is moving and has colliding tiles.
    */
-  public open var centeredTextures: Boolean
+  public open var collisionAnimatable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CENTERED_TEXTURES,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_ANIMATABLE,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CENTERED_TEXTURES,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COLLISION_ANIMATABLE,
           NIL)
     }
 
   /**
-   * Bounce value for static body collisions (see `collision_use_kinematic`).
+   * Show or hide the TileMap's collision shapes. If set to `VISIBILITY_MODE_DEFAULT`, this depends on the show collision debug settings.
    */
-  public open var collisionBounce: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_BOUNCE,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COLLISION_BOUNCE, NIL)
-    }
-
-  /**
-   * Friction value for static body collisions (see `collision_use_kinematic`).
-   */
-  public open var collisionFriction: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_FRICTION,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COLLISION_FRICTION,
-          NIL)
-    }
-
-  /**
-   * The collision layer(s) for all colliders in the TileMap. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.4/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
-   */
-  public open var collisionLayer: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_LAYER, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COLLISION_LAYER, NIL)
-    }
-
-  /**
-   * The collision mask(s) for all colliders in the TileMap. See [godot.Collision layers and masks](https://docs.godotengine.org/en/3.4/tutorials/physics/physics_introduction.html#collision-layers-and-masks) in the documentation for more information.
-   */
-  public open var collisionMask: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_MASK, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COLLISION_MASK, NIL)
-    }
-
-  /**
-   * If `true`, TileMap collisions will be handled as a kinematic body. If `false`, collisions will be handled as static body.
-   */
-  public open var collisionUseKinematic: Boolean
+  public open var collisionVisibilityMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_USE_KINEMATIC, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+          ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_VISIBILITY_MODE, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COLLISION_USE_KINEMATIC, NIL)
+          ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COLLISION_VISIBILITY_MODE, NIL)
     }
 
   /**
-   * If `true`, this tilemap's collision shape will be added to the collision shape of the parent. The parent has to be a [godot.CollisionObject2D].
+   * Show or hide the TileMap's collision shapes. If set to `VISIBILITY_MODE_DEFAULT`, this depends on the show navigation debug settings.
    */
-  public open var collisionUseParent: Boolean
+  public open var navigationVisibilityMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_USE_PARENT,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COLLISION_USE_PARENT,
-          NIL)
-    }
-
-  /**
-   * If `true`, the compatibility with the tilemaps made in Godot 3.1 or earlier is maintained (textures move when the tile origin changes and rotate if the texture size is not homogeneous). This mode presents problems when doing `flip_h`, `flip_v` and `transpose` tile operations on non-homogeneous isometric tiles (e.g. 2:1), in which the texture could not coincide with the collision, thus it is not recommended for isometric or non-square tiles.
-   *
-   * If `false`, the textures do not move when doing `flip_h`, `flip_v` operations if no offset is used, nor when changing the tile origin.
-   *
-   * The compatibility mode doesn't work with the [centeredTextures] option, because displacing textures with the [cellTileOrigin] option or in irregular tiles is not relevant when centering those textures.
-   */
-  public open var compatibilityMode: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COMPATIBILITY_MODE,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COMPATIBILITY_MODE,
-          NIL)
-    }
-
-  /**
-   * The TileMap orientation mode. See [enum Mode] for possible values.
-   */
-  public open var mode: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_MODE, LONG)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_NAVIGATION_VISIBILITY_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_MODE, NIL)
-    }
-
-  /**
-   * The light mask assigned to all light occluders in the TileMap. The TileSet's light occluders will cast shadows only from Light2D(s) that have the same light mask(s).
-   */
-  public open var occluderLightMask: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_OCCLUDER_LIGHT_MASK,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_OCCLUDER_LIGHT_MASK,
-          NIL)
-    }
-
-  /**
-   * If `true`, collision shapes are visible in the editor. Doesn't affect collision shapes visibility at runtime. To show collision shapes at runtime, enable **Visible Collision Shapes** in the **Debug** menu instead.
-   */
-  public open var showCollision: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_SHOW_COLLISION, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_SHOW_COLLISION, NIL)
-    }
-
-  /**
-   * The assigned [godot.TileSet].
-   */
-  public open var tileSet: TileSet?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_TILE_SET, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as TileSet?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_TILE_SET, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_NAVIGATION_VISIBILITY_MODE, NIL)
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TILEMAP)
   }
 
-  @CoreTypeHelper
-  public open fun cellCustomTransform(schedule: Transform2D.() -> Unit): Transform2D =
-      cellCustomTransform.apply{
-      schedule(this)
-      cellCustomTransform = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun cellSize(schedule: Vector2.() -> Unit): Vector2 = cellSize.apply{
-      schedule(this)
-      cellSize = this
-  }
-
-
-  public open fun _clearQuadrants(): Unit {
-  }
-
-  public open fun _getOldCellSize(): Long {
-    throw NotImplementedError("_get_old_cell_size is not implemented for TileMap")
-  }
-
-  public open fun _getTileData(): PoolIntArray {
-    throw NotImplementedError("_get_tile_data is not implemented for TileMap")
-  }
-
-  public open fun _recreateQuadrants(): Unit {
-  }
-
-  public open fun _setCelld(position: Vector2, `data`: Dictionary<Any?, Any?>): Unit {
-  }
-
-  public open fun _setOldCellSize(size: Long): Unit {
-  }
-
-  public open fun _setTileData(arg0: PoolIntArray): Unit {
+  /**
+   * Should return `true` if the tile at coordinates `coords[/coords] on layer `layer` requires a runtime update.
+   *
+   * **Warning:** Make sure this function only return `true` when needed. Any tile processed at runtime without a need for it will imply a significant performance penalty.
+   */
+  public open fun _useTileDataRuntimeUpdate(layer: Long, coords: Vector2i): Boolean {
+    throw NotImplementedError("_use_tile_data_runtime_update is not implemented for TileMap")
   }
 
   /**
-   * Clears all cells.
+   * Called with a TileData object about to be used internally by the TileMap, allowing its modification at runtime.
+   *
+   * This method is only called if [_useTileDataRuntimeUpdate] is implemented and returns `true` for the given tile `coords[/coords] and `layer`.
+   *
+   * **Warning:** The `tile_data` object's sub-resources are the same as the one in the TileSet. Modifying them might impact the whole TileSet. Instead, make sure to duplicate those resources.
+   *
+   * **Note:** If the properties of `tile_data` object should change over time, use [forceUpdate] to trigger a TileMap update.
    */
-  public open fun clear(): Unit {
+  public open fun _tileDataRuntimeUpdate(
+    layer: Long,
+    coords: Vector2i,
+    tileData: TileData
+  ): Unit {
+  }
+
+  /**
+   *
+   */
+  public open fun getLayersCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_CLEAR, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYERS_COUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Adds a layer at the given position `to_position` in the array. If `to_position` is -1, adds it at the end of the array.
+   */
+  public open fun addLayer(toPosition: Long): Unit {
+    TransferContext.writeArguments(LONG to toPosition)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_ADD_LAYER, NIL)
+  }
+
+  /**
+   * Moves the layer at index `layer_index` to the given position `to_position` in the array.
+   */
+  public open fun moveLayer(layer: Long, toPosition: Long): Unit {
+    TransferContext.writeArguments(LONG to layer, LONG to toPosition)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_MOVE_LAYER, NIL)
+  }
+
+  /**
+   * Removes the layer at index `layer`.
+   */
+  public open fun removeLayer(layer: Long): Unit {
+    TransferContext.writeArguments(LONG to layer)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_REMOVE_LAYER, NIL)
+  }
+
+  /**
+   * Sets a layer's name. This is mostly useful in the editor.
+   */
+  public open fun setLayerName(layer: Long, name: String): Unit {
+    TransferContext.writeArguments(LONG to layer, STRING to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_NAME, NIL)
+  }
+
+  /**
+   * Returns a TileMap layer's name.
+   */
+  public open fun getLayerName(layer: Long): String {
+    TransferContext.writeArguments(LONG to layer)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYER_NAME, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Enables or disables the layer `layer`. A disabled layer is not processed at all (no rendering, no physics, etc...).
+   */
+  public open fun setLayerEnabled(layer: Long, enabled: Boolean): Unit {
+    TransferContext.writeArguments(LONG to layer, BOOL to enabled)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_ENABLED, NIL)
+  }
+
+  /**
+   * Returns if a layer is enabled.
+   */
+  public open fun isLayerEnabled(layer: Long): Boolean {
+    TransferContext.writeArguments(LONG to layer)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_IS_LAYER_ENABLED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Sets a layer's color. It will be multiplied by tile's color and TileMap's modulate.
+   */
+  public open fun setLayerModulate(layer: Long, enabled: Color): Unit {
+    TransferContext.writeArguments(LONG to layer, COLOR to enabled)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_MODULATE, NIL)
+  }
+
+  /**
+   * Returns a TileMap layer's modulate.
+   */
+  public open fun getLayerModulate(layer: Long): Color {
+    TransferContext.writeArguments(LONG to layer)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYER_MODULATE, COLOR)
+    return TransferContext.readReturnValue(COLOR, false) as Color
+  }
+
+  /**
+   * Enables or disables a layer's Y-sorting. If a layer is Y-sorted, the layer will behave as a CanvasItem node where each of its tile gets Y-sorted.
+   *
+   * Y-sorted layers should usually be on different Z-index values than not Y-sorted layers, otherwise, each of those layer will be Y-sorted as whole with the Y-sorted one. This is usually an undesired behvaior.
+   */
+  public open fun setLayerYSortEnabled(layer: Long, ySortEnabled: Boolean): Unit {
+    TransferContext.writeArguments(LONG to layer, BOOL to ySortEnabled)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_Y_SORT_ENABLED,
+        NIL)
+  }
+
+  /**
+   * Returns if a layer Y-sorts its tiles.
+   */
+  public open fun isLayerYSortEnabled(layer: Long): Boolean {
+    TransferContext.writeArguments(LONG to layer)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_IS_LAYER_Y_SORT_ENABLED,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Sets a layer's Y-sort origin value. This Y-sort origin value is added to each tile's Y-sort origin value.
+   *
+   * This allows, for example, to fake a different height level on each layer. This can be useful for top-down view games.
+   */
+  public open fun setLayerYSortOrigin(layer: Long, ySortOrigin: Long): Unit {
+    TransferContext.writeArguments(LONG to layer, LONG to ySortOrigin)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_Y_SORT_ORIGIN,
+        NIL)
+  }
+
+  /**
+   * Returns a TileMap layer's Y sort origin.
+   */
+  public open fun getLayerYSortOrigin(layer: Long): Long {
+    TransferContext.writeArguments(LONG to layer)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYER_Y_SORT_ORIGIN,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Sets a layers Z-index value. This Z-index is added to each tile's Z-index value.
+   */
+  public open fun setLayerZIndex(layer: Long, zIndex: Long): Unit {
+    TransferContext.writeArguments(LONG to layer, LONG to zIndex)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_LAYER_Z_INDEX, NIL)
+  }
+
+  /**
+   * Returns a TileMap layer's Z-index value.
+   */
+  public open fun getLayerZIndex(layer: Long): Long {
+    TransferContext.writeArguments(LONG to layer)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_LAYER_Z_INDEX, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Sets the tile indentifiers for the cell on layer `layer` at coordinates `coords`. Each tile of the [godot.TileSet] is identified using three parts:
+   *
+   * - The source identifier `source_id` identifies a [godot.TileSetSource] identifier. See [godot.TileSet.setSourceId],
+   *
+   * - The atlas coordinates identifier `atlas_coords` identifies a tile coordinates in the atlas (if the source is a [godot.TileSetAtlasSource]. For [godot.TileSetScenesCollectionSource] it should be 0),
+   *
+   * - The alternative tile identifier `alternative_tile` identifies a tile alternative the source is a [godot.TileSetAtlasSource], and the scene for a [godot.TileSetScenesCollectionSource].
+   */
+  public open fun setCell(
+    layer: Long,
+    coords: Vector2i,
+    sourceId: Long = -1,
+    atlasCoords: Vector2i = Vector2iVector2i(-1.0, -1.0),
+    alternativeTile: Long = -1
+  ): Unit {
+    TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, LONG to sourceId, VECTOR2I to
+        atlasCoords, LONG to alternativeTile)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELL, NIL)
+  }
+
+  /**
+   * Returns the tile source ID of the cell on layer `layer` at coordinates `coords`. If `use_proxies` is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
+   */
+  public open fun getCellSourceId(
+    layer: Long,
+    coords: Vector2i,
+    useProxies: Boolean
+  ): Long {
+    TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, BOOL to useProxies)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_SOURCE_ID, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the tile atlas coordinates ID of the cell on layer `layer` at coordinates `coords`. If `use_proxies` is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
+   */
+  public open fun getCellAtlasCoords(
+    layer: Long,
+    coords: Vector2i,
+    useProxies: Boolean
+  ): Vector2i {
+    TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, BOOL to useProxies)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_ATLAS_COORDS,
+        VECTOR2I)
+    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+  }
+
+  /**
+   * Returns the tile alternative ID of the cell on layer `layer` at `coords`. If `use_proxies` is `false`, ignores the [godot.TileSet]'s tile proxies, returning the raw alternative identifier. See [godot.TileSet.mapTileProxy].
+   */
+  public open fun getCellAlternativeTile(
+    layer: Long,
+    coords: Vector2i,
+    useProxies: Boolean
+  ): Long {
+    TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, BOOL to useProxies)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_ALTERNATIVE_TILE,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the coordinates of the tile for given physics body RID. Such RID can be retrieved from [godot.KinematicCollision2D.getColliderRid], when colliding with a tile.
+   */
+  public open fun getCoordsForBodyRid(body: RID): Vector2i {
+    TransferContext.writeArguments(_RID to body)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COORDS_FOR_BODY_RID,
+        VECTOR2I)
+    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+  }
+
+  /**
+   * Creates a new [godot.TileMapPattern] from the given layer and set of cells.
+   */
+  public open fun getPattern(layer: Long, coordsArray: VariantArray<Any?>): TileMapPattern? {
+    TransferContext.writeArguments(LONG to layer, ARRAY to coordsArray)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_PATTERN, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as TileMapPattern?
+  }
+
+  /**
+   * Returns for the given coordinate `coords_in_pattern` in a [godot.TileMapPattern] the corresponding cell coordinates if the pattern was pasted at the `position_in_tilemap` coordinates (see [setPattern]). This mapping is required as in half-offset tile shapes, the mapping might not work by calculating `position_in_tile_map + coords_in_pattern`
+   */
+  public open fun mapPattern(
+    positionInTilemap: Vector2i,
+    coordsInPattern: Vector2i,
+    pattern: TileMapPattern
+  ): Vector2i {
+    TransferContext.writeArguments(VECTOR2I to positionInTilemap, VECTOR2I to coordsInPattern,
+        OBJECT to pattern)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_MAP_PATTERN, VECTOR2I)
+    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+  }
+
+  /**
+   * Paste the given [godot.TileMapPattern] at the given `position` and `layer` in the tile map.
+   */
+  public open fun setPattern(
+    layer: Long,
+    position: Vector2i,
+    pattern: TileMapPattern
+  ): Unit {
+    TransferContext.writeArguments(LONG to layer, VECTOR2I to position, OBJECT to pattern)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_PATTERN, NIL)
+  }
+
+  /**
+   * Updates all the cells in the `cells` coordinates array and replace them by tiles that matches the surrounding cells terrains. Only cells form the given `terrain_set` are considered.
+   *
+   * If `ignore_empty_terrains` is true, zones with no terrain defined are ignored to select the tiles.
+   */
+  public open fun setCellsFromSurroundingTerrains(
+    layer: Long,
+    cells: VariantArray<Any?>,
+    terrainSet: Long,
+    ignoreEmptyTerrains: Boolean = true
+  ): Unit {
+    TransferContext.writeArguments(LONG to layer, ARRAY to cells, LONG to terrainSet, BOOL to
+        ignoreEmptyTerrains)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELLS_FROM_SURROUNDING_TERRAINS, NIL)
   }
 
   /**
@@ -400,73 +435,54 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Returns the tile index of the given cell. If no tile exists in the cell, returns [INVALID_CELL].
+   * Clears all cells on the given layer.
    */
-  public open fun getCell(x: Long, y: Long): Long {
-    TransferContext.writeArguments(LONG to x, LONG to y)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+  public open fun clearLayer(layer: Long): Unit {
+    TransferContext.writeArguments(LONG to layer)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_CLEAR_LAYER, NIL)
   }
 
   /**
-   * Returns the coordinate (subtile column and row) of the autotile variation in the tileset. Returns a zero vector if the cell doesn't have autotiling.
+   * Clears all cells.
    */
-  public open fun getCellAutotileCoord(x: Long, y: Long): Vector2 {
-    TransferContext.writeArguments(LONG to x, LONG to y)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_AUTOTILE_COORD,
-        VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-  }
-
-  /**
-   * Returns the tile index of the cell given by a Vector2. If no tile exists in the cell, returns [INVALID_CELL].
-   */
-  public open fun getCellv(position: Vector2): Long {
-    TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELLV, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  /**
-   * Returns `true` if the given collision layer bit is set.
-   */
-  public open fun getCollisionLayerBit(bit: Long): Boolean {
-    TransferContext.writeArguments(LONG to bit)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_LAYER_BIT,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` if the given collision mask bit is set.
-   */
-  public open fun getCollisionMaskBit(bit: Long): Boolean {
-    TransferContext.writeArguments(LONG to bit)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_MASK_BIT,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns a [godot.core.Vector2] array with the positions of all cells containing a tile from the tileset (i.e. a tile index different from `-1`).
-   */
-  public open fun getUsedCells(): VariantArray<Any?> {
+  public open fun clear(): Unit {
     TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_CLEAR, NIL)
+  }
+
+  /**
+   * Triggers an update of the TileMap. If `layer` is provided, only updates the given layer.
+   *
+   * **Note:** The TileMap node updates automatically when one of its properties is modified. A manual update is only needed if runtime modifications (implemented in [_tileDataRuntimeUpdate]) need to be applied.
+   *
+   * **Warning:** Updating the TileMap is a performance demanding task. Limit occurrences of those updates to the minimum and limit the amount tiles they impact (by segregating tiles updated often to a dedicated layer for example).
+   */
+  public open fun forceUpdate(layer: Long = -1): Unit {
+    TransferContext.writeArguments(LONG to layer)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_FORCE_UPDATE, NIL)
+  }
+
+  /**
+   * Returns the list of all neighbourings cells to the one at `coords`
+   */
+  public open fun getSurroundingTiles(coords: Vector2i): VariantArray<Any?> {
+    TransferContext.writeArguments(VECTOR2I to coords)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_SURROUNDING_TILES,
+        ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+  }
+
+  /**
+   * Returns a [godot.core.Vector2] array with the positions of all cells containing a tile in the given layer. A cell is considered empty if its source identifier equals -1, its atlas coordinates identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.
+   */
+  public open fun getUsedCells(layer: Long): VariantArray<Any?> {
+    TransferContext.writeArguments(LONG to layer)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_USED_CELLS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
   /**
-   * Returns an array of all cells with the given tile index specified in `id`.
-   */
-  public open fun getUsedCellsById(id: Long): VariantArray<Any?> {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_USED_CELLS_BY_ID, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
-  }
-
-  /**
-   * Returns a rectangle enclosing the used (non-empty) tiles of the map.
+   * Returns a rectangle enclosing the used (non-empty) tiles of the map, including all layers.
    */
   public open fun getUsedRect(): Rect2 {
     TransferContext.writeArguments()
@@ -475,182 +491,49 @@ public open class TileMap : Node2D() {
   }
 
   /**
-   * Returns `true` if the given cell is transposed, i.e. the X and Y axes are swapped.
-   */
-  public open fun isCellTransposed(x: Long, y: Long): Boolean {
-    TransferContext.writeArguments(LONG to x, LONG to y)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_IS_CELL_TRANSPOSED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` if the given cell is flipped in the X axis.
-   */
-  public open fun isCellXFlipped(x: Long, y: Long): Boolean {
-    TransferContext.writeArguments(LONG to x, LONG to y)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_IS_CELL_X_FLIPPED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` if the given cell is flipped in the Y axis.
-   */
-  public open fun isCellYFlipped(x: Long, y: Long): Boolean {
-    TransferContext.writeArguments(LONG to x, LONG to y)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_IS_CELL_Y_FLIPPED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns the local position of the top left corner of the cell corresponding to the given tilemap (grid-based) coordinates.
+   * Returns a local position of the center of the cell at the given tilemap (grid-based) coordinates.
    *
-   * To get the global position, use [godot.Node2D.toGlobal]:
-   *
-   * ```
-   * 				var local_position = my_tilemap.map_to_world(map_position)
-   * 				var global_position = my_tilemap.to_global(local_position)
-   * 				```
-   *
-   * Optionally, the tilemap's half offset can be ignored.
+   * **Note:** This doesn't correspond to the visual position of the tile, i.e. it ignores the [godot.TileData.textureOffset] property of individual tiles.
    */
-  public open fun mapToWorld(mapPosition: Vector2, ignoreHalfOfs: Boolean = false): Vector2 {
-    TransferContext.writeArguments(VECTOR2 to mapPosition, BOOL to ignoreHalfOfs)
+  public open fun mapToWorld(mapPosition: Vector2i): Vector2 {
+    TransferContext.writeArguments(VECTOR2I to mapPosition)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_MAP_TO_WORLD, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
   /**
-   * Sets the tile index for the cell given by a Vector2.
-   *
-   * An index of `-1` clears the cell.
-   *
-   * Optionally, the tile can also be flipped, transposed, or given autotile coordinates. The autotile coordinate refers to the column and row of the subtile.
-   *
-   * **Note:** Data such as navigation polygons and collision shapes are not immediately updated for performance reasons.
-   *
-   * If you need these to be immediately updated, you can call [updateDirtyQuadrants].
-   *
-   * Overriding this method also overrides it internally, allowing custom logic to be implemented when tiles are placed/removed:
-   *
-   * ```
-   * 				func set_cell(x, y, tile, flip_x=false, flip_y=false, transpose=false, autotile_coord=Vector2()):
-   * 				    # Write your custom logic here.
-   * 				    # To call the default method:
-   * 				    .set_cell(x, y, tile, flip_x, flip_y, transpose, autotile_coord)
-   * 				```
-   */
-  public open fun setCell(
-    x: Long,
-    y: Long,
-    tile: Long,
-    flipX: Boolean = false,
-    flipY: Boolean = false,
-    transpose: Boolean = false,
-    autotileCoord: Vector2 = Vector2(0.0, 0.0)
-  ): Unit {
-    TransferContext.writeArguments(LONG to x, LONG to y, LONG to tile, BOOL to flipX, BOOL to flipY,
-        BOOL to transpose, VECTOR2 to autotileCoord)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELL, NIL)
-  }
-
-  /**
-   * Sets the tile index for the given cell.
-   *
-   * An index of `-1` clears the cell.
-   *
-   * Optionally, the tile can also be flipped or transposed.
-   *
-   * **Note:** Data such as navigation polygons and collision shapes are not immediately updated for performance reasons.
-   *
-   * If you need these to be immediately updated, you can call [updateDirtyQuadrants].
-   */
-  public open fun setCellv(
-    position: Vector2,
-    tile: Long,
-    flipX: Boolean = false,
-    flipY: Boolean = false,
-    transpose: Boolean = false
-  ): Unit {
-    TransferContext.writeArguments(VECTOR2 to position, LONG to tile, BOOL to flipX, BOOL to flipY,
-        BOOL to transpose)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELLV, NIL)
-  }
-
-  /**
-   * Sets the given collision layer bit.
-   */
-  public open fun setCollisionLayerBit(bit: Long, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to bit, BOOL to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COLLISION_LAYER_BIT,
-        NIL)
-  }
-
-  /**
-   * Sets the given collision mask bit.
-   */
-  public open fun setCollisionMaskBit(bit: Long, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to bit, BOOL to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_COLLISION_MASK_BIT, NIL)
-  }
-
-  /**
-   * Applies autotiling rules to the cell (and its adjacent cells) referenced by its grid-based X and Y coordinates.
-   */
-  public open fun updateBitmaskArea(position: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_UPDATE_BITMASK_AREA, NIL)
-  }
-
-  /**
-   * Applies autotiling rules to the cells in the given region (specified by grid-based X and Y coordinates).
-   *
-   * Calling with invalid (or missing) parameters applies autotiling rules for the entire tilemap.
-   */
-  public open fun updateBitmaskRegion(start: Vector2 = Vector2(0.0, 0.0), end: Vector2 =
-      Vector2(0.0, 0.0)): Unit {
-    TransferContext.writeArguments(VECTOR2 to start, VECTOR2 to end)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_UPDATE_BITMASK_REGION, NIL)
-  }
-
-  /**
-   * Updates the tile map's quadrants, allowing things such as navigation and collision shapes to be immediately used if modified.
-   */
-  public open fun updateDirtyQuadrants(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_UPDATE_DIRTY_QUADRANTS, NIL)
-  }
-
-  /**
    * Returns the tilemap (grid-based) coordinates corresponding to the given local position.
-   *
-   * To use this with a global position, first determine the local position with [godot.Node2D.toLocal]:
-   *
-   * ```
-   * 				var local_position = my_tilemap.to_local(global_position)
-   * 				var map_position = my_tilemap.world_to_map(local_position)
-   * 				```
    */
-  public open fun worldToMap(worldPosition: Vector2): Vector2 {
+  public open fun worldToMap(worldPosition: Vector2): Vector2i {
     TransferContext.writeArguments(VECTOR2 to worldPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_WORLD_TO_MAP, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_WORLD_TO_MAP, VECTOR2I)
+    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
   }
 
-  public enum class Mode(
+  /**
+   * Returns the neighboring cell to the one at coordinates `coords`, identified by the `neighbor` direction. This method takes into account the different layouts a TileMap can take.
+   */
+  public open fun getNeighborCell(coords: Vector2i, neighbor: TileSet.CellNeighbor): Vector2i {
+    TransferContext.writeArguments(VECTOR2I to coords, LONG to neighbor.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_NEIGHBOR_CELL, VECTOR2I)
+    return TransferContext.readReturnValue(VECTOR2I, false) as Vector2i
+  }
+
+  public enum class VisibilityMode(
     id: Long
   ) {
     /**
-     * Orthogonal orientation mode.
+     * Use the debug settings to determine visibility.
      */
-    MODE_SQUARE(0),
+    VISIBILITY_MODE_DEFAULT(0),
     /**
-     * Isometric orientation mode.
+     * Always hide.
      */
-    MODE_ISOMETRIC(1),
+    VISIBILITY_MODE_FORCE_HIDE(2),
     /**
-     * Custom orientation mode.
+     * Always show.
      */
-    MODE_CUSTOM(2),
+    VISIBILITY_MODE_FORCE_SHOW(1),
     ;
 
     public val id: Long
@@ -663,127 +546,5 @@ public open class TileMap : Node2D() {
     }
   }
 
-  public enum class TileOrigin(
-    id: Long
-  ) {
-    /**
-     * Tile origin at its top-left corner.
-     */
-    TILE_ORIGIN_TOP_LEFT(0),
-    /**
-     * Tile origin at its center.
-     */
-    TILE_ORIGIN_CENTER(1),
-    /**
-     * Tile origin at its bottom-left corner.
-     */
-    TILE_ORIGIN_BOTTOM_LEFT(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class HalfOffset(
-    id: Long
-  ) {
-    /**
-     * Half offset on the X coordinate.
-     */
-    HALF_OFFSET_X(0),
-    /**
-     * Half offset on the Y coordinate.
-     */
-    HALF_OFFSET_Y(1),
-    /**
-     * Half offset disabled.
-     */
-    HALF_OFFSET_DISABLED(2),
-    /**
-     * Half offset on the X coordinate (negative).
-     */
-    HALF_OFFSET_NEGATIVE_X(3),
-    /**
-     * Half offset on the Y coordinate (negative).
-     */
-    HALF_OFFSET_NEGATIVE_Y(4),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public companion object {
-    /**
-     * Half offset disabled.
-     */
-    public final const val HALF_OFFSET_DISABLED: Long = 2
-
-    /**
-     * Half offset on the X coordinate (negative).
-     */
-    public final const val HALF_OFFSET_NEGATIVE_X: Long = 3
-
-    /**
-     * Half offset on the Y coordinate (negative).
-     */
-    public final const val HALF_OFFSET_NEGATIVE_Y: Long = 4
-
-    /**
-     * Half offset on the X coordinate.
-     */
-    public final const val HALF_OFFSET_X: Long = 0
-
-    /**
-     * Half offset on the Y coordinate.
-     */
-    public final const val HALF_OFFSET_Y: Long = 1
-
-    /**
-     * Returned when a cell doesn't exist.
-     */
-    public final const val INVALID_CELL: Long = -1
-
-    /**
-     * Custom orientation mode.
-     */
-    public final const val MODE_CUSTOM: Long = 2
-
-    /**
-     * Isometric orientation mode.
-     */
-    public final const val MODE_ISOMETRIC: Long = 1
-
-    /**
-     * Orthogonal orientation mode.
-     */
-    public final const val MODE_SQUARE: Long = 0
-
-    /**
-     * Tile origin at its bottom-left corner.
-     */
-    public final const val TILE_ORIGIN_BOTTOM_LEFT: Long = 2
-
-    /**
-     * Tile origin at its center.
-     */
-    public final const val TILE_ORIGIN_CENTER: Long = 1
-
-    /**
-     * Tile origin at its top-left corner.
-     */
-    public final const val TILE_ORIGIN_TOP_LEFT: Long = 0
-  }
+  public companion object
 }

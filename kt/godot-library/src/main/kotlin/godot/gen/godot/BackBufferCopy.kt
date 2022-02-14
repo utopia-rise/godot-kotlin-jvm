@@ -1,11 +1,10 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.TransferContext
@@ -58,13 +57,6 @@ public open class BackBufferCopy : Node2D() {
     callConstructor(ENGINECLASS_BACKBUFFERCOPY)
   }
 
-  @CoreTypeHelper
-  public open fun rect(schedule: Rect2.() -> Unit): Rect2 = rect.apply{
-      schedule(this)
-      rect = this
-  }
-
-
   public enum class CopyMode(
     id: Long
   ) {
@@ -92,20 +84,5 @@ public open class BackBufferCopy : Node2D() {
     }
   }
 
-  public companion object {
-    /**
-     * Disables the buffering mode. This means the BackBufferCopy node will directly use the portion of screen it covers.
-     */
-    public final const val COPY_MODE_DISABLED: Long = 0
-
-    /**
-     * BackBufferCopy buffers a rectangular region.
-     */
-    public final const val COPY_MODE_RECT: Long = 1
-
-    /**
-     * BackBufferCopy buffers the entire screen.
-     */
-    public final const val COPY_MODE_VIEWPORT: Long = 2
-  }
+  public companion object
 }

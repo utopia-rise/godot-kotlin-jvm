@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -23,29 +23,16 @@ import kotlin.Unit
  * Base class for nodes in a visual shader graph.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/shaders/visual_shaders.html](https://docs.godotengine.org/en/3.4/tutorials/shaders/visual_shaders.html)
+ * [$DOCS_URL/tutorials/shaders/visual_shaders.html]($DOCS_URL/tutorials/shaders/visual_shaders.html)
  *
  * Visual shader graphs consist of various nodes. Each node in the graph is a separate object and they are represented as a rectangular boxes with title and a set of properties. Each node has also connection ports that allow to connect it to another nodes and control the flow of the shader.
  */
 @GodotBaseType
 public open class VisualShaderNode : Resource() {
   /**
-   * Emitted when the node requests an editor refresh. Currently called only in setter of [godot.VisualShaderNodeTexture.source], [godot.VisualShaderNodeTexture], and [godot.VisualShaderNodeCubeMap] (and their derivatives).
+   * Emitted when the node requests an editor refresh. Currently called only in setter of [godot.VisualShaderNodeTexture.source], [godot.VisualShaderNodeTexture], and [godot.VisualShaderNodeCubemap] (and their derivatives).
    */
   public val editorRefreshRequest: Signal0 by signal()
-
-  public open var defaultInputValues: VariantArray<Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_GET_DEFAULT_INPUT_VALUES, ARRAY)
-      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
-    }
-    set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_SET_DEFAULT_INPUT_VALUES, NIL)
-    }
 
   /**
    * Sets the output port index which will be showed for preview. If set to `-1` no port will be open for preview.
@@ -63,8 +50,34 @@ public open class VisualShaderNode : Resource() {
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_SET_OUTPUT_PORT_FOR_PREVIEW, NIL)
     }
 
+  public open var defaultInputValues: VariantArray<Any?>
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_GET_DEFAULT_INPUT_VALUES, ARRAY)
+      return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+    }
+    set(`value`) {
+      TransferContext.writeArguments(ARRAY to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_SET_DEFAULT_INPUT_VALUES, NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODE)
+  }
+
+  /**
+   * Sets the default value for the selected input `port`.
+   */
+  public open fun setInputPortDefaultValue(
+    port: Long,
+    `value`: Any,
+    prevValue: Any? = null
+  ): Unit {
+    TransferContext.writeArguments(LONG to port, ANY to value, ANY to prevValue)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_SET_INPUT_PORT_DEFAULT_VALUE, NIL)
   }
 
   /**
@@ -78,12 +91,21 @@ public open class VisualShaderNode : Resource() {
   }
 
   /**
-   * Sets the default value for the selected input `port`.
+   * Removes the default value of the input `port`.
    */
-  public open fun setInputPortDefaultValue(port: Long, `value`: Any?): Unit {
-    TransferContext.writeArguments(LONG to port, ANY to value)
+  public open fun removeInputPortDefaultValue(port: Long): Unit {
+    TransferContext.writeArguments(LONG to port)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_SET_INPUT_PORT_DEFAULT_VALUE, NIL)
+        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_REMOVE_INPUT_PORT_DEFAULT_VALUE, NIL)
+  }
+
+  /**
+   * Clears the default input ports value.
+   */
+  public open fun clearDefaultInputValues(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODE_CLEAR_DEFAULT_INPUT_VALUES, NIL)
   }
 
   public enum class PortType(
@@ -94,25 +116,33 @@ public open class VisualShaderNode : Resource() {
      */
     PORT_TYPE_SCALAR(0),
     /**
+     * Integer scalar. Translated to `int` type in shader code.
+     */
+    PORT_TYPE_SCALAR_INT(1),
+    /**
+     * 2D vector of floating-point values. Translated to `vec2` type in shader code.
+     */
+    PORT_TYPE_VECTOR_2D(2),
+    /**
      * 3D vector of floating-point values. Translated to `vec3` type in shader code.
      */
-    PORT_TYPE_VECTOR(1),
+    PORT_TYPE_VECTOR_3D(3),
     /**
      * Boolean type. Translated to `bool` type in shader code.
      */
-    PORT_TYPE_BOOLEAN(2),
+    PORT_TYPE_BOOLEAN(4),
     /**
      * Transform type. Translated to `mat4` type in shader code.
      */
-    PORT_TYPE_TRANSFORM(3),
+    PORT_TYPE_TRANSFORM(5),
     /**
      * Sampler type. Translated to reference of sampler uniform in shader code. Can only be used for input ports in non-uniform nodes.
      */
-    PORT_TYPE_SAMPLER(4),
+    PORT_TYPE_SAMPLER(6),
     /**
      * Represents the size of the [enum PortType] enum.
      */
-    PORT_TYPE_MAX(5),
+    PORT_TYPE_MAX(7),
     ;
 
     public val id: Long
@@ -125,35 +155,5 @@ public open class VisualShaderNode : Resource() {
     }
   }
 
-  public companion object {
-    /**
-     * Boolean type. Translated to `bool` type in shader code.
-     */
-    public final const val PORT_TYPE_BOOLEAN: Long = 2
-
-    /**
-     * Represents the size of the [enum PortType] enum.
-     */
-    public final const val PORT_TYPE_MAX: Long = 5
-
-    /**
-     * Sampler type. Translated to reference of sampler uniform in shader code. Can only be used for input ports in non-uniform nodes.
-     */
-    public final const val PORT_TYPE_SAMPLER: Long = 4
-
-    /**
-     * Floating-point scalar. Translated to `float` type in shader code.
-     */
-    public final const val PORT_TYPE_SCALAR: Long = 0
-
-    /**
-     * Transform type. Translated to `mat4` type in shader code.
-     */
-    public final const val PORT_TYPE_TRANSFORM: Long = 3
-
-    /**
-     * 3D vector of floating-point values. Translated to `vec3` type in shader code.
-     */
-    public final const val PORT_TYPE_VECTOR: Long = 1
-  }
+  public companion object
 }

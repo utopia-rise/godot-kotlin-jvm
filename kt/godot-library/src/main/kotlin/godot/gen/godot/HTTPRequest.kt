@@ -1,22 +1,22 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.HTTPClient
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
-import godot.core.PoolByteArray
-import godot.core.PoolStringArray
+import godot.core.PackedByteArray
+import godot.core.PackedStringArray
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.core.VariantType.POOL_BYTE_ARRAY
-import godot.core.VariantType.POOL_STRING_ARRAY
+import godot.core.VariantType.PACKED_BYTE_ARRAY
+import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.signals.Signal4
 import godot.signals.signal
@@ -31,8 +31,7 @@ import kotlin.Unit
  * A node with the ability to send HTTP(S) requests.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/networking/http_request_class.html](https://docs.godotengine.org/en/3.4/tutorials/networking/http_request_class.html)
- * [https://docs.godotengine.org/en/3.4/tutorials/networking/ssl_certificates.html](https://docs.godotengine.org/en/3.4/tutorials/networking/ssl_certificates.html)
+ * [$DOCS_URL/tutorials/networking/ssl_certificates.html]($DOCS_URL/tutorials/networking/ssl_certificates.html)
  *
  * A node with the ability to send HTTP requests. Uses [godot.HTTPClient] internally.
  *
@@ -40,89 +39,315 @@ import kotlin.Unit
  *
  * **Warning:** See the notes and warnings on [godot.HTTPClient] for limitations, especially regarding SSL security.
  *
+ * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
+ *
  * **Example of contacting a REST API and printing one of its returned fields:**
  *
- * ```
- * 		func _ready():
- * 		    # Create an HTTP request node and connect its completion signal.
- * 		    var http_request = HTTPRequest.new()
- * 		    add_child(http_request)
- * 		    http_request.connect("request_completed", self, "_http_request_completed")
+ * [codeblocks]
  *
- * 		    # Perform a GET request. The URL below returns JSON as of writing.
- * 		    var error = http_request.request("https://httpbin.org/get")
- * 		    if error != OK:
- * 		        push_error("An error occurred in the HTTP request.")
+ * [gdscript]
  *
- * 		    # Perform a POST request. The URL below returns JSON as of writing.
- * 		    # Note: Don't make simultaneous requests using a single HTTPRequest node.
- * 		    # The snippet below is provided for reference only.
- * 		    var body = {"name": "Godette"}
- * 		    error = http_request.request("https://httpbin.org/post", [], true, HTTPClient.METHOD_POST, body)
- * 		    if error != OK:
- * 		        push_error("An error occurred in the HTTP request.")
+ * func _ready():
+ *
+ *     # Create an HTTP request node and connect its completion signal.
+ *
+ *     var http_request = HTTPRequest.new()
+ *
+ *     add_child(http_request)
+ *
+ *     http_request.connect("request_completed", self, "_http_request_completed")
  *
  *
- * 		# Called when the HTTP request is completed.
- * 		func _http_request_completed(result, response_code, headers, body):
- * 		    var response = parse_json(body.get_string_from_utf8())
  *
- * 		    # Will print the user agent string used by the HTTPRequest node (as recognized by httpbin.org).
- * 		    print(response.headers["User-Agent"])
- * 		```
+ *     # Perform a GET request. The URL below returns JSON as of writing.
+ *
+ *     var error = http_request.request("https://httpbin.org/get")
+ *
+ *     if error != OK:
+ *
+ *         push_error("An error occurred in the HTTP request.")
+ *
+ *
+ *
+ *     # Perform a POST request. The URL below returns JSON as of writing.
+ *
+ *     # Note: Don't make simultaneous requests using a single HTTPRequest node.
+ *
+ *     # The snippet below is provided for reference only.
+ *
+ *     var body = {"name": "Godette"}
+ *
+ *     error = http_request.request("https://httpbin.org/post", [], true, HTTPClient.METHOD_POST, body)
+ *
+ *     if error != OK:
+ *
+ *         push_error("An error occurred in the HTTP request.")
+ *
+ *
+ *
+ *
+ *
+ * # Called when the HTTP request is completed.
+ *
+ * func _http_request_completed(result, response_code, headers, body):
+ *
+ *     var response = parse_json(body.get_string_from_utf8())
+ *
+ *
+ *
+ *     # Will print the user agent string used by the HTTPRequest node (as recognized by httpbin.org).
+ *
+ *     print(response.headers["User-Agent"])
+ *
+ * [/gdscript]
+ *
+ * [csharp]
+ *
+ * public override void _Ready()
+ *
+ * {
+ *
+ *     // Create an HTTP request node and connect its completion signal.
+ *
+ *     var httpRequest = new HTTPRequest();
+ *
+ *     AddChild(httpRequest);
+ *
+ *     httpRequest.Connect("request_completed", this, nameof(HttpRequestCompleted));
+ *
+ *
+ *
+ *     // Perform a GET request. The URL below returns JSON as of writing.
+ *
+ *     Error error = httpRequest.Request("https://httpbin.org/get");
+ *
+ *     if (error != Error.Ok)
+ *
+ *     {
+ *
+ *         GD.PushError("An error occurred in the HTTP request.");
+ *
+ *     }
+ *
+ *
+ *
+ *     // Perform a POST request. The URL below returns JSON as of writing.
+ *
+ *     // Note: Don't make simultaneous requests using a single HTTPRequest node.
+ *
+ *     // The snippet below is provided for reference only.
+ *
+ *     string[] body = { "name", "Godette" };
+ *
+ *     // GDScript to_json is non existent, so we use JSON.Print() here.
+ *
+ *     error = httpRequest.Request("https://httpbin.org/post", null, true, HTTPClient.Method.Post, JSON.Print(body));
+ *
+ *     if (error != Error.Ok)
+ *
+ *     {
+ *
+ *         GD.PushError("An error occurred in the HTTP request.");
+ *
+ *     }
+ *
+ * }
+ *
+ *
+ *
+ *
+ *
+ * // Called when the HTTP request is completed.
+ *
+ * private void HttpRequestCompleted(int result, int response_code, string[] headers, byte[] body)
+ *
+ * {
+ *
+ *     // GDScript parse_json is non existent so we have to use JSON.parse, which has a slightly different syntax.
+ *
+ *     var response = JSON.Parse(body.GetStringFromUTF8()).Result as Godot.Collections.Dictionary;
+ *
+ *     // Will print the user agent string used by the HTTPRequest node (as recognized by httpbin.org).
+ *
+ *     GD.Print((response["headers"] as Godot.Collections.Dictionary)["User-Agent"]);
+ *
+ * }
+ *
+ * [/csharp]
+ *
+ * [/codeblocks]
  *
  * **Example of loading and displaying an image using HTTPRequest:**
  *
- * ```
- * 		func _ready():
- * 		    # Create an HTTP request node and connect its completion signal.
- * 		    var http_request = HTTPRequest.new()
- * 		    add_child(http_request)
- * 		    http_request.connect("request_completed", self, "_http_request_completed")
+ * [codeblocks]
  *
- * 		    # Perform the HTTP request. The URL below returns a PNG image as of writing.
- * 		    var error = http_request.request("https://via.placeholder.com/512")
- * 		    if error != OK:
- * 		        push_error("An error occurred in the HTTP request.")
+ * [gdscript]
+ *
+ * func _ready():
+ *
+ *     # Create an HTTP request node and connect its completion signal.
+ *
+ *     var http_request = HTTPRequest.new()
+ *
+ *     add_child(http_request)
+ *
+ *     http_request.connect("request_completed", self, "_http_request_completed")
  *
  *
- * 		# Called when the HTTP request is completed.
- * 		func _http_request_completed(result, response_code, headers, body):
- * 		    var image = Image.new()
- * 		    var error = image.load_png_from_buffer(body)
- * 		    if error != OK:
- * 		        push_error("Couldn't load the image.")
  *
- * 		    var texture = ImageTexture.new()
- * 		    texture.create_from_image(image)
+ *     # Perform the HTTP request. The URL below returns a PNG image as of writing.
  *
- * 		    # Display the image in a TextureRect node.
- * 		    var texture_rect = TextureRect.new()
- * 		    add_child(texture_rect)
- * 		    texture_rect.texture = texture
- * 		```
+ *     var error = http_request.request("https://via.placeholder.com/512")
+ *
+ *     if error != OK:
+ *
+ *         push_error("An error occurred in the HTTP request.")
+ *
+ *
+ *
+ *
+ *
+ * # Called when the HTTP request is completed.
+ *
+ * func _http_request_completed(result, response_code, headers, body):
+ *
+ *     if result != HTTPRequest.RESULT_SUCCESS:
+ *
+ *         push_error("Image couldn't be downloaded. Try a different image.")
+ *
+ *
+ *
+ *     var image = Image.new()
+ *
+ *     var error = image.load_png_from_buffer(body)
+ *
+ *     if error != OK:
+ *
+ *         push_error("Couldn't load the image.")
+ *
+ *
+ *
+ *     var texture = ImageTexture.new()
+ *
+ *     texture.create_from_image(image)
+ *
+ *
+ *
+ *     # Display the image in a TextureRect node.
+ *
+ *     var texture_rect = TextureRect.new()
+ *
+ *     add_child(texture_rect)
+ *
+ *     texture_rect.texture = texture
+ *
+ * [/gdscript]
+ *
+ * [csharp]
+ *
+ * public override void _Ready()
+ *
+ * {
+ *
+ *     // Create an HTTP request node and connect its completion signal.
+ *
+ *     var httpRequest = new HTTPRequest();
+ *
+ *     AddChild(httpRequest);
+ *
+ *     httpRequest.Connect("request_completed", this, nameof(HttpRequestCompleted));
+ *
+ *
+ *
+ *     // Perform the HTTP request. The URL below returns a PNG image as of writing.
+ *
+ *     Error error = httpRequest.Request("https://via.placeholder.com/512");
+ *
+ *     if (error != Error.Ok)
+ *
+ *     {
+ *
+ *         GD.PushError("An error occurred in the HTTP request.");
+ *
+ *     }
+ *
+ * }
+ *
+ *
+ *
+ *
+ *
+ * // Called when the HTTP request is completed.
+ *
+ * private void HttpRequestCompleted(int result, int response_code, string[] headers, byte[] body)
+ *
+ * {
+ *
+ *     if (result != (int)HTTPRequest.Result.Success)
+ *
+ *     {
+ *
+ *         GD.PushError("Image couldn't be downloaded. Try a different image.");
+ *
+ *     }
+ *
+ *     var image = new Image();
+ *
+ *     Error error = image.LoadPngFromBuffer(body);
+ *
+ *     if (error != Error.Ok)
+ *
+ *     {
+ *
+ *         GD.PushError("Couldn't load the image.");
+ *
+ *     }
+ *
+ *
+ *
+ *     var texture = new ImageTexture();
+ *
+ *     texture.CreateFromImage(image);
+ *
+ *
+ *
+ *     // Display the image in a TextureRect node.
+ *
+ *     var textureRect = new TextureRect();
+ *
+ *     AddChild(textureRect);
+ *
+ *     textureRect.Texture = texture;
+ *
+ * }
+ *
+ * [/csharp]
+ *
+ * [/codeblocks]
+ *
+ * **Gzipped response bodies**: HTTPRequest will automatically handle decompression of response bodies. A `Accept-Encoding` header will be automatically added to each of your requests, unless one is already specified. Any response with a `Content-Encoding: gzip` header will automatically be decompressed and delivered to you as uncompressed bytes.
  */
 @GodotBaseType
 public open class HTTPRequest : Node() {
   /**
    * Emitted when a request is completed.
    */
-  public val requestCompleted: Signal4<Long, Long, PoolStringArray, PoolByteArray> by
-      signal("result", "response_code", "headers", "body")
+  public val requestCompleted: Signal4<Long, Long, PackedStringArray, PackedByteArray> by
+      signal("result", "responseCode", "headers", "body")
 
   /**
-   * Maximum allowed size for response bodies.
+   * The file to download into. Will output any received file into it.
    */
-  public open var bodySizeLimit: Long
+  public open var downloadFile: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_BODY_SIZE_LIMIT,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_DOWNLOAD_FILE,
+          STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_BODY_SIZE_LIMIT,
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_DOWNLOAD_FILE,
           NIL)
     }
 
@@ -145,18 +370,52 @@ public open class HTTPRequest : Node() {
     }
 
   /**
-   * The file to download into. Will output any received file into it.
+   * If `true`, multithreading is used to improve performance.
    */
-  public open var downloadFile: String
+  public open var useThreads: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_DOWNLOAD_FILE,
-          STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_USE_THREADS, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_DOWNLOAD_FILE,
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_USE_THREADS, NIL)
+    }
+
+  /**
+   * If `true`, this header will be added to each request: `Accept-Encoding: gzip, deflate` telling servers that it's okay to compress response bodies.
+   *
+   * Any Response body declaring a `Content-Encoding` of either `gzip` or `deflate` will then be automatically decompressed, and the uncompressed bytes will be delivered via `request_completed`.
+   *
+   * If the user has specified their own `Accept-Encoding` header, then no header will be added regardless of `accept_gzip`.
+   *
+   * If `false` no header will be added, and no decompression will be performed on response bodies. The raw bytes of the response body will be returned via `request_completed`.
+   */
+  public open var acceptGzip: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_ACCEPT_GZIP, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_ACCEPT_GZIP, NIL)
+    }
+
+  /**
+   * Maximum allowed size for response bodies. If the response body is compressed, this will be used as the maximum allowed size for the decompressed body.
+   */
+  public open var bodySizeLimit: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_BODY_SIZE_LIMIT,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_BODY_SIZE_LIMIT,
           NIL)
     }
 
@@ -190,36 +449,48 @@ public open class HTTPRequest : Node() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_TIMEOUT, NIL)
     }
 
-  /**
-   * If `true`, multithreading is used to improve performance.
-   */
-  public open var useThreads: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_USE_THREADS, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_USE_THREADS, NIL)
-    }
-
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_HTTPREQUEST)
   }
 
-  public open fun _redirectRequest(arg0: String): Unit {
+  /**
+   * Creates request on the underlying [godot.HTTPClient]. If there is no configuration errors, it tries to connect using [godot.HTTPClient.connectToHost] and passes parameters onto [godot.HTTPClient.request].
+   *
+   * Returns [OK] if request is successfully created. (Does not imply that the server has responded), [ERR_UNCONFIGURED] if not in the tree, [ERR_BUSY] if still processing previous request, [ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [ERR_CANT_CONNECT] if not using thread and the [godot.HTTPClient] cannot connect to host.
+   *
+   * **Note:** When `method` is [godot.HTTPClient.METHOD_GET], the payload sent via `request_data` might be ignored by the server or even cause the server to reject the request (check [godot.RFC 7231 section 4.3.1](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.1) for more details). As a workaround, you can send data as a query string in the URL (see [godot.String.uriEncode] for an example).
+   *
+   * **Note:** It's recommended to use transport encryption (SSL/TLS) and to avoid sending sensitive information (such as login credentials) in HTTP GET URL parameters. Consider using HTTP POST requests or HTTP headers for such information instead.
+   */
+  public open fun request(
+    url: String,
+    customHeaders: PackedStringArray = PackedStringArray(),
+    sslValidateDomain: Boolean = true,
+    method: HTTPClient.Method = Method.METHOD_GET,
+    requestData: String = ""
+  ): GodotError {
+    TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, BOOL to
+        sslValidateDomain, LONG to method.id, STRING to requestData)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_REQUEST, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun _requestDone(
-    arg0: Long,
-    arg1: Long,
-    arg2: PoolStringArray,
-    arg3: PoolByteArray
-  ): Unit {
-  }
-
-  public open fun _timeout(): Unit {
+  /**
+   * Creates request on the underlying [godot.HTTPClient] using a raw array of bytes for the request body. If there is no configuration errors, it tries to connect using [godot.HTTPClient.connectToHost] and passes parameters onto [godot.HTTPClient.request].
+   *
+   * Returns [OK] if request is successfully created. (Does not imply that the server has responded), [ERR_UNCONFIGURED] if not in the tree, [ERR_BUSY] if still processing previous request, [ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [ERR_CANT_CONNECT] if not using thread and the [godot.HTTPClient] cannot connect to host.
+   */
+  public open fun requestRaw(
+    url: String,
+    customHeaders: PackedStringArray = PackedStringArray(),
+    sslValidateDomain: Boolean = true,
+    method: HTTPClient.Method = Method.METHOD_GET,
+    requestDataRaw: PackedByteArray = PackedByteArray()
+  ): GodotError {
+    TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, BOOL to
+        sslValidateDomain, LONG to method.id, PACKED_BYTE_ARRAY to requestDataRaw)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_REQUEST_RAW, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
@@ -228,6 +499,26 @@ public open class HTTPRequest : Node() {
   public open fun cancelRequest(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_CANCEL_REQUEST, NIL)
+  }
+
+  /**
+   * Returns the current status of the underlying [godot.HTTPClient]. See [enum HTTPClient.Status].
+   */
+  public open fun getHttpClientStatus(): HTTPClient.Status {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_HTTP_CLIENT_STATUS,
+        LONG)
+    return HTTPClient.Status.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Returns the amount of bytes this HTTPRequest downloaded.
+   */
+  public open fun getDownloadedBytes(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_DOWNLOADED_BYTES,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -242,61 +533,23 @@ public open class HTTPRequest : Node() {
   }
 
   /**
-   * Returns the amount of bytes this HTTPRequest downloaded.
+   * Sets the proxy server for HTTP requests.
+   *
+   * The proxy server is unset if `host` is empty or `port` is -1.
    */
-  public open fun getDownloadedBytes(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_DOWNLOADED_BYTES,
-        LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+  public open fun setHttpProxy(host: String, port: Long): Unit {
+    TransferContext.writeArguments(STRING to host, LONG to port)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_HTTP_PROXY, NIL)
   }
 
   /**
-   * Returns the current status of the underlying [godot.HTTPClient]. See [enum HTTPClient.Status].
-   */
-  public open fun getHttpClientStatus(): HTTPClient.Status {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_HTTP_CLIENT_STATUS,
-        LONG)
-    return HTTPClient.Status.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  /**
-   * Creates request on the underlying [godot.HTTPClient]. If there is no configuration errors, it tries to connect using [godot.HTTPClient.connectToHost] and passes parameters onto [godot.HTTPClient.request].
+   * Sets the proxy server for HTTPS requests.
    *
-   * Returns [OK] if request is successfully created. (Does not imply that the server has responded), [ERR_UNCONFIGURED] if not in the tree, [ERR_BUSY] if still processing previous request, [ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [ERR_CANT_CONNECT] if not using thread and the [godot.HTTPClient] cannot connect to host.
-   *
-   * **Note:** When `method` is [godot.HTTPClient.METHOD_GET], the payload sent via `request_data` might be ignored by the server or even cause the server to reject the request (check [godot.RFC 7231 section 4.3.1](https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.1) for more details). As a workaround, you can send data as a query string in the URL. See [godot.String.httpEscape] for an example.
+   * The proxy server is unset if `host` is empty or `port` is -1.
    */
-  public open fun request(
-    url: String,
-    customHeaders: PoolStringArray = PoolStringArray(),
-    sslValidateDomain: Boolean = true,
-    method: Long = 0,
-    requestData: String = ""
-  ): GodotError {
-    TransferContext.writeArguments(STRING to url, POOL_STRING_ARRAY to customHeaders, BOOL to
-        sslValidateDomain, LONG to method, STRING to requestData)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_REQUEST, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  /**
-   * Creates request on the underlying [godot.HTTPClient] using a raw array of bytes for the request body. If there is no configuration errors, it tries to connect using [godot.HTTPClient.connectToHost] and passes parameters onto [godot.HTTPClient.request].
-   *
-   * Returns [OK] if request is successfully created. (Does not imply that the server has responded), [ERR_UNCONFIGURED] if not in the tree, [ERR_BUSY] if still processing previous request, [ERR_INVALID_PARAMETER] if given string is not a valid URL format, or [ERR_CANT_CONNECT] if not using thread and the [godot.HTTPClient] cannot connect to host.
-   */
-  public open fun requestRaw(
-    url: String,
-    customHeaders: PoolStringArray = PoolStringArray(),
-    sslValidateDomain: Boolean = true,
-    method: Long = 0,
-    requestDataRaw: PoolByteArray = PoolByteArray()
-  ): GodotError {
-    TransferContext.writeArguments(STRING to url, POOL_STRING_ARRAY to customHeaders, BOOL to
-        sslValidateDomain, LONG to method, POOL_BYTE_ARRAY to requestDataRaw)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_REQUEST_RAW, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  public open fun setHttpsProxy(host: String, port: Long): Unit {
+    TransferContext.writeArguments(STRING to host, LONG to port)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_HTTPS_PROXY, NIL)
   }
 
   public enum class Result(
@@ -335,25 +588,29 @@ public open class HTTPRequest : Node() {
      */
     RESULT_BODY_SIZE_LIMIT_EXCEEDED(7),
     /**
+     *
+     */
+    RESULT_BODY_DECOMPRESS_FAILED(8),
+    /**
      * Request failed (currently unused).
      */
-    RESULT_REQUEST_FAILED(8),
+    RESULT_REQUEST_FAILED(9),
     /**
      * HTTPRequest couldn't open the download file.
      */
-    RESULT_DOWNLOAD_FILE_CANT_OPEN(9),
+    RESULT_DOWNLOAD_FILE_CANT_OPEN(10),
     /**
      * HTTPRequest couldn't write to the download file.
      */
-    RESULT_DOWNLOAD_FILE_WRITE_ERROR(10),
+    RESULT_DOWNLOAD_FILE_WRITE_ERROR(11),
     /**
      * Request reached its maximum redirect limit, see [maxRedirects].
      */
-    RESULT_REDIRECT_LIMIT_REACHED(11),
+    RESULT_REDIRECT_LIMIT_REACHED(12),
     /**
      *
      */
-    RESULT_TIMEOUT(12),
+    RESULT_TIMEOUT(13),
     ;
 
     public val id: Long
@@ -366,70 +623,5 @@ public open class HTTPRequest : Node() {
     }
   }
 
-  public companion object {
-    /**
-     * Request exceeded its maximum size limit, see [bodySizeLimit].
-     */
-    public final const val RESULT_BODY_SIZE_LIMIT_EXCEEDED: Long = 7
-
-    /**
-     * Request failed while connecting.
-     */
-    public final const val RESULT_CANT_CONNECT: Long = 2
-
-    /**
-     * Request failed while resolving.
-     */
-    public final const val RESULT_CANT_RESOLVE: Long = 3
-
-    /**
-     *
-     */
-    public final const val RESULT_CHUNKED_BODY_SIZE_MISMATCH: Long = 1
-
-    /**
-     * Request failed due to connection (read/write) error.
-     */
-    public final const val RESULT_CONNECTION_ERROR: Long = 4
-
-    /**
-     * HTTPRequest couldn't open the download file.
-     */
-    public final const val RESULT_DOWNLOAD_FILE_CANT_OPEN: Long = 9
-
-    /**
-     * HTTPRequest couldn't write to the download file.
-     */
-    public final const val RESULT_DOWNLOAD_FILE_WRITE_ERROR: Long = 10
-
-    /**
-     * Request does not have a response (yet).
-     */
-    public final const val RESULT_NO_RESPONSE: Long = 6
-
-    /**
-     * Request reached its maximum redirect limit, see [maxRedirects].
-     */
-    public final const val RESULT_REDIRECT_LIMIT_REACHED: Long = 11
-
-    /**
-     * Request failed (currently unused).
-     */
-    public final const val RESULT_REQUEST_FAILED: Long = 8
-
-    /**
-     * Request failed on SSL handshake.
-     */
-    public final const val RESULT_SSL_HANDSHAKE_ERROR: Long = 5
-
-    /**
-     * Request successful.
-     */
-    public final const val RESULT_SUCCESS: Long = 0
-
-    /**
-     *
-     */
-    public final const val RESULT_TIMEOUT: Long = 12
-  }
+  public companion object
 }

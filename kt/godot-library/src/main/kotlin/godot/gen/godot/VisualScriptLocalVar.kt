@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -17,19 +17,6 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class VisualScriptLocalVar : VisualScriptNode() {
-  public open var type: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLOCALVAR_GET_TYPE,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLOCALVAR_SET_TYPE,
-          NIL)
-    }
-
   public open var varName: String
     get() {
       TransferContext.writeArguments()
@@ -43,7 +30,22 @@ public open class VisualScriptLocalVar : VisualScriptNode() {
           NIL)
     }
 
+  public open var type: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLOCALVAR_GET_TYPE,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLOCALVAR_SET_TYPE,
+          NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSCRIPTLOCALVAR)
   }
+
+  public companion object
 }

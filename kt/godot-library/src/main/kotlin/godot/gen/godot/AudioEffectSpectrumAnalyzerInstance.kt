@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -31,9 +31,9 @@ public open class AudioEffectSpectrumAnalyzerInstance : AudioEffectInstance() {
   public open fun getMagnitudeForFrequencyRange(
     fromHz: Double,
     toHz: Double,
-    mode: Long = 1
+    mode: AudioEffectSpectrumAnalyzerInstance.MagnitudeMode = MagnitudeMode.MAGNITUDE_MAX
   ): Vector2 {
-    TransferContext.writeArguments(DOUBLE to fromHz, DOUBLE to toHz, LONG to mode)
+    TransferContext.writeArguments(DOUBLE to fromHz, DOUBLE to toHz, LONG to mode.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZERINSTANCE_GET_MAGNITUDE_FOR_FREQUENCY_RANGE,
         VECTOR2)
@@ -63,15 +63,5 @@ public open class AudioEffectSpectrumAnalyzerInstance : AudioEffectInstance() {
     }
   }
 
-  public companion object {
-    /**
-     * Use the average value as magnitude.
-     */
-    public final const val MAGNITUDE_AVERAGE: Long = 0
-
-    /**
-     * Use the maximum value as magnitude.
-     */
-    public final const val MAGNITUDE_MAX: Long = 1
-  }
+  public companion object
 }

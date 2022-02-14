@@ -1,11 +1,10 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
@@ -18,78 +17,20 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * Physics body for 2D physics which is static or moves only by script. Useful for floor and walls.
+ *
  * Static body for 2D physics.
  *
- * Static body for 2D physics. A StaticBody2D is a body that is not intended to move. It is ideal for implementing objects in the environment, such as walls or platforms.
+ * A static body is a simple body that can't be moved by external forces or contacts. It is ideal for implementing objects in the environment, such as walls or platforms. In contrast to [godot.RigidDynamicBody2D], it doesn't consume any CPU resources as long as they don't move.
  *
- * Additionally, a constant linear or angular velocity can be set for the static body, which will affect colliding bodies as if it were moving (for example, a conveyor belt).
+ * They have extra functionalities to move and affect other bodies:
+ *
+ * **Static transform change:** Static bodies can be moved by animation or script. In this case, they are just teleported and don't affect other bodies on their path.
+ *
+ * **Constant velocity:** When [constantLinearVelocity] or [constantAngularVelocity] is set, static bodies don't move themselves but affect touching bodies as if they were moving. This is useful for simulating conveyor belts or conveyor wheels.
  */
 @GodotBaseType
 public open class StaticBody2D : PhysicsBody2D() {
-  /**
-   * The body's bounciness. Values range from `0` (no bounce) to `1` (full bounciness).
-   *
-   * Deprecated, use [godot.PhysicsMaterial.bounce] instead via [physicsMaterialOverride].
-   */
-  public open var bounce: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STATICBODY2D_GET_BOUNCE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STATICBODY2D_SET_BOUNCE, NIL)
-    }
-
-  /**
-   * The body's constant angular velocity. This does not rotate the body, but affects colliding bodies, as if it were rotating.
-   */
-  public open var constantAngularVelocity: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STATICBODY2D_GET_CONSTANT_ANGULAR_VELOCITY, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STATICBODY2D_SET_CONSTANT_ANGULAR_VELOCITY, NIL)
-    }
-
-  /**
-   * The body's constant linear velocity. This does not move the body, but affects colliding bodies, as if it were moving.
-   */
-  public open var constantLinearVelocity: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STATICBODY2D_GET_CONSTANT_LINEAR_VELOCITY, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-    }
-    set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STATICBODY2D_SET_CONSTANT_LINEAR_VELOCITY, NIL)
-    }
-
-  /**
-   * The body's friction. Values range from `0` (no friction) to `1` (full friction).
-   *
-   * Deprecated, use [godot.PhysicsMaterial.friction] instead via [physicsMaterialOverride].
-   */
-  public open var friction: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STATICBODY2D_GET_FRICTION, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STATICBODY2D_SET_FRICTION, NIL)
-    }
-
   /**
    * The physics material override for the body.
    *
@@ -106,20 +47,44 @@ public open class StaticBody2D : PhysicsBody2D() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STATICBODY2D_SET_PHYSICS_MATERIAL_OVERRIDE, NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
+    }
+
+  /**
+   * The body's constant linear velocity. This does not move the body, but affects touching bodies, as if it were moving.
+   */
+  public open var constantLinearVelocity: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STATICBODY2D_GET_CONSTANT_LINEAR_VELOCITY, VECTOR2)
+      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STATICBODY2D_SET_CONSTANT_LINEAR_VELOCITY, NIL)
+    }
+
+  /**
+   * The body's constant angular velocity. This does not rotate the body, but affects touching bodies, as if it were rotating.
+   */
+  public open var constantAngularVelocity: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STATICBODY2D_GET_CONSTANT_ANGULAR_VELOCITY, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_STATICBODY2D_SET_CONSTANT_ANGULAR_VELOCITY, NIL)
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_STATICBODY2D)
   }
 
-  @CoreTypeHelper
-  public open fun constantLinearVelocity(schedule: Vector2.() -> Unit): Vector2 =
-      constantLinearVelocity.apply{
-      schedule(this)
-      constantLinearVelocity = this
-  }
-
-
-  public open fun _reloadPhysicsCharacteristics(): Unit {
-  }
+  public companion object
 }

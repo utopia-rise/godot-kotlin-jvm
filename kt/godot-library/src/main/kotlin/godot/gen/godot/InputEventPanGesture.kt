@@ -1,11 +1,10 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
@@ -39,10 +38,5 @@ public open class InputEventPanGesture : InputEventGesture() {
     callConstructor(ENGINECLASS_INPUTEVENTPANGESTURE)
   }
 
-  @CoreTypeHelper
-  public open fun delta(schedule: Vector2.() -> Unit): Vector2 = delta.apply{
-      schedule(this)
-      delta = this
-  }
-
+  public companion object
 }

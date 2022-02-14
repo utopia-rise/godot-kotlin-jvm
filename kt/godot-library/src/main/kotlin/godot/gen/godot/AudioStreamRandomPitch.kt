@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -35,6 +35,7 @@ public open class AudioStreamRandomPitch : AudioStream() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMPITCH_SET_AUDIO_STREAM, NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
@@ -56,4 +57,6 @@ public open class AudioStreamRandomPitch : AudioStream() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMRANDOMPITCH)
   }
+
+  public companion object
 }

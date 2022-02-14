@@ -1,11 +1,10 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
@@ -27,6 +26,20 @@ import kotlin.Unit
 @GodotBaseType
 public open class QuadMesh : PrimitiveMesh() {
   /**
+   * Size on the X and Y axes.
+   */
+  public open var size: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_QUADMESH_GET_SIZE, VECTOR2)
+      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_QUADMESH_SET_SIZE, NIL)
+    }
+
+  /**
    * Offset of the generated Quad. Useful for particles.
    */
   public open var centerOffset: Vector3
@@ -41,35 +54,9 @@ public open class QuadMesh : PrimitiveMesh() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_QUADMESH_SET_CENTER_OFFSET, NIL)
     }
 
-  /**
-   * Size on the X and Y axes.
-   */
-  public open var size: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_QUADMESH_GET_SIZE, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-    }
-    set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_QUADMESH_SET_SIZE, NIL)
-    }
-
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_QUADMESH)
   }
 
-  @CoreTypeHelper
-  public open fun centerOffset(schedule: Vector3.() -> Unit): Vector3 = centerOffset.apply{
-      schedule(this)
-      centerOffset = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun size(schedule: Vector2.() -> Unit): Vector2 = size.apply{
-      schedule(this)
-      size = this
-  }
-
+  public companion object
 }

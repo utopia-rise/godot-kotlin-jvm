@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -38,6 +38,22 @@ public open class RemoteTransform2D : Node2D() {
       TransferContext.writeArguments(NODE_PATH to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_SET_REMOTE_PATH,
           NIL)
+    }
+
+  /**
+   * If `true`, global coordinates are used. If `false`, local coordinates are used.
+   */
+  public open var useGlobalCoordinates: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_GET_USE_GLOBAL_COORDINATES, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_SET_USE_GLOBAL_COORDINATES, NIL)
     }
 
   /**
@@ -88,22 +104,6 @@ public open class RemoteTransform2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_SET_UPDATE_SCALE, NIL)
     }
 
-  /**
-   * If `true`, global coordinates are used. If `false`, local coordinates are used.
-   */
-  public open var useGlobalCoordinates: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_GET_USE_GLOBAL_COORDINATES, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_SET_USE_GLOBAL_COORDINATES, NIL)
-    }
-
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_REMOTETRANSFORM2D)
   }
@@ -116,4 +116,6 @@ public open class RemoteTransform2D : Node2D() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_REMOTETRANSFORM2D_FORCE_UPDATE_CACHE, NIL)
   }
+
+  public companion object
 }

@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -14,9 +14,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Computes a [godot.core.Transform] function within the visual shader graph.
+ * Computes a [godot.Transform3D] function within the visual shader graph.
  *
- * Computes an inverse or transpose function on the provided [godot.core.Transform].
+ * Computes an inverse or transpose function on the provided [godot.Transform3D].
  */
 @GodotBaseType
 public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
@@ -44,13 +44,17 @@ public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
     id: Long
   ) {
     /**
-     * Perform the inverse operation on the [godot.core.Transform] matrix.
+     * Perform the inverse operation on the [godot.Transform3D] matrix.
      */
     FUNC_INVERSE(0),
     /**
-     * Perform the transpose operation on the [godot.core.Transform] matrix.
+     * Perform the transpose operation on the [godot.Transform3D] matrix.
      */
     FUNC_TRANSPOSE(1),
+    /**
+     * Represents the size of the [enum Function] enum.
+     */
+    FUNC_MAX(2),
     ;
 
     public val id: Long
@@ -63,15 +67,5 @@ public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
     }
   }
 
-  public companion object {
-    /**
-     * Perform the inverse operation on the [godot.core.Transform] matrix.
-     */
-    public final const val FUNC_INVERSE: Long = 0
-
-    /**
-     * Perform the transpose operation on the [godot.core.Transform] matrix.
-     */
-    public final const val FUNC_TRANSPOSE: Long = 1
-  }
+  public companion object
 }

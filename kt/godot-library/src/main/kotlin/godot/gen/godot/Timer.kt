@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -37,19 +37,33 @@ public open class Timer : Node() {
   public val timeout: Signal0 by signal()
 
   /**
-   * If `true`, the timer will automatically start when entering the scene tree.
-   *
-   * **Note:** This property is automatically set to `false` after the timer enters the scene tree and starts.
+   * Processing callback. See [enum TimerProcessCallback].
    */
-  public open var autostart: Boolean
+  public open var processCallback: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_GET_AUTOSTART, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_GET_PROCESS_CALLBACK, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_SET_AUTOSTART, NIL)
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_SET_PROCESS_CALLBACK, NIL)
+    }
+
+  /**
+   * The wait time in seconds.
+   *
+   * **Note:** Timers can only emit once per rendered frame at most (or once per physics frame if [processCallback] is [TIMER_PROCESS_PHYSICS]). This means very low wait times (lower than 0.05 seconds) will behave in significantly different ways depending on the rendered framerate. For very low wait times, it is recommended to use a process loop in a script instead of using a Timer node.
+   */
+  public open var waitTime: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_GET_WAIT_TIME, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_SET_WAIT_TIME, NIL)
     }
 
   /**
@@ -67,6 +81,22 @@ public open class Timer : Node() {
     }
 
   /**
+   * If `true`, the timer will automatically start when entering the scene tree.
+   *
+   * **Note:** This property is automatically set to `false` after the timer enters the scene tree and starts.
+   */
+  public open var autostart: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_GET_AUTOSTART, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_SET_AUTOSTART, NIL)
+    }
+
+  /**
    * If `true`, the timer is paused and will not process until it is unpaused again, even if [start] is called.
    */
   public open var paused: Boolean
@@ -81,20 +111,6 @@ public open class Timer : Node() {
     }
 
   /**
-   * Processing mode. See [enum TimerProcessMode].
-   */
-  public open var processMode: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_GET_PROCESS_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_SET_PROCESS_MODE, NIL)
-    }
-
-  /**
    * The timer's remaining time in seconds. Returns 0 if the timer is inactive.
    *
    * **Note:** You cannot set this value. To change the timer's remaining time, use [start].
@@ -106,33 +122,8 @@ public open class Timer : Node() {
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
-  /**
-   * The wait time in seconds.
-   *
-   * **Note:** Timers can only emit once per rendered frame at most (or once per physics frame if [processMode] is [TIMER_PROCESS_PHYSICS]). This means very low wait times (lower than 0.05 seconds) will behave in significantly different ways depending on the rendered framerate. For very low wait times, it is recommended to use a process loop in a script instead of using a Timer node.
-   */
-  public open var waitTime: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_GET_WAIT_TIME, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_SET_WAIT_TIME, NIL)
-    }
-
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TIMER)
-  }
-
-  /**
-   * Returns `true` if the timer is stopped.
-   */
-  public open fun isStopped(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_IS_STOPPED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -153,7 +144,16 @@ public open class Timer : Node() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_STOP, NIL)
   }
 
-  public enum class TimerProcessMode(
+  /**
+   * Returns `true` if the timer is stopped.
+   */
+  public open fun isStopped(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_IS_STOPPED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  public enum class TimerProcessCallback(
     id: Long
   ) {
     /**
@@ -176,15 +176,5 @@ public open class Timer : Node() {
     }
   }
 
-  public companion object {
-    /**
-     * Update the timer during the idle time at each frame.
-     */
-    public final const val TIMER_PROCESS_IDLE: Long = 1
-
-    /**
-     * Update the timer during the physics step at each frame (fixed framerate processing).
-     */
-    public final const val TIMER_PROCESS_PHYSICS: Long = 0
-  }
+  public companion object
 }

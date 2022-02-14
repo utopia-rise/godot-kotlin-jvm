@@ -1,11 +1,10 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
@@ -20,14 +19,14 @@ import kotlin.Unit
  * Base input event type for mouse events.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html](https://docs.godotengine.org/en/3.4/tutorials/inputs/inputevent.html)
+ * [$DOCS_URL/tutorials/inputs/inputevent.html]($DOCS_URL/tutorials/inputs/inputevent.html)
  *
  * Stores general mouse events information.
  */
 @GodotBaseType
 public open class InputEventMouse : InputEventWithModifiers() {
   /**
-   * The mouse button mask identifier, one of or a bitwise combination of the [enum ButtonList] button masks.
+   * The mouse button mask identifier, one of or a bitwise combination of the [enum MouseButton] button masks.
    */
   public open var buttonMask: Long
     get() {
@@ -43,7 +42,26 @@ public open class InputEventMouse : InputEventWithModifiers() {
     }
 
   /**
-   * The global mouse position relative to the current [godot.Viewport] when used in [godot.Control.GuiInput], otherwise is at 0,0.
+   * When received in [godot.Node.Input] or [godot.Node.UnhandledInput], returns the mouse's position in the [godot.Viewport] this [godot.Node] is in using the coordinate system of this [godot.Viewport].
+   *
+   * When received in [godot.Control.GuiInput], returns the mouse's position in the [godot.Control] using the local coordinate system of the [godot.Control].
+   */
+  public open var position: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSE_GET_POSITION,
+          VECTOR2)
+      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSE_SET_POSITION, NIL)
+    }
+
+  /**
+   * When received in [godot.Node.Input] or [godot.Node.UnhandledInput], returns the mouse's position in the root [godot.Viewport] using the coordinate system of the root [godot.Viewport].
+   *
+   * When received in [godot.Control.GuiInput], returns the mouse's position in the [godot.CanvasLayer] that the [godot.Control] is in using the coordinate system of the [godot.CanvasLayer].
    */
   public open var globalPosition: Vector2
     get() {
@@ -58,36 +76,9 @@ public open class InputEventMouse : InputEventWithModifiers() {
           ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSE_SET_GLOBAL_POSITION, NIL)
     }
 
-  /**
-   * The local mouse position relative to the [godot.Viewport]. If used in [godot.Control.GuiInput], the position is relative to the current [godot.Control] which is under the mouse.
-   */
-  public open var position: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSE_GET_POSITION,
-          VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-    }
-    set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSE_SET_POSITION, NIL)
-    }
-
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTMOUSE)
   }
 
-  @CoreTypeHelper
-  public open fun globalPosition(schedule: Vector2.() -> Unit): Vector2 = globalPosition.apply{
-      schedule(this)
-      globalPosition = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun position(schedule: Vector2.() -> Unit): Vector2 = position.apply{
-      schedule(this)
-      position = this
-  }
-
+  public companion object
 }

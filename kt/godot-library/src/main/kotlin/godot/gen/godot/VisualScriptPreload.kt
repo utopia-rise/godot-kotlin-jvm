@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -25,9 +25,12 @@ public open class VisualScriptPreload : VisualScriptNode() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPRELOAD_SET_RESOURCE,
           NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSCRIPTPRELOAD)
   }
+
+  public companion object
 }

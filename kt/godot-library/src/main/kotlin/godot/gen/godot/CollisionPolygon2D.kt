@@ -1,18 +1,18 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.PoolVector2Array
+import godot.core.PackedVector2Array
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.core.VariantType.POOL_VECTOR2_ARRAY
+import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -39,6 +39,22 @@ public open class CollisionPolygon2D : Node2D() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_SET_BUILD_MODE,
+          NIL)
+    }
+
+  /**
+   * The polygon's list of vertices. The final point will be connected to the first. The returned value is a clone of the [godot.PackedVector2Array], not a reference.
+   */
+  public open var polygon: PackedVector2Array
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_GET_POLYGON,
+          PACKED_VECTOR2_ARRAY)
+      return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
+    }
+    set(`value`) {
+      TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_SET_POLYGON,
           NIL)
     }
 
@@ -90,22 +106,6 @@ public open class CollisionPolygon2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_SET_ONE_WAY_COLLISION_MARGIN, NIL)
     }
 
-  /**
-   * The polygon's list of vertices. The final point will be connected to the first. The returned value is a clone of the [godot.core.PoolVector2Array], not a reference.
-   */
-  public open var polygon: PoolVector2Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_GET_POLYGON,
-          POOL_VECTOR2_ARRAY)
-      return TransferContext.readReturnValue(POOL_VECTOR2_ARRAY, false) as PoolVector2Array
-    }
-    set(`value`) {
-      TransferContext.writeArguments(POOL_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_SET_POLYGON,
-          NIL)
-    }
-
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_COLLISIONPOLYGON2D)
   }
@@ -133,15 +133,5 @@ public open class CollisionPolygon2D : Node2D() {
     }
   }
 
-  public companion object {
-    /**
-     * Collisions will only include the polygon edges.
-     */
-    public final const val BUILD_SEGMENTS: Long = 1
-
-    /**
-     * Collisions will include the polygon and its contained area.
-     */
-    public final const val BUILD_SOLIDS: Long = 0
-  }
+  public companion object
 }

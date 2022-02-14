@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -40,28 +40,47 @@ public open class WebRTCDataChannel : PacketPeer() {
     callConstructor(ENGINECLASS_WEBRTCDATACHANNEL)
   }
 
+  public open fun poll(): GodotError {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCDATACHANNEL_POLL, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
   public open fun close(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCDATACHANNEL_CLOSE, NIL)
   }
 
-  public open fun getBufferedAmount(): Long {
+  public open fun wasStringPacket(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_WEBRTCDATACHANNEL_GET_BUFFERED_AMOUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCDATACHANNEL_WAS_STRING_PACKET,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public open fun getId(): Long {
+  public open fun getReadyState(): WebRTCDataChannel.ChannelState {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCDATACHANNEL_GET_ID, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCDATACHANNEL_GET_READY_STATE,
+        LONG)
+    return WebRTCDataChannel.ChannelState.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   public open fun getLabel(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCDATACHANNEL_GET_LABEL, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  public open fun isOrdered(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCDATACHANNEL_IS_ORDERED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  public open fun getId(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCDATACHANNEL_GET_ID, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   public open fun getMaxPacketLifeTime(): Long {
@@ -85,13 +104,6 @@ public open class WebRTCDataChannel : PacketPeer() {
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  public open fun getReadyState(): WebRTCDataChannel.ChannelState {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCDATACHANNEL_GET_READY_STATE,
-        LONG)
-    return WebRTCDataChannel.ChannelState.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
   public open fun isNegotiated(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCDATACHANNEL_IS_NEGOTIATED,
@@ -99,23 +111,11 @@ public open class WebRTCDataChannel : PacketPeer() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public open fun isOrdered(): Boolean {
+  public open fun getBufferedAmount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCDATACHANNEL_IS_ORDERED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  public open fun poll(): GodotError {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCDATACHANNEL_POLL, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  public open fun wasStringPacket(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCDATACHANNEL_WAS_STRING_PACKET,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WEBRTCDATACHANNEL_GET_BUFFERED_AMOUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   public enum class WriteMode(
@@ -154,17 +154,5 @@ public open class WebRTCDataChannel : PacketPeer() {
     }
   }
 
-  public companion object {
-    public final const val STATE_CLOSED: Long = 3
-
-    public final const val STATE_CLOSING: Long = 2
-
-    public final const val STATE_CONNECTING: Long = 0
-
-    public final const val STATE_OPEN: Long = 1
-
-    public final const val WRITE_MODE_BINARY: Long = 1
-
-    public final const val WRITE_MODE_TEXT: Long = 0
-  }
+  public companion object
 }

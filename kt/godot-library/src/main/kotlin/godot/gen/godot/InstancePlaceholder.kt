@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -10,7 +10,6 @@ import godot.core.Dictionary
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DICTIONARY
-import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import kotlin.Any
@@ -22,14 +21,24 @@ import kotlin.Unit
 /**
  * Placeholder for the root [godot.Node] of a [godot.PackedScene].
  *
- * Turning on the option **Load As Placeholder** for an instanced scene in the editor causes it to be replaced by an InstancePlaceholder when running the game. This makes it possible to delay actually loading the scene until calling [replaceByInstance]. This is useful to avoid loading large scenes all at once by loading parts of it selectively.
+ * Turning on the option **Load As Placeholder** for an instantiated scene in the editor causes it to be replaced by an [godot.InstancePlaceholder] when running the game, this will not replace the node in the editor. This makes it possible to delay actually loading the scene until calling [createInstance]. This is useful to avoid loading large scenes all at once by loading parts of it selectively.
  *
- * The InstancePlaceholder does not have a transform. This causes any child nodes to be positioned relatively to the Viewport from point (0,0), rather than their parent as displayed in the editor. Replacing the placeholder with a scene with a transform will transform children relatively to their parent again.
+ * The [godot.InstancePlaceholder] does not have a transform. This causes any child nodes to be positioned relatively to the [godot.Viewport] from point (0,0), rather than their parent as displayed in the editor. Replacing the placeholder with a scene with a transform will transform children relatively to their parent again.
  */
 @GodotBaseType
 public open class InstancePlaceholder : Node() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_INSTANCEPLACEHOLDER)
+  }
+
+  /**
+   *
+   */
+  public open fun getStoredValues(withOrder: Boolean = false): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments(BOOL to withOrder)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_INSTANCEPLACEHOLDER_GET_STORED_VALUES, DICTIONARY)
+    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
   /**
@@ -44,7 +53,7 @@ public open class InstancePlaceholder : Node() {
   }
 
   /**
-   * Gets the path to the [godot.PackedScene] resource file that is loaded by default when calling [replaceByInstance]. Not thread-safe. Use [godot.Object.callDeferred] if calling from a thread.
+   * Gets the path to the [godot.PackedScene] resource file that is loaded by default when calling [createInstance]. Not thread-safe. Use [godot.Object.callDeferred] if calling from a thread.
    */
   public open fun getInstancePath(): String {
     TransferContext.writeArguments()
@@ -53,22 +62,5 @@ public open class InstancePlaceholder : Node() {
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  /**
-   *
-   */
-  public open fun getStoredValues(withOrder: Boolean = false): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(BOOL to withOrder)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_INSTANCEPLACEHOLDER_GET_STORED_VALUES, DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
-  }
-
-  /**
-   * Replaces this placeholder by the scene handed as an argument, or the original scene if no argument is given. As for all resources, the scene is loaded only if it's not loaded already. By manually loading the scene beforehand, delays caused by this function can be avoided.
-   */
-  public open fun replaceByInstance(customScene: PackedScene? = null): Unit {
-    TransferContext.writeArguments(OBJECT to customScene)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_INSTANCEPLACEHOLDER_REPLACE_BY_INSTANCE, NIL)
-  }
+  public companion object
 }

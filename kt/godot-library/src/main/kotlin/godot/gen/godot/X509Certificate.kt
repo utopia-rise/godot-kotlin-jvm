@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -32,6 +32,15 @@ public open class X509Certificate : Resource() {
   }
 
   /**
+   * Saves a certificate to the given `path` (should be a "*.crt" file).
+   */
+  public open fun save(path: String): GodotError {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_X509CERTIFICATE_SAVE, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
    * Loads a certificate from `path` ("*.crt" file).
    */
   public open fun load(path: String): GodotError {
@@ -40,12 +49,5 @@ public open class X509Certificate : Resource() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  /**
-   * Saves a certificate to the given `path` (should be a "*.crt" file).
-   */
-  public open fun save(path: String): GodotError {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_X509CERTIFICATE_SAVE, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
+  public companion object
 }

@@ -1,17 +1,17 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.PoolByteArray
+import godot.core.PackedByteArray
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
-import godot.core.VariantType.POOL_BYTE_ARRAY
+import godot.core.VariantType.PACKED_BYTE_ARRAY
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Suppress
@@ -19,15 +19,15 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class AudioStreamMP3 : AudioStream() {
-  public open var `data`: PoolByteArray
+  public open var `data`: PackedByteArray
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMMP3_GET_DATA,
-          POOL_BYTE_ARRAY)
-      return TransferContext.readReturnValue(POOL_BYTE_ARRAY, false) as PoolByteArray
+          PACKED_BYTE_ARRAY)
+      return TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray
     }
     set(`value`) {
-      TransferContext.writeArguments(POOL_BYTE_ARRAY to value)
+      TransferContext.writeArguments(PACKED_BYTE_ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMMP3_SET_DATA, NIL)
     }
 
@@ -58,4 +58,6 @@ public open class AudioStreamMP3 : AudioStream() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMMP3)
   }
+
+  public companion object
 }

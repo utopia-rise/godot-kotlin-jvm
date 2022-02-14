@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -66,13 +66,5 @@ public open class VisualScriptInputAction : VisualScriptNode() {
     }
   }
 
-  public companion object {
-    public final const val MODE_JUST_PRESSED: Long = 2
-
-    public final const val MODE_JUST_RELEASED: Long = 3
-
-    public final const val MODE_PRESSED: Long = 0
-
-    public final const val MODE_RELEASED: Long = 1
-  }
+  public companion object
 }

@@ -1,14 +1,18 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
+import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import kotlin.Boolean
 import kotlin.Double
+import kotlin.NotImplementedError
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -27,6 +31,34 @@ public open class AudioStream : Resource() {
   }
 
   /**
+   *
+   */
+  public open fun _instancePlayback(): AudioStreamPlayback? {
+    throw NotImplementedError("_instance_playback is not implemented for AudioStream")
+  }
+
+  /**
+   *
+   */
+  public open fun _getStreamName(): String {
+    throw NotImplementedError("_get_stream_name is not implemented for AudioStream")
+  }
+
+  /**
+   *
+   */
+  public open fun _getLength(): Double {
+    throw NotImplementedError("_get_length is not implemented for AudioStream")
+  }
+
+  /**
+   *
+   */
+  public open fun _isMonophonic(): Boolean {
+    throw NotImplementedError("_is_monophonic is not implemented for AudioStream")
+  }
+
+  /**
    * Returns the length of the audio stream in seconds.
    */
   public open fun getLength(): Double {
@@ -34,4 +66,15 @@ public open class AudioStream : Resource() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_GET_LENGTH, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
+
+  /**
+   * Returns true if this audio stream only supports monophonic playback, or false if the audio stream supports polyphony.
+   */
+  public open fun isMonophonic(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_IS_MONOPHONIC, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  public companion object
 }

@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -17,12 +17,9 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open class SkinReference : Reference() {
+public open class SkinReference : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SKINREFERENCE)
-  }
-
-  public open fun _skinChanged(): Unit {
   }
 
   /**
@@ -42,4 +39,6 @@ public open class SkinReference : Reference() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKINREFERENCE_GET_SKIN, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Skin?
   }
+
+  public companion object
 }

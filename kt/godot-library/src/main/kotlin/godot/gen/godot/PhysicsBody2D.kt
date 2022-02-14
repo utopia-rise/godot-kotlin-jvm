@@ -1,19 +1,25 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
+import godot.core.Transform2D
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
+import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.TRANSFORM2D
+import godot.core.VariantType.VECTOR2
+import godot.core.Vector2
 import kotlin.Any
-import kotlin.Long
-import kotlin.NotImplementedError
+import kotlin.Boolean
+import kotlin.Double
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -21,7 +27,7 @@ import kotlin.Unit
  * Base class for all objects affected by physics in 2D space.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/physics/physics_introduction.html](https://docs.godotengine.org/en/3.4/tutorials/physics/physics_introduction.html)
+ * [$DOCS_URL/tutorials/physics/physics_introduction.html]($DOCS_URL/tutorials/physics/physics_introduction.html)
  *
  * PhysicsBody2D is an abstract base class for implementing a physics body. All *Body2D types inherit from it.
  */
@@ -31,20 +37,45 @@ public open class PhysicsBody2D : CollisionObject2D() {
     callConstructor(ENGINECLASS_PHYSICSBODY2D)
   }
 
-  public open fun _getLayers(): Long {
-    throw NotImplementedError("_get_layers is not implemented for PhysicsBody2D")
-  }
-
-  public open fun _setLayers(mask: Long): Unit {
+  /**
+   * Moves the body along the vector `distance`. In order to be frame rate independent in [godot.Node.PhysicsProcess] or [godot.Node.Process], `distance` should be computed using `delta`.
+   *
+   * Returns a [godot.KinematicCollision2D], which contains information about the collision when stopped, or when touching another body along the motion.
+   *
+   * If `test_only` is `true`, the body does not move but the would-be collision information is given.
+   *
+   * `safe_margin` is the extra margin used for collision recovery (see [godot.CharacterBody2D.collision/safeMargin] for more details).
+   */
+  public open fun moveAndCollide(
+    distance: Vector2,
+    testOnly: Boolean = false,
+    safeMargin: Double = 0.08
+  ): KinematicCollision2D? {
+    TransferContext.writeArguments(VECTOR2 to distance, BOOL to testOnly, DOUBLE to safeMargin)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_MOVE_AND_COLLIDE,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as KinematicCollision2D?
   }
 
   /**
-   * Adds a body to the list of bodies that this body can't collide with.
+   * Checks for collisions without moving the body. In order to be frame rate independent in [godot.Node.PhysicsProcess] or [godot.Node.Process], `distance` should be computed using `delta`.
+   *
+   * Virtually sets the node's position, scale and rotation to that of the given [godot.core.Transform2D], then tries to move the body along the vector `distance`. Returns `true` if a collision would stop the body from moving along the whole path.
+   *
+   * `collision` is an optional object of type [godot.KinematicCollision2D], which contains additional information about the collision when stopped, or when touching another body along the motion.
+   *
+   * `safe_margin` is the extra margin used for collision recovery (see [godot.CharacterBody2D.collision/safeMargin] for more details).
    */
-  public open fun addCollisionExceptionWith(body: Node): Unit {
-    TransferContext.writeArguments(OBJECT to body)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_ADD_COLLISION_EXCEPTION_WITH, NIL)
+  public open fun testMove(
+    from: Transform2D,
+    distance: Vector2,
+    collision: KinematicCollision2D? = null,
+    safeMargin: Double = 0.08
+  ): Boolean {
+    TransferContext.writeArguments(TRANSFORM2D to from, VECTOR2 to distance, OBJECT to collision,
+        DOUBLE to safeMargin)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_TEST_MOVE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -58,6 +89,15 @@ public open class PhysicsBody2D : CollisionObject2D() {
   }
 
   /**
+   * Adds a body to the list of bodies that this body can't collide with.
+   */
+  public open fun addCollisionExceptionWith(body: Node): Unit {
+    TransferContext.writeArguments(OBJECT to body)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_ADD_COLLISION_EXCEPTION_WITH, NIL)
+  }
+
+  /**
    * Removes a body from the list of bodies that this body can't collide with.
    */
   public open fun removeCollisionExceptionWith(body: Node): Unit {
@@ -65,4 +105,6 @@ public open class PhysicsBody2D : CollisionObject2D() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSBODY2D_REMOVE_COLLISION_EXCEPTION_WITH, NIL)
   }
+
+  public companion object
 }

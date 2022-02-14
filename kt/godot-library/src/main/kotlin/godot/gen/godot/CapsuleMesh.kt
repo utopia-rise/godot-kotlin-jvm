@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -23,20 +23,31 @@ import kotlin.Unit
 @GodotBaseType
 public open class CapsuleMesh : PrimitiveMesh() {
   /**
-   * Height of the middle cylindrical part of the capsule (without the hemispherical ends).
-   *
-   * **Note:** The capsule's total height is equal to [midHeight] + 2 * [radius].
+   * Radius of the capsule mesh.
    */
-  public open var midHeight: Double
+  public open var radius: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULEMESH_GET_MID_HEIGHT,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULEMESH_GET_RADIUS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULEMESH_SET_MID_HEIGHT, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULEMESH_SET_RADIUS, NIL)
+    }
+
+  /**
+   * Total height of the capsule mesh (including the hemispherical ends).
+   */
+  public open var height: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULEMESH_GET_HEIGHT, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULEMESH_SET_HEIGHT, NIL)
     }
 
   /**
@@ -56,20 +67,6 @@ public open class CapsuleMesh : PrimitiveMesh() {
     }
 
   /**
-   * Radius of the capsule mesh.
-   */
-  public open var radius: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULEMESH_GET_RADIUS, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAPSULEMESH_SET_RADIUS, NIL)
-    }
-
-  /**
    * Number of rings along the height of the capsule.
    */
   public open var rings: Long
@@ -86,4 +83,6 @@ public open class CapsuleMesh : PrimitiveMesh() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CAPSULEMESH)
   }
+
+  public companion object
 }

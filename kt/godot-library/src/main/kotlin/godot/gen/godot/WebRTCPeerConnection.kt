@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -28,31 +28,22 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public open class WebRTCPeerConnection : Reference() {
-  public val dataChannelReceived: Signal1<Object> by signal("channel")
-
+public open class WebRTCPeerConnection : RefCounted() {
   public val iceCandidateCreated: Signal3<String, Long, String> by signal("media", "index", "name")
 
   public val sessionDescriptionCreated: Signal2<String, String> by signal("type", "sdp")
+
+  public val dataChannelReceived: Signal1<WebRTCDataChannel> by signal("channel")
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_WEBRTCPEERCONNECTION)
   }
 
-  public open fun addIceCandidate(
-    media: String,
-    index: Long,
-    name: String
-  ): GodotError {
-    TransferContext.writeArguments(STRING to media, LONG to index, STRING to name)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_ADD_ICE_CANDIDATE, LONG)
+  public open fun initialize(configuration: Dictionary<Any?, Any?> = Dictionary()): GodotError {
+    TransferContext.writeArguments(DICTIONARY to configuration)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_INITIALIZE,
+        LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  public open fun close(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_CLOSE, NIL)
   }
 
   public open fun createDataChannel(label: String, options: Dictionary<Any?, Any?> = Dictionary()):
@@ -70,26 +61,6 @@ public open class WebRTCPeerConnection : Reference() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  public open fun getConnectionState(): WebRTCPeerConnection.ConnectionState {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_GET_CONNECTION_STATE, LONG)
-    return WebRTCPeerConnection.ConnectionState.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  public open fun initialize(configuration: Dictionary<Any?, Any?> = Dictionary()): GodotError {
-    TransferContext.writeArguments(DICTIONARY to configuration)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_INITIALIZE,
-        LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  public open fun poll(): GodotError {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_POLL, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
   public open fun setLocalDescription(type: String, sdp: String): GodotError {
     TransferContext.writeArguments(STRING to type, STRING to sdp)
     TransferContext.callMethod(rawPtr,
@@ -102,6 +73,35 @@ public open class WebRTCPeerConnection : Reference() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_SET_REMOTE_DESCRIPTION, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  public open fun addIceCandidate(
+    media: String,
+    index: Long,
+    name: String
+  ): GodotError {
+    TransferContext.writeArguments(STRING to media, LONG to index, STRING to name)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_ADD_ICE_CANDIDATE, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  public open fun poll(): GodotError {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_POLL, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  public open fun close(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_CLOSE, NIL)
+  }
+
+  public open fun getConnectionState(): WebRTCPeerConnection.ConnectionState {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_WEBRTCPEERCONNECTION_GET_CONNECTION_STATE, LONG)
+    return WebRTCPeerConnection.ConnectionState.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   public enum class ConnectionState(
@@ -125,17 +125,5 @@ public open class WebRTCPeerConnection : Reference() {
     }
   }
 
-  public companion object {
-    public final const val STATE_CLOSED: Long = 5
-
-    public final const val STATE_CONNECTED: Long = 2
-
-    public final const val STATE_CONNECTING: Long = 1
-
-    public final const val STATE_DISCONNECTED: Long = 3
-
-    public final const val STATE_FAILED: Long = 4
-
-    public final const val STATE_NEW: Long = 0
-  }
+  public companion object
 }

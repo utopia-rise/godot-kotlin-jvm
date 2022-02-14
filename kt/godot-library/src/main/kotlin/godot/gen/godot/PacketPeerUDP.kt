@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -24,6 +24,8 @@ import kotlin.Unit
  * UDP packet peer.
  *
  * UDP packet peer. Can be used to send raw UDP packets as well as [Variant]s.
+ *
+ * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  */
 @GodotBaseType
 public open class PacketPeerUDP : PacketPeer() {
@@ -32,11 +34,110 @@ public open class PacketPeerUDP : PacketPeer() {
   }
 
   /**
-   * Closes the UDP socket the [godot.PacketPeerUDP] is currently listening on.
+   * Binds this [godot.PacketPeerUDP] to the specified `port` and `address` with a buffer size `recv_buf_size`, allowing it to receive incoming packets.
+   *
+   * If `address` is set to `"*"` (default), the peer will be bound on all available addresses (both IPv4 and IPv6).
+   *
+   * If `address` is set to `"0.0.0.0"` (for IPv4) or `"::"` (for IPv6), the peer will be bound to all available addresses matching that IP type.
+   *
+   * If `address` is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc), the peer will only be bound to the interface with that addresses (or fail if no interface with the given address exists).
+   */
+  public open fun bind(
+    port: Long,
+    bindAddress: String = "*",
+    recvBufSize: Long = 65536
+  ): GodotError {
+    TransferContext.writeArguments(LONG to port, STRING to bindAddress, LONG to recvBufSize)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_BIND, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Closes the [godot.PacketPeerUDP]'s underlying UDP socket.
    */
   public open fun close(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_CLOSE, NIL)
+  }
+
+  /**
+   * Waits for a packet to arrive on the bound address. See [bind].
+   *
+   * **Note:** [wait] can't be interrupted once it has been called. This can be worked around by allowing the other party to send a specific "death pill" packet like this:
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * socket = PacketPeerUDP.new()
+   *
+   * # Server
+   *
+   * socket.set_dest_address("127.0.0.1", 789)
+   *
+   * socket.put_packet("Time to stop".to_ascii())
+   *
+   *
+   *
+   * # Client
+   *
+   * while socket.wait() == OK:
+   *
+   *     var data = socket.get_packet().get_string_from_ascii()
+   *
+   *     if data == "Time to stop":
+   *
+   *         return
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * var socket = new PacketPeerUDP();
+   *
+   * // Server
+   *
+   * socket.SetDestAddress("127.0.0.1", 789);
+   *
+   * socket.PutPacket("Time to stop".ToAscii());
+   *
+   *
+   *
+   * // Client
+   *
+   * while (socket.Wait() == OK)
+   *
+   * {
+   *
+   *     string data = socket.GetPacket().GetStringFromASCII();
+   *
+   *     if (data == "Time to stop")
+   *
+   *     {
+   *
+   *         return;
+   *
+   *     }
+   *
+   * }
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   */
+  public open fun wait(): GodotError {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_WAIT, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Returns whether this [godot.PacketPeerUDP] is bound to an address and can receive packets.
+   */
+  public open fun isBound(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_IS_BOUND, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -48,6 +149,16 @@ public open class PacketPeerUDP : PacketPeer() {
     TransferContext.writeArguments(STRING to host, LONG to port)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_CONNECT_TO_HOST, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Returns `true` if the UDP socket is open and has been connected to a remote address. See [connectToHost].
+   */
+  public open fun isConnectedToHost(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_IS_CONNECTED_TO_HOST,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -69,22 +180,35 @@ public open class PacketPeerUDP : PacketPeer() {
   }
 
   /**
-   * Returns `true` if the UDP socket is open and has been connected to a remote address. See [connectToHost].
+   * Returns the local port to which this peer is bound.
    */
-  public open fun isConnectedToHost(): Boolean {
+  public open fun getLocalPort(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_IS_CONNECTED_TO_HOST,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_GET_LOCAL_PORT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
-   * Returns whether this [godot.PacketPeerUDP] is listening.
+   * Sets the destination address and port for sending packets and variables. A hostname will be resolved using DNS if needed.
+   *
+   * **Note:** [setBroadcastEnabled] must be enabled before sending packets to a broadcast address (e.g. `255.255.255.255`).
    */
-  public open fun isListening(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_IS_LISTENING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  public open fun setDestAddress(host: String, port: Long): GodotError {
+    TransferContext.writeArguments(STRING to host, LONG to port)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_SET_DEST_ADDRESS,
+        LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Enable or disable sending of broadcast packets (e.g. `set_dest_address("255.255.255.255", 4343)`. This option is disabled by default.
+   *
+   * **Note:** Some Android devices might require the `CHANGE_WIFI_MULTICAST_STATE` permission and this option to be enabled to receive broadcast packets too.
+   */
+  public open fun setBroadcastEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_SET_BROADCAST_ENABLED,
+        NIL)
   }
 
   /**
@@ -111,68 +235,5 @@ public open class PacketPeerUDP : PacketPeer() {
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
-  /**
-   * Makes this [godot.PacketPeerUDP] listen on the `port` binding to `bind_address` with a buffer size `recv_buf_size`.
-   *
-   * If `bind_address` is set to `"*"` (default), the peer will listen on all available addresses (both IPv4 and IPv6).
-   *
-   * If `bind_address` is set to `"0.0.0.0"` (for IPv4) or `"::"` (for IPv6), the peer will listen on all available addresses matching that IP type.
-   *
-   * If `bind_address` is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc), the peer will only listen on the interface with that addresses (or fail if no interface with the given address exists).
-   */
-  public open fun listen(
-    port: Long,
-    bindAddress: String = "*",
-    recvBufSize: Long = 65536
-  ): GodotError {
-    TransferContext.writeArguments(LONG to port, STRING to bindAddress, LONG to recvBufSize)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_LISTEN, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  /**
-   * Enable or disable sending of broadcast packets (e.g. `set_dest_address("255.255.255.255", 4343)`. This option is disabled by default.
-   *
-   * **Note:** Some Android devices might require the `CHANGE_WIFI_MULTICAST_STATE` permission and this option to be enabled to receive broadcast packets too.
-   */
-  public open fun setBroadcastEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_SET_BROADCAST_ENABLED,
-        NIL)
-  }
-
-  /**
-   * Sets the destination address and port for sending packets and variables. A hostname will be resolved using DNS if needed.
-   *
-   * **Note:** [setBroadcastEnabled] must be enabled before sending packets to a broadcast address (e.g. `255.255.255.255`).
-   */
-  public open fun setDestAddress(host: String, port: Long): GodotError {
-    TransferContext.writeArguments(STRING to host, LONG to port)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_SET_DEST_ADDRESS,
-        LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  /**
-   * Waits for a packet to arrive on the listening port. See [listen].
-   *
-   * **Note:** [wait] can't be interrupted once it has been called. This can be worked around by allowing the other party to send a specific "death pill" packet like this:
-   *
-   * ```
-   * 				# Server
-   * 				socket.set_dest_address("127.0.0.1", 789)
-   * 				socket.put_packet("Time to stop".to_ascii())
-   *
-   * 				# Client
-   * 				while socket.wait() == OK:
-   * 				    var data = socket.get_packet().get_string_from_ascii()
-   * 				    if data == "Time to stop":
-   * 				        return
-   * 				```
-   */
-  public open fun wait(): GodotError {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKETPEERUDP_WAIT, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
+  public companion object
 }

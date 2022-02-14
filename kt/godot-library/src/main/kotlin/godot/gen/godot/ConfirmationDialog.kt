@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -18,9 +18,21 @@ import kotlin.Unit
  *
  * To get cancel action, you can use:
  *
- * ```
- * 		get_cancel().connect("pressed", self, "cancelled")
- * 		```.
+ * [codeblocks]
+ *
+ * [gdscript]
+ *
+ * get_cancel().connect("pressed", self, "cancelled")
+ *
+ * [/gdscript]
+ *
+ * [csharp]
+ *
+ * GetCancel().Connect("pressed", this, nameof(Cancelled));
+ *
+ * [/csharp]
+ *
+ * [/codeblocks]
  */
 @GodotBaseType
 public open class ConfirmationDialog : AcceptDialog() {
@@ -33,10 +45,12 @@ public open class ConfirmationDialog : AcceptDialog() {
    *
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [godot.CanvasItem.visible] property.
    */
-  public open fun getCancel(): Button? {
+  public open fun getCancelButton(): Button? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIRMATIONDIALOG_GET_CANCEL,
-        OBJECT)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_CONFIRMATIONDIALOG_GET_CANCEL_BUTTON, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Button?
   }
+
+  public companion object
 }

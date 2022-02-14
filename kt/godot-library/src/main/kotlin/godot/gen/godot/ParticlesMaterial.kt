@@ -1,11 +1,10 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -24,448 +23,30 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Particle properties for [godot.Particles] and [godot.Particles2D] nodes.
+ * Particle properties for [godot.GPUParticles3D] and [godot.GPUParticles2D] nodes.
  *
- * ParticlesMaterial defines particle properties and behavior. It is used in the `process_material` of [godot.Particles] and [godot.Particles2D] emitter nodes.
+ * ParticlesMaterial defines particle properties and behavior. It is used in the `process_material` of [godot.GPUParticles3D] and [godot.GPUParticles2D] emitter nodes.
  *
  * Some of this material's properties are applied to each particle when emitted, while others can have a [godot.CurveTexture] applied to vary values over the lifetime of the particle.
  *
- * When a randomness ratio is applied to a property it is used to scale that property by a random amount. The random ratio is used to interpolate between `1.0` and a random number less than one, the result is multiplied by the property to obtain the randomized property. For example a random ratio of `0.4` would scale the original property between `0.4-1.0` of its original value.
+ * Particle animation is available only in [godot.GPUParticles2D]. To use it, attach a [godot.CanvasItemMaterial], with [godot.CanvasItemMaterial.particlesAnimation] enabled, to the particles node.
  */
 @GodotBaseType
 public open class ParticlesMaterial : Material() {
   /**
-   * Initial rotation applied to each particle, in degrees.
-   *
-   * **Note:** Only applied when [flagDisableZ] or [flagRotateY] are `true` or the [godot.SpatialMaterial] being used to draw the particle is using [godot.SpatialMaterial.BILLBOARD_PARTICLES].
+   * Particle lifetime randomness ratio. The lifetime will be multiplied by a value interpolated between `1.0` and a random number less than one. For example a random ratio of `0.4` would scale the original lifetime between `0.4-1.0` of its original value.
    */
-  public open var angle: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANGLE,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANGLE, NIL)
-    }
-
-  /**
-   * Each particle's rotation will be animated along this [godot.CurveTexture].
-   */
-  public open var angleCurve: Texture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANGLE_CURVE,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANGLE_CURVE,
-          NIL)
-    }
-
-  /**
-   * Rotation randomness ratio.
-   */
-  public open var angleRandom: Double
+  public open var lifetimeRandomness: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANGLE_RANDOM, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_LIFETIME_RANDOMNESS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANGLE_RANDOM, NIL)
-    }
-
-  /**
-   * Initial angular velocity applied to each particle in *degrees* per second. Sets the speed of rotation of the particle.
-   *
-   * **Note:** Only applied when [flagDisableZ] or [flagRotateY] are `true` or the [godot.SpatialMaterial] being used to draw the particle is using [godot.SpatialMaterial.BILLBOARD_PARTICLES].
-   */
-  public open var angularVelocity: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANGULAR_VELOCITY, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANGULAR_VELOCITY, NIL)
-    }
-
-  /**
-   * Each particle's angular velocity will vary along this [godot.CurveTexture].
-   */
-  public open var angularVelocityCurve: Texture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANGULAR_VELOCITY_CURVE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANGULAR_VELOCITY_CURVE, NIL)
-    }
-
-  /**
-   * Angular velocity randomness ratio.
-   */
-  public open var angularVelocityRandom: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANGULAR_VELOCITY_RANDOM, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANGULAR_VELOCITY_RANDOM, NIL)
-    }
-
-  /**
-   * Particle animation offset.
-   */
-  public open var animOffset: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANIM_OFFSET,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANIM_OFFSET,
-          NIL)
-    }
-
-  /**
-   * Each particle's animation offset will vary along this [godot.CurveTexture].
-   */
-  public open var animOffsetCurve: Texture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANIM_OFFSET_CURVE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANIM_OFFSET_CURVE, NIL)
-    }
-
-  /**
-   * Animation offset randomness ratio.
-   */
-  public open var animOffsetRandom: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANIM_OFFSET_RANDOM, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANIM_OFFSET_RANDOM, NIL)
-    }
-
-  /**
-   * Particle animation speed.
-   */
-  public open var animSpeed: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANIM_SPEED,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANIM_SPEED,
-          NIL)
-    }
-
-  /**
-   * Each particle's animation speed will vary along this [godot.CurveTexture].
-   */
-  public open var animSpeedCurve: Texture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANIM_SPEED_CURVE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANIM_SPEED_CURVE, NIL)
-    }
-
-  /**
-   * Animation speed randomness ratio.
-   */
-  public open var animSpeedRandom: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANIM_SPEED_RANDOM, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANIM_SPEED_RANDOM, NIL)
-    }
-
-  /**
-   * Each particle's initial color. If the [godot.Particles2D]'s `texture` is defined, it will be multiplied by this color. To have particle display color in a [godot.SpatialMaterial] make sure to set [godot.SpatialMaterial.vertexColorUseAsAlbedo] to `true`.
-   */
-  public open var color: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_COLOR,
-          COLOR)
-      return TransferContext.readReturnValue(COLOR, false) as Color
-    }
-    set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_COLOR, NIL)
-    }
-
-  /**
-   * Each particle's color will vary along this [godot.GradientTexture] over its lifetime (multiplied with [color]).
-   */
-  public open var colorRamp: Texture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_COLOR_RAMP,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_COLOR_RAMP,
-          NIL)
-    }
-
-  /**
-   * The rate at which particles lose velocity.
-   */
-  public open var damping: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_DAMPING,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_DAMPING,
-          NIL)
-    }
-
-  /**
-   * Damping will vary along this [godot.CurveTexture].
-   */
-  public open var dampingCurve: Texture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_DAMPING_CURVE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_DAMPING_CURVE, NIL)
-    }
-
-  /**
-   * Damping randomness ratio.
-   */
-  public open var dampingRandom: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_DAMPING_RANDOM, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_DAMPING_RANDOM, NIL)
-    }
-
-  /**
-   * Unit vector specifying the particles' emission direction.
-   */
-  public open var direction: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_DIRECTION,
-          VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
-    }
-    set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_DIRECTION,
-          NIL)
-    }
-
-  /**
-   * The box's extents if `emission_shape` is set to [EMISSION_SHAPE_BOX].
-   */
-  public open var emissionBoxExtents: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_EMISSION_BOX_EXTENTS, VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
-    }
-    set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_EMISSION_BOX_EXTENTS, NIL)
-    }
-
-  /**
-   * Particle color will be modulated by color determined by sampling this texture at the same point as the [emissionPointTexture].
-   */
-  public open var emissionColorTexture: Texture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_EMISSION_COLOR_TEXTURE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_EMISSION_COLOR_TEXTURE, NIL)
-    }
-
-  /**
-   * Particle velocity and rotation will be set by sampling this texture at the same point as the [emissionPointTexture]. Used only in [EMISSION_SHAPE_DIRECTED_POINTS]. Can be created automatically from mesh or node by selecting "Create Emission Points from Mesh/Node" under the "Particles" tool in the toolbar.
-   */
-  public open var emissionNormalTexture: Texture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_EMISSION_NORMAL_TEXTURE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_EMISSION_NORMAL_TEXTURE, NIL)
-    }
-
-  /**
-   * The number of emission points if `emission_shape` is set to [EMISSION_SHAPE_POINTS] or [EMISSION_SHAPE_DIRECTED_POINTS].
-   */
-  public open var emissionPointCount: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_EMISSION_POINT_COUNT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_EMISSION_POINT_COUNT, NIL)
-    }
-
-  /**
-   * Particles will be emitted at positions determined by sampling this texture at a random position. Used with [EMISSION_SHAPE_POINTS] and [EMISSION_SHAPE_DIRECTED_POINTS]. Can be created automatically from mesh or node by selecting "Create Emission Points from Mesh/Node" under the "Particles" tool in the toolbar.
-   */
-  public open var emissionPointTexture: Texture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_EMISSION_POINT_TEXTURE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_EMISSION_POINT_TEXTURE, NIL)
-    }
-
-  /**
-   * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
-   */
-  public open var emissionRingAxis: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_EMISSION_RING_AXIS, VECTOR3)
-      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
-    }
-    set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_EMISSION_RING_AXIS, NIL)
-    }
-
-  /**
-   * The height of the ring when using the emitter [EMISSION_SHAPE_RING].
-   */
-  public open var emissionRingHeight: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_EMISSION_RING_HEIGHT, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_EMISSION_RING_HEIGHT, NIL)
-    }
-
-  /**
-   * The inner radius of the ring when using the emitter [EMISSION_SHAPE_RING].
-   */
-  public open var emissionRingInnerRadius: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_EMISSION_RING_INNER_RADIUS, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_EMISSION_RING_INNER_RADIUS, NIL)
-    }
-
-  /**
-   * The radius of the ring when using the emitter [EMISSION_SHAPE_RING].
-   */
-  public open var emissionRingRadius: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_EMISSION_RING_RADIUS, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_EMISSION_RING_RADIUS, NIL)
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_LIFETIME_RANDOMNESS, NIL)
     }
 
   /**
@@ -501,51 +82,181 @@ public open class ParticlesMaterial : Material() {
     }
 
   /**
-   * Align Y axis of particle with the direction of its velocity.
+   * The box's extents if `emission_shape` is set to [EMISSION_SHAPE_BOX].
    */
-  public open var flagAlignY: Boolean
+  public open var emissionBoxExtents: Vector3
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_FLAG_ALIGN_Y, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_EMISSION_BOX_EXTENTS, VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(VECTOR3 to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_FLAG_ALIGN_Y, NIL)
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_EMISSION_BOX_EXTENTS, NIL)
     }
 
   /**
-   * If `true`, particles will not move on the z axis.
+   * Particles will be emitted at positions determined by sampling this texture at a random position. Used with [EMISSION_SHAPE_POINTS] and [EMISSION_SHAPE_DIRECTED_POINTS]. Can be created automatically from mesh or node by selecting "Create Emission Points from Mesh/Node" under the "Particles" tool in the toolbar.
    */
-  public open var flagDisableZ: Boolean
+  public open var emissionPointTexture: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_FLAG_DISABLE_Z, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_EMISSION_POINT_TEXTURE, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_FLAG_DISABLE_Z, NIL)
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_EMISSION_POINT_TEXTURE, NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
-   * If `true`, particles rotate around Y axis by [angle].
+   * Particle velocity and rotation will be set by sampling this texture at the same point as the [emissionPointTexture]. Used only in [EMISSION_SHAPE_DIRECTED_POINTS]. Can be created automatically from mesh or node by selecting "Create Emission Points from Mesh/Node" under the "Particles" tool in the toolbar.
    */
-  public open var flagRotateY: Boolean
+  public open var emissionNormalTexture: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_FLAG_ROTATE_Y, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_EMISSION_NORMAL_TEXTURE, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_FLAG_ROTATE_Y, NIL)
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_EMISSION_NORMAL_TEXTURE, NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
+    }
+
+  /**
+   * Particle color will be modulated by color determined by sampling this texture at the same point as the [emissionPointTexture].
+   */
+  public open var emissionColorTexture: Texture2D?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_EMISSION_COLOR_TEXTURE, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_EMISSION_COLOR_TEXTURE, NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
+    }
+
+  /**
+   * The number of emission points if `emission_shape` is set to [EMISSION_SHAPE_POINTS] or [EMISSION_SHAPE_DIRECTED_POINTS].
+   */
+  public open var emissionPointCount: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_EMISSION_POINT_COUNT, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_EMISSION_POINT_COUNT, NIL)
+    }
+
+  /**
+   * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
+   */
+  public open var emissionRingAxis: Vector3
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_EMISSION_RING_AXIS, VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_EMISSION_RING_AXIS, NIL)
+    }
+
+  /**
+   * The height of the ring when using the emitter [EMISSION_SHAPE_RING].
+   */
+  public open var emissionRingHeight: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_EMISSION_RING_HEIGHT, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_EMISSION_RING_HEIGHT, NIL)
+    }
+
+  /**
+   * The radius of the ring when using the emitter [EMISSION_SHAPE_RING].
+   */
+  public open var emissionRingRadius: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_EMISSION_RING_RADIUS, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_EMISSION_RING_RADIUS, NIL)
+    }
+
+  /**
+   * The inner radius of the ring when using the emitter [EMISSION_SHAPE_RING].
+   */
+  public open var emissionRingInnerRadius: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_EMISSION_RING_INNER_RADIUS, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_EMISSION_RING_INNER_RADIUS, NIL)
+    }
+
+  /**
+   * Unit vector specifying the particles' emission direction.
+   */
+  public open var direction: Vector3
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_DIRECTION,
+          VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_DIRECTION,
+          NIL)
+    }
+
+  /**
+   * Each particle's initial direction range from `+spread` to `-spread` degrees.
+   */
+  public open var spread: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_SPREAD,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_SPREAD, NIL)
     }
 
   /**
@@ -581,474 +292,277 @@ public open class ParticlesMaterial : Material() {
     }
 
   /**
-   * Initial hue variation applied to each particle.
+   * Each particle's initial color. If the [godot.GPUParticles2D]'s `texture` is defined, it will be multiplied by this color. To have particle display color in a [godot.BaseMaterial3D] make sure to set [godot.BaseMaterial3D.vertexColorUseAsAlbedo] to `true`.
    */
-  public open var hueVariation: Double
+  public open var color: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_HUE_VARIATION, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_COLOR,
+          COLOR)
+      return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_HUE_VARIATION, NIL)
+      TransferContext.writeArguments(COLOR to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_COLOR, NIL)
     }
 
   /**
-   * Each particle's hue will vary along this [godot.CurveTexture].
+   * Each particle's color will vary along this [godot.GradientTexture1D] over its lifetime (multiplied with [color]).
    */
-  public open var hueVariationCurve: Texture?
+  public open var colorRamp: GradientTexture1D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_HUE_VARIATION_CURVE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_HUE_VARIATION_CURVE, NIL)
-    }
-
-  /**
-   * Hue variation randomness ratio.
-   */
-  public open var hueVariationRandom: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_HUE_VARIATION_RANDOM, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_HUE_VARIATION_RANDOM, NIL)
-    }
-
-  /**
-   * Initial velocity magnitude for each particle. Direction comes from [spread] and the node's orientation.
-   */
-  public open var initialVelocity: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_INITIAL_VELOCITY, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_INITIAL_VELOCITY, NIL)
-    }
-
-  /**
-   * Initial velocity randomness ratio.
-   */
-  public open var initialVelocityRandom: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_INITIAL_VELOCITY_RANDOM, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_INITIAL_VELOCITY_RANDOM, NIL)
-    }
-
-  /**
-   * Particle lifetime randomness ratio.
-   */
-  public open var lifetimeRandomness: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_LIFETIME_RANDOMNESS, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_LIFETIME_RANDOMNESS, NIL)
-    }
-
-  /**
-   * Linear acceleration applied to each particle in the direction of motion.
-   */
-  public open var linearAccel: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_LINEAR_ACCEL, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_LINEAR_ACCEL, NIL)
-    }
-
-  /**
-   * Each particle's linear acceleration will vary along this [godot.CurveTexture].
-   */
-  public open var linearAccelCurve: Texture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_LINEAR_ACCEL_CURVE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_LINEAR_ACCEL_CURVE, NIL)
-    }
-
-  /**
-   * Linear acceleration randomness ratio.
-   */
-  public open var linearAccelRandom: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_LINEAR_ACCEL_RANDOM, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_LINEAR_ACCEL_RANDOM, NIL)
-    }
-
-  /**
-   * Orbital velocity applied to each particle. Makes the particles circle around origin. Specified in number of full rotations around origin per second.
-   *
-   * **Note:** Only available when [flagDisableZ] is `true`.
-   */
-  public open var orbitVelocity: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ORBIT_VELOCITY, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ORBIT_VELOCITY, NIL)
-    }
-
-  /**
-   * Each particle's orbital velocity will vary along this [godot.CurveTexture].
-   */
-  public open var orbitVelocityCurve: Texture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ORBIT_VELOCITY_CURVE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ORBIT_VELOCITY_CURVE, NIL)
-    }
-
-  /**
-   * Orbital velocity randomness ratio.
-   */
-  public open var orbitVelocityRandom: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ORBIT_VELOCITY_RANDOM, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ORBIT_VELOCITY_RANDOM, NIL)
-    }
-
-  /**
-   * Radial acceleration applied to each particle. Makes particle accelerate away from origin.
-   */
-  public open var radialAccel: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_RADIAL_ACCEL, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_RADIAL_ACCEL, NIL)
-    }
-
-  /**
-   * Each particle's radial acceleration will vary along this [godot.CurveTexture].
-   */
-  public open var radialAccelCurve: Texture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_RADIAL_ACCEL_CURVE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_RADIAL_ACCEL_CURVE, NIL)
-    }
-
-  /**
-   * Radial acceleration randomness ratio.
-   */
-  public open var radialAccelRandom: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_RADIAL_ACCEL_RANDOM, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_RADIAL_ACCEL_RANDOM, NIL)
-    }
-
-  /**
-   * Initial scale applied to each particle.
-   */
-  public open var scale: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_SCALE,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_SCALE, NIL)
-    }
-
-  /**
-   * Each particle's scale will vary along this [godot.CurveTexture].
-   */
-  public open var scaleCurve: Texture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_SCALE_CURVE,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_COLOR_RAMP,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
+      return TransferContext.readReturnValue(OBJECT, true) as GradientTexture1D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_SCALE_CURVE,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_COLOR_RAMP,
           NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
-   * Scale randomness ratio.
+   * Each particle's initial color will vary along this [godot.GradientTexture1D] (multiplied with [color]).
    */
-  public open var scaleRandom: Double
+  public open var colorInitialRamp: GradientTexture1D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_SCALE_RANDOM, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_SCALE_RANDOM, NIL)
-    }
-
-  /**
-   * Each particle's initial direction range from `+spread` to `-spread` degrees.
-   */
-  public open var spread: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_SPREAD,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_SPREAD, NIL)
-    }
-
-  /**
-   * Tangential acceleration applied to each particle. Tangential acceleration is perpendicular to the particle's velocity giving the particles a swirling motion.
-   */
-  public open var tangentialAccel: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_TANGENTIAL_ACCEL, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_TANGENTIAL_ACCEL, NIL)
-    }
-
-  /**
-   * Each particle's tangential acceleration will vary along this [godot.CurveTexture].
-   */
-  public open var tangentialAccelCurve: Texture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_TANGENTIAL_ACCEL_CURVE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_COLOR_INITIAL_RAMP, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as GradientTexture1D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_TANGENTIAL_ACCEL_CURVE, NIL)
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_COLOR_INITIAL_RAMP, NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
-   * Tangential acceleration randomness ratio.
+   *
    */
-  public open var tangentialAccelRandom: Double
+  public open var subEmitterMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_TANGENTIAL_ACCEL_RANDOM, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_TANGENTIAL_ACCEL_RANDOM, NIL)
-    }
-
-  /**
-   * Trail particles' color will vary along this [godot.GradientTexture].
-   */
-  public open var trailColorModifier: GradientTexture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_TRAIL_COLOR_MODIFIER, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as GradientTexture?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_TRAIL_COLOR_MODIFIER, NIL)
-    }
-
-  /**
-   * Emitter will emit `amount` divided by `trail_divisor` particles. The remaining particles will be used as trail(s).
-   */
-  public open var trailDivisor: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_TRAIL_DIVISOR, LONG)
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_SUB_EMITTER_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_TRAIL_DIVISOR, NIL)
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_SUB_EMITTER_MODE, NIL)
     }
 
   /**
-   * Trail particles' size will vary along this [godot.CurveTexture].
+   *
    */
-  public open var trailSizeModifier: CurveTexture?
+  public open var subEmitterFrequency: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_TRAIL_SIZE_MODIFIER, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as CurveTexture?
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_SUB_EMITTER_FREQUENCY, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_TRAIL_SIZE_MODIFIER, NIL)
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_SUB_EMITTER_FREQUENCY, NIL)
+    }
+
+  /**
+   *
+   */
+  public open var subEmitterAmountAtEnd: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_SUB_EMITTER_AMOUNT_AT_END, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_SUB_EMITTER_AMOUNT_AT_END, NIL)
+    }
+
+  /**
+   *
+   */
+  public open var subEmitterKeepVelocity: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_SUB_EMITTER_KEEP_VELOCITY, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_SUB_EMITTER_KEEP_VELOCITY, NIL)
+    }
+
+  /**
+   * True if the interaction with particle attractors is enabled.
+   */
+  public open var attractorInteractionEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ATTRACTOR_INTERACTION_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ATTRACTOR_INTERACTION_ENABLED, NIL)
+    }
+
+  /**
+   * True if collisions are enabled for this particle system.
+   */
+  public open var collisionEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_COLLISION_ENABLED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_COLLISION_ENABLED, NIL)
+    }
+
+  /**
+   * Collision friction.
+   */
+  public open var collisionFriction: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_COLLISION_FRICTION, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_COLLISION_FRICTION, NIL)
+    }
+
+  /**
+   * Collision bouncyness.
+   */
+  public open var collisionBounce: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_COLLISION_BOUNCE, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_COLLISION_BOUNCE, NIL)
+    }
+
+  /**
+   * Should collision take scale into account.
+   */
+  public open var collisionUseScale: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_COLLISION_USE_SCALE, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_COLLISION_USE_SCALE, NIL)
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PARTICLESMATERIAL)
   }
 
-  @CoreTypeHelper
-  public open fun color(schedule: Color.() -> Unit): Color = color.apply{
-      schedule(this)
-      color = this
+  /**
+   * Sets the minimum value range for the given parameter.
+   */
+  public open fun setParamMin(`param`: ParticlesMaterial.Parameter, `value`: Double): Unit {
+    TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_PARAM_MIN,
+        NIL)
   }
 
-
-  @CoreTypeHelper
-  public open fun direction(schedule: Vector3.() -> Unit): Vector3 = direction.apply{
-      schedule(this)
-      direction = this
+  /**
+   * Returns the minimum value range for the given parameter.
+   */
+  public open fun getParamMin(`param`: ParticlesMaterial.Parameter): Double {
+    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_PARAM_MIN,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-
-  @CoreTypeHelper
-  public open fun emissionBoxExtents(schedule: Vector3.() -> Unit): Vector3 =
-      emissionBoxExtents.apply{
-      schedule(this)
-      emissionBoxExtents = this
+  /**
+   * Sets the maximum value range for the given parameter.
+   */
+  public open fun setParamMax(`param`: ParticlesMaterial.Parameter, `value`: Double): Unit {
+    TransferContext.writeArguments(LONG to param.id, DOUBLE to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_PARAM_MAX,
+        NIL)
   }
 
-
-  @CoreTypeHelper
-  public open fun emissionRingAxis(schedule: Vector3.() -> Unit): Vector3 = emissionRingAxis.apply{
-      schedule(this)
-      emissionRingAxis = this
+  /**
+   * Returns the maximum value range for the given parameter.
+   */
+  public open fun getParamMax(`param`: ParticlesMaterial.Parameter): Double {
+    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_PARAM_MAX,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-
-  @CoreTypeHelper
-  public open fun gravity(schedule: Vector3.() -> Unit): Vector3 = gravity.apply{
-      schedule(this)
-      gravity = this
+  /**
+   * Sets the [godot.Texture2D] for the specified [enum Parameter].
+   */
+  public open fun setParamTexture(`param`: ParticlesMaterial.Parameter, texture: Texture2D): Unit {
+    TransferContext.writeArguments(LONG to param.id, OBJECT to texture)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_PARAM_TEXTURE,
+        NIL)
   }
 
+  /**
+   * Returns the [godot.Texture2D] used by the specified parameter.
+   */
+  public open fun getParamTexture(`param`: ParticlesMaterial.Parameter): Texture2D? {
+    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_PARAM_TEXTURE,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+  }
 
-  public enum class Flags(
-    id: Long
-  ) {
-    /**
-     * Use with [setFlag] to set [flagAlignY].
-     */
-    FLAG_ALIGN_Y_TO_VELOCITY(0),
-    /**
-     * Use with [setFlag] to set [flagRotateY].
-     */
-    FLAG_ROTATE_Y(1),
-    /**
-     * Use with [setFlag] to set [flagDisableZ].
-     */
-    FLAG_DISABLE_Z(2),
-    /**
-     * Represents the size of the [enum Flags] enum.
-     */
-    FLAG_MAX(3),
-    ;
+  /**
+   * If `true`, enables the specified particle flag. See [enum ParticleFlags] for options.
+   */
+  public open fun setParticleFlag(particleFlag: ParticlesMaterial.ParticleFlags, enable: Boolean):
+      Unit {
+    TransferContext.writeArguments(LONG to particleFlag.id, BOOL to enable)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_PARTICLE_FLAG,
+        NIL)
+  }
 
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
+  /**
+   * Returns `true` if the specified particle flag is enabled. See [enum ParticleFlags] for options.
+   */
+  public open fun getParticleFlag(particleFlag: ParticlesMaterial.ParticleFlags): Boolean {
+    TransferContext.writeArguments(LONG to particleFlag.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_PARTICLE_FLAG,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   public enum class EmissionShape(
@@ -1094,55 +608,121 @@ public open class ParticlesMaterial : Material() {
     }
   }
 
+  public enum class SubEmitterMode(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    SUB_EMITTER_DISABLED(0),
+    /**
+     *
+     */
+    SUB_EMITTER_CONSTANT(1),
+    /**
+     *
+     */
+    SUB_EMITTER_AT_END(2),
+    /**
+     *
+     */
+    SUB_EMITTER_AT_COLLISION(3),
+    /**
+     *
+     */
+    SUB_EMITTER_MAX(4),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ParticleFlags(
+    id: Long
+  ) {
+    /**
+     * Use with [setParticleFlag] to set [particleFlagAlignY].
+     */
+    PARTICLE_FLAG_ALIGN_Y_TO_VELOCITY(0),
+    /**
+     * Use with [setParticleFlag] to set [particleFlagRotateY].
+     */
+    PARTICLE_FLAG_ROTATE_Y(1),
+    /**
+     * Use with [setParticleFlag] to set [particleFlagDisableZ].
+     */
+    PARTICLE_FLAG_DISABLE_Z(2),
+    /**
+     * Represents the size of the [enum ParticleFlags] enum.
+     */
+    PARTICLE_FLAG_MAX(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
   public enum class Parameter(
     id: Long
   ) {
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set initial velocity properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set initial velocity properties.
      */
     PARAM_INITIAL_LINEAR_VELOCITY(0),
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set angular velocity properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set angular velocity properties.
      */
     PARAM_ANGULAR_VELOCITY(1),
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set orbital velocity properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set orbital velocity properties.
      */
     PARAM_ORBIT_VELOCITY(2),
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set linear acceleration properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set linear acceleration properties.
      */
     PARAM_LINEAR_ACCEL(3),
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set radial acceleration properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set radial acceleration properties.
      */
     PARAM_RADIAL_ACCEL(4),
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set tangential acceleration properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set tangential acceleration properties.
      */
     PARAM_TANGENTIAL_ACCEL(5),
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set damping properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set damping properties.
      */
     PARAM_DAMPING(6),
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set angle properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set angle properties.
      */
     PARAM_ANGLE(7),
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set scale properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set scale properties.
      */
     PARAM_SCALE(8),
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set hue variation properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set hue variation properties.
      */
     PARAM_HUE_VARIATION(9),
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set animation speed properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set animation speed properties.
      */
     PARAM_ANIM_SPEED(10),
     /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set animation offset properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set animation offset properties.
      */
     PARAM_ANIM_OFFSET(11),
     /**
@@ -1161,125 +741,5 @@ public open class ParticlesMaterial : Material() {
     }
   }
 
-  public companion object {
-    /**
-     * Particles will be emitted in the volume of a box.
-     */
-    public final const val EMISSION_SHAPE_BOX: Long = 2
-
-    /**
-     * Particles will be emitted at a position determined by sampling a random point on the [emissionPointTexture]. Particle velocity and rotation will be set based on [emissionNormalTexture]. Particle color will be modulated by [emissionColorTexture].
-     */
-    public final const val EMISSION_SHAPE_DIRECTED_POINTS: Long = 4
-
-    /**
-     * Represents the size of the [enum EmissionShape] enum.
-     */
-    public final const val EMISSION_SHAPE_MAX: Long = 6
-
-    /**
-     * All particles will be emitted from a single point.
-     */
-    public final const val EMISSION_SHAPE_POINT: Long = 0
-
-    /**
-     * Particles will be emitted at a position determined by sampling a random point on the [emissionPointTexture]. Particle color will be modulated by [emissionColorTexture].
-     */
-    public final const val EMISSION_SHAPE_POINTS: Long = 3
-
-    /**
-     * Particles will be emitted in a ring or cylinder.
-     */
-    public final const val EMISSION_SHAPE_RING: Long = 5
-
-    /**
-     * Particles will be emitted in the volume of a sphere.
-     */
-    public final const val EMISSION_SHAPE_SPHERE: Long = 1
-
-    /**
-     * Use with [setFlag] to set [flagAlignY].
-     */
-    public final const val FLAG_ALIGN_Y_TO_VELOCITY: Long = 0
-
-    /**
-     * Use with [setFlag] to set [flagDisableZ].
-     */
-    public final const val FLAG_DISABLE_Z: Long = 2
-
-    /**
-     * Represents the size of the [enum Flags] enum.
-     */
-    public final const val FLAG_MAX: Long = 3
-
-    /**
-     * Use with [setFlag] to set [flagRotateY].
-     */
-    public final const val FLAG_ROTATE_Y: Long = 1
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set angle properties.
-     */
-    public final const val PARAM_ANGLE: Long = 7
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set angular velocity properties.
-     */
-    public final const val PARAM_ANGULAR_VELOCITY: Long = 1
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set animation offset properties.
-     */
-    public final const val PARAM_ANIM_OFFSET: Long = 11
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set animation speed properties.
-     */
-    public final const val PARAM_ANIM_SPEED: Long = 10
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set damping properties.
-     */
-    public final const val PARAM_DAMPING: Long = 6
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set hue variation properties.
-     */
-    public final const val PARAM_HUE_VARIATION: Long = 9
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set initial velocity properties.
-     */
-    public final const val PARAM_INITIAL_LINEAR_VELOCITY: Long = 0
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set linear acceleration properties.
-     */
-    public final const val PARAM_LINEAR_ACCEL: Long = 3
-
-    /**
-     * Represents the size of the [enum Parameter] enum.
-     */
-    public final const val PARAM_MAX: Long = 12
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set orbital velocity properties.
-     */
-    public final const val PARAM_ORBIT_VELOCITY: Long = 2
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set radial acceleration properties.
-     */
-    public final const val PARAM_RADIAL_ACCEL: Long = 4
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set scale properties.
-     */
-    public final const val PARAM_SCALE: Long = 8
-
-    /**
-     * Use with [setParam], [setParamRandomness], and [setParamTexture] to set tangential acceleration properties.
-     */
-    public final const val PARAM_TANGENTIAL_ACCEL: Long = 5
-  }
+  public companion object
 }

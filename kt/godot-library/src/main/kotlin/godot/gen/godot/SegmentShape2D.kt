@@ -1,11 +1,10 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
@@ -53,17 +52,5 @@ public open class SegmentShape2D : Shape2D() {
     callConstructor(ENGINECLASS_SEGMENTSHAPE2D)
   }
 
-  @CoreTypeHelper
-  public open fun a(schedule: Vector2.() -> Unit): Vector2 = a.apply{
-      schedule(this)
-      a = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun b(schedule: Vector2.() -> Unit): Vector2 = b.apply{
-      schedule(this)
-      b = this
-  }
-
+  public companion object
 }

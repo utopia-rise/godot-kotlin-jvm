@@ -1,26 +1,23 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.Dictionary
-import godot.core.PoolVector2Array
+import godot.core.PackedVector2Array
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.core.VariantType.POOL_VECTOR2_ARRAY
+import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
-import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -51,78 +48,6 @@ public open class Curve2D : Resource() {
     callConstructor(ENGINECLASS_CURVE2D)
   }
 
-  public open fun _getData(): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_get_data is not implemented for Curve2D")
-  }
-
-  public open fun _setData(arg0: Dictionary<Any?, Any?>): Unit {
-  }
-
-  /**
-   * Adds a point to a curve at `position`, with control points `in` and `out`.
-   *
-   * If `at_position` is given, the point is inserted before the point number `at_position`, moving that point (and every point after) after the inserted point. If `at_position` is not given, or is an illegal value (`at_position <0` or `at_position >= [getPointCount]`), the point will be appended at the end of the point list.
-   */
-  public open fun addPoint(
-    position: Vector2,
-    _in: Vector2 = Vector2(0.0, 0.0),
-    `out`: Vector2 = Vector2(0.0, 0.0),
-    atPosition: Long = -1
-  ): Unit {
-    TransferContext.writeArguments(VECTOR2 to position, VECTOR2 to _in, VECTOR2 to out, LONG to
-        atPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_ADD_POINT, NIL)
-  }
-
-  /**
-   * Removes all points from the curve.
-   */
-  public open fun clearPoints(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_CLEAR_POINTS, NIL)
-  }
-
-  /**
-   * Returns the total length of the curve, based on the cached points. Given enough density (see [bakeInterval]), it should be approximate enough.
-   */
-  public open fun getBakedLength(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_BAKED_LENGTH, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
-  }
-
-  /**
-   * Returns the cache of points as a [godot.core.PoolVector2Array].
-   */
-  public open fun getBakedPoints(): PoolVector2Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_BAKED_POINTS,
-        POOL_VECTOR2_ARRAY)
-    return TransferContext.readReturnValue(POOL_VECTOR2_ARRAY, false) as PoolVector2Array
-  }
-
-  /**
-   * Returns the closest offset to `to_point`. This offset is meant to be used in [interpolateBaked].
-   *
-   * `to_point` must be in this curve's local space.
-   */
-  public open fun getClosestOffset(toPoint: Vector2): Double {
-    TransferContext.writeArguments(VECTOR2 to toPoint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_CLOSEST_OFFSET, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
-  }
-
-  /**
-   * Returns the closest baked point (in curve's local space) to `to_point`.
-   *
-   * `to_point` must be in this curve's local space.
-   */
-  public open fun getClosestPoint(toPoint: Vector2): Vector2 {
-    TransferContext.writeArguments(VECTOR2 to toPoint)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_CLOSEST_POINT, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-  }
-
   /**
    * Returns the number of points describing the curve.
    */
@@ -133,21 +58,27 @@ public open class Curve2D : Resource() {
   }
 
   /**
-   * Returns the position of the control point leading to the vertex `idx`. The returned position is relative to the vertex `idx`. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0)`.
+   * Adds a point to a curve at `position`, with control points `in` and `out`.
+   *
+   * If `at_position` is given, the point is inserted before the point number `at_position`, moving that point (and every point after) after the inserted point. If `at_position` is not given, or is an illegal value (`at_position <0` or `at_position >= [getPointCount]`), the point will be appended at the end of the point list.
    */
-  public open fun getPointIn(idx: Long): Vector2 {
-    TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_POINT_IN, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  public open fun addPoint(
+    position: Vector2,
+    _in: Vector2 = Vector2Vector2(0.0, 0.0),
+    `out`: Vector2 = Vector2Vector2(0.0, 0.0),
+    atPosition: Long = -1
+  ): Unit {
+    TransferContext.writeArguments(VECTOR2 to position, VECTOR2 to _in, VECTOR2 to out, LONG to
+        atPosition)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_ADD_POINT, NIL)
   }
 
   /**
-   * Returns the position of the control point leading out of the vertex `idx`. The returned position is relative to the vertex `idx`. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0)`.
+   * Sets the position for the vertex `idx`. If the index is out of bounds, the function sends an error to the console.
    */
-  public open fun getPointOut(idx: Long): Vector2 {
-    TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_POINT_OUT, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  public open fun setPointPosition(idx: Long, position: Vector2): Unit {
+    TransferContext.writeArguments(LONG to idx, VECTOR2 to position)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SET_POINT_POSITION, NIL)
   }
 
   /**
@@ -160,6 +91,56 @@ public open class Curve2D : Resource() {
   }
 
   /**
+   * Sets the position of the control point leading to the vertex `idx`. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.
+   */
+  public open fun setPointIn(idx: Long, position: Vector2): Unit {
+    TransferContext.writeArguments(LONG to idx, VECTOR2 to position)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SET_POINT_IN, NIL)
+  }
+
+  /**
+   * Returns the position of the control point leading to the vertex `idx`. The returned position is relative to the vertex `idx`. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0)`.
+   */
+  public open fun getPointIn(idx: Long): Vector2 {
+    TransferContext.writeArguments(LONG to idx)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_POINT_IN, VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Sets the position of the control point leading out of the vertex `idx`. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.
+   */
+  public open fun setPointOut(idx: Long, position: Vector2): Unit {
+    TransferContext.writeArguments(LONG to idx, VECTOR2 to position)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SET_POINT_OUT, NIL)
+  }
+
+  /**
+   * Returns the position of the control point leading out of the vertex `idx`. The returned position is relative to the vertex `idx`. If the index is out of bounds, the function sends an error to the console, and returns `(0, 0)`.
+   */
+  public open fun getPointOut(idx: Long): Vector2 {
+    TransferContext.writeArguments(LONG to idx)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_POINT_OUT, VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Deletes the point `idx` from the curve. Sends an error to the console if `idx` is out of bounds.
+   */
+  public open fun removePoint(idx: Long): Unit {
+    TransferContext.writeArguments(LONG to idx)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_REMOVE_POINT, NIL)
+  }
+
+  /**
+   * Removes all points from the curve.
+   */
+  public open fun clearPoints(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_CLEAR_POINTS, NIL)
+  }
+
+  /**
    * Returns the position between the vertex `idx` and the vertex `idx + 1`, where `t` controls if the point is the first vertex (`t = 0.0`), the last vertex (`t = 1.0`), or in between. Values of `t` outside the range (`0.0 >= t <=1`) give strange, but predictable results.
    *
    * If `idx` is out of bounds it is truncated to the first or last vertex, and `t` is ignored. If the curve has no points, the function sends an error to the console, and returns `(0, 0)`.
@@ -168,6 +149,24 @@ public open class Curve2D : Resource() {
     TransferContext.writeArguments(LONG to idx, DOUBLE to t)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_INTERPOLATE, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Returns the position at the vertex `fofs`. It calls [interpolate] using the integer part of `fofs` as `idx`, and its fractional part as `t`.
+   */
+  public open fun interpolatef(fofs: Double): Vector2 {
+    TransferContext.writeArguments(DOUBLE to fofs)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_INTERPOLATEF, VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Returns the total length of the curve, based on the cached points. Given enough density (see [bakeInterval]), it should be approximate enough.
+   */
+  public open fun getBakedLength(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_BAKED_LENGTH, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
@@ -184,44 +183,35 @@ public open class Curve2D : Resource() {
   }
 
   /**
-   * Returns the position at the vertex `fofs`. It calls [interpolate] using the integer part of `fofs` as `idx`, and its fractional part as `t`.
+   * Returns the cache of points as a [godot.PackedVector2Array].
    */
-  public open fun interpolatef(fofs: Double): Vector2 {
-    TransferContext.writeArguments(DOUBLE to fofs)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_INTERPOLATEF, VECTOR2)
+  public open fun getBakedPoints(): PackedVector2Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_BAKED_POINTS,
+        PACKED_VECTOR2_ARRAY)
+    return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
+  }
+
+  /**
+   * Returns the closest baked point (in curve's local space) to `to_point`.
+   *
+   * `to_point` must be in this curve's local space.
+   */
+  public open fun getClosestPoint(toPoint: Vector2): Vector2 {
+    TransferContext.writeArguments(VECTOR2 to toPoint)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_CLOSEST_POINT, VECTOR2)
     return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
   /**
-   * Deletes the point `idx` from the curve. Sends an error to the console if `idx` is out of bounds.
+   * Returns the closest offset to `to_point`. This offset is meant to be used in [interpolateBaked].
+   *
+   * `to_point` must be in this curve's local space.
    */
-  public open fun removePoint(idx: Long): Unit {
-    TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_REMOVE_POINT, NIL)
-  }
-
-  /**
-   * Sets the position of the control point leading to the vertex `idx`. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.
-   */
-  public open fun setPointIn(idx: Long, position: Vector2): Unit {
-    TransferContext.writeArguments(LONG to idx, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SET_POINT_IN, NIL)
-  }
-
-  /**
-   * Sets the position of the control point leading out of the vertex `idx`. If the index is out of bounds, the function sends an error to the console. The position is relative to the vertex.
-   */
-  public open fun setPointOut(idx: Long, position: Vector2): Unit {
-    TransferContext.writeArguments(LONG to idx, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SET_POINT_OUT, NIL)
-  }
-
-  /**
-   * Sets the position for the vertex `idx`. If the index is out of bounds, the function sends an error to the console.
-   */
-  public open fun setPointPosition(idx: Long, position: Vector2): Unit {
-    TransferContext.writeArguments(LONG to idx, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_SET_POINT_POSITION, NIL)
+  public open fun getClosestOffset(toPoint: Vector2): Double {
+    TransferContext.writeArguments(VECTOR2 to toPoint)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_GET_CLOSEST_OFFSET, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
@@ -234,10 +224,12 @@ public open class Curve2D : Resource() {
    * `tolerance_degrees` controls how many degrees the midpoint of a segment may deviate from the real curve, before the segment has to be subdivided.
    */
   public open fun tessellate(maxStages: Long = 5, toleranceDegrees: Double = 4.0):
-      PoolVector2Array {
+      PackedVector2Array {
     TransferContext.writeArguments(LONG to maxStages, DOUBLE to toleranceDegrees)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE2D_TESSELLATE,
-        POOL_VECTOR2_ARRAY)
-    return TransferContext.readReturnValue(POOL_VECTOR2_ARRAY, false) as PoolVector2Array
+        PACKED_VECTOR2_ARRAY)
+    return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
   }
+
+  public companion object
 }

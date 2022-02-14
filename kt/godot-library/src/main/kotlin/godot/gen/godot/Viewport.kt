@@ -1,11 +1,10 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Rect2
@@ -18,6 +17,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.RECT2
+import godot.core.VariantType.STRING
 import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType._RID
@@ -39,60 +39,56 @@ import kotlin.Unit
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/586](https://godotengine.org/asset-library/asset/586)
  *
- * A Viewport creates a different view into the screen, or a sub-view inside another viewport. Children 2D Nodes will display on it, and children Camera 3D nodes will render on it too.
+ * A Viewport creates a different view into the screen, or a sub-view inside another viewport. Children 2D Nodes will display on it, and children Camera3D 3D nodes will render on it too.
  *
  * Optionally, a viewport can have its own 2D or 3D world, so they don't share what they draw with other viewports.
  *
- * If a viewport is a child of a [godot.ViewportContainer], it will automatically take up its size, otherwise it must be set manually.
+ * If a viewport is a child of a [godot.SubViewportContainer], it will automatically take up its size, otherwise it must be set manually.
  *
  * Viewports can also choose to be audio listeners, so they generate positional audio depending on a 2D or 3D camera child of it.
  *
  * Also, viewports can be assigned to different screens in case the devices have multiple screens.
  *
  * Finally, viewports can also behave as render targets, in which case they will not be visible unless the associated texture is used to draw.
- *
- * **Note:** By default, a newly created Viewport in Godot 3.x will appear to be upside down. Enabling [renderTargetVFlip] will display the Viewport with the correct orientation.
  */
 @GodotBaseType
 public open class Viewport : Node() {
+  /**
+   * Emitted when the size of the viewport is changed, whether by resizing of window, or some other means.
+   */
+  public val sizeChanged: Signal0 by signal()
+
   /**
    * Emitted when a Control node grabs keyboard focus.
    */
   public val guiFocusChanged: Signal1<Control> by signal("node")
 
   /**
-   * Emitted when the size of the viewport is changed, whether by [setSizeOverride], resize of window, or some other means.
+   * Disable 3D rendering (but keep 2D rendering).
    */
-  public val sizeChanged: Signal0 by signal()
-
-  /**
-   * If `true`, the viewport will be used in AR/VR process.
-   */
-  public open var arvr: Boolean
+  public open var disable3d: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_ARVR, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DISABLE_3D, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_ARVR, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DISABLE_3D, NIL)
     }
 
   /**
-   * If `true`, the viewport will process 2D audio streams.
+   * If `true`, the viewport will use the primary XR interface to render XR output. When applicable this can result in a stereoscopic image and the resulting render being output to a headset.
    */
-  public open var audioListenerEnable2d: Boolean
+  public open var useXr: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_AUDIO_LISTENER_ENABLE_2D, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_USE_XR, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_AUDIO_LISTENER_ENABLE_2D, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USE_XR, NIL)
     }
 
   /**
@@ -112,35 +108,188 @@ public open class Viewport : Node() {
     }
 
   /**
-   * The canvas transform of the viewport, useful for changing the on-screen positions of all child [godot.CanvasItem]s. This is relative to the global canvas transform of the viewport.
+   * If `true`, the viewport will use the [godot.World3D] defined in [world3d].
    */
-  public open var canvasTransform: Transform2D
+  public open var ownWorld3d: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CANVAS_TRANSFORM,
-          TRANSFORM2D)
-      return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
-    }
-    set(`value`) {
-      TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_CANVAS_TRANSFORM,
-          NIL)
-    }
-
-  /**
-   * If `true`, uses a fast post-processing filter to make banding significantly less visible. In some cases, debanding may introduce a slightly noticeable dithering pattern. It's recommended to enable debanding only when actually needed since the dithering pattern will make lossless-compressed screenshots larger.
-   *
-   * **Note:** Only available on the GLES3 backend. [hdr] must also be `true` for debanding to be effective.
-   */
-  public open var debanding: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEBANDING, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_OWN_WORLD_3D, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DEBANDING, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_OWN_WORLD_3D, NIL)
+    }
+
+  /**
+   * The custom [godot.World3D] which can be used as 3D environment source.
+   */
+  public open var world3d: World3D?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_WORLD_3D, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as World3D?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_WORLD_3D, NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
+    }
+
+  /**
+   * The custom [godot.World2D] which can be used as 2D environment source.
+   */
+  public open var world2d: World2D?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_WORLD_2D, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as World2D?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_WORLD_2D, NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
+    }
+
+  /**
+   * If `true`, the viewport should render its background as transparent.
+   */
+  public open var transparentBg: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_TRANSPARENT_BG, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_TRANSPARENT_BG, NIL)
+    }
+
+  /**
+   *
+   */
+  public open var handleInputLocally: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_HANDLE_INPUT_LOCALLY,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_HANDLE_INPUT_LOCALLY,
+          NIL)
+    }
+
+  /**
+   *
+   */
+  public open var snap2dTransformsToPixel: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SNAP_2D_TRANSFORMS_TO_PIXEL, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SNAP_2D_TRANSFORMS_TO_PIXEL, NIL)
+    }
+
+  /**
+   *
+   */
+  public open var snap2dVerticesToPixel: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SNAP_2D_VERTICES_TO_PIXEL, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SNAP_2D_VERTICES_TO_PIXEL, NIL)
+    }
+
+  /**
+   * The multisample anti-aliasing mode. A higher number results in smoother edges at the cost of significantly worse performance. A value of 2 or 4 is best unless targeting very high-end systems. See also bilinear scaling 3d [scaling3dMode] for supersampling, which provides higher quality but is much more expensive.
+   */
+  public open var msaa: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MSAA, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_MSAA, NIL)
+    }
+
+  /**
+   * Sets the screen-space antialiasing method used. Screen-space antialiasing works by selectively blurring edges in a post-process shader. It differs from MSAA which takes multiple coverage samples while rendering objects. Screen-space AA methods are typically faster than MSAA and will smooth out specular aliasing, but tend to make scenes appear blurry.
+   */
+  public open var screenSpaceAa: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCREEN_SPACE_AA,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SCREEN_SPACE_AA, NIL)
+    }
+
+  /**
+   *
+   */
+  public open var useDebanding: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_USE_DEBANDING, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USE_DEBANDING, NIL)
+    }
+
+  /**
+   *
+   */
+  public open var useOcclusionCulling: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_USE_OCCLUSION_CULLING, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USE_OCCLUSION_CULLING, NIL)
+    }
+
+  /**
+   * The automatic LOD bias to use for meshes rendered within the [godot.Viewport] (this is analogous to [godot.ReflectionProbe.meshLodThreshold]). Higher values will use less detailed versions of meshes that have LOD variations generated. If set to `0.0`, automatic LOD is disabled. Increase [meshLodThreshold] to improve performance at the cost of geometry detail.
+   *
+   * To control this property on the root viewport, set the [godot.ProjectSettings.rendering/meshLod/lodChange/thresholdPixels] project setting.
+   *
+   * **Note:** [meshLodThreshold] does not affect [godot.GeometryInstance3D] visibility ranges (also known as "manual" LOD or hierarchical LOD).
+   */
+  public open var meshLodThreshold: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MESH_LOD_THRESHOLD,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_MESH_LOD_THRESHOLD,
+          NIL)
     }
 
   /**
@@ -158,47 +307,138 @@ public open class Viewport : Node() {
     }
 
   /**
-   * If `true`, the viewport will disable 3D rendering. For actual disabling use `usage`.
+   * Sets scaling 3d mode. Bilinear scaling renders at different resolution to either undersample or supersample the viewport. FidelityFX Super Resolution 1.0, abbreviated to FSR, is an upscaling technology that produces high quality images at fast framerates by using a spatially aware upscaling algorithm. FSR is slightly more expensive than bilinear, but it produces significantly higher image quality. FSR should be used where possible.
+   *
+   * To control this property on the root viewport, set the [godot.ProjectSettings.rendering/scaling3d/mode] project setting.
    */
-  public open var disable3d: Boolean
+  public open var scaling3dMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DISABLE_3D, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCALING_3D_MODE,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SCALING_3D_MODE, NIL)
+    }
+
+  /**
+   * Scales the 3D render buffer based on the viewport size uses an image filter specified in [godot.ProjectSettings.rendering/scaling3d/mode] to scale the output image to the full viewport size. Values lower than `1.0` can be used to speed up 3D rendering at the cost of quality (undersampling). Values greater than `1.0` are only valid for bilinear mode and can be used to improve 3D rendering quality at a high performance cost (supersampling). See also [godot.ProjectSettings.rendering/antiAliasing/quality/msaa] for multi-sample antialiasing, which is significantly cheaper but only smoothens the edges of polygons.
+   *
+   * When using FSR upscaling, AMD recommends exposing the following values as preset options to users "Ultra Quality: 0.77", "Quality: 0.67", "Balanced: 0.59", "Performance: 0.5" instead of exposing the entire scale.
+   *
+   * To control this property on the root viewport, set the [godot.ProjectSettings.rendering/scaling3d/scale] project setting.
+   */
+  public open var scaling3dScale: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SCALING_3D_SCALE,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SCALING_3D_SCALE,
+          NIL)
+    }
+
+  /**
+   * Affects the final texture sharpness by reading from a lower or higher mipmap when using FSR. Mipmap bias does nothing when FSR is not being used. Negative values make textures sharper, while positive values make textures blurrier. This value is used to adjust the mipmap bias calculated internally which is based on the selected quality. The formula for this is `-log2(1.0 / scale) + mipmap_bias`. This updates the rendering server's mipmap bias when called
+   *
+   * To control this property on the root viewport, set the [godot.ProjectSettings.rendering/scaling3d/fsrMipmapBias] project setting.
+   */
+  public open var fsrMipmapBias: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_FSR_MIPMAP_BIAS,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_FSR_MIPMAP_BIAS, NIL)
+    }
+
+  /**
+   * Determines how sharp the upscaled image will be when using the FSR upscaling mode. Sharpness halves with every whole number. Values go from 0.0 (sharpest) to 2.0. Values above 2.0 won't make a visible difference.
+   *
+   * To control this property on the root viewport, set the [godot.ProjectSettings.rendering/scaling3d/fsrSharpness] project setting.
+   */
+  public open var fsrSharpness: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_FSR_SHARPNESS,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_FSR_SHARPNESS, NIL)
+    }
+
+  /**
+   * Sets the default filter mode used by [godot.CanvasItem]s in this Viewport. See [enum DefaultCanvasItemTextureFilter] for options.
+   */
+  public open var canvasItemDefaultTextureFilter: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CANVAS_ITEM_DEFAULT_TEXTURE_FILTER, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_CANVAS_ITEM_DEFAULT_TEXTURE_FILTER, NIL)
+    }
+
+  /**
+   * Sets the default repeat mode used by [godot.CanvasItem]s in this Viewport. See [enum DefaultCanvasItemTextureRepeat] for options.
+   */
+  public open var canvasItemDefaultTextureRepeat: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CANVAS_ITEM_DEFAULT_TEXTURE_REPEAT, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_CANVAS_ITEM_DEFAULT_TEXTURE_REPEAT, NIL)
+    }
+
+  /**
+   * If `true`, the viewport will process 2D audio streams.
+   */
+  public open var audioListenerEnable2d: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_AUDIO_LISTENER_ENABLE_2D, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DISABLE_3D, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_AUDIO_LISTENER_ENABLE_2D, NIL)
     }
 
   /**
-   * Enables fast approximate antialiasing. FXAA is a popular screen-space antialiasing method, which is fast but will make the image look blurry, especially at lower resolutions. It can still work relatively well at large resolutions such as 1440p and 4K. Some of the lost sharpness can be recovered by enabling contrast-adaptive sharpening (see [sharpenIntensity]).
+   * If `true`, the objects rendered by viewport become subjects of mouse picking process.
    */
-  public open var fxaa: Boolean
+  public open var physicsObjectPicking: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_FXAA, BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_PHYSICS_OBJECT_PICKING, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_FXAA, NIL)
-    }
-
-  /**
-   * The global canvas transform of the viewport. The canvas transform is relative to this.
-   */
-  public open var globalCanvasTransform: Transform2D
-    get() {
-      TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_GLOBAL_CANVAS_TRANSFORM, TRANSFORM2D)
-      return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
-    }
-    set(`value`) {
-      TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_GLOBAL_CANVAS_TRANSFORM, NIL)
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_PHYSICS_OBJECT_PICKING, NIL)
     }
 
   /**
@@ -236,227 +476,51 @@ public open class Viewport : Node() {
   /**
    *
    */
-  public open var handleInputLocally: Boolean
+  public open var guiEmbedSubwindows: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_HANDLE_INPUT_LOCALLY,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_GUI_EMBED_SUBWINDOWS,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_HANDLE_INPUT_LOCALLY,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_GUI_EMBED_SUBWINDOWS,
           NIL)
     }
 
   /**
-   * If `true`, the viewport rendering will receive benefits from High Dynamic Range algorithm. High Dynamic Range allows the viewport to receive values that are outside the 0-1 range. In Godot HDR uses 16 bits, meaning it does not store the full range of a floating point number.
    *
-   * **Note:** Requires [usage] to be set to [godot.USAGE_3D] or [godot.USAGE_3D_NO_EFFECTS], since HDR is not supported for 2D.
    */
-  public open var hdr: Boolean
+  public open var sdfOversize: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_HDR, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_HDR, NIL)
-    }
-
-  /**
-   * If `true`, the result after 3D rendering will not have a linear to sRGB color conversion applied. This is important when the viewport is used as a render target where the result is used as a texture on a 3D object rendered in another viewport. It is also important if the viewport is used to create data that is not color based (noise, heightmaps, pickmaps, etc.). Do not enable this when the viewport is used as a texture on a 2D object or if the viewport is your final output. For the GLES2 driver this will convert the sRGB output to linear, this should only be used for VR plugins that require input in linear color space!
-   */
-  public open var keep3dLinear: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_KEEP_3D_LINEAR, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_KEEP_3D_LINEAR, NIL)
-    }
-
-  /**
-   * The multisample anti-aliasing mode. A higher number results in smoother edges at the cost of significantly worse performance. A value of 4 is best unless targeting very high-end systems.
-   */
-  public open var msaa: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MSAA, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SDF_OVERSIZE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_MSAA, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SDF_OVERSIZE, NIL)
     }
 
   /**
-   * If `true`, the viewport will use [godot.World] defined in `world` property.
-   */
-  public open var ownWorld: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_OWN_WORLD, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_OWN_WORLD, NIL)
-    }
-
-  /**
-   * If `true`, the objects rendered by viewport become subjects of mouse picking process.
-   */
-  public open var physicsObjectPicking: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_PHYSICS_OBJECT_PICKING, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_PHYSICS_OBJECT_PICKING, NIL)
-    }
-
-  /**
-   * If `true`, renders the Viewport directly to the screen instead of to the root viewport. Only available in GLES2. This is a low-level optimization and should not be used in most cases. If used, reading from the Viewport or from `SCREEN_TEXTURE` becomes unavailable. For more information see [godot.VisualServer.viewportSetRenderDirectToScreen].
-   */
-  public open var renderDirectToScreen: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_RENDER_DIRECT_TO_SCREEN, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_RENDER_DIRECT_TO_SCREEN, NIL)
-    }
-
-  /**
-   * The clear mode when viewport used as a render target.
    *
-   * **Note:** This property is intended for 2D usage.
    */
-  public open var renderTargetClearMode: Long
+  public open var sdfScale: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_RENDER_TARGET_CLEAR_MODE, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SDF_SCALE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_RENDER_TARGET_CLEAR_MODE, NIL)
-    }
-
-  /**
-   * The update mode when viewport used as a render target.
-   */
-  public open var renderTargetUpdateMode: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_RENDER_TARGET_UPDATE_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_RENDER_TARGET_UPDATE_MODE, NIL)
-    }
-
-  /**
-   * If `true`, the result of rendering will be flipped vertically. Since Viewports in Godot 3.x render upside-down, it's recommended to set this to `true` in most situations.
-   */
-  public open var renderTargetVFlip: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_RENDER_TARGET_V_FLIP,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_RENDER_TARGET_V_FLIP,
-          NIL)
-    }
-
-  /**
-   * The subdivision amount of the first quadrant on the shadow atlas.
-   */
-  public open var shadowAtlasQuad0: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUAD_0,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SHADOW_ATLAS_QUAD_0,
-          NIL)
-    }
-
-  /**
-   * The subdivision amount of the second quadrant on the shadow atlas.
-   */
-  public open var shadowAtlasQuad1: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUAD_1,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SHADOW_ATLAS_QUAD_1,
-          NIL)
-    }
-
-  /**
-   * The subdivision amount of the third quadrant on the shadow atlas.
-   */
-  public open var shadowAtlasQuad2: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUAD_2,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SHADOW_ATLAS_QUAD_2,
-          NIL)
-    }
-
-  /**
-   * The subdivision amount of the fourth quadrant on the shadow atlas.
-   */
-  public open var shadowAtlasQuad3: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUAD_3,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SHADOW_ATLAS_QUAD_3,
-          NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SDF_SCALE, NIL)
     }
 
   /**
    * The shadow atlas' resolution (used for omni and spot lights). The value will be rounded up to the nearest power of 2.
    *
-   * **Note:** If this is set to 0, shadows won't be visible. Since user-created viewports default to a value of 0, this value must be set above 0 manually.
+   * **Note:** If this is set to 0, shadows won't be visible.
    */
   public open var shadowAtlasSize: Long
     get() {
@@ -472,168 +536,99 @@ public open class Viewport : Node() {
     }
 
   /**
-   * If set to a value greater than `0.0`, contrast-adaptive sharpening will be applied to the 3D viewport. This has a low performance cost and can be used to recover some of the sharpness lost from using FXAA. Values around `0.5` generally give the best results. See also [fxaa].
+   *
    */
-  public open var sharpenIntensity: Double
+  public open var shadowAtlas16Bits: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHARPEN_INTENSITY,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_16_BITS,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SHARPEN_INTENSITY,
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SHADOW_ATLAS_16_BITS,
           NIL)
     }
 
   /**
-   * The width and height of viewport. Must be set to a value greater than or equal to 2 pixels on both dimensions. Otherwise, nothing will be displayed.
+   * The subdivision amount of the first quadrant on the shadow atlas.
    */
-  public open var size: Vector2
+  public open val shadowAtlasQuad0: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SIZE, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-    }
-    set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SIZE, NIL)
-    }
-
-  /**
-   * If `true`, the size override affects stretch as well.
-   */
-  public open var sizeOverrideStretch: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SIZE_OVERRIDE_STRETCH, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SIZE_OVERRIDE_STRETCH, NIL)
-    }
-
-  /**
-   * If `true`, the viewport should render its background as transparent.
-   */
-  public open var transparentBg: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_TRANSPARENT_BG, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_TRANSPARENT_BG, NIL)
-    }
-
-  /**
-   * The rendering mode of viewport.
-   */
-  public open var usage: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_USAGE, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUAD_0,
+          LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USAGE, NIL)
+
+  /**
+   * The subdivision amount of the second quadrant on the shadow atlas.
+   */
+  public open val shadowAtlasQuad1: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUAD_1,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
     }
 
   /**
-   * The custom [godot.World] which can be used as 3D environment source.
+   * The subdivision amount of the third quadrant on the shadow atlas.
    */
-  public open var world: World?
+  public open val shadowAtlasQuad2: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_WORLD, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as World?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_WORLD, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUAD_2,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
     }
 
   /**
-   * The custom [godot.World2D] which can be used as 2D environment source.
+   * The subdivision amount of the fourth quadrant on the shadow atlas.
    */
-  public open var world2d: World2D?
+  public open val shadowAtlasQuad3: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_WORLD_2D, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as World2D?
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUAD_3,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+
+  /**
+   * The canvas transform of the viewport, useful for changing the on-screen positions of all child [godot.CanvasItem]s. This is relative to the global canvas transform of the viewport.
+   */
+  public open var canvasTransform: Transform2D
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CANVAS_TRANSFORM,
+          TRANSFORM2D)
+      return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_WORLD_2D, NIL)
+      TransferContext.writeArguments(TRANSFORM2D to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_CANVAS_TRANSFORM,
+          NIL)
+    }
+
+  /**
+   * The global canvas transform of the viewport. The canvas transform is relative to this.
+   */
+  public open var globalCanvasTransform: Transform2D
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_GLOBAL_CANVAS_TRANSFORM, TRANSFORM2D)
+      return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
+    }
+    set(`value`) {
+      TransferContext.writeArguments(TRANSFORM2D to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_GLOBAL_CANVAS_TRANSFORM, NIL)
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VIEWPORT)
-  }
-
-  @CoreTypeHelper
-  public open fun canvasTransform(schedule: Transform2D.() -> Unit): Transform2D =
-      canvasTransform.apply{
-      schedule(this)
-      canvasTransform = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun globalCanvasTransform(schedule: Transform2D.() -> Unit): Transform2D =
-      globalCanvasTransform.apply{
-      schedule(this)
-      globalCanvasTransform = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun size(schedule: Vector2.() -> Unit): Vector2 = size.apply{
-      schedule(this)
-      size = this
-  }
-
-
-  public open fun _guiRemoveFocus(): Unit {
-  }
-
-  public open fun _guiShowTooltip(): Unit {
-  }
-
-  public open fun _ownWorldChanged(): Unit {
-  }
-
-  public open fun _postGuiGrabClickFocus(): Unit {
-  }
-
-  public open fun _processPicking(ignorePaused: Boolean): Unit {
-  }
-
-  public open fun _subwindowVisibilityChanged(): Unit {
-  }
-
-  public open fun _vpInput(arg0: InputEvent): Unit {
-  }
-
-  public open fun _vpInputText(text: String): Unit {
-  }
-
-  public open fun _vpUnhandledInput(arg0: InputEvent): Unit {
-  }
-
-  /**
-   * Returns the first valid [godot.World] for this viewport, searching the [world] property of itself and any Viewport ancestor.
-   */
-  public open fun findWorld(): World? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_FIND_WORLD, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as World?
   }
 
   /**
@@ -643,15 +638,6 @@ public open class Viewport : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_FIND_WORLD_2D, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as World2D?
-  }
-
-  /**
-   * Returns the active 3D camera.
-   */
-  public open fun getCamera(): Camera? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CAMERA, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Camera?
   }
 
   /**
@@ -665,69 +651,6 @@ public open class Viewport : Node() {
   }
 
   /**
-   * Returns the topmost modal in the stack.
-   */
-  public open fun getModalStackTop(): Control? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MODAL_STACK_TOP,
-        OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Control?
-  }
-
-  /**
-   * Returns the mouse position relative to the viewport.
-   */
-  public open fun getMousePosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MOUSE_POSITION,
-        VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-  }
-
-  /**
-   * Returns information about the viewport from the rendering pipeline.
-   */
-  public open fun getRenderInfo(info: Long): Long {
-    TransferContext.writeArguments(LONG to info)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_RENDER_INFO, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  /**
-   * Returns the size override set with [setSizeOverride].
-   */
-  public open fun getSizeOverride(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SIZE_OVERRIDE, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-  }
-
-  /**
-   * Returns the viewport's texture.
-   *
-   * **Note:** Due to the way OpenGL works, the resulting [godot.ViewportTexture] is flipped vertically. You can use [godot.Image.flipY] on the result of [godot.Texture.getData] to flip it back, for example:
-   *
-   * ```
-   * 				var img = get_viewport().get_texture().get_data()
-   * 				img.flip_y()
-   * 				```
-   */
-  public open fun getTexture(): ViewportTexture? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_TEXTURE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as ViewportTexture?
-  }
-
-  /**
-   * Returns the viewport's RID from the [godot.VisualServer].
-   */
-  public open fun getViewportRid(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_VIEWPORT_RID, _RID)
-    return TransferContext.readReturnValue(_RID, false) as RID
-  }
-
-  /**
    * Returns the visible rectangle in global screen coordinates.
    */
   public open fun getVisibleRect(): Rect2 {
@@ -737,21 +660,112 @@ public open class Viewport : Node() {
   }
 
   /**
-   * Returns the drag data from the GUI, that was previously returned by [godot.Control.getDragData].
+   *
+   */
+  public open fun getRenderInfo(type: Viewport.RenderInfoType, info: Viewport.RenderInfo): Long {
+    TransferContext.writeArguments(LONG to type.id, LONG to info.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_RENDER_INFO, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the viewport's texture.
+   *
+   * **Note:** Due to the way OpenGL works, the resulting [godot.ViewportTexture] is flipped vertically. You can use [godot.Image.flipY] on the result of [godot.Texture2D.getImage] to flip it back, for example:
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * var img = get_viewport().get_texture().get_image()
+   *
+   * img.flip_y()
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * Image img = GetViewport().GetTexture().GetImage();
+   *
+   * img.FlipY();
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   */
+  public open fun getTexture(): ViewportTexture? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_TEXTURE, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as ViewportTexture?
+  }
+
+  /**
+   * Returns the viewport's RID from the [godot.RenderingServer].
+   */
+  public open fun getViewportRid(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_VIEWPORT_RID, _RID)
+    return TransferContext.readReturnValue(_RID, false) as RID
+  }
+
+  /**
+   * Returns `true` if the viewport is currently embedding windows.
+   */
+  public open fun pushTextInput(text: String): Unit {
+    TransferContext.writeArguments(STRING to text)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_PUSH_TEXT_INPUT, NIL)
+  }
+
+  /**
+   *
+   */
+  public open fun pushInput(event: InputEvent, inLocalCoords: Boolean = false): Unit {
+    TransferContext.writeArguments(OBJECT to event, BOOL to inLocalCoords)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_PUSH_INPUT, NIL)
+  }
+
+  /**
+   *
+   */
+  public open fun pushUnhandledInput(event: InputEvent, inLocalCoords: Boolean = false): Unit {
+    TransferContext.writeArguments(OBJECT to event, BOOL to inLocalCoords)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_PUSH_UNHANDLED_INPUT, NIL)
+  }
+
+  /**
+   * Returns the currently active 2D camera. Returns null if there are no active cameras.
+   */
+  public open fun getCamera2d(): Camera2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CAMERA_2D, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Camera2D?
+  }
+
+  /**
+   * Returns the mouse's positon in this [godot.Viewport] using the coordinate system of this [godot.Viewport].
+   */
+  public open fun getMousePosition(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_MOUSE_POSITION,
+        VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Moves the mouse pointer to the specified position in this [godot.Viewport] using the coordinate system of this [godot.Viewport].
+   */
+  public open fun warpMouse(toPosition: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to toPosition)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_WARP_MOUSE, NIL)
+  }
+
+  /**
+   * Returns the drag data from the GUI, that was previously returned by [godot.Control.GetDragData].
    */
   public open fun guiGetDragData(): Any? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_GET_DRAG_DATA, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
-  }
-
-  /**
-   * Returns `true` if there are visible modals on-screen.
-   */
-  public open fun guiHasModalStack(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_HAS_MODAL_STACK, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -764,11 +778,49 @@ public open class Viewport : Node() {
   }
 
   /**
-   *
+   * Returns `true` if the drag operation is successful.
    */
-  public open fun input(localEvent: InputEvent): Unit {
-    TransferContext.writeArguments(OBJECT to localEvent)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_INPUT, NIL)
+  public open fun guiIsDragSuccessful(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_IS_DRAG_SUCCESSFUL,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Removes the focus from the currently focussed [godot.Control] within this viewport. If no [godot.Control] has the focus, does nothing.
+   */
+  public open fun guiReleaseFocus(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_RELEASE_FOCUS, NIL)
+  }
+
+  /**
+   * Returns the [godot.Control] having the focus within this viewport. If no [godot.Control] has the focus, returns null.
+   */
+  public open fun guiGetFocusOwner(): Control? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GUI_GET_FOCUS_OWNER,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Control?
+  }
+
+  /**
+   * Sets the number of subdivisions to use in the specified quadrant. A higher number of subdivisions allows you to have more shadows in the scene at once, but reduces the quality of the shadows. A good practice is to have quadrants with a varying number of subdivisions and to have as few subdivisions as possible.
+   */
+  public open fun setShadowAtlasQuadrantSubdiv(quadrant: Long,
+      subdiv: Viewport.ShadowAtlasQuadrantSubdiv): Unit {
+    TransferContext.writeArguments(LONG to quadrant, LONG to subdiv.id)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SHADOW_ATLAS_QUADRANT_SUBDIV, NIL)
+  }
+
+  /**
+   * Stops the input from propagating further down the [godot.SceneTree].
+   */
+  public open fun setInputAsHandled(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_INPUT_AS_HANDLED, NIL)
   }
 
   /**
@@ -781,83 +833,56 @@ public open class Viewport : Node() {
   }
 
   /**
-   * Returns `true` if the size override is enabled. See [setSizeOverride].
+   *
    */
-  public open fun isSizeOverrideEnabled(): Boolean {
+  public open fun isEmbeddingSubwindows(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_SIZE_OVERRIDE_ENABLED,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_EMBEDDING_SUBWINDOWS,
         BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Attaches this [godot.Viewport] to the root [godot.Viewport] with the specified rectangle. This bypasses the need for another node to display this [godot.Viewport] but makes you responsible for updating the position of this [godot.Viewport] manually.
+   * Returns the first valid [godot.World3D] for this viewport, searching the [world3d] property of itself and any Viewport ancestor.
    */
-  public open fun setAttachToScreenRect(rect: Rect2): Unit {
-    TransferContext.writeArguments(RECT2 to rect)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_ATTACH_TO_SCREEN_RECT,
-        NIL)
-  }
-
-  /**
-   * Stops the input from propagating further down the [godot.SceneTree].
-   */
-  public open fun setInputAsHandled(): Unit {
+  public open fun findWorld3d(): World3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_INPUT_AS_HANDLED, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_FIND_WORLD_3D, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as World3D?
   }
 
   /**
-   * Sets the size override of the viewport. If the `enable` parameter is `true` the override is used, otherwise it uses the default size. If the size parameter is `(-1, -1)`, it won't update the size.
+   * Returns the currently active 3D camera.
    */
-  public open fun setSizeOverride(
-    enable: Boolean,
-    size: Vector2 = Vector2(-1.0, -1.0),
-    margin: Vector2 = Vector2(0.0, 0.0)
-  ): Unit {
-    TransferContext.writeArguments(BOOL to enable, VECTOR2 to size, VECTOR2 to margin)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SIZE_OVERRIDE, NIL)
-  }
-
-  /**
-   *
-   */
-  public open fun unhandledInput(localEvent: InputEvent): Unit {
-    TransferContext.writeArguments(OBJECT to localEvent)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_UNHANDLED_INPUT, NIL)
-  }
-
-  /**
-   * Forces update of the 2D and 3D worlds.
-   */
-  public open fun updateWorlds(): Unit {
+  public open fun getCamera3d(): Camera3D? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_UPDATE_WORLDS, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CAMERA_3D, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Camera3D?
   }
 
-  /**
-   * Warps the mouse to a position relative to the viewport.
-   */
-  public open fun warpMouse(toPosition: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to toPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_WARP_MOUSE, NIL)
-  }
-
-  public enum class ClearMode(
+  public enum class SDFOversize(
     id: Long
   ) {
     /**
-     * Always clear the render target before drawing.
+     *
      */
-    CLEAR_MODE_ALWAYS(0),
+    SDF_OVERSIZE_100_PERCENT(0),
     /**
-     * Never clear the render target.
+     *
      */
-    CLEAR_MODE_NEVER(1),
+    SDF_OVERSIZE_120_PERCENT(1),
     /**
-     * Clear the render target next frame, then switch to [CLEAR_MODE_NEVER].
+     *
      */
-    CLEAR_MODE_ONLY_NEXT_FRAME(2),
+    SDF_OVERSIZE_150_PERCENT(2),
+    /**
+     *
+     */
+    SDF_OVERSIZE_200_PERCENT(3),
+    /**
+     *
+     */
+    SDF_OVERSIZE_MAX(4),
     ;
 
     public val id: Long
@@ -880,35 +905,15 @@ public open class Viewport : Node() {
     /**
      * Amount of vertices in frame.
      */
-    RENDER_INFO_VERTICES_IN_FRAME(1),
-    /**
-     * Amount of material changes in frame.
-     */
-    RENDER_INFO_MATERIAL_CHANGES_IN_FRAME(2),
-    /**
-     * Amount of shader changes in frame.
-     */
-    RENDER_INFO_SHADER_CHANGES_IN_FRAME(3),
-    /**
-     * Amount of surface changes in frame.
-     */
-    RENDER_INFO_SURFACE_CHANGES_IN_FRAME(4),
+    RENDER_INFO_PRIMITIVES_IN_FRAME(1),
     /**
      * Amount of draw calls in frame.
      */
-    RENDER_INFO_DRAW_CALLS_IN_FRAME(5),
-    /**
-     * Amount of items or joined items in frame.
-     */
-    RENDER_INFO_2D_ITEMS_IN_FRAME(6),
-    /**
-     * Amount of draw calls in frame.
-     */
-    RENDER_INFO_2D_DRAW_CALLS_IN_FRAME(7),
+    RENDER_INFO_DRAW_CALLS_IN_FRAME(2),
     /**
      * Represents the size of the [enum RenderInfo] enum.
      */
-    RENDER_INFO_MAX(8),
+    RENDER_INFO_MAX(3),
     ;
 
     public val id: Long
@@ -921,25 +926,25 @@ public open class Viewport : Node() {
     }
   }
 
-  public enum class Usage(
+  public enum class SDFScale(
     id: Long
   ) {
     /**
-     * Allocates all buffers needed for drawing 2D scenes. This takes less VRAM than the 3D usage modes. Note that 3D rendering effects such as glow and HDR are not available when using this mode.
+     *
      */
-    USAGE_2D(0),
+    SDF_SCALE_100_PERCENT(0),
     /**
-     * Allocates buffers needed for 2D scenes without allocating a buffer for screen copy. Accordingly, you cannot read from the screen. Of the [enum Usage] types, this requires the least VRAM. Note that 3D rendering effects such as glow and HDR are not available when using this mode.
+     *
      */
-    USAGE_2D_NO_SAMPLING(1),
+    SDF_SCALE_50_PERCENT(1),
     /**
-     * Allocates full buffers for drawing 3D scenes and all 3D effects including buffers needed for 2D scenes and effects.
+     *
      */
-    USAGE_3D(2),
+    SDF_SCALE_25_PERCENT(2),
     /**
-     * Allocates buffers needed for drawing 3D scenes. But does not allocate buffers needed for reading from the screen and post-processing effects. Saves some VRAM.
+     *
      */
-    USAGE_3D_NO_EFFECTS(3),
+    SDF_SCALE_MAX(3),
     ;
 
     public val id: Long
@@ -964,13 +969,213 @@ public open class Viewport : Node() {
      */
     DEBUG_DRAW_UNSHADED(1),
     /**
-     * Objected are displayed semi-transparent with additive blending so you can see where they intersect.
+     *
      */
-    DEBUG_DRAW_OVERDRAW(2),
+    DEBUG_DRAW_LIGHTING(2),
+    /**
+     * Objects are displayed semi-transparent with additive blending so you can see where they are drawing over top of one another. A higher overdraw means you are wasting performance on drawing pixels that are being hidden behind others.
+     */
+    DEBUG_DRAW_OVERDRAW(3),
     /**
      * Objects are displayed in wireframe style.
      */
-    DEBUG_DRAW_WIREFRAME(3),
+    DEBUG_DRAW_WIREFRAME(4),
+    /**
+     *
+     */
+    DEBUG_DRAW_NORMAL_BUFFER(5),
+    /**
+     * Objects are displayed with only the albedo value from [godot.VoxelGI]s.
+     */
+    DEBUG_DRAW_VOXEL_GI_ALBEDO(6),
+    /**
+     * Objects are displayed with only the lighting value from [godot.VoxelGI]s.
+     */
+    DEBUG_DRAW_VOXEL_GI_LIGHTING(7),
+    /**
+     * Objects are displayed with only the emission color from [godot.VoxelGI]s.
+     */
+    DEBUG_DRAW_VOXEL_GI_EMISSION(8),
+    /**
+     * Draws the shadow atlas that stores shadows from [godot.OmniLight3D]s and [godot.SpotLight3D]s in the upper left quadrant of the [godot.Viewport].
+     */
+    DEBUG_DRAW_SHADOW_ATLAS(9),
+    /**
+     * Draws the shadow atlas that stores shadows from [godot.DirectionalLight3D]s in the upper left quadrant of the [godot.Viewport].
+     */
+    DEBUG_DRAW_DIRECTIONAL_SHADOW_ATLAS(10),
+    /**
+     *
+     */
+    DEBUG_DRAW_SCENE_LUMINANCE(11),
+    /**
+     * Draws the screen-space ambient occlusion texture instead of the scene so that you can clearly see how it is affecting objects. In order for this display mode to work, you must have [godot.Environment.ssaoEnabled] set in your [godot.WorldEnvironment].
+     */
+    DEBUG_DRAW_SSAO(12),
+    /**
+     * Draws the screen-space indirect lighting texture instead of the scene so that you can clearly see how it is affecting objects. In order for this display mode to work, you must have [godot.Environment.ssilEnabled] set in your [godot.WorldEnvironment].
+     */
+    DEBUG_DRAW_SSIL(13),
+    /**
+     * Colors each PSSM split for the [godot.DirectionalLight3D]s in the scene a different color so you can see where the splits are. In order, they will be colored red, green, blue, and yellow.
+     */
+    DEBUG_DRAW_PSSM_SPLITS(14),
+    /**
+     * Draws the decal atlas used by [godot.Decal]s and light projector textures in the upper left quadrant of the [godot.Viewport].
+     */
+    DEBUG_DRAW_DECAL_ATLAS(15),
+    /**
+     *
+     */
+    DEBUG_DRAW_SDFGI(16),
+    /**
+     *
+     */
+    DEBUG_DRAW_SDFGI_PROBES(17),
+    /**
+     *
+     */
+    DEBUG_DRAW_GI_BUFFER(18),
+    /**
+     *
+     */
+    DEBUG_DRAW_DISABLE_LOD(19),
+    /**
+     *
+     */
+    DEBUG_DRAW_CLUSTER_OMNI_LIGHTS(20),
+    /**
+     *
+     */
+    DEBUG_DRAW_CLUSTER_SPOT_LIGHTS(21),
+    /**
+     *
+     */
+    DEBUG_DRAW_CLUSTER_DECALS(22),
+    /**
+     *
+     */
+    DEBUG_DRAW_CLUSTER_REFLECTION_PROBES(23),
+    /**
+     *
+     */
+    DEBUG_DRAW_OCCLUDERS(24),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class Scaling3DMode(
+    id: Long
+  ) {
+    /**
+     * Enables bilinear scaling on 3D viewports. The amount of scaling can be set using [scaling3dScale]. Values less then `1.0` will result in undersampling while values greater than `1.0` will result in supersampling. A value of `1.0` disables scaling.
+     */
+    SCALING_3D_MODE_BILINEAR(0),
+    /**
+     * Enables FSR upscaling on 3D viewports. The amount of scaling can be set using [scaling3dScale]. Values less then `1.0` will be result in the viewport being upscaled using FSR. Values greater than `1.0` are not supported and bilinear supersampling will be used instead. A value of `1.0` disables scaling.
+     */
+    SCALING_3D_MODE_FSR(1),
+    /**
+     * Represents the size of the [enum Scaling3DMode] enum.
+     */
+    SCALING_3D_MODE_MAX(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class RenderInfoType(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    RENDER_INFO_TYPE_VISIBLE(0),
+    /**
+     *
+     */
+    RENDER_INFO_TYPE_SHADOW(1),
+    /**
+     *
+     */
+    RENDER_INFO_TYPE_MAX(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class ScreenSpaceAA(
+    id: Long
+  ) {
+    /**
+     * Do not perform any antialiasing in the full screen post-process.
+     */
+    SCREEN_SPACE_AA_DISABLED(0),
+    /**
+     * Use fast approximate antialiasing. FXAA is a popular screen-space antialiasing method, which is fast but will make the image look blurry, especially at lower resolutions. It can still work relatively well at large resolutions such as 1440p and 4K.
+     */
+    SCREEN_SPACE_AA_FXAA(1),
+    /**
+     * Represents the size of the [enum ScreenSpaceAA] enum.
+     */
+    SCREEN_SPACE_AA_MAX(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class DefaultCanvasItemTextureFilter(
+    id: Long
+  ) {
+    /**
+     * The texture filter reads from the nearest pixel only. The simplest and fastest method of filtering, but the texture will look pixelized.
+     */
+    DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST(0),
+    /**
+     * The texture filter blends between the nearest 4 pixels. Use this when you want to avoid a pixelated style, but do not want mipmaps.
+     */
+    DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR(1),
+    /**
+     * The texture filter reads from the nearest pixel in the nearest mipmap. The fastest way to read from textures with mipmaps.
+     */
+    DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR_WITH_MIPMAPS(2),
+    /**
+     * The texture filter blends between the nearest 4 pixels and between the nearest 2 mipmaps.
+     */
+    DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST_WITH_MIPMAPS(3),
+    /**
+     * Max value for [enum DefaultCanvasItemTextureFilter] enum.
+     */
+    DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_MAX(4),
     ;
 
     public val id: Long
@@ -1030,25 +1235,25 @@ public open class Viewport : Node() {
     }
   }
 
-  public enum class UpdateMode(
+  public enum class DefaultCanvasItemTextureRepeat(
     id: Long
   ) {
     /**
-     * Do not update the render target.
+     * Disables textures repeating. Instead, when reading UVs outside the 0-1 range, the value will be clamped to the edge of the texture, resulting in a stretched out look at the borders of the texture.
      */
-    UPDATE_DISABLED(0),
+    DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_DISABLED(0),
     /**
-     * Update the render target once, then switch to [UPDATE_DISABLED].
+     * Enables the texture to repeat when UV coordinates are outside the 0-1 range. If using one of the linear filtering modes, this can result in artifacts at the edges of a texture when the sampler filters across the edges of the texture.
      */
-    UPDATE_ONCE(1),
+    DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_ENABLED(1),
     /**
-     * Update the render target only when it is visible. This is the default value.
+     * Flip the texture when repeating so that the edge lines up instead of abruptly changing.
      */
-    UPDATE_WHEN_VISIBLE(2),
+    DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_MIRROR(2),
     /**
-     * Always update the render target.
+     * Max value for [enum DefaultCanvasItemTextureRepeat] enum.
      */
-    UPDATE_ALWAYS(3),
+    DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT_MAX(3),
     ;
 
     public val id: Long
@@ -1065,25 +1270,25 @@ public open class Viewport : Node() {
     id: Long
   ) {
     /**
-     * Multisample anti-aliasing mode disabled. This is the default value.
+     * Multisample antialiasing mode disabled. This is the default value, and is also the fastest setting.
      */
     MSAA_DISABLED(0),
     /**
-     * Use 2x Multisample Antialiasing.
+     * Use 2× Multisample Antialiasing. This has a moderate performance cost. It helps reduce aliasing noticeably, but 4× MSAA still looks substantially better.
      */
     MSAA_2X(1),
     /**
-     * Use 4x Multisample Antialiasing.
+     * Use 4× Multisample Antialiasing. This has a significant performance cost, and is generally a good compromise between performance and quality.
      */
     MSAA_4X(2),
     /**
-     * Use 8x Multisample Antialiasing. Likely unsupported on low-end and older hardware.
+     * Use 8× Multisample Antialiasing. This has a very high performance cost. The difference between 4× and 8× MSAA may not always be visible in real gameplay conditions. Likely unsupported on low-end and older hardware.
      */
     MSAA_8X(3),
     /**
-     * Use 16x Multisample Antialiasing. Likely unsupported on medium and low-end hardware.
+     * Represents the size of the [enum MSAA] enum.
      */
-    MSAA_16X(4),
+    MSAA_MAX(4),
     ;
 
     public val id: Long
@@ -1096,190 +1301,5 @@ public open class Viewport : Node() {
     }
   }
 
-  public companion object {
-    /**
-     * Always clear the render target before drawing.
-     */
-    public final const val CLEAR_MODE_ALWAYS: Long = 0
-
-    /**
-     * Never clear the render target.
-     */
-    public final const val CLEAR_MODE_NEVER: Long = 1
-
-    /**
-     * Clear the render target next frame, then switch to [CLEAR_MODE_NEVER].
-     */
-    public final const val CLEAR_MODE_ONLY_NEXT_FRAME: Long = 2
-
-    /**
-     * Objects are displayed normally.
-     */
-    public final const val DEBUG_DRAW_DISABLED: Long = 0
-
-    /**
-     * Objected are displayed semi-transparent with additive blending so you can see where they intersect.
-     */
-    public final const val DEBUG_DRAW_OVERDRAW: Long = 2
-
-    /**
-     * Objects are displayed without light information.
-     */
-    public final const val DEBUG_DRAW_UNSHADED: Long = 1
-
-    /**
-     * Objects are displayed in wireframe style.
-     */
-    public final const val DEBUG_DRAW_WIREFRAME: Long = 3
-
-    /**
-     * Use 16x Multisample Antialiasing. Likely unsupported on medium and low-end hardware.
-     */
-    public final const val MSAA_16X: Long = 4
-
-    /**
-     * Use 2x Multisample Antialiasing.
-     */
-    public final const val MSAA_2X: Long = 1
-
-    /**
-     * Use 4x Multisample Antialiasing.
-     */
-    public final const val MSAA_4X: Long = 2
-
-    /**
-     * Use 8x Multisample Antialiasing. Likely unsupported on low-end and older hardware.
-     */
-    public final const val MSAA_8X: Long = 3
-
-    /**
-     * Multisample anti-aliasing mode disabled. This is the default value.
-     */
-    public final const val MSAA_DISABLED: Long = 0
-
-    /**
-     * Amount of draw calls in frame.
-     */
-    public final const val RENDER_INFO_2D_DRAW_CALLS_IN_FRAME: Long = 7
-
-    /**
-     * Amount of items or joined items in frame.
-     */
-    public final const val RENDER_INFO_2D_ITEMS_IN_FRAME: Long = 6
-
-    /**
-     * Amount of draw calls in frame.
-     */
-    public final const val RENDER_INFO_DRAW_CALLS_IN_FRAME: Long = 5
-
-    /**
-     * Amount of material changes in frame.
-     */
-    public final const val RENDER_INFO_MATERIAL_CHANGES_IN_FRAME: Long = 2
-
-    /**
-     * Represents the size of the [enum RenderInfo] enum.
-     */
-    public final const val RENDER_INFO_MAX: Long = 8
-
-    /**
-     * Amount of objects in frame.
-     */
-    public final const val RENDER_INFO_OBJECTS_IN_FRAME: Long = 0
-
-    /**
-     * Amount of shader changes in frame.
-     */
-    public final const val RENDER_INFO_SHADER_CHANGES_IN_FRAME: Long = 3
-
-    /**
-     * Amount of surface changes in frame.
-     */
-    public final const val RENDER_INFO_SURFACE_CHANGES_IN_FRAME: Long = 4
-
-    /**
-     * Amount of vertices in frame.
-     */
-    public final const val RENDER_INFO_VERTICES_IN_FRAME: Long = 1
-
-    /**
-     * This quadrant will only be used by one shadow map.
-     */
-    public final const val SHADOW_ATLAS_QUADRANT_SUBDIV_1: Long = 1
-
-    /**
-     * This quadrant will be split 1024 ways and used by up to 1024 shadow maps. Unless the [shadowAtlasSize] is very high, the shadows in this quadrant will be very low resolution.
-     */
-    public final const val SHADOW_ATLAS_QUADRANT_SUBDIV_1024: Long = 6
-
-    /**
-     * This quadrant will be split 16 ways and used by up to 16 shadow maps.
-     */
-    public final const val SHADOW_ATLAS_QUADRANT_SUBDIV_16: Long = 3
-
-    /**
-     * This quadrant will be split 256 ways and used by up to 256 shadow maps. Unless the [shadowAtlasSize] is very high, the shadows in this quadrant will be very low resolution.
-     */
-    public final const val SHADOW_ATLAS_QUADRANT_SUBDIV_256: Long = 5
-
-    /**
-     * This quadrant will be split in 4 and used by up to 4 shadow maps.
-     */
-    public final const val SHADOW_ATLAS_QUADRANT_SUBDIV_4: Long = 2
-
-    /**
-     * This quadrant will be split 64 ways and used by up to 64 shadow maps.
-     */
-    public final const val SHADOW_ATLAS_QUADRANT_SUBDIV_64: Long = 4
-
-    /**
-     * This quadrant will not be used.
-     */
-    public final const val SHADOW_ATLAS_QUADRANT_SUBDIV_DISABLED: Long = 0
-
-    /**
-     * Represents the size of the [enum ShadowAtlasQuadrantSubdiv] enum.
-     */
-    public final const val SHADOW_ATLAS_QUADRANT_SUBDIV_MAX: Long = 7
-
-    /**
-     * Always update the render target.
-     */
-    public final const val UPDATE_ALWAYS: Long = 3
-
-    /**
-     * Do not update the render target.
-     */
-    public final const val UPDATE_DISABLED: Long = 0
-
-    /**
-     * Update the render target once, then switch to [UPDATE_DISABLED].
-     */
-    public final const val UPDATE_ONCE: Long = 1
-
-    /**
-     * Update the render target only when it is visible. This is the default value.
-     */
-    public final const val UPDATE_WHEN_VISIBLE: Long = 2
-
-    /**
-     * Allocates all buffers needed for drawing 2D scenes. This takes less VRAM than the 3D usage modes. Note that 3D rendering effects such as glow and HDR are not available when using this mode.
-     */
-    public final const val USAGE_2D: Long = 0
-
-    /**
-     * Allocates buffers needed for 2D scenes without allocating a buffer for screen copy. Accordingly, you cannot read from the screen. Of the [enum Usage] types, this requires the least VRAM. Note that 3D rendering effects such as glow and HDR are not available when using this mode.
-     */
-    public final const val USAGE_2D_NO_SAMPLING: Long = 1
-
-    /**
-     * Allocates full buffers for drawing 3D scenes and all 3D effects including buffers needed for 2D scenes and effects.
-     */
-    public final const val USAGE_3D: Long = 2
-
-    /**
-     * Allocates buffers needed for drawing 3D scenes. But does not allocate buffers needed for reading from the screen and post-processing effects. Saves some VRAM.
-     */
-    public final const val USAGE_3D_NO_EFFECTS: Long = 3
-  }
+  public companion object
 }

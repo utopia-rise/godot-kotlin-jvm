@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -35,10 +35,12 @@ public open class EditorSelection : Object() {
     callConstructor(ENGINECLASS_EDITORSELECTION)
   }
 
-  public open fun _emitChange(): Unit {
-  }
-
-  public open fun _nodeRemoved(arg0: Node): Unit {
+  /**
+   * Clear the selection.
+   */
+  public open fun clear(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_CLEAR, NIL)
   }
 
   /**
@@ -52,11 +54,11 @@ public open class EditorSelection : Object() {
   }
 
   /**
-   * Clear the selection.
+   * Removes a node from the selection.
    */
-  public open fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_CLEAR, NIL)
+  public open fun removeNode(node: Node): Unit {
+    TransferContext.writeArguments(OBJECT to node)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_REMOVE_NODE, NIL)
   }
 
   /**
@@ -79,11 +81,5 @@ public open class EditorSelection : Object() {
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
-  /**
-   * Removes a node from the selection.
-   */
-  public open fun removeNode(node: Node): Unit {
-    TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSELECTION_REMOVE_NODE, NIL)
-  }
+  public companion object
 }

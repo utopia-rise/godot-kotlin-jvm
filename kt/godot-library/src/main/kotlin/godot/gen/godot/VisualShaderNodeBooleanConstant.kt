@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -21,7 +21,7 @@ import kotlin.Unit
  * Translated to `bool` in the shader language.
  */
 @GodotBaseType
-public open class VisualShaderNodeBooleanConstant : VisualShaderNode() {
+public open class VisualShaderNodeBooleanConstant : VisualShaderNodeConstant() {
   /**
    * A boolean constant which represents a state of this node.
    */
@@ -41,4 +41,6 @@ public open class VisualShaderNodeBooleanConstant : VisualShaderNode() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEBOOLEANCONSTANT)
   }
+
+  public companion object
 }

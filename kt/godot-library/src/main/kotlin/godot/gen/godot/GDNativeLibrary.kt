@@ -1,17 +1,17 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.PoolStringArray
+import godot.core.PackedStringArray
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.core.VariantType.POOL_STRING_ARRAY
+import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import kotlin.Boolean
 import kotlin.String
@@ -31,6 +31,7 @@ public open class GDNativeLibrary : Resource() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDNATIVELIBRARY_SET_CONFIG_FILE,
           NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   public open var loadOnce: Boolean
@@ -43,19 +44,6 @@ public open class GDNativeLibrary : Resource() {
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDNATIVELIBRARY_SET_LOAD_ONCE,
-          NIL)
-    }
-
-  public open var reloadable: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDNATIVELIBRARY_GET_RELOADABLE,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDNATIVELIBRARY_SET_RELOADABLE,
           NIL)
     }
 
@@ -85,15 +73,21 @@ public open class GDNativeLibrary : Resource() {
           NIL)
     }
 
+  public open var reloadable: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDNATIVELIBRARY_GET_RELOADABLE,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDNATIVELIBRARY_SET_RELOADABLE,
+          NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_GDNATIVELIBRARY)
-  }
-
-  public open fun getCurrentDependencies(): PoolStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_GDNATIVELIBRARY_GET_CURRENT_DEPENDENCIES, POOL_STRING_ARRAY)
-    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
   }
 
   public open fun getCurrentLibraryPath(): String {
@@ -102,4 +96,13 @@ public open class GDNativeLibrary : Resource() {
         ENGINEMETHOD_ENGINECLASS_GDNATIVELIBRARY_GET_CURRENT_LIBRARY_PATH, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
+
+  public open fun getCurrentDependencies(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_GDNATIVELIBRARY_GET_CURRENT_DEPENDENCIES, PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  public companion object
 }

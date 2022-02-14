@@ -1,11 +1,10 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -58,7 +57,7 @@ public open class ReferenceRect : Control() {
     }
 
   /**
-   * If set to `true`, the [godot.ReferenceRect] will only be visible while in editor. Otherwise, [godot.ReferenceRect] will be visible in game.
+   * If `true`, the [godot.ReferenceRect] will only be visible while in editor. Otherwise, [godot.ReferenceRect] will be visible in the running project.
    */
   public open var editorOnly: Boolean
     get() {
@@ -77,10 +76,5 @@ public open class ReferenceRect : Control() {
     callConstructor(ENGINECLASS_REFERENCERECT)
   }
 
-  @CoreTypeHelper
-  public open fun borderColor(schedule: Color.() -> Unit): Color = borderColor.apply{
-      schedule(this)
-      borderColor = this
-  }
-
+  public companion object
 }

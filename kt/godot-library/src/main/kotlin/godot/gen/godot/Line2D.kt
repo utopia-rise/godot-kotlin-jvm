@@ -1,14 +1,13 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.PoolVector2Array
+import godot.core.PackedVector2Array
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
@@ -16,7 +15,7 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.core.VariantType.POOL_VECTOR2_ARRAY
+import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import kotlin.Boolean
@@ -32,166 +31,22 @@ import kotlin.Unit
  * [https://godotengine.org/asset-library/asset/583](https://godotengine.org/asset-library/asset/583)
  *
  * A line through several points in 2D space.
- *
- * **Note:** By default, Godot can only draw up to 4,096 polygon points at a time. To increase this limit, open the Project Settings and increase [godot.ProjectSettings.rendering/limits/buffers/canvasPolygonBufferSizeKb] and [godot.ProjectSettings.rendering/limits/buffers/canvasPolygonIndexBufferSizeKb].
  */
 @GodotBaseType
 public open class Line2D : Node2D() {
   /**
-   * If `true`, the line's border will be anti-aliased.
-   *
-   * **Note:** Line2D is not accelerated by batching when being anti-aliased.
-   */
-  public open var antialiased: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_ANTIALIASED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_ANTIALIASED, NIL)
-    }
-
-  /**
-   * Controls the style of the line's first point. Use [enum LineCapMode] constants.
-   */
-  public open var beginCapMode: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_BEGIN_CAP_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_BEGIN_CAP_MODE, NIL)
-    }
-
-  /**
-   * The line's color. Will not be used if a gradient is set.
-   */
-  public open var defaultColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_DEFAULT_COLOR, COLOR)
-      return TransferContext.readReturnValue(COLOR, false) as Color
-    }
-    set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_DEFAULT_COLOR, NIL)
-    }
-
-  /**
-   * Controls the style of the line's last point. Use [enum LineCapMode] constants.
-   */
-  public open var endCapMode: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_END_CAP_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_END_CAP_MODE, NIL)
-    }
-
-  /**
-   * The gradient is drawn through the whole line from start to finish. The default color will not be used if a gradient is set.
-   */
-  public open var gradient: Gradient?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_GRADIENT, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Gradient?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_GRADIENT, NIL)
-    }
-
-  /**
-   * The style for the points between the start and the end.
-   */
-  public open var jointMode: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_JOINT_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_JOINT_MODE, NIL)
-    }
-
-  /**
    * The points that form the lines. The line is drawn between every point set in this array. Points are interpreted as local vectors.
    */
-  public open var points: PoolVector2Array
+  public open var points: PackedVector2Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_POINTS,
-          POOL_VECTOR2_ARRAY)
-      return TransferContext.readReturnValue(POOL_VECTOR2_ARRAY, false) as PoolVector2Array
+          PACKED_VECTOR2_ARRAY)
+      return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
     }
     set(`value`) {
-      TransferContext.writeArguments(POOL_VECTOR2_ARRAY to value)
+      TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_POINTS, NIL)
-    }
-
-  /**
-   * The smoothness of the rounded joints and caps. This is only used if a cap or joint is set as round.
-   */
-  public open var roundPrecision: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_ROUND_PRECISION, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_ROUND_PRECISION, NIL)
-    }
-
-  /**
-   * The direction difference in radians between vector points. This value is only used if `joint mode` is set to [LINE_JOINT_SHARP].
-   */
-  public open var sharpLimit: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_SHARP_LIMIT, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_SHARP_LIMIT, NIL)
-    }
-
-  /**
-   * The texture used for the line's texture. Uses `texture_mode` for drawing style.
-   */
-  public open var texture: Texture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_TEXTURE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_TEXTURE, NIL)
-    }
-
-  /**
-   * The style to render the `texture` on the line. Use [enum LineTextureMode] constants.
-   */
-  public open var textureMode: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_TEXTURE_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_TEXTURE_MODE, NIL)
     }
 
   /**
@@ -220,23 +75,181 @@ public open class Line2D : Node2D() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_WIDTH_CURVE, NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
+    }
+
+  /**
+   * The line's color. Will not be used if a gradient is set.
+   */
+  public open var defaultColor: Color
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_DEFAULT_COLOR, COLOR)
+      return TransferContext.readReturnValue(COLOR, false) as Color
+    }
+    set(`value`) {
+      TransferContext.writeArguments(COLOR to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_DEFAULT_COLOR, NIL)
+    }
+
+  /**
+   * The gradient is drawn through the whole line from start to finish. The default color will not be used if a gradient is set.
+   */
+  public open var gradient: Gradient?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_GRADIENT, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Gradient?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_GRADIENT, NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
+    }
+
+  /**
+   * The texture used for the line's texture. Uses `texture_mode` for drawing style.
+   */
+  public open var texture: Texture2D?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_TEXTURE, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_TEXTURE, NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
+    }
+
+  /**
+   * The style to render the `texture` on the line. Use [enum LineTextureMode] constants.
+   */
+  public open var textureMode: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_TEXTURE_MODE, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_TEXTURE_MODE, NIL)
+    }
+
+  /**
+   * The style for the points between the start and the end.
+   */
+  public open var jointMode: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_JOINT_MODE, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_JOINT_MODE, NIL)
+    }
+
+  /**
+   * Controls the style of the line's first point. Use [enum LineCapMode] constants.
+   */
+  public open var beginCapMode: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_BEGIN_CAP_MODE, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_BEGIN_CAP_MODE, NIL)
+    }
+
+  /**
+   * Controls the style of the line's last point. Use [enum LineCapMode] constants.
+   */
+  public open var endCapMode: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_END_CAP_MODE, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_END_CAP_MODE, NIL)
+    }
+
+  /**
+   * The direction difference in radians between vector points. This value is only used if [jointMode] is set to [LINE_JOINT_SHARP].
+   */
+  public open var sharpLimit: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_SHARP_LIMIT, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_SHARP_LIMIT, NIL)
+    }
+
+  /**
+   * The smoothness of the rounded joints and caps. This is only used if a cap or joint is set as round.
+   */
+  public open var roundPrecision: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_ROUND_PRECISION, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_ROUND_PRECISION, NIL)
+    }
+
+  /**
+   * If `true`, the line's border will be anti-aliased.
+   *
+   * **Note:** Line2D is not accelerated by batching when being anti-aliased.
+   */
+  public open var antialiased: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_ANTIALIASED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_ANTIALIASED, NIL)
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_LINE2D)
   }
 
-  @CoreTypeHelper
-  public open fun defaultColor(schedule: Color.() -> Unit): Color = defaultColor.apply{
-      schedule(this)
-      defaultColor = this
+  /**
+   * Overwrites the position in point `i` with the supplied `position`.
+   */
+  public open fun setPointPosition(i: Long, position: Vector2): Unit {
+    TransferContext.writeArguments(LONG to i, VECTOR2 to position)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_POINT_POSITION, NIL)
   }
 
-
-  public open fun _curveChanged(): Unit {
+  /**
+   * Returns point `i`'s position.
+   */
+  public open fun getPointPosition(i: Long): Vector2 {
+    TransferContext.writeArguments(LONG to i)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_POINT_POSITION, VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
   }
 
-  public open fun _gradientChanged(): Unit {
+  /**
+   * Returns the Line2D's amount of points.
+   */
+  public open fun getPointCount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_POINT_COUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -250,32 +263,6 @@ public open class Line2D : Node2D() {
   }
 
   /**
-   * Removes all points from the line.
-   */
-  public open fun clearPoints(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_CLEAR_POINTS, NIL)
-  }
-
-  /**
-   * Returns the Line2D's amount of points.
-   */
-  public open fun getPointCount(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_POINT_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  /**
-   * Returns point `i`'s position.
-   */
-  public open fun getPointPosition(i: Long): Vector2 {
-    TransferContext.writeArguments(LONG to i)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_POINT_POSITION, VECTOR2)
-    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-  }
-
-  /**
    * Removes the point at index `i` from the line.
    */
   public open fun removePoint(i: Long): Unit {
@@ -284,11 +271,11 @@ public open class Line2D : Node2D() {
   }
 
   /**
-   * Overwrites the position in point `i` with the supplied `position`.
+   * Removes all points from the line.
    */
-  public open fun setPointPosition(i: Long, position: Vector2): Unit {
-    TransferContext.writeArguments(LONG to i, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_POINT_POSITION, NIL)
+  public open fun clearPoints(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_CLEAR_POINTS, NIL)
   }
 
   public enum class LineTextureMode(
@@ -372,50 +359,5 @@ public open class Line2D : Node2D() {
     }
   }
 
-  public companion object {
-    /**
-     * Draws the line cap as a box.
-     */
-    public final const val LINE_CAP_BOX: Long = 1
-
-    /**
-     * Don't draw a line cap.
-     */
-    public final const val LINE_CAP_NONE: Long = 0
-
-    /**
-     * Draws the line cap as a circle.
-     */
-    public final const val LINE_CAP_ROUND: Long = 2
-
-    /**
-     * The line's joints will be bevelled/chamfered.
-     */
-    public final const val LINE_JOINT_BEVEL: Long = 1
-
-    /**
-     * The line's joints will be rounded.
-     */
-    public final const val LINE_JOINT_ROUND: Long = 2
-
-    /**
-     * The line's joints will be pointy. If `sharp_limit` is greater than the rotation of a joint, it becomes a bevel joint instead.
-     */
-    public final const val LINE_JOINT_SHARP: Long = 0
-
-    /**
-     * Takes the left pixels of the texture and renders it over the whole line.
-     */
-    public final const val LINE_TEXTURE_NONE: Long = 0
-
-    /**
-     * Stretches the texture across the line. Import the texture with **Repeat** disabled for best results.
-     */
-    public final const val LINE_TEXTURE_STRETCH: Long = 2
-
-    /**
-     * Tiles the texture over the line. The texture must be imported with **Repeat** enabled for it to work properly.
-     */
-    public final const val LINE_TEXTURE_TILE: Long = 1
-  }
+  public companion object
 }

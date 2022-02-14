@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -28,19 +28,6 @@ public open class GLTFBufferView : Resource() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_SET_BUFFER, NIL)
     }
 
-  public open var byteLength: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_GET_BYTE_LENGTH,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_SET_BYTE_LENGTH,
-          NIL)
-    }
-
   public open var byteOffset: Long
     get() {
       TransferContext.writeArguments()
@@ -51,6 +38,19 @@ public open class GLTFBufferView : Resource() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_SET_BYTE_OFFSET,
+          NIL)
+    }
+
+  public open var byteLength: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_GET_BYTE_LENGTH,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFBUFFERVIEW_SET_BYTE_LENGTH,
           NIL)
     }
 
@@ -81,4 +81,6 @@ public open class GLTFBufferView : Resource() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_GLTFBUFFERVIEW)
   }
+
+  public companion object
 }

@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -16,7 +16,6 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
 import kotlin.Any
 import kotlin.Boolean
-import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -32,41 +31,72 @@ public open class EditorVCSInterface : Object() {
     callConstructor(ENGINECLASS_EDITORVCSINTERFACE)
   }
 
-  public open fun _commit(msg: String): Unit {
+  /**
+   * Returns `true` if the addon is ready to respond to function calls, else returns `false`.
+   */
+  public open fun isAddonReady(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_IS_ADDON_READY,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public open fun _getFileDiff(filePath: String): VariantArray<Any?> {
-    throw NotImplementedError("_get_file_diff is not implemented for EditorVCSInterface")
+  /**
+   * Initializes the VCS addon if not already. Uses the argument value as the path to the working directory of the project. Creates the initial commit if required. Returns `true` if no failure occurs, else returns `false`.
+   */
+  public open fun initialize(projectRootPath: String): Boolean {
+    TransferContext.writeArguments(STRING to projectRootPath)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_INITIALIZE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public open fun _getModifiedFilesData(): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_get_modified_files_data is not implemented for EditorVCSInterface")
+  /**
+   * Returns `true` if the VCS addon has been initialized, else returns `false`.
+   */
+  public open fun isVcsInitialized(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_IS_VCS_INITIALIZED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  public open fun _getProjectName(): String {
-    throw NotImplementedError("_get_project_name is not implemented for EditorVCSInterface")
+  /**
+   * Returns a [godot.core.Dictionary] containing the path of the detected file change mapped to an integer signifying what kind of change the corresponding file has experienced.
+   *
+   * The following integer values are being used to signify that the detected file is:
+   *
+   * - `0`: New to the VCS working directory
+   *
+   * - `1`: Modified
+   *
+   * - `2`: Renamed
+   *
+   * - `3`: Deleted
+   *
+   * - `4`: Typechanged
+   */
+  public open fun getModifiedFilesData(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_GET_MODIFIED_FILES_DATA, DICTIONARY)
+    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
   }
 
-  public open fun _getVcsName(): String {
-    throw NotImplementedError("_get_vcs_name is not implemented for EditorVCSInterface")
+  /**
+   * Stages the file which should be committed when [godot.EditorVCSInterface.commit] is called. Argument should contain the absolute path.
+   */
+  public open fun stageFile(filePath: String): Unit {
+    TransferContext.writeArguments(STRING to filePath)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_STAGE_FILE, NIL)
   }
 
-  public open fun _initialize(projectRootPath: String): Boolean {
-    throw NotImplementedError("_initialize is not implemented for EditorVCSInterface")
-  }
-
-  public open fun _isVcsInitialized(): Boolean {
-    throw NotImplementedError("_is_vcs_initialized is not implemented for EditorVCSInterface")
-  }
-
-  public open fun _shutDown(): Boolean {
-    throw NotImplementedError("_shut_down is not implemented for EditorVCSInterface")
-  }
-
-  public open fun _stageFile(filePath: String): Unit {
-  }
-
-  public open fun _unstageFile(filePath: String): Unit {
+  /**
+   * Unstages the file which was staged previously to be committed, so that it is no longer committed when [godot.EditorVCSInterface.commit] is called. Argument should contain the absolute path.
+   */
+  public open fun unstageFile(filePath: String): Unit {
+    TransferContext.writeArguments(STRING to filePath)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_UNSTAGE_FILE,
+        NIL)
   }
 
   /**
@@ -102,25 +132,12 @@ public open class EditorVCSInterface : Object() {
   }
 
   /**
-   * Returns a [godot.core.Dictionary] containing the path of the detected file change mapped to an integer signifying what kind of change the corresponding file has experienced.
-   *
-   * The following integer values are being used to signify that the detected file is:
-   *
-   * - `0`: New to the VCS working directory
-   *
-   * - `1`: Modified
-   *
-   * - `2`: Renamed
-   *
-   * - `3`: Deleted
-   *
-   * - `4`: Typechanged
+   * Shuts down the VCS addon to allow cleanup code to run on call. Returns `true` is no failure occurs, else returns `false`.
    */
-  public open fun getModifiedFilesData(): Dictionary<Any?, Any?> {
+  public open fun shutDown(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_GET_MODIFIED_FILES_DATA, DICTIONARY)
-    return TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_SHUT_DOWN, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -143,58 +160,5 @@ public open class EditorVCSInterface : Object() {
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  /**
-   * Initializes the VCS addon if not already. Uses the argument value as the path to the working directory of the project. Creates the initial commit if required. Returns `true` if no failure occurs, else returns `false`.
-   */
-  public open fun initialize(projectRootPath: String): Boolean {
-    TransferContext.writeArguments(STRING to projectRootPath)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_INITIALIZE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` if the addon is ready to respond to function calls, else returns `false`.
-   */
-  public open fun isAddonReady(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_IS_ADDON_READY,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` if the VCS addon has been initialized, else returns `false`.
-   */
-  public open fun isVcsInitialized(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_IS_VCS_INITIALIZED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Shuts down the VCS addon to allow cleanup code to run on call. Returns `true` is no failure occurs, else returns `false`.
-   */
-  public open fun shutDown(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_SHUT_DOWN, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Stages the file which should be committed when [godot.EditorVCSInterface.commit] is called. Argument should contain the absolute path.
-   */
-  public open fun stageFile(filePath: String): Unit {
-    TransferContext.writeArguments(STRING to filePath)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_STAGE_FILE, NIL)
-  }
-
-  /**
-   * Unstages the file which was staged previously to be committed, so that it is no longer committed when [godot.EditorVCSInterface.commit] is called. Argument should contain the absolute path.
-   */
-  public open fun unstageFile(filePath: String): Unit {
-    TransferContext.writeArguments(STRING to filePath)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORVCSINTERFACE_UNSTAGE_FILE,
-        NIL)
-  }
+  public companion object
 }

@@ -1,22 +1,22 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
-import godot.core.PoolByteArray
-import godot.core.PoolStringArray
+import godot.core.PackedByteArray
+import godot.core.PackedStringArray
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.core.VariantType.POOL_BYTE_ARRAY
-import godot.core.VariantType.POOL_STRING_ARRAY
+import godot.core.VariantType.PACKED_BYTE_ARRAY
+import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import kotlin.Any
 import kotlin.Boolean
@@ -33,48 +33,155 @@ import kotlin.Unit
  * ```
  * 		[section]
  * 		some_key=42
- * 		string_example="Hello World!"
- * 		a_vector=Vector3( 1, 0, 2 )
+ * 		string_example="Hello World3D!"
+ * 		a_vector=Vector3(1, 0, 2)
  * 		```
  *
  * The stored data can be saved to or parsed from a file, though ConfigFile objects can also be used directly without accessing the filesystem.
  *
- * The following example shows how to create a simple [godot.ConfigFile] and save it on disk:
+ * The following example shows how to create a simple [godot.ConfigFile] and save it on disc:
  *
- * ```
- * 		# Create new ConfigFile object.
- * 		var config = ConfigFile.new()
+ * [codeblocks]
  *
- * 		# Store some values.
- * 		config.set_value("Player1", "player_name", "Steve")
- * 		config.set_value("Player1", "best_score", 10)
- * 		config.set_value("Player2", "player_name", "V3geta")
- * 		config.set_value("Player2", "best_score", 9001)
+ * [gdscript]
  *
- * 		# Save it to a file (overwrite if already exists).
- * 		config.save("user://scores.cfg")
- * 		```
+ * # Create new ConfigFile object.
+ *
+ * var config = ConfigFile.new()
+ *
+ *
+ *
+ * # Store some values.
+ *
+ * config.set_value("Player1", "player_name", "Steve")
+ *
+ * config.set_value("Player1", "best_score", 10)
+ *
+ * config.set_value("Player2", "player_name", "V3geta")
+ *
+ * config.set_value("Player2", "best_score", 9001)
+ *
+ *
+ *
+ * # Save it to a file (overwrite if already exists).
+ *
+ * config.save("user://scores.cfg")
+ *
+ * [/gdscript]
+ *
+ * [csharp]
+ *
+ * // Create new ConfigFile object.
+ *
+ * var config = new ConfigFile();
+ *
+ *
+ *
+ * // Store some values.
+ *
+ * config.SetValue("Player1", "player_name", "Steve");
+ *
+ * config.SetValue("Player1", "best_score", 10);
+ *
+ * config.SetValue("Player2", "player_name", "V3geta");
+ *
+ * config.SetValue("Player2", "best_score", 9001);
+ *
+ *
+ *
+ * // Save it to a file (overwrite if already exists).
+ *
+ * config.Save("user://scores.cfg");
+ *
+ * [/csharp]
+ *
+ * [/codeblocks]
  *
  * This example shows how the above file could be loaded:
  *
- * ```
- * 		var score_data = {}
- * 		var config = ConfigFile.new()
+ * [codeblocks]
  *
- * 		# Load data from a file.
- * 		var err = config.load("user://scores.cfg")
+ * [gdscript]
  *
- * 		# If the file didn't load, ignore it.
- * 		if err != OK:
- * 		    return
+ * var score_data = {}
  *
- * 		# Iterate over all sections.
- * 		for player in config.get_sections():
- * 		    # Fetch the data for each section.
- * 		    var player_name = config.get_value(player, "player_name")
- * 		    var player_score = config.get_value(player, "best_score")
- * 		    score_data[player_name] = player_score
- * 		```
+ * var config = ConfigFile.new()
+ *
+ *
+ *
+ * # Load data from a file.
+ *
+ * var err = config.load("user://scores.cfg")
+ *
+ *
+ *
+ * # If the file didn't load, ignore it.
+ *
+ * if err != OK:
+ *
+ *     return
+ *
+ *
+ *
+ * # Iterate over all sections.
+ *
+ * for player in config.get_sections():
+ *
+ *     # Fetch the data for each section.
+ *
+ *     var player_name = config.get_value(player, "player_name")
+ *
+ *     var player_score = config.get_value(player, "best_score")
+ *
+ *     score_data[player_name] = player_score
+ *
+ * [/gdscript]
+ *
+ * [csharp]
+ *
+ * var score_data = new Godot.Collections.Dictionary();
+ *
+ * var config = new ConfigFile();
+ *
+ *
+ *
+ * // Load data from a file.
+ *
+ * Error err = config.Load("user://scores.cfg");
+ *
+ *
+ *
+ * // If the file didn't load, ignore it.
+ *
+ * if (err != Error.Ok)
+ *
+ * {
+ *
+ *     return;
+ *
+ * }
+ *
+ *
+ *
+ * // Iterate over all sections.
+ *
+ * foreach (String player in config.GetSections())
+ *
+ * {
+ *
+ *     // Fetch the data for each section.
+ *
+ *     var player_name = (String)config.GetValue(player, "player_name");
+ *
+ *     var player_score = (int)config.GetValue(player, "best_score");
+ *
+ *     score_data[player_name] = player_score;
+ *
+ * }
+ *
+ * [/csharp]
+ *
+ * [/codeblocks]
  *
  * Any operation that mutates the ConfigFile such as [setValue], [clear], or [eraseSection], only changes what is loaded in memory. If you want to write the change to a file, you have to save the changes with [save], [saveEncrypted], or [saveEncryptedPass].
  *
@@ -85,53 +192,21 @@ import kotlin.Unit
  * **Note:** The file extension given to a ConfigFile does not have any impact on its formatting or behavior. By convention, the `.cfg` extension is used here, but any other extension such as `.ini` is also valid. Since neither `.cfg` nor `.ini` are standardized, Godot's ConfigFile formatting may differ from files written by other programs.
  */
 @GodotBaseType
-public open class ConfigFile : Reference() {
+public open class ConfigFile : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CONFIGFILE)
   }
 
   /**
-   * Removes the entire contents of the config.
+   * Assigns a value to the specified key of the specified section. If either the section or the key do not exist, they are created. Passing a `null` value deletes the specified key if it exists, and deletes the section if it ends up empty once the key has been removed.
    */
-  public open fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_CLEAR, NIL)
-  }
-
-  /**
-   * Deletes the specified section along with all the key-value pairs inside. Raises an error if the section does not exist.
-   */
-  public open fun eraseSection(section: String): Unit {
-    TransferContext.writeArguments(STRING to section)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_ERASE_SECTION, NIL)
-  }
-
-  /**
-   * Deletes the specified key in a section. Raises an error if either the section or the key do not exist.
-   */
-  public open fun eraseSectionKey(section: String, key: String): Unit {
-    TransferContext.writeArguments(STRING to section, STRING to key)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_ERASE_SECTION_KEY, NIL)
-  }
-
-  /**
-   * Returns an array of all defined key identifiers in the specified section. Raises an error and returns an empty array if the section does not exist.
-   */
-  public open fun getSectionKeys(section: String): PoolStringArray {
-    TransferContext.writeArguments(STRING to section)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_GET_SECTION_KEYS,
-        POOL_STRING_ARRAY)
-    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
-  }
-
-  /**
-   * Returns an array of all defined section identifiers.
-   */
-  public open fun getSections(): PoolStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_GET_SECTIONS,
-        POOL_STRING_ARRAY)
-    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
+  public open fun setValue(
+    section: String,
+    key: String,
+    `value`: Any
+  ): Unit {
+    TransferContext.writeArguments(STRING to section, STRING to key, ANY to value)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_SET_VALUE, NIL)
   }
 
   /**
@@ -166,6 +241,42 @@ public open class ConfigFile : Reference() {
   }
 
   /**
+   * Returns an array of all defined section identifiers.
+   */
+  public open fun getSections(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_GET_SECTIONS,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * Returns an array of all defined key identifiers in the specified section. Raises an error and returns an empty array if the section does not exist.
+   */
+  public open fun getSectionKeys(section: String): PackedStringArray {
+    TransferContext.writeArguments(STRING to section)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_GET_SECTION_KEYS,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * Deletes the specified section along with all the key-value pairs inside. Raises an error if the section does not exist.
+   */
+  public open fun eraseSection(section: String): Unit {
+    TransferContext.writeArguments(STRING to section)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_ERASE_SECTION, NIL)
+  }
+
+  /**
+   * Deletes the specified key in a section. Raises an error if either the section or the key do not exist.
+   */
+  public open fun eraseSectionKey(section: String, key: String): Unit {
+    TransferContext.writeArguments(STRING to section, STRING to key)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_ERASE_SECTION_KEY, NIL)
+  }
+
+  /**
    * Loads the config file specified as a parameter. The file's contents are parsed and loaded in the [godot.ConfigFile] object which the method was called on.
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
@@ -173,29 +284,6 @@ public open class ConfigFile : Reference() {
   public open fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_LOAD, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  /**
-   * Loads the encrypted config file specified as a parameter, using the provided `key` to decrypt it. The file's contents are parsed and loaded in the [godot.ConfigFile] object which the method was called on.
-   *
-   * Returns one of the [enum Error] code constants (`OK` on success).
-   */
-  public open fun loadEncrypted(path: String, key: PoolByteArray): GodotError {
-    TransferContext.writeArguments(STRING to path, POOL_BYTE_ARRAY to key)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_LOAD_ENCRYPTED, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  /**
-   * Loads the encrypted config file specified as a parameter, using the provided `password` to decrypt it. The file's contents are parsed and loaded in the [godot.ConfigFile] object which the method was called on.
-   *
-   * Returns one of the [enum Error] code constants (`OK` on success).
-   */
-  public open fun loadEncryptedPass(path: String, password: String): GodotError {
-    TransferContext.writeArguments(STRING to path, STRING to password)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_LOAD_ENCRYPTED_PASS,
-        LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -222,12 +310,35 @@ public open class ConfigFile : Reference() {
   }
 
   /**
+   * Loads the encrypted config file specified as a parameter, using the provided `key` to decrypt it. The file's contents are parsed and loaded in the [godot.ConfigFile] object which the method was called on.
+   *
+   * Returns one of the [enum Error] code constants (`OK` on success).
+   */
+  public open fun loadEncrypted(path: String, key: PackedByteArray): GodotError {
+    TransferContext.writeArguments(STRING to path, PACKED_BYTE_ARRAY to key)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_LOAD_ENCRYPTED, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Loads the encrypted config file specified as a parameter, using the provided `password` to decrypt it. The file's contents are parsed and loaded in the [godot.ConfigFile] object which the method was called on.
+   *
+   * Returns one of the [enum Error] code constants (`OK` on success).
+   */
+  public open fun loadEncryptedPass(path: String, password: String): GodotError {
+    TransferContext.writeArguments(STRING to path, STRING to password)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_LOAD_ENCRYPTED_PASS,
+        LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
    * Saves the contents of the [godot.ConfigFile] object to the AES-256 encrypted file specified as a parameter, using the provided `key` to encrypt it. The output file uses an INI-style structure.
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  public open fun saveEncrypted(path: String, key: PoolByteArray): GodotError {
-    TransferContext.writeArguments(STRING to path, POOL_BYTE_ARRAY to key)
+  public open fun saveEncrypted(path: String, key: PackedByteArray): GodotError {
+    TransferContext.writeArguments(STRING to path, PACKED_BYTE_ARRAY to key)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_SAVE_ENCRYPTED, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -245,14 +356,12 @@ public open class ConfigFile : Reference() {
   }
 
   /**
-   * Assigns a value to the specified key of the specified section. If either the section or the key do not exist, they are created. Passing a `null` value deletes the specified key if it exists, and deletes the section if it ends up empty once the key has been removed.
+   * Removes the entire contents of the config.
    */
-  public open fun setValue(
-    section: String,
-    key: String,
-    `value`: Any?
-  ): Unit {
-    TransferContext.writeArguments(STRING to section, STRING to key, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_SET_VALUE, NIL)
+  public open fun clear(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONFIGFILE_CLEAR, NIL)
   }
+
+  public companion object
 }

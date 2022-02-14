@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -10,6 +10,9 @@ import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.signals.Signal0
+import godot.signals.Signal1
+import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
@@ -24,6 +27,16 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Slider : Range() {
+  /**
+   * Emitted when dragging is started.
+   */
+  public val dragStarted: Signal0 by signal()
+
+  /**
+   * Emitted when dragging stops. If `value_changed` is true, [godot.Range.value] is different from the value when you started the dragging.
+   */
+  public val dragEnded: Signal1<Boolean> by signal("valueChanged")
+
   /**
    * If `true`, the slider can be interacted with. If `false`, the value can be changed only by code.
    */
@@ -84,6 +97,5 @@ public open class Slider : Range() {
     callConstructor(ENGINECLASS_SLIDER)
   }
 
-  public override fun _guiInput(event: InputEvent): Unit {
-  }
+  public companion object
 }

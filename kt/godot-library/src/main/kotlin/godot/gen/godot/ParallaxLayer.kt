@@ -1,11 +1,10 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
@@ -26,19 +25,19 @@ import kotlin.Unit
 @GodotBaseType
 public open class ParallaxLayer : Node2D() {
   /**
-   * The ParallaxLayer's [godot.Texture] mirroring. Useful for creating an infinite scrolling background. If an axis is set to `0`, the [godot.Texture] will not be mirrored.
+   * Multiplies the ParallaxLayer's motion. If an axis is set to `0`, it will not scroll.
    */
-  public open var motionMirroring: Vector2
+  public open var motionScale: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXLAYER_GET_MOTION_MIRRORING, VECTOR2)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXLAYER_GET_MOTION_SCALE,
+          VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXLAYER_SET_MOTION_MIRRORING, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXLAYER_SET_MOTION_SCALE,
+          NIL)
     }
 
   /**
@@ -58,43 +57,24 @@ public open class ParallaxLayer : Node2D() {
     }
 
   /**
-   * Multiplies the ParallaxLayer's motion. If an axis is set to `0`, it will not scroll.
+   * The ParallaxLayer's [godot.Texture2D] mirroring. Useful for creating an infinite scrolling background. If an axis is set to `0`, the [godot.Texture2D] will not be mirrored.
    */
-  public open var motionScale: Vector2
+  public open var motionMirroring: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXLAYER_GET_MOTION_SCALE,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARALLAXLAYER_GET_MOTION_MIRRORING, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXLAYER_SET_MOTION_SCALE,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARALLAXLAYER_SET_MOTION_MIRRORING, NIL)
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PARALLAXLAYER)
   }
 
-  @CoreTypeHelper
-  public open fun motionMirroring(schedule: Vector2.() -> Unit): Vector2 = motionMirroring.apply{
-      schedule(this)
-      motionMirroring = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun motionOffset(schedule: Vector2.() -> Unit): Vector2 = motionOffset.apply{
-      schedule(this)
-      motionOffset = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun motionScale(schedule: Vector2.() -> Unit): Vector2 = motionScale.apply{
-      schedule(this)
-      motionScale = this
-  }
-
+  public companion object
 }

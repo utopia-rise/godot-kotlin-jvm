@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -14,7 +14,6 @@ import godot.core.VariantType.OBJECT
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
-import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -22,19 +21,23 @@ import kotlin.Unit
 /**
  * A helper node for displaying scrollable elements such as lists.
  *
- * A ScrollContainer node meant to contain a [godot.Control] child. ScrollContainers will automatically create a scrollbar child ([godot.HScrollBar], [godot.VScrollBar], or both) when needed and will only draw the Control within the ScrollContainer area. Scrollbars will automatically be drawn at the right (for vertical) or bottom (for horizontal) and will enable dragging to move the viewable Control (and its children) within the ScrollContainer. Scrollbars will also automatically resize the grabber based on the [godot.Control.rectMinSize] of the Control relative to the ScrollContainer. Works great with a [godot.Panel] control. You can set `EXPAND` on the children's size flags, so they will upscale to the ScrollContainer's size if it's larger (scroll is invisible for the chosen dimension).
+ * A ScrollContainer node meant to contain a [godot.Control] child.
+ *
+ * ScrollContainers will automatically create a scrollbar child ([godot.HScrollBar], [godot.VScrollBar], or both) when needed and will only draw the Control within the ScrollContainer area. Scrollbars will automatically be drawn at the right (for vertical) or bottom (for horizontal) and will enable dragging to move the viewable Control (and its children) within the ScrollContainer. Scrollbars will also automatically resize the grabber based on the [godot.Control.rectMinSize] of the Control relative to the ScrollContainer.
+ *
+ * Works great with a [godot.Panel] control. You can set `EXPAND` on the children's size flags, so they will upscale to the ScrollContainer's size if it's larger (scroll is invisible for the chosen dimension).
  */
 @GodotBaseType
 public open class ScrollContainer : Container() {
   /**
-   * Emitted when scrolling stops.
-   */
-  public val scrollEnded: Signal0 by signal()
-
-  /**
    * Emitted when scrolling is started.
    */
   public val scrollStarted: Signal0 by signal()
+
+  /**
+   * Emitted when scrolling stops.
+   */
+  public val scrollEnded: Signal0 by signal()
 
   /**
    * If `true`, the ScrollContainer will automatically scroll to focused children (including indirect children) to make sure they are fully visible.
@@ -50,22 +53,6 @@ public open class ScrollContainer : Container() {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_FOLLOW_FOCUS,
           NIL)
-    }
-
-  /**
-   *
-   */
-  public open var scrollDeadzone: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_SCROLL_DEADZONE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_SCROLL_DEADZONE, NIL)
     }
 
   /**
@@ -85,22 +72,6 @@ public open class ScrollContainer : Container() {
     }
 
   /**
-   * If `true`, enables horizontal scrolling.
-   */
-  public open var scrollHorizontalEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_SCROLL_HORIZONTAL_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_SCROLL_HORIZONTAL_ENABLED, NIL)
-    }
-
-  /**
    * The current vertical scroll value.
    */
   public open var scrollVertical: Long
@@ -117,45 +88,89 @@ public open class ScrollContainer : Container() {
     }
 
   /**
-   * If `true`, enables vertical scrolling.
+   * Controls whether horizontal scrollbar can be used and when it should be visible. See [enum ScrollMode] for options.
    */
-  public open var scrollVerticalEnabled: Boolean
+  public open var horizontalScrollMode: Long
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_SCROLL_VERTICAL_ENABLED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_HORIZONTAL_SCROLL_MODE, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_SCROLL_VERTICAL_ENABLED, NIL)
+          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_HORIZONTAL_SCROLL_MODE, NIL)
+    }
+
+  /**
+   * Controls whether vertical scrollbar can be used and when it should be visible. See [enum ScrollMode] for options.
+   */
+  public open var verticalScrollMode: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_VERTICAL_SCROLL_MODE, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_VERTICAL_SCROLL_MODE, NIL)
+    }
+
+  /**
+   *
+   */
+  public open var scrollDeadzone: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_SCROLL_DEADZONE, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_SET_SCROLL_DEADZONE, NIL)
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SCROLLCONTAINER)
   }
 
-  public open fun _guiFocusChanged(arg0: Control): Unit {
+  /**
+   * Returns the horizontal scrollbar [godot.HScrollBar] of this [godot.ScrollContainer].
+   *
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to disable or hide a scrollbar, you can use [horizontalScrollMode].
+   */
+  public open fun getHScrollBar(): HScrollBar? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_H_SCROLL_BAR,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as HScrollBar?
   }
 
-  public override fun _guiInput(event: InputEvent): Unit {
-  }
-
-  public open fun _scrollMoved(arg0: Double): Unit {
-  }
-
-  public open fun _updateScrollbarPosition(): Unit {
+  /**
+   * Returns the vertical scrollbar [godot.VScrollBar] of this [godot.ScrollContainer].
+   *
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to disable or hide a scrollbar, you can use [verticalScrollMode].
+   */
+  public open fun getVScrollBar(): VScrollBar? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_V_SCROLL_BAR,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as VScrollBar?
   }
 
   /**
    * Ensures the given `control` is visible (must be a direct or indirect child of the ScrollContainer). Used by [followFocus].
    *
-   * **Note:** This will not work on a node that was just added during the same frame. If you want to scroll to a newly added child, you must wait until the next frame using [godot.SceneTree.idleFrame]:
+   * **Note:** This will not work on a node that was just added during the same frame. If you want to scroll to a newly added child, you must wait until the next frame using [godot.SceneTree.processFrame]:
    *
    * ```
    * 				add_child(child_node)
-   * 				yield(get_tree(), "idle_frame")
+   * 				await get_tree().process_frame
    * 				ensure_control_visible(child_node)
    * 				```
    */
@@ -165,27 +180,36 @@ public open class ScrollContainer : Container() {
         ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_ENSURE_CONTROL_VISIBLE, NIL)
   }
 
-  /**
-   * Returns the horizontal scrollbar [godot.HScrollBar] of this [godot.ScrollContainer].
-   *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to disable the horizontal scrollbar, use [scrollHorizontalEnabled]. If you want to only hide it instead, use its [godot.CanvasItem.visible] property.
-   */
-  public open fun getHScrollbar(): HScrollBar? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_H_SCROLLBAR,
-        OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as HScrollBar?
+  public enum class ScrollMode(
+    id: Long
+  ) {
+    /**
+     * Scrolling disabled, scrollbar will be invisible.
+     */
+    SCROLL_MODE_DISABLED(0),
+    /**
+     * Scrolling enabled, scrollbar will be visible only if necessary, i.e. container's content is bigger than the container.
+     */
+    SCROLL_MODE_AUTO(1),
+    /**
+     * Scrolling enabled, scrollbar will be always visible.
+     */
+    SCROLL_MODE_SHOW_ALWAYS(2),
+    /**
+     * Scrolling enabled, scrollbar will be hidden.
+     */
+    SCROLL_MODE_SHOW_NEVER(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
   }
 
-  /**
-   * Returns the vertical scrollbar [godot.VScrollBar] of this [godot.ScrollContainer].
-   *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to disable the vertical scrollbar, use [scrollVerticalEnabled]. If you want to only hide it instead, use its [godot.CanvasItem.visible] property.
-   */
-  public open fun getVScrollbar(): VScrollBar? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCROLLCONTAINER_GET_V_SCROLLBAR,
-        OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as VScrollBar?
-  }
+  public companion object
 }

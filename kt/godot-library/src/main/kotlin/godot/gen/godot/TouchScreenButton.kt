@@ -1,22 +1,22 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.StringName
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
-import godot.core.VariantType.STRING
+import godot.core.VariantType.STRING_NAME
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Boolean
 import kotlin.Long
-import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -31,26 +31,48 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class TouchScreenButton : Node2D() {
-  public val signalPressed: Signal0 by signal()
-
   /**
    * Emitted when the button is released (up).
    */
   public val released: Signal0 by signal()
 
   /**
-   * The button's action. Actions can be handled with [godot.InputEventAction].
+   * Emitted when the button is pressed (down).
    */
-  public open var action: String
+  public val pressed: Signal0 by signal()
+
+  /**
+   * The button's texture for the normal state.
+   */
+  public open var textureNormal: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_ACTION,
-          STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_TEXTURE_NORMAL, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_ACTION, NIL)
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_TEXTURE_NORMAL, NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
+    }
+
+  /**
+   * The button's texture for the pressed state.
+   */
+  public open var texturePressed: Texture2D?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_TEXTURE_PRESSED, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_TEXTURE_PRESSED, NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
@@ -67,21 +89,55 @@ public open class TouchScreenButton : Node2D() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_BITMASK,
           NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
-   * The button's texture for the normal state.
+   * The button's shape.
    */
-  public open var normal: Texture?
+  public open var shape: Shape2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_NORMAL,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_SHAPE,
           OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
+      return TransferContext.readReturnValue(OBJECT, true) as Shape2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_NORMAL, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_SHAPE, NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
+    }
+
+  /**
+   * If `true`, the button's shape is centered in the provided texture. If no texture is used, this property has no effect.
+   */
+  public open var shapeCentered: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_SHAPE_CENTERED, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_SHAPE_CENTERED, NIL)
+    }
+
+  /**
+   * If `true`, the button's shape is visible in the editor.
+   */
+  public open var shapeVisible: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_SHAPE_VISIBLE, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_SHAPE_VISIBLE, NIL)
     }
 
   /**
@@ -103,66 +159,18 @@ public open class TouchScreenButton : Node2D() {
     }
 
   /**
-   * The button's texture for the pressed state.
+   * The button's action. Actions can be handled with [godot.InputEventAction].
    */
-  public open var pressed: Texture?
+  public open var action: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_PRESSED,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Texture?
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_ACTION,
+          STRING_NAME)
+      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_PRESSED,
-          NIL)
-    }
-
-  /**
-   * The button's shape.
-   */
-  public open var shape: Shape2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_SHAPE,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Shape2D?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_SHAPE, NIL)
-    }
-
-  /**
-   * If `true`, the button's shape is centered in the provided texture. If no texture is used, this property has no effect.
-   */
-  public open var shapeCentered: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_SHAPE_CENTERED, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_SHAPE_CENTERED, NIL)
-    }
-
-  /**
-   * If `true`, the button's shape is visible.
-   */
-  public open var shapeVisible: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_SHAPE_VISIBLE, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_SHAPE_VISIBLE, NIL)
+      TransferContext.writeArguments(STRING_NAME to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_SET_ACTION, NIL)
     }
 
   /**
@@ -183,9 +191,6 @@ public open class TouchScreenButton : Node2D() {
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TOUCHSCREENBUTTON)
-  }
-
-  public override fun _input(event: InputEvent): Unit {
   }
 
   /**
@@ -220,15 +225,5 @@ public open class TouchScreenButton : Node2D() {
     }
   }
 
-  public companion object {
-    /**
-     * Always visible.
-     */
-    public final const val VISIBILITY_ALWAYS: Long = 0
-
-    /**
-     * Visible on touch screens only.
-     */
-    public final const val VISIBILITY_TOUCHSCREEN_ONLY: Long = 1
-  }
+  public companion object
 }

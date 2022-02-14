@@ -1,11 +1,10 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.DOUBLE
@@ -22,12 +21,28 @@ import kotlin.Unit
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
- * Contains mouse and pen motion information. Supports relative, absolute positions and speed. See [godot.Node.Input].
+ * Contains mouse and pen motion information. Supports relative, absolute positions and velocity. See [godot.Node.Input].
  *
  * **Note:** By default, this event is only emitted once per frame rendered at most. If you need more precise input reporting, call [godot.Input.setUseAccumulatedInput] with `false` to make events emitted as often as possible. If you use InputEventMouseMotion to draw lines, consider implementing [godot.Bresenham's line algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm) as well to avoid visible gaps in lines if the user is moving the mouse quickly.
  */
 @GodotBaseType
 public open class InputEventMouseMotion : InputEventMouse() {
+  /**
+   * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0` for both axes.
+   */
+  public open var tilt: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_GET_TILT,
+          VECTOR2)
+      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_SET_TILT,
+          NIL)
+    }
+
   /**
    * Represents the pressure the user puts on the pen. Ranges from `0.0` to `1.0`.
    */
@@ -63,59 +78,24 @@ public open class InputEventMouseMotion : InputEventMouse() {
     }
 
   /**
-   * The mouse speed in pixels per second.
+   * The mouse velocity in pixels per second.
    */
-  public open var speed: Vector2
+  public open var velocity: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_GET_SPEED,
-          VECTOR2)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_GET_VELOCITY, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_SET_SPEED,
-          NIL)
-    }
-
-  /**
-   * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0` for both axes.
-   */
-  public open var tilt: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_GET_TILT,
-          VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-    }
-    set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_SET_TILT,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEMOTION_SET_VELOCITY, NIL)
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTMOUSEMOTION)
   }
 
-  @CoreTypeHelper
-  public open fun relative(schedule: Vector2.() -> Unit): Vector2 = relative.apply{
-      schedule(this)
-      relative = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun speed(schedule: Vector2.() -> Unit): Vector2 = speed.apply{
-      schedule(this)
-      speed = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun tilt(schedule: Vector2.() -> Unit): Vector2 = tilt.apply{
-      schedule(this)
-      tilt = this
-  }
-
+  public companion object
 }

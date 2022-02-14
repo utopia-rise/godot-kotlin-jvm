@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -139,6 +139,10 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
      * 			```
      */
     OP_HARD_LIGHT(8),
+    /**
+     * Represents the size of the [enum Operator] enum.
+     */
+    OP_MAX(9),
     ;
 
     public val id: Long
@@ -151,110 +155,5 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
     }
   }
 
-  public companion object {
-    /**
-     * Produce a burn effect with the following formula:
-     *
-     * ```
-     * 			result = vec3(1.0) - (vec3(1.0) - a) / b;
-     * 			```
-     */
-    public final const val OP_BURN: Long = 6
-
-    /**
-     * Produce a darken effect with the following formula:
-     *
-     * ```
-     * 			result = min(a, b);
-     * 			```
-     */
-    public final const val OP_DARKEN: Long = 2
-
-    /**
-     * Produce a difference effect with the following formula:
-     *
-     * ```
-     * 			result = abs(a - b);
-     * 			```
-     */
-    public final const val OP_DIFFERENCE: Long = 1
-
-    /**
-     * Produce a dodge effect with the following formula:
-     *
-     * ```
-     * 			result = a / (vec3(1.0) - b);
-     * 			```
-     */
-    public final const val OP_DODGE: Long = 5
-
-    /**
-     * Produce a hard light effect with the following formula:
-     *
-     * ```
-     * 			for (int i = 0; i < 3; i++) {
-     * 			    float base = a*;
-     * 			    float blend = b*;
-     * 			    if (base < 0.5) {
-     * 			        result* = base * (2.0 * blend);
-     * 			    } else {
-     * 			        result* = 1.0 - (1.0 - base) * (1.0 - 2.0 * (blend - 0.5));
-     * 			    }
-     * 			}
-     * 			```
-     */
-    public final const val OP_HARD_LIGHT: Long = 8
-
-    /**
-     * Produce a lighten effect with the following formula:
-     *
-     * ```
-     * 			result = max(a, b);
-     * 			```
-     */
-    public final const val OP_LIGHTEN: Long = 3
-
-    /**
-     * Produce an overlay effect with the following formula:
-     *
-     * ```
-     * 			for (int i = 0; i < 3; i++) {
-     * 			    float base = a*;
-     * 			    float blend = b*;
-     * 			    if (base < 0.5) {
-     * 			        result* = 2.0 * base * blend;
-     * 			    } else {
-     * 			        result* = 1.0 - 2.0 * (1.0 - blend) * (1.0 - base);
-     * 			    }
-     * 			}
-     * 			```
-     */
-    public final const val OP_OVERLAY: Long = 4
-
-    /**
-     * Produce a screen effect with the following formula:
-     *
-     * ```
-     * 			result = vec3(1.0) - (vec3(1.0) - a) * (vec3(1.0) - b);
-     * 			```
-     */
-    public final const val OP_SCREEN: Long = 0
-
-    /**
-     * Produce a soft light effect with the following formula:
-     *
-     * ```
-     * 			for (int i = 0; i < 3; i++) {
-     * 			    float base = a*;
-     * 			    float blend = b*;
-     * 			    if (base < 0.5) {
-     * 			        result* = base * (blend + 0.5);
-     * 			    } else {
-     * 			        result* = 1.0 - (1.0 - base) * (1.0 - (blend - 0.5));
-     * 			    }
-     * 			}
-     * 			```
-     */
-    public final const val OP_SOFT_LIGHT: Long = 7
-  }
+  public companion object
 }

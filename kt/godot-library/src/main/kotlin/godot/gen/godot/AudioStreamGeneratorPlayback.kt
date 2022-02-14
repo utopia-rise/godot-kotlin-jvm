@@ -1,17 +1,17 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.PoolVector2Array
+import godot.core.PackedVector2Array
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.core.VariantType.POOL_VECTOR2_ARRAY
+import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import kotlin.Boolean
@@ -23,7 +23,7 @@ import kotlin.Unit
  * Plays back audio generated using [godot.AudioStreamGenerator].
  *
  * Tutorials:
- * [Godot 3.2 will get new audio features](Godot 3.2 will get new audio features)
+ * [https://godotengine.org/article/godot-32-will-get-new-audio-features](https://godotengine.org/article/godot-32-will-get-new-audio-features)
  *
  * This class is meant to be used with [godot.AudioStreamGenerator] to play back the generated audio in real-time.
  */
@@ -31,6 +31,16 @@ import kotlin.Unit
 public open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK)
+  }
+
+  /**
+   * Pushes a single audio data frame to the buffer. This is usually less efficient than [pushBuffer] in C# and compiled languages via GDNative, but [pushFrame] may be *more* efficient in GDScript.
+   */
+  public open fun pushFrame(frame: Vector2): Boolean {
+    TransferContext.writeArguments(VECTOR2 to frame)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_PUSH_FRAME, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -44,12 +54,13 @@ public open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() 
   }
 
   /**
-   * Clears the audio sample data buffer.
+   * Pushes several audio data frames to the buffer. This is usually more efficient than [pushFrame] in C# and compiled languages via GDNative, but [pushBuffer] may be *less* efficient in GDScript.
    */
-  public open fun clearBuffer(): Unit {
-    TransferContext.writeArguments()
+  public open fun pushBuffer(frames: PackedVector2Array): Boolean {
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to frames)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_CLEAR_BUFFER, NIL)
+        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_PUSH_BUFFER, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -73,22 +84,13 @@ public open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() 
   }
 
   /**
-   * Pushes several audio data frames to the buffer. This is usually more efficient than [pushFrame] in C# and compiled languages via GDNative, but [pushBuffer] may be *less* efficient in GDScript.
+   * Clears the audio sample data buffer.
    */
-  public open fun pushBuffer(frames: PoolVector2Array): Boolean {
-    TransferContext.writeArguments(POOL_VECTOR2_ARRAY to frames)
+  public open fun clearBuffer(): Unit {
+    TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_PUSH_BUFFER, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_CLEAR_BUFFER, NIL)
   }
 
-  /**
-   * Pushes a single audio data frame to the buffer. This is usually less efficient than [pushBuffer] in C# and compiled languages via GDNative, but [pushFrame] may be *more* efficient in GDScript.
-   */
-  public open fun pushFrame(frame: Vector2): Boolean {
-    TransferContext.writeArguments(VECTOR2 to frame)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK_PUSH_FRAME, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
+  public companion object
 }

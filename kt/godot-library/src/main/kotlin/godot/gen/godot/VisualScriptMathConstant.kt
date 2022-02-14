@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -56,23 +56,5 @@ public open class VisualScriptMathConstant : VisualScriptNode() {
     }
   }
 
-  public companion object {
-    public final const val MATH_CONSTANT_E: Long = 4
-
-    public final const val MATH_CONSTANT_HALF_PI: Long = 2
-
-    public final const val MATH_CONSTANT_INF: Long = 6
-
-    public final const val MATH_CONSTANT_MAX: Long = 8
-
-    public final const val MATH_CONSTANT_NAN: Long = 7
-
-    public final const val MATH_CONSTANT_ONE: Long = 0
-
-    public final const val MATH_CONSTANT_PI: Long = 1
-
-    public final const val MATH_CONSTANT_SQRT2: Long = 5
-
-    public final const val MATH_CONSTANT_TAU: Long = 3
-  }
+  public companion object
 }

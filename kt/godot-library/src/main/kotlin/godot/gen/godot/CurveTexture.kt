@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -21,21 +21,7 @@ import kotlin.jvm.JvmName
  * Renders a given [godot.Curve] provided to it. Simplifies the task of drawing curves and/or saving them as image files.
  */
 @GodotBaseType
-public open class CurveTexture : Texture() {
-  /**
-   * The `curve` rendered onto the texture.
-   */
-  public open var curve: Curve?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_GET_CURVE, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Curve?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_SET_CURVE, NIL)
-    }
-
+public open class CurveTexture : Texture2D() {
   /**
    * The width of the texture.
    */
@@ -48,10 +34,63 @@ public open class CurveTexture : Texture() {
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_SET_WIDTH, NIL)
     }
 
+  /**
+   *
+   */
+  public open var textureMode: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_GET_TEXTURE_MODE,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_SET_TEXTURE_MODE,
+          NIL)
+    }
+
+  /**
+   * The `curve` rendered onto the texture.
+   */
+  public open var curve: Curve?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_GET_CURVE, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Curve?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVETEXTURE_SET_CURVE, NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CURVETEXTURE)
   }
 
-  public open fun _update(): Unit {
+  public enum class TextureMode(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    TEXTURE_MODE_RGB(0),
+    /**
+     *
+     */
+    TEXTURE_MODE_RED(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
   }
+
+  public companion object
 }

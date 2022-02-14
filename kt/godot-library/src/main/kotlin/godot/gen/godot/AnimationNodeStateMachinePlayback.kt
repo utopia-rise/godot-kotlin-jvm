@@ -1,21 +1,21 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.PoolStringArray
+import godot.core.PackedStringArray
+import godot.core.StringName
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
-import godot.core.VariantType.POOL_STRING_ARRAY
-import godot.core.VariantType.STRING
+import godot.core.VariantType.PACKED_STRING_ARRAY
+import godot.core.VariantType.STRING_NAME
 import kotlin.Boolean
 import kotlin.Double
-import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -23,16 +23,31 @@ import kotlin.Unit
  * Playback control for [godot.AnimationNodeStateMachine].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/3.4/tutorials/animation/animation_tree.html)
+ * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
  *
  * Allows control of [godot.AnimationTree] state machines created with [godot.AnimationNodeStateMachine]. Retrieve with `$AnimationTree.get("parameters/playback")`.
  *
  * **Example:**
  *
- * ```
- * 		var state_machine = $AnimationTree.get("parameters/playback")
- * 		state_machine.travel("some_state")
- * 		```
+ * [codeblocks]
+ *
+ * [gdscript]
+ *
+ * var state_machine = $AnimationTree.get("parameters/playback")
+ *
+ * state_machine.travel("some_state")
+ *
+ * [/gdscript]
+ *
+ * [csharp]
+ *
+ * var stateMachine = GetNode<AnimationTree>("AnimationTree").Get("parameters/playback") as AnimationNodeStateMachinePlayback;
+ *
+ * stateMachine.Travel("some_state");
+ *
+ * [/csharp]
+ *
+ * [/codeblocks]
  */
 @GodotBaseType
 public open class AnimationNodeStateMachinePlayback : Resource() {
@@ -41,62 +56,19 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   }
 
   /**
-   *
+   * Transitions from the current state to another one, following the shortest path.
    */
-  public open fun getCurrentLength(): Double {
-    TransferContext.writeArguments()
+  public open fun travel(toNode: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to toNode)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_LENGTH, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
-  }
-
-  /**
-   * Returns the currently playing animation state.
-   */
-  public open fun getCurrentNode(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_NODE, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
-  }
-
-  /**
-   * Returns the playback position within the current animation state.
-   */
-  public open fun getCurrentPlayPosition(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_PLAY_POSITION,
-        DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
-  }
-
-  /**
-   * Returns the current travel path as computed internally by the A* algorithm.
-   */
-  public open fun getTravelPath(): PoolStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_TRAVEL_PATH,
-        POOL_STRING_ARRAY)
-    return TransferContext.readReturnValue(POOL_STRING_ARRAY, false) as PoolStringArray
-  }
-
-  /**
-   * Returns `true` if an animation is playing.
-   */
-  public open fun isPlaying(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_IS_PLAYING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_TRAVEL, NIL)
   }
 
   /**
    * Starts playing the given animation.
    */
-  public open fun start(node: String): Unit {
-    TransferContext.writeArguments(STRING to node)
+  public open fun start(node: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to node)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_START, NIL)
   }
@@ -111,11 +83,56 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   }
 
   /**
-   * Transitions from the current state to another one, following the shortest path.
+   * Returns `true` if an animation is playing.
    */
-  public open fun travel(toNode: String): Unit {
-    TransferContext.writeArguments(STRING to toNode)
+  public open fun isPlaying(): Boolean {
+    TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_TRAVEL, NIL)
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_IS_PLAYING, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
+
+  /**
+   * Returns the currently playing animation state.
+   */
+  public open fun getCurrentNode(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_NODE, STRING_NAME)
+    return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+  }
+
+  /**
+   * Returns the playback position within the current animation state.
+   */
+  public open fun getCurrentPlayPosition(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_PLAY_POSITION,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   *
+   */
+  public open fun getCurrentLength(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_CURRENT_LENGTH, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Returns the current travel path as computed internally by the A* algorithm.
+   */
+  public open fun getTravelPath(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_GET_TRAVEL_PATH,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  public companion object
 }

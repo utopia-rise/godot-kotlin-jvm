@@ -1,22 +1,20 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.PoolStringArray
+import godot.core.PackedStringArray
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
-import godot.core.Vector2
 import godot.signals.Signal1
 import godot.signals.signal
-import kotlin.Any
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.String
@@ -29,6 +27,11 @@ import kotlin.Unit
 @GodotBaseType
 public open class EditorFileDialog : ConfirmationDialog() {
   /**
+   * Emitted when multiple files are selected.
+   */
+  public val filesSelected: Signal1<PackedStringArray> by signal("paths")
+
+  /**
    * Emitted when a directory is selected.
    */
   public val dirSelected: Signal1<String> by signal("dir")
@@ -37,11 +40,6 @@ public open class EditorFileDialog : ConfirmationDialog() {
    * Emitted when a file is selected.
    */
   public val fileSelected: Signal1<String> by signal("path")
-
-  /**
-   * Emitted when multiple files are selected.
-   */
-  public val filesSelected: Signal1<PoolStringArray> by signal("paths")
 
   /**
    * The location from which the user may select a file, including `res://`, `user://`, and the local file system.
@@ -55,6 +53,38 @@ public open class EditorFileDialog : ConfirmationDialog() {
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_SET_ACCESS, NIL)
+    }
+
+  /**
+   * The view format in which the [godot.EditorFileDialog] displays resources to the user.
+   */
+  public open var displayMode: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_DISPLAY_MODE,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_SET_DISPLAY_MODE,
+          NIL)
+    }
+
+  /**
+   * The dialog's open or save mode, which affects the selection behavior. See [enum FileMode]
+   */
+  public open var fileMode: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_FILE_MODE,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_SET_FILE_MODE,
+          NIL)
     }
 
   /**
@@ -106,52 +136,6 @@ public open class EditorFileDialog : ConfirmationDialog() {
     }
 
   /**
-   * If `true`, the [godot.EditorFileDialog] will not warn the user before overwriting files.
-   */
-  public open var disableOverwriteWarning: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_DISABLE_OVERWRITE_WARNING, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_SET_DISABLE_OVERWRITE_WARNING, NIL)
-    }
-
-  /**
-   * The view format in which the [godot.EditorFileDialog] displays resources to the user.
-   */
-  public open var displayMode: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_DISPLAY_MODE,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_SET_DISPLAY_MODE,
-          NIL)
-    }
-
-  /**
-   * The purpose of the [godot.EditorFileDialog], which defines the allowed behaviors.
-   */
-  public open var mode: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_MODE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_SET_MODE, NIL)
-    }
-
-  /**
    * If `true`, hidden files and directories will be visible in the [godot.EditorFileDialog].
    */
   public open var showHiddenFiles: Boolean
@@ -167,108 +151,32 @@ public open class EditorFileDialog : ConfirmationDialog() {
           ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_SET_SHOW_HIDDEN_FILES, NIL)
     }
 
+  /**
+   * If `true`, the [godot.EditorFileDialog] will not warn the user before overwriting files.
+   */
+  public open var disableOverwriteWarning: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_DISABLE_OVERWRITE_WARNING, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_SET_DISABLE_OVERWRITE_WARNING, NIL)
+    }
+
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORFILEDIALOG)
   }
 
-  public open fun _actionPressed(): Unit {
-  }
-
-  public open fun _cancelPressed(): Unit {
-  }
-
-  public open fun _dirEntered(arg0: String): Unit {
-  }
-
-  public open fun _favoriteMoveDown(): Unit {
-  }
-
-  public open fun _favoriteMoveUp(): Unit {
-  }
-
-  public open fun _favoritePressed(): Unit {
-  }
-
-  public open fun _favoriteSelected(arg0: Long): Unit {
-  }
-
-  public open fun _fileEntered(arg0: String): Unit {
-  }
-
-  public open fun _filterSelected(arg0: Long): Unit {
-  }
-
-  public open fun _goBack(): Unit {
-  }
-
-  public open fun _goForward(): Unit {
-  }
-
-  public open fun _goUp(): Unit {
-  }
-
-  public open fun _itemDbSelected(arg0: Long): Unit {
-  }
-
-  public open fun _itemListItemRmbSelected(arg0: Long, arg1: Vector2): Unit {
-  }
-
-  public open fun _itemListRmbClicked(arg0: Vector2): Unit {
-  }
-
-  public open fun _itemMenuIdPressed(arg0: Long): Unit {
-  }
-
-  public open fun _itemSelected(arg0: Long): Unit {
-  }
-
-  public open fun _itemsClearSelection(): Unit {
-  }
-
-  public open fun _makeDir(): Unit {
-  }
-
-  public open fun _makeDirConfirm(): Unit {
-  }
-
-  public open fun _multiSelected(arg0: Long, arg1: Boolean): Unit {
-  }
-
-  public open fun _recentSelected(arg0: Long): Unit {
-  }
-
-  public open fun _saveConfirmPressed(): Unit {
-  }
-
-  public open fun _selectDrive(arg0: Long): Unit {
-  }
-
-  public open fun _thumbnailDone(
-    arg0: String,
-    arg1: Texture,
-    arg2: Texture,
-    arg3: Any?
-  ): Unit {
-  }
-
-  public open fun _thumbnailResult(
-    arg0: String,
-    arg1: Texture,
-    arg2: Texture,
-    arg3: Any?
-  ): Unit {
-  }
-
-  public override fun _unhandledInput(event: InputEvent): Unit {
-  }
-
-  public open fun _updateDir(): Unit {
-  }
-
-  public open fun _updateFileList(): Unit {
-  }
-
-  public open fun _updateFileName(): Unit {
+  /**
+   * Removes all filters except for "All Files (*)".
+   */
+  public open fun clearFilters(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_CLEAR_FILTERS, NIL)
   }
 
   /**
@@ -279,14 +187,6 @@ public open class EditorFileDialog : ConfirmationDialog() {
   public open fun addFilter(filter: String): Unit {
     TransferContext.writeArguments(STRING to filter)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_ADD_FILTER, NIL)
-  }
-
-  /**
-   * Removes all filters except for "All Files (*)".
-   */
-  public open fun clearFilters(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_CLEAR_FILTERS, NIL)
   }
 
   /**
@@ -331,29 +231,29 @@ public open class EditorFileDialog : ConfirmationDialog() {
     }
   }
 
-  public enum class Mode(
+  public enum class FileMode(
     id: Long
   ) {
     /**
      * The [godot.EditorFileDialog] can select only one file. Accepting the window will open the file.
      */
-    MODE_OPEN_FILE(0),
+    FILE_MODE_OPEN_FILE(0),
     /**
      * The [godot.EditorFileDialog] can select multiple files. Accepting the window will open all files.
      */
-    MODE_OPEN_FILES(1),
+    FILE_MODE_OPEN_FILES(1),
     /**
      * The [godot.EditorFileDialog] can select only one directory. Accepting the window will open the directory.
      */
-    MODE_OPEN_DIR(2),
+    FILE_MODE_OPEN_DIR(2),
     /**
      * The [godot.EditorFileDialog] can select a file or directory. Accepting the window will open it.
      */
-    MODE_OPEN_ANY(3),
+    FILE_MODE_OPEN_ANY(3),
     /**
      * The [godot.EditorFileDialog] can select only one file. Accepting the window will save the file.
      */
-    MODE_SAVE_FILE(4),
+    FILE_MODE_SAVE_FILE(4),
     ;
 
     public val id: Long
@@ -393,55 +293,5 @@ public open class EditorFileDialog : ConfirmationDialog() {
     }
   }
 
-  public companion object {
-    /**
-     * The [godot.EditorFileDialog] can view the entire local file system.
-     */
-    public final const val ACCESS_FILESYSTEM: Long = 2
-
-    /**
-     * The [godot.EditorFileDialog] can only view `res://` directory contents.
-     */
-    public final const val ACCESS_RESOURCES: Long = 0
-
-    /**
-     * The [godot.EditorFileDialog] can only view `user://` directory contents.
-     */
-    public final const val ACCESS_USERDATA: Long = 1
-
-    /**
-     * The [godot.EditorFileDialog] displays resources as a list of filenames.
-     */
-    public final const val DISPLAY_LIST: Long = 1
-
-    /**
-     * The [godot.EditorFileDialog] displays resources as thumbnails.
-     */
-    public final const val DISPLAY_THUMBNAILS: Long = 0
-
-    /**
-     * The [godot.EditorFileDialog] can select a file or directory. Accepting the window will open it.
-     */
-    public final const val MODE_OPEN_ANY: Long = 3
-
-    /**
-     * The [godot.EditorFileDialog] can select only one directory. Accepting the window will open the directory.
-     */
-    public final const val MODE_OPEN_DIR: Long = 2
-
-    /**
-     * The [godot.EditorFileDialog] can select only one file. Accepting the window will open the file.
-     */
-    public final const val MODE_OPEN_FILE: Long = 0
-
-    /**
-     * The [godot.EditorFileDialog] can select multiple files. Accepting the window will open all files.
-     */
-    public final const val MODE_OPEN_FILES: Long = 1
-
-    /**
-     * The [godot.EditorFileDialog] can select only one file. Accepting the window will save the file.
-     */
-    public final const val MODE_SAVE_FILE: Long = 4
-  }
+  public companion object
 }

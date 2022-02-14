@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -26,6 +26,22 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class CollisionShape2D : Node2D() {
+  /**
+   * The actual shape owned by this collision shape.
+   */
+  public open var shape: Shape2D?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_GET_SHAPE,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Shape2D?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_SET_SHAPE, NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
+    }
+
   /**
    * A disabled collision shape has no effect in the world. This property should be changed with [godot.Object.setDeferred].
    */
@@ -74,25 +90,9 @@ public open class CollisionShape2D : Node2D() {
           ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_SET_ONE_WAY_COLLISION_MARGIN, NIL)
     }
 
-  /**
-   * The actual shape owned by this collision shape.
-   */
-  public open var shape: Shape2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_GET_SHAPE,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as Shape2D?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_SET_SHAPE, NIL)
-    }
-
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_COLLISIONSHAPE2D)
   }
 
-  public open fun _shapeChanged(): Unit {
-  }
+  public companion object
 }

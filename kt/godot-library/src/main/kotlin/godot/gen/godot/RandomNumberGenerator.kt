@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -19,9 +19,9 @@ import kotlin.Unit
  * A class for generating pseudo-random numbers.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/math/random_number_generation.html](https://docs.godotengine.org/en/3.4/tutorials/math/random_number_generation.html)
+ * [$DOCS_URL/tutorials/math/random_number_generation.html]($DOCS_URL/tutorials/math/random_number_generation.html)
  *
- * RandomNumberGenerator is a class for generating pseudo-random numbers. It currently uses [godot.PCG32](http://www.pcg-random.org/).
+ * RandomNumberGenerator is a class for generating pseudo-random numbers. It currently uses [godot.PCG32](https://www.pcg-random.org/).
  *
  * **Note:** The underlying algorithm is an implementation detail. As a result, it should not be depended upon for reproducible random streams across Godot versions.
  *
@@ -37,7 +37,7 @@ import kotlin.Unit
  * **Note:** The default values of [seed] and [state] properties are pseudo-random, and changes when calling [randomize]. The `0` value documented here is a placeholder, and not the actual default seed.
  */
 @GodotBaseType
-public open class RandomNumberGenerator : Reference() {
+public open class RandomNumberGenerator : RefCounted() {
   /**
    * Initializes the random number generator state based on the given seed value. A given seed will give a reproducible sequence of pseudo-random numbers.
    *
@@ -50,8 +50,6 @@ public open class RandomNumberGenerator : Reference() {
    * 			rng.seed = hash("Godot")
    * 			rng.state = 100 # Restore to some previously saved state.
    * 			```
-   *
-   * **Warning:** the getter of this property returns the previous [state], and not the initial seed value, which is going to be fixed in Godot 4.0.
    */
   public open var seed: Long
     get() {
@@ -98,7 +96,16 @@ public open class RandomNumberGenerator : Reference() {
   }
 
   /**
-   * Generates a pseudo-random float between `0.0` and `1.0` (inclusive).
+   * Returns a pseudo-random 32-bit unsigned integer between `0` and `4294967295` (inclusive).
+   */
+  public open fun randi(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDI, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns a pseudo-random float between `0.0` and `1.0` (inclusive).
    */
   public open fun randf(): Double {
     TransferContext.writeArguments()
@@ -107,17 +114,7 @@ public open class RandomNumberGenerator : Reference() {
   }
 
   /**
-   * Generates a pseudo-random float between `from` and `to` (inclusive).
-   */
-  public open fun randfRange(from: Double, to: Double): Double {
-    TransferContext.writeArguments(DOUBLE to from, DOUBLE to to)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDF_RANGE,
-        DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
-  }
-
-  /**
-   * Generates a [normally-distributed](https://en.wikipedia.org/wiki/Normal_distribution) pseudo-random number, using Box-Muller transform with the specified `mean` and a standard `deviation`. This is also called Gaussian distribution.
+   * Returns a [normally-distributed](https://en.wikipedia.org/wiki/Normal_distribution) pseudo-random number, using Box-Muller transform with the specified `mean` and a standard `deviation`. This is also called Gaussian distribution.
    */
   public open fun randfn(mean: Double = 0.0, deviation: Double = 1.0): Double {
     TransferContext.writeArguments(DOUBLE to mean, DOUBLE to deviation)
@@ -127,16 +124,17 @@ public open class RandomNumberGenerator : Reference() {
   }
 
   /**
-   * Generates a pseudo-random 32-bit unsigned integer between `0` and `4294967295` (inclusive).
+   * Returns a pseudo-random float between `from` and `to` (inclusive).
    */
-  public open fun randi(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDI, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+  public open fun randfRange(from: Double, to: Double): Double {
+    TransferContext.writeArguments(DOUBLE to from, DOUBLE to to)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDF_RANGE,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
-   * Generates a pseudo-random 32-bit signed integer between `from` and `to` (inclusive).
+   * Returns a pseudo-random 32-bit signed integer between `from` and `to` (inclusive).
    */
   public open fun randiRange(from: Long, to: Long): Long {
     TransferContext.writeArguments(LONG to from, LONG to to)
@@ -146,11 +144,13 @@ public open class RandomNumberGenerator : Reference() {
   }
 
   /**
-   * Setups a time-based seed to generator.
+   * Setups a time-based seed to for this [godot.RandomNumberGenerator] instance. Unlike the [@GlobalScope] random number generation functions, different [godot.RandomNumberGenerator] instances can use different seeds.
    */
   public open fun randomize(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANDOMNUMBERGENERATOR_RANDOMIZE,
         NIL)
   }
+
+  public companion object
 }

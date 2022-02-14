@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -45,12 +45,5 @@ public open class ScrollBar : Range() {
     callConstructor(ENGINECLASS_SCROLLBAR)
   }
 
-  public open fun _dragNodeExit(): Unit {
-  }
-
-  public open fun _dragNodeInput(arg0: InputEvent): Unit {
-  }
-
-  public override fun _guiInput(event: InputEvent): Unit {
-  }
+  public companion object
 }

@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -17,7 +17,7 @@ import kotlin.Unit
  * Blends two of three animations linearly inside of an [godot.AnimationNodeBlendTree].
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/animation/animation_tree.html](https://docs.godotengine.org/en/3.4/tutorials/animation/animation_tree.html)
+ * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
  *
  * A resource to add to an [godot.AnimationNodeBlendTree]. Blends two animations together linearly out of three based on a value in the `[-1.0, 1.0]` range.
  *
@@ -49,4 +49,6 @@ public open class AnimationNodeBlend3 : AnimationNode() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODEBLEND3)
   }
+
+  public companion object
 }

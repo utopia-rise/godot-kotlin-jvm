@@ -1,17 +1,19 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
+import godot.core.PackedStringArray
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import kotlin.Boolean
 import kotlin.Int
@@ -24,121 +26,167 @@ import kotlin.Unit
  * Type used to handle the filesystem.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/scripting/filesystem.html](https://docs.godotengine.org/en/3.4/tutorials/scripting/filesystem.html)
+ * [$DOCS_URL/tutorials/scripting/filesystem.html]($DOCS_URL/tutorials/scripting/filesystem.html)
  *
  * Directory type. It is used to manage directories and their content (not restricted to the project folder).
  *
- * When creating a new [godot.Directory], its default opened directory will be `res://`. This may change in the future, so it is advised to always use [open] to initialize your [godot.Directory] where you want to operate, with explicit error checking.
+ * When creating a new [godot.Directory], it must be explicitly opened using [open] before most methods can be used. However, [fileExists] and [dirExists] can be used without opening a directory. If so, they use a path relative to `res://`.
  *
  * **Note:** Many resources types are imported (e.g. textures or sound files), and their source asset will not be included in the exported game, as only the imported version is used. Use [godot.ResourceLoader] to access imported resources.
  *
  * Here is an example on how to iterate through the files of a directory:
  *
- * ```
- * 		func dir_contents(path):
- * 		    var dir = Directory.new()
- * 		    if dir.open(path) == OK:
- * 		        dir.list_dir_begin()
- * 		        var file_name = dir.get_next()
- * 		        while file_name != "":
- * 		            if dir.current_is_dir():
- * 		                print("Found directory: " + file_name)
- * 		            else:
- * 		                print("Found file: " + file_name)
- * 		            file_name = dir.get_next()
- * 		    else:
- * 		        print("An error occurred when trying to access the path.")
- * 		```
+ * [codeblocks]
+ *
+ * [gdscript]
+ *
+ * func dir_contents(path):
+ *
+ *     var dir = Directory.new()
+ *
+ *     if dir.open(path) == OK:
+ *
+ *         dir.list_dir_begin()
+ *
+ *         var file_name = dir.get_next()
+ *
+ *         while file_name != "":
+ *
+ *             if dir.current_is_dir():
+ *
+ *                 print("Found directory: " + file_name)
+ *
+ *             else:
+ *
+ *                 print("Found file: " + file_name)
+ *
+ *             file_name = dir.get_next()
+ *
+ *     else:
+ *
+ *         print("An error occurred when trying to access the path.")
+ *
+ * [/gdscript]
+ *
+ * [csharp]
+ *
+ * public void DirContents(string path)
+ *
+ * {
+ *
+ *     var dir = new Directory();
+ *
+ *     if (dir.Open(path) == Error.Ok)
+ *
+ *     {
+ *
+ *         dir.ListDirBegin();
+ *
+ *         string fileName = dir.GetNext();
+ *
+ *         while (fileName != "")
+ *
+ *         {
+ *
+ *             if (dir.CurrentIsDir())
+ *
+ *             {
+ *
+ *                 GD.Print("Found directory: " + fileName);
+ *
+ *             }
+ *
+ *             else
+ *
+ *             {
+ *
+ *                 GD.Print("Found file: " + fileName);
+ *
+ *             }
+ *
+ *             fileName = dir.GetNext();
+ *
+ *         }
+ *
+ *     }
+ *
+ *     else
+ *
+ *     {
+ *
+ *         GD.Print("An error occurred when trying to access the path.");
+ *
+ *     }
+ *
+ * }
+ *
+ * [/csharp]
+ *
+ * [/codeblocks]
  */
 @GodotBaseType
-public open class Directory : Reference() {
+public open class Directory : RefCounted() {
+  /**
+   * If `true`, `.` and `..` are included when navigating the directory.
+   *
+   * Affects [listDirBegin] and [getDirectories].
+   */
+  public open var includeNavigational: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_INCLUDE_NAVIGATIONAL, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_DIRECTORY_SET_INCLUDE_NAVIGATIONAL, NIL)
+    }
+
+  /**
+   * If `true`, hidden files are included when the navigating directory.
+   *
+   * Affects [listDirBegin], [getDirectories] and [getFiles].
+   */
+  public open var includeHidden: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_INCLUDE_HIDDEN,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_SET_INCLUDE_HIDDEN, NIL)
+    }
+
   public override fun __new(): Unit {
-    callConstructor(ENGINECLASS__DIRECTORY)
+    callConstructor(ENGINECLASS_DIRECTORY)
   }
 
   /**
-   * Changes the currently opened directory to the one passed as an argument. The argument can be relative to the current directory (e.g. `newdir` or `../newdir`), or an absolute path (e.g. `/tmp/newdir` or `res://somedir/newdir`).
+   * Opens an existing directory of the filesystem. The `path` argument can be within the project tree (`res://folder`), the user directory (`user://folder`) or an absolute path of the user filesystem (e.g. `/tmp/folder` or `C:\tmp\folder`).
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  public open fun changeDir(todir: String): GodotError {
-    TransferContext.writeArguments(STRING to todir)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_CHANGE_DIR, LONG)
+  public open fun `open`(path: String): GodotError {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_OPEN, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
-   * Copies the `from` file to the `to` destination. Both arguments should be paths to files, either relative or absolute. If the destination file exists and is not access-protected, it will be overwritten.
+   * Initializes the stream used to list all files and directories using the [getNext] function, closing the currently opened stream if needed. Once the stream has been processed, it should typically be closed with [listDirEnd].
    *
-   * Returns one of the [enum Error] code constants (`OK` on success).
+   * Affected by [includeHidden] and [includeNavigational].
+   *
+   * **Note:** The order of files and directories returned by this method is not deterministic, and can vary between operating systems. If you want a list of all files or folders sorted alphabetically, use [getFiles] or [getDirectories].
    */
-  public open fun copy(from: String, to: String): GodotError {
-    TransferContext.writeArguments(STRING to from, STRING to to)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_COPY, LONG)
+  public open fun listDirBegin(): GodotError {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_LIST_DIR_BEGIN, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
-  }
-
-  /**
-   * Returns whether the current item processed with the last [getNext] call is a directory (`.` and `..` are considered directories).
-   */
-  public open fun currentIsDir(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_CURRENT_IS_DIR, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns whether the target directory exists. The argument can be relative to the current directory, or an absolute path.
-   */
-  public open fun dirExists(path: String): Boolean {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_DIR_EXISTS, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns whether the target file exists. The argument can be relative to the current directory, or an absolute path.
-   */
-  public open fun fileExists(path: String): Boolean {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_FILE_EXISTS, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns the absolute path to the currently opened directory (e.g. `res://folder` or `C:\tmp\folder`).
-   */
-  public open fun getCurrentDir(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_GET_CURRENT_DIR, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
-  }
-
-  /**
-   * Returns the currently opened directory's drive index. See [getDrive] to convert returned index to the name of the drive.
-   */
-  public open fun getCurrentDrive(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_GET_CURRENT_DRIVE, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  /**
-   * On Windows, returns the name of the drive (partition) passed as an argument (e.g. `C:`). On other platforms, or if the requested drive does not exist, the method returns an empty String.
-   */
-  public open fun getDrive(idx: Long): String {
-    TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_GET_DRIVE, STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
-  }
-
-  /**
-   * On Windows, returns the number of drives (partitions) mounted on the current filesystem. On other platforms, the method returns 0.
-   */
-  public open fun getDriveCount(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_GET_DRIVE_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
@@ -148,31 +196,17 @@ public open class Directory : Reference() {
    */
   public open fun getNext(): String {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_GET_NEXT, STRING)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_NEXT, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**
-   * On UNIX desktop systems, returns the available space on the current directory's disk. On other platforms, this information is not available and the method returns 0 or -1.
+   * Returns whether the current item processed with the last [getNext] call is a directory (`.` and `..` are considered directories).
    */
-  public open fun getSpaceLeft(): Long {
+  public open fun currentIsDir(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_GET_SPACE_LEFT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  /**
-   * Initializes the stream used to list all files and directories using the [getNext] function, closing the currently opened stream if needed. Once the stream has been processed, it should typically be closed with [listDirEnd].
-   *
-   * If `skip_navigational` is `true`, `.` and `..` are filtered out.
-   *
-   * If `skip_hidden` is `true`, hidden files are filtered out.
-   */
-  public open fun listDirBegin(skipNavigational: Boolean = false, skipHidden: Boolean = false):
-      GodotError {
-    TransferContext.writeArguments(BOOL to skipNavigational, BOOL to skipHidden)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_LIST_DIR_BEGIN, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_CURRENT_IS_DIR, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -180,7 +214,90 @@ public open class Directory : Reference() {
    */
   public open fun listDirEnd(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_LIST_DIR_END, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_LIST_DIR_END, NIL)
+  }
+
+  /**
+   * Returns a [godot.PackedStringArray] containing filenames of the directory contents, excluding directories. The array is sorted alphabetically.
+   *
+   * Affected by [includeHidden].
+   */
+  public open fun getFiles(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_FILES,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * Returns a [godot.PackedStringArray] containing filenames of the directory contents, excluding files. The array is sorted alphabetically.
+   *
+   * Affected by [includeHidden] and [includeNavigational].
+   */
+  public open fun getDirectories(): PackedStringArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_DIRECTORIES,
+        PACKED_STRING_ARRAY)
+    return TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray
+  }
+
+  /**
+   * On Windows, returns the number of drives (partitions) mounted on the current filesystem.
+   *
+   * On macOS, returns the number of mounted volumes.
+   *
+   * On Linux, returns the number of mounted volumes and GTK 3 bookmarks.
+   *
+   * On other platforms, the method returns 0.
+   */
+  public open fun getDriveCount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_DRIVE_COUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * On Windows, returns the name of the drive (partition) passed as an argument (e.g. `C:`).
+   *
+   * On macOS, returns the path to the mounted volume passed as an argument.
+   *
+   * On Linux, returns the path to the mounted volume or GTK 3 bookmark passed as an argument.
+   *
+   * On other platforms, or if the requested drive does not exist, the method returns an empty String.
+   */
+  public open fun getDrive(idx: Long): String {
+    TransferContext.writeArguments(LONG to idx)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_DRIVE, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Returns the currently opened directory's drive index. See [getDrive] to convert returned index to the name of the drive.
+   */
+  public open fun getCurrentDrive(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_CURRENT_DRIVE, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Changes the currently opened directory to the one passed as an argument. The argument can be relative to the current directory (e.g. `newdir` or `../newdir`), or an absolute path (e.g. `/tmp/newdir` or `res://somedir/newdir`).
+   *
+   * Returns one of the [enum Error] code constants (`OK` on success).
+   */
+  public open fun changeDir(todir: String): GodotError {
+    TransferContext.writeArguments(STRING to todir)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_CHANGE_DIR, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Returns the absolute path to the currently opened directory (e.g. `res://folder` or `C:\tmp\folder`).
+   */
+  public open fun getCurrentDir(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_CURRENT_DIR, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**
@@ -190,7 +307,7 @@ public open class Directory : Reference() {
    */
   public open fun makeDir(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_MAKE_DIR, LONG)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_MAKE_DIR, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -201,29 +318,49 @@ public open class Directory : Reference() {
    */
   public open fun makeDirRecursive(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_MAKE_DIR_RECURSIVE, LONG)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_MAKE_DIR_RECURSIVE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
-   * Opens an existing directory of the filesystem. The `path` argument can be within the project tree (`res://folder`), the user directory (`user://folder`) or an absolute path of the user filesystem (e.g. `/tmp/folder` or `C:\tmp\folder`).
+   * Returns whether the target file exists. The argument can be relative to the current directory, or an absolute path.
    *
-   * Returns one of the [enum Error] code constants (`OK` on success).
+   * If the [godot.Directory] is not open, the path is relative to `res://`.
    */
-  public open fun `open`(path: String): GodotError {
+  public open fun fileExists(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_OPEN, LONG)
-    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_FILE_EXISTS, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Deletes the target file or an empty directory. The argument can be relative to the current directory, or an absolute path. If the target directory is not empty, the operation will fail.
+   * Returns whether the target directory exists. The argument can be relative to the current directory, or an absolute path.
+   *
+   * If the [godot.Directory] is not open, the path is relative to `res://`.
+   */
+  public open fun dirExists(path: String): Boolean {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_DIR_EXISTS, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * On UNIX desktop systems, returns the available space on the current directory's disk. On other platforms, this information is not available and the method returns 0 or -1.
+   */
+  public open fun getSpaceLeft(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_GET_SPACE_LEFT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Copies the `from` file to the `to` destination. Both arguments should be paths to files, either relative or absolute. If the destination file exists and is not access-protected, it will be overwritten.
    *
    * Returns one of the [enum Error] code constants (`OK` on success).
    */
-  public open fun remove(path: String): GodotError {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_REMOVE, LONG)
+  public open fun copy(from: String, to: String): GodotError {
+    TransferContext.writeArguments(STRING to from, STRING to to)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_COPY, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
@@ -234,7 +371,20 @@ public open class Directory : Reference() {
    */
   public open fun rename(from: String, to: String): GodotError {
     TransferContext.writeArguments(STRING to from, STRING to to)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS__DIRECTORY_RENAME, LONG)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_RENAME, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
+
+  /**
+   * Deletes the target file or an empty directory. The argument can be relative to the current directory, or an absolute path. If the target directory is not empty, the operation will fail.
+   *
+   * Returns one of the [enum Error] code constants (`OK` on success).
+   */
+  public open fun remove(path: String): GodotError {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTORY_REMOVE, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  public companion object
 }

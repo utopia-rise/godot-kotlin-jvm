@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -26,9 +26,11 @@ import kotlin.Unit
  * SSL stream peer.
  *
  * Tutorials:
- * [https://docs.godotengine.org/en/3.4/tutorials/networking/ssl_certificates.html](https://docs.godotengine.org/en/3.4/tutorials/networking/ssl_certificates.html)
+ * [$DOCS_URL/tutorials/networking/ssl_certificates.html]($DOCS_URL/tutorials/networking/ssl_certificates.html)
  *
  * SSL stream peer. This object can be used to connect to an SSL server or accept a single SSL client connection.
+ *
+ * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  */
 @GodotBaseType
 public open class StreamPeerSSL : StreamPeer() {
@@ -50,6 +52,14 @@ public open class StreamPeerSSL : StreamPeer() {
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_STREAMPEERSSL)
+  }
+
+  /**
+   * Poll the connection to check for incoming bytes. Call this right before [godot.StreamPeer.getAvailableBytes] for it to work properly.
+   */
+  public open fun poll(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_POLL, NIL)
   }
 
   /**
@@ -86,15 +96,6 @@ public open class StreamPeerSSL : StreamPeer() {
   }
 
   /**
-   * Disconnects from host.
-   */
-  public open fun disconnectFromStream(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_DISCONNECT_FROM_STREAM, NIL)
-  }
-
-  /**
    * Returns the status of the connection. See [enum Status] for values.
    */
   public open fun getStatus(): StreamPeerSSL.Status {
@@ -104,11 +105,12 @@ public open class StreamPeerSSL : StreamPeer() {
   }
 
   /**
-   * Poll the connection to check for incoming bytes. Call this right before [godot.StreamPeer.getAvailableBytes] for it to work properly.
+   * Disconnects from host.
    */
-  public open fun poll(): Unit {
+  public open fun disconnectFromStream(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_POLL, NIL)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_DISCONNECT_FROM_STREAM, NIL)
   }
 
   public enum class Status(
@@ -146,30 +148,5 @@ public open class StreamPeerSSL : StreamPeer() {
     }
   }
 
-  public companion object {
-    /**
-     * A status representing a [godot.StreamPeerSSL] that is connected to a host.
-     */
-    public final const val STATUS_CONNECTED: Long = 2
-
-    /**
-     * A status representing a [godot.StreamPeerSSL] that is disconnected.
-     */
-    public final const val STATUS_DISCONNECTED: Long = 0
-
-    /**
-     * A status representing a [godot.StreamPeerSSL] in error state.
-     */
-    public final const val STATUS_ERROR: Long = 3
-
-    /**
-     * An error status that shows a mismatch in the SSL certificate domain presented by the host and the domain requested for validation.
-     */
-    public final const val STATUS_ERROR_HOSTNAME_MISMATCH: Long = 4
-
-    /**
-     * A status representing a [godot.StreamPeerSSL] during handshaking.
-     */
-    public final const val STATUS_HANDSHAKING: Long = 1
-  }
+  public companion object
 }

@@ -1,18 +1,18 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.PoolVector2Array
+import godot.core.PackedVector2Array
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.core.VariantType.POOL_VECTOR2_ARRAY
+import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
@@ -59,6 +59,18 @@ public open class AudioEffectCapture : AudioEffect() {
   }
 
   /**
+   * Gets the next `frames` audio samples from the internal ring buffer.
+   *
+   * Returns a [godot.PackedVector2Array] containing exactly `frames` audio samples if available, or an empty [godot.PackedVector2Array] if insufficient data was available.
+   */
+  public open fun getBuffer(frames: Long): PackedVector2Array {
+    TransferContext.writeArguments(LONG to frames)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCAPTURE_GET_BUFFER,
+        PACKED_VECTOR2_ARRAY)
+    return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
+  }
+
+  /**
    * Clears the internal ring buffer.
    */
   public open fun clearBuffer(): Unit {
@@ -68,24 +80,12 @@ public open class AudioEffectCapture : AudioEffect() {
   }
 
   /**
-   * Gets the next `frames` audio samples from the internal ring buffer.
-   *
-   * Returns a [godot.core.PoolVector2Array] containing exactly `frames` audio samples if available, or an empty [godot.core.PoolVector2Array] if insufficient data was available.
+   * Returns the number of frames available to read using [getBuffer].
    */
-  public open fun getBuffer(frames: Long): PoolVector2Array {
-    TransferContext.writeArguments(LONG to frames)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCAPTURE_GET_BUFFER,
-        POOL_VECTOR2_ARRAY)
-    return TransferContext.readReturnValue(POOL_VECTOR2_ARRAY, false) as PoolVector2Array
-  }
-
-  /**
-   * Returns the total size of the internal ring buffer in frames.
-   */
-  public open fun getBufferLengthFrames(): Long {
+  public open fun getFramesAvailable(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCAPTURE_GET_BUFFER_LENGTH_FRAMES, LONG)
+        ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCAPTURE_GET_FRAMES_AVAILABLE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -100,12 +100,12 @@ public open class AudioEffectCapture : AudioEffect() {
   }
 
   /**
-   * Returns the number of frames available to read using [getBuffer].
+   * Returns the total size of the internal ring buffer in frames.
    */
-  public open fun getFramesAvailable(): Long {
+  public open fun getBufferLengthFrames(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCAPTURE_GET_FRAMES_AVAILABLE, LONG)
+        ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCAPTURE_GET_BUFFER_LENGTH_FRAMES, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -118,4 +118,6 @@ public open class AudioEffectCapture : AudioEffect() {
         ENGINEMETHOD_ENGINECLASS_AUDIOEFFECTCAPTURE_GET_PUSHED_FRAMES, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
+
+  public companion object
 }

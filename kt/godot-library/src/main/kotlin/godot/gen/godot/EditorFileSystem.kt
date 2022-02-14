@@ -1,12 +1,12 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.PoolStringArray
+import godot.core.PackedStringArray
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
@@ -32,37 +32,27 @@ import kotlin.Unit
 @GodotBaseType
 public open class EditorFileSystem : Node() {
   /**
-   * Emitted if the filesystem changed.
-   */
-  public val filesystemChanged: Signal0 by signal()
-
-  /**
    * Emitted if a resource is reimported.
    */
-  public val resourcesReimported: Signal1<PoolStringArray> by signal("resources")
-
-  /**
-   * Emitted if at least one resource is reloaded when the filesystem is scanned.
-   */
-  public val resourcesReload: Signal1<PoolStringArray> by signal("resources")
+  public val resourcesReimported: Signal1<PackedStringArray> by signal("resources")
 
   /**
    * Emitted if the source of any imported file changed.
    */
   public val sourcesChanged: Signal1<Boolean> by signal("exist")
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_EDITORFILESYSTEM)
-  }
+  /**
+   * Emitted if the filesystem changed.
+   */
+  public val filesystemChanged: Signal0 by signal()
 
   /**
-   * Returns the resource type of the file, given the full path. This returns a string such as `"Resource"` or `"GDScript"`, *not* a file extension such as `".gd"`.
+   * Emitted if at least one resource is reloaded when the filesystem is scanned.
    */
-  public open fun getFileType(path: String): String {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_FILE_TYPE,
-        STRING)
-    return TransferContext.readReturnValue(STRING, false) as String
+  public val resourcesReload: Signal1<PackedStringArray> by signal("resources")
+
+  public override fun __new(): Unit {
+    callConstructor(ENGINECLASS_EDITORFILESYSTEM)
   }
 
   /**
@@ -76,13 +66,12 @@ public open class EditorFileSystem : Node() {
   }
 
   /**
-   * Returns a view into the filesystem at `path`.
+   * Returns `true` of the filesystem is being scanned.
    */
-  public open fun getFilesystemPath(path: String): EditorFileSystemDirectory? {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_FILESYSTEM_PATH, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as EditorFileSystemDirectory?
+  public open fun isScanning(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_IS_SCANNING, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -93,15 +82,6 @@ public open class EditorFileSystem : Node() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_SCANNING_PROGRESS, DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
-  }
-
-  /**
-   * Returns `true` of the filesystem is being scanned.
-   */
-  public open fun isScanning(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_IS_SCANNING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -129,6 +109,26 @@ public open class EditorFileSystem : Node() {
   }
 
   /**
+   * Returns a view into the filesystem at `path`.
+   */
+  public open fun getFilesystemPath(path: String): EditorFileSystemDirectory? {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_FILESYSTEM_PATH, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as EditorFileSystemDirectory?
+  }
+
+  /**
+   * Returns the resource type of the file, given the full path. This returns a string such as `"Resource"` or `"GDScript"`, *not* a file extension such as `".gd"`.
+   */
+  public open fun getFileType(path: String): String {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_GET_FILE_TYPE,
+        STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
    * Scans the script files and updates the list of custom class names.
    */
   public open fun updateScriptClasses(): Unit {
@@ -136,4 +136,6 @@ public open class EditorFileSystem : Node() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORFILESYSTEM_UPDATE_SCRIPT_CLASSES, NIL)
   }
+
+  public companion object
 }

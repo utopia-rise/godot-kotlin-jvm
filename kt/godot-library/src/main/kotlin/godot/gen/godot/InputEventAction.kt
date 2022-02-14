@@ -1,19 +1,19 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.StringName
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
-import godot.core.VariantType.STRING
+import godot.core.VariantType.STRING_NAME
 import kotlin.Boolean
 import kotlin.Double
-import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -31,15 +31,15 @@ public open class InputEventAction : InputEvent() {
   /**
    * The action's name. Actions are accessed via this [godot.String].
    */
-  public open var action: String
+  public open var action: StringName
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTACTION_GET_ACTION,
-          STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
+          STRING_NAME)
+      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
     }
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
+      TransferContext.writeArguments(STRING_NAME to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENTACTION_SET_ACTION, NIL)
     }
 
@@ -74,4 +74,6 @@ public open class InputEventAction : InputEvent() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTACTION)
   }
+
+  public companion object
 }

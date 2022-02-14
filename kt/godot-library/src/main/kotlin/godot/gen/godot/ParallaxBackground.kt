@@ -1,14 +1,12 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
-import godot.core.Transform2D
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.NIL
 import godot.core.VariantType.VECTOR2
@@ -24,6 +22,22 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class ParallaxBackground : CanvasLayer() {
+  /**
+   * The ParallaxBackground's scroll value. Calculated automatically when using a [godot.Camera2D], but can be used to manually manage scrolling when no camera is present.
+   */
+  public open var scrollOffset: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_SCROLL_OFFSET, VECTOR2)
+      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_SCROLL_OFFSET, NIL)
+    }
+
   /**
    * The base position offset for all [godot.ParallaxLayer] children.
    */
@@ -54,22 +68,6 @@ public open class ParallaxBackground : CanvasLayer() {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_SCROLL_BASE_SCALE, NIL)
-    }
-
-  /**
-   * If `true`, elements in [godot.ParallaxLayer] child aren't affected by the zoom level of the camera.
-   */
-  public open var scrollIgnoreCameraZoom: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_SCROLL_IGNORE_CAMERA_ZOOM, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_SCROLL_IGNORE_CAMERA_ZOOM, NIL)
     }
 
   /**
@@ -105,60 +103,24 @@ public open class ParallaxBackground : CanvasLayer() {
     }
 
   /**
-   * The ParallaxBackground's scroll value. Calculated automatically when using a [godot.Camera2D], but can be used to manually manage scrolling when no camera is present.
+   * If `true`, elements in [godot.ParallaxLayer] child aren't affected by the zoom level of the camera.
    */
-  public open var scrollOffset: Vector2
+  public open var scrollIgnoreCameraZoom: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_SCROLL_OFFSET, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_SCROLL_IGNORE_CAMERA_ZOOM, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_SCROLL_OFFSET, NIL)
+          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_SCROLL_IGNORE_CAMERA_ZOOM, NIL)
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PARALLAXBACKGROUND)
   }
 
-  @CoreTypeHelper
-  public open fun scrollBaseOffset(schedule: Vector2.() -> Unit): Vector2 = scrollBaseOffset.apply{
-      schedule(this)
-      scrollBaseOffset = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun scrollBaseScale(schedule: Vector2.() -> Unit): Vector2 = scrollBaseScale.apply{
-      schedule(this)
-      scrollBaseScale = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun scrollLimitBegin(schedule: Vector2.() -> Unit): Vector2 = scrollLimitBegin.apply{
-      schedule(this)
-      scrollLimitBegin = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun scrollLimitEnd(schedule: Vector2.() -> Unit): Vector2 = scrollLimitEnd.apply{
-      schedule(this)
-      scrollLimitEnd = this
-  }
-
-
-  @CoreTypeHelper
-  public open fun scrollOffset(schedule: Vector2.() -> Unit): Vector2 = scrollOffset.apply{
-      schedule(this)
-      scrollOffset = this
-  }
-
-
-  public open fun _cameraMoved(arg0: Transform2D, arg1: Vector2): Unit {
-  }
+  public companion object
 }

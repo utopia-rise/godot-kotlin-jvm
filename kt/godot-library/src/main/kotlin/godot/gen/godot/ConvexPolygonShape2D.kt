@@ -1,15 +1,15 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.PoolVector2Array
+import godot.core.PackedVector2Array
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
-import godot.core.VariantType.POOL_VECTOR2_ARRAY
+import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -23,17 +23,17 @@ import kotlin.Unit
 @GodotBaseType
 public open class ConvexPolygonShape2D : Shape2D() {
   /**
-   * The polygon's list of vertices. Can be in either clockwise or counterclockwise order.
+   * The polygon's list of vertices. Can be in either clockwise or counterclockwise order. Only set this property with convex hull points, use [setPointCloud] to generate a convex hull shape from concave shape points.
    */
-  public open var points: PoolVector2Array
+  public open var points: PackedVector2Array
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONVEXPOLYGONSHAPE2D_GET_POINTS,
-          POOL_VECTOR2_ARRAY)
-      return TransferContext.readReturnValue(POOL_VECTOR2_ARRAY, false) as PoolVector2Array
+          PACKED_VECTOR2_ARRAY)
+      return TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array
     }
     set(`value`) {
-      TransferContext.writeArguments(POOL_VECTOR2_ARRAY to value)
+      TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONVEXPOLYGONSHAPE2D_SET_POINTS,
           NIL)
     }
@@ -43,11 +43,13 @@ public open class ConvexPolygonShape2D : Shape2D() {
   }
 
   /**
-   * Based on the set of points provided, this creates and assigns the [points] property using the convex hull algorithm. Removing all unneeded points. See [godot.Geometry.convexHull2d] for details.
+   * Based on the set of points provided, this creates and assigns the [points] property using the convex hull algorithm. Removing all unneeded points. See [godot.Geometry2D.convexHull] for details.
    */
-  public open fun setPointCloud(pointCloud: PoolVector2Array): Unit {
-    TransferContext.writeArguments(POOL_VECTOR2_ARRAY to pointCloud)
+  public open fun setPointCloud(pointCloud: PackedVector2Array): Unit {
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to pointCloud)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_CONVEXPOLYGONSHAPE2D_SET_POINT_CLOUD, NIL)
   }
+
+  public companion object
 }

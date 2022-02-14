@@ -1,11 +1,10 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
-import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.TransferContext
@@ -39,10 +38,5 @@ public open class CanvasModulate : Node2D() {
     callConstructor(ENGINECLASS_CANVASMODULATE)
   }
 
-  @CoreTypeHelper
-  public open fun color(schedule: Color.() -> Unit): Color = color.apply{
-      schedule(this)
-      color = this
-  }
-
+  public companion object
 }

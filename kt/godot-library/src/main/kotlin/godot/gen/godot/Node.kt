@@ -1,12 +1,14 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
+import godot.core.PackedStringArray
+import godot.core.StringName
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
@@ -18,7 +20,9 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
+import godot.core.VariantType.STRING_NAME
 import godot.signals.Signal0
+import godot.signals.Signal1
 import godot.signals.signal
 import godot.util.camelToSnakeCase
 import kotlin.Any
@@ -50,7 +54,7 @@ import kotlin.reflect.KMutableProperty
  *
  * Nodes are Godot's building blocks. They can be assigned as the child of another node, resulting in a tree arrangement. A given node can contain any number of nodes as children with the requirement that all siblings (direct children of a node) should have unique names.
  *
- * A tree of nodes is called a *scene*. Scenes can be saved to the disk and then instanced into other scenes. This allows for very high flexibility in the architecture and data model of Godot projects.
+ * A tree of nodes is called a *scene*. Scenes can be saved to the disk and then instantiated into other scenes. This allows for very high flexibility in the architecture and data model of Godot projects.
  *
  * **Scene tree:** The [godot.SceneTree] contains the active tree of nodes. When a node is added to the scene tree, it receives the [NOTIFICATION_ENTER_TREE] notification and its [_enterTree] callback is triggered. Child nodes are always added *after* their parent node, i.e. the [_enterTree] callback of a parent node will be triggered before its child's.
  *
@@ -62,25 +66,32 @@ import kotlin.reflect.KMutableProperty
  *
  * Nodes can also process input events. When present, the [_input] function will be called for each input that the program receives. In many cases, this can be overkill (unless used for simple projects), and the [_unhandledInput] function might be preferred; it is called when the input event was not handled by anyone else (typically, GUI [godot.Control] nodes), ensuring that the node only receives the events that were meant for it.
  *
- * To keep track of the scene hierarchy (especially when instancing scenes into other scenes), an "owner" can be set for the node with the [owner] property. This keeps track of who instanced what. This is mostly useful when writing editors and tools, though.
+ * To keep track of the scene hierarchy (especially when instancing scenes into other scenes), an "owner" can be set for the node with the [owner] property. This keeps track of who instantiated what. This is mostly useful when writing editors and tools, though.
  *
  * Finally, when a node is freed with [godot.Object.free] or [queueFree], it will also free all its children.
  *
  * **Groups:** Nodes can be added to as many groups as you want to be easy to manage, you could create groups like "enemies" or "collectables" for example, depending on your game. See [addToGroup], [isInGroup] and [removeFromGroup]. You can then retrieve all nodes in these groups, iterate them and even call methods on groups via the methods on [godot.SceneTree].
  *
- * **Networking with nodes:** After connecting to a server (or making one, see [godot.NetworkedMultiplayerENet]), it is possible to use the built-in RPC (remote procedure call) system to communicate over the network. By calling [rpc] with a method name, it will be called locally and in all connected peers (peers = clients and the server that accepts connections). To identify which node receives the RPC call, Godot will use its [godot.core.NodePath] (make sure node names are the same on all peers). Also, take a look at the high-level networking tutorial and corresponding demos.
+ * **Networking with nodes:** After connecting to a server (or making one, see [godot.ENetMultiplayerPeer]), it is possible to use the built-in RPC (remote procedure call) system to communicate over the network. By calling [rpc] with a method name, it will be called locally and in all connected peers (peers = clients and the server that accepts connections). To identify which node receives the RPC call, Godot will use its [godot.core.NodePath] (make sure node names are the same on all peers). Also, take a look at the high-level networking tutorial and corresponding demos.
+ *
+ * **Note:** The `script` property is part of the [godot.Object] class, not [godot.Node]. It isn't exposed like most properties but does have a setter and getter (`set_script()` and `get_script()`).
  */
 @GodotBaseType
 public open class Node : Object() {
   /**
-   * Emitted when the node is ready.
-   */
-  public val ready: Signal0 by signal()
-
-  /**
    * Emitted when the node is renamed.
    */
   public val renamed: Signal0 by signal()
+
+  /**
+   * Emitted when a child node exits the scene tree, either because it exited on its own or because this node exited.
+   */
+  public val childExitedTree: Signal1<Node> by signal("node")
+
+  /**
+   * Emitted when the node is ready. Comes after [_ready] callback and follows the same rules.
+   */
+  public val ready: Signal0 by signal()
 
   /**
    * Emitted when the node enters the tree.
@@ -88,68 +99,48 @@ public open class Node : Object() {
   public val treeEntered: Signal0 by signal()
 
   /**
-   * Emitted after the node exits the tree and is no longer active.
-   */
-  public val treeExited: Signal0 by signal()
-
-  /**
    * Emitted when the node is still active but about to exit the tree. This is the right place for de-initialization (or a "destructor", if you will).
    */
   public val treeExiting: Signal0 by signal()
 
   /**
-   * The override to the default [godot.MultiplayerAPI]. Set to `null` to use the default [godot.SceneTree] one.
+   * Emitted when a child node enters the scene tree, either because it entered on its own or because this node entered with it.
    */
-  public open var customMultiplayer: MultiplayerAPI?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CUSTOM_MULTIPLAYER,
-          OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?
-    }
-    set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_CUSTOM_MULTIPLAYER, NIL)
-    }
+  public val childEnteredTree: Signal1<Node> by signal("node")
 
   /**
-   * If a scene is instantiated from a file, its topmost node contains the absolute file path from which it was loaded in [filename] (e.g. `res://levels/1.tscn`). Otherwise, [filename] is set to an empty string.
+   * Emitted after the node exits the tree and is no longer active.
    */
-  public open var filename: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_FILENAME, STRING)
-      return TransferContext.readReturnValue(STRING, false) as String
-    }
-    set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_FILENAME, NIL)
-    }
-
-  /**
-   * The [godot.MultiplayerAPI] instance associated with this node. Either the [customMultiplayer], or the default SceneTree one (if inside tree).
-   */
-  public open val multiplayer: MultiplayerAPI?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_MULTIPLAYER, OBJECT)
-      return TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?
-    }
+  public val treeExited: Signal0 by signal()
 
   /**
    * The name of the node. This name is unique among the siblings (other child nodes from the same parent). When set to an existing name, the node will be automatically renamed.
    *
    * **Note:** Auto-generated names might include the `@` character, which is reserved for unique names when using [addChild]. When setting the name manually, any `@` will be removed.
    */
-  public open var name: String
+  public open var name: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_NAME, STRING)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_NAME, STRING_NAME)
+      return TransferContext.readReturnValue(STRING_NAME, false) as StringName
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING_NAME to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_NAME, NIL)
+    }
+
+  /**
+   * If a scene is instantiated from a file, its topmost node contains the absolute file path from which it was loaded in [sceneFilePath] (e.g. `res://levels/1.tscn`). Otherwise, [sceneFilePath] is set to an empty string.
+   */
+  public open var sceneFilePath: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_SCENE_FILE_PATH, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_NAME, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_SCENE_FILE_PATH, NIL)
     }
 
   /**
@@ -164,20 +155,47 @@ public open class Node : Object() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_OWNER, NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
-   * Pause mode. How the node will behave if the [godot.SceneTree] is paused.
+   * The [godot.MultiplayerAPI] instance associated with this node. Either the [customMultiplayer], or the default SceneTree one (if inside tree).
    */
-  public open var pauseMode: Long
+  public open val multiplayer: MultiplayerAPI?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PAUSE_MODE, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_MULTIPLAYER, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?
+    }
+
+  /**
+   * The override to the default [godot.MultiplayerAPI]. Set to `null` to use the default [godot.SceneTree] one.
+   */
+  public open var customMultiplayer: MultiplayerAPI?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CUSTOM_MULTIPLAYER,
+          OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_CUSTOM_MULTIPLAYER, NIL)
+      return TransferContext.readReturnValue(NIL, true) as Unit?
+    }
+
+  /**
+   * Can be used to pause or unpause the node, or make the node paused based on the [godot.SceneTree], or make it inherit the process mode from its parent (default).
+   */
+  public open var processMode: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PROCESS_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PAUSE_MODE, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_MODE, NIL)
     }
 
   /**
@@ -193,6 +211,25 @@ public open class Node : Object() {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_PRIORITY, NIL)
     }
+
+  /**
+   * Add a custom description to a node.
+   */
+  public open var editorDescription: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_EDITOR_DESCRIPTION,
+          STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_EDITOR_DESCRIPTION, NIL)
+    }
+
+  public override fun __new(): Unit {
+    callConstructor(ENGINECLASS_NODE)
+  }
 
   public inline fun <reified FUNCTION : KFunction0<*>> rpc(function: FUNCTION) =
       rpc(function.name.camelToSnakeCase())
@@ -282,8 +319,8 @@ public open class Node : Object() {
     arg2: ARG2
   ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2)
 
-  public inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION : KFunction4<ARG0, ARG1, ARG2, ARG3,
-      *>> rpc(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION :
+      KFunction4<ARG0, ARG1, ARG2, ARG3, *>> rpc(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
@@ -291,8 +328,8 @@ public open class Node : Object() {
     arg3: ARG3
   ) = rpc(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3)
 
-  public inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION : KFunction4<ARG0, ARG1, ARG2, ARG3,
-      *>> rpcId(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION :
+      KFunction4<ARG0, ARG1, ARG2, ARG3, *>> rpcId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
@@ -301,8 +338,8 @@ public open class Node : Object() {
     arg3: ARG3
   ) = rpcId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3)
 
-  public inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION : KFunction4<ARG0, ARG1, ARG2, ARG3,
-      *>> rpcUnreliable(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION :
+      KFunction4<ARG0, ARG1, ARG2, ARG3, *>> rpcUnreliable(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
@@ -310,8 +347,8 @@ public open class Node : Object() {
     arg3: ARG3
   ) = rpcUnreliable(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3)
 
-  public inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION : KFunction4<ARG0, ARG1, ARG2, ARG3,
-      *>> rpcUnreliableId(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, reified FUNCTION :
+      KFunction4<ARG0, ARG1, ARG2, ARG3, *>> rpcUnreliableId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
@@ -320,8 +357,8 @@ public open class Node : Object() {
     arg3: ARG3
   ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3)
 
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION : KFunction5<ARG0, ARG1, ARG2,
-      ARG3, ARG4, *>> rpc(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION :
+      KFunction5<ARG0, ARG1, ARG2, ARG3, ARG4, *>> rpc(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
@@ -330,8 +367,8 @@ public open class Node : Object() {
     arg4: ARG4
   ) = rpc(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4)
 
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION : KFunction5<ARG0, ARG1, ARG2,
-      ARG3, ARG4, *>> rpcId(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION :
+      KFunction5<ARG0, ARG1, ARG2, ARG3, ARG4, *>> rpcId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
@@ -341,8 +378,8 @@ public open class Node : Object() {
     arg4: ARG4
   ) = rpcId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4)
 
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION : KFunction5<ARG0, ARG1, ARG2,
-      ARG3, ARG4, *>> rpcUnreliable(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION :
+      KFunction5<ARG0, ARG1, ARG2, ARG3, ARG4, *>> rpcUnreliable(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
@@ -351,8 +388,8 @@ public open class Node : Object() {
     arg4: ARG4
   ) = rpcUnreliable(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4)
 
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION : KFunction5<ARG0, ARG1, ARG2,
-      ARG3, ARG4, *>> rpcUnreliableId(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, reified FUNCTION :
+      KFunction5<ARG0, ARG1, ARG2, ARG3, ARG4, *>> rpcUnreliableId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
@@ -362,8 +399,8 @@ public open class Node : Object() {
     arg4: ARG4
   ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4)
 
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION : KFunction6<ARG0, ARG1,
-      ARG2, ARG3, ARG4, ARG5, *>> rpc(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION :
+      KFunction6<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, *>> rpc(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
@@ -373,8 +410,8 @@ public open class Node : Object() {
     arg5: ARG5
   ) = rpc(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5)
 
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION : KFunction6<ARG0, ARG1,
-      ARG2, ARG3, ARG4, ARG5, *>> rpcId(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION :
+      KFunction6<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, *>> rpcId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
@@ -385,8 +422,8 @@ public open class Node : Object() {
     arg5: ARG5
   ) = rpcId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5)
 
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION : KFunction6<ARG0, ARG1,
-      ARG2, ARG3, ARG4, ARG5, *>> rpcUnreliable(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION :
+      KFunction6<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, *>> rpcUnreliable(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
@@ -396,8 +433,8 @@ public open class Node : Object() {
     arg5: ARG5
   ) = rpcUnreliable(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5)
 
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION : KFunction6<ARG0, ARG1,
-      ARG2, ARG3, ARG4, ARG5, *>> rpcUnreliableId(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, reified FUNCTION :
+      KFunction6<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, *>> rpcUnreliableId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
@@ -408,8 +445,8 @@ public open class Node : Object() {
     arg5: ARG5
   ) = rpcUnreliableId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5)
 
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION : KFunction7<ARG0,
-      ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, *>> rpc(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION :
+      KFunction7<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, *>> rpc(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
@@ -420,8 +457,8 @@ public open class Node : Object() {
     arg6: ARG6
   ) = rpc(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6)
 
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION : KFunction7<ARG0,
-      ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, *>> rpcId(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION :
+      KFunction7<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, *>> rpcId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
@@ -433,8 +470,8 @@ public open class Node : Object() {
     arg6: ARG6
   ) = rpcId(id, function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6)
 
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION : KFunction7<ARG0,
-      ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, *>> rpcUnreliable(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION :
+      KFunction7<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, *>> rpcUnreliable(
     function: FUNCTION,
     arg0: ARG0,
     arg1: ARG1,
@@ -445,8 +482,8 @@ public open class Node : Object() {
     arg6: ARG6
   ) = rpcUnreliable(function.name.camelToSnakeCase(), arg0, arg1, arg2, arg3, arg4, arg5, arg6)
 
-  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION : KFunction7<ARG0,
-      ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, *>> rpcUnreliableId(
+  public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, reified FUNCTION :
+      KFunction7<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, *>> rpcUnreliableId(
     id: Long,
     function: FUNCTION,
     arg0: ARG0,
@@ -661,8 +698,28 @@ public open class Node : Object() {
     `value`: TYPE
   ) = rsetUnreliableId(id, property.name.camelToSnakeCase(), value)
 
-  public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_NODE)
+  /**
+   * Called during the processing step of the main loop. Processing happens at every frame and as fast as possible, so the `delta` time since the previous frame is not constant. `delta` is in seconds.
+   *
+   * It is only called if processing is enabled, which is done automatically if this method is overridden, and can be toggled with [setProcess].
+   *
+   * Corresponds to the [NOTIFICATION_PROCESS] notification in [godot.Object.Notification].
+   *
+   * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not an orphan).
+   */
+  public open fun _process(delta: Double): Unit {
+  }
+
+  /**
+   * Called during the physics processing step of the main loop. Physics processing means that the frame rate is synced to the physics, i.e. the `delta` variable should be constant. `delta` is in seconds.
+   *
+   * It is only called if physics processing is enabled, which is done automatically if this method is overridden, and can be toggled with [setPhysicsProcess].
+   *
+   * Corresponds to the [NOTIFICATION_PHYSICS_PROCESS] notification in [godot.Object.Notification].
+   *
+   * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not an orphan).
+   */
+  public open fun _physicsProcess(delta: Double): Unit {
   }
 
   /**
@@ -682,22 +739,26 @@ public open class Node : Object() {
   }
 
   /**
-   * The string returned from this method is displayed as a warning in the Scene Dock if the script that overrides it is a `tool` script.
+   * Called when the node is "ready", i.e. when both the node and its children have entered the scene tree. If the node has children, their [_ready] callbacks get triggered first, and the parent node will receive the ready notification afterwards.
    *
-   * Returning an empty string produces no warning.
+   * Corresponds to the [NOTIFICATION_READY] notification in [godot.Object.Notification]. See also the `@onready` annotation for variables.
    *
-   * Call [updateConfigurationWarning] when the warning needs to be updated for this node.
+   * Usually used for initialization. For even earlier initialization, [godot.Object.Init] may be used. See also [_enterTree].
+   *
+   * **Note:** [_ready] may be called only once for each node. After removing a node from the scene tree and adding it again, `_ready` will not be called a second time. This can be bypassed by requesting another call with [requestReady], which may be called anywhere before adding the node again.
    */
-  public open fun _getConfigurationWarning(): String {
-    throw NotImplementedError("_get_configuration_warning is not implemented for Node")
+  public open fun _ready(): Unit {
   }
 
-  public open fun _getEditorDescription(): String {
-    throw NotImplementedError("_get_editor_description is not implemented for Node")
-  }
-
-  public open fun _getImportPath(): NodePath {
-    throw NotImplementedError("_get_import_path is not implemented for Node")
+  /**
+   * The elements in the array returned from this method are displayed as warnings in the Scene Dock if the script that overrides it is a `tool` script.
+   *
+   * Returning an empty array produces no warnings.
+   *
+   * Call [updateConfigurationWarnings] when the warnings need to be updated for this node.
+   */
+  public open fun _getConfigurationWarnings(): PackedStringArray {
+    throw NotImplementedError("_get_configuration_warnings is not implemented for Node")
   }
 
   /**
@@ -705,150 +766,236 @@ public open class Node : Object() {
    *
    * It is only called if input processing is enabled, which is done automatically if this method is overridden, and can be toggled with [setProcessInput].
    *
-   * To consume the input event and stop it propagating further to other nodes, [godot.SceneTree.setInputAsHandled] can be called.
+   * To consume the input event and stop it propagating further to other nodes, [godot.Viewport.setInputAsHandled] can be called.
    *
    * For gameplay input, [_unhandledInput] and [_unhandledKeyInput] are usually a better fit as they allow the GUI to intercept the events first.
    *
-   * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not orphan).
+   * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not an orphan).
    */
   public open fun _input(event: InputEvent): Unit {
   }
 
   /**
-   * Called during the physics processing step of the main loop. Physics processing means that the frame rate is synced to the physics, i.e. the `delta` variable should be constant. `delta` is in seconds.
-   *
-   * It is only called if physics processing is enabled, which is done automatically if this method is overridden, and can be toggled with [setPhysicsProcess].
-   *
-   * Corresponds to the [NOTIFICATION_PHYSICS_PROCESS] notification in [godot.Object.Notification].
-   *
-   * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not orphan).
-   */
-  public open fun _physicsProcess(delta: Double): Unit {
-  }
-
-  /**
-   * Called during the processing step of the main loop. Processing happens at every frame and as fast as possible, so the `delta` time since the previous frame is not constant. `delta` is in seconds.
-   *
-   * It is only called if processing is enabled, which is done automatically if this method is overridden, and can be toggled with [setProcess].
-   *
-   * Corresponds to the [NOTIFICATION_PROCESS] notification in [godot.Object.Notification].
-   *
-   * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not orphan).
-   */
-  public open fun _process(delta: Double): Unit {
-  }
-
-  /**
-   * Called when the node is "ready", i.e. when both the node and its children have entered the scene tree. If the node has children, their [_ready] callbacks get triggered first, and the parent node will receive the ready notification afterwards.
-   *
-   * Corresponds to the [NOTIFICATION_READY] notification in [godot.Object.Notification]. See also the `onready` keyword for variables.
-   *
-   * Usually used for initialization. For even earlier initialization, [godot.Object.Init] may be used. See also [_enterTree].
-   *
-   * **Note:** [_ready] may be called only once for each node. After removing a node from the scene tree and adding again, `_ready` will not be called for the second time. This can be bypassed with requesting another call with [requestReady], which may be called anywhere before adding the node again.
-   */
-  public open fun _ready(): Unit {
-  }
-
-  public open fun _setEditorDescription(editorDescription: String): Unit {
-  }
-
-  public open fun _setImportPath(importPath: NodePath): Unit {
-  }
-
-  /**
-   * Called when an [godot.InputEvent] hasn't been consumed by [_input] or any GUI. The input event propagates up through the node tree until a node consumes it.
+   * Called when an [godot.InputEvent] hasn't been consumed by [_input] or any GUI [godot.Control] item. The input event propagates up through the node tree until a node consumes it.
    *
    * It is only called if unhandled input processing is enabled, which is done automatically if this method is overridden, and can be toggled with [setProcessUnhandledInput].
    *
-   * To consume the input event and stop it propagating further to other nodes, [godot.SceneTree.setInputAsHandled] can be called.
+   * To consume the input event and stop it propagating further to other nodes, [godot.Viewport.setInputAsHandled] can be called.
    *
    * For gameplay input, this and [_unhandledKeyInput] are usually a better fit than [_input] as they allow the GUI to intercept the events first.
    *
-   * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not orphan).
+   * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not an orphan).
    */
   public open fun _unhandledInput(event: InputEvent): Unit {
   }
 
   /**
-   * Called when an [godot.InputEventKey] hasn't been consumed by [_input] or any GUI. The input event propagates up through the node tree until a node consumes it.
+   * Called when an [godot.InputEventKey] or [godot.InputEventShortcut] hasn't been consumed by [_input] or any GUI [godot.Control] item. The input event propagates up through the node tree until a node consumes it.
    *
    * It is only called if unhandled key input processing is enabled, which is done automatically if this method is overridden, and can be toggled with [setProcessUnhandledKeyInput].
    *
-   * To consume the input event and stop it propagating further to other nodes, [godot.SceneTree.setInputAsHandled] can be called.
+   * To consume the input event and stop it propagating further to other nodes, [godot.Viewport.setInputAsHandled] can be called.
    *
    * For gameplay input, this and [_unhandledInput] are usually a better fit than [_input] as they allow the GUI to intercept the events first.
    *
-   * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not orphan).
+   * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not an orphan).
    */
-  public open fun _unhandledKeyInput(event: InputEventKey): Unit {
+  public open fun _unhandledKeyInput(event: InputEvent): Unit {
+  }
+
+  /**
+   * Adds a `sibling` node to current's node parent, at the same level as that node, right below it.
+   *
+   * If `legible_unique_name` is `true`, the child node will have a human-readable name based on the name of the node being instantiated instead of its type.
+   *
+   * Use [addChild] instead of this method if you don't need the child node to be added below a specific node in the list of children.
+   *
+   * **Note:** If this node is internal, the new sibling will be internal too (see `internal` parameter in [addChild]).
+   */
+  public open fun addSibling(sibling: Node, legibleUniqueName: Boolean = false): Unit {
+    TransferContext.writeArguments(OBJECT to sibling, BOOL to legibleUniqueName)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_ADD_SIBLING, NIL)
   }
 
   /**
    * Adds a child node. Nodes can have any number of children, but every child must have a unique name. Child nodes are automatically deleted when the parent node is deleted, so an entire scene can be removed by deleting its topmost node.
    *
-   * If `legible_unique_name` is `true`, the child node will have a human-readable name based on the name of the node being instanced instead of its type.
+   * If `legible_unique_name` is `true`, the child node will have a human-readable name based on the name of the node being instantiated instead of its type.
+   *
+   * If `internal` is different than [INTERNAL_MODE_DISABLED], the child will be added as internal node. Such nodes are ignored by methods like [getChildren], unless their parameter `include_internal` is `true`.The intended usage is to hide the internal nodes from the user, so the user won't accidentally delete or modify them. Used by some GUI nodes, e.g. [godot.ColorPicker]. See [enum InternalMode] for available modes.
    *
    * **Note:** If the child node already has a parent, the function will fail. Use [removeChild] first to remove the node from its current parent. For example:
    *
-   * ```
-   * 				if child_node.get_parent():
-   * 				    child_node.get_parent().remove_child(child_node)
-   * 				add_child(child_node)
-   * 				```
+   * [codeblocks]
    *
-   * **Note:** If you want a child to be persisted to a [godot.PackedScene], you must set [owner] in addition to calling [addChild]. This is typically relevant for [tool scripts](https://godot.readthedocs.io/en/3.2/tutorials/misc/running_code_in_the_editor.html) and [editor plugins](https://godot.readthedocs.io/en/latest/tutorials/plugins/editor/index.html). If [addChild] is called without setting [owner], the newly added [godot.Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.
+   * [gdscript]
+   *
+   * var child_node = get_child(0)
+   *
+   * if child_node.get_parent():
+   *
+   *     child_node.get_parent().remove_child(child_node)
+   *
+   * add_child(child_node)
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * Node childNode = GetChild(0);
+   *
+   * if (childNode.GetParent() != null)
+   *
+   * {
+   *
+   *     childNode.GetParent().RemoveChild(childNode);
+   *
+   * }
+   *
+   * AddChild(childNode);
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
+   *
+   * If you need the child node to be added below a specific node in the list of children, use [addSibling] instead of this method.
+   *
+   * **Note:** If you want a child to be persisted to a [godot.PackedScene], you must set [owner] in addition to calling [addChild]. This is typically relevant for [tool scripts](https://godot.readthedocs.io/en/latest/tutorials/misc/running_code_in_the_editor.html) and [editor plugins](https://godot.readthedocs.io/en/latest/tutorials/plugins/editor/index.html). If [addChild] is called without setting [owner], the newly added [godot.Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.
    */
-  public open fun addChild(node: Node, legibleUniqueName: Boolean = false): Unit {
-    TransferContext.writeArguments(OBJECT to node, BOOL to legibleUniqueName)
+  public open fun addChild(
+    node: Node,
+    legibleUniqueName: Boolean = false,
+    `internal`: Node.InternalMode = InternalMode.INTERNAL_MODE_DISABLED
+  ): Unit {
+    TransferContext.writeArguments(OBJECT to node, BOOL to legibleUniqueName, LONG to internal.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_ADD_CHILD, NIL)
   }
 
   /**
-   * Adds `child_node` as a child. The child is placed below the given `node` in the list of children.
+   * Removes a child node. The node is NOT deleted and must be deleted manually.
    *
-   * If `legible_unique_name` is `true`, the child node will have a human-readable name based on the name of the node being instanced instead of its type.
+   * **Note:** This function may set the [owner] of the removed Node (or its descendants) to be `null`, if that [owner] is no longer a parent or ancestor.
    */
-  public open fun addChildBelowNode(
-    node: Node,
-    childNode: Node,
-    legibleUniqueName: Boolean = false
-  ): Unit {
-    TransferContext.writeArguments(OBJECT to node, OBJECT to childNode, BOOL to legibleUniqueName)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_ADD_CHILD_BELOW_NODE, NIL)
+  public open fun removeChild(node: Node): Unit {
+    TransferContext.writeArguments(OBJECT to node)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REMOVE_CHILD, NIL)
   }
 
   /**
-   * Adds the node to a group. Groups are helpers to name and organize a subset of nodes, for example "enemies" or "collectables". A node can be in any number of groups. Nodes can be assigned a group at any time, but will not be added until they are inside the scene tree (see [isInsideTree]). See notes in the description, and the group methods in [godot.SceneTree].
+   * Returns the number of child nodes.
    *
-   * The `persistent` option is used when packing node to [godot.PackedScene] and saving to file. Non-persistent groups aren't stored.
-   *
-   * **Note:** For performance reasons, the order of node groups is *not* guaranteed. The order of node groups should not be relied upon as it can vary across project runs.
+   * If `include_internal` is `false`, internal children aren't counted (see `internal` parameter in [addChild]).
    */
-  public open fun addToGroup(group: String, persistent: Boolean = false): Unit {
-    TransferContext.writeArguments(STRING to group, BOOL to persistent)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_ADD_TO_GROUP, NIL)
+  public open fun getChildCount(includeInternal: Boolean = false): Long {
+    TransferContext.writeArguments(BOOL to includeInternal)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CHILD_COUNT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   /**
-   * Returns `true` if the node can process while the scene tree is paused (see [pauseMode]). Always returns `true` if the scene tree is not paused, and `false` if the node is not in the tree.
+   * Returns an array of references to node's children.
+   *
+   * If `include_internal` is `false`, the returned array won't include internal children (see `internal` parameter in [addChild]).
    */
-  public open fun canProcess(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_CAN_PROCESS, BOOL)
+  public open fun getChildren(includeInternal: Boolean = false): VariantArray<Any?> {
+    TransferContext.writeArguments(BOOL to includeInternal)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CHILDREN, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+  }
+
+  /**
+   * Returns a child node by its index (see [getChildCount]). This method is often used for iterating all children of a node.
+   *
+   * Negative indices access the children from the last one.
+   *
+   * If `include_internal` is `true`, internal children are skipped (see `internal` parameter in [addChild]).
+   *
+   * To access a child node via its name, use [getNode].
+   */
+  public open fun getChild(idx: Long, includeInternal: Boolean = false): Node? {
+    TransferContext.writeArguments(LONG to idx, BOOL to includeInternal)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CHILD, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Node?
+  }
+
+  /**
+   * Returns `true` if the node that the [godot.core.NodePath] points to exists.
+   */
+  public open fun hasNode(path: NodePath): Boolean {
+    TransferContext.writeArguments(NODE_PATH to path)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_HAS_NODE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Duplicates the node, returning a new node.
+   * Fetches a node. The [godot.core.NodePath] can be either a relative path (from the current node) or an absolute path (in the scene tree) to a node. If the path does not exist, `null` is returned and an error is logged. Attempts to access methods on the return value will result in an "Attempt to call <method> on a null instance." error.
    *
-   * You can fine-tune the behavior using the `flags` (see [enum DuplicateFlags]).
+   * **Note:** Fetching absolute paths only works when the node is inside the scene tree (see [isInsideTree]).
    *
-   * **Note:** It will not work properly if the node contains a script with constructor arguments (i.e. needs to supply arguments to [godot.Object.Init] method). In that case, the node will be duplicated without a script.
+   * **Example:** Assume your current node is Character and the following tree:
+   *
+   * ```
+   * 				/root
+   * 				/root/Character
+   * 				/root/Character/Sword
+   * 				/root/Character/Backpack/Dagger
+   * 				/root/MyGame
+   * 				/root/Swamp/Alligator
+   * 				/root/Swamp/Mosquito
+   * 				/root/Swamp/Goblin
+   * 				```
+   *
+   * Possible paths are:
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * get_node("Sword")
+   *
+   * get_node("Backpack/Dagger")
+   *
+   * get_node("../Swamp/Alligator")
+   *
+   * get_node("/root/MyGame")
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * GetNode("Sword");
+   *
+   * GetNode("Backpack/Dagger");
+   *
+   * GetNode("../Swamp/Alligator");
+   *
+   * GetNode("/root/MyGame");
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    */
-  public open fun duplicate(flags: Long = 15): Node? {
-    TransferContext.writeArguments(LONG to flags)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_DUPLICATE, OBJECT)
+  public open fun getNode(path: NodePath): Node? {
+    TransferContext.writeArguments(NODE_PATH to path)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_NODE, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Node?
+  }
+
+  /**
+   * Similar to [getNode], but does not log an error if `path` does not point to a valid [godot.Node].
+   */
+  public open fun getNodeOrNull(path: NodePath): Node? {
+    TransferContext.writeArguments(NODE_PATH to path)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_NODE_OR_NULL, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Node?
+  }
+
+  /**
+   * Returns the parent node of the current node, or `null` if the node lacks a parent.
+   */
+  public open fun getParent(): Node? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PARENT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
 
@@ -885,32 +1032,133 @@ public open class Node : Object() {
   }
 
   /**
-   * Returns a child node by its index (see [getChildCount]). This method is often used for iterating all children of a node.
+   * Returns `true` if the [godot.core.NodePath] points to a valid node and its subname points to a valid resource, e.g. `Area2D/CollisionShape2D:shape`. Properties with a non-[godot.Resource] type (e.g. nodes or primitive math types) are not considered resources.
+   */
+  public open fun hasNodeAndResource(path: NodePath): Boolean {
+    TransferContext.writeArguments(NODE_PATH to path)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_HAS_NODE_AND_RESOURCE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Fetches a node and one of its resources as specified by the [godot.core.NodePath]'s subname (e.g. `Area2D/CollisionShape2D:shape`). If several nested resources are specified in the [godot.core.NodePath], the last one will be fetched.
    *
-   * To access a child node via its name, use [getNode].
+   * The return value is an array of size 3: the first index points to the [godot.Node] (or `null` if not found), the second index points to the [godot.Resource] (or `null` if not found), and the third index is the remaining [godot.core.NodePath], if any.
+   *
+   * For example, assuming that `Area2D/CollisionShape2D` is a valid node and that its `shape` property has been assigned a [godot.RectangleShape2D] resource, one could have this kind of output:
+   *
+   * [codeblocks]
+   *
+   * [gdscript]
+   *
+   * print(get_node_and_resource("Area2D/CollisionShape2D")) # [[godot.CollisionShape2D:1161], Null, ]
+   *
+   * print(get_node_and_resource("Area2D/CollisionShape2D:shape")) # [[godot.CollisionShape2D:1161], [godot.RectangleShape2D:1156], ]
+   *
+   * print(get_node_and_resource("Area2D/CollisionShape2D:shape:extents")) # [[godot.CollisionShape2D:1161], [godot.RectangleShape2D:1156], :extents]
+   *
+   * [/gdscript]
+   *
+   * [csharp]
+   *
+   * GD.Print(GetNodeAndResource("Area2D/CollisionShape2D")); // [[godot.CollisionShape2D:1161], Null, ]
+   *
+   * GD.Print(GetNodeAndResource("Area2D/CollisionShape2D:shape")); // [[godot.CollisionShape2D:1161], [godot.RectangleShape2D:1156], ]
+   *
+   * GD.Print(GetNodeAndResource("Area2D/CollisionShape2D:shape:extents")); // [[godot.CollisionShape2D:1161], [godot.RectangleShape2D:1156], :extents]
+   *
+   * [/csharp]
+   *
+   * [/codeblocks]
    */
-  public open fun getChild(idx: Long): Node? {
-    TransferContext.writeArguments(LONG to idx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CHILD, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Node?
-  }
-
-  /**
-   * Returns the number of child nodes.
-   */
-  public open fun getChildCount(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CHILD_COUNT, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  /**
-   * Returns an array of references to node's children.
-   */
-  public open fun getChildren(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_CHILDREN, ARRAY)
+  public open fun getNodeAndResource(path: NodePath): VariantArray<Any?> {
+    TransferContext.writeArguments(NODE_PATH to path)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_NODE_AND_RESOURCE, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+  }
+
+  /**
+   * Returns `true` if this node is currently inside a [godot.SceneTree].
+   */
+  public open fun isInsideTree(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_INSIDE_TREE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if the given node is a direct or indirect child of the current node.
+   */
+  public open fun isAncestorOf(node: Node): Boolean {
+    TransferContext.writeArguments(OBJECT to node)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_ANCESTOR_OF, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if the given node occurs later in the scene hierarchy than the current node.
+   */
+  public open fun isGreaterThan(node: Node): Boolean {
+    TransferContext.writeArguments(OBJECT to node)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_GREATER_THAN, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns the absolute path of the current node. This only works if the current node is inside the scene tree (see [isInsideTree]).
+   */
+  public open fun getPath(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PATH, NODE_PATH)
+    return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+  }
+
+  /**
+   * Returns the relative [godot.core.NodePath] from this node to the specified `node`. Both nodes must be in the same scene or the function will fail.
+   */
+  public open fun getPathTo(node: Node): NodePath {
+    TransferContext.writeArguments(OBJECT to node)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PATH_TO, NODE_PATH)
+    return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
+  }
+
+  /**
+   * Adds the node to a group. Groups are helpers to name and organize a subset of nodes, for example "enemies" or "collectables". A node can be in any number of groups. Nodes can be assigned a group at any time, but will not be added until they are inside the scene tree (see [isInsideTree]). See notes in the description, and the group methods in [godot.SceneTree].
+   *
+   * The `persistent` option is used when packing node to [godot.PackedScene] and saving to file. Non-persistent groups aren't stored.
+   *
+   * **Note:** For performance reasons, the order of node groups is *not* guaranteed. The order of node groups should not be relied upon as it can vary across project runs.
+   */
+  public open fun addToGroup(group: StringName, persistent: Boolean = false): Unit {
+    TransferContext.writeArguments(STRING_NAME to group, BOOL to persistent)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_ADD_TO_GROUP, NIL)
+  }
+
+  /**
+   * Removes a node from a group. See notes in the description, and the group methods in [godot.SceneTree].
+   */
+  public open fun removeFromGroup(group: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to group)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REMOVE_FROM_GROUP, NIL)
+  }
+
+  /**
+   * Returns `true` if this node is in the specified group. See notes in the description, and the group methods in [godot.SceneTree].
+   */
+  public open fun isInGroup(group: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to group)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_IN_GROUP, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Moves a child node to a different position (order) among the other children. Since calls, signals, etc are performed by tree order, changing the order of children nodes may be useful.
+   *
+   * **Note:** Internal children can only be moved within their expected "internal range" (see `internal` parameter in [addChild]).
+   */
+  public open fun moveChild(childNode: Node, toPosition: Long): Unit {
+    TransferContext.writeArguments(OBJECT to childNode, LONG to toPosition)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_MOVE_CHILD, NIL)
   }
 
   /**
@@ -935,319 +1183,30 @@ public open class Node : Object() {
   }
 
   /**
-   * Returns the node's index, i.e. its position among the siblings of its parent.
+   * Moves this node to the bottom of parent node's children hierarchy. This is often useful in GUIs ([godot.Control] nodes), because their order of drawing depends on their order in the tree. The top Node is drawn first, then any siblings below the top Node in the hierarchy are successively drawn on top of it. After using `raise`, a Control will be drawn on top of its siblings.
    */
-  public open fun getIndex(): Long {
+  public open fun raise(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_INDEX, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RAISE, NIL)
   }
 
   /**
-   * Returns the peer ID of the network master for this node. See [setNetworkMaster].
+   * Removes a node and sets all its children as children of the parent node (if it exists). All event subscriptions that pass by the removed node will be unsubscribed.
    */
-  public open fun getNetworkMaster(): Long {
+  public open fun removeAndSkip(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_NETWORK_MASTER, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  /**
-   * Fetches a node. The [godot.core.NodePath] can be either a relative path (from the current node) or an absolute path (in the scene tree) to a node. If the path does not exist, a `null instance` is returned and an error is logged. Attempts to access methods on the return value will result in an "Attempt to call <method> on a null instance." error.
-   *
-   * **Note:** Fetching absolute paths only works when the node is inside the scene tree (see [isInsideTree]).
-   *
-   * **Example:** Assume your current node is Character and the following tree:
-   *
-   * ```
-   * 				/root
-   * 				/root/Character
-   * 				/root/Character/Sword
-   * 				/root/Character/Backpack/Dagger
-   * 				/root/MyGame
-   * 				/root/Swamp/Alligator
-   * 				/root/Swamp/Mosquito
-   * 				/root/Swamp/Goblin
-   * 				```
-   *
-   * Possible paths are:
-   *
-   * ```
-   * 				get_node("Sword")
-   * 				get_node("Backpack/Dagger")
-   * 				get_node("../Swamp/Alligator")
-   * 				get_node("/root/MyGame")
-   * 				```
-   */
-  public open fun getNode(path: NodePath): Node? {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_NODE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Node?
-  }
-
-  /**
-   * Fetches a node and one of its resources as specified by the [godot.core.NodePath]'s subname (e.g. `Area2D/CollisionShape2D:shape`). If several nested resources are specified in the [godot.core.NodePath], the last one will be fetched.
-   *
-   * The return value is an array of size 3: the first index points to the [godot.Node] (or `null` if not found), the second index points to the [godot.Resource] (or `null` if not found), and the third index is the remaining [godot.core.NodePath], if any.
-   *
-   * For example, assuming that `Area2D/CollisionShape2D` is a valid node and that its `shape` property has been assigned a [godot.RectangleShape2D] resource, one could have this kind of output:
-   *
-   * ```
-   * 				print(get_node_and_resource("Area2D/CollisionShape2D")) # [[godot.CollisionShape2D:1161], Null, ]
-   * 				print(get_node_and_resource("Area2D/CollisionShape2D:shape")) # [[godot.CollisionShape2D:1161], [godot.RectangleShape2D:1156], ]
-   * 				print(get_node_and_resource("Area2D/CollisionShape2D:shape:extents")) # [[godot.CollisionShape2D:1161], [godot.RectangleShape2D:1156], :extents]
-   * 				```
-   */
-  public open fun getNodeAndResource(path: NodePath): VariantArray<Any?> {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_NODE_AND_RESOURCE, ARRAY)
-    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
-  }
-
-  /**
-   * Similar to [getNode], but does not log an error if `path` does not point to a valid [godot.Node].
-   */
-  public open fun getNodeOrNull(path: NodePath): Node? {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_NODE_OR_NULL, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Node?
-  }
-
-  /**
-   * Returns the parent node of the current node, or a `null instance` if the node lacks a parent.
-   */
-  public open fun getParent(): Node? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PARENT, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Node?
-  }
-
-  /**
-   * Returns the absolute path of the current node. This only works if the current node is inside the scene tree (see [isInsideTree]).
-   */
-  public open fun getPath(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PATH, NODE_PATH)
-    return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
-  }
-
-  /**
-   * Returns the relative [godot.core.NodePath] from this node to the specified `node`. Both nodes must be in the same scene or the function will fail.
-   */
-  public open fun getPathTo(node: Node): NodePath {
-    TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PATH_TO, NODE_PATH)
-    return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
-  }
-
-  /**
-   * Returns the time elapsed (in seconds) since the last physics-bound frame (see [_physicsProcess]). This is always a constant value in physics processing unless the frames per second is changed via [godot.Engine.iterationsPerSecond].
-   */
-  public open fun getPhysicsProcessDeltaTime(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PHYSICS_PROCESS_DELTA_TIME,
-        DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REMOVE_AND_SKIP, NIL)
   }
 
   /**
    * Returns the node's order in the scene tree branch. For example, if called on the first child node the position is `0`.
+   *
+   * If `include_internal` is `false`, the index won't take internal children into account, i.e. first non-internal child will have index of 0 (see `internal` parameter in [addChild]).
    */
-  public open fun getPositionInParent(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_POSITION_IN_PARENT, LONG)
+  public open fun getIndex(includeInternal: Boolean = false): Long {
+    TransferContext.writeArguments(BOOL to includeInternal)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_INDEX, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  /**
-   * Returns the time elapsed (in seconds) since the last process callback. This value may vary from frame to frame.
-   */
-  public open fun getProcessDeltaTime(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PROCESS_DELTA_TIME, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
-  }
-
-  /**
-   * Returns `true` if this is an instance load placeholder. See [godot.InstancePlaceholder].
-   */
-  public open fun getSceneInstanceLoadPlaceholder(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NODE_GET_SCENE_INSTANCE_LOAD_PLACEHOLDER, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns the [godot.SceneTree] that contains this node.
-   */
-  public open fun getTree(): SceneTree? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_TREE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as SceneTree?
-  }
-
-  /**
-   * Returns the node's [godot.Viewport].
-   */
-  public open fun getViewport(): Viewport? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_VIEWPORT, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Viewport?
-  }
-
-  /**
-   * Returns `true` if the node that the [godot.core.NodePath] points to exists.
-   */
-  public open fun hasNode(path: NodePath): Boolean {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_HAS_NODE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` if the [godot.core.NodePath] points to a valid node and its subname points to a valid resource, e.g. `Area2D/CollisionShape2D:shape`. Properties with a non-[godot.Resource] type (e.g. nodes or primitive math types) are not considered resources.
-   */
-  public open fun hasNodeAndResource(path: NodePath): Boolean {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_HAS_NODE_AND_RESOURCE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` if the given node is a direct or indirect child of the current node.
-   */
-  public open fun isAParentOf(node: Node): Boolean {
-    TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_A_PARENT_OF, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` if the node is folded (collapsed) in the Scene dock.
-   */
-  public open fun isDisplayedFolded(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_DISPLAYED_FOLDED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` if the given node occurs later in the scene hierarchy than the current node.
-   */
-  public open fun isGreaterThan(node: Node): Boolean {
-    TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_GREATER_THAN, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` if this node is in the specified group. See notes in the description, and the group methods in [godot.SceneTree].
-   */
-  public open fun isInGroup(group: String): Boolean {
-    TransferContext.writeArguments(STRING to group)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_IN_GROUP, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` if this node is currently inside a [godot.SceneTree].
-   */
-  public open fun isInsideTree(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_INSIDE_TREE, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` if the local system is the master of this node.
-   */
-  public open fun isNetworkMaster(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_NETWORK_MASTER, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` if physics processing is enabled (see [setPhysicsProcess]).
-   */
-  public open fun isPhysicsProcessing(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PHYSICS_PROCESSING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` if internal physics processing is enabled (see [setPhysicsProcessInternal]).
-   */
-  public open fun isPhysicsProcessingInternal(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PHYSICS_PROCESSING_INTERNAL,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` if processing is enabled (see [setProcess]).
-   */
-  public open fun isProcessing(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` if the node is processing input (see [setProcessInput]).
-   */
-  public open fun isProcessingInput(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING_INPUT, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` if internal processing is enabled (see [setProcessInternal]).
-   */
-  public open fun isProcessingInternal(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING_INTERNAL, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` if the node is processing unhandled input (see [setProcessUnhandledInput]).
-   */
-  public open fun isProcessingUnhandledInput(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING_UNHANDLED_INPUT,
-        BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Returns `true` if the node is processing unhandled key input (see [setProcessUnhandledKeyInput]).
-   */
-  public open fun isProcessingUnhandledKeyInput(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING_UNHANDLED_KEY_INPUT, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   * Moves a child node to a different position (order) among the other children. Since calls, signals, etc are performed by tree order, changing the order of children nodes may be useful.
-   */
-  public open fun moveChild(childNode: Node, toPosition: Long): Unit {
-    TransferContext.writeArguments(OBJECT to childNode, LONG to toPosition)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_MOVE_CHILD, NIL)
-  }
-
-  /**
-   * Prints all stray nodes (nodes outside the [godot.SceneTree]). Used for debugging. Works only in debug builds.
-   */
-  public open fun printStrayNodes(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_PRINT_STRAY_NODES, NIL)
   }
 
   /**
@@ -1289,18 +1248,6 @@ public open class Node : Object() {
   }
 
   /**
-   * Calls the given method (if present) with the arguments given in `args` on this node and recursively on all its children. If the `parent_first` argument is `true`, the method will be called on the current node first, then on all its children. If `parent_first` is `false`, the children will be called first.
-   */
-  public open fun propagateCall(
-    method: String,
-    args: VariantArray<Any?> = VariantArray(),
-    parentFirst: Boolean = false
-  ): Unit {
-    TransferContext.writeArguments(STRING to method, ARRAY to args, BOOL to parentFirst)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_PROPAGATE_CALL, NIL)
-  }
-
-  /**
    * Notifies the current node and all its children recursively by calling [godot.Object.notification] on all of them.
    */
   public open fun propagateNotification(what: Long): Unit {
@@ -1309,173 +1256,144 @@ public open class Node : Object() {
   }
 
   /**
-   * Queues a node for deletion at the end of the current frame. When deleted, all of its child nodes will be deleted as well. This method ensures it's safe to delete the node, contrary to [godot.Object.free]. Use [godot.Object.isQueuedForDeletion] to check whether a node will be deleted at the end of the frame.
-   *
-   * **Important:** If you have a variable pointing to a node, it will *not* be assigned to `null` once the node is freed. Instead, it will point to a *previously freed instance* and you should validate it with [@GDScript.isInstanceValid] before attempting to call its methods or access its properties.
+   * Calls the given method (if present) with the arguments given in `args` on this node and recursively on all its children. If the `parent_first` argument is `true`, the method will be called on the current node first, then on all its children. If `parent_first` is `false`, the children will be called first.
    */
-  public open fun queueFree(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_QUEUE_FREE, NIL)
-  }
-
-  /**
-   * Moves this node to the bottom of parent node's children hierarchy. This is often useful in GUIs ([godot.Control] nodes), because their order of drawing depends on their order in the tree. The top Node is drawn first, then any siblings below the top Node in the hierarchy are successively drawn on top of it. After using `raise`, a Control will be drawn on top of its siblings.
-   */
-  public open fun raise(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RAISE, NIL)
-  }
-
-  /**
-   * Removes a node and sets all its children as children of the parent node (if it exists). All event subscriptions that pass by the removed node will be unsubscribed.
-   */
-  public open fun removeAndSkip(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REMOVE_AND_SKIP, NIL)
-  }
-
-  /**
-   * Removes a child node. The node is NOT deleted and must be deleted manually.
-   *
-   * **Note:** This function may set the [owner] of the removed Node (or its descendants) to be `null`, if that [owner] is no longer a parent or ancestor.
-   */
-  public open fun removeChild(node: Node): Unit {
-    TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REMOVE_CHILD, NIL)
-  }
-
-  /**
-   * Removes a node from a group. See notes in the description, and the group methods in [godot.SceneTree].
-   */
-  public open fun removeFromGroup(group: String): Unit {
-    TransferContext.writeArguments(STRING to group)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REMOVE_FROM_GROUP, NIL)
-  }
-
-  /**
-   * Replaces a node in a scene by the given one. Subscriptions that pass through this node will be lost.
-   *
-   * Note that the replaced node is not automatically freed, so you either need to keep it in a variable for later use or free it using [godot.Object.free].
-   */
-  public open fun replaceBy(node: Node, keepData: Boolean = false): Unit {
-    TransferContext.writeArguments(OBJECT to node, BOOL to keepData)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REPLACE_BY, NIL)
-  }
-
-  /**
-   * Requests that `_ready` be called again. Note that the method won't be called immediately, but is scheduled for when the node is added to the scene tree again (see [_ready]). `_ready` is called only for the node which requested it, which means that you need to request ready for each child if you want them to call `_ready` too (in which case, `_ready` will be called in the same order as it would normally).
-   */
-  public open fun requestReady(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REQUEST_READY, NIL)
-  }
-
-  /**
-   * Sends a remote procedure call request for the given `method` to peers on the network (and locally), optionally sending all additional arguments as arguments to the method called by the RPC. The call request will only be received by nodes with the same [godot.core.NodePath], including the exact same node name. Behaviour depends on the RPC configuration for the given method, see [rpcConfig]. Methods are not exposed to RPCs by default. See also [rset] and [rsetConfig] for properties. Returns an empty [Variant].
-   *
-   * **Note:** You can only safely use RPCs on clients after you received the `connected_to_server` signal from the [godot.SceneTree]. You also need to keep track of the connection state, either by the [godot.SceneTree] signals like `server_disconnected` or by checking `SceneTree.network_peer.get_connection_status() == CONNECTION_CONNECTED`.
-   */
-  public open fun rpc(method: String, vararg __var_args: Any?): Any? {
-    TransferContext.writeArguments(STRING to method,  *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
-  }
-
-  /**
-   * Changes the RPC mode for the given `method` to the given `mode`. See [enum MultiplayerAPI.RPCMode]. An alternative is annotating methods and properties with the corresponding keywords (`remote`, `master`, `puppet`, `remotesync`, `mastersync`, `puppetsync`). By default, methods are not exposed to networking (and RPCs). See also [rset] and [rsetConfig] for properties.
-   */
-  public open fun rpcConfig(method: String, mode: Long): Unit {
-    TransferContext.writeArguments(STRING to method, LONG to mode)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC_CONFIG, NIL)
-  }
-
-  /**
-   * Sends a [rpc] to a specific peer identified by `peer_id` (see [godot.NetworkedMultiplayerPeer.setTargetPeer]). Returns an empty [Variant].
-   */
-  public open fun rpcId(
-    peerId: Long,
-    method: String,
-    vararg __var_args: Any?
-  ): Any? {
-    TransferContext.writeArguments(LONG to peerId, STRING to method,  *__var_args.map { ANY to it
-        }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC_ID, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
-  }
-
-  /**
-   * Sends a [rpc] using an unreliable protocol. Returns an empty [Variant].
-   */
-  public open fun rpcUnreliable(method: String, vararg __var_args: Any?): Any? {
-    TransferContext.writeArguments(STRING to method,  *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC_UNRELIABLE, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
-  }
-
-  /**
-   * Sends a [rpc] to a specific peer identified by `peer_id` using an unreliable protocol (see [godot.NetworkedMultiplayerPeer.setTargetPeer]). Returns an empty [Variant].
-   */
-  public open fun rpcUnreliableId(
-    peerId: Long,
-    method: String,
-    vararg __var_args: Any?
-  ): Any? {
-    TransferContext.writeArguments(LONG to peerId, STRING to method,  *__var_args.map { ANY to it
-        }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC_UNRELIABLE_ID, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
-  }
-
-  /**
-   * Remotely changes a property's value on other peers (and locally). Behaviour depends on the RPC configuration for the given property, see [rsetConfig]. See also [rpc] for RPCs for methods, most information applies to this method as well.
-   */
-  public open fun rset(`property`: String, `value`: Any?): Unit {
-    TransferContext.writeArguments(STRING to property, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RSET, NIL)
-  }
-
-  /**
-   * Changes the RPC mode for the given `property` to the given `mode`. See [enum MultiplayerAPI.RPCMode]. An alternative is annotating methods and properties with the corresponding keywords (`remote`, `master`, `puppet`, `remotesync`, `mastersync`, `puppetsync`). By default, properties are not exposed to networking (and RPCs). See also [rpc] and [rpcConfig] for methods.
-   */
-  public open fun rsetConfig(`property`: String, mode: Long): Unit {
-    TransferContext.writeArguments(STRING to property, LONG to mode)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RSET_CONFIG, NIL)
-  }
-
-  /**
-   * Remotely changes the property's value on a specific peer identified by `peer_id` (see [godot.NetworkedMultiplayerPeer.setTargetPeer]).
-   */
-  public open fun rsetId(
-    peerId: Long,
-    `property`: String,
-    `value`: Any?
+  public open fun propagateCall(
+    method: StringName,
+    args: VariantArray<Any?> = Array(),
+    parentFirst: Boolean = false
   ): Unit {
-    TransferContext.writeArguments(LONG to peerId, STRING to property, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RSET_ID, NIL)
+    TransferContext.writeArguments(STRING_NAME to method, ARRAY to args, BOOL to parentFirst)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_PROPAGATE_CALL, NIL)
   }
 
   /**
-   * Remotely changes the property's value on other peers (and locally) using an unreliable protocol.
+   * Enables or disables physics (i.e. fixed framerate) processing. When a node is being processed, it will receive a [NOTIFICATION_PHYSICS_PROCESS] at a fixed (usually 60 FPS, see [godot.Engine.physicsTicksPerSecond] to change) interval (and the [_physicsProcess] callback will be called if exists). Enabled automatically if [_physicsProcess] is overridden. Any calls to this before [_ready] will be ignored.
    */
-  public open fun rsetUnreliable(`property`: String, `value`: Any?): Unit {
-    TransferContext.writeArguments(STRING to property, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RSET_UNRELIABLE, NIL)
+  public open fun setPhysicsProcess(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PHYSICS_PROCESS, NIL)
   }
 
   /**
-   * Remotely changes property's value on a specific peer identified by `peer_id` using an unreliable protocol (see [godot.NetworkedMultiplayerPeer.setTargetPeer]).
+   * Returns the time elapsed (in seconds) since the last physics-bound frame (see [_physicsProcess]). This is always a constant value in physics processing unless the frames per second is changed via [godot.Engine.physicsTicksPerSecond].
    */
-  public open fun rsetUnreliableId(
-    peerId: Long,
-    `property`: String,
-    `value`: Any?
-  ): Unit {
-    TransferContext.writeArguments(LONG to peerId, STRING to property, ANY to value)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RSET_UNRELIABLE_ID, NIL)
+  public open fun getPhysicsProcessDeltaTime(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PHYSICS_PROCESS_DELTA_TIME,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
-   * Sets the folded state of the node in the Scene dock.
+   * Returns `true` if physics processing is enabled (see [setPhysicsProcess]).
+   */
+  public open fun isPhysicsProcessing(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PHYSICS_PROCESSING, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns the time elapsed (in seconds) since the last process callback. This value may vary from frame to frame.
+   */
+  public open fun getProcessDeltaTime(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_PROCESS_DELTA_TIME, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Enables or disables processing. When a node is being processed, it will receive a [NOTIFICATION_PROCESS] on every drawn frame (and the [_process] callback will be called if exists). Enabled automatically if [_process] is overridden. Any calls to this before [_ready] will be ignored.
+   */
+  public open fun setProcess(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS, NIL)
+  }
+
+  /**
+   * Returns `true` if processing is enabled (see [setProcess]).
+   */
+  public open fun isProcessing(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Enables or disables input processing. This is not required for GUI controls! Enabled automatically if [_input] is overridden. Any calls to this before [_ready] will be ignored.
+   */
+  public open fun setProcessInput(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_INPUT, NIL)
+  }
+
+  /**
+   * Returns `true` if the node is processing input (see [setProcessInput]).
+   */
+  public open fun isProcessingInput(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING_INPUT, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Enables unhandled input processing. This is not required for GUI controls! It enables the node to receive all input that was not previously handled (usually by a [godot.Control]). Enabled automatically if [_unhandledInput] is overridden. Any calls to this before [_ready] will be ignored.
+   */
+  public open fun setProcessUnhandledInput(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_UNHANDLED_INPUT,
+        NIL)
+  }
+
+  /**
+   * Returns `true` if the node is processing unhandled input (see [setProcessUnhandledInput]).
+   */
+  public open fun isProcessingUnhandledInput(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING_UNHANDLED_INPUT,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Enables unhandled key input processing. Enabled automatically if [_unhandledKeyInput] is overridden. Any calls to this before [_ready] will be ignored.
+   */
+  public open fun setProcessUnhandledKeyInput(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_UNHANDLED_KEY_INPUT, NIL)
+  }
+
+  /**
+   * Returns `true` if the node is processing unhandled key input (see [setProcessUnhandledKeyInput]).
+   */
+  public open fun isProcessingUnhandledKeyInput(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING_UNHANDLED_KEY_INPUT, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns `true` if the node can process while the scene tree is paused (see [processMode]). Always returns `true` if the scene tree is not paused, and `false` if the node is not in the tree.
+   */
+  public open fun canProcess(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_CAN_PROCESS, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Prints all stray nodes (nodes outside the [godot.SceneTree]). Used for debugging. Works only in debug builds.
+   */
+  public open fun printStrayNodes(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_PRINT_STRAY_NODES, NIL)
+  }
+
+  /**
+   * Sets the folded state of the node in the Scene dock. This method is only intended for use with editor tooling.
    */
   public open fun setDisplayFolded(fold: Boolean): Unit {
     TransferContext.writeArguments(BOOL to fold)
@@ -1483,19 +1401,31 @@ public open class Node : Object() {
   }
 
   /**
-   * Sets the node's network master to the peer with the given peer ID. The network master is the peer that has authority over the node on the network. Useful in conjunction with the `master` and `puppet` keywords. Inherited from the parent node by default, which ultimately defaults to peer ID 1 (the server). If `recursive`, the given peer is recursively set as the master for all children of this node.
+   * Returns `true` if the node is folded (collapsed) in the Scene dock. This method is only intended for use with editor tooling.
    */
-  public open fun setNetworkMaster(id: Long, recursive: Boolean = true): Unit {
-    TransferContext.writeArguments(LONG to id, BOOL to recursive)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_NETWORK_MASTER, NIL)
+  public open fun isDisplayedFolded(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_DISPLAYED_FOLDED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Enables or disables physics (i.e. fixed framerate) processing. When a node is being processed, it will receive a [NOTIFICATION_PHYSICS_PROCESS] at a fixed (usually 60 FPS, see [godot.Engine.iterationsPerSecond] to change) interval (and the [_physicsProcess] callback will be called if exists). Enabled automatically if [_physicsProcess] is overridden. Any calls to this before [_ready] will be ignored.
+   * Enables or disabled internal processing for this node. Internal processing happens in isolation from the normal [_process] calls and is used by some nodes internally to guarantee proper functioning even if the node is paused or processing is disabled for scripting ([setProcess]). Only useful for advanced uses to manipulate built-in nodes' behavior.
+   *
+   * **Warning:** Built-in Nodes rely on the internal processing for their own logic, so changing this value from your code may lead to unexpected behavior. Script access to this internal logic is provided for specific advanced uses, but is unsafe and not supported.
    */
-  public open fun setPhysicsProcess(enable: Boolean): Unit {
+  public open fun setProcessInternal(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PHYSICS_PROCESS, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_INTERNAL, NIL)
+  }
+
+  /**
+   * Returns `true` if internal processing is enabled (see [setProcessInternal]).
+   */
+  public open fun isProcessingInternal(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PROCESSING_INTERNAL, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
@@ -1510,47 +1440,62 @@ public open class Node : Object() {
   }
 
   /**
-   * Enables or disables processing. When a node is being processed, it will receive a [NOTIFICATION_PROCESS] on every drawn frame (and the [_process] callback will be called if exists). Enabled automatically if [_process] is overridden. Any calls to this before [_ready] will be ignored.
+   * Returns `true` if internal physics processing is enabled (see [setPhysicsProcessInternal]).
    */
-  public open fun setProcess(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS, NIL)
+  public open fun isPhysicsProcessingInternal(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_PHYSICS_PROCESSING_INTERNAL,
+        BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**
-   * Enables or disables input processing. This is not required for GUI controls! Enabled automatically if [_input] is overridden. Any calls to this before [_ready] will be ignored.
+   * Returns the [godot.SceneTree] that contains this node.
    */
-  public open fun setProcessInput(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_INPUT, NIL)
+  public open fun getTree(): SceneTree? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_TREE, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as SceneTree?
   }
 
   /**
-   * Enables or disabled internal processing for this node. Internal processing happens in isolation from the normal [_process] calls and is used by some nodes internally to guarantee proper functioning even if the node is paused or processing is disabled for scripting ([setProcess]). Only useful for advanced uses to manipulate built-in nodes' behavior.
+   * Creates a new [godot.Tween] and binds it to this node. This is equivalent of doing:
    *
-   * **Warning:** Built-in Nodes rely on the internal processing for their own logic, so changing this value from your code may lead to unexpected behavior. Script access to this internal logic is provided for specific advanced uses, but is unsafe and not supported.
+   * ```
+   * 				get_tree().create_tween().bind_node(self)
+   * 				```
    */
-  public open fun setProcessInternal(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_INTERNAL, NIL)
+  public open fun createTween(): Tween? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_CREATE_TWEEN, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Tween?
   }
 
   /**
-   * Enables unhandled input processing. This is not required for GUI controls! It enables the node to receive all input that was not previously handled (usually by a [godot.Control]). Enabled automatically if [_unhandledInput] is overridden. Any calls to this before [_ready] will be ignored.
+   * Duplicates the node, returning a new node.
+   *
+   * You can fine-tune the behavior using the `flags` (see [enum DuplicateFlags]).
+   *
+   * **Note:** It will not work properly if the node contains a script with constructor arguments (i.e. needs to supply arguments to [godot.Object.Init] method). In that case, the node will be duplicated without a script.
    */
-  public open fun setProcessUnhandledInput(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_UNHANDLED_INPUT,
-        NIL)
+  public open fun duplicate(flags: Long = 15): Node? {
+    TransferContext.writeArguments(LONG to flags)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_DUPLICATE, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Node?
   }
 
   /**
-   * Enables unhandled key input processing. Enabled automatically if [_unhandledKeyInput] is overridden. Any calls to this before [_ready] will be ignored.
+   * Replaces a node in a scene by the given one. Subscriptions that pass through this node will be lost.
+   *
+   * If `keep_groups` is `true`, the `node` is added to the same groups that the replaced node is in.
+   *
+   * **Note:** The given node will become the new parent of any child nodes that the replaced node had.
+   *
+   * **Note:** The replaced node is not automatically freed, so you either need to keep it in a variable for later use or free it using [godot.Object.free].
    */
-  public open fun setProcessUnhandledKeyInput(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_NODE_SET_PROCESS_UNHANDLED_KEY_INPUT, NIL)
+  public open fun replaceBy(node: Node, keepGroups: Boolean = false): Unit {
+    TransferContext.writeArguments(OBJECT to node, BOOL to keepGroups)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REPLACE_BY, NIL)
   }
 
   /**
@@ -1563,31 +1508,160 @@ public open class Node : Object() {
   }
 
   /**
+   * Returns `true` if this is an instance load placeholder. See [godot.InstancePlaceholder].
+   */
+  public open fun getSceneInstanceLoadPlaceholder(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_NODE_GET_SCENE_INSTANCE_LOAD_PLACEHOLDER, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Sets the editable children state of `node` relative to this node. This method is only intended for use with editor tooling.
+   */
+  public open fun setEditableInstance(node: Node, isEditable: Boolean): Unit {
+    TransferContext.writeArguments(OBJECT to node, BOOL to isEditable)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_EDITABLE_INSTANCE, NIL)
+  }
+
+  /**
+   * Returns `true` if `node` has editable children enabled relative to this node. This method is only intended for use with editor tooling.
+   */
+  public open fun isEditableInstance(node: Node): Boolean {
+    TransferContext.writeArguments(OBJECT to node)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_EDITABLE_INSTANCE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns the node's [godot.Viewport].
+   */
+  public open fun getViewport(): Viewport? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_VIEWPORT, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Viewport?
+  }
+
+  /**
+   * Queues a node for deletion at the end of the current frame. When deleted, all of its child nodes will be deleted as well. This method ensures it's safe to delete the node, contrary to [godot.Object.free]. Use [godot.Object.isQueuedForDeletion] to check whether a node will be deleted at the end of the frame.
+   */
+  public open fun queueFree(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_QUEUE_FREE, NIL)
+  }
+
+  /**
+   * Requests that `_ready` be called again. Note that the method won't be called immediately, but is scheduled for when the node is added to the scene tree again (see [_ready]). `_ready` is called only for the node which requested it, which means that you need to request ready for each child if you want them to call `_ready` too (in which case, `_ready` will be called in the same order as it would normally).
+   */
+  public open fun requestReady(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_REQUEST_READY, NIL)
+  }
+
+  /**
+   * Sets the node's multiplayer authority to the peer with the given peer ID. The multiplayer authority is the peer that has authority over the node on the network. Useful in conjunction with [rpcConfig] and the [godot.MultiplayerAPI]. Inherited from the parent node by default, which ultimately defaults to peer ID 1 (the server). If `recursive`, the given peer is recursively set as the authority for all children of this node.
+   */
+  public open fun setMultiplayerAuthority(id: Long, recursive: Boolean = true): Unit {
+    TransferContext.writeArguments(LONG to id, BOOL to recursive)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_MULTIPLAYER_AUTHORITY, NIL)
+  }
+
+  /**
+   * Returns the peer ID of the multiplayer authority for this node. See [setMultiplayerAuthority].
+   */
+  public open fun getMultiplayerAuthority(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_GET_MULTIPLAYER_AUTHORITY,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns `true` if the local system is the multiplayer authority of this node.
+   */
+  public open fun isMultiplayerAuthority(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_IS_MULTIPLAYER_AUTHORITY, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Changes the RPC mode for the given `method` to the given `rpc_mode`, optionally specifying the `transfer_mode` and `channel` (on supported peers). See [enum RPCMode] and [enum TransferMode]. An alternative is annotating methods and properties with the corresponding annotation (`@rpc(any)`, `@rpc(auth)`). By default, methods are not exposed to networking (and RPCs).
+   */
+  public open fun rpcConfig(
+    method: StringName,
+    rpcMode: RPCMode,
+    callLocal: Boolean = false,
+    transferMode: TransferMode = TransferMode.TRANSFER_MODE_RELIABLE,
+    channel: Long = 0
+  ): Long {
+    TransferContext.writeArguments(STRING_NAME to method, LONG to rpcMode.id, BOOL to callLocal,
+        LONG to transferMode.id, LONG to channel)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC_CONFIG, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Sends a remote procedure call request for the given `method` to peers on the network (and locally), optionally sending all additional arguments as arguments to the method called by the RPC. The call request will only be received by nodes with the same [godot.core.NodePath], including the exact same node name. Behaviour depends on the RPC configuration for the given method, see [rpcConfig]. Methods are not exposed to RPCs by default. Returns an empty [Variant].
+   *
+   * **Note:** You can only safely use RPCs on clients after you received the `connected_to_server` signal from the [godot.MultiplayerAPI]. You also need to keep track of the connection state, either by the [godot.MultiplayerAPI] signals like `server_disconnected` or by checking `get_multiplayer().peer.get_connection_status() == CONNECTION_CONNECTED`.
+   */
+  public open fun rpc(method: StringName, vararg __var_args: Any?): Any? {
+    TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it
+        }.toTypedArray())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC, ANY)
+    return TransferContext.readReturnValue(ANY, true) as Any?
+  }
+
+  /**
+   * Sends a [rpc] to a specific peer identified by `peer_id` (see [godot.MultiplayerPeer.setTargetPeer]). Returns an empty [Variant].
+   */
+  public open fun rpcId(
+    peerId: Long,
+    method: StringName,
+    vararg __var_args: Any?
+  ): Any? {
+    TransferContext.writeArguments(LONG to peerId, STRING_NAME to method,  *__var_args.map { ANY to
+        it }.toTypedArray())
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC_ID, ANY)
+    return TransferContext.readReturnValue(ANY, true) as Any?
+  }
+
+  /**
    * Updates the warning displayed for this node in the Scene Dock.
    *
-   * Use [_getConfigurationWarning] to setup the warning message to display.
+   * Use [_getConfigurationWarnings] to setup the warning message to display.
    */
-  public open fun updateConfigurationWarning(): Unit {
+  public open fun updateConfigurationWarnings(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_UPDATE_CONFIGURATION_WARNING,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_UPDATE_CONFIGURATION_WARNINGS,
         NIL)
   }
 
-  public enum class PauseMode(
+  public enum class ProcessMode(
     id: Long
   ) {
     /**
-     * Inherits pause mode from the node's parent. For the root node, it is equivalent to [PAUSE_MODE_STOP]. Default.
+     * Inherits process mode from the node's parent. For the root node, it is equivalent to [PROCESS_MODE_PAUSABLE]. Default.
      */
-    PAUSE_MODE_INHERIT(0),
+    PROCESS_MODE_INHERIT(0),
     /**
-     * Stops processing when the [godot.SceneTree] is paused.
+     * Stops processing when the [godot.SceneTree] is paused (process when unpaused). This is the inverse of [PROCESS_MODE_WHEN_PAUSED].
      */
-    PAUSE_MODE_STOP(1),
+    PROCESS_MODE_PAUSABLE(1),
     /**
-     * Continue to process regardless of the [godot.SceneTree] pause state.
+     * Only process when the [godot.SceneTree] is paused (don't process when unpaused). This is the inverse of [PROCESS_MODE_PAUSABLE].
      */
-    PAUSE_MODE_PROCESS(2),
+    PROCESS_MODE_WHEN_PAUSED(2),
+    /**
+     * Always process. Continue processing always, ignoring the [godot.SceneTree]'s paused property. This is the inverse of [PROCESS_MODE_DISABLED].
+     */
+    PROCESS_MODE_ALWAYS(3),
+    /**
+     * Never process. Completely disables processing, ignoring the [godot.SceneTree]'s paused property. This is the inverse of [PROCESS_MODE_ALWAYS].
+     */
+    PROCESS_MODE_DISABLED(4),
     ;
 
     public val id: Long
@@ -1633,49 +1707,90 @@ public open class Node : Object() {
     }
   }
 
+  public enum class InternalMode(
+    id: Long
+  ) {
+    /**
+     * Node will not be internal.
+     */
+    INTERNAL_MODE_DISABLED(0),
+    /**
+     * Node will be placed at the front of parent's node list, before any non-internal sibling.
+     */
+    INTERNAL_MODE_FRONT(1),
+    /**
+     * Node will be placed at the back of parent's node list, after any non-internal sibling.
+     */
+    INTERNAL_MODE_BACK(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
   public companion object {
     /**
-     * Duplicate the node's groups.
+     * Notification received when the node enters a [godot.SceneTree].
      */
-    public final const val DUPLICATE_GROUPS: Long = 2
+    public final const val NOTIFICATION_ENTER_TREE: Long = 10
 
     /**
-     * Duplicate the node's scripts.
+     * Notification received when the node is about to exit a [godot.SceneTree].
      */
-    public final const val DUPLICATE_SCRIPTS: Long = 4
+    public final const val NOTIFICATION_EXIT_TREE: Long = 11
 
     /**
-     * Duplicate the node's signals.
+     * Notification received when the node is moved in the parent.
      */
-    public final const val DUPLICATE_SIGNALS: Long = 1
+    public final const val NOTIFICATION_MOVED_IN_PARENT: Long = 12
 
     /**
-     * Duplicate using instancing.
+     * Notification received when the node is ready. See [_ready].
+     */
+    public final const val NOTIFICATION_READY: Long = 13
+
+    /**
+     * Notification received when the node is paused.
+     */
+    public final const val NOTIFICATION_PAUSED: Long = 14
+
+    /**
+     * Notification received when the node is unpaused.
+     */
+    public final const val NOTIFICATION_UNPAUSED: Long = 15
+
+    /**
+     * Notification received every frame when the physics process flag is set (see [setPhysicsProcess]).
+     */
+    public final const val NOTIFICATION_PHYSICS_PROCESS: Long = 16
+
+    /**
+     * Notification received every frame when the process flag is set (see [setProcess]).
+     */
+    public final const val NOTIFICATION_PROCESS: Long = 17
+
+    /**
+     * Notification received when a node is set as a child of another node.
      *
-     * An instance stays linked to the original so when the original changes, the instance changes too.
+     * **Note:** This doesn't mean that a node entered the [godot.SceneTree].
      */
-    public final const val DUPLICATE_USE_INSTANCING: Long = 8
+    public final const val NOTIFICATION_PARENTED: Long = 18
 
     /**
-     * Notification received from the OS when the app is paused.
-     *
-     * Specific to the Android platform.
+     * Notification received when a node is unparented (parent removed it from the list of children).
      */
-    public final const val NOTIFICATION_APP_PAUSED: Long = 1015
+    public final const val NOTIFICATION_UNPARENTED: Long = 19
 
     /**
-     * Notification received from the OS when the app is resumed.
-     *
-     * Specific to the Android platform.
+     * Notification received when the node is instantiated.
      */
-    public final const val NOTIFICATION_APP_RESUMED: Long = 1014
-
-    /**
-     * Notification received from Godot's crash handler when the engine is about to crash.
-     *
-     * Implemented on desktop platforms if the crash handler is enabled.
-     */
-    public final const val NOTIFICATION_CRASH: Long = 1012
+    public final const val NOTIFICATION_INSTANCED: Long = 20
 
     /**
      * Notification received when a drag begins.
@@ -1688,24 +1803,9 @@ public open class Node : Object() {
     public final const val NOTIFICATION_DRAG_END: Long = 22
 
     /**
-     * Notification received when the node enters a [godot.SceneTree].
+     * Notification received when the node's name or one of its parents' name is changed. This notification is *not* received when the node is removed from the scene tree to be added to another parent later on.
      */
-    public final const val NOTIFICATION_ENTER_TREE: Long = 10
-
-    /**
-     * Notification received when the node is about to exit a [godot.SceneTree].
-     */
-    public final const val NOTIFICATION_EXIT_TREE: Long = 11
-
-    /**
-     * Notification received when the node is instanced.
-     */
-    public final const val NOTIFICATION_INSTANCED: Long = 20
-
-    /**
-     * Notification received every frame when the internal physics process flag is set (see [setPhysicsProcessInternal]).
-     */
-    public final const val NOTIFICATION_INTERNAL_PHYSICS_PROCESS: Long = 26
+    public final const val NOTIFICATION_PATH_RENAMED: Long = 23
 
     /**
      * Notification received every frame when the internal process flag is set (see [setProcessInternal]).
@@ -1713,45 +1813,9 @@ public open class Node : Object() {
     public final const val NOTIFICATION_INTERNAL_PROCESS: Long = 25
 
     /**
-     * Notification received when the node is moved in the parent.
+     * Notification received every frame when the internal physics process flag is set (see [setPhysicsProcessInternal]).
      */
-    public final const val NOTIFICATION_MOVED_IN_PARENT: Long = 12
-
-    /**
-     * Notification received from the OS when an update of the Input Method Engine occurs (e.g. change of IME cursor position or composition string).
-     *
-     * Specific to the macOS platform.
-     */
-    public final const val NOTIFICATION_OS_IME_UPDATE: Long = 1013
-
-    /**
-     * Notification received from the OS when the application is exceeding its allocated memory.
-     *
-     * Specific to the iOS platform.
-     */
-    public final const val NOTIFICATION_OS_MEMORY_WARNING: Long = 1009
-
-    /**
-     * Notification received when a node is set as a child of another node.
-     *
-     * **Note:** This doesn't mean that a node entered the [godot.SceneTree].
-     */
-    public final const val NOTIFICATION_PARENTED: Long = 18
-
-    /**
-     * Notification received when the node's [godot.core.NodePath] changed.
-     */
-    public final const val NOTIFICATION_PATH_CHANGED: Long = 23
-
-    /**
-     * Notification received when the node is paused.
-     */
-    public final const val NOTIFICATION_PAUSED: Long = 14
-
-    /**
-     * Notification received every frame when the physics process flag is set (see [setPhysicsProcess]).
-     */
-    public final const val NOTIFICATION_PHYSICS_PROCESS: Long = 16
+    public final const val NOTIFICATION_INTERNAL_PHYSICS_PROCESS: Long = 26
 
     /**
      * Notification received when the node is ready, just before [NOTIFICATION_READY] is received. Unlike the latter, it's sent every time the node enters tree, instead of only once.
@@ -1759,57 +1823,24 @@ public open class Node : Object() {
     public final const val NOTIFICATION_POST_ENTER_TREE: Long = 27
 
     /**
-     * Notification received every frame when the process flag is set (see [setProcess]).
+     * Notification received when the node is disabled. See [PROCESS_MODE_DISABLED].
      */
-    public final const val NOTIFICATION_PROCESS: Long = 17
+    public final const val NOTIFICATION_DISABLED: Long = 28
 
     /**
-     * Notification received when the node is ready. See [_ready].
+     * Notification received when the node is enabled again after being disabled. See [PROCESS_MODE_DISABLED].
      */
-    public final const val NOTIFICATION_READY: Long = 13
+    public final const val NOTIFICATION_ENABLED: Long = 29
 
     /**
-     * Notification received when translations may have changed. Can be triggered by the user changing the locale. Can be used to respond to language changes, for example to change the UI strings on the fly. Useful when working with the built-in translation support, like [godot.Object.tr].
+     * Notification received right before the scene with the node is saved in the editor. This notification is only sent in the Godot editor and will not occur in exported projects.
      */
-    public final const val NOTIFICATION_TRANSLATION_CHANGED: Long = 1010
+    public final const val NOTIFICATION_EDITOR_PRE_SAVE: Long = 9001
 
     /**
-     * Notification received when a node is unparented (parent removed it from the list of children).
+     * Notification received right after the scene with the node is saved in the editor. This notification is only sent in the Godot editor and will not occur in exported projects.
      */
-    public final const val NOTIFICATION_UNPARENTED: Long = 19
-
-    /**
-     * Notification received when the node is unpaused.
-     */
-    public final const val NOTIFICATION_UNPAUSED: Long = 15
-
-    /**
-     * Notification received from the OS when a request for "About" information is sent.
-     *
-     * Specific to the macOS platform.
-     */
-    public final const val NOTIFICATION_WM_ABOUT: Long = 1011
-
-    /**
-     * Notification received from the OS when the game window is focused.
-     *
-     * Implemented on all platforms.
-     */
-    public final const val NOTIFICATION_WM_FOCUS_IN: Long = 1004
-
-    /**
-     * Notification received from the OS when the game window is unfocused.
-     *
-     * Implemented on all platforms.
-     */
-    public final const val NOTIFICATION_WM_FOCUS_OUT: Long = 1005
-
-    /**
-     * Notification received from the OS when a go back request is sent (e.g. pressing the "Back" button on Android).
-     *
-     * Specific to the Android platform.
-     */
-    public final const val NOTIFICATION_WM_GO_BACK_REQUEST: Long = 1007
+    public final const val NOTIFICATION_EDITOR_POST_SAVE: Long = 9002
 
     /**
      * Notification received from the OS when the mouse enters the game window.
@@ -1826,32 +1857,98 @@ public open class Node : Object() {
     public final const val NOTIFICATION_WM_MOUSE_EXIT: Long = 1003
 
     /**
-     * Notification received from the OS when a quit request is sent (e.g. closing the window with a "Close" button or Alt+F4).
+     * Notification received from the OS when the node's parent [godot.Window] is focused. This may be a change of focus between two windows of the same engine instance, or from the OS desktop or a third-party application to a window of the game (in which case [NOTIFICATION_APPLICATION_FOCUS_IN] is also emitted).
+     */
+    public final const val NOTIFICATION_WM_WINDOW_FOCUS_IN: Long = 1004
+
+    /**
+     * Notification received from the OS when the node's parent [godot.Window] is defocused. This may be a change of focus between two windows of the same engine instance, or from a window of the game to the OS desktop or a third-party application (in which case [NOTIFICATION_APPLICATION_FOCUS_OUT] is also emitted).
+     */
+    public final const val NOTIFICATION_WM_WINDOW_FOCUS_OUT: Long = 1005
+
+    /**
+     * Notification received from the OS when a close request is sent (e.g. closing the window with a "Close" button or [kbd]Alt + F4[/kbd]).
      *
      * Implemented on desktop platforms.
      */
-    public final const val NOTIFICATION_WM_QUIT_REQUEST: Long = 1006
+    public final const val NOTIFICATION_WM_CLOSE_REQUEST: Long = 1006
 
     /**
-     * Notification received from the OS when an unfocus request is sent (e.g. another OS window wants to take the focus).
+     * Notification received from the OS when a go back request is sent (e.g. pressing the "Back" button on Android).
      *
-     * No supported platforms currently send this notification.
+     * Specific to the Android platform.
      */
-    public final const val NOTIFICATION_WM_UNFOCUS_REQUEST: Long = 1008
+    public final const val NOTIFICATION_WM_GO_BACK_REQUEST: Long = 1007
 
     /**
-     * Inherits pause mode from the node's parent. For the root node, it is equivalent to [PAUSE_MODE_STOP]. Default.
+     *
      */
-    public final const val PAUSE_MODE_INHERIT: Long = 0
+    public final const val NOTIFICATION_WM_SIZE_CHANGED: Long = 1008
 
     /**
-     * Continue to process regardless of the [godot.SceneTree] pause state.
+     * Notification received from the OS when the application is exceeding its allocated memory.
+     *
+     * Specific to the iOS platform.
      */
-    public final const val PAUSE_MODE_PROCESS: Long = 2
+    public final const val NOTIFICATION_OS_MEMORY_WARNING: Long = 2009
 
     /**
-     * Stops processing when the [godot.SceneTree] is paused.
+     * Notification received when translations may have changed. Can be triggered by the user changing the locale. Can be used to respond to language changes, for example to change the UI strings on the fly. Useful when working with the built-in translation support, like [godot.Object.tr].
      */
-    public final const val PAUSE_MODE_STOP: Long = 1
+    public final const val NOTIFICATION_TRANSLATION_CHANGED: Long = 2010
+
+    /**
+     * Notification received from the OS when a request for "About" information is sent.
+     *
+     * Specific to the macOS platform.
+     */
+    public final const val NOTIFICATION_WM_ABOUT: Long = 2011
+
+    /**
+     * Notification received from Godot's crash handler when the engine is about to crash.
+     *
+     * Implemented on desktop platforms if the crash handler is enabled.
+     */
+    public final const val NOTIFICATION_CRASH: Long = 2012
+
+    /**
+     * Notification received from the OS when an update of the Input Method Engine occurs (e.g. change of IME cursor position or composition string).
+     *
+     * Specific to the macOS platform.
+     */
+    public final const val NOTIFICATION_OS_IME_UPDATE: Long = 2013
+
+    /**
+     * Notification received from the OS when the application is resumed.
+     *
+     * Specific to the Android platform.
+     */
+    public final const val NOTIFICATION_APPLICATION_RESUMED: Long = 2014
+
+    /**
+     * Notification received from the OS when the application is paused.
+     *
+     * Specific to the Android platform.
+     */
+    public final const val NOTIFICATION_APPLICATION_PAUSED: Long = 2015
+
+    /**
+     * Notification received from the OS when the application is focused, i.e. when changing the focus from the OS desktop or a thirdparty application to any open window of the Godot instance.
+     *
+     * Implemented on desktop platforms.
+     */
+    public final const val NOTIFICATION_APPLICATION_FOCUS_IN: Long = 2016
+
+    /**
+     * Notification received from the OS when the application is defocused, i.e. when changing the focus from any open window of the Godot instance to the OS desktop or a thirdparty application.
+     *
+     * Implemented on desktop platforms.
+     */
+    public final const val NOTIFICATION_APPLICATION_FOCUS_OUT: Long = 2017
+
+    /**
+     * Notification received when text server is changed.
+     */
+    public final const val NOTIFICATION_TEXT_SERVER_CHANGED: Long = 2018
   }
 }

@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -55,7 +55,25 @@ public open class CanvasItemMaterial : Material() {
     }
 
   /**
-   * The number of columns in the spritesheet assigned as [godot.Texture] for a [godot.Particles2D] or [godot.CPUParticles2D].
+   * If `true`, enable spritesheet-based animation features when assigned to [godot.GPUParticles2D] and [godot.CPUParticles2D] nodes. The [godot.ParticlesMaterial.animSpeedMax] or [godot.CPUParticles2D.animSpeedMax] should also be set to a positive value for the animation to play.
+   *
+   * This property (and other `particles_anim_*` properties that depend on it) has no effect on other types of nodes.
+   */
+  public open var particlesAnimation: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_GET_PARTICLES_ANIMATION, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_SET_PARTICLES_ANIMATION, NIL)
+    }
+
+  /**
+   * The number of columns in the spritesheet assigned as [godot.Texture2D] for a [godot.GPUParticles2D] or [godot.CPUParticles2D].
    *
    * **Note:** This property is only used and visible in the editor if [particlesAnimation] is `true`.
    */
@@ -70,6 +88,24 @@ public open class CanvasItemMaterial : Material() {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_SET_PARTICLES_ANIM_H_FRAMES, NIL)
+    }
+
+  /**
+   * The number of rows in the spritesheet assigned as [godot.Texture2D] for a [godot.GPUParticles2D] or [godot.CPUParticles2D].
+   *
+   * **Note:** This property is only used and visible in the editor if [particlesAnimation] is `true`.
+   */
+  public open var particlesAnimVFrames: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_GET_PARTICLES_ANIM_V_FRAMES, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_SET_PARTICLES_ANIM_V_FRAMES, NIL)
     }
 
   /**
@@ -88,42 +124,6 @@ public open class CanvasItemMaterial : Material() {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_SET_PARTICLES_ANIM_LOOP, NIL)
-    }
-
-  /**
-   * The number of rows in the spritesheet assigned as [godot.Texture] for a [godot.Particles2D] or [godot.CPUParticles2D].
-   *
-   * **Note:** This property is only used and visible in the editor if [particlesAnimation] is `true`.
-   */
-  public open var particlesAnimVFrames: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_GET_PARTICLES_ANIM_V_FRAMES, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_SET_PARTICLES_ANIM_V_FRAMES, NIL)
-    }
-
-  /**
-   * If `true`, enable spritesheet-based animation features when assigned to [godot.Particles2D] and [godot.CPUParticles2D] nodes. The [godot.ParticlesMaterial.animSpeed] or [godot.CPUParticles2D.animSpeed] should also be set to a positive value for the animation to play.
-   *
-   * This property (and other `particles_anim_*` properties that depend on it) has no effect on other types of nodes.
-   */
-  public open var particlesAnimation: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_GET_PARTICLES_ANIMATION, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CANVASITEMMATERIAL_SET_PARTICLES_ANIMATION, NIL)
     }
 
   public override fun __new(): Unit {
@@ -192,45 +192,5 @@ public open class CanvasItemMaterial : Material() {
     }
   }
 
-  public companion object {
-    /**
-     * Additive blending mode.
-     */
-    public final const val BLEND_MODE_ADD: Long = 1
-
-    /**
-     * Mix blending mode. Colors are assumed to be independent of the alpha (opacity) value.
-     */
-    public final const val BLEND_MODE_MIX: Long = 0
-
-    /**
-     * Multiplicative blending mode.
-     */
-    public final const val BLEND_MODE_MUL: Long = 3
-
-    /**
-     * Mix blending mode. Colors are assumed to be premultiplied by the alpha (opacity) value.
-     */
-    public final const val BLEND_MODE_PREMULT_ALPHA: Long = 4
-
-    /**
-     * Subtractive blending mode.
-     */
-    public final const val BLEND_MODE_SUB: Long = 2
-
-    /**
-     * Render the material as if there were only light.
-     */
-    public final const val LIGHT_MODE_LIGHT_ONLY: Long = 2
-
-    /**
-     * Render the material using both light and non-light sensitive material properties.
-     */
-    public final const val LIGHT_MODE_NORMAL: Long = 0
-
-    /**
-     * Render the material as if there were no light.
-     */
-    public final const val LIGHT_MODE_UNSHADED: Long = 1
-  }
+  public companion object
 }

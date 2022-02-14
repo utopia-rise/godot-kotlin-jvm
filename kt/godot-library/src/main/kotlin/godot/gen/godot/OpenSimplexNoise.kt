@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
 @file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
     "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE")
+    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT")
 
 package godot
 
@@ -22,17 +22,15 @@ import kotlin.Unit
 
 @GodotBaseType
 public open class OpenSimplexNoise : Resource() {
-  public open var lacunarity: Double
+  public open var seed: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENSIMPLEXNOISE_GET_LACUNARITY,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENSIMPLEXNOISE_GET_SEED, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENSIMPLEXNOISE_SET_LACUNARITY,
-          NIL)
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENSIMPLEXNOISE_SET_SEED, NIL)
     }
 
   public open var octaves: Long
@@ -72,15 +70,17 @@ public open class OpenSimplexNoise : Resource() {
           NIL)
     }
 
-  public open var seed: Long
+  public open var lacunarity: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENSIMPLEXNOISE_GET_SEED, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENSIMPLEXNOISE_GET_LACUNARITY,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENSIMPLEXNOISE_SET_SEED, NIL)
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENSIMPLEXNOISE_SET_LACUNARITY,
+          NIL)
     }
 
   public override fun __new(): Unit {
@@ -90,10 +90,17 @@ public open class OpenSimplexNoise : Resource() {
   public open fun getImage(
     width: Long,
     height: Long,
-    noiseOffset: Vector2 = Vector2(0.0, 0.0)
+    noiseOffset: Vector2 = Vector2Vector2(0.0, 0.0)
   ): Image? {
     TransferContext.writeArguments(LONG to width, LONG to height, VECTOR2 to noiseOffset)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENSIMPLEXNOISE_GET_IMAGE, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Image?
+  }
+
+  public open fun getSeamlessImage(size: Long): Image? {
+    TransferContext.writeArguments(LONG to size)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENSIMPLEXNOISE_GET_SEAMLESS_IMAGE,
+        OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Image?
   }
 
@@ -111,13 +118,6 @@ public open class OpenSimplexNoise : Resource() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public open fun getNoise2dv(pos: Vector2): Double {
-    TransferContext.writeArguments(VECTOR2 to pos)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENSIMPLEXNOISE_GET_NOISE_2DV,
-        DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
-  }
-
   public open fun getNoise3d(
     x: Double,
     y: Double,
@@ -125,13 +125,6 @@ public open class OpenSimplexNoise : Resource() {
   ): Double {
     TransferContext.writeArguments(DOUBLE to x, DOUBLE to y, DOUBLE to z)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENSIMPLEXNOISE_GET_NOISE_3D,
-        DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
-  }
-
-  public open fun getNoise3dv(pos: Vector3): Double {
-    TransferContext.writeArguments(VECTOR3 to pos)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENSIMPLEXNOISE_GET_NOISE_3DV,
         DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
@@ -148,10 +141,19 @@ public open class OpenSimplexNoise : Resource() {
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
-  public open fun getSeamlessImage(size: Long): Image? {
-    TransferContext.writeArguments(LONG to size)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENSIMPLEXNOISE_GET_SEAMLESS_IMAGE,
-        OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Image?
+  public open fun getNoise2dv(pos: Vector2): Double {
+    TransferContext.writeArguments(VECTOR2 to pos)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENSIMPLEXNOISE_GET_NOISE_2DV,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
+
+  public open fun getNoise3dv(pos: Vector3): Double {
+    TransferContext.writeArguments(VECTOR3 to pos)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPENSIMPLEXNOISE_GET_NOISE_3DV,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  public companion object
 }
