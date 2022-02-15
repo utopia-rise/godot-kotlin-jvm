@@ -21,7 +21,7 @@ fun File.generateApiFrom(jsonSource: File, docsDir: File? = null) {
     val apiDescription = ObjectMapper().readValue(jsonSource, object : TypeReference<ApiDescription>() {})
 
     val classRepository: ClassRepository = JsonClassRepository(apiDescription.classes.toEnriched())
-    val singletonRepository: SingletonRepository = JsonSingletonRepository(apiDescription.singletons)
+    val singletonRepository: SingletonRepository = JsonSingletonRepository(apiDescription.singletons.toEnriched())
     val globalEnumRepository: GlobalEnumRepository = JsonGlobalEnumRepository(apiDescription.globalEnums.toEnriched(true))
     val coreTypeEnumRepository: CoreTypeEnumRepository = KnownCoreTypeEnumRepository()
     val docRepository: IDocRepository = DocRepository(classDocs)

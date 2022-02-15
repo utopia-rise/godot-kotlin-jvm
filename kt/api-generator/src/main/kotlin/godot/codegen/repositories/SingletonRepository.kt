@@ -1,9 +1,9 @@
 package godot.codegen.repositories
 
-import godot.codegen.models.Singleton
+import godot.codegen.models.enriched.EnrichedSingleton
 
 interface SingletonRepository {
-    fun list(): List<Singleton>
-    infix fun findByName(name: String): Singleton?
-    infix fun findByType(type: String): List<Singleton>
+    fun list(): List<EnrichedSingleton>
+    infix fun findByName(name: String): EnrichedSingleton?
+    infix fun findByType(type: String): List<EnrichedSingleton>
 }
