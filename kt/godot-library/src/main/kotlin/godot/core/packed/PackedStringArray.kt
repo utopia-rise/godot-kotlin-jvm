@@ -4,7 +4,7 @@ import godot.util.IndexedIterator
 import godot.util.VoidPtr
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
-class PoolStringArray : NativeCoreType, Iterable<String> {
+class PackedStringArray : NativeCoreType, Iterable<String> {
 
     //PROPERTIES
     val size: Int
@@ -16,12 +16,12 @@ class PoolStringArray : NativeCoreType, Iterable<String> {
     //CONSTRUCTOR
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        GarbageCollector.registerNativeCoreType(this, VariantType.POOL_STRING_ARRAY)
+        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_STRING_ARRAY)
     }
 
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        GarbageCollector.registerNativeCoreType(this, VariantType.POOL_STRING_ARRAY)
+        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_STRING_ARRAY)
     }
 
 
@@ -38,8 +38,8 @@ class PoolStringArray : NativeCoreType, Iterable<String> {
     /**
      * Appends a PoolStringArray at the end of this array.
      */
-    fun appendArray(array: PoolStringArray) {
-        TransferContext.writeArguments(VariantType.POOL_STRING_ARRAY to array)
+    fun appendArray(array: PackedStringArray) {
+        TransferContext.writeArguments(VariantType.PACKED_STRING_ARRAY to array)
         Bridge.engine_call_appendArray(_handle)
     }
 
@@ -79,11 +79,11 @@ class PoolStringArray : NativeCoreType, Iterable<String> {
     /**
      * Returns a String with each element of the array joined with the given delimiter.
      */
-    fun join(delimiter: String): String {
-        TransferContext.writeArguments(VariantType.STRING to delimiter)
-        Bridge.engine_call_join(_handle)
-        return TransferContext.readReturnValue(VariantType.STRING) as String
-    }
+//    fun join(delimiter: String): String {
+//        TransferContext.writeArguments(VariantType.STRING to delimiter)
+//        Bridge.engine_call_join(_handle)
+//        return TransferContext.readReturnValue(VariantType.STRING) as String
+//    }
 
     /**
      * Appends a value to the array.
@@ -124,7 +124,7 @@ class PoolStringArray : NativeCoreType, Iterable<String> {
         this.append(other)
     }
 
-    operator fun plus(other: PoolStringArray) {
+    operator fun plus(other: PackedStringArray) {
         this.appendArray(other)
     }
 
@@ -141,7 +141,7 @@ class PoolStringArray : NativeCoreType, Iterable<String> {
      * This methods implementation works but is not the fastest one.
      */
     override fun equals(other: Any?): Boolean {
-        return if (other is PoolStringArray) {
+        return if (other is PackedStringArray) {
             val list1 = this.toList()
             val list2 = other.toList()
             list1 == list2
@@ -165,7 +165,7 @@ class PoolStringArray : NativeCoreType, Iterable<String> {
         external fun engine_call_get(_handle: VoidPtr)
         external fun engine_call_insert(_handle: VoidPtr)
         external fun engine_call_reverse(_handle: VoidPtr)
-        external fun engine_call_join(_handle: VoidPtr)
+//        external fun engine_call_join(_handle: VoidPtr)
         external fun engine_call_pushback(_handle: VoidPtr)
         external fun engine_call_remove_at(_handle: VoidPtr)
         external fun engine_call_resize(_handle: VoidPtr)

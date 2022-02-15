@@ -6,7 +6,7 @@ import godot.util.IndexedIterator
 import godot.util.VoidPtr
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
-class PoolByteArray : NativeCoreType, Iterable<Byte> {
+class PackedByteArray : NativeCoreType, Iterable<Byte> {
 
     enum class CompressionMode {
         /**
@@ -41,12 +41,12 @@ class PoolByteArray : NativeCoreType, Iterable<Byte> {
     //CONSTRUCTOR
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        GarbageCollector.registerNativeCoreType(this, VariantType.POOL_BYTE_ARRAY)
+        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_BYTE_ARRAY)
     }
 
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        GarbageCollector.registerNativeCoreType(this, VariantType.POOL_BYTE_ARRAY)
+        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_BYTE_ARRAY)
     }
 
 
@@ -63,8 +63,8 @@ class PoolByteArray : NativeCoreType, Iterable<Byte> {
     /**
      * Appends a PoolByteArray at the end of this array.
      */
-    fun appendArray(array: PoolByteArray) {
-        TransferContext.writeArguments(VariantType.POOL_BYTE_ARRAY to array)
+    fun appendArray(array: PackedByteArray) {
+        TransferContext.writeArguments(VariantType.PACKED_BYTE_ARRAY to array)
         Bridge.engine_call_appendArray(_handle)
     }
 
@@ -72,10 +72,10 @@ class PoolByteArray : NativeCoreType, Iterable<Byte> {
      * Returns a new PoolByteArray with the data compressed.
      * Set the compression mode using one of CompressionMode's constants.
      */
-    fun compress(compressionMode: CompressionMode = CompressionMode.COMPRESSION_FASTLZ): PoolByteArray {
+    fun compress(compressionMode: CompressionMode = CompressionMode.COMPRESSION_FASTLZ): PackedByteArray {
         TransferContext.writeArguments(VariantType.JVM_INT to compressionMode.ordinal)
         Bridge.engine_call_compress(_handle)
-        return TransferContext.readReturnValue(VariantType.POOL_BYTE_ARRAY) as PoolByteArray
+        return TransferContext.readReturnValue(VariantType.PACKED_BYTE_ARRAY) as PackedByteArray
     }
 
     /**
@@ -83,13 +83,13 @@ class PoolByteArray : NativeCoreType, Iterable<Byte> {
      * Set buffer_size to the size of the uncompressed data.
      * Set the compression mode using one of CompressionMode's constants.
      */
-    fun decompress(bufferSize: Int, compressionMode: CompressionMode = CompressionMode.COMPRESSION_FASTLZ): PoolByteArray {
+    fun decompress(bufferSize: Int, compressionMode: CompressionMode = CompressionMode.COMPRESSION_FASTLZ): PackedByteArray {
         TransferContext.writeArguments(
             VariantType.JVM_INT to bufferSize,
             VariantType.JVM_INT to compressionMode.ordinal
         )
         Bridge.engine_call_decompress(_handle)
-        return TransferContext.readReturnValue(VariantType.POOL_BYTE_ARRAY) as PoolByteArray
+        return TransferContext.readReturnValue(VariantType.PACKED_BYTE_ARRAY) as PackedByteArray
     }
 
     /**
@@ -195,7 +195,7 @@ class PoolByteArray : NativeCoreType, Iterable<Byte> {
         this.append(other)
     }
 
-    operator fun plus(other: PoolByteArray) {
+    operator fun plus(other: PackedByteArray) {
         this.appendArray(other)
     }
 
@@ -212,7 +212,7 @@ class PoolByteArray : NativeCoreType, Iterable<Byte> {
      * This methods implementation works but is not the fastest one.
      */
     override fun equals(other: Any?): Boolean {
-        return if (other is PoolByteArray) {
+        return if (other is PackedByteArray) {
             val list1 = this.toList()
             val list2 = other.toList()
             list1 == list2

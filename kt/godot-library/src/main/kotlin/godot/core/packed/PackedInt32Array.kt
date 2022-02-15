@@ -6,7 +6,7 @@ import godot.util.IndexedIterator
 import godot.util.VoidPtr
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
-class PackedVector3Array : NativeCoreType, Iterable<Vector3> {
+class PackedInt32Array : NativeCoreType, Iterable<Int> {
 
     //PROPERTIES
     val size: Int
@@ -18,12 +18,12 @@ class PackedVector3Array : NativeCoreType, Iterable<Vector3> {
     //CONSTRUCTOR
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_VECTOR3_ARRAY)
+        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_INT_ARRAY)
     }
 
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_VECTOR3_ARRAY)
+        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_INT_ARRAY)
     }
 
 
@@ -31,17 +31,17 @@ class PackedVector3Array : NativeCoreType, Iterable<Vector3> {
     /**
      * Appends an element at the end of the array (alias of push_back).
      */
-    fun append(vector3: Vector3) {
-        TransferContext.writeArguments(VariantType.VECTOR3 to vector3)
+    fun append(i: Int) {
+        TransferContext.writeArguments(VariantType.JVM_INT to i)
         Bridge.engine_call_append(_handle)
     }
 
 
     /**
-     * Appends a PoolVector3Array at the end of this array.
+     * Appends a PoolIntArray at the end of this array.
      */
-    fun appendArray(array: PackedVector3Array) {
-        TransferContext.writeArguments(VariantType.PACKED_VECTOR3_ARRAY to array)
+    fun appendArray(array: PackedInt32Array) {
+        TransferContext.writeArguments(VariantType.PACKED_INT_ARRAY to array)
         Bridge.engine_call_appendArray(_handle)
     }
 
@@ -56,18 +56,18 @@ class PackedVector3Array : NativeCoreType, Iterable<Vector3> {
     /**
      *  Retrieve the element at the given index.
      */
-    operator fun get(idx: Int): Vector3 {
+    operator fun get(idx: Int): Int {
         TransferContext.writeArguments(VariantType.JVM_INT to idx)
         Bridge.engine_call_get(_handle)
-        return TransferContext.readReturnValue(VariantType.VECTOR3) as Vector3
+        return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
     }
 
     /**
      * Inserts a new element at a given position in the array.
      * The position must be valid, or at the end of the array (idx == size()).
      */
-    fun insert(idx: Int, data: Vector3) {
-        TransferContext.writeArguments(VariantType.JVM_INT to idx, VariantType.VECTOR3 to data)
+    fun insert(idx: Int, data: Int) {
+        TransferContext.writeArguments(VariantType.JVM_INT to idx, VariantType.JVM_INT to data)
         Bridge.engine_call_insert(_handle)
     }
 
@@ -81,8 +81,8 @@ class PackedVector3Array : NativeCoreType, Iterable<Vector3> {
     /**
      * Appends a value to the array.
      */
-    fun pushBack(data: Vector3) {
-        TransferContext.writeArguments(VariantType.VECTOR3 to data)
+    fun pushBack(data: Int) {
+        TransferContext.writeArguments(VariantType.JVM_INT to data)
         Bridge.engine_call_pushback(_handle)
     }
 
@@ -106,26 +106,26 @@ class PackedVector3Array : NativeCoreType, Iterable<Vector3> {
     /**
      * Changes the integer at the given index.
      */
-    operator fun set(idx: Int, data: Vector3) {
-        TransferContext.writeArguments(VariantType.JVM_INT to idx, VariantType.VECTOR3 to data)
+    operator fun set(idx: Int, data: Int) {
+        TransferContext.writeArguments(VariantType.JVM_INT to idx, VariantType.JVM_INT to data)
         Bridge.engine_call_set(_handle)
     }
 
 
     //UTILITIES
-    operator fun plus(other: Vector3) {
+    operator fun plus(other: Int) {
         this.append(other)
     }
 
-    operator fun plus(other: PackedVector3Array) {
+    operator fun plus(other: PackedInt32Array) {
         this.appendArray(other)
     }
 
     override fun toString(): String {
-        return "PoolVector3Array(${size})"
+        return "PoolIntArray(${size})"
     }
 
-    override fun iterator(): Iterator<Vector3> {
+    override fun iterator(): Iterator<Int> {
         return IndexedIterator(this::size, this::get, this::remove)
     }
 
@@ -134,7 +134,7 @@ class PackedVector3Array : NativeCoreType, Iterable<Vector3> {
      * This methods implementation works but is not the fastest one.
      */
     override fun equals(other: Any?): Boolean {
-        return if (other is PackedVector3Array) {
+        return if (other is PackedInt32Array) {
             val list1 = this.toList()
             val list2 = other.toList()
             list1 == list2

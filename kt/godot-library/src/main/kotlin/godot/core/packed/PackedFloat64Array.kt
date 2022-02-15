@@ -8,7 +8,7 @@ import godot.util.VoidPtr
 import godot.util.realTVariantType
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
-class PackedRealArray : NativeCoreType, Iterable<RealT> {
+class PackedFloat64Array : NativeCoreType, Iterable<RealT> {
 
     //PROPERTIES
     val size: Int
@@ -20,12 +20,12 @@ class PackedRealArray : NativeCoreType, Iterable<RealT> {
     //CONSTRUCTOR
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        GarbageCollector.registerNativeCoreType(this, VariantType.POOL_REAL_ARRAY)
+        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_FLOAT_64_ARRAY)
     }
 
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        GarbageCollector.registerNativeCoreType(this, VariantType.POOL_REAL_ARRAY)
+        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_FLOAT_64_ARRAY)
     }
 
 
@@ -42,8 +42,8 @@ class PackedRealArray : NativeCoreType, Iterable<RealT> {
     /**
      * Appends a PoolRealArray at the end of this array.
      */
-    fun appendArray(array: PackedRealArray) {
-        TransferContext.writeArguments(VariantType.POOL_REAL_ARRAY to array)
+    fun appendArray(array: PackedFloat64Array) {
+        TransferContext.writeArguments(VariantType.PACKED_FLOAT_64_ARRAY to array)
         Bridge.engine_call_appendArray(_handle)
     }
 
@@ -119,7 +119,7 @@ class PackedRealArray : NativeCoreType, Iterable<RealT> {
         this.append(other)
     }
 
-    operator fun plus(other: PackedRealArray) {
+    operator fun plus(other: PackedFloat64Array) {
         this.appendArray(other)
     }
 
@@ -136,7 +136,7 @@ class PackedRealArray : NativeCoreType, Iterable<RealT> {
      * This methods implementation works but is not the fastest one.
      */
     override fun equals(other: Any?): Boolean {
-        return if (other is PackedRealArray) {
+        return if (other is PackedFloat64Array) {
             val list1 = this.toList()
             val list2 = other.toList()
             list1 == list2

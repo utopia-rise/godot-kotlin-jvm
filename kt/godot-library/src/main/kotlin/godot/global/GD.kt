@@ -1,6 +1,5 @@
 package godot.global
 
-import godot.Object
 import godot.RandomNumberGenerator
 import godot.Resource
 import godot.ResourceLoader
@@ -45,13 +44,13 @@ object GD : GDMath, GDCore, GDRandom, GDPrint {
             is NodePath -> len(what)
             is Dictionary<*, *> -> len(what)
             is VariantArray<*> -> len(what)
-            is PoolByteArray -> len(what)
-            is PoolIntArray -> len(what)
-            is PoolRealArray -> len(what)
-            is PoolStringArray -> len(what)
-            is PoolVector2Array -> len(what)
-            is PoolVector3Array -> len(what)
-            is PoolColorArray -> len(what)
+            is PackedByteArray -> len(what)
+            is PackedInt32Array -> len(what)
+            is PackedFloat64Array -> len(what)
+            is PackedStringArray -> len(what)
+            is PackedVector2Array -> len(what)
+            is PackedVector3Array -> len(what)
+            is PackedColorArray -> len(what)
             else -> throw IllegalArgumentException("This type doesn't have a length. It must be a compatible Variant, Collection or Map")
         }
     }

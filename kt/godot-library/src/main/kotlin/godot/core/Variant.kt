@@ -30,13 +30,13 @@ internal val variantMapper = mutableMapOf(
         Transform2D::class to TRANSFORM2D,
         Vector2::class to VECTOR2,
         Vector3::class to VECTOR3,
-        PoolByteArray::class to POOL_BYTE_ARRAY,
-        PoolColorArray::class to POOL_COLOR_ARRAY,
-        PoolIntArray::class to POOL_INT_ARRAY,
-        PoolRealArray::class to POOL_REAL_ARRAY,
-        PoolStringArray::class to POOL_STRING_ARRAY,
-        PoolVector2Array::class to POOL_VECTOR2_ARRAY,
-        PoolVector3Array::class to POOL_VECTOR3_ARRAY
+        PackedByteArray::class to PACKED_BYTE_ARRAY,
+        PackedColorArray::class to PACKED_COLOR_ARRAY,
+        PackedInt32Array::class to PACKED_INT_ARRAY,
+        PackedFloat64Array::class to PACKED_FLOAT_64_ARRAY,
+        PackedStringArray::class to PACKED_STRING_ARRAY,
+        PackedVector2Array::class to PACKED_VECTOR2_ARRAY,
+        PackedVector3Array::class to PACKED_VECTOR3_ARRAY
 )
 
 private var ByteBuffer.bool: Boolean
@@ -362,67 +362,76 @@ enum class VariantType(
     ),
 
     // arrays
-    POOL_BYTE_ARRAY(
+    PACKED_BYTE_ARRAY(
             { buffer: ByteBuffer, _: Int ->
                 val ptr = buffer.long
-                PoolByteArray(ptr)
+                PackedByteArray(ptr)
             },
             { buffer: ByteBuffer, any: Any ->
-                POOL_BYTE_ARRAY.toGodotNativeCoreType<PoolByteArray>(buffer, any)
+                PACKED_BYTE_ARRAY.toGodotNativeCoreType<PackedByteArray>(buffer, any)
             }
     ), // 20
-    POOL_INT_ARRAY(
+    PACKED_INT_ARRAY(
             { buffer: ByteBuffer, _: Int ->
                 val ptr = buffer.long
-                PoolIntArray(ptr)
+                PackedInt32Array(ptr)
             },
             { buffer: ByteBuffer, any: Any ->
-                POOL_INT_ARRAY.toGodotNativeCoreType<PoolIntArray>(buffer, any)
+                PACKED_INT_ARRAY.toGodotNativeCoreType<PackedInt32Array>(buffer, any)
             }
     ),
-    POOL_REAL_ARRAY(
+    PACKED_FLOAT_32_ARRAY(
+        { buffer: ByteBuffer, _: Int ->
+            val ptr = buffer.long
+            PackedFloat32Array(ptr)
+        },
+        { buffer: ByteBuffer, any: Any ->
+            PACKED_FLOAT_32_ARRAY.toGodotNativeCoreType<PackedFloat32Array>(buffer, any)
+        }
+    ),
+    PACKED_FLOAT_64_ARRAY(
             { buffer: ByteBuffer, _: Int ->
                 val ptr = buffer.long
-                PoolRealArray(ptr)
+                PackedFloat64Array(ptr)
             },
             { buffer: ByteBuffer, any: Any ->
-                POOL_REAL_ARRAY.toGodotNativeCoreType<PoolRealArray>(buffer, any)
+                PACKED_FLOAT_64_ARRAY.toGodotNativeCoreType<PackedFloat64Array>(buffer, any)
             }
     ),
-    POOL_STRING_ARRAY(
+    PACKED_STRING_ARRAY(
             { buffer: ByteBuffer, _: Int ->
                 val ptr = buffer.long
-                PoolStringArray(ptr)
+                PackedStringArray(ptr)
             },
             { buffer: ByteBuffer, any: Any ->
-                POOL_STRING_ARRAY.toGodotNativeCoreType<PoolStringArray>(buffer, any)
+                PACKED_STRING_ARRAY.toGodotNativeCoreType<PackedStringArray>(buffer, any)
             }
     ),
-    POOL_VECTOR2_ARRAY(
+    PACKED_VECTOR2_ARRAY(
             { buffer: ByteBuffer, _: Int ->
                 val ptr = buffer.long
-                PoolVector2Array(ptr)
+                PackedVector2Array(ptr)
             },
             { buffer: ByteBuffer, any: Any ->
-                POOL_VECTOR2_ARRAY.toGodotNativeCoreType<PoolVector2Array>(buffer, any)
+                PACKED_VECTOR2_ARRAY.toGodotNativeCoreType<PackedVector2Array>(buffer, any)
             }
     ),
-    POOL_VECTOR3_ARRAY(
+    PACKED_VECTOR3_ARRAY(
             { buffer: ByteBuffer, _: Int ->
                 val ptr = buffer.long
-                PoolVector3Array(ptr)
+                PackedVector3Array(ptr)
             },
             { buffer: ByteBuffer, any: Any ->
-                POOL_VECTOR3_ARRAY.toGodotNativeCoreType<PoolVector3Array>(buffer, any)
+                PACKED_VECTOR3_ARRAY.toGodotNativeCoreType<PackedVector3Array>(buffer, any)
             }
     ), // 25
-    POOL_COLOR_ARRAY(
+    PACKED_COLOR_ARRAY(
             { buffer: ByteBuffer, _: Int ->
                 val ptr = buffer.long
-                PoolColorArray(ptr)
+                PackedColorArray(ptr)
             },
             { buffer: ByteBuffer, any: Any ->
-                POOL_COLOR_ARRAY.toGodotNativeCoreType<PoolColorArray>(buffer, any)
+                PACKED_COLOR_ARRAY.toGodotNativeCoreType<PackedColorArray>(buffer, any)
             }
     ),
 
@@ -487,13 +496,13 @@ enum class VariantType(
                     is RID -> _RID.toGodotWithoutNullCheck(buffer, any)
                     is VariantArray<*> -> ARRAY.toGodotWithoutNullCheck(buffer, any)
                     is Dictionary<*, *> -> DICTIONARY.toGodotWithoutNullCheck(buffer, any)
-                    is PoolByteArray -> POOL_BYTE_ARRAY.toGodotWithoutNullCheck(buffer, any)
-                    is PoolIntArray -> POOL_INT_ARRAY.toGodotWithoutNullCheck(buffer, any)
-                    is PoolRealArray -> POOL_REAL_ARRAY.toGodotWithoutNullCheck(buffer, any)
-                    is PoolStringArray -> POOL_STRING_ARRAY.toGodotWithoutNullCheck(buffer, any)
-                    is PoolVector2Array -> POOL_VECTOR2_ARRAY.toGodotWithoutNullCheck(buffer, any)
-                    is PoolVector3Array -> POOL_VECTOR3_ARRAY.toGodotWithoutNullCheck(buffer, any)
-                    is PoolColorArray -> POOL_COLOR_ARRAY.toGodotWithoutNullCheck(buffer, any)
+                    is PackedByteArray -> PACKED_BYTE_ARRAY.toGodotWithoutNullCheck(buffer, any)
+                    is PackedInt32Array -> PACKED_INT_ARRAY.toGodotWithoutNullCheck(buffer, any)
+                    is PackedFloat64Array -> PACKED_FLOAT_64_ARRAY.toGodotWithoutNullCheck(buffer, any)
+                    is PackedStringArray -> PACKED_STRING_ARRAY.toGodotWithoutNullCheck(buffer, any)
+                    is PackedVector2Array -> PACKED_VECTOR2_ARRAY.toGodotWithoutNullCheck(buffer, any)
+                    is PackedVector3Array -> PACKED_VECTOR3_ARRAY.toGodotWithoutNullCheck(buffer, any)
+                    is PackedColorArray -> PACKED_COLOR_ARRAY.toGodotWithoutNullCheck(buffer, any)
                     is KtObject -> OBJECT.toGodotWithoutNullCheck(buffer, any)
                     else -> throw UnsupportedOperationException("Can't convert type ${any::class} to Variant")
                 }

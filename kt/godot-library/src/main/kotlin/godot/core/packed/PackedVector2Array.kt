@@ -6,7 +6,7 @@ import godot.util.IndexedIterator
 import godot.util.VoidPtr
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
-class PoolVector2Array : NativeCoreType, Iterable<Vector2> {
+class PackedVector2Array : NativeCoreType, Iterable<Vector2> {
 
     //PROPERTIES
     val size: Int
@@ -18,12 +18,12 @@ class PoolVector2Array : NativeCoreType, Iterable<Vector2> {
     //CONSTRUCTOR
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        GarbageCollector.registerNativeCoreType(this, VariantType.POOL_VECTOR2_ARRAY)
+        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_VECTOR2_ARRAY)
     }
 
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        GarbageCollector.registerNativeCoreType(this, VariantType.POOL_VECTOR2_ARRAY)
+        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_VECTOR2_ARRAY)
     }
 
 
@@ -40,8 +40,8 @@ class PoolVector2Array : NativeCoreType, Iterable<Vector2> {
     /**
      * Appends a PoolVector2Array at the end of this array.
      */
-    fun appendArray(array: PoolVector2Array) {
-        TransferContext.writeArguments(VariantType.POOL_VECTOR2_ARRAY to array)
+    fun appendArray(array: PackedVector2Array) {
+        TransferContext.writeArguments(VariantType.PACKED_VECTOR2_ARRAY to array)
         Bridge.engine_call_appendArray(_handle)
     }
 
@@ -117,7 +117,7 @@ class PoolVector2Array : NativeCoreType, Iterable<Vector2> {
         this.append(other)
     }
 
-    operator fun plus(other: PoolVector2Array) {
+    operator fun plus(other: PackedVector2Array) {
         this.appendArray(other)
     }
 
@@ -134,7 +134,7 @@ class PoolVector2Array : NativeCoreType, Iterable<Vector2> {
      * This methods implementation works but is not the fastest one.
      */
     override fun equals(other: Any?): Boolean {
-        return if (other is PoolVector2Array) {
+        return if (other is PackedVector2Array) {
             val list1 = this.toList()
             val list2 = other.toList()
             list1 == list2

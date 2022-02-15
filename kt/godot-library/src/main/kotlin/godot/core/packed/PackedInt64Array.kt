@@ -6,7 +6,7 @@ import godot.util.IndexedIterator
 import godot.util.VoidPtr
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
-class PoolIntArray : NativeCoreType, Iterable<Int> {
+class PackedInt64Array : NativeCoreType, Iterable<Long> {
 
     //PROPERTIES
     val size: Int
@@ -18,12 +18,12 @@ class PoolIntArray : NativeCoreType, Iterable<Int> {
     //CONSTRUCTOR
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        GarbageCollector.registerNativeCoreType(this, VariantType.POOL_INT_ARRAY)
+        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_INT_ARRAY)
     }
 
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        GarbageCollector.registerNativeCoreType(this, VariantType.POOL_INT_ARRAY)
+        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_INT_ARRAY)
     }
 
 
@@ -31,8 +31,8 @@ class PoolIntArray : NativeCoreType, Iterable<Int> {
     /**
      * Appends an element at the end of the array (alias of push_back).
      */
-    fun append(i: Int) {
-        TransferContext.writeArguments(VariantType.JVM_INT to i)
+    fun append(i: Long) {
+        TransferContext.writeArguments(VariantType.LONG to i)
         Bridge.engine_call_append(_handle)
     }
 
@@ -40,8 +40,8 @@ class PoolIntArray : NativeCoreType, Iterable<Int> {
     /**
      * Appends a PoolIntArray at the end of this array.
      */
-    fun appendArray(array: PoolIntArray) {
-        TransferContext.writeArguments(VariantType.POOL_INT_ARRAY to array)
+    fun appendArray(array: PackedInt64Array) {
+        TransferContext.writeArguments(VariantType.PACKED_INT_ARRAY to array)
         Bridge.engine_call_appendArray(_handle)
     }
 
@@ -56,18 +56,18 @@ class PoolIntArray : NativeCoreType, Iterable<Int> {
     /**
      *  Retrieve the element at the given index.
      */
-    operator fun get(idx: Int): Int {
+    operator fun get(idx: Int): Long {
         TransferContext.writeArguments(VariantType.JVM_INT to idx)
         Bridge.engine_call_get(_handle)
-        return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
+        return TransferContext.readReturnValue(VariantType.LONG) as Long
     }
 
     /**
      * Inserts a new element at a given position in the array.
      * The position must be valid, or at the end of the array (idx == size()).
      */
-    fun insert(idx: Int, data: Int) {
-        TransferContext.writeArguments(VariantType.JVM_INT to idx, VariantType.JVM_INT to data)
+    fun insert(idx: Int, data: Long) {
+        TransferContext.writeArguments(VariantType.JVM_INT to idx, VariantType.LONG to data)
         Bridge.engine_call_insert(_handle)
     }
 
@@ -81,8 +81,8 @@ class PoolIntArray : NativeCoreType, Iterable<Int> {
     /**
      * Appends a value to the array.
      */
-    fun pushBack(data: Int) {
-        TransferContext.writeArguments(VariantType.JVM_INT to data)
+    fun pushBack(data: Long) {
+        TransferContext.writeArguments(VariantType.LONG to data)
         Bridge.engine_call_pushback(_handle)
     }
 
@@ -106,18 +106,18 @@ class PoolIntArray : NativeCoreType, Iterable<Int> {
     /**
      * Changes the integer at the given index.
      */
-    operator fun set(idx: Int, data: Int) {
-        TransferContext.writeArguments(VariantType.JVM_INT to idx, VariantType.JVM_INT to data)
+    operator fun set(idx: Int, data: Long) {
+        TransferContext.writeArguments(VariantType.JVM_INT to idx, VariantType.LONG to data)
         Bridge.engine_call_set(_handle)
     }
 
 
     //UTILITIES
-    operator fun plus(other: Int) {
+    operator fun plus(other: Long) {
         this.append(other)
     }
 
-    operator fun plus(other: PoolIntArray) {
+    operator fun plus(other: PackedInt64Array) {
         this.appendArray(other)
     }
 
@@ -125,7 +125,7 @@ class PoolIntArray : NativeCoreType, Iterable<Int> {
         return "PoolIntArray(${size})"
     }
 
-    override fun iterator(): Iterator<Int> {
+    override fun iterator(): Iterator<Long> {
         return IndexedIterator(this::size, this::get, this::remove)
     }
 
@@ -134,7 +134,7 @@ class PoolIntArray : NativeCoreType, Iterable<Int> {
      * This methods implementation works but is not the fastest one.
      */
     override fun equals(other: Any?): Boolean {
-        return if (other is PoolIntArray) {
+        return if (other is PackedInt64Array) {
             val list1 = this.toList()
             val list2 = other.toList()
             list1 == list2

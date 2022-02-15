@@ -6,7 +6,7 @@ import godot.util.IndexedIterator
 import godot.util.VoidPtr
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
-class PoolColorArray : NativeCoreType, Iterable<Color> {
+class PackedColorArray : NativeCoreType, Iterable<Color> {
 
     //PROPERTIES
     val size: Int
@@ -18,12 +18,12 @@ class PoolColorArray : NativeCoreType, Iterable<Color> {
     //CONSTRUCTOR
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        GarbageCollector.registerNativeCoreType(this, VariantType.POOL_COLOR_ARRAY)
+        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_COLOR_ARRAY)
     }
 
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        GarbageCollector.registerNativeCoreType(this, VariantType.POOL_COLOR_ARRAY)
+        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_COLOR_ARRAY)
     }
 
 
@@ -40,8 +40,8 @@ class PoolColorArray : NativeCoreType, Iterable<Color> {
     /**
      * Appends a PoolColorArray at the end of this array.
      */
-    fun appendArray(array: PoolColorArray) {
-        TransferContext.writeArguments(VariantType.POOL_COLOR_ARRAY to array)
+    fun appendArray(array: PackedColorArray) {
+        TransferContext.writeArguments(VariantType.PACKED_COLOR_ARRAY to array)
         Bridge.engine_call_appendArray(_handle)
     }
 
@@ -117,7 +117,7 @@ class PoolColorArray : NativeCoreType, Iterable<Color> {
         this.append(other)
     }
 
-    operator fun plus(other: PoolColorArray) {
+    operator fun plus(other: PackedColorArray) {
         this.appendArray(other)
     }
 
@@ -134,7 +134,7 @@ class PoolColorArray : NativeCoreType, Iterable<Color> {
      * This methods implementation works but is not the fastest one.
      */
     override fun equals(other: Any?): Boolean {
-        return if (other is PoolColorArray) {
+        return if (other is PackedColorArray) {
             val list1 = this.toList()
             val list2 = other.toList()
             list1 == list2
