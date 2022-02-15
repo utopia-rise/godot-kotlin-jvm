@@ -187,7 +187,15 @@ enum class VariantType(
             buffer.variantType = VECTOR2.ordinal
             buffer.vector2 = any
         }
-    ), // 5
+    ),
+    VECTOR2I(
+        { buffer: ByteBuffer, _: Int ->
+            //TODO/4.0: Implement
+        },
+        { buffer: ByteBuffer, any: Any ->
+            //TODO/4.0: Implement
+        }
+    ),// 5
     RECT2(
         { buffer: ByteBuffer, _: Int ->
             Rect2(
@@ -202,6 +210,14 @@ enum class VariantType(
             buffer.vector2 = any._size
         }
     ),
+    RECT2I(
+        { buffer: ByteBuffer, _: Int ->
+            //TODO/4.0: Implement
+        },
+        { buffer: ByteBuffer, any: Any ->
+            //TODO/4.0: Implement
+        }
+    ),
     VECTOR3(
         { buffer: ByteBuffer, _: Int ->
             Vector3(buffer.float.toRealT(), buffer.float.toRealT(), buffer.float.toRealT())
@@ -210,6 +226,14 @@ enum class VariantType(
             require(any is Vector3)
             buffer.variantType = VECTOR3.ordinal
             buffer.vector3 = any
+        }
+    ),
+    VECTOR3I(
+        { buffer: ByteBuffer, _: Int ->
+            //TODO/4.0: Implement
+        },
+        { buffer: ByteBuffer, any: Any ->
+            //TODO/4.0: Implement
         }
     ),
     TRANSFORM2D(
