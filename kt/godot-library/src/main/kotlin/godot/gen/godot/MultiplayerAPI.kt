@@ -122,7 +122,6 @@ public open class MultiplayerAPI : RefCounted() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_SET_MULTIPLAYER_PEER, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

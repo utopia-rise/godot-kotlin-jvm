@@ -133,7 +133,6 @@ public open class Viewport : Node() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_WORLD_3D, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
@@ -148,7 +147,6 @@ public open class Viewport : Node() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_WORLD_2D, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

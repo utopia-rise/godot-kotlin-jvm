@@ -331,7 +331,6 @@ public open class Window : Viewport() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_SET_THEME, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

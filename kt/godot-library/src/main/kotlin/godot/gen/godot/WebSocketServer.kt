@@ -63,7 +63,6 @@ public open class WebSocketServer : WebSocketMultiplayerPeer() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_SET_PRIVATE_KEY,
           NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   public open var sslCertificate: X509Certificate?
@@ -77,7 +76,6 @@ public open class WebSocketServer : WebSocketMultiplayerPeer() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_SET_SSL_CERTIFICATE, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   public open var caChain: X509Certificate?
@@ -90,7 +88,6 @@ public open class WebSocketServer : WebSocketMultiplayerPeer() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETSERVER_SET_CA_CHAIN, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   public open var handshakeTimeout: Double

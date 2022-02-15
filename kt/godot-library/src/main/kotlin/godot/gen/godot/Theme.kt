@@ -73,7 +73,6 @@ public open class Theme : Resource() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_SET_DEFAULT_FONT, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

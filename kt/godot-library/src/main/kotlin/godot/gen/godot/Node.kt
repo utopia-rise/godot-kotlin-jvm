@@ -155,7 +155,6 @@ public open class Node : Object() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_OWNER, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
@@ -181,7 +180,6 @@ public open class Node : Object() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_SET_CUSTOM_MULTIPLAYER, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

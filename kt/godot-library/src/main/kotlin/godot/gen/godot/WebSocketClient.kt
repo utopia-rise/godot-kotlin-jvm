@@ -63,7 +63,6 @@ public open class WebSocketClient : WebSocketMultiplayerPeer() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_SET_TRUSTED_SSL_CERTIFICATE, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   public override fun __new(): Unit {

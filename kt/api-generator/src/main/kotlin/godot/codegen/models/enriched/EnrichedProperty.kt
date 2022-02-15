@@ -46,7 +46,7 @@ fun EnrichedProperty.toSetterCallable() = object : CallableTrait {
     override val isVararg = false
     override val engineIndexName = engineSetterIndexName
     override val type = ""
-    override val nullable = this@toSetterCallable.nullable
+    override val nullable = false
 }
 
 fun EnrichedProperty.toGetterCallable() = object : CallableTrait {

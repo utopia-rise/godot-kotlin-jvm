@@ -48,7 +48,6 @@ public open class StaticBody3D : PhysicsBody3D() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STATICBODY3D_SET_PHYSICS_MATERIAL_OVERRIDE, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

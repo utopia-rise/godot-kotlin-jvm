@@ -144,7 +144,6 @@ public open class Button : BaseButton() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_BUTTON_SET_ICON, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

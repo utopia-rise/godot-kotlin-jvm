@@ -44,7 +44,6 @@ public open class MeshInstance3D : GeometryInstance3D() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_SET_MESH, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
@@ -59,7 +58,6 @@ public open class MeshInstance3D : GeometryInstance3D() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_SET_SKIN, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

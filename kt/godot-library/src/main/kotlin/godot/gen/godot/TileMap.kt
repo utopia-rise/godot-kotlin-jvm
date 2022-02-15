@@ -61,7 +61,6 @@ public open class TileMap : Node2D() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_TILE_SET, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

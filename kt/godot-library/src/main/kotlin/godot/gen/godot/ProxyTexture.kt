@@ -29,7 +29,6 @@ public open class ProxyTexture : Texture2D() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROXYTEXTURE_SET_BASE, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   public override fun __new(): Unit {

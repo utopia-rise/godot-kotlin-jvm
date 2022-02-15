@@ -31,7 +31,6 @@ public open class GDNativeLibrary : Resource() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GDNATIVELIBRARY_SET_CONFIG_FILE,
           NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   public open var loadOnce: Boolean

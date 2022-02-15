@@ -49,7 +49,6 @@ public open class AnimationTree : Node() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONTREE_SET_TREE_ROOT, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

@@ -51,7 +51,6 @@ public open class Sprite3D : SpriteBase3D() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE3D_SET_TEXTURE, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

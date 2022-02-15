@@ -39,7 +39,6 @@ public open class LightmapGIData : Resource() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTMAPGIDATA_SET_LIGHT_TEXTURE,
           NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   public open var usesSphericalHarmonics: Boolean

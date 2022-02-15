@@ -19,8 +19,8 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.PACKED_COLOR_ARRAY
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
-import godot.core.VariantType.POOL_COLOR_ARRAY
 import godot.core.VariantType.RECT2
 import godot.core.VariantType.STRING
 import godot.core.VariantType.TRANSFORM2D
@@ -224,7 +224,6 @@ public open class CanvasItem : Node() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_MATERIAL, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
@@ -331,7 +330,7 @@ public open class CanvasItem : Node() {
     width: Double = 1.0,
     antialiased: Boolean = false
   ): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, POOL_COLOR_ARRAY to colors,
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors,
         DOUBLE to width, BOOL to antialiased)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_POLYLINE_COLORS,
         NIL)
@@ -375,7 +374,7 @@ public open class CanvasItem : Node() {
     colors: PackedColorArray,
     width: Double = 1.0
   ): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, POOL_COLOR_ARRAY to colors,
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors,
         DOUBLE to width)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_MULTILINE_COLORS,
         NIL)
@@ -491,7 +490,7 @@ public open class CanvasItem : Node() {
     texture: Texture2D? = null,
     width: Double = 1.0
   ): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, POOL_COLOR_ARRAY to colors,
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors,
         PACKED_VECTOR2_ARRAY to uvs, OBJECT to texture, DOUBLE to width)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_PRIMITIVE, NIL)
   }
@@ -505,7 +504,7 @@ public open class CanvasItem : Node() {
     uvs: PackedVector2Array = PackedVector2Array(),
     texture: Texture2D? = null
   ): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, POOL_COLOR_ARRAY to colors,
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors,
         PACKED_VECTOR2_ARRAY to uvs, OBJECT to texture)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_POLYGON, NIL)
   }

@@ -52,7 +52,6 @@ public open class AudioStreamPlayer : Node() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER_SET_STREAM, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

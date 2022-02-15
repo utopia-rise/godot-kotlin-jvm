@@ -25,8 +25,8 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_BYTE_ARRAY
+import godot.core.VariantType.PACKED_COLOR_ARRAY
 import godot.core.VariantType.PACKED_INT_64_ARRAY
-import godot.core.VariantType.POOL_COLOR_ARRAY
 import godot.core.VariantType.RECT2
 import godot.core.VariantType.STRING
 import godot.core.VariantType.VECTOR2I
@@ -642,7 +642,7 @@ public open class RenderingDevice : Object() {
   ): Long {
     TransferContext.writeArguments(_RID to framebuffer, LONG to initialColorAction.id, LONG to
         finalColorAction.id, LONG to initialDepthAction.id, LONG to finalDepthAction.id,
-        POOL_COLOR_ARRAY to clearColorValues, DOUBLE to clearDepth, LONG to clearStencil, RECT2 to
+        PACKED_COLOR_ARRAY to clearColorValues, DOUBLE to clearDepth, LONG to clearStencil, RECT2 to
         region, ARRAY to storageTextures)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_BEGIN,
         LONG)
@@ -667,7 +667,7 @@ public open class RenderingDevice : Object() {
   ): PackedInt64Array {
     TransferContext.writeArguments(_RID to framebuffer, LONG to splits, LONG to
         initialColorAction.id, LONG to finalColorAction.id, LONG to initialDepthAction.id, LONG to
-        finalDepthAction.id, POOL_COLOR_ARRAY to clearColorValues, DOUBLE to clearDepth, LONG to
+        finalDepthAction.id, PACKED_COLOR_ARRAY to clearColorValues, DOUBLE to clearDepth, LONG to
         clearStencil, RECT2 to region, ARRAY to storageTextures)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_BEGIN_SPLIT, PACKED_INT_64_ARRAY)

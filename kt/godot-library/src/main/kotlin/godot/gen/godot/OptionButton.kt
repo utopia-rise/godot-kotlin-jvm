@@ -54,7 +54,6 @@ public open class OptionButton : Button() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ITEM_COUNT, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

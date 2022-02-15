@@ -38,7 +38,6 @@ public open class MultiMeshInstance3D : GeometryInstance3D() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESHINSTANCE3D_SET_MULTIMESH,
           NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   public override fun __new(): Unit {

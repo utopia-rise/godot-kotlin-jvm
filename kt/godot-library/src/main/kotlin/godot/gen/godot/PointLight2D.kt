@@ -34,7 +34,6 @@ public open class PointLight2D : Light2D() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POINTLIGHT2D_SET_TEXTURE, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

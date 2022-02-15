@@ -61,7 +61,6 @@ public open class ShapeCast2D : Node2D() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_SHAPE, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

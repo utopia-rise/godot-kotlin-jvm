@@ -46,7 +46,6 @@ public open class GeometryInstance3D : VisualInstance3D() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_MATERIAL_OVERRIDE, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
@@ -65,7 +64,6 @@ public open class GeometryInstance3D : VisualInstance3D() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_MATERIAL_OVERLAY, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

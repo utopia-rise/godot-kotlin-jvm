@@ -57,7 +57,6 @@ public open class AudioStreamPlayer3D : Node3D() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER3D_SET_STREAM,
           NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

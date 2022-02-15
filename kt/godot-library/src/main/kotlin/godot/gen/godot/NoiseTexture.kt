@@ -87,7 +87,6 @@ public open class NoiseTexture : Texture2D() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NOISETEXTURE_SET_NOISE, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   public open var noiseOffset: Vector2

@@ -41,7 +41,6 @@ public open class NavigationRegion2D : Node2D() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONREGION2D_SET_NAVPOLY,
           NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

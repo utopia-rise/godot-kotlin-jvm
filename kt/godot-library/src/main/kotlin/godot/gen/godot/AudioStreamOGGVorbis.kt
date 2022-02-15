@@ -29,7 +29,6 @@ public open class AudioStreamOGGVorbis : AudioStream() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMOGGVORBIS_SET_PACKET_SEQUENCE, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   public open var loop: Boolean

@@ -51,7 +51,6 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODECUBEMAP_SET_CUBE_MAP, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

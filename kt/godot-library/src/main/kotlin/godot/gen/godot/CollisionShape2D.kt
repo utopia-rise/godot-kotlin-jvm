@@ -39,7 +39,6 @@ public open class CollisionShape2D : Node2D() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE2D_SET_SHAPE, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

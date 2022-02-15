@@ -486,7 +486,6 @@ public open class Control : CanvasItem() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_THEME, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

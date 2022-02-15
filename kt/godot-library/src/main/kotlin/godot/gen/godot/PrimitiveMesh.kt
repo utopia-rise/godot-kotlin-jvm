@@ -38,7 +38,6 @@ public open class PrimitiveMesh : Mesh() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PRIMITIVEMESH_SET_MATERIAL, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

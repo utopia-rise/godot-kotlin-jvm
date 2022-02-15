@@ -8,7 +8,7 @@ import godot.util.VoidPtr
 import godot.util.realTVariantType
 
 @Suppress("MemberVisibilityCanBePrivate", "unused")
-class PoolRealArray : NativeCoreType, Iterable<RealT> {
+class PackedRealArray : NativeCoreType, Iterable<RealT> {
 
     //PROPERTIES
     val size: Int
@@ -42,7 +42,7 @@ class PoolRealArray : NativeCoreType, Iterable<RealT> {
     /**
      * Appends a PoolRealArray at the end of this array.
      */
-    fun appendArray(array: PoolRealArray) {
+    fun appendArray(array: PackedRealArray) {
         TransferContext.writeArguments(VariantType.POOL_REAL_ARRAY to array)
         Bridge.engine_call_appendArray(_handle)
     }
@@ -119,7 +119,7 @@ class PoolRealArray : NativeCoreType, Iterable<RealT> {
         this.append(other)
     }
 
-    operator fun plus(other: PoolRealArray) {
+    operator fun plus(other: PackedRealArray) {
         this.appendArray(other)
     }
 
@@ -136,7 +136,7 @@ class PoolRealArray : NativeCoreType, Iterable<RealT> {
      * This methods implementation works but is not the fastest one.
      */
     override fun equals(other: Any?): Boolean {
-        return if (other is PoolRealArray) {
+        return if (other is PackedRealArray) {
             val list1 = this.toList()
             val list2 = other.toList()
             list1 == list2

@@ -16,8 +16,8 @@ import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.PACKED_COLOR_ARRAY
 import godot.core.VariantType.PACKED_VECTOR3_ARRAY
-import godot.core.VariantType.POOL_COLOR_ARRAY
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import kotlin.Boolean
@@ -247,7 +247,6 @@ public open class CPUParticles3D : GeometryInstance3D() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_MESH, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
@@ -337,11 +336,11 @@ public open class CPUParticles3D : GeometryInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_EMISSION_COLORS, POOL_COLOR_ARRAY)
-      return TransferContext.readReturnValue(POOL_COLOR_ARRAY, false) as PackedColorArray
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_GET_EMISSION_COLORS, PACKED_COLOR_ARRAY)
+      return TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray
     }
     set(`value`) {
-      TransferContext.writeArguments(POOL_COLOR_ARRAY to value)
+      TransferContext.writeArguments(PACKED_COLOR_ARRAY to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_EMISSION_COLORS, NIL)
     }
@@ -499,7 +498,6 @@ public open class CPUParticles3D : GeometryInstance3D() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_SCALE_CURVE_X,
           NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
@@ -516,7 +514,6 @@ public open class CPUParticles3D : GeometryInstance3D() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_SCALE_CURVE_Y,
           NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
@@ -533,7 +530,6 @@ public open class CPUParticles3D : GeometryInstance3D() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_SCALE_CURVE_Z,
           NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
@@ -564,7 +560,6 @@ public open class CPUParticles3D : GeometryInstance3D() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_COLOR_RAMP,
           NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
@@ -581,7 +576,6 @@ public open class CPUParticles3D : GeometryInstance3D() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_CPUPARTICLES3D_SET_COLOR_INITIAL_RAMP, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   public override fun __new(): Unit {

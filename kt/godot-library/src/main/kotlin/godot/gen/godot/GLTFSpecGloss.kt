@@ -29,7 +29,6 @@ public open class GLTFSpecGloss : Resource() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSPECGLOSS_SET_DIFFUSE_IMG,
           NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   public open var diffuseFactor: Color
@@ -82,7 +81,6 @@ public open class GLTFSpecGloss : Resource() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFSPECGLOSS_SET_SPEC_GLOSS_IMG,
           NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   public override fun __new(): Unit {

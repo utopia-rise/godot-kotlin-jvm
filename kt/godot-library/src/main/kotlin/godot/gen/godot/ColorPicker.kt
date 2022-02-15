@@ -13,7 +13,7 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.core.VariantType.POOL_COLOR_ARRAY
+import godot.core.VariantType.PACKED_COLOR_ARRAY
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
@@ -199,8 +199,8 @@ public open class ColorPicker : BoxContainer() {
   public open fun getPresets(): PackedColorArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKER_GET_PRESETS,
-        POOL_COLOR_ARRAY)
-    return TransferContext.readReturnValue(POOL_COLOR_ARRAY, false) as PackedColorArray
+        PACKED_COLOR_ARRAY)
+    return TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray
   }
 
   public enum class PickerShapeType(

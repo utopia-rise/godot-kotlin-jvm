@@ -381,7 +381,6 @@ public open class LineEdit : Control() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINEEDIT_SET_RIGHT_ICON, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

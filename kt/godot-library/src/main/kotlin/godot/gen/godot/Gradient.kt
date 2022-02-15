@@ -14,8 +14,8 @@ import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
+import godot.core.VariantType.PACKED_COLOR_ARRAY
 import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
-import godot.core.VariantType.POOL_COLOR_ARRAY
 import kotlin.Double
 import kotlin.Long
 import kotlin.Suppress
@@ -66,11 +66,11 @@ public open class Gradient : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_GET_COLORS,
-          POOL_COLOR_ARRAY)
-      return TransferContext.readReturnValue(POOL_COLOR_ARRAY, false) as PackedColorArray
+          PACKED_COLOR_ARRAY)
+      return TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray
     }
     set(`value`) {
-      TransferContext.writeArguments(POOL_COLOR_ARRAY to value)
+      TransferContext.writeArguments(PACKED_COLOR_ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENT_SET_COLORS, NIL)
     }
 

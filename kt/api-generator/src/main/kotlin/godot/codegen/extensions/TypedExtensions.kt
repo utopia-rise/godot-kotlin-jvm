@@ -81,7 +81,7 @@ val TypedTrait.jvmVariantTypeValue: ClassName
             type == GodotTypes.packedStringArray -> VARIANT_TYPE_PACKED_STRING_ARRAY
             type == GodotTypes.packedVector2Array -> VARIANT_TYPE_PACKED_VECTOR2_ARRAY
             type == GodotTypes.packedVector3Array -> VARIANT_TYPE_PACKED_VECTOR3_ARRAY
-            type == GodotTypes.packedColorArray -> VARIANT_TYPE_POOL_COLOR_ARRAY
+            type == GodotTypes.packedColorArray -> VARIANT_TYPE_PACKED_COLOR_ARRAY
             type == GodotTypes.variant -> VARIANT_TYPE_ANY
             isCoreType() || isPrimitive() -> ClassName(variantTypePackage, type!!.toUpperCase())
             else -> VARIANT_TYPE_OBJECT

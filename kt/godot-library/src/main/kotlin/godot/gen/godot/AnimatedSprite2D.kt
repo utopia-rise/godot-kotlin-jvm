@@ -59,7 +59,6 @@ public open class AnimatedSprite2D : Node2D() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_SET_FRAMES, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

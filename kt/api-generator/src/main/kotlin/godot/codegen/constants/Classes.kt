@@ -11,7 +11,7 @@ object KotlinTypes{
     const val variant = "Any"
     const val obj = "Object"
 
-    const val ktObject = "ktObject"
+    const val ktObject = "KtObject"
 
     const val variantType = "VariantType"
     const val transferContext = "TransferContext"
@@ -138,7 +138,7 @@ val VARIANT_TYPE_PACKED_FLOAT_64_ARRAY = ClassName(variantTypePackage, "PACKED_F
 val VARIANT_TYPE_PACKED_STRING_ARRAY = ClassName(variantTypePackage, "PACKED_STRING_ARRAY")
 val VARIANT_TYPE_PACKED_VECTOR2_ARRAY = ClassName(variantTypePackage, "PACKED_VECTOR2_ARRAY")
 val VARIANT_TYPE_PACKED_VECTOR3_ARRAY = ClassName(variantTypePackage, "PACKED_VECTOR3_ARRAY")
-val VARIANT_TYPE_POOL_COLOR_ARRAY = ClassName(variantTypePackage, "POOL_COLOR_ARRAY")
+val VARIANT_TYPE_PACKED_COLOR_ARRAY = ClassName(variantTypePackage, "PACKED_COLOR_ARRAY")
 val VARIANT_TYPE_OBJECT = ClassName(variantTypePackage, "OBJECT")
 val VARIANT_TYPE_JVM_INT = ClassName(variantTypePackage, "JVM_INT")
 val VARIANT_TYPE_ANY = ClassName(variantTypePackage, "ANY")

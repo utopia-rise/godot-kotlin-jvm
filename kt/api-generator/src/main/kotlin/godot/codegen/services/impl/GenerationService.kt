@@ -799,16 +799,16 @@ class GenerationService(
     }
 
     private fun <T : CallableTrait> FunSpec.Builder.generateJvmMethodCall(
-        enrichedMethod: T,
+        callable: T,
         callArgumentsAsString: String,
     ): FunSpec.Builder {
-        val ktVariantClassNames = enrichedMethod.arguments.map {
+        val ktVariantClassNames = callable.arguments.map {
             it.jvmVariantTypeValue
         }.toTypedArray()
 
-        val methodReturnType = enrichedMethod.getTypeClassName()
+        val methodReturnType = callable.getTypeClassName()
 
-        if (enrichedMethod.isVararg) {
+        if (callable.isVararg) {
             addStatement(
                 "%T.writeArguments($callArgumentsAsString *__var_args.map { %T to it }.toTypedArray())",
                 TRANSFER_CONTEXT,
@@ -823,17 +823,17 @@ class GenerationService(
             )
         }
 
-        val returnTypeVariantTypeClass = enrichedMethod.jvmVariantTypeValue
+        val returnTypeVariantTypeClass = callable.jvmVariantTypeValue
 
         addStatement(
             "%T.callMethod(rawPtr, %M, %T)",
             TRANSFER_CONTEXT,
-            MemberName("godot", enrichedMethod.engineIndexName),
+            MemberName("godot", callable.engineIndexName),
             returnTypeVariantTypeClass
         )
 
         if (methodReturnType.typeName != UNIT) {
-            if (enrichedMethod.isEnum()) {
+            if (callable.isEnum()) {
                 addStatement(
                     "return·${methodReturnType.className.simpleName}.values()[%T.readReturnValue(%T)·as·%T]",
                     TRANSFER_CONTEXT,
@@ -845,7 +845,7 @@ class GenerationService(
                     "return·%T.readReturnValue(%T, %L)·as·%T",
                     TRANSFER_CONTEXT,
                     returnTypeVariantTypeClass,
-                    enrichedMethod.nullable,
+                    callable.nullable,
                     methodReturnType.typeName
                 )
             }

@@ -35,7 +35,6 @@ public open class AudioStreamRandomPitch : AudioStream() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMRANDOMPITCH_SET_AUDIO_STREAM, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

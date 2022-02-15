@@ -112,7 +112,6 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D_SET_SHAPE, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

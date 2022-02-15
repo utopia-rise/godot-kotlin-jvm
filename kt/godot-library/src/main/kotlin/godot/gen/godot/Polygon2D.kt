@@ -21,9 +21,9 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.PACKED_COLOR_ARRAY
 import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
-import godot.core.VariantType.POOL_COLOR_ARRAY
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import kotlin.Any
@@ -94,7 +94,6 @@ public open class Polygon2D : Node2D() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_TEXTURE, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
@@ -225,11 +224,11 @@ public open class Polygon2D : Node2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_GET_VERTEX_COLORS,
-          POOL_COLOR_ARRAY)
-      return TransferContext.readReturnValue(POOL_COLOR_ARRAY, false) as PackedColorArray
+          PACKED_COLOR_ARRAY)
+      return TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray
     }
     set(`value`) {
-      TransferContext.writeArguments(POOL_COLOR_ARRAY to value)
+      TransferContext.writeArguments(PACKED_COLOR_ARRAY to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POLYGON2D_SET_VERTEX_COLORS, NIL)
     }
 

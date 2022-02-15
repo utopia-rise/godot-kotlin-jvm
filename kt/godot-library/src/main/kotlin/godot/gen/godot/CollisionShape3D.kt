@@ -37,7 +37,6 @@ public open class CollisionShape3D : Node3D() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_SET_SHAPE, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

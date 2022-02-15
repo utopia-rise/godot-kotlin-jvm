@@ -39,7 +39,6 @@ public open class LightOccluder2D : Node2D() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_SET_OCCLUDER, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

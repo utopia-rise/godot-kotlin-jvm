@@ -188,7 +188,6 @@ public open class ItemList : Control() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_SET_ITEM_COUNT, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

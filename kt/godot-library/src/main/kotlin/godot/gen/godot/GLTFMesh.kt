@@ -28,7 +28,6 @@ public open class GLTFMesh : Resource() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFMESH_SET_MESH, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   public open var blendWeights: PackedFloat32Array

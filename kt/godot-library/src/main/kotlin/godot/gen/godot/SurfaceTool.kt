@@ -26,12 +26,12 @@ import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import godot.core.VariantType.PACKED_COLOR_ARRAY
 import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.VariantType.PACKED_VECTOR3_ARRAY
 import godot.core.VariantType.PLANE
-import godot.core.VariantType.POOL_COLOR_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType.VECTOR2
@@ -243,7 +243,7 @@ public open class SurfaceTool : RefCounted() {
     tangents: VariantArray<Any?> = Array()
   ): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices, PACKED_VECTOR2_ARRAY to uvs,
-        POOL_COLOR_ARRAY to colors, PACKED_VECTOR2_ARRAY to uv2s, PACKED_VECTOR3_ARRAY to normals,
+        PACKED_COLOR_ARRAY to colors, PACKED_VECTOR2_ARRAY to uv2s, PACKED_VECTOR3_ARRAY to normals,
         ARRAY to tangents)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SURFACETOOL_ADD_TRIANGLE_FAN, NIL)
   }

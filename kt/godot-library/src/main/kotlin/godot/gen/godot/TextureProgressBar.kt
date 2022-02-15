@@ -43,7 +43,6 @@ public open class TextureProgressBar : Range() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_TEXTURE_UNDER, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
@@ -60,7 +59,6 @@ public open class TextureProgressBar : Range() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_TEXTURE_OVER, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
@@ -79,7 +77,6 @@ public open class TextureProgressBar : Range() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_TEXTURE_PROGRESS, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

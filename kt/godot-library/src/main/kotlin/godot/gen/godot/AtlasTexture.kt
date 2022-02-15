@@ -37,7 +37,6 @@ public open class AtlasTexture : Texture2D() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_SET_ATLAS, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

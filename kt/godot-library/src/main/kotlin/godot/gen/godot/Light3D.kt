@@ -57,7 +57,6 @@ public open class Light3D : VisualInstance3D() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_LIGHT_PROJECTOR, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

@@ -42,7 +42,6 @@ public open class GridMap : Node3D() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_MESH_LIBRARY, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   public open var physicsMaterial: PhysicsMaterial?
@@ -55,7 +54,6 @@ public open class GridMap : Node3D() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRIDMAP_SET_PHYSICS_MATERIAL, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   public open var cellSize: Vector3

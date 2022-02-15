@@ -39,7 +39,6 @@ public open class PanoramaSkyMaterial : Material() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PANORAMASKYMATERIAL_SET_PANORAMA,
           NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

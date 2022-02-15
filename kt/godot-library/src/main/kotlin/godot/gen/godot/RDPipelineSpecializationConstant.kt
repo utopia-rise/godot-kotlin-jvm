@@ -34,7 +34,6 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
       TransferContext.writeArguments(ANY to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RDPIPELINESPECIALIZATIONCONSTANT_SET_VALUE, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

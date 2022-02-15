@@ -36,7 +36,6 @@ public open class World3D : Resource() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_SET_ENVIRONMENT, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
@@ -53,7 +52,6 @@ public open class World3D : Resource() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_SET_FALLBACK_ENVIRONMENT,
           NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
@@ -69,7 +67,6 @@ public open class World3D : Resource() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WORLD3D_SET_CAMERA_EFFECTS, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

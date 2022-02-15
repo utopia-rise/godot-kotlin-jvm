@@ -119,7 +119,6 @@ public open class Camera2D : Node2D() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_CUSTOM_VIEWPORT, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

@@ -38,12 +38,12 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_BYTE_ARRAY
+import godot.core.VariantType.PACKED_COLOR_ARRAY
 import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.VariantType.PACKED_VECTOR3_ARRAY
-import godot.core.VariantType.POOL_COLOR_ARRAY
 import godot.core.VariantType.RECT2
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
@@ -1757,7 +1757,7 @@ public object RenderingServer : Object() {
     bspTree: PackedInt32Array
   ): Unit {
     TransferContext.writeArguments(_RID to lightmap, PACKED_VECTOR3_ARRAY to points,
-        POOL_COLOR_ARRAY to pointSh, PACKED_INT_32_ARRAY to tetrahedra, PACKED_INT_32_ARRAY to
+        PACKED_COLOR_ARRAY to pointSh, PACKED_INT_32_ARRAY to tetrahedra, PACKED_INT_32_ARRAY to
         bspTree)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_LIGHTMAP_SET_PROBE_CAPTURE_DATA, NIL)
@@ -1780,8 +1780,8 @@ public object RenderingServer : Object() {
   public open fun lightmapGetProbeCaptureSh(lightmap: RID): PackedColorArray {
     TransferContext.writeArguments(_RID to lightmap)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_LIGHTMAP_GET_PROBE_CAPTURE_SH, POOL_COLOR_ARRAY)
-    return TransferContext.readReturnValue(POOL_COLOR_ARRAY, false) as PackedColorArray
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_LIGHTMAP_GET_PROBE_CAPTURE_SH, PACKED_COLOR_ARRAY)
+    return TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray
   }
 
   /**
@@ -4064,8 +4064,8 @@ public object RenderingServer : Object() {
     width: Double = 1.0,
     antialiased: Boolean = false
   ): Unit {
-    TransferContext.writeArguments(_RID to item, PACKED_VECTOR2_ARRAY to points, POOL_COLOR_ARRAY to
-        colors, DOUBLE to width, BOOL to antialiased)
+    TransferContext.writeArguments(_RID to item, PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY
+        to colors, DOUBLE to width, BOOL to antialiased)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_ADD_POLYLINE, NIL)
   }
@@ -4183,8 +4183,8 @@ public object RenderingServer : Object() {
     texture: RID,
     width: Double = 1.0
   ): Unit {
-    TransferContext.writeArguments(_RID to item, PACKED_VECTOR2_ARRAY to points, POOL_COLOR_ARRAY to
-        colors, PACKED_VECTOR2_ARRAY to uvs, _RID to texture, DOUBLE to width)
+    TransferContext.writeArguments(_RID to item, PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY
+        to colors, PACKED_VECTOR2_ARRAY to uvs, _RID to texture, DOUBLE to width)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_ADD_PRIMITIVE, NIL)
   }
@@ -4199,8 +4199,8 @@ public object RenderingServer : Object() {
     uvs: PackedVector2Array = PackedVector2Array(),
     texture: RID = 
   ): Unit {
-    TransferContext.writeArguments(_RID to item, PACKED_VECTOR2_ARRAY to points, POOL_COLOR_ARRAY to
-        colors, PACKED_VECTOR2_ARRAY to uvs, _RID to texture)
+    TransferContext.writeArguments(_RID to item, PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY
+        to colors, PACKED_VECTOR2_ARRAY to uvs, _RID to texture)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_ADD_POLYGON, NIL)
   }
@@ -4220,7 +4220,7 @@ public object RenderingServer : Object() {
     count: Long = -1
   ): Unit {
     TransferContext.writeArguments(_RID to item, PACKED_INT_32_ARRAY to indices,
-        PACKED_VECTOR2_ARRAY to points, POOL_COLOR_ARRAY to colors, PACKED_VECTOR2_ARRAY to uvs,
+        PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY to colors, PACKED_VECTOR2_ARRAY to uvs,
         PACKED_INT_32_ARRAY to bones, PACKED_FLOAT_32_ARRAY to weights, _RID to texture, LONG to
         count)
     TransferContext.callMethod(rawPtr,

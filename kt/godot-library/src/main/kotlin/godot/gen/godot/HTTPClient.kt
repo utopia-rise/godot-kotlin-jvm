@@ -83,7 +83,6 @@ public open class HTTPClient : RefCounted() {
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_CONNECTION, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

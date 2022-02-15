@@ -178,7 +178,6 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_PHYSICS_MATERIAL_OVERRIDE, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**

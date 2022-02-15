@@ -72,7 +72,6 @@ public open class EditorResourcePicker : HBoxContainer() {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_SET_EDITED_RESOURCE, NIL)
-      return TransferContext.readReturnValue(NIL, true) as Unit?
     }
 
   /**
