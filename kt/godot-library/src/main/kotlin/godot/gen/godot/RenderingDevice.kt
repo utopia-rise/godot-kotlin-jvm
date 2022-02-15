@@ -637,7 +637,7 @@ public open class RenderingDevice : Object() {
     clearColorValues: PackedColorArray = PackedColorArray(),
     clearDepth: Double = 1.0,
     clearStencil: Long = 0,
-    region: Rect2 = Rect2Rect2(0.0, 0.0, 0.0, 0.0),
+    region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
     storageTextures: VariantArray<Any?> = Array()
   ): Long {
     TransferContext.writeArguments(_RID to framebuffer, LONG to initialColorAction.id, LONG to
@@ -662,7 +662,7 @@ public open class RenderingDevice : Object() {
     clearColorValues: PackedColorArray = PackedColorArray(),
     clearDepth: Double = 1.0,
     clearStencil: Long = 0,
-    region: Rect2 = Rect2Rect2(0.0, 0.0, 0.0, 0.0),
+    region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
     storageTextures: VariantArray<Any?> = Array()
   ): PackedInt64Array {
     TransferContext.writeArguments(_RID to framebuffer, LONG to splits, LONG to
@@ -744,8 +744,8 @@ public open class RenderingDevice : Object() {
   /**
    *
    */
-  public open fun drawListEnableScissor(drawList: Long, rect: Rect2 = Rect2Rect2(0.0, 0.0, 0.0,
-      0.0)): Unit {
+  public open fun drawListEnableScissor(drawList: Long, rect: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0)):
+      Unit {
     TransferContext.writeArguments(LONG to drawList, RECT2 to rect)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_DRAW_LIST_ENABLE_SCISSOR, NIL)

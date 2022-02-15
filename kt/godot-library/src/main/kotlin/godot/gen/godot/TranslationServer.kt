@@ -168,7 +168,7 @@ public object TranslationServer : Object() {
   /**
    * Returns the current locale's translation for the given message (key) and context.
    */
-  public open fun translate(message: StringName, context: StringName = ""): StringName {
+  public open fun translate(message: StringName, context: StringName = StringName("")): StringName {
     TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to context)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATIONSERVER_TRANSLATE,
         STRING_NAME)
@@ -184,7 +184,7 @@ public object TranslationServer : Object() {
     message: StringName,
     pluralMessage: StringName,
     n: Long,
-    context: StringName = ""
+    context: StringName = StringName("")
   ): StringName {
     TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to pluralMessage, LONG to n,
         STRING_NAME to context)

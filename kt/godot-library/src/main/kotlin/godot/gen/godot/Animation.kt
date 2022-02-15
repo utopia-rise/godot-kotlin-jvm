@@ -582,8 +582,8 @@ public open class Animation : Resource() {
     trackIdx: Long,
     time: Double,
     `value`: Double,
-    inHandle: Vector2 = Vector2Vector2(0.0, 0.0),
-    outHandle: Vector2 = Vector2Vector2(0.0, 0.0),
+    inHandle: Vector2 = Vector2(0.0, 0.0),
+    outHandle: Vector2 = Vector2(0.0, 0.0),
     handleMode: Animation.HandleMode = HandleMode.HANDLE_MODE_BALANCED
   ): Long {
     TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, DOUBLE to value, VECTOR2 to

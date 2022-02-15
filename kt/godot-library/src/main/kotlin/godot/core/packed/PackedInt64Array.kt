@@ -18,12 +18,12 @@ class PackedInt64Array : NativeCoreType, Iterable<Long> {
     //CONSTRUCTOR
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_INT_ARRAY)
+        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_INT_32_ARRAY)
     }
 
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_INT_ARRAY)
+        GarbageCollector.registerNativeCoreType(this, VariantType.PACKED_INT_32_ARRAY)
     }
 
 
@@ -41,7 +41,7 @@ class PackedInt64Array : NativeCoreType, Iterable<Long> {
      * Appends a PoolIntArray at the end of this array.
      */
     fun appendArray(array: PackedInt64Array) {
-        TransferContext.writeArguments(VariantType.PACKED_INT_ARRAY to array)
+        TransferContext.writeArguments(VariantType.PACKED_INT_32_ARRAY to array)
         Bridge.engine_call_appendArray(_handle)
     }
 

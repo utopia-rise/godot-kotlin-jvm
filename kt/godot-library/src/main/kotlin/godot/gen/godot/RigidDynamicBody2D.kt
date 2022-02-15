@@ -512,7 +512,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * This is equivalent to using [applyImpulse] at the body's center of mass.
    */
-  public open fun applyCentralImpulse(impulse: Vector2 = Vector2Vector2(0.0, 0.0)): Unit {
+  public open fun applyCentralImpulse(impulse: Vector2 = Vector2(0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR2 to impulse)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_APPLY_CENTRAL_IMPULSE, NIL)
@@ -525,8 +525,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public open fun applyImpulse(impulse: Vector2, position: Vector2 = Vector2Vector2(0.0, 0.0)):
-      Unit {
+  public open fun applyImpulse(impulse: Vector2, position: Vector2 = Vector2(0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR2 to impulse, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_APPLY_IMPULSE,
         NIL)
@@ -559,7 +558,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public open fun applyForce(force: Vector2, position: Vector2 = Vector2Vector2(0.0, 0.0)): Unit {
+  public open fun applyForce(force: Vector2, position: Vector2 = Vector2(0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_APPLY_FORCE, NIL)
   }
@@ -589,8 +588,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public open fun addConstantForce(force: Vector2, position: Vector2 = Vector2Vector2(0.0, 0.0)):
-      Unit {
+  public open fun addConstantForce(force: Vector2, position: Vector2 = Vector2(0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_ADD_CONSTANT_FORCE, NIL)

@@ -39,7 +39,7 @@ public open class TileMapPattern : Resource() {
   public open fun setCell(
     coords: Vector2i,
     sourceId: Long = -1,
-    atlasCoords: Vector2i = Vector2iVector2i(-1.0, -1.0),
+    atlasCoords: Vector2i = Vector2i(-1.0, -1.0),
     alternativeTile: Long = -1
   ): Unit {
     TransferContext.writeArguments(VECTOR2I to coords, LONG to sourceId, VECTOR2I to atlasCoords,

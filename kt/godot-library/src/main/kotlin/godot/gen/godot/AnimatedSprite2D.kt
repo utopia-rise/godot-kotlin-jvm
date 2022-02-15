@@ -188,7 +188,7 @@ public open class AnimatedSprite2D : Node2D() {
   /**
    * Plays the animation named `anim`. If no `anim` is provided, the current animation is played. If `backwards` is `true`, the animation will be played in reverse.
    */
-  public open fun play(anim: StringName = &"", backwards: Boolean = false): Unit {
+  public open fun play(anim: StringName = StringName(""), backwards: Boolean = false): Unit {
     TransferContext.writeArguments(STRING_NAME to anim, BOOL to backwards)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE2D_PLAY, NIL)
   }

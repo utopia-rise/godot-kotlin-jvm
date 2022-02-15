@@ -419,7 +419,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   /**
    * Returns the floor's collision angle at the last collision point according to `up_direction`, which is `Vector3.UP` by default. This value is always positive and only valid after calling [moveAndSlide] and when [isOnFloor] returns `true`.
    */
-  public open fun getFloorAngle(upDirection: Vector3 = Vector3Vector3(0.0, 1.0, 0.0)): Double {
+  public open fun getFloorAngle(upDirection: Vector3 = Vector3(0.0, 1.0, 0.0)): Double {
     TransferContext.writeArguments(VECTOR3 to upDirection)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_FLOOR_ANGLE,
         DOUBLE)

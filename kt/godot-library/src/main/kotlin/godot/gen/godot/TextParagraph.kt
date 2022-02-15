@@ -227,7 +227,7 @@ public open class TextParagraph : RefCounted() {
     text: String,
     fonts: Font,
     size: Long,
-    dropcapMargins: Rect2 = Rect2Rect2(0.0, 0.0, 0.0, 0.0),
+    dropcapMargins: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
     opentypeFeatures: Dictionary<Any?, Any?> = Dictionary(),
     language: String = ""
   ): Boolean {

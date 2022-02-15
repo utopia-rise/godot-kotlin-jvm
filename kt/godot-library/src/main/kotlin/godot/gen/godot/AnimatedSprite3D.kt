@@ -94,7 +94,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   /**
    * Plays the animation named `anim`. If no `anim` is provided, the current animation is played.
    */
-  public open fun play(anim: StringName = &""): Unit {
+  public open fun play(anim: StringName = StringName("")): Unit {
     TransferContext.writeArguments(STRING_NAME to anim)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATEDSPRITE3D_PLAY, NIL)
   }

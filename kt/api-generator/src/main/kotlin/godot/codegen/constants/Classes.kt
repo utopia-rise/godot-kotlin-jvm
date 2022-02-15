@@ -4,6 +4,7 @@ import com.squareup.kotlinpoet.ClassName
 
 object KotlinTypes{
     const val color = "Color"
+    const val stringName = "StringName"
     const val array = "VariantArray"
     const val dictionary = "Dictionary"
     const val error = "GodotError"

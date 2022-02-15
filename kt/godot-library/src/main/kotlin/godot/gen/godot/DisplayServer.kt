@@ -567,7 +567,7 @@ public object DisplayServer : Object() {
     mode: DisplayServer.WindowMode,
     vsyncMode: DisplayServer.VSyncMode,
     flags: Long,
-    rect: Rect2i = Rect2iRect2i(0.0, 0.0, 0.0, 0.0)
+    rect: Rect2i = Rect2i(0.0, 0.0, 0.0, 0.0)
   ): Long {
     TransferContext.writeArguments(LONG to mode.id, LONG to vsyncMode.id, LONG to flags, RECT2I to
         rect)
@@ -990,7 +990,7 @@ public object DisplayServer : Object() {
    */
   public open fun virtualKeyboardShow(
     existingText: String,
-    position: Rect2 = Rect2Rect2i(0.0, 0.0, 0.0, 0.0),
+    position: Rect2 = Rect2i(0.0, 0.0, 0.0, 0.0),
     multiline: Boolean = false,
     maxLength: Long = -1,
     cursorStart: Long = -1,
@@ -1045,7 +1045,7 @@ public object DisplayServer : Object() {
   public open fun cursorSetCustomImage(
     cursor: Resource,
     shape: DisplayServer.CursorShape = CursorShape.CURSOR_ARROW,
-    hotspot: Vector2 = Vector2Vector2(0.0, 0.0)
+    hotspot: Vector2 = Vector2(0.0, 0.0)
   ): Unit {
     TransferContext.writeArguments(OBJECT to cursor, LONG to shape.id, VECTOR2 to hotspot)
     TransferContext.callMethod(rawPtr,

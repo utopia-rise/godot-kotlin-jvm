@@ -533,7 +533,8 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun getThemeIcon(name: StringName, themeType: StringName = ""): Texture2D? {
+  public open fun getThemeIcon(name: StringName, themeType: StringName = StringName("")):
+      Texture2D? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_ICON, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
@@ -542,7 +543,8 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun getThemeStylebox(name: StringName, themeType: StringName = ""): StyleBox? {
+  public open fun getThemeStylebox(name: StringName, themeType: StringName = StringName("")):
+      StyleBox? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_STYLEBOX, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as StyleBox?
@@ -551,7 +553,7 @@ public open class Window : Viewport() {
   /**
    * Returns the [godot.Font] at `name` if the theme has `theme_type`.
    */
-  public open fun getThemeFont(name: StringName, themeType: StringName = ""): Font? {
+  public open fun getThemeFont(name: StringName, themeType: StringName = StringName("")): Font? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_FONT, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Font?
@@ -560,7 +562,7 @@ public open class Window : Viewport() {
   /**
    * Returns the font size at `name` if the theme has `theme_type`.
    */
-  public open fun getThemeFontSize(name: StringName, themeType: StringName = ""): Long {
+  public open fun getThemeFontSize(name: StringName, themeType: StringName = StringName("")): Long {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_FONT_SIZE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -569,7 +571,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun getThemeColor(name: StringName, themeType: StringName = ""): Color {
+  public open fun getThemeColor(name: StringName, themeType: StringName = StringName("")): Color {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_COLOR, COLOR)
     return TransferContext.readReturnValue(COLOR, false) as Color
@@ -578,7 +580,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun getThemeConstant(name: StringName, themeType: StringName = ""): Long {
+  public open fun getThemeConstant(name: StringName, themeType: StringName = StringName("")): Long {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_THEME_CONSTANT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
@@ -587,7 +589,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun hasThemeIcon(name: StringName, themeType: StringName = ""): Boolean {
+  public open fun hasThemeIcon(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_ICON, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -596,7 +598,8 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun hasThemeStylebox(name: StringName, themeType: StringName = ""): Boolean {
+  public open fun hasThemeStylebox(name: StringName, themeType: StringName = StringName("")):
+      Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_STYLEBOX, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -607,7 +610,7 @@ public open class Window : Viewport() {
    *
    * Returns `false` if the theme does not have `theme_type`.
    */
-  public open fun hasThemeFont(name: StringName, themeType: StringName = ""): Boolean {
+  public open fun hasThemeFont(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_FONT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -618,7 +621,8 @@ public open class Window : Viewport() {
    *
    * Returns `false` if the theme does not have `theme_type`.
    */
-  public open fun hasThemeFontSize(name: StringName, themeType: StringName = ""): Boolean {
+  public open fun hasThemeFontSize(name: StringName, themeType: StringName = StringName("")):
+      Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_FONT_SIZE, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -627,7 +631,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun hasThemeColor(name: StringName, themeType: StringName = ""): Boolean {
+  public open fun hasThemeColor(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_COLOR, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -636,7 +640,8 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun hasThemeConstant(name: StringName, themeType: StringName = ""): Boolean {
+  public open fun hasThemeConstant(name: StringName, themeType: StringName = StringName("")):
+      Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_HAS_THEME_CONSTANT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
@@ -701,7 +706,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun popup(rect: Rect2i = Rect2iRect2i(0.0, 0.0, 0.0, 0.0)): Unit {
+  public open fun popup(rect: Rect2i = Rect2i(0.0, 0.0, 0.0, 0.0)): Unit {
     TransferContext.writeArguments(RECT2I to rect)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP, NIL)
   }
@@ -725,7 +730,7 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun popupCentered(minsize: Vector2i = Vector2iVector2i(0.0, 0.0)): Unit {
+  public open fun popupCentered(minsize: Vector2i = Vector2i(0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR2I to minsize)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP_CENTERED, NIL)
   }
@@ -733,8 +738,8 @@ public open class Window : Viewport() {
   /**
    *
    */
-  public open fun popupCenteredClamped(minsize: Vector2i = Vector2iVector2i(0.0, 0.0),
-      fallbackRatio: Double = 0.75): Unit {
+  public open fun popupCenteredClamped(minsize: Vector2i = Vector2i(0.0, 0.0), fallbackRatio: Double
+      = 0.75): Unit {
     TransferContext.writeArguments(VECTOR2I to minsize, DOUBLE to fallbackRatio)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_POPUP_CENTERED_CLAMPED, NIL)
   }

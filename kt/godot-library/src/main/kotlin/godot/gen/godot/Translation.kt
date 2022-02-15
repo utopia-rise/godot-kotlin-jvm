@@ -75,7 +75,7 @@ public open class Translation : Resource() {
   public open fun addMessage(
     srcMessage: StringName,
     xlatedMessage: StringName,
-    context: StringName = ""
+    context: StringName = StringName("")
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to xlatedMessage,
         STRING_NAME to context)
@@ -90,7 +90,7 @@ public open class Translation : Resource() {
   public open fun addPluralMessage(
     srcMessage: StringName,
     xlatedMessages: PackedStringArray,
-    context: StringName = ""
+    context: StringName = StringName("")
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to srcMessage, PACKED_STRING_ARRAY to xlatedMessages,
         STRING_NAME to context)
@@ -100,7 +100,8 @@ public open class Translation : Resource() {
   /**
    * Returns a message's translation.
    */
-  public open fun getMessage(srcMessage: StringName, context: StringName = ""): StringName {
+  public open fun getMessage(srcMessage: StringName, context: StringName = StringName("")):
+      StringName {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to context)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_GET_MESSAGE,
         STRING_NAME)
@@ -116,7 +117,7 @@ public open class Translation : Resource() {
     srcMessage: StringName,
     srcPluralMessage: StringName,
     n: Long,
-    context: StringName = ""
+    context: StringName = StringName("")
   ): StringName {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to srcPluralMessage, LONG
         to n, STRING_NAME to context)
@@ -128,7 +129,7 @@ public open class Translation : Resource() {
   /**
    * Erases a message.
    */
-  public open fun eraseMessage(srcMessage: StringName, context: StringName = ""): Unit {
+  public open fun eraseMessage(srcMessage: StringName, context: StringName = StringName("")): Unit {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to context)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TRANSLATION_ERASE_MESSAGE, NIL)
   }

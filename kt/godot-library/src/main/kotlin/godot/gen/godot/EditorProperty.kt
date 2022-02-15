@@ -260,7 +260,7 @@ public open class EditorProperty : Container() {
   public open fun emitChanged(
     `property`: StringName,
     `value`: Any,
-    `field`: StringName = &"",
+    `field`: StringName = StringName(""),
     changing: Boolean = false
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to property, ANY to value, STRING_NAME to field, BOOL

@@ -75,7 +75,7 @@ public open class KinematicCollision2D : RefCounted() {
   /**
    * Returns the collision angle according to `up_direction`, which is `Vector2.UP` by default. This value is always positive.
    */
-  public open fun getAngle(upDirection: Vector2 = Vector2Vector2(0.0, -1.0)): Double {
+  public open fun getAngle(upDirection: Vector2 = Vector2(0.0, -1.0)): Double {
     TransferContext.writeArguments(VECTOR2 to upDirection)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICCOLLISION2D_GET_ANGLE,
         DOUBLE)

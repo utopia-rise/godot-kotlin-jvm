@@ -170,7 +170,7 @@ public open class InputEvent : Resource() {
   /**
    * Returns a copy of the given input event which has been offset by `local_ofs` and transformed by `xform`. Relevant for events of type [godot.InputEventMouseButton], [godot.InputEventMouseMotion], [godot.InputEventScreenTouch], [godot.InputEventScreenDrag], [godot.InputEventMagnifyGesture] and [godot.InputEventPanGesture].
    */
-  public open fun xformedBy(xform: Transform2D, localOfs: Vector2 = Vector2Vector2(0.0, 0.0)):
+  public open fun xformedBy(xform: Transform2D, localOfs: Vector2 = Vector2(0.0, 0.0)):
       InputEvent? {
     TransferContext.writeArguments(TRANSFORM2D to xform, VECTOR2 to localOfs)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUTEVENT_XFORMED_BY, OBJECT)

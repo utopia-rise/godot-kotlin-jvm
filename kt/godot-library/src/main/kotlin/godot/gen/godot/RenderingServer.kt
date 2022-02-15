@@ -2501,7 +2501,7 @@ public object RenderingServer : Object() {
    */
   public open fun viewportAttachToScreen(
     viewport: RID,
-    rect: Rect2 = Rect2Rect2(0.0, 0.0, 0.0, 0.0),
+    rect: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
     screen: Long = 0
   ): Unit {
     TransferContext.writeArguments(_RID to viewport, RECT2 to rect, LONG to screen)
@@ -4004,7 +4004,7 @@ public object RenderingServer : Object() {
   public open fun canvasItemSetCustomRect(
     item: RID,
     useCustomRect: Boolean,
-    rect: Rect2 = Rect2Rect2(0.0, 0.0, 0.0, 0.0)
+    rect: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0)
   ): Unit {
     TransferContext.writeArguments(_RID to item, BOOL to useCustomRect, RECT2 to rect)
     TransferContext.callMethod(rawPtr,

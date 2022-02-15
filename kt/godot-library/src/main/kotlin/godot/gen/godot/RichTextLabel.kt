@@ -603,7 +603,7 @@ public open class RichTextLabel : Control() {
     string: String,
     font: Font,
     size: Long,
-    dropcapMargins: Rect2 = Rect2Rect2(0.0, 0.0, 0.0, 0.0),
+    dropcapMargins: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
     color: Color = Color(Color(1, 1, 1, 1)),
     outlineSize: Long = 0,
     outlineColor: Color = Color(Color(0, 0, 0, 0))

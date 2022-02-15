@@ -1161,7 +1161,7 @@ public open class Object : KtObject() {
    *
    * See [godot.Internationalizing games]($DOCS_URL/tutorials/i18n/internationalizing_games.html) for examples of the usage of this method.
    */
-  public open fun tr(message: StringName, context: StringName = ""): String {
+  public open fun tr(message: StringName, context: StringName = StringName("")): String {
     TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to context)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_TR, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -1182,7 +1182,7 @@ public open class Object : KtObject() {
     message: StringName,
     pluralMessage: StringName,
     n: Long,
-    context: StringName = ""
+    context: StringName = StringName("")
   ): String {
     TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to pluralMessage, LONG to n,
         STRING_NAME to context)

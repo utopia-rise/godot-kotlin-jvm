@@ -779,7 +779,7 @@ public object PhysicsServer3D : Object() {
   public open fun bodyApplyImpulse(
     body: RID,
     impulse: Vector3,
-    position: Vector3 = Vector3Vector3(0.0, 0.0, 0.0)
+    position: Vector3 = Vector3(0.0, 0.0, 0.0)
   ): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to impulse, VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_APPLY_IMPULSE,
@@ -816,7 +816,7 @@ public object PhysicsServer3D : Object() {
   public open fun bodyApplyForce(
     body: RID,
     force: Vector3,
-    position: Vector3 = Vector3Vector3(0.0, 0.0, 0.0)
+    position: Vector3 = Vector3(0.0, 0.0, 0.0)
   ): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_APPLY_FORCE,
@@ -851,7 +851,7 @@ public object PhysicsServer3D : Object() {
   public open fun bodyAddConstantForce(
     body: RID,
     force: Vector3,
-    position: Vector3 = Vector3Vector3(0.0, 0.0, 0.0)
+    position: Vector3 = Vector3(0.0, 0.0, 0.0)
   ): Unit {
     TransferContext.writeArguments(_RID to body, VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(rawPtr,

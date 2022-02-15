@@ -101,6 +101,7 @@ fun <T> T.getDefaultValueKotlinString(): String?
             GodotTypes.variant -> "${KotlinTypes.variant}($defaultValueString)"
             GodotTypes.bool -> defaultValueString.toLowerCase()
             GodotTypes.float -> intToFloat(defaultValueString)
+            GodotTypes.stringName -> "${KotlinTypes.stringName}(".plus(defaultValueString.replace("&", "")).plus(")")
 
             GodotTypes.vector2,
             GodotTypes.vector3,
@@ -108,9 +109,8 @@ fun <T> T.getDefaultValueKotlinString(): String?
             GodotTypes.vector3i,
             GodotTypes.rect2,
             GodotTypes.rect2i
-            -> "$type${
-                defaultValueString.replace(",", ".0,")
-                    .replace(")", ".0)")}"
+            -> defaultValueString.replace(",", ".0,")
+                .replace(")", ".0)")
 
             GodotTypes.dictionary,
             GodotTypes.transform2D,

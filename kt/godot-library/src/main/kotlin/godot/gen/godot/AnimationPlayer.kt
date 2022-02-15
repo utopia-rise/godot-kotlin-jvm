@@ -361,7 +361,7 @@ public open class AnimationPlayer : Node() {
    * **Note:** The animation will be updated the next time the [godot.AnimationPlayer] is processed. If other variables are updated at the same time this is called, they may be updated too early. To perform the update immediately, call `advance(0)`.
    */
   public open fun play(
-    name: StringName = "",
+    name: StringName = StringName(""),
     customBlend: Double = -1.0,
     customSpeed: Double = 1.0,
     fromEnd: Boolean = false
@@ -376,7 +376,8 @@ public open class AnimationPlayer : Node() {
    *
    * This method is a shorthand for [play] with `custom_speed = -1.0` and `from_end = true`, so see its description for more information.
    */
-  public open fun playBackwards(name: StringName = "", customBlend: Double = -1.0): Unit {
+  public open fun playBackwards(name: StringName = StringName(""), customBlend: Double = -1.0):
+      Unit {
     TransferContext.writeArguments(STRING_NAME to name, DOUBLE to customBlend)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_PLAY_BACKWARDS, NIL)
   }

@@ -220,7 +220,7 @@ public open class PhysicsDirectBodyState3D : Object() {
    *
    * This is equivalent to using [applyImpulse] at the body's center of mass.
    */
-  public open fun applyCentralImpulse(impulse: Vector3 = Vector3Vector3(0.0, 0.0, 0.0)): Unit {
+  public open fun applyCentralImpulse(impulse: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_APPLY_CENTRAL_IMPULSE, NIL)
@@ -233,8 +233,7 @@ public open class PhysicsDirectBodyState3D : Object() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public open fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3Vector3(0.0, 0.0, 0.0)):
-      Unit {
+  public open fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR3 to impulse, VECTOR3 to position)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_APPLY_IMPULSE, NIL)
@@ -256,7 +255,7 @@ public open class PhysicsDirectBodyState3D : Object() {
    *
    * This is equivalent to using [applyForce] at the body's center of mass.
    */
-  public open fun applyCentralForce(force: Vector3 = Vector3Vector3(0.0, 0.0, 0.0)): Unit {
+  public open fun applyCentralForce(force: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_APPLY_CENTRAL_FORCE, NIL)
@@ -267,8 +266,7 @@ public open class PhysicsDirectBodyState3D : Object() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public open fun applyForce(force: Vector3, position: Vector3 = Vector3Vector3(0.0, 0.0, 0.0)):
-      Unit {
+  public open fun applyForce(force: Vector3, position: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_APPLY_FORCE, NIL)
@@ -288,7 +286,7 @@ public open class PhysicsDirectBodyState3D : Object() {
    *
    * This is equivalent to using [addConstantForce] at the body's center of mass.
    */
-  public open fun addConstantCentralForce(force: Vector3 = Vector3Vector3(0.0, 0.0, 0.0)): Unit {
+  public open fun addConstantCentralForce(force: Vector3 = Vector3(0.0, 0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR3 to force)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_ADD_CONSTANT_CENTRAL_FORCE, NIL)
@@ -299,8 +297,8 @@ public open class PhysicsDirectBodyState3D : Object() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public open fun addConstantForce(force: Vector3, position: Vector3 = Vector3Vector3(0.0, 0.0,
-      0.0)): Unit {
+  public open fun addConstantForce(force: Vector3, position: Vector3 = Vector3(0.0, 0.0, 0.0)):
+      Unit {
     TransferContext.writeArguments(VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE3D_ADD_CONSTANT_FORCE, NIL)

@@ -82,8 +82,8 @@ public open class Curve3D : Resource() {
    */
   public open fun addPoint(
     position: Vector3,
-    _in: Vector3 = Vector3Vector3(0.0, 0.0, 0.0),
-    `out`: Vector3 = Vector3Vector3(0.0, 0.0, 0.0),
+    _in: Vector3 = Vector3(0.0, 0.0, 0.0),
+    `out`: Vector3 = Vector3(0.0, 0.0, 0.0),
     atPosition: Long = -1
   ): Unit {
     TransferContext.writeArguments(VECTOR3 to position, VECTOR3 to _in, VECTOR3 to out, LONG to

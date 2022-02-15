@@ -45,7 +45,7 @@ public open class RDShaderFile : Resource() {
   /**
    *
    */
-  public open fun setBytecode(bytecode: RDShaderSPIRV, version: StringName = &""): Unit {
+  public open fun setBytecode(bytecode: RDShaderSPIRV, version: StringName = StringName("")): Unit {
     TransferContext.writeArguments(OBJECT to bytecode, STRING_NAME to version)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERFILE_SET_BYTECODE, NIL)
   }
@@ -53,7 +53,7 @@ public open class RDShaderFile : Resource() {
   /**
    *
    */
-  public open fun getSpirv(version: StringName = &""): RDShaderSPIRV? {
+  public open fun getSpirv(version: StringName = StringName("")): RDShaderSPIRV? {
     TransferContext.writeArguments(STRING_NAME to version)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RDSHADERFILE_GET_SPIRV, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as RDShaderSPIRV?

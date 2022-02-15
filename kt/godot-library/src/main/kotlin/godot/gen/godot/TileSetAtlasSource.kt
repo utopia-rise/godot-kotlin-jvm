@@ -132,8 +132,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   /**
    * Creates a new tile at coords `atlas_coords` with size `size`.
    */
-  public open fun createTile(atlasCoords: Vector2i, size: Vector2i = Vector2iVector2i(1.0, 1.0)):
-      Unit {
+  public open fun createTile(atlasCoords: Vector2i, size: Vector2i = Vector2i(1.0, 1.0)): Unit {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, VECTOR2I to size)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILESETATLASSOURCE_CREATE_TILE, NIL)
   }
@@ -155,8 +154,8 @@ public open class TileSetAtlasSource : TileSetSource() {
    */
   public open fun moveTileInAtlas(
     atlasCoords: Vector2i,
-    newAtlasCoords: Vector2i = Vector2iVector2i(-1.0, -1.0),
-    newSize: Vector2i = Vector2iVector2i(-1.0, -1.0)
+    newAtlasCoords: Vector2i = Vector2i(-1.0, -1.0),
+    newSize: Vector2i = Vector2i(-1.0, -1.0)
   ): Unit {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, VECTOR2I to newAtlasCoords, VECTOR2I to
         newSize)
@@ -183,7 +182,7 @@ public open class TileSetAtlasSource : TileSetSource() {
     animationColumns: Long,
     animationSeparation: Vector2i,
     framesCount: Long,
-    ignoredTile: Vector2i = Vector2iVector2i(-1.0, -1.0)
+    ignoredTile: Vector2i = Vector2i(-1.0, -1.0)
   ): Boolean {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, VECTOR2I to size, LONG to
         animationColumns, VECTOR2I to animationSeparation, LONG to framesCount, VECTOR2I to

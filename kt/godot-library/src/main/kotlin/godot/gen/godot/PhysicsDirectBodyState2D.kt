@@ -231,8 +231,7 @@ public open class PhysicsDirectBodyState2D : Object() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public open fun applyImpulse(impulse: Vector2, position: Vector2 = Vector2Vector2(0.0, 0.0)):
-      Unit {
+  public open fun applyImpulse(impulse: Vector2, position: Vector2 = Vector2(0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR2 to impulse, VECTOR2 to position)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_APPLY_IMPULSE, NIL)
@@ -243,7 +242,7 @@ public open class PhysicsDirectBodyState2D : Object() {
    *
    * This is equivalent to using [applyForce] at the body's center of mass.
    */
-  public open fun applyCentralForce(force: Vector2 = Vector2Vector2(0.0, 0.0)): Unit {
+  public open fun applyCentralForce(force: Vector2 = Vector2(0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_APPLY_CENTRAL_FORCE, NIL)
@@ -254,7 +253,7 @@ public open class PhysicsDirectBodyState2D : Object() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public open fun applyForce(force: Vector2, position: Vector2 = Vector2Vector2(0.0, 0.0)): Unit {
+  public open fun applyForce(force: Vector2, position: Vector2 = Vector2(0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_APPLY_FORCE, NIL)
@@ -274,7 +273,7 @@ public open class PhysicsDirectBodyState2D : Object() {
    *
    * This is equivalent to using [addConstantForce] at the body's center of mass.
    */
-  public open fun addConstantCentralForce(force: Vector2 = Vector2Vector2(0.0, 0.0)): Unit {
+  public open fun addConstantCentralForce(force: Vector2 = Vector2(0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_ADD_CONSTANT_CENTRAL_FORCE, NIL)
@@ -285,8 +284,7 @@ public open class PhysicsDirectBodyState2D : Object() {
    *
    * `position` is the offset from the body origin in global coordinates.
    */
-  public open fun addConstantForce(force: Vector2, position: Vector2 = Vector2Vector2(0.0, 0.0)):
-      Unit {
+  public open fun addConstantForce(force: Vector2, position: Vector2 = Vector2(0.0, 0.0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_ADD_CONSTANT_FORCE, NIL)
