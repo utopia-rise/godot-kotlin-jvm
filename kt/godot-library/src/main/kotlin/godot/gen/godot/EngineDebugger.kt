@@ -107,7 +107,7 @@ public object EngineDebugger : Object() {
   public open fun profilerEnable(
     name: StringName,
     enable: Boolean,
-    arguments: VariantArray<Any?> = Array()
+    arguments: VariantArray<Any?> = godot.core.variantArrayOf()
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, BOOL to enable, ARRAY to arguments)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_PROFILER_ENABLE, NIL)

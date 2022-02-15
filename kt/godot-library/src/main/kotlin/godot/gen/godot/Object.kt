@@ -610,7 +610,8 @@ public open class Object : KtObject() {
   /**
    * Adds a user-defined `signal`. Arguments are optional, but can be added as an [godot.Array] of dictionaries, each containing `name: String` and `type: int` (see [enum Variant.Type]) entries.
    */
-  public open fun addUserSignal(signal: String, arguments: VariantArray<Any?> = Array()): Unit {
+  public open fun addUserSignal(signal: String, arguments: VariantArray<Any?> =
+      godot.core.variantArrayOf()): Unit {
     TransferContext.writeArguments(STRING to signal, ARRAY to arguments)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_ADD_USER_SIGNAL, NIL)
   }
@@ -1084,7 +1085,7 @@ public open class Object : KtObject() {
   public open fun connect(
     signal: StringName,
     callable: Callable,
-    binds: VariantArray<Any?> = Array(),
+    binds: VariantArray<Any?> = godot.core.variantArrayOf(),
     flags: Long = 0
   ): GodotError {
     TransferContext.writeArguments(STRING_NAME to signal, OBJECT to callable, ARRAY to binds, LONG

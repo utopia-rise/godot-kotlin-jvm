@@ -65,8 +65,8 @@ public object ResourceLoader : Object() {
    *
    * An array variable can optionally be passed via `progress`, and will return a one-element array containing the percentage of completion of the threaded loading.
    */
-  public open fun loadThreadedGetStatus(path: String, progress: VariantArray<Any?> = Array()):
-      ResourceLoader.ThreadLoadStatus {
+  public open fun loadThreadedGetStatus(path: String, progress: VariantArray<Any?> =
+      godot.core.variantArrayOf()): ResourceLoader.ThreadLoadStatus {
     TransferContext.writeArguments(STRING to path, ARRAY to progress)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_LOAD_THREADED_GET_STATUS, LONG)

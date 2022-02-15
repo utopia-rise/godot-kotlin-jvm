@@ -228,7 +228,7 @@ public open class ArrayMesh : Mesh() {
   public open fun addSurfaceFromArrays(
     primitive: Mesh.PrimitiveType,
     arrays: VariantArray<Any?>,
-    blendShapes: VariantArray<Any?> = Array(),
+    blendShapes: VariantArray<Any?> = godot.core.variantArrayOf(),
     lods: Dictionary<Any?, Any?> = Dictionary(),
     compressFlags: Long = 0
   ): Unit {

@@ -177,7 +177,7 @@ public object Performance : Object() {
   public open fun addCustomMonitor(
     id: StringName,
     callable: Callable,
-    arguments: VariantArray<Any?> = Array()
+    arguments: VariantArray<Any?> = godot.core.variantArrayOf()
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to id, OBJECT to callable, ARRAY to arguments)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PERFORMANCE_ADD_CUSTOM_MONITOR, NIL)

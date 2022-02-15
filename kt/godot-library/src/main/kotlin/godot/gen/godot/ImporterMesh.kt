@@ -103,7 +103,7 @@ public open class ImporterMesh : Resource() {
   public open fun addSurface(
     primitive: Mesh.PrimitiveType,
     arrays: VariantArray<Any?>,
-    blendShapes: VariantArray<Any?> = Array(),
+    blendShapes: VariantArray<Any?> = godot.core.variantArrayOf(),
     lods: Dictionary<Any?, Any?> = Dictionary(),
     material: Material? = null,
     name: String = "",

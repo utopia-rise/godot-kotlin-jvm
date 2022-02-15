@@ -102,6 +102,7 @@ fun <T> T.getDefaultValueKotlinString(): String?
             GodotTypes.bool -> defaultValueString.toLowerCase()
             GodotTypes.float -> intToFloat(defaultValueString)
             GodotTypes.stringName -> "${KotlinTypes.stringName}(".plus(defaultValueString.replace("&", "")).plus(")")
+            GodotTypes.array -> "$godotCorePackage.variantArrayOf(".plus(defaultValueString.removePrefix("[").removeSuffix("]")).plus(")")
 
             GodotTypes.vector2,
             GodotTypes.vector3,
@@ -115,7 +116,6 @@ fun <T> T.getDefaultValueKotlinString(): String?
             GodotTypes.dictionary,
             GodotTypes.transform2D,
             GodotTypes.transform3D,
-            GodotTypes.array,
             GodotTypes.packedByteArray,
             GodotTypes.packedColorArray,
             GodotTypes.packedFloat32Array,

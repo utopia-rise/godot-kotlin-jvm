@@ -139,7 +139,7 @@ public open class Expression : RefCounted() {
    * If you defined input variables in [parse], you can specify their values in the inputs array, in the same order.
    */
   public open fun execute(
-    inputs: VariantArray<Any?> = Array(),
+    inputs: VariantArray<Any?> = godot.core.variantArrayOf(),
     baseInstance: Object? = null,
     showError: Boolean = true
   ): Any? {

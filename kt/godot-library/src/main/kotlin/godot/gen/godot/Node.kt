@@ -1259,7 +1259,7 @@ public open class Node : Object() {
    */
   public open fun propagateCall(
     method: StringName,
-    args: VariantArray<Any?> = Array(),
+    args: VariantArray<Any?> = godot.core.variantArrayOf(),
     parentFirst: Boolean = false
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to method, ARRAY to args, BOOL to parentFirst)

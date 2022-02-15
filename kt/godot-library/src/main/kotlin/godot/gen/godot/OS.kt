@@ -204,7 +204,7 @@ public object OS : Object() {
   public open fun execute(
     path: String,
     arguments: PackedStringArray,
-    output: VariantArray<Any?> = Array(),
+    output: VariantArray<Any?> = godot.core.variantArrayOf(),
     readStderr: Boolean = false,
     openConsole: Boolean = false
   ): Long {

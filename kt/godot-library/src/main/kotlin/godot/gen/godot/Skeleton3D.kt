@@ -554,7 +554,8 @@ public open class Skeleton3D : Node3D() {
    *
    * Optionally, a list of bone names can be passed-in, allowing only the passed-in bones to be simulated.
    */
-  public open fun physicalBonesStartSimulation(bones: VariantArray<Any?> = Array()): Unit {
+  public open fun physicalBonesStartSimulation(bones: VariantArray<Any?> =
+      godot.core.variantArrayOf()): Unit {
     TransferContext.writeArguments(ARRAY to bones)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETON3D_PHYSICAL_BONES_START_SIMULATION, NIL)

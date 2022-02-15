@@ -84,7 +84,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    *
    * Optionally, an array of bone names can be passed to this function, and that will cause only [godot.PhysicalBone2D] nodes with those names to start simulating.
    */
-  public open fun startSimulation(bones: VariantArray<Any?> = Array()): Unit {
+  public open fun startSimulation(bones: VariantArray<Any?> = godot.core.variantArrayOf()): Unit {
     TransferContext.writeArguments(ARRAY to bones)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_START_SIMULATION, NIL)
@@ -95,7 +95,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    *
    * Optionally, an array of bone names can be passed to this function, and that will cause only [godot.PhysicalBone2D] nodes with those names to stop simulating.
    */
-  public open fun stopSimulation(bones: VariantArray<Any?> = Array()): Unit {
+  public open fun stopSimulation(bones: VariantArray<Any?> = godot.core.variantArrayOf()): Unit {
     TransferContext.writeArguments(ARRAY to bones)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES_STOP_SIMULATION, NIL)

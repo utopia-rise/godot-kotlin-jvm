@@ -37,7 +37,7 @@ public open class VisualScriptFunctionState : RefCounted() {
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONSTATE_CONNECT_TO_SIGNAL, NIL)
   }
 
-  public open fun resume(args: VariantArray<Any?> = Array()): Any? {
+  public open fun resume(args: VariantArray<Any?> = godot.core.variantArrayOf()): Any? {
     TransferContext.writeArguments(ARRAY to args)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTFUNCTIONSTATE_RESUME,
         ANY)

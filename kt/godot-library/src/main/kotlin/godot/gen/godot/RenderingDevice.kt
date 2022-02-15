@@ -59,7 +59,7 @@ public open class RenderingDevice : Object() {
   public open fun textureCreate(
     format: RDTextureFormat,
     view: RDTextureView,
-    `data`: VariantArray<Any?> = Array()
+    `data`: VariantArray<Any?> = godot.core.variantArrayOf()
   ): RID {
     TransferContext.writeArguments(OBJECT to format, OBJECT to view, ARRAY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_TEXTURE_CREATE,
@@ -543,7 +543,7 @@ public open class RenderingDevice : Object() {
     colorBlendState: RDPipelineColorBlendState,
     dynamicStateFlags: Long = 0,
     forRenderPass: Long = 0,
-    specializationConstants: VariantArray<Any?> = Array()
+    specializationConstants: VariantArray<Any?> = godot.core.variantArrayOf()
   ): RID {
     TransferContext.writeArguments(_RID to shader, LONG to framebufferFormat, LONG to vertexFormat,
         LONG to primitive.id, OBJECT to rasterizationState, OBJECT to multisampleState, OBJECT to
@@ -568,7 +568,7 @@ public open class RenderingDevice : Object() {
    *
    */
   public open fun computePipelineCreate(shader: RID, specializationConstants: VariantArray<Any?> =
-      Array()): RID {
+      godot.core.variantArrayOf()): RID {
     TransferContext.writeArguments(_RID to shader, ARRAY to specializationConstants)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_COMPUTE_PIPELINE_CREATE, _RID)
@@ -639,7 +639,7 @@ public open class RenderingDevice : Object() {
     clearDepth: Double = 1.0,
     clearStencil: Long = 0,
     region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
-    storageTextures: VariantArray<Any?> = Array()
+    storageTextures: VariantArray<Any?> = godot.core.variantArrayOf()
   ): Long {
     TransferContext.writeArguments(_RID to framebuffer, LONG to initialColorAction.id, LONG to
         finalColorAction.id, LONG to initialDepthAction.id, LONG to finalDepthAction.id,
@@ -664,7 +664,7 @@ public open class RenderingDevice : Object() {
     clearDepth: Double = 1.0,
     clearStencil: Long = 0,
     region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
-    storageTextures: VariantArray<Any?> = Array()
+    storageTextures: VariantArray<Any?> = godot.core.variantArrayOf()
   ): PackedInt64Array {
     TransferContext.writeArguments(_RID to framebuffer, LONG to splits, LONG to
         initialColorAction.id, LONG to finalColorAction.id, LONG to initialDepthAction.id, LONG to

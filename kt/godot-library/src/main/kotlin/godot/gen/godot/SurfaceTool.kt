@@ -241,7 +241,7 @@ public open class SurfaceTool : RefCounted() {
     colors: PackedColorArray = PackedColorArray(),
     uv2s: PackedVector2Array = PackedVector2Array(),
     normals: PackedVector3Array = PackedVector3Array(),
-    tangents: VariantArray<Any?> = Array()
+    tangents: VariantArray<Any?> = godot.core.variantArrayOf()
   ): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices, PACKED_VECTOR2_ARRAY to uvs,
         PACKED_COLOR_ARRAY to colors, PACKED_VECTOR2_ARRAY to uv2s, PACKED_VECTOR3_ARRAY to normals,

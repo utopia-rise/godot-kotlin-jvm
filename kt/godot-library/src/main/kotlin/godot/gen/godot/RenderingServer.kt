@@ -598,7 +598,7 @@ public object RenderingServer : Object() {
     mesh: RID,
     primitive: RenderingServer.PrimitiveType,
     arrays: VariantArray<Any?>,
-    blendShapes: VariantArray<Any?> = Array(),
+    blendShapes: VariantArray<Any?> = godot.core.variantArrayOf(),
     lods: Dictionary<Any?, Any?> = Dictionary(),
     compressFormat: Long = 0
   ): Unit {
