@@ -54,19 +54,19 @@ public open class RegExMatch : RefCounted() {
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public open fun getString(name: Any = Any(0)): String {
+  public open fun getString(name: Any = 0): String {
     TransferContext.writeArguments(ANY to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_STRING, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  public open fun getStart(name: Any = Any(0)): Long {
+  public open fun getStart(name: Any = 0): Long {
     TransferContext.writeArguments(ANY to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_START, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
-  public open fun getEnd(name: Any = Any(0)): Long {
+  public open fun getEnd(name: Any = 0): Long {
     TransferContext.writeArguments(ANY to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REGEXMATCH_GET_END, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long

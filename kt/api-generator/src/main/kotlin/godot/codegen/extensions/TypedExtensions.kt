@@ -98,7 +98,7 @@ fun <T> T.getDefaultValueKotlinString(): String?
     } else if (defaultValueString != null) {
         when (type) {
             GodotTypes.color -> "${KotlinTypes.color}($defaultValueString)"
-            GodotTypes.variant -> "${KotlinTypes.variant}($defaultValueString)"
+            GodotTypes.variant -> defaultValueString
             GodotTypes.bool -> defaultValueString.toLowerCase()
             GodotTypes.float -> intToFloat(defaultValueString)
             GodotTypes.stringName -> "${KotlinTypes.stringName}(".plus(defaultValueString.replace("&", "")).plus(")")
