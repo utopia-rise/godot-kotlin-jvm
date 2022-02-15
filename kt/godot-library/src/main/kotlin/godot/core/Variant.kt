@@ -23,10 +23,10 @@ internal val variantMapper = mutableMapOf(
     VariantArray::class to ARRAY,
     Plane::class to PLANE,
     NodePath::class to NODE_PATH,
-    Quat::class to QUAT,
+    Quaternion::class to QUATERNION,
     Rect2::class to RECT2,
     RID::class to _RID,
-    Transform::class to TRANSFORM,
+    Transform3D::class to TRANSFORM3D,
     Transform2D::class to TRANSFORM2D,
     Vector2::class to VECTOR2,
     Vector3::class to VECTOR3,
@@ -240,18 +240,18 @@ enum class VariantType(
             buffer.putFloat(any.d.toFloat())
         }
     ),
-    QUAT(
+    QUATERNION(
         { buffer: ByteBuffer, _: Int ->
             val x = buffer.float.toRealT()
             val y = buffer.float.toRealT()
             val z = buffer.float.toRealT()
             val w = buffer.float.toRealT()
 
-            Quat(x, y, z, w)
+            Quaternion(x, y, z, w)
         },
         { buffer: ByteBuffer, any: Any ->
-            require(any is Quat)
-            buffer.variantType = QUAT.ordinal
+            require(any is Quaternion)
+            buffer.variantType = QUATERNION.ordinal
             buffer.putFloat(any.x.toFloat())
             buffer.putFloat(any.y.toFloat())
             buffer.putFloat(any.z.toFloat())
@@ -281,15 +281,15 @@ enum class VariantType(
             buffer.basis = any
         }
     ),
-    TRANSFORM(
+    TRANSFORM3D(
         { buffer: ByteBuffer, _: Int ->
             val basis = buffer.basis
             val origin = buffer.vector3
-            Transform(basis, origin)
+            Transform3D(basis, origin)
         },
         { buffer: ByteBuffer, any: Any ->
-            require(any is Transform)
-            buffer.variantType = TRANSFORM.ordinal
+            require(any is Transform3D)
+            buffer.variantType = TRANSFORM3D.ordinal
             buffer.basis = any._basis
             buffer.vector3 = any._origin
         }
@@ -507,10 +507,10 @@ enum class VariantType(
                 is Vector3 -> VECTOR3.toGodotWithoutNullCheck(buffer, any)
                 is Transform2D -> TRANSFORM2D.toGodotWithoutNullCheck(buffer, any)
                 is Plane -> PLANE.toGodotWithoutNullCheck(buffer, any)
-                is Quat -> QUAT.toGodotWithoutNullCheck(buffer, any)
+                is Quaternion -> QUATERNION.toGodotWithoutNullCheck(buffer, any)
                 is godot.core.AABB -> AABB.toGodotWithoutNullCheck(buffer, any)
                 is Basis -> BASIS.toGodotWithoutNullCheck(buffer, any)
-                is Transform -> TRANSFORM.toGodotWithoutNullCheck(buffer, any)
+                is Transform3D -> TRANSFORM3D.toGodotWithoutNullCheck(buffer, any)
                 is Color -> COLOR.toGodotWithoutNullCheck(buffer, any)
                 is NodePath -> NODE_PATH.toGodotWithoutNullCheck(buffer, any)
                 is RID -> _RID.toGodotWithoutNullCheck(buffer, any)

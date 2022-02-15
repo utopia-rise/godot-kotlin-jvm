@@ -111,21 +111,21 @@ class Basis() : CoreType {
         setEuler(from)
     }
 
-    constructor(quat: Quat) : this() {
-        val d = quat.lengthSquared()
+    constructor(quaternion: Quaternion) : this() {
+        val d = quaternion.lengthSquared()
         val s = 2.0 / d
-        val xs = quat.x * s
-        val ys = quat.y * s
-        val zs = quat.z * s
-        val wx = quat.w * xs
-        val wy = quat.w * ys
-        val wz = quat.w * zs
-        val xx = quat.x * xs
-        val xy = quat.x * ys
-        val xz = quat.x * zs
-        val yy = quat.y * ys
-        val yz = quat.y * zs
-        val zz = quat.z * zs
+        val xs = quaternion.x * s
+        val ys = quaternion.y * s
+        val zs = quaternion.z * s
+        val wx = quaternion.w * xs
+        val wy = quaternion.w * ys
+        val wz = quaternion.w * zs
+        val xx = quaternion.x * xs
+        val xy = quaternion.x * ys
+        val xz = quaternion.x * zs
+        val yy = quaternion.y * ys
+        val yz = quaternion.y * zs
+        val zz = quaternion.z * zs
         set(
             1.0 - (yy + zz), xy - wz, xz + wy,
             xy + wz, 1.0 - (xx + zz), yz - wx,
@@ -315,7 +315,7 @@ class Basis() : CoreType {
     /**
      *
      */
-    fun getRotationQuat(): Quat {
+    fun getRotationQuat(): Quaternion {
         // Assumes that the matrix can be decomposed into a proper rotation and scaling matrix as M = R.S,
         // and returns the Euler angles corresponding to the rotation part, complementing get_scale().
         // See the comment in get_scale() for further information.
@@ -326,7 +326,7 @@ class Basis() : CoreType {
             m.scale(Vector3(-1, -1, -1))
         }
 
-        return Quat(m)
+        return Quaternion(m)
     }
 
     /**
@@ -378,7 +378,7 @@ class Basis() : CoreType {
         )
     }
 
-    fun getQuat(): Quat {
+    fun getQuat(): Quaternion {
         require(isRotation()) { "Basis must be normalized in order to be casted to a Quaternion. Use get_rotation_quat() or call orthonormalized() instead." }
         val trace = this._x.x + this._y.y + this._z.z
         val temp: Array<RealT>
@@ -411,7 +411,7 @@ class Basis() : CoreType {
             temp[k] = (this._get(k)[i] + this._get(i)[k]) * s
         }
 
-        return Quat(temp[0], temp[1], temp[2], temp[3]);
+        return Quaternion(temp[0], temp[1], temp[2], temp[3]);
     }
 
     /**
@@ -586,8 +586,8 @@ class Basis() : CoreType {
     fun slerp(b: Basis, t: RealT): Basis {
         require(isRotation()) { "Basis is not a rotation!" }
 
-        val from = Quat(this)
-        val to = Quat(b)
+        val from = Quaternion(this)
+        val to = Quaternion(b)
 
         val ret = Basis(from.slerp(to, t))
         ret._x *= (b._x.length() - this._x.length()) * t

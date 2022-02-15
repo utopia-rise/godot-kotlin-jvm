@@ -3,7 +3,7 @@ package godot.core
 import godot.annotation.CoreTypeHelper
 import godot.util.*
 
-class Transform(
+class Transform3D(
     p_basis: Basis,
     p_origin: Vector3 = Vector3()
 ) : CoreType {
@@ -48,14 +48,14 @@ class Transform(
 
     //CONSTANTS
     companion object {
-        inline val IDENTITY: Transform
-            get() = Transform(Basis(1, 0, 0, 0, 1, 0, 0, 0, 1), Vector3(0, 0, 0))
-        inline val FLIP_X: Transform
-            get() = Transform(Basis(-1, 0, 0, 0, 1, 0, 0, 0, 1), Vector3(0, 0, 0))
-        inline val FLIP_Y: Transform
-            get() = Transform(Basis(1, 0, 0, 0, -1, 0, 0, 0, 1), Vector3(0, 0, 0))
-        inline val FLIP_Z: Transform
-            get() = Transform(Basis(1, 0, 0, 0, 1, 0, 0, 0, -1), Vector3(0, 0, 0))
+        inline val IDENTITY: Transform3D
+            get() = Transform3D(Basis(1, 0, 0, 0, 1, 0, 0, 0, 1), Vector3(0, 0, 0))
+        inline val FLIP_X: Transform3D
+            get() = Transform3D(Basis(-1, 0, 0, 0, 1, 0, 0, 0, 1), Vector3(0, 0, 0))
+        inline val FLIP_Y: Transform3D
+            get() = Transform3D(Basis(1, 0, 0, 0, -1, 0, 0, 0, 1), Vector3(0, 0, 0))
+        inline val FLIP_Z: Transform3D
+            get() = Transform3D(Basis(1, 0, 0, 0, 1, 0, 0, 0, -1), Vector3(0, 0, 0))
     }
 
 
@@ -63,7 +63,7 @@ class Transform(
     constructor() :
             this(Basis(), Vector3(0, 0, 0))
 
-    constructor(other: Transform) :
+    constructor(other: Transform3D) :
             this(other._basis, other._origin)
 
     constructor(
@@ -82,15 +82,15 @@ class Transform(
     ) :
             this(Basis(xx, xy, xz, yx, yy, yz, zx, zy, zz), Vector3(tx, ty, tz))
 
-    constructor(from: Quat) :
+    constructor(from: Quaternion) :
             this(Basis(from))
 
     //API
     /**
      * Returns the inverse of the transform, under the assumption that the transformation is composed of rotation, scaling and translation.
      */
-    fun affineInverse(): Transform {
-        val ret = Transform(this._basis, this._origin)
+    fun affineInverse(): Transform3D {
+        val ret = Transform3D(this._basis, this._origin)
         ret.affineInvert()
         return ret
     }
@@ -103,16 +103,16 @@ class Transform(
     /**
      * Interpolates the transform to other Transform by weight amount (0-1).
      */
-    fun interpolateWith(transform: Transform, c: RealT): Transform {
+    fun interpolateWith(transform3D: Transform3D, c: RealT): Transform3D {
         val srcScale = _basis.getScale()
-        val srcRot = Quat(_basis)
+        val srcRot = Quaternion(_basis)
         val srcLoc = _origin
 
-        val dstScale = transform._basis.getScale()
-        val dstRot = Quat(transform._basis)
-        val dstLoc = transform._origin
+        val dstScale = transform3D._basis.getScale()
+        val dstRot = Quaternion(transform3D._basis)
+        val dstLoc = transform3D._origin
 
-        val dst = Transform()
+        val dst = Transform3D()
         dst._basis = Basis(srcRot.slerp(dstRot, c))
         dst._basis.scale(srcScale.linearInterpolate(dstScale, c))
         dst._origin = srcLoc.linearInterpolate(dstLoc, c)
@@ -123,8 +123,8 @@ class Transform(
     /**
      * Returns the inverse of the transform, under the assumption that the transformation is composed of rotation and translation (no scaling, use affine_inverse for transforms with scaling).
      */
-    fun inverse(): Transform {
-        val ret = Transform(this._basis, this._origin)
+    fun inverse(): Transform3D {
+        val ret = Transform3D(this._basis, this._origin)
         ret.invert()
         return ret
     }
@@ -137,8 +137,8 @@ class Transform(
     /**
      * Returns true if this transform and transform are approximately equal, by calling is_equal_approx on each component.
      */
-    fun isEqualApprox(transform: Transform): Boolean {
-        return transform._basis.isEqualApprox(this._basis) && transform._origin.isEqualApprox(this._origin)
+    fun isEqualApprox(transform3D: Transform3D): Boolean {
+        return transform3D._basis.isEqualApprox(this._basis) && transform3D._origin.isEqualApprox(this._origin)
     }
 
     /**
@@ -146,8 +146,8 @@ class Transform(
      * The transform will first be rotated around the given up vector, and then fully aligned to the target by a further rotation around an axis perpendicular to both the target and up vectors.
      * Operations take place in global space.
      */
-    fun lookingAt(target: Vector3, up: Vector3): Transform {
-        val t = Transform(this._basis, this._origin)
+    fun lookingAt(target: Vector3, up: Vector3): Transform3D {
+        val t = Transform3D(this._basis, this._origin)
         t.setLookAt(_origin, target, up)
         return t
     }
@@ -175,8 +175,8 @@ class Transform(
     /**
      * Returns the transform with the basis orthogonal (90 degrees), and normalized axis vectors.
      */
-    fun orthonormalized(): Transform {
-        val t = Transform(this._basis, this._origin)
+    fun orthonormalized(): Transform3D {
+        val t = Transform3D(this._basis, this._origin)
         t.orthonormalize()
         return t
     }
@@ -189,8 +189,8 @@ class Transform(
     /**
      * Rotates the transform around the given axis by the given angle (in radians), using matrix multiplication. The axis must be a normalized vector.
      */
-    fun rotated(axis: Vector3, phi: RealT): Transform {
-        return Transform(Basis(axis, phi), Vector3()) * this
+    fun rotated(axis: Vector3, phi: RealT): Transform3D {
+        return Transform3D(Basis(axis, phi), Vector3()) * this
     }
 
     internal fun rotate(axis: Vector3, phi: RealT) {
@@ -202,8 +202,8 @@ class Transform(
     /**
      * Scales basis and origin of the transform by the given scale factor, using matrix multiplication.
      */
-    fun scaled(scale: Vector3): Transform {
-        val t = Transform(this._basis, this._origin)
+    fun scaled(scale: Vector3): Transform3D {
+        val t = Transform3D(this._basis, this._origin)
         t.scale(scale)
         return t
     }
@@ -217,8 +217,8 @@ class Transform(
      * Translates the transform by the given offset, relative to the transform’s basis vectors.
      * Unlike rotated and scaled, this does not use matrix multiplication.
      */
-    fun translated(translation: Vector3): Transform {
-        val t = Transform(this._basis, this._origin)
+    fun translated(translation: Vector3): Transform3D {
+        val t = Transform3D(this._basis, this._origin)
         t.translate(translation)
         return t
     }
@@ -325,16 +325,16 @@ class Transform(
         return ret
     }
 
-    operator fun times(transform: Transform): Transform {
+    operator fun times(transform3D: Transform3D): Transform3D {
         val t = this
-        t._origin = xform(transform._origin)
-        t._basis *= transform._basis
+        t._origin = xform(transform3D._origin)
+        t._basis *= transform3D._basis
         return t
     }
 
     override fun equals(other: Any?): Boolean {
         return when (other) {
-            is Transform -> _basis == other._basis && _origin == other._origin
+            is Transform3D -> _basis == other._basis && _origin == other._origin
             else -> false
         }
     }

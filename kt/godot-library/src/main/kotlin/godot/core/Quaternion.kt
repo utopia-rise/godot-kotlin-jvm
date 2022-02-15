@@ -3,7 +3,7 @@ package godot.core
 import godot.util.*
 import kotlin.math.*
 
-class Quat(
+class Quaternion(
     var x: RealT,
     var y: RealT,
     var z: RealT,
@@ -12,8 +12,8 @@ class Quat(
 
     //CONSTANTS
     companion object {
-        val IDENTITY: Quat
-            get() = Quat(0.0, 0.0, 0.0, 1.0)
+        val IDENTITY: Quaternion
+            get() = Quaternion(0.0, 0.0, 0.0, 1.0)
     }
 
 
@@ -21,7 +21,7 @@ class Quat(
     constructor() :
             this(0.0, 0.0, 0.0, 1.0)
 
-    constructor(other: Quat) : this(other.x, other.y, other.z, other.w)
+    constructor(other: Quaternion) : this(other.x, other.y, other.z, other.w)
 
     constructor(x: Number, y: Number, z: Number, w: Number = 1.0) :
             this(x.toRealT(), y.toRealT(), z.toRealT(), w.toRealT())
@@ -61,7 +61,7 @@ class Quat(
     /**
      * Performs a cubic spherical-linear interpolation with another quaternion.
      */
-    fun cubicSlerp(q: Quat, prep: Quat, postq: Quat, t: RealT): Quat {
+    fun cubicSlerp(q: Quaternion, prep: Quaternion, postq: Quaternion, t: RealT): Quaternion {
         val t2: RealT = (1.0 - t) * t * 2
         val sp = this.slerp(q, t)
         val sq = prep.slerpni(postq, t)
@@ -71,7 +71,7 @@ class Quat(
     /**
      * Returns the dot product of two quaternions.5
      */
-    fun dot(q: Quat): RealT {
+    fun dot(q: Quaternion): RealT {
         return x * q.x + y * q.y + z * q.z + w * q.w
     }
 
@@ -101,14 +101,14 @@ class Quat(
     /**
      * Returns the inverse of the quaternion.
      */
-    fun inverse(): Quat {
-        return Quat(-x, -y, -z, -w)
+    fun inverse(): Quaternion {
+        return Quaternion(-x, -y, -z, -w)
     }
 
     /**
      * Returns true if this quaterion and quat are approximately equal, by running isEqualApprox on each component.
      */
-    fun isEqualApprox(other: Quat): Boolean {
+    fun isEqualApprox(other: Quaternion): Boolean {
         return isEqualApprox(other.x, x)
                 && isEqualApprox(other.y, y)
                 && isEqualApprox(other.z, z)
@@ -139,7 +139,7 @@ class Quat(
     /**
      * Returns a copy of the quaternion, normalized to unit length.
      */
-    fun normalized(): Quat {
+    fun normalized(): Quaternion {
         return this / this.length()
     }
 
@@ -232,8 +232,8 @@ class Quat(
     /**
      * Performs a spherical-linear interpolation with another quaternion.
      */
-    fun slerp(q: Quat, t: RealT): Quat {
-        val to1 = Quat()
+    fun slerp(q: Quaternion, t: RealT): Quaternion {
+        val to1 = Quaternion()
         val omega: RealT
         var cosom: RealT
         val sinom: RealT
@@ -268,7 +268,7 @@ class Quat(
             scale1 = t
         }
         // calculate final values
-        return Quat(
+        return Quaternion(
             scale0 * x + scale1 * to1.x,
             scale0 * y + scale1 * to1.y,
             scale0 * z + scale1 * to1.z,
@@ -279,7 +279,7 @@ class Quat(
     /**
      * Performs a spherical-linear interpolation with another quaterion without checking if the rotation path is not bigger than 90°.
      */
-    fun slerpni(q: Quat, t: RealT): Quat {
+    fun slerpni(q: Quaternion, t: RealT): Quaternion {
         val from = this
         val dot: RealT = from.dot(q)
 
@@ -290,7 +290,7 @@ class Quat(
         val newFactor: RealT = sin(t * theta) * sinT
         val invFactor: RealT = sin((1.0 - t) * theta) * sinT
 
-        return Quat(
+        return Quaternion(
             invFactor * from.x + newFactor * q.x,
             invFactor * from.y + newFactor * q.y,
             invFactor * from.z + newFactor * q.z,
@@ -315,30 +315,30 @@ class Quat(
     }
 
     operator fun times(v: Vector3) =
-        Quat(
+        Quaternion(
             w * v.x + y * v.z - z * v.y,
             w * v.y + z * v.x - x * v.z,
             w * v.z + x * v.y - y * v.x,
             -x * v.x - y * v.y - z * v.z
         )
 
-    operator fun plus(q2: Quat) = Quat(this.x + q2.x, this.y + q2.y, this.z + q2.z, this.w + q2.w)
+    operator fun plus(q2: Quaternion) = Quaternion(this.x + q2.x, this.y + q2.y, this.z + q2.z, this.w + q2.w)
 
-    operator fun minus(q2: Quat) = Quat(this.x - q2.x, this.y - q2.y, this.z - q2.z, this.w - q2.w)
+    operator fun minus(q2: Quaternion) = Quaternion(this.x - q2.x, this.y - q2.y, this.z - q2.z, this.w - q2.w)
 
-    operator fun times(q2: Quat) = Quat(this.x * q2.x, this.y * q2.y, this.z * q2.z, this.w * q2.w)
-    operator fun times(scalar: Int) = Quat(x * scalar, y * scalar, z * scalar, w * scalar)
-    operator fun times(scalar: Long) = Quat(x * scalar, y * scalar, z * scalar, w * scalar)
-    operator fun times(scalar: Float) = Quat(x * scalar, y * scalar, z * scalar, w * scalar)
-    operator fun times(scalar: Double) = Quat(x * scalar, y * scalar, z * scalar, w * scalar)
+    operator fun times(q2: Quaternion) = Quaternion(this.x * q2.x, this.y * q2.y, this.z * q2.z, this.w * q2.w)
+    operator fun times(scalar: Int) = Quaternion(x * scalar, y * scalar, z * scalar, w * scalar)
+    operator fun times(scalar: Long) = Quaternion(x * scalar, y * scalar, z * scalar, w * scalar)
+    operator fun times(scalar: Float) = Quaternion(x * scalar, y * scalar, z * scalar, w * scalar)
+    operator fun times(scalar: Double) = Quaternion(x * scalar, y * scalar, z * scalar, w * scalar)
 
-    operator fun div(f: RealT) = Quat(x / f, y / f, z / f, w / f)
+    operator fun div(f: RealT) = Quaternion(x / f, y / f, z / f, w / f)
 
-    operator fun unaryMinus() = Quat(-this.x, -this.y, -this.z, -this.w)
+    operator fun unaryMinus() = Quaternion(-this.x, -this.y, -this.z, -this.w)
 
     override fun equals(other: Any?): Boolean =
         when (other) {
-            is Quat -> (x == other.x && y == other.y && z == other.z && w == other.w)
+            is Quaternion -> (x == other.x && y == other.y && z == other.z && w == other.w)
             else -> false
         }
 
@@ -364,7 +364,7 @@ class Quat(
     }
 }
 
-operator fun Int.times(quat: Quat) = quat * this
-operator fun Long.times(quat: Quat) = quat * this
-operator fun Float.times(quat: Quat) = quat * this
-operator fun Double.times(quat: Quat) = quat * this
+operator fun Int.times(quaternion: Quaternion) = quaternion * this
+operator fun Long.times(quaternion: Quaternion) = quaternion * this
+operator fun Float.times(quaternion: Quaternion) = quaternion * this
+operator fun Double.times(quaternion: Quaternion) = quaternion * this
