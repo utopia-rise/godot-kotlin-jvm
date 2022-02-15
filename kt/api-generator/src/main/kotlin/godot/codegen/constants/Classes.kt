@@ -11,9 +11,16 @@ object KotlinTypes{
     const val variant = "Any"
     const val obj = "Object"
 
+    const val ktObject = "ktObject"
+
     const val variantType = "VariantType"
     const val transferContext = "TransferContext"
     const val typeManager = "TypeManager"
+
+    object Annotations {
+        const val godotBaseType = "GodotBaseType"
+        const val coreTypeHelper = "CoreTypeHelper"
+    }
 }
 
 object GodotTypes {
@@ -109,4 +116,35 @@ object GodotTypes {
     )
 }
 
+val GODOT_ERROR = ClassName(godotCorePackage, KotlinTypes.error)
+val GODOT_ARRAY = ClassName(godotCorePackage, KotlinTypes.array)
+val GODOT_DICTIONARY = ClassName(godotCorePackage, KotlinTypes.dictionary)
 val GODOT_OBJECT = ClassName(godotApiPackage, KotlinTypes.obj)
+val KT_OBJECT = ClassName(godotCorePackage, KotlinTypes.ktObject)
+
+val VARIANT_TYPE_NIL = ClassName(variantTypePackage, "NIL")
+val VARIANT_TYPE_BOOL = ClassName(variantTypePackage, "BOOL")
+val VARIANT_TYPE_LONG = ClassName(variantTypePackage, "LONG")
+val VARIANT_TYPE_DOUBLE = ClassName(variantTypePackage, "DOUBLE")
+val VARIANT_TYPE_NODE_PATH = ClassName(variantTypePackage, "NODE_PATH")
+val VARIANT_TYPE_STRING_NAME = ClassName(variantTypePackage, "STRING_NAME")
+val VARIANT_TYPE__RID = ClassName(variantTypePackage, "_RID")
+val VARIANT_TYPE_ARRAY = ClassName(variantTypePackage, "ARRAY")
+val VARIANT_TYPE_PACKED_BYTE_ARRAY = ClassName(variantTypePackage, "PACKED_BYTE_ARRAY")
+val VARIANT_TYPE_PACKED_INT_32_ARRAY = ClassName(variantTypePackage, "PACKED_INT_32_ARRAY")
+val VARIANT_TYPE_PACKED_INT_64_ARRAY = ClassName(variantTypePackage, "PACKED_INT_64_ARRAY")
+val VARIANT_TYPE_PACKED_FLOAT_32_ARRAY = ClassName(variantTypePackage, "PACKED_FLOAT_32_ARRAY")
+val VARIANT_TYPE_PACKED_FLOAT_64_ARRAY = ClassName(variantTypePackage, "PACKED_FLOAT_64_ARRAY")
+val VARIANT_TYPE_PACKED_STRING_ARRAY = ClassName(variantTypePackage, "PACKED_STRING_ARRAY")
+val VARIANT_TYPE_PACKED_VECTOR2_ARRAY = ClassName(variantTypePackage, "PACKED_VECTOR2_ARRAY")
+val VARIANT_TYPE_PACKED_VECTOR3_ARRAY = ClassName(variantTypePackage, "PACKED_VECTOR3_ARRAY")
+val VARIANT_TYPE_POOL_COLOR_ARRAY = ClassName(variantTypePackage, "POOL_COLOR_ARRAY")
+val VARIANT_TYPE_OBJECT = ClassName(variantTypePackage, "OBJECT")
+val VARIANT_TYPE_JVM_INT = ClassName(variantTypePackage, "JVM_INT")
+val VARIANT_TYPE_ANY = ClassName(variantTypePackage, "ANY")
+
+val GODOT_BASE_TYPE = ClassName(godotAnnotationPackage, KotlinTypes.Annotations.godotBaseType)
+val CORE_TYPE_HELPER = ClassName(godotAnnotationPackage, KotlinTypes.Annotations.coreTypeHelper)
+
+val TRANSFER_CONTEXT = ClassName(godotCorePackage, KotlinTypes.transferContext)
+val TYPE_MANAGER = ClassName(godotCorePackage, KotlinTypes.typeManager)

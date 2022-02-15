@@ -82,10 +82,10 @@ class GenerationService(
             )
         }
 
-        classTypeBuilder.addAnnotation(ClassName("godot.annotation", "GodotBaseType"))
+        classTypeBuilder.addAnnotation(GODOT_BASE_TYPE)
 
         if (name == KotlinTypes.obj) {
-            classTypeBuilder.superclass(ClassName(godotCorePackage, "KtObject"))
+            classTypeBuilder.superclass(KT_OBJECT)
             classTypeBuilder.generateConstructorMethod()
             classTypeBuilder.generateSignalExtensions()
         }
@@ -443,11 +443,11 @@ class GenerationService(
                     "schedule",
                     LambdaTypeName.get(
                         receiver = parameterTypeName.typeName,
-                        returnType = ClassName("kotlin", "Unit")
+                        returnType = UNIT
                     )
                 ).build()
             )
-            .addAnnotation(ClassName("godot.annotation", "CoreTypeHelper"))
+            .addAnnotation(CORE_TYPE_HELPER)
             .returns(parameterTypeName.typeName)
             .addStatement(
                 """return $parameterName.apply{
@@ -528,11 +528,11 @@ class GenerationService(
             )
             .addStatement(
                 "%T.invokeConstructor(classIndex)",
-                ClassName(godotCorePackage, KotlinTypes.transferContext)
+                TRANSFER_CONTEXT
             )
             .addStatement(
                 "val buffer = %T.buffer",
-                ClassName(godotCorePackage, KotlinTypes.transferContext)
+                TRANSFER_CONTEXT
             )
             .addStatement("rawPtr = buffer.long")
             .addStatement("__id = buffer.long")
@@ -593,21 +593,19 @@ class GenerationService(
                 kTypeVariable
             )
 
-            val objectType = ClassName(godotApiPackage, KotlinTypes.obj)
-            val arrayType = ClassName(godotCorePackage, KotlinTypes.array)
             val connectFun = FunSpec.builder("connect")
                 .receiver(signalParameterizedType)
                 .addTypeVariables(connectTypeVariableNames)
                 .addModifiers(KModifier.INLINE)
-                .returns(ClassName(godotCorePackage, KotlinTypes.error))
+                .returns(GODOT_ERROR)
                 .addParameters(
                     listOf(
-                        ParameterSpec.builder("target", objectType)
+                        ParameterSpec.builder("target", GODOT_OBJECT)
                             .build(),
                         ParameterSpec.builder("method", kTypeVariable)
                             .build(),
                         ParameterSpec.builder(
-                            "binds", arrayType
+                            "binds", GODOT_ARRAY
                                 .parameterizedBy(ANY.copy(nullable = true))
                                 .copy(nullable = true)
                         )
@@ -691,7 +689,7 @@ class GenerationService(
                 )
 
             if (rpcPropertyMode.hasId) {
-                rpcFunSpec.addParameter("id", Long::class.asClassName())
+                rpcFunSpec.addParameter("id", LONG)
             }
 
             with(rpcFunSpec) {
@@ -731,7 +729,7 @@ class GenerationService(
                 .addModifiers(KModifier.OVERRIDE)
                 .addStatement(
                     "rawPtr = %T.getSingleton(%M)",
-                    ClassName(godotCorePackage, KotlinTypes.transferContext),
+                    TRANSFER_CONTEXT,
                     MemberName(godotApiPackage, classIndexName)
                 )
                 .build()
@@ -808,21 +806,19 @@ class GenerationService(
             it.jvmVariantTypeValue
         }.toTypedArray()
 
-        val transferContextClassName = ClassName(godotCorePackage, KotlinTypes.transferContext)
-
         val methodReturnType = enrichedMethod.getTypeClassName()
 
         if (enrichedMethod.isVararg) {
             addStatement(
                 "%T.writeArguments($callArgumentsAsString *__var_args.map { %T to it }.toTypedArray())",
-                transferContextClassName,
+                TRANSFER_CONTEXT,
                 *ktVariantClassNames,
-                ClassName("godot.core.VariantType", "ANY")
+                VARIANT_TYPE_ANY
             )
         } else {
             addStatement(
                 "%T.writeArguments($callArgumentsAsString)",
-                transferContextClassName,
+                TRANSFER_CONTEXT,
                 *ktVariantClassNames
             )
         }
@@ -831,7 +827,7 @@ class GenerationService(
 
         addStatement(
             "%T.callMethod(rawPtr, %M, %T)",
-            transferContextClassName,
+            TRANSFER_CONTEXT,
             MemberName("godot", enrichedMethod.engineIndexName),
             returnTypeVariantTypeClass
         )
@@ -840,14 +836,14 @@ class GenerationService(
             if (enrichedMethod.isEnum()) {
                 addStatement(
                     "return·${methodReturnType.className.simpleName}.values()[%T.readReturnValue(%T)·as·%T]",
-                    transferContextClassName,
+                    TRANSFER_CONTEXT,
                     ClassName("godot.core.VariantType", "JVM_INT"),
                     INT
                 )
             } else {
                 addStatement(
                     "return·%T.readReturnValue(%T, %L)·as·%T",
-                    transferContextClassName,
+                    TRANSFER_CONTEXT,
                     returnTypeVariantTypeClass,
                     enrichedMethod.nullable,
                     methodReturnType.typeName
@@ -899,7 +895,7 @@ class GenerationService(
     private fun FunSpec.Builder.addEngineTypeMethod(classIndexName: String, methodEngineName: String) {
         addStatement(
             "%T.engineTypeMethod.add(%M to \"${methodEngineName}\")",
-            ClassName(godotCorePackage, KotlinTypes.typeManager),
+            TYPE_MANAGER,
             MemberName(godotApiPackage, classIndexName)
         )
     }
@@ -916,7 +912,7 @@ class GenerationService(
     private fun RegistrationFileSpec.addRegisterEngineType(clazz: EnrichedClass) {
         registerTypesFunBuilder.addStatement(
             "%T.registerEngineType(%S) { %T }",
-            ClassName(godotCorePackage, KotlinTypes.typeManager),
+            TYPE_MANAGER,
             clazz.internal.name,
             clazz.getTypeClassName().typeName
         )
@@ -925,7 +921,7 @@ class GenerationService(
     private fun RegistrationFileSpec.addRegisterSingleton(clazz: EnrichedClass) {
         registerTypesFunBuilder.addStatement(
             "%T.registerSingleton(%S)",
-            ClassName(godotCorePackage, KotlinTypes.typeManager),
+            TYPE_MANAGER,
             clazz.name
         )
     }

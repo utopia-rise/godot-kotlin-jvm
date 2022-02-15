@@ -30,7 +30,7 @@ fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper{
                     .toTypedArray()
             )
         }
-        type == GodotTypes.error -> ClassTypeNameWrapper(ClassName(godotCorePackage, KotlinTypes.error))
+        type == GodotTypes.error -> ClassTypeNameWrapper(GODOT_ERROR)
         isEnum() -> {
             ClassTypeNameWrapper(
                 ClassName(
@@ -43,17 +43,19 @@ fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper{
         type == GodotTypes.int -> ClassTypeNameWrapper(LONG)
         type == GodotTypes.float -> ClassTypeNameWrapper(DOUBLE)
         type == GodotTypes.string -> ClassTypeNameWrapper(STRING)
-        type == GodotTypes.array -> ClassTypeNameWrapper(ClassName(godotCorePackage, KotlinTypes.array))
+        type == GodotTypes.array -> ClassTypeNameWrapper(GODOT_ARRAY)
             .parameterizedBy(ANY.copy(nullable = true))
-        type == GodotTypes.dictionary -> ClassTypeNameWrapper(ClassName(godotCorePackage, KotlinTypes.dictionary))
+        type == GodotTypes.dictionary -> ClassTypeNameWrapper(GODOT_DICTIONARY)
             .parameterizedBy(ANY.copy(nullable = true), ANY.copy(nullable = true))
         type == GodotTypes.variant -> ClassTypeNameWrapper(ANY)
         isCoreType() -> ClassTypeNameWrapper(ClassName(godotCorePackage, type!!))
         else -> ClassTypeNameWrapper(ClassName(godotApiPackage, type!!))
     }
+
     if (this is NullableTrait) {
         typeNameWrapper.modify(nullable = nullable)
     }
+
     return typeNameWrapper
 }
 
@@ -62,27 +64,27 @@ fun TypedTrait.isObjectSubClass() = !(type.isNullOrEmpty() || isEnum() || isPrim
 val TypedTrait.jvmVariantTypeValue: ClassName
     get() {
         return when {
-            type.isNullOrEmpty() -> ClassName(variantTypePackage, "NIL")
-            isEnum() -> ClassName(variantTypePackage, "LONG")
-            type == GodotTypes.bool -> ClassName(variantTypePackage, "BOOL")
-            type == GodotTypes.int -> ClassName(variantTypePackage, "LONG")
-            type == GodotTypes.float -> ClassName(variantTypePackage, "DOUBLE")
-            type == GodotTypes.nodePath -> ClassName(variantTypePackage, "NODE_PATH")
-            type == GodotTypes.stringName -> ClassName(variantTypePackage, "STRING_NAME")
-            type == GodotTypes.rid -> ClassName(variantTypePackage, "_RID")
-            type == GodotTypes.array -> ClassName(variantTypePackage, "ARRAY")
-            type == GodotTypes.packedByteArray -> ClassName(variantTypePackage, "PACKED_BYTE_ARRAY")
-            type == GodotTypes.packedInt32Array -> ClassName(variantTypePackage, "PACKED_INT_32_ARRAY")
-            type == GodotTypes.packedInt64Array -> ClassName(variantTypePackage, "PACKED_INT_64_ARRAY")
-            type == GodotTypes.packedFloat32Array -> ClassName(variantTypePackage, "PACKED_FLOAT_32_ARRAY")
-            type == GodotTypes.packedFloat64Array -> ClassName(variantTypePackage, "PACKED_FLOAT_64_ARRAY")
-            type == GodotTypes.packedStringArray -> ClassName(variantTypePackage, "PACKED_STRING_ARRAY")
-            type == GodotTypes.packedVector2Array -> ClassName(variantTypePackage, "PACKED_VECTOR2_ARRAY")
-            type == GodotTypes.packedVector3Array -> ClassName(variantTypePackage, "PACKED_VECTOR3_ARRAY")
-            type == GodotTypes.packedColorArray -> ClassName(variantTypePackage, "POOL_COLOR_ARRAY")
-            type == GodotTypes.variant -> ClassName(variantTypePackage, "ANY")
+            type.isNullOrEmpty() -> VARIANT_TYPE_NIL
+            isEnum() -> VARIANT_TYPE_LONG
+            type == GodotTypes.bool -> VARIANT_TYPE_BOOL
+            type == GodotTypes.int -> VARIANT_TYPE_LONG
+            type == GodotTypes.float -> VARIANT_TYPE_DOUBLE
+            type == GodotTypes.nodePath -> VARIANT_TYPE_NODE_PATH
+            type == GodotTypes.stringName -> VARIANT_TYPE_STRING_NAME
+            type == GodotTypes.rid -> VARIANT_TYPE__RID
+            type == GodotTypes.array -> VARIANT_TYPE_ARRAY
+            type == GodotTypes.packedByteArray -> VARIANT_TYPE_PACKED_BYTE_ARRAY
+            type == GodotTypes.packedInt32Array -> VARIANT_TYPE_PACKED_INT_32_ARRAY
+            type == GodotTypes.packedInt64Array -> VARIANT_TYPE_PACKED_INT_64_ARRAY
+            type == GodotTypes.packedFloat32Array -> VARIANT_TYPE_PACKED_FLOAT_32_ARRAY
+            type == GodotTypes.packedFloat64Array -> VARIANT_TYPE_PACKED_FLOAT_64_ARRAY
+            type == GodotTypes.packedStringArray -> VARIANT_TYPE_PACKED_STRING_ARRAY
+            type == GodotTypes.packedVector2Array -> VARIANT_TYPE_PACKED_VECTOR2_ARRAY
+            type == GodotTypes.packedVector3Array -> VARIANT_TYPE_PACKED_VECTOR3_ARRAY
+            type == GodotTypes.packedColorArray -> VARIANT_TYPE_POOL_COLOR_ARRAY
+            type == GodotTypes.variant -> VARIANT_TYPE_ANY
             isCoreType() || isPrimitive() -> ClassName(variantTypePackage, type!!.toUpperCase())
-            else -> ClassName(variantTypePackage, "OBJECT")
+            else -> VARIANT_TYPE_OBJECT
         }
     }
 
