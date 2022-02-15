@@ -1,5 +1,6 @@
 package godot.global
 
+import godot.Object
 import godot.RandomNumberGenerator
 import godot.Resource
 import godot.ResourceLoader
