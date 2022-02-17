@@ -35,7 +35,7 @@ import kotlin.Unit
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorPlugin.getEditorInterface].
  */
 @GodotBaseType
-public open class EditorInterface : Node() {
+public open abstract class EditorInterface : Node() {
   /**
    * If `true`, enables distraction-free mode which hides side docks to increase the space available for the main view.
    */

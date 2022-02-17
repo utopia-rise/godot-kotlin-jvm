@@ -28,7 +28,7 @@ import kotlin.Unit
  * **Note:** Godot complies with the [godot.XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) on *all* platforms. You can override environment variables following the specification to change the editor and project data paths.
  */
 @GodotBaseType
-public open class EditorPaths : Object() {
+public open abstract class EditorPaths : Object() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORPATHS)
   }

@@ -24,7 +24,7 @@ import kotlin.Unit
  * Material is a base [godot.Resource] used for coloring and shading geometry. All materials inherit from it and almost all [godot.VisualInstance3D] derived nodes carry a Material. A few flags and parameters are shared between all material types and are configured here.
  */
 @GodotBaseType
-public open class Material : Resource() {
+public open abstract class Material : Resource() {
   /**
    * Sets the render priority for transparent objects in 3D scenes. Higher priority objects will be sorted in front of lower priority objects.
    *

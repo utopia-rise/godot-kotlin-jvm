@@ -18,7 +18,7 @@ import kotlin.Unit
  * A base type for the nodes using different vector types within the visual shader graph.
  */
 @GodotBaseType
-public open class VisualShaderNodeVectorBase : VisualShaderNode() {
+public open abstract class VisualShaderNodeVectorBase : VisualShaderNode() {
   /**
    * A base type.
    */

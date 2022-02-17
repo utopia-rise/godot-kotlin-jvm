@@ -11,7 +11,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public open class GDScriptEditorTranslationParserPlugin : EditorTranslationParserPlugin() {
+public open abstract class GDScriptEditorTranslationParserPlugin : EditorTranslationParserPlugin() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_GDSCRIPTEDITORTRANSLATIONPARSERPLUGIN)
   }

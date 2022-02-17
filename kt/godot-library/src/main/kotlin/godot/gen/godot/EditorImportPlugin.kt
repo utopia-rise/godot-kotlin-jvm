@@ -237,7 +237,7 @@ import kotlin.Unit
  * To use [godot.EditorImportPlugin], register it using the [godot.EditorPlugin.addImportPlugin] method first.
  */
 @GodotBaseType
-public open class EditorImportPlugin : ResourceImporter() {
+public open abstract class EditorImportPlugin : ResourceImporter() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORIMPORTPLUGIN)
   }

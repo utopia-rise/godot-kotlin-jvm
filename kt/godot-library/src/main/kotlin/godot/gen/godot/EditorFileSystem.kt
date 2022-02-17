@@ -31,7 +31,7 @@ import kotlin.Unit
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getResourceFilesystem].
  */
 @GodotBaseType
-public open class EditorFileSystem : Node() {
+public open abstract class EditorFileSystem : Node() {
   /**
    * Emitted if a resource is reimported.
    */

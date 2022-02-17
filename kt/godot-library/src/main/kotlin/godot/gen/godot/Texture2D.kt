@@ -37,7 +37,7 @@ import kotlin.Unit
  * **Note:** The maximum texture size is 16384×16384 pixels due to graphics hardware limitations. Larger textures may fail to import.
  */
 @GodotBaseType
-public open class Texture2D : Texture() {
+public open abstract class Texture2D : Texture() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TEXTURE2D)
   }

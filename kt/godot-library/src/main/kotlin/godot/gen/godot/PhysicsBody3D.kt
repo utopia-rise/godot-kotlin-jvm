@@ -35,7 +35,7 @@ import kotlin.Unit
  * PhysicsBody3D is an abstract base class for implementing a physics body. All *Body types inherit from it.
  */
 @GodotBaseType
-public open class PhysicsBody3D : CollisionObject3D() {
+public open abstract class PhysicsBody3D : CollisionObject3D() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PHYSICSBODY3D)
   }

@@ -39,7 +39,7 @@ import kotlin.Unit
  * 		```
  */
 @GodotBaseType
-public open class EditorSceneFormatImporterFBX : EditorSceneFormatImporter() {
+public open abstract class EditorSceneFormatImporterFBX : EditorSceneFormatImporter() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORSCENEFORMATIMPORTERFBX)
   }

@@ -17,7 +17,7 @@ import kotlin.Unit
  * Reference-counted version of [godot.PackedDataContainer].
  */
 @GodotBaseType
-public open class PackedDataContainerRef : RefCounted() {
+public open abstract class PackedDataContainerRef : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PACKEDDATACONTAINERREF)
   }

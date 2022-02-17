@@ -19,7 +19,7 @@ import kotlin.Unit
  * Base resource for audio bus. Applies an audio effect on the bus that the resource is applied on.
  */
 @GodotBaseType
-public open class AudioEffect : Resource() {
+public open abstract class AudioEffect : Resource() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECT)
   }

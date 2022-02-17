@@ -14,7 +14,7 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open class Texture : Resource() {
+public open abstract class Texture : Resource() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TEXTURE)
   }

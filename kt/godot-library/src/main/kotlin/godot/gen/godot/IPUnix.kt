@@ -11,7 +11,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public open class IPUnix : IP() {
+public open abstract class IPUnix : IP() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_IPUNIX)
   }

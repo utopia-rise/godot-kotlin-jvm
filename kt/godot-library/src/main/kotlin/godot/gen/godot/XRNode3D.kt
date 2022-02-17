@@ -25,7 +25,7 @@ import kotlin.Unit
  * This node can be bound to a specific pose of a [godot.XRPositionalTracker] and will automatically have its [godot.Node3D.transform] updated by the [godot.XRServer]. Nodes of this type must be added as children of the [godot.XROrigin3D] node.
  */
 @GodotBaseType
-public open class XRNode3D : Node3D() {
+public open abstract class XRNode3D : Node3D() {
   /**
    * The name of the tracker we're bound to. Which trackers are available is not known during design time.
    *

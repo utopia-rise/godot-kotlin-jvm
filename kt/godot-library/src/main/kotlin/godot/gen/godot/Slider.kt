@@ -27,7 +27,7 @@ import kotlin.Unit
  * **Note:** The [godot.Range.changed] and [godot.Range.valueChanged] signals are part of the [godot.Range] class which this class inherits from.
  */
 @GodotBaseType
-public open class Slider : Range() {
+public open abstract class Slider : Range() {
   /**
    * Emitted when dragging is started.
    */

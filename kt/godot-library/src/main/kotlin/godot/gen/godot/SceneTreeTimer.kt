@@ -58,7 +58,7 @@ import kotlin.Unit
  * The timer will be automatically freed after its time elapses.
  */
 @GodotBaseType
-public open class SceneTreeTimer : RefCounted() {
+public open abstract class SceneTreeTimer : RefCounted() {
   /**
    * Emitted when the timer reaches 0.
    */

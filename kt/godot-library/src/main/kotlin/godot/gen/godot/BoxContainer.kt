@@ -23,7 +23,7 @@ import kotlin.Unit
  * Arranges child [godot.Control] nodes vertically or horizontally, and rearranges them automatically when their minimum size changes.
  */
 @GodotBaseType
-public open class BoxContainer : Container() {
+public open abstract class BoxContainer : Container() {
   /**
    * The alignment of the container's children (must be one of [ALIGNMENT_BEGIN], [ALIGNMENT_CENTER], or [ALIGNMENT_END]).
    */

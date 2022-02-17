@@ -14,7 +14,7 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open class AudioEffectInstance : RefCounted() {
+public open abstract class AudioEffectInstance : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTINSTANCE)
   }

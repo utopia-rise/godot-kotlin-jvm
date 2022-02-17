@@ -29,7 +29,7 @@ import kotlin.Unit
  * BaseButton is the abstract base class for buttons, so it shouldn't be used directly (it doesn't display anything). Other types of buttons inherit from it.
  */
 @GodotBaseType
-public open class BaseButton : Control() {
+public open abstract class BaseButton : Control() {
   /**
    * Emitted when the button starts being held down.
    */

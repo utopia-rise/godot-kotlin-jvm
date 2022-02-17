@@ -27,7 +27,7 @@ import kotlin.Unit
  * This plugin type exists to modify the process of importing scenes, allowing to change the content as well as add importer options at every stage of the process.
  */
 @GodotBaseType
-public open class EditorScenePostImportPlugin : RefCounted() {
+public open abstract class EditorScenePostImportPlugin : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORSCENEPOSTIMPORTPLUGIN)
   }

@@ -29,7 +29,7 @@ import kotlin.Unit
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getResourcePreviewer].
  */
 @GodotBaseType
-public open class EditorResourcePreview : Node() {
+public open abstract class EditorResourcePreview : Node() {
   /**
    * Emitted if a preview was invalidated (changed). `path` corresponds to the path of the preview.
    */

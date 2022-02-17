@@ -37,7 +37,7 @@ import kotlin.Unit
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  */
 @GodotBaseType
-public open class StreamPeer : RefCounted() {
+public open abstract class StreamPeer : RefCounted() {
   /**
    * If `true`, this [godot.StreamPeer] will using big-endian format for encoding and decoding.
    */

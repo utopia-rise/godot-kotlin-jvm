@@ -20,7 +20,7 @@ import kotlin.Unit
  * This is the base class for the resource importers implemented in core. To implement your own resource importers using editor plugins, see [godot.EditorImportPlugin].
  */
 @GodotBaseType
-public open class ResourceImporter : RefCounted() {
+public open abstract class ResourceImporter : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_RESOURCEIMPORTER)
   }

@@ -21,7 +21,7 @@ import kotlin.Unit
  * **Note:** You must set the [scriptOwner] for the custom context menu items to work.
  */
 @GodotBaseType
-public open class EditorScriptPicker : EditorResourcePicker() {
+public open abstract class EditorScriptPicker : EditorResourcePicker() {
   /**
    * The owner [godot.Node] of the script property that holds the edited resource.
    */

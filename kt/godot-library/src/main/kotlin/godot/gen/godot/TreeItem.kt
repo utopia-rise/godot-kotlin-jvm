@@ -45,7 +45,7 @@ import kotlin.Unit
  * You can remove a [godot.TreeItem] by using [godot.Object.free].
  */
 @GodotBaseType
-public open class TreeItem : Object() {
+public open abstract class TreeItem : Object() {
   /**
    * If `true`, the TreeItem is collapsed.
    */

@@ -47,6 +47,10 @@ class GenerationService(
         val className = clazz.getTypeClassName()
         val classTypeBuilder = TypeSpec.classBuilder(className.className).addModifiers(KModifier.OPEN)
 
+        if (!clazz.internal.isInstantiable) {
+            classTypeBuilder.addModifiers(KModifier.ABSTRACT)
+        }
+
         val baseClass = clazz.inherits
         if (!baseClass.isNullOrEmpty()) {
             classTypeBuilder.superclass(ClassName(godotApiPackage, baseClass))

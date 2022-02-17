@@ -14,7 +14,7 @@ import kotlin.Unit
  * A base type for the constants within the visual shader graph.
  */
 @GodotBaseType
-public open class VisualShaderNodeConstant : VisualShaderNode() {
+public open abstract class VisualShaderNodeConstant : VisualShaderNode() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODECONSTANT)
   }

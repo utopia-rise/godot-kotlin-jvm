@@ -21,7 +21,7 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open class AudioEffectSpectrumAnalyzerInstance : AudioEffectInstance() {
+public open abstract class AudioEffectSpectrumAnalyzerInstance : AudioEffectInstance() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZERINSTANCE)
   }

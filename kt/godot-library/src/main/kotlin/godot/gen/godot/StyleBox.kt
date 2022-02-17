@@ -32,7 +32,7 @@ import kotlin.Unit
  * **Note:** For children of [godot.Control] that have *Theme Properties*, the `focus` [godot.StyleBox] is displayed over the `normal`, `hover` or `pressed` [godot.StyleBox]. This makes the `focus` [godot.StyleBox] more reusable across different nodes.
  */
 @GodotBaseType
-public open class StyleBox : Resource() {
+public open abstract class StyleBox : Resource() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_STYLEBOX)
   }

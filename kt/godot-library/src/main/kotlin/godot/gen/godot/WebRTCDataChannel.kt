@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public open class WebRTCDataChannel : PacketPeer() {
+public open abstract class WebRTCDataChannel : PacketPeer() {
   public open var writeMode: Long
     get() {
       TransferContext.writeArguments()

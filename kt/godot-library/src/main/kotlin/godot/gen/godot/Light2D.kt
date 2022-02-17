@@ -31,7 +31,7 @@ import kotlin.Unit
  * **Note:** Light2D can also be used as a mask.
  */
 @GodotBaseType
-public open class Light2D : Node2D() {
+public open abstract class Light2D : Node2D() {
   /**
    * If `true`, Light2D will emit light.
    */

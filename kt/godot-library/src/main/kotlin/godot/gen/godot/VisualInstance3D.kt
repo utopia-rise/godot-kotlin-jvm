@@ -25,7 +25,7 @@ import kotlin.Unit
  * The [godot.VisualInstance3D] is used to connect a resource to a visual representation. All visual 3D nodes inherit from the [godot.VisualInstance3D]. In general, you should not access the [godot.VisualInstance3D] properties directly as they are accessed and managed by the nodes that inherit from [godot.VisualInstance3D]. [godot.VisualInstance3D] is the node representation of the [godot.RenderingServer] instance.
  */
 @GodotBaseType
-public open class VisualInstance3D : Node3D() {
+public open abstract class VisualInstance3D : Node3D() {
   /**
    * The render layer(s) this [godot.VisualInstance3D] is drawn on.
    *

@@ -26,7 +26,7 @@ import kotlin.Unit
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getSelection].
  */
 @GodotBaseType
-public open class EditorSelection : Object() {
+public open abstract class EditorSelection : Object() {
   /**
    * Emitted when the selection changes.
    */

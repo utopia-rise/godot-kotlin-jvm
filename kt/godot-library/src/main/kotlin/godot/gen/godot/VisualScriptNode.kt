@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public open class VisualScriptNode : Resource() {
+public open abstract class VisualScriptNode : Resource() {
   public val portsChanged: Signal0 by signal()
 
   public override fun __new(): Unit {

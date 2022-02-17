@@ -56,7 +56,7 @@ import kotlin.Unit
  * **Note:** Unless otherwise specified, all methods that have angle parameters must have angles specified as *radians*. To convert degrees to radians, use [@GlobalScope.deg2rad].
  */
 @GodotBaseType
-public open class CanvasItem : Node() {
+public open abstract class CanvasItem : Node() {
   /**
    * Emitted when becoming hidden.
    */

@@ -29,7 +29,7 @@ import kotlin.Unit
  * To use [godot.EditorExportPlugin], register it using the [godot.EditorPlugin.addExportPlugin] method first.
  */
 @GodotBaseType
-public open class EditorExportPlugin : RefCounted() {
+public open abstract class EditorExportPlugin : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITOREXPORTPLUGIN)
   }

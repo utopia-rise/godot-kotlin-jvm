@@ -18,7 +18,7 @@ import kotlin.Unit
  * Base class for touch control gestures.
  */
 @GodotBaseType
-public open class InputEventGesture : InputEventWithModifiers() {
+public open abstract class InputEventGesture : InputEventWithModifiers() {
   /**
    * The local gesture position relative to the [godot.Viewport]. If used in [godot.Control.GuiInput], the position is relative to the current [godot.Control] that received this gesture.
    */

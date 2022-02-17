@@ -42,7 +42,7 @@ import kotlin.Unit
  * Interfaces should be written in such a way that simply enabling them will give us a working setup. You can query the available interfaces through [godot.XRServer].
  */
 @GodotBaseType
-public open class XRInterface : RefCounted() {
+public open abstract class XRInterface : RefCounted() {
   /**
    * Emitted when the play area is changed. This can be a result of the player resetting the boundary or entering a new play area, the player changing the play area mode, the world scale changing or the player resetting their headset orientation.
    */

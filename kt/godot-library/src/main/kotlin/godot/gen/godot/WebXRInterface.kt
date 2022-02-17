@@ -25,7 +25,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public open class WebXRInterface : XRInterface() {
+public open abstract class WebXRInterface : XRInterface() {
   public val sessionEnded: Signal0 by signal()
 
   public val referenceSpaceReset: Signal0 by signal()

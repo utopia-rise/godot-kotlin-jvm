@@ -11,7 +11,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public open class GodotPhysicsServer2D : PhysicsServer2D() {
+public open abstract class GodotPhysicsServer2D : PhysicsServer2D() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_GODOTPHYSICSSERVER2D)
   }

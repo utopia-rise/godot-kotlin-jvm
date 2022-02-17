@@ -14,7 +14,7 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open class EditorSceneFormatImporterGLTF : EditorSceneFormatImporter() {
+public open abstract class EditorSceneFormatImporterGLTF : EditorSceneFormatImporter() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORSCENEFORMATIMPORTERGLTF)
   }

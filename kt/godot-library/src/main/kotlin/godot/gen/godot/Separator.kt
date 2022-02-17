@@ -16,7 +16,7 @@ import kotlin.Unit
  * Separator is a [godot.Control] used for separating other controls. It's purely a visual decoration. Horizontal ([godot.HSeparator]) and Vertical ([godot.VSeparator]) versions are available.
  */
 @GodotBaseType
-public open class Separator : Control() {
+public open abstract class Separator : Control() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SEPARATOR)
   }

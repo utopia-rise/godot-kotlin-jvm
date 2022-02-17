@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public open class GLTFMesh : Resource() {
+public open abstract class GLTFMesh : Resource() {
   public open var mesh: Object?
     get() {
       TransferContext.writeArguments()

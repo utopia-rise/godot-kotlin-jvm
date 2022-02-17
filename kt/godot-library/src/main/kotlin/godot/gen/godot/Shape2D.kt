@@ -37,7 +37,7 @@ import kotlin.Unit
  * Base class for all 2D shapes. All 2D shape types inherit from this.
  */
 @GodotBaseType
-public open class Shape2D : Resource() {
+public open abstract class Shape2D : Resource() {
   /**
    * The shape's custom solver bias. Defines how much bodies react to enforce contact separation when this shape is involved.
    *

@@ -26,7 +26,7 @@ import kotlin.Unit
  * A modified version of [godot.FileDialog] used by the editor.
  */
 @GodotBaseType
-public open class EditorFileDialog : ConfirmationDialog() {
+public open abstract class EditorFileDialog : ConfirmationDialog() {
   /**
    * Emitted when multiple files are selected.
    */

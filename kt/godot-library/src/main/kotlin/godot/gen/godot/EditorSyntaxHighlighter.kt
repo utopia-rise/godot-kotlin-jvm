@@ -22,7 +22,7 @@ import kotlin.Unit
  * Add a syntax highlighter to an individual script by calling [godot.ScriptEditorBase.addSyntaxHighlighter]. To apply to all scripts on open, call [godot.ScriptEditor.registerSyntaxHighlighter]
  */
 @GodotBaseType
-public open class EditorSyntaxHighlighter : SyntaxHighlighter() {
+public open abstract class EditorSyntaxHighlighter : SyntaxHighlighter() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORSYNTAXHIGHLIGHTER)
   }

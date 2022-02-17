@@ -69,7 +69,7 @@ import kotlin.Unit
  * **Note:** The script is run in the Editor context, which means the output is visible in the console window started with the Editor (stdout) instead of the usual Godot **Output** dock.
  */
 @GodotBaseType
-public open class EditorScript : RefCounted() {
+public open abstract class EditorScript : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORSCRIPT)
   }

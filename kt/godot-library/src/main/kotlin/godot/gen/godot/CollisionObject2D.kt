@@ -36,7 +36,7 @@ import kotlin.Unit
  * CollisionObject2D is the base class for 2D physics objects. It can hold any number of 2D collision [godot.Shape2D]s. Each shape must be assigned to a *shape owner*. The CollisionObject2D can have any number of shape owners. Shape owners are not nodes and do not appear in the editor, but are accessible through code using the `shape_owner_*` methods.
  */
 @GodotBaseType
-public open class CollisionObject2D : Node2D() {
+public open abstract class CollisionObject2D : Node2D() {
   /**
    * Emitted when the mouse pointer exits any of this object's shapes. `shape_idx` is the child index of the exited [godot.Shape2D]. Requires [inputPickable] to be `true` and at least one [collisionLayer] bit to be set.
    */

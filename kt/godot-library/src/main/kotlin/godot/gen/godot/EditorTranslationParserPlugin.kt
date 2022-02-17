@@ -209,7 +209,7 @@ import kotlin.Unit
  * To use [godot.EditorTranslationParserPlugin], register it using the [godot.EditorPlugin.addTranslationParserPlugin] method first.
  */
 @GodotBaseType
-public open class EditorTranslationParserPlugin : RefCounted() {
+public open abstract class EditorTranslationParserPlugin : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORTRANSLATIONPARSERPLUGIN)
   }

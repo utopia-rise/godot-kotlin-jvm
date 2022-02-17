@@ -29,7 +29,7 @@ import kotlin.Unit
  * This class is meant to be used with [godot.AudioStreamGenerator] to play back the generated audio in real-time.
  */
 @GodotBaseType
-public open class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() {
+public open abstract class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK)
   }

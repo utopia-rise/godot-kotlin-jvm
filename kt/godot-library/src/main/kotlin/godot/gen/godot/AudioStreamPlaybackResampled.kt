@@ -14,7 +14,7 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
+public open abstract class AudioStreamPlaybackResampled : AudioStreamPlayback() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMPLAYBACKRESAMPLED)
   }

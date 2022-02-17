@@ -23,7 +23,7 @@ import kotlin.Unit
  * Contains keys events information with modifiers support like [kbd]Shift[/kbd] or [kbd]Alt[/kbd]. See [godot.Node.Input].
  */
 @GodotBaseType
-public open class InputEventWithModifiers : InputEventFromWindow() {
+public open abstract class InputEventWithModifiers : InputEventFromWindow() {
   /**
    * If `true`, pressing [kbd]Cmd[/kbd] on macOS or [kbd]Ctrl[/kbd] on all other platforms will both be serialized as [commandPressed]. If `false`, those same keys will be serialized as [metaPressed] on macOS and [ctrlPressed] on all other platforms.
    *

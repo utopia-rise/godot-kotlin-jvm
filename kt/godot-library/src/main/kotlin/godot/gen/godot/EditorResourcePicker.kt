@@ -32,7 +32,7 @@ import kotlin.Unit
  * **Note:** This [godot.Control] does not include any editor for the resource, as editing is controlled by the Inspector dock itself or sub-Inspectors.
  */
 @GodotBaseType
-public open class EditorResourcePicker : HBoxContainer() {
+public open abstract class EditorResourcePicker : HBoxContainer() {
   /**
    * Emitted when the resource value was set and user clicked to edit it. When `edit` is `true`, the signal was caused by the context menu "Edit" option.
    */

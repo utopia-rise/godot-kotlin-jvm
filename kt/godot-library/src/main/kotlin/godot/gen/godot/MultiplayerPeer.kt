@@ -35,7 +35,7 @@ import kotlin.Unit
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  */
 @GodotBaseType
-public open class MultiplayerPeer : PacketPeer() {
+public open abstract class MultiplayerPeer : PacketPeer() {
   /**
    * Emitted when a connection attempt fails.
    */

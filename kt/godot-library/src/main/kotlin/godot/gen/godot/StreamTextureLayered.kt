@@ -21,7 +21,7 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open class StreamTextureLayered : TextureLayered() {
+public open abstract class StreamTextureLayered : TextureLayered() {
   /**
    *
    */

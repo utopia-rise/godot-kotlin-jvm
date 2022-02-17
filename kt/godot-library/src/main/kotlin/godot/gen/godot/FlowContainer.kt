@@ -21,7 +21,7 @@ import kotlin.Unit
  * A line is filled with [godot.Control] nodes until no more fit on the same line, similar to text in an autowrapped label.
  */
 @GodotBaseType
-public open class FlowContainer : Container() {
+public open abstract class FlowContainer : Container() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_FLOWCONTAINER)
   }

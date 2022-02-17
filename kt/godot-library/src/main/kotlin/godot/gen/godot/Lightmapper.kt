@@ -14,7 +14,7 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open class Lightmapper : RefCounted() {
+public open abstract class Lightmapper : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_LIGHTMAPPER)
   }

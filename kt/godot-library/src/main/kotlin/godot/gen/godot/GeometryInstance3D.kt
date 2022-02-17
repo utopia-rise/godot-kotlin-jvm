@@ -30,7 +30,7 @@ import kotlin.Unit
  * Base node for geometry-based visual instances. Shares some common functionality like visibility and custom materials.
  */
 @GodotBaseType
-public open class GeometryInstance3D : VisualInstance3D() {
+public open abstract class GeometryInstance3D : VisualInstance3D() {
   /**
    * The material override for the whole geometry.
    *

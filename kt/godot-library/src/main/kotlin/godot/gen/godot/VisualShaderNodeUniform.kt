@@ -22,7 +22,7 @@ import kotlin.Unit
  * A uniform represents a variable in the shader which is set externally, i.e. from the [godot.ShaderMaterial]. Uniforms are exposed as properties in the [godot.ShaderMaterial] and can be assigned from the inspector or from a script.
  */
 @GodotBaseType
-public open class VisualShaderNodeUniform : VisualShaderNode() {
+public open abstract class VisualShaderNodeUniform : VisualShaderNode() {
   /**
    * Name of the uniform, by which it can be accessed through the [godot.ShaderMaterial] properties.
    */

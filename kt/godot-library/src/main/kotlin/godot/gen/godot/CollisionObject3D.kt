@@ -34,7 +34,7 @@ import kotlin.Unit
  * CollisionObject3D is the base class for physics objects. It can hold any number of collision [godot.Shape3D]s. Each shape must be assigned to a *shape owner*. The CollisionObject3D can have any number of shape owners. Shape owners are not nodes and do not appear in the editor, but are accessible through code using the `shape_owner_*` methods.
  */
 @GodotBaseType
-public open class CollisionObject3D : Node3D() {
+public open abstract class CollisionObject3D : Node3D() {
   /**
    * Emitted when the mouse pointer exits all this object's shapes.
    */

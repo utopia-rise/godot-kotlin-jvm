@@ -22,7 +22,7 @@ import kotlin.Unit
  * Scrollbars are a [godot.Range]-based [godot.Control], that display a draggable area (the size of the page). Horizontal ([godot.HScrollBar]) and Vertical ([godot.VScrollBar]) versions are available.
  */
 @GodotBaseType
-public open class ScrollBar : Range() {
+public open abstract class ScrollBar : Range() {
   /**
    * Emitted when the scrollbar is being scrolled.
    */

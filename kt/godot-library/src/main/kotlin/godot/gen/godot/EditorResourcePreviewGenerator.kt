@@ -20,7 +20,7 @@ import kotlin.Unit
  * Custom code to generate previews. Please check `file_dialog/thumbnail_size` in [godot.EditorSettings] to find out the right size to do previews at.
  */
 @GodotBaseType
-public open class EditorResourcePreviewGenerator : RefCounted() {
+public open abstract class EditorResourcePreviewGenerator : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORRESOURCEPREVIEWGENERATOR)
   }

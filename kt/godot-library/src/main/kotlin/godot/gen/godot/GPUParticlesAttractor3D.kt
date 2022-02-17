@@ -20,7 +20,7 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open class GPUParticlesAttractor3D : VisualInstance3D() {
+public open abstract class GPUParticlesAttractor3D : VisualInstance3D() {
   /**
    *
    */

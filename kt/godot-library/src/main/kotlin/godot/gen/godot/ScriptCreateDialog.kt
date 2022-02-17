@@ -60,7 +60,7 @@ import kotlin.Unit
  * [/codeblocks]
  */
 @GodotBaseType
-public open class ScriptCreateDialog : ConfirmationDialog() {
+public open abstract class ScriptCreateDialog : ConfirmationDialog() {
   /**
    * Emitted when the user clicks the OK button.
    */

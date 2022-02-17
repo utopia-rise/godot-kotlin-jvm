@@ -26,7 +26,7 @@ import kotlin.Unit
  * Base class for [godot.Texture2DArray], [godot.Cubemap] and [godot.CubemapArray]. Cannot be used directly, but contains all the functions necessary for accessing the derived resource types. Data is set on a per-layer basis. For [godot.Texture2DArray]s, the layer specifies the array layer.
  */
 @GodotBaseType
-public open class TextureLayered : Texture() {
+public open abstract class TextureLayered : Texture() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TEXTURELAYERED)
   }

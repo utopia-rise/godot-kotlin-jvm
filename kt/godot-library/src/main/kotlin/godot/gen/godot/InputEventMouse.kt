@@ -25,7 +25,7 @@ import kotlin.Unit
  * Stores general mouse events information.
  */
 @GodotBaseType
-public open class InputEventMouse : InputEventWithModifiers() {
+public open abstract class InputEventMouse : InputEventWithModifiers() {
   /**
    * The mouse button mask identifier, one of or a bitwise combination of the [enum MouseButton] button masks.
    */
