@@ -5301,12 +5301,6 @@ private fun registerEngineTypeMethodForGeometryInstance3D(): Unit {
       "set_visibility_range_fade_mode")
 }
 
-private fun registerEngineTypeMethodForGodotPhysicsServer2D(): Unit {
-}
-
-private fun registerEngineTypeMethodForGodotPhysicsServer3D(): Unit {
-}
-
 private fun registerEngineTypeMethodForGradient(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENT to "add_point")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRADIENT to "remove_point")
@@ -5602,9 +5596,6 @@ private fun registerEngineTypeMethodForHingeJoint3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_HINGEJOINT3D to "get_param")
   TypeManager.engineTypeMethod.add(ENGINECLASS_HINGEJOINT3D to "set_flag")
   TypeManager.engineTypeMethod.add(ENGINECLASS_HINGEJOINT3D to "get_flag")
-}
-
-private fun registerEngineTypeMethodForIPUnix(): Unit {
 }
 
 private fun registerEngineTypeMethodForImage(): Unit {
@@ -15348,8 +15339,6 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("GPUParticlesCollisionSphere3D") { GPUParticlesCollisionSphere3D }
   TypeManager.registerEngineType("Generic6DOFJoint3D") { Generic6DOFJoint3D }
   TypeManager.registerEngineType("GeometryInstance3D") { GeometryInstance3D }
-  TypeManager.registerEngineType("GodotPhysicsServer2D") { GodotPhysicsServer2D }
-  TypeManager.registerEngineType("GodotPhysicsServer3D") { GodotPhysicsServer3D }
   TypeManager.registerEngineType("Gradient") { Gradient }
   TypeManager.registerEngineType("GradientTexture1D") { GradientTexture1D }
   TypeManager.registerEngineType("GradientTexture2D") { GradientTexture2D }
@@ -15370,7 +15359,6 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("HashingContext") { HashingContext }
   TypeManager.registerEngineType("HeightMapShape3D") { HeightMapShape3D }
   TypeManager.registerEngineType("HingeJoint3D") { HingeJoint3D }
-  TypeManager.registerEngineType("IPUnix") { IPUnix }
   TypeManager.registerEngineType("Image") { Image }
   TypeManager.registerEngineType("ImageTexture") { ImageTexture }
   TypeManager.registerEngineType("ImageTexture3D") { ImageTexture3D }
@@ -16219,8 +16207,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[GPUParticlesCollisionSphere3D::class] = OBJECT
   variantMapper[Generic6DOFJoint3D::class] = OBJECT
   variantMapper[GeometryInstance3D::class] = OBJECT
-  variantMapper[GodotPhysicsServer2D::class] = OBJECT
-  variantMapper[GodotPhysicsServer3D::class] = OBJECT
   variantMapper[Gradient::class] = OBJECT
   variantMapper[GradientTexture1D::class] = OBJECT
   variantMapper[GradientTexture2D::class] = OBJECT
@@ -16241,7 +16227,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[HashingContext::class] = OBJECT
   variantMapper[HeightMapShape3D::class] = OBJECT
   variantMapper[HingeJoint3D::class] = OBJECT
-  variantMapper[IPUnix::class] = OBJECT
   variantMapper[Image::class] = OBJECT
   variantMapper[ImageTexture::class] = OBJECT
   variantMapper[ImageTexture3D::class] = OBJECT
@@ -17022,8 +17007,6 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForGPUParticlesCollisionSphere3D()
   registerEngineTypeMethodForGeneric6DOFJoint3D()
   registerEngineTypeMethodForGeometryInstance3D()
-  registerEngineTypeMethodForGodotPhysicsServer2D()
-  registerEngineTypeMethodForGodotPhysicsServer3D()
   registerEngineTypeMethodForGradient()
   registerEngineTypeMethodForGradientTexture1D()
   registerEngineTypeMethodForGradientTexture2D()
@@ -17044,7 +17027,6 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForHashingContext()
   registerEngineTypeMethodForHeightMapShape3D()
   registerEngineTypeMethodForHingeJoint3D()
-  registerEngineTypeMethodForIPUnix()
   registerEngineTypeMethodForImage()
   registerEngineTypeMethodForImageTexture()
   registerEngineTypeMethodForImageTexture3D()

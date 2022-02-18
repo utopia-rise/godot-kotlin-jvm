@@ -22,7 +22,10 @@ class ClassService(
     }
 
     override fun getClasses() = classRepository.list().filter {
-        !singletonRepository.list().map { singleton -> singleton.type }.contains(it.name)
+        for (singleton in singletonRepository.list()) {
+            if (singleton.type == it.type || classGraphService.doClassInherits(it, singleton.type)) return@filter false
+        }
+        true
     }
 
     override fun updatePropertyIfShouldUseSuper(className: String, propertyName: String) {

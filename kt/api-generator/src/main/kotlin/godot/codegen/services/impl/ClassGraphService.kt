@@ -63,4 +63,15 @@ class ClassGraphService(classRepository: ClassRepository) : IClassGraphService {
         val parentMethod = getMethodFromAncestor(cl, method)?.second
         return (parentMethod ?: method).arguments[index].name
     }
+
+    override fun doClassInherits(cl: EnrichedClass, parentType: String): Boolean {
+        var parent = classGraph.nodes.find { it.value == cl }?.parent
+        while (parent != null) {
+            if (parent.value.type == parentType) {
+                return true
+            }
+            parent = classGraph.nodes.find { it.value == parent?.value }?.parent
+        }
+        return false
+    }
 }
