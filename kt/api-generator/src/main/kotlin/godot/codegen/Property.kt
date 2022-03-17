@@ -109,13 +109,13 @@ class Property @JsonCreator constructor(
             val argumentsString = if (index == -1) {
                 "%T to value"
             } else {
-                "%T to $index, %T to value"
+                "%T to ${index}L, %T to value"
             }
 
             val argumentsTypes = if (index == -1)
                 listOf(type)
             else
-                listOf("Int", type)
+                listOf("Long", type)
 
             propertySpecBuilder.setter(
                 FunSpec.setterBuilder()
@@ -139,13 +139,13 @@ class Property @JsonCreator constructor(
             val argumentsString = if (index == -1) {
                 ""
             } else {
-                "%T to $index"
+                "%T to ${index}L"
             }
 
             val argumentsTypes = if (index == -1) {
                 listOf()
             } else {
-                listOf("Int")
+                listOf("Long")
             }
 
             propertySpecBuilder.getter(

@@ -137,13 +137,13 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public open var borderWidthBottom: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_WIDTH_BOTTOM, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to 3L, LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_WIDTH_BOTTOM, NIL)
     }
@@ -153,13 +153,13 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public open var borderWidthLeft: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_WIDTH_LEFT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to 0L, LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_WIDTH_LEFT, NIL)
     }
@@ -169,13 +169,13 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public open var borderWidthRight: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_WIDTH_RIGHT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to 2L, LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_WIDTH_RIGHT, NIL)
     }
@@ -185,13 +185,13 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public open var borderWidthTop: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_BORDER_WIDTH_TOP,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to 1L, LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_BORDER_WIDTH_TOP,
           NIL)
     }
@@ -221,13 +221,13 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public open var cornerRadiusBottomLeft: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_CORNER_RADIUS_BOTTOM_LEFT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to 3L, LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS_BOTTOM_LEFT, NIL)
     }
@@ -237,13 +237,13 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public open var cornerRadiusBottomRight: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_CORNER_RADIUS_BOTTOM_RIGHT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to 2L, LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS_BOTTOM_RIGHT, NIL)
     }
@@ -253,13 +253,13 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public open var cornerRadiusTopLeft: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_CORNER_RADIUS_TOP_LEFT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to 0L, LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS_TOP_LEFT, NIL)
     }
@@ -269,13 +269,13 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public open var cornerRadiusTopRight: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_CORNER_RADIUS_TOP_RIGHT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to 1L, LONG to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_CORNER_RADIUS_TOP_RIGHT, NIL)
     }
@@ -300,13 +300,13 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public open var expandMarginBottom: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_EXPAND_MARGIN_BOTTOM, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 3L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN_BOTTOM, NIL)
     }
@@ -316,13 +316,13 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public open var expandMarginLeft: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_EXPAND_MARGIN_LEFT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 0L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN_LEFT, NIL)
     }
@@ -332,13 +332,13 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public open var expandMarginRight: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_EXPAND_MARGIN_RIGHT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 2L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN_RIGHT, NIL)
     }
@@ -348,13 +348,13 @@ public open class StyleBoxFlat : StyleBox() {
    */
   public open var expandMarginTop: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_GET_EXPAND_MARGIN_TOP, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 1L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOXFLAT_SET_EXPAND_MARGIN_TOP, NIL)
     }

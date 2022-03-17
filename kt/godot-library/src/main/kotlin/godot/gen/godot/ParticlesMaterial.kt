@@ -41,13 +41,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var angle: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 7L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANGLE,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 7L, DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANGLE, NIL)
     }
 
@@ -56,13 +56,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var angleCurve: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 7L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANGLE_CURVE,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 7L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANGLE_CURVE,
           NIL)
     }
@@ -72,13 +72,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var angleRandom: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 7L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANGLE_RANDOM, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 7L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANGLE_RANDOM, NIL)
     }
@@ -90,13 +90,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var angularVelocity: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANGULAR_VELOCITY, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 1L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANGULAR_VELOCITY, NIL)
     }
@@ -106,13 +106,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var angularVelocityCurve: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANGULAR_VELOCITY_CURVE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 1L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANGULAR_VELOCITY_CURVE, NIL)
     }
@@ -122,13 +122,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var angularVelocityRandom: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANGULAR_VELOCITY_RANDOM, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 1L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANGULAR_VELOCITY_RANDOM, NIL)
     }
@@ -138,13 +138,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var animOffset: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 11L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANIM_OFFSET,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 11L, DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANIM_OFFSET,
           NIL)
     }
@@ -154,13 +154,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var animOffsetCurve: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 11L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANIM_OFFSET_CURVE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 11L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANIM_OFFSET_CURVE, NIL)
     }
@@ -170,13 +170,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var animOffsetRandom: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 11L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANIM_OFFSET_RANDOM, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 11L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANIM_OFFSET_RANDOM, NIL)
     }
@@ -186,13 +186,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var animSpeed: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 10L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANIM_SPEED,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 10L, DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANIM_SPEED,
           NIL)
     }
@@ -202,13 +202,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var animSpeedCurve: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 10L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANIM_SPEED_CURVE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 10L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANIM_SPEED_CURVE, NIL)
     }
@@ -218,13 +218,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var animSpeedRandom: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 10L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ANIM_SPEED_RANDOM, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 10L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ANIM_SPEED_RANDOM, NIL)
     }
@@ -265,13 +265,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var damping: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 6L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_DAMPING,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 6L, DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_DAMPING,
           NIL)
     }
@@ -281,13 +281,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var dampingCurve: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 6L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_DAMPING_CURVE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 6L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_DAMPING_CURVE, NIL)
     }
@@ -297,13 +297,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var dampingRandom: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 6L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_DAMPING_RANDOM, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 6L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_DAMPING_RANDOM, NIL)
     }
@@ -505,13 +505,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var flagAlignY: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_FLAG_ALIGN_Y, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 0L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_FLAG_ALIGN_Y, NIL)
     }
@@ -521,13 +521,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var flagDisableZ: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_FLAG_DISABLE_Z, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 2L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_FLAG_DISABLE_Z, NIL)
     }
@@ -537,13 +537,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var flagRotateY: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_FLAG_ROTATE_Y, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 1L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_FLAG_ROTATE_Y, NIL)
     }
@@ -585,13 +585,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var hueVariation: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 9L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_HUE_VARIATION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 9L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_HUE_VARIATION, NIL)
     }
@@ -601,13 +601,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var hueVariationCurve: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 9L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_HUE_VARIATION_CURVE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 9L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_HUE_VARIATION_CURVE, NIL)
     }
@@ -617,13 +617,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var hueVariationRandom: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 9L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_HUE_VARIATION_RANDOM, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 9L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_HUE_VARIATION_RANDOM, NIL)
     }
@@ -633,13 +633,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var initialVelocity: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_INITIAL_VELOCITY, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 0L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_INITIAL_VELOCITY, NIL)
     }
@@ -649,13 +649,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var initialVelocityRandom: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_INITIAL_VELOCITY_RANDOM, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 0L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_INITIAL_VELOCITY_RANDOM, NIL)
     }
@@ -681,13 +681,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var linearAccel: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_LINEAR_ACCEL, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 3L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_LINEAR_ACCEL, NIL)
     }
@@ -697,13 +697,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var linearAccelCurve: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_LINEAR_ACCEL_CURVE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 3L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_LINEAR_ACCEL_CURVE, NIL)
     }
@@ -713,13 +713,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var linearAccelRandom: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_LINEAR_ACCEL_RANDOM, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 3L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_LINEAR_ACCEL_RANDOM, NIL)
     }
@@ -731,13 +731,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var orbitVelocity: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ORBIT_VELOCITY, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 2L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ORBIT_VELOCITY, NIL)
     }
@@ -747,13 +747,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var orbitVelocityCurve: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ORBIT_VELOCITY_CURVE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 2L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ORBIT_VELOCITY_CURVE, NIL)
     }
@@ -763,13 +763,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var orbitVelocityRandom: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ORBIT_VELOCITY_RANDOM, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 2L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_ORBIT_VELOCITY_RANDOM, NIL)
     }
@@ -779,13 +779,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var radialAccel: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_RADIAL_ACCEL, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 4L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_RADIAL_ACCEL, NIL)
     }
@@ -795,13 +795,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var radialAccelCurve: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_RADIAL_ACCEL_CURVE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 4L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_RADIAL_ACCEL_CURVE, NIL)
     }
@@ -811,13 +811,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var radialAccelRandom: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_RADIAL_ACCEL_RANDOM, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 4L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_RADIAL_ACCEL_RANDOM, NIL)
     }
@@ -827,13 +827,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var scale: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 8L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_SCALE,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 8L, DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_SCALE, NIL)
     }
 
@@ -842,13 +842,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var scaleCurve: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 8L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_SCALE_CURVE,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 8L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_SCALE_CURVE,
           NIL)
     }
@@ -858,13 +858,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var scaleRandom: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 8L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_SCALE_RANDOM, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 8L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_SCALE_RANDOM, NIL)
     }
@@ -889,13 +889,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var tangentialAccel: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_TANGENTIAL_ACCEL, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 5L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_TANGENTIAL_ACCEL, NIL)
     }
@@ -905,13 +905,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var tangentialAccelCurve: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_TANGENTIAL_ACCEL_CURVE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 5L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_TANGENTIAL_ACCEL_CURVE, NIL)
     }
@@ -921,13 +921,13 @@ public open class ParticlesMaterial : Material() {
    */
   public open var tangentialAccelRandom: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_TANGENTIAL_ACCEL_RANDOM, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 5L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_SET_TANGENTIAL_ACCEL_RANDOM, NIL)
     }

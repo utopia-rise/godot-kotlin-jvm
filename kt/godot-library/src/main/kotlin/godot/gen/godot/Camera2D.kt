@@ -79,13 +79,13 @@ public open class Camera2D : Node2D() {
    */
   public open var dragMarginBottom: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_DRAG_MARGIN_BOTTOM,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 3L, DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_MARGIN_BOTTOM,
           NIL)
     }
@@ -111,13 +111,13 @@ public open class Camera2D : Node2D() {
    */
   public open var dragMarginLeft: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_DRAG_MARGIN_LEFT,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 0L, DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_MARGIN_LEFT,
           NIL)
     }
@@ -127,13 +127,13 @@ public open class Camera2D : Node2D() {
    */
   public open var dragMarginRight: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_DRAG_MARGIN_RIGHT,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 2L, DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_MARGIN_RIGHT,
           NIL)
     }
@@ -143,13 +143,13 @@ public open class Camera2D : Node2D() {
    */
   public open var dragMarginTop: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_DRAG_MARGIN_TOP,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 1L, DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_DRAG_MARGIN_TOP, NIL)
     }
 
@@ -222,12 +222,12 @@ public open class Camera2D : Node2D() {
    */
   public open var limitBottom: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_LIMIT_BOTTOM, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to 3L, LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_LIMIT_BOTTOM, NIL)
     }
 
@@ -236,12 +236,12 @@ public open class Camera2D : Node2D() {
    */
   public open var limitLeft: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_LIMIT_LEFT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to 0L, LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_LIMIT_LEFT, NIL)
     }
 
@@ -250,12 +250,12 @@ public open class Camera2D : Node2D() {
    */
   public open var limitRight: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_LIMIT_RIGHT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to 2L, LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_LIMIT_RIGHT, NIL)
     }
 
@@ -282,12 +282,12 @@ public open class Camera2D : Node2D() {
    */
   public open var limitTop: Long
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_GET_LIMIT_TOP, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(LONG to 1L, LONG to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CAMERA2D_SET_LIMIT_TOP, NIL)
     }
 

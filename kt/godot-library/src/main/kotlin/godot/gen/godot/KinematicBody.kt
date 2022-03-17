@@ -41,13 +41,13 @@ public open class KinematicBody : PhysicsBody() {
    */
   public open var axisLockMotionX: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_GET_AXIS_LOCK_MOTION_X, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 1L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_SET_AXIS_LOCK_MOTION_X, NIL)
     }
@@ -57,13 +57,13 @@ public open class KinematicBody : PhysicsBody() {
    */
   public open var axisLockMotionY: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_GET_AXIS_LOCK_MOTION_Y, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 2L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_SET_AXIS_LOCK_MOTION_Y, NIL)
     }
@@ -73,13 +73,13 @@ public open class KinematicBody : PhysicsBody() {
    */
   public open var axisLockMotionZ: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_GET_AXIS_LOCK_MOTION_Z, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 4L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_SET_AXIS_LOCK_MOTION_Z, NIL)
     }
@@ -115,13 +115,13 @@ public open class KinematicBody : PhysicsBody() {
    */
   public open var moveLockX: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_GET_MOVE_LOCK_X,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 1L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_SET_MOVE_LOCK_X,
           NIL)
     }
@@ -131,13 +131,13 @@ public open class KinematicBody : PhysicsBody() {
    */
   public open var moveLockY: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_GET_MOVE_LOCK_Y,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 2L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_SET_MOVE_LOCK_Y,
           NIL)
     }
@@ -147,13 +147,13 @@ public open class KinematicBody : PhysicsBody() {
    */
   public open var moveLockZ: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_GET_MOVE_LOCK_Z,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 4L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_KINEMATICBODY_SET_MOVE_LOCK_Z,
           NIL)
     }

@@ -140,13 +140,13 @@ public open class RigidBody : PhysicsBody() {
    */
   public open var axisLockAngularX: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 8L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY_GET_AXIS_LOCK_ANGULAR_X,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 8L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY_SET_AXIS_LOCK_ANGULAR_X,
           NIL)
     }
@@ -156,13 +156,13 @@ public open class RigidBody : PhysicsBody() {
    */
   public open var axisLockAngularY: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 16L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY_GET_AXIS_LOCK_ANGULAR_Y,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 16L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY_SET_AXIS_LOCK_ANGULAR_Y,
           NIL)
     }
@@ -172,13 +172,13 @@ public open class RigidBody : PhysicsBody() {
    */
   public open var axisLockAngularZ: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 32L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY_GET_AXIS_LOCK_ANGULAR_Z,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 32L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY_SET_AXIS_LOCK_ANGULAR_Z,
           NIL)
     }
@@ -188,13 +188,13 @@ public open class RigidBody : PhysicsBody() {
    */
   public open var axisLockLinearX: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY_GET_AXIS_LOCK_LINEAR_X,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 1L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY_SET_AXIS_LOCK_LINEAR_X,
           NIL)
     }
@@ -204,13 +204,13 @@ public open class RigidBody : PhysicsBody() {
    */
   public open var axisLockLinearY: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY_GET_AXIS_LOCK_LINEAR_Y,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 2L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY_SET_AXIS_LOCK_LINEAR_Y,
           NIL)
     }
@@ -220,13 +220,13 @@ public open class RigidBody : PhysicsBody() {
    */
   public open var axisLockLinearZ: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY_GET_AXIS_LOCK_LINEAR_Z,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 4L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDBODY_SET_AXIS_LOCK_LINEAR_Z,
           NIL)
     }

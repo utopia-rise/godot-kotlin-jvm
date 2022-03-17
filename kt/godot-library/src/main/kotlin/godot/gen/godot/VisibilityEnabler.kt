@@ -8,6 +8,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Long
@@ -32,13 +33,13 @@ public open class VisibilityEnabler : VisibilityNotifier() {
    */
   public open var freezeBodies: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER_GET_FREEZE_BODIES, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 1L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER_SET_FREEZE_BODIES, NIL)
     }
@@ -48,13 +49,13 @@ public open class VisibilityEnabler : VisibilityNotifier() {
    */
   public open var pauseAnimations: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER_GET_PAUSE_ANIMATIONS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 0L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_VISIBILITYENABLER_SET_PAUSE_ANIMATIONS, NIL)
     }

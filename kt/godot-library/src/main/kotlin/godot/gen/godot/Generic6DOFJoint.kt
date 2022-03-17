@@ -9,6 +9,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Double
@@ -26,1014 +27,1014 @@ import kotlin.Unit
 public open class Generic6DOFJoint : Joint() {
   public open var angularLimitX_damping: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 13L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_LIMIT_X_DAMPING, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 13L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_LIMIT_X_DAMPING, NIL)
     }
 
   public open var angularLimitX_enabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_LIMIT_X_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 1L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_LIMIT_X_ENABLED, NIL)
     }
 
   public open var angularLimitX_erp: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 16L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_LIMIT_X_ERP, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 16L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_LIMIT_X_ERP, NIL)
     }
 
   public open var angularLimitX_forceLimit: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 15L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_LIMIT_X_FORCE_LIMIT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 15L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_LIMIT_X_FORCE_LIMIT, NIL)
     }
 
   public open var angularLimitX_restitution: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 14L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_LIMIT_X_RESTITUTION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 14L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_LIMIT_X_RESTITUTION, NIL)
     }
 
   public open var angularLimitX_softness: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 12L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_LIMIT_X_SOFTNESS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 12L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_LIMIT_X_SOFTNESS, NIL)
     }
 
   public open var angularLimitY_damping: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 13L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_LIMIT_Y_DAMPING, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 13L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_LIMIT_Y_DAMPING, NIL)
     }
 
   public open var angularLimitY_enabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_LIMIT_Y_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 1L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_LIMIT_Y_ENABLED, NIL)
     }
 
   public open var angularLimitY_erp: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 16L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_LIMIT_Y_ERP, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 16L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_LIMIT_Y_ERP, NIL)
     }
 
   public open var angularLimitY_forceLimit: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 15L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_LIMIT_Y_FORCE_LIMIT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 15L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_LIMIT_Y_FORCE_LIMIT, NIL)
     }
 
   public open var angularLimitY_restitution: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 14L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_LIMIT_Y_RESTITUTION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 14L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_LIMIT_Y_RESTITUTION, NIL)
     }
 
   public open var angularLimitY_softness: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 12L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_LIMIT_Y_SOFTNESS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 12L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_LIMIT_Y_SOFTNESS, NIL)
     }
 
   public open var angularLimitZ_damping: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 13L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_LIMIT_Z_DAMPING, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 13L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_LIMIT_Z_DAMPING, NIL)
     }
 
   public open var angularLimitZ_enabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_LIMIT_Z_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 1L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_LIMIT_Z_ENABLED, NIL)
     }
 
   public open var angularLimitZ_erp: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 16L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_LIMIT_Z_ERP, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 16L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_LIMIT_Z_ERP, NIL)
     }
 
   public open var angularLimitZ_forceLimit: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 15L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_LIMIT_Z_FORCE_LIMIT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 15L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_LIMIT_Z_FORCE_LIMIT, NIL)
     }
 
   public open var angularLimitZ_restitution: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 14L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_LIMIT_Z_RESTITUTION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 14L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_LIMIT_Z_RESTITUTION, NIL)
     }
 
   public open var angularLimitZ_softness: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 12L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_LIMIT_Z_SOFTNESS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 12L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_LIMIT_Z_SOFTNESS, NIL)
     }
 
   public open var angularMotorX_enabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_MOTOR_X_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 4L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_MOTOR_X_ENABLED, NIL)
     }
 
   public open var angularMotorX_forceLimit: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 18L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_MOTOR_X_FORCE_LIMIT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 18L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_MOTOR_X_FORCE_LIMIT, NIL)
     }
 
   public open var angularMotorX_targetVelocity: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 17L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_MOTOR_X_TARGET_VELOCITY, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 17L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_MOTOR_X_TARGET_VELOCITY, NIL)
     }
 
   public open var angularMotorY_enabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_MOTOR_Y_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 4L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_MOTOR_Y_ENABLED, NIL)
     }
 
   public open var angularMotorY_forceLimit: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 18L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_MOTOR_Y_FORCE_LIMIT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 18L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_MOTOR_Y_FORCE_LIMIT, NIL)
     }
 
   public open var angularMotorY_targetVelocity: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 17L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_MOTOR_Y_TARGET_VELOCITY, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 17L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_MOTOR_Y_TARGET_VELOCITY, NIL)
     }
 
   public open var angularMotorZ_enabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_MOTOR_Z_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 4L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_MOTOR_Z_ENABLED, NIL)
     }
 
   public open var angularMotorZ_forceLimit: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 18L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_MOTOR_Z_FORCE_LIMIT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 18L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_MOTOR_Z_FORCE_LIMIT, NIL)
     }
 
   public open var angularMotorZ_targetVelocity: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 17L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_MOTOR_Z_TARGET_VELOCITY, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 17L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_MOTOR_Z_TARGET_VELOCITY, NIL)
     }
 
   public open var angularSpringX_damping: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 20L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_SPRING_X_DAMPING, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 20L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_SPRING_X_DAMPING, NIL)
     }
 
   public open var angularSpringX_enabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_SPRING_X_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 2L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_SPRING_X_ENABLED, NIL)
     }
 
   public open var angularSpringX_equilibriumPoint: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 21L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_SPRING_X_EQUILIBRIUM_POINT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 21L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_SPRING_X_EQUILIBRIUM_POINT, NIL)
     }
 
   public open var angularSpringX_stiffness: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 19L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_SPRING_X_STIFFNESS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 19L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_SPRING_X_STIFFNESS, NIL)
     }
 
   public open var angularSpringY_damping: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 20L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_SPRING_Y_DAMPING, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 20L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_SPRING_Y_DAMPING, NIL)
     }
 
   public open var angularSpringY_enabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_SPRING_Y_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 2L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_SPRING_Y_ENABLED, NIL)
     }
 
   public open var angularSpringY_equilibriumPoint: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 21L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_SPRING_Y_EQUILIBRIUM_POINT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 21L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_SPRING_Y_EQUILIBRIUM_POINT, NIL)
     }
 
   public open var angularSpringY_stiffness: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 19L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_SPRING_Y_STIFFNESS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 19L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_SPRING_Y_STIFFNESS, NIL)
     }
 
   public open var angularSpringZ_damping: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 20L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_SPRING_Z_DAMPING, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 20L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_SPRING_Z_DAMPING, NIL)
     }
 
   public open var angularSpringZ_enabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_SPRING_Z_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 2L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_SPRING_Z_ENABLED, NIL)
     }
 
   public open var angularSpringZ_equilibriumPoint: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 21L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_SPRING_Z_EQUILIBRIUM_POINT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 21L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_SPRING_Z_EQUILIBRIUM_POINT, NIL)
     }
 
   public open var angularSpringZ_stiffness: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 19L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_ANGULAR_SPRING_Z_STIFFNESS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 19L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_ANGULAR_SPRING_Z_STIFFNESS, NIL)
     }
 
   public open var linearLimitX_damping: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_LIMIT_X_DAMPING, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 4L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_LIMIT_X_DAMPING, NIL)
     }
 
   public open var linearLimitX_enabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_LIMIT_X_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 0L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_LIMIT_X_ENABLED, NIL)
     }
 
   public open var linearLimitX_lowerDistance: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_LIMIT_X_LOWER_DISTANCE, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 0L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_LIMIT_X_LOWER_DISTANCE, NIL)
     }
 
   public open var linearLimitX_restitution: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_LIMIT_X_RESTITUTION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 3L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_LIMIT_X_RESTITUTION, NIL)
     }
 
   public open var linearLimitX_softness: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_LIMIT_X_SOFTNESS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 2L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_LIMIT_X_SOFTNESS, NIL)
     }
 
   public open var linearLimitX_upperDistance: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_LIMIT_X_UPPER_DISTANCE, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 1L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_LIMIT_X_UPPER_DISTANCE, NIL)
     }
 
   public open var linearLimitY_damping: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_LIMIT_Y_DAMPING, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 4L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_LIMIT_Y_DAMPING, NIL)
     }
 
   public open var linearLimitY_enabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_LIMIT_Y_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 0L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_LIMIT_Y_ENABLED, NIL)
     }
 
   public open var linearLimitY_lowerDistance: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_LIMIT_Y_LOWER_DISTANCE, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 0L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_LIMIT_Y_LOWER_DISTANCE, NIL)
     }
 
   public open var linearLimitY_restitution: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_LIMIT_Y_RESTITUTION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 3L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_LIMIT_Y_RESTITUTION, NIL)
     }
 
   public open var linearLimitY_softness: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_LIMIT_Y_SOFTNESS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 2L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_LIMIT_Y_SOFTNESS, NIL)
     }
 
   public open var linearLimitY_upperDistance: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_LIMIT_Y_UPPER_DISTANCE, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 1L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_LIMIT_Y_UPPER_DISTANCE, NIL)
     }
 
   public open var linearLimitZ_damping: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_LIMIT_Z_DAMPING, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 4L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_LIMIT_Z_DAMPING, NIL)
     }
 
   public open var linearLimitZ_enabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_LIMIT_Z_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 0L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_LIMIT_Z_ENABLED, NIL)
     }
 
   public open var linearLimitZ_lowerDistance: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_LIMIT_Z_LOWER_DISTANCE, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 0L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_LIMIT_Z_LOWER_DISTANCE, NIL)
     }
 
   public open var linearLimitZ_restitution: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_LIMIT_Z_RESTITUTION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 3L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_LIMIT_Z_RESTITUTION, NIL)
     }
 
   public open var linearLimitZ_softness: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_LIMIT_Z_SOFTNESS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 2L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_LIMIT_Z_SOFTNESS, NIL)
     }
 
   public open var linearLimitZ_upperDistance: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_LIMIT_Z_UPPER_DISTANCE, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 1L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_LIMIT_Z_UPPER_DISTANCE, NIL)
     }
 
   public open var linearMotorX_enabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_MOTOR_X_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 5L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_MOTOR_X_ENABLED, NIL)
     }
 
   public open var linearMotorX_forceLimit: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 6L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_MOTOR_X_FORCE_LIMIT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 6L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_MOTOR_X_FORCE_LIMIT, NIL)
     }
 
   public open var linearMotorX_targetVelocity: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_MOTOR_X_TARGET_VELOCITY, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 5L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_MOTOR_X_TARGET_VELOCITY, NIL)
     }
 
   public open var linearMotorY_enabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_MOTOR_Y_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 5L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_MOTOR_Y_ENABLED, NIL)
     }
 
   public open var linearMotorY_forceLimit: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 6L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_MOTOR_Y_FORCE_LIMIT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 6L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_MOTOR_Y_FORCE_LIMIT, NIL)
     }
 
   public open var linearMotorY_targetVelocity: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_MOTOR_Y_TARGET_VELOCITY, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 5L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_MOTOR_Y_TARGET_VELOCITY, NIL)
     }
 
   public open var linearMotorZ_enabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_MOTOR_Z_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 5L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_MOTOR_Z_ENABLED, NIL)
     }
 
   public open var linearMotorZ_forceLimit: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 6L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_MOTOR_Z_FORCE_LIMIT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 6L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_MOTOR_Z_FORCE_LIMIT, NIL)
     }
 
   public open var linearMotorZ_targetVelocity: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_MOTOR_Z_TARGET_VELOCITY, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 5L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_MOTOR_Z_TARGET_VELOCITY, NIL)
     }
 
   public open var linearSpringX_damping: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 8L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_SPRING_X_DAMPING, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 8L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_SPRING_X_DAMPING, NIL)
     }
 
   public open var linearSpringX_enabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_SPRING_X_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 3L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_SPRING_X_ENABLED, NIL)
     }
 
   public open var linearSpringX_equilibriumPoint: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 9L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_SPRING_X_EQUILIBRIUM_POINT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 9L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_SPRING_X_EQUILIBRIUM_POINT, NIL)
     }
 
   public open var linearSpringX_stiffness: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 7L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_SPRING_X_STIFFNESS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 7L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_SPRING_X_STIFFNESS, NIL)
     }
 
   public open var linearSpringY_damping: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 8L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_SPRING_Y_DAMPING, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 8L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_SPRING_Y_DAMPING, NIL)
     }
 
   public open var linearSpringY_enabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_SPRING_Y_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 3L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_SPRING_Y_ENABLED, NIL)
     }
 
   public open var linearSpringY_equilibriumPoint: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 9L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_SPRING_Y_EQUILIBRIUM_POINT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 9L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_SPRING_Y_EQUILIBRIUM_POINT, NIL)
     }
 
   public open var linearSpringY_stiffness: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 7L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_SPRING_Y_STIFFNESS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 7L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_SPRING_Y_STIFFNESS, NIL)
     }
 
   public open var linearSpringZ_damping: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 8L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_SPRING_Z_DAMPING, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 8L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_SPRING_Z_DAMPING, NIL)
     }
 
   public open var linearSpringZ_enabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_SPRING_Z_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 3L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_SPRING_Z_ENABLED, NIL)
     }
 
   public open var linearSpringZ_equilibriumPoint: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 9L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_SPRING_Z_EQUILIBRIUM_POINT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 9L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_SPRING_Z_EQUILIBRIUM_POINT, NIL)
     }
 
   public open var linearSpringZ_stiffness: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 7L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_GET_LINEAR_SPRING_Z_STIFFNESS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 7L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_GENERIC6DOFJOINT_SET_LINEAR_SPRING_Z_STIFFNESS, NIL)
     }

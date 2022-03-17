@@ -44,13 +44,13 @@ public open class StyleBox : Resource() {
    */
   public open var contentMarginBottom: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_CONTENT_MARGIN_BOTTOM, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 3L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_STYLEBOX_SET_CONTENT_MARGIN_BOTTOM, NIL)
     }
@@ -62,13 +62,13 @@ public open class StyleBox : Resource() {
    */
   public open var contentMarginLeft: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_CONTENT_MARGIN_LEFT,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 0L, DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_SET_CONTENT_MARGIN_LEFT,
           NIL)
     }
@@ -80,13 +80,13 @@ public open class StyleBox : Resource() {
    */
   public open var contentMarginRight: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_CONTENT_MARGIN_RIGHT,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 2L, DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_SET_CONTENT_MARGIN_RIGHT,
           NIL)
     }
@@ -98,13 +98,13 @@ public open class StyleBox : Resource() {
    */
   public open var contentMarginTop: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_GET_CONTENT_MARGIN_TOP,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 1L, DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STYLEBOX_SET_CONTENT_MARGIN_TOP,
           NIL)
     }

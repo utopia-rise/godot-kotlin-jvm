@@ -54,13 +54,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var albedoTexture: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_ALBEDO_TEXTURE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 0L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_ALBEDO_TEXTURE, NIL)
     }
@@ -86,13 +86,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var anisotropyEnabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_ANISOTROPY_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 5L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_ANISOTROPY_ENABLED, NIL)
     }
@@ -102,13 +102,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var anisotropyFlowmap: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 7L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_ANISOTROPY_FLOWMAP, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 7L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_ANISOTROPY_FLOWMAP, NIL)
     }
@@ -118,13 +118,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var aoEnabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 6L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_AO_ENABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 6L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_AO_ENABLED,
           NIL)
     }
@@ -150,13 +150,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var aoOnUv2: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 11L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_AO_ON_UV2,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 11L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_AO_ON_UV2,
           NIL)
     }
@@ -166,13 +166,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var aoTexture: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 8L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_AO_TEXTURE,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 8L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_AO_TEXTURE,
           NIL)
     }
@@ -216,13 +216,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var clearcoatEnabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_CLEARCOAT_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 4L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_CLEARCOAT_ENABLED, NIL)
     }
@@ -248,13 +248,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var clearcoatTexture: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 6L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_CLEARCOAT_TEXTURE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 6L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_CLEARCOAT_TEXTURE, NIL)
     }
@@ -282,13 +282,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var depthEnabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 7L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_DEPTH_ENABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 7L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_DEPTH_ENABLED,
           NIL)
     }
@@ -378,13 +378,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var depthTexture: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 9L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_DEPTH_TEXTURE,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 9L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_DEPTH_TEXTURE,
           NIL)
     }
@@ -394,13 +394,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var detailAlbedo: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 14L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_DETAIL_ALBEDO,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 14L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_DETAIL_ALBEDO,
           NIL)
     }
@@ -426,13 +426,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var detailEnabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 11L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_DETAIL_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 11L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_DETAIL_ENABLED, NIL)
     }
@@ -442,13 +442,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var detailMask: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 13L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_DETAIL_MASK,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 13L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_DETAIL_MASK,
           NIL)
     }
@@ -460,13 +460,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var detailNormal: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 15L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_DETAIL_NORMAL,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 15L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_DETAIL_NORMAL,
           NIL)
     }
@@ -559,13 +559,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var emissionEnabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_EMISSION_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 1L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_EMISSION_ENABLED, NIL)
     }
@@ -591,13 +591,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var emissionOnUv2: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 12L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_EMISSION_ON_UV2, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 12L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_EMISSION_ON_UV2, NIL)
     }
@@ -623,13 +623,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var emissionTexture: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_EMISSION_TEXTURE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 3L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_EMISSION_TEXTURE, NIL)
     }
@@ -639,13 +639,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var flagsAlbedoTexForceSrgb: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 14L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_FLAGS_ALBEDO_TEX_FORCE_SRGB, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 14L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_FLAGS_ALBEDO_TEX_FORCE_SRGB, NIL)
     }
@@ -655,13 +655,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var flagsDisableAmbientLight: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 17L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_FLAGS_DISABLE_AMBIENT_LIGHT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 17L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_FLAGS_DISABLE_AMBIENT_LIGHT, NIL)
     }
@@ -671,13 +671,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var flagsDoNotReceiveShadows: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 15L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_FLAGS_DO_NOT_RECEIVE_SHADOWS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 15L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_FLAGS_DO_NOT_RECEIVE_SHADOWS, NIL)
     }
@@ -687,13 +687,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var flagsEnsureCorrectNormals: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 16L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_FLAGS_ENSURE_CORRECT_NORMALS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 16L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_FLAGS_ENSURE_CORRECT_NORMALS, NIL)
     }
@@ -703,13 +703,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var flagsFixedSize: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 6L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_FLAGS_FIXED_SIZE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 6L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_FLAGS_FIXED_SIZE, NIL)
     }
@@ -719,13 +719,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var flagsNoDepthTest: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_FLAGS_NO_DEPTH_TEST, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 2L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_FLAGS_NO_DEPTH_TEST, NIL)
     }
@@ -735,13 +735,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var flagsTransparent: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_FLAGS_TRANSPARENT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 0L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_FLAGS_TRANSPARENT, NIL)
     }
@@ -751,13 +751,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var flagsUnshaded: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_FLAGS_UNSHADED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 0L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_FLAGS_UNSHADED, NIL)
     }
@@ -769,13 +769,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var flagsUsePointSize: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_FLAGS_USE_POINT_SIZE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 5L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_FLAGS_USE_POINT_SIZE, NIL)
     }
@@ -785,13 +785,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var flagsUseShadowToOpacity: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 18L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_FLAGS_USE_SHADOW_TO_OPACITY, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 18L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_FLAGS_USE_SHADOW_TO_OPACITY, NIL)
     }
@@ -801,13 +801,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var flagsVertexLighting: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_FLAGS_VERTEX_LIGHTING, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 1L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_FLAGS_VERTEX_LIGHTING, NIL)
     }
@@ -817,13 +817,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var flagsWorldTriplanar: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 10L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_FLAGS_WORLD_TRIPLANAR, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 10L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_FLAGS_WORLD_TRIPLANAR, NIL)
     }
@@ -866,13 +866,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var metallicTexture: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_METALLIC_TEXTURE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 1L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_METALLIC_TEXTURE, NIL)
     }
@@ -898,13 +898,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var normalEnabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_NORMAL_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 2L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_NORMAL_ENABLED, NIL)
     }
@@ -934,13 +934,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var normalTexture: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_NORMAL_TEXTURE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 4L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_NORMAL_TEXTURE, NIL)
     }
@@ -966,13 +966,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var paramsBillboardKeepScale: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 7L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_PARAMS_BILLBOARD_KEEP_SCALE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 7L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_PARAMS_BILLBOARD_KEEP_SCALE, NIL)
     }
@@ -1146,13 +1146,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var paramsUseAlphaScissor: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 13L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_PARAMS_USE_ALPHA_SCISSOR, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 13L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_PARAMS_USE_ALPHA_SCISSOR, NIL)
     }
@@ -1242,13 +1242,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var refractionEnabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 10L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_REFRACTION_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 10L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_REFRACTION_ENABLED, NIL)
     }
@@ -1274,13 +1274,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var refractionTexture: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 12L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_REFRACTION_TEXTURE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 12L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_REFRACTION_TEXTURE, NIL)
     }
@@ -1322,13 +1322,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var rimEnabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_RIM_ENABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 3L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_RIM_ENABLED,
           NIL)
     }
@@ -1338,13 +1338,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var rimTexture: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_RIM_TEXTURE,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 5L, OBJECT to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_RIM_TEXTURE,
           NIL)
     }
@@ -1385,13 +1385,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var roughnessTexture: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 2L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_ROUGHNESS_TEXTURE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 2L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_ROUGHNESS_TEXTURE, NIL)
     }
@@ -1417,13 +1417,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var subsurfScatterEnabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 8L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_SUBSURF_SCATTER_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 8L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_SUBSURF_SCATTER_ENABLED, NIL)
     }
@@ -1449,13 +1449,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var subsurfScatterTexture: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 10L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_SUBSURF_SCATTER_TEXTURE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 10L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_SUBSURF_SCATTER_TEXTURE, NIL)
     }
@@ -1481,13 +1481,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var transmissionEnabled: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 9L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_TRANSMISSION_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 9L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_TRANSMISSION_ENABLED, NIL)
     }
@@ -1497,13 +1497,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var transmissionTexture: Texture?
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 11L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_TRANSMISSION_TEXTURE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture?
     }
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.writeArguments(LONG to 11L, OBJECT to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_TRANSMISSION_TEXTURE, NIL)
     }
@@ -1545,13 +1545,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var uv1Triplanar: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 8L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_UV1_TRIPLANAR,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 8L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_UV1_TRIPLANAR,
           NIL)
     }
@@ -1609,13 +1609,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var uv2Triplanar: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 9L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_UV2_TRIPLANAR,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 9L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_UV2_TRIPLANAR,
           NIL)
     }
@@ -1641,13 +1641,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var vertexColorIsSrgb: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_VERTEX_COLOR_IS_SRGB, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 4L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_VERTEX_COLOR_IS_SRGB, NIL)
     }
@@ -1657,13 +1657,13 @@ public open class SpatialMaterial : Material() {
    */
   public open var vertexColorUseAsAlbedo: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_GET_VERTEX_COLOR_USE_AS_ALBEDO, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 3L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_SPATIALMATERIAL_SET_VERTEX_COLOR_USE_AS_ALBEDO, NIL)
     }

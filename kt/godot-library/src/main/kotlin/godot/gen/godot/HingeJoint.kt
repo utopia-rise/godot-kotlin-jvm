@@ -9,6 +9,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import kotlin.Boolean
 import kotlin.Double
@@ -26,102 +27,102 @@ import kotlin.Unit
 public open class HingeJoint : Joint() {
   public open var angularLimit_bias: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 3L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HINGEJOINT_GET_ANGULAR_LIMIT_BIAS,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 3L, DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HINGEJOINT_SET_ANGULAR_LIMIT_BIAS,
           NIL)
     }
 
   public open var angularLimit_enable: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_HINGEJOINT_GET_ANGULAR_LIMIT_ENABLE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 0L, BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_HINGEJOINT_SET_ANGULAR_LIMIT_ENABLE, NIL)
     }
 
   public open var angularLimit_relaxation: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 5L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_HINGEJOINT_GET_ANGULAR_LIMIT_RELAXATION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 5L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_HINGEJOINT_SET_ANGULAR_LIMIT_RELAXATION, NIL)
     }
 
   public open var angularLimit_softness: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 4L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_HINGEJOINT_GET_ANGULAR_LIMIT_SOFTNESS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 4L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_HINGEJOINT_SET_ANGULAR_LIMIT_SOFTNESS, NIL)
     }
 
   public open var motor_enable: Boolean
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 1L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HINGEJOINT_GET_MOTOR_ENABLE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
+      TransferContext.writeArguments(LONG to 1L, BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HINGEJOINT_SET_MOTOR_ENABLE, NIL)
     }
 
   public open var motor_maxImpulse: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 7L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HINGEJOINT_GET_MOTOR_MAX_IMPULSE,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 7L, DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HINGEJOINT_SET_MOTOR_MAX_IMPULSE,
           NIL)
     }
 
   public open var motor_targetVelocity: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 6L)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_HINGEJOINT_GET_MOTOR_TARGET_VELOCITY, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 6L, DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_HINGEJOINT_SET_MOTOR_TARGET_VELOCITY, NIL)
     }
 
   public open var params_bias: Double
     get() {
-      TransferContext.writeArguments()
+      TransferContext.writeArguments(LONG to 0L)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HINGEJOINT_GET_PARAMS_BIAS,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.writeArguments(LONG to 0L, DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HINGEJOINT_SET_PARAMS_BIAS, NIL)
     }
 
