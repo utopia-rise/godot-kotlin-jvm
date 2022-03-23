@@ -58,7 +58,7 @@ jobs:
             platform: osx
             arch: arm64
           - name: Windows
-            os: windows-latest
+            os: windows-2019
             platform: windows
             arch: 64
     runs-on: ${{ matrix.os }}
