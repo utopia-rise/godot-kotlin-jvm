@@ -93,7 +93,7 @@ class GenerationService(
             classTypeBuilder.generateConstructorMethod()
             classTypeBuilder.generateSignalExtensions()
         }
-        if (name == "Reference") {
+        if (name == KotlinTypes.refCounted) {
             classTypeBuilder.addFunction(
                 FunSpec.builder("____DO_NOT_TOUCH_THIS_isRef____")
                     .addModifiers(KModifier.OVERRIDE)

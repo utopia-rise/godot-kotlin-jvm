@@ -1,6 +1,7 @@
 #ifdef TOOLS_ENABLED
 
 #include <modules/kotlin_jvm/src/jni/jvm.h>
+#include <core/config/project_settings.h>
 #include "kotlin_editor_export_plugin.h"
 #include "gd_kotlin.h"
 

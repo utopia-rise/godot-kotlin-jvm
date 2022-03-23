@@ -10,6 +10,7 @@ object KotlinTypes{
     const val error = "GodotError"
     const val nodePath = "NodePath"
     const val variant = "Any"
+    const val refCounted = "RefCounted"
     const val obj = "Object"
 
     const val ktObject = "KtObject"

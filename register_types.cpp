@@ -22,7 +22,7 @@ static void editor_init() {
     EditorExport::get_singleton()->add_export_plugin(export_plugin);
 }
 
-static EditorPlugin* godot_kotlin_jvm_editor_plugin_creator_func(EditorNode* editor_node) {
+static EditorPlugin* godot_kotlin_jvm_editor_plugin_creator_func() {
     return GodotKotlinJvmEditor::get_instance();
 }
 #endif

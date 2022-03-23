@@ -130,7 +130,7 @@ void register_user_types_members_hook(JNIEnv* p_env, jobject p_this) {
 }
 
 void GDKotlin::init() {
-    if (Main::is_project_manager()) {
+    if (Engine::get_singleton()->is_project_manager_hint()) {
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE("Detected that we're in the project manager. Won't initialize kotlin lang.");
 #endif
@@ -381,7 +381,7 @@ void GDKotlin::init() {
 }
 
 void GDKotlin::finish() {
-    if (Main::is_project_manager()) {
+    if (Engine::get_singleton()->is_project_manager_hint()) {
 #ifdef DEBUG_ENABLED
         LOG_VERBOSE("Detected that we're in the project manager. No cleanup necessary");
 #endif
