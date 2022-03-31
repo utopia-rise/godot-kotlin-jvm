@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
-import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -19,18 +18,6 @@ import kotlin.Unit
 public open class PhysicsServer3DRenderingServerHandler : Object() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PHYSICSSERVER3DRENDERINGSERVERHANDLER)
-  }
-
-  /**
-   *
-   */
-  public open fun _setVertex(vertexId: Long, vertices: `const void*`): Unit {
-  }
-
-  /**
-   *
-   */
-  public open fun _setNormal(vertexId: Long, normals: `const void*`): Unit {
   }
 
   /**

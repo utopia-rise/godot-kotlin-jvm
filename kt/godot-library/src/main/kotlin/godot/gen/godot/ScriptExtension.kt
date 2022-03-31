@@ -38,12 +38,6 @@ public open class ScriptExtension : Script() {
   /**
    *
    */
-  public open fun _placeholderErased(placeholder: `void*`): Unit {
-  }
-
-  /**
-   *
-   */
   public open fun _canInstantiate(): Boolean {
     throw NotImplementedError("_can_instantiate is not implemented for ScriptExtension")
   }
@@ -67,20 +61,6 @@ public open class ScriptExtension : Script() {
    */
   public open fun _getInstanceBaseType(): StringName {
     throw NotImplementedError("_get_instance_base_type is not implemented for ScriptExtension")
-  }
-
-  /**
-   *
-   */
-  public open fun _instanceCreate(forObject: Object): `void*`? {
-    throw NotImplementedError("_instance_create is not implemented for ScriptExtension")
-  }
-
-  /**
-   *
-   */
-  public open fun _placeholderInstanceCreate(forObject: Object): `void*`? {
-    throw NotImplementedError("_placeholder_instance_create is not implemented for ScriptExtension")
   }
 
   /**

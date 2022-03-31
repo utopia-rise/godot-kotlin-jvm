@@ -12,7 +12,6 @@ import godot.codegen.repositories.*
 import godot.codegen.repositories.impl.*
 import godot.codegen.services.*
 import godot.codegen.services.impl.*
-import godot.docgen.ClassDoc
 import godot.docgen.DocGen
 import java.io.File
 
@@ -25,6 +24,7 @@ fun File.generateApiFrom(jsonSource: File, docsDir: File? = null) {
     val globalEnumRepository: GlobalEnumRepository = JsonGlobalEnumRepository(apiDescription.globalEnums.toEnriched())
     val coreTypeEnumRepository: CoreTypeEnumRepository = KnownCoreTypeEnumRepository()
     val docRepository: IDocRepository = DocRepository(classDocs)
+    val nativeStructureRepository = NativeStructureRepository(apiDescription.nativeStructures.toEnriched())
 
     val classGraphService: IClassGraphService = ClassGraphService(classRepository)
     val classService: IClassService = ClassService(
@@ -33,7 +33,7 @@ fun File.generateApiFrom(jsonSource: File, docsDir: File? = null) {
         classGraphService
     )
     val enumService: IEnumService = EnumService(globalEnumRepository, coreTypeEnumRepository, classService)
-    val generationService: IGenerationService = GenerationService(docRepository, classGraphService, enumService)
+    val generationService: IGenerationService = GenerationService(docRepository, classGraphService, enumService, nativeStructureRepository)
 
     classService.findGetSetMethodsAndUpdateProperties()
 

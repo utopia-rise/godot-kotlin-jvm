@@ -24,20 +24,6 @@ public open class PacketPeerExtension : PacketPeer() {
   /**
    *
    */
-  public open fun _getPacket(rBuffer: `const uint8_t **`, rBufferSize: `int32_t*`): Long {
-    throw NotImplementedError("_get_packet is not implemented for PacketPeerExtension")
-  }
-
-  /**
-   *
-   */
-  public open fun _putPacket(pBuffer: `const uint8_t*`, pBufferSize: Long): Long {
-    throw NotImplementedError("_put_packet is not implemented for PacketPeerExtension")
-  }
-
-  /**
-   *
-   */
   public open fun _getAvailablePacketCount(): Long {
     throw
         NotImplementedError("_get_available_packet_count is not implemented for PacketPeerExtension")

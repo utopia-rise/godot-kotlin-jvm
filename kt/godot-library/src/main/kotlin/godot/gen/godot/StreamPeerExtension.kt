@@ -24,50 +24,6 @@ public open class StreamPeerExtension : StreamPeer() {
   /**
    *
    */
-  public open fun _getData(
-    rBuffer: `uint8_t*`,
-    rBytes: Long,
-    rReceived: `int32_t*`
-  ): Long {
-    throw NotImplementedError("_get_data is not implemented for StreamPeerExtension")
-  }
-
-  /**
-   *
-   */
-  public open fun _getPartialData(
-    rBuffer: `uint8_t*`,
-    rBytes: Long,
-    rReceived: `int32_t*`
-  ): Long {
-    throw NotImplementedError("_get_partial_data is not implemented for StreamPeerExtension")
-  }
-
-  /**
-   *
-   */
-  public open fun _putData(
-    pData: `const uint8_t*`,
-    pBytes: Long,
-    rSent: `int32_t*`
-  ): Long {
-    throw NotImplementedError("_put_data is not implemented for StreamPeerExtension")
-  }
-
-  /**
-   *
-   */
-  public open fun _putPartialData(
-    pData: `const uint8_t*`,
-    pBytes: Long,
-    rSent: `int32_t*`
-  ): Long {
-    throw NotImplementedError("_put_partial_data is not implemented for StreamPeerExtension")
-  }
-
-  /**
-   *
-   */
   public open fun _getAvailableBytes(): Long {
     throw NotImplementedError("_get_available_bytes is not implemented for StreamPeerExtension")
   }

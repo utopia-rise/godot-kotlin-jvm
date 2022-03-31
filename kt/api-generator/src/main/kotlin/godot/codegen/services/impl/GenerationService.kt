@@ -9,6 +9,7 @@ import godot.codegen.models.custom.AdditionalImport
 import godot.codegen.models.enriched.*
 import godot.codegen.poet.RegistrationFileSpec
 import godot.codegen.repositories.IDocRepository
+import godot.codegen.repositories.INativeStructureRepository
 import godot.codegen.rpc.RpcFunctionMode
 import godot.codegen.rpc.RpcPropertyMode
 import godot.codegen.services.IClassGraphService
@@ -20,7 +21,8 @@ import org.gradle.kotlin.dsl.support.appendReproducibleNewLine
 class GenerationService(
     private val docRepository: IDocRepository,
     private val classGraphService: IClassGraphService,
-    private val enumService: IEnumService
+    private val enumService: IEnumService,
+    private val nativeStructureRepository: INativeStructureRepository
 ) : IGenerationService {
     private var nextEngineClassIndex = 0
     private var nextEngineMethodIndex = 0
@@ -134,7 +136,18 @@ class GenerationService(
         }
 
         for (method in enrichedClass.methods.filter { !it.internal.isStatic }.filter { !it.isGetterOrSetter }) {
-            classTypeBuilder.addFunction(generateMethod(enrichedClass, method))
+            // TODO: Implement native structure when value class are here.
+            var shouldGenerate = true
+            for (argument in method.arguments) {
+                if (nativeStructureRepository.findMatchingType(argument) != null) {
+                    shouldGenerate = false
+                    break
+                }
+            }
+            shouldGenerate = shouldGenerate && nativeStructureRepository.findMatchingType(method) == null
+            if (shouldGenerate) {
+                classTypeBuilder.addFunction(generateMethod(enrichedClass, method))
+            }
         }
 
         for (method in enrichedClass.methods.filter { it.internal.isStatic }) {

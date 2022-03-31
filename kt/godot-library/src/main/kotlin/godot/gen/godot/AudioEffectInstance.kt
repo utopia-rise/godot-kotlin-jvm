@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import kotlin.Boolean
-import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
@@ -20,16 +19,6 @@ import kotlin.Unit
 public open class AudioEffectInstance : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTINSTANCE)
-  }
-
-  /**
-   *
-   */
-  public open fun _process(
-    srcBuffer: `const void*`,
-    dstBuffer: `AudioFrame*`,
-    frameCount: Long
-  ): Unit {
   }
 
   /**

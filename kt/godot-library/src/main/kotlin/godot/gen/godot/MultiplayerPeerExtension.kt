@@ -25,20 +25,6 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
   }
 
   /**
-   * Called when a packet needs to be received by the [godot.MultiplayerAPI], with `p_buffer_size` being the size of the binary `p_buffer` in bytes.
-   */
-  public open fun _getPacket(rBuffer: `const uint8_t **`, rBufferSize: `int32_t*`): Long {
-    throw NotImplementedError("_get_packet is not implemented for MultiplayerPeerExtension")
-  }
-
-  /**
-   * Called when a packet needs to be sent by the [godot.MultiplayerAPI], with `p_buffer_size` being the size of the binary `p_buffer` in bytes.
-   */
-  public open fun _putPacket(pBuffer: `const uint8_t*`, pBufferSize: Long): Long {
-    throw NotImplementedError("_put_packet is not implemented for MultiplayerPeerExtension")
-  }
-
-  /**
    * Called when the available packet count is internally requested by the [godot.MultiplayerAPI].
    */
   public open fun _getAvailablePacketCount(): Long {

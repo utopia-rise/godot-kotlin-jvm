@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
 import kotlin.Double
-import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
@@ -22,13 +21,6 @@ import kotlin.Unit
 public open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMPLAYBACKRESAMPLED)
-  }
-
-  /**
-   *
-   */
-  public open fun _mixResampled(dstBuffer: `AudioFrame*`, frameCount: Long): Long {
-    throw NotImplementedError("_mix_resampled is not implemented for AudioStreamPlaybackResampled")
   }
 
   /**

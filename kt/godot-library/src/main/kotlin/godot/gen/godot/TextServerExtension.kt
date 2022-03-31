@@ -141,16 +141,6 @@ public open class TextServerExtension : TextServer() {
   }
 
   /**
-   * Sets font source data, e.g contents of the dynamic font source file. `data_ptr` memory buffer must remain accessible during font lifetime.
-   */
-  public open fun _fontSetDataPtr(
-    fontRid: RID,
-    dataPtr: `const uint8_t*`,
-    dataSize: Long
-  ): Unit {
-  }
-
-  /**
    * Sets the font style flags, see [enum TextServer.FontStyle].
    */
   public open fun _fontSetStyle(fontRid: RID, style: Long): Unit {
@@ -1210,20 +1200,6 @@ public open class TextServerExtension : TextServer() {
   }
 
   /**
-   * Returns an array of glyphs in the visual order.
-   */
-  public open fun _shapedTextGetGlyphs(shaped: RID): `const Glyph*`? {
-    throw NotImplementedError("shaped_text_get_glyphs is not implemented for TextServerExtension")
-  }
-
-  /**
-   * Returns text glyphs in the logical order.
-   */
-  public open fun _shapedTextSortLogical(shaped: RID): `const Glyph*`? {
-    throw NotImplementedError("shaped_text_sort_logical is not implemented for TextServerExtension")
-  }
-
-  /**
    * Returns number of glyphs in the buffer.
    */
   public open fun _shapedTextGetGlyphCount(shaped: RID): Long {
@@ -1300,14 +1276,6 @@ public open class TextServerExtension : TextServer() {
   public open fun _shapedTextGetEllipsisGlyphCount(shaped: RID): Long {
     throw
         NotImplementedError("shaped_text_get_ellipsis_glyph_count is not implemented for TextServerExtension")
-  }
-
-  /**
-   * Returns array of the glyphs in the ellipsis.
-   */
-  public open fun _shapedTextGetEllipsisGlyphs(shaped: RID): `const Glyph*`? {
-    throw
-        NotImplementedError("shaped_text_get_ellipsis_glyphs is not implemented for TextServerExtension")
   }
 
   /**
@@ -1391,18 +1359,6 @@ public open class TextServerExtension : TextServer() {
   ): Long {
     throw
         NotImplementedError("shaped_text_get_dominant_direction_in_range is not implemented for TextServerExtension")
-  }
-
-  /**
-   * Returns shapes of the carets corresponding to the character offset `position` in the text. Returned caret shape is 1 pixel wide rectangle.
-   *
-   * **Note:** If this method is not implemented in the plugin, the default implementation will be used.
-   */
-  public open fun _shapedTextGetCarets(
-    shaped: RID,
-    position: Long,
-    caret: `CaretInfo*`
-  ): Unit {
   }
 
   /**

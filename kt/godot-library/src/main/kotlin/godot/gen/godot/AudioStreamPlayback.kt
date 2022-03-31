@@ -67,16 +67,5 @@ public open class AudioStreamPlayback : RefCounted() {
   public open fun _seek(position: Double): Unit {
   }
 
-  /**
-   *
-   */
-  public open fun _mix(
-    buffer: `AudioFrame*`,
-    rateScale: Double,
-    frames: Long
-  ): Long {
-    throw NotImplementedError("_mix is not implemented for AudioStreamPlayback")
-  }
-
   public companion object
 }

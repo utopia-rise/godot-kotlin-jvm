@@ -345,14 +345,6 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   /**
    *
    */
-  public open fun _debugGetStackLevelInstance(level: Long): `void*`? {
-    throw
-        NotImplementedError("_debug_get_stack_level_instance is not implemented for ScriptLanguageExtension")
-  }
-
-  /**
-   *
-   */
   public open fun _debugGetGlobals(maxSubitems: Long, maxDepth: Long): Dictionary<Any?, Any?> {
     throw NotImplementedError("_debug_get_globals is not implemented for ScriptLanguageExtension")
   }
@@ -424,38 +416,6 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
    *
    */
   public open fun _profilingStop(): Unit {
-  }
-
-  /**
-   *
-   */
-  public open fun _profilingGetAccumulatedData(infoArray: `ScriptLanguageExtensionProfilingInfo*`,
-      infoMax: Long): Long {
-    throw
-        NotImplementedError("_profiling_get_accumulated_data is not implemented for ScriptLanguageExtension")
-  }
-
-  /**
-   *
-   */
-  public open fun _profilingGetFrameData(infoArray: `ScriptLanguageExtensionProfilingInfo*`,
-      infoMax: Long): Long {
-    throw
-        NotImplementedError("_profiling_get_frame_data is not implemented for ScriptLanguageExtension")
-  }
-
-  /**
-   *
-   */
-  public open fun _allocInstanceBindingData(_object: Object): `void*`? {
-    throw
-        NotImplementedError("_alloc_instance_binding_data is not implemented for ScriptLanguageExtension")
-  }
-
-  /**
-   *
-   */
-  public open fun _freeInstanceBindingData(`data`: `void*`): Unit {
   }
 
   /**
