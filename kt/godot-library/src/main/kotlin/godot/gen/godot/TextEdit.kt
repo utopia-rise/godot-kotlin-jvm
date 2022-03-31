@@ -8,6 +8,7 @@ package godot
 
 import godot.TextEdit
 import godot.`annotation`.GodotBaseType
+import godot.core.Callable
 import godot.core.Color
 import godot.core.PackedStringArray
 import godot.core.Rect2i
@@ -16,6 +17,7 @@ import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
@@ -1046,7 +1048,7 @@ public open class TextEdit : Control() {
    * Provide custom tooltip text. The callback method must take the following args: `hovered_word: String`
    */
   public open fun setTooltipRequestFunc(callback: Callable): Unit {
-    TransferContext.writeArguments(OBJECT to callback)
+    TransferContext.writeArguments(CALLABLE to callback)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_TOOLTIP_REQUEST_FUNC,
         NIL)
   }
@@ -1670,7 +1672,7 @@ public open class TextEdit : Control() {
    * Set a custom draw method for the gutter. The callback method must take the following args: `line: int, gutter: int, Area: Rect2`.
    */
   public open fun setGutterCustomDraw(column: Long, drawCallback: Callable): Unit {
-    TransferContext.writeArguments(LONG to column, OBJECT to drawCallback)
+    TransferContext.writeArguments(LONG to column, CALLABLE to drawCallback)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTEDIT_SET_GUTTER_CUSTOM_DRAW,
         NIL)
   }

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Callable
 import godot.core.GodotError
 import godot.core.KtObject
 import godot.core.NodePath
@@ -17,6 +18,7 @@ import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -1088,7 +1090,7 @@ public open class Object : KtObject() {
     binds: VariantArray<Any?> = godot.core.variantArrayOf(),
     flags: Long = 0
   ): GodotError {
-    TransferContext.writeArguments(STRING_NAME to signal, OBJECT to callable, ARRAY to binds, LONG
+    TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable, ARRAY to binds, LONG
         to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_CONNECT, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -1100,7 +1102,7 @@ public open class Object : KtObject() {
    * If you try to disconnect a connection that does not exist, the method will throw an error. Use [isConnected] to ensure that the connection exists.
    */
   public open fun disconnect(signal: StringName, callable: Callable): Unit {
-    TransferContext.writeArguments(STRING_NAME to signal, OBJECT to callable)
+    TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_DISCONNECT, NIL)
   }
 
@@ -1108,7 +1110,7 @@ public open class Object : KtObject() {
    * Returns `true` if a connection exists for a given `signal` and `callable`.
    */
   public open fun isConnected(signal: StringName, callable: Callable): Boolean {
-    TransferContext.writeArguments(STRING_NAME to signal, OBJECT to callable)
+    TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_IS_CONNECTED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }

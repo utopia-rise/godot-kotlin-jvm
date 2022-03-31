@@ -11,6 +11,7 @@ import godot.RenderingServer
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.Basis
+import godot.core.Callable
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.PackedByteArray
@@ -31,6 +32,7 @@ import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BASIS
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DICTIONARY
 import godot.core.VariantType.DOUBLE
@@ -2294,7 +2296,7 @@ public object RenderingServer : Object() {
     enterCallable: Callable,
     exitCallable: Callable
   ): Unit {
-    TransferContext.writeArguments(_RID to notifier, OBJECT to enterCallable, OBJECT to
+    TransferContext.writeArguments(_RID to notifier, CALLABLE to enterCallable, CALLABLE to
         exitCallable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_VISIBILITY_NOTIFIER_SET_CALLBACKS, NIL)
@@ -4374,8 +4376,8 @@ public object RenderingServer : Object() {
     enterCallable: Callable,
     exitCallable: Callable
   ): Unit {
-    TransferContext.writeArguments(_RID to item, BOOL to enable, RECT2 to area, OBJECT to
-        enterCallable, OBJECT to exitCallable)
+    TransferContext.writeArguments(_RID to item, BOOL to enable, RECT2 to area, CALLABLE to
+        enterCallable, CALLABLE to exitCallable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_SET_VISIBILITY_NOTIFIER, NIL)
   }
@@ -4773,7 +4775,7 @@ public object RenderingServer : Object() {
    * Schedules a callback to the given callable after a frame has been drawn.
    */
   public open fun requestFrameDrawnCallback(callable: Callable): Unit {
-    TransferContext.writeArguments(OBJECT to callable)
+    TransferContext.writeArguments(CALLABLE to callable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_REQUEST_FRAME_DRAWN_CALLBACK, NIL)
   }

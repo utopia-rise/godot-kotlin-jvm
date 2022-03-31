@@ -7,16 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Callable
 import godot.core.StringName
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING_NAME
 import kotlin.Any
 import kotlin.Boolean
@@ -179,7 +180,7 @@ public object Performance : Object() {
     callable: Callable,
     arguments: VariantArray<Any?> = godot.core.variantArrayOf()
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to id, OBJECT to callable, ARRAY to arguments)
+    TransferContext.writeArguments(STRING_NAME to id, CALLABLE to callable, ARRAY to arguments)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PERFORMANCE_ADD_CUSTOM_MONITOR, NIL)
   }
 

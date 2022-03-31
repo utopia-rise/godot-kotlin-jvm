@@ -7,11 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Callable
 import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -74,7 +76,7 @@ public object JavaScript : Object() {
    * Creates a reference to a [godot.Callable] that can be used as a callback by JavaScript. The reference must be kept until the callback happens, or it won't be called at all. See [godot.JavaScriptObject] for usage.
    */
   public open fun createCallback(callable: Callable): JavaScriptObject? {
-    TransferContext.writeArguments(OBJECT to callable)
+    TransferContext.writeArguments(CALLABLE to callable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JAVASCRIPT_CREATE_CALLBACK, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as JavaScriptObject?
   }

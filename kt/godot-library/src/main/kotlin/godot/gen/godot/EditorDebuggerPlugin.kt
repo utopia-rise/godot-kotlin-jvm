@@ -7,13 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Callable
 import godot.core.StringName
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.signals.Signal0
@@ -77,7 +78,7 @@ public open abstract class EditorDebuggerPlugin : Control() {
    * Callable must accept a message string and a data array as argument. If the message and data are valid then callable must return `true` otherwise `false`.
    */
   public open fun registerMessageCapture(name: StringName, callable: Callable): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, OBJECT to callable)
+    TransferContext.writeArguments(STRING_NAME to name, CALLABLE to callable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORDEBUGGERPLUGIN_REGISTER_MESSAGE_CAPTURE, NIL)
   }

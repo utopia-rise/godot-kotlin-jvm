@@ -25,7 +25,7 @@ class Invocation : Spatial() {
 	var enumList = listOf(TestEnum.ENUM_1)
 
 	@RegisterProperty
-	var vectorList = PoolVector3Array()
+	var vectorList = PackedVector3Array()
 
 	@Export
 	@RegisterProperty
@@ -139,31 +139,31 @@ class Invocation : Spatial() {
 
 	@Export
 	@RegisterProperty
-	var poolByteArray = PoolByteArray()
+	var packedByteArray = PackedByteArray()
 
 	@Export
 	@RegisterProperty
-	var poolIntArray = PoolIntArray()
+	var packedInt32Array = PackedInt32Array()
 
 	@Export
 	@RegisterProperty
-	var poolRealArray = PoolRealArray()
+	var packedFloat64Array = PackedFloat64Array()
 
 	@Export
 	@RegisterProperty
-	var poolColorArray = PoolColorArray()
+	var packedColorArray = PackedColorArray()
 
 	@Export
 	@RegisterProperty
-	var poolStringArray = PoolStringArray()
+	var packedStringArray = PackedStringArray()
 
 	@Export
 	@RegisterProperty
-	var poolVector2Array = PoolVector2Array()
+	var packedVector2Array = PackedVector2Array()
 
 	@Export
 	@RegisterProperty
-	var poolVector3Array = PoolVector3Array()
+	var packedVector3Array = PackedVector3Array()
 
 	@Export
 	@RegisterProperty
@@ -504,59 +504,59 @@ class Invocation : Spatial() {
 	fun hasCameraNode() = getNodeOrNull(NodePath("Camera")) != null
 
 	@RegisterFunction
-	fun addByteToPoolArray(byte: Byte) = poolByteArray.append(byte)
+	fun addByteToPoolArray(byte: Byte) = packedByteArray.append(byte)
 
 	@RegisterFunction
-	fun addByteArrayToPoolArray(array: PoolByteArray) = poolByteArray.appendArray(array)
+	fun addByteArrayToPoolArray(array: PackedByteArray) = packedByteArray.appendArray(array)
 
 	@RegisterFunction
-	fun deleteByteFromPoolArray(index: Int) = poolByteArray.remove(index)
+	fun deleteByteFromPoolArray(index: Int) = packedByteArray.remove(index)
 
 	@RegisterFunction
-	fun getByteFromPoolArray(index: Int) = poolByteArray[index]
+	fun getByteFromPoolArray(index: Int) = packedByteArray[index]
 
 	@RegisterFunction
-	fun addColorToPoolArray(color: Color) = poolColorArray.append(color)
+	fun addColorToPoolArray(color: Color) = packedColorArray.append(color)
 
 	@RegisterFunction
-	fun addColorArrayToPoolArray(colorArray: PoolColorArray) = poolColorArray.appendArray(colorArray)
+	fun addColorArrayToPoolArray(colorArray: PackedColorArray) = packedColorArray.appendArray(colorArray)
 
 	@RegisterFunction
-	fun deleteColorFromPoolArray(index: Int) = poolColorArray.remove(index)
+	fun deleteColorFromPoolArray(index: Int) = packedColorArray.remove(index)
 
 	@RegisterFunction
-	fun getColorFromPoolArray(index: Int) = poolColorArray[index]
+	fun getColorFromPoolArray(index: Int) = packedColorArray[index]
 
 	@RegisterFunction
-	fun addIntToPoolArray(int: Int) = poolIntArray.append(int)
+	fun addIntToPoolArray(int: Int) = packedInt32Array.append(int)
 
 	@RegisterFunction
-	fun addIntArrayToPoolArray(intArray: PoolIntArray) = this.poolIntArray.appendArray(intArray)
+	fun addIntArrayToPoolArray(intArray: PackedInt32Array) = this.packedInt32Array.appendArray(intArray)
 
 	@RegisterFunction
-	fun deleteIntFromPoolArray(index: Int) = poolIntArray.remove(index)
+	fun deleteIntFromPoolArray(index: Int) = packedInt32Array.remove(index)
 
 	@RegisterFunction
-	fun getIntFromPoolArray(index: Int) = poolIntArray[index]
+	fun getIntFromPoolArray(index: Int) = packedInt32Array[index]
 
 	@RegisterFunction
-	fun addRealToPoolArray(realT: RealT) = poolRealArray.append(realT)
+	fun addRealToPoolArray(realT: RealT) = packedFloat64Array.append(realT)
 
 	@RegisterFunction
-	fun addRealArrayToPoolArray(realArray: PoolRealArray) = poolRealArray.appendArray(realArray)
+	fun addRealArrayToPoolArray(realArray: PackedFloat64Array) = packedFloat64Array.appendArray(realArray)
 
 	@RegisterFunction
 	fun readStringFromByteArray() {
 
 		val asciiArray = testString.toByteArray(Charsets.US_ASCII)
-		val pool1 = PoolByteArray()
+		val pool1 = PackedByteArray()
 		for (char in asciiArray) {
 			pool1.append(char)
 		}
 		asciiString = pool1.getStringFromAscii()
 
 		val utf8Array = testString.toByteArray(Charsets.UTF_8)
-		val pool2 = PoolByteArray()
+		val pool2 = PackedByteArray()
 		for (char in utf8Array) {
 			pool2.append(char)
 		}
@@ -564,46 +564,46 @@ class Invocation : Spatial() {
 	}
 
 	@RegisterFunction
-	fun deleteRealFromPoolArray(index: Int) = poolRealArray.remove(index)
+	fun deleteRealFromPoolArray(index: Int) = packedFloat64Array.remove(index)
 
 	@RegisterFunction
-	fun getRealFromPoolArray(index: Int) = poolRealArray[index]
+	fun getRealFromPoolArray(index: Int) = packedFloat64Array[index]
 
 	@RegisterFunction
-	fun addStringToPoolArray(string: String) = poolStringArray.append(string)
+	fun addStringToPoolArray(string: String) = packedStringArray.append(string)
 
 	@RegisterFunction
-	fun addStringArrayToPoolArray(stringArray: PoolStringArray) = poolStringArray.appendArray(stringArray)
+	fun addStringArrayToPoolArray(stringArray: PackedStringArray) = packedStringArray.appendArray(stringArray)
 
 	@RegisterFunction
-	fun deleteStringFromPoolArray(index: Int) = poolStringArray.remove(index)
+	fun deleteStringFromPoolArray(index: Int) = packedStringArray.remove(index)
 
 	@RegisterFunction
-	fun getStringFromPoolArray(index: Int) = poolStringArray[index]
+	fun getStringFromPoolArray(index: Int) = packedStringArray[index]
 
 	@RegisterFunction
-	fun addVector2ToPoolArray(vector2: Vector2) = poolVector2Array.append(vector2)
+	fun addVector2ToPoolArray(vector2: Vector2) = packedVector2Array.append(vector2)
 
 	@RegisterFunction
-	fun addVector2ArrayToPoolArray(vector2Array: PoolVector2Array) = poolVector2Array.appendArray(vector2Array)
+	fun addVector2ArrayToPoolArray(vector2Array: PackedVector2Array) = packedVector2Array.appendArray(vector2Array)
 
 	@RegisterFunction
-	fun deleteVector2FromPoolArray(index: Int) = poolVector2Array.remove(index)
+	fun deleteVector2FromPoolArray(index: Int) = packedVector2Array.remove(index)
 
 	@RegisterFunction
-	fun getVector2FromPoolArray(index: Int) = poolVector2Array[index]
+	fun getVector2FromPoolArray(index: Int) = packedVector2Array[index]
 
 	@RegisterFunction
-	fun addVector3ToPoolArray(vector3: Vector3) = poolVector3Array.append(vector3)
+	fun addVector3ToPoolArray(vector3: Vector3) = packedVector3Array.append(vector3)
 
 	@RegisterFunction
-	fun addVector3ArrayToPoolArray(vector3Array: PoolVector3Array) = poolVector3Array.appendArray(vector3Array)
+	fun addVector3ArrayToPoolArray(vector3Array: PackedVector3Array) = packedVector3Array.appendArray(vector3Array)
 
 	@RegisterFunction
-	fun deleteVector3FromPoolArray(index: Int) = poolVector3Array.remove(index)
+	fun deleteVector3FromPoolArray(index: Int) = packedVector3Array.remove(index)
 
 	@RegisterFunction
-	fun getVector3FromPoolArray(index: Int) = poolVector3Array[index]
+	fun getVector3FromPoolArray(index: Int) = packedVector3Array[index]
 
 	// Singleton tests
 

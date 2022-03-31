@@ -351,6 +351,14 @@ enum class VariantType(
             _RID.toGodotNativeCoreType<RID>(buffer, any)
         }
     ),
+    CALLABLE(
+        { buffer: ByteBuffer, _: Int ->
+            //TODO/4.0: Implement
+        },
+        { buffer: ByteBuffer, any: Any ->
+            //TODO/4.0: Implement
+        }
+    ),
     OBJECT(
         { buffer: ByteBuffer, _: Int ->
             val ptr = buffer.long

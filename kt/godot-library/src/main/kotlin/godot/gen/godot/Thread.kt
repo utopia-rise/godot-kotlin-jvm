@@ -7,13 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Callable
 import godot.core.GodotError
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
-import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import kotlin.Any
 import kotlin.Boolean
@@ -49,7 +50,7 @@ public open class Thread : RefCounted() {
     userdata: Any? = null,
     priority: Thread.Priority = Priority.PRIORITY_NORMAL
   ): GodotError {
-    TransferContext.writeArguments(OBJECT to callable, ANY to userdata, LONG to priority.id)
+    TransferContext.writeArguments(CALLABLE to callable, ANY to userdata, LONG to priority.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_START, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }

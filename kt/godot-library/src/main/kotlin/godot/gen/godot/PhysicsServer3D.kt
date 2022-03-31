@@ -9,11 +9,13 @@ package godot
 import godot.PhysicsServer3D
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
+import godot.core.Callable
 import godot.core.RID
 import godot.core.TransferContext
 import godot.core.Transform3D
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
@@ -450,7 +452,7 @@ public object PhysicsServer3D : Object() {
    * 5: The shape index of the area where the object entered/exited.
    */
   public open fun areaSetMonitorCallback(area: RID, callback: Callable): Unit {
-    TransferContext.writeArguments(_RID to area, OBJECT to callback)
+    TransferContext.writeArguments(_RID to area, CALLABLE to callback)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_MONITOR_CALLBACK, NIL)
   }
@@ -459,7 +461,7 @@ public object PhysicsServer3D : Object() {
    *
    */
   public open fun areaSetAreaMonitorCallback(area: RID, callback: Callable): Unit {
-    TransferContext.writeArguments(_RID to area, OBJECT to callback)
+    TransferContext.writeArguments(_RID to area, CALLABLE to callback)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_AREA_SET_AREA_MONITOR_CALLBACK, NIL)
   }
@@ -1018,7 +1020,7 @@ public object PhysicsServer3D : Object() {
     callable: Callable,
     userdata: Any? = null
   ): Unit {
-    TransferContext.writeArguments(_RID to body, OBJECT to callable, ANY to userdata)
+    TransferContext.writeArguments(_RID to body, CALLABLE to callable, ANY to userdata)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER3D_BODY_SET_FORCE_INTEGRATION_CALLBACK, NIL)
   }

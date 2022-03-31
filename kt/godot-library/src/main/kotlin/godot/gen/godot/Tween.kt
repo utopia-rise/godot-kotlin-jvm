@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Callable
 import godot.core.NodePath
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -184,7 +186,7 @@ public open class Tween : RefCounted() {
    * 				```
    */
   public open fun tweenCallback(callback: Callable): CallbackTweener? {
-    TransferContext.writeArguments(OBJECT to callback)
+    TransferContext.writeArguments(CALLABLE to callback)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_TWEEN_CALLBACK, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as CallbackTweener?
   }
@@ -216,7 +218,7 @@ public open class Tween : RefCounted() {
     to: Any,
     duration: Double
   ): MethodTweener? {
-    TransferContext.writeArguments(OBJECT to method, ANY to from, ANY to to, DOUBLE to duration)
+    TransferContext.writeArguments(CALLABLE to method, ANY to from, ANY to to, DOUBLE to duration)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TWEEN_TWEEN_METHOD, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as MethodTweener?
   }

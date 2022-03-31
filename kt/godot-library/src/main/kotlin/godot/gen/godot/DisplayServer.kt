@@ -8,6 +8,7 @@ package godot
 
 import godot.DisplayServer
 import godot.`annotation`.GodotBaseType
+import godot.core.Callable
 import godot.core.GodotError
 import godot.core.PackedInt32Array
 import godot.core.PackedStringArray
@@ -17,6 +18,7 @@ import godot.core.Rect2i
 import godot.core.TransferContext
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
@@ -94,7 +96,7 @@ public object DisplayServer : Object() {
     callback: Callable,
     tag: Any? = null
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to label, OBJECT to callback, ANY to
+    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, ANY to
         tag)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_ITEM,
         NIL)
@@ -109,7 +111,7 @@ public object DisplayServer : Object() {
     callback: Callable,
     tag: Any? = null
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to label, OBJECT to callback, ANY to
+    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, ANY to
         tag)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_CHECK_ITEM, NIL)
@@ -160,11 +162,11 @@ public object DisplayServer : Object() {
   /**
    *
    */
-  public open fun globalMenuGetItemCallback(menuRoot: String, idx: Long): Callable? {
+  public open fun globalMenuGetItemCallback(menuRoot: String, idx: Long): Callable {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_CALLBACK, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Callable?
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_CALLBACK, CALLABLE)
+    return TransferContext.readReturnValue(CALLABLE, false) as Callable
   }
 
   /**
@@ -231,7 +233,7 @@ public object DisplayServer : Object() {
     idx: Long,
     callback: Callable
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx, OBJECT to callback)
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx, CALLABLE to callback)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_SET_ITEM_CALLBACK, NIL)
   }
@@ -726,7 +728,7 @@ public object DisplayServer : Object() {
    *
    */
   public open fun windowSetRectChangedCallback(callback: Callable, windowId: Long = 0): Unit {
-    TransferContext.writeArguments(OBJECT to callback, LONG to windowId)
+    TransferContext.writeArguments(CALLABLE to callback, LONG to windowId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_RECT_CHANGED_CALLBACK, NIL)
   }
@@ -735,7 +737,7 @@ public object DisplayServer : Object() {
    *
    */
   public open fun windowSetWindowEventCallback(callback: Callable, windowId: Long = 0): Unit {
-    TransferContext.writeArguments(OBJECT to callback, LONG to windowId)
+    TransferContext.writeArguments(CALLABLE to callback, LONG to windowId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_WINDOW_EVENT_CALLBACK, NIL)
   }
@@ -744,7 +746,7 @@ public object DisplayServer : Object() {
    *
    */
   public open fun windowSetInputEventCallback(callback: Callable, windowId: Long = 0): Unit {
-    TransferContext.writeArguments(OBJECT to callback, LONG to windowId)
+    TransferContext.writeArguments(CALLABLE to callback, LONG to windowId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_INPUT_EVENT_CALLBACK, NIL)
   }
@@ -753,7 +755,7 @@ public object DisplayServer : Object() {
    *
    */
   public open fun windowSetInputTextCallback(callback: Callable, windowId: Long = 0): Unit {
-    TransferContext.writeArguments(OBJECT to callback, LONG to windowId)
+    TransferContext.writeArguments(CALLABLE to callback, LONG to windowId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_INPUT_TEXT_CALLBACK, NIL)
   }
@@ -762,7 +764,7 @@ public object DisplayServer : Object() {
    *
    */
   public open fun windowSetDropFilesCallback(callback: Callable, windowId: Long = 0): Unit {
-    TransferContext.writeArguments(OBJECT to callback, LONG to windowId)
+    TransferContext.writeArguments(CALLABLE to callback, LONG to windowId)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_DROP_FILES_CALLBACK, NIL)
   }
@@ -1082,7 +1084,7 @@ public object DisplayServer : Object() {
     callback: Callable
   ): GodotError {
     TransferContext.writeArguments(STRING to title, STRING to description, PACKED_STRING_ARRAY to
-        buttons, OBJECT to callback)
+        buttons, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_DIALOG_SHOW, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -1097,7 +1099,7 @@ public object DisplayServer : Object() {
     callback: Callable
   ): GodotError {
     TransferContext.writeArguments(STRING to title, STRING to description, STRING to existingText,
-        OBJECT to callback)
+        CALLABLE to callback)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_DIALOG_INPUT_TEXT,
         LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]

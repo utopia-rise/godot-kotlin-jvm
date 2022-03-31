@@ -1,4 +1,4 @@
-package godot.codegen
+package code_backup
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
@@ -7,11 +7,6 @@ import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
-import godot.codegen.utils.convertToCamelCase
-import godot.codegen.utils.escapeKotlinReservedNames
-import godot.codegen.utils.getPackage
-
-import godot.codegen.utils.convertIfTypeParameter
 
 private const val signalPackage = "godot.signals"
 

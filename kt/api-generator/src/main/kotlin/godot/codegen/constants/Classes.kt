@@ -58,6 +58,7 @@ object GodotTypes {
     const val vector2i = "Vector2i"
     const val vector3 = "Vector3"
     const val vector3i = "Vector3i"
+    const val callable = "Callable"
     const val variant = "Variant"
 
     val coreTypes = listOf(
@@ -90,6 +91,7 @@ object GodotTypes {
         vector2i,
         vector3,
         vector3i,
+        callable,
         variant
     )
 

@@ -1,4 +1,4 @@
-package godot.codegen
+package code_backup
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties

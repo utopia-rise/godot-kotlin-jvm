@@ -7,10 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Callable
 import godot.core.Dictionary
 import godot.core.PackedStringArray
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -583,7 +585,7 @@ public open abstract class EditorPlugin : Node() {
    * Adds a custom menu item to **Project > Tools** named `name`. When clicked, the provided `callable` will be called.
    */
   public open fun addToolMenuItem(name: String, callable: Callable): Unit {
-    TransferContext.writeArguments(STRING to name, OBJECT to callable)
+    TransferContext.writeArguments(STRING to name, CALLABLE to callable)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_TOOL_MENU_ITEM,
         NIL)
   }
@@ -693,7 +695,7 @@ public open abstract class EditorPlugin : Node() {
    * The callback should have 4 arguments: [godot.Object] `undo_redo`, [godot.Object] `modified_object`, [godot.String] `property` and [Variant] `new_value`. They are, respectively, the [godot.UndoRedo] object used by the inspector, the currently modified object, the name of the modified property and the new value the property is about to take.
    */
   public open fun addUndoRedoInspectorHookCallback(callable: Callable): Unit {
-    TransferContext.writeArguments(OBJECT to callable)
+    TransferContext.writeArguments(CALLABLE to callable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_ADD_UNDO_REDO_INSPECTOR_HOOK_CALLBACK, NIL)
   }
@@ -702,7 +704,7 @@ public open abstract class EditorPlugin : Node() {
    * Removes a callback previsously added by [addUndoRedoInspectorHookCallback].
    */
   public open fun removeUndoRedoInspectorHookCallback(callable: Callable): Unit {
-    TransferContext.writeArguments(OBJECT to callable)
+    TransferContext.writeArguments(CALLABLE to callable)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITORPLUGIN_REMOVE_UNDO_REDO_INSPECTOR_HOOK_CALLBACK, NIL)
   }

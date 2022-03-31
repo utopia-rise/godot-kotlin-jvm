@@ -1,13 +1,10 @@
-package godot.codegen
+package code_backup
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import godot.codegen.utils.escapeUnderscore
-import godot.codegen.utils.isCoreType
-import godot.codegen.utils.isCoreTypeAdaptedForKotlin
 import org.gradle.kotlin.dsl.support.appendReproducibleNewLine
 import java.io.File
 

@@ -7,9 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.Callable
 import godot.core.TransferContext
+import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import kotlin.String
 import kotlin.Suppress
@@ -75,7 +76,7 @@ public open abstract class EditorCommandPalette : ConfirmationDialog() {
     bindedCallable: Callable,
     shortcutText: String = "None"
   ): Unit {
-    TransferContext.writeArguments(STRING to commandName, STRING to keyName, OBJECT to
+    TransferContext.writeArguments(STRING to commandName, STRING to keyName, CALLABLE to
         bindedCallable, STRING to shortcutText)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORCOMMANDPALETTE_ADD_COMMAND,
         NIL)
