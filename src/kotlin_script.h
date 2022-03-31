@@ -69,7 +69,7 @@ public:
     const Vector<Multiplayer::RPCConfig> get_rpc_methods() const override;
 
 #ifdef TOOLS_ENABLED
-    const Vector<DocData::ClassDoc>& get_documentation() const override;
+    Vector<DocData::ClassDoc> get_documentation() const override;
 #endif
 
 

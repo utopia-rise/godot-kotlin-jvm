@@ -269,7 +269,7 @@ bool KotlinLanguage::overrides_external_editor() {
 }
 
 Error KotlinLanguage::complete_code(const String& p_code, const String& p_path, Object* p_owner,
-                                    List<ScriptCodeCompletionOption>* r_options, bool& r_force, String& r_call_hint) {
+                                    List<CodeCompletionOption>* r_options, bool& r_force, String& r_call_hint) {
     return ScriptLanguage::complete_code(p_code, p_path, p_owner, r_options, r_force, r_call_hint);
 }
 

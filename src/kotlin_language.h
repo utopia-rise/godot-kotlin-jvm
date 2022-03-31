@@ -1,5 +1,6 @@
 #ifndef GODOT_JVM_KOTLIN_LANGUAGE_H
 #define GODOT_JVM_KOTLIN_LANGUAGE_H
+
 #include <core/object/script_language.h>
 
 class KotlinLanguage : public ScriptLanguage {
@@ -58,7 +59,7 @@ public:
     bool overrides_external_editor() override;
 
     Error complete_code(const String& p_code, const String& p_path, Object* p_owner,
-                        List<ScriptCodeCompletionOption>* r_options, bool& r_force, String& r_call_hint) override;
+                        List<CodeCompletionOption>* r_options, bool& r_force, String& r_call_hint) override;
 
     Error lookup_code(const String& p_code, const String& p_symbol, const String& p_path, Object* p_owner,
                       LookupResult& r_result) override;

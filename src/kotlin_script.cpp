@@ -210,10 +210,9 @@ const Vector<Multiplayer::RPCConfig> KotlinScript::get_rpc_methods() const {
 }
 
 #ifdef TOOLS_ENABLED
-const Vector<DocData::ClassDoc>& KotlinScript::get_documentation() const {
+Vector<DocData::ClassDoc> KotlinScript::get_documentation() const {
     //TODO
-    static Vector<DocData::ClassDoc> docs;
-    return docs;
+    return {};
 }
 #endif
 
