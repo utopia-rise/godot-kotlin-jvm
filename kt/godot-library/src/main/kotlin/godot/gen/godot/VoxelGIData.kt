@@ -117,7 +117,7 @@ public open class VoxelGIData : Resource() {
   public open var useTwoBounces: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_USE_TWO_BOUNCES,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_IS_USING_TWO_BOUNCES,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -133,7 +133,7 @@ public open class VoxelGIData : Resource() {
   public open var interior: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_GET_INTERIOR, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VOXELGIDATA_IS_INTERIOR, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

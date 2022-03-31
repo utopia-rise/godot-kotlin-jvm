@@ -17,6 +17,8 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.RECT2
 import godot.core.VariantType.STRING
+import godot.core.VariantType.VECTOR2
+import godot.core.Vector2
 import godot.signals.Signal1
 import godot.signals.signal
 import kotlin.Boolean
@@ -150,6 +152,20 @@ public open class TabBar : Control() {
     }
 
   /**
+   * Sets the maximum width which all tabs should be limited to. Unlimited if set to `0`.
+   */
+  public open var maxTabWidth: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_MAX_TAB_WIDTH, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_MAX_TAB_WIDTH, NIL)
+    }
+
+  /**
    * if `true`, the mouse's scroll wheel can be used to navigate the scroll view.
    */
   public open var scrollingEnabled: Boolean
@@ -178,6 +194,24 @@ public open class TabBar : Control() {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TABBAR_SET_DRAG_TO_REARRANGE_ENABLED, NIL)
+    }
+
+  /**
+   * [godot.TabBar]s with the same rearrange group ID will allow dragging the tabs between them. Enable drag with [dragToRearrangeEnabled].
+   *
+   * Setting this to `-1` will disable rearranging between [godot.TabBar]s.
+   */
+  public open var tabsRearrangeGroup: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TABS_REARRANGE_GROUP,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TABS_REARRANGE_GROUP,
+          NIL)
     }
 
   /**
@@ -405,6 +439,15 @@ public open class TabBar : Control() {
   }
 
   /**
+   * Returns the index of the tab at local coordinates `point`. Returns `-1` if the point is outside the control boundaries or if there's no tab at the queried position.
+   */
+  public open fun getTabIdxAtPoint(point: Vector2): Long {
+    TransferContext.writeArguments(VECTOR2 to point)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TAB_IDX_AT_POINT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
    * Returns the number of hidden tabs offsetted to the left.
    */
   public open fun getTabOffset(): Long {
@@ -446,25 +489,6 @@ public open class TabBar : Control() {
   public open fun moveTab(from: Long, to: Long): Unit {
     TransferContext.writeArguments(LONG to from, LONG to to)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_MOVE_TAB, NIL)
-  }
-
-  /**
-   * Defines the rearrange group ID. Choose for each [godot.TabBar] the same value to dragging tabs between [godot.TabBar]. Enable drag with [dragToRearrangeEnabled].
-   */
-  public open fun setTabsRearrangeGroup(groupId: Long): Unit {
-    TransferContext.writeArguments(LONG to groupId)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_SET_TABS_REARRANGE_GROUP,
-        NIL)
-  }
-
-  /**
-   * Returns the [godot.TabBar]'s rearrange group ID.
-   */
-  public open fun getTabsRearrangeGroup(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABBAR_GET_TABS_REARRANGE_GROUP,
-        LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
   }
 
   public enum class AlignmentMode(

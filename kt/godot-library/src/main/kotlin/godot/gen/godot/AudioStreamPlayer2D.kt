@@ -96,7 +96,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   public open val playing: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_PLAYING,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_IS_PLAYING,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -107,8 +107,8 @@ public open class AudioStreamPlayer2D : Node2D() {
   public open var autoplay: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_GET_AUTOPLAY,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMPLAYER2D_IS_AUTOPLAY_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -197,7 +197,7 @@ public open class AudioStreamPlayer2D : Node2D() {
     }
 
   /**
-   * Areas in which this sound plays.
+   * Determines which [godot.Area2D] layers affect the sound for reverb and audio bus effects. Areas can be used to redirect [godot.AudioStream]s so that they play in a certain audio bus. An example of how you might use this is making a "water" area so that sounds played in the water are redirected through an audio bus to make them sound like they are being played underwater.
    */
   public open var areaMask: Long
     get() {

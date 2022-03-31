@@ -56,9 +56,9 @@ public open class Area3D : CollisionObject3D() {
    *
    * `area` the other Area3D.
    *
-   * `area_shape_index` the index of the [godot.Shape3D] of the other Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `area.shape_owner_get_owner(area_shape_index)`.
+   * `area_shape_index` the index of the [godot.Shape3D] of the other Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `area.shape_owner_get_owner(area.shape_find_owner(area_shape_index))`.
    *
-   * `local_shape_index` the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(local_shape_index)`.
+   * `local_shape_index` the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
   public val areaShapeExited: Signal4<RID, Area3D, Long, Long> by signal("areaRid", "area",
       "areaShapeIndex", "localShapeIndex")
@@ -77,9 +77,9 @@ public open class Area3D : CollisionObject3D() {
    *
    * `body` the [godot.Node], if it exists in the tree, of the [godot.PhysicsBody3D] or [godot.GridMap].
    *
-   * `body_shape_index` the index of the [godot.Shape3D] of the [godot.PhysicsBody3D] or [godot.GridMap] used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `body.shape_owner_get_owner(body_shape_index)`.
+   * `body_shape_index` the index of the [godot.Shape3D] of the [godot.PhysicsBody3D] or [godot.GridMap] used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.
    *
-   * `local_shape_index` the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(local_shape_index)`.
+   * `local_shape_index` the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
   public val bodyShapeEntered: Signal4<RID, Node3D, Long, Long> by signal("bodyRid", "body",
       "bodyShapeIndex", "localShapeIndex")
@@ -98,9 +98,9 @@ public open class Area3D : CollisionObject3D() {
    *
    * `area` the other Area3D.
    *
-   * `area_shape_index` the index of the [godot.Shape3D] of the other Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `area.shape_owner_get_owner(area_shape_index)`.
+   * `area_shape_index` the index of the [godot.Shape3D] of the other Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `area.shape_owner_get_owner(area.shape_find_owner(area_shape_index))`.
    *
-   * `local_shape_index` the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(local_shape_index)`.
+   * `local_shape_index` the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
   public val areaShapeEntered: Signal4<RID, Area3D, Long, Long> by signal("areaRid", "area",
       "areaShapeIndex", "localShapeIndex")
@@ -119,9 +119,9 @@ public open class Area3D : CollisionObject3D() {
    *
    * `body` the [godot.Node], if it exists in the tree, of the [godot.PhysicsBody3D] or [godot.GridMap].
    *
-   * `body_shape_index` the index of the [godot.Shape3D] of the [godot.PhysicsBody3D] or [godot.GridMap] used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `body.shape_owner_get_owner(body_shape_index)`.
+   * `body_shape_index` the index of the [godot.Shape3D] of the [godot.PhysicsBody3D] or [godot.GridMap] used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.
    *
-   * `local_shape_index` the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(local_shape_index)`.
+   * `local_shape_index` the index of the [godot.Shape3D] of this Area3D used by the [godot.PhysicsServer3D]. Get the [godot.CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
   public val bodyShapeExited: Signal4<RID, Node3D, Long, Long> by signal("bodyRid", "body",
       "bodyShapeIndex", "localShapeIndex")
@@ -132,7 +132,7 @@ public open class Area3D : CollisionObject3D() {
   public open var monitoring: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_MONITORING, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_IS_MONITORING, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -146,7 +146,7 @@ public open class Area3D : CollisionObject3D() {
   public open var monitorable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_MONITORABLE, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_IS_MONITORABLE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -174,14 +174,14 @@ public open class Area3D : CollisionObject3D() {
   public open var gravitySpaceOverride: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_GRAVITY_SPACE_OVERRIDE,
-          LONG)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AREA3D_GET_GRAVITY_SPACE_OVERRIDE_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_GRAVITY_SPACE_OVERRIDE,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AREA3D_SET_GRAVITY_SPACE_OVERRIDE_MODE, NIL)
     }
 
   /**
@@ -190,12 +190,12 @@ public open class Area3D : CollisionObject3D() {
   public open var gravityPoint: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_GRAVITY_POINT, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_IS_GRAVITY_A_POINT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_GRAVITY_POINT, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_GRAVITY_IS_POINT, NIL)
     }
 
   /**
@@ -266,13 +266,13 @@ public open class Area3D : CollisionObject3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA3D_GET_LINEAR_DAMP_SPACE_OVERRIDE, LONG)
+          ENGINEMETHOD_ENGINECLASS_AREA3D_GET_LINEAR_DAMP_SPACE_OVERRIDE_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA3D_SET_LINEAR_DAMP_SPACE_OVERRIDE, NIL)
+          ENGINEMETHOD_ENGINECLASS_AREA3D_SET_LINEAR_DAMP_SPACE_OVERRIDE_MODE, NIL)
     }
 
   /**
@@ -298,13 +298,13 @@ public open class Area3D : CollisionObject3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA3D_GET_ANGULAR_DAMP_SPACE_OVERRIDE, LONG)
+          ENGINEMETHOD_ENGINECLASS_AREA3D_GET_ANGULAR_DAMP_SPACE_OVERRIDE_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA3D_SET_ANGULAR_DAMP_SPACE_OVERRIDE, NIL)
+          ENGINEMETHOD_ENGINECLASS_AREA3D_SET_ANGULAR_DAMP_SPACE_OVERRIDE_MODE, NIL)
     }
 
   /**
@@ -376,7 +376,7 @@ public open class Area3D : CollisionObject3D() {
   public open var audioBusOverride: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_AUDIO_BUS_OVERRIDE,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_IS_OVERRIDING_AUDIO_BUS,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -407,13 +407,12 @@ public open class Area3D : CollisionObject3D() {
   public open var reverbBusEnable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_REVERB_BUS_ENABLE,
-          BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_IS_USING_REVERB_BUS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_REVERB_BUS_ENABLE, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_USE_REVERB_BUS, NIL)
     }
 
   /**
@@ -422,13 +421,13 @@ public open class Area3D : CollisionObject3D() {
   public open var reverbBusName: StringName
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_REVERB_BUS_NAME,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_REVERB_BUS,
           STRING_NAME)
       return TransferContext.readReturnValue(STRING_NAME, false) as StringName
     }
     set(`value`) {
       TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_REVERB_BUS_NAME, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_REVERB_BUS, NIL)
     }
 
   /**
@@ -437,13 +436,12 @@ public open class Area3D : CollisionObject3D() {
   public open var reverbBusAmount: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_REVERB_BUS_AMOUNT,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_REVERB_AMOUNT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_REVERB_BUS_AMOUNT, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_REVERB_AMOUNT, NIL)
     }
 
   /**
@@ -452,14 +450,13 @@ public open class Area3D : CollisionObject3D() {
   public open var reverbBusUniformity: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_REVERB_BUS_UNIFORMITY,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_GET_REVERB_UNIFORMITY,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_REVERB_BUS_UNIFORMITY,
-          NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA3D_SET_REVERB_UNIFORMITY, NIL)
     }
 
   public override fun __new(): Unit {

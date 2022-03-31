@@ -87,7 +87,7 @@ public object TranslationServer : Object() {
   }
 
   /**
-   * Retunrs `locale` string standardized to match known locales (e.g. `en-US` would be matched to `en_US`).
+   * Returns `locale` string standardized to match known locales (e.g. `en-US` would be matched to `en_US`).
    */
   public open fun standardizeLocale(locale: String): String {
     TransferContext.writeArguments(STRING to locale)

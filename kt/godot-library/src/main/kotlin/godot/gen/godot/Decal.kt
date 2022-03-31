@@ -138,13 +138,13 @@ public open class Decal : VisualInstance3D() {
   public open var distanceFadeEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_GET_DISTANCE_FADE_ENABLED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_IS_DISTANCE_FADE_ENABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_DISTANCE_FADE_ENABLED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DECAL_SET_ENABLE_DISTANCE_FADE,
           NIL)
     }
 

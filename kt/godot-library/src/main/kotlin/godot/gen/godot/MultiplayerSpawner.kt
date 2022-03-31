@@ -48,13 +48,13 @@ public open class MultiplayerSpawner : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_REPLICATION, ARRAY)
+          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_SPAWNABLE_SCENES, ARRAY)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_REPLICATION, NIL)
+          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_SPAWNABLE_SCENES, NIL)
     }
 
   /**
@@ -95,14 +95,14 @@ public open class MultiplayerSpawner : Node() {
   public open var autoSpawn: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_GET_AUTO_SPAWN,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_IS_AUTO_SPAWNING, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_AUTO_SPAWN,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSPAWNER_SET_AUTO_SPAWNING, NIL)
     }
 
   public override fun __new(): Unit {

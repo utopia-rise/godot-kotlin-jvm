@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
-import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.TransferContext
 import godot.core.VariantArray
@@ -24,7 +23,6 @@ import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.signals.Signal0
 import godot.signals.Signal1
-import godot.signals.Signal2
 import godot.signals.signal
 import kotlin.Any
 import kotlin.Boolean
@@ -75,11 +73,6 @@ public open class SceneTree : MainLoop() {
   public val nodeAdded: Signal1<Node> by signal("node")
 
   /**
-   * Emitted when files are dragged from the OS file manager and dropped in the game window. The arguments are a list of file paths and the identifier of the screen where the drag originated.
-   */
-  public val filesDropped: Signal2<PackedStringArray, Long> by signal("files", "screen")
-
-  /**
    * Emitted immediately before [godot.Node.Process] is called on every node in the [godot.SceneTree].
    */
   public val processFrame: Signal0 by signal()
@@ -101,7 +94,7 @@ public open class SceneTree : MainLoop() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_DEBUG_COLLISIONS_HINT, BOOL)
+          ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_DEBUGGING_COLLISIONS_HINT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -117,7 +110,7 @@ public open class SceneTree : MainLoop() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_DEBUG_NAVIGATION_HINT, BOOL)
+          ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_DEBUGGING_NAVIGATION_HINT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -136,12 +129,12 @@ public open class SceneTree : MainLoop() {
   public open var paused: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_PAUSED, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_PAUSED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_PAUSED, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_PAUSE, NIL)
     }
 
   /**
@@ -207,14 +200,14 @@ public open class SceneTree : MainLoop() {
   public open var multiplayerPoll: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_GET_MULTIPLAYER_POLL,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SCENETREE_IS_MULTIPLAYER_POLL_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_MULTIPLAYER_POLL,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SCENETREE_SET_MULTIPLAYER_POLL_ENABLED, NIL)
     }
 
   public override fun __new(): Unit {
@@ -369,11 +362,10 @@ public open class SceneTree : MainLoop() {
     group: StringName,
     method: StringName,
     vararg __var_args: Any?
-  ): Any? {
+  ): Unit {
     TransferContext.writeArguments(LONG to flags, STRING_NAME to group, STRING_NAME to method, 
         *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CALL_GROUP_FLAGS, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CALL_GROUP_FLAGS, NIL)
   }
 
   /**
@@ -413,11 +405,10 @@ public open class SceneTree : MainLoop() {
     group: StringName,
     method: StringName,
     vararg __var_args: Any?
-  ): Any? {
+  ): Unit {
     TransferContext.writeArguments(STRING_NAME to group, STRING_NAME to method,  *__var_args.map {
         ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CALL_GROUP, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SCENETREE_CALL_GROUP, NIL)
   }
 
   /**

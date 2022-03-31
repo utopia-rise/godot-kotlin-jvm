@@ -17,9 +17,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * World boundary shape for 2D collisions.
+ * World boundary (infinite plane) shape resource for 2D physics.
  *
- * World boundary shape for 2D collisions. It works like a 2D plane and will not allow any physics body to go to the negative side. Not recommended for rigid bodies, and usually not recommended for static bodies either because it forces checks against it on every frame.
+ * 2D world boundary shape to be added as a *direct* child of a [godot.PhysicsBody2D] or [godot.Area2D] using a [godot.CollisionShape2D] node. [godot.WorldBoundaryShape2D] works like an infinite plane and will not allow any physics body to go to the negative side. Note that the [normal] matters; anything "below" the plane will collide with it. If the [godot.WorldBoundaryShape2D] is used in a [godot.PhysicsBody2D], it will cause colliding objects placed "below" it to teleport "above" the plane.
+ *
+ * **Performance:** Being a primitive collision shape, [godot.WorldBoundaryShape2D] is fast to check collisions against.
  */
 @GodotBaseType
 public open class WorldBoundaryShape2D : Shape2D() {

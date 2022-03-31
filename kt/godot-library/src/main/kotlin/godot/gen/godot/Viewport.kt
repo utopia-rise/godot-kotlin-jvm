@@ -35,7 +35,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Creates a sub-view into the screen.
+ * Base class for viewports.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/586](https://godotengine.org/asset-library/asset/586)
@@ -43,8 +43,6 @@ import kotlin.Unit
  * A Viewport creates a different view into the screen, or a sub-view inside another viewport. Children 2D Nodes will display on it, and children Camera3D 3D nodes will render on it too.
  *
  * Optionally, a viewport can have its own 2D or 3D world, so they don't share what they draw with other viewports.
- *
- * If a viewport is a child of a [godot.SubViewportContainer], it will automatically take up its size, otherwise it must be set manually.
  *
  * Viewports can also choose to be audio listeners, so they generate positional audio depending on a 2D or 3D camera child of it.
  *
@@ -70,7 +68,7 @@ public open abstract class Viewport : Node() {
   public open var disable3d: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DISABLE_3D, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_3D_DISABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -84,7 +82,7 @@ public open abstract class Viewport : Node() {
   public open var useXr: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_USE_XR, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_XR, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -98,14 +96,14 @@ public open abstract class Viewport : Node() {
   public open var audioListenerEnable3d: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_AUDIO_LISTENER_ENABLE_3D, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_AUDIO_LISTENER_3D,
+          BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_AUDIO_LISTENER_ENABLE_3D, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_AS_AUDIO_LISTENER_3D,
+          NIL)
     }
 
   /**
@@ -114,12 +112,14 @@ public open abstract class Viewport : Node() {
   public open var ownWorld3d: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_OWN_WORLD_3D, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_OWN_WORLD_3D,
+          BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_OWN_WORLD_3D, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_USE_OWN_WORLD_3D,
+          NIL)
     }
 
   /**
@@ -156,12 +156,14 @@ public open abstract class Viewport : Node() {
   public open var transparentBg: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_TRANSPARENT_BG, BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_HAS_TRANSPARENT_BACKGROUND, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_TRANSPARENT_BG, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_TRANSPARENT_BACKGROUND, NIL)
     }
 
   /**
@@ -170,8 +172,8 @@ public open abstract class Viewport : Node() {
   public open var handleInputLocally: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_HANDLE_INPUT_LOCALLY,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_HANDLING_INPUT_LOCALLY, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -187,7 +189,7 @@ public open abstract class Viewport : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SNAP_2D_TRANSFORMS_TO_PIXEL, BOOL)
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_SNAP_2D_TRANSFORMS_TO_PIXEL_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -203,7 +205,7 @@ public open abstract class Viewport : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SNAP_2D_VERTICES_TO_PIXEL, BOOL)
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_SNAP_2D_VERTICES_TO_PIXEL_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -247,7 +249,7 @@ public open abstract class Viewport : Node() {
   public open var useDebanding: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_USE_DEBANDING, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_DEBANDING, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -256,13 +258,15 @@ public open abstract class Viewport : Node() {
     }
 
   /**
+   * If `true`, [godot.OccluderInstance3D] nodes will be usable for occlusion culling in 3D for this viewport. For the root viewport, [godot.ProjectSettings.rendering/occlusionCulling/useOcclusionCulling] must be set to `true` instead.
    *
+   * **Note:** Enabling occlusion culling has a cost on the CPU. Only enable occlusion culling if you actually plan to use it, and think whether your scene can actually benefit from occlusion culling. Large, open scenes with few or no objects blocking the view will generally not benefit much from occlusion culling. Large open scenes generally benefit more from mesh LOD and visibility ranges ([godot.GeometryInstance3D.visibilityRangeBegin] and [godot.GeometryInstance3D.visibilityRangeEnd]) compared to occlusion culling.
    */
   public open var useOcclusionCulling: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_USE_OCCLUSION_CULLING, BOOL)
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_USING_OCCLUSION_CULLING, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -383,13 +387,13 @@ public open abstract class Viewport : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CANVAS_ITEM_DEFAULT_TEXTURE_FILTER, LONG)
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEFAULT_CANVAS_ITEM_TEXTURE_FILTER, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_CANVAS_ITEM_DEFAULT_TEXTURE_FILTER, NIL)
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DEFAULT_CANVAS_ITEM_TEXTURE_FILTER, NIL)
     }
 
   /**
@@ -399,13 +403,13 @@ public open abstract class Viewport : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_CANVAS_ITEM_DEFAULT_TEXTURE_REPEAT, LONG)
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_CANVAS_ITEM_DEFAULT_TEXTURE_REPEAT, NIL)
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DEFAULT_CANVAS_ITEM_TEXTURE_REPEAT, NIL)
     }
 
   /**
@@ -414,14 +418,14 @@ public open abstract class Viewport : Node() {
   public open var audioListenerEnable2d: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_AUDIO_LISTENER_ENABLE_2D, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_AUDIO_LISTENER_2D,
+          BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_AUDIO_LISTENER_ENABLE_2D, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_AS_AUDIO_LISTENER_2D,
+          NIL)
     }
 
   /**
@@ -446,14 +450,12 @@ public open abstract class Viewport : Node() {
   public open var guiDisableInput: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_GUI_DISABLE_INPUT,
-          BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_INPUT_DISABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_GUI_DISABLE_INPUT,
-          NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_DISABLE_INPUT, NIL)
     }
 
   /**
@@ -463,28 +465,28 @@ public open abstract class Viewport : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_GUI_SNAP_CONTROLS_TO_PIXELS, BOOL)
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_SNAP_CONTROLS_TO_PIXELS_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_GUI_SNAP_CONTROLS_TO_PIXELS, NIL)
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_SNAP_CONTROLS_TO_PIXELS, NIL)
     }
 
   /**
-   *
+   * If `true`, sub-windows (popups and dialogs) will be embedded inside application window as control-like nodes. If `false`, they will appear as separate windows handled by the operating system.
    */
   public open var guiEmbedSubwindows: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_GUI_EMBED_SUBWINDOWS,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_EMBEDDING_SUBWINDOWS,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_GUI_EMBED_SUBWINDOWS,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_SET_EMBEDDING_SUBWINDOWS,
           NIL)
     }
 
@@ -556,8 +558,8 @@ public open abstract class Viewport : Node() {
   public open val shadowAtlasQuad0: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUAD_0,
-          LONG)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
 
@@ -567,8 +569,8 @@ public open abstract class Viewport : Node() {
   public open val shadowAtlasQuad1: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUAD_1,
-          LONG)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
 
@@ -578,8 +580,8 @@ public open abstract class Viewport : Node() {
   public open val shadowAtlasQuad2: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUAD_2,
-          LONG)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
 
@@ -589,8 +591,8 @@ public open abstract class Viewport : Node() {
   public open val shadowAtlasQuad3: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUAD_3,
-          LONG)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VIEWPORT_GET_SHADOW_ATLAS_QUADRANT_SUBDIV, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
 
@@ -741,7 +743,7 @@ public open abstract class Viewport : Node() {
   }
 
   /**
-   * Returns the mouse's positon in this [godot.Viewport] using the coordinate system of this [godot.Viewport].
+   * Returns the mouse's position in this [godot.Viewport] using the coordinate system of this [godot.Viewport].
    */
   public open fun getMousePosition(): Vector2 {
     TransferContext.writeArguments()
@@ -753,8 +755,8 @@ public open abstract class Viewport : Node() {
   /**
    * Moves the mouse pointer to the specified position in this [godot.Viewport] using the coordinate system of this [godot.Viewport].
    */
-  public open fun warpMouse(toPosition: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to toPosition)
+  public open fun warpMouse(position: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_WARP_MOUSE, NIL)
   }
 
@@ -787,7 +789,7 @@ public open abstract class Viewport : Node() {
   }
 
   /**
-   * Removes the focus from the currently focussed [godot.Control] within this viewport. If no [godot.Control] has the focus, does nothing.
+   * Removes the focus from the currently focused [godot.Control] within this viewport. If no [godot.Control] has the focus, does nothing.
    */
   public open fun guiReleaseFocus(): Unit {
     TransferContext.writeArguments()
@@ -828,16 +830,6 @@ public open abstract class Viewport : Node() {
   public open fun isInputHandled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_INPUT_HANDLED, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
-  }
-
-  /**
-   *
-   */
-  public open fun isEmbeddingSubwindows(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIEWPORT_IS_EMBEDDING_SUBWINDOWS,
-        BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 

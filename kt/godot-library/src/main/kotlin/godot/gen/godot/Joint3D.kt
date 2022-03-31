@@ -34,13 +34,12 @@ public open abstract class Joint3D : Node3D() {
   public open var nodes_nodeA: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_NODES_NODE_A,
-          NODE_PATH)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_NODE_A, NODE_PATH)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_NODES_NODE_A, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_NODE_A, NIL)
     }
 
   /**
@@ -49,13 +48,12 @@ public open abstract class Joint3D : Node3D() {
   public open var nodes_nodeB: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_NODES_NODE_B,
-          NODE_PATH)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_NODE_B, NODE_PATH)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_NODES_NODE_B, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_NODE_B, NIL)
     }
 
   /**
@@ -79,13 +77,13 @@ public open abstract class Joint3D : Node3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_COLLISION_EXCLUDE_NODES, BOOL)
+          ENGINEMETHOD_ENGINECLASS_JOINT3D_GET_EXCLUDE_NODES_FROM_COLLISION, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_COLLISION_EXCLUDE_NODES, NIL)
+          ENGINEMETHOD_ENGINECLASS_JOINT3D_SET_EXCLUDE_NODES_FROM_COLLISION, NIL)
     }
 
   public override fun __new(): Unit {

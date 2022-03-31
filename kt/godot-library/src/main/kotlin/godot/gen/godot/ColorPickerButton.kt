@@ -30,7 +30,7 @@ import kotlin.Unit
  *
  * See also [godot.BaseButton] which contains common properties and methods associated with this node.
  *
- * **Note:** By default, the button may not be wide enough for the color preview swatch to be visible. Make sure to set [godot.Control.rectMinSize] to a big enough value to give the button enough space.
+ * **Note:** By default, the button may not be wide enough for the color preview swatch to be visible. Make sure to set [godot.Control.minimumSize] to a big enough value to give the button enough space.
  */
 @GodotBaseType
 public open class ColorPickerButton : Button() {
@@ -55,13 +55,14 @@ public open class ColorPickerButton : Button() {
   public open var color: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_COLOR,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_PICK_COLOR,
           COLOR)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_SET_COLOR, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_SET_PICK_COLOR,
+          NIL)
     }
 
   /**
@@ -70,8 +71,8 @@ public open class ColorPickerButton : Button() {
   public open var editAlpha: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_GET_EDIT_ALPHA,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_COLORPICKERBUTTON_IS_EDITING_ALPHA, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

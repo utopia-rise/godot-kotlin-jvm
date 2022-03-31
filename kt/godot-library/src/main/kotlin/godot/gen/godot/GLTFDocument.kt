@@ -47,9 +47,11 @@ public open class GLTFDocument : Resource() {
     path: String,
     state: GLTFState,
     flags: Long = 0,
-    bakeFps: Long = 30
+    bakeFps: Long = 30,
+    basePath: String = ""
   ): GodotError {
-    TransferContext.writeArguments(STRING to path, OBJECT to state, LONG to flags, LONG to bakeFps)
+    TransferContext.writeArguments(STRING to path, OBJECT to state, LONG to flags, LONG to bakeFps,
+        STRING to basePath)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GLTFDOCUMENT_APPEND_FROM_FILE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }

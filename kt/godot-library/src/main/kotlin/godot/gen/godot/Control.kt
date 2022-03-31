@@ -79,7 +79,7 @@ public open class Control : CanvasItem() {
    *
    * ```
    * 				func _on_mouse_exited():
-   * 				    if not Rect2(Vector2(), rect_size).has_point(get_local_mouse_position()):
+   * 				    if not Rect2(Vector2(), size).has_point(get_local_mouse_position()):
    * 				        # Not hovering over area.
    * 				```
    */
@@ -128,31 +128,34 @@ public open class Control : CanvasItem() {
   public val focusExited: Signal0 by signal()
 
   /**
-   * Controls the direction on the horizontal axis in which the control should grow if its horizontal minimum size is changed to be greater than its current size, as the control always has to be at least the minimum size.
+   * Enables whether rendering of [godot.CanvasItem] based children should be clipped to this control's rectangle. If `true`, parts of a child which would be visibly outside of this control's rectangle will not be rendered and won't receive input.
    */
-  public open var growHorizontal: Long
+  public open var clipContents: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_GROW_HORIZONTAL, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_IS_CLIPPING_CONTENTS,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_GROW_HORIZONTAL, NIL)
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_CLIP_CONTENTS, NIL)
     }
 
   /**
-   * Controls the direction on the vertical axis in which the control should grow if its vertical minimum size is changed to be greater than its current size, as the control always has to be at least the minimum size.
+   * The minimum size of the node's bounding rectangle. If you set it to a value greater than (0, 0), the node's bounding rectangle will always have at least this size, even if its content is smaller. If it's set to (0, 0), the node sizes automatically to fit its content, be it a texture or child nodes.
    */
-  public open var growVertical: Long
+  public open var minimumSize: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_GROW_VERTICAL, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_CUSTOM_MINIMUM_SIZE,
+          VECTOR2)
+      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_GROW_VERTICAL, NIL)
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_CUSTOM_MINIMUM_SIZE,
+          NIL)
     }
 
   /**
@@ -171,6 +174,155 @@ public open class Control : CanvasItem() {
     }
 
   /**
+   * Controls the direction on the horizontal axis in which the control should grow if its horizontal minimum size is changed to be greater than its current size, as the control always has to be at least the minimum size.
+   */
+  public open var growHorizontal: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_H_GROW_DIRECTION,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_H_GROW_DIRECTION, NIL)
+    }
+
+  /**
+   * Controls the direction on the vertical axis in which the control should grow if its vertical minimum size is changed to be greater than its current size, as the control always has to be at least the minimum size.
+   */
+  public open var growVertical: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_V_GROW_DIRECTION,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_V_GROW_DIRECTION, NIL)
+    }
+
+  /**
+   * The size of the node's bounding rectangle, in pixels. [godot.Container] nodes update this property automatically.
+   */
+  public open val size: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_SIZE, VECTOR2)
+      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    }
+
+  /**
+   * The node's position, relative to its parent. It corresponds to the rectangle's top-left corner. The property is not affected by [pivotOffset].
+   */
+  public open val position: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_POSITION, VECTOR2)
+      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    }
+
+  /**
+   * The node's global position, relative to the world (usually to the top-left corner of the window).
+   */
+  public open val globalPosition: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_GLOBAL_POSITION,
+          VECTOR2)
+      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    }
+
+  /**
+   * The node's rotation around its pivot, in radians. See [pivotOffset] to change the pivot's position.
+   */
+  public open var rotation: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_ROTATION, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_ROTATION, NIL)
+    }
+
+  /**
+   * The node's scale, relative to its [size]. Change this property to scale the node around its [pivotOffset]. The Control's [hintTooltip] will also scale according to this value.
+   *
+   * **Note:** This property is mainly intended to be used for animation purposes. Text inside the Control will look pixelated or blurry when the Control is scaled. To support multiple resolutions in your project, use an appropriate viewport stretch mode as described in the [documentation]($DOCS_URL/tutorials/viewports/multiple_resolutions.html) instead of scaling Controls individually.
+   *
+   * **Note:** If the Control node is a child of a [godot.Container] node, the scale will be reset to `Vector2(1, 1)` when the scene is instantiated. To set the Control's scale when it's instantiated, wait for one frame using `await get_tree().process_frame` then set its [scale] property.
+   */
+  public open var scale: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_SCALE, VECTOR2)
+      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_SCALE, NIL)
+    }
+
+  /**
+   * By default, the node's pivot is its top-left corner. When you change its [rotation] or [scale], it will rotate or scale around this pivot. Set this property to [size] / 2 to pivot around the Control's center.
+   */
+  public open var pivotOffset: Vector2
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_PIVOT_OFFSET, VECTOR2)
+      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR2 to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_PIVOT_OFFSET, NIL)
+    }
+
+  /**
+   * Tells the parent [godot.Container] nodes how they should resize and place the node on the X axis. Use one of the [enum SizeFlags] constants to change the flags. See the constants to learn what each does.
+   */
+  public open var sizeFlagsHorizontal: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_H_SIZE_FLAGS, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_H_SIZE_FLAGS, NIL)
+    }
+
+  /**
+   * Tells the parent [godot.Container] nodes how they should resize and place the node on the Y axis. Use one of the [enum SizeFlags] constants to change the flags. See the constants to learn what each does.
+   */
+  public open var sizeFlagsVertical: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_V_SIZE_FLAGS, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_V_SIZE_FLAGS, NIL)
+    }
+
+  /**
+   * If the node and at least one of its neighbors uses the [SIZE_EXPAND] size flag, the parent [godot.Container] will let it take more or less space depending on this property. If this node has a stretch ratio of 2 and its neighbor a ratio of 1, this node will take two thirds of the available space.
+   */
+  public open var sizeFlagsStretchRatio: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_STRETCH_RATIO, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_STRETCH_RATIO, NIL)
+    }
+
+  /**
    * Toggles if any text should automatically change to its translated version depending on the current locale. Note that this will not affect any internal nodes (e.g. the popup of a [godot.MenuButton]).
    *
    * Also decides if the node's strings should be parsed for POT generation.
@@ -178,123 +330,12 @@ public open class Control : CanvasItem() {
   public open var autoTranslate: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_AUTO_TRANSLATE, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_IS_AUTO_TRANSLATING, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_AUTO_TRANSLATE, NIL)
-    }
-
-  /**
-   * The node's position, relative to its parent. It corresponds to the rectangle's top-left corner. The property is not affected by [rectPivotOffset].
-   */
-  public open val rectPosition: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_RECT_POSITION,
-          VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-    }
-
-  /**
-   * The node's global position, relative to the world (usually to the top-left corner of the window).
-   */
-  public open val rectGlobalPosition: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_RECT_GLOBAL_POSITION,
-          VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-    }
-
-  /**
-   * The size of the node's bounding rectangle, in pixels. [godot.Container] nodes update this property automatically.
-   */
-  public open val rectSize: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_RECT_SIZE, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-    }
-
-  /**
-   * The minimum size of the node's bounding rectangle. If you set it to a value greater than (0, 0), the node's bounding rectangle will always have at least this size, even if its content is smaller. If it's set to (0, 0), the node sizes automatically to fit its content, be it a texture or child nodes.
-   */
-  public open var rectMinSize: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_RECT_MIN_SIZE,
-          VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-    }
-    set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_RECT_MIN_SIZE, NIL)
-    }
-
-  /**
-   * The node's rotation around its pivot, in radians. See [rectPivotOffset] to change the pivot's position.
-   */
-  public open var rectRotation: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_RECT_ROTATION, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_RECT_ROTATION, NIL)
-    }
-
-  /**
-   * The node's scale, relative to its [rectSize]. Change this property to scale the node around its [rectPivotOffset]. The Control's [hintTooltip] will also scale according to this value.
-   *
-   * **Note:** This property is mainly intended to be used for animation purposes. Text inside the Control will look pixelated or blurry when the Control is scaled. To support multiple resolutions in your project, use an appropriate viewport stretch mode as described in the [documentation]($DOCS_URL/tutorials/viewports/multiple_resolutions.html) instead of scaling Controls individually.
-   *
-   * **Note:** If the Control node is a child of a [godot.Container] node, the scale will be reset to `Vector2(1, 1)` when the scene is instantiated. To set the Control's scale when it's instantiated, wait for one frame using `await get_tree().process_frame` then set its [rectScale] property.
-   */
-  public open var rectScale: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_RECT_SCALE, VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-    }
-    set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_RECT_SCALE, NIL)
-    }
-
-  /**
-   * By default, the node's pivot is its top-left corner. When you change its [rectScale], it will scale around this pivot. Set this property to [rectSize] / 2 to center the pivot in the node's rectangle.
-   */
-  public open var rectPivotOffset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_RECT_PIVOT_OFFSET,
-          VECTOR2)
-      return TransferContext.readReturnValue(VECTOR2, false) as Vector2
-    }
-    set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_RECT_PIVOT_OFFSET,
-          NIL)
-    }
-
-  /**
-   * Enables whether rendering of [godot.CanvasItem] based children should be clipped to this control's rectangle. If `true`, parts of a child which would be visibly outside of this control's rectangle will not be rendered and won't receive input.
-   */
-  public open var rectClipContent: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_RECT_CLIP_CONTENT,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_RECT_CLIP_CONTENT,
-          NIL)
     }
 
   /**
@@ -345,7 +386,7 @@ public open class Control : CanvasItem() {
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_HINT_TOOLTIP, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_TOOLTIP, NIL)
     }
 
   /**
@@ -417,62 +458,14 @@ public open class Control : CanvasItem() {
   public open var mouseDefaultCursorShape: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CONTROL_GET_MOUSE_DEFAULT_CURSOR_SHAPE, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CONTROL_SET_MOUSE_DEFAULT_CURSOR_SHAPE, NIL)
-    }
-
-  /**
-   * Tells the parent [godot.Container] nodes how they should resize and place the node on the X axis. Use one of the [enum SizeFlags] constants to change the flags. See the constants to learn what each does.
-   */
-  public open var sizeFlagsHorizontal: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_SIZE_FLAGS_HORIZONTAL,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_DEFAULT_CURSOR_SHAPE,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_SIZE_FLAGS_HORIZONTAL,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_DEFAULT_CURSOR_SHAPE,
           NIL)
-    }
-
-  /**
-   * Tells the parent [godot.Container] nodes how they should resize and place the node on the Y axis. Use one of the [enum SizeFlags] constants to change the flags. See the constants to learn what each does.
-   */
-  public open var sizeFlagsVertical: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_SIZE_FLAGS_VERTICAL,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_SET_SIZE_FLAGS_VERTICAL,
-          NIL)
-    }
-
-  /**
-   * If the node and at least one of its neighbors uses the [SIZE_EXPAND] size flag, the parent [godot.Container] will let it take more or less space depending on this property. If this node has a stretch ratio of 2 and its neighbor a ratio of 1, this node will take two thirds of the available space.
-   */
-  public open var sizeFlagsStretchRatio: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CONTROL_GET_SIZE_FLAGS_STRETCH_RATIO, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CONTROL_SET_SIZE_FLAGS_STRETCH_RATIO, NIL)
     }
 
   /**
@@ -537,7 +530,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Virtual method to be implemented by the user. Returns the minimum size for this control. Alternative to [rectMinSize] for controlling minimum size via code. The actual minimum size will be the max value of these two (in each axis separately).
+   * Virtual method to be implemented by the user. Returns the minimum size for this control. Alternative to [minimumSize] for controlling minimum size via code. The actual minimum size will be the max value of these two (in each axis separately).
    *
    * If not overridden, defaults to [godot.Vector2.ZERO].
    *
@@ -678,7 +671,7 @@ public open class Control : CanvasItem() {
    *
    * The returned node will be added as child to a [godot.PopupPanel], so you should only provide the contents of that panel. That [godot.PopupPanel] can be themed using [godot.Theme.setStylebox] for the type `"TooltipPanel"` (see [hintTooltip] for an example).
    *
-   * **Note:** The tooltip is shrunk to minimal size. If you want to ensure it's fully visible, you might want to set its [rectMinSize] to some non-zero value.
+   * **Note:** The tooltip is shrunk to minimal size. If you want to ensure it's fully visible, you might want to set its [minimumSize] to some non-zero value.
    *
    * **Note:** The node (and any relevant children) should be [godot.CanvasItem.visible] when returned, otherwise, the viewport that instantiates it will not be able to calculate its minimum size reliably.
    *
@@ -811,7 +804,7 @@ public open class Control : CanvasItem() {
    *
    * * control's parent has [mouseFilter] set to [MOUSE_FILTER_STOP] or has accepted the event;
    *
-   * * it happens outside the parent's rectangle and the parent has either [rectClipContent] enabled.
+   * * it happens outside the parent's rectangle and the parent has either [clipContents] enabled.
    *
    * **Note:** Event position is relative to the control origin.
    */
@@ -827,7 +820,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns the minimum size for this control. See [rectMinSize].
+   * Returns the minimum size for this control. See [minimumSize].
    */
   public open fun getMinimumSize(): Vector2 {
     TransferContext.writeArguments()
@@ -836,7 +829,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns combined minimum size from [rectMinSize] and [getMinimumSize].
+   * Returns combined minimum size from [minimumSize] and [getMinimumSize].
    */
   public open fun getCombinedMinimumSize(): Vector2 {
     TransferContext.writeArguments()
@@ -865,7 +858,7 @@ public open class Control : CanvasItem() {
    */
   public open fun setOffsetsPreset(
     preset: Control.LayoutPreset,
-    resizeMode: Control.LayoutPresetMode = LayoutPresetMode.PRESET_MODE_MINSIZE,
+    resizeMode: Control.LayoutPresetMode = Control.LayoutPresetMode.PRESET_MODE_MINSIZE,
     margin: Long = 0
   ): Unit {
     TransferContext.writeArguments(LONG to preset.id, LONG to resizeMode.id, LONG to margin)
@@ -877,7 +870,7 @@ public open class Control : CanvasItem() {
    */
   public open fun setAnchorsAndOffsetsPreset(
     preset: Control.LayoutPreset,
-    resizeMode: Control.LayoutPresetMode = LayoutPresetMode.PRESET_MODE_MINSIZE,
+    resizeMode: Control.LayoutPresetMode = Control.LayoutPresetMode.PRESET_MODE_MINSIZE,
     margin: Long = 0
   ): Unit {
     TransferContext.writeArguments(LONG to preset.id, LONG to resizeMode.id, LONG to margin)
@@ -921,6 +914,15 @@ public open class Control : CanvasItem() {
   }
 
   /**
+   * Returns the anchor for the specified [enum Side]. A getter method for [offsetBottom], [offsetLeft], [offsetRight] and [offsetTop].
+   */
+  public open fun getOffset(offset: Side): Double {
+    TransferContext.writeArguments(LONG to offset.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_OFFSET, DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
    * Works the same as [setAnchor], but instead of `keep_offset` argument and automatic update of offset, it allows to set the offset yourself (see [setOffset]).
    */
   public open fun setAnchorAndOffset(
@@ -935,7 +937,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets [offsetLeft] and [offsetTop] at the same time. Equivalent of changing [rectPosition].
+   * Sets [offsetLeft] and [offsetTop] at the same time. Equivalent of changing [position].
    */
   public open fun setBegin(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
@@ -951,7 +953,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets the [rectPosition] to given `position`.
+   * Sets the [position] to given `position`.
    *
    * If `keep_offsets` is `true`, control's anchors will be updated instead of offsets.
    */
@@ -961,7 +963,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets the size (see [rectSize]).
+   * Sets the size (see [size]).
    *
    * If `keep_offsets` is `true`, control's anchors will be updated instead of offsets.
    */
@@ -979,7 +981,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Sets the [rectGlobalPosition] to given `position`.
+   * Sets the [globalPosition] to given `position`.
    *
    * If `keep_offsets` is `true`, control's anchors will be updated instead of offsets.
    */
@@ -989,16 +991,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns the anchor for the specified [enum Side]. A getter method for [offsetBottom], [offsetLeft], [offsetRight] and [offsetTop].
-   */
-  public open fun getOffset(offset: Side): Double {
-    TransferContext.writeArguments(LONG to offset.id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_OFFSET, DOUBLE)
-    return TransferContext.readReturnValue(DOUBLE, false) as Double
-  }
-
-  /**
-   * Returns [offsetLeft] and [offsetTop]. See also [rectPosition].
+   * Returns [offsetLeft] and [offsetTop]. See also [position].
    */
   public open fun getBegin(): Vector2 {
     TransferContext.writeArguments()
@@ -1026,7 +1019,27 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns the position and size of the control relative to the top-left corner of the parent Control. See [rectPosition] and [rectSize].
+   * Returns the position of this [godot.Control] in global screen coordinates (i.e. taking window position into account). Mostly useful for editor plugins.
+   *
+   * Equals to [globalPosition] if the window is embedded (see [godot.Viewport.guiEmbedSubwindows]).
+   *
+   * Example usage for showing a popup:
+   *
+   * ```
+   * 				popup_menu.position = get_screen_position() + get_local_mouse_position()
+   * 				popup_menu.reset_size()
+   * 				popup_menu.popup()
+   * 				```
+   */
+  public open fun getScreenPosition(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_GET_SCREEN_POSITION,
+        VECTOR2)
+    return TransferContext.readReturnValue(VECTOR2, false) as Vector2
+  }
+
+  /**
+   * Returns the position and size of the control relative to the top-left corner of the parent Control. See [position] and [size].
    */
   public open fun getRect(): Rect2 {
     TransferContext.writeArguments()
@@ -1035,7 +1048,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns the position and size of the control relative to the top-left corner of the screen. See [rectPosition] and [rectSize].
+   * Returns the position and size of the control relative to the top-left corner of the screen. See [position] and [size].
    */
   public open fun getGlobalRect(): Rect2 {
     TransferContext.writeArguments()
@@ -1825,7 +1838,7 @@ public open class Control : CanvasItem() {
    *
    *     cpb.color = color
    *
-   *     cpb.rect_size = Vector2(50, 50)
+   *     cpb.size = Vector2(50, 50)
    *
    *     set_drag_preview(cpb)
    *
@@ -1878,15 +1891,15 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Moves the mouse cursor to `to_position`, relative to [rectPosition] of this [godot.Control].
+   * Moves the mouse cursor to `position`, relative to [position] of this [godot.Control].
    */
-  public open fun warpMouse(toPosition: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to toPosition)
+  public open fun warpMouse(position: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONTROL_WARP_MOUSE, NIL)
   }
 
   /**
-   * Invalidates the size cache in this node and in parent nodes up to top level. Intended to be used with [getMinimumSize] when the return value is changed. Setting [rectMinSize] directly calls this method automatically.
+   * Invalidates the size cache in this node and in parent nodes up to top level. Intended to be used with [getMinimumSize] when the return value is changed. Setting [minimumSize] directly calls this method automatically.
    */
   public open fun updateMinimumSize(): Unit {
     TransferContext.writeArguments()
@@ -2231,7 +2244,13 @@ public open class Control : CanvasItem() {
     id: Long
   ) {
     /**
-     * Tells the parent [godot.Container] to expand the bounds of this node to fill all the available space without pushing any other node. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
+     * Tells the parent [godot.Container] to align the node with its start, either the top or the left edge. It is mutually exclusive with [SIZE_FILL] and other shrink size flags, but can be used with [SIZE_EXPAND] in some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
+     *
+     * **Note:** Setting this flag is equal to not having any size flags.
+     */
+    SIZE_SHRINK_BEGIN(0),
+    /**
+     * Tells the parent [godot.Container] to expand the bounds of this node to fill all the available space without pushing any other node. It is mutually exclusive with shrink size flags. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
      */
     SIZE_FILL(1),
     /**
@@ -2239,15 +2258,15 @@ public open class Control : CanvasItem() {
      */
     SIZE_EXPAND(2),
     /**
-     * Sets the node's size flags to both fill and expand. See the 2 constants above for more information.
+     * Sets the node's size flags to both fill and expand. See [SIZE_FILL] and [SIZE_EXPAND] for more information.
      */
     SIZE_EXPAND_FILL(3),
     /**
-     * Tells the parent [godot.Container] to center the node in itself. It centers the control based on its bounding box, so it doesn't work with the fill or expand size flags. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
+     * Tells the parent [godot.Container] to center the node in the available space. It is mutually exclusive with [SIZE_FILL] and other shrink size flags, but can be used with [SIZE_EXPAND] in some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
      */
     SIZE_SHRINK_CENTER(4),
     /**
-     * Tells the parent [godot.Container] to align the node with its end, either the bottom or the right edge. It doesn't work with the fill or expand size flags. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
+     * Tells the parent [godot.Container] to align the node with its end, either the bottom or the right edge. It is mutually exclusive with [SIZE_FILL] and other shrink size flags, but can be used with [SIZE_EXPAND] in some containers. Use with [sizeFlagsHorizontal] and [sizeFlagsVertical].
      */
     SIZE_SHRINK_END(8),
     ;
@@ -2343,7 +2362,7 @@ public open class Control : CanvasItem() {
 
   public companion object {
     /**
-     * Sent when the node changes size. Use [rectSize] to get the new size.
+     * Sent when the node changes size. Use [size] to get the new size.
      */
     public final const val NOTIFICATION_RESIZED: Long = 40
 

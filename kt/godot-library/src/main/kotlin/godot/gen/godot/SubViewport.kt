@@ -23,6 +23,8 @@ import kotlin.Unit
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/586](https://godotengine.org/asset-library/asset/586)
+ *
+ * [godot.SubViewport] is a [godot.Viewport] that isn't a [godot.Window], i.e. it doesn't draw anything by itself. To display something, [godot.SubViewport]'s [size] must be non-zero and it should be either put inside a [godot.SubViewportContainer] or assigned to a [godot.ViewportTexture].
  */
 @GodotBaseType
 public open class SubViewport : Viewport() {
@@ -63,7 +65,7 @@ public open class SubViewport : Viewport() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_SIZE_2D_OVERRIDE_STRETCH, BOOL)
+          ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_IS_SIZE_2D_OVERRIDE_STRETCH_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -80,14 +82,12 @@ public open class SubViewport : Viewport() {
   public open var renderTargetClearMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_RENDER_TARGET_CLEAR_MODE, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_CLEAR_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_SET_RENDER_TARGET_CLEAR_MODE, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_SET_CLEAR_MODE, NIL)
     }
 
   /**
@@ -96,14 +96,12 @@ public open class SubViewport : Viewport() {
   public open var renderTargetUpdateMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_RENDER_TARGET_UPDATE_MODE, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_GET_UPDATE_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_SET_RENDER_TARGET_UPDATE_MODE, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORT_SET_UPDATE_MODE, NIL)
     }
 
   public override fun __new(): Unit {

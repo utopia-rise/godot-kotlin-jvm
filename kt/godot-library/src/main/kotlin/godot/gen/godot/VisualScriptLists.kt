@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
+import godot.core.VariantType
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING
@@ -23,7 +24,7 @@ public open abstract class VisualScriptLists : VisualScriptNode() {
   }
 
   public open fun addInputDataPort(
-    type: Variant.Type,
+    type: VariantType,
     name: String,
     index: Long
   ): Unit {
@@ -38,7 +39,7 @@ public open abstract class VisualScriptLists : VisualScriptNode() {
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLISTS_SET_INPUT_DATA_PORT_NAME, NIL)
   }
 
-  public open fun setInputDataPortType(index: Long, type: Variant.Type): Unit {
+  public open fun setInputDataPortType(index: Long, type: VariantType): Unit {
     TransferContext.writeArguments(LONG to index, LONG to type.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLISTS_SET_INPUT_DATA_PORT_TYPE, NIL)
@@ -51,7 +52,7 @@ public open abstract class VisualScriptLists : VisualScriptNode() {
   }
 
   public open fun addOutputDataPort(
-    type: Variant.Type,
+    type: VariantType,
     name: String,
     index: Long
   ): Unit {
@@ -66,7 +67,7 @@ public open abstract class VisualScriptLists : VisualScriptNode() {
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLISTS_SET_OUTPUT_DATA_PORT_NAME, NIL)
   }
 
-  public open fun setOutputDataPortType(index: Long, type: Variant.Type): Unit {
+  public open fun setOutputDataPortType(index: Long, type: VariantType): Unit {
     TransferContext.writeArguments(LONG to index, LONG to type.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLISTS_SET_OUTPUT_DATA_PORT_TYPE, NIL)

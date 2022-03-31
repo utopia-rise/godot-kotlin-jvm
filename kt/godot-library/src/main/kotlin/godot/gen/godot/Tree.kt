@@ -195,7 +195,7 @@ public open class Tree : Control() {
   public open var columnTitlesVisible: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_COLUMN_TITLES_VISIBLE,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_ARE_COLUMN_TITLES_VISIBLE,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -239,7 +239,7 @@ public open class Tree : Control() {
   public open var hideFolding: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_HIDE_FOLDING, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_IS_FOLDING_HIDDEN, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -253,7 +253,7 @@ public open class Tree : Control() {
   public open var hideRoot: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_HIDE_ROOT, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_IS_ROOT_HIDDEN, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -297,14 +297,12 @@ public open class Tree : Control() {
   public open var scrollHorizontalEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TREE_GET_SCROLL_HORIZONTAL_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_IS_H_SCROLL_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TREE_SET_SCROLL_HORIZONTAL_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SET_H_SCROLL_ENABLED, NIL)
     }
 
   /**
@@ -313,14 +311,12 @@ public open class Tree : Control() {
   public open var scrollVerticalEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_SCROLL_VERTICAL_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_IS_V_SCROLL_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SET_SCROLL_VERTICAL_ENABLED,
-          NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_SET_V_SCROLL_ENABLED, NIL)
     }
 
   public override fun __new(): Unit {
@@ -586,6 +582,16 @@ public open class Tree : Control() {
   public open fun getDropSectionAtPosition(position: Vector2): Long {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_DROP_SECTION_AT_POSITION,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the button id at `position`, or -1 if no button is there.
+   */
+  public open fun getButtonIdAtPosition(position: Vector2): Long {
+    TransferContext.writeArguments(VECTOR2 to position)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TREE_GET_BUTTON_ID_AT_POSITION,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }

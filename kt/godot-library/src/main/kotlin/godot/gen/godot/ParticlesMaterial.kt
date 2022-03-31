@@ -407,7 +407,7 @@ public open class ParticlesMaterial : Material() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_ATTRACTOR_INTERACTION_ENABLED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_IS_ATTRACTOR_INTERACTION_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -423,7 +423,7 @@ public open class ParticlesMaterial : Material() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_COLLISION_ENABLED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_IS_COLLISION_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -449,7 +449,7 @@ public open class ParticlesMaterial : Material() {
     }
 
   /**
-   * Collision bouncyness.
+   * Collision bounciness.
    */
   public open var collisionBounce: Double
     get() {
@@ -471,7 +471,7 @@ public open class ParticlesMaterial : Material() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_GET_COLLISION_USE_SCALE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_PARTICLESMATERIAL_IS_COLLISION_USING_SCALE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -573,25 +573,29 @@ public open class ParticlesMaterial : Material() {
      */
     EMISSION_SHAPE_SPHERE(1),
     /**
+     * Particles will be emitted on the surface of a sphere.
+     */
+    EMISSION_SHAPE_SPHERE_SURFACE(2),
+    /**
      * Particles will be emitted in the volume of a box.
      */
-    EMISSION_SHAPE_BOX(2),
+    EMISSION_SHAPE_BOX(3),
     /**
      * Particles will be emitted at a position determined by sampling a random point on the [emissionPointTexture]. Particle color will be modulated by [emissionColorTexture].
      */
-    EMISSION_SHAPE_POINTS(3),
+    EMISSION_SHAPE_POINTS(4),
     /**
      * Particles will be emitted at a position determined by sampling a random point on the [emissionPointTexture]. Particle velocity and rotation will be set based on [emissionNormalTexture]. Particle color will be modulated by [emissionColorTexture].
      */
-    EMISSION_SHAPE_DIRECTED_POINTS(4),
+    EMISSION_SHAPE_DIRECTED_POINTS(5),
     /**
      * Particles will be emitted in a ring or cylinder.
      */
-    EMISSION_SHAPE_RING(5),
+    EMISSION_SHAPE_RING(6),
     /**
      * Represents the size of the [enum EmissionShape] enum.
      */
-    EMISSION_SHAPE_MAX(6),
+    EMISSION_SHAPE_MAX(7),
     ;
 
     public val id: Long

@@ -6,12 +6,16 @@
 
 package godot
 
+import godot.Shader
 import godot.`annotation`.GodotBaseType
+import godot.core.RID
 import godot.core.TransferContext
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
+import kotlin.Boolean
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -24,7 +28,7 @@ import kotlin.Unit
  * Material is a base [godot.Resource] used for coloring and shading geometry. All materials inherit from it and almost all [godot.VisualInstance3D] derived nodes carry a Material. A few flags and parameters are shared between all material types and are configured here.
  */
 @GodotBaseType
-public open abstract class Material : Resource() {
+public open class Material : Resource() {
   /**
    * Sets the render priority for transparent objects in 3D scenes. Higher priority objects will be sorted in front of lower priority objects.
    *
@@ -62,6 +66,34 @@ public open abstract class Material : Resource() {
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_MATERIAL)
+  }
+
+  /**
+   *
+   */
+  public open fun _getShaderRid(): RID {
+    throw NotImplementedError("_get_shader_rid is not implemented for Material")
+  }
+
+  /**
+   *
+   */
+  public open fun _getShaderMode(): Shader.Mode {
+    throw NotImplementedError("_get_shader_mode is not implemented for Material")
+  }
+
+  /**
+   *
+   */
+  public open fun _canDoNextPass(): Boolean {
+    throw NotImplementedError("_can_do_next_pass is not implemented for Material")
+  }
+
+  /**
+   *
+   */
+  public open fun _canUseRenderPriority(): Boolean {
+    throw NotImplementedError("_can_use_render_priority is not implemented for Material")
   }
 
   /**

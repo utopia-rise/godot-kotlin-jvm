@@ -30,7 +30,7 @@ import kotlin.Unit
  * Base node for geometry-based visual instances. Shares some common functionality like visibility and custom materials.
  */
 @GodotBaseType
-public open abstract class GeometryInstance3D : VisualInstance3D() {
+public open class GeometryInstance3D : VisualInstance3D() {
   /**
    * The material override for the whole geometry.
    *
@@ -68,7 +68,11 @@ public open abstract class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
-   * Transparency applied to the whole geometry. In spatial shaders, transparency is set as the default value of the `ALPHA` built-in.
+   * The transparency applied to the whole geometry (as a multiplier of the materials' existing transparency). `0.0` is fully opaque, while `1.0` is fully transparent. Values greater than `0.0` (exclusive) will force the geometry's materials to go through the transparent pipeline, which is slower to render and can exhibit rendering issues due to incorrect transparency sorting. However, unlike using a transparent material, setting [transparency] to a value greater than `0.0` (exclusive) will *not* disable shadow rendering.
+   *
+   * In spatial shaders, `1.0 - transparency` is set as the default value of the `ALPHA` built-in.
+   *
+   * **Note:** [transparency] is clamped between `0.0` and `1.0`, so this property cannot be used to make transparent materials more opaque than they originally are.
    */
   public open var transparency: Double
     get() {
@@ -90,13 +94,13 @@ public open abstract class GeometryInstance3D : VisualInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_CAST_SHADOW, LONG)
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_CAST_SHADOWS_SETTING, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_CAST_SHADOW, NIL)
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_CAST_SHADOWS_SETTING, NIL)
     }
 
   /**
@@ -138,7 +142,7 @@ public open abstract class GeometryInstance3D : VisualInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_IGNORE_OCCLUSION_CULLING, BOOL)
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_IS_IGNORING_OCCLUSION_CULLING, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -172,13 +176,13 @@ public open abstract class GeometryInstance3D : VisualInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_GI_LIGHTMAP_SCALE, LONG)
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_GET_LIGHTMAP_SCALE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_GI_LIGHTMAP_SCALE, NIL)
+          ENGINEMETHOD_ENGINECLASS_GEOMETRYINSTANCE3D_SET_LIGHTMAP_SCALE, NIL)
     }
 
   /**

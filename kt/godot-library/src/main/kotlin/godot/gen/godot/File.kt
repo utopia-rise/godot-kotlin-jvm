@@ -125,7 +125,7 @@ public open class File : RefCounted() {
   public open var bigEndian: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_BIG_ENDIAN, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_IS_BIG_ENDIAN, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -173,7 +173,7 @@ public open class File : RefCounted() {
   public open fun openCompressed(
     path: String,
     modeFlags: File.ModeFlags,
-    compressionMode: File.CompressionMode = CompressionMode.COMPRESSION_FASTLZ
+    compressionMode: File.CompressionMode = File.CompressionMode.COMPRESSION_FASTLZ
   ): GodotError {
     TransferContext.writeArguments(STRING to path, LONG to modeFlags.id, LONG to compressionMode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_OPEN_COMPRESSED, LONG)
@@ -662,17 +662,6 @@ public open class File : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_GET_PASCAL_STRING, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
-  }
-
-  /**
-   * Returns `true` if the file exists in the given path.
-   *
-   * **Note:** Many resources types are imported (e.g. textures or sound files), and their source asset will not be included in the exported game, as only the imported version is used. See [godot.ResourceLoader.exists] for an alternative approach that takes resource remapping into account.
-   */
-  public open fun fileExists(path: String): Boolean {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILE_FILE_EXISTS, BOOL)
-    return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
   /**

@@ -17,27 +17,29 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Concave polygon shape.
+ * Concave polygon shape resource (also called "trimesh") for 3D physics.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/675](https://godotengine.org/asset-library/asset/675)
  *
- * Concave polygon shape resource, which can be set into a [godot.PhysicsBody3D] or area. This shape is created by feeding a list of triangles.
+ * 3D concave polygon shape resource (also called "trimesh") to be added as a *direct* child of a [godot.PhysicsBody3D] or [godot.Area3D] using a [godot.CollisionShape3D] node. This shape is created by feeding a list of triangles. Despite its name, [godot.ConcavePolygonShape3D] can also store convex polygon shapes. However, unlike [godot.ConvexPolygonShape3D], [godot.ConcavePolygonShape3D] is *not* limited to storing convex shapes exclusively.
  *
  * **Note:** When used for collision, [godot.ConcavePolygonShape3D] is intended to work with static [godot.PhysicsBody3D] nodes like [godot.StaticBody3D] and will not work with [godot.CharacterBody3D] or [godot.RigidDynamicBody3D] with a mode other than Static.
+ *
+ * **Performance:** Due to its complexity, [godot.ConcavePolygonShape3D] is the slowest collision shape to check collisions against. Its use should generally be limited to level geometry. For convex geometry, using [godot.ConvexPolygonShape3D] will perform better. For dynamic physics bodies that need concave collision, several [godot.ConvexPolygonShape3D]s can be used to represent its collision by using convex decomposition; see [godot.ConvexPolygonShape3D]'s documentation for instructions. However, consider using primitive collision shapes such as [godot.SphereShape3D] or [godot.BoxShape3D] first.
  */
 @GodotBaseType
 public open class ConcavePolygonShape3D : Shape3D() {
   public open var `data`: PackedVector3Array
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE3D_GET_DATA,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE3D_GET_FACES,
           PACKED_VECTOR3_ARRAY)
       return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
     }
     set(`value`) {
       TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE3D_SET_DATA,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE3D_SET_FACES,
           NIL)
     }
 
@@ -48,13 +50,13 @@ public open class ConcavePolygonShape3D : Shape3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE3D_GET_BACKFACE_COLLISION, BOOL)
+          ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE3D_IS_BACKFACE_COLLISION_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE3D_SET_BACKFACE_COLLISION, NIL)
+          ENGINEMETHOD_ENGINECLASS_CONCAVEPOLYGONSHAPE3D_SET_BACKFACE_COLLISION_ENABLED, NIL)
     }
 
   public override fun __new(): Unit {

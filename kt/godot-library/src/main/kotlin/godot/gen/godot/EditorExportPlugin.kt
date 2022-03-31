@@ -70,8 +70,12 @@ public open abstract class EditorExportPlugin : RefCounted() {
    *
    * In case of a directory code-sign will error if you place non code object in directory.
    */
-  public open fun addSharedObject(path: String, tags: PackedStringArray): Unit {
-    TransferContext.writeArguments(STRING to path, PACKED_STRING_ARRAY to tags)
+  public open fun addSharedObject(
+    path: String,
+    tags: PackedStringArray,
+    target: String
+  ): Unit {
+    TransferContext.writeArguments(STRING to path, PACKED_STRING_ARRAY to tags, STRING to target)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_EDITOREXPORTPLUGIN_ADD_SHARED_OBJECT, NIL)
   }

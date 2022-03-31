@@ -112,7 +112,7 @@ public object Input : Object() {
   /**
    * Returns `true` if you are pressing the action event. Note that if an action has multiple buttons assigned and more than one of them is pressed, releasing one button will release the action, even if some other button assigned to this action is still pressed.
    *
-   * If `exact_match` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   * If `exact_match` is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    *
    * **Note:** Due to keyboard ghosting, [isActionPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples]($DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
    */
@@ -127,7 +127,7 @@ public object Input : Object() {
    *
    * This is useful for code that needs to run only once when an action is pressed, instead of every frame while it's pressed.
    *
-   * If `exact_match` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   * If `exact_match` is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    *
    * **Note:** Due to keyboard ghosting, [isActionJustPressed] may return `false` even if one of the action's keys is pressed. See [godot.Input examples]($DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events) in the documentation for more information.
    */
@@ -140,7 +140,7 @@ public object Input : Object() {
   /**
    * Returns `true` when the user stops pressing the action event, meaning it's `true` only on the frame that the user released the button.
    *
-   * If `exact_match` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   * If `exact_match` is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
   public open fun isActionJustReleased(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
@@ -151,7 +151,7 @@ public object Input : Object() {
   /**
    * Returns a value between 0 and 1 representing the intensity of the given action. In a joypad, for example, the further away the axis (analog sticks or L2, R2 triggers) is from the dead zone, the closer the value will be to 1. If the action is mapped to a control that has no axis as the keyboard, the value returned will be 0 or 1.
    *
-   * If `exact_match` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   * If `exact_match` is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
   public open fun getActionStrength(action: StringName, exactMatch: Boolean = false): Double {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
@@ -162,7 +162,7 @@ public object Input : Object() {
   /**
    * Returns a value between 0 and 1 representing the raw intensity of the given action, ignoring the action's deadzone. In most cases, you should use [getActionStrength] instead.
    *
-   * If `exact_match` is `false`, it ignores the input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
+   * If `exact_match` is `false`, it ignores additional input modifiers for [godot.InputEventKey] and [godot.InputEventMouseButton] events, and the direction for [godot.InputEventJoypadMotion] events.
    */
   public open fun getActionRawStrength(action: StringName, exactMatch: Boolean = false): Double {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
@@ -440,13 +440,13 @@ public object Input : Object() {
   }
 
   /**
-   * Sets the mouse position to the specified vector, provided in pixels and relative to an origin at the upper left corner of the game window.
+   * Sets the mouse position to the specified vector, provided in pixels and relative to an origin at the upper left corner of the currently focused Window Manager game window.
    *
    * Mouse position is clipped to the limits of the screen resolution, or to the limits of the game window if [enum MouseMode] is set to `MOUSE_MODE_CONFINED` or `MOUSE_MODE_CONFINED_HIDDEN`.
    */
-  public open fun warpMousePosition(to: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to to)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_WARP_MOUSE_POSITION, NIL)
+  public open fun warpMouse(position: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to position)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_WARP_MOUSE, NIL)
   }
 
   /**
@@ -476,7 +476,8 @@ public object Input : Object() {
    *
    * **Note:** This method generates an [godot.InputEventMouseMotion] to update cursor immediately.
    */
-  public open fun setDefaultCursorShape(shape: Input.CursorShape = CursorShape.CURSOR_ARROW): Unit {
+  public open fun setDefaultCursorShape(shape: Input.CursorShape = Input.CursorShape.CURSOR_ARROW):
+      Unit {
     TransferContext.writeArguments(LONG to shape.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_INPUT_SET_DEFAULT_CURSOR_SHAPE, NIL)
   }
@@ -504,7 +505,7 @@ public object Input : Object() {
    */
   public open fun setCustomMouseCursor(
     image: Resource,
-    shape: Input.CursorShape = CursorShape.CURSOR_ARROW,
+    shape: Input.CursorShape = Input.CursorShape.CURSOR_ARROW,
     hotspot: Vector2 = Vector2(0.0, 0.0)
   ): Unit {
     TransferContext.writeArguments(OBJECT to image, LONG to shape.id, VECTOR2 to hotspot)

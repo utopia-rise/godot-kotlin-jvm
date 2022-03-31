@@ -105,13 +105,15 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_GET_COLLIDE_SEPARATION_RAY, BOOL)
+          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_IS_COLLIDE_SEPARATION_RAY_ENABLED,
+          BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_SET_COLLIDE_SEPARATION_RAY, NIL)
+          ENGINEMETHOD_ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D_SET_COLLIDE_SEPARATION_RAY_ENABLED,
+          NIL)
     }
 
   /**

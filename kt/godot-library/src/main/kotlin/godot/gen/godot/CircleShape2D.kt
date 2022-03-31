@@ -15,9 +15,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Circular shape for 2D collisions.
+ * Circular shape resource for 2D physics.
  *
- * Circular shape for 2D collisions. This shape is useful for modeling balls or small characters and its collision detection with everything else is very fast.
+ * 2D circular shape to be added as a *direct* child of a [godot.PhysicsBody2D] or [godot.Area2D] using a [godot.CollisionShape2D] node. This shape is useful for modeling balls or small characters and its collision detection with everything else is very fast.
+ *
+ * **Performance:** Being a primitive collision shape, [godot.CircleShape2D] is the fastest collision shape to check collisions against, as it only requires a distance check with the shape's origin.
  */
 @GodotBaseType
 public open class CircleShape2D : Shape2D() {

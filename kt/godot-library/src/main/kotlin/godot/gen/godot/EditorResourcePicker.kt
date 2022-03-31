@@ -81,7 +81,7 @@ public open abstract class EditorResourcePicker : HBoxContainer() {
   public open var editable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_GET_EDITABLE,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_IS_EDITABLE,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -98,7 +98,7 @@ public open abstract class EditorResourcePicker : HBoxContainer() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_GET_TOGGLE_MODE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_EDITORRESOURCEPICKER_IS_TOGGLE_MODE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

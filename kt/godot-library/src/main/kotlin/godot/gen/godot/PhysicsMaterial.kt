@@ -44,7 +44,7 @@ public open class PhysicsMaterial : Resource() {
   public open var rough: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSMATERIAL_GET_ROUGH, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSMATERIAL_IS_ROUGH, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -73,7 +73,7 @@ public open class PhysicsMaterial : Resource() {
   public open var absorbent: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSMATERIAL_GET_ABSORBENT,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSMATERIAL_IS_ABSORBENT,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }

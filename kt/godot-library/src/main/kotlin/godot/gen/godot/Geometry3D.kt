@@ -54,7 +54,7 @@ public object Geometry3D : Object() {
     radius: Double,
     height: Double,
     sides: Long,
-    axis: Vector3.Axis = Axis.Z
+    axis: Vector3.Axis = Vector3.Axis.Z
   ): VariantArray<Any?> {
     TransferContext.writeArguments(DOUBLE to radius, DOUBLE to height, LONG to sides, LONG to
         axis.id)
@@ -71,7 +71,7 @@ public object Geometry3D : Object() {
     height: Double,
     sides: Long,
     lats: Long,
-    axis: Vector3.Axis = Axis.Z
+    axis: Vector3.Axis = Vector3.Axis.Z
   ): VariantArray<Any?> {
     TransferContext.writeArguments(DOUBLE to radius, DOUBLE to height, LONG to sides, LONG to lats,
         LONG to axis.id)

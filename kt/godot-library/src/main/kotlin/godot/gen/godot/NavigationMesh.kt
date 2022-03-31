@@ -54,15 +54,13 @@ public open class NavigationMesh : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_SAMPLE_PARTITION_TYPE_SAMPLE_PARTITION_TYPE,
-          LONG)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_SAMPLE_PARTITION_TYPE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_SAMPLE_PARTITION_TYPE_SAMPLE_PARTITION_TYPE,
-          NIL)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_SAMPLE_PARTITION_TYPE, NIL)
     }
 
   /**
@@ -72,13 +70,13 @@ public open class NavigationMesh : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_GEOMETRY_PARSED_GEOMETRY_TYPE, LONG)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_PARSED_GEOMETRY_TYPE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_GEOMETRY_PARSED_GEOMETRY_TYPE, NIL)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_PARSED_GEOMETRY_TYPE, NIL)
     }
 
   /**
@@ -89,14 +87,14 @@ public open class NavigationMesh : Resource() {
   public open var geometry_collisionMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_GEOMETRY_COLLISION_MASK, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_COLLISION_MASK,
+          LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_GEOMETRY_COLLISION_MASK, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_COLLISION_MASK,
+          NIL)
     }
 
   /**
@@ -106,13 +104,13 @@ public open class NavigationMesh : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_GEOMETRY_SOURCE_GEOMETRY_MODE, LONG)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_SOURCE_GEOMETRY_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_GEOMETRY_SOURCE_GEOMETRY_MODE, NIL)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_SOURCE_GEOMETRY_MODE, NIL)
     }
 
   /**
@@ -124,13 +122,13 @@ public open class NavigationMesh : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_GEOMETRY_SOURCE_GROUP_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_SOURCE_GROUP_NAME, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_GEOMETRY_SOURCE_GROUP_NAME, NIL)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_SOURCE_GROUP_NAME, NIL)
     }
 
   /**
@@ -310,14 +308,14 @@ public open class NavigationMesh : Resource() {
   public open var polygon_vertsPerPoly: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_POLYGON_VERTS_PER_POLY, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_VERTS_PER_POLY,
+          DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_POLYGON_VERTS_PER_POLY, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_VERTS_PER_POLY,
+          NIL)
     }
 
   /**
@@ -391,13 +389,13 @@ public open class NavigationMesh : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_FILTER_FILTER_WALKABLE_LOW_HEIGHT_SPANS, BOOL)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_GET_FILTER_WALKABLE_LOW_HEIGHT_SPANS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_FILTER_FILTER_WALKABLE_LOW_HEIGHT_SPANS, NIL)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONMESH_SET_FILTER_WALKABLE_LOW_HEIGHT_SPANS, NIL)
     }
 
   public override fun __new(): Unit {

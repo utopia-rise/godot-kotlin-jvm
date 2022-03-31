@@ -33,13 +33,14 @@ public open class LightOccluder2D : Node2D() {
   public open var occluder: OccluderPolygon2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_GET_OCCLUDER,
-          OBJECT)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_GET_OCCLUDER_POLYGON, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as OccluderPolygon2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_SET_OCCLUDER, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_SET_OCCLUDER_POLYGON, NIL)
     }
 
   /**
@@ -48,14 +49,14 @@ public open class LightOccluder2D : Node2D() {
   public open var sdfCollision: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_GET_SDF_COLLISION,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_IS_SET_AS_SDF_COLLISION, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_SET_SDF_COLLISION,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_LIGHTOCCLUDER2D_SET_AS_SDF_COLLISION, NIL)
     }
 
   /**

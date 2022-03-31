@@ -56,10 +56,11 @@ object GodotTypes {
     const val transform2D = "Transform2D"
     const val vector2 = "Vector2"
     const val vector2i = "Vector2i"
-    const val vector3 = "Vector3"
+    val vector3 = CoreTypeTraits.VECTOR3.type!!
     const val vector3i = "Vector3i"
     const val callable = "Callable"
     const val variant = "Variant"
+    const val variantType = "enum::Variant.Type"
 
     val coreTypes = listOf(
         error,

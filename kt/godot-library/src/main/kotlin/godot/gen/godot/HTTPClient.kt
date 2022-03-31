@@ -63,13 +63,12 @@ public open class HTTPClient : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_GET_BLOCKING_MODE_ENABLED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_IS_BLOCKING_MODE_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_BLOCKING_MODE_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPCLIENT_SET_BLOCKING_MODE, NIL)
     }
 
   /**

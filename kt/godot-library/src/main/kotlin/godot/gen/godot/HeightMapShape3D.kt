@@ -17,9 +17,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Height map shape for 3D physics.
+ * Height map shape resource for 3D physics.
  *
- * Height map shape resource, which can be added to a [godot.PhysicsBody3D] or [godot.Area3D].
+ * Height map shape resource, which can be added to a [godot.PhysicsBody3D] or [godot.Area3D]. Heightmap collision is typically used for colliding with terrains. However, since heightmaps cannot store overhangs, collisions with other structures (such as buildings) must be done with other collision shapes such as [godot.ConcavePolygonShape3D]. If needed, "holes" can be created in an [godot.HeightMapShape3D] by assigning very low points (like `-100000`) in the desired area.
+ *
+ * **Performance:** [godot.HeightMapShape3D] is faster to check collisions against compared to [godot.ConcavePolygonShape3D], but it is slower than primitive collision shapes such as [godot.SphereShape3D] or [godot.BoxShape3D].
  */
 @GodotBaseType
 public open class HeightMapShape3D : Shape3D() {

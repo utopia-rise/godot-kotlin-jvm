@@ -585,7 +585,7 @@ public open class Animation : Resource() {
     `value`: Double,
     inHandle: Vector2 = Vector2(0.0, 0.0),
     outHandle: Vector2 = Vector2(0.0, 0.0),
-    handleMode: Animation.HandleMode = HandleMode.HANDLE_MODE_BALANCED
+    handleMode: Animation.HandleMode = Animation.HandleMode.HANDLE_MODE_BALANCED
   ): Long {
     TransferContext.writeArguments(LONG to trackIdx, DOUBLE to time, DOUBLE to value, VECTOR2 to
         inHandle, VECTOR2 to outHandle, LONG to handleMode.id)

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
+import godot.core.VariantType.OBJECT
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.NotImplementedError
@@ -75,6 +76,16 @@ public open class AudioStream : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_IS_MONOPHONIC, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns an AudioStreamPlayback. Useful for when you want to extend `_instance_playback` but call `instance_playback` from an internally held AudioStream subresource. An example of this can be found in the source files for `AudioStreamRandomPitch::instance_playback`.
+   */
+  public open fun instancePlayback(): AudioStreamPlayback? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAM_INSTANCE_PLAYBACK,
+        OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as AudioStreamPlayback?
   }
 
   public companion object

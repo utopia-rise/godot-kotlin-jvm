@@ -31,7 +31,7 @@ import kotlin.Unit
 /**
  * AStar class representation that uses 2D vectors as edges.
  *
- * This is a wrapper for the [godot.AStar] class which uses 2D vectors instead of 3D vectors.
+ * This is a wrapper for the [godot.AStar3D] class which uses 2D vectors instead of 3D vectors.
  */
 @GodotBaseType
 public open class AStar2D : RefCounted() {

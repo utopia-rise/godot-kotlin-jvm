@@ -119,12 +119,23 @@ public object OS : Object() {
   }
 
   /**
-   * Returns the number of threads available on the host machine.
+   * Returns the number of *logical* CPU cores available on the host machine. On CPUs with HyperThreading enabled, this number will be greater than the number of *physical* CPU cores.
    */
   public open fun getProcessorCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_PROCESSOR_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the name of the CPU model on the host machine (e.g. "Intel(R) Core(TM) i7-6700K CPU @ 4.00GHz").
+   *
+   * **Note:** This method is only implemented on Windows, macOS, Linux and iOS. On Android, HTML5 and UWP, [getProcessorName] returns an empty string.
+   */
+  public open fun getProcessorName(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OS_GET_PROCESSOR_NAME, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**

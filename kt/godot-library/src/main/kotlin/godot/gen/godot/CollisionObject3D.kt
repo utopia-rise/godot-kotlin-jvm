@@ -109,14 +109,14 @@ public open abstract class CollisionObject3D : Node3D() {
   public open var inputRayPickable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_INPUT_RAY_PICKABLE, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_IS_RAY_PICKABLE,
+          BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_INPUT_RAY_PICKABLE, NIL)
+          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_RAY_PICKABLE, NIL)
     }
 
   /**
@@ -126,13 +126,13 @@ public open abstract class CollisionObject3D : Node3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_INPUT_CAPTURE_ON_DRAG, BOOL)
+          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_GET_CAPTURE_INPUT_ON_DRAG, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_INPUT_CAPTURE_ON_DRAG, NIL)
+          ENGINEMETHOD_ENGINECLASS_COLLISIONOBJECT3D_SET_CAPTURE_INPUT_ON_DRAG, NIL)
     }
 
   public override fun __new(): Unit {

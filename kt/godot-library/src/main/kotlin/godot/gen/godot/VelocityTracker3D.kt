@@ -28,7 +28,7 @@ public open class VelocityTracker3D : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VELOCITYTRACKER3D_GET_TRACK_PHYSICS_STEP, BOOL)
+          ENGINEMETHOD_ENGINECLASS_VELOCITYTRACKER3D_IS_TRACKING_PHYSICS_STEP, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

@@ -12,7 +12,6 @@ import godot.core.TransferContext
 import godot.core.Transform3D
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -73,18 +72,24 @@ public open class XRPositionalTracker : RefCounted() {
   public val buttonPressed: Signal1<String> by signal("name")
 
   /**
+   * Emitted when the profile of our tracker changes.
+   */
+  public val profileChanged: Signal1<String> by signal("role")
+
+  /**
    * The type of tracker.
    */
   public open var type: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TYPE,
-          LONG)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_TYPE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_TYPE, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_TRACKER_TYPE, NIL)
     }
 
   /**
@@ -97,13 +102,14 @@ public open class XRPositionalTracker : RefCounted() {
   public open var name: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_NAME,
-          STRING)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_NAME, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_NAME, NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_TRACKER_NAME, NIL)
     }
 
   /**
@@ -113,13 +119,29 @@ public open class XRPositionalTracker : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_DESCRIPTION, STRING)
+          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_DESC, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_DESCRIPTION, NIL)
+          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_TRACKER_DESC, NIL)
+    }
+
+  /**
+   * The profile associated with this tracker, interface dependent but will indicate the type of controller being tracked.
+   */
+  public open var profile: String
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_PROFILE, STRING)
+      return TransferContext.readReturnValue(STRING, false) as String
+    }
+    set(`value`) {
+      TransferContext.writeArguments(STRING to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_TRACKER_PROFILE, NIL)
     }
 
   /**
@@ -128,29 +150,14 @@ public open class XRPositionalTracker : RefCounted() {
   public open var hand: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_HAND,
-          LONG)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_TRACKER_HAND, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_HAND, NIL)
-    }
-
-  /**
-   * The degree to which the tracker rumbles. Ranges from `0.0` to `1.0` with precision `.01`.
-   */
-  public open var rumble: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_GET_RUMBLE,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_RUMBLE,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_XRPOSITIONALTRACKER_SET_TRACKER_HAND, NIL)
     }
 
   public override fun __new(): Unit {

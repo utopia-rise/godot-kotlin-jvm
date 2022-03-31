@@ -24,13 +24,13 @@ public open class VisualScriptPropertyGet : VisualScriptNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_GET_SET_MODE, LONG)
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_GET_CALL_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_SET_SET_MODE, NIL)
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_SET_CALL_MODE, NIL)
     }
 
   public open var baseType: String
@@ -76,13 +76,13 @@ public open class VisualScriptPropertyGet : VisualScriptNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_GET_NODE_PATH, NODE_PATH)
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_GET_BASE_PATH, NODE_PATH)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_SET_NODE_PATH, NIL)
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTPROPERTYGET_SET_BASE_PATH, NIL)
     }
 
   public open var `property`: String

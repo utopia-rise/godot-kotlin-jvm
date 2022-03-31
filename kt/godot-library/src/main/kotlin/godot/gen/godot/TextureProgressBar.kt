@@ -31,19 +31,51 @@ import kotlin.Unit
 @GodotBaseType
 public open class TextureProgressBar : Range() {
   /**
+   * The fill direction. See [enum FillMode] for possible values.
+   */
+  public open var fillMode: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_FILL_MODE,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_FILL_MODE,
+          NIL)
+    }
+
+  /**
+   * If `true`, Godot treats the bar's textures like in [godot.NinePatchRect]. Use the `stretch_margin_*` properties like [stretchMarginBottom] to set up the nine patch's 3×3 grid. When using a radial [fillMode], this setting will enable stretching.
+   */
+  public open var ninePatchStretch: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_NINE_PATCH_STRETCH, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_NINE_PATCH_STRETCH, NIL)
+    }
+
+  /**
    * [godot.Texture2D] that draws under the progress bar. The bar's background.
    */
   public open var textureUnder: Texture2D?
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_TEXTURE_UNDER, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_UNDER_TEXTURE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_TEXTURE_UNDER, NIL)
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_UNDER_TEXTURE, NIL)
     }
 
   /**
@@ -53,13 +85,13 @@ public open class TextureProgressBar : Range() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_TEXTURE_OVER, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_OVER_TEXTURE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_TEXTURE_OVER, NIL)
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_OVER_TEXTURE, NIL)
     }
 
   /**
@@ -71,13 +103,13 @@ public open class TextureProgressBar : Range() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_TEXTURE_PROGRESS, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_PROGRESS_TEXTURE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_TEXTURE_PROGRESS, NIL)
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_PROGRESS_TEXTURE, NIL)
     }
 
   /**
@@ -94,22 +126,6 @@ public open class TextureProgressBar : Range() {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_TEXTURE_PROGRESS_OFFSET, NIL)
-    }
-
-  /**
-   * The fill direction. See [enum FillMode] for possible values.
-   */
-  public open var fillMode: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_FILL_MODE,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_FILL_MODE,
-          NIL)
     }
 
   /**
@@ -185,13 +201,13 @@ public open class TextureProgressBar : Range() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_RADIAL_FILL_DEGREES, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_FILL_DEGREES, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_RADIAL_FILL_DEGREES, NIL)
+          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_FILL_DEGREES, NIL)
     }
 
   /**
@@ -208,22 +224,6 @@ public open class TextureProgressBar : Range() {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_RADIAL_CENTER_OFFSET, NIL)
-    }
-
-  /**
-   * If `true`, Godot treats the bar's textures like in [godot.NinePatchRect]. Use the `stretch_margin_*` properties like [stretchMarginBottom] to set up the nine patch's 3×3 grid. When using a radial [fillMode], this setting will enable stretching.
-   */
-  public open var ninePatchStretch: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_GET_NINE_PATCH_STRETCH, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREPROGRESSBAR_SET_NINE_PATCH_STRETCH, NIL)
     }
 
   public override fun __new(): Unit {

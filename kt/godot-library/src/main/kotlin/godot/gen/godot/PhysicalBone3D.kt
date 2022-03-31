@@ -151,6 +151,22 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
+   * If `true`, internal force integration will be disabled (like gravity or air friction) for this body. Other than collision response, the body will only move as determined by the [_integrateForces] function, if defined.
+   */
+  public open var customIntegrator: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_IS_USING_CUSTOM_INTEGRATOR, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_USE_CUSTOM_INTEGRATOR, NIL)
+    }
+
+  /**
    * Defines how [linearDamp] is applied. See [enum DampMode] for possible values.
    */
   public open var linearDampMode: Long
@@ -219,12 +235,44 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
+   * The body's linear velocity in units per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [_integrateForces] as your process loop for precise control of the body state.
+   */
+  public open var linearVelocity: Vector3
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_LINEAR_VELOCITY, VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_LINEAR_VELOCITY, NIL)
+    }
+
+  /**
+   * The PhysicalBone3D's rotational velocity in *radians* per second.
+   */
+  public open var angularVelocity: Vector3
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_ANGULAR_VELOCITY, VECTOR3)
+      return TransferContext.readReturnValue(VECTOR3, false) as Vector3
+    }
+    set(`value`) {
+      TransferContext.writeArguments(VECTOR3 to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_SET_ANGULAR_VELOCITY, NIL)
+    }
+
+  /**
    * If `true`, the body is deactivated when there is no movement, so it will not take part in the simulation until it is awakened by an external force.
    */
   public open var canSleep: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_GET_CAN_SLEEP,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICALBONE3D_IS_ABLE_TO_SLEEP,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -235,6 +283,12 @@ public open class PhysicalBone3D : PhysicsBody3D() {
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PHYSICALBONE3D)
+  }
+
+  /**
+   * Called during physics processing, allowing you to read and safely modify the simulation state for the object. By default, it works in addition to the usual physics behavior, but the [customIntegrator] property allows you to disable the default behavior and do fully custom force integration for a body.
+   */
+  public open fun _integrateForces(state: PhysicsDirectBodyState3D): Unit {
   }
 
   /**

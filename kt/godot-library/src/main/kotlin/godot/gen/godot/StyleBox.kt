@@ -21,6 +21,7 @@ import godot.core.VariantType._RID
 import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -32,9 +33,43 @@ import kotlin.Unit
  * **Note:** For children of [godot.Control] that have *Theme Properties*, the `focus` [godot.StyleBox] is displayed over the `normal`, `hover` or `pressed` [godot.StyleBox]. This makes the `focus` [godot.StyleBox] more reusable across different nodes.
  */
 @GodotBaseType
-public open abstract class StyleBox : Resource() {
+public open class StyleBox : Resource() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_STYLEBOX)
+  }
+
+  /**
+   *
+   */
+  public open fun _getStyleMargin(side: Side): Double {
+    throw NotImplementedError("_get_style_margin is not implemented for StyleBox")
+  }
+
+  /**
+   *
+   */
+  public open fun _testMask(point: Vector2, rect: Rect2): Boolean {
+    throw NotImplementedError("_test_mask is not implemented for StyleBox")
+  }
+
+  /**
+   *
+   */
+  public open fun _getCenterSize(): Vector2 {
+    throw NotImplementedError("_get_center_size is not implemented for StyleBox")
+  }
+
+  /**
+   *
+   */
+  public open fun _getDrawRect(rect: Rect2): Rect2 {
+    throw NotImplementedError("_get_draw_rect is not implemented for StyleBox")
+  }
+
+  /**
+   *
+   */
+  public open fun _draw(toCanvasItem: RID, rect: Rect2): Unit {
   }
 
   /**

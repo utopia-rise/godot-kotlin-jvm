@@ -74,29 +74,28 @@ public open class CharacterBody3D : PhysicsBody3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_SLIDE_ON_CEILING, BOOL)
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_SLIDE_ON_CEILING_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_SLIDE_ON_CEILING, NIL)
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_SLIDE_ON_CEILING_ENABLED, NIL)
     }
 
   /**
    * Current velocity vector (typically meters per second), used and modified during calls to [moveAndSlide].
    */
-  public open var motionVelocity: Vector3
+  public open var velocity: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_MOTION_VELOCITY, VECTOR3)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_VELOCITY,
+          VECTOR3)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_MOTION_VELOCITY, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_VELOCITY, NIL)
     }
 
   /**
@@ -134,19 +133,19 @@ public open class CharacterBody3D : PhysicsBody3D() {
   /**
    * If `true`, the body will not slide on slopes when calling [moveAndSlide] when the body is standing still.
    *
-   * If `false`, the body will slide on floor's slopes when [motionVelocity] applies a downward force.
+   * If `false`, the body will slide on floor's slopes when [velocity] applies a downward force.
    */
   public open var floorStopOnSlope: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_FLOOR_STOP_ON_SLOPE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_FLOOR_STOP_ON_SLOPE_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_FLOOR_STOP_ON_SLOPE, NIL)
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_FLOOR_STOP_ON_SLOPE_ENABLED, NIL)
     }
 
   /**
@@ -158,13 +157,13 @@ public open class CharacterBody3D : PhysicsBody3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_FLOOR_CONSTANT_SPEED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_FLOOR_CONSTANT_SPEED_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_FLOOR_CONSTANT_SPEED, NIL)
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_FLOOR_CONSTANT_SPEED_ENABLED, NIL)
     }
 
   /**
@@ -174,13 +173,13 @@ public open class CharacterBody3D : PhysicsBody3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_FLOOR_BLOCK_ON_WALL, BOOL)
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_IS_FLOOR_BLOCK_ON_WALL_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_FLOOR_BLOCK_ON_WALL, NIL)
+          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_FLOOR_BLOCK_ON_WALL_ENABLED, NIL)
     }
 
   /**
@@ -278,14 +277,14 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public open var collision_safeMargin: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_COLLISION_SAFE_MARGIN, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_GET_SAFE_MARGIN,
+          DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_COLLISION_SAFE_MARGIN, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CHARACTERBODY3D_SET_SAFE_MARGIN,
+          NIL)
     }
 
   public override fun __new(): Unit {
@@ -293,11 +292,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
   }
 
   /**
-   * Moves the body based on [motionVelocity]. If the body collides with another, it will slide along the other body rather than stop immediately. If the other body is a [godot.CharacterBody3D] or [godot.RigidDynamicBody3D], it will also be affected by the motion of the other body. You can use this to make moving and rotating platforms, or to make nodes push other nodes.
+   * Moves the body based on [velocity]. If the body collides with another, it will slide along the other body rather than stop immediately. If the other body is a [godot.CharacterBody3D] or [godot.RigidDynamicBody3D], it will also be affected by the motion of the other body. You can use this to make moving and rotating platforms, or to make nodes push other nodes.
    *
-   * This method should be used in [godot.Node.PhysicsProcess] (or in a method called by [godot.Node.PhysicsProcess]), as it uses the physics step's `delta` value automatically in calculations. Otherwise, the simulation will run at an incorrect speed.
-   *
-   * Modifies [motionVelocity] if a slide collision occurred. To get the latest collision call [getLastSlideCollision], for more detailed information about collisions that occurred, use [getSlideCollision].
+   * Modifies [velocity] if a slide collision occurred. To get the latest collision call [getLastSlideCollision], for more detailed information about collisions that occurred, use [getSlideCollision].
    *
    * When the body touches a moving platform, the platform's velocity is automatically added to the body motion. If a collision occurs due to the platform's motion, it will always be first in the slide collisions.
    *
@@ -408,7 +405,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   }
 
   /**
-   * Returns the current real velocity since the last call to [moveAndSlide]. For example, when you climb a slope, you will move diagonally even though the velocity is horizontal. This method returns the diagonal movement, as opposed to [motionVelocity] which returns the requested velocity.
+   * Returns the current real velocity since the last call to [moveAndSlide]. For example, when you climb a slope, you will move diagonally even though the velocity is horizontal. This method returns the diagonal movement, as opposed to [velocity] which returns the requested velocity.
    */
   public open fun getRealVelocity(): Vector3 {
     TransferContext.writeArguments()
@@ -494,11 +491,11 @@ public open class CharacterBody3D : PhysicsBody3D() {
     id: Long
   ) {
     /**
-     * Add the last platform velocity to the [motionVelocity] when you leave a moving platform.
+     * Add the last platform velocity to the [velocity] when you leave a moving platform.
      */
     PLATFORM_VEL_ON_LEAVE_ALWAYS(0),
     /**
-     * Add the last platform velocity to the [motionVelocity] when you leave a moving platform, but any downward motion is ignored. It's useful to keep full jump height even when the platform is moving down.
+     * Add the last platform velocity to the [velocity] when you leave a moving platform, but any downward motion is ignored. It's useful to keep full jump height even when the platform is moving down.
      */
     PLATFORM_VEL_ON_LEAVE_UPWARD_ONLY(1),
     /**

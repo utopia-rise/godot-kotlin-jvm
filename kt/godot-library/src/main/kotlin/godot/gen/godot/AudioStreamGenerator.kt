@@ -24,7 +24,7 @@ import kotlin.Unit
  *
  * See also [godot.AudioEffectSpectrumAnalyzer] for performing real-time audio spectrum analysis.
  *
- * **Note:** Due to performance constraints, this class is best used from C# or from a compiled language via GDNative. If you still want to use this class from GDScript, consider using a lower [mixRate] such as 11,025 Hz or 22,050 Hz.
+ * **Note:** Due to performance constraints, this class is best used from C# or from a compiled language via GDExtension. If you still want to use this class from GDScript, consider using a lower [mixRate] such as 11,025 Hz or 22,050 Hz.
  */
 @GodotBaseType
 public open class AudioStreamGenerator : AudioStream() {

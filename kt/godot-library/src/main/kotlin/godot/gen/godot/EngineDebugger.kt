@@ -15,6 +15,7 @@ import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.CALLABLE
 import godot.core.VariantType.NIL
+import godot.core.VariantType.OBJECT
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import kotlin.Any
@@ -46,22 +47,10 @@ public object EngineDebugger : Object() {
   }
 
   /**
-   * Registers a profiler with the given `name`.
-   *
-   * `toggle` callable is called when the profiler is enabled/disabled. It must take an argument array as an argument.
-   *
-   * `add` callable is called when data is added to profiler using [godot.EngineDebugger.profilerAddFrameData]. It must take a data array as argument.
-   *
-   * `tick` callable is called at every active profiler iteration. It must take frame time, idle time, physics time, and physics idle time as arguments.
+   * Registers a profiler with the given `name`. See [godot.EngineProfiler] for more information.
    */
-  public open fun registerProfiler(
-    name: StringName,
-    toggle: Callable,
-    add: Callable,
-    tick: Callable
-  ): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, CALLABLE to toggle, CALLABLE to add,
-        CALLABLE to tick)
+  public open fun registerProfiler(name: StringName, profiler: EngineProfiler): Unit {
+    TransferContext.writeArguments(STRING_NAME to name, OBJECT to profiler)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINEDEBUGGER_REGISTER_PROFILER,
         NIL)
   }

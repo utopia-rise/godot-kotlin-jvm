@@ -65,7 +65,7 @@ public open class Sprite2D : Node2D() {
   public open var centered: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_GET_CENTERED, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_IS_CENTERED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -93,7 +93,7 @@ public open class Sprite2D : Node2D() {
   public open var flipH: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_GET_FLIP_H, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_IS_FLIPPED_H, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -107,7 +107,7 @@ public open class Sprite2D : Node2D() {
   public open var flipV: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_GET_FLIP_V, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_IS_FLIPPED_V, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -178,7 +178,7 @@ public open class Sprite2D : Node2D() {
   public open var regionEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_GET_REGION_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRITE2D_IS_REGION_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -207,7 +207,7 @@ public open class Sprite2D : Node2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SPRITE2D_GET_REGION_FILTER_CLIP_ENABLED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_SPRITE2D_IS_REGION_FILTER_CLIP_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

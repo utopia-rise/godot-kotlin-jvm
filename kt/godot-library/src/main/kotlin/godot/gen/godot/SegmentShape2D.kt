@@ -15,9 +15,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Segment shape for 2D collisions.
+ * Segment shape resource for 2D physics.
  *
- * Segment shape for 2D collisions. Consists of two points, `a` and `b`.
+ * 2D segment shape to be added as a *direct* child of a [godot.PhysicsBody2D] or [godot.Area2D] using a [godot.CollisionShape2D] node. Consists of two points, `a` and `b`.
+ *
+ * **Performance:** Being a primitive collision shape, [godot.SegmentShape2D] is fast to check collisions against (though not as fast as [godot.CircleShape2D]).
  */
 @GodotBaseType
 public open class SegmentShape2D : Shape2D() {

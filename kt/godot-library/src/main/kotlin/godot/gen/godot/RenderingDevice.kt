@@ -86,7 +86,7 @@ public open abstract class RenderingDevice : Object() {
     layer: Long,
     mipmap: Long,
     mipmaps: Long = 1,
-    sliceType: RenderingDevice.TextureSliceType = TextureSliceType.TEXTURE_SLICE_2D
+    sliceType: RenderingDevice.TextureSliceType = RenderingDevice.TextureSliceType.TEXTURE_SLICE_2D
   ): RID {
     TransferContext.writeArguments(OBJECT to view, _RID to withTexture, LONG to layer, LONG to
         mipmap, LONG to mipmaps, LONG to sliceType.id)
@@ -235,7 +235,7 @@ public open abstract class RenderingDevice : Object() {
    *
    */
   public open fun framebufferFormatCreateEmpty(samples: RenderingDevice.TextureSamples =
-      TextureSamples.TEXTURE_SAMPLES_1): Long {
+      RenderingDevice.TextureSamples.TEXTURE_SAMPLES_1): Long {
     TransferContext.writeArguments(LONG to samples.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGDEVICE_FRAMEBUFFER_FORMAT_CREATE_EMPTY, LONG)
@@ -288,7 +288,7 @@ public open abstract class RenderingDevice : Object() {
    */
   public open fun framebufferCreateEmpty(
     size: Vector2i,
-    samples: RenderingDevice.TextureSamples = TextureSamples.TEXTURE_SAMPLES_1,
+    samples: RenderingDevice.TextureSamples = RenderingDevice.TextureSamples.TEXTURE_SAMPLES_1,
     validateWithFormat: Long = -1
   ): RID {
     TransferContext.writeArguments(VECTOR2I to size, LONG to samples.id, LONG to validateWithFormat)

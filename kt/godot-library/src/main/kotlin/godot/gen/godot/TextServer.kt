@@ -18,6 +18,7 @@ import godot.core.PackedVector2Array
 import godot.core.RID
 import godot.core.Rect2
 import godot.core.TransferContext
+import godot.core.Transform2D
 import godot.core.VariantArray
 import godot.core.VariantType.ANY
 import godot.core.VariantType.ARRAY
@@ -36,6 +37,7 @@ import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.VariantType.RECT2
 import godot.core.VariantType.STRING
+import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType.VECTOR2I
 import godot.core.VariantType._RID
@@ -227,7 +229,7 @@ public open abstract class TextServer : RefCounted() {
   }
 
   /**
-   * Set the font style name.
+   * Sets the font style name.
    */
   public open fun fontSetStyleName(fontRid: RID, name: String): Unit {
     TransferContext.writeArguments(_RID to fontRid, STRING to name)
@@ -360,8 +362,8 @@ public open abstract class TextServer : RefCounted() {
   /**
    * Sets font hinting mode. Used by dynamic fonts only.
    */
-  public open fun fontSetHinting(fontRid: RID, _hinting: TextServer.Hinting): Unit {
-    TransferContext.writeArguments(_RID to fontRid, LONG to _hinting.id)
+  public open fun fontSetHinting(fontRid: RID, hinting: TextServer.Hinting): Unit {
+    TransferContext.writeArguments(_RID to fontRid, LONG to hinting.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_HINTING, NIL)
   }
 
@@ -372,6 +374,64 @@ public open abstract class TextServer : RefCounted() {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_HINTING, LONG)
     return TextServer.Hinting.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Sets font sub-pixel glyph positioning mode.
+   */
+  public open fun fontSetSubpixelPositioning(fontRid: RID,
+      subpixelPositioning: TextServer.SubpixelPositioning): Unit {
+    TransferContext.writeArguments(_RID to fontRid, LONG to subpixelPositioning.id)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_SUBPIXEL_POSITIONING, NIL)
+  }
+
+  /**
+   * Returns font sub-pixel glyph positioning mode.
+   */
+  public open fun fontGetSubpixelPositioning(fontRid: RID): TextServer.SubpixelPositioning {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_SUBPIXEL_POSITIONING, LONG)
+    return TextServer.SubpixelPositioning.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Sets font embolden strength. If `strength` is not equal to zero, emboldens the font outlines. Negative values reduce the outline thickness.
+   */
+  public open fun fontSetEmbolden(fontRid: RID, strength: Double): Unit {
+    TransferContext.writeArguments(_RID to fontRid, DOUBLE to strength)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_EMBOLDEN, NIL)
+  }
+
+  /**
+   * Returns font embolden strength.
+   */
+  public open fun fontGetEmbolden(fontRid: RID): Double {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_EMBOLDEN,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Sets 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating glyphs.
+   *
+   * For example, to simulate italic typeface by slanting, apply the following transform `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
+   */
+  public open fun fontSetTransform(fontRid: RID, transform: Transform2D): Unit {
+    TransferContext.writeArguments(_RID to fontRid, TRANSFORM2D to transform)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_SET_TRANSFORM, NIL)
+  }
+
+  /**
+   * Returns 2D transform applied to the font outlines.
+   */
+  public open fun fontGetTransform(fontRid: RID): Transform2D {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_FONT_GET_TRANSFORM,
+        TRANSFORM2D)
+    return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
   }
 
   /**
@@ -424,7 +484,7 @@ public open abstract class TextServer : RefCounted() {
   }
 
   /**
-   * Removes all font sizes from the cache entry
+   * Removes all font sizes from the cache entry.
    */
   public open fun fontClearSizeCache(fontRid: RID): Unit {
     TransferContext.writeArguments(_RID to fontRid)
@@ -977,7 +1037,7 @@ public open abstract class TextServer : RefCounted() {
   }
 
   /**
-   * Renders specified glyph the the font cache texture.
+   * Renders specified glyph to the font cache texture.
    */
   public open fun fontRenderGlyph(
     fontRid: RID,
@@ -1224,8 +1284,9 @@ public open abstract class TextServer : RefCounted() {
    *
    * **Note:** Orientation is ignored if server does not support [FEATURE_VERTICAL_LAYOUT] feature (supported by [godot.TextServerAdvanced]).
    */
-  public open fun createShapedText(direction: TextServer.Direction = Direction.DIRECTION_AUTO,
-      orientation: TextServer.Orientation = Orientation.ORIENTATION_HORIZONTAL): RID {
+  public open fun createShapedText(direction: TextServer.Direction =
+      TextServer.Direction.DIRECTION_AUTO, orientation: TextServer.Orientation =
+      TextServer.Orientation.ORIENTATION_HORIZONTAL): RID {
     TransferContext.writeArguments(LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTSERVER_CREATE_SHAPED_TEXT, _RID)
     return TransferContext.readReturnValue(_RID, false) as RID
@@ -1245,7 +1306,7 @@ public open abstract class TextServer : RefCounted() {
    * **Note:** Direction is ignored if server does not support [FEATURE_BIDI_LAYOUT] feature (supported by [godot.TextServerAdvanced]).
    */
   public open fun shapedTextSetDirection(shaped: RID, direction: TextServer.Direction =
-      Direction.DIRECTION_AUTO): Unit {
+      TextServer.Direction.DIRECTION_AUTO): Unit {
     TransferContext.writeArguments(_RID to shaped, LONG to direction.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_SET_DIRECTION, NIL)
@@ -1307,7 +1368,7 @@ public open abstract class TextServer : RefCounted() {
    * **Note:** Orientation is ignored if server does not support [FEATURE_VERTICAL_LAYOUT] feature (supported by [godot.TextServerAdvanced]).
    */
   public open fun shapedTextSetOrientation(shaped: RID, orientation: TextServer.Orientation =
-      Orientation.ORIENTATION_HORIZONTAL): Unit {
+      TextServer.Orientation.ORIENTATION_HORIZONTAL): Unit {
     TransferContext.writeArguments(_RID to shaped, LONG to orientation.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_TEXTSERVER_SHAPED_TEXT_SET_ORIENTATION, NIL)
@@ -1465,7 +1526,7 @@ public open abstract class TextServer : RefCounted() {
   }
 
   /**
-   * Sets text orientation.
+   * Returns the parent buffer from which the substring originates.
    */
   public open fun shapedTextGetParent(shaped: RID): RID {
     TransferContext.writeArguments(_RID to shaped)
@@ -1520,7 +1581,7 @@ public open abstract class TextServer : RefCounted() {
   }
 
   /**
-   * Returns text glyphs in the visual order.
+   * Returns an array of glyphs in the visual order.
    */
   public open fun shapedTextGetGlyphs(shaped: RID): VariantArray<Any?> {
     TransferContext.writeArguments(_RID to shaped)
@@ -1603,7 +1664,7 @@ public open abstract class TextServer : RefCounted() {
   }
 
   /**
-   * Returns position of the trim.
+   * Returns the position of the overrun trim.
    */
   public open fun shapedTextGetTrimPos(shaped: RID): Long {
     TransferContext.writeArguments(_RID to shaped)
@@ -1890,6 +1951,8 @@ public open abstract class TextServer : RefCounted() {
 
   /**
    * Strips diacritics from the string.
+   *
+   * **Note:** The result may be longer or shorter than the original.
    */
   public open fun stripDiacritics(string: String): String {
     TransferContext.writeArguments(STRING to string)
@@ -1986,41 +2049,57 @@ public open abstract class TextServer : RefCounted() {
     id: Long
   ) {
     /**
-     * TextServer supports bidirectional layouts.
+     * TextServer supports simple text layouts.
      */
-    FEATURE_BIDI_LAYOUT(1),
+    FEATURE_SIMPLE_LAYOUT(1),
+    /**
+     * TextServer supports bidirectional text layouts.
+     */
+    FEATURE_BIDI_LAYOUT(2),
     /**
      * TextServer supports vertical layouts.
      */
-    FEATURE_VERTICAL_LAYOUT(2),
+    FEATURE_VERTICAL_LAYOUT(4),
     /**
      * TextServer supports complex text shaping.
      */
-    FEATURE_SHAPING(4),
+    FEATURE_SHAPING(8),
     /**
      * TextServer supports justification using kashidas.
      */
-    FEATURE_KASHIDA_JUSTIFICATION(8),
+    FEATURE_KASHIDA_JUSTIFICATION(16),
     /**
      * TextServer supports complex line/word breaking rules (e.g. dictionary based).
      */
-    FEATURE_BREAK_ITERATORS(16),
+    FEATURE_BREAK_ITERATORS(32),
+    /**
+     * TextServer supports loading bitmap fonts.
+     */
+    FEATURE_FONT_BITMAP(64),
+    /**
+     * TextServer supports loading dynamic (TrueType, OpeType, etc.) fonts.
+     */
+    FEATURE_FONT_DYNAMIC(128),
+    /**
+     * TextServer supports multichannel signed distance field dynamic font rendering.
+     */
+    FEATURE_FONT_MSDF(256),
     /**
      * TextServer supports loading system fonts.
      */
-    FEATURE_FONT_SYSTEM(32),
+    FEATURE_FONT_SYSTEM(512),
     /**
      * TextServer supports variable fonts.
      */
-    FEATURE_FONT_VARIABLE(64),
+    FEATURE_FONT_VARIABLE(1024),
     /**
      * TextServer supports locale dependent and context sensitive case conversion.
      */
-    FEATURE_CONTEXT_SENSITIVE_CASE_CONVERSION(128),
+    FEATURE_CONTEXT_SENSITIVE_CASE_CONVERSION(2048),
     /**
      * TextServer require external data file for some features.
      */
-    FEATURE_USE_SUPPORT_DATA(256),
+    FEATURE_USE_SUPPORT_DATA(4096),
     ;
 
     public val id: Long
@@ -2116,6 +2195,51 @@ public open abstract class TextServer : RefCounted() {
      * Spacing at the bottom of the line.
      */
     SPACING_BOTTOM(3),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class SubpixelPositioning(
+    id: Long
+  ) {
+    /**
+     * Glyph horizontal position is rounded to the whole pixel size, each glyph is rasterized once.
+     */
+    SUBPIXEL_POSITIONING_DISABLED(0),
+    /**
+     * Glyph horizontal position is rounded based on font size.
+     *
+     * - To one quarter of the pixel size if font size is smaller or equal to [SUBPIXEL_POSITIONING_ONE_QUARTER_MAX_SIZE].
+     *
+     * - To one half of the pixel size if font size is smaller or equal to [SUBPIXEL_POSITIONING_ONE_HALF_MAX_SIZE].
+     *
+     * - To the whole pixel size for larger fonts.
+     */
+    SUBPIXEL_POSITIONING_AUTO(1),
+    /**
+     * Glyph horizontal position is rounded to one half of the pixel size, each glyph is rasterized up to two times.
+     */
+    SUBPIXEL_POSITIONING_ONE_HALF(2),
+    /**
+     * Glyph horizontal position is rounded to one quarter of the pixel size, each glyph is rasterized up to four times.
+     */
+    SUBPIXEL_POSITIONING_ONE_QUARTER(3),
+    /**
+     * Maximum font size which will use one half of the pixel subpixel positioning in [constants SUBPIXEL_POSITIONING_AUTO] mode.
+     */
+    SUBPIXEL_POSITIONING_ONE_HALF_MAX_SIZE(20),
+    /**
+     * Maximum font size which will use one quarter of the pixel subpixel positioning in [constants SUBPIXEL_POSITIONING_AUTO] mode.
+     */
+    SUBPIXEL_POSITIONING_ONE_QUARTER_MAX_SIZE(16),
     ;
 
     public val id: Long

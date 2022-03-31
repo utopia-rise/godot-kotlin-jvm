@@ -85,7 +85,7 @@ class ClassService(
 
                             if (method.arguments.size == 1 && method.arguments[0].type != "int") continue
 
-                            property.hasValidGetterInClass = true
+                            property.getterMethod = method
                             method.isGetterOrSetter = true
                         }
                         property.setter -> {
@@ -95,7 +95,7 @@ class ClassService(
 
                             if (method.arguments.size == 2 && method.arguments[0].type != "Long") continue
 
-                            property.hasValidSetterInClass = true
+                            property.setterMethod = method
                             method.isGetterOrSetter = true
                         }
                     }

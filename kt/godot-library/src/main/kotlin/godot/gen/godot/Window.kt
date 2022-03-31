@@ -86,7 +86,7 @@ public open class Window : Viewport() {
   public val aboutToPopup: Signal0 by signal()
 
   /**
-   *
+   * Emitted when files are dragged from the OS file manager and dropped in the game window. The argument is a list of file paths.
    */
   public val filesDropped: Signal1<PackedStringArray> by signal("files")
 
@@ -178,7 +178,7 @@ public open class Window : Viewport() {
   public open var visible: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_VISIBLE, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_IS_VISIBLE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -192,7 +192,7 @@ public open class Window : Viewport() {
   public open var wrapControls: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_WRAP_CONTROLS, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_IS_WRAPPING_CONTROLS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -206,7 +206,7 @@ public open class Window : Viewport() {
   public open var transient: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_TRANSIENT, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_IS_TRANSIENT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -220,7 +220,7 @@ public open class Window : Viewport() {
   public open var exclusive: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_EXCLUSIVE, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_IS_EXCLUSIVE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -356,7 +356,7 @@ public open class Window : Viewport() {
   public open var autoTranslate: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_GET_AUTO_TRANSLATE, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WINDOW_IS_AUTO_TRANSLATING, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -806,7 +806,11 @@ public open class Window : Viewport() {
     /**
      *
      */
-    FLAG_MAX(5),
+    FLAG_POPUP(5),
+    /**
+     *
+     */
+    FLAG_MAX(6),
     ;
 
     public val id: Long
@@ -864,7 +868,7 @@ public open class Window : Viewport() {
     id: Long
   ) {
     /**
-     * Automatic layout direction, determined from the parent control layout direction.
+     * Automatic layout direction, determined from the parent window layout direction.
      */
     LAYOUT_DIRECTION_INHERITED(0),
     /**

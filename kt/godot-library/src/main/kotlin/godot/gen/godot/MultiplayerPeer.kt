@@ -68,7 +68,7 @@ public open abstract class MultiplayerPeer : PacketPeer() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_GET_REFUSE_NEW_CONNECTIONS, BOOL)
+          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERPEER_IS_REFUSING_NEW_CONNECTIONS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

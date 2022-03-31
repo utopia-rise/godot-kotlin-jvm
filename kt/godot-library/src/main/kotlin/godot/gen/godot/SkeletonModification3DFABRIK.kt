@@ -46,13 +46,13 @@ public open class SkeletonModification3DFABRIK : SkeletonModification3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_TARGET_NODEPATH, NODE_PATH)
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_GET_TARGET_NODE, NODE_PATH)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_TARGET_NODEPATH, NIL)
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DFABRIK_SET_TARGET_NODE, NIL)
     }
 
   /**

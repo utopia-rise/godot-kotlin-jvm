@@ -27,7 +27,7 @@ public open class CenterContainer : Container() {
   public open var useTopLeft: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CENTERCONTAINER_GET_USE_TOP_LEFT,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CENTERCONTAINER_IS_USING_TOP_LEFT,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }

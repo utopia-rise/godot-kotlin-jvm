@@ -210,7 +210,8 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D_GET_COLLIDE_WITH_BODIES, BOOL)
+          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D_IS_COLLIDE_WITH_BODIES_ENABLED,
+          BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -226,7 +227,8 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D_GET_COLLIDE_WITH_AREAS, BOOL)
+          ENGINEMETHOD_ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D_IS_COLLIDE_WITH_AREAS_ENABLED,
+          BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

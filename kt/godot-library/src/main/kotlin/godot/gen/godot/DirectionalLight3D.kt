@@ -33,13 +33,13 @@ public open class DirectionalLight3D : Light3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_GET_DIRECTIONAL_SHADOW_MODE, LONG)
+          ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_GET_SHADOW_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_SET_DIRECTIONAL_SHADOW_MODE, NIL)
+          ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_SET_SHADOW_MODE, NIL)
     }
 
   /**
@@ -49,29 +49,29 @@ public open class DirectionalLight3D : Light3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_GET_DIRECTIONAL_SHADOW_BLEND_SPLITS, BOOL)
+          ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_IS_BLEND_SPLITS_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_SET_DIRECTIONAL_SHADOW_BLEND_SPLITS, NIL)
+          ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_SET_BLEND_SPLITS, NIL)
     }
 
   /**
-   * If `true`, this [godot.DirectionalLight3D] will not be used for anything except sky shaders. Use this for lights that impact your sky shader that you may want to hide from affecting the rest of the scene. For example, you may want to enable this when the sun in your sky shader falls below the horizon.
+   * Set whether this [godot.DirectionalLight3D] is visible in the sky, in the scene, or both in the sky and in the scene. See [enum SkyMode] for options.
    */
-  public open var useInSkyOnly: Boolean
+  public open var skyMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_GET_USE_IN_SKY_ONLY, BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_GET_SKY_MODE,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_SET_USE_IN_SKY_ONLY, NIL)
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DIRECTIONALLIGHT3D_SET_SKY_MODE,
+          NIL)
     }
 
   public override fun __new(): Unit {
@@ -93,6 +93,33 @@ public open class DirectionalLight3D : Light3D() {
      * Splits the view frustum in 4 areas, each with its own shadow map. This is the slowest directional shadow mode.
      */
     SHADOW_PARALLEL_4_SPLITS(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class SkyMode(
+    id: Long
+  ) {
+    /**
+     * Makes the light visible in both scene lighting and sky rendering.
+     */
+    SKY_MODE_LIGHT_AND_SKY(0),
+    /**
+     * Makes the light visible in scene lighting only (including direct lighting and global illumination). When using this mode, the light will not be visible from sky shaders.
+     */
+    SKY_MODE_LIGHT_ONLY(1),
+    /**
+     * Makes the light visible to sky shaders only. When using this mode the light will not cast light into the scene (either through direct lighting or through global illumination), but can be accessed through sky shaders. This can be useful, for example, when you want to control sky effects without illuminating the scene (during a night cycle, for example).
+     */
+    SKY_MODE_SKY_ONLY(2),
     ;
 
     public val id: Long

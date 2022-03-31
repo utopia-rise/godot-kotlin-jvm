@@ -97,8 +97,8 @@ public open class Curve : Resource() {
     position: Vector2,
     leftTangent: Double = 0.0,
     rightTangent: Double = 0.0,
-    leftMode: Curve.TangentMode = TangentMode.TANGENT_FREE,
-    rightMode: Curve.TangentMode = TangentMode.TANGENT_FREE
+    leftMode: Curve.TangentMode = Curve.TangentMode.TANGENT_FREE,
+    rightMode: Curve.TangentMode = Curve.TangentMode.TANGENT_FREE
   ): Long {
     TransferContext.writeArguments(VECTOR2 to position, DOUBLE to leftTangent, DOUBLE to
         rightTangent, LONG to leftMode.id, LONG to rightMode.id)

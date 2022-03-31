@@ -49,7 +49,7 @@ public open class UPNP : RefCounted() {
   public open var discoverIpv6: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_GET_DISCOVER_IPV6, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UPNP_IS_DISCOVER_IPV6, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

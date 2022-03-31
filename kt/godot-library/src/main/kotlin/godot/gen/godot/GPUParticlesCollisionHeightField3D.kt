@@ -80,15 +80,14 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_GET_FOLLOW_CAMERA_ENABLED,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_IS_FOLLOW_CAMERA_MODE_ENABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_SET_FOLLOW_CAMERA_ENABLED,
-          NIL)
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_SET_FOLLOW_CAMERA_MODE, NIL)
     }
 
   /**

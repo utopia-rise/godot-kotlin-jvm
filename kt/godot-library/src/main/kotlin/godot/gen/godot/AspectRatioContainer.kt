@@ -136,7 +136,7 @@ public open class AspectRatioContainer : Container() {
     /**
      * The width and height of child controls is automatically adjusted to make their bounding rectangle cover the entire area of the container while keeping the aspect ratio.
      *
-     * When the bounding rectangle of child controls exceed the container's size and [godot.Control.rectClipContent] is enabled, this allows to show only the container's area restricted by its own bounding rectangle.
+     * When the bounding rectangle of child controls exceed the container's size and [godot.Control.clipContents] is enabled, this allows to show only the container's area restricted by its own bounding rectangle.
      */
     STRETCH_COVER(3),
     ;

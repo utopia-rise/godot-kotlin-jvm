@@ -48,7 +48,7 @@ public open class Thread : RefCounted() {
   public open fun start(
     callable: Callable,
     userdata: Any? = null,
-    priority: Thread.Priority = Priority.PRIORITY_NORMAL
+    priority: Thread.Priority = Thread.Priority.PRIORITY_NORMAL
   ): GodotError {
     TransferContext.writeArguments(CALLABLE to callable, ANY to userdata, LONG to priority.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THREAD_START, LONG)

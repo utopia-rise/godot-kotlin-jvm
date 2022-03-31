@@ -33,7 +33,7 @@ public open abstract class InputEventWithModifiers : InputEventFromWindow() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_GET_STORE_COMMAND, BOOL)
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_IS_STORING_COMMAND, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -49,7 +49,7 @@ public open abstract class InputEventWithModifiers : InputEventFromWindow() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_GET_ALT_PRESSED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_IS_ALT_PRESSED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -65,7 +65,7 @@ public open abstract class InputEventWithModifiers : InputEventFromWindow() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_GET_SHIFT_PRESSED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_IS_SHIFT_PRESSED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -81,7 +81,7 @@ public open abstract class InputEventWithModifiers : InputEventFromWindow() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_GET_CTRL_PRESSED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_IS_CTRL_PRESSED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -97,7 +97,7 @@ public open abstract class InputEventWithModifiers : InputEventFromWindow() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_GET_META_PRESSED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_IS_META_PRESSED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -113,7 +113,7 @@ public open abstract class InputEventWithModifiers : InputEventFromWindow() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_GET_COMMAND_PRESSED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTWITHMODIFIERS_IS_COMMAND_PRESSED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

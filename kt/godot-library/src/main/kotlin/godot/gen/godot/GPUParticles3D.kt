@@ -46,7 +46,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public open var emitting: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_EMITTING, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_IS_EMITTING, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -119,14 +119,14 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public open var preprocess: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_PREPROCESS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_PRE_PROCESS_TIME, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_PREPROCESS,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_PRE_PROCESS_TIME, NIL)
     }
 
   /**
@@ -151,14 +151,14 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public open var explosiveness: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_EXPLOSIVENESS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_EXPLOSIVENESS_RATIO, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_EXPLOSIVENESS,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_EXPLOSIVENESS_RATIO, NIL)
     }
 
   /**
@@ -167,14 +167,14 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public open var randomness: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_RANDOMNESS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_RANDOMNESS_RATIO, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_RANDOMNESS,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_RANDOMNESS_RATIO, NIL)
     }
 
   /**
@@ -214,14 +214,14 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public open var fractDelta: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_FRACT_DELTA,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_FRACTIONAL_DELTA, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_FRACT_DELTA,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_FRACTIONAL_DELTA, NIL)
     }
 
   /**
@@ -264,14 +264,14 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public open var localCoords: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_LOCAL_COORDS,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_USE_LOCAL_COORDINATES, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_LOCAL_COORDS,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_USE_LOCAL_COORDINATES, NIL)
     }
 
   /**
@@ -312,7 +312,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public open var trailEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_TRAIL_ENABLED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_IS_TRAIL_ENABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -328,14 +328,14 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public open var trailLengthSecs: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_TRAIL_LENGTH_SECS, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_TRAIL_LENGTH,
+          DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_TRAIL_LENGTH_SECS, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_TRAIL_LENGTH,
+          NIL)
     }
 
   /**
@@ -376,7 +376,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public open val drawPass1: Mesh?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_1,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Mesh?
     }
@@ -387,7 +387,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public open val drawPass2: Mesh?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_2,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Mesh?
     }
@@ -398,7 +398,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public open val drawPass3: Mesh?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_3,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Mesh?
     }
@@ -409,7 +409,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public open val drawPass4: Mesh?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_4,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_PASS_MESH,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Mesh?
     }
@@ -420,13 +420,12 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public open var drawSkin: Skin?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_DRAW_SKIN,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_GET_SKIN, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Skin?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_DRAW_SKIN, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES3D_SET_SKIN, NIL)
     }
 
   public override fun __new(): Unit {
@@ -495,7 +494,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
      */
     EMIT_FLAG_COLOR(8),
     /**
-     * Particle starts with specificed `CUSTOM` data.
+     * Particle starts with specified `CUSTOM` data.
      */
     EMIT_FLAG_CUSTOM(16),
     ;

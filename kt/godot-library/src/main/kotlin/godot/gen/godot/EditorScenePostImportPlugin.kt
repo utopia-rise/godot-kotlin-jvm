@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.TransferContext
+import godot.core.VariantType
 import godot.core.VariantType.ANY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -114,7 +115,7 @@ public open abstract class EditorScenePostImportPlugin : RefCounted() {
    * Add a specific import option. This function can only be called from [_getImportOptions] and [_getInternalImportOptions].
    */
   public open fun addImportOptionAdvanced(
-    type: Variant.Type,
+    type: VariantType,
     name: String,
     defaultValue: Any,
     hint: PropertyHint = PropertyHint.PROPERTY_HINT_NONE,

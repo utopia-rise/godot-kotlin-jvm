@@ -85,7 +85,7 @@ public open abstract class CanvasItem : Node() {
   public open var visible: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_VISIBLE, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_IS_VISIBLE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -128,13 +128,13 @@ public open abstract class CanvasItem : Node() {
   public open var showBehindParent: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_SHOW_BEHIND_PARENT,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CANVASITEM_IS_DRAW_BEHIND_PARENT_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_SHOW_BEHIND_PARENT,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_DRAW_BEHIND_PARENT,
           NIL)
     }
 
@@ -144,12 +144,13 @@ public open abstract class CanvasItem : Node() {
   public open var topLevel: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_TOP_LEVEL, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_IS_SET_AS_TOP_LEVEL,
+          BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_TOP_LEVEL, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_SET_AS_TOP_LEVEL, NIL)
     }
 
   /**
@@ -158,7 +159,7 @@ public open abstract class CanvasItem : Node() {
   public open var clipChildren: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_CLIP_CHILDREN,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_IS_CLIPPING_CHILDREN,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -306,6 +307,21 @@ public open abstract class CanvasItem : Node() {
   ): Unit {
     TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to, COLOR to color, DOUBLE to width)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_LINE, NIL)
+  }
+
+  /**
+   * Draws a dashed line from a 2D point to another, with a given color and width. See also [drawMultiline] and [drawPolyline].
+   */
+  public open fun drawDashedLine(
+    from: Vector2,
+    to: Vector2,
+    color: Color,
+    width: Double = 1.0,
+    dash: Double = 2.0
+  ): Unit {
+    TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to, COLOR to color, DOUBLE to width,
+        DOUBLE to dash)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_DRAW_DASHED_LINE, NIL)
   }
 
   /**
@@ -754,6 +770,18 @@ public open abstract class CanvasItem : Node() {
   }
 
   /**
+   * Returns the transform of this [godot.CanvasItem] in global screen coordinates (i.e. taking window position into account). Mostly useful for editor plugins.
+   *
+   * Equals to [getGlobalTransform] if the window is embedded (see [godot.Viewport.guiEmbedSubwindows]).
+   */
+  public open fun getScreenTransform(): Transform2D {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CANVASITEM_GET_SCREEN_TRANSFORM,
+        TRANSFORM2D)
+    return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
+  }
+
+  /**
    * Returns the mouse's position in this [godot.CanvasItem] using the local coordinate system of this [godot.CanvasItem].
    */
   public open fun getLocalMousePosition(): Vector2 {
@@ -792,7 +820,7 @@ public open abstract class CanvasItem : Node() {
   }
 
   /**
-   * If `enable` is `true`, children will be updated with local transform data.
+   * If `enable` is `true`, this node will receive [NOTIFICATION_LOCAL_TRANSFORM_CHANGED] when its local transform changes.
    */
   public open fun setNotifyLocalTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -811,7 +839,7 @@ public open abstract class CanvasItem : Node() {
   }
 
   /**
-   * If `enable` is `true`, children will be updated with global transform data.
+   * If `enable` is `true`, this node will receive [NOTIFICATION_TRANSFORM_CHANGED] when its global transform changes.
    */
   public open fun setNotifyTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -945,9 +973,14 @@ public open abstract class CanvasItem : Node() {
 
   public companion object {
     /**
-     * The [godot.CanvasItem]'s transform has changed. This notification is only received if enabled by [setNotifyTransform] or [setNotifyLocalTransform].
+     * The [godot.CanvasItem]'s global transform has changed. This notification is only received if enabled by [setNotifyTransform].
      */
     public final const val NOTIFICATION_TRANSFORM_CHANGED: Long = 2000
+
+    /**
+     * The [godot.CanvasItem]'s local transform has changed. This notification is only received if enabled by [setNotifyLocalTransform].
+     */
+    public final const val NOTIFICATION_LOCAL_TRANSFORM_CHANGED: Long = 35
 
     /**
      * The [godot.CanvasItem] is requested to draw.

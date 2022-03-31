@@ -23,7 +23,6 @@ import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.NODE_PATH
-import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
@@ -583,9 +582,11 @@ public open class Object : KtObject() {
 
   /**
    * Returns the object's metadata entry for the given `name`.
+   *
+   * Throws error if the entry does not exist, unless `default` is not `null` (in which case the default value will be returned).
    */
-  public open fun getMeta(name: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to name)
+  public open fun getMeta(name: StringName, default: Any? = null): Any? {
+    TransferContext.writeArguments(STRING_NAME to name, ANY to default)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_GET_META, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
   }
@@ -650,11 +651,11 @@ public open class Object : KtObject() {
    *
    * [/codeblocks]
    */
-  public open fun emitSignal(signal: StringName, vararg __var_args: Any?): void? {
+  public open fun emitSignal(signal: StringName, vararg __var_args: Any?): GodotError {
     TransferContext.writeArguments(STRING_NAME to signal,  *__var_args.map { ANY to it
         }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_EMIT_SIGNAL, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as void?
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_EMIT_SIGNAL, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   /**
@@ -714,11 +715,11 @@ public open class Object : KtObject() {
    *
    * **Note:** In C#, the method name must be specified as snake_case if it is defined by a built-in Godot node. This doesn't apply to user-defined methods where you should use the same convention as in the C# source (typically PascalCase).
    */
-  public open fun callDeferred(method: StringName, vararg __var_args: Any?): void? {
+  public open fun callDeferred(method: StringName, vararg __var_args: Any?): Any? {
     TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it
         }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_CALL_DEFERRED, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as void?
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OBJECT_CALL_DEFERRED, ANY)
+    return TransferContext.readReturnValue(ANY, true) as Any?
   }
 
   /**

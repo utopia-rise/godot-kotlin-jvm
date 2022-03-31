@@ -30,7 +30,7 @@ import kotlin.Unit
  *
  * Captures its surroundings as a cubemap, and stores versions of it with increasing levels of blur to simulate different material roughnesses.
  *
- * The [godot.ReflectionProbe] is used to create high-quality reflections at a low performance cost (when [updateMode] is [UPDATE_ONCE]). [godot.ReflectionProbe]s can be blended together and with the rest of the scene smoothly. [godot.ReflectionProbe]s can also be combined with [godot.VoxelGI], SDFGI ([godot.Environment.sdfgiEnabled]) and screen-space reflections ([godot.Environment.ssReflectionsEnabled]) to get more accurate reflections in specific areas. [godot.ReflectionProbe]s render all objects within their [cullMask], so updating them can be quite expensive. It is best to update them once with the important static objects and then leave them as-is.
+ * The [godot.ReflectionProbe] is used to create high-quality reflections at a low performance cost (when [updateMode] is [UPDATE_ONCE]). [godot.ReflectionProbe]s can be blended together and with the rest of the scene smoothly. [godot.ReflectionProbe]s can also be combined with [godot.VoxelGI], SDFGI ([godot.Environment.sdfgiEnabled]) and screen-space reflections ([godot.Environment.ssrEnabled]) to get more accurate reflections in specific areas. [godot.ReflectionProbe]s render all objects within their [cullMask], so updating them can be quite expensive. It is best to update them once with the important static objects and then leave them as-is.
  *
  * **Note:** Unlike [godot.VoxelGI] and SDFGI, [godot.ReflectionProbe]s only source their environment from a [godot.WorldEnvironment] node. If you specify an [godot.Environment] resource within a [godot.Camera3D] node, it will be ignored by the [godot.ReflectionProbe]. This can lead to incorrect lighting within the [godot.ReflectionProbe].
  */
@@ -128,13 +128,13 @@ public open class ReflectionProbe : VisualInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_BOX_PROJECTION, BOOL)
+          ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_IS_BOX_PROJECTION_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_BOX_PROJECTION, NIL)
+          ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_ENABLE_BOX_PROJECTION, NIL)
     }
 
   /**
@@ -143,13 +143,14 @@ public open class ReflectionProbe : VisualInstance3D() {
   public open var interior: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_INTERIOR,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_IS_SET_AS_INTERIOR, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_INTERIOR, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_SET_AS_INTERIOR,
+          NIL)
     }
 
   /**
@@ -159,7 +160,7 @@ public open class ReflectionProbe : VisualInstance3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_GET_ENABLE_SHADOWS, BOOL)
+          ENGINEMETHOD_ENGINECLASS_REFLECTIONPROBE_ARE_SHADOWS_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

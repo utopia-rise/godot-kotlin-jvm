@@ -34,13 +34,13 @@ public open class VisualScriptLocalVar : VisualScriptNode() {
   public open var type: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLOCALVAR_GET_TYPE,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLOCALVAR_GET_VAR_TYPE,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLOCALVAR_SET_TYPE,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLOCALVAR_SET_VAR_TYPE,
           NIL)
     }
 

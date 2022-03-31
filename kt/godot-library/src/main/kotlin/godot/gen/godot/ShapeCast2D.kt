@@ -42,7 +42,7 @@ public open class ShapeCast2D : Node2D() {
   public open var enabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_IS_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -70,14 +70,14 @@ public open class ShapeCast2D : Node2D() {
   public open var excludeParent: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_EXCLUDE_PARENT,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_EXCLUDE_PARENT_BODY, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_EXCLUDE_PARENT,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_SET_EXCLUDE_PARENT_BODY, NIL)
     }
 
   /**
@@ -147,7 +147,7 @@ public open class ShapeCast2D : Node2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLIDE_WITH_AREAS, BOOL)
+          ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_IS_COLLIDE_WITH_AREAS_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -163,7 +163,7 @@ public open class ShapeCast2D : Node2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_GET_COLLIDE_WITH_BODIES, BOOL)
+          ENGINEMETHOD_ENGINECLASS_SHAPECAST2D_IS_COLLIDE_WITH_BODIES_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

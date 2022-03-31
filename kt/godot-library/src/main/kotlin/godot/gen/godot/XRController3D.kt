@@ -14,7 +14,6 @@ import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
 import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
@@ -63,22 +62,6 @@ public open class XRController3D : XRNode3D() {
    * Emitted when a button on this controller is pressed.
    */
   public val buttonPressed: Signal1<String> by signal("name")
-
-  /**
-   * The degree to which the controller vibrates. Ranges from `0.0` to `1.0` with precision `.01`. If changed, updates [godot.XRPositionalTracker.rumble] accordingly.
-   *
-   * This is a useful property to animate if you want the controller to vibrate for a limited duration.
-   */
-  public open var rumble: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_GET_RUMBLE, DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRCONTROLLER3D_SET_RUMBLE, NIL)
-    }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_XRCONTROLLER3D)

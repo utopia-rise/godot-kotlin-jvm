@@ -26,7 +26,7 @@ public open class VisualShaderNodeParticleMultiplyByAxisAngle : VisualShaderNode
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMULTIPLYBYAXISANGLE_GET_DEGREES_MODE,
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMULTIPLYBYAXISANGLE_IS_DEGREES_MODE,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }

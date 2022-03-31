@@ -39,7 +39,7 @@ public open class MenuButton : Button() {
   public open var switchOnHover: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_GET_SWITCH_ON_HOVER,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MENUBUTTON_IS_SWITCH_ON_HOVER,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }

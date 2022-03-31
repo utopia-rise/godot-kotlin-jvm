@@ -15,12 +15,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Capsule shape for collisions.
+ * Capsule shape resource for 3D collisions.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/675](https://godotengine.org/asset-library/asset/675)
  *
- * Capsule shape for collisions.
+ * 3D capsule shape to be added as a *direct* child of a [godot.PhysicsBody3D] or [godot.Area3D] using a [godot.CollisionShape3D] node. In 3D, a capsule is a cylinder shape with hemispheres at both ends.
+ *
+ * **Performance:** Being a primitive collision shape, [godot.CapsuleShape3D] is fast to check collisions against (though not as fast as [godot.SphereShape3D]). [godot.CapsuleShape3D] is cheaper to check collisions against compared to [godot.CylinderShape3D].
  */
 @GodotBaseType
 public open class CapsuleShape3D : Shape3D() {

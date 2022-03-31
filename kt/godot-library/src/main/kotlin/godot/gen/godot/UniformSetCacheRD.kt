@@ -10,13 +10,10 @@ import godot.`annotation`.GodotBaseType
 import kotlin.Suppress
 import kotlin.Unit
 
-/**
- *
- */
 @GodotBaseType
-public open class StreamCubemap : StreamTextureLayered() {
+public open abstract class UniformSetCacheRD : Object() {
   public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_STREAMCUBEMAP)
+    callConstructor(ENGINECLASS_UNIFORMSETCACHERD)
   }
 
   public companion object

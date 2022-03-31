@@ -84,7 +84,7 @@ public open class MultiplayerAPI : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_ALLOW_OBJECT_DECODING, BOOL)
+          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_IS_OBJECT_DECODING_ALLOWED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -100,7 +100,7 @@ public open class MultiplayerAPI : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_GET_REFUSE_NEW_CONNECTIONS, BOOL)
+          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERAPI_IS_REFUSING_NEW_CONNECTIONS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

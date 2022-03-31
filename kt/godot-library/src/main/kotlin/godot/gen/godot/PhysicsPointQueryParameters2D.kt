@@ -99,7 +99,8 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_GET_COLLIDE_WITH_BODIES, BOOL)
+          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_IS_COLLIDE_WITH_BODIES_ENABLED,
+          BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -115,7 +116,8 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_GET_COLLIDE_WITH_AREAS, BOOL)
+          ENGINEMETHOD_ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D_IS_COLLIDE_WITH_AREAS_ENABLED,
+          BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

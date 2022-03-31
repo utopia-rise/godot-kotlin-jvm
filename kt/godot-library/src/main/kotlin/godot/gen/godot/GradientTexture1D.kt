@@ -59,7 +59,7 @@ public open class GradientTexture1D : Texture2D() {
   public open var useHdr: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE1D_GET_USE_HDR,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GRADIENTTEXTURE1D_IS_USING_HDR,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }

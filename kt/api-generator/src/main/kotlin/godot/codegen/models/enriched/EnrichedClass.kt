@@ -6,7 +6,7 @@ import godot.codegen.models.custom.AdditionalImport
 import godot.codegen.traits.TypedTrait
 
 class EnrichedClass(val internal: Class) : TypedTrait {
-    val enums = internal.enums?.toEnriched() ?: listOf()
+    val enums = internal.enums?.toEnriched(this) ?: listOf()
     val constants= internal.constants?.toEnriched() ?: listOf()
     val signals = internal.signals?.toEnriched() ?: listOf()
     val name = internal.name.escapeUnderscore()

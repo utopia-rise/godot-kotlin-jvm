@@ -37,13 +37,13 @@ public open class TextureButton : BaseButton() {
   public open var textureNormal: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_TEXTURE_NORMAL,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_NORMAL_TEXTURE,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_TEXTURE_NORMAL,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_NORMAL_TEXTURE,
           NIL)
     }
 
@@ -53,13 +53,13 @@ public open class TextureButton : BaseButton() {
   public open var texturePressed: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_TEXTURE_PRESSED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_PRESSED_TEXTURE,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_TEXTURE_PRESSED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_PRESSED_TEXTURE,
           NIL)
     }
 
@@ -69,13 +69,13 @@ public open class TextureButton : BaseButton() {
   public open var textureHover: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_TEXTURE_HOVER,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_HOVER_TEXTURE,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_TEXTURE_HOVER,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_HOVER_TEXTURE,
           NIL)
     }
 
@@ -86,13 +86,13 @@ public open class TextureButton : BaseButton() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_TEXTURE_DISABLED, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_DISABLED_TEXTURE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_TEXTURE_DISABLED, NIL)
+          ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_DISABLED_TEXTURE, NIL)
     }
 
   /**
@@ -101,13 +101,13 @@ public open class TextureButton : BaseButton() {
   public open var textureFocused: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_TEXTURE_FOCUSED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_FOCUSED_TEXTURE,
           OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_TEXTURE_FOCUSED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_FOCUSED_TEXTURE,
           NIL)
     }
 
@@ -117,14 +117,13 @@ public open class TextureButton : BaseButton() {
   public open var textureClickMask: BitMap?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_TEXTURE_CLICK_MASK, OBJECT)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_CLICK_MASK,
+          OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as BitMap?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_TEXTURE_CLICK_MASK, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_SET_CLICK_MASK, NIL)
     }
 
   /**
@@ -165,7 +164,7 @@ public open class TextureButton : BaseButton() {
   public open var flipH: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_FLIP_H, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_IS_FLIPPED_H, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -179,7 +178,7 @@ public open class TextureButton : BaseButton() {
   public open var flipV: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_GET_FLIP_V, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TEXTUREBUTTON_IS_FLIPPED_V, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

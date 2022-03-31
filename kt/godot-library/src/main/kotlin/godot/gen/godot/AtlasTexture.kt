@@ -74,7 +74,7 @@ public open class AtlasTexture : Texture2D() {
   public open var filterClip: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_GET_FILTER_CLIP,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ATLASTEXTURE_HAS_FILTER_CLIP,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }

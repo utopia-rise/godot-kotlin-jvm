@@ -61,9 +61,9 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * `body` the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody2D] or [godot.TileMap].
    *
-   * `body_shape_index` the index of the [godot.Shape2D] of the other [godot.PhysicsBody2D] or [godot.TileMap] used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `body.shape_owner_get_owner(body_shape_index)`.
+   * `body_shape_index` the index of the [godot.Shape2D] of the other [godot.PhysicsBody2D] or [godot.TileMap] used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.
    *
-   * `local_shape_index` the index of the [godot.Shape2D] of this RigidDynamicBody2D used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `self.shape_owner_get_owner(local_shape_index)`.
+   * `local_shape_index` the index of the [godot.Shape2D] of this RigidDynamicBody2D used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
   public val bodyShapeEntered: Signal4<RID, Node, Long, Long> by signal("bodyRid", "body",
       "bodyShapeIndex", "localShapeIndex")
@@ -89,9 +89,9 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
    *
    * `body` the [godot.Node], if it exists in the tree, of the other [godot.PhysicsBody2D] or [godot.TileMap].
    *
-   * `body_shape_index` the index of the [godot.Shape2D] of the other [godot.PhysicsBody2D] or [godot.TileMap] used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `body.shape_owner_get_owner(body_shape_index)`.
+   * `body_shape_index` the index of the [godot.Shape2D] of the other [godot.PhysicsBody2D] or [godot.TileMap] used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.
    *
-   * `local_shape_index` the index of the [godot.Shape2D] of this RigidDynamicBody2D used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `self.shape_owner_get_owner(local_shape_index)`.
+   * `local_shape_index` the index of the [godot.Shape2D] of this RigidDynamicBody2D used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
   public val bodyShapeExited: Signal4<RID, Node, Long, Long> by signal("bodyRid", "body",
       "bodyShapeIndex", "localShapeIndex")
@@ -204,13 +204,13 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_CUSTOM_INTEGRATOR, BOOL)
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_IS_USING_CUSTOM_INTEGRATOR, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_CUSTOM_INTEGRATOR, NIL)
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_USE_CUSTOM_INTEGRATOR, NIL)
     }
 
   /**
@@ -222,13 +222,13 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_CONTINUOUS_CD, LONG)
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_CONTINUOUS_COLLISION_DETECTION_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_CONTINUOUS_CD, NIL)
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_CONTINUOUS_COLLISION_DETECTION_MODE, NIL)
     }
 
   /**
@@ -240,13 +240,13 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_CONTACTS_REPORTED, LONG)
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_MAX_CONTACTS_REPORTED, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_CONTACTS_REPORTED, NIL)
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_MAX_CONTACTS_REPORTED, NIL)
     }
 
   /**
@@ -256,7 +256,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_CONTACT_MONITOR, BOOL)
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_IS_CONTACT_MONITOR_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -271,7 +271,7 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public open var sleeping: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_SLEEPING,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_IS_SLEEPING,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -287,8 +287,8 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public open var canSleep: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_CAN_SLEEP,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_IS_ABLE_TO_SLEEP, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -304,13 +304,13 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_LOCK_ROTATION, BOOL)
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_IS_LOCK_ROTATION_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_LOCK_ROTATION, NIL)
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_LOCK_ROTATION_ENABLED, NIL)
     }
 
   /**
@@ -323,14 +323,14 @@ public open class RigidDynamicBody2D : PhysicsBody2D() {
   public open var freeze: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_GET_FREEZE,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_IS_FREEZE_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_FREEZE,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RIGIDDYNAMICBODY2D_SET_FREEZE_ENABLED, NIL)
     }
 
   /**

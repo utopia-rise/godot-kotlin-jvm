@@ -68,7 +68,7 @@ import kotlin.Unit
  *
  * st.set_uv(Vector2(0, 0))
  *
- * st.set_vertex(Vector3(0, 0, 0))
+ * st.add_vertex(Vector3(0, 0, 0))
  *
  * [/gdscript]
  *
@@ -82,7 +82,7 @@ import kotlin.Unit
  *
  * st.SetUv(new Vector2(0, 0));
  *
- * st.SetVertex(new Vector3(0, 0, 0));
+ * st.AddVertex(new Vector3(0, 0, 0));
  *
  * [/csharp]
  *

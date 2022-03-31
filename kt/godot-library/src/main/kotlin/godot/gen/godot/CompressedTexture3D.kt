@@ -21,20 +21,20 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open class StreamTexture3D : Texture3D() {
+public open class CompressedTexture3D : Texture3D() {
   /**
    *
    */
   public open val loadPath: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMTEXTURE3D_GET_LOAD_PATH,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COMPRESSEDTEXTURE3D_GET_LOAD_PATH,
           STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
   public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_STREAMTEXTURE3D)
+    callConstructor(ENGINECLASS_COMPRESSEDTEXTURE3D)
   }
 
   /**
@@ -42,7 +42,7 @@ public open class StreamTexture3D : Texture3D() {
    */
   public open fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMTEXTURE3D_LOAD, LONG)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COMPRESSEDTEXTURE3D_LOAD, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 

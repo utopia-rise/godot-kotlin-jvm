@@ -48,8 +48,8 @@ public open abstract class CSGShape3D : GeometryInstance3D() {
   public open var calculateTangents: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_GET_CALCULATE_TANGENTS,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_IS_CALCULATING_TANGENTS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -61,7 +61,7 @@ public open abstract class CSGShape3D : GeometryInstance3D() {
   public open var useCollision: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_GET_USE_COLLISION,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGSHAPE3D_IS_USING_COLLISION,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }

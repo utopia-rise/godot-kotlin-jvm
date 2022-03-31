@@ -94,7 +94,7 @@ public open class VisualShaderNodeIntUniform : VisualShaderNodeUniform() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTUNIFORM_GET_DEFAULT_VALUE_ENABLED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEINTUNIFORM_IS_DEFAULT_VALUE_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

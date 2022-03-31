@@ -34,14 +34,14 @@ public open class VisualScriptLocalVarSet : VisualScriptNode() {
   public open var type: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLOCALVARSET_GET_TYPE,
-          LONG)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLOCALVARSET_GET_VAR_TYPE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLOCALVARSET_SET_TYPE,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTLOCALVARSET_SET_VAR_TYPE, NIL)
     }
 
   public override fun __new(): Unit {

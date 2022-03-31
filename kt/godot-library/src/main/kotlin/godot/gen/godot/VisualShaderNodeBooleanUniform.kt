@@ -28,7 +28,7 @@ public open class VisualShaderNodeBooleanUniform : VisualShaderNodeUniform() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM_GET_DEFAULT_VALUE_ENABLED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBOOLEANUNIFORM_IS_DEFAULT_VALUE_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

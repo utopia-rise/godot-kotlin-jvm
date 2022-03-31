@@ -25,7 +25,7 @@ import kotlin.Unit
  *
  * Extending this class allows you to define your own loader. Be sure to respect the documented return types and values. You should give it a global class name with `class_name` for it to be registered. Like built-in ResourceFormatLoaders, it will be called automatically when loading resources of its handled type(s). You may also implement a [godot.ResourceFormatSaver].
  *
- * **Note:** You can also extend [godot.EditorImportPlugin] if the resource type you need exists but Godot is unable to load its format. Choosing one way over another depends on if the format is suitable or not for the final exported game. For example, it's better to import `.png` textures as `.stex` ([godot.StreamTexture2D]) first, so they can be loaded with better efficiency on the graphics card.
+ * **Note:** You can also extend [godot.EditorImportPlugin] if the resource type you need exists but Godot is unable to load its format. Choosing one way over another depends on if the format is suitable or not for the final exported game. For example, it's better to import `.png` textures as `.ctex` ([godot.CompressedTexture2D]) first, so they can be loaded with better efficiency on the graphics card.
  */
 @GodotBaseType
 public open class ResourceFormatLoader : RefCounted() {

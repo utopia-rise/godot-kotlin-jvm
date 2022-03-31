@@ -143,7 +143,7 @@ public open abstract class EditorFileDialog : ConfirmationDialog() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_SHOW_HIDDEN_FILES, BOOL)
+          ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_IS_SHOWING_HIDDEN_FILES, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -159,7 +159,7 @@ public open abstract class EditorFileDialog : ConfirmationDialog() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_GET_DISABLE_OVERWRITE_WARNING, BOOL)
+          ENGINEMETHOD_ENGINECLASS_EDITORFILEDIALOG_IS_OVERWRITE_WARNING_DISABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

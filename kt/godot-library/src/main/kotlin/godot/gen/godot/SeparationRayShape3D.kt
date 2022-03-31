@@ -17,9 +17,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Separation ray shape for 3D collisions.
+ * Separation ray shape resource for 3D physics.
  *
- * Separation ray shape for 3D collisions, which can be set into a [godot.PhysicsBody3D] or [godot.Area3D]. A ray is not really a collision body; instead, it tries to separate itself from whatever is touching its far endpoint. It's often useful for characters.
+ * 3D separation ray shape to be added as a *direct* child of a [godot.PhysicsBody3D] or [godot.Area3D] using a [godot.CollisionShape3D] node. A ray is not really a collision body; instead, it tries to separate itself from whatever is touching its far endpoint. It's often useful for characters.
+ *
+ * **Performance:** Being a primitive collision shape, [godot.SeparationRayShape3D] is fast to check collisions against.
  */
 @GodotBaseType
 public open class SeparationRayShape3D : Shape3D() {

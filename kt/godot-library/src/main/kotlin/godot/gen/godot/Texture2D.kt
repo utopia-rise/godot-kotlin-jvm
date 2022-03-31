@@ -22,6 +22,7 @@ import godot.core.VariantType._RID
 import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -37,9 +38,73 @@ import kotlin.Unit
  * **Note:** The maximum texture size is 16384×16384 pixels due to graphics hardware limitations. Larger textures may fail to import.
  */
 @GodotBaseType
-public open abstract class Texture2D : Texture() {
+public open class Texture2D : Texture() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TEXTURE2D)
+  }
+
+  /**
+   *
+   */
+  public open fun _getWidth(): Long {
+    throw NotImplementedError("_get_width is not implemented for Texture2D")
+  }
+
+  /**
+   *
+   */
+  public open fun _getHeight(): Long {
+    throw NotImplementedError("_get_height is not implemented for Texture2D")
+  }
+
+  /**
+   *
+   */
+  public open fun _isPixelOpaque(x: Long, y: Long): Boolean {
+    throw NotImplementedError("_is_pixel_opaque is not implemented for Texture2D")
+  }
+
+  /**
+   *
+   */
+  public open fun _hasAlpha(): Boolean {
+    throw NotImplementedError("_has_alpha is not implemented for Texture2D")
+  }
+
+  /**
+   *
+   */
+  public open fun _draw(
+    toCanvasItem: RID,
+    pos: Vector2,
+    modulate: Color,
+    transpose: Boolean
+  ): Unit {
+  }
+
+  /**
+   *
+   */
+  public open fun _drawRect(
+    toCanvasItem: RID,
+    rect: Rect2,
+    tile: Boolean,
+    modulate: Color,
+    transpose: Boolean
+  ): Unit {
+  }
+
+  /**
+   *
+   */
+  public open fun _drawRectRegion(
+    tpCanvasItem: RID,
+    rect: Rect2,
+    srcRect: Rect2,
+    modulate: Color,
+    transpose: Boolean,
+    clipUv: Boolean
+  ): Unit {
   }
 
   /**

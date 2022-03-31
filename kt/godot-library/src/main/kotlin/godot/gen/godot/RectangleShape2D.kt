@@ -15,12 +15,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Rectangle shape for 2D collisions.
+ * Rectangle shape resource for 2D physics.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/113](https://godotengine.org/asset-library/asset/113)
  *
- * Rectangle shape for 2D collisions. This shape is useful for modeling box-like 2D objects.
+ * 2D rectangle shape to be added as a *direct* child of a [godot.PhysicsBody2D] or [godot.Area2D] using a [godot.CollisionShape2D] node. This shape is useful for modeling box-like 2D objects.
+ *
+ * **Performance:** Being a primitive collision shape, [godot.RectangleShape2D] is fast to check collisions against (though not as fast as [godot.CircleShape2D]).
  */
 @GodotBaseType
 public open class RectangleShape2D : Shape2D() {

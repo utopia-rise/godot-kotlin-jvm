@@ -7,6 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import kotlin.Boolean
+import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -14,9 +17,26 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open abstract class AudioEffectInstance : RefCounted() {
+public open class AudioEffectInstance : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTINSTANCE)
+  }
+
+  /**
+   *
+   */
+  public open fun _process(
+    srcBuffer: `const void*`,
+    dstBuffer: `AudioFrame*`,
+    frameCount: Long
+  ): Unit {
+  }
+
+  /**
+   *
+   */
+  public open fun _processSilence(): Boolean {
+    throw NotImplementedError("_process_silence is not implemented for AudioEffectInstance")
   }
 
   public companion object

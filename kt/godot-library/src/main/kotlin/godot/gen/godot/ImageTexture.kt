@@ -44,7 +44,7 @@ import kotlin.Unit
  * 		$Sprite2D.texture = texture
  * 		```
  *
- * This is because images have to be imported as a [godot.StreamTexture2D] first to be loaded with [@GDScript.load]. If you'd still like to load an image file just like any other [godot.Resource], import it as an [godot.Image] resource instead, and then load it normally using the [@GDScript.load] method.
+ * This is because images have to be imported as a [godot.CompressedTexture2D] first to be loaded with [@GDScript.load]. If you'd still like to load an image file just like any other [godot.Resource], import it as an [godot.Image] resource instead, and then load it normally using the [@GDScript.load] method.
  *
  * **Note:** The image can be retrieved from an imported texture using the [godot.Texture2D.getImage] method, which returns a copy of the image:
  *

@@ -39,16 +39,16 @@ public object ResourceSaver : Object() {
   /**
    * Saves a resource to disk to the given path, using a [godot.ResourceFormatSaver] that recognizes the resource object.
    *
-   * The `flags` bitmask can be specified to customize the save behavior.
+   * The `flags` bitmask can be specified to customize the save behavior using [enum SaverFlags] flags.
    *
    * Returns [OK] on success.
    */
   public open fun save(
     path: String,
     resource: Resource,
-    flags: ResourceSaver.SaverFlags = SaverFlags.FLAG_NONE
+    flags: Long = 0
   ): GodotError {
-    TransferContext.writeArguments(STRING to path, OBJECT to resource, LONG to flags.id)
+    TransferContext.writeArguments(STRING to path, OBJECT to resource, LONG to flags)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCESAVER_SAVE, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
@@ -66,6 +66,9 @@ public object ResourceSaver : Object() {
   public enum class SaverFlags(
     id: Long
   ) {
+    /**
+     * No resource saving option.
+     */
     FLAG_NONE(0),
     /**
      * Save the resource with a path relative to the scene which uses it.

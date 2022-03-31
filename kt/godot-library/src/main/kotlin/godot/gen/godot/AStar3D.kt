@@ -35,7 +35,7 @@ import kotlin.Unit
  *
  * You must add points manually with [addPoint] and create segments manually with [connectPoints]. Then you can test if there is a path between two points with the [arePointsConnected] function, get a path containing indices by [getIdPath], or one containing actual coordinates with [getPointPath].
  *
- * It is also possible to use non-Euclidean distances. To do so, create a class that extends `AStar` and override methods [_computeCost] and [_estimateCost]. Both take two indices and return a length, as is shown in the following example.
+ * It is also possible to use non-Euclidean distances. To do so, create a class that extends `AStar3D` and override methods [_computeCost] and [_estimateCost]. Both take two indices and return a length, as is shown in the following example.
  *
  * [codeblocks]
  *
@@ -43,7 +43,7 @@ import kotlin.Unit
  *
  * class MyAStar:
  *
- *     extends AStar
+ *     extends AStar3D
  *
  *
  *
@@ -61,7 +61,7 @@ import kotlin.Unit
  *
  * [csharp]
  *
- * public class MyAStar : AStar
+ * public class MyAStar : AStar3D
  *
  * {
  *
@@ -92,27 +92,27 @@ import kotlin.Unit
  * If the default [_estimateCost] and [_computeCost] methods are used, or if the supplied [_estimateCost] method returns a lower bound of the cost, then the paths returned by A* will be the lowest-cost paths. Here, the cost of a path equals the sum of the [_computeCost] results of all segments in the path multiplied by the `weight_scale`s of the endpoints of the respective segments. If the default methods are used and the `weight_scale`s of all points are set to `1.0`, then this equals the sum of Euclidean distances of all segments in the path.
  */
 @GodotBaseType
-public open class AStar : RefCounted() {
+public open class AStar3D : RefCounted() {
   public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_ASTAR)
+    callConstructor(ENGINECLASS_ASTAR3D)
   }
 
   /**
    * Called when estimating the cost between a point and the path's ending point.
    *
-   * Note that this function is hidden in the default `AStar` class.
+   * Note that this function is hidden in the default `AStar3D` class.
    */
   public open fun _estimateCost(fromId: Long, toId: Long): Double {
-    throw NotImplementedError("_estimate_cost is not implemented for AStar")
+    throw NotImplementedError("_estimate_cost is not implemented for AStar3D")
   }
 
   /**
    * Called when computing the cost between two connected points.
    *
-   * Note that this function is hidden in the default `AStar` class.
+   * Note that this function is hidden in the default `AStar3D` class.
    */
   public open fun _computeCost(fromId: Long, toId: Long): Double {
-    throw NotImplementedError("_compute_cost is not implemented for AStar")
+    throw NotImplementedError("_compute_cost is not implemented for AStar3D")
   }
 
   /**
@@ -120,7 +120,8 @@ public open class AStar : RefCounted() {
    */
   public open fun getAvailablePointId(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR_GET_AVAILABLE_POINT_ID, LONG)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_AVAILABLE_POINT_ID,
+        LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -133,7 +134,7 @@ public open class AStar : RefCounted() {
    *
    * [gdscript]
    *
-   * var astar = AStar.new()
+   * var astar = AStar3D.new()
    *
    * astar.add_point(1, Vector3(1, 0, 0), 4) # Adds the point (1, 0, 0) with weight_scale 4 and id 1
    *
@@ -141,7 +142,7 @@ public open class AStar : RefCounted() {
    *
    * [csharp]
    *
-   * var astar = new AStar();
+   * var astar = new AStar3D();
    *
    * astar.AddPoint(1, new Vector3(1, 0, 0), 4); // Adds the point (1, 0, 0) with weight_scale 4 and id 1
    *
@@ -157,7 +158,7 @@ public open class AStar : RefCounted() {
     weightScale: Double = 1.0
   ): Unit {
     TransferContext.writeArguments(LONG to id, VECTOR3 to position, DOUBLE to weightScale)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR_ADD_POINT, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_ADD_POINT, NIL)
   }
 
   /**
@@ -165,7 +166,7 @@ public open class AStar : RefCounted() {
    */
   public open fun getPointPosition(id: Long): Vector3 {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR_GET_POINT_POSITION, VECTOR3)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_POSITION, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
@@ -174,7 +175,7 @@ public open class AStar : RefCounted() {
    */
   public open fun setPointPosition(id: Long, position: Vector3): Unit {
     TransferContext.writeArguments(LONG to id, VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR_SET_POINT_POSITION, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_SET_POINT_POSITION, NIL)
   }
 
   /**
@@ -182,7 +183,7 @@ public open class AStar : RefCounted() {
    */
   public open fun getPointWeightScale(id: Long): Double {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR_GET_POINT_WEIGHT_SCALE,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_WEIGHT_SCALE,
         DOUBLE)
     return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
@@ -192,7 +193,7 @@ public open class AStar : RefCounted() {
    */
   public open fun setPointWeightScale(id: Long, weightScale: Double): Unit {
     TransferContext.writeArguments(LONG to id, DOUBLE to weightScale)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR_SET_POINT_WEIGHT_SCALE, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_SET_POINT_WEIGHT_SCALE, NIL)
   }
 
   /**
@@ -200,7 +201,7 @@ public open class AStar : RefCounted() {
    */
   public open fun removePoint(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR_REMOVE_POINT, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_REMOVE_POINT, NIL)
   }
 
   /**
@@ -208,7 +209,7 @@ public open class AStar : RefCounted() {
    */
   public open fun hasPoint(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR_HAS_POINT, BOOL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_HAS_POINT, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -219,7 +220,7 @@ public open class AStar : RefCounted() {
    *
    * [gdscript]
    *
-   * var astar = AStar.new()
+   * var astar = AStar3D.new()
    *
    * astar.add_point(1, Vector3(0, 0, 0))
    *
@@ -243,7 +244,7 @@ public open class AStar : RefCounted() {
    *
    * [csharp]
    *
-   * var astar = new AStar();
+   * var astar = new AStar3D();
    *
    * astar.AddPoint(1, new Vector3(0, 0, 0));
    *
@@ -267,7 +268,7 @@ public open class AStar : RefCounted() {
    */
   public open fun getPointConnections(id: Long): PackedInt32Array {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR_GET_POINT_CONNECTIONS,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_CONNECTIONS,
         PACKED_INT_32_ARRAY)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }
@@ -277,7 +278,7 @@ public open class AStar : RefCounted() {
    */
   public open fun getPointIds(): VariantArray<Any?> {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR_GET_POINT_IDS, ARRAY)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_IDS, ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
@@ -286,7 +287,7 @@ public open class AStar : RefCounted() {
    */
   public open fun setPointDisabled(id: Long, disabled: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to id, BOOL to disabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR_SET_POINT_DISABLED, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_SET_POINT_DISABLED, NIL)
   }
 
   /**
@@ -294,7 +295,7 @@ public open class AStar : RefCounted() {
    */
   public open fun isPointDisabled(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR_IS_POINT_DISABLED, BOOL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_IS_POINT_DISABLED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -305,7 +306,7 @@ public open class AStar : RefCounted() {
    *
    * [gdscript]
    *
-   * var astar = AStar.new()
+   * var astar = AStar3D.new()
    *
    * astar.add_point(1, Vector3(1, 1, 0))
    *
@@ -317,7 +318,7 @@ public open class AStar : RefCounted() {
    *
    * [csharp]
    *
-   * var astar = new AStar();
+   * var astar = new AStar3D();
    *
    * astar.AddPoint(1, new Vector3(1, 1, 0));
    *
@@ -335,7 +336,7 @@ public open class AStar : RefCounted() {
     bidirectional: Boolean = true
   ): Unit {
     TransferContext.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR_CONNECT_POINTS, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_CONNECT_POINTS, NIL)
   }
 
   /**
@@ -347,7 +348,7 @@ public open class AStar : RefCounted() {
     bidirectional: Boolean = true
   ): Unit {
     TransferContext.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR_DISCONNECT_POINTS, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_DISCONNECT_POINTS, NIL)
   }
 
   /**
@@ -359,7 +360,7 @@ public open class AStar : RefCounted() {
     bidirectional: Boolean = true
   ): Boolean {
     TransferContext.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR_ARE_POINTS_CONNECTED, BOOL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_ARE_POINTS_CONNECTED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -368,7 +369,7 @@ public open class AStar : RefCounted() {
    */
   public open fun getPointCount(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR_GET_POINT_COUNT, LONG)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_COUNT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -377,7 +378,7 @@ public open class AStar : RefCounted() {
    */
   public open fun getPointCapacity(): Long {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR_GET_POINT_CAPACITY, LONG)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_CAPACITY, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -386,7 +387,7 @@ public open class AStar : RefCounted() {
    */
   public open fun reserveSpace(numNodes: Long): Unit {
     TransferContext.writeArguments(LONG to numNodes)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR_RESERVE_SPACE, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_RESERVE_SPACE, NIL)
   }
 
   /**
@@ -394,7 +395,7 @@ public open class AStar : RefCounted() {
    */
   public open fun clear(): Unit {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR_CLEAR, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_CLEAR, NIL)
   }
 
   /**
@@ -404,7 +405,7 @@ public open class AStar : RefCounted() {
    */
   public open fun getClosestPoint(toPosition: Vector3, includeDisabled: Boolean = false): Long {
     TransferContext.writeArguments(VECTOR3 to toPosition, BOOL to includeDisabled)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR_GET_CLOSEST_POINT, LONG)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_CLOSEST_POINT, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
   }
 
@@ -415,7 +416,7 @@ public open class AStar : RefCounted() {
    *
    * [gdscript]
    *
-   * var astar = AStar.new()
+   * var astar = AStar3D.new()
    *
    * astar.add_point(1, Vector3(0, 0, 0))
    *
@@ -429,7 +430,7 @@ public open class AStar : RefCounted() {
    *
    * [csharp]
    *
-   * var astar = new AStar();
+   * var astar = new AStar3D();
    *
    * astar.AddPoint(1, new Vector3(0, 0, 0));
    *
@@ -448,30 +449,30 @@ public open class AStar : RefCounted() {
   public open fun getClosestPositionInSegment(toPosition: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to toPosition)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_ASTAR_GET_CLOSEST_POSITION_IN_SEGMENT, VECTOR3)
+        ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_CLOSEST_POSITION_IN_SEGMENT, VECTOR3)
     return TransferContext.readReturnValue(VECTOR3, false) as Vector3
   }
 
   /**
-   * Returns an array with the points that are in the path found by AStar between the given points. The array is ordered from the starting point to the ending point of the path.
+   * Returns an array with the points that are in the path found by AStar3D between the given points. The array is ordered from the starting point to the ending point of the path.
    *
    * **Note:** This method is not thread-safe. If called from a [godot.Thread], it will return an empty [godot.PackedVector3Array] and will print an error message.
    */
   public open fun getPointPath(fromId: Long, toId: Long): PackedVector3Array {
     TransferContext.writeArguments(LONG to fromId, LONG to toId)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR_GET_POINT_PATH,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_POINT_PATH,
         PACKED_VECTOR3_ARRAY)
     return TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array
   }
 
   /**
-   * Returns an array with the IDs of the points that form the path found by AStar between the given points. The array is ordered from the starting point to the ending point of the path.
+   * Returns an array with the IDs of the points that form the path found by AStar3D between the given points. The array is ordered from the starting point to the ending point of the path.
    *
    * [codeblocks]
    *
    * [gdscript]
    *
-   * var astar = AStar.new()
+   * var astar = AStar3D.new()
    *
    * astar.add_point(1, Vector3(0, 0, 0))
    *
@@ -499,7 +500,7 @@ public open class AStar : RefCounted() {
    *
    * [csharp]
    *
-   * var astar = new AStar();
+   * var astar = new AStar3D();
    *
    * astar.AddPoint(1, new Vector3(0, 0, 0));
    *
@@ -527,7 +528,7 @@ public open class AStar : RefCounted() {
    */
   public open fun getIdPath(fromId: Long, toId: Long): PackedInt32Array {
     TransferContext.writeArguments(LONG to fromId, LONG to toId)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR_GET_ID_PATH,
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ASTAR3D_GET_ID_PATH,
         PACKED_INT_32_ARRAY)
     return TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array
   }

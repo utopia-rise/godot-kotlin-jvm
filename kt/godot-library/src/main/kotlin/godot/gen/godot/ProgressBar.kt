@@ -27,7 +27,7 @@ public open class ProgressBar : Range() {
   public open var percentVisible: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROGRESSBAR_GET_PERCENT_VISIBLE,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PROGRESSBAR_IS_PERCENT_VISIBLE,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }

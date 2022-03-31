@@ -32,7 +32,7 @@ public object IP : Object() {
   /**
    * Maximum number of concurrent DNS resolver queries allowed, [RESOLVER_INVALID_ID] is returned if exceeded.
    */
-  public final const val RESOLVER_MAX_QUERIES: Long = 32
+  public final const val RESOLVER_MAX_QUERIES: Long = 256
 
   /**
    * Invalid ID constant. Returned if [RESOLVER_MAX_QUERIES] is exceeded.
@@ -48,7 +48,7 @@ public object IP : Object() {
   /**
    * Returns a given hostname's IPv4 or IPv6 address when resolved (blocking-type method). The address type returned depends on the [enum Type] constant given as `ip_type`.
    */
-  public open fun resolveHostname(host: String, ipType: IP.Type = Type.TYPE_ANY): String {
+  public open fun resolveHostname(host: String, ipType: IP.Type = IP.Type.TYPE_ANY): String {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME, STRING)
     return TransferContext.readReturnValue(STRING, false) as String
@@ -57,7 +57,7 @@ public object IP : Object() {
   /**
    * Resolves a given hostname in a blocking way. Addresses are returned as an [godot.Array] of IPv4 or IPv6 addresses depending on `ip_type`.
    */
-  public open fun resolveHostnameAddresses(host: String, ipType: IP.Type = Type.TYPE_ANY):
+  public open fun resolveHostnameAddresses(host: String, ipType: IP.Type = IP.Type.TYPE_ANY):
       VariantArray<Any?> {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME_ADDRESSES,
@@ -68,7 +68,7 @@ public object IP : Object() {
   /**
    * Creates a queue item to resolve a hostname to an IPv4 or IPv6 address depending on the [enum Type] constant given as `ip_type`. Returns the queue ID if successful, or [RESOLVER_INVALID_ID] on error.
    */
-  public open fun resolveHostnameQueueItem(host: String, ipType: IP.Type = Type.TYPE_ANY): Long {
+  public open fun resolveHostnameQueueItem(host: String, ipType: IP.Type = IP.Type.TYPE_ANY): Long {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IP_RESOLVE_HOSTNAME_QUEUE_ITEM,
         LONG)

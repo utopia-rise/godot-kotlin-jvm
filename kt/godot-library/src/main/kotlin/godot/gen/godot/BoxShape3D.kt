@@ -15,12 +15,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Box shape resource.
+ * Box shape resource for 3D collisions.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/125](https://godotengine.org/asset-library/asset/125)
  *
- * 3D box shape that can be a child of a [godot.PhysicsBody3D] or [godot.Area3D].
+ * 3D box shape to be added as a *direct* child of a [godot.PhysicsBody3D] or [godot.Area3D] using a [godot.CollisionShape3D] node.
+ *
+ * **Performance:** Being a primitive collision shape, [godot.BoxShape3D] is fast to check collisions against (though not as fast as [godot.SphereShape3D]).
  */
 @GodotBaseType
 public open class BoxShape3D : Shape3D() {

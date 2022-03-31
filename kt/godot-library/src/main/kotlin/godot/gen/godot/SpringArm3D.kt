@@ -74,14 +74,12 @@ public open class SpringArm3D : Node3D() {
   public open var springLength: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_GET_SPRING_LENGTH,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_GET_LENGTH, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_SET_SPRING_LENGTH,
-          NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SPRINGARM3D_SET_LENGTH, NIL)
     }
 
   /**

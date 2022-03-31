@@ -35,7 +35,7 @@ public open class AnimatableBody3D : StaticBody3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATABLEBODY3D_GET_SYNC_TO_PHYSICS, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATABLEBODY3D_IS_SYNC_TO_PHYSICS_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

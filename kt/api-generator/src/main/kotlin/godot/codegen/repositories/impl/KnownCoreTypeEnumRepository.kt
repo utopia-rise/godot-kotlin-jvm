@@ -1,5 +1,6 @@
 package godot.codegen.repositories.impl
 
+import godot.codegen.constants.CoreTypeTraits
 import godot.codegen.constants.GodotTypes
 import godot.codegen.models.Enum
 import godot.codegen.models.EnumValue
@@ -16,7 +17,7 @@ class KnownCoreTypeEnumRepository : CoreTypeEnumRepository {
                     EnumValue("Y", 1),
                     EnumValue("Z", 2)
                 )
-            ).toEnriched()
+            ).toEnriched(CoreTypeTraits.VECTOR3)
         )
     )
 

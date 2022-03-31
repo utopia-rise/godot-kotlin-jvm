@@ -169,6 +169,16 @@ public object Time : Object() {
   }
 
   /**
+   * Converts the given timezone offset in minutes to a timezone offset string. For example, -480 returns "-08:00", 345 returns "+05:45", and 0 returns "+00:00".
+   */
+  public open fun getOffsetStringFromOffsetMinutes(offsetMinutes: Long): String {
+    TransferContext.writeArguments(LONG to offsetMinutes)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TIME_GET_OFFSET_STRING_FROM_OFFSET_MINUTES, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
    * Returns the current date as a dictionary of keys: `year`, `month`, `day`, `weekday`, `hour`, `minute`, and `second`.
    */
   public open fun getDatetimeDictFromSystem(utc: Boolean = false): Dictionary<Any?, Any?> {

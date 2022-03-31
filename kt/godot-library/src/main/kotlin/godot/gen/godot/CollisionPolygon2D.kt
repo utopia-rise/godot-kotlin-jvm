@@ -23,7 +23,9 @@ import kotlin.Unit
 /**
  * Defines a 2D collision polygon.
  *
- * Provides a 2D collision polygon to a [godot.CollisionObject2D] parent. Polygons can be drawn in the editor or specified by a list of vertices.
+ * Provides a concave or convex 2D collision polygon to a [godot.CollisionObject2D] parent. Polygons can be drawn in the editor or specified by a list of vertices. See also [godot.ConvexPolygonShape2D].
+ *
+ * In the editor, a [godot.CollisionPolygon2D] can be generated from a [godot.Sprite2D]'s outline by selecting a [godot.Sprite2D] node, going to the **Sprite2D** menu at the top of the 2D editor viewport then choosing **Create CollisionPolygon2D Sibling**.
  */
 @GodotBaseType
 public open class CollisionPolygon2D : Node2D() {
@@ -65,7 +67,7 @@ public open class CollisionPolygon2D : Node2D() {
   public open var disabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_GET_DISABLED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_IS_DISABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -82,7 +84,7 @@ public open class CollisionPolygon2D : Node2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_GET_ONE_WAY_COLLISION, BOOL)
+          ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON2D_IS_ONE_WAY_COLLISION_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

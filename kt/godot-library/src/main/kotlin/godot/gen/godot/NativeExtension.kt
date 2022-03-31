@@ -95,7 +95,11 @@ public open class NativeExtension : Resource() {
     /**
      *
      */
-    INITIALIZATION_LEVEL_EDITOR(3),
+    INITIALIZATION_LEVEL_DRIVER(3),
+    /**
+     *
+     */
+    INITIALIZATION_LEVEL_EDITOR(4),
     ;
 
     public val id: Long

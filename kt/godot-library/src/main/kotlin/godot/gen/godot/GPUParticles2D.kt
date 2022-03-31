@@ -47,7 +47,7 @@ public open class GPUParticles2D : Node2D() {
   public open var emitting: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_EMITTING, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_IS_EMITTING, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -120,14 +120,14 @@ public open class GPUParticles2D : Node2D() {
   public open var preprocess: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_PREPROCESS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_PRE_PROCESS_TIME, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_PREPROCESS,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_PRE_PROCESS_TIME, NIL)
     }
 
   /**
@@ -152,14 +152,14 @@ public open class GPUParticles2D : Node2D() {
   public open var explosiveness: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_EXPLOSIVENESS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_EXPLOSIVENESS_RATIO, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_EXPLOSIVENESS,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_EXPLOSIVENESS_RATIO, NIL)
     }
 
   /**
@@ -168,14 +168,14 @@ public open class GPUParticles2D : Node2D() {
   public open var randomness: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_RANDOMNESS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_RANDOMNESS_RATIO, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_RANDOMNESS,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_RANDOMNESS_RATIO, NIL)
     }
 
   /**
@@ -199,14 +199,14 @@ public open class GPUParticles2D : Node2D() {
   public open var fractDelta: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_FRACT_DELTA,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_FRACTIONAL_DELTA, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_FRACT_DELTA,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_FRACTIONAL_DELTA, NIL)
     }
 
   /**
@@ -249,14 +249,14 @@ public open class GPUParticles2D : Node2D() {
   public open var localCoords: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_LOCAL_COORDS,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_USE_LOCAL_COORDINATES, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_LOCAL_COORDS,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_USE_LOCAL_COORDINATES, NIL)
     }
 
   /**
@@ -281,7 +281,7 @@ public open class GPUParticles2D : Node2D() {
   public open var trailEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_TRAIL_ENABLED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_IS_TRAIL_ENABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -297,14 +297,14 @@ public open class GPUParticles2D : Node2D() {
   public open var trailLengthSecs: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_TRAIL_LENGTH_SECS, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_GET_TRAIL_LENGTH,
+          DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_TRAIL_LENGTH_SECS, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_GPUPARTICLES2D_SET_TRAIL_LENGTH,
+          NIL)
     }
 
   /**
@@ -426,7 +426,7 @@ public open class GPUParticles2D : Node2D() {
      */
     EMIT_FLAG_COLOR(8),
     /**
-     * Particle starts with specificed `CUSTOM` data.
+     * Particle starts with specified `CUSTOM` data.
      */
     EMIT_FLAG_CUSTOM(16),
     ;

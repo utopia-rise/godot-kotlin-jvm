@@ -31,11 +31,13 @@ import kotlin.Unit
 /**
  * PopupMenu displays a list of options.
  *
- * [godot.PopupMenu] is a [godot.Control] that displays a list of options. They are popular in toolbars or context menus.
+ * [godot.PopupMenu] is a modal window used to display a list of options. They are popular in toolbars or context menus.
  *
  * The size of a [godot.PopupMenu] can be limited by using [godot.Window.maxSize]. If the height of the list of items is larger than the maximum height of the [godot.PopupMenu], a [godot.ScrollContainer] within the popup will allow the user to scroll the contents.
  *
  * If no maximum size is set, or if it is set to 0, the [godot.PopupMenu] height will be limited by its parent rect.
+ *
+ * All `set_*` methods allow negative item index, which makes the item accessed from the last one.
  */
 @GodotBaseType
 public open class PopupMenu : Popup() {
@@ -61,7 +63,7 @@ public open class PopupMenu : Popup() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_HIDE_ON_ITEM_SELECTION, BOOL)
+          ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_HIDE_ON_ITEM_SELECTION, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -77,7 +79,7 @@ public open class PopupMenu : Popup() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_HIDE_ON_CHECKABLE_ITEM_SELECTION, BOOL)
+          ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_HIDE_ON_CHECKABLE_ITEM_SELECTION, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -93,7 +95,7 @@ public open class PopupMenu : Popup() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_POPUPMENU_GET_HIDE_ON_STATE_ITEM_SELECTION, BOOL)
+          ENGINEMETHOD_ENGINECLASS_POPUPMENU_IS_HIDE_ON_STATE_ITEM_SELECTION, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

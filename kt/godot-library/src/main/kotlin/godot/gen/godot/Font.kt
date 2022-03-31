@@ -11,6 +11,8 @@ import godot.core.Color
 import godot.core.Dictionary
 import godot.core.RID
 import godot.core.TransferContext
+import godot.core.VariantArray
+import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DICTIONARY
@@ -443,6 +445,15 @@ public open class Font : Resource() {
   public open fun updateChanges(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_UPDATE_CHANGES, NIL)
+  }
+
+  /**
+   * Returns [godot.Array] of valid [godot.FontData] [RID]s, which can be passsed to the [godot.TextServer] methods.
+   */
+  public open fun getRids(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONT_GET_RIDS, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
   public companion object

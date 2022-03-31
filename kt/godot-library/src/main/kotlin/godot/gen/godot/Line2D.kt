@@ -70,12 +70,12 @@ public open class Line2D : Node2D() {
   public open var widthCurve: Curve?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_WIDTH_CURVE, OBJECT)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_GET_CURVE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Curve?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_WIDTH_CURVE, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LINE2D_SET_CURVE, NIL)
     }
 
   /**
@@ -191,7 +191,9 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * The smoothness of the rounded joints and caps. This is only used if a cap or joint is set as round.
+   * The smoothness of the rounded joints and caps. Higher values result in smoother corners, but are more demanding to render and update. This is only used if a cap or joint is set as round.
+   *
+   * **Note:** The default value is tuned for lines with the default [width]. For thin lines, this value should be reduced to a number between `2` and `4` to improve performance.
    */
   public open var roundPrecision: Long
     get() {
@@ -284,11 +286,11 @@ public open class Line2D : Node2D() {
      */
     LINE_TEXTURE_NONE(0),
     /**
-     * Tiles the texture over the line. The texture must be imported with **Repeat** enabled for it to work properly.
+     * Tiles the texture over the line. [godot.CanvasItem.textureRepeat] of the [godot.Line2D] node must be [godot.CanvasItem.TEXTURE_REPEAT_ENABLED] or [godot.CanvasItem.TEXTURE_REPEAT_MIRROR] for it to work properly.
      */
     LINE_TEXTURE_TILE(1),
     /**
-     * Stretches the texture across the line. Import the texture with **Repeat** disabled for best results.
+     * Stretches the texture across the line. [godot.CanvasItem.textureRepeat] of the [godot.Line2D] node must be [godot.CanvasItem.TEXTURE_REPEAT_DISABLED] for best results.
      */
     LINE_TEXTURE_STRETCH(2),
     ;

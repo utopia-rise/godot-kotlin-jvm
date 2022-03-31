@@ -13,6 +13,7 @@ import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.TransferContext
 import godot.core.VariantType.BOOL
+import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.JVM_INT
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -22,6 +23,7 @@ import godot.core.VariantType.STRING
 import godot.signals.Signal4
 import godot.signals.signal
 import kotlin.Boolean
+import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -376,7 +378,8 @@ public open class HTTPRequest : Node() {
   public open var useThreads: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_USE_THREADS, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_IS_USING_THREADS,
+          BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -396,7 +399,8 @@ public open class HTTPRequest : Node() {
   public open var acceptGzip: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_ACCEPT_GZIP, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_IS_ACCEPTING_GZIP,
+          BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -439,14 +443,14 @@ public open class HTTPRequest : Node() {
   /**
    *
    */
-  public open var timeout: Long
+  public open var timeout: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_TIMEOUT, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_GET_TIMEOUT, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
+      TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_HTTPREQUEST_SET_TIMEOUT, NIL)
     }
 
@@ -467,7 +471,7 @@ public open class HTTPRequest : Node() {
     url: String,
     customHeaders: PackedStringArray = PackedStringArray(),
     sslValidateDomain: Boolean = true,
-    method: HTTPClient.Method = Method.METHOD_GET,
+    method: HTTPClient.Method = HTTPClient.Method.METHOD_GET,
     requestData: String = ""
   ): GodotError {
     TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, BOOL to
@@ -485,7 +489,7 @@ public open class HTTPRequest : Node() {
     url: String,
     customHeaders: PackedStringArray = PackedStringArray(),
     sslValidateDomain: Boolean = true,
-    method: HTTPClient.Method = Method.METHOD_GET,
+    method: HTTPClient.Method = HTTPClient.Method.METHOD_GET,
     requestDataRaw: PackedByteArray = PackedByteArray()
   ): GodotError {
     TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, BOOL to

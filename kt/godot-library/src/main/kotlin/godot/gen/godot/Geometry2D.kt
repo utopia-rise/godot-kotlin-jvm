@@ -170,7 +170,7 @@ public object Geometry2D : Object() {
   }
 
   /**
-   * Triangulates the polygon specified by the points in `polygon`. Returns a [godot.PackedInt32Array] where each triangle consists of three consecutive point indices into `polygon` (i.e. the returned array will have `n * 3` elements, with `n` being the number of found triangles). If the triangulation did not succeed, an empty [godot.PackedInt32Array] is returned.
+   * Triangulates the polygon specified by the points in `polygon`. Returns a [godot.PackedInt32Array] where each triangle consists of three consecutive point indices into `polygon` (i.e. the returned array will have `n * 3` elements, with `n` being the number of found triangles). Output triangles will always be counter clockwise, and the contour will be flipped if it's clockwise. If the triangulation did not succeed, an empty [godot.PackedInt32Array] is returned.
    */
   public open fun triangulatePolygon(polygon: PackedVector2Array): PackedInt32Array {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
@@ -318,7 +318,7 @@ public object Geometry2D : Object() {
   public open fun offsetPolygon(
     polygon: PackedVector2Array,
     delta: Double,
-    joinType: Geometry2D.PolyJoinType = PolyJoinType.JOIN_SQUARE
+    joinType: Geometry2D.PolyJoinType = Geometry2D.PolyJoinType.JOIN_SQUARE
   ): VariantArray<Any?> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon, DOUBLE to delta, LONG to
         joinType.id)
@@ -338,8 +338,8 @@ public object Geometry2D : Object() {
   public open fun offsetPolyline(
     polyline: PackedVector2Array,
     delta: Double,
-    joinType: Geometry2D.PolyJoinType = PolyJoinType.JOIN_SQUARE,
-    endType: Geometry2D.PolyEndType = PolyEndType.END_SQUARE
+    joinType: Geometry2D.PolyJoinType = Geometry2D.PolyJoinType.JOIN_SQUARE,
+    endType: Geometry2D.PolyEndType = Geometry2D.PolyEndType.END_SQUARE
   ): VariantArray<Any?> {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polyline, DOUBLE to delta, LONG to
         joinType.id, LONG to endType.id)

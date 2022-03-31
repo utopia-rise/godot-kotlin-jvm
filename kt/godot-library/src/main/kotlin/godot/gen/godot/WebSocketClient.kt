@@ -43,14 +43,14 @@ public open class WebSocketClient : WebSocketMultiplayerPeer() {
   public open var verifySsl: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_GET_VERIFY_SSL,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_IS_VERIFY_SSL_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_SET_VERIFY_SSL,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_WEBSOCKETCLIENT_SET_VERIFY_SSL_ENABLED, NIL)
     }
 
   public open var trustedSslCertificate: X509Certificate?

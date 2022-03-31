@@ -61,13 +61,13 @@ public open class MultiplayerSynchronizer : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_GET_RESOURCE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_GET_REPLICATION_CONFIG, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as SceneReplicationConfig?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_SET_RESOURCE, NIL)
+          ENGINEMETHOD_ENGINECLASS_MULTIPLAYERSYNCHRONIZER_SET_REPLICATION_CONFIG, NIL)
     }
 
   public override fun __new(): Unit {

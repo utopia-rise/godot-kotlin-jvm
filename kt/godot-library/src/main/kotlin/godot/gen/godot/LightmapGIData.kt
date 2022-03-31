@@ -46,7 +46,7 @@ public open class LightmapGIData : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_LIGHTMAPGIDATA_GET_USES_SPHERICAL_HARMONICS, BOOL)
+          ENGINEMETHOD_ENGINECLASS_LIGHTMAPGIDATA_IS_USING_SPHERICAL_HARMONICS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

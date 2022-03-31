@@ -71,71 +71,18 @@ public open class RichTextLabel : Control() {
   public val metaHoverEnded: Signal1<Any> by signal("meta")
 
   /**
-   * The restricted number of characters to display in the label. If `-1`, all characters will be displayed.
-   *
-   * **Note:** Setting this property updates [percentVisible] based on current [getTotalCharacterCount].
+   * If `true`, the label uses BBCode formatting.
    */
-  public open var visibleCharacters: Long
+  public open var bbcodeEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_VISIBLE_CHARACTERS, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_VISIBLE_CHARACTERS, NIL)
-    }
-
-  /**
-   * The range of characters to display, as a [float] between 0.0 and 1.0. When assigned an out of range value, it's the same as assigning 1.0.
-   *
-   * **Note:** Setting this property updates [visibleCharacters] based on current [getTotalCharacterCount].
-   */
-  public open var percentVisible: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_PERCENT_VISIBLE,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_PERCENT_VISIBLE,
-          NIL)
-    }
-
-  /**
-   * Sets the clipping behavior when [visibleCharacters] or [percentVisible] is set. See [enum VisibleCharactersBehavior] for more info.
-   */
-  public open var visibleCharactersBehavior: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_VISIBLE_CHARACTERS_BEHAVIOR, LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_VISIBLE_CHARACTERS_BEHAVIOR, NIL)
-    }
-
-  /**
-   * If `true`, the label underlines meta tags such as `[url]{text}[/url]`.
-   */
-  public open var metaUnderlined: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_META_UNDERLINED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_USING_BBCODE,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_META_UNDERLINED,
-          NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_USE_BBCODE, NIL)
     }
 
   /**
@@ -169,22 +116,6 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * If `true`, the label uses BBCode formatting.
-   */
-  public open var bbcodeEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_BBCODE_ENABLED,
-          BOOL)
-      return TransferContext.readReturnValue(BOOL, false) as Boolean
-    }
-    set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_BBCODE_ENABLED,
-          NIL)
-    }
-
-  /**
    * If `true`, the label's height will be automatically updated to fit its content.
    *
    * **Note:** This property is used as a workaround to fix issues with [godot.RichTextLabel] in [godot.Container]s, but it's unreliable in some cases and will be removed in future versions.
@@ -193,7 +124,7 @@ public open class RichTextLabel : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_FIT_CONTENT_HEIGHT, BOOL)
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_FIT_CONTENT_HEIGHT_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -208,7 +139,7 @@ public open class RichTextLabel : Control() {
   public open var scrollActive: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_SCROLL_ACTIVE,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_SCROLL_ACTIVE,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -224,14 +155,14 @@ public open class RichTextLabel : Control() {
   public open var scrollFollowing: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_SCROLL_FOLLOWING, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_SCROLL_FOLLOWING,
+          BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_SCROLL_FOLLOWING, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_SCROLL_FOLLOW,
+          NIL)
     }
 
   /**
@@ -241,7 +172,7 @@ public open class RichTextLabel : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_SELECTION_ENABLED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_SELECTION_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -257,7 +188,7 @@ public open class RichTextLabel : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_OVERRIDE_SELECTED_FONT_COLOR, BOOL)
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_OVERRIDING_SELECTED_FONT_COLOR, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -273,7 +204,7 @@ public open class RichTextLabel : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_DESELECT_ON_FOCUS_LOSS_ENABLED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_DESELECT_ON_FOCUS_LOSS_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -290,13 +221,111 @@ public open class RichTextLabel : Control() {
   public open var customEffects: VariantArray<Any?>
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_CUSTOM_EFFECTS,
-          ARRAY)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_EFFECTS, ARRAY)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_CUSTOM_EFFECTS,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_EFFECTS, NIL)
+    }
+
+  /**
+   * If `true`, the label underlines meta tags such as `[url]{text}[/url]`.
+   */
+  public open var metaUnderlined: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_META_UNDERLINED,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_META_UNDERLINE,
+          NIL)
+    }
+
+  /**
+   * If `true`, the label underlines hint tags such as `[hint=description]{text}[/hint]`.
+   */
+  public open var hintUnderlined: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_IS_HINT_UNDERLINED,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_HINT_UNDERLINE,
+          NIL)
+    }
+
+  /**
+   * If set to something other than [AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. To see how each mode behaves, see [enum AutowrapMode].
+   */
+  public open var autowrapMode: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_AUTOWRAP_MODE,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_AUTOWRAP_MODE,
+          NIL)
+    }
+
+  /**
+   * The restricted number of characters to display in the label. If `-1`, all characters will be displayed.
+   *
+   * **Note:** Setting this property updates [percentVisible] based on current [getTotalCharacterCount].
+   */
+  public open var visibleCharacters: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_VISIBLE_CHARACTERS, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_VISIBLE_CHARACTERS, NIL)
+    }
+
+  /**
+   * Sets the clipping behavior when [visibleCharacters] or [percentVisible] is set. See [enum VisibleCharactersBehavior] for more info.
+   */
+  public open var visibleCharactersBehavior: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_VISIBLE_CHARACTERS_BEHAVIOR, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_VISIBLE_CHARACTERS_BEHAVIOR, NIL)
+    }
+
+  /**
+   * The range of characters to display, as a [float] between 0.0 and 1.0. When assigned an out of range value, it's the same as assigning 1.0.
+   *
+   * **Note:** Setting this property updates [visibleCharacters] based on current [getTotalCharacterCount].
+   */
+  public open var percentVisible: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_PERCENT_VISIBLE,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_PERCENT_VISIBLE,
           NIL)
     }
 
@@ -329,22 +358,6 @@ public open class RichTextLabel : Control() {
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_LANGUAGE, NIL)
-    }
-
-  /**
-   * If set to something other than [AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. To see how each mode behaves, see [enum AutowrapMode].
-   */
-  public open var autowrapMode: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_AUTOWRAP_MODE,
-          LONG)
-      return TransferContext.readReturnValue(LONG, false) as Long
-    }
-    set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_SET_AUTOWRAP_MODE,
-          NIL)
     }
 
   /**
@@ -534,9 +547,9 @@ public open class RichTextLabel : Control() {
    */
   public open fun pushParagraph(
     alignment: HorizontalAlignment,
-    baseDirection: Control.TextDirection = TextDirection.TEXT_DIRECTION_AUTO,
+    baseDirection: Control.TextDirection = Control.TextDirection.TEXT_DIRECTION_AUTO,
     language: String = "",
-    stParser: Control.StructuredTextParser = StructuredTextParser.STRUCTURED_TEXT_DEFAULT
+    stParser: Control.StructuredTextParser = Control.StructuredTextParser.STRUCTURED_TEXT_DEFAULT
   ): Unit {
     TransferContext.writeArguments(LONG to alignment.id, LONG to baseDirection.id, STRING to
         language, LONG to stParser.id)
@@ -569,6 +582,14 @@ public open class RichTextLabel : Control() {
   public open fun pushMeta(`data`: Any): Unit {
     TransferContext.writeArguments(ANY to data)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_META, NIL)
+  }
+
+  /**
+   * Adds a `[hint]` tag to the tag stack. Same as BBCode `[hint=something]{text}[/hint]`.
+   */
+  public open fun pushHint(description: String): Unit {
+    TransferContext.writeArguments(STRING to description)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_PUSH_HINT, NIL)
   }
 
   /**
@@ -784,6 +805,26 @@ public open class RichTextLabel : Control() {
   }
 
   /**
+   * Returns the line number of the character position provided.
+   */
+  public open fun getCharacterLine(character: Long): Long {
+    TransferContext.writeArguments(LONG to character)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_CHARACTER_LINE,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the paragraph number of the character position provided.
+   */
+  public open fun getCharacterParagraph(character: Long): Long {
+    TransferContext.writeArguments(LONG to character)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_CHARACTER_PARAGRAPH, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
    * Returns the total number of characters from text tags. Does not include BBCodes.
    */
   public open fun getTotalCharacterCount(): Long {
@@ -840,6 +881,36 @@ public open class RichTextLabel : Control() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_CONTENT_HEIGHT,
         LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the width of the content.
+   */
+  public open fun getContentWidth(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_CONTENT_WIDTH,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the vertical offset of the line found at the provided index.
+   */
+  public open fun getLineOffset(line: Long): Double {
+    TransferContext.writeArguments(LONG to line)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_LINE_OFFSET,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
+  }
+
+  /**
+   * Returns the vertical offset of the paragraph found at the provided index.
+   */
+  public open fun getParagraphOffset(paragraph: Long): Double {
+    TransferContext.writeArguments(LONG to paragraph)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RICHTEXTLABEL_GET_PARAGRAPH_OFFSET,
+        DOUBLE)
+    return TransferContext.readReturnValue(DOUBLE, false) as Double
   }
 
   /**
@@ -1060,11 +1131,15 @@ public open class RichTextLabel : Control() {
     /**
      *
      */
-    ITEM_DROPCAP(24),
+    ITEM_HINT(24),
     /**
      *
      */
-    ITEM_CUSTOMFX(25),
+    ITEM_DROPCAP(25),
+    /**
+     *
+     */
+    ITEM_CUSTOMFX(26),
     ;
 
     public val id: Long

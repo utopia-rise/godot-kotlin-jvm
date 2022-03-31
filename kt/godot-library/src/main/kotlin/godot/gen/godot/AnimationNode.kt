@@ -45,7 +45,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AnimationNode : Resource() {
   /**
-   * Called when the node was removed from the graph.
+   * Emitted when the node was removed from the graph.
    */
   public val removedFromGraph: Signal0 by signal()
 
@@ -60,7 +60,7 @@ public open class AnimationNode : Resource() {
   public open var filterEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_GET_FILTER_ENABLED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONNODE_IS_FILTER_ENABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -121,7 +121,7 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Returns `true` whether you want the blend tree editor to display filter editing on this node.
+   * Returns whether you want the blend tree editor to display filter editing on this node.
    */
   public open fun _hasFilter(): Boolean {
     throw NotImplementedError("_has_filter is not implemented for AnimationNode")
@@ -171,7 +171,7 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Returns `true` whether a given path is filtered.
+   * Returns whether the given path is filtered.
    */
   public open fun isPathFiltered(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
@@ -205,7 +205,7 @@ public open class AnimationNode : Resource() {
     time: Double,
     seek: Boolean,
     blend: Double,
-    filter: AnimationNode.FilterAction = FilterAction.FILTER_IGNORE,
+    filter: AnimationNode.FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
     optimize: Boolean = true
   ): Double {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to node, DOUBLE to time, BOOL to
@@ -222,7 +222,7 @@ public open class AnimationNode : Resource() {
     time: Double,
     seek: Boolean,
     blend: Double,
-    filter: AnimationNode.FilterAction = FilterAction.FILTER_IGNORE,
+    filter: AnimationNode.FilterAction = AnimationNode.FilterAction.FILTER_IGNORE,
     optimize: Boolean = true
   ): Double {
     TransferContext.writeArguments(LONG to inputIndex, DOUBLE to time, BOOL to seek, DOUBLE to
@@ -232,7 +232,7 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Sets a custom parameter. These are used as local storage, because resources can be reused across the tree or scenes.
+   * Sets a custom parameter. These are used as local memory, because resources can be reused across the tree or scenes.
    */
   public open fun setParameter(name: StringName, `value`: Any): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)

@@ -45,7 +45,7 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   * Controls the [godot.core.Color] of the Rayleigh scattering. While not physically accurate, this allows for the creation of alien looking planets. For example, setting this to a red [godot.core.Color] results in a Mars looking atmosphere with a corresponding blue sunset.
+   * Controls the [godot.core.Color] of the Rayleigh scattering. While not physically accurate, this allows for the creation of alien-looking planets. For example, setting this to a red [godot.core.Color] results in a Mars-looking atmosphere with a corresponding blue sunset.
    */
   public open var rayleighColor: Color
     get() {
@@ -93,7 +93,7 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   * Controls the [godot.core.Color] of the mie scattering effect. While not physically accurate, this allows for the creation of alien looking planets.
+   * Controls the [godot.core.Color] of the mie scattering effect. While not physically accurate, this allows for the creation of alien-looking planets.
    */
   public open var mieColor: Color
     get() {
@@ -109,7 +109,7 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   /**
-   * Sets the thickness of the atmosphere. High turbidity creates a foggy looking atmosphere, while a low turbidity results in a clearer atmosphere.
+   * Sets the thickness of the atmosphere. High turbidity creates a foggy-looking atmosphere, while a low turbidity results in a clearer atmosphere.
    */
   public open var turbidity: Double
     get() {

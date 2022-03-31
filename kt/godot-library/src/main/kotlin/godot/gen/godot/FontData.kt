@@ -15,6 +15,7 @@ import godot.core.PackedStringArray
 import godot.core.RID
 import godot.core.Rect2
 import godot.core.TransferContext
+import godot.core.Transform2D
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
@@ -29,6 +30,7 @@ import godot.core.VariantType.PACKED_INT_32_ARRAY
 import godot.core.VariantType.PACKED_STRING_ARRAY
 import godot.core.VariantType.RECT2
 import godot.core.VariantType.STRING
+import godot.core.VariantType.TRANSFORM2D
 import godot.core.VariantType.VECTOR2
 import godot.core.VariantType.VECTOR2I
 import godot.core.VariantType._RID
@@ -48,7 +50,7 @@ import kotlin.Unit
  *
  * Supported font formats:
  *
- * - Dynamic font importer: TrueType (.ttf), OpenType (.otf), WOFF (.woff), Type 1 (.pfb, .pfm).
+ * - Dynamic font importer: TrueType (.ttf), OpenType (.otf), WOFF (.woff), WOFF2 (.woff2), Type 1 (.pfb, .pfm).
  *
  * - Bitmap font importer: AngelCode BMFont (.fnt, .font), text and binary (version 3) format variants.
  *
@@ -77,7 +79,7 @@ public open class FontData : Resource() {
   public open var antialiased: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_ANTIALIASED, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_IS_ANTIALIASED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -105,12 +107,13 @@ public open class FontData : Resource() {
   public open var styleName: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_STYLE_NAME, STRING)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_FONT_STYLE_NAME,
+          STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
     set(`value`) {
       TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_SET_STYLE_NAME, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_SET_FONT_STYLE_NAME, NIL)
     }
 
   /**
@@ -128,13 +131,60 @@ public open class FontData : Resource() {
     }
 
   /**
+   * Font glyph sub-pixel positioning mode. Subpixel positioning provides shaper text and better kerning for smaller font sizes, at the cost of memory usage and font rasterization speed. Use [godot.TextServer.SUBPIXEL_POSITIONING_AUTO] to automatically enable it based on the font size.
+   */
+  public open var subpixelPositioning: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_SUBPIXEL_POSITIONING,
+          LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_SET_SUBPIXEL_POSITIONING,
+          NIL)
+    }
+
+  /**
+   * If is not equal to zero, emboldens the font outlines. Negative values reduce the outline thickness.
+   */
+  public open var embolden: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_EMBOLDEN, DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_SET_EMBOLDEN, NIL)
+    }
+
+  /**
+   * 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating glyphs.
+   *
+   * For example, to simulate italic typeface by slanting, apply the following transform `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
+   */
+  public open var transform: Transform2D
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_TRANSFORM,
+          TRANSFORM2D)
+      return TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D
+    }
+    set(`value`) {
+      TransferContext.writeArguments(TRANSFORM2D to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_SET_TRANSFORM, NIL)
+    }
+
+  /**
    * If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance field generated from the dynamic font vector data.
    */
   public open var multichannelSignedDistanceField: Boolean
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_MULTICHANNEL_SIGNED_DISTANCE_FIELD, BOOL)
+          ENGINEMETHOD_ENGINECLASS_FONTDATA_IS_MULTICHANNEL_SIGNED_DISTANCE_FIELD, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -174,12 +224,12 @@ public open class FontData : Resource() {
     }
 
   /**
-   * If set to `true`, auto-hinting is supported and preffered over font built-in hinting. Used by dynamic fonts only.
+   * If set to `true`, auto-hinting is supported and preferred over font built-in hinting. Used by dynamic fonts only.
    */
   public open var forceAutohinter: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_GET_FORCE_AUTOHINTER,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FONTDATA_IS_FORCE_AUTOHINTER,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -263,7 +313,7 @@ public open class FontData : Resource() {
   }
 
   /**
-   * Loads a TrueType (.ttf), OpenType (.otf), WOFF (.woff) or Type 1 (.pfb, .pfm) dynamic font from file `path`.
+   * Loads a TrueType (.ttf), OpenType (.otf), WOFF (.woff), WOFF2 (.woff2) or Type 1 (.pfb, .pfm) dynamic font from file `path`.
    *
    * **Warning:** This method should only be used in the editor or in cases when you need to load external fonts at run-time, such as fonts located at the `user://` directory.
    */

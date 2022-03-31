@@ -74,14 +74,13 @@ public open class AnimationPlayer : Node() {
   public open var rootNode: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_ROOT_NODE,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_ROOT,
           NODE_PATH)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SET_ROOT_NODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SET_ROOT, NIL)
     }
 
   /**
@@ -141,14 +140,14 @@ public open class AnimationPlayer : Node() {
   public open var resetOnSave: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_RESET_ON_SAVE,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_IS_RESET_ON_SAVE_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SET_RESET_ON_SAVE,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SET_RESET_ON_SAVE_ENABLED, NIL)
     }
 
   /**
@@ -180,13 +179,13 @@ public open class AnimationPlayer : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_PLAYBACK_PROCESS_MODE, LONG)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_PROCESS_CALLBACK, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SET_PLAYBACK_PROCESS_MODE, NIL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SET_PROCESS_CALLBACK, NIL)
     }
 
   /**
@@ -196,13 +195,13 @@ public open class AnimationPlayer : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_PLAYBACK_DEFAULT_BLEND_TIME, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_DEFAULT_BLEND_TIME, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SET_PLAYBACK_DEFAULT_BLEND_TIME, NIL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SET_DEFAULT_BLEND_TIME, NIL)
     }
 
   /**
@@ -211,14 +210,12 @@ public open class AnimationPlayer : Node() {
   public open var playbackActive: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_PLAYBACK_ACTIVE, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_IS_ACTIVE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SET_PLAYBACK_ACTIVE, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SET_ACTIVE, NIL)
     }
 
   /**
@@ -227,14 +224,14 @@ public open class AnimationPlayer : Node() {
   public open var playbackSpeed: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_PLAYBACK_SPEED, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_GET_SPEED_SCALE,
+          DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SET_PLAYBACK_SPEED, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ANIMATIONPLAYER_SET_SPEED_SCALE,
+          NIL)
     }
 
   /**

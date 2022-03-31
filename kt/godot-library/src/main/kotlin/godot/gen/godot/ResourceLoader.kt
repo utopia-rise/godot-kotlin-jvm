@@ -101,7 +101,7 @@ public object ResourceLoader : Object() {
   public open fun load(
     path: String,
     typeHint: String = "",
-    cacheMode: ResourceLoader.CacheMode = CacheMode.CACHE_MODE_REUSE
+    cacheMode: ResourceLoader.CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE
   ): Resource? {
     TransferContext.writeArguments(STRING to path, STRING to typeHint, LONG to cacheMode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RESOURCELOADER_LOAD, OBJECT)

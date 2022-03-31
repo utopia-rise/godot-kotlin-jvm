@@ -772,6 +772,24 @@ public open class Theme : Resource() {
   }
 
   /**
+   * Adds an empty theme type for every valid data type.
+   *
+   * **Note:** Empty types are not saved with the theme. This method only exists to perform in-memory changes to the resource. Use available `set_*` methods to add theme items.
+   */
+  public open fun addType(themeType: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_ADD_TYPE, NIL)
+  }
+
+  /**
+   * Removes the theme type, gracefully discarding defined theme items. If the type is a variation, this information is also erased. If the type is a base for type variations, those variations lose their base.
+   */
+  public open fun removeType(themeType: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to themeType)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_THEME_REMOVE_TYPE, NIL)
+  }
+
+  /**
    * Returns a list of all unique theme type names. Use the appropriate `get_*_type_list` method to get a list of unique theme types for a single data type.
    */
   public open fun getTypeList(): PackedStringArray {

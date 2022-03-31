@@ -42,13 +42,13 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_TARGET_NODEPATH, NODE_PATH)
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_TARGET_NODE, NODE_PATH)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_TARGET_NODEPATH, NIL)
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_TARGET_NODE, NIL)
     }
 
   /**
@@ -58,13 +58,13 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_TIP_NODEPATH, NODE_PATH)
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_TIP_NODE, NODE_PATH)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_TIP_NODEPATH, NIL)
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_TIP_NODE, NIL)
     }
 
   /**
@@ -74,13 +74,13 @@ public open class SkeletonModification3DCCDIK : SkeletonModification3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_HIGH_QUALITY_SOLVE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_GET_USE_HIGH_QUALITY_SOLVE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_HIGH_QUALITY_SOLVE, NIL)
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DCCDIK_SET_USE_HIGH_QUALITY_SOLVE, NIL)
     }
 
   /**

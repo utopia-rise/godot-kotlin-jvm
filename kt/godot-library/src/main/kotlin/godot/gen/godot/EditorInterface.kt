@@ -43,7 +43,7 @@ public open abstract class EditorInterface : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_GET_DISTRACTION_FREE_MODE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_EDITORINTERFACE_IS_DISTRACTION_FREE_MODE_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

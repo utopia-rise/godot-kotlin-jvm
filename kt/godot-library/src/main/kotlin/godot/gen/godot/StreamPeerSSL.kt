@@ -42,13 +42,13 @@ public open class StreamPeerSSL : StreamPeer() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_GET_BLOCKING_HANDSHAKE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_IS_BLOCKING_HANDSHAKE_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_SET_BLOCKING_HANDSHAKE, NIL)
+          ENGINEMETHOD_ENGINECLASS_STREAMPEERSSL_SET_BLOCKING_HANDSHAKE_ENABLED, NIL)
     }
 
   public override fun __new(): Unit {

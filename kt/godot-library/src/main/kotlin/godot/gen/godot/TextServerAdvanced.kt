@@ -11,7 +11,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public open class TextServerAdvanced : TextServer() {
+public open class TextServerAdvanced : TextServerExtension() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TEXTSERVERADVANCED)
   }

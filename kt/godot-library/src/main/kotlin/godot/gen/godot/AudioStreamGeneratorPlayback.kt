@@ -35,7 +35,7 @@ public open abstract class AudioStreamGeneratorPlayback : AudioStreamPlaybackRes
   }
 
   /**
-   * Pushes a single audio data frame to the buffer. This is usually less efficient than [pushBuffer] in C# and compiled languages via GDNative, but [pushFrame] may be *more* efficient in GDScript.
+   * Pushes a single audio data frame to the buffer. This is usually less efficient than [pushBuffer] in C# and compiled languages via GDExtension, but [pushFrame] may be *more* efficient in GDScript.
    */
   public open fun pushFrame(frame: Vector2): Boolean {
     TransferContext.writeArguments(VECTOR2 to frame)
@@ -55,7 +55,7 @@ public open abstract class AudioStreamGeneratorPlayback : AudioStreamPlaybackRes
   }
 
   /**
-   * Pushes several audio data frames to the buffer. This is usually more efficient than [pushFrame] in C# and compiled languages via GDNative, but [pushBuffer] may be *less* efficient in GDScript.
+   * Pushes several audio data frames to the buffer. This is usually more efficient than [pushFrame] in C# and compiled languages via GDExtension, but [pushBuffer] may be *less* efficient in GDScript.
    */
   public open fun pushBuffer(frames: PackedVector2Array): Boolean {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to frames)

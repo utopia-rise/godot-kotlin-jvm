@@ -129,8 +129,13 @@ class GenerationService(
             }
         }
 
-        for (method in enrichedClass.methods.filter { !it.isGetterOrSetter }) {
+        for (method in enrichedClass.methods.filter { !it.internal.isStatic }.filter { !it.isGetterOrSetter }) {
             classTypeBuilder.addFunction(generateMethod(enrichedClass, method))
+        }
+
+        for (method in enrichedClass.methods.filter { it.internal.isStatic }) {
+            //TODO/4.0: Change implementation for static method
+            constantsTypeReceiver.addFunction(generateMethod(enrichedClass, method))
         }
 
         val generatedClass = classTypeBuilder.build()
@@ -159,27 +164,10 @@ class GenerationService(
                 .build()
         )
 
-        clazz.methods.filter { !it.isGetterOrSetter }.forEach { method ->
+        clazz.methods.forEach { method ->
             if (!jvmMethodToNotGenerate.contains(method.engineIndexName)) {
                 fileSpecBuilder.addProperty(
                     PropertySpec.builder(method.engineIndexName, INT, KModifier.CONST)
-                        .initializer("%L", nextEngineMethodIndex).addModifiers(KModifier.INTERNAL).build()
-                )
-                ++nextEngineMethodIndex
-            }
-        }
-        clazz.properties.forEach { property ->
-            if (property.hasValidGetterInClass) {
-                fileSpecBuilder.addProperty(
-                    PropertySpec.builder(property.engineGetterIndexName, INT, KModifier.CONST)
-                        .initializer("%L", nextEngineMethodIndex).addModifiers(KModifier.INTERNAL).build()
-                )
-                ++nextEngineMethodIndex
-            }
-
-            if (property.hasValidSetterInClass) {
-                fileSpecBuilder.addProperty(
-                    PropertySpec.builder(property.engineSetterIndexName, INT, KModifier.CONST)
                         .initializer("%L", nextEngineMethodIndex).addModifiers(KModifier.INTERNAL).build()
                 )
                 ++nextEngineMethodIndex
@@ -256,7 +244,7 @@ class GenerationService(
         generateCommonRegistrationForClass(
             registrationFileSpec,
             clazz
-        ) { addRegisterEngineType(it) }
+        ) { addRegisterEngineType(it, false) }
     }
 
     override fun generateEngineTypesRegistrationForSingleton(
@@ -267,7 +255,7 @@ class GenerationService(
             registrationFileSpec,
             singleton
         ) {
-            addRegisterEngineType(it)
+            addRegisterEngineType(it, true)
             addRegisterSingleton(it)
         }
     }
@@ -913,9 +901,14 @@ class GenerationService(
         )
     }
 
-    private fun RegistrationFileSpec.addRegisterEngineType(clazz: EnrichedClass) {
+    private fun RegistrationFileSpec.addRegisterEngineType(clazz: EnrichedClass, isSingleton: Boolean) {
+        val formatString = if (isSingleton) {
+            "%T.registerEngineType(%S) { %T }"
+        } else {
+            "%T.registerEngineType(%S, ::%T)"
+        }
         registerTypesFunBuilder.addStatement(
-            "%T.registerEngineType(%S) { %T }",
+            formatString,
             TYPE_MANAGER,
             clazz.internal.name,
             clazz.getTypeClassName().typeName

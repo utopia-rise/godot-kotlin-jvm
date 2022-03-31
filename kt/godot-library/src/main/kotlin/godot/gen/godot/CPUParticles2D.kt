@@ -45,7 +45,7 @@ public open class CPUParticles2D : Node2D() {
   public open var emitting: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_EMITTING, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_IS_EMITTING, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -102,14 +102,14 @@ public open class CPUParticles2D : Node2D() {
   public open var preprocess: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PREPROCESS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_PRE_PROCESS_TIME, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PREPROCESS,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_PRE_PROCESS_TIME, NIL)
     }
 
   /**
@@ -134,14 +134,14 @@ public open class CPUParticles2D : Node2D() {
   public open var explosiveness: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_EXPLOSIVENESS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_EXPLOSIVENESS_RATIO, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_EXPLOSIVENESS,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_EXPLOSIVENESS_RATIO, NIL)
     }
 
   /**
@@ -150,14 +150,14 @@ public open class CPUParticles2D : Node2D() {
   public open var randomness: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_RANDOMNESS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_RANDOMNESS_RATIO, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_RANDOMNESS,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_RANDOMNESS_RATIO, NIL)
     }
 
   /**
@@ -197,14 +197,14 @@ public open class CPUParticles2D : Node2D() {
   public open var fractDelta: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_FRACT_DELTA,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_FRACTIONAL_DELTA, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_FRACT_DELTA,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_FRACTIONAL_DELTA, NIL)
     }
 
   /**
@@ -213,14 +213,14 @@ public open class CPUParticles2D : Node2D() {
   public open var localCoords: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_LOCAL_COORDS,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_GET_USE_LOCAL_COORDINATES, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_LOCAL_COORDS,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_CPUPARTICLES2D_SET_USE_LOCAL_COORDINATES, NIL)
     }
 
   /**
@@ -591,25 +591,29 @@ public open class CPUParticles2D : Node2D() {
      */
     EMISSION_SHAPE_POINT(0),
     /**
-     * Particles will be emitted on the surface of a sphere flattened to two dimensions.
+     * Particles will be emitted in the volume of a sphere flattened to two dimensions.
      */
     EMISSION_SHAPE_SPHERE(1),
     /**
+     * Particles will be emitted on the surface of a sphere flattened to two dimensions.
+     */
+    EMISSION_SHAPE_SPHERE_SURFACE(2),
+    /**
      * Particles will be emitted in the area of a rectangle.
      */
-    EMISSION_SHAPE_RECTANGLE(2),
+    EMISSION_SHAPE_RECTANGLE(3),
     /**
      * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle color will be modulated by [emissionColors].
      */
-    EMISSION_SHAPE_POINTS(3),
+    EMISSION_SHAPE_POINTS(4),
     /**
      * Particles will be emitted at a position chosen randomly among [emissionPoints]. Particle velocity and rotation will be set based on [emissionNormals]. Particle color will be modulated by [emissionColors].
      */
-    EMISSION_SHAPE_DIRECTED_POINTS(4),
+    EMISSION_SHAPE_DIRECTED_POINTS(5),
     /**
      * Represents the size of the [enum EmissionShape] enum.
      */
-    EMISSION_SHAPE_MAX(5),
+    EMISSION_SHAPE_MAX(6),
     ;
 
     public val id: Long

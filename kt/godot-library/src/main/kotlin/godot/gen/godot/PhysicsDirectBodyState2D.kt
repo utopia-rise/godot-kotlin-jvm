@@ -162,13 +162,13 @@ public open abstract class PhysicsDirectBodyState2D : Object() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_GET_SLEEPING, BOOL)
+          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_IS_SLEEPING, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_SET_SLEEPING, NIL)
+          ENGINEMETHOD_ENGINECLASS_PHYSICSDIRECTBODYSTATE2D_SET_SLEEP_STATE, NIL)
     }
 
   /**

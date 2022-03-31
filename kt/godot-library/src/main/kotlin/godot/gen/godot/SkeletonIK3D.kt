@@ -87,13 +87,14 @@ public open class SkeletonIK3D : Node() {
   public open var target: Transform3D
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_TARGET,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_TARGET_TRANSFORM,
           TRANSFORM3D)
       return TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D
     }
     set(`value`) {
       TransferContext.writeArguments(TRANSFORM3D to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_SET_TARGET, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_SET_TARGET_TRANSFORM,
+          NIL)
     }
 
   /**
@@ -103,7 +104,7 @@ public open class SkeletonIK3D : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_OVERRIDE_TIP_BASIS, BOOL)
+          ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_IS_OVERRIDE_TIP_BASIS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -118,7 +119,8 @@ public open class SkeletonIK3D : Node() {
   public open var useMagnet: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_USE_MAGNET, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_IS_USING_MAGNET,
+          BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -132,12 +134,14 @@ public open class SkeletonIK3D : Node() {
   public open var magnet: Vector3
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_MAGNET, VECTOR3)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_GET_MAGNET_POSITION,
+          VECTOR3)
       return TransferContext.readReturnValue(VECTOR3, false) as Vector3
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_SET_MAGNET, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETONIK3D_SET_MAGNET_POSITION,
+          NIL)
     }
 
   /**

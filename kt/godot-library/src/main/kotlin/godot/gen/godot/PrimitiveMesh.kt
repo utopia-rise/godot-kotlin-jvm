@@ -16,6 +16,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import kotlin.Any
 import kotlin.Boolean
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -25,7 +26,7 @@ import kotlin.Unit
  * Base class for all primitive meshes. Handles applying a [godot.Material] to a primitive mesh. Examples include [godot.BoxMesh], [godot.CapsuleMesh], [godot.CylinderMesh], [godot.PlaneMesh], [godot.PrismMesh], [godot.QuadMesh], and [godot.SphereMesh].
  */
 @GodotBaseType
-public open abstract class PrimitiveMesh : Mesh() {
+public open class PrimitiveMesh : Mesh() {
   /**
    * The current [godot.Material] of the primitive mesh.
    */
@@ -76,6 +77,13 @@ public open abstract class PrimitiveMesh : Mesh() {
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PRIMITIVEMESH)
+  }
+
+  /**
+   *
+   */
+  public open fun _createMeshArray(): VariantArray<Any?> {
+    throw NotImplementedError("_create_mesh_array is not implemented for PrimitiveMesh")
   }
 
   /**

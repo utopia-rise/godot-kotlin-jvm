@@ -28,6 +28,8 @@ import kotlin.Unit
 public open class FogVolume : VisualInstance3D() {
   /**
    * Sets the size of the [godot.FogVolume] when [shape] is [godot.RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID] or [godot.RenderingServer.FOG_VOLUME_SHAPE_BOX].
+   *
+   * **Note:** Thin fog volumes may appear to flicker when the camera moves or rotates. This can be alleviated by increasing [godot.ProjectSettings.rendering/environment/volumetricFog/volumeDepth] (at a performance cost) or by decreasing [godot.Environment.volumetricFogLength] (at no performance cost, but at the cost of lower fog range). Alternatively, the [godot.FogVolume] can be made thicker and use a lower density in the [material].
    */
   public open var extents: Vector3
     get() {

@@ -19,7 +19,7 @@ public open abstract class CSGPrimitive3D : CSGShape3D() {
   public open var invertFaces: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPRIMITIVE3D_GET_INVERT_FACES,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CSGPRIMITIVE3D_IS_INVERTING_FACES,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }

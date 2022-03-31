@@ -32,7 +32,7 @@ public open class CameraEffects : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_GET_DOF_BLUR_FAR_ENABLED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_IS_DOF_BLUR_FAR_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -80,7 +80,7 @@ public open class CameraEffects : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_GET_DOF_BLUR_NEAR_ENABLED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_IS_DOF_BLUR_NEAR_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -144,7 +144,7 @@ public open class CameraEffects : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_GET_OVERRIDE_EXPOSURE_ENABLED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_CAMERAEFFECTS_IS_OVERRIDE_EXPOSURE_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

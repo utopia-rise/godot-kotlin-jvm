@@ -26,7 +26,7 @@ public open abstract class VisualShaderNodeParticleEmitter : VisualShaderNode() 
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEEMITTER_GET_MODE_2D, BOOL)
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEEMITTER_IS_MODE_2D, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

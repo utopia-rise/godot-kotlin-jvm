@@ -16,6 +16,7 @@ import godot.core.VariantType.NIL
 import godot.core.VariantType._RID
 import kotlin.Boolean
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -25,7 +26,7 @@ import kotlin.Unit
  * The [godot.VisualInstance3D] is used to connect a resource to a visual representation. All visual 3D nodes inherit from the [godot.VisualInstance3D]. In general, you should not access the [godot.VisualInstance3D] properties directly as they are accessed and managed by the nodes that inherit from [godot.VisualInstance3D]. [godot.VisualInstance3D] is the node representation of the [godot.RenderingServer] instance.
  */
 @GodotBaseType
-public open abstract class VisualInstance3D : Node3D() {
+public open class VisualInstance3D : Node3D() {
   /**
    * The render layer(s) this [godot.VisualInstance3D] is drawn on.
    *
@@ -34,16 +35,25 @@ public open abstract class VisualInstance3D : Node3D() {
   public open var layers: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_LAYERS, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_GET_LAYER_MASK,
+          LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_SET_LAYERS, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALINSTANCE3D_SET_LAYER_MASK,
+          NIL)
     }
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALINSTANCE3D)
+  }
+
+  /**
+   *
+   */
+  public open fun _getAabb(): AABB {
+    throw NotImplementedError("_get_aabb is not implemented for VisualInstance3D")
   }
 
   /**

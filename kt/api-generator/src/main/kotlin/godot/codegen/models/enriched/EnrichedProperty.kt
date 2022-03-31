@@ -14,11 +14,15 @@ class EnrichedProperty(val internal: Property, engineClassIndexName: String) : T
     val name = internal.name.convertToCamelCase().replace("/", "_")
     val getter = internal.getter.convertToCamelCase()
     val setter = internal.setter.convertToCamelCase()
-    val engineSetterIndexName = "ENGINEMETHOD_${engineClassIndexName}_SET_${internal.name.replace("/", "_").toUpperCase()}"
-    val engineGetterIndexName = "ENGINEMETHOD_${engineClassIndexName}_GET_${internal.name.replace("/", "_").toUpperCase()}"
 
-    var hasValidSetterInClass = false
-    var hasValidGetterInClass = false
+    var getterMethod: EnrichedMethod? = null
+    var setterMethod: EnrichedMethod? = null
+
+    val hasValidSetterInClass: Boolean
+        get() = setterMethod != null
+
+    val hasValidGetterInClass: Boolean
+        get() = getterMethod != null
 
     var shouldUseSuperSetter = false
     var shouldUseSuperGetter = false
@@ -38,21 +42,29 @@ fun List<Property>.toEnriched(engineClassIndexName: String) = map {
 }
 
 fun EnrichedProperty.toSetterCallable() = object : CallableTrait {
+    init {
+        requireNotNull(setterMethod)
+    }
+
     override val arguments = listOf(
         EnrichedArgument(
             Argument("value", internal.type, null, null)
         )
     )
     override val isVararg = false
-    override val engineIndexName = engineSetterIndexName
+    override val engineIndexName = setterMethod!!.engineIndexName
     override val type = ""
     override val nullable = false
 }
 
 fun EnrichedProperty.toGetterCallable() = object : CallableTrait {
+    init {
+        requireNotNull(getterMethod)
+    }
+
     override val arguments = listOf<EnrichedArgument>()
     override val isVararg = false
-    override val engineIndexName = engineGetterIndexName
+    override val engineIndexName = getterMethod!!.engineIndexName
     override val type = this@toGetterCallable.type
     override val nullable = this@toGetterCallable.nullable
 }

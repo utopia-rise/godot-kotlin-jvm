@@ -88,59 +88,268 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Adds a new item with text `label` to the global menu with ID `menu_root`.
    *
+   * **Note:** This method is implemented on macOS.
+   *
+   * **Supported system menu IDs:**
+   *
+   * ```
+   * 				"" - Main menu (macOS).
+   * 				"_dock" - Dock popup menu (macOS).
+   * 				```
    */
   public open fun globalMenuAddItem(
     menuRoot: String,
     label: String,
-    callback: Callable,
-    tag: Any? = null
+    callback: Callable = ,
+    tag: Any? = null,
+    accelerator: Key = Key.KEY_NONE,
+    index: Long = -1
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, ANY to
-        tag)
+        tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_ITEM,
         NIL)
   }
 
   /**
+   * Adds a new checkable item with text `label` to the global menu with ID `menu_root`.
    *
+   * **Note:** This method is implemented on macOS.
+   *
+   * **Supported system menu IDs:**
+   *
+   * ```
+   * 				"" - Main menu (macOS).
+   * 				"_dock" - Dock popup menu (macOS).
+   * 				```
    */
   public open fun globalMenuAddCheckItem(
     menuRoot: String,
     label: String,
-    callback: Callable,
-    tag: Any? = null
+    callback: Callable = ,
+    tag: Any? = null,
+    accelerator: Key = Key.KEY_NONE,
+    index: Long = -1
   ): Unit {
     TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, ANY to
-        tag)
+        tag, LONG to accelerator.id, LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_CHECK_ITEM, NIL)
   }
 
   /**
+   * Adds a new item with text `label` and icon `icon` to the global menu with ID `menu_root`.
    *
+   * **Note:** This method is implemented on macOS.
+   *
+   * **Supported system menu IDs:**
+   *
+   * ```
+   * 				"" - Main menu (macOS).
+   * 				"_dock" - Dock popup menu (macOS).
+   * 				```
+   */
+  public open fun globalMenuAddIconItem(
+    menuRoot: String,
+    icon: Texture2D,
+    label: String,
+    callback: Callable = ,
+    tag: Any? = null,
+    accelerator: Key = Key.KEY_NONE,
+    index: Long = -1
+  ): Unit {
+    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to
+        callback, ANY to tag, LONG to accelerator.id, LONG to index)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_ICON_ITEM, NIL)
+  }
+
+  /**
+   * Adds a new checkable item with text `label` and icon `icon` to the global menu with ID `menu_root`.
+   *
+   * **Note:** This method is implemented on macOS.
+   *
+   * **Supported system menu IDs:**
+   *
+   * ```
+   * 				"" - Main menu (macOS).
+   * 				"_dock" - Dock popup menu (macOS).
+   * 				```
+   */
+  public open fun globalMenuAddIconCheckItem(
+    menuRoot: String,
+    icon: Texture2D,
+    label: String,
+    callback: Callable = ,
+    tag: Any? = null,
+    accelerator: Key = Key.KEY_NONE,
+    index: Long = -1
+  ): Unit {
+    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to
+        callback, ANY to tag, LONG to accelerator.id, LONG to index)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_ICON_CHECK_ITEM, NIL)
+  }
+
+  /**
+   * Adds a new radio-checkable item with text `label` to the global menu with ID `menu_root`.
+   *
+   * **Note:** Radio-checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [globalMenuSetItemChecked] for more info on how to control it.
+   *
+   * **Note:** This method is implemented on macOS.
+   *
+   * **Supported system menu IDs:**
+   *
+   * ```
+   * 				"" - Main menu (macOS).
+   * 				"_dock" - Dock popup menu (macOS).
+   * 				```
+   */
+  public open fun globalMenuAddRadioCheckItem(
+    menuRoot: String,
+    label: String,
+    callback: Callable = ,
+    tag: Any? = null,
+    accelerator: Key = Key.KEY_NONE,
+    index: Long = -1
+  ): Unit {
+    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, ANY to
+        tag, LONG to accelerator.id, LONG to index)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_RADIO_CHECK_ITEM, NIL)
+  }
+
+  /**
+   * Adds a new radio-checkable item with text `label` and icon `icon` to the global menu with ID `menu_root`.
+   *
+   * **Note:** Radio-checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [globalMenuSetItemChecked] for more info on how to control it.
+   *
+   * **Note:** This method is implemented on macOS.
+   *
+   * **Supported system menu IDs:**
+   *
+   * ```
+   * 				"" - Main menu (macOS).
+   * 				"_dock" - Dock popup menu (macOS).
+   * 				```
+   */
+  public open fun globalMenuAddIconRadioCheckItem(
+    menuRoot: String,
+    icon: Texture2D,
+    label: String,
+    callback: Callable = ,
+    tag: Any? = null,
+    accelerator: Key = Key.KEY_NONE,
+    index: Long = -1
+  ): Unit {
+    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to
+        callback, ANY to tag, LONG to accelerator.id, LONG to index)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_ICON_RADIO_CHECK_ITEM, NIL)
+  }
+
+  /**
+   * Adds a new item with text `label` to the global menu with ID `menu_root`.
+   *
+   * Contrarily to normal binary items, multistate items can have more than two states, as defined by `max_states`. Each press or activate of the item will increase the state by one. The default value is defined by `default_state`.
+   *
+   * **Note:** This method is implemented on macOS.
+   *
+   * **Supported system menu IDs:**
+   *
+   * ```
+   * 				"" - Main menu (macOS).
+   * 				"_dock" - Dock popup menu (macOS).
+   * 				```
+   */
+  public open fun globalMenuAddMultistateItem(
+    menuRoot: String,
+    labe: String,
+    maxStates: Long,
+    defaultState: Long,
+    callback: Callable = ,
+    tag: Any? = null,
+    accelerator: Key = Key.KEY_NONE,
+    index: Long = -1
+  ): Unit {
+    TransferContext.writeArguments(STRING to menuRoot, STRING to labe, LONG to maxStates, LONG to
+        defaultState, CALLABLE to callback, ANY to tag, LONG to accelerator.id, LONG to index)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_MULTISTATE_ITEM, NIL)
+  }
+
+  /**
+   * Adds an item that will act as a submenu of the global menu `menu_root`. The `submenu` argument is the ID of the global menu root that will be shown when the item is clicked.
+   *
+   * **Note:** This method is implemented on macOS.
+   *
+   * **Supported system menu IDs:**
+   *
+   * ```
+   * 				"" - Main menu (macOS).
+   * 				"_dock" - Dock popup menu (macOS).
+   * 				```
    */
   public open fun globalMenuAddSubmenuItem(
     menuRoot: String,
     label: String,
-    submenu: String
+    submenu: String,
+    index: Long = -1
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to label, STRING to submenu)
+    TransferContext.writeArguments(STRING to menuRoot, STRING to label, STRING to submenu, LONG to
+        index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_SUBMENU_ITEM, NIL)
   }
 
   /**
+   * Adds a separator between items to the global menu with ID `menu_root`. Separators also occupy an index.
    *
+   * **Note:** This method is implemented on macOS.
+   *
+   * **Supported system menu IDs:**
+   *
+   * ```
+   * 				"" - Main menu (macOS).
+   * 				"_dock" - Dock popup menu (macOS).
+   * 				```
    */
-  public open fun globalMenuAddSeparator(menuRoot: String): Unit {
-    TransferContext.writeArguments(STRING to menuRoot)
+  public open fun globalMenuAddSeparator(menuRoot: String, index: Long = -1): Unit {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to index)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_ADD_SEPARATOR, NIL)
   }
 
   /**
+   * Returns the index of the item with the specified `text`. Index is automatically assigned to each item by the engine. Index can not be set manually.
    *
+   * **Note:** This method is implemented on macOS.
+   */
+  public open fun globalMenuGetItemIndexFromText(menuRoot: String, text: String): Long {
+    TransferContext.writeArguments(STRING to menuRoot, STRING to text)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_INDEX_FROM_TEXT, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the index of the item with the specified `tag`. Index is automatically assigned to each item by the engine. Index can not be set manually.
+   *
+   * **Note:** This method is implemented on macOS.
+   */
+  public open fun globalMenuGetItemIndexFromTag(menuRoot: String, tag: Any): Long {
+    TransferContext.writeArguments(STRING to menuRoot, ANY to tag)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_INDEX_FROM_TAG, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns `true` if the item at index `idx` is checked.
+   *
+   * **Note:** This method is implemented on macOS.
    */
   public open fun globalMenuIsItemChecked(menuRoot: String, idx: Long): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
@@ -150,7 +359,9 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Returns `true` if the item at index `idx` is checkable in some way, i.e. if it has a checkbox or radio button.
    *
+   * **Note:** This method is implemented on macOS.
    */
   public open fun globalMenuIsItemCheckable(menuRoot: String, idx: Long): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
@@ -160,7 +371,23 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Returns `true` if the item at index `idx` has radio button-style checkability.
    *
+   * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in radio groups.
+   *
+   * **Note:** This method is implemented on macOS.
+   */
+  public open fun globalMenuIsItemRadioCheckable(menuRoot: String, idx: Long): Boolean {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_IS_ITEM_RADIO_CHECKABLE, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns the callback of the item at index `idx`.
+   *
+   * **Note:** This method is implemented on macOS.
    */
   public open fun globalMenuGetItemCallback(menuRoot: String, idx: Long): Callable {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
@@ -170,7 +397,9 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Returns the metadata of the specified item, which might be of any type. You can set it with [globalMenuSetItemTag], which provides a simple way of assigning context data to items.
    *
+   * **Note:** This method is implemented on macOS.
    */
   public open fun globalMenuGetItemTag(menuRoot: String, idx: Long): Any? {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
@@ -180,7 +409,9 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Returns the text of the item at index `idx`.
    *
+   * **Note:** This method is implemented on macOS.
    */
   public open fun globalMenuGetItemText(menuRoot: String, idx: Long): String {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
@@ -190,7 +421,9 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Returns the submenu ID of the item at index `idx`. See [globalMenuAddSubmenuItem] for more info on how to add a submenu.
    *
+   * **Note:** This method is implemented on macOS.
    */
   public open fun globalMenuGetItemSubmenu(menuRoot: String, idx: Long): String {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
@@ -200,7 +433,83 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Returns the accelerator of the item at index `idx`. Accelerators are special combinations of keys that activate the item, no matter which control is focused.
    *
+   * **Note:** This method is implemented on macOS.
+   */
+  public open fun globalMenuGetItemAccelerator(menuRoot: String, idx: Long): Key {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_ACCELERATOR, LONG)
+    return Key.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+  }
+
+  /**
+   * Returns `true` if the item at index `idx` is disabled. When it is disabled it can't be selected, or its action invoked.
+   *
+   * See [globalMenuSetItemDisabled] for more info on how to disable an item.
+   *
+   * **Note:** This method is implemented on macOS.
+   */
+  public open fun globalMenuIsItemDisabled(menuRoot: String, idx: Long): Boolean {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_IS_ITEM_DISABLED, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Returns the tooltip associated with the specified index index `idx`.
+   *
+   * **Note:** This method is implemented on macOS.
+   */
+  public open fun globalMenuGetItemTooltip(menuRoot: String, idx: Long): String {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_TOOLTIP, STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
+  }
+
+  /**
+   * Returns the state of an multistate item. See [globalMenuAddMultistateItem] for details.
+   *
+   * **Note:** This method is implemented on macOS.
+   */
+  public open fun globalMenuGetItemState(menuRoot: String, idx: Long): Long {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_STATE, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns number of states of an multistate item. See [globalMenuAddMultistateItem] for details.
+   *
+   * **Note:** This method is implemented on macOS.
+   */
+  public open fun globalMenuGetItemMaxStates(menuRoot: String, idx: Long): Long {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_MAX_STATES, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns the icon of the item at index `idx`.
+   *
+   * **Note:** This method is implemented on macOS.
+   */
+  public open fun globalMenuGetItemIcon(menuRoot: String, idx: Long): Texture2D? {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_GET_ITEM_ICON, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+  }
+
+  /**
+   * Sets the checkstate status of the item at index `idx`.
+   *
+   * **Note:** This method is implemented on macOS.
    */
   public open fun globalMenuSetItemChecked(
     menuRoot: String,
@@ -213,7 +522,9 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Sets whether the item at index `idx` has a checkbox. If `false`, sets the type of the item to plain text.
    *
+   * **Note:** This method is implemented on macOS.
    */
   public open fun globalMenuSetItemCheckable(
     menuRoot: String,
@@ -226,7 +537,26 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Sets the type of the item at the specified index `idx` to radio button. If `false`, sets the type of the item to plain text
    *
+   * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in radio groups.
+   *
+   * **Note:** This method is implemented on macOS.
+   */
+  public open fun globalMenuSetItemRadioCheckable(
+    menuRoot: String,
+    idx: Long,
+    checkable: Boolean
+  ): Unit {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx, BOOL to checkable)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_SET_ITEM_RADIO_CHECKABLE, NIL)
+  }
+
+  /**
+   * Sets the callback of the item at index `idx`. Callback is emitted when an item is pressed or its accelerator is activated.
+   *
+   * **Note:** This method is implemented on macOS.
    */
   public open fun globalMenuSetItemCallback(
     menuRoot: String,
@@ -239,7 +569,9 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Sets the metadata of an item, which may be of any type. You can later get it with [globalMenuGetItemTag], which provides a simple way of assigning context data to items.
    *
+   * **Note:** This method is implemented on macOS.
    */
   public open fun globalMenuSetItemTag(
     menuRoot: String,
@@ -252,7 +584,9 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Sets the text of the item at index `idx`.
    *
+   * **Note:** This method is implemented on macOS.
    */
   public open fun globalMenuSetItemText(
     menuRoot: String,
@@ -265,7 +599,9 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Sets the submenu of the item at index `idx`. The submenu is the ID of a global menu root that would be shown when the item is clicked.
    *
+   * **Note:** This method is implemented on macOS.
    */
   public open fun globalMenuSetItemSubmenu(
     menuRoot: String,
@@ -278,7 +614,103 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Sets the accelerator of the item at index `idx`.
    *
+   * **Note:** This method is implemented on macOS.
+   */
+  public open fun globalMenuSetItemAccelerator(
+    menuRoot: String,
+    idx: Long,
+    keycode: Key
+  ): Unit {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx, LONG to keycode.id)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_SET_ITEM_ACCELERATOR, NIL)
+  }
+
+  /**
+   * Enables/disables the item at index `idx`. When it is disabled, it can't be selected and its action can't be invoked.
+   *
+   * **Note:** This method is implemented on macOS.
+   */
+  public open fun globalMenuSetItemDisabled(
+    menuRoot: String,
+    idx: Long,
+    disabled: Boolean
+  ): Unit {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx, BOOL to disabled)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_SET_ITEM_DISABLED, NIL)
+  }
+
+  /**
+   * Sets the [godot.String] tooltip of the item at the specified index `idx`.
+   *
+   * **Note:** This method is implemented on macOS.
+   */
+  public open fun globalMenuSetItemTooltip(
+    menuRoot: String,
+    idx: Long,
+    tooltip: String
+  ): Unit {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx, STRING to tooltip)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_SET_ITEM_TOOLTIP, NIL)
+  }
+
+  /**
+   * Sets the state of an multistate item. See [globalMenuAddMultistateItem] for details.
+   *
+   * **Note:** This method is implemented on macOS.
+   */
+  public open fun globalMenuSetItemState(
+    menuRoot: String,
+    idx: Long,
+    state: Long
+  ): Unit {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx, LONG to state)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_SET_ITEM_STATE, NIL)
+  }
+
+  /**
+   * Sets number of state of an multistate item. See [globalMenuAddMultistateItem] for details.
+   *
+   * **Note:** This method is implemented on macOS.
+   */
+  public open fun globalMenuSetItemMaxStates(
+    menuRoot: String,
+    idx: Long,
+    maxStates: Long
+  ): Unit {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx, LONG to maxStates)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_SET_ITEM_MAX_STATES, NIL)
+  }
+
+  /**
+   * Replaces the [godot.Texture2D] icon of the specified `idx`.
+   *
+   * **Note:** This method is implemented on macOS.
+   *
+   * **Note:** This method is not supported by macOS "_dock" menu items.
+   */
+  public open fun globalMenuSetItemIcon(
+    menuRoot: String,
+    idx: Long,
+    icon: Texture2D
+  ): Unit {
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx, OBJECT to icon)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_GLOBAL_MENU_SET_ITEM_ICON, NIL)
+  }
+
+  /**
+   * Removes the item at index `idx` from the global menu `menu_root`.
+   *
+   * **Note:** The indices of items after the removed item will be shifted by one.
+   *
+   * **Note:** This method is implemented on macOS.
    */
   public open fun globalMenuRemoveItem(menuRoot: String, idx: Long): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx)
@@ -287,7 +719,16 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Removes all items from the global menu with ID `menu_root`.
    *
+   * **Note:** This method is implemented on macOS.
+   *
+   * **Supported system menu IDs:**
+   *
+   * ```
+   * 				"" - Main menu (macOS).
+   * 				"_dock" - Dock popup menu (macOS).
+   * 				```
    */
   public open fun globalMenuClear(menuRoot: String): Unit {
     TransferContext.writeArguments(STRING to menuRoot)
@@ -313,12 +754,11 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the mouse cursor position to the given `position`.
+   * Sets the mouse cursor position to the given `position` relative to an origin at the upper left corner of the currently focused game Window Manager window.
    */
-  public open fun mouseWarpToPosition(position: Vector2i): Unit {
+  public open fun warpMouse(position: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to position)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_MOUSE_WARP_TO_POSITION, NIL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WARP_MOUSE, NIL)
   }
 
   /**
@@ -493,9 +933,17 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the current refresh rate of the specified screen. If `screen` is `SCREEN_OF_MAIN_WINDOW` (the default value), a screen with the main window will be used.
+   * Returns the current refresh rate of the specified screen. If `screen` is [SCREEN_OF_MAIN_WINDOW] (the default value), a screen with the main window will be used.
    *
-   * **Note:** Returns `60.0` if the DisplayServer fails to find the refresh rate for the specified screen. On HTML5, [screenGetRefreshRate] will always return `60.0` as there is no way to retrieve the refresh rate on that platform.
+   * **Note:** Returns `-1.0` if the DisplayServer fails to find the refresh rate for the specified screen. On HTML5, [screenGetRefreshRate] will always return `-1.0` as there is no way to retrieve the refresh rate on that platform.
+   *
+   * To fallback to a default refresh rate if the method fails, try:
+   *
+   * ```
+   * 				var refresh_rate = DisplayServer.screen_get_refresh_rate()
+   * 				if refresh_rate < 0:
+   * 				    refresh_rate = 60.0
+   * 				```
    */
   public open fun screenGetRefreshRate(screen: Long = -1): Double {
     TransferContext.writeArguments(LONG to screen)
@@ -599,6 +1047,35 @@ public object DisplayServer : Object() {
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_NATIVE_HANDLE, LONG)
     return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Returns ID of the active popup window, or [INVALID_WINDOW_ID] if there is none.
+   */
+  public open fun windowGetActivePopup(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_ACTIVE_POPUP, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * Sets the bounding box of control, or menu item that was used to open the popup window, in the screen coordinate system. Clicking this area will not auto-close this popup.
+   */
+  public open fun windowSetPopupSafeRect(window: Long, rect: Rect2i): Unit {
+    TransferContext.writeArguments(LONG to window, RECT2I to rect)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_POPUP_SAFE_RECT, NIL)
+  }
+
+  /**
+   * Returns the bounding box of control, or menu item that was used to open the popup window, in the screen coordinate system.
+   */
+  public open fun windowGetPopupSafeRect(window: Long): Rect2i {
+    TransferContext.writeArguments(LONG to window)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_GET_POPUP_SAFE_RECT, RECT2I)
+    return TransferContext.readReturnValue(RECT2I, false) as Rect2i
   }
 
   /**
@@ -915,6 +1392,19 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * If set to `true`, this window will always stay on top of its parent window, parent window will ignore input while this window is opened.
+   *
+   * **Note:** On macOS, exclusive windows are confined to the same space (virtual desktop or screen) as the parent window.
+   *
+   * **Note:** This method is implemented on macOS and Windows.
+   */
+  public open fun windowSetExclusive(windowId: Long, exclusive: Boolean): Unit {
+    TransferContext.writeArguments(LONG to windowId, BOOL to exclusive)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_DISPLAYSERVER_WINDOW_SET_EXCLUSIVE,
+        NIL)
+  }
+
+  /**
    *
    */
   public open fun windowSetImeActive(active: Boolean, windowId: Long = 0): Unit {
@@ -993,7 +1483,7 @@ public object DisplayServer : Object() {
    */
   public open fun virtualKeyboardShow(
     existingText: String,
-    position: Rect2 = Rect2i(0.0, 0.0, 0.0, 0.0),
+    position: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
     multiline: Boolean = false,
     maxLength: Long = -1,
     cursorStart: Long = -1,
@@ -1047,7 +1537,7 @@ public object DisplayServer : Object() {
    */
   public open fun cursorSetCustomImage(
     cursor: Resource,
-    shape: DisplayServer.CursorShape = CursorShape.CURSOR_ARROW,
+    shape: DisplayServer.CursorShape = DisplayServer.CursorShape.CURSOR_ARROW,
     hotspot: Vector2 = Vector2(0.0, 0.0)
   ): Unit {
     TransferContext.writeArguments(OBJECT to cursor, LONG to shape.id, VECTOR2 to hotspot)
@@ -1390,29 +1880,33 @@ public object DisplayServer : Object() {
     id: Long
   ) {
     /**
-     *
+     * Window can't be resizing by dragging its resize grip. It's still possible to resize the window using [windowSetSize]. This flag is ignored for full screen windows.
      */
     WINDOW_FLAG_RESIZE_DISABLED(0),
     /**
-     *
+     * Window do not have native title bar and other decorations. This flag is ignored for full-screen windows.
      */
     WINDOW_FLAG_BORDERLESS(1),
     /**
-     *
+     * Window is floating above other regular windows. This flag is ignored for full-screen windows.
      */
     WINDOW_FLAG_ALWAYS_ON_TOP(2),
     /**
-     *
+     * Window is will be destroyed with its transient parent and displayed on top of non-exclusive full-screen parent window. Transient windows can't enter full-screen mode.
      */
     WINDOW_FLAG_TRANSPARENT(3),
     /**
-     *
+     * Window can't be focused. No-focus window will ignore all input, except mouse clicks.
      */
     WINDOW_FLAG_NO_FOCUS(4),
     /**
+     * Window is part of menu or [godot.OptionButton] dropdown. This flag can't be changed when window is visible. An active popup window will exclusivly receive all input, without stealing focus from its parent. Popup windows are automatically closed when uses click outside it, or when an application is switched. Popup window must have [WINDOW_FLAG_TRANSPARENT] set.
+     */
+    WINDOW_FLAG_POPUP(5),
+    /**
      *
      */
-    WINDOW_FLAG_MAX(5),
+    WINDOW_FLAG_MAX(6),
     ;
 
     public val id: Long

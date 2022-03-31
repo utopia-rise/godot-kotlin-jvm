@@ -43,12 +43,14 @@ public open class PointLight2D : Light2D() {
   public open var offset: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POINTLIGHT2D_GET_OFFSET, VECTOR2)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POINTLIGHT2D_GET_TEXTURE_OFFSET,
+          VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POINTLIGHT2D_SET_OFFSET, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_POINTLIGHT2D_SET_TEXTURE_OFFSET,
+          NIL)
     }
 
   /**

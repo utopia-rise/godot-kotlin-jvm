@@ -52,7 +52,7 @@ public open class FileDialog : ConfirmationDialog() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_MODE_OVERRIDES_TITLE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_FILEDIALOG_IS_MODE_OVERRIDING_TITLE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -112,8 +112,8 @@ public open class FileDialog : ConfirmationDialog() {
   public open var showHiddenFiles: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_FILEDIALOG_GET_SHOW_HIDDEN_FILES,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_FILEDIALOG_IS_SHOWING_HIDDEN_FILES, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

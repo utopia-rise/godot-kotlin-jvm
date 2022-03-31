@@ -14,9 +14,9 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open class StreamTexture2DArray : StreamTextureLayered() {
+public open class TextServerDummy : TextServerExtension() {
   public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_STREAMTEXTURE2DARRAY)
+    callConstructor(ENGINECLASS_TEXTSERVERDUMMY)
   }
 
   public companion object

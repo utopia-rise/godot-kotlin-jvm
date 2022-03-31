@@ -15,12 +15,14 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Sphere shape for 3D collisions.
+ * Sphere shape resource for 3D collisions.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/675](https://godotengine.org/asset-library/asset/675)
  *
- * Sphere shape for 3D collisions, which can be set into a [godot.PhysicsBody3D] or [godot.Area3D]. This shape is useful for modeling sphere-like 3D objects.
+ * 3D sphere shape to be added as a *direct* child of a [godot.PhysicsBody3D] or [godot.Area3D] using a [godot.CollisionShape3D] node. This shape is useful for modeling sphere-like 3D objects.
+ *
+ * **Performance:** Being a primitive collision shape, [godot.SphereShape3D] is the fastest collision shape to check collisions against, as it only requires a distance check with the shape's origin.
  */
 @GodotBaseType
 public open class SphereShape3D : Shape3D() {

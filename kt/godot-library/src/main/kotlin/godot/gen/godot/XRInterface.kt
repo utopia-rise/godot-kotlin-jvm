@@ -37,7 +37,7 @@ import kotlin.Unit
  * Tutorials:
  * [$DOCS_URL/tutorials/vr/index.html]($DOCS_URL/tutorials/vr/index.html)
  *
- * This class needs to be implemented to make an AR or VR platform available to Godot and these should be implemented as C++ modules or GDNative modules (note that for GDNative the subclass XRScriptInterface should be used). Part of the interface is exposed to GDScript so you can detect, enable and configure an AR or VR platform.
+ * This class needs to be implemented to make an AR or VR platform available to Godot and these should be implemented as C++ modules or GDExtension modules. Part of the interface is exposed to GDScript so you can detect, enable and configure an AR or VR platform.
  *
  * Interfaces should be written in such a way that simply enabling them will give us a working setup. You can query the available interfaces through [godot.XRServer].
  */
@@ -54,14 +54,12 @@ public open abstract class XRInterface : RefCounted() {
   public open var interfaceIsPrimary: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_INTERFACE_IS_PRIMARY, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_IS_PRIMARY, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SET_INTERFACE_IS_PRIMARY, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SET_PRIMARY, NIL)
     }
 
   /**
@@ -70,7 +68,7 @@ public open abstract class XRInterface : RefCounted() {
   public open val xrPlayAreaMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_XR_PLAY_AREA_MODE,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_PLAY_AREA_MODE,
           LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
@@ -82,13 +80,13 @@ public open abstract class XRInterface : RefCounted() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_AR_IS_ANCHOR_DETECTION_ENABLED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_XRINTERFACE_GET_ANCHOR_DETECTION_IS_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SET_AR_IS_ANCHOR_DETECTION_ENABLED, NIL)
+          ENGINEMETHOD_ENGINECLASS_XRINTERFACE_SET_ANCHOR_DETECTION_IS_ENABLED, NIL)
     }
 
   public override fun __new(): Unit {

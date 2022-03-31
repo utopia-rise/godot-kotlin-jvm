@@ -150,6 +150,19 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
   }
 
   /**
+   * Override this method to add a shader code to the beginning of each shader function (once). The shader code should be returned as a string, which can have multiple lines (the `"""` multiline string construct can be used for convenience).
+   *
+   * If there are multiple custom nodes of different types which use this feature the order of each insertion is undefined.
+   *
+   * You can customize the generated code based on the shader `mode` (see [enum Shader.Mode]) and/or `type` (see [enum VisualShader.Type]).
+   *
+   * Defining this method is **optional**.
+   */
+  public open fun _getFuncCode(mode: Shader.Mode, type: VisualShader.Type): String {
+    throw NotImplementedError("_get_func_code is not implemented for VisualShaderNodeCustom")
+  }
+
+  /**
    * Override this method to add shader code on top of the global shader, to define your own standard library of reusable methods, varyings, constants, uniforms, etc. The shader code should be returned as a string, which can have multiple lines (the `"""` multiline string construct can be used for convenience).
    *
    * Be careful with this functionality as it can cause name conflicts with other custom nodes, so be sure to give the defined entities unique names.
@@ -165,10 +178,19 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
   /**
    * Override this method to enable high-end mark in the Visual Shader Editor's members dialog.
    *
-   * Defining this method is **optional**. If not overridden, it's false.
+   * Defining this method is **optional**. If not overridden, it's `false`.
    */
   public open fun _isHighend(): Boolean {
     throw NotImplementedError("_is_highend is not implemented for VisualShaderNodeCustom")
+  }
+
+  /**
+   * Override this method to prevent the node to be visible in the member dialog for the certain `mode` (see [enum Shader.Mode]) and/or `type` (see [enum VisualShader.Type]).
+   *
+   * Defining this method is **optional**. If not overridden, it's `true`.
+   */
+  public open fun _isAvailable(mode: Shader.Mode, type: VisualShader.Type): Boolean {
+    throw NotImplementedError("_is_available is not implemented for VisualShaderNodeCustom")
   }
 
   public companion object

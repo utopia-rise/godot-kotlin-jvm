@@ -19,20 +19,22 @@ import kotlin.Unit
 /**
  * Control for holding [godot.SubViewport]s.
  *
- * A [godot.Container] node that holds a [godot.SubViewport], automatically setting its size.
+ * A [godot.Container] node that holds a [godot.SubViewport]. It uses the [godot.SubViewport]'s size as minimum size, unless [stretch] is enabled.
  *
- * **Note:** Changing a SubViewportContainer's [godot.Control.rectScale] will cause its contents to appear distorted. To change its visual size without causing distortion, adjust the node's margins instead (if it's not already in a container).
+ * **Note:** Changing a SubViewportContainer's [godot.Control.scale] will cause its contents to appear distorted. To change its visual size without causing distortion, adjust the node's margins instead (if it's not already in a container).
+ *
+ * **Note:** The SubViewportContainer forwards mouse-enter and mouse-exit notifications to its sub-viewports.
  */
 @GodotBaseType
 public open class SubViewportContainer : Container() {
   /**
-   * If `true`, the sub-viewport will be scaled to the control's size.
+   * If `true`, the sub-viewport will be automatically resized to the control's size.
    */
   public open var stretch: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SUBVIEWPORTCONTAINER_GET_STRETCH,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_SUBVIEWPORTCONTAINER_IS_STRETCH_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

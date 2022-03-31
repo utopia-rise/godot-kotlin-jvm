@@ -194,8 +194,8 @@ public open class SoftDynamicBody3D : MeshInstance3D() {
   public open var rayPickable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_GET_RAY_PICKABLE, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SOFTDYNAMICBODY3D_IS_RAY_PICKABLE,
+          BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

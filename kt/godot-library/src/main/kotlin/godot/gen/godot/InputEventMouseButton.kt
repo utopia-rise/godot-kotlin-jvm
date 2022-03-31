@@ -81,7 +81,7 @@ public open class InputEventMouseButton : InputEventMouse() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_GET_DOUBLE_CLICK, BOOL)
+          ENGINEMETHOD_ENGINECLASS_INPUTEVENTMOUSEBUTTON_IS_DOUBLE_CLICK, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

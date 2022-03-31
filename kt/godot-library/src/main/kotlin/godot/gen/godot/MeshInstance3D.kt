@@ -67,13 +67,14 @@ public open class MeshInstance3D : GeometryInstance3D() {
   public open var skeleton: NodePath
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_SKELETON,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_GET_SKELETON_PATH,
           NODE_PATH)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_SET_SKELETON, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MESHINSTANCE3D_SET_SKELETON_PATH,
+          NIL)
     }
 
   public override fun __new(): Unit {

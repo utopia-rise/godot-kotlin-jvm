@@ -32,7 +32,7 @@ public open class AnimatableBody2D : StaticBody2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATABLEBODY2D_GET_SYNC_TO_PHYSICS, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATABLEBODY2D_IS_SYNC_TO_PHYSICS_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

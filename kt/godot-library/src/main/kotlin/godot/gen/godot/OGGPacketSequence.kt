@@ -36,13 +36,13 @@ public open class OGGPacketSequence : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_OGGPACKETSEQUENCE_GET_GRANULE_POSITIONS, ARRAY)
+          ENGINEMETHOD_ENGINECLASS_OGGPACKETSEQUENCE_GET_PACKET_GRANULE_POSITIONS, ARRAY)
       return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
     }
     set(`value`) {
       TransferContext.writeArguments(ARRAY to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_OGGPACKETSEQUENCE_SET_GRANULE_POSITIONS, NIL)
+          ENGINEMETHOD_ENGINECLASS_OGGPACKETSEQUENCE_SET_PACKET_GRANULE_POSITIONS, NIL)
     }
 
   public open var samplingRate: Double

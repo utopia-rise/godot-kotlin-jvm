@@ -43,12 +43,14 @@ public open class Timer : Node() {
   public open var processCallback: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_GET_PROCESS_CALLBACK, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_GET_TIMER_PROCESS_CALLBACK,
+          LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_SET_PROCESS_CALLBACK, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_SET_TIMER_PROCESS_CALLBACK,
+          NIL)
     }
 
   /**
@@ -73,7 +75,7 @@ public open class Timer : Node() {
   public open var oneShot: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_GET_ONE_SHOT, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_IS_ONE_SHOT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -89,7 +91,7 @@ public open class Timer : Node() {
   public open var autostart: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_GET_AUTOSTART, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_HAS_AUTOSTART, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -103,7 +105,7 @@ public open class Timer : Node() {
   public open var paused: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_GET_PAUSED, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TIMER_IS_PAUSED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -128,7 +130,7 @@ public open class Timer : Node() {
   }
 
   /**
-   * Starts the timer. Sets `wait_time` to `time_sec` if `time_sec > 0`. This also resets the remaining time to `wait_time`.
+   * Starts the timer. Sets [waitTime] to `time_sec` if `time_sec > 0`. This also resets the remaining time to [waitTime].
    *
    * **Note:** This method will not resume a paused timer. See [paused].
    */

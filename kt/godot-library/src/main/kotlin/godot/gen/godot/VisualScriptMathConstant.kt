@@ -20,13 +20,13 @@ public open class VisualScriptMathConstant : VisualScriptNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTMATHCONSTANT_GET_CONSTANT, LONG)
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTMATHCONSTANT_GET_MATH_CONSTANT, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTMATHCONSTANT_SET_CONSTANT, NIL)
+          ENGINEMETHOD_ENGINECLASS_VISUALSCRIPTMATHCONSTANT_SET_MATH_CONSTANT, NIL)
     }
 
   public override fun __new(): Unit {

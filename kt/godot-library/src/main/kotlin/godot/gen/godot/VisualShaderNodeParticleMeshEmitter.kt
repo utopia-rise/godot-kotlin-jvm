@@ -45,7 +45,7 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_GET_USE_ALL_SURFACES, BOOL)
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_IS_USE_ALL_SURFACES, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

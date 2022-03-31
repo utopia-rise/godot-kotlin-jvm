@@ -53,8 +53,8 @@ public open class NinePatchRect : Control() {
   public open var drawCenter: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_DRAW_CENTER,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_IS_DRAW_CENTER_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -86,13 +86,13 @@ public open class NinePatchRect : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_AXIS_STRETCH_HORIZONTAL, LONG)
+          ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_H_AXIS_STRETCH_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_AXIS_STRETCH_HORIZONTAL, NIL)
+          ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_H_AXIS_STRETCH_MODE, NIL)
     }
 
   /**
@@ -102,13 +102,13 @@ public open class NinePatchRect : Control() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_AXIS_STRETCH_VERTICAL, LONG)
+          ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_GET_V_AXIS_STRETCH_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_AXIS_STRETCH_VERTICAL, NIL)
+          ENGINEMETHOD_ENGINECLASS_NINEPATCHRECT_SET_V_AXIS_STRETCH_MODE, NIL)
     }
 
   public override fun __new(): Unit {

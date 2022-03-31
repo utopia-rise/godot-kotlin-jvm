@@ -153,7 +153,7 @@ public open class UndoRedo : Object() {
    * The way actions are merged is dictated by the `merge_mode` argument. See [enum MergeMode] for details.
    */
   public open fun createAction(name: String, mergeMode: UndoRedo.MergeMode =
-      MergeMode.MERGE_DISABLE): Unit {
+      UndoRedo.MergeMode.MERGE_DISABLE): Unit {
     TransferContext.writeArguments(STRING to name, LONG to mergeMode.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_CREATE_ACTION, NIL)
   }
@@ -182,11 +182,10 @@ public open class UndoRedo : Object() {
     _object: Object,
     method: StringName,
     vararg __var_args: Any?
-  ): void? {
+  ): Unit {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to method,  *__var_args.map { ANY
         to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_DO_METHOD, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as void?
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_DO_METHOD, NIL)
   }
 
   /**
@@ -196,11 +195,10 @@ public open class UndoRedo : Object() {
     _object: Object,
     method: StringName,
     vararg __var_args: Any?
-  ): void? {
+  ): Unit {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to method,  *__var_args.map { ANY
         to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_UNDO_METHOD, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as void?
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_UNDOREDO_ADD_UNDO_METHOD, NIL)
   }
 
   /**

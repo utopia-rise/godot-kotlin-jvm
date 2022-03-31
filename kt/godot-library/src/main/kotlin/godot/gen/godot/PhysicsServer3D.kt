@@ -1422,7 +1422,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns an Info defined by the [enum ProcessInfo] input given.
+   * Returns information about the current state of the 3D physics engine. See [enum ProcessInfo] for a list of available states.
    */
   public open fun getProcessInfo(processInfo: PhysicsServer3D.ProcessInfo): Long {
     TransferContext.writeArguments(LONG to processInfo.id)

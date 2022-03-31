@@ -85,7 +85,7 @@ public open class VehicleWheel3D : Node3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL3D_GET_USE_AS_TRACTION, BOOL)
+          ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL3D_IS_USED_AS_TRACTION, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -101,7 +101,7 @@ public open class VehicleWheel3D : Node3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL3D_GET_USE_AS_STEERING, BOOL)
+          ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL3D_IS_USED_AS_STEERING, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -116,14 +116,14 @@ public open class VehicleWheel3D : Node3D() {
   public open var wheelRollInfluence: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL3D_GET_WHEEL_ROLL_INFLUENCE, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL3D_GET_ROLL_INFLUENCE,
+          DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL3D_SET_WHEEL_ROLL_INFLUENCE, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL3D_SET_ROLL_INFLUENCE,
+          NIL)
     }
 
   /**
@@ -132,14 +132,12 @@ public open class VehicleWheel3D : Node3D() {
   public open var wheelRadius: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL3D_GET_WHEEL_RADIUS,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL3D_GET_RADIUS, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL3D_SET_WHEEL_RADIUS,
-          NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL3D_SET_RADIUS, NIL)
     }
 
   /**
@@ -149,13 +147,13 @@ public open class VehicleWheel3D : Node3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL3D_GET_WHEEL_REST_LENGTH, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL3D_GET_SUSPENSION_REST_LENGTH, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL3D_SET_WHEEL_REST_LENGTH, NIL)
+          ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL3D_SET_SUSPENSION_REST_LENGTH, NIL)
     }
 
   /**
@@ -166,14 +164,14 @@ public open class VehicleWheel3D : Node3D() {
   public open var wheelFrictionSlip: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL3D_GET_WHEEL_FRICTION_SLIP, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL3D_GET_FRICTION_SLIP,
+          DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL3D_SET_WHEEL_FRICTION_SLIP, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VEHICLEWHEEL3D_SET_FRICTION_SLIP,
+          NIL)
     }
 
   /**

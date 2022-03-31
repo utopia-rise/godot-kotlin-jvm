@@ -29,6 +29,8 @@ import kotlin.Unit
  * OptionButton is a type button that provides a selectable list of items when pressed. The item selected becomes the "current" item and is displayed as the button text.
  *
  * See also [godot.BaseButton] which contains common properties and methods associated with this node.
+ *
+ * **Note:** Properties [godot.Button.text] and [godot.Button.icon] are automatically set based on the selected item. They shouldn't be changed manually.
  */
 @GodotBaseType
 public open class OptionButton : Button() {
@@ -134,6 +136,14 @@ public open class OptionButton : Button() {
   }
 
   /**
+   * Sets the tooltip of the item at index `idx`.
+   */
+  public open fun setItemTooltip(idx: Long, tooltip: String): Unit {
+    TransferContext.writeArguments(LONG to idx, STRING to tooltip)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_SET_ITEM_TOOLTIP, NIL)
+  }
+
+  /**
    * Returns the text of the item at index `idx`.
    */
   public open fun getItemText(idx: Long): String {
@@ -176,6 +186,16 @@ public open class OptionButton : Button() {
     TransferContext.writeArguments(LONG to idx)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_ITEM_METADATA, ANY)
     return TransferContext.readReturnValue(ANY, true) as Any?
+  }
+
+  /**
+   * Returns the tooltip of the item at index `idx`.
+   */
+  public open fun getItemTooltip(idx: Long): String {
+    TransferContext.writeArguments(LONG to idx)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_OPTIONBUTTON_GET_ITEM_TOOLTIP,
+        STRING)
+    return TransferContext.readReturnValue(STRING, false) as String
   }
 
   /**

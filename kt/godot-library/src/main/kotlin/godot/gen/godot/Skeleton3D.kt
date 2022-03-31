@@ -79,7 +79,7 @@ public open class Skeleton3D : Node3D() {
   public open var showRestOnly: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_GET_SHOW_REST_ONLY,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_SKELETON3D_IS_SHOW_REST_ONLY,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }

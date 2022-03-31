@@ -37,12 +37,12 @@ public open abstract class Light3D : VisualInstance3D() {
   public open var lightColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_LIGHT_COLOR, COLOR)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_COLOR, COLOR)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_LIGHT_COLOR, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_COLOR, NIL)
     }
 
   /**
@@ -51,13 +51,12 @@ public open abstract class Light3D : VisualInstance3D() {
   public open var lightProjector: Texture2D?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_LIGHT_PROJECTOR,
-          OBJECT)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_PROJECTOR, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_LIGHT_PROJECTOR, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_PROJECTOR, NIL)
     }
 
   /**
@@ -66,12 +65,12 @@ public open abstract class Light3D : VisualInstance3D() {
   public open var lightNegative: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_LIGHT_NEGATIVE, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_IS_NEGATIVE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_LIGHT_NEGATIVE, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_NEGATIVE, NIL)
     }
 
   /**
@@ -82,12 +81,12 @@ public open abstract class Light3D : VisualInstance3D() {
   public open var lightBakeMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_LIGHT_BAKE_MODE, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_BAKE_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_LIGHT_BAKE_MODE, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_BAKE_MODE, NIL)
     }
 
   /**
@@ -96,40 +95,26 @@ public open abstract class Light3D : VisualInstance3D() {
   public open var lightCullMask: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_LIGHT_CULL_MASK, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_CULL_MASK, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_LIGHT_CULL_MASK, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_CULL_MASK, NIL)
     }
 
   /**
-   * If `true`, the light will cast shadows.
+   * If `true`, the light will cast real-time shadows. This has a significant performance cost. Only enable shadow rendering when it makes a noticeable difference in the scene's appearance, and consider using [distanceFadeEnabled] to hide the light when far away from the [godot.Camera3D].
    */
   public open var shadowEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_SHADOW_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_HAS_SHADOW, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_SHADOW_ENABLED, NIL)
-    }
-
-  /**
-   * The color of shadows cast by this light.
-   */
-  public open var shadowColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_SHADOW_COLOR, COLOR)
-      return TransferContext.readReturnValue(COLOR, false) as Color
-    }
-    set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_SHADOW_COLOR, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_SHADOW, NIL)
     }
 
   /**
@@ -149,12 +134,86 @@ public open abstract class Light3D : VisualInstance3D() {
     }
 
   /**
+   * If `true`, the light will smoothly fade away when far from the active [godot.Camera3D] starting at [distanceFadeBegin]. This acts as a form of level of detail (LOD). The light will fade out over [distanceFadeBegin] + [distanceFadeLength], after which it will be culled and not sent to the shader at all. Use this to reduce the number of active lights in a scene and thus improve performance.
+   *
+   * **Note:** Only effective for [godot.OmniLight3D] and [godot.SpotLight3D].
+   */
+  public open var distanceFadeEnabled: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_IS_DISTANCE_FADE_ENABLED,
+          BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_ENABLE_DISTANCE_FADE,
+          NIL)
+    }
+
+  /**
+   * The distance from the camera at which the light begins to fade away (in 3D units).
+   *
+   * **Note:** Only effective for [godot.OmniLight3D] and [godot.SpotLight3D].
+   */
+  public open var distanceFadeBegin: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_DISTANCE_FADE_BEGIN,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_DISTANCE_FADE_BEGIN,
+          NIL)
+    }
+
+  /**
+   * The distance from the camera at which the light's shadow cuts off (in 3D units). Set this to a value lower than [distanceFadeBegin] + [distanceFadeLength] to further improve performance, as shadow rendering is often more expensive than light rendering itself.
+   *
+   * **Note:** Only effective for [godot.OmniLight3D] and [godot.SpotLight3D], and only when [shadowEnabled] is `true`.
+   *
+   * **Note:** Due to a rendering engine limitation, shadows will be disabled instantly instead of fading smoothly according to [distanceFadeLength]. This may result in visible pop-in depending on the scene topography.
+   */
+  public open var distanceFadeShadow: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_DISTANCE_FADE_SHADOW,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_DISTANCE_FADE_SHADOW,
+          NIL)
+    }
+
+  /**
+   * Distance over which the light fades. The light's energy is progressively reduced over this distance and is completely invisible at the end.
+   *
+   * **Note:** Only effective for [godot.OmniLight3D] and [godot.SpotLight3D].
+   */
+  public open var distanceFadeLength: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_DISTANCE_FADE_LENGTH,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_SET_DISTANCE_FADE_LENGTH,
+          NIL)
+    }
+
+  /**
    * If `true`, the light only appears in the editor and will not be visible at runtime.
    */
   public open var editorOnly: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_GET_EDITOR_ONLY, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_LIGHT3D_IS_EDITOR_ONLY, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

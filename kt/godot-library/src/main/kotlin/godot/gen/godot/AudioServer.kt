@@ -428,9 +428,6 @@ public object AudioServer : Object() {
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
-  /**
-   * Name of the current device for audio input (see [captureGetDeviceList]).
-   */
   public open fun captureGetDevice(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_CAPTURE_GET_DEVICE,
@@ -438,9 +435,6 @@ public object AudioServer : Object() {
     return TransferContext.readReturnValue(STRING, false) as String
   }
 
-  /**
-   * Sets which audio input device is used for audio capture.
-   */
   public open fun captureSetDevice(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSERVER_CAPTURE_SET_DEVICE, NIL)

@@ -35,7 +35,7 @@ public open class AudioStreamOGGVorbis : AudioStream() {
   public open var loop: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMOGGVORBIS_GET_LOOP,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AUDIOSTREAMOGGVORBIS_HAS_LOOP,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }

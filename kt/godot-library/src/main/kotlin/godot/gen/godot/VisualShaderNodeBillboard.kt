@@ -46,13 +46,13 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBILLBOARD_GET_KEEP_SCALE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBILLBOARD_IS_KEEP_SCALE_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBILLBOARD_SET_KEEP_SCALE, NIL)
+          ENGINEMETHOD_ENGINECLASS_VISUALSHADERNODEBILLBOARD_SET_KEEP_SCALE_ENABLED, NIL)
     }
 
   public override fun __new(): Unit {

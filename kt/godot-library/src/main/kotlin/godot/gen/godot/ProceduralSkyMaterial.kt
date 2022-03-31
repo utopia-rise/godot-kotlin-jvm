@@ -12,6 +12,7 @@ import godot.core.TransferContext
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.NIL
+import godot.core.VariantType.OBJECT
 import kotlin.Double
 import kotlin.Suppress
 import kotlin.Unit
@@ -89,6 +90,38 @@ public open class ProceduralSkyMaterial : Material() {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SKY_ENERGY, NIL)
+    }
+
+  /**
+   * The sky cover texture to use. This texture must use an equirectangular projection (similar to [godot.PanoramaSkyMaterial]). The texture's colors will be *added* to the existing sky color, and will be multiplied by [skyEnergy] and [skyCoverModulate]. This is mainly suited to displaying stars at night, but it can also be used to display clouds at day or night (with a non-physically-accurate look).
+   */
+  public open var skyCover: Texture2D?
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SKY_COVER, OBJECT)
+      return TransferContext.readReturnValue(OBJECT, true) as Texture2D?
+    }
+    set(`value`) {
+      TransferContext.writeArguments(OBJECT to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SKY_COVER, NIL)
+    }
+
+  /**
+   * The tint to apply to the [skyCover] texture. This can be used to change the sky cover's colors or opacity independently of the sky energy, which is useful for day/night or weather transitions. Only effective if a texture is defined in [skyCover].
+   */
+  public open var skyCoverModulate: Color
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_GET_SKY_COVER_MODULATE, COLOR)
+      return TransferContext.readReturnValue(COLOR, false) as Color
+    }
+    set(`value`) {
+      TransferContext.writeArguments(COLOR to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PROCEDURALSKYMATERIAL_SET_SKY_COVER_MODULATE, NIL)
     }
 
   /**

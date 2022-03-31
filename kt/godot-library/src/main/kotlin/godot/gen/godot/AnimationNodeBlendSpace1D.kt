@@ -39,7 +39,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_0_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -47,7 +47,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_0_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -55,7 +55,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_1_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -63,7 +63,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_1_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -71,7 +71,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_2_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -79,7 +79,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_2_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -87,7 +87,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_3_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -95,7 +95,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_3_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -103,7 +103,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_4_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -111,7 +111,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_4_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -119,7 +119,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_5_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -127,7 +127,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_5_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -135,7 +135,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_6_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -143,7 +143,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_6_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -151,7 +151,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_7_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -159,7 +159,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_7_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -167,7 +167,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_8_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -175,7 +175,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_8_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -183,7 +183,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_9_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -191,7 +191,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_9_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -199,7 +199,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_10_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -207,7 +207,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_10_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -215,7 +215,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_11_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -223,7 +223,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_11_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -231,7 +231,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_12_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -239,7 +239,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_12_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -247,7 +247,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_13_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -255,7 +255,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_13_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -263,7 +263,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_14_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -271,7 +271,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_14_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -279,7 +279,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_15_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -287,7 +287,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_15_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -295,7 +295,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_16_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -303,7 +303,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_16_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -311,7 +311,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_17_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -319,7 +319,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_17_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -327,7 +327,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_18_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -335,7 +335,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_18_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -343,7 +343,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_19_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -351,7 +351,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_19_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -359,7 +359,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_20_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -367,7 +367,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_20_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -375,7 +375,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_21_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -383,7 +383,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_21_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -391,7 +391,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_22_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -399,7 +399,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_22_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -407,7 +407,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_23_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -415,7 +415,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_23_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -423,7 +423,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_24_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -431,7 +431,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_24_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -439,7 +439,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_25_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -447,7 +447,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_25_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -455,7 +455,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_26_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -463,7 +463,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_26_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -471,7 +471,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_27_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -479,7 +479,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_27_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -487,7 +487,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_28_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -495,7 +495,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_28_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -503,7 +503,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_29_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -511,7 +511,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_29_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -519,7 +519,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_30_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -527,7 +527,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_30_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -535,7 +535,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_31_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -543,7 +543,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_31_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -551,7 +551,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_32_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -559,7 +559,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_32_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -567,7 +567,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_33_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -575,7 +575,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_33_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -583,7 +583,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_34_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -591,7 +591,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_34_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -599,7 +599,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_35_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -607,7 +607,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_35_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -615,7 +615,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_36_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -623,7 +623,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_36_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -631,7 +631,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_37_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -639,7 +639,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_37_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -647,7 +647,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_38_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -655,7 +655,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_38_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -663,7 +663,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_39_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -671,7 +671,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_39_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -679,7 +679,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_40_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -687,7 +687,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_40_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -695,7 +695,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_41_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -703,7 +703,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_41_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -711,7 +711,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_42_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -719,7 +719,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_42_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -727,7 +727,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_43_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -735,7 +735,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_43_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -743,7 +743,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_44_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -751,7 +751,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_44_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -759,7 +759,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_45_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -767,7 +767,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_45_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -775,7 +775,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_46_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -783,7 +783,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_46_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -791,7 +791,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_47_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -799,7 +799,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_47_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -807,7 +807,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_48_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -815,7 +815,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_48_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -823,7 +823,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_49_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -831,7 +831,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_49_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -839,7 +839,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_50_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -847,7 +847,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_50_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -855,7 +855,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_51_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -863,7 +863,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_51_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -871,7 +871,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_52_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -879,7 +879,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_52_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -887,7 +887,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_53_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -895,7 +895,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_53_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -903,7 +903,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_54_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -911,7 +911,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_54_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -919,7 +919,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_55_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -927,7 +927,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_55_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -935,7 +935,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_56_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -943,7 +943,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_56_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -951,7 +951,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_57_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -959,7 +959,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_57_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -967,7 +967,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_58_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -975,7 +975,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_58_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -983,7 +983,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_59_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -991,7 +991,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_59_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -999,7 +999,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_60_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -1007,7 +1007,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_60_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -1015,7 +1015,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_61_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -1023,7 +1023,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_61_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -1031,7 +1031,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_62_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -1039,7 +1039,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_62_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 
@@ -1047,7 +1047,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_63_NODE, OBJECT)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_NODE, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?
     }
 
@@ -1055,7 +1055,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_63_POS, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODEBLENDSPACE1D_GET_BLEND_POINT_POSITION, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
 

@@ -26,9 +26,11 @@ import kotlin.Unit
  * Range is a base class for [godot.Control] nodes that change a floating-point *value* between a *minimum* and a *maximum*, using *step* and *page*, for example a [godot.ScrollBar].
  */
 @GodotBaseType
-public open abstract class Range : Control() {
+public open class Range : Control() {
   /**
-   * Emitted when [value] changes.
+   * Emitted when [value] changes. When used on a [godot.Slider], this is called continuously while dragging (potentially every frame). If you are performing an expensive operation in a function connected to [valueChanged], consider using a *debouncing* [godot.Timer] to call the function less often.
+   *
+   * **Note:** Unlike signals such as [godot.LineEdit.textChanged], [valueChanged] is also emitted when `value` is set directly via code.
    */
   public val valueChanged: Signal1<Double> by signal("value")
 
@@ -43,12 +45,12 @@ public open abstract class Range : Control() {
   public open var minValue: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_MIN_VALUE, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_MIN, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_MIN_VALUE, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_MIN, NIL)
     }
 
   /**
@@ -57,12 +59,12 @@ public open abstract class Range : Control() {
   public open var maxValue: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_MAX_VALUE, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_MAX, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_MAX_VALUE, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_MAX, NIL)
     }
 
   /**
@@ -113,12 +115,12 @@ public open abstract class Range : Control() {
   public open var ratio: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_RATIO, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_AS_RATIO, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_RATIO, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_AS_RATIO, NIL)
     }
 
   /**
@@ -127,12 +129,12 @@ public open abstract class Range : Control() {
   public open var expEdit: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_EXP_EDIT, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_RATIO_EXP, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_EXP_EDIT, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_EXP_RATIO, NIL)
     }
 
   /**
@@ -141,12 +143,13 @@ public open abstract class Range : Control() {
   public open var rounded: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_ROUNDED, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_USING_ROUNDED_VALUES,
+          BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_ROUNDED, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_SET_USE_ROUNDED_VALUES, NIL)
     }
 
   /**
@@ -155,7 +158,7 @@ public open abstract class Range : Control() {
   public open var allowGreater: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_ALLOW_GREATER, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_GREATER_ALLOWED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -169,7 +172,7 @@ public open abstract class Range : Control() {
   public open var allowLesser: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_GET_ALLOW_LESSER, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RANGE_IS_LESSER_ALLOWED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -182,7 +185,13 @@ public open abstract class Range : Control() {
   }
 
   /**
-   * Binds two ranges together along with any ranges previously grouped with either of them. When any of range's member variables change, it will share the new value with all other ranges in its group.
+   * Called when the [godot.Range]'s value is changed (following the same conditions as [valueChanged]).
+   */
+  public open fun _valueChanged(newValue: Double): Unit {
+  }
+
+  /**
+   * Binds two [godot.Range]s together along with any ranges previously grouped with either of them. When any of range's member variables change, it will share the new value with all other ranges in its group.
    */
   public open fun share(with: Node): Unit {
     TransferContext.writeArguments(OBJECT to with)
@@ -190,7 +199,7 @@ public open abstract class Range : Control() {
   }
 
   /**
-   * Stops range from sharing its member variables with any other.
+   * Stops the [godot.Range] from sharing its member variables with any other.
    */
   public open fun unshare(): Unit {
     TransferContext.writeArguments()

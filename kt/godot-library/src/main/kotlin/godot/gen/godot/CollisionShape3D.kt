@@ -46,7 +46,7 @@ public open class CollisionShape3D : Node3D() {
   public open var disabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_GET_DISABLED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONSHAPE3D_IS_DISABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }

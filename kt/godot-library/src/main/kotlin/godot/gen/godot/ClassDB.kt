@@ -285,16 +285,6 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns a category associated with the class for use in documentation and the Asset Library. Debug mode required.
-   */
-  public open fun classGetCategory(_class: StringName): StringName {
-    TransferContext.writeArguments(STRING_NAME to _class)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CLASSDB_CLASS_GET_CATEGORY,
-        STRING_NAME)
-    return TransferContext.readReturnValue(STRING_NAME, false) as StringName
-  }
-
-  /**
    * Returns whether this `class` is enabled or not.
    */
   public open fun isClassEnabled(_class: StringName): Boolean {

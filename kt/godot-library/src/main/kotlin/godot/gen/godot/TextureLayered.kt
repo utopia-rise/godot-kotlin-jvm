@@ -17,6 +17,7 @@ import godot.core.VariantType.OBJECT
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -26,9 +27,58 @@ import kotlin.Unit
  * Base class for [godot.Texture2DArray], [godot.Cubemap] and [godot.CubemapArray]. Cannot be used directly, but contains all the functions necessary for accessing the derived resource types. Data is set on a per-layer basis. For [godot.Texture2DArray]s, the layer specifies the array layer.
  */
 @GodotBaseType
-public open abstract class TextureLayered : Texture() {
+public open class TextureLayered : Texture() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TEXTURELAYERED)
+  }
+
+  /**
+   *
+   */
+  public open fun _getFormat(): Image.Format {
+    throw NotImplementedError("_get_format is not implemented for TextureLayered")
+  }
+
+  /**
+   *
+   */
+  public open fun _getLayeredType(): Long {
+    throw NotImplementedError("_get_layered_type is not implemented for TextureLayered")
+  }
+
+  /**
+   *
+   */
+  public open fun _getWidth(): Long {
+    throw NotImplementedError("_get_width is not implemented for TextureLayered")
+  }
+
+  /**
+   *
+   */
+  public open fun _getHeight(): Long {
+    throw NotImplementedError("_get_height is not implemented for TextureLayered")
+  }
+
+  /**
+   *
+   */
+  public open fun _getLayers(): Long {
+    throw NotImplementedError("_get_layers is not implemented for TextureLayered")
+  }
+
+  /**
+   *
+   */
+  public open fun _hasMipmaps(): Boolean {
+    throw NotImplementedError("_has_mipmaps is not implemented for TextureLayered")
+  }
+
+  /**
+   *
+   */
+  public open fun _getLayerData(layerIndex: Long): Image? {
+    throw NotImplementedError("_get_layer_data is not implemented for TextureLayered")
   }
 
   /**

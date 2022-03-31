@@ -11,7 +11,7 @@ class Vector3(
 ) : Comparable<Vector3>, CoreType {
 
     //CONSTANTS
-    enum class Axis(val value: NaturalT) {
+    enum class Axis(val id: NaturalT) {
         X(0),
         Y(1),
         Z(2);
@@ -27,9 +27,9 @@ class Vector3(
     }
 
     companion object {
-        val AXIS_X = Axis.X.value
-        val AXIS_Y = Axis.Y.value
-        val AXIS_Z = Axis.Z.value
+        val AXIS_X = Axis.X.id
+        val AXIS_Y = Axis.Y.id
+        val AXIS_Z = Axis.Z.id
         val ZERO: Vector3
             get() = Vector3(0, 0, 0)
         val ONE: Vector3

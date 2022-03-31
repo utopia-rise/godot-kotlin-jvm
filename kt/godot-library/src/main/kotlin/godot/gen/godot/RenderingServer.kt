@@ -1146,15 +1146,6 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the color of the shadow cast by the light. Equivalent to [godot.Light3D.shadowColor].
-   */
-  public open fun lightSetShadowColor(light: RID, color: Color): Unit {
-    TransferContext.writeArguments(_RID to light, COLOR to color)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_LIGHT_SET_SHADOW_COLOR, NIL)
-  }
-
-  /**
    * Not implemented in Godot 3.x.
    */
   public open fun lightSetProjector(light: RID, texture: RID): Unit {
@@ -1179,6 +1170,22 @@ public object RenderingServer : Object() {
     TransferContext.writeArguments(_RID to light, LONG to mask)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_LIGHT_SET_CULL_MASK,
         NIL)
+  }
+
+  /**
+   * Sets the distance fade for this Light3D. This acts as a form of level of detail (LOD) and can be used to improve performance. Equivalent to [godot.Light3D.distanceFadeEnabled], [godot.Light3D.distanceFadeBegin], [godot.Light3D.distanceFadeShadow], and [godot.Light3D.distanceFadeLength].
+   */
+  public open fun lightSetDistanceFade(
+    decal: RID,
+    enabled: Boolean,
+    begin: Double,
+    shadow: Double,
+    length: Double
+  ): Unit {
+    TransferContext.writeArguments(_RID to decal, BOOL to enabled, DOUBLE to begin, DOUBLE to
+        shadow, DOUBLE to length)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_LIGHT_SET_DISTANCE_FADE, NIL)
   }
 
   /**
@@ -1240,10 +1247,11 @@ public object RenderingServer : Object() {
   /**
    * If `true`, this light will not be used for anything except sky shaders. Use this for lights that impact your sky shader that you may want to hide from affecting the rest of the scene. For example, you may want to enable this when the sun in your sky shader falls below the horizon.
    */
-  public open fun lightDirectionalSetSkyOnly(light: RID, enable: Boolean): Unit {
-    TransferContext.writeArguments(_RID to light, BOOL to enable)
+  public open fun lightDirectionalSetSkyMode(light: RID,
+      mode: RenderingServer.LightDirectionalSkyMode): Unit {
+    TransferContext.writeArguments(_RID to light, LONG to mode.id)
     TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_LIGHT_DIRECTIONAL_SET_SKY_ONLY, NIL)
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_LIGHT_DIRECTIONAL_SET_SKY_MODE, NIL)
   }
 
   /**
@@ -3028,11 +3036,11 @@ public object RenderingServer : Object() {
     env: RID,
     color: Color,
     ambient: RenderingServer.EnvironmentAmbientSource =
-        EnvironmentAmbientSource.ENV_AMBIENT_SOURCE_BG,
+        RenderingServer.EnvironmentAmbientSource.ENV_AMBIENT_SOURCE_BG,
     energy: Double = 1.0,
     skyContibution: Double = 0.0,
     reflectionSource: RenderingServer.EnvironmentReflectionSource =
-        EnvironmentReflectionSource.ENV_REFLECTION_SOURCE_BG
+        RenderingServer.EnvironmentReflectionSource.ENV_REFLECTION_SOURCE_BG
   ): Unit {
     TransferContext.writeArguments(_RID to env, COLOR to color, LONG to ambient.id, DOUBLE to
         energy, DOUBLE to skyContibution, LONG to reflectionSource.id)
@@ -3585,6 +3593,12 @@ public object RenderingServer : Object() {
 
   /**
    * Sets the transparency for the given geometry instance. Equivalent to [godot.GeometryInstance3D.transparency].
+   *
+   * A transparency of `0.0` is fully opaque, while `1.0` is fully transparent. Values greater than `0.0` (exclusive) will force the geometry's materials to go through the transparent pipeline, which is slower to render and can exhibit rendering issues due to incorrect transparency sorting. However, unlike using a transparent material, setting `transparency` to a value greater than `0.0` (exclusive) will *not* disable shadow rendering.
+   *
+   * In spatial shaders, `1.0 - transparency` is set as the default value of the `ALPHA` built-in.
+   *
+   * **Note:** `transparency` is clamped between `0.0` and `1.0`, so this property cannot be used to make transparent materials more opaque than they originally are.
    */
   public open fun instanceGeometrySetTransparency(instance: RID, transparency: Double): Unit {
     TransferContext.writeArguments(_RID to instance, DOUBLE to transparency)
@@ -4163,8 +4177,10 @@ public object RenderingServer : Object() {
     texture: RID,
     topleft: Vector2,
     bottomright: Vector2,
-    xAxisMode: RenderingServer.NinePatchAxisMode = NinePatchAxisMode.NINE_PATCH_STRETCH,
-    yAxisMode: RenderingServer.NinePatchAxisMode = NinePatchAxisMode.NINE_PATCH_STRETCH,
+    xAxisMode: RenderingServer.NinePatchAxisMode =
+        RenderingServer.NinePatchAxisMode.NINE_PATCH_STRETCH,
+    yAxisMode: RenderingServer.NinePatchAxisMode =
+        RenderingServer.NinePatchAxisMode.NINE_PATCH_STRETCH,
     drawCenter: Boolean = true,
     modulate: Color = Color(Color(1, 1, 1, 1))
   ): Unit {
@@ -4288,6 +4304,22 @@ public object RenderingServer : Object() {
     TransferContext.writeArguments(_RID to item, BOOL to ignore)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_ADD_CLIP_IGNORE, NIL)
+  }
+
+  /**
+   * Subsequent drawing commands will be ignored unless they fall within the specified animation slice. This is a faster way to implement animations that loop on background rather than redrawing constantly.
+   */
+  public open fun canvasItemAddAnimationSlice(
+    item: RID,
+    animationLength: Double,
+    sliceBegin: Double,
+    sliceEnd: Double,
+    offset: Double = 0.0
+  ): Unit {
+    TransferContext.writeArguments(_RID to item, DOUBLE to animationLength, DOUBLE to sliceBegin,
+        DOUBLE to sliceEnd, DOUBLE to offset)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_CANVAS_ITEM_ADD_ANIMATION_SLICE, NIL)
   }
 
   /**
@@ -6016,6 +6048,33 @@ public object RenderingServer : Object() {
     }
   }
 
+  public enum class LightDirectionalSkyMode(
+    id: Long
+  ) {
+    /**
+     * Use DirectionalLight3D in both sky rendering and scene lighting.
+     */
+    LIGHT_DIRECTIONAL_SKY_MODE_LIGHT_AND_SKY(0),
+    /**
+     * Only use DirectionalLight3D in scene lighting.
+     */
+    LIGHT_DIRECTIONAL_SKY_MODE_LIGHT_ONLY(1),
+    /**
+     * Only use DirectionalLight3D in sky rendering.
+     */
+    LIGHT_DIRECTIONAL_SKY_MODE_SKY_ONLY(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
   public enum class ViewportMSAA(
     id: Long
   ) {
@@ -6190,7 +6249,7 @@ public object RenderingServer : Object() {
     /**
      *
      */
-    ENV_SDFGI_Y_SCALE_DISABLED(0),
+    ENV_SDFGI_Y_SCALE_50_PERCENT(0),
     /**
      *
      */
@@ -6198,7 +6257,7 @@ public object RenderingServer : Object() {
     /**
      *
      */
-    ENV_SDFGI_Y_SCALE_50_PERCENT(2),
+    ENV_SDFGI_Y_SCALE_100_PERCENT(2),
     ;
 
     public val id: Long
@@ -6320,21 +6379,21 @@ public object RenderingServer : Object() {
     id: Long
   ) {
     /**
-     *
+     * Lowest quality of roughness filter for screen-space reflections. Rough materials will not have blurrier screen-space reflections compared to smooth (non-rough) materials. This is the fastest option.
      */
-    ENV_SSR_ROUGNESS_QUALITY_DISABLED(0),
+    ENV_SSR_ROUGHNESS_QUALITY_DISABLED(0),
     /**
-     *
+     * Low quality of roughness filter for screen-space reflections.
      */
-    ENV_SSR_ROUGNESS_QUALITY_LOW(1),
+    ENV_SSR_ROUGHNESS_QUALITY_LOW(1),
     /**
-     *
+     * Medium quality of roughness filter for screen-space reflections.
      */
-    ENV_SSR_ROUGNESS_QUALITY_MEDIUM(2),
+    ENV_SSR_ROUGHNESS_QUALITY_MEDIUM(2),
     /**
-     *
+     * High quality of roughness filter for screen-space reflections. This is the slowest option.
      */
-    ENV_SSR_ROUGNESS_QUALITY_HIGH(3),
+    ENV_SSR_ROUGHNESS_QUALITY_HIGH(3),
     ;
 
     public val id: Long
@@ -7289,6 +7348,29 @@ public object RenderingServer : Object() {
     }
   }
 
+  public enum class CanvasLightMode(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    CANVAS_LIGHT_MODE_POINT(0),
+    /**
+     *
+     */
+    CANVAS_LIGHT_MODE_DIRECTIONAL(1),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
   public enum class TextureLayeredType(
     id: Long
   ) {
@@ -7434,29 +7516,6 @@ public object RenderingServer : Object() {
      * Highest quality screen-space indirect lighting. Uses the adaptive target setting which can be dynamically adjusted to smoothly balance performance and visual quality.
      */
     ENV_SSIL_QUALITY_ULTRA(4),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
-  }
-
-  public enum class CanvasLightMode(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    CANVAS_LIGHT_MODE_POINT(0),
-    /**
-     *
-     */
-    CANVAS_LIGHT_MODE_DIRECTIONAL(1),
     ;
 
     public val id: Long

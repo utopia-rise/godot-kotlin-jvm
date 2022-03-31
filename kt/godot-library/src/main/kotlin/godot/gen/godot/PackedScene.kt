@@ -178,7 +178,7 @@ public open class PackedScene : Resource() {
    * Instantiates the scene's node hierarchy. Triggers child scene instantiation(s). Triggers a [godot.Node.NOTIFICATION_INSTANCED] notification on the root node.
    */
   public open fun instantiate(editState: PackedScene.GenEditState =
-      GenEditState.GEN_EDIT_STATE_DISABLED): Node? {
+      PackedScene.GenEditState.GEN_EDIT_STATE_DISABLED): Node? {
     TransferContext.writeArguments(LONG to editState.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PACKEDSCENE_INSTANTIATE, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Node?

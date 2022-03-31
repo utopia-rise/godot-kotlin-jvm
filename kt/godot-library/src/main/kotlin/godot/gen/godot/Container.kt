@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.PackedInt32Array
 import godot.core.Rect2
 import godot.core.TransferContext
 import godot.core.VariantType.NIL
@@ -15,6 +16,7 @@ import godot.core.VariantType.RECT2
 import godot.signals.Signal0
 import godot.signals.signal
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -39,6 +41,24 @@ public open class Container : Control() {
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_CONTAINER)
+  }
+
+  /**
+   * Implement to return a list of allowed horizontal [enum Control.SizeFlags] for child nodes. This doesn't technically prevent the usages of any other size flags, if your implementation requires that. This only limits the options available to the user in the inspector dock.
+   *
+   * **Note:** Having no size flags is equal to having [godot.Control.SIZE_SHRINK_BEGIN]. As such, this value is always implicitly allowed.
+   */
+  public open fun _getAllowedSizeFlagsHorizontal(): PackedInt32Array {
+    throw NotImplementedError("_get_allowed_size_flags_horizontal is not implemented for Container")
+  }
+
+  /**
+   * Implement to return a list of allowed vertical [enum Control.SizeFlags] for child nodes. This doesn't technically prevent the usages of any other size flags, if your implementation requires that. This only limits the options available to the user in the inspector dock.
+   *
+   * **Note:** Having no size flags is equal to having [godot.Control.SIZE_SHRINK_BEGIN]. As such, this value is always implicitly allowed.
+   */
+  public open fun _getAllowedSizeFlagsVertical(): PackedInt32Array {
+    throw NotImplementedError("_get_allowed_size_flags_vertical is not implemented for Container")
   }
 
   /**

@@ -340,6 +340,34 @@ public object Engine : Object() {
   }
 
   /**
+   *
+   */
+  public open fun registerScriptLanguage(language: ScriptLanguage): Unit {
+    TransferContext.writeArguments(OBJECT to language)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_REGISTER_SCRIPT_LANGUAGE,
+        NIL)
+  }
+
+  /**
+   *
+   */
+  public open fun getScriptLanguageCount(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_SCRIPT_LANGUAGE_COUNT,
+        LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   *
+   */
+  public open fun getScriptLanguage(index: Long): ScriptLanguage? {
+    TransferContext.writeArguments(LONG to index)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENGINE_GET_SCRIPT_LANGUAGE, OBJECT)
+    return TransferContext.readReturnValue(OBJECT, true) as ScriptLanguage?
+  }
+
+  /**
    * Returns `true` if the script is currently running inside the editor, `false` otherwise. This is useful for `@tool` scripts to conditionally draw editor helpers, or prevent accidentally running "game" code that would affect the scene state while in the editor:
    *
    * ```

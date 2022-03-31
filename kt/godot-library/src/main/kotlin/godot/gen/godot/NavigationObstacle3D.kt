@@ -30,7 +30,7 @@ public open class NavigationObstacle3D : Node() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_GET_ESTIMATE_RADIUS, BOOL)
+          ENGINEMETHOD_ENGINECLASS_NAVIGATIONOBSTACLE3D_IS_RADIUS_ESTIMATED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

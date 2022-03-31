@@ -64,7 +64,7 @@ public open class MultiMesh : Resource() {
   public open var useColors: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_USE_COLORS, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_IS_USING_COLORS, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -78,7 +78,7 @@ public open class MultiMesh : Resource() {
   public open var useCustomData: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_GET_USE_CUSTOM_DATA,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_MULTIMESH_IS_USING_CUSTOM_DATA,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }

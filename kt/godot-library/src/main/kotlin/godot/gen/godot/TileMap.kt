@@ -56,12 +56,12 @@ public open class TileMap : Node2D() {
   public open var tileSet: TileSet?
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_TILE_SET, OBJECT)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_TILESET, OBJECT)
       return TransferContext.readReturnValue(OBJECT, true) as TileSet?
     }
     set(`value`) {
       TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_TILE_SET, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_TILESET, NIL)
     }
 
   /**
@@ -70,14 +70,12 @@ public open class TileMap : Node2D() {
   public open var cellQuadrantSize: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_CELL_QUADRANT_SIZE,
-          LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_QUADRANT_SIZE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELL_QUADRANT_SIZE,
-          NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_QUADRANT_SIZE, NIL)
     }
 
   /**
@@ -88,7 +86,7 @@ public open class TileMap : Node2D() {
   public open var collisionAnimatable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_GET_COLLISION_ANIMATABLE,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_IS_COLLISION_ANIMATABLE,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -316,11 +314,19 @@ public open class TileMap : Node2D() {
     coords: Vector2i,
     sourceId: Long = -1,
     atlasCoords: Vector2i = Vector2i(-1.0, -1.0),
-    alternativeTile: Long = -1
+    alternativeTile: Long = 0
   ): Unit {
     TransferContext.writeArguments(LONG to layer, VECTOR2I to coords, LONG to sourceId, VECTOR2I to
         atlasCoords, LONG to alternativeTile)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_SET_CELL, NIL)
+  }
+
+  /**
+   * Erases the cell on layer `layer` at coordinates `coords`.
+   */
+  public open fun eraseCell(layer: Long, coords: Vector2i): Unit {
+    TransferContext.writeArguments(LONG to layer, VECTOR2I to coords)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TILEMAP_ERASE_CELL, NIL)
   }
 
   /**

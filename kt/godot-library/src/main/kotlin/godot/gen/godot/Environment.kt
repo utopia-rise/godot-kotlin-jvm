@@ -47,14 +47,12 @@ public open class Environment : Resource() {
   public open var backgroundMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BACKGROUND_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BACKGROUND, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_BACKGROUND_MODE,
-          NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_BACKGROUND, NIL)
     }
 
   /**
@@ -63,14 +61,12 @@ public open class Environment : Resource() {
   public open var backgroundColor: Color
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BACKGROUND_COLOR,
-          COLOR)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BG_COLOR, COLOR)
       return TransferContext.readReturnValue(COLOR, false) as Color
     }
     set(`value`) {
       TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_BACKGROUND_COLOR,
-          NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_BG_COLOR, NIL)
     }
 
   /**
@@ -79,14 +75,12 @@ public open class Environment : Resource() {
   public open var backgroundEnergy: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BACKGROUND_ENERGY,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BG_ENERGY, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_BACKGROUND_ENERGY,
-          NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_BG_ENERGY, NIL)
     }
 
   /**
@@ -95,14 +89,14 @@ public open class Environment : Resource() {
   public open var backgroundCanvasMaxLayer: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BACKGROUND_CANVAS_MAX_LAYER, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_CANVAS_MAX_LAYER,
+          LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_BACKGROUND_CANVAS_MAX_LAYER, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_CANVAS_MAX_LAYER,
+          NIL)
     }
 
   /**
@@ -111,14 +105,14 @@ public open class Environment : Resource() {
   public open var backgroundCameraFeedId: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_BACKGROUND_CAMERA_FEED_ID, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_CAMERA_FEED_ID,
+          LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_BACKGROUND_CAMERA_FEED_ID, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_CAMERA_FEED_ID,
+          NIL)
     }
 
   /**
@@ -172,14 +166,14 @@ public open class Environment : Resource() {
   public open var ambientLightSource: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AMBIENT_LIGHT_SOURCE, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AMBIENT_SOURCE,
+          LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_AMBIENT_LIGHT_SOURCE, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_AMBIENT_SOURCE,
+          NIL)
     }
 
   /**
@@ -199,7 +193,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Defines the amount of light that the sky brings on the scene. A value of 0 means that the sky's light emission has no effect on the scene illumination, thus all ambient illumination is provided by the ambient light. On the contrary, a value of 1 means that all the light that affects the scene is provided by the sky, thus the ambient light parameter has no effect on the scene.
+   * Defines the amount of light that the sky brings on the scene. A value of `0.0` means that the sky's light emission has no effect on the scene illumination, thus all ambient illumination is provided by the ambient light. On the contrary, a value of `1.0` means that *all* the light that affects the scene is provided by the sky, thus the ambient light parameter has no effect on the scene.
+   *
+   * **Note:** [ambientLightSkyContribution] is internally clamped between `0.0` and `1.0` (inclusive).
    */
   public open var ambientLightSkyContribution: Double
     get() {
@@ -236,14 +232,14 @@ public open class Environment : Resource() {
   public open var reflectedLightSource: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_REFLECTED_LIGHT_SOURCE, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_REFLECTION_SOURCE,
+          LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_REFLECTED_LIGHT_SOURCE, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_REFLECTION_SOURCE,
+          NIL)
     }
 
   /**
@@ -252,13 +248,12 @@ public open class Environment : Resource() {
   public open var tonemapMode: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_MODE,
-          LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAPPER, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_MODE, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAPPER, NIL)
     }
 
   /**
@@ -300,13 +295,13 @@ public open class Environment : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AUTO_EXPOSURE_ENABLED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_TONEMAP_AUTO_EXPOSURE_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_AUTO_EXPOSURE_ENABLED, NIL)
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_ENABLED, NIL)
     }
 
   /**
@@ -316,13 +311,13 @@ public open class Environment : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AUTO_EXPOSURE_SCALE, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_AUTO_EXPOSURE_GREY, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_AUTO_EXPOSURE_SCALE, NIL)
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_GREY, NIL)
     }
 
   /**
@@ -332,13 +327,13 @@ public open class Environment : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AUTO_EXPOSURE_MIN_LUMA, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_AUTO_EXPOSURE_MIN, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_AUTO_EXPOSURE_MIN_LUMA, NIL)
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_MIN, NIL)
     }
 
   /**
@@ -348,13 +343,13 @@ public open class Environment : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AUTO_EXPOSURE_MAX_LUMA, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_AUTO_EXPOSURE_MAX, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_AUTO_EXPOSURE_MAX_LUMA, NIL)
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_MAX, NIL)
     }
 
   /**
@@ -364,93 +359,89 @@ public open class Environment : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_AUTO_EXPOSURE_SPEED, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_TONEMAP_AUTO_EXPOSURE_SPEED, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_AUTO_EXPOSURE_SPEED, NIL)
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_TONEMAP_AUTO_EXPOSURE_SPEED, NIL)
     }
 
   /**
    * If `true`, screen-space reflections are enabled. Screen-space reflections are more accurate than reflections from [godot.VoxelGI]s or [godot.ReflectionProbe]s, but are slower and can't reflect surfaces occluded by others.
    */
-  public open var ssReflectionsEnabled: Boolean
+  public open var ssrEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SS_REFLECTIONS_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SSR_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SS_REFLECTIONS_ENABLED, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSR_ENABLED, NIL)
     }
 
   /**
    * The maximum number of steps for screen-space reflections. Higher values are slower.
    */
-  public open var ssReflectionsMaxSteps: Long
+  public open var ssrMaxSteps: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SS_REFLECTIONS_MAX_STEPS, LONG)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSR_MAX_STEPS,
+          LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SS_REFLECTIONS_MAX_STEPS, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSR_MAX_STEPS,
+          NIL)
     }
 
   /**
    * The fade-in distance for screen-space reflections. Affects the area from the reflected material to the screen-space reflection). Only positive values are valid (negative values will be clamped to `0.0`).
    */
-  public open var ssReflectionsFadeIn: Double
+  public open var ssrFadeIn: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SS_REFLECTIONS_FADE_IN, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSR_FADE_IN,
+          DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SS_REFLECTIONS_FADE_IN, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSR_FADE_IN, NIL)
     }
 
   /**
    * The fade-out distance for screen-space reflections. Affects the area from the screen-space reflection to the "global" reflection. Only positive values are valid (negative values will be clamped to `0.0`).
    */
-  public open var ssReflectionsFadeOut: Double
+  public open var ssrFadeOut: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SS_REFLECTIONS_FADE_OUT, DOUBLE)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSR_FADE_OUT,
+          DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SS_REFLECTIONS_FADE_OUT, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSR_FADE_OUT, NIL)
     }
 
   /**
    * The depth tolerance for screen-space reflections.
    */
-  public open var ssReflectionsDepthTolerance: Double
+  public open var ssrDepthTolerance: Double
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SS_REFLECTIONS_DEPTH_TOLERANCE, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSR_DEPTH_TOLERANCE, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SS_REFLECTIONS_DEPTH_TOLERANCE, NIL)
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSR_DEPTH_TOLERANCE, NIL)
     }
 
   /**
@@ -459,8 +450,7 @@ public open class Environment : Resource() {
   public open var ssaoEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SSAO_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -566,14 +556,14 @@ public open class Environment : Resource() {
   public open var ssaoLightAffect: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_LIGHT_AFFECT,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSAO_DIRECT_LIGHT_AFFECT, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_LIGHT_AFFECT,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_SSAO_DIRECT_LIGHT_AFFECT, NIL)
     }
 
   /**
@@ -598,8 +588,7 @@ public open class Environment : Resource() {
   public open var ssilEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SSIL_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SSIL_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -680,7 +669,7 @@ public open class Environment : Resource() {
   public open var sdfgiEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_ENABLED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SDFGI_ENABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -697,7 +686,7 @@ public open class Environment : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_USE_OCCLUSION, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SDFGI_USING_OCCLUSION, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -713,7 +702,7 @@ public open class Environment : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_SDFGI_READ_SKY_LIGHT, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_SDFGI_READING_SKY_LIGHT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -871,8 +860,7 @@ public open class Environment : Resource() {
   public open var glowEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_ENABLED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_GLOW_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -886,7 +874,7 @@ public open class Environment : Resource() {
   public open val glowLevels_1: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVELS_1,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
@@ -897,7 +885,7 @@ public open class Environment : Resource() {
   public open val glowLevels_2: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVELS_2,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
@@ -908,7 +896,7 @@ public open class Environment : Resource() {
   public open val glowLevels_3: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVELS_3,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
@@ -919,7 +907,7 @@ public open class Environment : Resource() {
   public open val glowLevels_4: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVELS_4,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
@@ -930,7 +918,7 @@ public open class Environment : Resource() {
   public open val glowLevels_5: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVELS_5,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
@@ -941,7 +929,7 @@ public open class Environment : Resource() {
   public open val glowLevels_6: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVELS_6,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
@@ -952,7 +940,7 @@ public open class Environment : Resource() {
   public open val glowLevels_7: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVELS_7,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_LEVEL,
           DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
@@ -963,7 +951,7 @@ public open class Environment : Resource() {
   public open var glowNormalized: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_NORMALIZED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_GLOW_NORMALIZED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -1057,13 +1045,13 @@ public open class Environment : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_HDR_THRESHOLD, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_HDR_BLEED_THRESHOLD, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_HDR_THRESHOLD, NIL)
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_HDR_BLEED_THRESHOLD, NIL)
     }
 
   /**
@@ -1072,14 +1060,14 @@ public open class Environment : Resource() {
   public open var glowHdrScale: Double
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_HDR_SCALE,
-          DOUBLE)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_GLOW_HDR_BLEED_SCALE, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_HDR_SCALE,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_SET_GLOW_HDR_BLEED_SCALE, NIL)
     }
 
   /**
@@ -1136,7 +1124,7 @@ public open class Environment : Resource() {
   public open var fogEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_FOG_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_FOG_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -1263,7 +1251,7 @@ public open class Environment : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_ENABLED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_VOLUMETRIC_FOG_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -1423,7 +1411,7 @@ public open class Environment : Resource() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_VOLUMETRIC_FOG_TEMPORAL_REPROJECTION_ENABLED,
+          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_VOLUMETRIC_FOG_TEMPORAL_REPROJECTION_ENABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -1457,8 +1445,8 @@ public open class Environment : Resource() {
   public open var adjustmentEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_GET_ADJUSTMENT_ENABLED, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ENVIRONMENT_IS_ADJUSTMENT_ENABLED,
+          BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -1642,7 +1630,7 @@ public open class Environment : Resource() {
     /**
      *
      */
-    SDFGI_Y_SCALE_DISABLED(0),
+    SDFGI_Y_SCALE_50_PERCENT(0),
     /**
      *
      */
@@ -1650,7 +1638,7 @@ public open class Environment : Resource() {
     /**
      *
      */
-    SDFGI_Y_SCALE_50_PERCENT(2),
+    SDFGI_Y_SCALE_100_PERCENT(2),
     ;
 
     public val id: Long

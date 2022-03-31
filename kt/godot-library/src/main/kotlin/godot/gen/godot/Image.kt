@@ -131,7 +131,7 @@ public open class Image : Resource() {
    * Resizes the image to the nearest power of 2 for the width and height. If `square` is `true` then set width and height to be the same. New pixels are calculated using the `interpolation` mode defined via [enum Interpolation] constants.
    */
   public open fun resizeToPo2(square: Boolean = false, interpolation: Image.Interpolation =
-      Interpolation.INTERPOLATE_BILINEAR): Unit {
+      Image.Interpolation.INTERPOLATE_BILINEAR): Unit {
     TransferContext.writeArguments(BOOL to square, LONG to interpolation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_RESIZE_TO_PO2, NIL)
   }
@@ -142,7 +142,7 @@ public open class Image : Resource() {
   public open fun resize(
     width: Long,
     height: Long,
-    interpolation: Image.Interpolation = Interpolation.INTERPOLATE_BILINEAR
+    interpolation: Image.Interpolation = Image.Interpolation.INTERPOLATE_BILINEAR
   ): Unit {
     TransferContext.writeArguments(LONG to width, LONG to height, LONG to interpolation.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_RESIZE, NIL)
@@ -302,7 +302,7 @@ public open class Image : Resource() {
    *
    */
   public open fun detectUsedChannels(source: Image.CompressSource =
-      CompressSource.COMPRESS_SOURCE_GENERIC): Image.UsedChannels {
+      Image.CompressSource.COMPRESS_SOURCE_GENERIC): Image.UsedChannels {
     TransferContext.writeArguments(LONG to source.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_IMAGE_DETECT_USED_CHANNELS, LONG)
     return Image.UsedChannels.values()[TransferContext.readReturnValue(JVM_INT) as Int]
@@ -313,7 +313,7 @@ public open class Image : Resource() {
    */
   public open fun compress(
     mode: Image.CompressMode,
-    source: Image.CompressSource = CompressSource.COMPRESS_SOURCE_GENERIC,
+    source: Image.CompressSource = Image.CompressSource.COMPRESS_SOURCE_GENERIC,
     lossyQuality: Double = 0.7
   ): GodotError {
     TransferContext.writeArguments(LONG to mode.id, LONG to source.id, DOUBLE to lossyQuality)

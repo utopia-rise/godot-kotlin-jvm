@@ -146,6 +146,8 @@ public open class Node : Object() {
 
   /**
    * The node owner. A node can have any other node as owner (as long as it is a valid parent, grandparent, etc. ascending in the tree). When saving a node (using [godot.PackedScene]), all the nodes it owns will be saved with it. This allows for the creation of complex [godot.SceneTree]s, with instancing and subinstancing.
+   *
+   * **Note:** If you want a child to be persisted to a [godot.PackedScene], you must set [owner] in addition to calling [addChild]. This is typically relevant for [tool scripts]($DOCS_URL/tutorials/misc/running_code_in_the_editor.html) and [editor plugins]($DOCS_URL/tutorials/plugins/editor/index.html). If [addChild] is called without setting [owner], the newly added [godot.Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.
    */
   public open var owner: Node?
     get() {
@@ -859,12 +861,12 @@ public open class Node : Object() {
    *
    * If you need the child node to be added below a specific node in the list of children, use [addSibling] instead of this method.
    *
-   * **Note:** If you want a child to be persisted to a [godot.PackedScene], you must set [owner] in addition to calling [addChild]. This is typically relevant for [tool scripts](https://godot.readthedocs.io/en/latest/tutorials/misc/running_code_in_the_editor.html) and [editor plugins](https://godot.readthedocs.io/en/latest/tutorials/plugins/editor/index.html). If [addChild] is called without setting [owner], the newly added [godot.Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.
+   * **Note:** If you want a child to be persisted to a [godot.PackedScene], you must set [owner] in addition to calling [addChild]. This is typically relevant for [tool scripts]($DOCS_URL/tutorials/misc/running_code_in_the_editor.html) and [editor plugins]($DOCS_URL/tutorials/plugins/editor/index.html). If [addChild] is called without setting [owner], the newly added [godot.Node] will not be visible in the scene tree, though it will be visible in the 2D/3D view.
    */
   public open fun addChild(
     node: Node,
     legibleUniqueName: Boolean = false,
-    `internal`: Node.InternalMode = InternalMode.INTERNAL_MODE_DISABLED
+    `internal`: Node.InternalMode = Node.InternalMode.INTERNAL_MODE_DISABLED
   ): Unit {
     TransferContext.writeArguments(OBJECT to node, BOOL to legibleUniqueName, LONG to internal.id)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_ADD_CHILD, NIL)
@@ -999,22 +1001,27 @@ public open class Node : Object() {
   }
 
   /**
-   * Finds a descendant of this node whose name matches `mask` as in [godot.String.match] (i.e. case-sensitive, but `"*"` matches zero or more characters and `"?"` matches any single character except `"."`). Returns `null` if no matching [godot.Node] is found.
+   * Finds descendants of this node whose, name matches `mask` as in [godot.String.match], and/or type matches `type` as in [godot.Object.isClass].
    *
-   * **Note:** It does not match against the full path, just against individual node names.
+   * `mask` does not match against the full path, just against individual node names. It is case-sensitive, with `"*"` matching zero or more characters and `"?"` matching any single character except `"."`).
+   *
+   * `type` will check equality or inheritance. It is case-sensitive, `"Object"` will match a node whose type is `"Node"` but not the other way around.
    *
    * If `owned` is `true`, this method only finds nodes whose owner is this node. This is especially important for scenes instantiated through a script, because those scenes don't have an owner.
    *
-   * **Note:** As this method walks through all the descendants of the node, it is the slowest way to get a reference to another node. Whenever possible, consider using [getNode] instead. To avoid using [findNode] too often, consider caching the node reference into a variable.
+   * Returns an empty array, if no matching nodes are found.
+   *
+   * **Note:** As this method walks through all the descendants of the node, it is the slowest way to get references to other nodes. To avoid using [findNodes] too often, consider caching the node references into variables.
    */
-  public open fun findNode(
+  public open fun findNodes(
     mask: String,
+    type: String = "",
     recursive: Boolean = true,
     owned: Boolean = true
-  ): Node? {
-    TransferContext.writeArguments(STRING to mask, BOOL to recursive, BOOL to owned)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_FIND_NODE, OBJECT)
-    return TransferContext.readReturnValue(OBJECT, true) as Node?
+  ): VariantArray<Any?> {
+    TransferContext.writeArguments(STRING to mask, STRING to type, BOOL to recursive, BOOL to owned)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_FIND_NODES, ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
   }
 
   /**
@@ -1606,11 +1613,10 @@ public open class Node : Object() {
    *
    * **Note:** You can only safely use RPCs on clients after you received the `connected_to_server` signal from the [godot.MultiplayerAPI]. You also need to keep track of the connection state, either by the [godot.MultiplayerAPI] signals like `server_disconnected` or by checking `get_multiplayer().peer.get_connection_status() == CONNECTION_CONNECTED`.
    */
-  public open fun rpc(method: StringName, vararg __var_args: Any?): Any? {
+  public open fun rpc(method: StringName, vararg __var_args: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it
         }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC, NIL)
   }
 
   /**
@@ -1620,11 +1626,10 @@ public open class Node : Object() {
     peerId: Long,
     method: StringName,
     vararg __var_args: Any?
-  ): Any? {
+  ): Unit {
     TransferContext.writeArguments(LONG to peerId, STRING_NAME to method,  *__var_args.map { ANY to
         it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC_ID, ANY)
-    return TransferContext.readReturnValue(ANY, true) as Any?
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_RPC_ID, NIL)
   }
 
   /**
@@ -1883,6 +1888,21 @@ public open class Node : Object() {
      *
      */
     public final const val NOTIFICATION_WM_SIZE_CHANGED: Long = 1008
+
+    /**
+     *
+     */
+    public final const val NOTIFICATION_WM_DPI_CHANGE: Long = 1009
+
+    /**
+     * Notification received when the mouse enters the viewport.
+     */
+    public final const val NOTIFICATION_VP_MOUSE_ENTER: Long = 1010
+
+    /**
+     * Notification received when the mouse leaves the viewport.
+     */
+    public final const val NOTIFICATION_VP_MOUSE_EXIT: Long = 1011
 
     /**
      * Notification received from the OS when the application is exceeding its allocated memory.

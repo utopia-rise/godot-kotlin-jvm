@@ -112,7 +112,7 @@ public open class TouchScreenButton : Node2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_SHAPE_CENTERED, BOOL)
+          ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_IS_SHAPE_CENTERED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -128,7 +128,7 @@ public open class TouchScreenButton : Node2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_SHAPE_VISIBLE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_IS_SHAPE_VISIBLE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -146,7 +146,7 @@ public open class TouchScreenButton : Node2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_GET_PASSBY_PRESS, BOOL)
+          ENGINEMETHOD_ENGINECLASS_TOUCHSCREENBUTTON_IS_PASSBY_PRESS_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {

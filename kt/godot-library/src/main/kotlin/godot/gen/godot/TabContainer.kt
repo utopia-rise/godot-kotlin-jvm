@@ -51,7 +51,7 @@ public open class TabContainer : Container() {
   public val tabChanged: Signal1<Long> by signal("tab")
 
   /**
-   *
+   * Sets the position at which tabs will be placed. See [enum TabBar.AlignmentMode] for details.
    */
   public open var tabAlignment: Long
     get() {
@@ -82,12 +82,26 @@ public open class TabContainer : Container() {
     }
 
   /**
+   * If `true`, tabs overflowing this node's width will be hidden, displaying two navigation buttons instead. Otherwise, this node's minimum size is updated so that all tabs are visible.
+   */
+  public open var clipTabs: Boolean
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_CLIP_TABS, BOOL)
+      return TransferContext.readReturnValue(BOOL, false) as Boolean
+    }
+    set(`value`) {
+      TransferContext.writeArguments(BOOL to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_CLIP_TABS, NIL)
+    }
+
+  /**
    * If `true`, tabs are visible. If `false`, tabs' content and titles are hidden.
    */
   public open var tabsVisible: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TABS_VISIBLE,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_ARE_TABS_VISIBLE,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -103,8 +117,8 @@ public open class TabContainer : Container() {
   public open var allTabsInFront: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_ALL_TABS_IN_FRONT, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_IS_ALL_TABS_IN_FRONT,
+          BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -127,6 +141,24 @@ public open class TabContainer : Container() {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
           ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_DRAG_TO_REARRANGE_ENABLED, NIL)
+    }
+
+  /**
+   * [godot.TabContainer]s with the same rearrange group ID will allow dragging the tabs between them. Enable drag with [dragToRearrangeEnabled].
+   *
+   * Setting this to `-1` will disable rearranging between [godot.TabContainer]s.
+   */
+  public open var tabsRearrangeGroup: Long
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TABS_REARRANGE_GROUP, LONG)
+      return TransferContext.readReturnValue(LONG, false) as Long
+    }
+    set(`value`) {
+      TransferContext.writeArguments(LONG to value)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_TABS_REARRANGE_GROUP, NIL)
     }
 
   /**
@@ -188,7 +220,7 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * Sets a title for the tab at index `tab_idx`. Tab titles default to the name of the indexed child node.
+   * Sets a custom title for the tab at index `tab_idx` (tab titles default to the name of the indexed child node). Set it back to the child's name to make the tab default to it again.
    */
   public open fun setTabTitle(tabIdx: Long, title: String): Unit {
     TransferContext.writeArguments(LONG to tabIdx, STRING to title)
@@ -232,9 +264,9 @@ public open class TabContainer : Container() {
   /**
    * Returns `true` if the tab at index `tab_idx` is disabled.
    */
-  public open fun getTabDisabled(tabIdx: Long): Boolean {
+  public open fun isTabDisabled(tabIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to tabIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TAB_DISABLED, BOOL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_IS_TAB_DISABLED, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -249,9 +281,9 @@ public open class TabContainer : Container() {
   /**
    * Returns `true` if the tab at index `tab_idx` is hidden.
    */
-  public open fun getTabHidden(tabIdx: Long): Boolean {
+  public open fun isTabHidden(tabIdx: Long): Boolean {
     TransferContext.writeArguments(LONG to tabIdx)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TAB_HIDDEN, BOOL)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_IS_TAB_HIDDEN, BOOL)
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
@@ -266,7 +298,17 @@ public open class TabContainer : Container() {
   }
 
   /**
-   * If set on a [godot.Popup] node instance, a popup menu icon appears in the top-right corner of the [godot.TabContainer]. Clicking it will expand the [godot.Popup] node.
+   * Returns the index of the tab tied to the given `control`. The control must be a child of the [godot.TabContainer].
+   */
+  public open fun getTabIdxFromControl(control: Control): Long {
+    TransferContext.writeArguments(OBJECT to control)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TAB_IDX_FROM_CONTROL, LONG)
+    return TransferContext.readReturnValue(LONG, false) as Long
+  }
+
+  /**
+   * If set on a [godot.Popup] node instance, a popup menu icon appears in the top-right corner of the [godot.TabContainer] (setting it to `null` will make it go away). Clicking it will expand the [godot.Popup] node.
    */
   public open fun setPopup(popup: Node): Unit {
     TransferContext.writeArguments(OBJECT to popup)
@@ -282,52 +324,6 @@ public open class TabContainer : Container() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_POPUP, OBJECT)
     return TransferContext.readReturnValue(OBJECT, true) as Popup?
-  }
-
-  /**
-   * Defines rearrange group id, choose for each [godot.TabContainer] the same value to enable tab drag between [godot.TabContainer]. Enable drag with [dragToRearrangeEnabled].
-   */
-  public open fun setTabsRearrangeGroup(groupId: Long): Unit {
-    TransferContext.writeArguments(LONG to groupId)
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TABCONTAINER_SET_TABS_REARRANGE_GROUP, NIL)
-  }
-
-  /**
-   * Returns the [godot.TabContainer] rearrange group id.
-   */
-  public open fun getTabsRearrangeGroup(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr,
-        ENGINEMETHOD_ENGINECLASS_TABCONTAINER_GET_TABS_REARRANGE_GROUP, LONG)
-    return TransferContext.readReturnValue(LONG, false) as Long
-  }
-
-  public enum class AlignmentMode(
-    id: Long
-  ) {
-    /**
-     *
-     */
-    ALIGNMENT_LEFT(0),
-    /**
-     *
-     */
-    ALIGNMENT_CENTER(1),
-    /**
-     *
-     */
-    ALIGNMENT_RIGHT(2),
-    ;
-
-    public val id: Long
-    init {
-      this.id = id
-    }
-
-    public companion object {
-      public fun from(`value`: Long) = values().single { it.id == `value` }
-    }
   }
 
   public companion object

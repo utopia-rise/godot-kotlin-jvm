@@ -18,31 +18,33 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
+ * A `.ctex` texture.
  *
+ * A texture that is loaded from a `.ctex` file.
  */
 @GodotBaseType
-public open abstract class StreamTextureLayered : TextureLayered() {
+public open class CompressedTexture2D : Texture2D() {
   /**
-   *
+   * The CompressedTexture's file path to a `.ctex` file.
    */
   public open val loadPath: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_STREAMTEXTURELAYERED_GET_LOAD_PATH, STRING)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COMPRESSEDTEXTURE2D_GET_LOAD_PATH,
+          STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
   public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_STREAMTEXTURELAYERED)
+    callConstructor(ENGINECLASS_COMPRESSEDTEXTURE2D)
   }
 
   /**
-   *
+   * Loads the texture from the given path.
    */
   public open fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_STREAMTEXTURELAYERED_LOAD, LONG)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COMPRESSEDTEXTURE2D_LOAD, LONG)
     return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 

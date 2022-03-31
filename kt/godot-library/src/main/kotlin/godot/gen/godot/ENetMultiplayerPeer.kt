@@ -28,13 +28,13 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_GET_SERVER_RELAY, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_IS_SERVER_RELAY_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_SET_SERVER_RELAY, NIL)
+          ENGINEMETHOD_ENGINECLASS_ENETMULTIPLAYERPEER_SET_SERVER_RELAY_ENABLED, NIL)
     }
 
   public open val host: ENetConnection?

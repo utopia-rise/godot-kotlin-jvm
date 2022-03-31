@@ -21,6 +21,7 @@ import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
 import godot.core.VariantType.PACKED_INT_32_ARRAY
+import godot.core.VariantType.STRING
 import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
@@ -28,6 +29,7 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -259,6 +261,101 @@ public open class VisualShader : Shader() {
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_GET_NODE_CONNECTIONS,
         ARRAY)
     return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+  }
+
+  /**
+   *
+   */
+  public open fun addVarying(
+    name: String,
+    mode: VisualShader.VaryingMode,
+    type: VisualShader.VaryingType
+  ): Unit {
+    TransferContext.writeArguments(STRING to name, LONG to mode.id, LONG to type.id)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_ADD_VARYING, NIL)
+  }
+
+  /**
+   *
+   */
+  public open fun removeVarying(name: String): Unit {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_REMOVE_VARYING, NIL)
+  }
+
+  /**
+   *
+   */
+  public open fun hasVarying(name: String): Boolean {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VISUALSHADER_HAS_VARYING, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  public enum class VaryingMode(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    VARYING_MODE_VERTEX_TO_FRAG_LIGHT(0),
+    /**
+     *
+     */
+    VARYING_MODE_FRAG_TO_LIGHT(1),
+    /**
+     *
+     */
+    VARYING_MODE_MAX(2),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
+  }
+
+  public enum class VaryingType(
+    id: Long
+  ) {
+    /**
+     *
+     */
+    VARYING_TYPE_FLOAT(0),
+    /**
+     *
+     */
+    VARYING_TYPE_VECTOR_2D(1),
+    /**
+     *
+     */
+    VARYING_TYPE_VECTOR_3D(2),
+    /**
+     *
+     */
+    VARYING_TYPE_COLOR(3),
+    /**
+     *
+     */
+    VARYING_TYPE_TRANSFORM(4),
+    /**
+     *
+     */
+    VARYING_TYPE_MAX(5),
+    ;
+
+    public val id: Long
+    init {
+      this.id = id
+    }
+
+    public companion object {
+      public fun from(`value`: Long) = values().single { it.id == `value` }
+    }
   }
 
   public enum class Type(

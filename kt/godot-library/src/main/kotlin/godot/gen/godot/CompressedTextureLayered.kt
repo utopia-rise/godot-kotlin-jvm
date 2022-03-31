@@ -7,29 +7,43 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.core.GodotError
 import godot.core.TransferContext
-import godot.core.VariantType.NIL
+import godot.core.VariantType.JVM_INT
+import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING
+import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+/**
+ *
+ */
 @GodotBaseType
-public open class VideoStreamGDNative : VideoStream() {
-  public open var `file`: String
+public open abstract class CompressedTextureLayered : TextureLayered() {
+  /**
+   *
+   */
+  public open val loadPath: String
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMGDNATIVE_GET_FILE,
-          STRING)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_COMPRESSEDTEXTURELAYERED_GET_LOAD_PATH, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
-    }
-    set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMGDNATIVE_SET_FILE, NIL)
     }
 
   public override fun __new(): Unit {
-    callConstructor(ENGINECLASS_VIDEOSTREAMGDNATIVE)
+    callConstructor(ENGINECLASS_COMPRESSEDTEXTURELAYERED)
+  }
+
+  /**
+   *
+   */
+  public open fun load(path: String): GodotError {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COMPRESSEDTEXTURELAYERED_LOAD, LONG)
+    return GodotError.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   public companion object

@@ -53,7 +53,7 @@ public open class Curve3D : Resource() {
   public open var upVectorEnabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_GET_UP_VECTOR_ENABLED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CURVE3D_IS_UP_VECTOR_ENABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -77,7 +77,7 @@ public open class Curve3D : Resource() {
   }
 
   /**
-   * Adds a point to a curve at `position`, with control points `in` and `out`.
+   * Adds a point to a curve at `position` relative to the [godot.Curve3D]'s position, with control points `in` and `out`.
    *
    * If `at_position` is given, the point is inserted before the point number `at_position`, moving that point (and every point after) after the inserted point. If `at_position` is not given, or is an illegal value (`at_position <0` or `at_position >= [getPointCount]`), the point will be appended at the end of the point list.
    */

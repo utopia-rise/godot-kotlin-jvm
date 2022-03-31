@@ -48,14 +48,14 @@ public open class PanoramaSkyMaterial : Material() {
   public open var filter: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PANORAMASKYMATERIAL_GET_FILTER,
-          BOOL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PANORAMASKYMATERIAL_IS_FILTERING_ENABLED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PANORAMASKYMATERIAL_SET_FILTER,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_PANORAMASKYMATERIAL_SET_FILTERING_ENABLED, NIL)
     }
 
   public override fun __new(): Unit {

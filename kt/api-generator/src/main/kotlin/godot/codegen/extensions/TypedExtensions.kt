@@ -32,12 +32,21 @@ fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper{
         }
         type == GodotTypes.error -> ClassTypeNameWrapper(GODOT_ERROR)
         isEnum() -> {
-            ClassTypeNameWrapper(
-                ClassName(
-                    godotApiPackage,
-                    type!!.replace("enum::", "")
+            if (type == GodotTypes.variantType) {
+                ClassTypeNameWrapper(
+                    ClassName(
+                        godotCorePackage,
+                        KotlinTypes.variantType
+                    )
                 )
-            )
+            } else {
+                ClassTypeNameWrapper(
+                    ClassName(
+                        godotApiPackage,
+                        type!!.replace("enum::", "")
+                    )
+                )
+            }
         }
         type == GodotTypes.bool -> ClassTypeNameWrapper(BOOLEAN)
         type == GodotTypes.int -> ClassTypeNameWrapper(LONG)

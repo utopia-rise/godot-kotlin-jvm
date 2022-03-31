@@ -311,6 +311,35 @@ public open abstract class EditorSettings : Resource() {
         ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_SET_BUILTIN_ACTION_OVERRIDE, NIL)
   }
 
+  /**
+   * Checks if any settings with the prefix `setting_prefix` exist in the set of changed settings. See also [getChangedSettings].
+   */
+  public open fun checkChangedSettingsInGroup(settingPrefix: String): Boolean {
+    TransferContext.writeArguments(STRING to settingPrefix)
+    TransferContext.callMethod(rawPtr,
+        ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_CHECK_CHANGED_SETTINGS_IN_GROUP, BOOL)
+    return TransferContext.readReturnValue(BOOL, false) as Boolean
+  }
+
+  /**
+   * Gets an array of the settings which have been changed since the last save. Note that internally `changed_settings` is cleared after a successful save, so generally the most appropriate place to use this method is when processing [NOTIFICATION_EDITOR_SETTINGS_CHANGED]
+   */
+  public open fun getChangedSettings(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_GET_CHANGED_SETTINGS,
+        ARRAY)
+    return TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>
+  }
+
+  /**
+   * Marks the passed editor setting as being changed, see [getChangedSettings]. Only settings which exist (see [hasSetting]) will be accepted.
+   */
+  public open fun markSettingChanged(setting: String): Unit {
+    TransferContext.writeArguments(STRING to setting)
+    TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_EDITORSETTINGS_MARK_SETTING_CHANGED,
+        NIL)
+  }
+
   public companion object {
     /**
      * Emitted after any editor setting has changed. It's used by various editor plugins to update their visuals on theme changes or logic on configuration changes.

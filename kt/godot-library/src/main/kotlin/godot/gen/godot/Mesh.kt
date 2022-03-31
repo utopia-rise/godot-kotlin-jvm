@@ -8,7 +8,9 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
+import godot.core.Dictionary
 import godot.core.PackedVector3Array
+import godot.core.StringName
 import godot.core.TransferContext
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -24,6 +26,7 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -36,7 +39,7 @@ import kotlin.Unit
  * Mesh is a type of [godot.Resource] that contains vertex array-based geometry, divided in *surfaces*. Each surface contains a completely separate array and a material used to draw it. Design wise, a mesh with multiple surfaces is preferred to a single surface, because objects created in 3D editing software commonly contain multiple materials.
  */
 @GodotBaseType
-public open abstract class Mesh : Resource() {
+public open class Mesh : Resource() {
   /**
    * Sets a hint to be used for lightmap resolution.
    */
@@ -54,6 +57,102 @@ public open abstract class Mesh : Resource() {
 
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_MESH)
+  }
+
+  /**
+   *
+   */
+  public open fun _getSurfaceCount(): Long {
+    throw NotImplementedError("_get_surface_count is not implemented for Mesh")
+  }
+
+  /**
+   *
+   */
+  public open fun _surfaceGetArrayLen(index: Long): Long {
+    throw NotImplementedError("_surface_get_array_len is not implemented for Mesh")
+  }
+
+  /**
+   *
+   */
+  public open fun _surfaceGetArrayIndexLen(index: Long): Long {
+    throw NotImplementedError("_surface_get_array_index_len is not implemented for Mesh")
+  }
+
+  /**
+   *
+   */
+  public open fun _surfaceGetArrays(index: Long): VariantArray<Any?> {
+    throw NotImplementedError("_surface_get_arrays is not implemented for Mesh")
+  }
+
+  /**
+   *
+   */
+  public open fun _surfaceGetBlendShapeArrays(index: Long): VariantArray<Any?> {
+    throw NotImplementedError("_surface_get_blend_shape_arrays is not implemented for Mesh")
+  }
+
+  /**
+   *
+   */
+  public open fun _surfaceGetLods(index: Long): Dictionary<Any?, Any?> {
+    throw NotImplementedError("_surface_get_lods is not implemented for Mesh")
+  }
+
+  /**
+   *
+   */
+  public open fun _surfaceGetFormat(index: Long): Long {
+    throw NotImplementedError("_surface_get_format is not implemented for Mesh")
+  }
+
+  /**
+   *
+   */
+  public open fun _surfaceGetPrimitiveType(index: Long): Long {
+    throw NotImplementedError("_surface_get_primitive_type is not implemented for Mesh")
+  }
+
+  /**
+   *
+   */
+  public open fun _surfaceSetMaterial(index: Long, material: Material): Unit {
+  }
+
+  /**
+   *
+   */
+  public open fun _surfaceGetMaterial(index: Long): Material? {
+    throw NotImplementedError("_surface_get_material is not implemented for Mesh")
+  }
+
+  /**
+   *
+   */
+  public open fun _getBlendShapeCount(): Long {
+    throw NotImplementedError("_get_blend_shape_count is not implemented for Mesh")
+  }
+
+  /**
+   *
+   */
+  public open fun _getBlendShapeName(index: Long): StringName {
+    throw NotImplementedError("_get_blend_shape_name is not implemented for Mesh")
+  }
+
+  /**
+   *
+   */
+  public open fun _setBlendShapeName(index: Long, name: StringName): Unit {
+  }
+
+  /**
+   *
+   */
+  public open fun _getAabb(): AABB {
+    throw NotImplementedError("_get_aabb is not implemented for Mesh")
   }
 
   /**

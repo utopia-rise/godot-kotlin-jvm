@@ -37,13 +37,13 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_COUNT, LONG)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_ENABLED_INPUTS, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_SET_INPUT_COUNT, NIL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_SET_ENABLED_INPUTS, NIL)
     }
 
   /**
@@ -53,20 +53,20 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_XFADE_TIME, DOUBLE)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_CROSS_FADE_TIME, DOUBLE)
       return TransferContext.readReturnValue(DOUBLE, false) as Double
     }
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_SET_XFADE_TIME, NIL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_SET_CROSS_FADE_TIME, NIL)
     }
 
   public open val input0_name: String
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_0_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -74,7 +74,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_0_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -82,7 +82,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_1_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -90,7 +90,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_1_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -98,7 +98,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_2_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -106,7 +106,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_2_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -114,7 +114,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_3_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -122,7 +122,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_3_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -130,7 +130,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_4_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -138,7 +138,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_4_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -146,7 +146,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_5_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -154,7 +154,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_5_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -162,7 +162,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_6_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -170,7 +170,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_6_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -178,7 +178,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_7_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -186,7 +186,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_7_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -194,7 +194,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_8_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -202,7 +202,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_8_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -210,7 +210,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_9_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -218,7 +218,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_9_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -226,7 +226,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_10_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -234,7 +234,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_10_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -242,7 +242,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_11_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -250,7 +250,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_11_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -258,7 +258,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_12_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -266,7 +266,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_12_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -274,7 +274,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_13_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -282,7 +282,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_13_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -290,7 +290,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_14_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -298,7 +298,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_14_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -306,7 +306,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_15_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -314,7 +314,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_15_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -322,7 +322,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_16_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -330,7 +330,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_16_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -338,7 +338,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_17_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -346,7 +346,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_17_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -354,7 +354,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_18_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -362,7 +362,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_18_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -370,7 +370,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_19_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -378,7 +378,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_19_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -386,7 +386,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_20_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -394,7 +394,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_20_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -402,7 +402,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_21_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -410,7 +410,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_21_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -418,7 +418,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_22_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -426,7 +426,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_22_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -434,7 +434,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_23_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -442,7 +442,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_23_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -450,7 +450,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_24_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -458,7 +458,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_24_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -466,7 +466,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_25_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -474,7 +474,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_25_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -482,7 +482,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_26_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -490,7 +490,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_26_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -498,7 +498,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_27_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -506,7 +506,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_27_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -514,7 +514,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_28_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -522,7 +522,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_28_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -530,7 +530,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_29_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -538,7 +538,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_29_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -546,7 +546,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_30_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -554,7 +554,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_30_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 
@@ -562,7 +562,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_31_NAME, STRING)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_CAPTION, STRING)
       return TransferContext.readReturnValue(STRING, false) as String
     }
 
@@ -570,7 +570,7 @@ public open class AnimationNodeTransition : AnimationNode() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_GET_INPUT_31_AUTO_ADVANCE, BOOL)
+          ENGINEMETHOD_ENGINECLASS_ANIMATIONNODETRANSITION_IS_INPUT_SET_AS_AUTO_ADVANCE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
 

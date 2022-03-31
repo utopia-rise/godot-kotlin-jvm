@@ -13,34 +13,6 @@ private fun registerEngineTypeMethodForAESContext(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AESCONTEXT to "finish")
 }
 
-private fun registerEngineTypeMethodForAStar(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "_estimate_cost")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "_compute_cost")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "get_available_point_id")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "add_point")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "get_point_position")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "set_point_position")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "get_point_weight_scale")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "set_point_weight_scale")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "remove_point")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "has_point")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "get_point_connections")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "get_point_ids")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "set_point_disabled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "is_point_disabled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "connect_points")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "disconnect_points")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "are_points_connected")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "get_point_count")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "get_point_capacity")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "reserve_space")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "clear")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "get_closest_point")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "get_closest_position_in_segment")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "get_point_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR to "get_id_path")
-}
-
 private fun registerEngineTypeMethodForAStar2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR2D to "_estimate_cost")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR2D to "_compute_cost")
@@ -67,6 +39,34 @@ private fun registerEngineTypeMethodForAStar2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR2D to "get_closest_position_in_segment")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR2D to "get_point_path")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR2D to "get_id_path")
+}
+
+private fun registerEngineTypeMethodForAStar3D(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "_estimate_cost")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "_compute_cost")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "get_available_point_id")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "add_point")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "get_point_position")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "set_point_position")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "get_point_weight_scale")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "set_point_weight_scale")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "remove_point")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "has_point")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "get_point_connections")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "get_point_ids")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "set_point_disabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "is_point_disabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "connect_points")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "disconnect_points")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "are_points_connected")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "get_point_count")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "get_point_capacity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "reserve_space")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "clear")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "get_closest_point")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "get_closest_position_in_segment")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "get_point_path")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ASTAR3D to "get_id_path")
 }
 
 private fun registerEngineTypeMethodForAcceptDialog(): Unit {
@@ -1609,6 +1609,12 @@ private fun registerEngineTypeMethodForArrayMesh(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ARRAYMESH to "set_shadow_mesh")
 }
 
+private fun registerEngineTypeMethodForArrayOccluder3D(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ARRAYOCCLUDER3D to "set_arrays")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ARRAYOCCLUDER3D to "set_vertices")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ARRAYOCCLUDER3D to "set_indices")
+}
+
 private fun registerEngineTypeMethodForAspectRatioContainer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASPECTRATIOCONTAINER to "get_ratio")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ASPECTRATIOCONTAINER to "set_ratio")
@@ -1635,6 +1641,7 @@ private fun registerEngineTypeMethodForAudioBusLayout(): Unit {
 }
 
 private fun registerEngineTypeMethodForAudioEffect(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECT to "_instantiate")
 }
 
 private fun registerEngineTypeMethodForAudioEffectAmplify(): Unit {
@@ -1791,6 +1798,8 @@ private fun registerEngineTypeMethodForAudioEffectHighShelfFilter(): Unit {
 }
 
 private fun registerEngineTypeMethodForAudioEffectInstance(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTINSTANCE to "_process")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOEFFECTINSTANCE to "_process_silence")
 }
 
 private fun registerEngineTypeMethodForAudioEffectLimiter(): Unit {
@@ -1910,6 +1919,7 @@ private fun registerEngineTypeMethodForAudioStream(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAM to "_is_monophonic")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAM to "get_length")
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAM to "is_monophonic")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAM to "instance_playback")
 }
 
 private fun registerEngineTypeMethodForAudioStreamGenerator(): Unit {
@@ -1964,6 +1974,10 @@ private fun registerEngineTypeMethodForAudioStreamPlaybackOGGVorbis(): Unit {
 }
 
 private fun registerEngineTypeMethodForAudioStreamPlaybackResampled(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMPLAYBACKRESAMPLED to "_mix_resampled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMPLAYBACKRESAMPLED to
+      "_get_stream_sampling_rate")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMPLAYBACKRESAMPLED to "begin_resample")
 }
 
 private fun registerEngineTypeMethodForAudioStreamPlayer(): Unit {
@@ -2069,11 +2083,26 @@ private fun registerEngineTypeMethodForAudioStreamPlayer3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMPLAYER3D to "set_doppler_tracking")
 }
 
-private fun registerEngineTypeMethodForAudioStreamRandomPitch(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMRANDOMPITCH to "get_audio_stream")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMRANDOMPITCH to "set_audio_stream")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMRANDOMPITCH to "get_random_pitch")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMRANDOMPITCH to "set_random_pitch")
+private fun registerEngineTypeMethodForAudioStreamRandomizer(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMRANDOMIZER to "add_stream")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMRANDOMIZER to "move_stream")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMRANDOMIZER to "remove_stream")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMRANDOMIZER to "set_stream")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMRANDOMIZER to "get_stream")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMRANDOMIZER to
+      "set_stream_probability_weight")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMRANDOMIZER to
+      "get_stream_probability_weight")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMRANDOMIZER to "get_streams_count")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMRANDOMIZER to "set_streams_count")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMRANDOMIZER to "get_playback_mode")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMRANDOMIZER to "set_playback_mode")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMRANDOMIZER to "get_random_pitch")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMRANDOMIZER to "set_random_pitch")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMRANDOMIZER to
+      "get_random_volume_offset_db")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_AUDIOSTREAMRANDOMIZER to
+      "set_random_volume_offset_db")
 }
 
 private fun registerEngineTypeMethodForAudioStreamSample(): Unit {
@@ -2184,8 +2213,8 @@ private fun registerEngineTypeMethodForBaseMaterial3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BASEMATERIAL3D to "set_rim_tint")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BASEMATERIAL3D to "get_clearcoat")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BASEMATERIAL3D to "set_clearcoat")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_BASEMATERIAL3D to "get_clearcoat_gloss")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_BASEMATERIAL3D to "set_clearcoat_gloss")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_BASEMATERIAL3D to "get_clearcoat_roughness")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_BASEMATERIAL3D to "set_clearcoat_roughness")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BASEMATERIAL3D to "get_anisotropy")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BASEMATERIAL3D to "set_anisotropy")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BASEMATERIAL3D to "get_ao_light_affect")
@@ -2338,6 +2367,11 @@ private fun registerEngineTypeMethodForBoxMesh(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_BOXMESH to "set_subdivide_height")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BOXMESH to "get_subdivide_depth")
   TypeManager.engineTypeMethod.add(ENGINECLASS_BOXMESH to "set_subdivide_depth")
+}
+
+private fun registerEngineTypeMethodForBoxOccluder3D(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_BOXOCCLUDER3D to "get_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_BOXOCCLUDER3D to "set_size")
 }
 
 private fun registerEngineTypeMethodForBoxShape3D(): Unit {
@@ -2806,6 +2840,7 @@ private fun registerEngineTypeMethodForCanvasItem(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASITEM to "hide")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASITEM to "update")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASITEM to "draw_line")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASITEM to "draw_dashed_line")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASITEM to "draw_polyline")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASITEM to "draw_polyline_colors")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASITEM to "draw_arc")
@@ -2836,6 +2871,7 @@ private fun registerEngineTypeMethodForCanvasItem(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASITEM to "get_viewport_transform")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASITEM to "get_viewport_rect")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASITEM to "get_canvas_transform")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASITEM to "get_screen_transform")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASITEM to "get_local_mouse_position")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASITEM to "get_global_mouse_position")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASITEM to "get_canvas")
@@ -2888,6 +2924,8 @@ private fun registerEngineTypeMethodForCanvasItemMaterial(): Unit {
 }
 
 private fun registerEngineTypeMethodForCanvasLayer(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASLAYER to "show")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASLAYER to "hide")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASLAYER to "get_canvas")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASLAYER to "get_layer")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CANVASLAYER to "set_layer")
@@ -3008,8 +3046,8 @@ private fun registerEngineTypeMethodForCharacterBody2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY2D to "set_motion_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY2D to "get_up_direction")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY2D to "set_up_direction")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY2D to "get_motion_velocity")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY2D to "set_motion_velocity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY2D to "get_velocity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY2D to "set_velocity")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY2D to "is_slide_on_ceiling_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY2D to "set_slide_on_ceiling_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY2D to "get_max_slides")
@@ -3065,8 +3103,8 @@ private fun registerEngineTypeMethodForCharacterBody3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY3D to "set_up_direction")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY3D to "is_slide_on_ceiling_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY3D to "set_slide_on_ceiling_enabled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY3D to "get_motion_velocity")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY3D to "set_motion_velocity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY3D to "get_velocity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY3D to "set_velocity")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY3D to "get_max_slides")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY3D to "set_max_slides")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CHARACTERBODY3D to "get_wall_min_slide_angle")
@@ -3394,6 +3432,30 @@ private fun registerEngineTypeMethodForColorRect(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_COLORRECT to "set_color")
 }
 
+private fun registerEngineTypeMethodForCompressedCubemap(): Unit {
+}
+
+private fun registerEngineTypeMethodForCompressedCubemapArray(): Unit {
+}
+
+private fun registerEngineTypeMethodForCompressedTexture2D(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_COMPRESSEDTEXTURE2D to "load")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_COMPRESSEDTEXTURE2D to "get_load_path")
+}
+
+private fun registerEngineTypeMethodForCompressedTexture2DArray(): Unit {
+}
+
+private fun registerEngineTypeMethodForCompressedTexture3D(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_COMPRESSEDTEXTURE3D to "load")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_COMPRESSEDTEXTURE3D to "get_load_path")
+}
+
+private fun registerEngineTypeMethodForCompressedTextureLayered(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_COMPRESSEDTEXTURELAYERED to "load")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_COMPRESSEDTEXTURELAYERED to "get_load_path")
+}
+
 private fun registerEngineTypeMethodForConcavePolygonShape2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONCAVEPOLYGONSHAPE2D to "get_segments")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONCAVEPOLYGONSHAPE2D to "set_segments")
@@ -3437,6 +3499,8 @@ private fun registerEngineTypeMethodForConfirmationDialog(): Unit {
 }
 
 private fun registerEngineTypeMethodForContainer(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTAINER to "_get_allowed_size_flags_horizontal")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTAINER to "_get_allowed_size_flags_vertical")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTAINER to "queue_sort")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTAINER to "fit_child_in_rect")
 }
@@ -3459,6 +3523,7 @@ private fun registerEngineTypeMethodForControl(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_anchor")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_anchor")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_offset")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_offset")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_anchor_and_offset")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_begin")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_end")
@@ -3466,10 +3531,10 @@ private fun registerEngineTypeMethodForControl(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "reset_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_global_position")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_offset")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_begin")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_end")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_parent_area_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_screen_position")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_rect")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_global_rect")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "has_focus")
@@ -3525,27 +3590,33 @@ private fun registerEngineTypeMethodForControl(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "warp_mouse")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "update_minimum_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "is_layout_rtl")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "is_clipping_contents")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_clip_contents")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_custom_minimum_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_custom_minimum_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_layout_direction")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_layout_direction")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_h_grow_direction")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_h_grow_direction")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_v_grow_direction")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_v_grow_direction")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_layout_direction")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_layout_direction")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "is_auto_translating")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_auto_translate")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_position")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_global_position")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_size")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_custom_minimum_size")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_custom_minimum_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_rotation")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_rotation")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_scale")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_scale")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_pivot_offset")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_pivot_offset")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "is_clipping_contents")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_clip_contents")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_h_size_flags")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_h_size_flags")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_v_size_flags")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_v_size_flags")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_stretch_ratio")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_stretch_ratio")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "is_auto_translating")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_auto_translate")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_tooltip")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_focus_next")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_focus_next")
@@ -3557,12 +3628,6 @@ private fun registerEngineTypeMethodForControl(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_mouse_filter")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_default_cursor_shape")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_default_cursor_shape")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_h_size_flags")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_h_size_flags")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_v_size_flags")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_v_size_flags")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_stretch_ratio")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_stretch_ratio")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_theme")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "set_theme")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CONTROL to "get_theme_type_variation")
@@ -3719,10 +3784,10 @@ private fun registerEngineTypeMethodForCylinderMesh(): Unit {
 }
 
 private fun registerEngineTypeMethodForCylinderShape3D(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CYLINDERSHAPE3D to "get_radius")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CYLINDERSHAPE3D to "set_radius")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CYLINDERSHAPE3D to "get_height")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CYLINDERSHAPE3D to "set_height")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CYLINDERSHAPE3D to "get_radius")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_CYLINDERSHAPE3D to "set_radius")
 }
 
 private fun registerEngineTypeMethodForDTLSServer(): Unit {
@@ -3778,8 +3843,8 @@ private fun registerEngineTypeMethodForDirectionalLight3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_DIRECTIONALLIGHT3D to "set_shadow_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DIRECTIONALLIGHT3D to "is_blend_splits_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DIRECTIONALLIGHT3D to "set_blend_splits")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_DIRECTIONALLIGHT3D to "is_sky_only")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_DIRECTIONALLIGHT3D to "set_sky_only")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DIRECTIONALLIGHT3D to "get_sky_mode")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DIRECTIONALLIGHT3D to "set_sky_mode")
 }
 
 private fun registerEngineTypeMethodForDirectory(): Unit {
@@ -4243,6 +4308,9 @@ private fun registerEngineTypeMethodForEditorSceneFormatImporter(): Unit {
       "_get_option_visibility")
 }
 
+private fun registerEngineTypeMethodForEditorSceneFormatImporterBlend(): Unit {
+}
+
 private fun registerEngineTypeMethodForEditorSceneFormatImporterFBX(): Unit {
 }
 
@@ -4311,6 +4379,9 @@ private fun registerEngineTypeMethodForEditorSettings(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "set_recent_dirs")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "get_recent_dirs")
   TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "set_builtin_action_override")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "check_changed_settings_in_group")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "get_changed_settings")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_EDITORSETTINGS to "mark_setting_changed")
 }
 
 private fun registerEngineTypeMethodForEditorSpinSlider(): Unit {
@@ -4353,6 +4424,12 @@ private fun registerEngineTypeMethodForEditorVCSInterface(): Unit {
 private fun registerEngineTypeMethodForEncodedObjectAsID(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ENCODEDOBJECTASID to "get_object_id")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ENCODEDOBJECTASID to "set_object_id")
+}
+
+private fun registerEngineTypeMethodForEngineProfiler(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ENGINEPROFILER to "_toggle")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ENGINEPROFILER to "_add_frame")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ENGINEPROFILER to "_tick")
 }
 
 private fun registerEngineTypeMethodForEnvironment(): Unit {
@@ -4555,6 +4632,57 @@ private fun registerEngineTypeMethodForExpression(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_EXPRESSION to "get_error_text")
 }
 
+private fun registerEngineTypeMethodForFastNoiseLite(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "get_noise_type")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "set_noise_type")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "get_seed")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "set_seed")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "get_frequency")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "set_frequency")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "is_in_3d_space")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "set_in_3d_space")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "get_offset")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "set_offset")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "get_color_ramp")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "set_color_ramp")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "get_fractal_type")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "set_fractal_type")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "get_fractal_octaves")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "set_fractal_octaves")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "get_fractal_lacunarity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "set_fractal_lacunarity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "get_fractal_gain")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "set_fractal_gain")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "get_fractal_weighted_strength")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "set_fractal_weighted_strength")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "get_fractal_ping_pong_strength")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "set_fractal_ping_pong_strength")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "get_cellular_distance_function")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "set_cellular_distance_function")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "get_cellular_jitter")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "set_cellular_jitter")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "get_cellular_return_type")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "set_cellular_return_type")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "is_domain_warp_enabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "set_domain_warp_enabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "get_domain_warp_type")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "set_domain_warp_type")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "get_domain_warp_amplitude")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "set_domain_warp_amplitude")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "get_domain_warp_frequency")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "set_domain_warp_frequency")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "get_domain_warp_fractal_type")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "set_domain_warp_fractal_type")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "get_domain_warp_fractal_octaves")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "set_domain_warp_fractal_octaves")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to
+      "get_domain_warp_fractal_lacunarity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to
+      "set_domain_warp_fractal_lacunarity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "get_domain_warp_fractal_gain")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FASTNOISELITE to "set_domain_warp_fractal_gain")
+}
+
 private fun registerEngineTypeMethodForFile(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_FILE to "open_encrypted")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FILE to "open_encrypted_with_pass")
@@ -4686,6 +4814,7 @@ private fun registerEngineTypeMethodForFont(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONT to "has_char")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONT to "get_supported_chars")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONT to "update_changes")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FONT to "get_rids")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONT to "get_variation_coordinates")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONT to "set_variation_coordinates")
 }
@@ -4767,6 +4896,12 @@ private fun registerEngineTypeMethodForFontData(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONTDATA to "set_font_style_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONTDATA to "get_font_style")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONTDATA to "set_font_style")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FONTDATA to "get_subpixel_positioning")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FONTDATA to "set_subpixel_positioning")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FONTDATA to "get_embolden")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FONTDATA to "set_embolden")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FONTDATA to "get_transform")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_FONTDATA to "set_transform")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONTDATA to "is_multichannel_signed_distance_field")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONTDATA to "set_multichannel_signed_distance_field")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONTDATA to "get_msdf_pixel_range")
@@ -4783,29 +4918,6 @@ private fun registerEngineTypeMethodForFontData(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONTDATA to "set_fixed_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONTDATA to "get_opentype_feature_overrides")
   TypeManager.engineTypeMethod.add(ENGINECLASS_FONTDATA to "set_opentype_feature_overrides")
-}
-
-private fun registerEngineTypeMethodForGDNative(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVE to "initialize")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVE to "terminate")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVE to "call_native")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVE to "get_library")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVE to "set_library")
-}
-
-private fun registerEngineTypeMethodForGDNativeLibrary(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVELIBRARY to "get_current_library_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVELIBRARY to "get_current_dependencies")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVELIBRARY to "get_config_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVELIBRARY to "set_config_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVELIBRARY to "should_load_once")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVELIBRARY to "set_load_once")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVELIBRARY to "is_singleton")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVELIBRARY to "set_singleton")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVELIBRARY to "get_symbol_prefix")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVELIBRARY to "set_symbol_prefix")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVELIBRARY to "is_reloadable")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_GDNATIVELIBRARY to "set_reloadable")
 }
 
 private fun registerEngineTypeMethodForGDScript(): Unit {
@@ -5461,9 +5573,9 @@ private fun registerEngineTypeMethodForGridMap(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRIDMAP to "world_to_map")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRIDMAP to "map_to_world")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRIDMAP to "resource_changed")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_GRIDMAP to "set_clip")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRIDMAP to "clear")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRIDMAP to "get_used_cells")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_GRIDMAP to "get_used_cells_by_item")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRIDMAP to "get_meshes")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRIDMAP to "get_bake_meshes")
   TypeManager.engineTypeMethod.add(ENGINECLASS_GRIDMAP to "get_bake_mesh_instance")
@@ -6056,10 +6168,6 @@ private fun registerEngineTypeMethodForLabel(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "get_total_character_count")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "get_text")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "set_text")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "get_text_direction")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "set_text_direction")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "get_language")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "set_language")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "get_horizontal_alignment")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "set_horizontal_alignment")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "get_vertical_alignment")
@@ -6072,16 +6180,20 @@ private fun registerEngineTypeMethodForLabel(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "set_text_overrun_behavior")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "is_uppercase")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "set_uppercase")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "get_lines_skipped")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "set_lines_skipped")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "get_max_lines_visible")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "set_max_lines_visible")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "get_visible_characters")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "set_visible_characters")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "get_visible_characters_behavior")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "set_visible_characters_behavior")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "get_percent_visible")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "set_percent_visible")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "get_lines_skipped")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "set_lines_skipped")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "get_max_lines_visible")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "set_max_lines_visible")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "get_text_direction")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "set_text_direction")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "get_language")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "set_language")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "get_structured_text_bidi_override")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "set_structured_text_bidi_override")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LABEL to "get_structured_text_bidi_override_options")
@@ -6138,10 +6250,16 @@ private fun registerEngineTypeMethodForLight3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT3D to "set_cull_mask")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT3D to "has_shadow")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT3D to "set_shadow")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT3D to "get_shadow_color")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT3D to "set_shadow_color")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT3D to "get_shadow_reverse_cull_face")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT3D to "set_shadow_reverse_cull_face")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT3D to "is_distance_fade_enabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT3D to "set_enable_distance_fade")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT3D to "get_distance_fade_begin")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT3D to "set_distance_fade_begin")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT3D to "get_distance_fade_shadow")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT3D to "set_distance_fade_shadow")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT3D to "get_distance_fade_length")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT3D to "set_distance_fade_length")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT3D to "is_editor_only")
   TypeManager.engineTypeMethod.add(ENGINECLASS_LIGHT3D to "set_editor_only")
 }
@@ -6346,6 +6464,10 @@ private fun registerEngineTypeMethodForMarginContainer(): Unit {
 }
 
 private fun registerEngineTypeMethodForMaterial(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_MATERIAL to "_get_shader_rid")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_MATERIAL to "_get_shader_mode")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_MATERIAL to "_can_do_next_pass")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_MATERIAL to "_can_use_render_priority")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MATERIAL to "inspect_native_shader_code")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MATERIAL to "get_render_priority")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MATERIAL to "set_render_priority")
@@ -6363,6 +6485,20 @@ private fun registerEngineTypeMethodForMenuButton(): Unit {
 }
 
 private fun registerEngineTypeMethodForMesh(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_MESH to "_get_surface_count")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_MESH to "_surface_get_array_len")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_MESH to "_surface_get_array_index_len")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_MESH to "_surface_get_arrays")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_MESH to "_surface_get_blend_shape_arrays")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_MESH to "_surface_get_lods")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_MESH to "_surface_get_format")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_MESH to "_surface_get_primitive_type")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_MESH to "_surface_set_material")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_MESH to "_surface_get_material")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_MESH to "_get_blend_shape_count")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_MESH to "_get_blend_shape_name")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_MESH to "_set_blend_shape_name")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_MESH to "_get_aabb")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESH to "get_aabb")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESH to "get_surface_count")
   TypeManager.engineTypeMethod.add(ENGINECLASS_MESH to "surface_get_arrays")
@@ -6641,22 +6777,6 @@ private fun registerEngineTypeMethodForNativeExtension(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NATIVEEXTENSION to "initialize_library")
 }
 
-private fun registerEngineTypeMethodForNativeScript(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_NATIVESCRIPT to "get_class_documentation")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_NATIVESCRIPT to "get_method_documentation")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_NATIVESCRIPT to "get_signal_documentation")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_NATIVESCRIPT to "get_property_documentation")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_NATIVESCRIPT to "new")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_NATIVESCRIPT to "get_class_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_NATIVESCRIPT to "set_class_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_NATIVESCRIPT to "get_library")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_NATIVESCRIPT to "set_library")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_NATIVESCRIPT to "get_script_class_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_NATIVESCRIPT to "set_script_class_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_NATIVESCRIPT to "get_script_class_icon_path")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_NATIVESCRIPT to "set_script_class_icon_path")
-}
-
 private fun registerEngineTypeMethodForNavigationAgent2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "get_rid")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NAVIGATIONAGENT2D to "set_target_location")
@@ -6860,7 +6980,7 @@ private fun registerEngineTypeMethodForNode(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "get_node")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "get_node_or_null")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "get_parent")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "find_node")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "find_nodes")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "find_parent")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "has_node_and_resource")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NODE to "get_node_and_resource")
@@ -7040,19 +7160,31 @@ private fun registerEngineTypeMethodForNode3D(): Unit {
 private fun registerEngineTypeMethodForNode3DGizmo(): Unit {
 }
 
+private fun registerEngineTypeMethodForNoise(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NOISE to "get_noise_1d")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NOISE to "get_noise_2d")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NOISE to "get_noise_2dv")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NOISE to "get_noise_3d")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NOISE to "get_noise_3dv")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NOISE to "get_image")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NOISE to "get_seamless_image")
+}
+
 private fun registerEngineTypeMethodForNoiseTexture(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_NOISETEXTURE to "set_width")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NOISETEXTURE to "set_height")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NOISETEXTURE to "get_invert")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NOISETEXTURE to "set_invert")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NOISETEXTURE to "get_seamless")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NOISETEXTURE to "set_seamless")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NOISETEXTURE to "get_seamless_blend_skirt")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_NOISETEXTURE to "set_seamless_blend_skirt")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NOISETEXTURE to "is_normal_map")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NOISETEXTURE to "set_as_normal_map")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NOISETEXTURE to "get_bump_strength")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NOISETEXTURE to "set_bump_strength")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NOISETEXTURE to "get_noise")
   TypeManager.engineTypeMethod.add(ENGINECLASS_NOISETEXTURE to "set_noise")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_NOISETEXTURE to "get_noise_offset")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_NOISETEXTURE to "set_noise_offset")
 }
 
 private fun registerEngineTypeMethodForOGGPacketSequence(): Unit {
@@ -7117,9 +7249,7 @@ private fun registerEngineTypeMethodForObject(): Unit {
 
 private fun registerEngineTypeMethodForOccluder3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_OCCLUDER3D to "get_vertices")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OCCLUDER3D to "set_vertices")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OCCLUDER3D to "get_indices")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OCCLUDER3D to "set_indices")
 }
 
 private fun registerEngineTypeMethodForOccluderInstance3D(): Unit {
@@ -7129,6 +7259,10 @@ private fun registerEngineTypeMethodForOccluderInstance3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_OCCLUDERINSTANCE3D to "set_occluder")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OCCLUDERINSTANCE3D to "get_bake_mask")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OCCLUDERINSTANCE3D to "set_bake_mask")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OCCLUDERINSTANCE3D to
+      "get_bake_simplification_distance")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OCCLUDERINSTANCE3D to
+      "set_bake_simplification_distance")
 }
 
 private fun registerEngineTypeMethodForOccluderPolygon2D(): Unit {
@@ -7145,25 +7279,55 @@ private fun registerEngineTypeMethodForOmniLight3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_OMNILIGHT3D to "set_shadow_mode")
 }
 
-private fun registerEngineTypeMethodForOpenSimplexNoise(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENSIMPLEXNOISE to "get_image")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENSIMPLEXNOISE to "get_seamless_image")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENSIMPLEXNOISE to "get_noise_1d")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENSIMPLEXNOISE to "get_noise_2d")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENSIMPLEXNOISE to "get_noise_3d")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENSIMPLEXNOISE to "get_noise_4d")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENSIMPLEXNOISE to "get_noise_2dv")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENSIMPLEXNOISE to "get_noise_3dv")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENSIMPLEXNOISE to "get_seed")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENSIMPLEXNOISE to "set_seed")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENSIMPLEXNOISE to "get_octaves")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENSIMPLEXNOISE to "set_octaves")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENSIMPLEXNOISE to "get_period")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENSIMPLEXNOISE to "set_period")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENSIMPLEXNOISE to "get_persistence")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENSIMPLEXNOISE to "set_persistence")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENSIMPLEXNOISE to "get_lacunarity")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENSIMPLEXNOISE to "set_lacunarity")
+private fun registerEngineTypeMethodForOpenXRAction(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTION to "get_localized_name")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTION to "set_localized_name")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTION to "get_action_type")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTION to "set_action_type")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTION to "get_toplevel_paths")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTION to "set_toplevel_paths")
+}
+
+private fun registerEngineTypeMethodForOpenXRActionMap(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "add_action_set")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "remove_action_set")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "add_interaction_profile")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "remove_interaction_profile")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "create_default_action_sets")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "get_action_sets")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "set_action_sets")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "get_interaction_profiles")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONMAP to "set_interaction_profiles")
+}
+
+private fun registerEngineTypeMethodForOpenXRActionSet(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "add_action")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "remove_action")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "get_localized_name")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "set_localized_name")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "get_priority")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "set_priority")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "get_actions")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRACTIONSET to "set_actions")
+}
+
+private fun registerEngineTypeMethodForOpenXRIPBinding(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRIPBINDING to "get_action")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRIPBINDING to "set_action")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRIPBINDING to "get_paths")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRIPBINDING to "set_paths")
+}
+
+private fun registerEngineTypeMethodForOpenXRInteractionProfile(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERACTIONPROFILE to
+      "get_interaction_profile_path")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERACTIONPROFILE to
+      "set_interaction_profile_path")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERACTIONPROFILE to "get_bindings")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPENXRINTERACTIONPROFILE to "set_bindings")
+}
+
+private fun registerEngineTypeMethodForOpenXRInterface(): Unit {
 }
 
 private fun registerEngineTypeMethodForOptimizedTranslation(): Unit {
@@ -7178,11 +7342,13 @@ private fun registerEngineTypeMethodForOptionButton(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_OPTIONBUTTON to "set_item_disabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OPTIONBUTTON to "set_item_id")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OPTIONBUTTON to "set_item_metadata")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPTIONBUTTON to "set_item_tooltip")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OPTIONBUTTON to "get_item_text")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OPTIONBUTTON to "get_item_icon")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OPTIONBUTTON to "get_item_id")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OPTIONBUTTON to "get_item_index")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OPTIONBUTTON to "get_item_metadata")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OPTIONBUTTON to "get_item_tooltip")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OPTIONBUTTON to "is_item_disabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OPTIONBUTTON to "add_separator")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OPTIONBUTTON to "clear")
@@ -7438,6 +7604,7 @@ private fun registerEngineTypeMethodForPhysicalBone2D(): Unit {
 }
 
 private fun registerEngineTypeMethodForPhysicalBone3D(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE3D to "_integrate_forces")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE3D to "apply_central_impulse")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE3D to "apply_impulse")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE3D to "get_simulate_physics")
@@ -7459,6 +7626,8 @@ private fun registerEngineTypeMethodForPhysicalBone3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE3D to "set_bounce")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE3D to "get_gravity_scale")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE3D to "set_gravity_scale")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE3D to "is_using_custom_integrator")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE3D to "set_use_custom_integrator")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE3D to "get_linear_damp_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE3D to "set_linear_damp_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE3D to "get_linear_damp")
@@ -7467,6 +7636,10 @@ private fun registerEngineTypeMethodForPhysicalBone3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE3D to "set_angular_damp_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE3D to "get_angular_damp")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE3D to "set_angular_damp")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE3D to "get_linear_velocity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE3D to "set_linear_velocity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE3D to "get_angular_velocity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE3D to "set_angular_velocity")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE3D to "is_able_to_sleep")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICALBONE3D to "set_can_sleep")
 }
@@ -7629,6 +7802,93 @@ private fun registerEngineTypeMethodForPhysicsDirectBodyState3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3D to "set_transform")
 }
 
+private fun registerEngineTypeMethodForPhysicsDirectBodyState3DExtension(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_total_gravity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_total_linear_damp")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_total_angular_damp")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_center_of_mass")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_center_of_mass_local")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_principal_inertia_axes")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_inverse_mass")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_inverse_inertia")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_set_linear_velocity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_linear_velocity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_set_angular_velocity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_angular_velocity")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_set_transform")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_transform")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_velocity_at_local_position")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_apply_central_impulse")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_apply_impulse")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_apply_torque_impulse")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_apply_central_force")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to "_apply_force")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to "_apply_torque")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_add_constant_central_force")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_add_constant_force")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_add_constant_torque")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_set_constant_force")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_constant_force")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_set_constant_torque")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_constant_torque")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_set_sleep_state")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to "_is_sleeping")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_contact_count")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_contact_local_position")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_contact_local_normal")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_contact_impulse")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_contact_local_shape")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_contact_collider")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_contact_collider_position")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_contact_collider_id")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_contact_collider_object")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_contact_collider_shape")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_contact_collider_velocity_at_position")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to "_get_step")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_integrate_forces")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION to
+      "_get_space_state")
+}
+
 private fun registerEngineTypeMethodForPhysicsDirectSpaceState2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTSPACESTATE2D to "intersect_point")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTSPACESTATE2D to "intersect_ray")
@@ -7645,6 +7905,21 @@ private fun registerEngineTypeMethodForPhysicsDirectSpaceState3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTSPACESTATE3D to "cast_motion")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTSPACESTATE3D to "collide_shape")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTSPACESTATE3D to "get_rest_info")
+}
+
+private fun registerEngineTypeMethodForPhysicsDirectSpaceState3DExtension(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTSPACESTATE3DEXTENSION to
+      "_intersect_ray")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTSPACESTATE3DEXTENSION to
+      "_intersect_point")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTSPACESTATE3DEXTENSION to
+      "_intersect_shape")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTSPACESTATE3DEXTENSION to "_cast_motion")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTSPACESTATE3DEXTENSION to
+      "_collide_shape")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTSPACESTATE3DEXTENSION to "_rest_info")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSDIRECTSPACESTATE3DEXTENSION to
+      "_get_closest_point_to_object_volume")
 }
 
 private fun registerEngineTypeMethodForPhysicsMaterial(): Unit {
@@ -7745,6 +8020,14 @@ private fun registerEngineTypeMethodForPhysicsRayQueryParameters3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D to
       "is_hit_back_faces_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSRAYQUERYPARAMETERS3D to "set_hit_back_faces")
+}
+
+private fun registerEngineTypeMethodForPhysicsServer3DRenderingServerHandler(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER3DRENDERINGSERVERHANDLER to
+      "_set_vertex")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER3DRENDERINGSERVERHANDLER to
+      "_set_normal")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PHYSICSSERVER3DRENDERINGSERVERHANDLER to "_set_aabb")
 }
 
 private fun registerEngineTypeMethodForPhysicsShapeQueryParameters2D(): Unit {
@@ -7907,10 +8190,6 @@ private fun registerEngineTypeMethodForPlaneMesh(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PLANEMESH to "set_center_offset")
 }
 
-private fun registerEngineTypeMethodForPluginScript(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_PLUGINSCRIPT to "new")
-}
-
 private fun registerEngineTypeMethodForPointLight2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_POINTLIGHT2D to "get_texture")
   TypeManager.engineTypeMethod.add(ENGINECLASS_POINTLIGHT2D to "set_texture")
@@ -7964,6 +8243,11 @@ private fun registerEngineTypeMethodForPolygon2D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_POLYGON2D to "set_internal_vertex_count")
 }
 
+private fun registerEngineTypeMethodForPolygonOccluder3D(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_POLYGONOCCLUDER3D to "get_polygon")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_POLYGONOCCLUDER3D to "set_polygon")
+}
+
 private fun registerEngineTypeMethodForPolygonPathFinder(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_POLYGONPATHFINDER to "setup")
   TypeManager.engineTypeMethod.add(ENGINECLASS_POLYGONPATHFINDER to "find_path")
@@ -7976,8 +8260,6 @@ private fun registerEngineTypeMethodForPolygonPathFinder(): Unit {
 }
 
 private fun registerEngineTypeMethodForPopup(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_POPUP to "get_close_on_parent_focus")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_POPUP to "set_close_on_parent_focus")
 }
 
 private fun registerEngineTypeMethodForPopupMenu(): Unit {
@@ -8057,6 +8339,23 @@ private fun registerEngineTypeMethodForPopupMenu(): Unit {
 private fun registerEngineTypeMethodForPopupPanel(): Unit {
 }
 
+private fun registerEngineTypeMethodForPortableCompressedTexture2D(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D to "create_from_image")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D to "get_format")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D to
+      "get_compression_mode")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D to
+      "set_keep_all_compressed_buffers")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D to
+      "is_keeping_all_compressed_buffers")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D to "get_size_override")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D to "set_size_override")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D to
+      "is_keeping_compressed_buffer")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PORTABLECOMPRESSEDTEXTURE2D to
+      "set_keep_compressed_buffer")
+}
+
 private fun registerEngineTypeMethodForPosition2D(): Unit {
 }
 
@@ -8064,6 +8363,7 @@ private fun registerEngineTypeMethodForPosition3D(): Unit {
 }
 
 private fun registerEngineTypeMethodForPrimitiveMesh(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PRIMITIVEMESH to "_create_mesh_array")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PRIMITIVEMESH to "get_mesh_arrays")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PRIMITIVEMESH to "get_material")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PRIMITIVEMESH to "set_material")
@@ -8095,6 +8395,10 @@ private fun registerEngineTypeMethodForProceduralSkyMaterial(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROCEDURALSKYMATERIAL to "set_sky_curve")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROCEDURALSKYMATERIAL to "get_sky_energy")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROCEDURALSKYMATERIAL to "set_sky_energy")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PROCEDURALSKYMATERIAL to "get_sky_cover")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PROCEDURALSKYMATERIAL to "set_sky_cover")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PROCEDURALSKYMATERIAL to "get_sky_cover_modulate")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_PROCEDURALSKYMATERIAL to "set_sky_cover_modulate")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROCEDURALSKYMATERIAL to "get_ground_bottom_color")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROCEDURALSKYMATERIAL to "set_ground_bottom_color")
   TypeManager.engineTypeMethod.add(ENGINECLASS_PROCEDURALSKYMATERIAL to "get_ground_horizon_color")
@@ -8133,6 +8437,11 @@ private fun registerEngineTypeMethodForQuadMesh(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_QUADMESH to "set_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_QUADMESH to "get_center_offset")
   TypeManager.engineTypeMethod.add(ENGINECLASS_QUADMESH to "set_center_offset")
+}
+
+private fun registerEngineTypeMethodForQuadOccluder3D(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_QUADOCCLUDER3D to "get_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_QUADOCCLUDER3D to "set_size")
 }
 
 private fun registerEngineTypeMethodForRDAttachmentFormat(): Unit {
@@ -8478,6 +8787,7 @@ private fun registerEngineTypeMethodForRandomNumberGenerator(): Unit {
 }
 
 private fun registerEngineTypeMethodForRange(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RANGE to "_value_changed")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RANGE to "share")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RANGE to "unshare")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RANGE to "get_min")
@@ -8849,6 +9159,7 @@ private fun registerEngineTypeMethodForRichTextLabel(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "push_indent")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "push_list")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "push_meta")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "push_hint")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "push_underline")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "push_strikethrough")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "push_table")
@@ -8871,28 +9182,25 @@ private fun registerEngineTypeMethodForRichTextLabel(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_selected_text")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "parse_bbcode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "append_text")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_character_line")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_character_paragraph")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_total_character_count")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_line_count")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_visible_line_count")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_paragraph_count")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_visible_paragraph_count")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_content_height")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_content_width")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_line_offset")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_paragraph_offset")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "parse_expressions_for_values")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "install_effect")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_visible_characters")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "set_visible_characters")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_percent_visible")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "set_percent_visible")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_visible_characters_behavior")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "set_visible_characters_behavior")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "is_meta_underlined")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "set_meta_underline")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "is_using_bbcode")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "set_use_bbcode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_tab_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "set_tab_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_text")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "set_text")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "is_using_bbcode")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "set_use_bbcode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "is_fit_content_height_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "set_fit_content_height")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "is_scroll_active")
@@ -8908,12 +9216,22 @@ private fun registerEngineTypeMethodForRichTextLabel(): Unit {
       "set_deselect_on_focus_loss_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_effects")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "set_effects")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "is_meta_underlined")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "set_meta_underline")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "is_hint_underlined")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "set_hint_underline")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_autowrap_mode")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "set_autowrap_mode")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_visible_characters")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "set_visible_characters")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_visible_characters_behavior")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "set_visible_characters_behavior")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_percent_visible")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "set_percent_visible")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_text_direction")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "set_text_direction")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_language")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "set_language")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_autowrap_mode")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "set_autowrap_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "get_structured_text_bidi_override")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to "set_structured_text_bidi_override")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RICHTEXTLABEL to
@@ -9171,6 +9489,125 @@ private fun registerEngineTypeMethodForScriptEditor(): Unit {
 private fun registerEngineTypeMethodForScriptEditorBase(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITORBASE to "get_base_editor")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEDITORBASE to "add_syntax_highlighter")
+}
+
+private fun registerEngineTypeMethodForScriptExtension(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_editor_can_reload_from_file")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_placeholder_erased")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_can_instantiate")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_get_base_script")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_inherits_script")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_get_instance_base_type")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_instance_create")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_placeholder_instance_create")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_instance_has")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_has_source_code")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_get_source_code")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_set_source_code")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_reload")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_get_documentation")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_has_method")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_get_method_info")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_is_tool")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_is_valid")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_get_language")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_has_script_signal")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_get_script_signal_list")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_get_property_default_value")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_update_exports")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_get_script_method_list")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_get_script_property_list")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_get_member_line")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_get_constants")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_get_members")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to
+      "_is_placeholder_fallback_enabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTEXTENSION to "_get_rpc_methods")
+}
+
+private fun registerEngineTypeMethodForScriptLanguage(): Unit {
+}
+
+private fun registerEngineTypeMethodForScriptLanguageExtension(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_get_name")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_init")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_get_type")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_get_extension")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_execute_file")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_finish")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_get_reserved_words")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
+      "_is_control_flow_keyword")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_get_comment_delimiters")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_get_string_delimiters")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_make_template")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_get_built_in_templates")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_is_using_templates")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_validate")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_validate_path")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_create_script")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_has_named_classes")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_supports_builtin_mode")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_supports_documentation")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_can_inherit_from_file")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_find_function")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_make_function")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
+      "_open_in_external_editor")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
+      "_overrides_external_editor")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_complete_code")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_lookup_code")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_auto_indent_code")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_add_global_constant")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
+      "_add_named_global_constant")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
+      "_remove_named_global_constant")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_thread_enter")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_thread_exit")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_debug_get_error")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
+      "_debug_get_stack_level_count")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
+      "_debug_get_stack_level_line")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
+      "_debug_get_stack_level_function")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
+      "_debug_get_stack_level_locals")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
+      "_debug_get_stack_level_members")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
+      "_debug_get_stack_level_instance")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_debug_get_globals")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
+      "_debug_parse_stack_level_expression")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
+      "_debug_get_current_stack_info")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_reload_all_scripts")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_reload_tool_script")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
+      "_get_recognized_extensions")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_get_public_functions")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_get_public_constants")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_profiling_start")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_profiling_stop")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
+      "_profiling_get_accumulated_data")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
+      "_profiling_get_frame_data")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
+      "_alloc_instance_binding_data")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
+      "_free_instance_binding_data")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
+      "_refcount_incremented_instance_binding")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
+      "_refcount_decremented_instance_binding")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_frame")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to
+      "_handles_global_class_type")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SCRIPTLANGUAGEEXTENSION to "_get_global_class_name")
 }
 
 private fun registerEngineTypeMethodForScrollBar(): Unit {
@@ -10013,6 +10450,11 @@ private fun registerEngineTypeMethodForSphereMesh(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPHEREMESH to "set_is_hemisphere")
 }
 
+private fun registerEngineTypeMethodForSphereOccluder3D(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SPHEREOCCLUDER3D to "get_radius")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_SPHEREOCCLUDER3D to "set_radius")
+}
+
 private fun registerEngineTypeMethodForSphereShape3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPHERESHAPE3D to "get_radius")
   TypeManager.engineTypeMethod.add(ENGINECLASS_SPHERESHAPE3D to "set_radius")
@@ -10172,12 +10614,6 @@ private fun registerEngineTypeMethodForStaticBody3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STATICBODY3D to "set_constant_angular_velocity")
 }
 
-private fun registerEngineTypeMethodForStreamCubemap(): Unit {
-}
-
-private fun registerEngineTypeMethodForStreamCubemapArray(): Unit {
-}
-
 private fun registerEngineTypeMethodForStreamPeer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMPEER to "put_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMPEER to "put_partial_data")
@@ -10255,25 +10691,12 @@ private fun registerEngineTypeMethodForStreamPeerTCP(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMPEERTCP to "set_no_delay")
 }
 
-private fun registerEngineTypeMethodForStreamTexture2D(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMTEXTURE2D to "load")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMTEXTURE2D to "get_load_path")
-}
-
-private fun registerEngineTypeMethodForStreamTexture2DArray(): Unit {
-}
-
-private fun registerEngineTypeMethodForStreamTexture3D(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMTEXTURE3D to "load")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMTEXTURE3D to "get_load_path")
-}
-
-private fun registerEngineTypeMethodForStreamTextureLayered(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMTEXTURELAYERED to "load")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_STREAMTEXTURELAYERED to "get_load_path")
-}
-
 private fun registerEngineTypeMethodForStyleBox(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOX to "_get_style_margin")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOX to "_test_mask")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOX to "_get_center_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOX to "_get_draw_rect")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOX to "_draw")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOX to "test_mask")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOX to "set_default_margin")
   TypeManager.engineTypeMethod.add(ENGINECLASS_STYLEBOX to "get_default_margin")
@@ -10452,13 +10875,12 @@ private fun registerEngineTypeMethodForTabBar(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "is_tab_hidden")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "remove_tab")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "add_tab")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "get_tab_idx_at_point")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "get_tab_offset")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "get_offset_buttons_visible")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "ensure_tab_visible")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "get_tab_rect")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "move_tab")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "set_tabs_rearrange_group")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "get_tabs_rearrange_group")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "get_current_tab")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "set_current_tab")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "get_tab_alignment")
@@ -10467,10 +10889,14 @@ private fun registerEngineTypeMethodForTabBar(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "set_clip_tabs")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "get_tab_close_display_policy")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "set_tab_close_display_policy")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "get_max_tab_width")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "set_max_tab_width")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "get_scrolling_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "set_scrolling_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "get_drag_to_rearrange_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "set_drag_to_rearrange_enabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "get_tabs_rearrange_group")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "set_tabs_rearrange_group")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "get_scroll_to_selected")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "set_scroll_to_selected")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABBAR to "get_select_with_rmb")
@@ -10489,24 +10915,27 @@ private fun registerEngineTypeMethodForTabContainer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "set_tab_icon")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "get_tab_icon")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "set_tab_disabled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "get_tab_disabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "is_tab_disabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "set_tab_hidden")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "get_tab_hidden")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "is_tab_hidden")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "get_tab_idx_at_point")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "get_tab_idx_from_control")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "set_popup")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "get_popup")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "set_tabs_rearrange_group")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "get_tabs_rearrange_group")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "get_tab_alignment")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "set_tab_alignment")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "get_current_tab")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "set_current_tab")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "get_clip_tabs")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "set_clip_tabs")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "are_tabs_visible")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "set_tabs_visible")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "is_all_tabs_in_front")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "set_all_tabs_in_front")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "get_drag_to_rearrange_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "set_drag_to_rearrange_enabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "get_tabs_rearrange_group")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "set_tabs_rearrange_group")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "get_use_hidden_tabs_for_min_size")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TABCONTAINER to "set_use_hidden_tabs_for_min_size")
 }
@@ -10842,6 +11271,12 @@ private fun registerEngineTypeMethodForTextServer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVER to "font_is_force_autohinter")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVER to "font_set_hinting")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVER to "font_get_hinting")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVER to "font_set_subpixel_positioning")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVER to "font_get_subpixel_positioning")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVER to "font_set_embolden")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVER to "font_get_embolden")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVER to "font_set_transform")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVER to "font_get_transform")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVER to "font_set_variation_coordinates")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVER to "font_get_variation_coordinates")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVER to "font_set_oversampling")
@@ -10981,232 +11416,241 @@ private fun registerEngineTypeMethodForTextServer(): Unit {
 private fun registerEngineTypeMethodForTextServerAdvanced(): Unit {
 }
 
+private fun registerEngineTypeMethodForTextServerDummy(): Unit {
+}
+
 private fun registerEngineTypeMethodForTextServerExtension(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_has_feature")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_get_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_get_features")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_free")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_has")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_load_support_data")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_get_support_data_filename")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_get_support_data_info")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_save_support_data")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_is_locale_right_to_left")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_name_to_tag")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_tag_to_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_create_font")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_data")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_data_ptr")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_style")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_style")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_style_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_style_name")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_antialiased")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_is_antialiased")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "has_feature")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "get_name")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "get_features")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "free_rid")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "has")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "load_support_data")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "get_support_data_filename")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "get_support_data_info")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "save_support_data")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "is_locale_right_to_left")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "name_to_tag")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "tag_to_name")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "create_font")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_data")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_data_ptr")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_style")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_style")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_name")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_name")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_style_name")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_style_name")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_antialiased")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_is_antialiased")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_font_set_multichannel_signed_distance_field")
+      "font_set_multichannel_signed_distance_field")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_font_is_multichannel_signed_distance_field")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_msdf_pixel_range")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_msdf_pixel_range")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_msdf_size")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_msdf_size")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_fixed_size")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_fixed_size")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_force_autohinter")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_is_force_autohinter")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_hinting")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_hinting")
+      "font_is_multichannel_signed_distance_field")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_msdf_pixel_range")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_msdf_pixel_range")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_msdf_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_msdf_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_fixed_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_fixed_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_force_autohinter")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_is_force_autohinter")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_hinting")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_hinting")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_font_set_variation_coordinates")
+      "font_set_subpixel_positioning")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_font_get_variation_coordinates")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_oversampling")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_oversampling")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_size_cache_list")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_clear_size_cache")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_remove_size_cache")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_ascent")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_ascent")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_descent")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_descent")
+      "font_get_subpixel_positioning")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_embolden")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_embolden")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_transform")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_transform")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_font_set_underline_position")
+      "font_set_variation_coordinates")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_font_get_underline_position")
+      "font_get_variation_coordinates")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_oversampling")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_oversampling")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_size_cache_list")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_clear_size_cache")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_remove_size_cache")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_ascent")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_ascent")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_descent")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_descent")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_underline_position")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_underline_position")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_font_set_underline_thickness")
+      "font_set_underline_thickness")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_font_get_underline_thickness")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_scale")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_scale")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_spacing")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_spacing")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_texture_count")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_clear_textures")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_remove_texture")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_texture_image")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_texture_image")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_texture_offsets")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_texture_offsets")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_glyph_list")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_clear_glyphs")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_remove_glyph")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_glyph_advance")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_glyph_advance")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_glyph_offset")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_glyph_offset")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_glyph_size")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_glyph_size")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_glyph_uv_rect")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_glyph_uv_rect")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_glyph_texture_idx")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_glyph_texture_idx")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_glyph_contours")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_kerning_list")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_clear_kerning_map")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_remove_kerning")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_set_kerning")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_kerning")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_glyph_index")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_has_char")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_get_supported_chars")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_render_range")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_render_glyph")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_draw_glyph")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_draw_glyph_outline")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_is_language_supported")
+      "font_get_underline_thickness")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_scale")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_scale")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_spacing")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_spacing")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_texture_count")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_clear_textures")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_remove_texture")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_texture_image")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_texture_image")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_texture_offsets")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_texture_offsets")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_glyph_list")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_clear_glyphs")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_remove_glyph")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_glyph_advance")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_glyph_advance")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_glyph_offset")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_glyph_offset")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_glyph_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_glyph_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_glyph_uv_rect")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_glyph_uv_rect")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_glyph_texture_idx")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_glyph_texture_idx")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_glyph_contours")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_kerning_list")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_clear_kerning_map")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_remove_kerning")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_set_kerning")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_kerning")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_glyph_index")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_has_char")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_get_supported_chars")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_render_range")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_render_glyph")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_draw_glyph")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_draw_glyph_outline")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_is_language_supported")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_font_set_language_support_override")
+      "font_set_language_support_override")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_font_get_language_support_override")
+      "font_get_language_support_override")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_font_remove_language_support_override")
+      "font_remove_language_support_override")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_font_get_language_support_overrides")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_font_is_script_supported")
+      "font_get_language_support_overrides")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_is_script_supported")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_font_set_script_support_override")
+      "font_set_script_support_override")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_font_get_script_support_override")
+      "font_get_script_support_override")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_font_remove_script_support_override")
+      "font_remove_script_support_override")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_font_get_script_support_overrides")
+      "font_get_script_support_overrides")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_font_set_opentype_feature_overrides")
+      "font_set_opentype_feature_overrides")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_font_get_opentype_feature_overrides")
+      "font_get_opentype_feature_overrides")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "font_supported_feature_list")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_font_supported_feature_list")
+      "font_supported_variation_list")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_font_supported_variation_list")
+      "font_get_global_oversampling")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_font_get_global_oversampling")
+      "font_set_global_oversampling")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "get_hex_code_box_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "draw_hex_code_box")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "create_shaped_text")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_clear")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_set_direction")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_get_direction")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_font_set_global_oversampling")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_get_hex_code_box_size")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_draw_hex_code_box")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_create_shaped_text")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_clear")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_set_direction")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_get_direction")
+      "shaped_text_get_inferred_direction")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_get_inferred_direction")
+      "shaped_text_set_bidi_override")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_set_bidi_override")
+      "shaped_text_set_custom_punctuation")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_set_custom_punctuation")
+      "shaped_text_get_custom_punctuation")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_set_orientation")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_get_orientation")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_get_custom_punctuation")
+      "shaped_text_set_preserve_invalid")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_set_orientation")
+      "shaped_text_get_preserve_invalid")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_get_orientation")
+      "shaped_text_set_preserve_control")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_set_preserve_invalid")
+      "shaped_text_get_preserve_control")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_add_string")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_add_object")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_resize_object")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_get_span_count")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_get_span_meta")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_set_span_update_font")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_substr")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_get_parent")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_fit_to_width")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_tab_align")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_shape")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_update_breaks")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_get_preserve_invalid")
+      "shaped_text_update_justification_ops")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_is_ready")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_get_glyphs")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_sort_logical")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_get_glyph_count")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_get_range")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_set_preserve_control")
+      "shaped_text_get_line_breaks_adv")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_get_line_breaks")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_get_word_breaks")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_get_trim_pos")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_get_preserve_control")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_add_string")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_add_object")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_resize_object")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_get_span_count")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_get_span_meta")
+      "shaped_text_get_ellipsis_pos")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_set_span_update_font")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_substr")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_get_parent")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_fit_to_width")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_tab_align")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_shape")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_update_breaks")
+      "shaped_text_get_ellipsis_glyph_count")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_update_justification_ops")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_is_ready")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_get_glyphs")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_sort_logical")
+      "shaped_text_get_ellipsis_glyphs")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_get_glyph_count")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_get_range")
+      "shaped_text_overrun_trim_to_width")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_get_objects")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_get_object_rect")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_get_size")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_get_ascent")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_get_descent")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_get_width")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_get_line_breaks_adv")
+      "shaped_text_get_underline_position")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_get_line_breaks")
+      "shaped_text_get_underline_thickness")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_get_word_breaks")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_get_trim_pos")
+      "shaped_text_get_dominant_direction_in_range")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_get_carets")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_get_selection")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_get_ellipsis_pos")
+      "shaped_text_hit_test_grapheme")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_get_ellipsis_glyph_count")
+      "shaped_text_hit_test_position")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_draw")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "shaped_text_draw_outline")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_get_ellipsis_glyphs")
+      "shaped_text_get_grapheme_bounds")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_overrun_trim_to_width")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_get_objects")
+      "shaped_text_next_grapheme_pos")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_get_object_rect")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_get_size")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_get_ascent")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_get_descent")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_get_width")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_get_underline_position")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_get_underline_thickness")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_get_dominant_direction_in_range")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_get_carets")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_get_selection")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_hit_test_grapheme")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_hit_test_position")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_draw")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_shaped_text_draw_outline")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_get_grapheme_bounds")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_next_grapheme_pos")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to
-      "_shaped_text_prev_grapheme_pos")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_format_number")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_parse_number")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_percent_sign")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_string_to_upper")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "_string_to_lower")
+      "shaped_text_prev_grapheme_pos")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "format_number")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "parse_number")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "percent_sign")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "strip_diacritics")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "string_to_upper")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTSERVEREXTENSION to "string_to_lower")
 }
 
 private fun registerEngineTypeMethodForTexture(): Unit {
 }
 
 private fun registerEngineTypeMethodForTexture2D(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURE2D to "_get_width")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURE2D to "_get_height")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURE2D to "_is_pixel_opaque")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURE2D to "_has_alpha")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURE2D to "_draw")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURE2D to "_draw_rect")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURE2D to "_draw_rect_region")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURE2D to "get_width")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURE2D to "get_height")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURE2D to "get_size")
@@ -11221,6 +11665,12 @@ private fun registerEngineTypeMethodForTexture2DArray(): Unit {
 }
 
 private fun registerEngineTypeMethodForTexture3D(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURE3D to "_get_format")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURE3D to "_get_width")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURE3D to "_get_height")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURE3D to "_get_depth")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURE3D to "_has_mipmaps")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURE3D to "_get_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURE3D to "get_format")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURE3D to "get_width")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURE3D to "get_height")
@@ -11253,6 +11703,13 @@ private fun registerEngineTypeMethodForTextureButton(): Unit {
 }
 
 private fun registerEngineTypeMethodForTextureLayered(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURELAYERED to "_get_format")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURELAYERED to "_get_layered_type")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURELAYERED to "_get_width")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURELAYERED to "_get_height")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURELAYERED to "_get_layers")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURELAYERED to "_has_mipmaps")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURELAYERED to "_get_layer_data")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURELAYERED to "get_format")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURELAYERED to "get_layered_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTURELAYERED to "get_width")
@@ -11265,6 +11722,10 @@ private fun registerEngineTypeMethodForTextureLayered(): Unit {
 private fun registerEngineTypeMethodForTextureProgressBar(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESSBAR to "set_stretch_margin")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESSBAR to "get_stretch_margin")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESSBAR to "get_fill_mode")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESSBAR to "set_fill_mode")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESSBAR to "get_nine_patch_stretch")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESSBAR to "set_nine_patch_stretch")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESSBAR to "get_under_texture")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESSBAR to "set_under_texture")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESSBAR to "get_over_texture")
@@ -11273,8 +11734,6 @@ private fun registerEngineTypeMethodForTextureProgressBar(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESSBAR to "set_progress_texture")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESSBAR to "get_texture_progress_offset")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESSBAR to "set_texture_progress_offset")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESSBAR to "get_fill_mode")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESSBAR to "set_fill_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESSBAR to "get_tint_under")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESSBAR to "set_tint_under")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESSBAR to "get_tint_over")
@@ -11287,8 +11746,6 @@ private fun registerEngineTypeMethodForTextureProgressBar(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESSBAR to "set_fill_degrees")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESSBAR to "get_radial_center_offset")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESSBAR to "set_radial_center_offset")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESSBAR to "get_nine_patch_stretch")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_TEXTUREPROGRESSBAR to "set_nine_patch_stretch")
 }
 
 private fun registerEngineTypeMethodForTextureRect(): Unit {
@@ -11362,6 +11819,8 @@ private fun registerEngineTypeMethodForTheme(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_THEME to "clear_type_variation")
   TypeManager.engineTypeMethod.add(ENGINECLASS_THEME to "get_type_variation_base")
   TypeManager.engineTypeMethod.add(ENGINECLASS_THEME to "get_type_variation_list")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_THEME to "add_type")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_THEME to "remove_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_THEME to "get_type_list")
   TypeManager.engineTypeMethod.add(ENGINECLASS_THEME to "merge_with")
   TypeManager.engineTypeMethod.add(ENGINECLASS_THEME to "clear")
@@ -11448,6 +11907,7 @@ private fun registerEngineTypeMethodForTileMap(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TILEMAP to "set_layer_z_index")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TILEMAP to "get_layer_z_index")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TILEMAP to "set_cell")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TILEMAP to "erase_cell")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TILEMAP to "get_cell_source_id")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TILEMAP to "get_cell_atlas_coords")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TILEMAP to "get_cell_alternative_tile")
@@ -11728,6 +12188,7 @@ private fun registerEngineTypeMethodForTree(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "get_item_at_position")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "get_column_at_position")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "get_drop_section_at_position")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "get_button_id_at_position")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "ensure_cursor_is_visible")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "set_column_title")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREE to "get_column_title")
@@ -11825,6 +12286,8 @@ private fun registerEngineTypeMethodForTreeItem(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREEITEM to "add_button")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREEITEM to "get_button_count")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREEITEM to "get_button_tooltip")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TREEITEM to "get_button_id")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TREEITEM to "get_button_by_id")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREEITEM to "get_button")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREEITEM to "set_button")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TREEITEM to "erase_button")
@@ -11981,6 +12444,9 @@ private fun registerEngineTypeMethodForUndoRedo(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_UNDOREDO to "undo")
 }
 
+private fun registerEngineTypeMethodForUniformSetCacheRD(): Unit {
+}
+
 private fun registerEngineTypeMethodForVBoxContainer(): Unit {
 }
 
@@ -12054,11 +12520,6 @@ private fun registerEngineTypeMethodForVelocityTracker3D(): Unit {
 private fun registerEngineTypeMethodForVideoStream(): Unit {
 }
 
-private fun registerEngineTypeMethodForVideoStreamGDNative(): Unit {
-  TypeManager.engineTypeMethod.add(ENGINECLASS_VIDEOSTREAMGDNATIVE to "get_file")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_VIDEOSTREAMGDNATIVE to "set_file")
-}
-
 private fun registerEngineTypeMethodForVideoStreamPlayer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIDEOSTREAMPLAYER to "play")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIDEOSTREAMPLAYER to "stop")
@@ -12113,7 +12574,6 @@ private fun registerEngineTypeMethodForViewport(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "set_shadow_atlas_quadrant_subdiv")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "set_input_as_handled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "is_input_handled")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "is_embedding_subwindows")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "find_world_3d")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "get_camera_3d")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "is_3d_disabled")
@@ -12168,8 +12628,8 @@ private fun registerEngineTypeMethodForViewport(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "set_disable_input")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "is_snap_controls_to_pixels_enabled")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "set_snap_controls_to_pixels")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "get_embed_subwindows_hint")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "set_embed_subwindows_hint")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "is_embedding_subwindows")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "set_embedding_subwindows")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "get_sdf_oversize")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "set_sdf_oversize")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VIEWPORT to "get_sdf_scale")
@@ -12219,6 +12679,7 @@ private fun registerEngineTypeMethodForVisibleOnScreenNotifier3D(): Unit {
 }
 
 private fun registerEngineTypeMethodForVisualInstance3D(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALINSTANCE3D to "_get_aabb")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALINSTANCE3D to "set_base")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALINSTANCE3D to "get_base")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALINSTANCE3D to "get_instance")
@@ -12607,6 +13068,9 @@ private fun registerEngineTypeMethodForVisualShader(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADER to "disconnect_nodes")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADER to "connect_nodes_forced")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADER to "get_node_connections")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADER to "add_varying")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADER to "remove_varying")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADER to "has_varying")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADER to "get_graph_offset")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADER to "set_graph_offset")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADER to "get_engine_version")
@@ -12731,8 +13195,10 @@ private fun registerEngineTypeMethodForVisualShaderNodeCustom(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECUSTOM to "_get_output_port_type")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECUSTOM to "_get_output_port_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECUSTOM to "_get_code")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECUSTOM to "_get_func_code")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECUSTOM to "_get_global_code")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECUSTOM to "_is_highend")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODECUSTOM to "_is_available")
 }
 
 private fun registerEngineTypeMethodForVisualShaderNodeDerivativeFunc(): Unit {
@@ -13076,6 +13542,19 @@ private fun registerEngineTypeMethodForVisualShaderNodeUniform(): Unit {
 private fun registerEngineTypeMethodForVisualShaderNodeUniformRef(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEUNIFORMREF to "get_uniform_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEUNIFORMREF to "set_uniform_name")
+}
+
+private fun registerEngineTypeMethodForVisualShaderNodeVarying(): Unit {
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEVARYING to "get_varying_name")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEVARYING to "set_varying_name")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEVARYING to "get_varying_type")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_VISUALSHADERNODEVARYING to "set_varying_type")
+}
+
+private fun registerEngineTypeMethodForVisualShaderNodeVaryingGetter(): Unit {
+}
+
+private fun registerEngineTypeMethodForVisualShaderNodeVaryingSetter(): Unit {
 }
 
 private fun registerEngineTypeMethodForVisualShaderNodeVec2Constant(): Unit {
@@ -13480,8 +13959,6 @@ private fun registerEngineTypeMethodForXRController3D(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_XRCONTROLLER3D to "get_value")
   TypeManager.engineTypeMethod.add(ENGINECLASS_XRCONTROLLER3D to "get_axis")
   TypeManager.engineTypeMethod.add(ENGINECLASS_XRCONTROLLER3D to "get_tracker_hand")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_XRCONTROLLER3D to "get_rumble")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_XRCONTROLLER3D to "set_rumble")
 }
 
 private fun registerEngineTypeMethodForXRInterface(): Unit {
@@ -13585,10 +14062,10 @@ private fun registerEngineTypeMethodForXRPositionalTracker(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_XRPOSITIONALTRACKER to "set_tracker_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_XRPOSITIONALTRACKER to "get_tracker_desc")
   TypeManager.engineTypeMethod.add(ENGINECLASS_XRPOSITIONALTRACKER to "set_tracker_desc")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_XRPOSITIONALTRACKER to "get_tracker_profile")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_XRPOSITIONALTRACKER to "set_tracker_profile")
   TypeManager.engineTypeMethod.add(ENGINECLASS_XRPOSITIONALTRACKER to "get_tracker_hand")
   TypeManager.engineTypeMethod.add(ENGINECLASS_XRPOSITIONALTRACKER to "set_tracker_hand")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_XRPOSITIONALTRACKER to "get_rumble")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_XRPOSITIONALTRACKER to "set_rumble")
 }
 
 private fun registerEngineTypeMethodForPerformance(): Unit {
@@ -13714,6 +14191,7 @@ private fun registerEngineTypeMethodForOS(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_OS to "set_low_processor_usage_mode_sleep_usec")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OS to "get_low_processor_usage_mode_sleep_usec")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OS to "get_processor_count")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_OS to "get_processor_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OS to "get_executable_path")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OS to "execute")
   TypeManager.engineTypeMethod.add(ENGINECLASS_OS to "create_process")
@@ -13789,6 +14267,9 @@ private fun registerEngineTypeMethodForEngine(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_ENGINE to "register_singleton")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ENGINE to "unregister_singleton")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ENGINE to "get_singleton_list")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ENGINE to "register_script_language")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ENGINE to "get_script_language_count")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_ENGINE to "get_script_language")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ENGINE to "is_editor_hint")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ENGINE to "set_print_error_messages")
   TypeManager.engineTypeMethod.add(ENGINECLASS_ENGINE to "is_printing_error_messages")
@@ -13817,7 +14298,6 @@ private fun registerEngineTypeMethodForClassDB(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_CLASSDB to "class_get_enum_list")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CLASSDB to "class_get_enum_constants")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CLASSDB to "class_get_integer_constant_enum")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_CLASSDB to "class_get_category")
   TypeManager.engineTypeMethod.add(ENGINECLASS_CLASSDB to "is_class_enabled")
 }
 
@@ -13894,7 +14374,7 @@ private fun registerEngineTypeMethodForInput(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUT to "get_mouse_button_mask")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUT to "set_mouse_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUT to "get_mouse_mode")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_INPUT to "warp_mouse_position")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_INPUT to "warp_mouse")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUT to "action_press")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUT to "action_release")
   TypeManager.engineTypeMethod.add(ENGINECLASS_INPUT to "set_default_cursor_shape")
@@ -13946,6 +14426,7 @@ private fun registerEngineTypeMethodForTime(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_datetime_string_from_dict")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_unix_time_from_datetime_dict")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_unix_time_from_datetime_string")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_offset_string_from_offset_minutes")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_datetime_dict_from_system")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_date_dict_from_system")
   TypeManager.engineTypeMethod.add(ENGINECLASS_TIME to "get_time_dict_from_system")
@@ -14007,25 +14488,51 @@ private fun registerEngineTypeMethodForDisplayServer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "get_name")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_add_item")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_add_check_item")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_add_icon_item")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_add_icon_check_item")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_add_radio_check_item")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to
+      "global_menu_add_icon_radio_check_item")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_add_multistate_item")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_add_submenu_item")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_add_separator")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to
+      "global_menu_get_item_index_from_text")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to
+      "global_menu_get_item_index_from_tag")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_is_item_checked")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_is_item_checkable")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to
+      "global_menu_is_item_radio_checkable")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_get_item_callback")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_get_item_tag")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_get_item_text")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_get_item_submenu")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_get_item_accelerator")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_is_item_disabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_get_item_tooltip")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_get_item_state")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_get_item_max_states")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_get_item_icon")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_set_item_checked")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_set_item_checkable")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to
+      "global_menu_set_item_radio_checkable")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_set_item_callback")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_set_item_tag")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_set_item_text")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_set_item_submenu")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_set_item_accelerator")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_set_item_disabled")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_set_item_tooltip")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_set_item_state")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_set_item_max_states")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_set_item_icon")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_remove_item")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "global_menu_clear")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "mouse_set_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "mouse_get_mode")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "mouse_warp_to_position")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "warp_mouse")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "mouse_get_position")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "mouse_get_button_state")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "clipboard_set")
@@ -14051,6 +14558,9 @@ private fun registerEngineTypeMethodForDisplayServer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "create_sub_window")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "delete_sub_window")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "window_get_native_handle")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "window_get_active_popup")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "window_set_popup_safe_rect")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "window_get_popup_safe_rect")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "window_set_title")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "window_set_mouse_passthrough")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "window_get_current_screen")
@@ -14079,6 +14589,7 @@ private fun registerEngineTypeMethodForDisplayServer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "window_move_to_foreground")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "window_can_draw")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "window_set_transient")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "window_set_exclusive")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "window_set_ime_active")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "window_set_ime_position")
   TypeManager.engineTypeMethod.add(ENGINECLASS_DISPLAYSERVER to "window_set_vsync_mode")
@@ -14215,10 +14726,10 @@ private fun registerEngineTypeMethodForRenderingServer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "light_set_color")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "light_set_param")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "light_set_shadow")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "light_set_shadow_color")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "light_set_projector")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "light_set_negative")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "light_set_cull_mask")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "light_set_distance_fade")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to
       "light_set_reverse_cull_face_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "light_set_bake_mode")
@@ -14228,7 +14739,7 @@ private fun registerEngineTypeMethodForRenderingServer(): Unit {
       "light_directional_set_shadow_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to
       "light_directional_set_blend_splits")
-  TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "light_directional_set_sky_only")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "light_directional_set_sky_mode")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "light_projectors_set_filter")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "shadows_quality_set")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "directional_shadow_quality_set")
@@ -14585,6 +15096,7 @@ private fun registerEngineTypeMethodForRenderingServer(): Unit {
   TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "canvas_item_add_particles")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "canvas_item_add_set_transform")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "canvas_item_add_clip_ignore")
+  TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "canvas_item_add_animation_slice")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to
       "canvas_item_set_sort_children_by_y")
   TypeManager.engineTypeMethod.add(ENGINECLASS_RENDERINGSERVER to "canvas_item_set_z_index")
@@ -15087,819 +15599,834 @@ private fun registerEngineTypeMethodForCameraServer(): Unit {
 }
 
 public fun registerEngineTypes(): Unit {
-  TypeManager.registerEngineType("AESContext") { AESContext }
-  TypeManager.registerEngineType("AStar") { AStar }
-  TypeManager.registerEngineType("AStar2D") { AStar2D }
-  TypeManager.registerEngineType("AcceptDialog") { AcceptDialog }
-  TypeManager.registerEngineType("AnimatableBody2D") { AnimatableBody2D }
-  TypeManager.registerEngineType("AnimatableBody3D") { AnimatableBody3D }
-  TypeManager.registerEngineType("AnimatedSprite2D") { AnimatedSprite2D }
-  TypeManager.registerEngineType("AnimatedSprite3D") { AnimatedSprite3D }
-  TypeManager.registerEngineType("AnimatedTexture") { AnimatedTexture }
-  TypeManager.registerEngineType("Animation") { Animation }
-  TypeManager.registerEngineType("AnimationNode") { AnimationNode }
-  TypeManager.registerEngineType("AnimationNodeAdd2") { AnimationNodeAdd2 }
-  TypeManager.registerEngineType("AnimationNodeAdd3") { AnimationNodeAdd3 }
-  TypeManager.registerEngineType("AnimationNodeAnimation") { AnimationNodeAnimation }
-  TypeManager.registerEngineType("AnimationNodeBlend2") { AnimationNodeBlend2 }
-  TypeManager.registerEngineType("AnimationNodeBlend3") { AnimationNodeBlend3 }
-  TypeManager.registerEngineType("AnimationNodeBlendSpace1D") { AnimationNodeBlendSpace1D }
-  TypeManager.registerEngineType("AnimationNodeBlendSpace2D") { AnimationNodeBlendSpace2D }
-  TypeManager.registerEngineType("AnimationNodeBlendTree") { AnimationNodeBlendTree }
-  TypeManager.registerEngineType("AnimationNodeOneShot") { AnimationNodeOneShot }
-  TypeManager.registerEngineType("AnimationNodeOutput") { AnimationNodeOutput }
-  TypeManager.registerEngineType("AnimationNodeStateMachine") { AnimationNodeStateMachine }
-  TypeManager.registerEngineType("AnimationNodeStateMachinePlayback") {
-      AnimationNodeStateMachinePlayback }
-  TypeManager.registerEngineType("AnimationNodeStateMachineTransition") {
-      AnimationNodeStateMachineTransition }
-  TypeManager.registerEngineType("AnimationNodeTimeScale") { AnimationNodeTimeScale }
-  TypeManager.registerEngineType("AnimationNodeTimeSeek") { AnimationNodeTimeSeek }
-  TypeManager.registerEngineType("AnimationNodeTransition") { AnimationNodeTransition }
-  TypeManager.registerEngineType("AnimationPlayer") { AnimationPlayer }
-  TypeManager.registerEngineType("AnimationRootNode") { AnimationRootNode }
-  TypeManager.registerEngineType("AnimationTrackEditPlugin") { AnimationTrackEditPlugin }
-  TypeManager.registerEngineType("AnimationTree") { AnimationTree }
-  TypeManager.registerEngineType("Area2D") { Area2D }
-  TypeManager.registerEngineType("Area3D") { Area3D }
-  TypeManager.registerEngineType("ArrayMesh") { ArrayMesh }
-  TypeManager.registerEngineType("AspectRatioContainer") { AspectRatioContainer }
-  TypeManager.registerEngineType("AtlasTexture") { AtlasTexture }
-  TypeManager.registerEngineType("AudioBusLayout") { AudioBusLayout }
-  TypeManager.registerEngineType("AudioEffect") { AudioEffect }
-  TypeManager.registerEngineType("AudioEffectAmplify") { AudioEffectAmplify }
-  TypeManager.registerEngineType("AudioEffectBandLimitFilter") { AudioEffectBandLimitFilter }
-  TypeManager.registerEngineType("AudioEffectBandPassFilter") { AudioEffectBandPassFilter }
-  TypeManager.registerEngineType("AudioEffectCapture") { AudioEffectCapture }
-  TypeManager.registerEngineType("AudioEffectChorus") { AudioEffectChorus }
-  TypeManager.registerEngineType("AudioEffectCompressor") { AudioEffectCompressor }
-  TypeManager.registerEngineType("AudioEffectDelay") { AudioEffectDelay }
-  TypeManager.registerEngineType("AudioEffectDistortion") { AudioEffectDistortion }
-  TypeManager.registerEngineType("AudioEffectEQ") { AudioEffectEQ }
-  TypeManager.registerEngineType("AudioEffectEQ10") { AudioEffectEQ10 }
-  TypeManager.registerEngineType("AudioEffectEQ21") { AudioEffectEQ21 }
-  TypeManager.registerEngineType("AudioEffectEQ6") { AudioEffectEQ6 }
-  TypeManager.registerEngineType("AudioEffectFilter") { AudioEffectFilter }
-  TypeManager.registerEngineType("AudioEffectHighPassFilter") { AudioEffectHighPassFilter }
-  TypeManager.registerEngineType("AudioEffectHighShelfFilter") { AudioEffectHighShelfFilter }
-  TypeManager.registerEngineType("AudioEffectInstance") { AudioEffectInstance }
-  TypeManager.registerEngineType("AudioEffectLimiter") { AudioEffectLimiter }
-  TypeManager.registerEngineType("AudioEffectLowPassFilter") { AudioEffectLowPassFilter }
-  TypeManager.registerEngineType("AudioEffectLowShelfFilter") { AudioEffectLowShelfFilter }
-  TypeManager.registerEngineType("AudioEffectNotchFilter") { AudioEffectNotchFilter }
-  TypeManager.registerEngineType("AudioEffectPanner") { AudioEffectPanner }
-  TypeManager.registerEngineType("AudioEffectPhaser") { AudioEffectPhaser }
-  TypeManager.registerEngineType("AudioEffectPitchShift") { AudioEffectPitchShift }
-  TypeManager.registerEngineType("AudioEffectRecord") { AudioEffectRecord }
-  TypeManager.registerEngineType("AudioEffectReverb") { AudioEffectReverb }
-  TypeManager.registerEngineType("AudioEffectSpectrumAnalyzer") { AudioEffectSpectrumAnalyzer }
-  TypeManager.registerEngineType("AudioEffectSpectrumAnalyzerInstance") {
-      AudioEffectSpectrumAnalyzerInstance }
-  TypeManager.registerEngineType("AudioEffectStereoEnhance") { AudioEffectStereoEnhance }
-  TypeManager.registerEngineType("AudioListener2D") { AudioListener2D }
-  TypeManager.registerEngineType("AudioListener3D") { AudioListener3D }
-  TypeManager.registerEngineType("AudioStream") { AudioStream }
-  TypeManager.registerEngineType("AudioStreamGenerator") { AudioStreamGenerator }
-  TypeManager.registerEngineType("AudioStreamGeneratorPlayback") { AudioStreamGeneratorPlayback }
-  TypeManager.registerEngineType("AudioStreamMP3") { AudioStreamMP3 }
-  TypeManager.registerEngineType("AudioStreamMicrophone") { AudioStreamMicrophone }
-  TypeManager.registerEngineType("AudioStreamOGGVorbis") { AudioStreamOGGVorbis }
-  TypeManager.registerEngineType("AudioStreamPlayback") { AudioStreamPlayback }
-  TypeManager.registerEngineType("AudioStreamPlaybackOGGVorbis") { AudioStreamPlaybackOGGVorbis }
-  TypeManager.registerEngineType("AudioStreamPlaybackResampled") { AudioStreamPlaybackResampled }
-  TypeManager.registerEngineType("AudioStreamPlayer") { AudioStreamPlayer }
-  TypeManager.registerEngineType("AudioStreamPlayer2D") { AudioStreamPlayer2D }
-  TypeManager.registerEngineType("AudioStreamPlayer3D") { AudioStreamPlayer3D }
-  TypeManager.registerEngineType("AudioStreamRandomPitch") { AudioStreamRandomPitch }
-  TypeManager.registerEngineType("AudioStreamSample") { AudioStreamSample }
-  TypeManager.registerEngineType("BackBufferCopy") { BackBufferCopy }
-  TypeManager.registerEngineType("BaseButton") { BaseButton }
-  TypeManager.registerEngineType("BaseMaterial3D") { BaseMaterial3D }
-  TypeManager.registerEngineType("BitMap") { BitMap }
-  TypeManager.registerEngineType("Bone2D") { Bone2D }
-  TypeManager.registerEngineType("BoneAttachment3D") { BoneAttachment3D }
-  TypeManager.registerEngineType("BoxContainer") { BoxContainer }
-  TypeManager.registerEngineType("BoxMesh") { BoxMesh }
-  TypeManager.registerEngineType("BoxShape3D") { BoxShape3D }
-  TypeManager.registerEngineType("Button") { Button }
-  TypeManager.registerEngineType("ButtonGroup") { ButtonGroup }
-  TypeManager.registerEngineType("CPUParticles2D") { CPUParticles2D }
-  TypeManager.registerEngineType("CPUParticles3D") { CPUParticles3D }
-  TypeManager.registerEngineType("CSGBox3D") { CSGBox3D }
-  TypeManager.registerEngineType("CSGCombiner3D") { CSGCombiner3D }
-  TypeManager.registerEngineType("CSGCylinder3D") { CSGCylinder3D }
-  TypeManager.registerEngineType("CSGMesh3D") { CSGMesh3D }
-  TypeManager.registerEngineType("CSGPolygon3D") { CSGPolygon3D }
-  TypeManager.registerEngineType("CSGPrimitive3D") { CSGPrimitive3D }
-  TypeManager.registerEngineType("CSGShape3D") { CSGShape3D }
-  TypeManager.registerEngineType("CSGSphere3D") { CSGSphere3D }
-  TypeManager.registerEngineType("CSGTorus3D") { CSGTorus3D }
-  TypeManager.registerEngineType("CallbackTweener") { CallbackTweener }
-  TypeManager.registerEngineType("Camera2D") { Camera2D }
-  TypeManager.registerEngineType("Camera3D") { Camera3D }
-  TypeManager.registerEngineType("CameraEffects") { CameraEffects }
-  TypeManager.registerEngineType("CameraFeed") { CameraFeed }
-  TypeManager.registerEngineType("CameraTexture") { CameraTexture }
-  TypeManager.registerEngineType("CanvasGroup") { CanvasGroup }
-  TypeManager.registerEngineType("CanvasItem") { CanvasItem }
-  TypeManager.registerEngineType("CanvasItemMaterial") { CanvasItemMaterial }
-  TypeManager.registerEngineType("CanvasLayer") { CanvasLayer }
-  TypeManager.registerEngineType("CanvasModulate") { CanvasModulate }
-  TypeManager.registerEngineType("CanvasTexture") { CanvasTexture }
-  TypeManager.registerEngineType("CapsuleMesh") { CapsuleMesh }
-  TypeManager.registerEngineType("CapsuleShape2D") { CapsuleShape2D }
-  TypeManager.registerEngineType("CapsuleShape3D") { CapsuleShape3D }
-  TypeManager.registerEngineType("CenterContainer") { CenterContainer }
-  TypeManager.registerEngineType("CharFXTransform") { CharFXTransform }
-  TypeManager.registerEngineType("CharacterBody2D") { CharacterBody2D }
-  TypeManager.registerEngineType("CharacterBody3D") { CharacterBody3D }
-  TypeManager.registerEngineType("CheckBox") { CheckBox }
-  TypeManager.registerEngineType("CheckButton") { CheckButton }
-  TypeManager.registerEngineType("CircleShape2D") { CircleShape2D }
-  TypeManager.registerEngineType("CodeEdit") { CodeEdit }
-  TypeManager.registerEngineType("CodeHighlighter") { CodeHighlighter }
-  TypeManager.registerEngineType("CollisionObject2D") { CollisionObject2D }
-  TypeManager.registerEngineType("CollisionObject3D") { CollisionObject3D }
-  TypeManager.registerEngineType("CollisionPolygon2D") { CollisionPolygon2D }
-  TypeManager.registerEngineType("CollisionPolygon3D") { CollisionPolygon3D }
-  TypeManager.registerEngineType("CollisionShape2D") { CollisionShape2D }
-  TypeManager.registerEngineType("CollisionShape3D") { CollisionShape3D }
-  TypeManager.registerEngineType("ColorPicker") { ColorPicker }
-  TypeManager.registerEngineType("ColorPickerButton") { ColorPickerButton }
-  TypeManager.registerEngineType("ColorRect") { ColorRect }
-  TypeManager.registerEngineType("ConcavePolygonShape2D") { ConcavePolygonShape2D }
-  TypeManager.registerEngineType("ConcavePolygonShape3D") { ConcavePolygonShape3D }
-  TypeManager.registerEngineType("ConeTwistJoint3D") { ConeTwistJoint3D }
-  TypeManager.registerEngineType("ConfigFile") { ConfigFile }
-  TypeManager.registerEngineType("ConfirmationDialog") { ConfirmationDialog }
-  TypeManager.registerEngineType("Container") { Container }
-  TypeManager.registerEngineType("Control") { Control }
-  TypeManager.registerEngineType("ConvexPolygonShape2D") { ConvexPolygonShape2D }
-  TypeManager.registerEngineType("ConvexPolygonShape3D") { ConvexPolygonShape3D }
-  TypeManager.registerEngineType("Crypto") { Crypto }
-  TypeManager.registerEngineType("CryptoKey") { CryptoKey }
-  TypeManager.registerEngineType("Cubemap") { Cubemap }
-  TypeManager.registerEngineType("CubemapArray") { CubemapArray }
-  TypeManager.registerEngineType("Curve") { Curve }
-  TypeManager.registerEngineType("Curve2D") { Curve2D }
-  TypeManager.registerEngineType("Curve3D") { Curve3D }
-  TypeManager.registerEngineType("CurveTexture") { CurveTexture }
-  TypeManager.registerEngineType("CurveXYZTexture") { CurveXYZTexture }
-  TypeManager.registerEngineType("CylinderMesh") { CylinderMesh }
-  TypeManager.registerEngineType("CylinderShape3D") { CylinderShape3D }
-  TypeManager.registerEngineType("DTLSServer") { DTLSServer }
-  TypeManager.registerEngineType("DampedSpringJoint2D") { DampedSpringJoint2D }
-  TypeManager.registerEngineType("Decal") { Decal }
-  TypeManager.registerEngineType("DirectionalLight2D") { DirectionalLight2D }
-  TypeManager.registerEngineType("DirectionalLight3D") { DirectionalLight3D }
-  TypeManager.registerEngineType("Directory") { Directory }
-  TypeManager.registerEngineType("ENetConnection") { ENetConnection }
-  TypeManager.registerEngineType("ENetMultiplayerPeer") { ENetMultiplayerPeer }
-  TypeManager.registerEngineType("ENetPacketPeer") { ENetPacketPeer }
-  TypeManager.registerEngineType("EditorCommandPalette") { EditorCommandPalette }
-  TypeManager.registerEngineType("EditorDebuggerPlugin") { EditorDebuggerPlugin }
-  TypeManager.registerEngineType("EditorExportPlugin") { EditorExportPlugin }
-  TypeManager.registerEngineType("EditorFeatureProfile") { EditorFeatureProfile }
-  TypeManager.registerEngineType("EditorFileDialog") { EditorFileDialog }
-  TypeManager.registerEngineType("EditorFileSystem") { EditorFileSystem }
-  TypeManager.registerEngineType("EditorFileSystemDirectory") { EditorFileSystemDirectory }
-  TypeManager.registerEngineType("EditorImportPlugin") { EditorImportPlugin }
-  TypeManager.registerEngineType("EditorInspector") { EditorInspector }
-  TypeManager.registerEngineType("EditorInspectorPlugin") { EditorInspectorPlugin }
-  TypeManager.registerEngineType("EditorInterface") { EditorInterface }
-  TypeManager.registerEngineType("EditorNode3DGizmo") { EditorNode3DGizmo }
-  TypeManager.registerEngineType("EditorNode3DGizmoPlugin") { EditorNode3DGizmoPlugin }
-  TypeManager.registerEngineType("EditorPaths") { EditorPaths }
-  TypeManager.registerEngineType("EditorPlugin") { EditorPlugin }
-  TypeManager.registerEngineType("EditorProperty") { EditorProperty }
-  TypeManager.registerEngineType("EditorResourceConversionPlugin") { EditorResourceConversionPlugin
-      }
-  TypeManager.registerEngineType("EditorResourcePicker") { EditorResourcePicker }
-  TypeManager.registerEngineType("EditorResourcePreview") { EditorResourcePreview }
-  TypeManager.registerEngineType("EditorResourcePreviewGenerator") { EditorResourcePreviewGenerator
-      }
-  TypeManager.registerEngineType("EditorSceneFormatImporter") { EditorSceneFormatImporter }
-  TypeManager.registerEngineType("EditorSceneFormatImporterFBX") { EditorSceneFormatImporterFBX }
-  TypeManager.registerEngineType("EditorSceneFormatImporterGLTF") { EditorSceneFormatImporterGLTF }
-  TypeManager.registerEngineType("EditorScenePostImport") { EditorScenePostImport }
-  TypeManager.registerEngineType("EditorScenePostImportPlugin") { EditorScenePostImportPlugin }
-  TypeManager.registerEngineType("EditorScript") { EditorScript }
-  TypeManager.registerEngineType("EditorScriptPicker") { EditorScriptPicker }
-  TypeManager.registerEngineType("EditorSelection") { EditorSelection }
-  TypeManager.registerEngineType("EditorSettings") { EditorSettings }
-  TypeManager.registerEngineType("EditorSpinSlider") { EditorSpinSlider }
-  TypeManager.registerEngineType("EditorSyntaxHighlighter") { EditorSyntaxHighlighter }
-  TypeManager.registerEngineType("EditorTranslationParserPlugin") { EditorTranslationParserPlugin }
-  TypeManager.registerEngineType("EditorVCSInterface") { EditorVCSInterface }
-  TypeManager.registerEngineType("EncodedObjectAsID") { EncodedObjectAsID }
-  TypeManager.registerEngineType("Environment") { Environment }
-  TypeManager.registerEngineType("Expression") { Expression }
-  TypeManager.registerEngineType("File") { File }
-  TypeManager.registerEngineType("FileDialog") { FileDialog }
-  TypeManager.registerEngineType("FileSystemDock") { FileSystemDock }
-  TypeManager.registerEngineType("FlowContainer") { FlowContainer }
-  TypeManager.registerEngineType("FogMaterial") { FogMaterial }
-  TypeManager.registerEngineType("FogVolume") { FogVolume }
-  TypeManager.registerEngineType("Font") { Font }
-  TypeManager.registerEngineType("FontData") { FontData }
-  TypeManager.registerEngineType("GDNative") { GDNative }
-  TypeManager.registerEngineType("GDNativeLibrary") { GDNativeLibrary }
-  TypeManager.registerEngineType("GDScript") { GDScript }
-  TypeManager.registerEngineType("GDScriptEditorTranslationParserPlugin") {
-      GDScriptEditorTranslationParserPlugin }
-  TypeManager.registerEngineType("GDScriptNativeClass") { GDScriptNativeClass }
-  TypeManager.registerEngineType("GLTFAccessor") { GLTFAccessor }
-  TypeManager.registerEngineType("GLTFAnimation") { GLTFAnimation }
-  TypeManager.registerEngineType("GLTFBufferView") { GLTFBufferView }
-  TypeManager.registerEngineType("GLTFCamera") { GLTFCamera }
-  TypeManager.registerEngineType("GLTFDocument") { GLTFDocument }
-  TypeManager.registerEngineType("GLTFDocumentExtension") { GLTFDocumentExtension }
-  TypeManager.registerEngineType("GLTFDocumentExtensionConvertImporterMesh") {
-      GLTFDocumentExtensionConvertImporterMesh }
-  TypeManager.registerEngineType("GLTFLight") { GLTFLight }
-  TypeManager.registerEngineType("GLTFMesh") { GLTFMesh }
-  TypeManager.registerEngineType("GLTFNode") { GLTFNode }
-  TypeManager.registerEngineType("GLTFSkeleton") { GLTFSkeleton }
-  TypeManager.registerEngineType("GLTFSkin") { GLTFSkin }
-  TypeManager.registerEngineType("GLTFSpecGloss") { GLTFSpecGloss }
-  TypeManager.registerEngineType("GLTFState") { GLTFState }
-  TypeManager.registerEngineType("GLTFTexture") { GLTFTexture }
-  TypeManager.registerEngineType("GPUParticles2D") { GPUParticles2D }
-  TypeManager.registerEngineType("GPUParticles3D") { GPUParticles3D }
-  TypeManager.registerEngineType("GPUParticlesAttractor3D") { GPUParticlesAttractor3D }
-  TypeManager.registerEngineType("GPUParticlesAttractorBox3D") { GPUParticlesAttractorBox3D }
-  TypeManager.registerEngineType("GPUParticlesAttractorSphere3D") { GPUParticlesAttractorSphere3D }
-  TypeManager.registerEngineType("GPUParticlesAttractorVectorField3D") {
-      GPUParticlesAttractorVectorField3D }
-  TypeManager.registerEngineType("GPUParticlesCollision3D") { GPUParticlesCollision3D }
-  TypeManager.registerEngineType("GPUParticlesCollisionBox3D") { GPUParticlesCollisionBox3D }
-  TypeManager.registerEngineType("GPUParticlesCollisionHeightField3D") {
-      GPUParticlesCollisionHeightField3D }
-  TypeManager.registerEngineType("GPUParticlesCollisionSDF3D") { GPUParticlesCollisionSDF3D }
-  TypeManager.registerEngineType("GPUParticlesCollisionSphere3D") { GPUParticlesCollisionSphere3D }
-  TypeManager.registerEngineType("Generic6DOFJoint3D") { Generic6DOFJoint3D }
-  TypeManager.registerEngineType("GeometryInstance3D") { GeometryInstance3D }
-  TypeManager.registerEngineType("Gradient") { Gradient }
-  TypeManager.registerEngineType("GradientTexture1D") { GradientTexture1D }
-  TypeManager.registerEngineType("GradientTexture2D") { GradientTexture2D }
-  TypeManager.registerEngineType("GraphEdit") { GraphEdit }
-  TypeManager.registerEngineType("GraphNode") { GraphNode }
-  TypeManager.registerEngineType("GridContainer") { GridContainer }
-  TypeManager.registerEngineType("GridMap") { GridMap }
-  TypeManager.registerEngineType("GrooveJoint2D") { GrooveJoint2D }
-  TypeManager.registerEngineType("HBoxContainer") { HBoxContainer }
-  TypeManager.registerEngineType("HFlowContainer") { HFlowContainer }
-  TypeManager.registerEngineType("HMACContext") { HMACContext }
-  TypeManager.registerEngineType("HScrollBar") { HScrollBar }
-  TypeManager.registerEngineType("HSeparator") { HSeparator }
-  TypeManager.registerEngineType("HSlider") { HSlider }
-  TypeManager.registerEngineType("HSplitContainer") { HSplitContainer }
-  TypeManager.registerEngineType("HTTPClient") { HTTPClient }
-  TypeManager.registerEngineType("HTTPRequest") { HTTPRequest }
-  TypeManager.registerEngineType("HashingContext") { HashingContext }
-  TypeManager.registerEngineType("HeightMapShape3D") { HeightMapShape3D }
-  TypeManager.registerEngineType("HingeJoint3D") { HingeJoint3D }
-  TypeManager.registerEngineType("Image") { Image }
-  TypeManager.registerEngineType("ImageTexture") { ImageTexture }
-  TypeManager.registerEngineType("ImageTexture3D") { ImageTexture3D }
-  TypeManager.registerEngineType("ImageTextureLayered") { ImageTextureLayered }
-  TypeManager.registerEngineType("ImmediateMesh") { ImmediateMesh }
-  TypeManager.registerEngineType("ImporterMesh") { ImporterMesh }
-  TypeManager.registerEngineType("ImporterMeshInstance3D") { ImporterMeshInstance3D }
-  TypeManager.registerEngineType("InputEvent") { InputEvent }
-  TypeManager.registerEngineType("InputEventAction") { InputEventAction }
-  TypeManager.registerEngineType("InputEventFromWindow") { InputEventFromWindow }
-  TypeManager.registerEngineType("InputEventGesture") { InputEventGesture }
-  TypeManager.registerEngineType("InputEventJoypadButton") { InputEventJoypadButton }
-  TypeManager.registerEngineType("InputEventJoypadMotion") { InputEventJoypadMotion }
-  TypeManager.registerEngineType("InputEventKey") { InputEventKey }
-  TypeManager.registerEngineType("InputEventMIDI") { InputEventMIDI }
-  TypeManager.registerEngineType("InputEventMagnifyGesture") { InputEventMagnifyGesture }
-  TypeManager.registerEngineType("InputEventMouse") { InputEventMouse }
-  TypeManager.registerEngineType("InputEventMouseButton") { InputEventMouseButton }
-  TypeManager.registerEngineType("InputEventMouseMotion") { InputEventMouseMotion }
-  TypeManager.registerEngineType("InputEventPanGesture") { InputEventPanGesture }
-  TypeManager.registerEngineType("InputEventScreenDrag") { InputEventScreenDrag }
-  TypeManager.registerEngineType("InputEventScreenTouch") { InputEventScreenTouch }
-  TypeManager.registerEngineType("InputEventShortcut") { InputEventShortcut }
-  TypeManager.registerEngineType("InputEventWithModifiers") { InputEventWithModifiers }
-  TypeManager.registerEngineType("InstancePlaceholder") { InstancePlaceholder }
-  TypeManager.registerEngineType("IntervalTweener") { IntervalTweener }
-  TypeManager.registerEngineType("ItemList") { ItemList }
-  TypeManager.registerEngineType("JNISingleton") { JNISingleton }
-  TypeManager.registerEngineType("JSON") { JSON }
-  TypeManager.registerEngineType("JSONRPC") { JSONRPC }
-  TypeManager.registerEngineType("JavaClass") { JavaClass }
-  TypeManager.registerEngineType("JavaScriptObject") { JavaScriptObject }
-  TypeManager.registerEngineType("Joint2D") { Joint2D }
-  TypeManager.registerEngineType("Joint3D") { Joint3D }
-  TypeManager.registerEngineType("KinematicCollision2D") { KinematicCollision2D }
-  TypeManager.registerEngineType("KinematicCollision3D") { KinematicCollision3D }
-  TypeManager.registerEngineType("Label") { Label }
-  TypeManager.registerEngineType("Light2D") { Light2D }
-  TypeManager.registerEngineType("Light3D") { Light3D }
-  TypeManager.registerEngineType("LightOccluder2D") { LightOccluder2D }
-  TypeManager.registerEngineType("LightmapGI") { LightmapGI }
-  TypeManager.registerEngineType("LightmapGIData") { LightmapGIData }
-  TypeManager.registerEngineType("LightmapProbe") { LightmapProbe }
-  TypeManager.registerEngineType("Lightmapper") { Lightmapper }
-  TypeManager.registerEngineType("LightmapperRD") { LightmapperRD }
-  TypeManager.registerEngineType("Line2D") { Line2D }
-  TypeManager.registerEngineType("LineEdit") { LineEdit }
-  TypeManager.registerEngineType("LinkButton") { LinkButton }
-  TypeManager.registerEngineType("MainLoop") { MainLoop }
-  TypeManager.registerEngineType("MarginContainer") { MarginContainer }
-  TypeManager.registerEngineType("Material") { Material }
-  TypeManager.registerEngineType("MenuButton") { MenuButton }
-  TypeManager.registerEngineType("Mesh") { Mesh }
-  TypeManager.registerEngineType("MeshDataTool") { MeshDataTool }
-  TypeManager.registerEngineType("MeshInstance2D") { MeshInstance2D }
-  TypeManager.registerEngineType("MeshInstance3D") { MeshInstance3D }
-  TypeManager.registerEngineType("MeshLibrary") { MeshLibrary }
-  TypeManager.registerEngineType("MeshTexture") { MeshTexture }
-  TypeManager.registerEngineType("MethodTweener") { MethodTweener }
-  TypeManager.registerEngineType("MobileVRInterface") { MobileVRInterface }
-  TypeManager.registerEngineType("MultiMesh") { MultiMesh }
-  TypeManager.registerEngineType("MultiMeshInstance2D") { MultiMeshInstance2D }
-  TypeManager.registerEngineType("MultiMeshInstance3D") { MultiMeshInstance3D }
-  TypeManager.registerEngineType("MultiplayerAPI") { MultiplayerAPI }
-  TypeManager.registerEngineType("MultiplayerPeer") { MultiplayerPeer }
-  TypeManager.registerEngineType("MultiplayerPeerExtension") { MultiplayerPeerExtension }
-  TypeManager.registerEngineType("MultiplayerSpawner") { MultiplayerSpawner }
-  TypeManager.registerEngineType("MultiplayerSynchronizer") { MultiplayerSynchronizer }
-  TypeManager.registerEngineType("Mutex") { Mutex }
-  TypeManager.registerEngineType("NativeExtension") { NativeExtension }
-  TypeManager.registerEngineType("NativeScript") { NativeScript }
-  TypeManager.registerEngineType("NavigationAgent2D") { NavigationAgent2D }
-  TypeManager.registerEngineType("NavigationAgent3D") { NavigationAgent3D }
-  TypeManager.registerEngineType("NavigationMesh") { NavigationMesh }
-  TypeManager.registerEngineType("NavigationObstacle2D") { NavigationObstacle2D }
-  TypeManager.registerEngineType("NavigationObstacle3D") { NavigationObstacle3D }
-  TypeManager.registerEngineType("NavigationPolygon") { NavigationPolygon }
-  TypeManager.registerEngineType("NavigationRegion2D") { NavigationRegion2D }
-  TypeManager.registerEngineType("NavigationRegion3D") { NavigationRegion3D }
-  TypeManager.registerEngineType("NinePatchRect") { NinePatchRect }
-  TypeManager.registerEngineType("Node") { Node }
-  TypeManager.registerEngineType("Node2D") { Node2D }
-  TypeManager.registerEngineType("Node3D") { Node3D }
-  TypeManager.registerEngineType("Node3DGizmo") { Node3DGizmo }
-  TypeManager.registerEngineType("NoiseTexture") { NoiseTexture }
-  TypeManager.registerEngineType("OGGPacketSequence") { OGGPacketSequence }
-  TypeManager.registerEngineType("OGGPacketSequencePlayback") { OGGPacketSequencePlayback }
-  TypeManager.registerEngineType("ORMMaterial3D") { ORMMaterial3D }
-  TypeManager.registerEngineType("Object") { Object }
-  TypeManager.registerEngineType("Occluder3D") { Occluder3D }
-  TypeManager.registerEngineType("OccluderInstance3D") { OccluderInstance3D }
-  TypeManager.registerEngineType("OccluderPolygon2D") { OccluderPolygon2D }
-  TypeManager.registerEngineType("OmniLight3D") { OmniLight3D }
-  TypeManager.registerEngineType("OpenSimplexNoise") { OpenSimplexNoise }
-  TypeManager.registerEngineType("OptimizedTranslation") { OptimizedTranslation }
-  TypeManager.registerEngineType("OptionButton") { OptionButton }
-  TypeManager.registerEngineType("PCKPacker") { PCKPacker }
-  TypeManager.registerEngineType("PackedDataContainer") { PackedDataContainer }
-  TypeManager.registerEngineType("PackedDataContainerRef") { PackedDataContainerRef }
-  TypeManager.registerEngineType("PackedScene") { PackedScene }
-  TypeManager.registerEngineType("PacketPeer") { PacketPeer }
-  TypeManager.registerEngineType("PacketPeerDTLS") { PacketPeerDTLS }
-  TypeManager.registerEngineType("PacketPeerExtension") { PacketPeerExtension }
-  TypeManager.registerEngineType("PacketPeerStream") { PacketPeerStream }
-  TypeManager.registerEngineType("PacketPeerUDP") { PacketPeerUDP }
-  TypeManager.registerEngineType("Panel") { Panel }
-  TypeManager.registerEngineType("PanelContainer") { PanelContainer }
-  TypeManager.registerEngineType("PanoramaSkyMaterial") { PanoramaSkyMaterial }
-  TypeManager.registerEngineType("ParallaxBackground") { ParallaxBackground }
-  TypeManager.registerEngineType("ParallaxLayer") { ParallaxLayer }
-  TypeManager.registerEngineType("ParticlesMaterial") { ParticlesMaterial }
-  TypeManager.registerEngineType("Path2D") { Path2D }
-  TypeManager.registerEngineType("Path3D") { Path3D }
-  TypeManager.registerEngineType("PathFollow2D") { PathFollow2D }
-  TypeManager.registerEngineType("PathFollow3D") { PathFollow3D }
-  TypeManager.registerEngineType("PhysicalBone2D") { PhysicalBone2D }
-  TypeManager.registerEngineType("PhysicalBone3D") { PhysicalBone3D }
-  TypeManager.registerEngineType("PhysicalSkyMaterial") { PhysicalSkyMaterial }
-  TypeManager.registerEngineType("PhysicsBody2D") { PhysicsBody2D }
-  TypeManager.registerEngineType("PhysicsBody3D") { PhysicsBody3D }
-  TypeManager.registerEngineType("PhysicsDirectBodyState2D") { PhysicsDirectBodyState2D }
-  TypeManager.registerEngineType("PhysicsDirectBodyState3D") { PhysicsDirectBodyState3D }
-  TypeManager.registerEngineType("PhysicsDirectSpaceState2D") { PhysicsDirectSpaceState2D }
-  TypeManager.registerEngineType("PhysicsDirectSpaceState3D") { PhysicsDirectSpaceState3D }
-  TypeManager.registerEngineType("PhysicsMaterial") { PhysicsMaterial }
-  TypeManager.registerEngineType("PhysicsPointQueryParameters2D") { PhysicsPointQueryParameters2D }
-  TypeManager.registerEngineType("PhysicsPointQueryParameters3D") { PhysicsPointQueryParameters3D }
-  TypeManager.registerEngineType("PhysicsRayQueryParameters2D") { PhysicsRayQueryParameters2D }
-  TypeManager.registerEngineType("PhysicsRayQueryParameters3D") { PhysicsRayQueryParameters3D }
-  TypeManager.registerEngineType("PhysicsShapeQueryParameters2D") { PhysicsShapeQueryParameters2D }
-  TypeManager.registerEngineType("PhysicsShapeQueryParameters3D") { PhysicsShapeQueryParameters3D }
-  TypeManager.registerEngineType("PhysicsTestMotionParameters2D") { PhysicsTestMotionParameters2D }
-  TypeManager.registerEngineType("PhysicsTestMotionParameters3D") { PhysicsTestMotionParameters3D }
-  TypeManager.registerEngineType("PhysicsTestMotionResult2D") { PhysicsTestMotionResult2D }
-  TypeManager.registerEngineType("PhysicsTestMotionResult3D") { PhysicsTestMotionResult3D }
-  TypeManager.registerEngineType("PinJoint2D") { PinJoint2D }
-  TypeManager.registerEngineType("PinJoint3D") { PinJoint3D }
-  TypeManager.registerEngineType("PlaneMesh") { PlaneMesh }
-  TypeManager.registerEngineType("PluginScript") { PluginScript }
-  TypeManager.registerEngineType("PointLight2D") { PointLight2D }
-  TypeManager.registerEngineType("PointMesh") { PointMesh }
-  TypeManager.registerEngineType("Polygon2D") { Polygon2D }
-  TypeManager.registerEngineType("PolygonPathFinder") { PolygonPathFinder }
-  TypeManager.registerEngineType("Popup") { Popup }
-  TypeManager.registerEngineType("PopupMenu") { PopupMenu }
-  TypeManager.registerEngineType("PopupPanel") { PopupPanel }
-  TypeManager.registerEngineType("Position2D") { Position2D }
-  TypeManager.registerEngineType("Position3D") { Position3D }
-  TypeManager.registerEngineType("PrimitiveMesh") { PrimitiveMesh }
-  TypeManager.registerEngineType("PrismMesh") { PrismMesh }
-  TypeManager.registerEngineType("ProceduralSkyMaterial") { ProceduralSkyMaterial }
-  TypeManager.registerEngineType("ProgressBar") { ProgressBar }
-  TypeManager.registerEngineType("PropertyTweener") { PropertyTweener }
-  TypeManager.registerEngineType("ProxyTexture") { ProxyTexture }
-  TypeManager.registerEngineType("QuadMesh") { QuadMesh }
-  TypeManager.registerEngineType("RDAttachmentFormat") { RDAttachmentFormat }
-  TypeManager.registerEngineType("RDFramebufferPass") { RDFramebufferPass }
-  TypeManager.registerEngineType("RDPipelineColorBlendState") { RDPipelineColorBlendState }
-  TypeManager.registerEngineType("RDPipelineColorBlendStateAttachment") {
-      RDPipelineColorBlendStateAttachment }
-  TypeManager.registerEngineType("RDPipelineDepthStencilState") { RDPipelineDepthStencilState }
-  TypeManager.registerEngineType("RDPipelineMultisampleState") { RDPipelineMultisampleState }
-  TypeManager.registerEngineType("RDPipelineRasterizationState") { RDPipelineRasterizationState }
-  TypeManager.registerEngineType("RDPipelineSpecializationConstant") {
-      RDPipelineSpecializationConstant }
-  TypeManager.registerEngineType("RDSamplerState") { RDSamplerState }
-  TypeManager.registerEngineType("RDShaderFile") { RDShaderFile }
-  TypeManager.registerEngineType("RDShaderSPIRV") { RDShaderSPIRV }
-  TypeManager.registerEngineType("RDShaderSource") { RDShaderSource }
-  TypeManager.registerEngineType("RDTextureFormat") { RDTextureFormat }
-  TypeManager.registerEngineType("RDTextureView") { RDTextureView }
-  TypeManager.registerEngineType("RDUniform") { RDUniform }
-  TypeManager.registerEngineType("RDVertexAttribute") { RDVertexAttribute }
-  TypeManager.registerEngineType("RandomNumberGenerator") { RandomNumberGenerator }
-  TypeManager.registerEngineType("Range") { Range }
-  TypeManager.registerEngineType("RayCast2D") { RayCast2D }
-  TypeManager.registerEngineType("RayCast3D") { RayCast3D }
-  TypeManager.registerEngineType("RectangleShape2D") { RectangleShape2D }
-  TypeManager.registerEngineType("RefCounted") { RefCounted }
-  TypeManager.registerEngineType("ReferenceRect") { ReferenceRect }
-  TypeManager.registerEngineType("ReflectionProbe") { ReflectionProbe }
-  TypeManager.registerEngineType("RegEx") { RegEx }
-  TypeManager.registerEngineType("RegExMatch") { RegExMatch }
-  TypeManager.registerEngineType("RemoteTransform2D") { RemoteTransform2D }
-  TypeManager.registerEngineType("RemoteTransform3D") { RemoteTransform3D }
-  TypeManager.registerEngineType("RenderingDevice") { RenderingDevice }
-  TypeManager.registerEngineType("Resource") { Resource }
-  TypeManager.registerEngineType("ResourceFormatLoader") { ResourceFormatLoader }
-  TypeManager.registerEngineType("ResourceFormatSaver") { ResourceFormatSaver }
-  TypeManager.registerEngineType("ResourceImporter") { ResourceImporter }
-  TypeManager.registerEngineType("ResourcePreloader") { ResourcePreloader }
-  TypeManager.registerEngineType("RibbonTrailMesh") { RibbonTrailMesh }
-  TypeManager.registerEngineType("RichTextEffect") { RichTextEffect }
-  TypeManager.registerEngineType("RichTextLabel") { RichTextLabel }
-  TypeManager.registerEngineType("RigidDynamicBody2D") { RigidDynamicBody2D }
-  TypeManager.registerEngineType("RigidDynamicBody3D") { RigidDynamicBody3D }
-  TypeManager.registerEngineType("RootMotionView") { RootMotionView }
-  TypeManager.registerEngineType("SceneReplicationConfig") { SceneReplicationConfig }
-  TypeManager.registerEngineType("SceneState") { SceneState }
-  TypeManager.registerEngineType("SceneTree") { SceneTree }
-  TypeManager.registerEngineType("SceneTreeTimer") { SceneTreeTimer }
-  TypeManager.registerEngineType("Script") { Script }
-  TypeManager.registerEngineType("ScriptCreateDialog") { ScriptCreateDialog }
-  TypeManager.registerEngineType("ScriptEditor") { ScriptEditor }
-  TypeManager.registerEngineType("ScriptEditorBase") { ScriptEditorBase }
-  TypeManager.registerEngineType("ScrollBar") { ScrollBar }
-  TypeManager.registerEngineType("ScrollContainer") { ScrollContainer }
-  TypeManager.registerEngineType("SegmentShape2D") { SegmentShape2D }
-  TypeManager.registerEngineType("Semaphore") { Semaphore }
-  TypeManager.registerEngineType("SeparationRayShape2D") { SeparationRayShape2D }
-  TypeManager.registerEngineType("SeparationRayShape3D") { SeparationRayShape3D }
-  TypeManager.registerEngineType("Separator") { Separator }
-  TypeManager.registerEngineType("Shader") { Shader }
-  TypeManager.registerEngineType("ShaderGlobalsOverride") { ShaderGlobalsOverride }
-  TypeManager.registerEngineType("ShaderMaterial") { ShaderMaterial }
-  TypeManager.registerEngineType("Shape2D") { Shape2D }
-  TypeManager.registerEngineType("Shape3D") { Shape3D }
-  TypeManager.registerEngineType("ShapeCast2D") { ShapeCast2D }
-  TypeManager.registerEngineType("Shortcut") { Shortcut }
-  TypeManager.registerEngineType("Skeleton2D") { Skeleton2D }
-  TypeManager.registerEngineType("Skeleton3D") { Skeleton3D }
-  TypeManager.registerEngineType("SkeletonIK3D") { SkeletonIK3D }
-  TypeManager.registerEngineType("SkeletonModification2D") { SkeletonModification2D }
-  TypeManager.registerEngineType("SkeletonModification2DCCDIK") { SkeletonModification2DCCDIK }
-  TypeManager.registerEngineType("SkeletonModification2DFABRIK") { SkeletonModification2DFABRIK }
-  TypeManager.registerEngineType("SkeletonModification2DJiggle") { SkeletonModification2DJiggle }
-  TypeManager.registerEngineType("SkeletonModification2DLookAt") { SkeletonModification2DLookAt }
-  TypeManager.registerEngineType("SkeletonModification2DPhysicalBones") {
-      SkeletonModification2DPhysicalBones }
-  TypeManager.registerEngineType("SkeletonModification2DStackHolder") {
-      SkeletonModification2DStackHolder }
-  TypeManager.registerEngineType("SkeletonModification2DTwoBoneIK") {
-      SkeletonModification2DTwoBoneIK }
-  TypeManager.registerEngineType("SkeletonModification3D") { SkeletonModification3D }
-  TypeManager.registerEngineType("SkeletonModification3DCCDIK") { SkeletonModification3DCCDIK }
-  TypeManager.registerEngineType("SkeletonModification3DFABRIK") { SkeletonModification3DFABRIK }
-  TypeManager.registerEngineType("SkeletonModification3DJiggle") { SkeletonModification3DJiggle }
-  TypeManager.registerEngineType("SkeletonModification3DLookAt") { SkeletonModification3DLookAt }
-  TypeManager.registerEngineType("SkeletonModification3DStackHolder") {
-      SkeletonModification3DStackHolder }
-  TypeManager.registerEngineType("SkeletonModification3DTwoBoneIK") {
-      SkeletonModification3DTwoBoneIK }
-  TypeManager.registerEngineType("SkeletonModificationStack2D") { SkeletonModificationStack2D }
-  TypeManager.registerEngineType("SkeletonModificationStack3D") { SkeletonModificationStack3D }
-  TypeManager.registerEngineType("Skin") { Skin }
-  TypeManager.registerEngineType("SkinReference") { SkinReference }
-  TypeManager.registerEngineType("Sky") { Sky }
-  TypeManager.registerEngineType("Slider") { Slider }
-  TypeManager.registerEngineType("SliderJoint3D") { SliderJoint3D }
-  TypeManager.registerEngineType("SoftDynamicBody3D") { SoftDynamicBody3D }
-  TypeManager.registerEngineType("SphereMesh") { SphereMesh }
-  TypeManager.registerEngineType("SphereShape3D") { SphereShape3D }
-  TypeManager.registerEngineType("SpinBox") { SpinBox }
-  TypeManager.registerEngineType("SplitContainer") { SplitContainer }
-  TypeManager.registerEngineType("SpotLight3D") { SpotLight3D }
-  TypeManager.registerEngineType("SpringArm3D") { SpringArm3D }
-  TypeManager.registerEngineType("Sprite2D") { Sprite2D }
-  TypeManager.registerEngineType("Sprite3D") { Sprite3D }
-  TypeManager.registerEngineType("SpriteBase3D") { SpriteBase3D }
-  TypeManager.registerEngineType("SpriteFrames") { SpriteFrames }
-  TypeManager.registerEngineType("StandardMaterial3D") { StandardMaterial3D }
-  TypeManager.registerEngineType("StaticBody2D") { StaticBody2D }
-  TypeManager.registerEngineType("StaticBody3D") { StaticBody3D }
-  TypeManager.registerEngineType("StreamCubemap") { StreamCubemap }
-  TypeManager.registerEngineType("StreamCubemapArray") { StreamCubemapArray }
-  TypeManager.registerEngineType("StreamPeer") { StreamPeer }
-  TypeManager.registerEngineType("StreamPeerBuffer") { StreamPeerBuffer }
-  TypeManager.registerEngineType("StreamPeerExtension") { StreamPeerExtension }
-  TypeManager.registerEngineType("StreamPeerSSL") { StreamPeerSSL }
-  TypeManager.registerEngineType("StreamPeerTCP") { StreamPeerTCP }
-  TypeManager.registerEngineType("StreamTexture2D") { StreamTexture2D }
-  TypeManager.registerEngineType("StreamTexture2DArray") { StreamTexture2DArray }
-  TypeManager.registerEngineType("StreamTexture3D") { StreamTexture3D }
-  TypeManager.registerEngineType("StreamTextureLayered") { StreamTextureLayered }
-  TypeManager.registerEngineType("StyleBox") { StyleBox }
-  TypeManager.registerEngineType("StyleBoxEmpty") { StyleBoxEmpty }
-  TypeManager.registerEngineType("StyleBoxFlat") { StyleBoxFlat }
-  TypeManager.registerEngineType("StyleBoxLine") { StyleBoxLine }
-  TypeManager.registerEngineType("StyleBoxTexture") { StyleBoxTexture }
-  TypeManager.registerEngineType("SubViewport") { SubViewport }
-  TypeManager.registerEngineType("SubViewportContainer") { SubViewportContainer }
-  TypeManager.registerEngineType("SurfaceTool") { SurfaceTool }
-  TypeManager.registerEngineType("SyntaxHighlighter") { SyntaxHighlighter }
-  TypeManager.registerEngineType("TCPServer") { TCPServer }
-  TypeManager.registerEngineType("TabBar") { TabBar }
-  TypeManager.registerEngineType("TabContainer") { TabContainer }
-  TypeManager.registerEngineType("TextEdit") { TextEdit }
-  TypeManager.registerEngineType("TextLine") { TextLine }
-  TypeManager.registerEngineType("TextParagraph") { TextParagraph }
-  TypeManager.registerEngineType("TextServer") { TextServer }
-  TypeManager.registerEngineType("TextServerAdvanced") { TextServerAdvanced }
-  TypeManager.registerEngineType("TextServerExtension") { TextServerExtension }
-  TypeManager.registerEngineType("Texture") { Texture }
-  TypeManager.registerEngineType("Texture2D") { Texture2D }
-  TypeManager.registerEngineType("Texture2DArray") { Texture2DArray }
-  TypeManager.registerEngineType("Texture3D") { Texture3D }
-  TypeManager.registerEngineType("TextureButton") { TextureButton }
-  TypeManager.registerEngineType("TextureLayered") { TextureLayered }
-  TypeManager.registerEngineType("TextureProgressBar") { TextureProgressBar }
-  TypeManager.registerEngineType("TextureRect") { TextureRect }
-  TypeManager.registerEngineType("Theme") { Theme }
-  TypeManager.registerEngineType("Thread") { Thread }
-  TypeManager.registerEngineType("TileData") { TileData }
-  TypeManager.registerEngineType("TileMap") { TileMap }
-  TypeManager.registerEngineType("TileMapPattern") { TileMapPattern }
-  TypeManager.registerEngineType("TileSet") { TileSet }
-  TypeManager.registerEngineType("TileSetAtlasSource") { TileSetAtlasSource }
-  TypeManager.registerEngineType("TileSetScenesCollectionSource") { TileSetScenesCollectionSource }
-  TypeManager.registerEngineType("TileSetSource") { TileSetSource }
-  TypeManager.registerEngineType("Timer") { Timer }
-  TypeManager.registerEngineType("TouchScreenButton") { TouchScreenButton }
-  TypeManager.registerEngineType("Translation") { Translation }
-  TypeManager.registerEngineType("Tree") { Tree }
-  TypeManager.registerEngineType("TreeItem") { TreeItem }
-  TypeManager.registerEngineType("TriangleMesh") { TriangleMesh }
-  TypeManager.registerEngineType("TubeTrailMesh") { TubeTrailMesh }
-  TypeManager.registerEngineType("Tween") { Tween }
-  TypeManager.registerEngineType("Tweener") { Tweener }
-  TypeManager.registerEngineType("UDPServer") { UDPServer }
-  TypeManager.registerEngineType("UPNP") { UPNP }
-  TypeManager.registerEngineType("UPNPDevice") { UPNPDevice }
-  TypeManager.registerEngineType("UndoRedo") { UndoRedo }
-  TypeManager.registerEngineType("VBoxContainer") { VBoxContainer }
-  TypeManager.registerEngineType("VFlowContainer") { VFlowContainer }
-  TypeManager.registerEngineType("VScrollBar") { VScrollBar }
-  TypeManager.registerEngineType("VSeparator") { VSeparator }
-  TypeManager.registerEngineType("VSlider") { VSlider }
-  TypeManager.registerEngineType("VSplitContainer") { VSplitContainer }
-  TypeManager.registerEngineType("VehicleBody3D") { VehicleBody3D }
-  TypeManager.registerEngineType("VehicleWheel3D") { VehicleWheel3D }
-  TypeManager.registerEngineType("VelocityTracker3D") { VelocityTracker3D }
-  TypeManager.registerEngineType("VideoStream") { VideoStream }
-  TypeManager.registerEngineType("VideoStreamGDNative") { VideoStreamGDNative }
-  TypeManager.registerEngineType("VideoStreamPlayer") { VideoStreamPlayer }
-  TypeManager.registerEngineType("VideoStreamTheora") { VideoStreamTheora }
-  TypeManager.registerEngineType("Viewport") { Viewport }
-  TypeManager.registerEngineType("ViewportTexture") { ViewportTexture }
-  TypeManager.registerEngineType("VisibleOnScreenEnabler2D") { VisibleOnScreenEnabler2D }
-  TypeManager.registerEngineType("VisibleOnScreenEnabler3D") { VisibleOnScreenEnabler3D }
-  TypeManager.registerEngineType("VisibleOnScreenNotifier2D") { VisibleOnScreenNotifier2D }
-  TypeManager.registerEngineType("VisibleOnScreenNotifier3D") { VisibleOnScreenNotifier3D }
-  TypeManager.registerEngineType("VisualInstance3D") { VisualInstance3D }
-  TypeManager.registerEngineType("VisualScript") { VisualScript }
-  TypeManager.registerEngineType("VisualScriptBasicTypeConstant") { VisualScriptBasicTypeConstant }
-  TypeManager.registerEngineType("VisualScriptBuiltinFunc") { VisualScriptBuiltinFunc }
-  TypeManager.registerEngineType("VisualScriptClassConstant") { VisualScriptClassConstant }
-  TypeManager.registerEngineType("VisualScriptComment") { VisualScriptComment }
-  TypeManager.registerEngineType("VisualScriptComposeArray") { VisualScriptComposeArray }
-  TypeManager.registerEngineType("VisualScriptCondition") { VisualScriptCondition }
-  TypeManager.registerEngineType("VisualScriptConstant") { VisualScriptConstant }
-  TypeManager.registerEngineType("VisualScriptConstructor") { VisualScriptConstructor }
-  TypeManager.registerEngineType("VisualScriptCustomNode") { VisualScriptCustomNode }
-  TypeManager.registerEngineType("VisualScriptDeconstruct") { VisualScriptDeconstruct }
-  TypeManager.registerEngineType("VisualScriptEmitSignal") { VisualScriptEmitSignal }
-  TypeManager.registerEngineType("VisualScriptEngineSingleton") { VisualScriptEngineSingleton }
-  TypeManager.registerEngineType("VisualScriptExpression") { VisualScriptExpression }
-  TypeManager.registerEngineType("VisualScriptFunction") { VisualScriptFunction }
-  TypeManager.registerEngineType("VisualScriptFunctionCall") { VisualScriptFunctionCall }
-  TypeManager.registerEngineType("VisualScriptFunctionState") { VisualScriptFunctionState }
-  TypeManager.registerEngineType("VisualScriptGlobalConstant") { VisualScriptGlobalConstant }
-  TypeManager.registerEngineType("VisualScriptIndexGet") { VisualScriptIndexGet }
-  TypeManager.registerEngineType("VisualScriptIndexSet") { VisualScriptIndexSet }
-  TypeManager.registerEngineType("VisualScriptInputAction") { VisualScriptInputAction }
-  TypeManager.registerEngineType("VisualScriptIterator") { VisualScriptIterator }
-  TypeManager.registerEngineType("VisualScriptLists") { VisualScriptLists }
-  TypeManager.registerEngineType("VisualScriptLocalVar") { VisualScriptLocalVar }
-  TypeManager.registerEngineType("VisualScriptLocalVarSet") { VisualScriptLocalVarSet }
-  TypeManager.registerEngineType("VisualScriptMathConstant") { VisualScriptMathConstant }
-  TypeManager.registerEngineType("VisualScriptNode") { VisualScriptNode }
-  TypeManager.registerEngineType("VisualScriptOperator") { VisualScriptOperator }
-  TypeManager.registerEngineType("VisualScriptPreload") { VisualScriptPreload }
-  TypeManager.registerEngineType("VisualScriptPropertyGet") { VisualScriptPropertyGet }
-  TypeManager.registerEngineType("VisualScriptPropertySet") { VisualScriptPropertySet }
-  TypeManager.registerEngineType("VisualScriptResourcePath") { VisualScriptResourcePath }
-  TypeManager.registerEngineType("VisualScriptReturn") { VisualScriptReturn }
-  TypeManager.registerEngineType("VisualScriptSceneNode") { VisualScriptSceneNode }
-  TypeManager.registerEngineType("VisualScriptSceneTree") { VisualScriptSceneTree }
-  TypeManager.registerEngineType("VisualScriptSelect") { VisualScriptSelect }
-  TypeManager.registerEngineType("VisualScriptSelf") { VisualScriptSelf }
-  TypeManager.registerEngineType("VisualScriptSequence") { VisualScriptSequence }
-  TypeManager.registerEngineType("VisualScriptSubCall") { VisualScriptSubCall }
-  TypeManager.registerEngineType("VisualScriptSwitch") { VisualScriptSwitch }
-  TypeManager.registerEngineType("VisualScriptTypeCast") { VisualScriptTypeCast }
-  TypeManager.registerEngineType("VisualScriptVariableGet") { VisualScriptVariableGet }
-  TypeManager.registerEngineType("VisualScriptVariableSet") { VisualScriptVariableSet }
-  TypeManager.registerEngineType("VisualScriptWhile") { VisualScriptWhile }
-  TypeManager.registerEngineType("VisualScriptYield") { VisualScriptYield }
-  TypeManager.registerEngineType("VisualScriptYieldSignal") { VisualScriptYieldSignal }
-  TypeManager.registerEngineType("VisualShader") { VisualShader }
-  TypeManager.registerEngineType("VisualShaderNode") { VisualShaderNode }
-  TypeManager.registerEngineType("VisualShaderNodeBillboard") { VisualShaderNodeBillboard }
-  TypeManager.registerEngineType("VisualShaderNodeBooleanConstant") {
-      VisualShaderNodeBooleanConstant }
-  TypeManager.registerEngineType("VisualShaderNodeBooleanUniform") { VisualShaderNodeBooleanUniform
-      }
-  TypeManager.registerEngineType("VisualShaderNodeClamp") { VisualShaderNodeClamp }
-  TypeManager.registerEngineType("VisualShaderNodeColorConstant") { VisualShaderNodeColorConstant }
-  TypeManager.registerEngineType("VisualShaderNodeColorFunc") { VisualShaderNodeColorFunc }
-  TypeManager.registerEngineType("VisualShaderNodeColorOp") { VisualShaderNodeColorOp }
-  TypeManager.registerEngineType("VisualShaderNodeColorUniform") { VisualShaderNodeColorUniform }
-  TypeManager.registerEngineType("VisualShaderNodeComment") { VisualShaderNodeComment }
-  TypeManager.registerEngineType("VisualShaderNodeCompare") { VisualShaderNodeCompare }
-  TypeManager.registerEngineType("VisualShaderNodeConstant") { VisualShaderNodeConstant }
-  TypeManager.registerEngineType("VisualShaderNodeCubemap") { VisualShaderNodeCubemap }
-  TypeManager.registerEngineType("VisualShaderNodeCubemapUniform") { VisualShaderNodeCubemapUniform
-      }
-  TypeManager.registerEngineType("VisualShaderNodeCurveTexture") { VisualShaderNodeCurveTexture }
-  TypeManager.registerEngineType("VisualShaderNodeCurveXYZTexture") {
-      VisualShaderNodeCurveXYZTexture }
-  TypeManager.registerEngineType("VisualShaderNodeCustom") { VisualShaderNodeCustom }
-  TypeManager.registerEngineType("VisualShaderNodeDerivativeFunc") { VisualShaderNodeDerivativeFunc
-      }
-  TypeManager.registerEngineType("VisualShaderNodeDeterminant") { VisualShaderNodeDeterminant }
-  TypeManager.registerEngineType("VisualShaderNodeDotProduct") { VisualShaderNodeDotProduct }
-  TypeManager.registerEngineType("VisualShaderNodeExpression") { VisualShaderNodeExpression }
-  TypeManager.registerEngineType("VisualShaderNodeFaceForward") { VisualShaderNodeFaceForward }
-  TypeManager.registerEngineType("VisualShaderNodeFloatConstant") { VisualShaderNodeFloatConstant }
-  TypeManager.registerEngineType("VisualShaderNodeFloatFunc") { VisualShaderNodeFloatFunc }
-  TypeManager.registerEngineType("VisualShaderNodeFloatOp") { VisualShaderNodeFloatOp }
-  TypeManager.registerEngineType("VisualShaderNodeFloatUniform") { VisualShaderNodeFloatUniform }
-  TypeManager.registerEngineType("VisualShaderNodeFresnel") { VisualShaderNodeFresnel }
-  TypeManager.registerEngineType("VisualShaderNodeGlobalExpression") {
-      VisualShaderNodeGlobalExpression }
-  TypeManager.registerEngineType("VisualShaderNodeGroupBase") { VisualShaderNodeGroupBase }
-  TypeManager.registerEngineType("VisualShaderNodeIf") { VisualShaderNodeIf }
-  TypeManager.registerEngineType("VisualShaderNodeInput") { VisualShaderNodeInput }
-  TypeManager.registerEngineType("VisualShaderNodeIntConstant") { VisualShaderNodeIntConstant }
-  TypeManager.registerEngineType("VisualShaderNodeIntFunc") { VisualShaderNodeIntFunc }
-  TypeManager.registerEngineType("VisualShaderNodeIntOp") { VisualShaderNodeIntOp }
-  TypeManager.registerEngineType("VisualShaderNodeIntUniform") { VisualShaderNodeIntUniform }
-  TypeManager.registerEngineType("VisualShaderNodeIs") { VisualShaderNodeIs }
-  TypeManager.registerEngineType("VisualShaderNodeMix") { VisualShaderNodeMix }
-  TypeManager.registerEngineType("VisualShaderNodeMultiplyAdd") { VisualShaderNodeMultiplyAdd }
-  TypeManager.registerEngineType("VisualShaderNodeOuterProduct") { VisualShaderNodeOuterProduct }
-  TypeManager.registerEngineType("VisualShaderNodeOutput") { VisualShaderNodeOutput }
-  TypeManager.registerEngineType("VisualShaderNodeParticleAccelerator") {
-      VisualShaderNodeParticleAccelerator }
-  TypeManager.registerEngineType("VisualShaderNodeParticleBoxEmitter") {
-      VisualShaderNodeParticleBoxEmitter }
-  TypeManager.registerEngineType("VisualShaderNodeParticleConeVelocity") {
-      VisualShaderNodeParticleConeVelocity }
-  TypeManager.registerEngineType("VisualShaderNodeParticleEmit") { VisualShaderNodeParticleEmit }
-  TypeManager.registerEngineType("VisualShaderNodeParticleEmitter") {
-      VisualShaderNodeParticleEmitter }
-  TypeManager.registerEngineType("VisualShaderNodeParticleMeshEmitter") {
-      VisualShaderNodeParticleMeshEmitter }
-  TypeManager.registerEngineType("VisualShaderNodeParticleMultiplyByAxisAngle") {
-      VisualShaderNodeParticleMultiplyByAxisAngle }
-  TypeManager.registerEngineType("VisualShaderNodeParticleOutput") { VisualShaderNodeParticleOutput
-      }
-  TypeManager.registerEngineType("VisualShaderNodeParticleRandomness") {
-      VisualShaderNodeParticleRandomness }
-  TypeManager.registerEngineType("VisualShaderNodeParticleRingEmitter") {
-      VisualShaderNodeParticleRingEmitter }
-  TypeManager.registerEngineType("VisualShaderNodeParticleSphereEmitter") {
-      VisualShaderNodeParticleSphereEmitter }
-  TypeManager.registerEngineType("VisualShaderNodeResizableBase") { VisualShaderNodeResizableBase }
-  TypeManager.registerEngineType("VisualShaderNodeSDFRaymarch") { VisualShaderNodeSDFRaymarch }
-  TypeManager.registerEngineType("VisualShaderNodeSDFToScreenUV") { VisualShaderNodeSDFToScreenUV }
-  TypeManager.registerEngineType("VisualShaderNodeSample3D") { VisualShaderNodeSample3D }
-  TypeManager.registerEngineType("VisualShaderNodeScreenUVToSDF") { VisualShaderNodeScreenUVToSDF }
-  TypeManager.registerEngineType("VisualShaderNodeSmoothStep") { VisualShaderNodeSmoothStep }
-  TypeManager.registerEngineType("VisualShaderNodeStep") { VisualShaderNodeStep }
-  TypeManager.registerEngineType("VisualShaderNodeSwitch") { VisualShaderNodeSwitch }
-  TypeManager.registerEngineType("VisualShaderNodeTexture") { VisualShaderNodeTexture }
-  TypeManager.registerEngineType("VisualShaderNodeTexture2DArray") { VisualShaderNodeTexture2DArray
-      }
-  TypeManager.registerEngineType("VisualShaderNodeTexture2DArrayUniform") {
-      VisualShaderNodeTexture2DArrayUniform }
-  TypeManager.registerEngineType("VisualShaderNodeTexture3D") { VisualShaderNodeTexture3D }
-  TypeManager.registerEngineType("VisualShaderNodeTexture3DUniform") {
-      VisualShaderNodeTexture3DUniform }
-  TypeManager.registerEngineType("VisualShaderNodeTextureSDF") { VisualShaderNodeTextureSDF }
-  TypeManager.registerEngineType("VisualShaderNodeTextureSDFNormal") {
-      VisualShaderNodeTextureSDFNormal }
-  TypeManager.registerEngineType("VisualShaderNodeTextureUniform") { VisualShaderNodeTextureUniform
-      }
-  TypeManager.registerEngineType("VisualShaderNodeTextureUniformTriplanar") {
-      VisualShaderNodeTextureUniformTriplanar }
-  TypeManager.registerEngineType("VisualShaderNodeTransformCompose") {
-      VisualShaderNodeTransformCompose }
-  TypeManager.registerEngineType("VisualShaderNodeTransformConstant") {
-      VisualShaderNodeTransformConstant }
-  TypeManager.registerEngineType("VisualShaderNodeTransformDecompose") {
-      VisualShaderNodeTransformDecompose }
-  TypeManager.registerEngineType("VisualShaderNodeTransformFunc") { VisualShaderNodeTransformFunc }
-  TypeManager.registerEngineType("VisualShaderNodeTransformOp") { VisualShaderNodeTransformOp }
-  TypeManager.registerEngineType("VisualShaderNodeTransformUniform") {
-      VisualShaderNodeTransformUniform }
-  TypeManager.registerEngineType("VisualShaderNodeTransformVecMult") {
-      VisualShaderNodeTransformVecMult }
-  TypeManager.registerEngineType("VisualShaderNodeUVFunc") { VisualShaderNodeUVFunc }
-  TypeManager.registerEngineType("VisualShaderNodeUniform") { VisualShaderNodeUniform }
-  TypeManager.registerEngineType("VisualShaderNodeUniformRef") { VisualShaderNodeUniformRef }
-  TypeManager.registerEngineType("VisualShaderNodeVec2Constant") { VisualShaderNodeVec2Constant }
-  TypeManager.registerEngineType("VisualShaderNodeVec2Uniform") { VisualShaderNodeVec2Uniform }
-  TypeManager.registerEngineType("VisualShaderNodeVec3Constant") { VisualShaderNodeVec3Constant }
-  TypeManager.registerEngineType("VisualShaderNodeVec3Uniform") { VisualShaderNodeVec3Uniform }
-  TypeManager.registerEngineType("VisualShaderNodeVectorBase") { VisualShaderNodeVectorBase }
-  TypeManager.registerEngineType("VisualShaderNodeVectorCompose") { VisualShaderNodeVectorCompose }
-  TypeManager.registerEngineType("VisualShaderNodeVectorDecompose") {
-      VisualShaderNodeVectorDecompose }
-  TypeManager.registerEngineType("VisualShaderNodeVectorDistance") { VisualShaderNodeVectorDistance
-      }
-  TypeManager.registerEngineType("VisualShaderNodeVectorFunc") { VisualShaderNodeVectorFunc }
-  TypeManager.registerEngineType("VisualShaderNodeVectorLen") { VisualShaderNodeVectorLen }
-  TypeManager.registerEngineType("VisualShaderNodeVectorOp") { VisualShaderNodeVectorOp }
-  TypeManager.registerEngineType("VisualShaderNodeVectorRefract") { VisualShaderNodeVectorRefract }
-  TypeManager.registerEngineType("VoxelGI") { VoxelGI }
-  TypeManager.registerEngineType("VoxelGIData") { VoxelGIData }
-  TypeManager.registerEngineType("WeakRef") { WeakRef }
-  TypeManager.registerEngineType("WebRTCDataChannel") { WebRTCDataChannel }
-  TypeManager.registerEngineType("WebRTCDataChannelExtension") { WebRTCDataChannelExtension }
-  TypeManager.registerEngineType("WebRTCMultiplayerPeer") { WebRTCMultiplayerPeer }
-  TypeManager.registerEngineType("WebRTCPeerConnection") { WebRTCPeerConnection }
-  TypeManager.registerEngineType("WebRTCPeerConnectionExtension") { WebRTCPeerConnectionExtension }
-  TypeManager.registerEngineType("WebSocketClient") { WebSocketClient }
-  TypeManager.registerEngineType("WebSocketMultiplayerPeer") { WebSocketMultiplayerPeer }
-  TypeManager.registerEngineType("WebSocketPeer") { WebSocketPeer }
-  TypeManager.registerEngineType("WebSocketServer") { WebSocketServer }
-  TypeManager.registerEngineType("WebXRInterface") { WebXRInterface }
-  TypeManager.registerEngineType("Window") { Window }
-  TypeManager.registerEngineType("World2D") { World2D }
-  TypeManager.registerEngineType("World3D") { World3D }
-  TypeManager.registerEngineType("WorldBoundaryShape2D") { WorldBoundaryShape2D }
-  TypeManager.registerEngineType("WorldBoundaryShape3D") { WorldBoundaryShape3D }
-  TypeManager.registerEngineType("WorldEnvironment") { WorldEnvironment }
-  TypeManager.registerEngineType("X509Certificate") { X509Certificate }
-  TypeManager.registerEngineType("XMLParser") { XMLParser }
-  TypeManager.registerEngineType("XRAnchor3D") { XRAnchor3D }
-  TypeManager.registerEngineType("XRCamera3D") { XRCamera3D }
-  TypeManager.registerEngineType("XRController3D") { XRController3D }
-  TypeManager.registerEngineType("XRInterface") { XRInterface }
-  TypeManager.registerEngineType("XRInterfaceExtension") { XRInterfaceExtension }
-  TypeManager.registerEngineType("XRNode3D") { XRNode3D }
-  TypeManager.registerEngineType("XROrigin3D") { XROrigin3D }
-  TypeManager.registerEngineType("XRPose") { XRPose }
-  TypeManager.registerEngineType("XRPositionalTracker") { XRPositionalTracker }
+  TypeManager.registerEngineType("AESContext", ::AESContext)
+  TypeManager.registerEngineType("AStar2D", ::AStar2D)
+  TypeManager.registerEngineType("AStar3D", ::AStar3D)
+  TypeManager.registerEngineType("AcceptDialog", ::AcceptDialog)
+  TypeManager.registerEngineType("AnimatableBody2D", ::AnimatableBody2D)
+  TypeManager.registerEngineType("AnimatableBody3D", ::AnimatableBody3D)
+  TypeManager.registerEngineType("AnimatedSprite2D", ::AnimatedSprite2D)
+  TypeManager.registerEngineType("AnimatedSprite3D", ::AnimatedSprite3D)
+  TypeManager.registerEngineType("AnimatedTexture", ::AnimatedTexture)
+  TypeManager.registerEngineType("Animation", ::Animation)
+  TypeManager.registerEngineType("AnimationNode", ::AnimationNode)
+  TypeManager.registerEngineType("AnimationNodeAdd2", ::AnimationNodeAdd2)
+  TypeManager.registerEngineType("AnimationNodeAdd3", ::AnimationNodeAdd3)
+  TypeManager.registerEngineType("AnimationNodeAnimation", ::AnimationNodeAnimation)
+  TypeManager.registerEngineType("AnimationNodeBlend2", ::AnimationNodeBlend2)
+  TypeManager.registerEngineType("AnimationNodeBlend3", ::AnimationNodeBlend3)
+  TypeManager.registerEngineType("AnimationNodeBlendSpace1D", ::AnimationNodeBlendSpace1D)
+  TypeManager.registerEngineType("AnimationNodeBlendSpace2D", ::AnimationNodeBlendSpace2D)
+  TypeManager.registerEngineType("AnimationNodeBlendTree", ::AnimationNodeBlendTree)
+  TypeManager.registerEngineType("AnimationNodeOneShot", ::AnimationNodeOneShot)
+  TypeManager.registerEngineType("AnimationNodeOutput", ::AnimationNodeOutput)
+  TypeManager.registerEngineType("AnimationNodeStateMachine", ::AnimationNodeStateMachine)
+  TypeManager.registerEngineType("AnimationNodeStateMachinePlayback",
+      ::AnimationNodeStateMachinePlayback)
+  TypeManager.registerEngineType("AnimationNodeStateMachineTransition",
+      ::AnimationNodeStateMachineTransition)
+  TypeManager.registerEngineType("AnimationNodeTimeScale", ::AnimationNodeTimeScale)
+  TypeManager.registerEngineType("AnimationNodeTimeSeek", ::AnimationNodeTimeSeek)
+  TypeManager.registerEngineType("AnimationNodeTransition", ::AnimationNodeTransition)
+  TypeManager.registerEngineType("AnimationPlayer", ::AnimationPlayer)
+  TypeManager.registerEngineType("AnimationRootNode", ::AnimationRootNode)
+  TypeManager.registerEngineType("AnimationTrackEditPlugin", ::AnimationTrackEditPlugin)
+  TypeManager.registerEngineType("AnimationTree", ::AnimationTree)
+  TypeManager.registerEngineType("Area2D", ::Area2D)
+  TypeManager.registerEngineType("Area3D", ::Area3D)
+  TypeManager.registerEngineType("ArrayMesh", ::ArrayMesh)
+  TypeManager.registerEngineType("ArrayOccluder3D", ::ArrayOccluder3D)
+  TypeManager.registerEngineType("AspectRatioContainer", ::AspectRatioContainer)
+  TypeManager.registerEngineType("AtlasTexture", ::AtlasTexture)
+  TypeManager.registerEngineType("AudioBusLayout", ::AudioBusLayout)
+  TypeManager.registerEngineType("AudioEffect", ::AudioEffect)
+  TypeManager.registerEngineType("AudioEffectAmplify", ::AudioEffectAmplify)
+  TypeManager.registerEngineType("AudioEffectBandLimitFilter", ::AudioEffectBandLimitFilter)
+  TypeManager.registerEngineType("AudioEffectBandPassFilter", ::AudioEffectBandPassFilter)
+  TypeManager.registerEngineType("AudioEffectCapture", ::AudioEffectCapture)
+  TypeManager.registerEngineType("AudioEffectChorus", ::AudioEffectChorus)
+  TypeManager.registerEngineType("AudioEffectCompressor", ::AudioEffectCompressor)
+  TypeManager.registerEngineType("AudioEffectDelay", ::AudioEffectDelay)
+  TypeManager.registerEngineType("AudioEffectDistortion", ::AudioEffectDistortion)
+  TypeManager.registerEngineType("AudioEffectEQ", ::AudioEffectEQ)
+  TypeManager.registerEngineType("AudioEffectEQ10", ::AudioEffectEQ10)
+  TypeManager.registerEngineType("AudioEffectEQ21", ::AudioEffectEQ21)
+  TypeManager.registerEngineType("AudioEffectEQ6", ::AudioEffectEQ6)
+  TypeManager.registerEngineType("AudioEffectFilter", ::AudioEffectFilter)
+  TypeManager.registerEngineType("AudioEffectHighPassFilter", ::AudioEffectHighPassFilter)
+  TypeManager.registerEngineType("AudioEffectHighShelfFilter", ::AudioEffectHighShelfFilter)
+  TypeManager.registerEngineType("AudioEffectInstance", ::AudioEffectInstance)
+  TypeManager.registerEngineType("AudioEffectLimiter", ::AudioEffectLimiter)
+  TypeManager.registerEngineType("AudioEffectLowPassFilter", ::AudioEffectLowPassFilter)
+  TypeManager.registerEngineType("AudioEffectLowShelfFilter", ::AudioEffectLowShelfFilter)
+  TypeManager.registerEngineType("AudioEffectNotchFilter", ::AudioEffectNotchFilter)
+  TypeManager.registerEngineType("AudioEffectPanner", ::AudioEffectPanner)
+  TypeManager.registerEngineType("AudioEffectPhaser", ::AudioEffectPhaser)
+  TypeManager.registerEngineType("AudioEffectPitchShift", ::AudioEffectPitchShift)
+  TypeManager.registerEngineType("AudioEffectRecord", ::AudioEffectRecord)
+  TypeManager.registerEngineType("AudioEffectReverb", ::AudioEffectReverb)
+  TypeManager.registerEngineType("AudioEffectSpectrumAnalyzer", ::AudioEffectSpectrumAnalyzer)
+  TypeManager.registerEngineType("AudioEffectSpectrumAnalyzerInstance",
+      ::AudioEffectSpectrumAnalyzerInstance)
+  TypeManager.registerEngineType("AudioEffectStereoEnhance", ::AudioEffectStereoEnhance)
+  TypeManager.registerEngineType("AudioListener2D", ::AudioListener2D)
+  TypeManager.registerEngineType("AudioListener3D", ::AudioListener3D)
+  TypeManager.registerEngineType("AudioStream", ::AudioStream)
+  TypeManager.registerEngineType("AudioStreamGenerator", ::AudioStreamGenerator)
+  TypeManager.registerEngineType("AudioStreamGeneratorPlayback", ::AudioStreamGeneratorPlayback)
+  TypeManager.registerEngineType("AudioStreamMP3", ::AudioStreamMP3)
+  TypeManager.registerEngineType("AudioStreamMicrophone", ::AudioStreamMicrophone)
+  TypeManager.registerEngineType("AudioStreamOGGVorbis", ::AudioStreamOGGVorbis)
+  TypeManager.registerEngineType("AudioStreamPlayback", ::AudioStreamPlayback)
+  TypeManager.registerEngineType("AudioStreamPlaybackOGGVorbis", ::AudioStreamPlaybackOGGVorbis)
+  TypeManager.registerEngineType("AudioStreamPlaybackResampled", ::AudioStreamPlaybackResampled)
+  TypeManager.registerEngineType("AudioStreamPlayer", ::AudioStreamPlayer)
+  TypeManager.registerEngineType("AudioStreamPlayer2D", ::AudioStreamPlayer2D)
+  TypeManager.registerEngineType("AudioStreamPlayer3D", ::AudioStreamPlayer3D)
+  TypeManager.registerEngineType("AudioStreamRandomizer", ::AudioStreamRandomizer)
+  TypeManager.registerEngineType("AudioStreamSample", ::AudioStreamSample)
+  TypeManager.registerEngineType("BackBufferCopy", ::BackBufferCopy)
+  TypeManager.registerEngineType("BaseButton", ::BaseButton)
+  TypeManager.registerEngineType("BaseMaterial3D", ::BaseMaterial3D)
+  TypeManager.registerEngineType("BitMap", ::BitMap)
+  TypeManager.registerEngineType("Bone2D", ::Bone2D)
+  TypeManager.registerEngineType("BoneAttachment3D", ::BoneAttachment3D)
+  TypeManager.registerEngineType("BoxContainer", ::BoxContainer)
+  TypeManager.registerEngineType("BoxMesh", ::BoxMesh)
+  TypeManager.registerEngineType("BoxOccluder3D", ::BoxOccluder3D)
+  TypeManager.registerEngineType("BoxShape3D", ::BoxShape3D)
+  TypeManager.registerEngineType("Button", ::Button)
+  TypeManager.registerEngineType("ButtonGroup", ::ButtonGroup)
+  TypeManager.registerEngineType("CPUParticles2D", ::CPUParticles2D)
+  TypeManager.registerEngineType("CPUParticles3D", ::CPUParticles3D)
+  TypeManager.registerEngineType("CSGBox3D", ::CSGBox3D)
+  TypeManager.registerEngineType("CSGCombiner3D", ::CSGCombiner3D)
+  TypeManager.registerEngineType("CSGCylinder3D", ::CSGCylinder3D)
+  TypeManager.registerEngineType("CSGMesh3D", ::CSGMesh3D)
+  TypeManager.registerEngineType("CSGPolygon3D", ::CSGPolygon3D)
+  TypeManager.registerEngineType("CSGPrimitive3D", ::CSGPrimitive3D)
+  TypeManager.registerEngineType("CSGShape3D", ::CSGShape3D)
+  TypeManager.registerEngineType("CSGSphere3D", ::CSGSphere3D)
+  TypeManager.registerEngineType("CSGTorus3D", ::CSGTorus3D)
+  TypeManager.registerEngineType("CallbackTweener", ::CallbackTweener)
+  TypeManager.registerEngineType("Camera2D", ::Camera2D)
+  TypeManager.registerEngineType("Camera3D", ::Camera3D)
+  TypeManager.registerEngineType("CameraEffects", ::CameraEffects)
+  TypeManager.registerEngineType("CameraFeed", ::CameraFeed)
+  TypeManager.registerEngineType("CameraTexture", ::CameraTexture)
+  TypeManager.registerEngineType("CanvasGroup", ::CanvasGroup)
+  TypeManager.registerEngineType("CanvasItem", ::CanvasItem)
+  TypeManager.registerEngineType("CanvasItemMaterial", ::CanvasItemMaterial)
+  TypeManager.registerEngineType("CanvasLayer", ::CanvasLayer)
+  TypeManager.registerEngineType("CanvasModulate", ::CanvasModulate)
+  TypeManager.registerEngineType("CanvasTexture", ::CanvasTexture)
+  TypeManager.registerEngineType("CapsuleMesh", ::CapsuleMesh)
+  TypeManager.registerEngineType("CapsuleShape2D", ::CapsuleShape2D)
+  TypeManager.registerEngineType("CapsuleShape3D", ::CapsuleShape3D)
+  TypeManager.registerEngineType("CenterContainer", ::CenterContainer)
+  TypeManager.registerEngineType("CharFXTransform", ::CharFXTransform)
+  TypeManager.registerEngineType("CharacterBody2D", ::CharacterBody2D)
+  TypeManager.registerEngineType("CharacterBody3D", ::CharacterBody3D)
+  TypeManager.registerEngineType("CheckBox", ::CheckBox)
+  TypeManager.registerEngineType("CheckButton", ::CheckButton)
+  TypeManager.registerEngineType("CircleShape2D", ::CircleShape2D)
+  TypeManager.registerEngineType("CodeEdit", ::CodeEdit)
+  TypeManager.registerEngineType("CodeHighlighter", ::CodeHighlighter)
+  TypeManager.registerEngineType("CollisionObject2D", ::CollisionObject2D)
+  TypeManager.registerEngineType("CollisionObject3D", ::CollisionObject3D)
+  TypeManager.registerEngineType("CollisionPolygon2D", ::CollisionPolygon2D)
+  TypeManager.registerEngineType("CollisionPolygon3D", ::CollisionPolygon3D)
+  TypeManager.registerEngineType("CollisionShape2D", ::CollisionShape2D)
+  TypeManager.registerEngineType("CollisionShape3D", ::CollisionShape3D)
+  TypeManager.registerEngineType("ColorPicker", ::ColorPicker)
+  TypeManager.registerEngineType("ColorPickerButton", ::ColorPickerButton)
+  TypeManager.registerEngineType("ColorRect", ::ColorRect)
+  TypeManager.registerEngineType("CompressedCubemap", ::CompressedCubemap)
+  TypeManager.registerEngineType("CompressedCubemapArray", ::CompressedCubemapArray)
+  TypeManager.registerEngineType("CompressedTexture2D", ::CompressedTexture2D)
+  TypeManager.registerEngineType("CompressedTexture2DArray", ::CompressedTexture2DArray)
+  TypeManager.registerEngineType("CompressedTexture3D", ::CompressedTexture3D)
+  TypeManager.registerEngineType("CompressedTextureLayered", ::CompressedTextureLayered)
+  TypeManager.registerEngineType("ConcavePolygonShape2D", ::ConcavePolygonShape2D)
+  TypeManager.registerEngineType("ConcavePolygonShape3D", ::ConcavePolygonShape3D)
+  TypeManager.registerEngineType("ConeTwistJoint3D", ::ConeTwistJoint3D)
+  TypeManager.registerEngineType("ConfigFile", ::ConfigFile)
+  TypeManager.registerEngineType("ConfirmationDialog", ::ConfirmationDialog)
+  TypeManager.registerEngineType("Container", ::Container)
+  TypeManager.registerEngineType("Control", ::Control)
+  TypeManager.registerEngineType("ConvexPolygonShape2D", ::ConvexPolygonShape2D)
+  TypeManager.registerEngineType("ConvexPolygonShape3D", ::ConvexPolygonShape3D)
+  TypeManager.registerEngineType("Crypto", ::Crypto)
+  TypeManager.registerEngineType("CryptoKey", ::CryptoKey)
+  TypeManager.registerEngineType("Cubemap", ::Cubemap)
+  TypeManager.registerEngineType("CubemapArray", ::CubemapArray)
+  TypeManager.registerEngineType("Curve", ::Curve)
+  TypeManager.registerEngineType("Curve2D", ::Curve2D)
+  TypeManager.registerEngineType("Curve3D", ::Curve3D)
+  TypeManager.registerEngineType("CurveTexture", ::CurveTexture)
+  TypeManager.registerEngineType("CurveXYZTexture", ::CurveXYZTexture)
+  TypeManager.registerEngineType("CylinderMesh", ::CylinderMesh)
+  TypeManager.registerEngineType("CylinderShape3D", ::CylinderShape3D)
+  TypeManager.registerEngineType("DTLSServer", ::DTLSServer)
+  TypeManager.registerEngineType("DampedSpringJoint2D", ::DampedSpringJoint2D)
+  TypeManager.registerEngineType("Decal", ::Decal)
+  TypeManager.registerEngineType("DirectionalLight2D", ::DirectionalLight2D)
+  TypeManager.registerEngineType("DirectionalLight3D", ::DirectionalLight3D)
+  TypeManager.registerEngineType("Directory", ::Directory)
+  TypeManager.registerEngineType("ENetConnection", ::ENetConnection)
+  TypeManager.registerEngineType("ENetMultiplayerPeer", ::ENetMultiplayerPeer)
+  TypeManager.registerEngineType("ENetPacketPeer", ::ENetPacketPeer)
+  TypeManager.registerEngineType("EditorCommandPalette", ::EditorCommandPalette)
+  TypeManager.registerEngineType("EditorDebuggerPlugin", ::EditorDebuggerPlugin)
+  TypeManager.registerEngineType("EditorExportPlugin", ::EditorExportPlugin)
+  TypeManager.registerEngineType("EditorFeatureProfile", ::EditorFeatureProfile)
+  TypeManager.registerEngineType("EditorFileDialog", ::EditorFileDialog)
+  TypeManager.registerEngineType("EditorFileSystem", ::EditorFileSystem)
+  TypeManager.registerEngineType("EditorFileSystemDirectory", ::EditorFileSystemDirectory)
+  TypeManager.registerEngineType("EditorImportPlugin", ::EditorImportPlugin)
+  TypeManager.registerEngineType("EditorInspector", ::EditorInspector)
+  TypeManager.registerEngineType("EditorInspectorPlugin", ::EditorInspectorPlugin)
+  TypeManager.registerEngineType("EditorInterface", ::EditorInterface)
+  TypeManager.registerEngineType("EditorNode3DGizmo", ::EditorNode3DGizmo)
+  TypeManager.registerEngineType("EditorNode3DGizmoPlugin", ::EditorNode3DGizmoPlugin)
+  TypeManager.registerEngineType("EditorPaths", ::EditorPaths)
+  TypeManager.registerEngineType("EditorPlugin", ::EditorPlugin)
+  TypeManager.registerEngineType("EditorProperty", ::EditorProperty)
+  TypeManager.registerEngineType("EditorResourceConversionPlugin", ::EditorResourceConversionPlugin)
+  TypeManager.registerEngineType("EditorResourcePicker", ::EditorResourcePicker)
+  TypeManager.registerEngineType("EditorResourcePreview", ::EditorResourcePreview)
+  TypeManager.registerEngineType("EditorResourcePreviewGenerator", ::EditorResourcePreviewGenerator)
+  TypeManager.registerEngineType("EditorSceneFormatImporter", ::EditorSceneFormatImporter)
+  TypeManager.registerEngineType("EditorSceneFormatImporterBlend", ::EditorSceneFormatImporterBlend)
+  TypeManager.registerEngineType("EditorSceneFormatImporterFBX", ::EditorSceneFormatImporterFBX)
+  TypeManager.registerEngineType("EditorSceneFormatImporterGLTF", ::EditorSceneFormatImporterGLTF)
+  TypeManager.registerEngineType("EditorScenePostImport", ::EditorScenePostImport)
+  TypeManager.registerEngineType("EditorScenePostImportPlugin", ::EditorScenePostImportPlugin)
+  TypeManager.registerEngineType("EditorScript", ::EditorScript)
+  TypeManager.registerEngineType("EditorScriptPicker", ::EditorScriptPicker)
+  TypeManager.registerEngineType("EditorSelection", ::EditorSelection)
+  TypeManager.registerEngineType("EditorSettings", ::EditorSettings)
+  TypeManager.registerEngineType("EditorSpinSlider", ::EditorSpinSlider)
+  TypeManager.registerEngineType("EditorSyntaxHighlighter", ::EditorSyntaxHighlighter)
+  TypeManager.registerEngineType("EditorTranslationParserPlugin", ::EditorTranslationParserPlugin)
+  TypeManager.registerEngineType("EditorVCSInterface", ::EditorVCSInterface)
+  TypeManager.registerEngineType("EncodedObjectAsID", ::EncodedObjectAsID)
+  TypeManager.registerEngineType("EngineProfiler", ::EngineProfiler)
+  TypeManager.registerEngineType("Environment", ::Environment)
+  TypeManager.registerEngineType("Expression", ::Expression)
+  TypeManager.registerEngineType("FastNoiseLite", ::FastNoiseLite)
+  TypeManager.registerEngineType("File", ::File)
+  TypeManager.registerEngineType("FileDialog", ::FileDialog)
+  TypeManager.registerEngineType("FileSystemDock", ::FileSystemDock)
+  TypeManager.registerEngineType("FlowContainer", ::FlowContainer)
+  TypeManager.registerEngineType("FogMaterial", ::FogMaterial)
+  TypeManager.registerEngineType("FogVolume", ::FogVolume)
+  TypeManager.registerEngineType("Font", ::Font)
+  TypeManager.registerEngineType("FontData", ::FontData)
+  TypeManager.registerEngineType("GDScript", ::GDScript)
+  TypeManager.registerEngineType("GDScriptEditorTranslationParserPlugin",
+      ::GDScriptEditorTranslationParserPlugin)
+  TypeManager.registerEngineType("GDScriptNativeClass", ::GDScriptNativeClass)
+  TypeManager.registerEngineType("GLTFAccessor", ::GLTFAccessor)
+  TypeManager.registerEngineType("GLTFAnimation", ::GLTFAnimation)
+  TypeManager.registerEngineType("GLTFBufferView", ::GLTFBufferView)
+  TypeManager.registerEngineType("GLTFCamera", ::GLTFCamera)
+  TypeManager.registerEngineType("GLTFDocument", ::GLTFDocument)
+  TypeManager.registerEngineType("GLTFDocumentExtension", ::GLTFDocumentExtension)
+  TypeManager.registerEngineType("GLTFDocumentExtensionConvertImporterMesh",
+      ::GLTFDocumentExtensionConvertImporterMesh)
+  TypeManager.registerEngineType("GLTFLight", ::GLTFLight)
+  TypeManager.registerEngineType("GLTFMesh", ::GLTFMesh)
+  TypeManager.registerEngineType("GLTFNode", ::GLTFNode)
+  TypeManager.registerEngineType("GLTFSkeleton", ::GLTFSkeleton)
+  TypeManager.registerEngineType("GLTFSkin", ::GLTFSkin)
+  TypeManager.registerEngineType("GLTFSpecGloss", ::GLTFSpecGloss)
+  TypeManager.registerEngineType("GLTFState", ::GLTFState)
+  TypeManager.registerEngineType("GLTFTexture", ::GLTFTexture)
+  TypeManager.registerEngineType("GPUParticles2D", ::GPUParticles2D)
+  TypeManager.registerEngineType("GPUParticles3D", ::GPUParticles3D)
+  TypeManager.registerEngineType("GPUParticlesAttractor3D", ::GPUParticlesAttractor3D)
+  TypeManager.registerEngineType("GPUParticlesAttractorBox3D", ::GPUParticlesAttractorBox3D)
+  TypeManager.registerEngineType("GPUParticlesAttractorSphere3D", ::GPUParticlesAttractorSphere3D)
+  TypeManager.registerEngineType("GPUParticlesAttractorVectorField3D",
+      ::GPUParticlesAttractorVectorField3D)
+  TypeManager.registerEngineType("GPUParticlesCollision3D", ::GPUParticlesCollision3D)
+  TypeManager.registerEngineType("GPUParticlesCollisionBox3D", ::GPUParticlesCollisionBox3D)
+  TypeManager.registerEngineType("GPUParticlesCollisionHeightField3D",
+      ::GPUParticlesCollisionHeightField3D)
+  TypeManager.registerEngineType("GPUParticlesCollisionSDF3D", ::GPUParticlesCollisionSDF3D)
+  TypeManager.registerEngineType("GPUParticlesCollisionSphere3D", ::GPUParticlesCollisionSphere3D)
+  TypeManager.registerEngineType("Generic6DOFJoint3D", ::Generic6DOFJoint3D)
+  TypeManager.registerEngineType("GeometryInstance3D", ::GeometryInstance3D)
+  TypeManager.registerEngineType("Gradient", ::Gradient)
+  TypeManager.registerEngineType("GradientTexture1D", ::GradientTexture1D)
+  TypeManager.registerEngineType("GradientTexture2D", ::GradientTexture2D)
+  TypeManager.registerEngineType("GraphEdit", ::GraphEdit)
+  TypeManager.registerEngineType("GraphNode", ::GraphNode)
+  TypeManager.registerEngineType("GridContainer", ::GridContainer)
+  TypeManager.registerEngineType("GridMap", ::GridMap)
+  TypeManager.registerEngineType("GrooveJoint2D", ::GrooveJoint2D)
+  TypeManager.registerEngineType("HBoxContainer", ::HBoxContainer)
+  TypeManager.registerEngineType("HFlowContainer", ::HFlowContainer)
+  TypeManager.registerEngineType("HMACContext", ::HMACContext)
+  TypeManager.registerEngineType("HScrollBar", ::HScrollBar)
+  TypeManager.registerEngineType("HSeparator", ::HSeparator)
+  TypeManager.registerEngineType("HSlider", ::HSlider)
+  TypeManager.registerEngineType("HSplitContainer", ::HSplitContainer)
+  TypeManager.registerEngineType("HTTPClient", ::HTTPClient)
+  TypeManager.registerEngineType("HTTPRequest", ::HTTPRequest)
+  TypeManager.registerEngineType("HashingContext", ::HashingContext)
+  TypeManager.registerEngineType("HeightMapShape3D", ::HeightMapShape3D)
+  TypeManager.registerEngineType("HingeJoint3D", ::HingeJoint3D)
+  TypeManager.registerEngineType("Image", ::Image)
+  TypeManager.registerEngineType("ImageTexture", ::ImageTexture)
+  TypeManager.registerEngineType("ImageTexture3D", ::ImageTexture3D)
+  TypeManager.registerEngineType("ImageTextureLayered", ::ImageTextureLayered)
+  TypeManager.registerEngineType("ImmediateMesh", ::ImmediateMesh)
+  TypeManager.registerEngineType("ImporterMesh", ::ImporterMesh)
+  TypeManager.registerEngineType("ImporterMeshInstance3D", ::ImporterMeshInstance3D)
+  TypeManager.registerEngineType("InputEvent", ::InputEvent)
+  TypeManager.registerEngineType("InputEventAction", ::InputEventAction)
+  TypeManager.registerEngineType("InputEventFromWindow", ::InputEventFromWindow)
+  TypeManager.registerEngineType("InputEventGesture", ::InputEventGesture)
+  TypeManager.registerEngineType("InputEventJoypadButton", ::InputEventJoypadButton)
+  TypeManager.registerEngineType("InputEventJoypadMotion", ::InputEventJoypadMotion)
+  TypeManager.registerEngineType("InputEventKey", ::InputEventKey)
+  TypeManager.registerEngineType("InputEventMIDI", ::InputEventMIDI)
+  TypeManager.registerEngineType("InputEventMagnifyGesture", ::InputEventMagnifyGesture)
+  TypeManager.registerEngineType("InputEventMouse", ::InputEventMouse)
+  TypeManager.registerEngineType("InputEventMouseButton", ::InputEventMouseButton)
+  TypeManager.registerEngineType("InputEventMouseMotion", ::InputEventMouseMotion)
+  TypeManager.registerEngineType("InputEventPanGesture", ::InputEventPanGesture)
+  TypeManager.registerEngineType("InputEventScreenDrag", ::InputEventScreenDrag)
+  TypeManager.registerEngineType("InputEventScreenTouch", ::InputEventScreenTouch)
+  TypeManager.registerEngineType("InputEventShortcut", ::InputEventShortcut)
+  TypeManager.registerEngineType("InputEventWithModifiers", ::InputEventWithModifiers)
+  TypeManager.registerEngineType("InstancePlaceholder", ::InstancePlaceholder)
+  TypeManager.registerEngineType("IntervalTweener", ::IntervalTweener)
+  TypeManager.registerEngineType("ItemList", ::ItemList)
+  TypeManager.registerEngineType("JNISingleton", ::JNISingleton)
+  TypeManager.registerEngineType("JSON", ::JSON)
+  TypeManager.registerEngineType("JSONRPC", ::JSONRPC)
+  TypeManager.registerEngineType("JavaClass", ::JavaClass)
+  TypeManager.registerEngineType("JavaScriptObject", ::JavaScriptObject)
+  TypeManager.registerEngineType("Joint2D", ::Joint2D)
+  TypeManager.registerEngineType("Joint3D", ::Joint3D)
+  TypeManager.registerEngineType("KinematicCollision2D", ::KinematicCollision2D)
+  TypeManager.registerEngineType("KinematicCollision3D", ::KinematicCollision3D)
+  TypeManager.registerEngineType("Label", ::Label)
+  TypeManager.registerEngineType("Light2D", ::Light2D)
+  TypeManager.registerEngineType("Light3D", ::Light3D)
+  TypeManager.registerEngineType("LightOccluder2D", ::LightOccluder2D)
+  TypeManager.registerEngineType("LightmapGI", ::LightmapGI)
+  TypeManager.registerEngineType("LightmapGIData", ::LightmapGIData)
+  TypeManager.registerEngineType("LightmapProbe", ::LightmapProbe)
+  TypeManager.registerEngineType("Lightmapper", ::Lightmapper)
+  TypeManager.registerEngineType("LightmapperRD", ::LightmapperRD)
+  TypeManager.registerEngineType("Line2D", ::Line2D)
+  TypeManager.registerEngineType("LineEdit", ::LineEdit)
+  TypeManager.registerEngineType("LinkButton", ::LinkButton)
+  TypeManager.registerEngineType("MainLoop", ::MainLoop)
+  TypeManager.registerEngineType("MarginContainer", ::MarginContainer)
+  TypeManager.registerEngineType("Material", ::Material)
+  TypeManager.registerEngineType("MenuButton", ::MenuButton)
+  TypeManager.registerEngineType("Mesh", ::Mesh)
+  TypeManager.registerEngineType("MeshDataTool", ::MeshDataTool)
+  TypeManager.registerEngineType("MeshInstance2D", ::MeshInstance2D)
+  TypeManager.registerEngineType("MeshInstance3D", ::MeshInstance3D)
+  TypeManager.registerEngineType("MeshLibrary", ::MeshLibrary)
+  TypeManager.registerEngineType("MeshTexture", ::MeshTexture)
+  TypeManager.registerEngineType("MethodTweener", ::MethodTweener)
+  TypeManager.registerEngineType("MobileVRInterface", ::MobileVRInterface)
+  TypeManager.registerEngineType("MultiMesh", ::MultiMesh)
+  TypeManager.registerEngineType("MultiMeshInstance2D", ::MultiMeshInstance2D)
+  TypeManager.registerEngineType("MultiMeshInstance3D", ::MultiMeshInstance3D)
+  TypeManager.registerEngineType("MultiplayerAPI", ::MultiplayerAPI)
+  TypeManager.registerEngineType("MultiplayerPeer", ::MultiplayerPeer)
+  TypeManager.registerEngineType("MultiplayerPeerExtension", ::MultiplayerPeerExtension)
+  TypeManager.registerEngineType("MultiplayerSpawner", ::MultiplayerSpawner)
+  TypeManager.registerEngineType("MultiplayerSynchronizer", ::MultiplayerSynchronizer)
+  TypeManager.registerEngineType("Mutex", ::Mutex)
+  TypeManager.registerEngineType("NativeExtension", ::NativeExtension)
+  TypeManager.registerEngineType("NavigationAgent2D", ::NavigationAgent2D)
+  TypeManager.registerEngineType("NavigationAgent3D", ::NavigationAgent3D)
+  TypeManager.registerEngineType("NavigationMesh", ::NavigationMesh)
+  TypeManager.registerEngineType("NavigationObstacle2D", ::NavigationObstacle2D)
+  TypeManager.registerEngineType("NavigationObstacle3D", ::NavigationObstacle3D)
+  TypeManager.registerEngineType("NavigationPolygon", ::NavigationPolygon)
+  TypeManager.registerEngineType("NavigationRegion2D", ::NavigationRegion2D)
+  TypeManager.registerEngineType("NavigationRegion3D", ::NavigationRegion3D)
+  TypeManager.registerEngineType("NinePatchRect", ::NinePatchRect)
+  TypeManager.registerEngineType("Node", ::Node)
+  TypeManager.registerEngineType("Node2D", ::Node2D)
+  TypeManager.registerEngineType("Node3D", ::Node3D)
+  TypeManager.registerEngineType("Node3DGizmo", ::Node3DGizmo)
+  TypeManager.registerEngineType("Noise", ::Noise)
+  TypeManager.registerEngineType("NoiseTexture", ::NoiseTexture)
+  TypeManager.registerEngineType("OGGPacketSequence", ::OGGPacketSequence)
+  TypeManager.registerEngineType("OGGPacketSequencePlayback", ::OGGPacketSequencePlayback)
+  TypeManager.registerEngineType("ORMMaterial3D", ::ORMMaterial3D)
+  TypeManager.registerEngineType("Object", ::Object)
+  TypeManager.registerEngineType("Occluder3D", ::Occluder3D)
+  TypeManager.registerEngineType("OccluderInstance3D", ::OccluderInstance3D)
+  TypeManager.registerEngineType("OccluderPolygon2D", ::OccluderPolygon2D)
+  TypeManager.registerEngineType("OmniLight3D", ::OmniLight3D)
+  TypeManager.registerEngineType("OpenXRAction", ::OpenXRAction)
+  TypeManager.registerEngineType("OpenXRActionMap", ::OpenXRActionMap)
+  TypeManager.registerEngineType("OpenXRActionSet", ::OpenXRActionSet)
+  TypeManager.registerEngineType("OpenXRIPBinding", ::OpenXRIPBinding)
+  TypeManager.registerEngineType("OpenXRInteractionProfile", ::OpenXRInteractionProfile)
+  TypeManager.registerEngineType("OpenXRInterface", ::OpenXRInterface)
+  TypeManager.registerEngineType("OptimizedTranslation", ::OptimizedTranslation)
+  TypeManager.registerEngineType("OptionButton", ::OptionButton)
+  TypeManager.registerEngineType("PCKPacker", ::PCKPacker)
+  TypeManager.registerEngineType("PackedDataContainer", ::PackedDataContainer)
+  TypeManager.registerEngineType("PackedDataContainerRef", ::PackedDataContainerRef)
+  TypeManager.registerEngineType("PackedScene", ::PackedScene)
+  TypeManager.registerEngineType("PacketPeer", ::PacketPeer)
+  TypeManager.registerEngineType("PacketPeerDTLS", ::PacketPeerDTLS)
+  TypeManager.registerEngineType("PacketPeerExtension", ::PacketPeerExtension)
+  TypeManager.registerEngineType("PacketPeerStream", ::PacketPeerStream)
+  TypeManager.registerEngineType("PacketPeerUDP", ::PacketPeerUDP)
+  TypeManager.registerEngineType("Panel", ::Panel)
+  TypeManager.registerEngineType("PanelContainer", ::PanelContainer)
+  TypeManager.registerEngineType("PanoramaSkyMaterial", ::PanoramaSkyMaterial)
+  TypeManager.registerEngineType("ParallaxBackground", ::ParallaxBackground)
+  TypeManager.registerEngineType("ParallaxLayer", ::ParallaxLayer)
+  TypeManager.registerEngineType("ParticlesMaterial", ::ParticlesMaterial)
+  TypeManager.registerEngineType("Path2D", ::Path2D)
+  TypeManager.registerEngineType("Path3D", ::Path3D)
+  TypeManager.registerEngineType("PathFollow2D", ::PathFollow2D)
+  TypeManager.registerEngineType("PathFollow3D", ::PathFollow3D)
+  TypeManager.registerEngineType("PhysicalBone2D", ::PhysicalBone2D)
+  TypeManager.registerEngineType("PhysicalBone3D", ::PhysicalBone3D)
+  TypeManager.registerEngineType("PhysicalSkyMaterial", ::PhysicalSkyMaterial)
+  TypeManager.registerEngineType("PhysicsBody2D", ::PhysicsBody2D)
+  TypeManager.registerEngineType("PhysicsBody3D", ::PhysicsBody3D)
+  TypeManager.registerEngineType("PhysicsDirectBodyState2D", ::PhysicsDirectBodyState2D)
+  TypeManager.registerEngineType("PhysicsDirectBodyState3D", ::PhysicsDirectBodyState3D)
+  TypeManager.registerEngineType("PhysicsDirectBodyState3DExtension",
+      ::PhysicsDirectBodyState3DExtension)
+  TypeManager.registerEngineType("PhysicsDirectSpaceState2D", ::PhysicsDirectSpaceState2D)
+  TypeManager.registerEngineType("PhysicsDirectSpaceState3D", ::PhysicsDirectSpaceState3D)
+  TypeManager.registerEngineType("PhysicsDirectSpaceState3DExtension",
+      ::PhysicsDirectSpaceState3DExtension)
+  TypeManager.registerEngineType("PhysicsMaterial", ::PhysicsMaterial)
+  TypeManager.registerEngineType("PhysicsPointQueryParameters2D", ::PhysicsPointQueryParameters2D)
+  TypeManager.registerEngineType("PhysicsPointQueryParameters3D", ::PhysicsPointQueryParameters3D)
+  TypeManager.registerEngineType("PhysicsRayQueryParameters2D", ::PhysicsRayQueryParameters2D)
+  TypeManager.registerEngineType("PhysicsRayQueryParameters3D", ::PhysicsRayQueryParameters3D)
+  TypeManager.registerEngineType("PhysicsServer3DRenderingServerHandler",
+      ::PhysicsServer3DRenderingServerHandler)
+  TypeManager.registerEngineType("PhysicsShapeQueryParameters2D", ::PhysicsShapeQueryParameters2D)
+  TypeManager.registerEngineType("PhysicsShapeQueryParameters3D", ::PhysicsShapeQueryParameters3D)
+  TypeManager.registerEngineType("PhysicsTestMotionParameters2D", ::PhysicsTestMotionParameters2D)
+  TypeManager.registerEngineType("PhysicsTestMotionParameters3D", ::PhysicsTestMotionParameters3D)
+  TypeManager.registerEngineType("PhysicsTestMotionResult2D", ::PhysicsTestMotionResult2D)
+  TypeManager.registerEngineType("PhysicsTestMotionResult3D", ::PhysicsTestMotionResult3D)
+  TypeManager.registerEngineType("PinJoint2D", ::PinJoint2D)
+  TypeManager.registerEngineType("PinJoint3D", ::PinJoint3D)
+  TypeManager.registerEngineType("PlaneMesh", ::PlaneMesh)
+  TypeManager.registerEngineType("PointLight2D", ::PointLight2D)
+  TypeManager.registerEngineType("PointMesh", ::PointMesh)
+  TypeManager.registerEngineType("Polygon2D", ::Polygon2D)
+  TypeManager.registerEngineType("PolygonOccluder3D", ::PolygonOccluder3D)
+  TypeManager.registerEngineType("PolygonPathFinder", ::PolygonPathFinder)
+  TypeManager.registerEngineType("Popup", ::Popup)
+  TypeManager.registerEngineType("PopupMenu", ::PopupMenu)
+  TypeManager.registerEngineType("PopupPanel", ::PopupPanel)
+  TypeManager.registerEngineType("PortableCompressedTexture2D", ::PortableCompressedTexture2D)
+  TypeManager.registerEngineType("Position2D", ::Position2D)
+  TypeManager.registerEngineType("Position3D", ::Position3D)
+  TypeManager.registerEngineType("PrimitiveMesh", ::PrimitiveMesh)
+  TypeManager.registerEngineType("PrismMesh", ::PrismMesh)
+  TypeManager.registerEngineType("ProceduralSkyMaterial", ::ProceduralSkyMaterial)
+  TypeManager.registerEngineType("ProgressBar", ::ProgressBar)
+  TypeManager.registerEngineType("PropertyTweener", ::PropertyTweener)
+  TypeManager.registerEngineType("ProxyTexture", ::ProxyTexture)
+  TypeManager.registerEngineType("QuadMesh", ::QuadMesh)
+  TypeManager.registerEngineType("QuadOccluder3D", ::QuadOccluder3D)
+  TypeManager.registerEngineType("RDAttachmentFormat", ::RDAttachmentFormat)
+  TypeManager.registerEngineType("RDFramebufferPass", ::RDFramebufferPass)
+  TypeManager.registerEngineType("RDPipelineColorBlendState", ::RDPipelineColorBlendState)
+  TypeManager.registerEngineType("RDPipelineColorBlendStateAttachment",
+      ::RDPipelineColorBlendStateAttachment)
+  TypeManager.registerEngineType("RDPipelineDepthStencilState", ::RDPipelineDepthStencilState)
+  TypeManager.registerEngineType("RDPipelineMultisampleState", ::RDPipelineMultisampleState)
+  TypeManager.registerEngineType("RDPipelineRasterizationState", ::RDPipelineRasterizationState)
+  TypeManager.registerEngineType("RDPipelineSpecializationConstant",
+      ::RDPipelineSpecializationConstant)
+  TypeManager.registerEngineType("RDSamplerState", ::RDSamplerState)
+  TypeManager.registerEngineType("RDShaderFile", ::RDShaderFile)
+  TypeManager.registerEngineType("RDShaderSPIRV", ::RDShaderSPIRV)
+  TypeManager.registerEngineType("RDShaderSource", ::RDShaderSource)
+  TypeManager.registerEngineType("RDTextureFormat", ::RDTextureFormat)
+  TypeManager.registerEngineType("RDTextureView", ::RDTextureView)
+  TypeManager.registerEngineType("RDUniform", ::RDUniform)
+  TypeManager.registerEngineType("RDVertexAttribute", ::RDVertexAttribute)
+  TypeManager.registerEngineType("RandomNumberGenerator", ::RandomNumberGenerator)
+  TypeManager.registerEngineType("Range", ::Range)
+  TypeManager.registerEngineType("RayCast2D", ::RayCast2D)
+  TypeManager.registerEngineType("RayCast3D", ::RayCast3D)
+  TypeManager.registerEngineType("RectangleShape2D", ::RectangleShape2D)
+  TypeManager.registerEngineType("RefCounted", ::RefCounted)
+  TypeManager.registerEngineType("ReferenceRect", ::ReferenceRect)
+  TypeManager.registerEngineType("ReflectionProbe", ::ReflectionProbe)
+  TypeManager.registerEngineType("RegEx", ::RegEx)
+  TypeManager.registerEngineType("RegExMatch", ::RegExMatch)
+  TypeManager.registerEngineType("RemoteTransform2D", ::RemoteTransform2D)
+  TypeManager.registerEngineType("RemoteTransform3D", ::RemoteTransform3D)
+  TypeManager.registerEngineType("RenderingDevice", ::RenderingDevice)
+  TypeManager.registerEngineType("Resource", ::Resource)
+  TypeManager.registerEngineType("ResourceFormatLoader", ::ResourceFormatLoader)
+  TypeManager.registerEngineType("ResourceFormatSaver", ::ResourceFormatSaver)
+  TypeManager.registerEngineType("ResourceImporter", ::ResourceImporter)
+  TypeManager.registerEngineType("ResourcePreloader", ::ResourcePreloader)
+  TypeManager.registerEngineType("RibbonTrailMesh", ::RibbonTrailMesh)
+  TypeManager.registerEngineType("RichTextEffect", ::RichTextEffect)
+  TypeManager.registerEngineType("RichTextLabel", ::RichTextLabel)
+  TypeManager.registerEngineType("RigidDynamicBody2D", ::RigidDynamicBody2D)
+  TypeManager.registerEngineType("RigidDynamicBody3D", ::RigidDynamicBody3D)
+  TypeManager.registerEngineType("RootMotionView", ::RootMotionView)
+  TypeManager.registerEngineType("SceneReplicationConfig", ::SceneReplicationConfig)
+  TypeManager.registerEngineType("SceneState", ::SceneState)
+  TypeManager.registerEngineType("SceneTree", ::SceneTree)
+  TypeManager.registerEngineType("SceneTreeTimer", ::SceneTreeTimer)
+  TypeManager.registerEngineType("Script", ::Script)
+  TypeManager.registerEngineType("ScriptCreateDialog", ::ScriptCreateDialog)
+  TypeManager.registerEngineType("ScriptEditor", ::ScriptEditor)
+  TypeManager.registerEngineType("ScriptEditorBase", ::ScriptEditorBase)
+  TypeManager.registerEngineType("ScriptExtension", ::ScriptExtension)
+  TypeManager.registerEngineType("ScriptLanguage", ::ScriptLanguage)
+  TypeManager.registerEngineType("ScriptLanguageExtension", ::ScriptLanguageExtension)
+  TypeManager.registerEngineType("ScrollBar", ::ScrollBar)
+  TypeManager.registerEngineType("ScrollContainer", ::ScrollContainer)
+  TypeManager.registerEngineType("SegmentShape2D", ::SegmentShape2D)
+  TypeManager.registerEngineType("Semaphore", ::Semaphore)
+  TypeManager.registerEngineType("SeparationRayShape2D", ::SeparationRayShape2D)
+  TypeManager.registerEngineType("SeparationRayShape3D", ::SeparationRayShape3D)
+  TypeManager.registerEngineType("Separator", ::Separator)
+  TypeManager.registerEngineType("Shader", ::Shader)
+  TypeManager.registerEngineType("ShaderGlobalsOverride", ::ShaderGlobalsOverride)
+  TypeManager.registerEngineType("ShaderMaterial", ::ShaderMaterial)
+  TypeManager.registerEngineType("Shape2D", ::Shape2D)
+  TypeManager.registerEngineType("Shape3D", ::Shape3D)
+  TypeManager.registerEngineType("ShapeCast2D", ::ShapeCast2D)
+  TypeManager.registerEngineType("Shortcut", ::Shortcut)
+  TypeManager.registerEngineType("Skeleton2D", ::Skeleton2D)
+  TypeManager.registerEngineType("Skeleton3D", ::Skeleton3D)
+  TypeManager.registerEngineType("SkeletonIK3D", ::SkeletonIK3D)
+  TypeManager.registerEngineType("SkeletonModification2D", ::SkeletonModification2D)
+  TypeManager.registerEngineType("SkeletonModification2DCCDIK", ::SkeletonModification2DCCDIK)
+  TypeManager.registerEngineType("SkeletonModification2DFABRIK", ::SkeletonModification2DFABRIK)
+  TypeManager.registerEngineType("SkeletonModification2DJiggle", ::SkeletonModification2DJiggle)
+  TypeManager.registerEngineType("SkeletonModification2DLookAt", ::SkeletonModification2DLookAt)
+  TypeManager.registerEngineType("SkeletonModification2DPhysicalBones",
+      ::SkeletonModification2DPhysicalBones)
+  TypeManager.registerEngineType("SkeletonModification2DStackHolder",
+      ::SkeletonModification2DStackHolder)
+  TypeManager.registerEngineType("SkeletonModification2DTwoBoneIK",
+      ::SkeletonModification2DTwoBoneIK)
+  TypeManager.registerEngineType("SkeletonModification3D", ::SkeletonModification3D)
+  TypeManager.registerEngineType("SkeletonModification3DCCDIK", ::SkeletonModification3DCCDIK)
+  TypeManager.registerEngineType("SkeletonModification3DFABRIK", ::SkeletonModification3DFABRIK)
+  TypeManager.registerEngineType("SkeletonModification3DJiggle", ::SkeletonModification3DJiggle)
+  TypeManager.registerEngineType("SkeletonModification3DLookAt", ::SkeletonModification3DLookAt)
+  TypeManager.registerEngineType("SkeletonModification3DStackHolder",
+      ::SkeletonModification3DStackHolder)
+  TypeManager.registerEngineType("SkeletonModification3DTwoBoneIK",
+      ::SkeletonModification3DTwoBoneIK)
+  TypeManager.registerEngineType("SkeletonModificationStack2D", ::SkeletonModificationStack2D)
+  TypeManager.registerEngineType("SkeletonModificationStack3D", ::SkeletonModificationStack3D)
+  TypeManager.registerEngineType("Skin", ::Skin)
+  TypeManager.registerEngineType("SkinReference", ::SkinReference)
+  TypeManager.registerEngineType("Sky", ::Sky)
+  TypeManager.registerEngineType("Slider", ::Slider)
+  TypeManager.registerEngineType("SliderJoint3D", ::SliderJoint3D)
+  TypeManager.registerEngineType("SoftDynamicBody3D", ::SoftDynamicBody3D)
+  TypeManager.registerEngineType("SphereMesh", ::SphereMesh)
+  TypeManager.registerEngineType("SphereOccluder3D", ::SphereOccluder3D)
+  TypeManager.registerEngineType("SphereShape3D", ::SphereShape3D)
+  TypeManager.registerEngineType("SpinBox", ::SpinBox)
+  TypeManager.registerEngineType("SplitContainer", ::SplitContainer)
+  TypeManager.registerEngineType("SpotLight3D", ::SpotLight3D)
+  TypeManager.registerEngineType("SpringArm3D", ::SpringArm3D)
+  TypeManager.registerEngineType("Sprite2D", ::Sprite2D)
+  TypeManager.registerEngineType("Sprite3D", ::Sprite3D)
+  TypeManager.registerEngineType("SpriteBase3D", ::SpriteBase3D)
+  TypeManager.registerEngineType("SpriteFrames", ::SpriteFrames)
+  TypeManager.registerEngineType("StandardMaterial3D", ::StandardMaterial3D)
+  TypeManager.registerEngineType("StaticBody2D", ::StaticBody2D)
+  TypeManager.registerEngineType("StaticBody3D", ::StaticBody3D)
+  TypeManager.registerEngineType("StreamPeer", ::StreamPeer)
+  TypeManager.registerEngineType("StreamPeerBuffer", ::StreamPeerBuffer)
+  TypeManager.registerEngineType("StreamPeerExtension", ::StreamPeerExtension)
+  TypeManager.registerEngineType("StreamPeerSSL", ::StreamPeerSSL)
+  TypeManager.registerEngineType("StreamPeerTCP", ::StreamPeerTCP)
+  TypeManager.registerEngineType("StyleBox", ::StyleBox)
+  TypeManager.registerEngineType("StyleBoxEmpty", ::StyleBoxEmpty)
+  TypeManager.registerEngineType("StyleBoxFlat", ::StyleBoxFlat)
+  TypeManager.registerEngineType("StyleBoxLine", ::StyleBoxLine)
+  TypeManager.registerEngineType("StyleBoxTexture", ::StyleBoxTexture)
+  TypeManager.registerEngineType("SubViewport", ::SubViewport)
+  TypeManager.registerEngineType("SubViewportContainer", ::SubViewportContainer)
+  TypeManager.registerEngineType("SurfaceTool", ::SurfaceTool)
+  TypeManager.registerEngineType("SyntaxHighlighter", ::SyntaxHighlighter)
+  TypeManager.registerEngineType("TCPServer", ::TCPServer)
+  TypeManager.registerEngineType("TabBar", ::TabBar)
+  TypeManager.registerEngineType("TabContainer", ::TabContainer)
+  TypeManager.registerEngineType("TextEdit", ::TextEdit)
+  TypeManager.registerEngineType("TextLine", ::TextLine)
+  TypeManager.registerEngineType("TextParagraph", ::TextParagraph)
+  TypeManager.registerEngineType("TextServer", ::TextServer)
+  TypeManager.registerEngineType("TextServerAdvanced", ::TextServerAdvanced)
+  TypeManager.registerEngineType("TextServerDummy", ::TextServerDummy)
+  TypeManager.registerEngineType("TextServerExtension", ::TextServerExtension)
+  TypeManager.registerEngineType("Texture", ::Texture)
+  TypeManager.registerEngineType("Texture2D", ::Texture2D)
+  TypeManager.registerEngineType("Texture2DArray", ::Texture2DArray)
+  TypeManager.registerEngineType("Texture3D", ::Texture3D)
+  TypeManager.registerEngineType("TextureButton", ::TextureButton)
+  TypeManager.registerEngineType("TextureLayered", ::TextureLayered)
+  TypeManager.registerEngineType("TextureProgressBar", ::TextureProgressBar)
+  TypeManager.registerEngineType("TextureRect", ::TextureRect)
+  TypeManager.registerEngineType("Theme", ::Theme)
+  TypeManager.registerEngineType("Thread", ::Thread)
+  TypeManager.registerEngineType("TileData", ::TileData)
+  TypeManager.registerEngineType("TileMap", ::TileMap)
+  TypeManager.registerEngineType("TileMapPattern", ::TileMapPattern)
+  TypeManager.registerEngineType("TileSet", ::TileSet)
+  TypeManager.registerEngineType("TileSetAtlasSource", ::TileSetAtlasSource)
+  TypeManager.registerEngineType("TileSetScenesCollectionSource", ::TileSetScenesCollectionSource)
+  TypeManager.registerEngineType("TileSetSource", ::TileSetSource)
+  TypeManager.registerEngineType("Timer", ::Timer)
+  TypeManager.registerEngineType("TouchScreenButton", ::TouchScreenButton)
+  TypeManager.registerEngineType("Translation", ::Translation)
+  TypeManager.registerEngineType("Tree", ::Tree)
+  TypeManager.registerEngineType("TreeItem", ::TreeItem)
+  TypeManager.registerEngineType("TriangleMesh", ::TriangleMesh)
+  TypeManager.registerEngineType("TubeTrailMesh", ::TubeTrailMesh)
+  TypeManager.registerEngineType("Tween", ::Tween)
+  TypeManager.registerEngineType("Tweener", ::Tweener)
+  TypeManager.registerEngineType("UDPServer", ::UDPServer)
+  TypeManager.registerEngineType("UPNP", ::UPNP)
+  TypeManager.registerEngineType("UPNPDevice", ::UPNPDevice)
+  TypeManager.registerEngineType("UndoRedo", ::UndoRedo)
+  TypeManager.registerEngineType("UniformSetCacheRD", ::UniformSetCacheRD)
+  TypeManager.registerEngineType("VBoxContainer", ::VBoxContainer)
+  TypeManager.registerEngineType("VFlowContainer", ::VFlowContainer)
+  TypeManager.registerEngineType("VScrollBar", ::VScrollBar)
+  TypeManager.registerEngineType("VSeparator", ::VSeparator)
+  TypeManager.registerEngineType("VSlider", ::VSlider)
+  TypeManager.registerEngineType("VSplitContainer", ::VSplitContainer)
+  TypeManager.registerEngineType("VehicleBody3D", ::VehicleBody3D)
+  TypeManager.registerEngineType("VehicleWheel3D", ::VehicleWheel3D)
+  TypeManager.registerEngineType("VelocityTracker3D", ::VelocityTracker3D)
+  TypeManager.registerEngineType("VideoStream", ::VideoStream)
+  TypeManager.registerEngineType("VideoStreamPlayer", ::VideoStreamPlayer)
+  TypeManager.registerEngineType("VideoStreamTheora", ::VideoStreamTheora)
+  TypeManager.registerEngineType("Viewport", ::Viewport)
+  TypeManager.registerEngineType("ViewportTexture", ::ViewportTexture)
+  TypeManager.registerEngineType("VisibleOnScreenEnabler2D", ::VisibleOnScreenEnabler2D)
+  TypeManager.registerEngineType("VisibleOnScreenEnabler3D", ::VisibleOnScreenEnabler3D)
+  TypeManager.registerEngineType("VisibleOnScreenNotifier2D", ::VisibleOnScreenNotifier2D)
+  TypeManager.registerEngineType("VisibleOnScreenNotifier3D", ::VisibleOnScreenNotifier3D)
+  TypeManager.registerEngineType("VisualInstance3D", ::VisualInstance3D)
+  TypeManager.registerEngineType("VisualScript", ::VisualScript)
+  TypeManager.registerEngineType("VisualScriptBasicTypeConstant", ::VisualScriptBasicTypeConstant)
+  TypeManager.registerEngineType("VisualScriptBuiltinFunc", ::VisualScriptBuiltinFunc)
+  TypeManager.registerEngineType("VisualScriptClassConstant", ::VisualScriptClassConstant)
+  TypeManager.registerEngineType("VisualScriptComment", ::VisualScriptComment)
+  TypeManager.registerEngineType("VisualScriptComposeArray", ::VisualScriptComposeArray)
+  TypeManager.registerEngineType("VisualScriptCondition", ::VisualScriptCondition)
+  TypeManager.registerEngineType("VisualScriptConstant", ::VisualScriptConstant)
+  TypeManager.registerEngineType("VisualScriptConstructor", ::VisualScriptConstructor)
+  TypeManager.registerEngineType("VisualScriptCustomNode", ::VisualScriptCustomNode)
+  TypeManager.registerEngineType("VisualScriptDeconstruct", ::VisualScriptDeconstruct)
+  TypeManager.registerEngineType("VisualScriptEmitSignal", ::VisualScriptEmitSignal)
+  TypeManager.registerEngineType("VisualScriptEngineSingleton", ::VisualScriptEngineSingleton)
+  TypeManager.registerEngineType("VisualScriptExpression", ::VisualScriptExpression)
+  TypeManager.registerEngineType("VisualScriptFunction", ::VisualScriptFunction)
+  TypeManager.registerEngineType("VisualScriptFunctionCall", ::VisualScriptFunctionCall)
+  TypeManager.registerEngineType("VisualScriptFunctionState", ::VisualScriptFunctionState)
+  TypeManager.registerEngineType("VisualScriptGlobalConstant", ::VisualScriptGlobalConstant)
+  TypeManager.registerEngineType("VisualScriptIndexGet", ::VisualScriptIndexGet)
+  TypeManager.registerEngineType("VisualScriptIndexSet", ::VisualScriptIndexSet)
+  TypeManager.registerEngineType("VisualScriptInputAction", ::VisualScriptInputAction)
+  TypeManager.registerEngineType("VisualScriptIterator", ::VisualScriptIterator)
+  TypeManager.registerEngineType("VisualScriptLists", ::VisualScriptLists)
+  TypeManager.registerEngineType("VisualScriptLocalVar", ::VisualScriptLocalVar)
+  TypeManager.registerEngineType("VisualScriptLocalVarSet", ::VisualScriptLocalVarSet)
+  TypeManager.registerEngineType("VisualScriptMathConstant", ::VisualScriptMathConstant)
+  TypeManager.registerEngineType("VisualScriptNode", ::VisualScriptNode)
+  TypeManager.registerEngineType("VisualScriptOperator", ::VisualScriptOperator)
+  TypeManager.registerEngineType("VisualScriptPreload", ::VisualScriptPreload)
+  TypeManager.registerEngineType("VisualScriptPropertyGet", ::VisualScriptPropertyGet)
+  TypeManager.registerEngineType("VisualScriptPropertySet", ::VisualScriptPropertySet)
+  TypeManager.registerEngineType("VisualScriptResourcePath", ::VisualScriptResourcePath)
+  TypeManager.registerEngineType("VisualScriptReturn", ::VisualScriptReturn)
+  TypeManager.registerEngineType("VisualScriptSceneNode", ::VisualScriptSceneNode)
+  TypeManager.registerEngineType("VisualScriptSceneTree", ::VisualScriptSceneTree)
+  TypeManager.registerEngineType("VisualScriptSelect", ::VisualScriptSelect)
+  TypeManager.registerEngineType("VisualScriptSelf", ::VisualScriptSelf)
+  TypeManager.registerEngineType("VisualScriptSequence", ::VisualScriptSequence)
+  TypeManager.registerEngineType("VisualScriptSubCall", ::VisualScriptSubCall)
+  TypeManager.registerEngineType("VisualScriptSwitch", ::VisualScriptSwitch)
+  TypeManager.registerEngineType("VisualScriptTypeCast", ::VisualScriptTypeCast)
+  TypeManager.registerEngineType("VisualScriptVariableGet", ::VisualScriptVariableGet)
+  TypeManager.registerEngineType("VisualScriptVariableSet", ::VisualScriptVariableSet)
+  TypeManager.registerEngineType("VisualScriptWhile", ::VisualScriptWhile)
+  TypeManager.registerEngineType("VisualScriptYield", ::VisualScriptYield)
+  TypeManager.registerEngineType("VisualScriptYieldSignal", ::VisualScriptYieldSignal)
+  TypeManager.registerEngineType("VisualShader", ::VisualShader)
+  TypeManager.registerEngineType("VisualShaderNode", ::VisualShaderNode)
+  TypeManager.registerEngineType("VisualShaderNodeBillboard", ::VisualShaderNodeBillboard)
+  TypeManager.registerEngineType("VisualShaderNodeBooleanConstant",
+      ::VisualShaderNodeBooleanConstant)
+  TypeManager.registerEngineType("VisualShaderNodeBooleanUniform", ::VisualShaderNodeBooleanUniform)
+  TypeManager.registerEngineType("VisualShaderNodeClamp", ::VisualShaderNodeClamp)
+  TypeManager.registerEngineType("VisualShaderNodeColorConstant", ::VisualShaderNodeColorConstant)
+  TypeManager.registerEngineType("VisualShaderNodeColorFunc", ::VisualShaderNodeColorFunc)
+  TypeManager.registerEngineType("VisualShaderNodeColorOp", ::VisualShaderNodeColorOp)
+  TypeManager.registerEngineType("VisualShaderNodeColorUniform", ::VisualShaderNodeColorUniform)
+  TypeManager.registerEngineType("VisualShaderNodeComment", ::VisualShaderNodeComment)
+  TypeManager.registerEngineType("VisualShaderNodeCompare", ::VisualShaderNodeCompare)
+  TypeManager.registerEngineType("VisualShaderNodeConstant", ::VisualShaderNodeConstant)
+  TypeManager.registerEngineType("VisualShaderNodeCubemap", ::VisualShaderNodeCubemap)
+  TypeManager.registerEngineType("VisualShaderNodeCubemapUniform", ::VisualShaderNodeCubemapUniform)
+  TypeManager.registerEngineType("VisualShaderNodeCurveTexture", ::VisualShaderNodeCurveTexture)
+  TypeManager.registerEngineType("VisualShaderNodeCurveXYZTexture",
+      ::VisualShaderNodeCurveXYZTexture)
+  TypeManager.registerEngineType("VisualShaderNodeCustom", ::VisualShaderNodeCustom)
+  TypeManager.registerEngineType("VisualShaderNodeDerivativeFunc", ::VisualShaderNodeDerivativeFunc)
+  TypeManager.registerEngineType("VisualShaderNodeDeterminant", ::VisualShaderNodeDeterminant)
+  TypeManager.registerEngineType("VisualShaderNodeDotProduct", ::VisualShaderNodeDotProduct)
+  TypeManager.registerEngineType("VisualShaderNodeExpression", ::VisualShaderNodeExpression)
+  TypeManager.registerEngineType("VisualShaderNodeFaceForward", ::VisualShaderNodeFaceForward)
+  TypeManager.registerEngineType("VisualShaderNodeFloatConstant", ::VisualShaderNodeFloatConstant)
+  TypeManager.registerEngineType("VisualShaderNodeFloatFunc", ::VisualShaderNodeFloatFunc)
+  TypeManager.registerEngineType("VisualShaderNodeFloatOp", ::VisualShaderNodeFloatOp)
+  TypeManager.registerEngineType("VisualShaderNodeFloatUniform", ::VisualShaderNodeFloatUniform)
+  TypeManager.registerEngineType("VisualShaderNodeFresnel", ::VisualShaderNodeFresnel)
+  TypeManager.registerEngineType("VisualShaderNodeGlobalExpression",
+      ::VisualShaderNodeGlobalExpression)
+  TypeManager.registerEngineType("VisualShaderNodeGroupBase", ::VisualShaderNodeGroupBase)
+  TypeManager.registerEngineType("VisualShaderNodeIf", ::VisualShaderNodeIf)
+  TypeManager.registerEngineType("VisualShaderNodeInput", ::VisualShaderNodeInput)
+  TypeManager.registerEngineType("VisualShaderNodeIntConstant", ::VisualShaderNodeIntConstant)
+  TypeManager.registerEngineType("VisualShaderNodeIntFunc", ::VisualShaderNodeIntFunc)
+  TypeManager.registerEngineType("VisualShaderNodeIntOp", ::VisualShaderNodeIntOp)
+  TypeManager.registerEngineType("VisualShaderNodeIntUniform", ::VisualShaderNodeIntUniform)
+  TypeManager.registerEngineType("VisualShaderNodeIs", ::VisualShaderNodeIs)
+  TypeManager.registerEngineType("VisualShaderNodeMix", ::VisualShaderNodeMix)
+  TypeManager.registerEngineType("VisualShaderNodeMultiplyAdd", ::VisualShaderNodeMultiplyAdd)
+  TypeManager.registerEngineType("VisualShaderNodeOuterProduct", ::VisualShaderNodeOuterProduct)
+  TypeManager.registerEngineType("VisualShaderNodeOutput", ::VisualShaderNodeOutput)
+  TypeManager.registerEngineType("VisualShaderNodeParticleAccelerator",
+      ::VisualShaderNodeParticleAccelerator)
+  TypeManager.registerEngineType("VisualShaderNodeParticleBoxEmitter",
+      ::VisualShaderNodeParticleBoxEmitter)
+  TypeManager.registerEngineType("VisualShaderNodeParticleConeVelocity",
+      ::VisualShaderNodeParticleConeVelocity)
+  TypeManager.registerEngineType("VisualShaderNodeParticleEmit", ::VisualShaderNodeParticleEmit)
+  TypeManager.registerEngineType("VisualShaderNodeParticleEmitter",
+      ::VisualShaderNodeParticleEmitter)
+  TypeManager.registerEngineType("VisualShaderNodeParticleMeshEmitter",
+      ::VisualShaderNodeParticleMeshEmitter)
+  TypeManager.registerEngineType("VisualShaderNodeParticleMultiplyByAxisAngle",
+      ::VisualShaderNodeParticleMultiplyByAxisAngle)
+  TypeManager.registerEngineType("VisualShaderNodeParticleOutput", ::VisualShaderNodeParticleOutput)
+  TypeManager.registerEngineType("VisualShaderNodeParticleRandomness",
+      ::VisualShaderNodeParticleRandomness)
+  TypeManager.registerEngineType("VisualShaderNodeParticleRingEmitter",
+      ::VisualShaderNodeParticleRingEmitter)
+  TypeManager.registerEngineType("VisualShaderNodeParticleSphereEmitter",
+      ::VisualShaderNodeParticleSphereEmitter)
+  TypeManager.registerEngineType("VisualShaderNodeResizableBase", ::VisualShaderNodeResizableBase)
+  TypeManager.registerEngineType("VisualShaderNodeSDFRaymarch", ::VisualShaderNodeSDFRaymarch)
+  TypeManager.registerEngineType("VisualShaderNodeSDFToScreenUV", ::VisualShaderNodeSDFToScreenUV)
+  TypeManager.registerEngineType("VisualShaderNodeSample3D", ::VisualShaderNodeSample3D)
+  TypeManager.registerEngineType("VisualShaderNodeScreenUVToSDF", ::VisualShaderNodeScreenUVToSDF)
+  TypeManager.registerEngineType("VisualShaderNodeSmoothStep", ::VisualShaderNodeSmoothStep)
+  TypeManager.registerEngineType("VisualShaderNodeStep", ::VisualShaderNodeStep)
+  TypeManager.registerEngineType("VisualShaderNodeSwitch", ::VisualShaderNodeSwitch)
+  TypeManager.registerEngineType("VisualShaderNodeTexture", ::VisualShaderNodeTexture)
+  TypeManager.registerEngineType("VisualShaderNodeTexture2DArray", ::VisualShaderNodeTexture2DArray)
+  TypeManager.registerEngineType("VisualShaderNodeTexture2DArrayUniform",
+      ::VisualShaderNodeTexture2DArrayUniform)
+  TypeManager.registerEngineType("VisualShaderNodeTexture3D", ::VisualShaderNodeTexture3D)
+  TypeManager.registerEngineType("VisualShaderNodeTexture3DUniform",
+      ::VisualShaderNodeTexture3DUniform)
+  TypeManager.registerEngineType("VisualShaderNodeTextureSDF", ::VisualShaderNodeTextureSDF)
+  TypeManager.registerEngineType("VisualShaderNodeTextureSDFNormal",
+      ::VisualShaderNodeTextureSDFNormal)
+  TypeManager.registerEngineType("VisualShaderNodeTextureUniform", ::VisualShaderNodeTextureUniform)
+  TypeManager.registerEngineType("VisualShaderNodeTextureUniformTriplanar",
+      ::VisualShaderNodeTextureUniformTriplanar)
+  TypeManager.registerEngineType("VisualShaderNodeTransformCompose",
+      ::VisualShaderNodeTransformCompose)
+  TypeManager.registerEngineType("VisualShaderNodeTransformConstant",
+      ::VisualShaderNodeTransformConstant)
+  TypeManager.registerEngineType("VisualShaderNodeTransformDecompose",
+      ::VisualShaderNodeTransformDecompose)
+  TypeManager.registerEngineType("VisualShaderNodeTransformFunc", ::VisualShaderNodeTransformFunc)
+  TypeManager.registerEngineType("VisualShaderNodeTransformOp", ::VisualShaderNodeTransformOp)
+  TypeManager.registerEngineType("VisualShaderNodeTransformUniform",
+      ::VisualShaderNodeTransformUniform)
+  TypeManager.registerEngineType("VisualShaderNodeTransformVecMult",
+      ::VisualShaderNodeTransformVecMult)
+  TypeManager.registerEngineType("VisualShaderNodeUVFunc", ::VisualShaderNodeUVFunc)
+  TypeManager.registerEngineType("VisualShaderNodeUniform", ::VisualShaderNodeUniform)
+  TypeManager.registerEngineType("VisualShaderNodeUniformRef", ::VisualShaderNodeUniformRef)
+  TypeManager.registerEngineType("VisualShaderNodeVarying", ::VisualShaderNodeVarying)
+  TypeManager.registerEngineType("VisualShaderNodeVaryingGetter", ::VisualShaderNodeVaryingGetter)
+  TypeManager.registerEngineType("VisualShaderNodeVaryingSetter", ::VisualShaderNodeVaryingSetter)
+  TypeManager.registerEngineType("VisualShaderNodeVec2Constant", ::VisualShaderNodeVec2Constant)
+  TypeManager.registerEngineType("VisualShaderNodeVec2Uniform", ::VisualShaderNodeVec2Uniform)
+  TypeManager.registerEngineType("VisualShaderNodeVec3Constant", ::VisualShaderNodeVec3Constant)
+  TypeManager.registerEngineType("VisualShaderNodeVec3Uniform", ::VisualShaderNodeVec3Uniform)
+  TypeManager.registerEngineType("VisualShaderNodeVectorBase", ::VisualShaderNodeVectorBase)
+  TypeManager.registerEngineType("VisualShaderNodeVectorCompose", ::VisualShaderNodeVectorCompose)
+  TypeManager.registerEngineType("VisualShaderNodeVectorDecompose",
+      ::VisualShaderNodeVectorDecompose)
+  TypeManager.registerEngineType("VisualShaderNodeVectorDistance", ::VisualShaderNodeVectorDistance)
+  TypeManager.registerEngineType("VisualShaderNodeVectorFunc", ::VisualShaderNodeVectorFunc)
+  TypeManager.registerEngineType("VisualShaderNodeVectorLen", ::VisualShaderNodeVectorLen)
+  TypeManager.registerEngineType("VisualShaderNodeVectorOp", ::VisualShaderNodeVectorOp)
+  TypeManager.registerEngineType("VisualShaderNodeVectorRefract", ::VisualShaderNodeVectorRefract)
+  TypeManager.registerEngineType("VoxelGI", ::VoxelGI)
+  TypeManager.registerEngineType("VoxelGIData", ::VoxelGIData)
+  TypeManager.registerEngineType("WeakRef", ::WeakRef)
+  TypeManager.registerEngineType("WebRTCDataChannel", ::WebRTCDataChannel)
+  TypeManager.registerEngineType("WebRTCDataChannelExtension", ::WebRTCDataChannelExtension)
+  TypeManager.registerEngineType("WebRTCMultiplayerPeer", ::WebRTCMultiplayerPeer)
+  TypeManager.registerEngineType("WebRTCPeerConnection", ::WebRTCPeerConnection)
+  TypeManager.registerEngineType("WebRTCPeerConnectionExtension", ::WebRTCPeerConnectionExtension)
+  TypeManager.registerEngineType("WebSocketClient", ::WebSocketClient)
+  TypeManager.registerEngineType("WebSocketMultiplayerPeer", ::WebSocketMultiplayerPeer)
+  TypeManager.registerEngineType("WebSocketPeer", ::WebSocketPeer)
+  TypeManager.registerEngineType("WebSocketServer", ::WebSocketServer)
+  TypeManager.registerEngineType("WebXRInterface", ::WebXRInterface)
+  TypeManager.registerEngineType("Window", ::Window)
+  TypeManager.registerEngineType("World2D", ::World2D)
+  TypeManager.registerEngineType("World3D", ::World3D)
+  TypeManager.registerEngineType("WorldBoundaryShape2D", ::WorldBoundaryShape2D)
+  TypeManager.registerEngineType("WorldBoundaryShape3D", ::WorldBoundaryShape3D)
+  TypeManager.registerEngineType("WorldEnvironment", ::WorldEnvironment)
+  TypeManager.registerEngineType("X509Certificate", ::X509Certificate)
+  TypeManager.registerEngineType("XMLParser", ::XMLParser)
+  TypeManager.registerEngineType("XRAnchor3D", ::XRAnchor3D)
+  TypeManager.registerEngineType("XRCamera3D", ::XRCamera3D)
+  TypeManager.registerEngineType("XRController3D", ::XRController3D)
+  TypeManager.registerEngineType("XRInterface", ::XRInterface)
+  TypeManager.registerEngineType("XRInterfaceExtension", ::XRInterfaceExtension)
+  TypeManager.registerEngineType("XRNode3D", ::XRNode3D)
+  TypeManager.registerEngineType("XROrigin3D", ::XROrigin3D)
+  TypeManager.registerEngineType("XRPose", ::XRPose)
+  TypeManager.registerEngineType("XRPositionalTracker", ::XRPositionalTracker)
   TypeManager.registerEngineType("Performance") { Performance }
   TypeManager.registerSingleton("Performance")
-  TypeManager.registerEngineType("TextServerManager") { TextServerManager }
+  TypeManager.registerEngineType("TextServerManager") { TextServerManager } 
   TypeManager.registerSingleton("TextServerManager")
   TypeManager.registerEngineType("ProjectSettings") { ProjectSettings }
   TypeManager.registerSingleton("ProjectSettings")
@@ -15965,8 +16492,8 @@ public fun registerEngineTypes(): Unit {
 
 public fun registerVariantMapping(): Unit {
   variantMapper[AESContext::class] = OBJECT
-  variantMapper[AStar::class] = OBJECT
   variantMapper[AStar2D::class] = OBJECT
+  variantMapper[AStar3D::class] = OBJECT
   variantMapper[AcceptDialog::class] = OBJECT
   variantMapper[AnimatableBody2D::class] = OBJECT
   variantMapper[AnimatableBody3D::class] = OBJECT
@@ -15998,6 +16525,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[Area2D::class] = OBJECT
   variantMapper[Area3D::class] = OBJECT
   variantMapper[ArrayMesh::class] = OBJECT
+  variantMapper[ArrayOccluder3D::class] = OBJECT
   variantMapper[AspectRatioContainer::class] = OBJECT
   variantMapper[AtlasTexture::class] = OBJECT
   variantMapper[AudioBusLayout::class] = OBJECT
@@ -16044,7 +16572,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[AudioStreamPlayer::class] = OBJECT
   variantMapper[AudioStreamPlayer2D::class] = OBJECT
   variantMapper[AudioStreamPlayer3D::class] = OBJECT
-  variantMapper[AudioStreamRandomPitch::class] = OBJECT
+  variantMapper[AudioStreamRandomizer::class] = OBJECT
   variantMapper[AudioStreamSample::class] = OBJECT
   variantMapper[BackBufferCopy::class] = OBJECT
   variantMapper[BaseButton::class] = OBJECT
@@ -16054,6 +16582,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[BoneAttachment3D::class] = OBJECT
   variantMapper[BoxContainer::class] = OBJECT
   variantMapper[BoxMesh::class] = OBJECT
+  variantMapper[BoxOccluder3D::class] = OBJECT
   variantMapper[BoxShape3D::class] = OBJECT
   variantMapper[Button::class] = OBJECT
   variantMapper[ButtonGroup::class] = OBJECT
@@ -16101,6 +16630,12 @@ public fun registerVariantMapping(): Unit {
   variantMapper[ColorPicker::class] = OBJECT
   variantMapper[ColorPickerButton::class] = OBJECT
   variantMapper[ColorRect::class] = OBJECT
+  variantMapper[CompressedCubemap::class] = OBJECT
+  variantMapper[CompressedCubemapArray::class] = OBJECT
+  variantMapper[CompressedTexture2D::class] = OBJECT
+  variantMapper[CompressedTexture2DArray::class] = OBJECT
+  variantMapper[CompressedTexture3D::class] = OBJECT
+  variantMapper[CompressedTextureLayered::class] = OBJECT
   variantMapper[ConcavePolygonShape2D::class] = OBJECT
   variantMapper[ConcavePolygonShape3D::class] = OBJECT
   variantMapper[ConeTwistJoint3D::class] = OBJECT
@@ -16151,6 +16686,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[EditorResourcePreview::class] = OBJECT
   variantMapper[EditorResourcePreviewGenerator::class] = OBJECT
   variantMapper[EditorSceneFormatImporter::class] = OBJECT
+  variantMapper[EditorSceneFormatImporterBlend::class] = OBJECT
   variantMapper[EditorSceneFormatImporterFBX::class] = OBJECT
   variantMapper[EditorSceneFormatImporterGLTF::class] = OBJECT
   variantMapper[EditorScenePostImport::class] = OBJECT
@@ -16164,8 +16700,10 @@ public fun registerVariantMapping(): Unit {
   variantMapper[EditorTranslationParserPlugin::class] = OBJECT
   variantMapper[EditorVCSInterface::class] = OBJECT
   variantMapper[EncodedObjectAsID::class] = OBJECT
+  variantMapper[EngineProfiler::class] = OBJECT
   variantMapper[Environment::class] = OBJECT
   variantMapper[Expression::class] = OBJECT
+  variantMapper[FastNoiseLite::class] = OBJECT
   variantMapper[File::class] = OBJECT
   variantMapper[FileDialog::class] = OBJECT
   variantMapper[FileSystemDock::class] = OBJECT
@@ -16174,8 +16712,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[FogVolume::class] = OBJECT
   variantMapper[Font::class] = OBJECT
   variantMapper[FontData::class] = OBJECT
-  variantMapper[GDNative::class] = OBJECT
-  variantMapper[GDNativeLibrary::class] = OBJECT
   variantMapper[GDScript::class] = OBJECT
   variantMapper[GDScriptEditorTranslationParserPlugin::class] = OBJECT
   variantMapper[GDScriptNativeClass::class] = OBJECT
@@ -16297,7 +16833,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[MultiplayerSynchronizer::class] = OBJECT
   variantMapper[Mutex::class] = OBJECT
   variantMapper[NativeExtension::class] = OBJECT
-  variantMapper[NativeScript::class] = OBJECT
   variantMapper[NavigationAgent2D::class] = OBJECT
   variantMapper[NavigationAgent3D::class] = OBJECT
   variantMapper[NavigationMesh::class] = OBJECT
@@ -16311,6 +16846,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[Node2D::class] = OBJECT
   variantMapper[Node3D::class] = OBJECT
   variantMapper[Node3DGizmo::class] = OBJECT
+  variantMapper[Noise::class] = OBJECT
   variantMapper[NoiseTexture::class] = OBJECT
   variantMapper[OGGPacketSequence::class] = OBJECT
   variantMapper[OGGPacketSequencePlayback::class] = OBJECT
@@ -16320,7 +16856,12 @@ public fun registerVariantMapping(): Unit {
   variantMapper[OccluderInstance3D::class] = OBJECT
   variantMapper[OccluderPolygon2D::class] = OBJECT
   variantMapper[OmniLight3D::class] = OBJECT
-  variantMapper[OpenSimplexNoise::class] = OBJECT
+  variantMapper[OpenXRAction::class] = OBJECT
+  variantMapper[OpenXRActionMap::class] = OBJECT
+  variantMapper[OpenXRActionSet::class] = OBJECT
+  variantMapper[OpenXRIPBinding::class] = OBJECT
+  variantMapper[OpenXRInteractionProfile::class] = OBJECT
+  variantMapper[OpenXRInterface::class] = OBJECT
   variantMapper[OptimizedTranslation::class] = OBJECT
   variantMapper[OptionButton::class] = OBJECT
   variantMapper[PCKPacker::class] = OBJECT
@@ -16349,13 +16890,16 @@ public fun registerVariantMapping(): Unit {
   variantMapper[PhysicsBody3D::class] = OBJECT
   variantMapper[PhysicsDirectBodyState2D::class] = OBJECT
   variantMapper[PhysicsDirectBodyState3D::class] = OBJECT
+  variantMapper[PhysicsDirectBodyState3DExtension::class] = OBJECT
   variantMapper[PhysicsDirectSpaceState2D::class] = OBJECT
   variantMapper[PhysicsDirectSpaceState3D::class] = OBJECT
+  variantMapper[PhysicsDirectSpaceState3DExtension::class] = OBJECT
   variantMapper[PhysicsMaterial::class] = OBJECT
   variantMapper[PhysicsPointQueryParameters2D::class] = OBJECT
   variantMapper[PhysicsPointQueryParameters3D::class] = OBJECT
   variantMapper[PhysicsRayQueryParameters2D::class] = OBJECT
   variantMapper[PhysicsRayQueryParameters3D::class] = OBJECT
+  variantMapper[PhysicsServer3DRenderingServerHandler::class] = OBJECT
   variantMapper[PhysicsShapeQueryParameters2D::class] = OBJECT
   variantMapper[PhysicsShapeQueryParameters3D::class] = OBJECT
   variantMapper[PhysicsTestMotionParameters2D::class] = OBJECT
@@ -16365,14 +16909,15 @@ public fun registerVariantMapping(): Unit {
   variantMapper[PinJoint2D::class] = OBJECT
   variantMapper[PinJoint3D::class] = OBJECT
   variantMapper[PlaneMesh::class] = OBJECT
-  variantMapper[PluginScript::class] = OBJECT
   variantMapper[PointLight2D::class] = OBJECT
   variantMapper[PointMesh::class] = OBJECT
   variantMapper[Polygon2D::class] = OBJECT
+  variantMapper[PolygonOccluder3D::class] = OBJECT
   variantMapper[PolygonPathFinder::class] = OBJECT
   variantMapper[Popup::class] = OBJECT
   variantMapper[PopupMenu::class] = OBJECT
   variantMapper[PopupPanel::class] = OBJECT
+  variantMapper[PortableCompressedTexture2D::class] = OBJECT
   variantMapper[Position2D::class] = OBJECT
   variantMapper[Position3D::class] = OBJECT
   variantMapper[PrimitiveMesh::class] = OBJECT
@@ -16382,6 +16927,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[PropertyTweener::class] = OBJECT
   variantMapper[ProxyTexture::class] = OBJECT
   variantMapper[QuadMesh::class] = OBJECT
+  variantMapper[QuadOccluder3D::class] = OBJECT
   variantMapper[RDAttachmentFormat::class] = OBJECT
   variantMapper[RDFramebufferPass::class] = OBJECT
   variantMapper[RDPipelineColorBlendState::class] = OBJECT
@@ -16430,6 +16976,9 @@ public fun registerVariantMapping(): Unit {
   variantMapper[ScriptCreateDialog::class] = OBJECT
   variantMapper[ScriptEditor::class] = OBJECT
   variantMapper[ScriptEditorBase::class] = OBJECT
+  variantMapper[ScriptExtension::class] = OBJECT
+  variantMapper[ScriptLanguage::class] = OBJECT
+  variantMapper[ScriptLanguageExtension::class] = OBJECT
   variantMapper[ScrollBar::class] = OBJECT
   variantMapper[ScrollContainer::class] = OBJECT
   variantMapper[SegmentShape2D::class] = OBJECT
@@ -16471,6 +17020,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[SliderJoint3D::class] = OBJECT
   variantMapper[SoftDynamicBody3D::class] = OBJECT
   variantMapper[SphereMesh::class] = OBJECT
+  variantMapper[SphereOccluder3D::class] = OBJECT
   variantMapper[SphereShape3D::class] = OBJECT
   variantMapper[SpinBox::class] = OBJECT
   variantMapper[SplitContainer::class] = OBJECT
@@ -16483,17 +17033,11 @@ public fun registerVariantMapping(): Unit {
   variantMapper[StandardMaterial3D::class] = OBJECT
   variantMapper[StaticBody2D::class] = OBJECT
   variantMapper[StaticBody3D::class] = OBJECT
-  variantMapper[StreamCubemap::class] = OBJECT
-  variantMapper[StreamCubemapArray::class] = OBJECT
   variantMapper[StreamPeer::class] = OBJECT
   variantMapper[StreamPeerBuffer::class] = OBJECT
   variantMapper[StreamPeerExtension::class] = OBJECT
   variantMapper[StreamPeerSSL::class] = OBJECT
   variantMapper[StreamPeerTCP::class] = OBJECT
-  variantMapper[StreamTexture2D::class] = OBJECT
-  variantMapper[StreamTexture2DArray::class] = OBJECT
-  variantMapper[StreamTexture3D::class] = OBJECT
-  variantMapper[StreamTextureLayered::class] = OBJECT
   variantMapper[StyleBox::class] = OBJECT
   variantMapper[StyleBoxEmpty::class] = OBJECT
   variantMapper[StyleBoxFlat::class] = OBJECT
@@ -16511,6 +17055,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[TextParagraph::class] = OBJECT
   variantMapper[TextServer::class] = OBJECT
   variantMapper[TextServerAdvanced::class] = OBJECT
+  variantMapper[TextServerDummy::class] = OBJECT
   variantMapper[TextServerExtension::class] = OBJECT
   variantMapper[Texture::class] = OBJECT
   variantMapper[Texture2D::class] = OBJECT
@@ -16542,6 +17087,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[UPNP::class] = OBJECT
   variantMapper[UPNPDevice::class] = OBJECT
   variantMapper[UndoRedo::class] = OBJECT
+  variantMapper[UniformSetCacheRD::class] = OBJECT
   variantMapper[VBoxContainer::class] = OBJECT
   variantMapper[VFlowContainer::class] = OBJECT
   variantMapper[VScrollBar::class] = OBJECT
@@ -16552,7 +17098,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[VehicleWheel3D::class] = OBJECT
   variantMapper[VelocityTracker3D::class] = OBJECT
   variantMapper[VideoStream::class] = OBJECT
-  variantMapper[VideoStreamGDNative::class] = OBJECT
   variantMapper[VideoStreamPlayer::class] = OBJECT
   variantMapper[VideoStreamTheora::class] = OBJECT
   variantMapper[Viewport::class] = OBJECT
@@ -16687,6 +17232,9 @@ public fun registerVariantMapping(): Unit {
   variantMapper[VisualShaderNodeUVFunc::class] = OBJECT
   variantMapper[VisualShaderNodeUniform::class] = OBJECT
   variantMapper[VisualShaderNodeUniformRef::class] = OBJECT
+  variantMapper[VisualShaderNodeVarying::class] = OBJECT
+  variantMapper[VisualShaderNodeVaryingGetter::class] = OBJECT
+  variantMapper[VisualShaderNodeVaryingSetter::class] = OBJECT
   variantMapper[VisualShaderNodeVec2Constant::class] = OBJECT
   variantMapper[VisualShaderNodeVec2Uniform::class] = OBJECT
   variantMapper[VisualShaderNodeVec3Constant::class] = OBJECT
@@ -16765,8 +17313,8 @@ public fun registerVariantMapping(): Unit {
 
 public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForAESContext()
-  registerEngineTypeMethodForAStar()
   registerEngineTypeMethodForAStar2D()
+  registerEngineTypeMethodForAStar3D()
   registerEngineTypeMethodForAcceptDialog()
   registerEngineTypeMethodForAnimatableBody2D()
   registerEngineTypeMethodForAnimatableBody3D()
@@ -16798,6 +17346,7 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForArea2D()
   registerEngineTypeMethodForArea3D()
   registerEngineTypeMethodForArrayMesh()
+  registerEngineTypeMethodForArrayOccluder3D()
   registerEngineTypeMethodForAspectRatioContainer()
   registerEngineTypeMethodForAtlasTexture()
   registerEngineTypeMethodForAudioBusLayout()
@@ -16844,7 +17393,7 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForAudioStreamPlayer()
   registerEngineTypeMethodForAudioStreamPlayer2D()
   registerEngineTypeMethodForAudioStreamPlayer3D()
-  registerEngineTypeMethodForAudioStreamRandomPitch()
+  registerEngineTypeMethodForAudioStreamRandomizer()
   registerEngineTypeMethodForAudioStreamSample()
   registerEngineTypeMethodForBackBufferCopy()
   registerEngineTypeMethodForBaseButton()
@@ -16854,6 +17403,7 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForBoneAttachment3D()
   registerEngineTypeMethodForBoxContainer()
   registerEngineTypeMethodForBoxMesh()
+  registerEngineTypeMethodForBoxOccluder3D()
   registerEngineTypeMethodForBoxShape3D()
   registerEngineTypeMethodForButton()
   registerEngineTypeMethodForButtonGroup()
@@ -16901,6 +17451,12 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForColorPicker()
   registerEngineTypeMethodForColorPickerButton()
   registerEngineTypeMethodForColorRect()
+  registerEngineTypeMethodForCompressedCubemap()
+  registerEngineTypeMethodForCompressedCubemapArray()
+  registerEngineTypeMethodForCompressedTexture2D()
+  registerEngineTypeMethodForCompressedTexture2DArray()
+  registerEngineTypeMethodForCompressedTexture3D()
+  registerEngineTypeMethodForCompressedTextureLayered()
   registerEngineTypeMethodForConcavePolygonShape2D()
   registerEngineTypeMethodForConcavePolygonShape3D()
   registerEngineTypeMethodForConeTwistJoint3D()
@@ -16951,6 +17507,7 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForEditorResourcePreview()
   registerEngineTypeMethodForEditorResourcePreviewGenerator()
   registerEngineTypeMethodForEditorSceneFormatImporter()
+  registerEngineTypeMethodForEditorSceneFormatImporterBlend()
   registerEngineTypeMethodForEditorSceneFormatImporterFBX()
   registerEngineTypeMethodForEditorSceneFormatImporterGLTF()
   registerEngineTypeMethodForEditorScenePostImport()
@@ -16964,8 +17521,10 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForEditorTranslationParserPlugin()
   registerEngineTypeMethodForEditorVCSInterface()
   registerEngineTypeMethodForEncodedObjectAsID()
+  registerEngineTypeMethodForEngineProfiler()
   registerEngineTypeMethodForEnvironment()
   registerEngineTypeMethodForExpression()
+  registerEngineTypeMethodForFastNoiseLite()
   registerEngineTypeMethodForFile()
   registerEngineTypeMethodForFileDialog()
   registerEngineTypeMethodForFileSystemDock()
@@ -16974,8 +17533,6 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForFogVolume()
   registerEngineTypeMethodForFont()
   registerEngineTypeMethodForFontData()
-  registerEngineTypeMethodForGDNative()
-  registerEngineTypeMethodForGDNativeLibrary()
   registerEngineTypeMethodForGDScript()
   registerEngineTypeMethodForGDScriptEditorTranslationParserPlugin()
   registerEngineTypeMethodForGDScriptNativeClass()
@@ -17097,7 +17654,6 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForMultiplayerSynchronizer()
   registerEngineTypeMethodForMutex()
   registerEngineTypeMethodForNativeExtension()
-  registerEngineTypeMethodForNativeScript()
   registerEngineTypeMethodForNavigationAgent2D()
   registerEngineTypeMethodForNavigationAgent3D()
   registerEngineTypeMethodForNavigationMesh()
@@ -17111,6 +17667,7 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForNode2D()
   registerEngineTypeMethodForNode3D()
   registerEngineTypeMethodForNode3DGizmo()
+  registerEngineTypeMethodForNoise()
   registerEngineTypeMethodForNoiseTexture()
   registerEngineTypeMethodForOGGPacketSequence()
   registerEngineTypeMethodForOGGPacketSequencePlayback()
@@ -17120,7 +17677,12 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForOccluderInstance3D()
   registerEngineTypeMethodForOccluderPolygon2D()
   registerEngineTypeMethodForOmniLight3D()
-  registerEngineTypeMethodForOpenSimplexNoise()
+  registerEngineTypeMethodForOpenXRAction()
+  registerEngineTypeMethodForOpenXRActionMap()
+  registerEngineTypeMethodForOpenXRActionSet()
+  registerEngineTypeMethodForOpenXRIPBinding()
+  registerEngineTypeMethodForOpenXRInteractionProfile()
+  registerEngineTypeMethodForOpenXRInterface()
   registerEngineTypeMethodForOptimizedTranslation()
   registerEngineTypeMethodForOptionButton()
   registerEngineTypeMethodForPCKPacker()
@@ -17149,13 +17711,16 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForPhysicsBody3D()
   registerEngineTypeMethodForPhysicsDirectBodyState2D()
   registerEngineTypeMethodForPhysicsDirectBodyState3D()
+  registerEngineTypeMethodForPhysicsDirectBodyState3DExtension()
   registerEngineTypeMethodForPhysicsDirectSpaceState2D()
   registerEngineTypeMethodForPhysicsDirectSpaceState3D()
+  registerEngineTypeMethodForPhysicsDirectSpaceState3DExtension()
   registerEngineTypeMethodForPhysicsMaterial()
   registerEngineTypeMethodForPhysicsPointQueryParameters2D()
   registerEngineTypeMethodForPhysicsPointQueryParameters3D()
   registerEngineTypeMethodForPhysicsRayQueryParameters2D()
   registerEngineTypeMethodForPhysicsRayQueryParameters3D()
+  registerEngineTypeMethodForPhysicsServer3DRenderingServerHandler()
   registerEngineTypeMethodForPhysicsShapeQueryParameters2D()
   registerEngineTypeMethodForPhysicsShapeQueryParameters3D()
   registerEngineTypeMethodForPhysicsTestMotionParameters2D()
@@ -17165,14 +17730,15 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForPinJoint2D()
   registerEngineTypeMethodForPinJoint3D()
   registerEngineTypeMethodForPlaneMesh()
-  registerEngineTypeMethodForPluginScript()
   registerEngineTypeMethodForPointLight2D()
   registerEngineTypeMethodForPointMesh()
   registerEngineTypeMethodForPolygon2D()
+  registerEngineTypeMethodForPolygonOccluder3D()
   registerEngineTypeMethodForPolygonPathFinder()
   registerEngineTypeMethodForPopup()
   registerEngineTypeMethodForPopupMenu()
   registerEngineTypeMethodForPopupPanel()
+  registerEngineTypeMethodForPortableCompressedTexture2D()
   registerEngineTypeMethodForPosition2D()
   registerEngineTypeMethodForPosition3D()
   registerEngineTypeMethodForPrimitiveMesh()
@@ -17182,6 +17748,7 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForPropertyTweener()
   registerEngineTypeMethodForProxyTexture()
   registerEngineTypeMethodForQuadMesh()
+  registerEngineTypeMethodForQuadOccluder3D()
   registerEngineTypeMethodForRDAttachmentFormat()
   registerEngineTypeMethodForRDFramebufferPass()
   registerEngineTypeMethodForRDPipelineColorBlendState()
@@ -17230,6 +17797,9 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForScriptCreateDialog()
   registerEngineTypeMethodForScriptEditor()
   registerEngineTypeMethodForScriptEditorBase()
+  registerEngineTypeMethodForScriptExtension()
+  registerEngineTypeMethodForScriptLanguage()
+  registerEngineTypeMethodForScriptLanguageExtension()
   registerEngineTypeMethodForScrollBar()
   registerEngineTypeMethodForScrollContainer()
   registerEngineTypeMethodForSegmentShape2D()
@@ -17271,6 +17841,7 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForSliderJoint3D()
   registerEngineTypeMethodForSoftDynamicBody3D()
   registerEngineTypeMethodForSphereMesh()
+  registerEngineTypeMethodForSphereOccluder3D()
   registerEngineTypeMethodForSphereShape3D()
   registerEngineTypeMethodForSpinBox()
   registerEngineTypeMethodForSplitContainer()
@@ -17283,17 +17854,11 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForStandardMaterial3D()
   registerEngineTypeMethodForStaticBody2D()
   registerEngineTypeMethodForStaticBody3D()
-  registerEngineTypeMethodForStreamCubemap()
-  registerEngineTypeMethodForStreamCubemapArray()
   registerEngineTypeMethodForStreamPeer()
   registerEngineTypeMethodForStreamPeerBuffer()
   registerEngineTypeMethodForStreamPeerExtension()
   registerEngineTypeMethodForStreamPeerSSL()
   registerEngineTypeMethodForStreamPeerTCP()
-  registerEngineTypeMethodForStreamTexture2D()
-  registerEngineTypeMethodForStreamTexture2DArray()
-  registerEngineTypeMethodForStreamTexture3D()
-  registerEngineTypeMethodForStreamTextureLayered()
   registerEngineTypeMethodForStyleBox()
   registerEngineTypeMethodForStyleBoxEmpty()
   registerEngineTypeMethodForStyleBoxFlat()
@@ -17311,6 +17876,7 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForTextParagraph()
   registerEngineTypeMethodForTextServer()
   registerEngineTypeMethodForTextServerAdvanced()
+  registerEngineTypeMethodForTextServerDummy()
   registerEngineTypeMethodForTextServerExtension()
   registerEngineTypeMethodForTexture()
   registerEngineTypeMethodForTexture2D()
@@ -17342,6 +17908,7 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForUPNP()
   registerEngineTypeMethodForUPNPDevice()
   registerEngineTypeMethodForUndoRedo()
+  registerEngineTypeMethodForUniformSetCacheRD()
   registerEngineTypeMethodForVBoxContainer()
   registerEngineTypeMethodForVFlowContainer()
   registerEngineTypeMethodForVScrollBar()
@@ -17352,7 +17919,6 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForVehicleWheel3D()
   registerEngineTypeMethodForVelocityTracker3D()
   registerEngineTypeMethodForVideoStream()
-  registerEngineTypeMethodForVideoStreamGDNative()
   registerEngineTypeMethodForVideoStreamPlayer()
   registerEngineTypeMethodForVideoStreamTheora()
   registerEngineTypeMethodForViewport()
@@ -17487,6 +18053,9 @@ public fun registerEngineTypeMethods(): Unit {
   registerEngineTypeMethodForVisualShaderNodeUVFunc()
   registerEngineTypeMethodForVisualShaderNodeUniform()
   registerEngineTypeMethodForVisualShaderNodeUniformRef()
+  registerEngineTypeMethodForVisualShaderNodeVarying()
+  registerEngineTypeMethodForVisualShaderNodeVaryingGetter()
+  registerEngineTypeMethodForVisualShaderNodeVaryingSetter()
   registerEngineTypeMethodForVisualShaderNodeVec2Constant()
   registerEngineTypeMethodForVisualShaderNodeVec2Uniform()
   registerEngineTypeMethodForVisualShaderNodeVec3Constant()

@@ -40,13 +40,13 @@ public open class SkeletonModification3DTwoBoneIK : SkeletonModification3D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_TARGET_NODEPATH, NODE_PATH)
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_GET_TARGET_NODE, NODE_PATH)
       return TransferContext.readReturnValue(NODE_PATH, false) as NodePath
     }
     set(`value`) {
       TransferContext.writeArguments(NODE_PATH to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_TARGET_NODEPATH, NIL)
+          ENGINEMETHOD_ENGINECLASS_SKELETONMODIFICATION3DTWOBONEIK_SET_TARGET_NODE, NIL)
     }
 
   public override fun __new(): Unit {

@@ -19,9 +19,11 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Editor-only class for defining a collision polygon in 3D space.
+ * Editor-only node for defining a collision polygon in 3D space.
  *
- * Allows editing a collision polygon's vertices on a selected plane. Can also set a depth perpendicular to that plane. This class is only available in the editor. It will not appear in the scene tree at run-time. Creates a [godot.Shape3D] for gameplay. Properties modified during gameplay will have no effect.
+ * Allows editing a concave or convex collision polygon's vertices on a selected plane. Can also set a depth perpendicular to that plane. This class is only available in the editor. It will not appear in the scene tree at run-time. Creates several [godot.ConvexPolygonShape3D]s at run-time to represent the original polygon using convex decomposition.
+ *
+ * **Note:** Since this is an editor-only helper, properties modified during gameplay will have no effect.
  */
 @GodotBaseType
 public open class CollisionPolygon3D : Node3D() {
@@ -46,7 +48,7 @@ public open class CollisionPolygon3D : Node3D() {
   public open var disabled: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_GET_DISABLED,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_COLLISIONPOLYGON3D_IS_DISABLED,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }

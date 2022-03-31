@@ -27,7 +27,9 @@ import kotlin.Unit
  * Tutorials:
  * [$DOCS_URL/tutorials/animation/animation_tree.html]($DOCS_URL/tutorials/animation/animation_tree.html)
  *
- * This node may contain a sub-tree of any other blend type nodes, such as mix, blend2, blend3, one shot, etc. This is one of the most commonly used roots.
+ * This node may contain a sub-tree of any other blend type nodes, such as [godot.AnimationNodeTransition], [godot.AnimationNodeBlend2], [godot.AnimationNodeBlend3], [godot.AnimationNodeOneShot], etc. This is one of the most commonly used roots.
+ *
+ * An [godot.AnimationNodeOutput] node named `output` is created by default.
  */
 @GodotBaseType
 public open class AnimationNodeBlendTree : AnimationRootNode() {

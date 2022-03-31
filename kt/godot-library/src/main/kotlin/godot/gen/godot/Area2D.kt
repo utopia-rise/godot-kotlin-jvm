@@ -54,9 +54,9 @@ public open class Area2D : CollisionObject2D() {
    *
    * `area` the other Area2D.
    *
-   * `area_shape_index` the index of the [godot.Shape2D] of the other Area2D used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `area.shape_owner_get_owner(area_shape_index)`.
+   * `area_shape_index` the index of the [godot.Shape2D] of the other Area2D used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `area.shape_owner_get_owner(area.shape_find_owner(area_shape_index))`.
    *
-   * `local_shape_index` the index of the [godot.Shape2D] of this Area2D used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `self.shape_owner_get_owner(local_shape_index)`.
+   * `local_shape_index` the index of the [godot.Shape2D] of this Area2D used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
   public val areaShapeExited: Signal4<RID, Area2D, Long, Long> by signal("areaRid", "area",
       "areaShapeIndex", "localShapeIndex")
@@ -75,9 +75,9 @@ public open class Area2D : CollisionObject2D() {
    *
    * `body` the [godot.Node], if it exists in the tree, of the [godot.PhysicsBody2D] or [godot.TileMap].
    *
-   * `body_shape_index` the index of the [godot.Shape2D] of the [godot.PhysicsBody2D] or [godot.TileMap] used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `body.shape_owner_get_owner(body_shape_index)`.
+   * `body_shape_index` the index of the [godot.Shape2D] of the [godot.PhysicsBody2D] or [godot.TileMap] used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.
    *
-   * `local_shape_index` the index of the [godot.Shape2D] of this Area2D used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `self.shape_owner_get_owner(local_shape_index)`.
+   * `local_shape_index` the index of the [godot.Shape2D] of this Area2D used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
   public val bodyShapeEntered: Signal4<RID, Node2D, Long, Long> by signal("bodyRid", "body",
       "bodyShapeIndex", "localShapeIndex")
@@ -96,9 +96,9 @@ public open class Area2D : CollisionObject2D() {
    *
    * `area` the other Area2D.
    *
-   * `area_shape_index` the index of the [godot.Shape2D] of the other Area2D used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `area.shape_owner_get_owner(area_shape_index)`.
+   * `area_shape_index` the index of the [godot.Shape2D] of the other Area2D used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `area.shape_owner_get_owner(area.shape_find_owner(area_shape_index))`.
    *
-   * `local_shape_index` the index of the [godot.Shape2D] of this Area2D used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `self.shape_owner_get_owner(local_shape_index)`.
+   * `local_shape_index` the index of the [godot.Shape2D] of this Area2D used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
   public val areaShapeEntered: Signal4<RID, Area2D, Long, Long> by signal("areaRid", "area",
       "areaShapeIndex", "localShapeIndex")
@@ -117,9 +117,9 @@ public open class Area2D : CollisionObject2D() {
    *
    * `body` the [godot.Node], if it exists in the tree, of the [godot.PhysicsBody2D] or [godot.TileMap].
    *
-   * `body_shape_index` the index of the [godot.Shape2D] of the [godot.PhysicsBody2D] or [godot.TileMap] used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `body.shape_owner_get_owner(body_shape_index)`.
+   * `body_shape_index` the index of the [godot.Shape2D] of the [godot.PhysicsBody2D] or [godot.TileMap] used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.
    *
-   * `local_shape_index` the index of the [godot.Shape2D] of this Area2D used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `self.shape_owner_get_owner(local_shape_index)`.
+   * `local_shape_index` the index of the [godot.Shape2D] of this Area2D used by the [godot.PhysicsServer2D]. Get the [godot.CollisionShape2D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
   public val bodyShapeExited: Signal4<RID, Node2D, Long, Long> by signal("bodyRid", "body",
       "bodyShapeIndex", "localShapeIndex")
@@ -130,7 +130,7 @@ public open class Area2D : CollisionObject2D() {
   public open var monitoring: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_MONITORING, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_IS_MONITORING, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -144,7 +144,7 @@ public open class Area2D : CollisionObject2D() {
   public open var monitorable: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_MONITORABLE, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_IS_MONITORABLE, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -172,14 +172,14 @@ public open class Area2D : CollisionObject2D() {
   public open var gravitySpaceOverride: Long
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_GRAVITY_SPACE_OVERRIDE,
-          LONG)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AREA2D_GET_GRAVITY_SPACE_OVERRIDE_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_GRAVITY_SPACE_OVERRIDE,
-          NIL)
+      TransferContext.callMethod(rawPtr,
+          ENGINEMETHOD_ENGINECLASS_AREA2D_SET_GRAVITY_SPACE_OVERRIDE_MODE, NIL)
     }
 
   /**
@@ -188,12 +188,12 @@ public open class Area2D : CollisionObject2D() {
   public open var gravityPoint: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_GRAVITY_POINT, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_IS_GRAVITY_A_POINT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_GRAVITY_POINT, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_SET_GRAVITY_IS_POINT, NIL)
     }
 
   /**
@@ -264,13 +264,13 @@ public open class Area2D : CollisionObject2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA2D_GET_LINEAR_DAMP_SPACE_OVERRIDE, LONG)
+          ENGINEMETHOD_ENGINECLASS_AREA2D_GET_LINEAR_DAMP_SPACE_OVERRIDE_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA2D_SET_LINEAR_DAMP_SPACE_OVERRIDE, NIL)
+          ENGINEMETHOD_ENGINECLASS_AREA2D_SET_LINEAR_DAMP_SPACE_OVERRIDE_MODE, NIL)
     }
 
   /**
@@ -296,13 +296,13 @@ public open class Area2D : CollisionObject2D() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA2D_GET_ANGULAR_DAMP_SPACE_OVERRIDE, LONG)
+          ENGINEMETHOD_ENGINECLASS_AREA2D_GET_ANGULAR_DAMP_SPACE_OVERRIDE_MODE, LONG)
       return TransferContext.readReturnValue(LONG, false) as Long
     }
     set(`value`) {
       TransferContext.writeArguments(LONG to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_AREA2D_SET_ANGULAR_DAMP_SPACE_OVERRIDE, NIL)
+          ENGINEMETHOD_ENGINECLASS_AREA2D_SET_ANGULAR_DAMP_SPACE_OVERRIDE_MODE, NIL)
     }
 
   /**
@@ -327,7 +327,7 @@ public open class Area2D : CollisionObject2D() {
   public open var audioBusOverride: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_GET_AUDIO_BUS_OVERRIDE,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_AREA2D_IS_OVERRIDING_AUDIO_BUS,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }

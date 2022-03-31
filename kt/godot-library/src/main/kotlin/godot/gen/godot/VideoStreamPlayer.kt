@@ -30,7 +30,7 @@ import kotlin.Unit
  *
  * Control node for playing video streams using [godot.VideoStream] resources.
  *
- * Supported video formats are [godot.Ogg Theora](https://www.theora.org/) (`.ogv`, [godot.VideoStreamTheora]) and any format exposed via a GDNative plugin using [godot.VideoStreamGDNative].
+ * Supported video formats are [godot.Ogg Theora](https://www.theora.org/) (`.ogv`, [godot.VideoStreamTheora]) and any format exposed via a GDExtension plugin.
  *
  * **Note:** Due to a bug, VideoStreamPlayer does not support localization remapping yet.
  *
@@ -111,7 +111,7 @@ public open class VideoStreamPlayer : Control() {
   public open var autoplay: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_AUTOPLAY,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_HAS_AUTOPLAY,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -127,8 +127,7 @@ public open class VideoStreamPlayer : Control() {
   public open var paused: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_PAUSED,
-          BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_IS_PAUSED, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -142,7 +141,7 @@ public open class VideoStreamPlayer : Control() {
   public open var expand: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_GET_EXPAND,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_VIDEOSTREAMPLAYER_HAS_EXPAND,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
@@ -170,7 +169,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * The current position of the stream, in seconds.
    *
-   * **Note:** Changing this value won't have any effect as seeking is not implemented yet, except in video formats implemented by a GDNative add-on.
+   * **Note:** Changing this value won't have any effect as seeking is not implemented yet, except in video formats implemented by a GDExtension add-on.
    */
   public open var streamPosition: Double
     get() {

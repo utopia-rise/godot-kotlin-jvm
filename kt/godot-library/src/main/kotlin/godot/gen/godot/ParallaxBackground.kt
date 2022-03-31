@@ -78,13 +78,13 @@ public open class ParallaxBackground : CanvasLayer() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_SCROLL_LIMIT_BEGIN, VECTOR2)
+          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_LIMIT_BEGIN, VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_SCROLL_LIMIT_BEGIN, NIL)
+          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_LIMIT_BEGIN, NIL)
     }
 
   /**
@@ -93,14 +93,14 @@ public open class ParallaxBackground : CanvasLayer() {
   public open var scrollLimitEnd: Vector2
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_SCROLL_LIMIT_END, VECTOR2)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_LIMIT_END,
+          VECTOR2)
       return TransferContext.readReturnValue(VECTOR2, false) as Vector2
     }
     set(`value`) {
       TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_SCROLL_LIMIT_END, NIL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_LIMIT_END,
+          NIL)
     }
 
   /**
@@ -110,13 +110,13 @@ public open class ParallaxBackground : CanvasLayer() {
     get() {
       TransferContext.writeArguments()
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_GET_SCROLL_IGNORE_CAMERA_ZOOM, BOOL)
+          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_IS_IGNORE_CAMERA_ZOOM, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
       TransferContext.writeArguments(BOOL to value)
       TransferContext.callMethod(rawPtr,
-          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_SCROLL_IGNORE_CAMERA_ZOOM, NIL)
+          ENGINEMETHOD_ENGINECLASS_PARALLAXBACKGROUND_SET_IGNORE_CAMERA_ZOOM, NIL)
     }
 
   public override fun __new(): Unit {

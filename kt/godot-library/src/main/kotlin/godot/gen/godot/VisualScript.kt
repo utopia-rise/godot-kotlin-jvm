@@ -6,11 +6,11 @@
 
 package godot
 
-import godot.Variant
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.StringName
 import godot.core.TransferContext
+import godot.core.VariantType
 import godot.core.VariantType.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DICTIONARY
@@ -259,7 +259,7 @@ public open class VisualScript : Script() {
 
   public open fun customSignalAddArgument(
     name: StringName,
-    type: Variant.Type,
+    type: VariantType,
     argname: String,
     index: Long = -1
   ): Unit {
@@ -272,18 +272,18 @@ public open class VisualScript : Script() {
   public open fun customSignalSetArgumentType(
     name: StringName,
     argidx: Long,
-    type: Variant.Type
+    type: VariantType
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, LONG to argidx, LONG to type.id)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_CUSTOM_SIGNAL_SET_ARGUMENT_TYPE, NIL)
   }
 
-  public open fun customSignalGetArgumentType(name: StringName, argidx: Long): Variant.Type {
+  public open fun customSignalGetArgumentType(name: StringName, argidx: Long): VariantType {
     TransferContext.writeArguments(STRING_NAME to name, LONG to argidx)
     TransferContext.callMethod(rawPtr,
         ENGINEMETHOD_ENGINECLASS_VISUALSCRIPT_CUSTOM_SIGNAL_GET_ARGUMENT_TYPE, LONG)
-    return Variant.Type.values()[TransferContext.readReturnValue(JVM_INT) as Int]
+    return VariantType.values()[TransferContext.readReturnValue(JVM_INT) as Int]
   }
 
   public open fun customSignalSetArgumentName(

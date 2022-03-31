@@ -15,30 +15,17 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * Cylinder shape for collisions.
+ * Cylinder shape for 3D collisions.
  *
  * Tutorials:
  * [https://godotengine.org/asset-library/asset/676](https://godotengine.org/asset-library/asset/676)
  *
- * Cylinder shape for collisions.
+ * Cylinder shape for collisions. Like [godot.CapsuleShape3D], but without hemispheres at the cylinder's ends.
+ *
+ * **Performance:** Being a primitive collision shape, [godot.CylinderShape3D] is fast to check collisions against (though not as fast as [godot.SphereShape3D]). [godot.CylinderShape3D] is also more demanding compared to [godot.CapsuleShape3D].
  */
 @GodotBaseType
 public open class CylinderShape3D : Shape3D() {
-  /**
-   * The cylinder's radius.
-   */
-  public open var radius: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERSHAPE3D_GET_RADIUS,
-          DOUBLE)
-      return TransferContext.readReturnValue(DOUBLE, false) as Double
-    }
-    set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERSHAPE3D_SET_RADIUS, NIL)
-    }
-
   /**
    * The cylinder's height.
    */
@@ -52,6 +39,21 @@ public open class CylinderShape3D : Shape3D() {
     set(`value`) {
       TransferContext.writeArguments(DOUBLE to value)
       TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERSHAPE3D_SET_HEIGHT, NIL)
+    }
+
+  /**
+   * The cylinder's radius.
+   */
+  public open var radius: Double
+    get() {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERSHAPE3D_GET_RADIUS,
+          DOUBLE)
+      return TransferContext.readReturnValue(DOUBLE, false) as Double
+    }
+    set(`value`) {
+      TransferContext.writeArguments(DOUBLE to value)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_CYLINDERSHAPE3D_SET_RADIUS, NIL)
     }
 
   public override fun __new(): Unit {

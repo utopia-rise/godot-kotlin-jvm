@@ -22,7 +22,7 @@ fun File.generateApiFrom(jsonSource: File, docsDir: File? = null) {
 
     val classRepository: ClassRepository = JsonClassRepository(apiDescription.classes.toEnriched())
     val singletonRepository: SingletonRepository = JsonSingletonRepository(apiDescription.singletons.toEnriched())
-    val globalEnumRepository: GlobalEnumRepository = JsonGlobalEnumRepository(apiDescription.globalEnums.toEnriched(true))
+    val globalEnumRepository: GlobalEnumRepository = JsonGlobalEnumRepository(apiDescription.globalEnums.toEnriched())
     val coreTypeEnumRepository: CoreTypeEnumRepository = KnownCoreTypeEnumRepository()
     val docRepository: IDocRepository = DocRepository(classDocs)
 

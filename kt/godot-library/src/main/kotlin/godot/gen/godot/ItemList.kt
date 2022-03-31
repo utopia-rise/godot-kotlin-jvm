@@ -46,6 +46,8 @@ import kotlin.Unit
  * Selectable items in the list may be selected or deselected and multiple selection may be enabled. Selection with right mouse button may also be enabled to allow use of popup context menus. Items may also be "activated" by double-clicking them or by pressing [kbd]Enter[/kbd].
  *
  * Item text only supports single-line strings, newline characters (e.g. `\n`) in the string won't produce a newline. Text wrapping is enabled in [ICON_MODE_TOP] mode, but column's width is adjusted to fully fit its content by default. You need to set [fixedColumnWidth] greater than zero to wrap the text.
+ *
+ * All `set_*` methods allow negative item index, which makes the item accessed from the last one.
  */
 @GodotBaseType
 public open class ItemList : Control() {
@@ -153,7 +155,7 @@ public open class ItemList : Control() {
   public open var autoHeight: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_AUTO_HEIGHT, BOOL)
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_HAS_AUTO_HEIGHT, BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
     set(`value`) {
@@ -217,7 +219,7 @@ public open class ItemList : Control() {
   public open var sameColumnWidth: Boolean
     get() {
       TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_GET_SAME_COLUMN_WIDTH,
+      TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_ITEMLIST_IS_SAME_COLUMN_WIDTH,
           BOOL)
       return TransferContext.readReturnValue(BOOL, false) as Boolean
     }
