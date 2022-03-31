@@ -37,7 +37,7 @@ import kotlin.Unit
  * Plugins are used by the editor to extend functionality. The most common types of plugins are those which edit a given node or resource type, import plugins and export plugins. See also [godot.EditorScript] to add functions to the editor.
  */
 @GodotBaseType
-public open abstract class EditorPlugin : Node() {
+public open class EditorPlugin internal constructor() : Node() {
   /**
    * Emitted when user changes the workspace (**2D**, **3D**, **Script**, **AssetLib**). Also works with custom screens defined by plugins.
    */

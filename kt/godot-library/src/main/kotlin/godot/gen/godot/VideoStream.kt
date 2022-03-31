@@ -16,7 +16,7 @@ import kotlin.Unit
  * Base resource type for all video streams. Classes that derive from [godot.VideoStream] can all be used as resource types to play back videos in [godot.VideoStreamPlayer].
  */
 @GodotBaseType
-public open abstract class VideoStream : Resource() {
+public open class VideoStream internal constructor() : Resource() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VIDEOSTREAM)
   }

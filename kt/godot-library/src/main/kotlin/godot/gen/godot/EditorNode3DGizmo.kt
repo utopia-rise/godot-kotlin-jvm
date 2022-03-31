@@ -38,7 +38,7 @@ import kotlin.Unit
  * Gizmo that is used for providing custom visualization and editing (handles and subgizmos) for Node3D objects. Can be overridden to create custom gizmos, but for simple gizmos creating a [godot.EditorNode3DGizmoPlugin] is usually recommended.
  */
 @GodotBaseType
-public open abstract class EditorNode3DGizmo : Node3DGizmo() {
+public open class EditorNode3DGizmo internal constructor() : Node3DGizmo() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORNODE3DGIZMO)
   }

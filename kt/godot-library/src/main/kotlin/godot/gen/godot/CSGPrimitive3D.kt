@@ -15,7 +15,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public open abstract class CSGPrimitive3D : CSGShape3D() {
+public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
   public open var invertFaces: Boolean
     get() {
       TransferContext.writeArguments()

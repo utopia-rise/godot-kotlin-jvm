@@ -29,7 +29,7 @@ import kotlin.Unit
  * Visual shader graphs consist of various nodes. Each node in the graph is a separate object and they are represented as a rectangular boxes with title and a set of properties. Each node has also connection ports that allow to connect it to another nodes and control the flow of the shader.
  */
 @GodotBaseType
-public open abstract class VisualShaderNode : Resource() {
+public open class VisualShaderNode internal constructor() : Resource() {
   /**
    * Emitted when the node requests an editor refresh. Currently called only in setter of [godot.VisualShaderNodeTexture.source], [godot.VisualShaderNodeTexture], and [godot.VisualShaderNodeCubemap] (and their derivatives).
    */

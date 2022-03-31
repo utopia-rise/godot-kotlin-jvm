@@ -51,7 +51,7 @@ import kotlin.Unit
  * Finally, viewports can also behave as render targets, in which case they will not be visible unless the associated texture is used to draw.
  */
 @GodotBaseType
-public open abstract class Viewport : Node() {
+public open class Viewport internal constructor() : Node() {
   /**
    * Emitted when the size of the viewport is changed, whether by resizing of window, or some other means.
    */

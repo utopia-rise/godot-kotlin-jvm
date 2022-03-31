@@ -16426,7 +16426,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("XRPositionalTracker", ::XRPositionalTracker)
   TypeManager.registerEngineType("Performance") { Performance }
   TypeManager.registerSingleton("Performance")
-  TypeManager.registerEngineType("TextServerManager") { TextServerManager } 
+  TypeManager.registerEngineType("TextServerManager") { TextServerManager }
   TypeManager.registerSingleton("TextServerManager")
   TypeManager.registerEngineType("ProjectSettings") { ProjectSettings }
   TypeManager.registerSingleton("ProjectSettings")

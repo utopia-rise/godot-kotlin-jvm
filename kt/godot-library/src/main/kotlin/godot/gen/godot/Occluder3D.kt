@@ -23,7 +23,7 @@ import kotlin.Unit
  * See [godot.OccluderInstance3D]'s documentation for instructions on setting up occlusion culling.
  */
 @GodotBaseType
-public open abstract class Occluder3D : Resource() {
+public open class Occluder3D internal constructor() : Resource() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_OCCLUDER3D)
   }

@@ -24,7 +24,7 @@ import kotlin.Unit
  * Container for splitting two [godot.Control]s vertically or horizontally, with a grabber that allows adjusting the split offset or ratio.
  */
 @GodotBaseType
-public open abstract class SplitContainer : Container() {
+public open class SplitContainer internal constructor() : Container() {
   /**
    * Emitted when the dragger is dragged by user.
    */

@@ -11,7 +11,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public open abstract class UniformSetCacheRD : Object() {
+public open class UniformSetCacheRD internal constructor() : Object() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_UNIFORMSETCACHERD)
   }

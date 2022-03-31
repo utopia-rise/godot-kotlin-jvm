@@ -24,7 +24,7 @@ import kotlin.Unit
  * Base class for all 3D shape resources. Nodes that inherit from this can be used as shapes for a [godot.PhysicsBody3D] or [godot.Area3D] objects.
  */
 @GodotBaseType
-public open abstract class Shape3D : Resource() {
+public open class Shape3D internal constructor() : Resource() {
   /**
    * The shape's custom solver bias. Defines how much bodies react to enforce contact separation when this shape is involved.
    *

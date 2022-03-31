@@ -33,7 +33,7 @@ import kotlin.Unit
  * This control allows property editing for one or multiple properties into [godot.EditorInspector]. It is added via [godot.EditorInspectorPlugin].
  */
 @GodotBaseType
-public open abstract class EditorProperty : Container() {
+public open class EditorProperty internal constructor() : Container() {
   /**
    * Used by sub-inspectors. Emit it if what was selected was an Object ID.
    */

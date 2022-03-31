@@ -31,7 +31,7 @@ import kotlin.Unit
  * To manage editor feature profiles visually, use **Editor > Manage Feature Profiles...** at the top of the editor window.
  */
 @GodotBaseType
-public open abstract class EditorFeatureProfile : RefCounted() {
+public open class EditorFeatureProfile internal constructor() : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORFEATUREPROFILE)
   }

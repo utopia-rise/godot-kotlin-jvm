@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public open abstract class WebSocketMultiplayerPeer : MultiplayerPeer() {
+public open class WebSocketMultiplayerPeer internal constructor() : MultiplayerPeer() {
   public val peerPacket: Signal1<Long> by signal("peerSource")
 
   public override fun __new(): Unit {

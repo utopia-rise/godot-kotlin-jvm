@@ -17,7 +17,7 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open abstract class EditorResourceConversionPlugin : RefCounted() {
+public open class EditorResourceConversionPlugin internal constructor() : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORRESOURCECONVERSIONPLUGIN)
   }

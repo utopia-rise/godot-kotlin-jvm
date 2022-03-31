@@ -14,7 +14,7 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open abstract class ScriptLanguage : Object() {
+public open class ScriptLanguage internal constructor() : Object() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SCRIPTLANGUAGE)
   }

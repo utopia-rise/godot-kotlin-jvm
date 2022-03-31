@@ -42,7 +42,7 @@ import kotlin.Unit
  * To use [godot.EditorInspectorPlugin], register it using the [godot.EditorPlugin.addInspectorPlugin] method first.
  */
 @GodotBaseType
-public open abstract class EditorInspectorPlugin : RefCounted() {
+public open class EditorInspectorPlugin internal constructor() : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORINSPECTORPLUGIN)
   }

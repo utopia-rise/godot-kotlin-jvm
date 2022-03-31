@@ -31,7 +31,7 @@ import kotlin.Unit
  * A node that displays 2D texture information in a 3D environment. See also [godot.Sprite3D] where many other properties are defined.
  */
 @GodotBaseType
-public open abstract class SpriteBase3D : GeometryInstance3D() {
+public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * If `true`, texture will be centered.
    */

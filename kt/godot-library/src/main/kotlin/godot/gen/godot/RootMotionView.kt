@@ -21,7 +21,7 @@ import kotlin.Unit
  * **Note:** [godot.RootMotionView] is only visible in the editor. It will be hidden automatically in the running project, and will also be converted to a plain [godot.Node] in the running project. This means a script attached to a [godot.RootMotionView] node *must* have `extends Node` instead of `extends RootMotionView`. Additionally, it must not be a `@tool` script.
  */
 @GodotBaseType
-public open abstract class RootMotionView : VisualInstance3D() {
+public open class RootMotionView internal constructor() : VisualInstance3D() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ROOTMOTIONVIEW)
   }

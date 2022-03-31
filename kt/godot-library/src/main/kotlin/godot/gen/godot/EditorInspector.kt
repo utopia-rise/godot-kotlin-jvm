@@ -27,7 +27,7 @@ import kotlin.Unit
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getInspector].
  */
 @GodotBaseType
-public open abstract class EditorInspector : ScrollContainer() {
+public open class EditorInspector internal constructor() : ScrollContainer() {
   /**
    * Emitted when a property is edited in the inspector.
    */

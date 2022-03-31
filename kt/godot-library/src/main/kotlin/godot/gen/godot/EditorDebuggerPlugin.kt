@@ -38,7 +38,7 @@ import kotlin.Unit
  * To use [godot.EditorDebuggerPlugin], register it using the [godot.EditorPlugin.addDebuggerPlugin] method first.
  */
 @GodotBaseType
-public open abstract class EditorDebuggerPlugin : Control() {
+public open class EditorDebuggerPlugin internal constructor() : Control() {
   /**
    * Emitted when the game enters a break state.
    */

@@ -48,7 +48,11 @@ class GenerationService(
         val classTypeBuilder = TypeSpec.classBuilder(className.className).addModifiers(KModifier.OPEN)
 
         if (!clazz.internal.isInstantiable) {
-            classTypeBuilder.addModifiers(KModifier.ABSTRACT)
+            classTypeBuilder.primaryConstructor(
+                FunSpec.constructorBuilder()
+                    .addModifiers(KModifier.INTERNAL)
+                    .build()
+            )
         }
 
         val baseClass = clazz.inherits

@@ -14,7 +14,7 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open abstract class AnimationTrackEditPlugin : RefCounted() {
+public open class AnimationTrackEditPlugin internal constructor() : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ANIMATIONTRACKEDITPLUGIN)
   }

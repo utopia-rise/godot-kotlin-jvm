@@ -32,7 +32,7 @@ import kotlin.Unit
  * This provides a default material with a wide variety of rendering features and properties without the need to write shader code. See the tutorial below for details.
  */
 @GodotBaseType
-public open abstract class BaseMaterial3D : Material() {
+public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * If `true`, transparency is enabled on the body. See also [blendMode].
    */

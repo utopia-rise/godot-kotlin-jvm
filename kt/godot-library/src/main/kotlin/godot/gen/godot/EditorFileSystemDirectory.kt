@@ -26,7 +26,7 @@ import kotlin.Unit
  * A more generalized, low-level variation of the directory concept.
  */
 @GodotBaseType
-public open abstract class EditorFileSystemDirectory : Object() {
+public open class EditorFileSystemDirectory internal constructor() : Object() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORFILESYSTEMDIRECTORY)
   }

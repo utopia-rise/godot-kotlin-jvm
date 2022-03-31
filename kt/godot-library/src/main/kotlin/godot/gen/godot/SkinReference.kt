@@ -18,7 +18,7 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open abstract class SkinReference : RefCounted() {
+public open class SkinReference internal constructor() : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SKINREFERENCE)
   }

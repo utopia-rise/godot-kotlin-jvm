@@ -77,7 +77,7 @@ import kotlin.Unit
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getEditorSettings].
  */
 @GodotBaseType
-public open abstract class EditorSettings : Resource() {
+public open class EditorSettings internal constructor() : Resource() {
   /**
    * Emitted after any editor setting has changed.
    */

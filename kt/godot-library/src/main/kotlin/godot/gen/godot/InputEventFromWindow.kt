@@ -18,7 +18,7 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open abstract class InputEventFromWindow : InputEvent() {
+public open class InputEventFromWindow internal constructor() : InputEvent() {
   /**
    *
    */

@@ -20,7 +20,7 @@ import kotlin.Unit
  * Resizable nodes have a handle that allows the user to adjust their size as needed.
  */
 @GodotBaseType
-public open abstract class VisualShaderNodeResizableBase : VisualShaderNode() {
+public open class VisualShaderNodeResizableBase internal constructor() : VisualShaderNode() {
   /**
    * The size of the node in the visual shader graph.
    */

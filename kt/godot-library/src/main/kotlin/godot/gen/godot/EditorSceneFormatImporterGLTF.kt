@@ -11,7 +11,8 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public open abstract class EditorSceneFormatImporterGLTF : EditorSceneFormatImporter() {
+public open class EditorSceneFormatImporterGLTF internal constructor() : EditorSceneFormatImporter()
+    {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORSCENEFORMATIMPORTERGLTF)
   }

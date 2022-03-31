@@ -54,7 +54,7 @@ import kotlin.Unit
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getCommandPalette].
  */
 @GodotBaseType
-public open abstract class EditorCommandPalette : ConfirmationDialog() {
+public open class EditorCommandPalette internal constructor() : ConfirmationDialog() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORCOMMANDPALETTE)
   }

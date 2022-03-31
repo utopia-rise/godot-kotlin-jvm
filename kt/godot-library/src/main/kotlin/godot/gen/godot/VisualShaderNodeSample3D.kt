@@ -20,7 +20,7 @@ import kotlin.Unit
  * A virtual class, use the descendants instead.
  */
 @GodotBaseType
-public open abstract class VisualShaderNodeSample3D : VisualShaderNode() {
+public open class VisualShaderNodeSample3D internal constructor() : VisualShaderNode() {
   /**
    * An input source type.
    */

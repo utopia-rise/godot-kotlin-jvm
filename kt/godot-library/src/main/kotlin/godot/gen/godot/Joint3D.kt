@@ -27,7 +27,7 @@ import kotlin.Unit
  * Joints are used to bind together two physics bodies. They have a solver priority and can define if the bodies of the two attached nodes should be able to collide with each other. See also [godot.Generic6DOFJoint3D].
  */
 @GodotBaseType
-public open abstract class Joint3D : Node3D() {
+public open class Joint3D internal constructor() : Node3D() {
   /**
    * The node attached to the first side (A) of the joint.
    */

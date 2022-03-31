@@ -20,7 +20,7 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open abstract class VisualShaderNodeVarying : VisualShaderNode() {
+public open class VisualShaderNodeVarying internal constructor() : VisualShaderNode() {
   /**
    *
    */

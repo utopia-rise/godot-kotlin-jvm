@@ -21,7 +21,7 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open abstract class CompressedTextureLayered : TextureLayered() {
+public open class CompressedTextureLayered internal constructor() : TextureLayered() {
   /**
    *
    */

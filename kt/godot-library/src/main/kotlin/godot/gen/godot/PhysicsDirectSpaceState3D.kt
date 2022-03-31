@@ -28,7 +28,7 @@ import kotlin.Unit
  * Direct access object to a space in the [godot.PhysicsServer3D]. It's used mainly to do queries against objects and areas residing in a given space.
  */
 @GodotBaseType
-public open abstract class PhysicsDirectSpaceState3D : Object() {
+public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PHYSICSDIRECTSPACESTATE3D)
   }

@@ -31,7 +31,7 @@ import kotlin.Unit
  * You can iterate over all tiles exposed by a TileSetSource by first iterating over coordinates IDs using [getTilesCount] and [getTileId], then over alternative IDs using [getAlternativeTilesCount] and [getAlternativeTileId].
  */
 @GodotBaseType
-public open abstract class TileSetSource : Resource() {
+public open class TileSetSource internal constructor() : Resource() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TILESETSOURCE)
   }

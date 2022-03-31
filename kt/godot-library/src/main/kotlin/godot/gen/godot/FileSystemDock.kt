@@ -23,7 +23,7 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open abstract class FileSystemDock : VBoxContainer() {
+public open class FileSystemDock internal constructor() : VBoxContainer() {
   /**
    *
    */

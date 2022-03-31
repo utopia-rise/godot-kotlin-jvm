@@ -113,7 +113,7 @@ import kotlin.Unit
  * [/codeblocks]
  */
 @GodotBaseType
-public open abstract class EditorScenePostImport : RefCounted() {
+public open class EditorScenePostImport internal constructor() : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORSCENEPOSTIMPORT)
   }

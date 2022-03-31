@@ -33,7 +33,7 @@ import kotlin.Unit
  * PhysicsBody2D is an abstract base class for implementing a physics body. All *Body2D types inherit from it.
  */
 @GodotBaseType
-public open abstract class PhysicsBody2D : CollisionObject2D() {
+public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_PHYSICSBODY2D)
   }

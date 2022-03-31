@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public open abstract class Noise : Resource() {
+public open class Noise internal constructor() : Resource() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_NOISE)
   }

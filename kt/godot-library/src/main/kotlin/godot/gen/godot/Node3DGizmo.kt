@@ -14,7 +14,7 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open abstract class Node3DGizmo : RefCounted() {
+public open class Node3DGizmo internal constructor() : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_NODE3DGIZMO)
   }

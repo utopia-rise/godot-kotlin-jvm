@@ -37,7 +37,7 @@ import kotlin.Unit
  * To use [godot.EditorNode3DGizmoPlugin], register it using the [godot.EditorPlugin.addSpatialGizmoPlugin] method first.
  */
 @GodotBaseType
-public open abstract class EditorNode3DGizmoPlugin : Resource() {
+public open class EditorNode3DGizmoPlugin internal constructor() : Resource() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORNODE3DGIZMOPLUGIN)
   }

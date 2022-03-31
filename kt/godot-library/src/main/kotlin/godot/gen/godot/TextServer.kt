@@ -58,7 +58,7 @@ import kotlin.Unit
  * [godot.TextServer] is the API backend for managing fonts, and rendering complex text.
  */
 @GodotBaseType
-public open abstract class TextServer : RefCounted() {
+public open class TextServer internal constructor() : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_TEXTSERVER)
   }

@@ -16,7 +16,7 @@ import kotlin.Unit
  * This visual shader node is present in all shader graphs in form of "Output" block with multiple output value ports.
  */
 @GodotBaseType
-public open abstract class VisualShaderNodeOutput : VisualShaderNode() {
+public open class VisualShaderNodeOutput internal constructor() : VisualShaderNode() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEOUTPUT)
   }

@@ -18,7 +18,7 @@ import kotlin.Unit
  * A base class for particle emitters.
  */
 @GodotBaseType
-public open abstract class VisualShaderNodeParticleEmitter : VisualShaderNode() {
+public open class VisualShaderNodeParticleEmitter internal constructor() : VisualShaderNode() {
   /**
    * If `true`, the result of this emitter is projected to 2D space. By default it is `false` and meant for use in 3D space.
    */

@@ -25,7 +25,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public open abstract class ENetPacketPeer : PacketPeer() {
+public open class ENetPacketPeer internal constructor() : PacketPeer() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_ENETPACKETPEER)
   }

@@ -36,7 +36,7 @@ import kotlin.Unit
  * Base class of all sort of input event. See [godot.Node.Input].
  */
 @GodotBaseType
-public open abstract class InputEvent : Resource() {
+public open class InputEvent internal constructor() : Resource() {
   /**
    * The event's device ID.
    *

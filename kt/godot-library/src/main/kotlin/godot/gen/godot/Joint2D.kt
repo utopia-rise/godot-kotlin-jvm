@@ -24,7 +24,7 @@ import kotlin.Unit
  * Base node for all joint constraints in 2D physics. Joints take 2 bodies and apply a custom constraint.
  */
 @GodotBaseType
-public open abstract class Joint2D : Node2D() {
+public open class Joint2D internal constructor() : Node2D() {
   /**
    * The first body attached to the joint. Must derive from [godot.PhysicsBody2D].
    */

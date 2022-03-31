@@ -46,7 +46,7 @@ import kotlin.Unit
  * **Note:** Only available in the HTML5 platform.
  */
 @GodotBaseType
-public open abstract class JavaScriptObject : RefCounted() {
+public open class JavaScriptObject internal constructor() : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_JAVASCRIPTOBJECT)
   }

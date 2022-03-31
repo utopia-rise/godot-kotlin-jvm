@@ -24,7 +24,7 @@ import kotlin.Unit
  * To use [godot.EditorSceneFormatImporter], register it using the [godot.EditorPlugin.addSceneFormatImporterPlugin] method first.
  */
 @GodotBaseType
-public open abstract class EditorSceneFormatImporter : RefCounted() {
+public open class EditorSceneFormatImporter internal constructor() : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_EDITORSCENEFORMATIMPORTER)
   }

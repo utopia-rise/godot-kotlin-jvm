@@ -36,7 +36,7 @@ import kotlin.Unit
  * This class cannot be instantiated directly, it is retrieved for a given scene as the result of [godot.PackedScene.getState].
  */
 @GodotBaseType
-public open abstract class SceneState : RefCounted() {
+public open class SceneState internal constructor() : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_SCENESTATE)
   }

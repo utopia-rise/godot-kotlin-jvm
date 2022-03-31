@@ -36,7 +36,7 @@ import kotlin.Unit
  * Provides direct access to a physics body in the [godot.PhysicsServer3D], allowing safe changes to physics properties. This object is passed via the direct state callback of dynamic bodies, and is intended for changing the direct state of that body. See [godot.RigidDynamicBody3D.IntegrateForces].
  */
 @GodotBaseType
-public open abstract class PhysicsDirectBodyState3D : Object() {
+public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The timestep (delta) used for the simulation.
    */

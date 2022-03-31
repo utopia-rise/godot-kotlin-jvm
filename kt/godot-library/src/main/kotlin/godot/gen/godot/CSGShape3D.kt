@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public open abstract class CSGShape3D : GeometryInstance3D() {
+public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   public open var operation: Long
     get() {
       TransferContext.writeArguments()

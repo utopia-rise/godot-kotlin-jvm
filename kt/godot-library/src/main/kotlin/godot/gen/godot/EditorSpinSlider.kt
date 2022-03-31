@@ -22,7 +22,7 @@ import kotlin.Unit
  * This [godot.Control] node is used in the editor's Inspector dock to allow editing of numeric values. Can be used with [godot.EditorInspectorPlugin] to recreate the same behavior.
  */
 @GodotBaseType
-public open abstract class EditorSpinSlider : Range() {
+public open class EditorSpinSlider internal constructor() : Range() {
   /**
    *
    */

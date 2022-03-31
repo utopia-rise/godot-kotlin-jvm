@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public open abstract class VisualScriptLists : VisualScriptNode() {
+public open class VisualScriptLists internal constructor() : VisualScriptNode() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_VISUALSCRIPTLISTS)
   }

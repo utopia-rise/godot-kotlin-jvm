@@ -18,7 +18,7 @@ import kotlin.Unit
  *
  */
 @GodotBaseType
-public open abstract class GPUParticlesCollision3D : VisualInstance3D() {
+public open class GPUParticlesCollision3D internal constructor() : VisualInstance3D() {
   /**
    *
    */

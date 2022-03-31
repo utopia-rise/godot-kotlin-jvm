@@ -28,7 +28,7 @@ import kotlin.Unit
  * **Note:** This class shouldn't be instantiated directly. Instead, access the singleton using [godot.EditorInterface.getScriptEditor].
  */
 @GodotBaseType
-public open abstract class ScriptEditor : PanelContainer() {
+public open class ScriptEditor internal constructor() : PanelContainer() {
   /**
    * Emitted when user changed active script. Argument is a freshly activated [godot.Script].
    */

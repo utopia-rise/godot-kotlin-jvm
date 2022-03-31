@@ -14,7 +14,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public open abstract class GDScriptNativeClass : RefCounted() {
+public open class GDScriptNativeClass internal constructor() : RefCounted() {
   public override fun __new(): Unit {
     callConstructor(ENGINECLASS_GDSCRIPTNATIVECLASS)
   }
