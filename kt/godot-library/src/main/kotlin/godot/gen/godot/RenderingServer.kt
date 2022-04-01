@@ -3783,7 +3783,7 @@ public object RenderingServer : Object() {
    *
    * **Warning:** This function is primarily intended for editor usage. For in-game use cases, prefer physics collision.
    */
-  public open fun instancesCullAabb(aabb: AABB, scenario: RID = ): VariantArray<Any?> {
+  public open fun instancesCullAabb(aabb: AABB, scenario: RID = RID()): VariantArray<Any?> {
     TransferContext.writeArguments(godot.core.VariantType.AABB to aabb, _RID to scenario)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_INSTANCES_CULL_AABB,
         ARRAY)
@@ -3798,7 +3798,7 @@ public object RenderingServer : Object() {
   public open fun instancesCullRay(
     from: Vector3,
     to: Vector3,
-    scenario: RID = 
+    scenario: RID = RID()
   ): VariantArray<Any?> {
     TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, _RID to scenario)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_RENDERINGSERVER_INSTANCES_CULL_RAY,
@@ -3811,7 +3811,7 @@ public object RenderingServer : Object() {
    *
    * **Warning:** This function is primarily intended for editor usage. For in-game use cases, prefer physics collision.
    */
-  public open fun instancesCullConvex(convex: VariantArray<Any?>, scenario: RID = ):
+  public open fun instancesCullConvex(convex: VariantArray<Any?>, scenario: RID = RID()):
       VariantArray<Any?> {
     TransferContext.writeArguments(ARRAY to convex, _RID to scenario)
     TransferContext.callMethod(rawPtr,
@@ -4216,7 +4216,7 @@ public object RenderingServer : Object() {
     points: PackedVector2Array,
     colors: PackedColorArray,
     uvs: PackedVector2Array = PackedVector2Array(),
-    texture: RID = 
+    texture: RID = RID()
   ): Unit {
     TransferContext.writeArguments(_RID to item, PACKED_VECTOR2_ARRAY to points, PACKED_COLOR_ARRAY
         to colors, PACKED_VECTOR2_ARRAY to uvs, _RID to texture)
@@ -4235,7 +4235,7 @@ public object RenderingServer : Object() {
     uvs: PackedVector2Array = PackedVector2Array(),
     bones: PackedInt32Array = PackedInt32Array(),
     weights: PackedFloat32Array = PackedFloat32Array(),
-    texture: RID = ,
+    texture: RID = RID(),
     count: Long = -1
   ): Unit {
     TransferContext.writeArguments(_RID to item, PACKED_INT_32_ARRAY to indices,
@@ -4254,7 +4254,7 @@ public object RenderingServer : Object() {
     mesh: RID,
     transform: Transform2D = Transform2D(),
     modulate: Color = Color(Color(1, 1, 1, 1)),
-    texture: RID = 
+    texture: RID = RID()
   ): Unit {
     TransferContext.writeArguments(_RID to item, _RID to mesh, TRANSFORM2D to transform, COLOR to
         modulate, _RID to texture)
@@ -4268,7 +4268,7 @@ public object RenderingServer : Object() {
   public open fun canvasItemAddMultimesh(
     item: RID,
     mesh: RID,
-    texture: RID = 
+    texture: RID = RID()
   ): Unit {
     TransferContext.writeArguments(_RID to item, _RID to mesh, _RID to texture)
     TransferContext.callMethod(rawPtr,

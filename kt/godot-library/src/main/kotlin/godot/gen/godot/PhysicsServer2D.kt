@@ -1094,7 +1094,7 @@ public object PhysicsServer2D : Object() {
     joint: RID,
     anchor: Vector2,
     bodyA: RID,
-    bodyB: RID = 
+    bodyB: RID = RID()
   ): Unit {
     TransferContext.writeArguments(_RID to joint, VECTOR2 to anchor, _RID to bodyA, _RID to bodyB)
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_PHYSICSSERVER2D_JOINT_MAKE_PIN, NIL)
@@ -1108,8 +1108,8 @@ public object PhysicsServer2D : Object() {
     groove1A: Vector2,
     groove2A: Vector2,
     anchorB: Vector2,
-    bodyA: RID = ,
-    bodyB: RID = 
+    bodyA: RID = RID(),
+    bodyB: RID = RID()
   ): Unit {
     TransferContext.writeArguments(_RID to joint, VECTOR2 to groove1A, VECTOR2 to groove2A, VECTOR2
         to anchorB, _RID to bodyA, _RID to bodyB)
@@ -1125,7 +1125,7 @@ public object PhysicsServer2D : Object() {
     anchorA: Vector2,
     anchorB: Vector2,
     bodyA: RID,
-    bodyB: RID = 
+    bodyB: RID = RID()
   ): Unit {
     TransferContext.writeArguments(_RID to joint, VECTOR2 to anchorA, VECTOR2 to anchorB, _RID to
         bodyA, _RID to bodyB)

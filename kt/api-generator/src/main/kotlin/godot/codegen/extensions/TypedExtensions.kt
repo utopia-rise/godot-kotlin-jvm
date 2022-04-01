@@ -122,6 +122,7 @@ fun <T> T.getDefaultValueKotlinString(): String?
             -> defaultValueString.replace(",", ".0,")
                 .replace(")", ".0)")
 
+            GodotTypes.rid,
             GodotTypes.callable,
             GodotTypes.dictionary,
             GodotTypes.transform2D,
