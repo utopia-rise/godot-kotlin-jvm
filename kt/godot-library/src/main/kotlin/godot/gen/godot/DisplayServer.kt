@@ -102,7 +102,7 @@ public object DisplayServer : Object() {
   public open fun globalMenuAddItem(
     menuRoot: String,
     label: String,
-    callback: Callable = ,
+    callback: Callable = Callable(),
     tag: Any? = null,
     accelerator: Key = Key.KEY_NONE,
     index: Long = -1
@@ -128,7 +128,7 @@ public object DisplayServer : Object() {
   public open fun globalMenuAddCheckItem(
     menuRoot: String,
     label: String,
-    callback: Callable = ,
+    callback: Callable = Callable(),
     tag: Any? = null,
     accelerator: Key = Key.KEY_NONE,
     index: Long = -1
@@ -155,7 +155,7 @@ public object DisplayServer : Object() {
     menuRoot: String,
     icon: Texture2D,
     label: String,
-    callback: Callable = ,
+    callback: Callable = Callable(),
     tag: Any? = null,
     accelerator: Key = Key.KEY_NONE,
     index: Long = -1
@@ -182,7 +182,7 @@ public object DisplayServer : Object() {
     menuRoot: String,
     icon: Texture2D,
     label: String,
-    callback: Callable = ,
+    callback: Callable = Callable(),
     tag: Any? = null,
     accelerator: Key = Key.KEY_NONE,
     index: Long = -1
@@ -210,7 +210,7 @@ public object DisplayServer : Object() {
   public open fun globalMenuAddRadioCheckItem(
     menuRoot: String,
     label: String,
-    callback: Callable = ,
+    callback: Callable = Callable(),
     tag: Any? = null,
     accelerator: Key = Key.KEY_NONE,
     index: Long = -1
@@ -239,7 +239,7 @@ public object DisplayServer : Object() {
     menuRoot: String,
     icon: Texture2D,
     label: String,
-    callback: Callable = ,
+    callback: Callable = Callable(),
     tag: Any? = null,
     accelerator: Key = Key.KEY_NONE,
     index: Long = -1
@@ -269,7 +269,7 @@ public object DisplayServer : Object() {
     labe: String,
     maxStates: Long,
     defaultState: Long,
-    callback: Callable = ,
+    callback: Callable = Callable(),
     tag: Any? = null,
     accelerator: Key = Key.KEY_NONE,
     index: Long = -1
