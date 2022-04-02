@@ -1390,9 +1390,6 @@ public open class Node : Object() {
     return TransferContext.readReturnValue(BOOL, false) as Boolean
   }
 
-  /**
-   * Prints all stray nodes (nodes outside the [godot.SceneTree]). Used for debugging. Works only in debug builds.
-   */
   public open fun printStrayNodes(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, ENGINEMETHOD_ENGINECLASS_NODE_PRINT_STRAY_NODES, NIL)

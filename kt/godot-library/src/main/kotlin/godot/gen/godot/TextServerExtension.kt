@@ -307,7 +307,7 @@ public open class TextServerExtension : TextServer() {
   }
 
   /**
-   * Retruns 2D transform applied to the font outlines.
+   * Returns 2D transform applied to the font outlines.
    */
   public open fun _fontGetTransform(fontRid: RID): Transform2D {
     throw NotImplementedError("font_get_transform·is·not·implemented·for·TextServerExtension")

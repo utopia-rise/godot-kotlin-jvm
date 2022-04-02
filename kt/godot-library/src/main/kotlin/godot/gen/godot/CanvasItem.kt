@@ -139,7 +139,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * If `true`, the node will not inherit its transform from parent [godot.CanvasItem]s.
+   * If `true`, this [godot.CanvasItem] will *not* inherit its transform from parent [godot.CanvasItem]s. Its draw order will also be changed to make it draw on top of other [godot.CanvasItem]s that do not have [topLevel] set to `true`. The [godot.CanvasItem] will effectively act as if it was placed as a child of a bare [godot.Node].
    */
   public open var topLevel: Boolean
     get() {

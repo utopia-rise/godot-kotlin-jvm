@@ -1888,7 +1888,7 @@ public object DisplayServer : Object() {
      */
     WINDOW_FLAG_NO_FOCUS(4),
     /**
-     * Window is part of menu or [godot.OptionButton] dropdown. This flag can't be changed when window is visible. An active popup window will exclusivly receive all input, without stealing focus from its parent. Popup windows are automatically closed when uses click outside it, or when an application is switched. Popup window must have [WINDOW_FLAG_TRANSPARENT] set.
+     * Window is part of menu or [godot.OptionButton] dropdown. This flag can't be changed when window is visible. An active popup window will exclusively receive all input, without stealing focus from its parent. Popup windows are automatically closed when uses click outside it, or when an application is switched. Popup window must have [WINDOW_FLAG_TRANSPARENT] set.
      */
     WINDOW_FLAG_POPUP(5),
     /**

@@ -442,7 +442,7 @@ public open class Font : Resource() {
   }
 
   /**
-   * Returns [godot.Array] of valid [godot.FontData] [RID]s, which can be passsed to the [godot.TextServer] methods.
+   * Returns [godot.Array] of valid [godot.FontData] [RID]s, which can be passed to the [godot.TextServer] methods.
    */
   public open fun getRids(): VariantArray<Any?> {
     TransferContext.writeArguments()
